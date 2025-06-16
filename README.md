@@ -4,12 +4,14 @@
 
 - InstructCell
 - Cell2Sentence
+- ...
 
 #### Evaluation of scLLMs (single-cell models with langugae capabilities)
 
 - Qwen
 - Llama
 - Deepseek
+- ...
 
 #### Evaluation of LLMs (large language models)
 
