@@ -16,6 +16,8 @@ from scgpt.loss import (
 from process_data import create_datasets
 from dataset_loader import prepare_data, prepare_dataloader
 from load_model import load_pretrained_model, train, evaluate
+from make_predictions import test
+from analyse_prediction import make_confusion_plot, make_umap_plot
 
 os.environ["KMP_WARNINGS"] = "off"
 warnings.filterwarnings("ignore")
@@ -27,10 +29,10 @@ if __name__ == "__main__":
         seed=0,
         dataset_name="ms",
         dataset_path="../data/ms",
-        do_train=True,
+        do_train=False,
         load_model="../models/scGPT_human",
         mask_ratio=0.0,
-        epochs=2,
+        epochs=1,
         n_bins=51,
         MVC=False,  # Masked value prediction for cell embedding
         ecs_thres=0.0,  # Elastic cell similarity objective, 0.0 to 1.0, 0.0 to disable
@@ -79,7 +81,7 @@ if __name__ == "__main__":
     cell_emb_style = "cls"  # "avg-pool" or "w-pool" or "cls"
     adv_E_delay_epochs = 0  # delay adversarial training on encoder for a few epochs
     adv_D_delay_epochs = 0
-    mvc_decoder_style = "inner product"  # https://github.com/bowang-lab/scGPT/blob/7301b51a72f5db321fccebb51bc4dd1380d99023/scgpt/model/model.py
+    mvc_decoder_style = "inner product"
     ecs_threshold = config["ecs_thres"]
     dab_weight = config["dab_weight"]
 
@@ -93,7 +95,7 @@ if __name__ == "__main__":
     per_seq_batch_sample = False
 
     # settings for optimizer
-    lr = config["lr"]  # TODO: test learning rate ratio between two tasks
+    lr = config["lr"]
     batch_size = config["batch_size"]
     eval_batch_size = config["batch_size"]
     epochs = config["epochs"]
@@ -141,8 +143,9 @@ if __name__ == "__main__":
             intra_domain_shuffle=False,
             drop_last=False,
         )
-
+        
         if config["do_train"]:
+            print("Training scGPT model...")
             train(
                 model,
                 epoch,
@@ -155,6 +158,7 @@ if __name__ == "__main__":
                 vocab,
                 loader=train_loader,
             )
+        print("Evaluating scGPT model...")
         val_loss, val_err = evaluate(
             model,
             config,
@@ -178,3 +182,11 @@ if __name__ == "__main__":
             logger.info(f"Best model with score {best_val_loss:5.4f}")
 
         scheduler.step()
+    
+    ## test model
+    print("Test the trained model...")
+    predictions, labels, results  = test(model, tr_valid_sets, config, criterion_cls, criterion_dab)
+
+    # make evaluation plots
+    make_umap_plot(predictions, labels, results, tr_valid_sets)
+    make_confusion_plot(predictions, labels, tr_valid_sets)

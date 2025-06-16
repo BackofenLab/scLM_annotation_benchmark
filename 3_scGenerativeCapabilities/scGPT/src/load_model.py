@@ -365,9 +365,10 @@ def evaluate(
             batch_labels = batch_data["batch_labels"].to(device)
             celltype_labels = batch_data["celltype_labels"].to(device)
 
-            if batch == 10:
-                break
-
+            #if batch == 10:
+            #    break
+            if batch % 200 == 0 and batch > 0:
+                logger.info(f"{batch} batches evaluated")
             src_key_padding_mask = input_gene_ids.eq(vocab[pad_token])
             with torch.cuda.amp.autocast(enabled=config["amp"]):
                 output_dict = model(

@@ -2,18 +2,26 @@
 
 # sys.path.insert(0, "../")
 
+from pathlib import Path
 
 # sc.set_figure_params(figsize=(6, 6))
 import scanpy as sc
-import scvi
 import seaborn as sns
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
+import pickle
+from sklearn.metrics import confusion_matrix
 
 
-def make_umap_plots():
+def make_umap_plot(predictions, labels, results, tr_valid_sets):
 
-    predictions, labels, results = test(best_model, adata_test)
+    adata_test_raw = tr_valid_sets["adata_test_raw"]
+    # adata_test = tr_valid_sets["adata_test"]
+    id2type = tr_valid_sets["id2type"]
+    celltypes = tr_valid_sets["celltypes"]
+    save_dir = Path(tr_valid_sets["save_dir"])
+    # predictions, labels, results = test(best_model, adata_test)
     adata_test_raw.obs["predictions"] = [id2type[p] for p in predictions]
 
     # plot
@@ -44,9 +52,10 @@ def make_umap_plots():
         pickle.dump(save_dict, f)
 
 
-def make_confusion_plot():
-
-    celltypes = list(celltypes)
+def make_confusion_plot(predictions, labels, tr_valid_sets):
+    id2type = tr_valid_sets["id2type"]
+    celltypes = list(tr_valid_sets["celltypes"])
+    save_dir = Path(tr_valid_sets["save_dir"])
     for i in set([id2type[p] for p in predictions]):
         if i not in celltypes:
             celltypes.remove(i)

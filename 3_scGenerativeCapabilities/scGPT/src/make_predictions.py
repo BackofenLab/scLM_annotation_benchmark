@@ -1,77 +1,41 @@
-import scgpt as scg
-from scgpt.model import TransformerModel
-from scgpt.tokenizer import tokenize_and_pad_batch, random_mask_value
-from scgpt.loss import (
-    masked_mse_loss,
-    masked_relative_error,
-    criterion_neg_log_bernoulli,
-)
-from scgpt.tokenizer.gene_tokenizer import GeneVocab
-from scgpt.preprocess import Preprocessor
-from scgpt import SubsetsBatchSampler
-from scgpt.utils import set_seed, category_str2int, eval_scib_metrics
+import os
+from typing import Dict
 
+import numpy as np
+from scipy.sparse import issparse
+import scgpt as scg
+from scgpt.tokenizer import tokenize_and_pad_batch, random_mask_value
 import torch
 from torch import nn
-from torch.nn import functional as F
-from torch.utils.data import Dataset, DataLoader
+from torch.utils.data import DataLoader
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+
+import dataset_loader
+from load_model import evaluate
 
 
-def evaluate(model: nn.Module, loader: DataLoader, return_raw: bool = False) -> float:
-    """
-    Evaluate the model on the evaluation data.
-    """
-    model.eval()
-    total_loss = 0.0
-    total_error = 0.0
-    total_dab = 0.0
-    total_num = 0
-    predictions = []
-    with torch.no_grad():
-        for batch_data in loader:
-            input_gene_ids = batch_data["gene_ids"].to(device)
-            input_values = batch_data["values"].to(device)
-            target_values = batch_data["target_values"].to(device)
-            batch_labels = batch_data["batch_labels"].to(device)
-            celltype_labels = batch_data["celltype_labels"].to(device)
+input_style = "binned"  # "normed_raw", "log1p", or "binned"
+output_style = "binned"  # "normed_raw", "log1p", or "binned"
+mask_value = -1
 
-            src_key_padding_mask = input_gene_ids.eq(vocab[pad_token])
-            with torch.cuda.amp.autocast(enabled=config["amp"]):
-                output_dict = model(
-                    input_gene_ids,
-                    input_values,
-                    src_key_padding_mask=src_key_padding_mask,
-                    batch_labels=(
-                        batch_labels if INPUT_BATCH_LABELS or config["DSBN"] else None
-                    ),
-                    CLS=CLS,  # evaluation does not need CLS or CCE
-                    CCE=False,
-                    MVC=False,
-                    ECS=False,
-                    do_sample=do_sample_in_train,
-                    # generative_training = False,
-                )
-                output_values = output_dict["cls_output"]
-                loss = criterion_cls(output_values, celltype_labels)
-
-                if DAB:
-                    loss_dab = criterion_dab(output_dict["dab_output"], batch_labels)
-
-            total_loss += loss.item() * len(input_gene_ids)
-            accuracy = (output_values.argmax(1) == celltype_labels).sum().item()
-            total_error += (1 - accuracy / len(input_gene_ids)) * len(input_gene_ids)
-            total_dab += loss_dab.item() * len(input_gene_ids) if DAB else 0.0
-            total_num += len(input_gene_ids)
-            preds = output_values.argmax(1).cpu().numpy()
-            predictions.append(preds)
-
-    if return_raw:
-        return np.concatenate(predictions, axis=0)
-
-    return total_loss / total_num, total_error / total_num
+input_layer_key = {  # the values of this map coorespond to the keys in preprocessing
+    "normed_raw": "X_normed",
+    "log1p": "X_normed",
+    "binned": "X_binned",
+}[input_style]
+pad_token = "<pad>"
+pad_value = -2
+max_seq_len = 3001
 
 
-def test(model: nn.Module, adata: DataLoader) -> float:
+def test(
+    model: nn.Module, tr_valid_sets: Dict, config: Dict, criterion_cls, criterion_dab
+) -> float:
+    logger = scg.logger
+    adata = tr_valid_sets["adata_test"]
+    gene_ids = tr_valid_sets["gene_ids"]
+    vocab = tr_valid_sets["vocab"]
+    mask_ratio = config["mask_ratio"]
     all_counts = (
         adata.layers[input_layer_key].A
         if issparse(adata.layers[input_layer_key])
@@ -92,7 +56,7 @@ def test(model: nn.Module, adata: DataLoader) -> float:
         pad_token=pad_token,
         pad_value=pad_value,
         append_cls=True,  # append <cls> token at the beginning
-        include_zero_gene=include_zero_gene,
+        include_zero_gene=config["include_zero_gene"],
     )
 
     input_values_test = random_mask_value(
@@ -109,9 +73,9 @@ def test(model: nn.Module, adata: DataLoader) -> float:
         "batch_labels": torch.from_numpy(batch_ids).long(),
         "celltype_labels": torch.from_numpy(celltypes_labels).long(),
     }
-
+    eval_batch_size = config["batch_size"]
     test_loader = DataLoader(
-        dataset=SeqDataset(test_data_pt),
+        dataset=dataset_loader.SeqDataset(test_data_pt),
         batch_size=eval_batch_size,
         shuffle=False,
         drop_last=False,
@@ -122,12 +86,13 @@ def test(model: nn.Module, adata: DataLoader) -> float:
     model.eval()
     predictions = evaluate(
         model,
+        config,
+        criterion_cls,
+        criterion_dab,
+        vocab,
         loader=test_loader,
         return_raw=True,
     )
-
-    # compute accuracy, precision, recall, f1
-    from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
     accuracy = accuracy_score(celltypes_labels, predictions)
     precision = precision_score(celltypes_labels, predictions, average="macro")

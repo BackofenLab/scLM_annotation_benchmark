@@ -23,13 +23,14 @@ from scgpt.preprocess import Preprocessor
 input_style = "binned"  # "normed_raw", "log1p", or "binned"
 output_style = "binned"  # "normed_raw", "log1p", or "binned"
 pad_token = "<pad>"
+pad_value = -2
 special_tokens = [
     pad_token,
     "<cls>",
     "<eoc>",
 ]  # special tokens used for padding and marking the sequence
 max_seq_len = 3001
-pad_value = -2
+
 
 
 def create_datasets(config):
@@ -61,6 +62,7 @@ def create_datasets(config):
         adata_test.var.set_index(adata.var["gene_name"], inplace=True)
         data_is_raw = False
         filter_gene_by_counts = False
+        adata_test_raw = adata_test.copy()
         adata = adata.concatenate(adata_test, batch_key="str_batch")
 
     # make the batch category column
@@ -68,9 +70,9 @@ def create_datasets(config):
     adata.obs["batch_id"] = batch_id_labels
 
     celltype_id_labels = adata.obs["celltype"].astype("category").cat.codes.values
-    # celltypes = adata.obs["celltype"].unique()
+    celltypes = adata.obs["celltype"].unique()
     num_types = len(np.unique(celltype_id_labels))
-    # id2type = dict(enumerate(adata.obs["celltype"].astype("category").cat.categories))
+    id2type = dict(enumerate(adata.obs["celltype"].astype("category").cat.categories))
 
     adata.obs["celltype_id"] = celltype_id_labels
     adata.var["gene_name"] = adata.var.index.tolist()
@@ -212,6 +214,11 @@ def create_datasets(config):
         "num_types": num_types,
         "num_batch_types": num_batch_types,
         "adata": adata,
+        "adata_test": adata_test,
+        "adata_test_raw": adata_test_raw,
+        "celltypes": celltypes,
+        "id2type": id2type,
+        "gene_ids": gene_ids
     }
 
     return tr_valid_sets
