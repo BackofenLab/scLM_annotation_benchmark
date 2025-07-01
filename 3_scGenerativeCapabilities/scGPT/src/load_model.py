@@ -27,7 +27,7 @@ max_seq_len = 3001
 pad_value = -2
 mask_value = -1
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-log_interval = 9  # iterations
+log_interval = 50  # iterations
 do_eval_scib_metrics = True
 MLM = False  # whether to use masked language modeling, currently it is always on.
 CLS = True  # celltype classification objective
@@ -135,7 +135,7 @@ def load_pretrained_model(tr_valid_sets, config):
             model.load_state_dict(
                 torch.load(model_file, map_location=torch.device(device))
             )
-            logger.info(f"Loading all model params from {model_file}")
+            #logger.info(f"Loading all model params from {model_file}")
         except:
             # only load params that are in the model and match the size
             model_dict = model.state_dict()
@@ -145,8 +145,8 @@ def load_pretrained_model(tr_valid_sets, config):
                 for k, v in pretrained_dict.items()
                 if k in model_dict and v.shape == model_dict[k].shape
             }
-            for k, v in pretrained_dict.items():
-                logger.info(f"Loading params {k} with shape {v.shape}")
+            '''for k, v in pretrained_dict.items():
+                logger.info(f"Loading params {k} with shape {v.shape}")'''
             model_dict.update(pretrained_dict)
             model.load_state_dict(model_dict)
 
@@ -172,11 +172,12 @@ def load_pretrained_model(tr_valid_sets, config):
 
     logger.info(f"Total Pre freeze Params {(pre_freeze_param_count )}")
     logger.info(f"Total Post freeze Params {(post_freeze_param_count )}")
+    #model.to(device)
     return model, vocab
 
 
 def train(
-    model: nn.Module,
+    model,
     epoch,
     tr_valid_sets,
     config,
@@ -185,8 +186,8 @@ def train(
     scheduler,
     criterion_cls,
     vocab,
-    loader: DataLoader,
-) -> None:
+    loader,
+):
     """
     Train the model for one epoch.
     """
@@ -227,10 +228,6 @@ def train(
         target_values = batch_data["target_values"].to(device)
         batch_labels = batch_data["batch_labels"].to(device)
         celltype_labels = batch_data["celltype_labels"].to(device)
-        print(f"Training batch {batch} ...")
-        if batch == 10:
-            break
-
         src_key_padding_mask = input_gene_ids.eq(vocab[pad_token])
         with torch.cuda.amp.autocast(enabled=config["amp"]):
             output_dict = model(
@@ -330,6 +327,7 @@ def train(
             total_mvc_zero_log_prob = 0
             total_error = 0
             start_time = time.time()
+    return model, scaler, optimizer, scheduler
 
 
 def evaluate(
@@ -365,8 +363,6 @@ def evaluate(
             batch_labels = batch_data["batch_labels"].to(device)
             celltype_labels = batch_data["celltype_labels"].to(device)
 
-            #if batch == 10:
-            #    break
             if batch % 200 == 0 and batch > 0:
                 logger.info(f"{batch} batches evaluated")
             src_key_padding_mask = input_gene_ids.eq(vocab[pad_token])
