@@ -120,7 +120,7 @@ def process_tabula_sapiens_data(config):
         train_batch_labels,
         valid_batch_labels,
     ) = train_test_split(
-        all_counts, celltypes_labels, batch_ids, test_size=0.99, shuffle=True
+        all_counts, celltypes_labels, batch_ids, test_size=0.2, shuffle=True
     )
 
     print(
