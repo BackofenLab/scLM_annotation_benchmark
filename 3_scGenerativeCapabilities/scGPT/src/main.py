@@ -2,100 +2,41 @@
 
 import copy
 import os
+import sys
 import time
 import warnings
+
+from pathlib import Path
 
 warnings.filterwarnings("ignore")
-import shutil
-
-from pathlib import Path
 
 import torch
 from torch import nn
-import numpy as np
-import json
-
-import scgpt
-from scgpt.model import TransformerModel
-from scgpt.loss import (
-    masked_mse_loss,
-)
-from scgpt.tokenizer.gene_tokenizer import GeneVocab
-
-## https://scgpt.readthedocs.io/en/latest/tutorial_annotation.html#
-
-import copy
-import gc
-import json
-import os
-from pathlib import Path
-import shutil
-import sys
-
-import time
-import traceback
-from typing import List, Tuple, Dict, Union, Optional
-import warnings
-import pandas as pd
-
-# from . import asyn
-import pickle
-import torch
-from anndata import AnnData
 import scanpy as sc
-import scvi
-import seaborn as sns
-import numpy as np
-from scipy.sparse import issparse
-import matplotlib.pyplot as plt
-from torch import nn
-from torch.nn import functional as F
-from torch.utils.data import Dataset, DataLoader
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import adjusted_rand_score, normalized_mutual_info_score
-from torchtext.vocab import Vocab
-from torchtext._torchtext import (
-    Vocab as VocabPybind,
-)
-from sklearn.metrics import confusion_matrix
-
-sys.path.insert(0, "../")
 
 import scgpt as scg
-from scgpt.model import TransformerModel
-from scgpt.tokenizer import tokenize_and_pad_batch, random_mask_value
-from scgpt.loss import (
-    masked_mse_loss,
-    masked_relative_error,
-    criterion_neg_log_bernoulli,
-)
-from scgpt.tokenizer.gene_tokenizer import GeneVocab
-from scgpt.preprocess import Preprocessor
-from scgpt import SubsetsBatchSampler
-from scgpt.utils import set_seed, category_str2int, eval_scib_metrics
-
-sc.set_figure_params(figsize=(6, 6))
-os.environ["KMP_WARNINGS"] = "off"
-warnings.filterwarnings("ignore")
-
-os.environ["KMP_WARNINGS"] = "off"
-warnings.filterwarnings("ignore")
+from scgpt.loss import masked_mse_loss
 
 from dataset_loader import prepare_anndata, prepare_data, prepare_dataloader
 from model_utils import load_pretrained_model, train_model, evaluate_model
+from make_predictions import test
+from analyse_prediction import make_confusion_plot, make_umap_plot
+
+os.environ["KMP_WARNINGS"] = "off"
+warnings.filterwarnings("ignore")
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 if __name__ == "__main__":
 
-    hyperparameter_defaults = dict(
+    config = dict(
         seed=0,
         dataset_name="ms",
         do_train=True,
         load_model="../models/scGPT_human",
         mask_ratio=0.0,
         mask_value=-1,  # for masked values, now it should always be auto
-        epochs=1,
+        epochs=3,
         n_bins=51,
         MVC=False,  # Masked value prediction for cell embedding
         ecs_thres=0.0,  # Elastic cell similarity objective, 0.0 to 1.0, 0.0 to disable
@@ -122,28 +63,13 @@ if __name__ == "__main__":
         per_seq_batch_sample=False,
         input_style="binned",
         max_seq_len=3001,
-        log_interval=50
+        log_interval=50,
     )
-
-    print(hyperparameter_defaults)
-
-    config = hyperparameter_defaults
-
-    # settings for input and preprocessing
-    # pad_token = "<pad>"
-    # special_tokens = [pad_token, "<cls>", "<eoc>"] # special tokens used for padding and marking the sequence
-    # mask_ratio = config["mask_ratio"] # proportion of input tokens to mask for training
-    # mask_value = "auto"  # for masked values, now it should always be auto
 
     include_zero_gene = config[
         "include_zero_gene"
     ]  # if True, include zero genes among HGVs in the training
-    # max_seq_len = 3001
     n_bins = config["n_bins"]  # Number of bins for discretizing gene expression values
-
-    # input/output representation
-    # input_style = "binned"  # "normed_raw", "log1p", or "binned"
-    # output_style = "binned"  # "normed_raw", "log1p", or "binned"
 
     # settings for training
     MLM = False  # whether to use masked language modeling, currently it is always on.
@@ -165,15 +91,6 @@ if __name__ == "__main__":
     mvc_decoder_style = "inner product"  # https://github.com/bowang-lab/scGPT/blob/7301b51a72f5db321fccebb51bc4dd1380d99023/scgpt/model/model.py
     ecs_threshold = config["ecs_thres"]
     dab_weight = config["dab_weight"]
-
-    explicit_zero_prob = (
-        MLM and include_zero_gene
-    )  # whether explicit bernoulli for zeros
-    do_sample_in_train = (
-        False and explicit_zero_prob
-    )  # sample the bernoulli in training
-
-    # per_seq_batch_sample = False
 
     # settings for optimizer
     lr = config["lr"]  # TODO: test learning rate ratio between two tasks
@@ -197,21 +114,14 @@ if __name__ == "__main__":
     nhead = config["nhead"]  # number of heads in nn.MultiheadAttention
     dropout = config["dropout"]  # dropout probability
 
-    # logging
-    #log_interval = 50  # iterations
     save_eval_interval = config["save_eval_interval"]  # epochs
     do_eval_scib_metrics = True
     mask_value = -1
     pad_value = -2
     n_input_bins = n_bins
 
-    ################################################
-
-    # tokenized_train, tokenized_valid, train_celltype_labels, valid_celltype_labels, train_batch_labels, \
-    #    valid_batch_labels, vocab, num_types, num_batch_types, logger = prepare_anndata(config)
-
     proc_datasets = prepare_anndata(config)
-    ###############################################
+
     logger = proc_datasets.logger
 
     model = load_pretrained_model(proc_datasets, config)
@@ -294,4 +204,11 @@ if __name__ == "__main__":
 
     scheduler.step()
 
-    ###############################################
+    print("Test the fine-tuned model...")
+    predictions, labels, results = test(
+        model, proc_datasets, config, criterion_cls, criterion_dab
+    )
+
+    # make evaluation plots
+    make_umap_plot(predictions, labels, results, proc_datasets)
+    make_confusion_plot(predictions, labels, proc_datasets)

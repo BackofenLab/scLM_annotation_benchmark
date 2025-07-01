@@ -31,7 +31,6 @@ from scgpt import SubsetsBatchSampler
 from scgpt.tokenizer import tokenize_and_pad_batch, random_mask_value
 
 
-
 def prepare_anndata(config):
 
     dataset_name = config["dataset_name"]
@@ -69,14 +68,16 @@ def prepare_anndata(config):
         adata_test.var.set_index(adata.var["gene_name"], inplace=True)
         data_is_raw = False
         filter_gene_by_counts = False
-        adata_test.copy()
+        adata_test_raw = adata_test.copy()
         adata = adata.concatenate(adata_test, batch_key="str_batch")
 
     # make the batch category column
     batch_id_labels = adata.obs["str_batch"].astype("category").cat.codes.values
     adata.obs["batch_id"] = batch_id_labels
     celltype_id_labels = adata.obs["celltype"].astype("category").cat.codes.values
+    celltypes = adata.obs["celltype"].unique()
     num_types = len(np.unique(celltype_id_labels))
+    id2type = dict(enumerate(adata.obs["celltype"].astype("category").cat.categories))
     adata.obs["celltype_id"] = celltype_id_labels
     adata.var["gene_name"] = adata.var.index.tolist()
 
@@ -212,6 +213,13 @@ def prepare_anndata(config):
             "train_batch_labels",
             "valid_batch_labels",
             "vocab",
+            "save_dir",
+            "adata",
+            "adata_test",
+            "adata_test_raw",
+            "celltypes",
+            "id2type",
+            "gene_ids",
             "num_types",
             "num_batch_types",
             "logger",
@@ -226,6 +234,13 @@ def prepare_anndata(config):
         train_batch_labels,
         valid_batch_labels,
         vocab,
+        str(save_dir),
+        adata,
+        adata_test,
+        adata_test_raw,
+        celltypes,
+        id2type,
+        gene_ids,
         num_types,
         num_batch_types,
         logger,

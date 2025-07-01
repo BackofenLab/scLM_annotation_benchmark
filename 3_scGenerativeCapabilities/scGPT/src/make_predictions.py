@@ -25,16 +25,14 @@ input_layer_key = {  # the values of this map coorespond to the keys in preproce
 }[input_style]
 pad_token = "<pad>"
 pad_value = -2
-max_seq_len = 3001
+# max_seq_len = 3001
 
 
-def test(
-    model: nn.Module, tr_valid_sets: Dict, config: Dict, criterion_cls, criterion_dab
-) -> float:
+def test(model, proc_datasets, config, criterion_cls, criterion_dab):
     logger = scg.logger
-    adata = tr_valid_sets["adata_test"]
-    gene_ids = tr_valid_sets["gene_ids"]
-    vocab = tr_valid_sets["vocab"]
+    adata = proc_datasets.adata_test
+    gene_ids = proc_datasets.gene_ids
+    vocab = proc_datasets.vocab
     mask_ratio = config["mask_ratio"]
     all_counts = (
         adata.layers[input_layer_key].A
@@ -51,7 +49,7 @@ def test(
     tokenized_test = tokenize_and_pad_batch(
         all_counts,
         gene_ids,
-        max_len=max_seq_len,
+        max_len=config["max_seq_len"],
         vocab=vocab,
         pad_token=pad_token,
         pad_value=pad_value,
