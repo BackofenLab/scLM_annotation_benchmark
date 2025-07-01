@@ -12,7 +12,7 @@ from sklearn.metrics import confusion_matrix
 
 def make_umap_plot(predictions, labels, results, proc_datasets):
 
-    adata_test_raw = proc_datasets.adata_test_ra
+    adata_test_raw = proc_datasets.adata_test_raw
     id2type = proc_datasets.id2type
     celltypes = list(proc_datasets.celltypes)
     save_dir = Path(proc_datasets.save_dir)
@@ -31,7 +31,7 @@ def make_umap_plot(predictions, labels, results, proc_datasets):
     with plt.rc_context({"figure.figsize": (6, 4), "figure.dpi": (300)}):
         sc.pl.umap(
             adata_test_raw,
-            color=["celltype", "predictions"],
+            color=[proc_datasets.celltype_key, "predictions"],
             palette=palette_,
             show=False,
         )

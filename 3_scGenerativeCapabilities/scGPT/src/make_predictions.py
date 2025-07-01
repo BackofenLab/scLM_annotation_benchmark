@@ -11,7 +11,9 @@ from torch.utils.data import DataLoader
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 import dataset_loader
-from load_model import evaluate
+
+from model_utils import  evaluate_model
+
 
 
 input_style = "binned"  # "normed_raw", "log1p", or "binned"
@@ -81,13 +83,12 @@ def test(model, proc_datasets, config, criterion_cls, criterion_dab):
         pin_memory=True,  # Copies the tensor to pinned memory, if it’s not already pinned.
     )
 
-    model.eval()
-    predictions = evaluate(
-        model,
+    predictions = evaluate_model(
+        proc_datasets,
         config,
+        model,
         criterion_cls,
         criterion_dab,
-        vocab,
         loader=test_loader,
         return_raw=True,
     )

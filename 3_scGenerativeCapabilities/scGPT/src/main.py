@@ -18,6 +18,7 @@ import scgpt as scg
 from scgpt.loss import masked_mse_loss
 
 from dataset_loader import prepare_anndata, prepare_data, prepare_dataloader
+from process_tabula_sapiens import process_tabula_sapiens_data
 from model_utils import load_pretrained_model, train_model, evaluate_model
 from make_predictions import test
 from analyse_prediction import make_confusion_plot, make_umap_plot
@@ -32,11 +33,11 @@ if __name__ == "__main__":
     config = dict(
         seed=0,
         dataset_name="ms",
-        do_train=True,
+        do_train=False,
         load_model="../models/scGPT_human",
         mask_ratio=0.0,
         mask_value=-1,  # for masked values, now it should always be auto
-        epochs=3,
+        epochs=1,
         n_bins=51,
         MVC=False,  # Masked value prediction for cell embedding
         ecs_thres=0.0,  # Elastic cell similarity objective, 0.0 to 1.0, 0.0 to disable
@@ -120,7 +121,11 @@ if __name__ == "__main__":
     pad_value = -2
     n_input_bins = n_bins
 
-    proc_datasets = prepare_anndata(config)
+    # work with default scGPT datasets
+    #proc_datasets = prepare_anndata(config)
+
+    # work with Tabula Sapiens data
+    proc_datasets = process_tabula_sapiens_data(config)
 
     logger = proc_datasets.logger
 

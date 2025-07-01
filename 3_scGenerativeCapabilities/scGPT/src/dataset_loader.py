@@ -47,16 +47,17 @@ def prepare_anndata(config):
     print(f"save to {save_dir}")
     logger = scg.logger
     scg.utils.add_file_handler(logger, save_dir / "run.log")
+    celltype_key = "celltype"  # default cell type key, can be changed later
 
     if dataset_name == "ms":
         data_dir = Path("../data/ms")
         adata = sc.read(data_dir / "c_data.h5ad")
         adata_test = sc.read(data_dir / "filtered_ms_adata.h5ad")
         # cell types
-        adata.obs["celltype"] = adata.obs[
+        adata.obs[celltype_key] = adata.obs[
             "Factor Value[inferred cell type - authors labels]"
         ].astype("category")
-        adata_test.obs["celltype"] = adata_test.obs[
+        adata_test.obs[celltype_key] = adata_test.obs[
             "Factor Value[inferred cell type - authors labels]"
         ].astype("category")
 
@@ -74,14 +75,14 @@ def prepare_anndata(config):
     # make the batch category column
     batch_id_labels = adata.obs["str_batch"].astype("category").cat.codes.values
     adata.obs["batch_id"] = batch_id_labels
-    celltype_id_labels = adata.obs["celltype"].astype("category").cat.codes.values
-    celltypes = adata.obs["celltype"].unique()
+    celltype_id_labels = adata.obs[celltype_key].astype("category").cat.codes.values
+    celltypes = adata.obs[celltype_key].unique()
     num_types = len(np.unique(celltype_id_labels))
-    id2type = dict(enumerate(adata.obs["celltype"].astype("category").cat.categories))
+    id2type = dict(enumerate(adata.obs[celltype_key].astype("category").cat.categories))
     adata.obs["celltype_id"] = celltype_id_labels
     adata.var["gene_name"] = adata.var.index.tolist()
 
-    print(adata.obs["celltype"])
+    print(adata.obs[celltype_key])
     print(adata.X)
 
     if config["load_model"] is not None:
@@ -223,6 +224,7 @@ def prepare_anndata(config):
             "num_types",
             "num_batch_types",
             "logger",
+            "celltype_key"
         ],
     )
 
@@ -244,6 +246,7 @@ def prepare_anndata(config):
         num_types,
         num_batch_types,
         logger,
+        celltype_key
     )
 
 
