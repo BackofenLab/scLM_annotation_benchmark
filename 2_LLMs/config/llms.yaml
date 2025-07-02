@@ -1,0 +1,3 @@
+model_name: gemma3
+model_version: 1b
+data_path: ../../3_scGenerativeCapabilities/scGPT/data/tabula_sapiens_v2/Kidney_TSP1_30_version2d_10X_smartseq_scvi_Nov122024.h5ad
