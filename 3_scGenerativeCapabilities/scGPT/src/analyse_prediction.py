@@ -35,7 +35,8 @@ def make_umap_plot(predictions, labels, results, proc_datasets):
             palette=palette_,
             show=False,
         )
-        plt.savefig(save_dir / "results.png", dpi=300)
+        plt.tight_layout()
+        plt.savefig(save_dir / "umap_plot.png", dpi=300)
 
     save_dict = {
         "predictions": predictions,
@@ -51,6 +52,7 @@ def make_confusion_plot(predictions, labels, proc_datasets):
     id2type = proc_datasets.id2type
     celltypes = list(proc_datasets.celltypes)
     save_dir = Path(proc_datasets.save_dir)
+
     for i in set([id2type[p] for p in predictions]):
         if i not in celltypes:
             celltypes.remove(i)
@@ -59,6 +61,7 @@ def make_confusion_plot(predictions, labels, proc_datasets):
     cm = pd.DataFrame(
         cm, index=celltypes[: cm.shape[0]], columns=celltypes[: cm.shape[1]]
     )
-    plt.figure(figsize=(15, 15))
+    plt.figure(figsize=(20, 20))
     sns.heatmap(cm, annot=True, fmt=".1f", cmap="Blues")
+    plt.tight_layout()
     plt.savefig(save_dir / "confusion_matrix.png", dpi=300)

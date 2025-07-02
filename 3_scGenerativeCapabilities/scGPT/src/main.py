@@ -33,11 +33,11 @@ if __name__ == "__main__":
     config = dict(
         seed=0,
         dataset_name="ms",
-        do_train=True,
+        do_train=False,
         load_model="../models/scGPT_human",
         mask_ratio=0.0,
         mask_value=-1,  # for masked values, now it should always be auto
-        epochs=5,
+        epochs=1,
         n_bins=51,
         MVC=False,  # Masked value prediction for cell embedding
         ecs_thres=0.0,  # Elastic cell similarity objective, 0.0 to 1.0, 0.0 to disable
@@ -56,7 +56,7 @@ if __name__ == "__main__":
         # FP16 reduces memory usage and speeds up computations.
         # FP32 is used when precision is critical
         include_zero_gene=False,
-        freeze=False,  # freeze
+        freeze=True,  # freeze
         DSBN=False,  # Domain-spec batchnorm
         pad_token="<pad>",
         special_tokens=["<pad>", "<cls>", "<eoc>"],
