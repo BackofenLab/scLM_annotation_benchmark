@@ -9,7 +9,7 @@ import scanpy as sc
 import scgpt as scg
 from scgpt.preprocess import Preprocessor
 from scgpt.tokenizer.gene_tokenizer import GeneVocab
-from scgpt.tokenizer import tokenize_and_pad_batch, random_mask_value
+from scgpt.tokenizer import tokenize_and_pad_batch
 
 from sklearn.model_selection import train_test_split
 from scipy.sparse import issparse
@@ -20,10 +20,9 @@ logger = scg.logger
 def process_tabula_sapiens_data(config):
     print("Loading and processing Tabula Sapiens data...")
     file_path = "../data/tabula_sapiens_v2/Kidney_TSP1_30_version2d_10X_smartseq_scvi_Nov122024.h5ad"  # Adjust the path as needed
+    #file_path = "../data/tabula_sapiens_v2/Heart_TSP1_30_version2d_10X_smartseq_scvi_Nov122024.h5ad"  # Adjust the path as needed
     adata = sc.read_h5ad(file_path)
     filter_gene_by_counts = True
-    data_is_raw = False
-    n_bins = 51
     hvg = 3000
     pad_token = "<pad>"
     pad_value=-2
@@ -31,17 +30,9 @@ def process_tabula_sapiens_data(config):
     max_seq_len = 3001
     include_zero_gene=False
 
-
-    # Display basic information about the dataset
-    print(adata)
-    print(adata.X)
-    print(adata.X.T)
     print(adata.obs.head())
     print(adata.var.head())
-
-    #print("Is log-normalized" ) #np.allclose( adata.X, adata.layers["log_normalized"]
     print(adata.X.shape)
-
     print("Cell types")
     celltype_key = "cell_ontology_class"
     print(len(adata.obs[celltype_key]))
@@ -55,9 +46,6 @@ def process_tabula_sapiens_data(config):
     id2type = dict(enumerate(adata.obs[celltype_key].astype("category").cat.categories))
     adata.obs["celltype_id"] = celltype_id_labels
     adata.var["gene_name"] = adata.var.index.tolist()
-
-    #print(adata.obs["celltype"])
-    #print(adata.X)
 
     model_dir = "../models/scGPT_human/"
     dataset_name = "Kidney"
@@ -80,8 +68,7 @@ def process_tabula_sapiens_data(config):
     )
     adata = adata[:, adata.var["id_in_vocab"] >= 0]
     print("After filtering genes not in vocab:")
-    print(adata.X)
-
+    print(adata.X.shape)
 
     print("Preprocessing ...")
     # set up the preprocessor, use the args to config the workflow
@@ -89,21 +76,12 @@ def process_tabula_sapiens_data(config):
         use_key="X",  # the key in adata.layers to use as raw data
         filter_gene_by_counts=filter_gene_by_counts,  # step 1
         filter_cell_by_counts=False,  # step 2
-        normalize_total=1e4,  # step 3. whether to normalize the raw data and to what sum
-        result_normed_key="X_normed",  # the key in adata.layers to store the normalized data
-        log1p=data_is_raw,  # step 4. whether to log1p the normalized data
-        result_log1p_key="X_log1p",
         subset_hvg=hvg,  # step 5. whether to subset the raw data to highly variable genes
-        hvg_flavor="seurat_v3" if data_is_raw else "cell_ranger",
-        binning=n_bins,  # step 6. whether to bin the raw data and to what number of bins
-        result_binned_key="X_binned",  # the key in adata.layers to store the binned data
+        hvg_flavor="cell_ranger" #"seurat_v3" if data_is_raw else "cell_ranger",
     )
-
     preprocessor(adata, batch_key=None)
 
-
     genes = adata.var["gene_name"].tolist()
-
     celltypes_labels = adata.obs["celltype_id"].tolist()  # make sure count from 0
     celltypes_labels = np.array(celltypes_labels)
 
@@ -120,7 +98,7 @@ def process_tabula_sapiens_data(config):
         train_batch_labels,
         valid_batch_labels,
     ) = train_test_split(
-        all_counts, celltypes_labels, batch_ids, test_size=0.2, shuffle=True
+        all_counts, celltypes_labels, batch_ids, test_size=0.3, shuffle=True
     )
 
     print(
@@ -130,9 +108,6 @@ def process_tabula_sapiens_data(config):
         valid_batch_labels.shape,
     )
 
-    #if config["load_model"] is None:
-    #    vocab = Vocab(VocabPybind(genes + special_tokens, None))
-    # bidirectional lookup [gene <-> int]
     vocab.set_default_index(vocab["<pad>"])
     gene_ids = np.array(vocab(genes), dtype=int)
     print(gene_ids, special_tokens)
@@ -144,7 +119,7 @@ def process_tabula_sapiens_data(config):
         vocab=vocab,
         pad_token=pad_token,
         pad_value=pad_value,
-        append_cls=True,  # append <cls> token at the beginning
+        append_cls=True,
         include_zero_gene=include_zero_gene,
     )
     tokenized_valid = tokenize_and_pad_batch(
@@ -210,15 +185,3 @@ def process_tabula_sapiens_data(config):
         logger,
         celltype_key
     )
-
-
-#if __name__ == "__main__":
-
-#   file_path = "../data/tabula_sapiens_v2/Kidney_TSP1_30_version2d_10X_smartseq_scvi_Nov122024.h5ad"  # Adjust the path as needed
-#   adata = read_tabula_sapiens_data(file_path)
-    #print(adata)
-    #print(adata.X)
-    #print(adata.X.T)
-    #print(adata.obs.head())
-    #print(adata.var.head())
-    
