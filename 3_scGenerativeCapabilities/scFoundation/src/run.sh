@@ -12,12 +12,12 @@ WORKDIR=$(dirname "$OUTPUT_EMBEDDING")
 ENV_NAME="scfoundation-env"
 
 # Clone scFoundation repo if not present
-if [ ! -d "scFoundation" ]; then
+if [ ! -d "scFoundation/src/scFoundation" ]; then
     echo "[INFO] Cloning scFoundation repository..."
-    git clone https://github.com/biomap-research/scFoundation.git
+    git clone https://github.com/biomap-research/scFoundation.git scFoundation/src/scFoundation
 fi
 
-cd scFoundation
+cd scFoundation/src
 
 if [ ! -f ".patched" ]; then
     echo "[INFO] Applying local patch to scFoundation"

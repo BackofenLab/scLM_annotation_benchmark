@@ -53,7 +53,6 @@ process evaluate_annotation {
 }
 
 workflow {
-    Channel.of([params.dataset, params.subtype]).set{dataset_input}
     dataset = download()
     dataset
         .map { data_file ->
