@@ -1,6 +1,8 @@
 nextflow.enable.dsl=2
 
 process download {
+    conda 'tqdm requests'
+
     output:
     path "data/*/*.h5ad"
 
@@ -11,6 +13,8 @@ process download {
 }
 
 process embed {
+    conda 'git'
+
     input:
     tuple path(data_file), path(model_dir), val(dataset), val(model)
 
