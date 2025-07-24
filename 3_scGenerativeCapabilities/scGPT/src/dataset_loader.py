@@ -275,14 +275,12 @@ def prepare_data(proc_datasets, config, sort_seq_batch=False):
         proc_datasets.tokenized_train["values"],
         proc_datasets.tokenized_valid["values"],
     )
-
     tensor_batch_labels_train = torch.from_numpy(
         proc_datasets.train_batch_labels
     ).long()
     tensor_batch_labels_valid = torch.from_numpy(
         proc_datasets.valid_batch_labels
     ).long()
-
     tensor_celltype_labels_train = torch.from_numpy(
         proc_datasets.train_celltype_labels
     ).long()

@@ -33,17 +33,17 @@ if __name__ == "__main__":
     config = dict(
         seed=0,
         dataset_name="ms",
-        do_train=False,
+        do_train=True,
         load_model="../models/scGPT_human",
         mask_ratio=0.0,
         mask_value=-1,  # for masked values, now it should always be auto
-        epochs=1,
+        epochs=10,
         n_bins=51,
         MVC=False,  # Masked value prediction for cell embedding
         ecs_thres=0.0,  # Elastic cell similarity objective, 0.0 to 1.0, 0.0 to disable
         dab_weight=0.0,
         lr=1e-4,
-        batch_size=16,
+        batch_size=24,
         layer_size=128,
         nlayers=4,  # number of nn.TransformerEncoderLayer in nn.TransformerEncoder
         nhead=4,  # number of heads in nn.MultiheadAttention
@@ -56,7 +56,7 @@ if __name__ == "__main__":
         # FP16 reduces memory usage and speeds up computations.
         # FP32 is used when precision is critical
         include_zero_gene=False,
-        freeze=True,  # freeze
+        freeze=False,  # freeze
         DSBN=False,  # Domain-spec batchnorm
         pad_token="<pad>",
         special_tokens=["<pad>", "<cls>", "<eoc>"],
@@ -64,7 +64,7 @@ if __name__ == "__main__":
         per_seq_batch_sample=False,
         input_style="binned",
         max_seq_len=3001,
-        log_interval=50,
+        log_interval=100,
     )
 
     include_zero_gene = config[
@@ -122,10 +122,10 @@ if __name__ == "__main__":
     n_input_bins = n_bins
 
     # work with default scGPT datasets
-    #proc_datasets = prepare_anndata(config)
+    proc_datasets = prepare_anndata(config)
 
     # work with Tabula Sapiens data
-    proc_datasets = process_tabula_sapiens_data(config)
+    #proc_datasets = process_tabula_sapiens_data(config)
 
     logger = proc_datasets.logger
 

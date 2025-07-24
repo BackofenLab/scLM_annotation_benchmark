@@ -73,7 +73,6 @@ def get_celltype(anndata):
         print(f"Original cell type: {all_celltypes[c_idx]}")
         break
 
-
 if __name__ == "__main__":
     # get_responses()
     hgv_anndata = read_anndata()
