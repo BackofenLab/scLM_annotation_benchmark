@@ -16,14 +16,15 @@ from model_utils import  evaluate_model
 
 
 
-input_style = "log1p"  # "normed_raw", "log1p", or "binned"
+input_style = "binned"  # "normed_raw", "log1p", or "binned"
 mask_value = -1
 
 input_layer_key = {  # the values of this map coorespond to the keys in preprocessing
-    #"normed_raw": "X_normed",
+    "normed_raw": "X_normed",
     "log1p": "log_normalized",
-    #"binned": "X_binned",
+    "binned": "X_binned",
 }[input_style]
+
 pad_token = "<pad>"
 pad_value = -2
 # max_seq_len = 3001
@@ -40,13 +41,13 @@ def test(model, proc_datasets, config, criterion_cls, criterion_dab):
 
     print(adata)
 
-    '''all_counts = (
+    all_counts = (
         adata.layers[input_layer_key].A
         if issparse(adata.layers[input_layer_key])
         else adata.layers[input_layer_key]
-    )'''
+    )
 
-    all_counts = adata.layers['log_normalized'].A if issparse(adata.layers['log_normalized']) else adata.layers['log_normalized']
+    #all_counts = adata.layers['log_normalized'].A if issparse(adata.layers['log_normalized']) else adata.layers['log_normalized']
 
     celltypes_labels = adata.obs["celltype_id"].tolist()  # make sure count from 0
     celltypes_labels = np.array(celltypes_labels)
