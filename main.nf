@@ -1,44 +1,37 @@
 nextflow.enable.dsl=2
 
 process download {
-    conda 'tqdm requests'
+    conda 'python=3.11 tqdm requests anndata pyyaml'
+
+    input:
+    path cfg_dir
 
     output:
-    path "data/*/*.h5ad"
+    path "data/*.h5ad"
 
     script:
     """
-    download.py --dataset ${params.dataset} --subtype ${params.subtype} --out data/${params.dataset}/${params.subtype}.h5ad
+    download.py \
+        --dataset   ${params.dataset} \
+        --cfg-dir   ${cfg_dir} \
+        --out       data/${params.dataset}.h5ad \
+        --data-root cache/data
     """
 }
 
-process embed {
+process run_model {
     conda 'git'
 
     input:
     tuple path(data_file), path(model_dir), val(dataset), val(model)
 
     output:
-    path "results/*/*/embedding.npy"
+    path "results/*/*/predictions.csv"  // Wildcard pattern for multiple output types
 
     script:
     """
     mkdir -p results/${dataset}/${model}
-    bash ${model_dir}/src/run.sh ${data_file} ./results/${dataset}/${model}/embedding.npy
-    """
-}
-
-process annotate {
-    input:
-    path "results/${dataset}/${model}/embedding.npy"
-    path "data/${dataset}.h5ad"
-
-    output:
-    path "results/${dataset}/${model}/predictions.csv"
-
-    script:
-    """
-    python bin/annotate.py --embedding results/${dataset}/${model}/embedding.npy --adata data/${dataset}.h5ad --out results/${dataset}/${model}/predictions.csv
+    bash ${model_dir}/src/run.sh ${data_file} ./results/${dataset}/${model}/predictions.csv
     """
 }
 
@@ -57,12 +50,10 @@ process evaluate_annotation {
 }
 
 workflow {
-    dataset = download()
-    dataset
-        .map { data_file ->
-            tuple(data_file, file("3_scGenerativeCapabilities/${params.model}"), params.dataset, params.model)
-        }
-        .set { embed_input }
-    embed(embed_input)
-
+    dataset = download(file('datasets'))
+    
+    // Run the model (all models should output predictions.csv)
+    predictions = run_model(dataset.map { data_file ->
+        tuple(data_file, file("models/${params.model}"), params.dataset, params.model)
+    })
 }

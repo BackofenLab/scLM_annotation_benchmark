@@ -1,58 +1,204 @@
 #!/usr/bin/env python3
+"""
+Dataset fetcher for the Nextflow pipeline.
 
-import argparse
-import os
+It
+
+1. Looks up the dataset's YAML descriptor (name, URL, keys, …).
+2. Caches the **full** file under ``<data_root>/<dataset>.<ext>``  
+   (skips download when already present).
+3. Always verifies that the required ``annotation_keys`` exist.
+4. Optionally writes a *subset* copy
+   ``<data_root>/<dataset>_sub{n}.<ext>`` (skips if present).
+5. Copies (or hard-links) the file that will actually be used
+   downstream into the task’s working directory under the plain name
+   requested by Nextflow.
+
+Everything is format-agnostic (`.h5ad` or `.zarr`).
+
+"""
+from __future__ import annotations
+import argparse, os, random, shutil, sys, yaml
+from pathlib import Path
+from typing import Iterable
+
+import anndata  # only imported inside read/write helpers
 import requests
 from tqdm import tqdm
 
-def get_dataset_url(subtype):
-    article_id = 27921984
-    api_url = f"https://api.figshare.com/v2/articles/{article_id}"
 
-    r = requests.get(api_url)
+# ------------------------------------------------------------------------- #
+# YAML handling                                                             #
+# ------------------------------------------------------------------------- #
+
+def pick_config(dataset: str, cfg_dir: str | Path) -> dict:
+    """
+    Return the YAML configuration whose ``name`` matches *dataset*.
+
+    Parameters
+    ----------
+    dataset
+        Dataset identifier given on the CLI (must match ``name`` in YAML).
+    cfg_dir
+        Directory that contains one or more ``*.yml`` files.
+
+    Returns
+    -------
+    dict
+        Parsed YAML content.
+
+    Raises
+    ------
+    SystemExit
+        If no matching YAML is found.
+
+    """
+    cfg_dir = Path(cfg_dir)
+    for yml in cfg_dir.glob("*.yml"):
+        with open(yml) as fh:
+            cfg = yaml.safe_load(fh)
+        if cfg.get("name") == dataset:
+            return cfg
+    sys.exit(f"[ERROR] No YAML named '{dataset}' in {cfg_dir}")
+
+
+# ------------------------------------------------------------------------- #
+# Download + I/O helpers                                                    #
+# ------------------------------------------------------------------------- #
+
+def stream_download(url: str, dest: Path) -> None:
+    """
+    Stream a remote file to *dest* with a progress bar.
+
+    Skips download if *dest* already exists.
+    """
+    if dest.exists():
+        print(f"[INFO] {dest} already present – skipping download")
+        return
+
+    r = requests.get(url, stream=True)
     r.raise_for_status()
+    total = int(r.headers.get("content-length", 0))
 
-    files = r.json()['files']
-    for f in files:
-        name = f['name'].split("_TSP1")[0]
-        if name.lower() == subtype.lower():
-            return f['download_url']
-    raise ValueError(f"Could not find dataset: {subtype}")
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    with open(dest, "wb") as fh, tqdm(total=total, unit="B",
+                                      unit_scale=True,
+                                      desc=dest.name) as bar:
+        for chunk in r.iter_content(1 << 20):     # 1 MiB
+            fh.write(chunk)
+            bar.update(len(chunk))
 
-def download_with_tqdm(url, output_path, chunk_size=1024):
-    response = requests.get(url, stream=True)
-    response.raise_for_status()
 
-    total_size = int(response.headers.get('content-length', 0))
-    progress = tqdm(total=total_size, unit='B', unit_scale=True, desc=os.path.basename(output_path))
+def read_adata(path: Path):
+    """Load an AnnData object from ``.h5ad`` or ``.zarr`` transparently."""
+    if path.suffix == ".h5ad":
+        return anndata.read_h5ad(path)
+    if path.suffix == ".zarr" or path.is_dir():
+        return anndata.read_zarr(path)
+    sys.exit(f"[ERROR] Unsupported file type: {path}")
 
-    with open(output_path, 'wb') as f:
-        for chunk in response.iter_content(chunk_size=chunk_size):
-            if chunk:
-                f.write(chunk)
-                progress.update(len(chunk))
 
-    progress.close()
-
-def download_Tabula_sapiens(output_path, subtype):
-    url = get_dataset_url(subtype)
-    if os.path.dirname(output_path):
-        os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    download_with_tqdm(url, output_path)
-
-def main():
-    parser = argparse.ArgumentParser(description="Download single-cell dataset")
-    parser.add_argument("--dataset", required=True, help="Dataset name (currently: Tabula_sapiens or HIHA)")
-    parser.add_argument("--subtype", required=True, help="Subtype, either cell type for HIHA or body site for Tabula sapiens")
-    parser.add_argument("--out", required=True, help="Output path")
-
-    args = parser.parse_args()
-    if args.dataset == "Tabula_sapiens":
-        download_Tabula_sapiens(args.out, args.subtype)
-    elif args.dataset == "HIHA":
-        raise NotImplementedError("HIHA download is not supported yet")
+def write_adata(ad, path: Path):
+    """Write an AnnData object back in the same format as *path*."""
+    if path.suffix == ".h5ad":
+        ad.write_h5ad(path, compression="gzip")
+    elif path.suffix == ".zarr" or path.is_dir():
+        ad.write_zarr(path, chunks=[], compression="gzip")
     else:
-        raise ValueError(f"Unsupported dataset {args.dataset}")
+        sys.exit(f"[ERROR] Unsupported file type: {path}")
+
+
+# ------------------------------------------------------------------------- #
+# Verification & subsetting                                                 #
+# ------------------------------------------------------------------------- #
+
+def verify_columns(ad, keys: Iterable[str]) -> None:
+    """Abort if any *keys* are missing from ``ad.obs``."""
+    missing = [k for k in keys if k not in ad.obs.columns]
+    if missing:
+        sys.exit(f"[ERROR] Missing keys in adata.obs: {missing}")
+
+
+def maybe_subset(full_path: Path, subset_path: Path,
+                 n: int | None) -> Path:
+    """
+    Create ``subset_path`` with *n* random cells if *n* is given.
+
+    Returns the path that callers should use (subset or full).
+    """
+    if n is None:
+        return full_path
+
+    if subset_path.exists():
+        print(f"[INFO] Subset {subset_path.name} already exists – skipping")
+        return subset_path
+
+    ad = read_adata(full_path)
+
+    if n >= ad.n_obs:           # nothing to subset
+        print(f"[WARN] subset_size ≥ n_obs – using full dataset")
+        return full_path
+
+    print(f"[INFO] Writing subset ({n} cells) → {subset_path.name}")
+    keep = random.sample(range(ad.n_obs), n)
+    ad = ad[keep]
+    write_adata(ad, subset_path)
+    return subset_path
+
+
+# ------------------------------------------------------------------------- #
+# CLI entry-point                                                           #
+# ------------------------------------------------------------------------- #
+
+def main() -> None:
+    """
+    Run the downloader from the command line.
+
+    Examples
+    --------
+    >>> download.py --dataset Tabula_sapiens --cfg-dir datasets \\
+    ...            --data-root /scratch/datasets \\
+    ...            --out data/Tabula_sapiens.h5ad
+    """
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--dataset", required=True,
+                    help="Dataset name (must match YAML 'name')")
+    ap.add_argument("--cfg-dir", required=True,
+                    help="Directory containing dataset YAML files")
+    ap.add_argument("--data-root", required=True,
+                    help="Local cache for full / subset files")
+    ap.add_argument("--out", required=True,
+                    help="Destination inside the task work dir")
+    args = ap.parse_args()
+
+    cfg = pick_config(args.dataset, args.cfg_dir)
+    ext = Path(cfg["url"]).suffix or ".h5ad"      # default if URL lacks ext
+
+    full_path   = Path(args.data_root) / f"{cfg['name']}{ext}"
+    subset_path = Path(args.data_root) / \
+                  f"{cfg['name']}_sub{cfg.get('subset_size')}{ext}"
+
+    stream_download(cfg["url"], full_path)
+
+    # Always verify before (optional) subsetting
+    ad_full = read_adata(full_path)
+    verify_columns(ad_full, list(cfg["annotation_keys"]) + [cfg["batch_key"]])
+
+    chosen = maybe_subset(
+        full_path,
+        subset_path,
+        cfg.get("subset_size")
+    )
+
+    # Use a hard-link if possible; falls back to copy across filesystems
+    dest = Path(args.out).resolve()
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        os.link(chosen, dest)
+    except OSError:             # across FS boundaries
+        shutil.copy2(chosen, dest)
+
+    print(f"[OK] {dest.name} ready")
 
 if __name__ == "__main__":
     main()
