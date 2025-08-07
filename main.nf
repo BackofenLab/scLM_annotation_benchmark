@@ -36,16 +36,18 @@ process run_model {
 }
 
 process evaluate_annotation {
+    conda 'pandas numpy scikit-learn matplotlib seaborn'
+
     input:
-    path "results/${dataset}/${model}/predictions.csv"
-    path "data/${dataset}.h5ad"
+    tuple path(predictions), val(dataset), val(model)
 
     output:
-    path "results/${dataset}/${model}/evaluation.json"
+    path "results/*/*/evaluation.json"
 
     script:
     """
-    python bin/evaluate.py --pred results/${dataset}/${model}/predictions.csv --adata data/${dataset}.h5ad --out results/${dataset}/${model}
+    mkdir -p results/${dataset}/${model}
+    evaluate.py --pred ${predictions} --out results/${dataset}/${model}/ 
     """
 }
 
@@ -55,5 +57,9 @@ workflow {
     // Run the model (all models should output predictions.csv)
     predictions = run_model(dataset.map { data_file ->
         tuple(data_file, file("models/${params.model}"), params.dataset, params.model)
+    })
+
+    evaluate_annotation(predictions.map { pred ->
+        tuple(pred, params.dataset, params.model)
     })
 }
