@@ -1,6 +1,6 @@
 #!/bin/bash
 # Conda Environment Management Helper
-# Usage: source util/conda_env.sh
+# Usage: source conda_env.sh (available as it is in bin)
 # Then call: setup_conda_env "env_name" "requirements_file"
 
 # Function to check if environment needs to be recreated
