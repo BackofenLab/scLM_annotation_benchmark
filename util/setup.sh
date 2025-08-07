@@ -149,10 +149,10 @@ if ! command -v mamba &>/dev/null; then
   fi
   
   # Accept Terms of Service for required channels
-  echo -e "${GREEN}Accepting conda channel Terms of Service...${NC}"
-  conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
-  conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
-  conda tos accept --override-channels --channel https://conda-forge.org/channels/conda-forge
+  #echo -e "${GREEN}Accepting conda channel Terms of Service...${NC}"
+  #conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
+  #conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
+  #conda tos accept --override-channels --channel https://conda-forge.org/channels/conda-forge
   
   # Install mamba using conda
   conda install mamba -n base -c conda-forge -y
