@@ -19,7 +19,8 @@ WORKDIR="$OUTPUT_DIR"
 # Setup conda environment
 ENV_NAME="celltypist-env"
 REQUIREMENTS_FILE="celltypist/src/requirements.txt"
-source conda_env.sh "$ENV_NAME" "$REQUIREMENTS_FILE"
+source conda_env.sh
+setup_conda_env "$ENV_NAME" "$REQUIREMENTS_FILE"
 
 # Run CellTypist prediction
 echo "[INFO] Running CellTypist prediction for: $INPUT_H5AD"
