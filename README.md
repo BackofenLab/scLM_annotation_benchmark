@@ -1,5 +1,12 @@
 ## Single-cell and Language foundation models
 
+#### Saving model predictions
+
+save predicitions to: results/$dataset/$model/predictions.csv
+columns: "true_L1", "predicted_cell_type"
+
+
+
 #### Evaluation of single cell and language foundation models (single-cell models with langugae capabilities)
 
 - InstructCell
