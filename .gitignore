@@ -2,3 +2,6 @@
 nextflow
 .nextflow*
 work/
+notebooks
+miniconda.sh
+cache/

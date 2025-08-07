@@ -5,11 +5,11 @@ Dataset fetcher for the Nextflow pipeline.
 It
 
 1. Looks up the dataset's YAML descriptor (name, URL, keys, …).
-2. Caches the **full** file under ``<data_root>/<dataset>.<ext>``  
+2. Caches the **full** file under ``<data_cache>/<dataset>.<ext>``  
    (skips download when already present).
 3. Always verifies that the required ``annotation_keys`` exist.
 4. Optionally writes a *subset* copy
-   ``<data_root>/<dataset>_sub{n}.<ext>`` (skips if present).
+   ``<data_cache>/<dataset>_sub{n}.<ext>`` (skips if present).
 5. Copies (or hard-links) the file that will actually be used
    downstream into the task’s working directory under the plain name
    requested by Nextflow.
@@ -70,11 +70,17 @@ def stream_download(url: str, dest: Path) -> None:
     """
     Stream a remote file to *dest* with a progress bar.
 
-    Skips download if *dest* already exists.
+    Skips download if *dest* already exists and is valid.
     """
     if dest.exists():
-        print(f"[INFO] {dest} already present – skipping download")
-        return
+        # Check if existing file is valid by trying to read it
+        try:
+            read_adata(dest)
+            print(f"[INFO] {dest} already present and valid – skipping download")
+            return
+        except Exception as e:
+            print(f"[WARN] {dest} exists but appears corrupted ({e}) – re-downloading")
+            dest.unlink()  # Remove corrupted file
 
     r = requests.get(url, stream=True)
     r.raise_for_status()
@@ -157,7 +163,7 @@ def main() -> None:
     Examples
     --------
     >>> download.py --dataset Tabula_sapiens --cfg-dir datasets \\
-    ...            --data-root /scratch/datasets \\
+    ...            --data_cache /scratch/datasets \\
     ...            --out data/Tabula_sapiens.h5ad
     """
     ap = argparse.ArgumentParser()
@@ -165,7 +171,7 @@ def main() -> None:
                     help="Dataset name (must match YAML 'name')")
     ap.add_argument("--cfg-dir", required=True,
                     help="Directory containing dataset YAML files")
-    ap.add_argument("--data-root", required=True,
+    ap.add_argument("--data_cache", required=True,
                     help="Local cache for full / subset files")
     ap.add_argument("--out", required=True,
                     help="Destination inside the task work dir")
@@ -174,8 +180,8 @@ def main() -> None:
     cfg = pick_config(args.dataset, args.cfg_dir)
     ext = Path(cfg["url"]).suffix or ".h5ad"      # default if URL lacks ext
 
-    full_path   = Path(args.data_root) / f"{cfg['name']}{ext}"
-    subset_path = Path(args.data_root) / \
+    full_path   = Path(args.data_cache) / f"{cfg['name']}{ext}"
+    subset_path = Path(args.data_cache) / \
                   f"{cfg['name']}_sub{cfg.get('subset_size')}{ext}"
 
     stream_download(cfg["url"], full_path)
@@ -193,6 +199,7 @@ def main() -> None:
     # Use a hard-link if possible; falls back to copy across filesystems
     dest = Path(args.out).resolve()
     dest.parent.mkdir(parents=True, exist_ok=True)
+    print(f"Linking {chosen} to {dest}")
     try:
         os.link(chosen, dest)
     except OSError:             # across FS boundaries
