@@ -199,11 +199,16 @@ def main() -> None:
     # Use a hard-link if possible; falls back to copy across filesystems
     dest = Path(args.out).resolve()
     dest.parent.mkdir(parents=True, exist_ok=True)
-    print(f"Linking {chosen} to {dest}")
-    try:
-        os.link(chosen, dest)
-    except OSError:             # across FS boundaries
-        shutil.copy2(chosen, dest)
+    
+    # Check if source and destination are the same file
+    if chosen.resolve() == dest:
+        print(f"[INFO] Source and destination are the same file - no linking needed")
+    else:
+        print(f"Linking {chosen} to {dest}")
+        try:
+            os.link(chosen, dest)
+        except OSError:             # across FS boundaries
+            shutil.copy2(chosen, dest)
 
     print(f"[OK] {dest.name} ready")
 

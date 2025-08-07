@@ -1,0 +1,7 @@
+# datasets/tabula_sapiens_blood.yml
+name: demo        # used in channel / filenames
+url:  [internal link removed]
+format: h5ad
+subset_size: null                # null → use full dataset
+batch_key: method
+annotation_keys: [cell_type]
