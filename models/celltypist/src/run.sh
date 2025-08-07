@@ -12,6 +12,9 @@ OUTPUT_DIR=$(dirname "$OUTPUT_PREDICTIONS")
 mkdir -p "$OUTPUT_DIR"
 OUTPUT_DIR=$(realpath "$OUTPUT_DIR")
 
+echo "Running CellTypist prediction for: $INPUT_H5AD"
+echo "Output predictions to: $OUTPUT_PREDICTIONS"
+
 # Construct the full output path
 OUTPUT_PREDICTIONS="$OUTPUT_DIR/$(basename "$OUTPUT_PREDICTIONS")"
 WORKDIR="$OUTPUT_DIR"

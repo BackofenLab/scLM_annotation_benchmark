@@ -4,10 +4,10 @@ process download {
     conda 'python=3.11 tqdm requests anndata pyyaml'
 
     input:
-    path cfg_dir
+    tuple path(cfg_dir), path(data_cache)
 
     output:
-    path "data/*.h5ad"
+    path "data/*sub*.h5ad"
 
     script:
     """
@@ -15,7 +15,7 @@ process download {
         --dataset   ${params.dataset} \
         --cfg-dir   ${cfg_dir} \
         --out       data/${params.dataset}.h5ad \
-        --data-root cache/data
+        --data_cache ${data_cache}
     """
 }
 
@@ -52,7 +52,7 @@ process evaluate_annotation {
 }
 
 workflow {
-    dataset = download(file('datasets'))
+    dataset = download(tuple(file('datasets'), file(params.data_cache)))
     
     // Run the model (all models should output predictions.csv)
     predictions = run_model(dataset.map { data_file ->
