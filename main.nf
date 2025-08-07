@@ -1,7 +1,6 @@
 nextflow.enable.dsl=2
 
 process download {
-    conda 'python=3.11 tqdm requests anndata pyyaml'
 
     input:
     tuple path(cfg_dir), path(data_cache)
@@ -11,7 +10,7 @@ process download {
 
     script:
     """
-    download.py \
+    download.sh \
         --dataset   ${params.dataset} \
         --cfg-dir   ${cfg_dir} \
         --out       data/${params.dataset}.h5ad \
