@@ -4,17 +4,17 @@ process download {
     conda 'python=3.11 tqdm requests anndata pyyaml'
 
     input:
-    tuple path(cfg_dir), val(data_cache)
+    tuple path(cfg_dir), val(dataset), val(data_cache)
 
     output:
-    path "data/*.h5ad"
+    tuple(path("data/*.h5ad"), val(dataset))
 
     script:
     """
     download.py \
-        --dataset   ${params.dataset} \
+        --dataset   ${dataset} \
         --cfg-dir   ${cfg_dir} \
-        --out       data/${params.dataset}.h5ad \
+        --out       data/${dataset}.h5ad \
         --data_cache ${data_cache}
     """
 }
@@ -26,7 +26,7 @@ process run_model {
     tuple path(data_file), path(model_dir), val(dataset), val(model)
 
     output:
-    path "results/*/*/predictions.csv"  // Wildcard pattern for multiple output types
+    tuple(path("results/*/*/predictions.csv"), val(dataset), val(model))  // Wildcard pattern for multiple output types
 
     script:
     """
@@ -52,14 +52,21 @@ process evaluate_annotation {
 }
 
 workflow {
-    dataset = download(tuple(file('datasets'), params.data_cache))
-    
-    // Run the model (all models should output predictions.csv)
-    predictions = run_model(dataset.map { data_file ->
-        tuple(data_file, file("models/${params.model}"), params.dataset, params.model)
-    })
+    Channel
+        .from(params.datasets)
+        .map { dataset -> tuple(file('datasets'), dataset, params.data_cache) }
+        .set { download_input }
 
-    evaluate_annotation(predictions.map { pred ->
-        tuple(pred, params.dataset, params.model)
-    })
+    dataset = download(download_input)
+    
+    dataset
+        .combine(Channel.from(params.models))
+        .map { data_file, dataset, model ->
+            tuple(data_file, file("models/${model}"), dataset, model)
+        }
+        .set { model_input }
+    // Run the model (all models should output predictions.csv)
+    predictions = run_model(model_input)
+
+    evaluate_annotation(predictions)
 }
