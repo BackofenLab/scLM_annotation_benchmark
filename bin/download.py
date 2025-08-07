@@ -70,11 +70,17 @@ def stream_download(url: str, dest: Path) -> None:
     """
     Stream a remote file to *dest* with a progress bar.
 
-    Skips download if *dest* already exists.
+    Skips download if *dest* already exists and is valid.
     """
     if dest.exists():
-        print(f"[INFO] {dest} already present – skipping download")
-        return
+        # Check if existing file is valid by trying to read it
+        try:
+            read_adata(dest)
+            print(f"[INFO] {dest} already present and valid – skipping download")
+            return
+        except Exception as e:
+            print(f"[WARN] {dest} exists but appears corrupted ({e}) – re-downloading")
+            dest.unlink()  # Remove corrupted file
 
     r = requests.get(url, stream=True)
     r.raise_for_status()
@@ -193,6 +199,7 @@ def main() -> None:
     # Use a hard-link if possible; falls back to copy across filesystems
     dest = Path(args.out).resolve()
     dest.parent.mkdir(parents=True, exist_ok=True)
+    print(f"Linking {chosen} to {dest}")
     try:
         os.link(chosen, dest)
     except OSError:             # across FS boundaries

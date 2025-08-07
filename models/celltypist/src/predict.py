@@ -135,6 +135,7 @@ def main():
     results_df = create_results_dataframe(adata, predictions, args.label_key)
     
     # Save results
+    print(f"Saving results to: {args.output}")
     save_results(results_df, args.output)
     
     logger.info("CellTypist prediction pipeline completed successfully")
