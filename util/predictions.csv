@@ -1,0 +1,2001 @@
+,cell_id,true_L1,true_L2,predicted_cell_type
+0,a87f101e6e5811eb835b7e171cb4e71f,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1,2f12007ea2ce11ebbbe71e4a3e83c3e1,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+2,64b3d1e0786111eba55bee831e293e34,Monocyte,CD14 monocyte,classical monocyte.
+3,66dcd9224e0211ec853ad229c2defbef,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+4,b4ea4290862b11ee9a02eed9ef1e2438,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+5,e3f5d484ca0611eb95002269a98e5840,B cell,Memory B cell,B cell.
+6,41e91a1cca1411eba8e7c23be70524c5,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+7,60f0c348bfdc11ebb3b5ba265ad50ebc,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+8,015e5dd83f6b11ebbf0d76c805520688,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+9,0b22ef583f6311eba333224e181cba5f,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta memory T cell."
+10,7ebb51746f3011eb8ea3b6144a58e849,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+11,874614c4f7e611ecbaaa86d52fef98f0,B cell,Memory B cell,B cell.
+12,31fb89daf81e11ecb8d5422c967c70e8,T cell,Treg,T cell.
+13,6285f9bc6d6611eba2001a7690ba1d9e,Monocyte,CD16 monocyte,classical monocyte.
+14,70be467248b611eaa65d9e7d578d66f2,NK cell,CD56dim NK cell,natural killer cell.
+15,b8c78e3a230f11ecabe4662b93aa8aaf,Monocyte,CD14 monocyte,classical monocyte.
+16,e1c4c234002e11ecad8456bdee478bef,T cell,Memory CD4 T cell,regulatory T cell.
+17,01807e28e40111ebb5ee12505c6ae237,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+18,907b486c424b11ec8d4422c4d20de419,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+19,e2b02912f7dc11ecbf4e56eb7b1fcbc2,NK cell,CD56dim NK cell,natural killer cell.
+20,5fd5771002b711eca847563a4b56082f,B cell,Effector B cell,B cell.
+21,3c5ca4806d6a11eb959ece3aad2b7e32,Monocyte,CD14 monocyte,classical monocyte.
+22,ef853f848d0111eb894022587c8bf21f,Monocyte,CD14 monocyte,classical monocyte.
+23,e2bdde68f7dc11ecbf4e56eb7b1fcbc2,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+24,238e574401cd11ec9bd81eda61cbfa79,DC,pDC,plasmacytoid dendritic cell.
+25,8f2750166f2711eb9ed9ea93581d1c81,NK cell,CD56dim NK cell,natural killer cell.
+26,51739e4a02b711ec85669ed5fd6f2ffe,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+27,e458c81cb54b11eaa79c06097e2fb91a,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+28,a1c4ea1a230c11eb9e6016fcd894d086,NK cell,CD56dim NK cell,natural killer cell.
+29,bff077f2f7fe11ecbaca5e549e2aa1f5,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+30,b4dbb428862b11ee9a02eed9ef1e2438,T cell,Memory CD4 T cell,regulatory T cell.
+31,5769a5048cee11ebb2129e901b21dc73,B cell,Memory B cell,B cell.
+32,c4d63964e3ff11eb91932201050c5f2a,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+33,034455dec9fa11ebbe02e242efb8f7b8,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+34,b871ccb201d011ecafff5e625bcc3358,T cell,Memory CD4 T cell,regulatory T cell.
+35,0f44d08e745a11eb9460023cc5433a03,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+36,057128b6770011ebb6f1120b4fce9850,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+37,b67f7d0e7abd11eb9e34d2275bdfa688,B cell,Memory B cell,B cell.
+38,7c4b5c8e746911eb8b7dee0008289f2d,Monocyte,CD14 monocyte,classical monocyte.
+39,91fe4574286311ecabc39e0459bddc54,Monocyte,CD14 monocyte,classical monocyte.
+40,3901545c03bf11ec87217260960aa607,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+41,a62fd6043e8311ebb8866e6678408b78,T cell,gdT,"CD8-positive, alpha-beta T cell."
+42,4a72ebb68d0811eba554d6cabaf48ff9,Monocyte,CD14 monocyte,classical monocyte.
+43,0d035a3cecc011eb966bfa1af6d99fe6,Monocyte,CD14 monocyte,classical monocyte.
+44,911770524dfe11ec9cd7da9b7cf4e69b,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+45,8a9d864050b411ec9b5f1e4865587c6c,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+46,94c2576203c111ec9efbfae6eca3ca11,Monocyte,CD14 monocyte,classical monocyte.
+47,5758a65a8cee11ebb2129e901b21dc73,NK cell,CD56dim NK cell,natural killer cell.
+48,11dffb7e746a11eba6ee4656f02e1fdd,NK cell,CD56dim NK cell,natural killer cell.
+49,f79900e450be11eca58a4e8e993d3e95,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+50,f1ca617e76f011eb9e6a262e4d0064cc,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+51,d2e349b2bfdc11eb9ba92275cea06a7e,B cell,Memory B cell,B cell.
+52,689eaa8eecea11eb8ac2be83dc4baba1,Monocyte,CD14 monocyte,classical monocyte.
+53,79f50f4c76fe11eb9b7cfece13ccb977,NK cell,CD56dim NK cell,natural killer cell.
+54,10346c0001dd11ec98991efbcd4757be,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+55,bc025b1aca0f11eba0c402013b74b858,T cell,gdT,"CD8-positive, alpha-beta T cell."
+56,4fb23d8ae6a311ebbe49fe9e38490e77,Monocyte,CD14 monocyte,classical monocyte.
+57,6d8800743ebf11ebb05fa23bad7b48d9,Monocyte,CD14 monocyte,classical monocyte.
+58,acfe2dec424611ec8d8dea218556d44d,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+59,b37fbd58872911eb88ddaa98e7d40cb1,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+60,53818b6276f711eb928cf2a688aad71a,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+61,e19a69da002e11ecad8456bdee478bef,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+62,d4c89fa8e6b911eba2b2d20f173a9c47,NK cell,CD56dim NK cell,natural killer cell.
+63,0e94ef243ebe11eba760d286b6767d5b,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+64,68a5505aecea11eb8ac2be83dc4baba1,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+65,31323900786211eb91c04e08f28056f2,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+66,8927554423e011ecb7814e13412d27b3,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+67,bd3dfae06e5511ebaf139a72df013a78,NK cell,CD56dim NK cell,natural killer cell.
+68,e84fb918230811eca137ea3e049c58d4,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+69,294e8358872911ebb9005650151efeb0,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+70,1212c97a60a211edac516a3bcf87af0c,NK cell,CD56dim NK cell,natural killer cell.
+71,7f305fa0f7e711ecb1715e1ef278d88a,NK cell,CD56dim NK cell,natural killer cell.
+72,947d2cd8230f11ecb89eb20ae7ecce12,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+73,79edfffe76fe11eb9b7cfece13ccb977,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+74,598f0de86f2e11eb96d6a6525b93d5e3,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+75,532ad1a003bf11ec9f9d3e06961d7fd0,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+76,a9d495f8a2db11eb9bf71657d2d52b59,NK cell,CD56dim NK cell,natural killer cell.
+77,e1786b18230d11eb995f0a8b9bab73d7,Monocyte,CD16 monocyte,classical monocyte.
+78,b52fdb98fece11eb879816429967a19a,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+79,01807072e40111ebb5ee12505c6ae237,T cell,MAIT,"CD8-positive, alpha-beta T cell."
+80,6ab29c9e862c11ee940e0ac85bd578c5,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+81,2d9447e04e0711ec865c16f89d689413,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+82,5c2d7062ee8b11eb92fdd69ca687ea48,B cell,Naive B cell,B cell.
+83,10fa7a4ae3ff11eb9f4d12c99271e885,Monocyte,CD14 monocyte,classical monocyte.
+84,a777b7ca489811ea92388a6a0c683ffb,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+85,f89d1e1223dc11ec8ebdfedc55894352,NK cell,CD56dim NK cell,natural killer cell.
+86,ffff899023d911ecb640f6cb779d5498,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+87,d5add27efef811eb887c9abd79b723cf,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+88,ef943ade8d0111eb894022587c8bf21f,T cell,gdT,"effector memory CD8-positive, alpha-beta T cell."
+89,1688f252609a11edba329e19a2629b2e,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+90,11091bd6e3ff11eb9f4d12c99271e885,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+91,87e2e26050be11ec9bfce201e636867f,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+92,f38a94fae8cb11eb83a04ef4860adbcb,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+93,7f8052c6794e11eb80b0ca7613f64db1,B cell,Memory B cell,B cell.
+94,5a39d1a06e5811eba9ff8603041c92bc,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+95,2ef06bfee8b411ebaaea96b9c5b1ce8f,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+96,d5e5234c862c11eea4d2b6181e6e2ea7,T cell,Naive CD4 T cell,regulatory T cell.
+97,836322868d0011eba962c64f4773d63c,T cell,Memory CD4 T cell,"effector memory CD8-positive, alpha-beta T cell."
+98,bd3918546e5511ebaf139a72df013a78,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+99,c5b5e9e0862a11eeb249aefb8bcfeb6c,Monocyte,CD14 monocyte,classical monocyte.
+100,423db57076f611eb9ee31a4d4e3f8efd,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+101,5cb811e8e40611ebb6ab32f1f7b8a178,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+102,cf08bc5648bd11ea90c5123d9a376d13,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+103,9d3a2afc648711eba53cf26f7da8270f,Monocyte,CD14 monocyte,classical monocyte.
+104,1067895a01dd11ec98991efbcd4757be,Monocyte,CD14 monocyte,classical monocyte.
+105,32185cfef81e11ecb8d5422c967c70e8,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+106,111f7a84e3ff11eb9f4d12c99271e885,NK cell,CD56dim NK cell,natural killer cell.
+107,b4e6e10e862b11ee9a02eed9ef1e2438,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+108,f3e756227abc11eb9f6b469c2edb075f,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+109,06f1bf02608d11ed83fdb2a084f8f1d9,NK cell,CD56dim NK cell,natural killer cell.
+110,de30fe4a871a11ebaff886b6c60deacd,Monocyte,CD14 monocyte,classical monocyte.
+111,6da347263ebf11ebb05fa23bad7b48d9,NK cell,CD56dim NK cell,natural killer cell.
+112,9891b6003f6b11ebb5126ae06f172630,T cell,Treg,T cell.
+113,e2c0bcaaf7dc11ecbf4e56eb7b1fcbc2,T cell,Memory CD8 T cell,T cell.
+114,97d3c854862911eeb185c2d03e180f84,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+115,2dcb36564e0711ec865c16f89d689413,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+116,7c7d1f10871711eba8137adc2effde42,T cell,gdT,"CD8-positive, alpha-beta T cell."
+117,66de9e244e0211ec853ad229c2defbef,B cell,Effector B cell,B cell.
+118,22b0ab34aa8111edbca7720112d201c9,Monocyte,CD14 monocyte,classical monocyte.
+119,3c53e1ce6d6a11eb959ece3aad2b7e32,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+120,5c29fd24ee8b11eb92fdd69ca687ea48,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+121,b89591be230f11ecabe4662b93aa8aaf,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+122,c0703f32862311eeb393168c5709f2f2,T cell,Treg,"CD4-positive, alpha-beta T cell."
+123,23a1347201cd11ec9bd81eda61cbfa79,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+124,8e72fc8678ca11eb911d26c8fe61f3ce,Monocyte,CD14 monocyte,classical monocyte.
+125,46af0adc488011eaa581ba6d6c7b9f21,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+126,ef77c100746111ebb005fab458a363f4,T cell,Memory CD8 T cell,natural killer cell.
+127,ea81b6d6785a11eb88c4aeb73ff4c07b,Monocyte,CD14 monocyte,classical monocyte.
+128,082d6e464e0211ecb6d06af08aaacff5,NK cell,CD56dim NK cell,natural killer cell.
+129,e20468e06f2d11eb9c86fece995c7c24,B cell,Memory B cell,B cell.
+130,fc5ee8f050b411ec942f6a58078e6e64,Monocyte,CD14 monocyte,classical monocyte.
+131,28a127accd3911eb84917af6a2da7945,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+132,e5f13c76bfdc11eb9564dafd5e7509d4,NK cell,CD56dim NK cell,natural killer cell.
+133,2cd3f45a770111eb83580af69b9105e6,T cell,Naive CD4 T cell,T cell.
+134,a1ebebec230c11eb9e6016fcd894d086,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+135,3d6d329e23dc11ecb52a06b7b2d7de84,Monocyte,CD14 monocyte,classical monocyte.
+136,9fea476076f611ebbe1a0a9c4ec18e1b,Monocyte,CD14 monocyte,classical monocyte.
+137,784cc132862111ee998f1e061ab3328b,Monocyte,CD14 monocyte,classical monocyte.
+138,2d05d01a770111eb83580af69b9105e6,NK cell,CD56dim NK cell,natural killer cell.
+139,5d55022ea2ce11eb9bc6ae6e71680f8b,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+140,f3f7a56ea2e311eb85af52073c383e80,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+141,0c21fa8e286511ecbdbbf28ba9e06b88,Monocyte,Intermediate monocyte,classical monocyte.
+142,d057cc80b54d11ea954106076d1e90b8,T cell,Treg,T cell.
+143,b9c7b718872b11ebb599de5a8c2059ae,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+144,68a1797c872711ebadbb7e7f669035b2,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+145,58617b74e6b411ebaf04befb0a01041d,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+146,1a2210c67ac111eb9fecc6a9fb21149c,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+147,cca7db80862c11ee8a3c42211af86f48,T cell,Treg,"CD4-positive, alpha-beta T cell."
+148,53a8c68276f711eb928cf2a688aad71a,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+149,3a3ecf9a23d911eca62d86e9892ea95b,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+150,58003bb43f6811eba60c12602f64f593,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+151,a2ec9f5a8cfc11ebb4592ee9d1c560f8,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+152,bbdf5e94ca0f11eba0c402013b74b858,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+153,eac62390608c11edb82ff6b434f2fb76,Monocyte,CD14 monocyte,classical monocyte.
+154,b4fe735a862b11ee9a02eed9ef1e2438,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+155,d76876b4872a11eb9956d6a6a5ac404c,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+156,12ed53ca745311ebbb1cf6a20bf9215d,Monocyte,CD16 monocyte,classical monocyte.
+157,f4d95660aa9f11ed9aab225a04bc010d,B cell,Naive B cell,B cell.
+158,a4685576cd3511eb88c7e2067416d204,B cell,Memory B cell,B cell.
+159,e66f7a6efeca11eb9143de3cb0860f61,Monocyte,CD14 monocyte,classical monocyte.
+160,151393befec611eb87dc9ec311f9e9a6,T cell,MAIT,"CD8-positive, alpha-beta memory T cell."
+161,ca328d707b6a11eb9663d28cb61bf405,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+162,c5c49832862a11eeb249aefb8bcfeb6c,Monocyte,CD14 monocyte,classical monocyte.
+163,12e956b2745311ebbb1cf6a20bf9215d,Monocyte,CD14 monocyte,classical monocyte.
+164,b98eb9fc003111ecb4351e4566b12fdf,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+165,a53ca1f0003e11ec836f122ea675d063,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+166,c5c30d3c862a11eeb249aefb8bcfeb6c,Monocyte,CD16 monocyte,classical monocyte.
+167,a005a0aa76f611ebbe1a0a9c4ec18e1b,Monocyte,CD14 monocyte,classical monocyte.
+168,fca846843e8c11eb882a3a23c421ba3f,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+169,24f338e6207a11eb99f83ebbcdb12029,T cell,gdT,"CD8-positive, alpha-beta memory T cell."
+170,ad94171a423e11eca4c7021b126c370e,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+171,36cfd2faece811eb8566de30ea854391,B cell,Naive B cell,B cell.
+172,74b690fe48b611eabab7c676ab45cfca,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+173,444adaca50ba11ec9ccf362b40e6d4a7,T cell,Naive CD4 T cell,regulatory T cell.
+174,928a3e0ee40111eba5a472433277b4b3,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+175,4467dddc50ba11ec9ccf362b40e6d4a7,NK cell,CD56dim NK cell,natural killer cell.
+176,8d733c7876fa11ebb31b8631bc0de43b,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+177,286f2d56f7db11ecbcbbd6dd2c335dfb,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+178,a1ac78e223db11ec81faee1fd8b4df58,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+179,b554f0fefece11eb879816429967a19a,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+180,9689bb686d6b11ebba1f52fbaff67099,T cell,gdT,"effector memory CD8-positive, alpha-beta T cell."
+181,f4c7132eaa9f11ed9aab225a04bc010d,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+182,f3f9298ea2e311eb85af52073c383e80,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+183,121f560e60a211edac516a3bcf87af0c,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+184,35f7c1fc7b7911ebad508aeddc44df84,DC,cDC2,conventional dendritic cell.
+185,9d96b2f46d6a11eba1aef2c4e1d50672,NK cell,CD56dim NK cell,natural killer cell.
+186,83371764862b11ee8d9b4ae17f2d4a91,T cell,Naive CD4 T cell,regulatory T cell.
+187,ff747244ca0411ebb3a7d6be6f26377c,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+188,efaf1c328d0111eb894022587c8bf21f,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+189,9200aa1afed011eb850e06aac0d344cf,T cell,Memory CD4 T cell,mature alpha-beta T cell.
+190,bca54bd86e5511eb8aa986621ebdbf37,Monocyte,CD16 monocyte,non-classical monocyte.
+191,b5f01006bfd211ebafa586d48e1f3db0,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+192,c5d1654e862a11eeb249aefb8bcfeb6c,NK cell,CD56dim NK cell,natural killer cell.
+193,ddefc0ec871a11ebaff886b6c60deacd,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+194,be78aab4b4d711ea8770f2df3194a061,Monocyte,CD14 monocyte,classical monocyte.
+195,babc5c80871e11eb94488a0ac828d814,T cell,Naive CD8 T cell,"CD4-positive, alpha-beta T cell."
+196,2db0647a4e0711ec865c16f89d689413,B cell,Memory B cell,B cell.
+197,0345f3f8c9fa11ebbe02e242efb8f7b8,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+198,216615e6206511ebab2fd208a121e5d4,B cell,Plasma cell,plasma cell.
+199,298d87c4872911ebb9005650151efeb0,B cell,Memory B cell,B cell.
+200,69b6a406bfd811eb9045460ae879a467,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+201,6db154ba3ebf11ebb05fa23bad7b48d9,NK cell,CD56dim NK cell,natural killer cell.
+202,c85c343ecd7111eba57e0effe5c973d2,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+203,b2102d80005b11ecbdc0e203bf65d87d,NK cell,CD56bright NK cell,natural killer cell.
+204,30efbd28786211eb91c04e08f28056f2,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+205,3868b35e424511ecb59d5a96a2e8e3f4,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+206,9fea2bae76f611ebbe1a0a9c4ec18e1b,NK cell,CD56dim NK cell,natural killer cell.
+207,5fb6a7a402b711eca847563a4b56082f,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+208,57604a728cee11ebb2129e901b21dc73,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+209,6b76fca8314d11ee80962a1f7c690213,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+210,7e182e64e40511eb8b4326d57b156660,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+211,3a5a854623d911eca62d86e9892ea95b,T cell,gdT,"CD8-positive, alpha-beta memory T cell."
+212,12878122ece811eb858a9eed4000a1fb,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+213,b9c189087abd11eb8ab56e435ec93af0,NK cell,CD56dim NK cell,natural killer cell.
+214,1b919da8e3ff11ebbe3f9efd769d557a,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+215,9159aac4871811ebb044a614f189543f,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+216,f246d352770511eba4e9125db8debfc1,Monocyte,CD14 monocyte,classical monocyte.
+217,2f166376a2ce11ebbbe71e4a3e83c3e1,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta memory T cell."
+218,876152f4e3fe11eb88346afc45235a84,Monocyte,CD14 monocyte,classical monocyte.
+219,41c8af48ca1411eba8e7c23be70524c5,T cell,Naive CD4 T cell,regulatory T cell.
+220,310379e4786211eb91c04e08f28056f2,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+221,74e3720448b611eabab7c676ab45cfca,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+222,5c82e1e803bf11ec806bb6304fd4380c,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+223,1ee6eb7a50b511ec8fafd2849fb52a10,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+224,6d138c72bfdd11eb9a93b298159eec41,Monocyte,CD16 monocyte,non-classical monocyte.
+225,5c2864b4ee8b11eb92fdd69ca687ea48,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+226,5b71a086785b11eb8f737ade911e22f7,T cell,Treg,"CD4-positive, alpha-beta T cell."
+227,111a65b2e3ff11eb9f4d12c99271e885,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+228,893d99ee620c11ebae8fee13b7064f0d,Monocyte,CD14 monocyte,classical monocyte.
+229,a6cde382230f11ec9c429a68027fbf79,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+230,a1a928d623db11ec81faee1fd8b4df58,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+231,ed33007ca2d211eb8aafd2fff04d1a29,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+232,e20230526f2d11eb9c86fece995c7c24,Monocyte,CD14 monocyte,classical monocyte.
+233,2367640e01cd11ec9bd81eda61cbfa79,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+234,e079f490862c11eeb44f2a0a7ee8bda4,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+235,6b8facd603a911ec9226dabef286a24a,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+236,4445058c50ba11ec9ccf362b40e6d4a7,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+237,ff5038e8ca0411ebb3a7d6be6f26377c,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+238,e2d0ce886e5d11eb8f7406e883c58fd7,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+239,5d9395cc7abd11eb894e066fae99c4f2,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+240,0522bce4770011ebb6f1120b4fce9850,T cell,Naive CD4 T cell,T cell.
+241,3c447f4a6d6a11eb959ece3aad2b7e32,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+242,6332452a6e5e11eba36cdee5e5a9f070,B cell,Naive B cell,B cell.
+243,63207a7a6e5e11eba36cdee5e5a9f070,Monocyte,CD14 monocyte,classical monocyte.
+244,8cb138da6e5d11ebb7476e89de14cf8b,NK cell,CD56dim NK cell,natural killer cell.
+245,6624faf2745311eb89b7ee2f69934f24,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+246,8f0d4dba6f2711eb9ed9ea93581d1c81,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+247,46dcc86e488011eaa581ba6d6c7b9f21,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+248,875d15d6e3fe11eb88346afc45235a84,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+249,014349b23f6b11ebbf0d76c805520688,T cell,Treg,T cell.
+250,ef7249e28d0111eb894022587c8bf21f,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+251,4adde246495111eaafc966679ef8dfee,B cell,Memory B cell,B cell.
+252,596b9ed06f2e11eb96d6a6525b93d5e3,Monocyte,CD14 monocyte,classical monocyte.
+253,110c0bf2e3ff11eb9f4d12c99271e885,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+254,66622b127b6e11eb80a1e2efff4d80b3,T cell,Treg,"CD4-positive, alpha-beta memory T cell."
+255,f0f2532c4e0111ecaee2cec740306374,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+256,799c202460b011edb17e46fb8f56502c,T cell,MAIT,"CD8-positive, alpha-beta memory T cell."
+257,80190294671f11edbb8ae2e11c613baa,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+258,4213c0e476f611eb9ee31a4d4e3f8efd,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+259,c079e956862311eeb393168c5709f2f2,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+260,b994f47a003111ecb4351e4566b12fdf,Monocyte,CD14 monocyte,classical monocyte.
+261,b86f136401d011ecafff5e625bcc3358,T cell,Memory CD8 T cell,T cell.
+262,8f02622e6f2711eb9ed9ea93581d1c81,Monocyte,CD14 monocyte,classical monocyte.
+263,103e631801dd11ec98991efbcd4757be,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+264,4237c748bfd311eb8ffe429043368bdd,T cell,gdT,"CD8-positive, alpha-beta T cell."
+265,a8db8d567b7a11ebb651b6ee572b3274,B cell,Naive B cell,B cell.
+266,8935fc0223e011ecb7814e13412d27b3,T cell,Treg,T cell.
+267,9d179b72648711eba53cf26f7da8270f,NK cell,CD56dim NK cell,natural killer cell.
+268,03a1e6be60a711edabbabeb8626370eb,B cell,Naive B cell,B cell.
+269,016521903f6b11ebbf0d76c805520688,B cell,Naive B cell,naive B cell.
+270,81f644583f6411eb9e62823c612eac47,Monocyte,CD14 monocyte,classical monocyte.
+271,c4952078e3ff11eb91932201050c5f2a,Monocyte,CD16 monocyte,classical monocyte.
+272,b966bb3c003111ecb4351e4566b12fdf,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+273,68ca323aecea11eb8ac2be83dc4baba1,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+274,2f289ffaa2ce11ebbbe71e4a3e83c3e1,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+275,8dc40624e40211ebba695e0417dae271,T cell,Memory CD4 T cell,T cell.
+276,a77d67ce489811ea92388a6a0c683ffb,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+277,d0dae1d2e6bc11eb939cb62884aae3d6,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+278,574784ee7b6711eb980a1e6e754c5d4e,B cell,Naive B cell,B cell.
+279,ead19bda608c11edb82ff6b434f2fb76,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+280,68c7084eecea11eb8ac2be83dc4baba1,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+281,a3c57a10ecbe11ebaad346e0a59e94fd,Monocyte,CD14 monocyte,classical monocyte.
+282,dd00df7c862c11ee941c7e9dd60efb6e,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+283,db72620abfde11eb9e6d96f9d8b57902,Monocyte,Intermediate monocyte,classical monocyte.
+284,27817526ca0411ebbb136a0d2fbd39b2,NK cell,CD56dim NK cell,natural killer cell.
+285,67416e5401c811ec99d8a29cd1cea438,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+286,370d652aece811eb8566de30ea854391,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+287,2dae06ee4e0711ec865c16f89d689413,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+288,4b4aad9a746b11eb83a4c235a3a08626,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+289,92674476e40111eba5a472433277b4b3,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+290,95551fa86d6b11ebb628aa63b53ba83f,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+291,0f4b6e4e745a11eb9460023cc5433a03,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+292,d5413e32862a11eeb008622ceecbab2f,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+293,7e42f888e40511eb8b4326d57b156660,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+294,917f4b80871811ebb044a614f189543f,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+295,bd4fd1c06e5511ebaf139a72df013a78,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+296,9c5aa9e8748d11eb8ec6c6eb439e4cc3,T cell,gdT,"CD8-positive, alpha-beta memory T cell."
+297,8b53e99a7b7a11ebbb227ae287962563,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+298,6495c812786111eba55bee831e293e34,B cell,Naive B cell,B cell.
+299,5c57e4347b7a11eb822c3e9d2f0e335e,T cell,Memory CD4 T cell,regulatory T cell.
+300,cfb9848448b611ea8957bafe6d70929e,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+301,deddbcf048cf11eaacaa42cd98cbd24e,Monocyte,CD14 monocyte,classical monocyte.
+302,62f4cb5ae79411ebada4c67e2b686223,Monocyte,CD14 monocyte,classical monocyte.
+303,108dccb4b4d111ea9760ae151b524403,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+304,a87294926e5811eb835b7e171cb4e71f,B cell,Transitional B cell,B cell.
+305,e1936468230d11eb995f0a8b9bab73d7,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+306,91f791f0fed011eb850e06aac0d344cf,Monocyte,CD14 monocyte,classical monocyte.
+307,587ea7dae6b411ebaf04befb0a01041d,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+308,943516506f3211eb8e954e1098597fe8,NK cell,CD56dim NK cell,natural killer cell.
+309,6cf8f41c01e011ec97d1be2f1bab6958,Monocyte,CD14 monocyte,classical monocyte.
+310,285ca50acd3911eb84917af6a2da7945,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta memory T cell."
+311,57ff410c746811eb8d8fe2317d9a82dc,T cell,Memory CD4 T cell,T cell.
+312,82839b28746b11eba241fa7146609c17,Monocyte,CD14 monocyte,classical monocyte.
+313,cf9bae3248b611ea8957bafe6d70929e,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+314,5fdda00c6f3211eb96f96a584edb8b14,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+315,ecdf6020e6b611eba4eb1651e40fda0e,Monocyte,CD14 monocyte,classical monocyte.
+316,6b7f5b1e314d11ee80962a1f7c690213,Monocyte,CD14 monocyte,classical monocyte.
+317,bf10dd4ae6b611eb904c4e74f324a9a5,T cell,Treg,"CD4-positive, alpha-beta T cell."
+318,a8ef9e3c7b6a11ebb395ce76725e8e9a,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+319,2ee6a758a2ce11ebbbe71e4a3e83c3e1,T cell,Memory CD4 T cell,mature T cell.
+320,2af5e346315811eeb122f21d7938a691,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+321,ec35350aecbf11ebafc4de269a2c4ee4,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+322,83728e928d0011eba962c64f4773d63c,NK cell,CD56dim NK cell,natural killer cell.
+323,12f1d8367abc11ebb9a662910f707d59,T cell,Treg,"CD4-positive, alpha-beta T cell."
+324,2fd3a81af02311eda3e4863b337a67e7,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+325,4ac57f9e495111eaafc966679ef8dfee,Monocyte,CD14 monocyte,classical monocyte.
+326,2d43e19660b311edb0ce9a8d0a14da27,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+327,ab06384e770411eba803caccc32ef9e2,T cell,Memory CD4 T cell,mature alpha-beta T cell.
+328,a8304c3e4e0111ec936b1ac433bb3e99,T cell,Treg,"CD8-positive, alpha-beta T cell."
+329,46816e9afecf11eb8f22ce835a92b018,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+330,a8fb2160795511eb8df55e9c326fc5f4,T cell,MAIT,"CD8-positive, alpha-beta T cell."
+331,ec71eb26ecbf11ebafc4de269a2c4ee4,T cell,Memory CD4 T cell,T cell.
+332,6764b9a401c811ec99d8a29cd1cea438,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+333,e383ad94a2e411eba445862a4d6f2ed3,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+334,7ef1704cf7e711ecb1715e1ef278d88a,Monocyte,CD14 monocyte,classical monocyte.
+335,bd6deb54e6bb11ebbaa13ebd4470af0a,Monocyte,CD14 monocyte,classical monocyte.
+336,de259fdc871a11ebaff886b6c60deacd,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+337,918a208c871811ebb044a614f189543f,T cell,Naive CD4 T cell,regulatory T cell.
+338,94a3ae56862911eebdc19e04fa809629,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+339,4b0a0160f7e511ec9d95e21fd042e627,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+340,de594a60770411eb8d484e1c0e9a9997,DC,cDC2,classical monocyte.
+341,5cfbb74648b111ea8fbed2ddb8e0a14a,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+342,8b52ce3e7b7a11ebbb227ae287962563,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+343,b3c19f66872911eb88ddaa98e7d40cb1,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+344,1064ef0601dd11ec98991efbcd4757be,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+345,982bebac76fe11eb89bbb265d7ce1040,T cell,gdT,"CD8-positive, alpha-beta T cell."
+346,f3f8b0e4a2e311eb85af52073c383e80,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+347,bb01ef12862a11ee84fb5eb04f029758,T cell,Naive CD4 T cell,regulatory T cell.
+348,1237d67060a211edac516a3bcf87af0c,DC,pDC,plasmacytoid dendritic cell.
+349,bccbbe267abc11ebac911e12d1777b84,Monocyte,CD14 monocyte,classical monocyte.
+350,a2e92f1e8cfc11ebb4592ee9d1c560f8,NK cell,CD56dim NK cell,natural killer cell.
+351,70c66a4648b611eaa65d9e7d578d66f2,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+352,5a0b9a066e5811eba9ff8603041c92bc,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+353,04e435f8cd2411eb93671e348710f99d,NK cell,CD56dim NK cell,natural killer cell.
+354,a95c234c8d0111eba8fc0e09ff586e2a,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+355,78397cc6862111ee998f1e061ab3328b,Monocyte,CD16 monocyte,non-classical monocyte.
+356,94a5628c862911eebdc19e04fa809629,Monocyte,CD14 monocyte,"CD14-positive, CD16-negative classical monocyte."
+357,734a7b8c424111ec9e322259f8f046d7,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+358,7c7d47ce871711eba8137adc2effde42,T cell,Memory CD4 T cell,"effector memory CD8-positive, alpha-beta T cell."
+359,443755e050ba11ec9ccf362b40e6d4a7,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+360,e5e4df3abfdc11eb9564dafd5e7509d4,B cell,Naive B cell,B cell.
+361,9d98c6706d6a11eba1aef2c4e1d50672,T cell,gdT,"CD8-positive, alpha-beta T cell."
+362,943c26846f3211eb8e954e1098597fe8,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+363,4e4203ce6f2811eb8e74ca941525b751,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+364,6741083801c811ec99d8a29cd1cea438,T cell,Naive CD4 T cell,mature T cell.
+365,890d82f4620c11ebae8fee13b7064f0d,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+366,bbe56adcca0f11eba0c402013b74b858,B cell,Memory B cell,B cell.
+367,5cb6e5cae40611ebb6ab32f1f7b8a178,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+368,3beeb7fa6f3011eb87df52ffb97efd4c,NK cell,CD56dim NK cell,natural killer cell.
+369,2a94f95e786011ebb2ae32222f568f1d,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+370,ed5591d0a2e311ebb1ce525b6209b46f,B cell,Memory B cell,B cell.
+371,e23a6a36794011eb9282e2ceeb91ba52,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+372,8738543ef02311edabfa3e874280f2b8,Monocyte,CD14 monocyte,classical monocyte.
+373,b95df6aebfcd11ebbdb0527e5f17f167,B cell,Memory B cell,B cell.
+374,598ca53a6f2e11eb96d6a6525b93d5e3,Monocyte,CD14 monocyte,classical monocyte.
+375,70b8fab448b611eaa65d9e7d578d66f2,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+376,8d8e1a0ae40211ebba695e0417dae271,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+377,ae1e49b0bfdc11ebb52a6a8f5d6679fa,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+378,66e74cea4e0211ec853ad229c2defbef,B cell,Effector B cell,B cell.
+379,36ab850276f611eb916cbeaf1a0a56b5,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+380,ae1caa5ce8c611ebbab94ef4e3507a6c,T cell,gdT,natural killer cell.
+381,1ef0648e50b511ec8fafd2849fb52a10,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+382,7d3538966f3111eb96976aecf4743d14,Monocyte,CD16 monocyte,classical monocyte.
+383,9269ca02e40111eba5a472433277b4b3,Monocyte,CD16 monocyte,non-classical monocyte.
+384,5b841cc27b5111eba0d262d639ebf57d,Monocyte,CD16 monocyte,non-classical monocyte.
+385,79ffb4ba76fe11eb9b7cfece13ccb977,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+386,674fee5201c811ec99d8a29cd1cea438,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+387,a6d088a8609911edb77612a4eb21bec8,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+388,cdb90298315811ee95297ae860542a53,T cell,Memory CD8 T cell,T cell.
+389,421dcf82bfd311eb8ffe429043368bdd,T cell,gdT,natural killer cell.
+390,5c7c7ee87b7a11eb822c3e9d2f0e335e,T cell,Memory CD4 T cell,regulatory T cell.
+391,57e7a782b4cd11ea8b3b36d11ceec0e6,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+392,4a5499228d0811eba554d6cabaf48ff9,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+393,24f77d84207a11eb99f83ebbcdb12029,Monocyte,CD14 monocyte,classical monocyte.
+394,cc20382c7aba11eb9d926ed54ea72841,NK cell,CD56dim NK cell,natural killer cell.
+395,5adf0a46785b11eb8f737ade911e22f7,B cell,Memory B cell,B cell.
+396,81d6e7fc3f6411eb9e62823c612eac47,B cell,Naive B cell,B cell.
+397,5837be42746811eb8d8fe2317d9a82dc,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+398,201727a8aa7d11ed97cc4aa82665cfc4,T cell,Memory CD4 T cell,T cell.
+399,f421baac8cfe11eb877bf62f64715fb6,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+400,9267f182e40111eba5a472433277b4b3,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+401,36d1e734ece811eb8566de30ea854391,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+402,ca185f367b6a11eb9663d28cb61bf405,NK cell,CD56dim NK cell,natural killer cell.
+403,0f281ca0745a11eb9460023cc5433a03,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+404,594910a46f2e11eb96d6a6525b93d5e3,T cell,Treg,"CD4-positive, alpha-beta T cell."
+405,c8eb731e230911eba0759640c92fc4a2,Monocyte,CD14 monocyte,classical monocyte.
+406,edf685066e5c11eb9751364c17c50e30,B cell,Naive B cell,B cell.
+407,99025b9e795411ebb269deabf754cc73,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+408,a62f82ee3e8311ebb8866e6678408b78,T cell,gdT,"CD8-positive, alpha-beta memory T cell."
+409,8a8408fa50b411ec9b5f1e4865587c6c,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+410,874be8a6e3fe11eb88346afc45235a84,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+411,1214546660a211edac516a3bcf87af0c,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+412,421b684e76f611eb9ee31a4d4e3f8efd,Monocyte,CD16 monocyte,monocyte.
+413,b5dbe256bfd311ebba58d6b31810e4ce,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+414,06e768a202b711ec88cb72995a34965f,Monocyte,CD14 monocyte,classical monocyte.
+415,4b6c7394746b11eb83a4c235a3a08626,T cell,Naive CD4 T cell,mature T cell.
+416,a8eccb267b6a11ebb395ce76725e8e9a,T cell,Memory CD4 T cell,"effector memory CD8-positive, alpha-beta T cell."
+417,c06ce206862311eeb393168c5709f2f2,Monocyte,CD14 monocyte,classical monocyte.
+418,907cc28c424b11ec8d4422c4d20de419,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+419,b55a62e0872911ebbe41a20b62d6e8c8,Monocyte,CD16 monocyte,classical monocyte.
+420,8ed6feb0004311ec9f9f9e190f9f967f,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+421,a86e06986e5811eb835b7e171cb4e71f,T cell,gdT,"CD8-positive, alpha-beta T cell."
+422,e160c062230d11eb995f0a8b9bab73d7,Monocyte,CD14 monocyte,classical monocyte.
+423,1037c62001dd11ec98991efbcd4757be,Monocyte,Intermediate monocyte,classical monocyte.
+424,cf9b3eac48b611ea8957bafe6d70929e,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+425,94705120230f11ecb89eb20ae7ecce12,B cell,Effector B cell,B cell.
+426,4a822c348d0811eba554d6cabaf48ff9,Monocyte,CD14 monocyte,classical monocyte.
+427,16a61c9c609a11edba329e19a2629b2e,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+428,9821551676fe11eb89bbb265d7ce1040,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+429,b8a2cd7601d011ecafff5e625bcc3358,T cell,MAIT,"CD8-positive, alpha-beta T cell."
+430,2dac3e044e0711ec865c16f89d689413,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+431,e070b87e7aba11ebad9a8efd66e37e75,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+432,fccfa3e63e8c11eb882a3a23c421ba3f,B cell,Transitional B cell,B cell.
+433,c25dd6eecd3711ebaef70262a109a00a,T cell,Memory CD4 T cell,"effector memory CD8-positive, alpha-beta T cell."
+434,f3af06be7abc11eb9f6b469c2edb075f,NK cell,CD56dim NK cell,natural killer cell.
+435,7ca28f86746911eb8b7dee0008289f2d,B cell,Naive B cell,B cell.
+436,423b660abfd311eb8ffe429043368bdd,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+437,4acaa8a2495111eaafc966679ef8dfee,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+438,b5b3217cbfd311ebba58d6b31810e4ce,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+439,8f0a4ed2004311ec9f9f9e190f9f967f,Monocyte,CD14 monocyte,classical monocyte.
+440,75868a74a2de11ebba15ae7e271d472f,Monocyte,CD14 monocyte,classical monocyte.
+441,cbd709aa3ebe11eb9f6d666e6b6edd05,Monocyte,CD14 monocyte,classical monocyte.
+442,4169ffbccd1a11ebb6f2f245b555caa7,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+443,4ba370ba746b11eb83a4c235a3a08626,Monocyte,Intermediate monocyte,classical monocyte.
+444,7a5fa60e7b7711eba2a96a517e35be5d,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+445,c1aa485801db11ec82191e5794dae576,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+446,7836e22c862111ee998f1e061ab3328b,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+447,dcfab1ba862c11ee941c7e9dd60efb6e,NK cell,CD56dim NK cell,natural killer cell.
+448,b4fda8ee862b11ee9a02eed9ef1e2438,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+449,a65b045a3e8311ebb8866e6678408b78,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+450,e47bd3fcb54b11eaa79c06097e2fb91a,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+451,b9dde3c6872b11ebb599de5a8c2059ae,Monocyte,CD14 monocyte,classical monocyte.
+452,6cf310b001e011ec97d1be2f1bab6958,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+453,95c4310cc9fc11eb8b6656baa5e4f345,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+454,647f6c7a786111eba55bee831e293e34,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+455,f3f958b4a2e311eb85af52073c383e80,Monocyte,CD14 monocyte,classical monocyte.
+456,279f33ccca0411ebbb136a0d2fbd39b2,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+457,5cb0aa66e40611ebb6ab32f1f7b8a178,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+458,67b64800620e11ebafa3eefd4acedd98,Monocyte,CD14 monocyte,classical monocyte.
+459,c5b91ade862a11eeb249aefb8bcfeb6c,Monocyte,CD14 monocyte,classical monocyte.
+460,b86c407601d011ecafff5e625bcc3358,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+461,0fd5fc844e0311ec8368968167987366,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+462,67c5dd06620e11ebafa3eefd4acedd98,B cell,Memory B cell,B cell.
+463,0f4d66a4745a11eb9460023cc5433a03,Monocyte,CD14 monocyte,classical monocyte.
+464,bd6ef0a8e6bb11ebbaa13ebd4470af0a,NK cell,CD56dim NK cell,natural killer cell.
+465,22d67f7a872a11eba54aae2ad39eb13d,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+466,052f544a770011ebb6f1120b4fce9850,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+467,7851c68c862111ee998f1e061ab3328b,T cell,MAIT,"effector memory CD8-positive, alpha-beta T cell."
+468,87cee0bc50be11ec9bfce201e636867f,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+469,2ee94576a2ce11ebbbe71e4a3e83c3e1,B cell,Memory B cell,B cell.
+470,5c9609cce40611ebb6ab32f1f7b8a178,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+471,cc98e62a862c11ee8a3c42211af86f48,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+472,1092b788b4d111ea9760ae151b524403,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+473,288e5640f7db11ecbcbbd6dd2c335dfb,T cell,MAIT,"CD8-positive, alpha-beta memory T cell."
+474,a6f97dbc609911edb77612a4eb21bec8,Monocyte,CD14 monocyte,classical monocyte.
+475,550be098cd2f11ebad37a2057e76a05f,T cell,Memory CD4 T cell,T cell.
+476,15008184fec611eb87dc9ec311f9e9a6,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+477,f10af8284e0111ecaee2cec740306374,T cell,Treg,T cell.
+478,4a8c6d988d0811eba554d6cabaf48ff9,Monocyte,CD14 monocyte,classical monocyte.
+479,490bf98c01e011ecad3cda2d73e439aa,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+480,5678c3228cfe11eba258b6b4610d6042,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+481,8e4c36a476fa11ebb31b8631bc0de43b,B cell,Naive B cell,B cell.
+482,f4360d9a8cfe11eb877bf62f64715fb6,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+483,41e5f30aca1411eba8e7c23be70524c5,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+484,57ecbb3cb4cd11ea8b3b36d11ceec0e6,B cell,Naive B cell,naive B cell.
+485,bcea21ae7abc11ebac911e12d1777b84,Monocyte,CD14 monocyte,classical monocyte.
+486,e0bd34747aba11ebad9a8efd66e37e75,T cell,Memory CD8 T cell,natural killer cell.
+487,4ac41dca495111eaafc966679ef8dfee,Monocyte,Intermediate monocyte,classical monocyte.
+488,b87de2e001d011ecafff5e625bcc3358,T cell,Naive CD4 T cell,regulatory T cell.
+489,44bc29aae40411eb80e50e6ae118196c,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+490,0da1ca968d0211eb9a4f269f40e0a6a0,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+491,e9a2e21a862d11eeb5b7caa7a1b2f0ad,T cell,Naive CD4 T cell,regulatory T cell.
+492,9537fee66d6b11ebb628aa63b53ba83f,NK cell,CD56dim NK cell,natural killer cell.
+493,21621932206511ebab2fd208a121e5d4,Monocyte,CD14 monocyte,classical monocyte.
+494,2ef7014afeca11eb84a5baa122ad77d8,T cell,Naive CD4 T cell,regulatory T cell.
+495,b311b63a4e0411ecbdc4f6dde42d12bb,NK cell,CD56dim NK cell,natural killer cell.
+496,f4e4a4d4aa9f11ed9aab225a04bc010d,NK cell,CD56dim NK cell,natural killer cell.
+497,1ac2f9a4f02211ed88e5ae7ef455ad80,NK cell,CD56dim NK cell,natural killer cell.
+498,72db33aa60b111eda69772bc2278a4b2,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+499,a903c55e795511eb8df55e9c326fc5f4,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+500,b5daa8b0bfd211ebafa586d48e1f3db0,Monocyte,CD14 monocyte,classical monocyte.
+501,0b7ef130862e11eeaf3f4ac3fe582f25,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+502,d111f622e6bc11eb939cb62884aae3d6,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+503,91c3c87cc9fe11eba37ce263f1112239,T cell,gdT,"CD8-positive, alpha-beta T cell."
+504,911e929c4dfe11ec9cd7da9b7cf4e69b,NK cell,CD56dim NK cell,natural killer cell.
+505,90a3c85e862e11ee81c576a33e24a1ce,NK cell,CD56dim NK cell,natural killer cell.
+506,c813b664cd7111eba57e0effe5c973d2,T cell,Memory CD8 T cell,natural killer cell.
+507,5d8feeb87abd11eb894e066fae99c4f2,B cell,Memory B cell,B cell.
+508,b2814e56e8ba11eb951c4a933a1ddc30,B cell,Memory B cell,B cell.
+509,2db643684e0711ec865c16f89d689413,B cell,Naive B cell,B cell.
+510,d60420b2862c11eea4d2b6181e6e2ea7,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+511,4ae1c6cc495111eaafc966679ef8dfee,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+512,018f327ee40111ebb5ee12505c6ae237,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+513,8ab0e5d250b411ec9b5f1e4865587c6c,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+514,e9de16aef7e111ec90da567a30052902,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+515,0cd42654ecc011eb966bfa1af6d99fe6,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+516,f80d34b6ece411eb96e2ee7ff4e83851,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+517,f418ce60a2e311eb85af52073c383e80,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+518,5ad09be6785b11eb8f737ade911e22f7,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+519,53709f0a76f711eb928cf2a688aad71a,T cell,Naive CD4 T cell,T cell.
+520,20379b8caa7d11ed97cc4aa82665cfc4,Monocyte,CD14 monocyte,classical monocyte.
+521,4490956ae40411eb80e50e6ae118196c,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+522,7836cd50862111ee998f1e061ab3328b,NK cell,CD56dim NK cell,natural killer cell.
+523,4b160690f7e511ec9d95e21fd042e627,Monocyte,CD16 monocyte,classical monocyte.
+524,466d372cfecf11eb8f22ce835a92b018,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+525,285f276ccd3911eb84917af6a2da7945,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+526,0fc41eba4e0311ec8368968167987366,Monocyte,CD14 monocyte,classical monocyte.
+527,e9f85392230811ec89cc0e1df9dfbf1c,Monocyte,CD14 monocyte,classical monocyte.
+528,a3b5f05eecbe11ebaad346e0a59e94fd,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+529,b5b2f67abfd311ebba58d6b31810e4ce,Monocyte,CD14 monocyte,classical monocyte.
+530,36541ee4e6b211eb82f386f01e0439ac,B cell,Memory B cell,B cell.
+531,4d1c1f4c230c11eb9e73369c55ceea08,T cell,Treg,T cell.
+532,06a53b6202b711ec88cb72995a34965f,DC,cDC1,dendritic cell.
+533,11b61d7c746a11eba6ee4656f02e1fdd,NK cell,CD56dim NK cell,natural killer cell.
+534,b2554126e8ba11eb951c4a933a1ddc30,B cell,Naive B cell,B cell.
+535,aaeca67c770411eba803caccc32ef9e2,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+536,77a2aa2afecf11eb83ae4a767d1dceb9,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+537,4a4b900c8d0811eba554d6cabaf48ff9,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+538,ae1bc1aae8c611ebbab94ef4e3507a6c,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+539,4afbdbd0f7e511ec9d95e21fd042e627,Monocyte,CD14 monocyte,classical monocyte.
+540,2961f1f4872911ebb9005650151efeb0,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+541,2a63afee671911ed9363b630b926424a,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+542,7c69fbbc746911eb8b7dee0008289f2d,T cell,Memory CD4 T cell,mature NK T cell.
+543,939783b6786211ebb8964a4e4d3f19b7,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+544,f4130eee8cfe11eb877bf62f64715fb6,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+545,ffd9020223d911ecb640f6cb779d5498,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+546,41c79d92ca1411eba8e7c23be70524c5,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+547,4fca2fcc286511ec8c0d4aaa4b9002e8,T cell,Memory CD4 T cell,T cell.
+548,234ed1f8e6ae11ebb432b26df3e07d33,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+549,7e91c7c86f3011eb8ea3b6144a58e849,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+550,21f001c4862511eeb57ed2cb2c7f9e33,Monocyte,CD14 monocyte,classical monocyte.
+551,97b37fbaaa7711eda859228a57c00d0f,NK cell,CD56dim NK cell,natural killer cell.
+552,b8a317a8230f11ecabe4662b93aa8aaf,Monocyte,CD14 monocyte,classical monocyte.
+553,c5d72dfaca1911ebb0cd265de2a98d15,T cell,Memory CD4 T cell,T cell.
+554,ded65ffa48cf11eaacaa42cd98cbd24e,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+555,6d11a2e601e011ec97d1be2f1bab6958,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+556,94af9022862911eebdc19e04fa809629,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+557,6d1ab41c01e011ec97d1be2f1bab6958,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+558,67685b2c01c811ec99d8a29cd1cea438,Monocyte,CD14 monocyte,classical monocyte.
+559,258acfd0e40611eb9f73d6fd5206df9a,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+560,46ff3f5c6d6911ebb77caa74668eec04,T cell,gdT,"CD8-positive, alpha-beta memory T cell."
+561,2d3bea9060b311edb0ce9a8d0a14da27,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+562,d1da3e9c7ab611eb820a3effb17b8bb3,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+563,a12c1afc02b711eca176be0a2642ba6d,B cell,Memory B cell,B cell.
+564,39306cc0e6bd11eba4f6726e7cf53371,Monocyte,CD16 monocyte,non-classical monocyte.
+565,72d670e060b111eda69772bc2278a4b2,T cell,Naive CD4 T cell,mature alpha-beta T cell.
+566,34ee566c003111ec86db8a033d8d78a0,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+567,279cefaeca0411ebbb136a0d2fbd39b2,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+568,a12b31be02b711eca176be0a2642ba6d,Monocyte,CD14 monocyte,classical monocyte.
+569,0d5fdfdc8d0211eb9a4f269f40e0a6a0,NK cell,CD56dim NK cell,natural killer cell.
+570,a8e4db26795511eb8df55e9c326fc5f4,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+571,ee1e3e846e5c11eb9751364c17c50e30,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+572,c1edc8ee23dc11ec9545a2e3447e117e,B cell,Memory B cell,B cell.
+573,e1901fb6002e11ecad8456bdee478bef,NK cell,CD56bright NK cell,natural killer cell.
+574,a111a1f402b711eca176be0a2642ba6d,B cell,Naive B cell,B cell.
+575,97ff4442e6bd11eb9bb4beec3d5c720e,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+576,0fcb13284e0311ec8368968167987366,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+577,e7f6589a6f3111eb827116167e963c6a,Monocyte,CD16 monocyte,classical monocyte.
+578,a724c1e6489811ea92388a6a0c683ffb,Monocyte,CD16 monocyte,non-classical monocyte.
+579,22906770aa8111edbca7720112d201c9,B cell,Naive B cell,B cell.
+580,5b66f9a6e8bd11ebb73b6627106dca2c,Monocyte,CD14 monocyte,classical monocyte.
+581,103ffec601dd11ec98991efbcd4757be,B cell,Memory B cell,B cell.
+582,7c4e6280746911eb8b7dee0008289f2d,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+583,14ebf840fec611eb87dc9ec311f9e9a6,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+584,6b83e708648911eb8bba96bafe6b5935,Monocyte,CD14 monocyte,classical monocyte.
+585,8741959ef02311edabfa3e874280f2b8,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+586,1016234401dd11ec98991efbcd4757be,T cell,Naive CD4 T cell,regulatory T cell.
+587,64d70480786111eba55bee831e293e34,T cell,Memory CD4 T cell,mature T cell.
+588,5886cf96e6b411ebaf04befb0a01041d,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+589,913d3ea2871811ebb044a614f189543f,NK cell,CD56dim NK cell,natural killer cell.
+590,e375456aa2e411eba445862a4d6f2ed3,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+591,f4235fba8cfe11eb877bf62f64715fb6,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+592,4a77af988d0811eba554d6cabaf48ff9,NK cell,CD56dim NK cell,natural killer cell.
+593,cca0ac5c862c11ee8a3c42211af86f48,Monocyte,CD14 monocyte,classical monocyte.
+594,14dd27d0aa9011eda3678a6e266cb381,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+595,c8e96772230911eba0759640c92fc4a2,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+596,2856540cf7db11ecbcbbd6dd2c335dfb,B cell,Memory B cell,B cell.
+597,6cd00e3001e011ec97d1be2f1bab6958,T cell,gdT,T cell.
+598,628542d86d6611eba2001a7690ba1d9e,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+599,286e23e8cd3911eb84917af6a2da7945,T cell,MAIT,T cell.
+600,44cd0fe0e40411eb80e50e6ae118196c,Monocyte,CD14 monocyte,classical monocyte.
+601,236aebb001cd11ec9bd81eda61cbfa79,Monocyte,CD14 monocyte,classical monocyte.
+602,bafdf088862a11ee84fb5eb04f029758,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+603,6cb6ae52608c11ed9b035e2e100c042f,Monocyte,CD14 monocyte,classical monocyte.
+604,e1bae0446f2d11eb9c86fece995c7c24,B cell,Memory B cell,B cell.
+605,932b7af6e6b511eb8d2eee95c5d8b7b2,B cell,Memory B cell,B cell.
+606,b31331224e0411ecbdc4f6dde42d12bb,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+607,94adff00862911eebdc19e04fa809629,T cell,gdT,"CD8-positive, alpha-beta memory T cell."
+608,57d88d10b4cd11ea8b3b36d11ceec0e6,Monocyte,CD14 monocyte,classical monocyte.
+609,8ee1b7046f2711eb9ed9ea93581d1c81,NK cell,CD56dim NK cell,natural killer cell.
+610,98e7c54c794d11eb99a57e14fe324518,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+611,88e4502a6d6811eb8c84965cd2e07daf,T cell,gdT,"CD8-positive, alpha-beta T cell."
+612,7cb03c9c871711eba8137adc2effde42,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+613,3d71e0c4620c11eb8b61f221ae948d59,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+614,db9bfcf0bfde11eb9e6d96f9d8b57902,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+615,91c4759cc9fe11eba37ce263f1112239,NK cell,CD56dim NK cell,natural killer cell.
+616,c69792ea48bd11eab2ee7a6edf799b61,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+617,e414324eca0611eb95002269a98e5840,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+618,a51db984003e11ec836f122ea675d063,NK cell,CD56dim NK cell,natural killer cell.
+619,90b61b44862e11ee81c576a33e24a1ce,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+620,95d38034e6b811ebbbef16f34851c28c,B cell,Effector B cell,B cell.
+621,cfaf13146e5d11ebb859b2d8774afeef,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+622,b38977bc872911eb88ddaa98e7d40cb1,Monocyte,CD14 monocyte,classical monocyte.
+623,df22ffd2f7e011eca445621bb9b0c4af,B cell,Naive B cell,B cell.
+624,315812c4786211eb91c04e08f28056f2,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+625,5bfe6bf63eb811eb8c54d6d536743a60,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+626,5a19479aaa8411edbc55eac8c2b882ba,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+627,fca5da703e8c11eb882a3a23c421ba3f,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+628,7992b64c60b011edb17e46fb8f56502c,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+629,05eb6d74770011ebb6f1120b4fce9850,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+630,1015b95e01dd11ec98991efbcd4757be,Monocyte,CD14 monocyte,classical monocyte.
+631,c1ddd9be8d0211eb8f491acf3f136954,Monocyte,CD14 monocyte,classical monocyte.
+632,7e8d71646f3011eb8ea3b6144a58e849,Monocyte,CD14 monocyte,classical monocyte.
+633,6672d93a7b6e11eb80a1e2efff4d80b3,B cell,Naive B cell,B cell.
+634,22c3f9d6872a11eba54aae2ad39eb13d,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+635,5c6b4cea7b7a11eb822c3e9d2f0e335e,Monocyte,CD14 monocyte,classical monocyte.
+636,4939be6c01e011ecad3cda2d73e439aa,Monocyte,CD14 monocyte,classical monocyte.
+637,d00ae834a2e611eb91855e3d154f7c3f,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+638,f9a27b4e3e9611ebb2609e1bd6640354,B cell,Naive B cell,B cell.
+639,ef785200746111ebb005fab458a363f4,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+640,12257accca0611eba39f3a25e2bf00a4,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+641,a1220fee02b711eca176be0a2642ba6d,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+642,32fb1c7450b211ecaf7e5a3fead6fb86,B cell,Memory B cell,B cell.
+643,af555d80005711ecacf076742455fe92,B cell,Transitional B cell,B cell.
+644,a84e34604e0111ec936b1ac433bb3e99,NK cell,CD56dim NK cell,natural killer cell.
+645,5687afb88cfe11eba258b6b4610d6042,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+646,10fe170ee3ff11eb9f4d12c99271e885,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+647,9127db98871811ebb044a614f189543f,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+648,34f4e928003111ec86db8a033d8d78a0,T cell,Naive CD4 T cell,regulatory T cell.
+649,c1cf21308d0211eb8f491acf3f136954,Monocyte,CD14 monocyte,classical monocyte.
+650,ef74268a746111ebb005fab458a363f4,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+651,a1078b0602b711eca176be0a2642ba6d,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+652,8ceebbbc7b7111eb97356a557ecd1c7b,T cell,Memory CD4 T cell,"effector memory CD8-positive, alpha-beta T cell."
+653,bd33c8d66e5511ebaf139a72df013a78,Monocyte,CD16 monocyte,monocyte.
+654,e124b61876fe11eb8a3a1adcfefed355,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+655,12f15fb0745311ebbb1cf6a20bf9215d,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+656,9533508a6d6b11ebb628aa63b53ba83f,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+657,969166ec6d6b11ebba1f52fbaff67099,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+658,7e4d830ce40511eb8b4326d57b156660,B cell,Naive B cell,B cell.
+659,ff2f3262a2d911eb97dcb29064131379,T cell,Memory CD4 T cell,regulatory T cell.
+660,65096ae0009911eca7f7ce4e40ea87f1,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+661,7c9b32e0746911eb8b7dee0008289f2d,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+662,a46a5768cd3511eb88c7e2067416d204,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+663,7ccc1822871711eba8137adc2effde42,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+664,0b750fe4862e11eeaf3f4ac3fe582f25,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+665,4948f56201e011ecad3cda2d73e439aa,B cell,Memory B cell,B cell.
+666,0635cde0863611eea9a56e13647e2878,T cell,gdT,natural killer cell.
+667,3307351850b211ecaf7e5a3fead6fb86,T cell,Memory CD4 T cell,regulatory T cell.
+668,6d1caca401e011ec97d1be2f1bab6958,Monocyte,CD14 monocyte,classical monocyte.
+669,9fcebf0476f611ebbe1a0a9c4ec18e1b,NK cell,CD56dim NK cell,natural killer cell.
+670,5db1d02a872711eba91e02b81d78ff78,T cell,Memory CD4 T cell,mature alpha-beta T cell.
+671,980471d076fe11eb89bbb265d7ce1040,T cell,Memory CD4 T cell,regulatory T cell.
+672,16911702609a11edba329e19a2629b2e,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+673,ff862b4c206311eb9a0672114e4cb04e,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+674,f43feafe8cfe11eb877bf62f64715fb6,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+675,af92d84a005711ecacf076742455fe92,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+676,8eb9054023de11ec82e796d30ec08b20,Monocyte,CD14 monocyte,classical monocyte.
+677,79e22dbe76fe11eb9b7cfece13ccb977,T cell,Memory CD4 T cell,regulatory T cell.
+678,47d720c26f3311eb99c592dad4245022,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+679,e05ecb98862c11eeb44f2a0a7ee8bda4,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+680,c8816500423e11eca0a0c67dc89c8177,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+681,8d8b7e76e40211ebba695e0417dae271,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+682,ed99cdfc6e5c11eb9751364c17c50e30,T cell,MAIT,"CD8-positive, alpha-beta memory T cell."
+683,74e148f0e6ab11eb8f2c6612543f483c,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+684,cc460af4fec511eb87b23e158aef1042,Monocyte,CD14 monocyte,classical monocyte.
+685,1b962e22e3ff11ebbe3f9efd769d557a,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+686,bc97537a6e5511eb8aa986621ebdbf37,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+687,4ac8fea8495111eaafc966679ef8dfee,Monocyte,CD14 monocyte,classical monocyte.
+688,8f1743b2004311ec9f9f9e190f9f967f,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+689,e9501ed46d6911eb92ef3ea9509ea338,Monocyte,CD16 monocyte,classical monocyte.
+690,41f5b326ca1411eba8e7c23be70524c5,NK cell,CD56dim NK cell,natural killer cell.
+691,d4121bd650a211ecb05e625212408fd6,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+692,5cfd688e48b111ea8fbed2ddb8e0a14a,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+693,f85163b6ece411eb96e2ee7ff4e83851,T cell,Naive CD4 T cell,regulatory T cell.
+694,581b1d1c3f6811eba60c12602f64f593,T cell,Naive CD4 T cell,regulatory T cell.
+695,62c70f886d6611eba2001a7690ba1d9e,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+696,b8af7e0e01d011ecafff5e625bcc3358,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+697,368e0f8676f611eb916cbeaf1a0a56b5,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+698,9a12699c50b411ec925dc6262e5ecc05,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+699,97af927eaa7711eda859228a57c00d0f,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+700,14fa7a82fec611eb87dc9ec311f9e9a6,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+701,b3a41cc0872911eb88ddaa98e7d40cb1,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+702,0b92c55e4e0711eca047fac6813609fb,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+703,0ea3f12eece511eb90da8638c33d9c80,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+704,0fc060224e0311ec8368968167987366,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+705,8cdbe1fc6e5d11ebb7476e89de14cf8b,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+706,e81a924c671811ed8197264aa0746ac0,B cell,Naive B cell,B cell.
+707,946a14a4230f11ecb89eb20ae7ecce12,Monocyte,CD14 monocyte,classical monocyte.
+708,29794836872911ebb9005650151efeb0,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+709,0d6149a88d0211eb9a4f269f40e0a6a0,Monocyte,CD14 monocyte,classical monocyte.
+710,980caed4e6bd11eb9bb4beec3d5c720e,B cell,Naive B cell,B cell.
+711,b8dae2c8a2e011eb8a03ee5dc42b1547,Monocyte,CD14 monocyte,classical monocyte.
+712,a192f9b223db11ec81faee1fd8b4df58,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+713,ca2e5d0403be11ecb0781e3062362594,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+714,7c9301ce746911eb8b7dee0008289f2d,Monocyte,CD14 monocyte,classical monocyte.
+715,7cb18da4871711eba8137adc2effde42,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+716,059b0910770011ebb6f1120b4fce9850,Monocyte,CD16 monocyte,non-classical monocyte.
+717,c4af4e4ee3ff11eb91932201050c5f2a,Monocyte,CD14 monocyte,classical monocyte.
+718,d5f6bfbc862c11eea4d2b6181e6e2ea7,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+719,6afbea4e315311eeac73660065307ff0,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+720,637f9e2ee79411ebbe50c203ad329f89,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+721,e161631e230d11eb995f0a8b9bab73d7,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+722,c21099bc8d0211eb8f491acf3f136954,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+723,8f15ab74004311ec9f9f9e190f9f967f,T cell,Memory CD4 T cell,regulatory T cell.
+724,019877a8e40111ebb5ee12505c6ae237,B cell,Naive B cell,B cell.
+725,6dcec588749111eb9099229ae8d7075c,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+726,e05cc5aa862c11eeb44f2a0a7ee8bda4,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+727,29524c68872911ebb9005650151efeb0,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta memory T cell."
+728,f8a7b85e23dc11ec8ebdfedc55894352,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+729,ed4176dca2e311ebb1ce525b6209b46f,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+730,5ca72cfce40611ebb6ab32f1f7b8a178,T cell,Memory CD4 T cell,mature T cell.
+731,70db7a1c48b611eaa65d9e7d578d66f2,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+732,bc81d3566e5511eb8aa986621ebdbf37,Monocyte,CD16 monocyte,non-classical monocyte.
+733,8dcba00ae40211ebba695e0417dae271,T cell,gdT,natural killer cell.
+734,6740f98801c811ec99d8a29cd1cea438,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+735,e2f476586e5d11eb8f7406e883c58fd7,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+736,10eeb8a4e3ff11eb9f4d12c99271e885,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+737,b33a02d44e0411ecbdc4f6dde42d12bb,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+738,8e7773dc76fa11ebb31b8631bc0de43b,Monocyte,CD14 monocyte,classical monocyte.
+739,a5398718003e11ec836f122ea675d063,T cell,Treg,"CD4-positive, alpha-beta T cell."
+740,38be4cceb4e311ea80fa8a1929e9f384,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+741,1233a7f0ca0611eba39f3a25e2bf00a4,T cell,Memory CD4 T cell,mature T cell.
+742,238a91ea01cd11ec9bd81eda61cbfa79,T cell,MAIT,"CD8-positive, alpha-beta T cell."
+743,74e3ad0a48b611eabab7c676ab45cfca,T cell,Memory CD4 T cell,T cell.
+744,0a7b9f60230f11eca42fde90f8d872f1,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+745,0178151ce40111ebb5ee12505c6ae237,Monocyte,Intermediate monocyte,classical monocyte.
+746,d5922a10786111eb9a4d621eed77e6ac,Monocyte,CD16 monocyte,classical monocyte.
+747,87c6327850be11ec9bfce201e636867f,B cell,Memory B cell,B cell.
+748,0177947ae40111ebb5ee12505c6ae237,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+749,bca5257c6e5511eb8aa986621ebdbf37,B cell,Effector B cell,B cell.
+750,c5d6fdc6ca1911ebb0cd265de2a98d15,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+751,a10cf94c02b711eca176be0a2642ba6d,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+752,9fc1d4c476f611ebbe1a0a9c4ec18e1b,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+753,ae4a7dcafecd11eb9c589a38ef83a3f1,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+754,cbc461603ebe11eb9f6d666e6b6edd05,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+755,10f31464f7e811eca3ef4a90d865ed45,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+756,c1c882e601db11ec82191e5794dae576,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+757,7837dd6c862111ee998f1e061ab3328b,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+758,b38dda64872911eb88ddaa98e7d40cb1,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+759,e05cf2a0862c11eeb44f2a0a7ee8bda4,B cell,Effector B cell,B cell.
+760,c5d55c64ca1911ebb0cd265de2a98d15,B cell,Memory B cell,malignant cell.
+761,cc6ee370fec511eb87b23e158aef1042,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+762,f4d9a192aa9f11ed9aab225a04bc010d,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+763,9452ec2a6f3211eb8e954e1098597fe8,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+764,666b693acd3911ebb08e96e3cb7ab314,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+765,ea9f597c608c11edb82ff6b434f2fb76,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+766,5fdcf4a402b711eca847563a4b56082f,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+767,5c94cbace40611ebb6ab32f1f7b8a178,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+768,04f8288a770011ebb6f1120b4fce9850,Monocyte,CD16 monocyte,classical monocyte.
+769,f439ade28cfe11eb877bf62f64715fb6,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+770,e9b463d0230811ec89cc0e1df9dfbf1c,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+771,4ab6c4e0495111eaafc966679ef8dfee,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+772,10359d6e01dd11ec98991efbcd4757be,NK cell,CD56dim NK cell,natural killer cell.
+773,989d96be3f6b11ebb5126ae06f172630,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+774,7ca316f2871711eba8137adc2effde42,T cell,Memory CD4 T cell,T cell.
+775,76ce481cf02111ed9eac86c87f637120,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+776,c5842074aa8711ed9d6f12731be88ed2,Monocyte,CD14 monocyte,classical monocyte.
+777,5d0af75648b111ea8fbed2ddb8e0a14a,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+778,0f476c54745a11eb9460023cc5433a03,B cell,Memory B cell,B cell.
+779,91451cbe4dfe11ec9cd7da9b7cf4e69b,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+780,90fdb41e4dfe11ec9cd7da9b7cf4e69b,Monocyte,CD14 monocyte,classical monocyte.
+781,41eec34aca1411eba8e7c23be70524c5,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+782,3c0d5a3e6f3011eb87df52ffb97efd4c,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+783,4a7e8d0e8d0811eba554d6cabaf48ff9,Monocyte,Intermediate monocyte,classical monocyte.
+784,06764692770011ebb6f1120b4fce9850,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+785,6108bd54230f11ecb3808ec5122f277d,T cell,Memory CD4 T cell,"effector memory CD8-positive, alpha-beta T cell."
+786,a02bdfd4e6b011eb9e5fd64aa79f082e,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+787,5167294402b711ec85669ed5fd6f2ffe,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+788,67784b1801c811ec99d8a29cd1cea438,T cell,Memory CD8 T cell,T cell.
+789,c1d9201a23dc11ec9545a2e3447e117e,NK cell,CD56dim NK cell,natural killer cell.
+790,a8209abe4e0111ec936b1ac433bb3e99,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+791,0ce837e8ecc011eb966bfa1af6d99fe6,Monocyte,CD14 monocyte,classical monocyte.
+792,37e89168770411eb9eebf2caab1c2911,T cell,Naive CD4 T cell,regulatory T cell.
+793,564dd4288cfe11eba258b6b4610d6042,T cell,Naive CD4 T cell,regulatory T cell.
+794,514ba75a02b711ec85669ed5fd6f2ffe,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+795,47cb0ba2315511ee9a247ecfb6ed34be,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+796,c7dcc062b4dd11eaa4f986c381b5662f,B cell,Naive B cell,B cell.
+797,81e716c23f6411eb9e62823c612eac47,Monocyte,CD14 monocyte,classical monocyte.
+798,f2107c94746711eb96b76e4cdef221b1,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+799,fc74233250b411ec942f6a58078e6e64,T cell,gdT,"effector memory CD8-positive, alpha-beta T cell."
+800,982ceb5ee6bd11eb9bb4beec3d5c720e,T cell,Memory CD4 T cell,"effector memory CD8-positive, alpha-beta T cell."
+801,b86e715201d011ecafff5e625bcc3358,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+802,34ea727c003111ec86db8a033d8d78a0,Monocyte,CD14 monocyte,classical monocyte.
+803,32ffba8650b211ecaf7e5a3fead6fb86,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+804,97d12068862911eeb185c2d03e180f84,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+805,41c726b4ca1411eba8e7c23be70524c5,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+806,fb393a42ca0f11ebad1a2eb9c335bc75,Monocyte,CD14 monocyte,classical monocyte.
+807,1269dfd4002d11eca6d20aea4f74aa31,B cell,Naive B cell,B cell.
+808,74f6694a48b611eabab7c676ab45cfca,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+809,6766296001c811ec99d8a29cd1cea438,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+810,95ba2036c9fc11eb8b6656baa5e4f345,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+811,412c13b4cd1a11ebb6f2f245b555caa7,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+812,2367b4ea01cd11ec9bd81eda61cbfa79,NK cell,CD56dim NK cell,natural killer cell.
+813,d5e5b104862c11eea4d2b6181e6e2ea7,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+814,e12b8c2c76fe11eb8a3a1adcfefed355,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+815,6927359ee6bd11eb99defa54c4ee54f4,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+816,a92b77108d0111eba8fc0e09ff586e2a,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+817,4801d7686f3311eb99c592dad4245022,T cell,Memory CD4 T cell,regulatory T cell.
+818,c1bf7f5a8d0211eb8f491acf3f136954,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+819,0437655ae8d411eb8988fa1ee88bd7d8,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+820,b33a32044e0411ecbdc4f6dde42d12bb,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+821,0623034a863611eea9a56e13647e2878,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+822,6786d89001c811ec99d8a29cd1cea438,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+823,2db319d64e0711ec865c16f89d689413,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+824,83324c52862b11ee8d9b4ae17f2d4a91,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+825,dee8195c48cf11eaacaa42cd98cbd24e,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+826,53a1569a76f711eb928cf2a688aad71a,NK cell,CD56dim NK cell,natural killer cell.
+827,ca2a538a7b6a11eb9663d28cb61bf405,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+828,e05fffcc862c11eeb44f2a0a7ee8bda4,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta memory T cell."
+829,4a644c968d0811eba554d6cabaf48ff9,DC,cDC2,classical monocyte.
+830,c6a5a02e48bd11eab2ee7a6edf799b61,NK cell,CD56dim NK cell,natural killer cell.
+831,8e4a627a76fa11ebb31b8631bc0de43b,NK cell,CD56dim NK cell,natural killer cell.
+832,adb3f9ea423e11eca4c7021b126c370e,T cell,gdT,"CD8-positive, alpha-beta T cell."
+833,94952e3a862911eebdc19e04fa809629,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+834,a6d90cbc230f11ec9c429a68027fbf79,B cell,Memory B cell,B cell.
+835,e2d4978e6e5d11eb8f7406e883c58fd7,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+836,f1c6a59876f011eb9e6a262e4d0064cc,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+837,6976e79ebfd811eb9045460ae879a467,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+838,e0b883f27aba11ebad9a8efd66e37e75,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+839,25662734e40611eb9f73d6fd5206df9a,B cell,Naive B cell,B cell.
+840,57f561bab4cd11ea8b3b36d11ceec0e6,Monocyte,CD14 monocyte,classical monocyte.
+841,70ba24a248b611eaa65d9e7d578d66f2,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+842,3b2b70aa3f6611eb8896ca35f85b07f8,T cell,Naive CD4 T cell,regulatory T cell.
+843,2f1fff44a2ce11ebbbe71e4a3e83c3e1,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+844,a77f1eca489811ea92388a6a0c683ffb,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+845,7788b2a0fecf11eb83ae4a767d1dceb9,T cell,Naive CD4 T cell,regulatory T cell.
+846,de27765e871a11ebaff886b6c60deacd,Monocyte,CD16 monocyte,non-classical monocyte.
+847,e9db1382f7e111ec90da567a30052902,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+848,10dbee68e3ff11eb9f4d12c99271e885,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+849,b893c06e230f11ecabe4662b93aa8aaf,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+850,832d1778862b11ee8d9b4ae17f2d4a91,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+851,d0b6fff4770111ebb7b9d6f975704c14,Monocyte,CD14 monocyte,classical monocyte.
+852,6d7c5f46749111eb9099229ae8d7075c,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+853,eab51104608c11edb82ff6b434f2fb76,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+854,0931786c7b6911eba169da6bd33569f7,T cell,Memory CD4 T cell,mature alpha-beta T cell.
+855,298072ba862b11ee97ce1ac7b539e0d5,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+856,493c57f801e011ecad3cda2d73e439aa,T cell,Memory CD4 T cell,mature alpha-beta T cell.
+857,a7874668489811ea92388a6a0c683ffb,NK cell,CD56dim NK cell,natural killer cell.
+858,5490c5b8495311ea86cade558b2f8879,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+859,fcc6316c3e8c11eb882a3a23c421ba3f,T cell,Memory CD8 T cell,"CD4-positive, alpha-beta memory T cell."
+860,7f0717f8f7e711ecb1715e1ef278d88a,Monocyte,CD14 monocyte,classical monocyte.
+861,d7e7e2e6872a11eb9956d6a6a5ac404c,T cell,Naive CD4 T cell,regulatory T cell.
+862,57589afc8cee11ebb2129e901b21dc73,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+863,a9ab439ca2db11eb9bf71657d2d52b59,Monocyte,CD14 monocyte,classical monocyte.
+864,4b83b8b0746b11eb83a4c235a3a08626,T cell,Naive CD4 T cell,regulatory T cell.
+865,0132b84a3f6b11ebbf0d76c805520688,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+866,38a06fecb4e311ea80fa8a1929e9f384,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+867,8b84ed887b7a11ebbb227ae287962563,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+868,0ff793f84e0311ec8368968167987366,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+869,035036d8c9fa11ebbe02e242efb8f7b8,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+870,1183fd92746a11eba6ee4656f02e1fdd,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+871,5ca7aa92e40611ebb6ab32f1f7b8a178,T cell,MAIT,"CD8-positive, alpha-beta T cell."
+872,5c7c61b07b7a11eb822c3e9d2f0e335e,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+873,e11f6b3676fe11eb8a3a1adcfefed355,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+874,f2610c40770511eba4e9125db8debfc1,NK cell,CD56dim NK cell,natural killer cell.
+875,5c96038603bf11ec806bb6304fd4380c,Monocyte,CD16 monocyte,non-classical monocyte.
+876,a105247e02b711eca176be0a2642ba6d,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+877,e6945a8cfeca11eb9143de3cb0860f61,Monocyte,CD14 monocyte,classical monocyte.
+878,5818c8ac746811eb8d8fe2317d9a82dc,Monocyte,CD14 monocyte,classical monocyte.
+879,9499da5c862911eebdc19e04fa809629,T cell,MAIT,T cell.
+880,102c6a5001dd11ec98991efbcd4757be,T cell,gdT,"CD8-positive, alpha-beta T cell."
+881,876c7eb6f7e611ecbaaa86d52fef98f0,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+882,12f3dc6c7abc11ebb9a662910f707d59,NK cell,CD56dim NK cell,natural killer cell.
+883,de070d10871a11ebaff886b6c60deacd,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+884,0f106e5c745a11eb9460023cc5433a03,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+885,4a5e8c2a8d0811eba554d6cabaf48ff9,T cell,Memory CD4 T cell,T cell.
+886,927508b8e40111eba5a472433277b4b3,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+887,0357fe04c9fa11ebbe02e242efb8f7b8,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+888,c25fd3c2cd3711ebaef70262a109a00a,T cell,gdT,"CD8-positive, alpha-beta T cell."
+889,b86fe84678ca11ebbbdb7ec7a5d6dda0,B cell,Naive B cell,naive B cell.
+890,f0d7f57c4e0111ecaee2cec740306374,T cell,MAIT,T cell.
+891,e10907aa002a11ec92d04e0e5896d86b,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+892,79f6bc5276fe11eb9b7cfece13ccb977,T cell,gdT,"effector memory CD8-positive, alpha-beta T cell."
+893,796def9c60b011edb17e46fb8f56502c,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+894,5ca465ac03bf11ec806bb6304fd4380c,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+895,3b17acbe3f6611eb8896ca35f85b07f8,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+896,3d479bba23dc11ecb52a06b7b2d7de84,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+897,b315f2864e0411ecbdc4f6dde42d12bb,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+898,f40fe6928cfe11eb877bf62f64715fb6,T cell,MAIT,"CD8-positive, alpha-beta memory T cell."
+899,a1a2932223db11ec81faee1fd8b4df58,NK cell,CD56dim NK cell,natural killer cell.
+900,62eeafc06d6611eba2001a7690ba1d9e,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+901,af932dc2005711ecacf076742455fe92,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+902,1bc1571ee3ff11ebbe3f9efd769d557a,T cell,MAIT,"CD8-positive, alpha-beta memory T cell."
+903,bae22056862a11ee84fb5eb04f029758,T cell,gdT,"CD8-positive, alpha-beta T cell."
+904,a2c267448cfc11ebb4592ee9d1c560f8,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+905,e1947240230d11eb995f0a8b9bab73d7,B cell,Memory B cell,B cell.
+906,6b8e2f0e314d11ee80962a1f7c690213,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+907,af681a4c005711ecacf076742455fe92,NK cell,CD56dim NK cell,natural killer cell.
+908,d5e64f06862c11eea4d2b6181e6e2ea7,T cell,Treg,"CD4-positive, alpha-beta T cell."
+909,b94cb092bfcd11ebbdb0527e5f17f167,B cell,Naive B cell,B cell.
+910,16fb0338fec611ebb53be648bf1f31d0,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+911,a95b107e8d0111eba8fc0e09ff586e2a,Monocyte,CD14 monocyte,classical monocyte.
+912,06affa5c02b711ec88cb72995a34965f,Monocyte,CD14 monocyte,classical monocyte.
+913,b5e2739cbfd211ebafa586d48e1f3db0,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+914,d56e3f06786111eb9a4d621eed77e6ac,B cell,Naive B cell,B cell.
+915,4b3312d0f7e511ec9d95e21fd042e627,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+916,6877b6aeecea11eb8ac2be83dc4baba1,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+917,8dc22a70e40211ebba695e0417dae271,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+918,8524c32af02411edb7a3be80f0f69804,NK cell,CD56dim NK cell,natural killer cell.
+919,b62d5ff67abd11eb9e34d2275bdfa688,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+920,5b6581dee8bd11ebb73b6627106dca2c,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+921,6d12eade01e011ec97d1be2f1bab6958,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+922,9496eb94862911eebdc19e04fa809629,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+923,7e44648ee40511eb8b4326d57b156660,NK cell,CD56bright NK cell,"CD8-positive, alpha-beta T cell."
+924,b89aa8ec78ca11ebbbdb7ec7a5d6dda0,B cell,Memory B cell,B cell.
+925,0a35e10c785e11ebb00a1a75a97ae03e,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+926,4a7e7fe48d0811eba554d6cabaf48ff9,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+927,64ec28fe009911eca7f7ce4e40ea87f1,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+928,8e00018a76fa11ebb31b8631bc0de43b,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+929,596f1c7c6f2e11eb96d6a6525b93d5e3,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+930,785a716a862111ee998f1e061ab3328b,B cell,Memory B cell,B cell.
+931,8f189884004311ec9f9f9e190f9f967f,Monocyte,CD14 monocyte,classical monocyte.
+932,a93c3ecaf01311ed926a2eacca25961e,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+933,594248aa6f2e11eb96d6a6525b93d5e3,Monocyte,CD14 monocyte,classical monocyte.
+934,109b5566607b11edb057fac90629f6a8,T cell,Naive CD4 T cell,regulatory T cell.
+935,a82bb6924e0111ec936b1ac433bb3e99,Monocyte,CD14 monocyte,classical monocyte.
+936,d7c227b8872a11eb9956d6a6a5ac404c,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+937,74d5cd6648b611eabab7c676ab45cfca,B cell,Naive B cell,B cell.
+938,24eea0ba207a11eb99f83ebbcdb12029,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+939,6cd8a8a048b511ea87c666a4322bd84a,NK cell,CD56dim NK cell,natural killer cell.
+940,10184ae801dd11ec98991efbcd4757be,Monocyte,CD14 monocyte,classical monocyte.
+941,93a19e3c786211ebb8964a4e4d3f19b7,Monocyte,CD14 monocyte,classical monocyte.
+942,a94f1d468d0111eba8fc0e09ff586e2a,NK cell,CD56dim NK cell,natural killer cell.
+943,74b8725c48b611eabab7c676ab45cfca,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+944,5932ab486f2e11eb96d6a6525b93d5e3,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+945,17d19ef0f02511eda54b6a0988fcf5ef,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+946,035e3dc8c9fa11ebbe02e242efb8f7b8,B cell,Naive B cell,B cell.
+947,35f145987b7911ebad508aeddc44df84,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+948,576d1dda7b6711eb980a1e6e754c5d4e,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+949,5d6313347abd11eb894e066fae99c4f2,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+950,ae468940fecd11eb9c589a38ef83a3f1,Monocyte,Intermediate monocyte,monocyte.
+951,8317c2f6862b11ee8d9b4ae17f2d4a91,Monocyte,CD14 monocyte,classical monocyte.
+952,e5fc8a2cbfdc11eb9564dafd5e7509d4,B cell,Naive B cell,B cell.
+953,5a4a52646e5811eba9ff8603041c92bc,B cell,Effector B cell,B cell.
+954,8346a5668d0011eba962c64f4773d63c,Monocyte,CD14 monocyte,classical monocyte.
+955,0f1b79f0745a11eb9460023cc5433a03,T cell,Memory CD4 T cell,T cell.
+956,10500e5601dd11ec98991efbcd4757be,T cell,Memory CD4 T cell,"effector memory CD8-positive, alpha-beta T cell."
+957,4b8ae2ac746b11eb83a4c235a3a08626,NK cell,CD56dim NK cell,natural killer cell.
+958,2d25904c60b311edb0ce9a8d0a14da27,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+959,21fed08c862511eeb57ed2cb2c7f9e33,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+960,e19b7d8a6f2d11eb9c86fece995c7c24,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+961,95ac82c8c9fc11eb8b6656baa5e4f345,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+962,fb2d1712ca0f11ebad1a2eb9c335bc75,T cell,gdT,natural killer cell.
+963,1ad9b5b8f02211ed88e5ae7ef455ad80,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+964,4e4716aee6c211ebaddab27930c367f5,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+965,a9b87a08a2db11eb9bf71657d2d52b59,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+966,4b625c24746b11eb83a4c235a3a08626,T cell,MAIT,"CD8-positive, alpha-beta memory T cell."
+967,c06fe3d4862311eeb393168c5709f2f2,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+968,2957e272aa6311ed996536bac5d04f15,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+969,e2ff6d2e6e5d11eb8f7406e883c58fd7,NK cell,CD56dim NK cell,natural killer cell.
+970,533fc96676f711eb928cf2a688aad71a,NK cell,CD56dim NK cell,natural killer cell.
+971,62f027246d6611eba2001a7690ba1d9e,T cell,Memory CD8 T cell,mature T cell.
+972,89108fb46d6811eb8c84965cd2e07daf,T cell,Naive CD4 T cell,regulatory T cell.
+973,05fb89b8794211eb93b836d1cb6129eb,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+974,9499aba4862911eebdc19e04fa809629,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+975,e0e13fe0002a11ec92d04e0e5896d86b,Monocyte,CD14 monocyte,classical monocyte.
+976,2db6619a4e0711ec865c16f89d689413,T cell,gdT,"CD8-positive, alpha-beta T cell."
+977,3241d502f81e11ecb8d5422c967c70e8,T cell,MAIT,"CD4-positive, alpha-beta memory T cell."
+978,4e3bf24a6f2811eb8e74ca941525b751,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+979,a3aaa1b8ecbe11ebaad346e0a59e94fd,Monocyte,CD14 monocyte,classical monocyte.
+980,2d93d36e4e0711ec865c16f89d689413,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+981,9d80c82c6d6a11eba1aef2c4e1d50672,NK cell,CD56dim NK cell,natural killer cell.
+982,536287e476f711eb928cf2a688aad71a,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+983,b4f32e96862b11ee9a02eed9ef1e2438,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+984,37101d74ece811eb8566de30ea854391,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+985,c1bf042801db11ec82191e5794dae576,Monocyte,CD14 monocyte,classical monocyte.
+986,91a05ad2871811ebb044a614f189543f,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta memory T cell."
+987,29697498862b11ee97ce1ac7b539e0d5,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+988,0af6fc7c3f6311eba333224e181cba5f,Monocyte,CD16 monocyte,monocyte.
+989,95c056eac9fc11eb8b6656baa5e4f345,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+990,b86b32f678ca11ebbbdb7ec7a5d6dda0,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+991,bd515cb4e6bb11ebbaa13ebd4470af0a,Monocyte,CD14 monocyte,classical monocyte.
+992,e05eadca862c11eeb44f2a0a7ee8bda4,T cell,Treg,T cell.
+993,3c3f1fdc6d6a11eb959ece3aad2b7e32,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+994,85201df2f02411edb7a3be80f0f69804,Monocyte,CD14 monocyte,classical monocyte.
+995,3b1964aa3f6611eb8896ca35f85b07f8,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+996,757b4d08a2de11ebba15ae7e271d472f,T cell,Memory CD4 T cell,T cell.
+997,123e9b06ca0611eba39f3a25e2bf00a4,B cell,Naive B cell,naive B cell.
+998,b25db8c4e8ba11eb951c4a933a1ddc30,NK cell,CD56dim NK cell,natural killer cell.
+999,22d430b2872a11eba54aae2ad39eb13d,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1000,ed497116286211ec9a8f2613ba675443,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1001,d361b238cd2a11ebb36306ce65bb0f41,T cell,Treg,"CD4-positive, alpha-beta T cell."
+1002,49135a4201e011ecad3cda2d73e439aa,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1003,85c7cec250b011eca4314690da3920ef,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1004,2dc24cf84e0711ec865c16f89d689413,NK cell,CD56dim NK cell,natural killer cell.
+1005,2c257f56770111eb83580af69b9105e6,T cell,gdT,"CD8-positive, alpha-beta T cell."
+1006,22f082ee872a11eba54aae2ad39eb13d,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1007,490fa8d401e011ecad3cda2d73e439aa,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1008,7b0c77c6795611eb98061e2958941ff5,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta memory T cell."
+1009,539624d276f711eb928cf2a688aad71a,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1010,8325833c862b11ee8d9b4ae17f2d4a91,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1011,6d2a8a12bfdd11eb9a93b298159eec41,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1012,4e34044a6f2811eb8e74ca941525b751,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1013,926f6138e40111eba5a472433277b4b3,Monocyte,CD16 monocyte,non-classical monocyte.
+1014,293754a8aa6311ed996536bac5d04f15,T cell,Treg,"CD8-positive, alpha-beta T cell."
+1015,05c59b9e770011ebb6f1120b4fce9850,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1016,cf8cfe6448b611ea8957bafe6d70929e,T cell,MAIT,"CD8-positive, alpha-beta T cell."
+1017,c1c2fd6a8d0211eb8f491acf3f136954,T cell,Naive CD4 T cell,regulatory T cell.
+1018,1055bce801dd11ec98991efbcd4757be,B cell,Effector B cell,B cell.
+1019,c286658ccd3711ebaef70262a109a00a,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1020,5fcb385e02b711eca847563a4b56082f,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+1021,1d33d67c6d6611eb831bbeaad691ed52,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1022,ef93a90c8d0111eb894022587c8bf21f,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1023,7a5f07d07b7711eba2a96a517e35be5d,Monocyte,CD14 monocyte,classical monocyte.
+1024,12e56f3e745311ebbb1cf6a20bf9215d,Monocyte,CD14 monocyte,classical monocyte.
+1025,12a03656002d11eca6d20aea4f74aa31,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1026,d1c7267c7ab611eb820a3effb17b8bb3,Monocyte,CD14 monocyte,classical monocyte.
+1027,a88087786e5811eb835b7e171cb4e71f,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1028,c6891c9c48bd11eab2ee7a6edf799b61,Monocyte,CD14 monocyte,classical monocyte.
+1029,81c35a7a3f6411eb9e62823c612eac47,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1030,733ce27e424111ec9e322259f8f046d7,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1031,c4c124a2e3ff11eb91932201050c5f2a,Monocyte,CD16 monocyte,classical monocyte.
+1032,6d13de0801e011ec97d1be2f1bab6958,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+1033,6cfa255801e011ec97d1be2f1bab6958,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+1034,12805bfeece811eb858a9eed4000a1fb,B cell,Naive B cell,B cell.
+1035,128058fcece811eb858a9eed4000a1fb,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1036,6b6f78ee03a911ec9226dabef286a24a,Monocyte,CD16 monocyte,non-classical monocyte.
+1037,d52468f6e6b911eba2b2d20f173a9c47,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1038,5ee67ec6230f11ecacbb465c28d60fa8,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+1039,2ad770f4786011ebb2ae32222f568f1d,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1040,e9b53384862d11eeb5b7caa7a1b2f0ad,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1041,91e8012cfed011eb850e06aac0d344cf,B cell,Transitional B cell,naive B cell.
+1042,4d0439d6230c11eb9e73369c55ceea08,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1043,2c3fd68a770111eb83580af69b9105e6,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1044,c68f1d7248bd11eab2ee7a6edf799b61,T cell,MAIT,"CD8-positive, alpha-beta T cell."
+1045,05ddb7f8794211eb93b836d1cb6129eb,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1046,5945e01e6f2e11eb96d6a6525b93d5e3,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1047,ddee1ad0871a11ebaff886b6c60deacd,Monocyte,CD14 monocyte,classical monocyte.
+1048,edfe8b0c6e5c11eb9751364c17c50e30,Monocyte,CD14 monocyte,classical monocyte.
+1049,41d4e8eeca1411eba8e7c23be70524c5,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1050,c8d29466230911eba0759640c92fc4a2,T cell,Memory CD4 T cell,regulatory T cell.
+1051,46f1fe0a6d6911ebb77caa74668eec04,T cell,Memory CD4 T cell,mature alpha-beta T cell.
+1052,ef73a9048d0111eb894022587c8bf21f,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1053,9fc3ea7076f611ebbe1a0a9c4ec18e1b,B cell,Memory B cell,B cell.
+1054,b5fdd696bfd211ebafa586d48e1f3db0,Monocyte,CD14 monocyte,classical monocyte.
+1055,ba9c576e871e11eb94488a0ac828d814,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1056,a1c3ffd023db11ec81faee1fd8b4df58,T cell,gdT,"CD8-positive, alpha-beta T cell."
+1057,c4983466e3ff11eb91932201050c5f2a,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1058,a12dc24e02b711eca176be0a2642ba6d,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1059,bc86873e6e5511eb8aa986621ebdbf37,NK cell,CD56dim NK cell,natural killer cell.
+1060,7843f124862111ee998f1e061ab3328b,Monocyte,CD14 monocyte,classical monocyte.
+1061,a1ba5d8623db11ec81faee1fd8b4df58,Monocyte,CD14 monocyte,classical monocyte.
+1062,03375c12c9fa11ebbe02e242efb8f7b8,Monocyte,CD14 monocyte,classical monocyte.
+1063,22e8d12a872a11eba54aae2ad39eb13d,DC,pDC,macrophage.
+1064,3330179450b211ecaf7e5a3fead6fb86,NK cell,CD56dim NK cell,natural killer cell.
+1065,5fe828ce02b711eca847563a4b56082f,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1066,f1c6020076f011eb9e6a262e4d0064cc,B cell,Naive B cell,B cell.
+1067,16cb390afec611ebb53be648bf1f31d0,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1068,e404a81aca0611eb95002269a98e5840,Monocyte,CD14 monocyte,classical monocyte.
+1069,37d85eb0770411eb9eebf2caab1c2911,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1070,9d3a23f4648711eba53cf26f7da8270f,Monocyte,CD14 monocyte,classical monocyte.
+1071,f1a6136e76f011eb9e6a262e4d0064cc,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1072,79ec38c276fe11eb9b7cfece13ccb977,B cell,Naive B cell,B cell.
+1073,75799bfca2de11ebba15ae7e271d472f,Platelet,Platelet,megakaryocyte.
+1074,7a7dca587b7711eba2a96a517e35be5d,T cell,Memory CD8 T cell,natural killer cell.
+1075,e32119426e5d11eb8f7406e883c58fd7,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1076,6ca38ce6608c11ed9b035e2e100c042f,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1077,f83db140ece411eb96e2ee7ff4e83851,T cell,gdT,"CD8-positive, alpha-beta T cell."
+1078,76d3f9ecf02111ed9eac86c87f637120,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1079,12b64278ece811eb858a9eed4000a1fb,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1080,8d03e6666e5d11ebb7476e89de14cf8b,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1081,ec2d89feecbf11ebafc4de269a2c4ee4,B cell,Transitional B cell,B cell.
+1082,4461abec50ba11ec9ccf362b40e6d4a7,Monocyte,CD14 monocyte,classical monocyte.
+1083,6ac1c41c862c11ee940e0ac85bd578c5,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1084,5cce90e4e40611ebb6ab32f1f7b8a178,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1085,9141601a4dfe11ec9cd7da9b7cf4e69b,T cell,MAIT,"CD8-positive, alpha-beta T cell."
+1086,5f2f98cc3f6711ebae30a612f322b459,NK cell,CD56dim NK cell,natural killer cell.
+1087,665fb30a7b6e11eb80a1e2efff4d80b3,B cell,Effector B cell,B cell.
+1088,e2306cde794011eb9282e2ceeb91ba52,NK cell,CD56dim NK cell,natural killer cell.
+1089,7a29e9ce60d111ed987552e10431fc03,T cell,MAIT,"CD8-positive, alpha-beta memory T cell."
+1090,94664eb4230f11ecb89eb20ae7ecce12,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1091,2869e53acd3911eb84917af6a2da7945,Monocyte,CD14 monocyte,classical monocyte.
+1092,14f39f24aa9011eda3678a6e266cb381,T cell,Memory CD4 T cell,mature NK T cell.
+1093,cf9ce2ac6e5d11ebb859b2d8774afeef,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1094,b92d78564dff11ecb1a91aa839721c60,Monocyte,CD14 monocyte,classical monocyte.
+1095,288827e8f7db11ecbcbbd6dd2c335dfb,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+1096,82c279b0746b11eba241fa7146609c17,NK cell,CD56bright NK cell,natural killer cell.
+1097,9ff0779876f611ebbe1a0a9c4ec18e1b,Monocyte,CD14 monocyte,classical monocyte.
+1098,f7bd1812424a11ecb1157ed7241a30b0,T cell,Treg,regulatory T cell.
+1099,4805b02c6f3311eb99c592dad4245022,T cell,MAIT,"CD8-positive, alpha-beta memory T cell."
+1100,f8bc534a23dc11ec8ebdfedc55894352,T cell,MAIT,"CD8-positive, alpha-beta T cell."
+1101,0cf768b2ecc011eb966bfa1af6d99fe6,Monocyte,CD14 monocyte,classical monocyte.
+1102,0008345023da11ecb640f6cb779d5498,T cell,gdT,regulatory T cell.
+1103,c075f86e862311eeb393168c5709f2f2,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1104,b8c18940230f11ecabe4662b93aa8aaf,T cell,MAIT,"CD8-positive, alpha-beta memory T cell."
+1105,b5d44574bfd211ebafa586d48e1f3db0,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+1106,cc85f04cfec511eb87b23e158aef1042,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+1107,2582efeae40611eb9f73d6fd5206df9a,T cell,Memory CD4 T cell,T cell.
+1108,db8446d2bfde11eb9e6d96f9d8b57902,B cell,Memory B cell,B cell.
+1109,4e3e33043f6f11eb958d9a3b616bee06,NK cell,CD56dim NK cell,natural killer cell.
+1110,c1d9e6c48d0211eb8f491acf3f136954,T cell,gdT,"CD8-positive, alpha-beta T cell."
+1111,e1c51572002e11ecad8456bdee478bef,Monocyte,CD14 monocyte,classical monocyte.
+1112,a11ead8602b711eca176be0a2642ba6d,NK cell,CD56dim NK cell,natural killer cell.
+1113,1222ef8cca0611eba39f3a25e2bf00a4,T cell,Memory CD4 T cell,mature T cell.
+1114,5bedea8cee8b11eb92fdd69ca687ea48,B cell,Memory B cell,B cell.
+1115,95afd52cc9fc11eb8b6656baa5e4f345,T cell,Memory CD4 T cell,regulatory T cell.
+1116,edb41e8a2b8711ecaa1b721ae5eba729,B cell,Naive B cell,B cell.
+1117,c1d949e601db11ec82191e5794dae576,Monocyte,CD14 monocyte,classical monocyte.
+1118,10179db401dd11ec98991efbcd4757be,B cell,Memory B cell,B cell.
+1119,a2bf25168cfc11ebb4592ee9d1c560f8,T cell,Memory CD8 T cell,mature T cell.
+1120,df433ce8f7e011eca445621bb9b0c4af,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+1121,4e2fad20e6c211ebaddab27930c367f5,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1122,bc65bfe0315811ee8a2232fcea92682e,T cell,Memory CD8 T cell,T cell.
+1123,a197533623db11ec81faee1fd8b4df58,NK cell,CD56dim NK cell,natural killer cell.
+1124,b8c8db64230f11ecabe4662b93aa8aaf,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1125,e80f88ca671811ed8197264aa0746ac0,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1126,5778e7147b6711eb980a1e6e754c5d4e,Monocyte,CD14 monocyte,classical monocyte.
+1127,6106ca76bfdc11ebb3b5ba265ad50ebc,T cell,MAIT,"CD8-positive, alpha-beta T cell."
+1128,b938247c4dff11ecb1a91aa839721c60,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1129,111e36ece3ff11eb9f4d12c99271e885,DC,cDC2,conventional dendritic cell.
+1130,033e34ecc9fa11ebbe02e242efb8f7b8,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1131,cfa9be0048b611ea8957bafe6d70929e,B cell,Memory B cell,B cell.
+1132,f84fe78eece411eb96e2ee7ff4e83851,T cell,Memory CD4 T cell,regulatory T cell.
+1133,5481edb8495311ea86cade558b2f8879,Monocyte,CD14 monocyte,classical monocyte.
+1134,6caae3e2608c11ed9b035e2e100c042f,T cell,CD8aa,"CD8-positive, alpha-beta T cell."
+1135,5eecd83e230f11ecacbb465c28d60fa8,Monocyte,CD14 monocyte,classical monocyte.
+1136,5f1ce4ca3f6711ebae30a612f322b459,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1137,7e9ff6d66f3011eb8ea3b6144a58e849,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1138,44533ddc50ba11ec9ccf362b40e6d4a7,Monocyte,CD14 monocyte,CD14-positive monocyte.
+1139,a3ddefd2ecbe11ebaad346e0a59e94fd,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1140,38df6654e6bd11eba4f6726e7cf53371,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1141,01a95db6e40111ebb5ee12505c6ae237,Monocyte,CD14 monocyte,classical monocyte.
+1142,6d4166ecbfdd11eb9a93b298159eec41,T cell,Memory CD4 T cell,T cell.
+1143,12417538ca0611eba39f3a25e2bf00a4,T cell,gdT,"CD8-positive, alpha-beta T cell."
+1144,7e2ad028e40511eb8b4326d57b156660,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+1145,9a021e8450b411ec925dc6262e5ecc05,Erythrocyte,Erythrocyte,erythrocyte.
+1146,53c2604276f711eb928cf2a688aad71a,B cell,Naive B cell,B cell.
+1147,ee3651e06e5c11eb9751364c17c50e30,Monocyte,CD14 monocyte,classical monocyte.
+1148,cc92c754862c11ee8a3c42211af86f48,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1149,4b0eb4daf7e511ec9d95e21fd042e627,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta memory T cell."
+1150,0011c1fa23da11ecb640f6cb779d5498,B cell,Naive B cell,B cell.
+1151,7cca3da26f3111eb96976aecf4743d14,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1152,8940d14a620c11ebae8fee13b7064f0d,NK cell,CD56dim NK cell,natural killer cell.
+1153,a2c0bf488cfc11ebb4592ee9d1c560f8,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1154,87497944f02311edabfa3e874280f2b8,B cell,Naive B cell,B cell.
+1155,7cf4879c6f3111eb96976aecf4743d14,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1156,38ff320ee6bd11eba4f6726e7cf53371,Monocyte,CD14 monocyte,classical monocyte.
+1157,ef72cf2e746111ebb005fab458a363f4,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1158,7c7c707e871711eba8137adc2effde42,B cell,Naive B cell,B cell.
+1159,9202c3a4fed011eb850e06aac0d344cf,Monocyte,CD14 monocyte,classical monocyte.
+1160,5fb984ba02b711eca847563a4b56082f,Monocyte,CD14 monocyte,classical monocyte.
+1161,e402d4c2ca0611eb95002269a98e5840,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+1162,5fdcc3b202b711eca847563a4b56082f,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1163,238d677a770411eb8535b2e50c2d1ec3,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1164,01a5c5d4e40111ebb5ee12505c6ae237,T cell,Naive CD4 T cell,regulatory T cell.
+1165,10e17400e3ff11eb9f4d12c99271e885,B cell,Naive B cell,B cell.
+1166,f40a5f60a2e311eb85af52073c383e80,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+1167,150e9152fec611eb87dc9ec311f9e9a6,NK cell,CD56dim NK cell,natural killer cell.
+1168,e88ce3b23f6311eb9b035a7c26289213,Monocyte,CD14 monocyte,classical monocyte.
+1169,102b715e01dd11ec98991efbcd4757be,T cell,MAIT,"CD8-positive, alpha-beta memory T cell."
+1170,b8a24c74230f11ecabe4662b93aa8aaf,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1171,dd04bd18862c11ee941c7e9dd60efb6e,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1172,0009372e23da11ecb640f6cb779d5498,Monocyte,CD14 monocyte,classical monocyte.
+1173,05f004b0770011ebb6f1120b4fce9850,T cell,MAIT,"CD8-positive, alpha-beta memory T cell."
+1174,257cdaa6e40611eb9f73d6fd5206df9a,B cell,Memory B cell,B cell.
+1175,033a0476c9fa11ebbe02e242efb8f7b8,NK cell,CD56bright NK cell,natural killer cell.
+1176,d1c11c6e7ab611eb820a3effb17b8bb3,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1177,a3d5ab9cecbe11ebaad346e0a59e94fd,B cell,Naive B cell,B cell.
+1178,baa8a6d6871e11eb94488a0ac828d814,B cell,Naive B cell,B cell.
+1179,d5fad836862c11eea4d2b6181e6e2ea7,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1180,b4db898a862b11ee9a02eed9ef1e2438,Monocyte,Intermediate monocyte,classical monocyte.
+1181,6da7a962749111eb9099229ae8d7075c,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1182,74d3e5a048b611eabab7c676ab45cfca,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1183,b4f3dc7e862b11ee9a02eed9ef1e2438,B cell,Memory B cell,B cell.
+1184,ad95b7d2423e11eca4c7021b126c370e,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1185,d0152ac4a2e611eb91855e3d154f7c3f,NK cell,CD56dim NK cell,natural killer cell.
+1186,e466b292b54b11eaa79c06097e2fb91a,Monocyte,CD14 monocyte,classical monocyte.
+1187,edf505f06e5c11eb9751364c17c50e30,T cell,gdT,"CD8-positive, alpha-beta T cell."
+1188,827a285e746b11eba241fa7146609c17,Monocyte,CD14 monocyte,classical monocyte.
+1189,4b29ff2ef7e511ec9d95e21fd042e627,Monocyte,CD14 monocyte,classical monocyte.
+1190,87497468e3fe11eb88346afc45235a84,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1191,2562cc06e40611eb9f73d6fd5206df9a,NK cell,CD56dim NK cell,natural killer cell.
+1192,4faccdaae6a311ebbe49fe9e38490e77,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+1193,3c78f3f66d6a11eb959ece3aad2b7e32,Monocyte,CD16 monocyte,non-classical monocyte.
+1194,ecc3f876e6b611eba4eb1651e40fda0e,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+1195,110c675e671711ed94878208818934b6,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1196,47d9a4786f3311eb99c592dad4245022,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta memory T cell."
+1197,632c10886e5e11eba36cdee5e5a9f070,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1198,3c57f0486d6a11eb959ece3aad2b7e32,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1199,4fc00330286511ec8c0d4aaa4b9002e8,T cell,Treg,"CD4-positive, alpha-beta T cell."
+1200,97b437caaa7711eda859228a57c00d0f,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1201,58314ea4746811eb8d8fe2317d9a82dc,DC,pDC,plasmacytoid dendritic cell.
+1202,74e775ac48b611eabab7c676ab45cfca,T cell,Treg,"CD4-positive, alpha-beta memory T cell."
+1203,0f0fe964745a11eb9460023cc5433a03,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+1204,c697ebc848bd11eab2ee7a6edf799b61,T cell,Treg,"CD4-positive, alpha-beta T cell."
+1205,1d6614f26d6611eb831bbeaad691ed52,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1206,e342a08a6e5d11eb8f7406e883c58fd7,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1207,e0805abcf81e11ecbca49a59490ee93a,Monocyte,CD14 monocyte,classical monocyte.
+1208,95d706cec9fc11eb8b6656baa5e4f345,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1209,2f14ab54e8b411ebaaea96b9c5b1ce8f,T cell,Naive CD4 T cell,mature T cell.
+1210,2f04565ea2ce11ebbbe71e4a3e83c3e1,T cell,MAIT,"effector memory CD8-positive, alpha-beta T cell."
+1211,0697a81c02b711ec88cb72995a34965f,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1212,109b5eceb4d111ea9760ae151b524403,T cell,DN T cell,"CD8-positive, alpha-beta memory T cell."
+1213,d5e219ea862c11eea4d2b6181e6e2ea7,B cell,Transitional B cell,B cell.
+1214,62e061ae6d6611eba2001a7690ba1d9e,Monocyte,CD14 monocyte,classical monocyte.
+1215,7f3d3a36f7e711ecb1715e1ef278d88a,NK cell,CD56dim NK cell,natural killer cell.
+1216,2779b01acd2011eba86b828220d82e87,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1217,10481c8c862e11ee8698beaeae96c8d1,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1218,98ea6f7a795411ebb269deabf754cc73,Monocyte,CD16 monocyte,non-classical monocyte.
+1219,22d5481c872a11eba54aae2ad39eb13d,T cell,Memory CD4 T cell,regulatory T cell.
+1220,5fe955aa02b711eca847563a4b56082f,Monocyte,CD14 monocyte,classical monocyte.
+1221,6325708e6e5e11eba36cdee5e5a9f070,Monocyte,CD16 monocyte,non-classical monocyte.
+1222,5d9c0eac872711eba91e02b81d78ff78,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1223,11a4ae52746a11eba6ee4656f02e1fdd,T cell,MAIT,"CD8-positive, alpha-beta memory T cell."
+1224,b89a4722230f11ecabe4662b93aa8aaf,Monocyte,CD14 monocyte,classical monocyte.
+1225,0d83eda08d0211eb9a4f269f40e0a6a0,NK cell,CD56dim NK cell,natural killer cell.
+1226,ff5006e8ca0411ebb3a7d6be6f26377c,Monocyte,CD14 monocyte,classical monocyte.
+1227,c2096d7c8d0211eb8f491acf3f136954,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1228,66c461624e0211ec853ad229c2defbef,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1229,4e333df86f2811eb8e74ca941525b751,NK cell,CD56dim NK cell,natural killer cell.
+1230,fc83dd2250b411ec942f6a58078e6e64,DC,cDC2,classical monocyte.
+1231,5820e24e746811eb8d8fe2317d9a82dc,T cell,Treg,regulatory T cell.
+1232,b86f636401d011ecafff5e625bcc3358,T cell,MAIT,"CD4-positive, alpha-beta T cell."
+1233,5eea448a23db11ec8fb6d64cd9da18b7,T cell,Naive CD4 T cell,mature alpha-beta T cell.
+1234,585b6446e6b411ebaf04befb0a01041d,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1235,1248b064ca0611eba39f3a25e2bf00a4,T cell,Naive CD8 T cell,"CD4-positive, alpha-beta T cell."
+1236,74f33c9848b611eabab7c676ab45cfca,T cell,Naive CD4 T cell,regulatory T cell.
+1237,f10ddeb24e0111ecaee2cec740306374,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1238,e9f330e8f7e111ec90da567a30052902,DC,cDC2,classical monocyte.
+1239,66e580864e0211ec853ad229c2defbef,DC,pDC,plasmacytoid dendritic cell.
+1240,801616b0671f11edbb8ae2e11c613baa,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1241,edb18e5e2b8711ecaa1b721ae5eba729,T cell,CD8aa,"CD8-positive, alpha-beta memory T cell."
+1242,c1d90fa823dc11ec9545a2e3447e117e,NK cell,CD56dim NK cell,natural killer cell.
+1243,8ef9ab206f2711eb9ed9ea93581d1c81,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1244,11838c90746a11eba6ee4656f02e1fdd,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1245,03603fc06d6a11eb9868b2973cae6259,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1246,44295ada03bc11ec8b03caa2709d8562,Monocyte,CD14 monocyte,classical monocyte.
+1247,bd6eb714e6bb11ebbaa13ebd4470af0a,Monocyte,Intermediate monocyte,classical monocyte.
+1248,2d1a34f460b311edb0ce9a8d0a14da27,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1249,c05e0a74862311eeb393168c5709f2f2,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+1250,75729500a2de11ebba15ae7e271d472f,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1251,5b89e966e8bd11ebb73b6627106dca2c,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1252,8e19889476fa11ebb31b8631bc0de43b,Monocyte,CD14 monocyte,classical monocyte.
+1253,5cbac078e40611ebb6ab32f1f7b8a178,Monocyte,CD14 monocyte,classical monocyte.
+1254,5649a83a8cfe11eba258b6b4610d6042,T cell,Treg,"CD4-positive, alpha-beta T cell."
+1255,7a16288060d111ed987552e10431fc03,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1256,f39f526ee8cb11eb83a04ef4860adbcb,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1257,649c425a786111eba55bee831e293e34,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1258,e5da1366bfdc11eb9564dafd5e7509d4,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1259,b5fda05ebfd211ebafa586d48e1f3db0,T cell,gdT,"CD8-positive, alpha-beta memory T cell."
+1260,675a19fe01c811ec99d8a29cd1cea438,Monocyte,CD14 monocyte,classical monocyte.
+1261,25683d08e40611eb9f73d6fd5206df9a,T cell,Naive CD4 T cell,regulatory T cell.
+1262,5fdf9c4002b711eca847563a4b56082f,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1263,88cfc1b46d6811eb8c84965cd2e07daf,T cell,Treg,"CD8-positive, alpha-beta T cell."
+1264,875d0c10f7e611ecbaaa86d52fef98f0,Monocyte,CD14 monocyte,classical monocyte.
+1265,8273bf46746b11eba241fa7146609c17,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1266,5313f3ae03bf11ec9f9d3e06961d7fd0,T cell,Memory CD4 T cell,T cell.
+1267,79de4e2e76fe11eb9b7cfece13ccb977,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1268,a3a68204ecbe11ebaad346e0a59e94fd,Monocyte,CD14 monocyte,classical monocyte.
+1269,41ca8e6cca1411eba8e7c23be70524c5,Monocyte,CD14 monocyte,classical monocyte.
+1270,38fc5fa603bf11ec87217260960aa607,Monocyte,CD16 monocyte,non-classical monocyte.
+1271,68ca6d68ecea11eb8ac2be83dc4baba1,NK cell,CD56dim NK cell,natural killer cell.
+1272,5fc5b53202b711eca847563a4b56082f,Monocyte,CD14 monocyte,classical monocyte.
+1273,0e797624ece511eb90da8638c33d9c80,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1274,c07c6352862311eeb393168c5709f2f2,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1275,09214ae67b6911eba169da6bd33569f7,Monocyte,CD14 monocyte,classical monocyte.
+1276,38835c18b4e311ea80fa8a1929e9f384,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1277,5cf85f7448b111ea8fbed2ddb8e0a14a,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1278,ff3bcfc0fecf11eb90fb7eed3f7f36ac,T cell,Naive CD8 T cell,"CD4-positive, alpha-beta T cell."
+1279,e05b7d1c862c11eeb44f2a0a7ee8bda4,NK cell,CD56dim NK cell,natural killer cell.
+1280,f1ce978076f011eb9e6a262e4d0064cc,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1281,2d96c5884e0711ec865c16f89d689413,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1282,10c00e68b4d111ea9760ae151b524403,B cell,Naive B cell,B cell.
+1283,f8326b32ece411eb96e2ee7ff4e83851,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1284,be7228d8b4d711ea8770f2df3194a061,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1285,ed59895c286211ec9a8f2613ba675443,Monocyte,CD14 monocyte,classical monocyte.
+1286,c5c99a44862a11eeb249aefb8bcfeb6c,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+1287,72e3eae060b111eda69772bc2278a4b2,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1288,59769f566f2e11eb96d6a6525b93d5e3,T cell,gdT,natural killer cell.
+1289,cca19c70862c11ee8a3c42211af86f48,Monocyte,CD16 monocyte,classical monocyte.
+1290,6010dbd46f3211eb96f96a584edb8b14,Monocyte,CD14 monocyte,classical monocyte.
+1291,4e389a483f6f11eb958d9a3b616bee06,T cell,Treg,"CD4-positive, alpha-beta memory T cell."
+1292,e0680550862c11eeb44f2a0a7ee8bda4,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1293,d3557ec8cd2a11ebb36306ce65bb0f41,T cell,gdT,natural killer cell.
+1294,533f03f076f711eb928cf2a688aad71a,Monocyte,CD14 monocyte,classical monocyte.
+1295,8b4e8ff47b7a11ebbb227ae287962563,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1296,74ef5c4ce6ab11eb8f2c6612543f483c,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1297,585be038e6b411ebaf04befb0a01041d,T cell,Naive CD4 T cell,T cell.
+1298,9c525e6e748d11eb8ec6c6eb439e4cc3,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1299,835b863e8d0011eba962c64f4773d63c,T cell,Naive CD4 T cell,regulatory T cell.
+1300,2bff00ba230911ec9bc276af81d82c6c,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1301,259c6344e40611eb9f73d6fd5206df9a,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1302,c1124d546e5c11eb95e9cea56c494de4,Monocyte,CD14 monocyte,classical monocyte.
+1303,d11aa6f8770111ebb7b9d6f975704c14,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1304,4ae477f0495111eaafc966679ef8dfee,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1305,c0cbf28c6e5c11eb95e9cea56c494de4,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta memory T cell."
+1306,c20597108d0211eb8f491acf3f136954,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1307,906f78e8424b11ec8d4422c4d20de419,Monocyte,CD16 monocyte,non-classical monocyte.
+1308,62f3791ce79411ebada4c67e2b686223,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1309,08051d4c4e0211ecb6d06af08aaacff5,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1310,1239c3fe60a211edac516a3bcf87af0c,T cell,CD8aa,"CD8-positive, alpha-beta memory T cell."
+1311,f4e4dd28aa9f11ed9aab225a04bc010d,Monocyte,CD14 monocyte,classical monocyte.
+1312,233128ece6ae11ebb432b26df3e07d33,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+1313,0131bf6c3f6b11ebbf0d76c805520688,Monocyte,CD14 monocyte,classical monocyte.
+1314,ae341210fecd11eb9c589a38ef83a3f1,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1315,db8e38a4bfde11eb9e6d96f9d8b57902,B cell,Naive B cell,B cell.
+1316,5a208348770511eb90577af453916cf9,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+1317,c003ae26f7fe11ecbaca5e549e2aa1f5,NK cell,CD56dim NK cell,natural killer cell.
+1318,f0c824bc50b811ecbd5a96ba759a0a5a,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1319,87abe1b03eb911ebbd2bce3634ddd007,Monocyte,CD14 monocyte,classical monocyte.
+1320,892fe44823e011ecb7814e13412d27b3,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1321,e9da0186f7e111ec90da567a30052902,B cell,Naive B cell,B cell.
+1322,fff7743023d911ecb640f6cb779d5498,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1323,ff640c92ca0411ebb3a7d6be6f26377c,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1324,7c6feac2746911eb8b7dee0008289f2d,DC,cDC2,dendritic cell.
+1325,bd4fcf866e5511ebaf139a72df013a78,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1326,8344d2048d0011eba962c64f4773d63c,NK cell,CD56dim NK cell,natural killer cell.
+1327,10f60064e3ff11eb9f4d12c99271e885,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1328,21fd3aba862511eeb57ed2cb2c7f9e33,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1329,4d1fa536230c11eb9e73369c55ceea08,NK cell,CD56dim NK cell,natural killer cell.
+1330,ef78481e746111ebb005fab458a363f4,B cell,Memory B cell,B cell.
+1331,1756817a23df11ec8e663e0b7a317b29,B cell,Memory B cell,B cell.
+1332,449e5038e40411eb80e50e6ae118196c,B cell,Naive B cell,B cell.
+1333,9136346a4dfe11ec9cd7da9b7cf4e69b,T cell,CD8aa,"CD8-positive, alpha-beta T cell."
+1334,95d26624f7e011ec88b892c85371e118,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1335,df20691a48cf11eaacaa42cd98cbd24e,T cell,Memory CD4 T cell,T cell.
+1336,129bc952ece811eb858a9eed4000a1fb,T cell,MAIT,"CD8-positive, alpha-beta T cell."
+1337,f7bf1c20424a11ecb1157ed7241a30b0,Monocyte,CD14 monocyte,classical monocyte.
+1338,132862b2745311ebbb1cf6a20bf9215d,NK cell,CD56dim NK cell,natural killer cell.
+1339,2ef90e7cfeca11eb84a5baa122ad77d8,T cell,gdT,"effector memory CD8-positive, alpha-beta T cell."
+1340,b5dfc95cbfd311ebba58d6b31810e4ce,Monocyte,CD16 monocyte,non-classical monocyte.
+1341,70cbddbe48b611eaa65d9e7d578d66f2,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1342,3c732c286d6a11eb959ece3aad2b7e32,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1343,859f9e0250b011eca4314690da3920ef,NK cell,CD56dim NK cell,natural killer cell.
+1344,ef7423d48d0111eb894022587c8bf21f,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1345,257c8ed4e40611eb9f73d6fd5206df9a,B cell,Transitional B cell,B cell.
+1346,5d84d74ca2ce11eb9bc6ae6e71680f8b,Monocyte,CD14 monocyte,classical monocyte.
+1347,582aed643f6811eba60c12602f64f593,B cell,Naive B cell,B cell.
+1348,5c9b491ee40611ebb6ab32f1f7b8a178,B cell,Memory B cell,B cell.
+1349,98beb954794d11eb99a57e14fe324518,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1350,ee228f90607f11ed9e9d5af7fabd3b36,T cell,Treg,"CD4-positive, alpha-beta T cell."
+1351,413b60b2cd1a11ebb6f2f245b555caa7,Monocyte,CD14 monocyte,classical monocyte.
+1352,5cb448aa03bf11ec806bb6304fd4380c,T cell,Naive CD4 T cell,regulatory T cell.
+1353,798d1d0e60b011edb17e46fb8f56502c,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1354,2352f4d6e6ae11ebb432b26df3e07d33,T cell,Treg,"CD4-positive, alpha-beta T cell."
+1355,49160c2401e011ecad3cda2d73e439aa,Monocyte,CD14 monocyte,classical monocyte.
+1356,5a335d706e5811eba9ff8603041c92bc,T cell,CD8aa,"CD8-positive, alpha-beta memory T cell."
+1357,e396677ca2e411eba445862a4d6f2ed3,T cell,Naive CD4 T cell,"central memory CD4-positive, alpha-beta T cell."
+1358,9a20b7b850b411ec925dc6262e5ecc05,B cell,Transitional B cell,B cell.
+1359,06db7e8402b711ec88cb72995a34965f,B cell,Naive B cell,B cell.
+1360,d1a5290a7ab611eb820a3effb17b8bb3,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1361,c8dcda48230911eba0759640c92fc4a2,DC,cDC2,classical monocyte.
+1362,eb2a0fde785a11eb88c4aeb73ff4c07b,T cell,gdT,"CD8-positive, alpha-beta T cell."
+1363,f420a20ca2e311eb85af52073c383e80,B cell,Memory B cell,B cell.
+1364,912c88dc871811ebb044a614f189543f,NK cell,CD56dim NK cell,natural killer cell.
+1365,22990772aa8111edbca7720112d201c9,NK cell,CD56dim NK cell,natural killer cell.
+1366,e9f2dd46f7e111ec90da567a30052902,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1367,2c06151c230911ec9bc276af81d82c6c,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1368,ff49c79cfecf11eb90fb7eed3f7f36ac,B cell,Memory B cell,B cell.
+1369,47e172a26f3311eb99c592dad4245022,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+1370,68745fe0ecea11eb8ac2be83dc4baba1,Monocyte,Intermediate monocyte,classical monocyte.
+1371,5544d51acd2f11ebad37a2057e76a05f,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1372,7e4725a2e40511eb8b4326d57b156660,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1373,0d87fe228d0211eb9a4f269f40e0a6a0,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1374,851bf3c6f02411edb7a3be80f0f69804,Monocyte,CD16 monocyte,non-classical monocyte.
+1375,7e95a6546f3011eb8ea3b6144a58e849,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1376,94a00c60862911eebdc19e04fa809629,T cell,MAIT,"CD8-positive, alpha-beta memory T cell."
+1377,f4e84472aa9f11ed9aab225a04bc010d,T cell,Memory CD8 T cell,T cell.
+1378,03bd5bc6608211ed8cb1a608efa7ae49,T cell,gdT,"CD8-positive, alpha-beta T cell."
+1379,a84124504e0111ec936b1ac433bb3e99,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1380,0cd89d42ecc011eb966bfa1af6d99fe6,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1381,b53f2098872911ebbe41a20b62d6e8c8,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1382,b9b3f6f6872b11ebb599de5a8c2059ae,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+1383,baf316f4862a11ee84fb5eb04f029758,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1384,10ff9790671711ed94878208818934b6,T cell,Memory CD4 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1385,5cb25352e40611ebb6ab32f1f7b8a178,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1386,10e5918ee3ff11eb9f4d12c99271e885,Monocyte,CD14 monocyte,classical monocyte.
+1387,668359227b6e11eb80a1e2efff4d80b3,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1388,3a53ca7623d911eca62d86e9892ea95b,NK cell,CD56dim NK cell,natural killer cell.
+1389,79ee9fa476fe11eb9b7cfece13ccb977,Monocyte,CD14 monocyte,classical monocyte.
+1390,05c66dbc770011ebb6f1120b4fce9850,T cell,Memory CD8 T cell,natural killer cell.
+1391,bbf2f134ca0f11eba0c402013b74b858,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1392,8cd3bae27b7111eb97356a557ecd1c7b,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1393,e2330390794011eb9282e2ceeb91ba52,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1394,b94355684dff11ecb1a91aa839721c60,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1395,b9b1d68a003111ecb4351e4566b12fdf,Monocyte,CD14 monocyte,classical monocyte.
+1396,1330da96745311ebbb1cf6a20bf9215d,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1397,23bd9652770411eb8535b2e50c2d1ec3,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1398,81cf35703f6411eb9e62823c612eac47,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+1399,09437700785e11ebb00a1a75a97ae03e,T cell,Memory CD4 T cell,mature T cell.
+1400,527ebd64862811eea1f95ac3d3cbf508,Monocyte,CD14 monocyte,classical monocyte.
+1401,f3da8c188cfe11eb877bf62f64715fb6,Monocyte,CD14 monocyte,classical monocyte.
+1402,c1cf65ac01db11ec82191e5794dae576,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1403,01801a6ee40111ebb5ee12505c6ae237,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1404,0cd51b9aecc011eb966bfa1af6d99fe6,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1405,5982469e6f2e11eb96d6a6525b93d5e3,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1406,e8afcea0671a11ed91b4c6b7fe052625,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1407,4129b858cd1a11ebb6f2f245b555caa7,T cell,MAIT,"effector memory CD8-positive, alpha-beta T cell."
+1408,53c0743a76f711eb928cf2a688aad71a,T cell,Memory CD8 T cell,T cell.
+1409,ff6f8964ca0411ebb3a7d6be6f26377c,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1410,42081cf876f611eb9ee31a4d4e3f8efd,T cell,Memory CD4 T cell,T cell.
+1411,1046de7601dd11ec98991efbcd4757be,Monocyte,CD14 monocyte,classical monocyte.
+1412,456976d2009211ec9cfa4a5d71d7e302,B cell,Naive B cell,B cell.
+1413,b604f732bfd211ebafa586d48e1f3db0,T cell,Naive CD4 T cell,regulatory T cell.
+1414,e19119ca002e11ecad8456bdee478bef,Monocyte,CD14 monocyte,classical monocyte.
+1415,2f0e08fca2ce11ebbbe71e4a3e83c3e1,Monocyte,CD14 monocyte,classical monocyte.
+1416,041f3bece8d411eb8988fa1ee88bd7d8,Monocyte,CD14 monocyte,classical monocyte.
+1417,3206b6d4f81e11ecb8d5422c967c70e8,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1418,8ce851d27b7111eb97356a557ecd1c7b,DC,cDC2,classical monocyte.
+1419,850c5b32f02411edb7a3be80f0f69804,T cell,Memory CD4 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1420,ed3f87f0a2e311ebb1ce525b6209b46f,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1421,5ed9485623db11ec8fb6d64cd9da18b7,Monocyte,CD14 monocyte,classical monocyte.
+1422,b88ce49c230f11ec95d35e88f183227e,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1423,e7a500086f3111eb827116167e963c6a,Monocyte,CD14 monocyte,classical monocyte.
+1424,bd44d9f06e5511ebaf139a72df013a78,B cell,Naive B cell,B cell.
+1425,5d683f127abd11eb894e066fae99c4f2,T cell,Memory CD4 T cell,T cell.
+1426,14e6e4faaa9011eda3678a6e266cb381,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1427,aadfbf7a770411eba803caccc32ef9e2,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1428,676afe4a01c811ec99d8a29cd1cea438,T cell,MAIT,"CD8-positive, alpha-beta T cell."
+1429,dd005a7a862c11ee941c7e9dd60efb6e,Monocyte,CD14 monocyte,classical monocyte.
+1430,23b1c44001cd11ec9bd81eda61cbfa79,Monocyte,CD14 monocyte,classical monocyte.
+1431,5fc136f602b711eca847563a4b56082f,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1432,d12acb28770111ebb7b9d6f975704c14,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1433,ff8778bc206311eb9a0672114e4cb04e,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1434,b5fcc922bfd211ebafa586d48e1f3db0,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1435,5ce6c05c48b111ea8fbed2ddb8e0a14a,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1436,5b43288c785b11eb8f737ade911e22f7,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1437,835356268d0011eba962c64f4773d63c,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1438,98ca740276fe11eb89bbb265d7ce1040,T cell,Naive CD4 T cell,regulatory T cell.
+1439,1294a97eece811eb858a9eed4000a1fb,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+1440,3b2a84603f6611eb8896ca35f85b07f8,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1441,c573010eaa8711ed9d6f12731be88ed2,Monocyte,Intermediate monocyte,classical monocyte.
+1442,829b5862746b11eba241fa7146609c17,T cell,MAIT,"CD8-positive, alpha-beta memory T cell."
+1443,876d082cf7e611ecbaaa86d52fef98f0,T cell,Memory CD8 T cell,natural killer cell.
+1444,46d533746d6911ebb77caa74668eec04,Monocyte,CD14 monocyte,classical monocyte.
+1445,85a59ba450b011eca4314690da3920ef,T cell,CD8aa,"CD8-positive, alpha-beta memory T cell."
+1446,573366d88cee11ebb2129e901b21dc73,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1447,35eaba347b7911ebad508aeddc44df84,B cell,Naive B cell,B cell.
+1448,279076b6ca0411ebbb136a0d2fbd39b2,NK cell,CD56dim NK cell,natural killer cell.
+1449,eca7af04e6b611eba4eb1651e40fda0e,Monocyte,CD14 monocyte,classical monocyte.
+1450,7eea60686f3011eb8ea3b6144a58e849,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1451,7a07ab2a76fe11eb9b7cfece13ccb977,B cell,Transitional B cell,naive B cell.
+1452,66975f127b6e11eb80a1e2efff4d80b3,Monocyte,CD14 monocyte,classical monocyte.
+1453,d5569282862a11eeb008622ceecbab2f,NK cell,CD56dim NK cell,natural killer cell.
+1454,72a6bb903eba11eb9064c6086f0667a1,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1455,a1c2d6c6230c11eb9e6016fcd894d086,NK cell,CD56dim NK cell,natural killer cell.
+1456,0e7548c4ece511eb90da8638c33d9c80,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1457,9289148ee40111eba5a472433277b4b3,Monocyte,CD14 monocyte,classical monocyte.
+1458,5c21122cee8b11eb92fdd69ca687ea48,B cell,Naive B cell,B cell.
+1459,6d0dc86a01e011ec97d1be2f1bab6958,T cell,Memory CD4 T cell,mature T cell.
+1460,06c03a2002b711ec88cb72995a34965f,Monocyte,CD14 monocyte,classical monocyte.
+1461,45708904009211ec9cfa4a5d71d7e302,Monocyte,CD16 monocyte,non-classical monocyte.
+1462,e0cc9158002a11ec92d04e0e5896d86b,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1463,532c647076f711eb928cf2a688aad71a,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1464,648e0e2e786111eba55bee831e293e34,NK cell,CD56dim NK cell,natural killer cell.
+1465,c062279e862311eeb393168c5709f2f2,Monocyte,CD14 monocyte,classical monocyte.
+1466,9387d6b4786211ebb8964a4e4d3f19b7,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1467,93ac0ec6786211ebb8964a4e4d3f19b7,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1468,bbe4057aca0f11eba0c402013b74b858,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1469,b550b90c872911ebbe41a20b62d6e8c8,NK cell,CD56dim NK cell,natural killer cell.
+1470,0f1801d0745a11eb9460023cc5433a03,Monocyte,CD14 monocyte,classical monocyte.
+1471,bd38fdb8e6bb11ebbaa13ebd4470af0a,NK cell,CD56dim NK cell,natural killer cell.
+1472,9411989c6f3211eb8e954e1098597fe8,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1473,5cc328e4e40611ebb6ab32f1f7b8a178,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1474,5486f7c2495311ea86cade558b2f8879,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1475,e132830676fe11eb8a3a1adcfefed355,Monocyte,CD16 monocyte,monocyte.
+1476,4f6c163a206411eb98abe23235af2ce5,NK cell,CD56dim NK cell,natural killer cell.
+1477,81f781d83f6411eb9e62823c612eac47,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1478,6b6d3436648911eb8bba96bafe6b5935,B cell,Naive B cell,B cell.
+1479,0ea0238cece511eb90da8638c33d9c80,B cell,Memory B cell,B cell.
+1480,bd387f46e6bb11ebbaa13ebd4470af0a,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1481,f0aaf310620c11eb86f67283ecdfea65,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1482,2b01c0e4315811eeb122f21d7938a691,Monocyte,CD14 monocyte,classical monocyte.
+1483,5762a9c08cee11ebb2129e901b21dc73,Monocyte,CD14 monocyte,classical monocyte.
+1484,5fa9226e02b711eca847563a4b56082f,Monocyte,CD14 monocyte,classical monocyte.
+1485,c5e7dc2cca1911ebb0cd265de2a98d15,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1486,ef6fca5e746111ebb005fab458a363f4,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1487,7a113e7e60d111ed987552e10431fc03,B cell,Transitional B cell,B cell.
+1488,102affda862e11ee8698beaeae96c8d1,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1489,c0662a60862311eeb393168c5709f2f2,Monocyte,CD14 monocyte,classical monocyte.
+1490,120f45b660a211edac516a3bcf87af0c,T cell,Naive CD4 T cell,mature alpha-beta T cell.
+1491,85c0bc5450b011eca4314690da3920ef,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1492,8b51dc227b7a11ebbb227ae287962563,Monocyte,CD14 monocyte,classical monocyte.
+1493,e9de9ba6f7e111ec90da567a30052902,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1494,bd676e00e6bb11ebbaa13ebd4470af0a,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1495,ae233848648411eba2cd623e1f5309fc,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1496,835e30aa8d0011eba962c64f4773d63c,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1497,9276075ee40111eba5a472433277b4b3,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1498,6dbc1122749111eb9099229ae8d7075c,T cell,Naive CD4 T cell,regulatory T cell.
+1499,11f19afa746a11eba6ee4656f02e1fdd,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1500,ff79d996ca0411ebb3a7d6be6f26377c,NK cell,CD56dim NK cell,natural killer cell.
+1501,7838736c862111ee998f1e061ab3328b,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1502,e9d2db3a230811ec89cc0e1df9dfbf1c,Monocyte,CD14 monocyte,classical monocyte.
+1503,72c65ade60b111eda69772bc2278a4b2,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1504,6d287434bfdd11eb9a93b298159eec41,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1505,b9f3eaa4872b11ebb599de5a8c2059ae,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+1506,ae6851c4608d11edaafd7e3eb4c2df4a,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+1507,2d182e7a60b311edb0ce9a8d0a14da27,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1508,8d6e349476fa11ebb31b8631bc0de43b,B cell,Memory B cell,B cell.
+1509,b93ad21ebfcd11ebbdb0527e5f17f167,Monocyte,CD14 monocyte,classical monocyte.
+1510,e7e5c0fc6f3111eb827116167e963c6a,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1511,2950ff66aa6311ed996536bac5d04f15,Monocyte,CD14 monocyte,classical monocyte.
+1512,a2dee7488cfc11ebb4592ee9d1c560f8,Monocyte,CD14 monocyte,classical monocyte.
+1513,7d0135aa6f3111eb96976aecf4743d14,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1514,a8a9b0d87b7a11ebb651b6ee572b3274,B cell,Naive B cell,B cell.
+1515,5a18d0bcaa8411edbc55eac8c2b882ba,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1516,c6a5b10e48bd11eab2ee7a6edf799b61,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1517,0ab2eede230f11eca42fde90f8d872f1,T cell,MAIT,"CD8-positive, alpha-beta T cell."
+1518,28680eeacd3911eb84917af6a2da7945,Monocyte,CD16 monocyte,non-classical monocyte.
+1519,3ddb5e007ac111eb8b2f26df66f30e1e,NK cell,CD56dim NK cell,natural killer cell.
+1520,9c41885a748d11eb8ec6c6eb439e4cc3,T cell,Treg,"CD4-positive, alpha-beta T cell."
+1521,19385c16e6bd11ebbded3ee7c31838ee,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1522,4a7cd9288d0811eba554d6cabaf48ff9,T cell,Memory CD4 T cell,mature T cell.
+1523,b92059b44dff11ecb1a91aa839721c60,Monocyte,CD14 monocyte,classical monocyte.
+1524,322e9e74f81e11ecb8d5422c967c70e8,NK cell,CD56dim NK cell,natural killer cell.
+1525,53b48e7c76f711eb928cf2a688aad71a,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1526,4fc0f884e6a311ebbe49fe9e38490e77,NK cell,CD56bright NK cell,natural killer cell.
+1527,2beff1a6770111eb83580af69b9105e6,NK cell,CD56dim NK cell,natural killer cell.
+1528,fc7b301450b411ec942f6a58078e6e64,T cell,Naive CD4 T cell,regulatory T cell.
+1529,95c2635af7e011ec88b892c85371e118,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1530,e1461d6276fe11eb8a3a1adcfefed355,B cell,Naive B cell,B cell.
+1531,62c687b66d6611eba2001a7690ba1d9e,NK cell,CD56dim NK cell,natural killer cell.
+1532,66e5458a4e0211ec853ad229c2defbef,T cell,gdT,"CD8-positive, alpha-beta T cell."
+1533,0aa61736230f11eca42fde90f8d872f1,Monocyte,CD16 monocyte,non-classical monocyte.
+1534,06afc3c002b711ec88cb72995a34965f,Monocyte,CD14 monocyte,classical monocyte.
+1535,66a0b17642dc11ec9c335e51af10a502,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1536,3908c2fa03bf11ec87217260960aa607,Monocyte,CD14 monocyte,classical monocyte.
+1537,34b9d392003111ec86db8a033d8d78a0,NK cell,CD56dim NK cell,natural killer cell.
+1538,df1ef96848cf11eaacaa42cd98cbd24e,Monocyte,CD16 monocyte,classical monocyte.
+1539,cbf4ec4e7aba11eb9d926ed54ea72841,Monocyte,CD14 monocyte,classical monocyte.
+1540,49261bbe01e011ecad3cda2d73e439aa,T cell,MAIT,"CD8-positive, alpha-beta T cell."
+1541,519de95202b711ec85669ed5fd6f2ffe,T cell,Memory CD4 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1542,23343b54e6ae11ebb432b26df3e07d33,B cell,Naive B cell,B cell.
+1543,ef769fc48d0111eb894022587c8bf21f,T cell,gdT,"CD8-positive, alpha-beta T cell."
+1544,2a89f50e786011ebb2ae32222f568f1d,Monocyte,CD14 monocyte,classical monocyte.
+1545,79efb6c876fe11eb9b7cfece13ccb977,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+1546,6b019912315311eeac73660065307ff0,T cell,gdT,"CD8-positive, alpha-beta T cell."
+1547,4ba72db8746b11eb83a4c235a3a08626,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1548,0e745874ece511eb90da8638c33d9c80,NK cell,CD56bright NK cell,natural killer cell.
+1549,bc89cb4c6e5511eb8aa986621ebdbf37,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1550,595a65846f2e11eb96d6a6525b93d5e3,Monocyte,CD16 monocyte,classical monocyte.
+1551,fbe1a336286411ecb1698ec288c6fba6,B cell,Naive B cell,B cell.
+1552,16a150fe609a11edba329e19a2629b2e,T cell,gdT,"CD8-positive, alpha-beta T cell."
+1553,e9c9e18ef7e111ec90da567a30052902,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1554,e13772d076fe11eb8a3a1adcfefed355,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1555,7a202ac460d111ed987552e10431fc03,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1556,f84907c0ece411eb96e2ee7ff4e83851,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1557,e070aa02862c11eeb44f2a0a7ee8bda4,T cell,MAIT,"effector memory CD8-positive, alpha-beta T cell."
+1558,0158b25c3f6b11ebbf0d76c805520688,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta memory T cell."
+1559,033b09dec9fa11ebbe02e242efb8f7b8,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1560,2a9b6938786011eb89635e6022866806,Monocyte,CD16 monocyte,classical monocyte.
+1561,e12b3cf476fe11eb8a3a1adcfefed355,Monocyte,CD14 monocyte,classical monocyte.
+1562,b895b6f401d011ecafff5e625bcc3358,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1563,d602834c862c11eea4d2b6181e6e2ea7,Monocyte,CD14 monocyte,classical monocyte.
+1564,23b4165a01cd11ec9bd81eda61cbfa79,T cell,MAIT,"CD8-positive, alpha-beta T cell."
+1565,ab09d6d4770411eba803caccc32ef9e2,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta memory T cell."
+1566,d7cf05a0872a11eb9956d6a6a5ac404c,T cell,Memory CD4 T cell,regulatory T cell.
+1567,f4c395aaaa9f11ed9aab225a04bc010d,B cell,Memory B cell,B cell.
+1568,38b4a868b4e311ea80fa8a1929e9f384,DC,pDC,plasmacytoid dendritic cell.
+1569,d01a13eaa2e611eb91855e3d154f7c3f,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1570,70d7d9d448b611eaa65d9e7d578d66f2,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1571,93aa8358786211ebb8964a4e4d3f19b7,T cell,Memory CD4 T cell,mature T cell.
+1572,f429ebf0a2e311eb85af52073c383e80,T cell,Memory CD4 T cell,regulatory T cell.
+1573,e684538afeca11eb9143de3cb0860f61,T cell,Memory CD4 T cell,mature NK T cell.
+1574,df0557c448cf11eaacaa42cd98cbd24e,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1575,d4107fba50a211ecb05e625212408fd6,B cell,Naive B cell,B cell.
+1576,600ac56e6f3211eb96f96a584edb8b14,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1577,ef83dba88d0111eb894022587c8bf21f,Monocyte,CD14 monocyte,classical monocyte.
+1578,7c304656746911eb8b7dee0008289f2d,Monocyte,CD14 monocyte,classical monocyte.
+1579,f0b2c0ea4e0111ecaee2cec740306374,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1580,a0fd90e202b711eca176be0a2642ba6d,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1581,a00a1a3676f611ebbe1a0a9c4ec18e1b,T cell,Naive CD4 T cell,mature alpha-beta T cell.
+1582,f96b56963e9611ebb2609e1bd6640354,B cell,Memory B cell,B cell.
+1583,cc7f23d4fec511eb87b23e158aef1042,Monocyte,CD16 monocyte,non-classical monocyte.
+1584,f3d410627abc11eb9f6b469c2edb075f,Monocyte,CD14 monocyte,classical monocyte.
+1585,ec54665aecbf11ebafc4de269a2c4ee4,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+1586,73414288424111ec9e322259f8f046d7,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1587,e14f4e1476fe11eb8a3a1adcfefed355,Monocyte,CD14 monocyte,classical monocyte.
+1588,3719fae2ece811eb8566de30ea854391,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1589,badc9a04871e11eb94488a0ac828d814,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1590,1bc95180e3ff11ebbe3f9efd769d557a,Monocyte,CD14 monocyte,classical monocyte.
+1591,8e5a78a078ca11eb911d26c8fe61f3ce,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1592,c4cd4fd4e3ff11eb91932201050c5f2a,Monocyte,CD14 monocyte,classical monocyte.
+1593,2d36476660b311edb0ce9a8d0a14da27,NK cell,CD56dim NK cell,natural killer cell.
+1594,945e709a230f11ecb89eb20ae7ecce12,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1595,954b3c366d6b11ebb628aa63b53ba83f,NK cell,CD56dim NK cell,natural killer cell.
+1596,79e5d40076fe11eb9b7cfece13ccb977,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1597,05d6b3d4770011ebb6f1120b4fce9850,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1598,bbf8b1a0ca0f11eba0c402013b74b858,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+1599,2be8e37a230911ec9bc276af81d82c6c,Monocyte,CD14 monocyte,classical monocyte.
+1600,54c2b596495311ea86cade558b2f8879,Monocyte,CD14 monocyte,classical monocyte.
+1601,ec2d4f2aecbf11ebafc4de269a2c4ee4,NK cell,CD56dim NK cell,natural killer cell.
+1602,0c275cd6286511ecbdbbf28ba9e06b88,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1603,917f90da862b11ee8a27be38a9d1c9dd,T cell,Naive CD4 T cell,"central memory CD4-positive, alpha-beta T cell."
+1604,ae177a1c648411eba2cd623e1f5309fc,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1605,a1f051dc230c11eb9e6016fcd894d086,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1606,a9bcc956670511eda2a722caa9afe354,T cell,Naive CD4 T cell,regulatory T cell.
+1607,eb147124785a11eb88c4aeb73ff4c07b,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1608,91ef551cfed011eb850e06aac0d344cf,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+1609,080a9fc44e0211ecb6d06af08aaacff5,T cell,Treg,"CD4-positive, alpha-beta T cell."
+1610,23879d0001cd11ec9bd81eda61cbfa79,Monocyte,CD14 monocyte,classical monocyte.
+1611,ff41d05afecf11eb90fb7eed3f7f36ac,Monocyte,CD14 monocyte,classical monocyte.
+1612,5d10afa248b111ea8fbed2ddb8e0a14a,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1613,75815d92a2de11ebba15ae7e271d472f,Monocyte,CD14 monocyte,classical monocyte.
+1614,d42704a650a211ecb05e625212408fd6,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1615,6d2f69c4bfdd11eb9a93b298159eec41,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1616,fb45d9f0ca0f11ebad1a2eb9c335bc75,B cell,Memory B cell,B cell.
+1617,be67320cb4d711ea8770f2df3194a061,Monocyte,CD14 monocyte,classical monocyte.
+1618,6ce45e1c01e011ec97d1be2f1bab6958,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1619,b89b5ac801d011ecafff5e625bcc3358,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1620,dcfeebd6862c11ee941c7e9dd60efb6e,Monocyte,CD14 monocyte,classical monocyte.
+1621,cc7f2528fec511eb87b23e158aef1042,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+1622,3dfd92fe7ac111eb8b2f26df66f30e1e,Monocyte,CD14 monocyte,classical monocyte.
+1623,bacc6972871e11eb94488a0ac828d814,Monocyte,CD14 monocyte,classical monocyte.
+1624,f833182aece411eb96e2ee7ff4e83851,Monocyte,CD16 monocyte,non-classical monocyte.
+1625,918971f0871811ebb044a614f189543f,Monocyte,CD14 monocyte,classical monocyte.
+1626,1285b9b6002d11eca6d20aea4f74aa31,Monocyte,CD16 monocyte,non-classical monocyte.
+1627,e800a256671811ed8197264aa0746ac0,Monocyte,CD14 monocyte,classical monocyte.
+1628,4ab040b6495111eaafc966679ef8dfee,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1629,5523bff6cd2f11ebad37a2057e76a05f,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1630,7a7ea0fe7b7711eba2a96a517e35be5d,B cell,Naive B cell,B cell.
+1631,4e1e17346f2811eb8e74ca941525b751,NK cell,CD56dim NK cell,natural killer cell.
+1632,4a6bb3468d0811eba554d6cabaf48ff9,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1633,1291c506ece811eb858a9eed4000a1fb,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1634,b52ce50e872911ebbe41a20b62d6e8c8,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1635,a051ee40e6b011eb9e5fd64aa79f082e,NK cell,CD56dim NK cell,natural killer cell.
+1636,132fdbfa745311ebbb1cf6a20bf9215d,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1637,ae44bdaefecd11eb9c589a38ef83a3f1,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1638,7c8b28b4746911eb8b7dee0008289f2d,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1639,51ceebca7abc11eb93fc42a5a6039c14,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1640,81c8e90e3f6411eb9e62823c612eac47,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1641,b9a4af14003111ecb4351e4566b12fdf,B cell,Effector B cell,B cell.
+1642,6cd989e201e011ec97d1be2f1bab6958,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1643,195298a6e6bd11ebbded3ee7c31838ee,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1644,ed485bbea2e311ebb1ce525b6209b46f,B cell,Naive B cell,B cell.
+1645,a9bc29b4a2db11eb9bf71657d2d52b59,NK cell,CD56dim NK cell,natural killer cell.
+1646,d706ef84315011eead251600320c0574,T cell,Treg,"CD8-positive, alpha-beta T cell."
+1647,85c9c25e50b011eca4314690da3920ef,NK cell,CD56bright NK cell,natural killer cell.
+1648,d4176cb250a211ecb05e625212408fd6,T cell,gdT,"CD8-positive, alpha-beta T cell."
+1649,d7530ce8872a11eb9956d6a6a5ac404c,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1650,4d1e102c230c11eb9e73369c55ceea08,T cell,Treg,"CD4-positive, alpha-beta T cell."
+1651,278ef9c6ca0411ebbb136a0d2fbd39b2,T cell,Treg,"CD4-positive, alpha-beta T cell."
+1652,d41c467e50a211ecb05e625212408fd6,T cell,Naive CD4 T cell,mature T cell.
+1653,f3dabef48cfe11eb877bf62f64715fb6,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta memory T cell."
+1654,d42f0b4250a211ecb05e625212408fd6,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1655,06b3cf5602b711ec88cb72995a34965f,T cell,MAIT,"CD8-positive, alpha-beta T cell."
+1656,574cca2e8cee11ebb2129e901b21dc73,Monocyte,CD14 monocyte,classical monocyte.
+1657,94924738862911eebdc19e04fa809629,Monocyte,CD14 monocyte,classical monocyte.
+1658,a9a7c73aa2db11eb9bf71657d2d52b59,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1659,a2f54cea8cfc11ebb4592ee9d1c560f8,NK cell,CD56dim NK cell,natural killer cell.
+1660,2c70d262770111eb83580af69b9105e6,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1661,23d2ba78770411eb97ab6e0733497e1b,T cell,Memory CD4 T cell,T cell.
+1662,d249ca8a862c11ee8ab2ce04d767d167,Monocyte,CD14 monocyte,classical monocyte.
+1663,79fe502a76fe11eb9b7cfece13ccb977,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1664,adff7610648411eba2cd623e1f5309fc,NK cell,CD56dim NK cell,natural killer cell.
+1665,09206af47b6911eba169da6bd33569f7,T cell,Memory CD4 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1666,ee3fcc9a607f11ed9e9d5af7fabd3b36,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1667,909516e2862e11ee81c576a33e24a1ce,NK cell,CD56dim NK cell,natural killer cell.
+1668,a2e9e4728cfc11ebb4592ee9d1c560f8,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1669,f0e02a584e0111ecaee2cec740306374,T cell,MAIT,"CD8-positive, alpha-beta memory T cell."
+1670,082e38f84e0211ecb6d06af08aaacff5,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1671,5c8fbf40e40611ebb6ab32f1f7b8a178,Monocyte,CD14 monocyte,classical monocyte.
+1672,e9dc2880f7e111ec90da567a30052902,Monocyte,CD14 monocyte,classical monocyte.
+1673,96b5fe4e6d6b11ebba1f52fbaff67099,Monocyte,CD14 monocyte,classical monocyte.
+1674,6cd1b81601e011ec97d1be2f1bab6958,DC,cDC2,conventional dendritic cell.
+1675,cfba4c5248b611ea8957bafe6d70929e,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1676,4e28bda8e6c211ebaddab27930c367f5,T cell,gdT,T cell.
+1677,96a9ab766d6b11ebba1f52fbaff67099,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1678,a9b354baa2db11eb9bf71657d2d52b59,NK cell,CD56dim NK cell,natural killer cell.
+1679,258bb2a6e40611eb9f73d6fd5206df9a,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1680,95d40d38e6b811ebbbef16f34851c28c,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1681,1243a826ca0611eba39f3a25e2bf00a4,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1682,edc3c9d42b8711ecaa1b721ae5eba729,T cell,Memory CD8 T cell,T cell.
+1683,94a2c770862911eebdc19e04fa809629,NK cell,Proliferating NK cell,natural killer cell.
+1684,4222739676f611eb9ee31a4d4e3f8efd,T cell,MAIT,"CD8-positive, alpha-beta memory T cell."
+1685,95db86e0c9fc11eb8b6656baa5e4f345,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1686,ef69c83e746111ebb005fab458a363f4,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+1687,1d58c52c6d6611eb831bbeaad691ed52,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1688,018a4f00795511eb938ecad8deac763c,Monocyte,CD14 monocyte,classical monocyte.
+1689,a9c2d044670511eda2a722caa9afe354,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1690,97b3309076fe11eb89bbb265d7ce1040,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1691,7a984a227b7711eba2a96a517e35be5d,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1692,421f729cbfd311eb8ffe429043368bdd,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1693,6106f992230f11ecb3808ec5122f277d,T cell,Naive CD4 T cell,regulatory T cell.
+1694,111578f4e3ff11eb9f4d12c99271e885,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1695,e682a0e4feca11eb9143de3cb0860f61,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1696,7c33afda746911eb8b7dee0008289f2d,Monocyte,CD14 monocyte,classical monocyte.
+1697,2c53ef26770111eb83580af69b9105e6,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1698,ee2e95406e5c11eb9751364c17c50e30,Monocyte,CD14 monocyte,classical monocyte.
+1699,b52e87b0872911ebbe41a20b62d6e8c8,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1700,9466fa26230f11ecb89eb20ae7ecce12,DC,cDC2,classical monocyte.
+1701,ef8ef8ca746111ebb005fab458a363f4,NK cell,CD56dim NK cell,natural killer cell.
+1702,62cdbddae79411ebada4c67e2b686223,T cell,MAIT,"CD4-positive, alpha-beta T cell."
+1703,b8742556230f11ecabe4662b93aa8aaf,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1704,22f7a268872a11eba54aae2ad39eb13d,B cell,Naive B cell,B cell.
+1705,c1d95b2a23dc11ec9545a2e3447e117e,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1706,22ab5cd8aa8111edbca7720112d201c9,Monocyte,CD14 monocyte,classical monocyte.
+1707,9290a8e8e40111eba5a472433277b4b3,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+1708,8ee55082004311ec9f9f9e190f9f967f,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1709,cc6d33fc315611eebf058a4e77219021,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1710,6307a8ba6e5e11eba36cdee5e5a9f070,T cell,Treg,"CD4-positive, alpha-beta memory T cell."
+1711,1045207201dd11ec98991efbcd4757be,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1712,64dfafae786111eba55bee831e293e34,NK cell,CD56dim NK cell,natural killer cell.
+1713,e87b40d8230811eca137ea3e049c58d4,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1714,df236a44f7e011eca445621bb9b0c4af,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1715,ae857010608d11edaafd7e3eb4c2df4a,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1716,e619de62f02511ed960816ab96b06392,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1717,09bc5364785e11ebb00a1a75a97ae03e,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1718,0d85f5be8d0211eb9a4f269f40e0a6a0,NK cell,CD56dim NK cell,natural killer cell.
+1719,c1d0a7808d0211eb8f491acf3f136954,B cell,Memory B cell,B cell.
+1720,b4ffe92e862b11ee9a02eed9ef1e2438,NK cell,CD56dim NK cell,natural killer cell.
+1721,7e95bb086f3011eb8ea3b6144a58e849,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1722,1861d9f6315311ee98f3b2ffc5df451f,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1723,edae38c62b8711ecaa1b721ae5eba729,T cell,Treg,"CD4-positive, alpha-beta T cell."
+1724,ed388128a2d211eb8aafd2fff04d1a29,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta memory T cell."
+1725,6d44ffb4bfdd11eb9a93b298159eec41,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1726,23b650b8770411eb8535b2e50c2d1ec3,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1727,06ac410a02b711ec88cb72995a34965f,Monocyte,CD16 monocyte,non-classical monocyte.
+1728,8ee496a46f2711eb9ed9ea93581d1c81,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1729,f1b31bfe76f011eb9e6a262e4d0064cc,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1730,42326bfc76f611eb9ee31a4d4e3f8efd,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1731,3d603d0a23dc11ecb52a06b7b2d7de84,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1732,3131adaa786211eb91c04e08f28056f2,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1733,5c2263a2ee8b11eb92fdd69ca687ea48,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1734,5c108b14ee8b11eb92fdd69ca687ea48,B cell,Memory B cell,B cell.
+1735,080f887c4e0211ecb6d06af08aaacff5,T cell,CD8aa,"CD8-positive, alpha-beta T cell."
+1736,5757aa8e8cee11ebb2129e901b21dc73,NK cell,CD56dim NK cell,natural killer cell.
+1737,dd0bda80862c11ee941c7e9dd60efb6e,T cell,MAIT,"CD8-positive, alpha-beta T cell."
+1738,ad145a86424611ec8d8dea218556d44d,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1739,5c5c72927b7a11eb822c3e9d2f0e335e,T cell,Naive CD4 T cell,regulatory T cell.
+1740,7a95c7b67b7711eba2a96a517e35be5d,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+1741,bd3375dce6bb11ebbaa13ebd4470af0a,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1742,8904fa8c6d6811eb8c84965cd2e07daf,B cell,Naive B cell,B cell.
+1743,64dcbb44009911eca7f7ce4e40ea87f1,DC,pDC,dendritic cell.
+1744,785595d2862111ee998f1e061ab3328b,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1745,5a244ef6770511eb90577af453916cf9,Monocyte,CD14 monocyte,classical monocyte.
+1746,1220e1e2ca0611eba39f3a25e2bf00a4,Monocyte,CD14 monocyte,classical monocyte.
+1747,c1dddb588d0211eb8f491acf3f136954,NK cell,CD56dim NK cell,natural killer cell.
+1748,d01076b4a2e611eb91855e3d154f7c3f,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1749,79e6c53676fe11eb9b7cfece13ccb977,Monocyte,CD16 monocyte,classical monocyte.
+1750,aaf38c62770411eba803caccc32ef9e2,NK cell,CD56dim NK cell,natural killer cell.
+1751,785a3394862111ee998f1e061ab3328b,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1752,e7a337146f3111eb827116167e963c6a,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1753,74f4e61a48b611eabab7c676ab45cfca,Monocyte,CD14 monocyte,classical monocyte.
+1754,01a54abee40111ebb5ee12505c6ae237,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1755,894a2bd223e011ecb7814e13412d27b3,B cell,Naive B cell,B cell.
+1756,798f04de60b011edb17e46fb8f56502c,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1757,731c08ba424111ec9e322259f8f046d7,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1758,a8655ab66e5811eb835b7e171cb4e71f,T cell,MAIT,"CD8-positive, alpha-beta memory T cell."
+1759,9d8f54b46d6a11eba1aef2c4e1d50672,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1760,0916184c7b6911eba169da6bd33569f7,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+1761,f400f0428cfe11eb877bf62f64715fb6,B cell,Effector B cell,B cell.
+1762,54824cd6495311ea86cade558b2f8879,Monocyte,CD14 monocyte,classical monocyte.
+1763,ed48bb54a2e311ebb1ce525b6209b46f,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1764,f3ec7c528cfe11eb877bf62f64715fb6,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1765,79f3092c76fe11eb9b7cfece13ccb977,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1766,29542160608411edb6ad6a209a0d6007,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1767,1ee618c650b511ec8fafd2849fb52a10,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1768,98152ecee6bd11eb9bb4beec3d5c720e,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1769,c8c92228230911eba0759640c92fc4a2,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1770,b392e072872911eb88ddaa98e7d40cb1,Monocyte,CD14 monocyte,classical monocyte.
+1771,e08bbb3cf81e11ecbca49a59490ee93a,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1772,b5dbd9dcbfd311ebba58d6b31810e4ce,T cell,gdT,natural killer cell.
+1773,c8ed9b76230911eba0759640c92fc4a2,NK cell,CD56dim NK cell,natural killer cell.
+1774,3333fb4850b211ecaf7e5a3fead6fb86,B cell,Naive B cell,B cell.
+1775,3c6becce6d6a11eb959ece3aad2b7e32,NK cell,CD56dim NK cell,natural killer cell.
+1776,e1cf2a44002e11ecad8456bdee478bef,T cell,Memory CD4 T cell,regulatory T cell.
+1777,e867ee683f6311eb9b035a7c26289213,T cell,Naive CD4 T cell,T cell.
+1778,2bfdd17c770111eb83580af69b9105e6,NK cell,CD56dim NK cell,natural killer cell.
+1779,b922471a4dff11ecb1a91aa839721c60,B cell,Memory B cell,B cell.
+1780,d517f16a286411ecacd186ad86b83ef4,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1781,5c912c54e40611ebb6ab32f1f7b8a178,T cell,gdT,"CD8-positive, alpha-beta T cell."
+1782,382e5864ece911eb96cace7c85d10469,NK cell,CD56dim NK cell,natural killer cell.
+1783,a8693eb06e5811eb835b7e171cb4e71f,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+1784,e059c7ba862c11eeb44f2a0a7ee8bda4,NK cell,CD56dim NK cell,natural killer cell.
+1785,4e4cc0eae6c211ebaddab27930c367f5,NK cell,CD56dim NK cell,natural killer cell.
+1786,0ce9a024ecc011eb966bfa1af6d99fe6,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1787,f3fdd966a2e311eb85af52073c383e80,NK cell,CD56dim NK cell,natural killer cell.
+1788,97bc2a7e76fe11eb89bbb265d7ce1040,NK cell,CD56dim NK cell,natural killer cell.
+1789,8da472c076fa11ebb31b8631bc0de43b,Monocyte,CD14 monocyte,classical monocyte.
+1790,f84163f8ece411eb96e2ee7ff4e83851,NK cell,CD56dim NK cell,natural killer cell.
+1791,72b825ae60b111eda69772bc2278a4b2,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1792,9c648fee748d11eb8ec6c6eb439e4cc3,T cell,Naive CD4 T cell,regulatory T cell.
+1793,e5e96136bfdc11eb9564dafd5e7509d4,T cell,Naive CD4 T cell,"central memory CD4-positive, alpha-beta T cell."
+1794,573b32487b6711eb980a1e6e754c5d4e,NK cell,CD56dim NK cell,natural killer cell.
+1795,a8228fb84e0111ec936b1ac433bb3e99,T cell,gdT,"CD8-positive, alpha-beta T cell."
+1796,b8c6f0d8a2e011eb8a03ee5dc42b1547,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1797,cca0ad88862c11ee8a3c42211af86f48,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1798,c0a9079a6e5c11eb95e9cea56c494de4,T cell,gdT,"CD8-positive, alpha-beta T cell."
+1799,0ba54ab24e0711eca047fac6813609fb,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1800,0971f648785e11ebb00a1a75a97ae03e,Monocyte,CD14 monocyte,classical monocyte.
+1801,c86201decd7111eba57e0effe5c973d2,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1802,98273ca676fe11eb89bbb265d7ce1040,Monocyte,CD14 monocyte,classical monocyte.
+1803,1ae1634ef02211ed88e5ae7ef455ad80,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1804,7c8bc3a0746911eb8b7dee0008289f2d,Monocyte,CD14 monocyte,classical monocyte.
+1805,a923da8c8d0111eba8fc0e09ff586e2a,T cell,gdT,"CD8-positive, alpha-beta T cell."
+1806,a8b6eff67b6a11ebb395ce76725e8e9a,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1807,5c8bb4e0e40611ebb6ab32f1f7b8a178,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1808,c1cc34208d0211eb8f491acf3f136954,Monocyte,CD14 monocyte,classical monocyte.
+1809,6661fb1a7b6e11eb80a1e2efff4d80b3,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1810,d5583128862a11eeb008622ceecbab2f,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1811,e9e9514e230811ec89cc0e1df9dfbf1c,T cell,MAIT,"CD8-positive, alpha-beta T cell."
+1812,5fdf64e602b711eca847563a4b56082f,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1813,f394ffc6e8cb11eb83a04ef4860adbcb,Monocyte,CD14 monocyte,classical monocyte.
+1814,5d1d5f5e48b111ea8fbed2ddb8e0a14a,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1815,8dd094b6e40211ebba695e0417dae271,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+1816,1a5317847ac111eb9fecc6a9fb21149c,B cell,Effector B cell,B cell.
+1817,940d11326f3211eb8e954e1098597fe8,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1818,46aa563efecf11eb8f22ce835a92b018,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+1819,0447b630e8d411eb8988fa1ee88bd7d8,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1820,cc3f71eefec511eb87b23e158aef1042,T cell,Memory CD4 T cell,T cell.
+1821,a9268d4a8d0111eba8fc0e09ff586e2a,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1822,b315728e4e0411ecbdc4f6dde42d12bb,Monocyte,CD14 monocyte,classical monocyte.
+1823,e9e0252e230811ec89cc0e1df9dfbf1c,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1824,e8019af8671811ed8197264aa0746ac0,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1825,5c92d09ae40611ebb6ab32f1f7b8a178,B cell,Memory B cell,B cell.
+1826,e1e8b6366f2d11eb9c86fece995c7c24,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1827,3d5ce6f023dc11ecb52a06b7b2d7de84,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1828,e9bc72c0862d11eeb5b7caa7a1b2f0ad,T cell,Memory CD8 T cell,natural killer cell.
+1829,12292baeca0611eba39f3a25e2bf00a4,Monocyte,CD14 monocyte,classical monocyte.
+1830,87696318e3fe11eb88346afc45235a84,Monocyte,CD14 monocyte,classical monocyte.
+1831,62f3a6246d6611eba2001a7690ba1d9e,NK cell,CD56dim NK cell,natural killer cell.
+1832,c8ea66e0230911eba0759640c92fc4a2,Monocyte,CD14 monocyte,classical monocyte.
+1833,48091c3a6f3311eb99c592dad4245022,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1834,ef782316746111ebb005fab458a363f4,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1835,91eaff6a433311ecb17706fc43058792,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1836,03857f9c60a711edabbabeb8626370eb,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1837,918c288c871811ebb044a614f189543f,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1838,532c1c5e03bf11ec9f9d3e06961d7fd0,T cell,MAIT,"CD8-positive, alpha-beta T cell."
+1839,f0f3c6264e0111ecaee2cec740306374,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1840,21f554ee862511eeb57ed2cb2c7f9e33,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1841,69629c1ae6bd11eb99defa54c4ee54f4,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1842,e19477886f2d11eb9c86fece995c7c24,Monocyte,CD14 monocyte,classical monocyte.
+1843,4b105b32f7e511ec9d95e21fd042e627,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1844,8dbc48e676fa11ebb31b8631bc0de43b,NK cell,CD56dim NK cell,natural killer cell.
+1845,9c4a85e0748d11eb8ec6c6eb439e4cc3,B cell,Memory B cell,B cell.
+1846,7c7d54f8871711eba8137adc2effde42,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+1847,5766f7328cee11ebb2129e901b21dc73,T cell,Naive CD4 T cell,regulatory T cell.
+1848,8ee92fb66f2711eb9ed9ea93581d1c81,NK cell,CD56dim NK cell,natural killer cell.
+1849,57396c2c8cee11ebb2129e901b21dc73,Monocyte,CD14 monocyte,classical monocyte.
+1850,4b9b4c00746b11eb83a4c235a3a08626,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1851,bcc717687abc11ebac911e12d1777b84,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1852,033ccb70c9fa11ebbe02e242efb8f7b8,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1853,117a5d28746a11eba6ee4656f02e1fdd,T cell,MAIT,"CD8-positive, alpha-beta T cell."
+1854,0d6cf3d48d0211eb9a4f269f40e0a6a0,Monocyte,CD14 monocyte,classical monocyte.
+1855,412c601ccd1a11ebb6f2f245b555caa7,T cell,gdT,natural killer cell.
+1856,5a306e766e5811eba9ff8603041c92bc,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1857,c4bada20e3ff11eb91932201050c5f2a,T cell,Memory CD4 T cell,regulatory T cell.
+1858,584d38c6e6b411ebaf04befb0a01041d,Monocyte,Intermediate monocyte,classical monocyte.
+1859,63ab923c620011ebac046a6b90c24dbb,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1860,74f2d0dee6ab11eb8f2c6612543f483c,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1861,de216778871a11ebaff886b6c60deacd,T cell,Memory CD4 T cell,mature T cell.
+1862,2d9566984e0711ec865c16f89d689413,B cell,Naive B cell,B cell.
+1863,a921be828d0111eba8fc0e09ff586e2a,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1864,34f6890e003111ec86db8a033d8d78a0,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1865,ff6c11c6ca0411ebb3a7d6be6f26377c,T cell,MAIT,"CD8-positive, alpha-beta T cell."
+1866,2345e1bae6ae11ebb432b26df3e07d33,B cell,Naive B cell,B cell.
+1867,53be8d1476f711eb928cf2a688aad71a,NK cell,CD56dim NK cell,natural killer cell.
+1868,25706cc6e40611eb9f73d6fd5206df9a,T cell,Memory CD8 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1869,194025f4608d11edaf347a76ff6a0874,B cell,Naive B cell,B cell.
+1870,9531ac4e6d6b11ebb628aa63b53ba83f,NK cell,CD56dim NK cell,natural killer cell.
+1871,a1f187e6230c11eb9e6016fcd894d086,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1872,ef6a9868746111ebb005fab458a363f4,B cell,Naive B cell,B cell.
+1873,a95c15c88d0111eba8fc0e09ff586e2a,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1874,949819d8862911eebdc19e04fa809629,Monocyte,CD14 monocyte,classical monocyte.
+1875,23ac5b5e01cd11ec9bd81eda61cbfa79,T cell,Memory CD4 T cell,T cell.
+1876,36f14fcaece811eb8566de30ea854391,NK cell,CD56dim NK cell,natural killer cell.
+1877,8cc57ca06e5d11ebb7476e89de14cf8b,Monocyte,CD16 monocyte,non-classical monocyte.
+1878,d8098d7e872a11eb9956d6a6a5ac404c,NK cell,CD56dim NK cell,natural killer cell.
+1879,8352bb088d0011eba962c64f4773d63c,Monocyte,CD14 monocyte,classical monocyte.
+1880,eab5a0c4608c11edb82ff6b434f2fb76,B cell,Naive B cell,B cell.
+1881,06314d4c863611eea9a56e13647e2878,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1882,fc9e82983e8c11eb882a3a23c421ba3f,T cell,Memory CD4 T cell,regulatory T cell.
+1883,5d53c878a2ce11eb9bc6ae6e71680f8b,T cell,Memory CD4 T cell,mature alpha-beta T cell.
+1884,b5ea494266fb11edba506a9911e98c80,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1885,64d3a83a786111eba55bee831e293e34,B cell,Memory B cell,B cell.
+1886,38317292ece911eb96cace7c85d10469,Monocyte,CD14 monocyte,classical monocyte.
+1887,01a7f840e40111ebb5ee12505c6ae237,T cell,MAIT,"CD8-positive, alpha-beta T cell."
+1888,74c8544ee6ab11eb8f2c6612543f483c,T cell,Naive CD4 T cell,"CD8-positive, alpha-beta T cell."
+1889,a846b3e84e0111ec936b1ac433bb3e99,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1890,9d441594648711eba53cf26f7da8270f,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1891,f0b48b504e0111ecaee2cec740306374,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1892,7a1040e676fe11eb9b7cfece13ccb977,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+1893,c8445b0ccd7111eba57e0effe5c973d2,B cell,Naive B cell,B cell.
+1894,63078a4c6e5e11eba36cdee5e5a9f070,Monocyte,CD14 monocyte,classical monocyte.
+1895,c1b7ac088d0211eb8f491acf3f136954,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1896,874b9c00f7e611ecbaaa86d52fef98f0,DC,cDC2,conventional dendritic cell.
+1897,b872faa601d011ecafff5e625bcc3358,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1898,493ca42e01e011ecad3cda2d73e439aa,Monocyte,CD14 monocyte,classical monocyte.
+1899,e61c1bd2f02511ed960816ab96b06392,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1900,5f03c52223db11ec8fb6d64cd9da18b7,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1901,af65d7aa005711ecacf076742455fe92,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1902,aaecb3c4770411eba803caccc32ef9e2,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1903,8a86531250b411ec9b5f1e4865587c6c,Monocyte,CD14 monocyte,"CD14-positive, CD16-negative classical monocyte."
+1904,4a4da7988d0811eba554d6cabaf48ff9,T cell,Memory CD4 T cell,mature T cell.
+1905,0195a0fae40111ebb5ee12505c6ae237,T cell,MAIT,"CD8-positive, alpha-beta T cell."
+1906,1223b746ca0611eba39f3a25e2bf00a4,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1907,c05d0958862311eeb393168c5709f2f2,Monocyte,CD14 monocyte,classical monocyte.
+1908,f5255f4a6f2a11eb9324b2f80ea4ca13,T cell,Memory CD4 T cell,mature T cell.
+1909,2adda46a786011ebb2ae32222f568f1d,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1910,6d26f3fcbfdd11eb9a93b298159eec41,T cell,gdT,"CD8-positive, alpha-beta T cell."
+1911,c8ceb2ce230911eba0759640c92fc4a2,Monocyte,CD16 monocyte,classical monocyte.
+1912,76bca094f02111ed9eac86c87f637120,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1913,95ae939cc9fc11eb8b6656baa5e4f345,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1914,f0cfdf2c50b811ecbd5a96ba759a0a5a,T cell,Treg,regulatory T cell.
+1915,42317582bfd311eb8ffe429043368bdd,DC,cDC2,classical monocyte.
+1916,e071db0c862c11eeb44f2a0a7ee8bda4,DC,pDC,plasmacytoid dendritic cell.
+1917,250b924c207a11eb99f83ebbcdb12029,B cell,Memory B cell,naive B cell.
+1918,575249728cee11ebb2129e901b21dc73,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1919,c5c2d986ca1911ebb0cd265de2a98d15,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1920,8338a48e8d0011eba962c64f4773d63c,NK cell,CD56dim NK cell,natural killer cell.
+1921,8339c54e8d0011eba962c64f4773d63c,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1922,547f1e6c495311ea86cade558b2f8879,T cell,Naive CD8 T cell,"CD4-positive, alpha-beta T cell."
+1923,e37d7b72a2e411eba445862a4d6f2ed3,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1924,c1bdda3a01db11ec82191e5794dae576,Monocyte,CD14 monocyte,classical monocyte.
+1925,b62262727abd11eb9e34d2275bdfa688,NK cell,CD56dim NK cell,natural killer cell.
+1926,61177696bfdc11ebb3b5ba265ad50ebc,B cell,Transitional B cell,B cell.
+1927,390135aee6bd11eba4f6726e7cf53371,Monocyte,CD16 monocyte,monocyte.
+1928,3334f64250b211ecaf7e5a3fead6fb86,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1929,98954bbc3f6b11ebb5126ae06f172630,T cell,Naive CD4 T cell,regulatory T cell.
+1930,67766ffa01c811ec99d8a29cd1cea438,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1931,97fa9cd0e6bd11eb9bb4beec3d5c720e,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1932,255d1536e40611eb9f73d6fd5206df9a,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1933,c05e8b34862311eeb393168c5709f2f2,B cell,Memory B cell,B cell.
+1934,72ccdddc60b111eda69772bc2278a4b2,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+1935,8d992dd2e40211ebba695e0417dae271,B cell,Naive B cell,B cell.
+1936,edae7aa22b8711ecaa1b721ae5eba729,T cell,Memory CD4 T cell,T cell.
+1937,57659ff48cee11ebb2129e901b21dc73,T cell,gdT,natural killer cell.
+1938,666ed0067b6e11eb80a1e2efff4d80b3,T cell,Memory CD4 T cell,"effector memory CD8-positive, alpha-beta T cell."
+1939,cfb9db1448b611ea8957bafe6d70929e,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1940,361ac8d27b7911ebad508aeddc44df84,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1941,4f4ce134206411eb98abe23235af2ce5,Monocyte,CD14 monocyte,classical monocyte.
+1942,74e39182e6ab11eb8f2c6612543f483c,NK cell,CD56dim NK cell,natural killer cell.
+1943,0942c8747b6911eba169da6bd33569f7,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1944,8775c7ace3fe11eb88346afc45235a84,T cell,MAIT,"effector memory CD8-positive, alpha-beta T cell."
+1945,5ae9ad48785b11eb8f737ade911e22f7,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1946,d2add200bfdc11eb9ba92275cea06a7e,NK cell,CD56dim NK cell,natural killer cell.
+1947,cfd6580c6e5d11ebb859b2d8774afeef,Monocyte,CD14 monocyte,classical monocyte.
+1948,aafd4ce8770411eba803caccc32ef9e2,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1949,ea9193f8785a11eb88c4aeb73ff4c07b,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1950,3f0e332e7ac111eb8b2f26df66f30e1e,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1951,a8fd744c795511eb8df55e9c326fc5f4,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1952,6894b5d4872711ebadbb7e7f669035b2,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1953,c4bd8cf2e3ff11eb91932201050c5f2a,Monocyte,CD14 monocyte,classical monocyte.
+1954,70c899b048b611eaa65d9e7d578d66f2,Monocyte,Intermediate monocyte,classical monocyte.
+1955,5665db4a8cfe11eba258b6b4610d6042,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1956,70c05f2a48b611eaa65d9e7d578d66f2,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1957,ef9ec6b68d0111eb894022587c8bf21f,T cell,Naive CD4 T cell,regulatory T cell.
+1958,6b8385cc314d11ee80962a1f7c690213,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1959,0694f4d202b711ec88cb72995a34965f,NK cell,CD56dim NK cell,natural killer cell.
+1960,06bd81fe02b711ec88cb72995a34965f,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1961,5fd4381e02b711eca847563a4b56082f,Monocyte,CD14 monocyte,classical monocyte.
+1962,cbd1c95e3ebe11eb9f6d666e6b6edd05,Monocyte,CD14 monocyte,classical monocyte.
+1963,576001de8cee11ebb2129e901b21dc73,Monocyte,CD14 monocyte,classical monocyte.
+1964,a82f333a4e0111ec936b1ac433bb3e99,T cell,Memory CD4 T cell,"CD8-positive, alpha-beta T cell."
+1965,ecb2ed10e6b611eba4eb1651e40fda0e,Monocyte,CD16 monocyte,non-classical monocyte.
+1966,8b6287987b7a11ebbb227ae287962563,T cell,Treg,"CD4-positive, alpha-beta T cell."
+1967,15169bb8fec611eb87dc9ec311f9e9a6,T cell,Naive CD4 T cell,T cell.
+1968,8cfa95ae7b7111eb97356a557ecd1c7b,T cell,Naive CD4 T cell,regulatory T cell.
+1969,e1953068230d11eb995f0a8b9bab73d7,B cell,Naive B cell,naive B cell.
+1970,1b8f3694e3ff11ebbe3f9efd769d557a,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1971,a74f9056489811ea92388a6a0c683ffb,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1972,36c9db6a76f611eb916cbeaf1a0a56b5,T cell,CD8aa,"CD8-positive, alpha-beta memory T cell."
+1973,1edc323e50b511ec8fafd2849fb52a10,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1974,de2dab64871a11ebaff886b6c60deacd,NK cell,CD56dim NK cell,natural killer cell.
+1975,67e32ed4609e11eda5fb2a6ba530ec97,T cell,gdT,"CD8-positive, alpha-beta T cell."
+1976,e2c7dc56f7dc11ecbf4e56eb7b1fcbc2,Monocyte,CD14 monocyte,classical monocyte.
+1977,b5c45654bfd311ebba58d6b31810e4ce,Monocyte,CD14 monocyte,classical monocyte.
+1978,94202ca46f3211eb8e954e1098597fe8,NK cell,CD56dim NK cell,natural killer cell.
+1979,03616d54c9fa11ebbe02e242efb8f7b8,NK cell,CD56dim NK cell,natural killer cell.
+1980,2d1b456c770111eb83580af69b9105e6,Monocyte,CD14 monocyte,classical monocyte.
+1981,472144b6424411ecb76da6ab44fb42eb,T cell,Naive CD8 T cell,"CD8-positive, alpha-beta T cell."
+1982,5ff7081c6f3211eb96f96a584edb8b14,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta memory T cell."
+1983,202f8e10aa7d11ed97cc4aa82665cfc4,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1984,836f5d268d0011eba962c64f4773d63c,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1985,10edc80ee3ff11eb9f4d12c99271e885,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1986,f81aa394ece411eb96e2ee7ff4e83851,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1987,a1d8fa00230c11eb9e6016fcd894d086,T cell,Memory CD8 T cell,"CD8-positive, alpha-beta T cell."
+1988,af8d7148005711ecacf076742455fe92,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1989,034a8512c9fa11ebbe02e242efb8f7b8,Monocyte,CD16 monocyte,non-classical monocyte.
+1990,ed496d92286211ec9a8f2613ba675443,Monocyte,CD14 monocyte,"CD14-positive, CD16-negative classical monocyte."
+1991,41cc70ceca1411eba8e7c23be70524c5,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta T cell."
+1992,22b421f6aa8111edbca7720112d201c9,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1993,35df1f4e7b7911ebad508aeddc44df84,T cell,Naive CD4 T cell,"CD4-positive, alpha-beta T cell."
+1994,9832c01276fe11eb89bbb265d7ce1040,Monocyte,CD14 monocyte,classical monocyte.
+1995,f4e9a434aa9f11ed9aab225a04bc010d,T cell,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell."
+1996,458001b8009211ec9cfa4a5d71d7e302,B cell,Naive B cell,B cell.
+1997,0f2d3ef6745a11eb9460023cc5433a03,NK cell,CD56dim NK cell,natural killer cell.
+1998,a2d2c5268cfc11ebb4592ee9d1c560f8,NK cell,CD56dim NK cell,natural killer cell.
+1999,0978b8a2785e11ebb00a1a75a97ae03e,B cell,Naive B cell,B cell.
