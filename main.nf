@@ -45,7 +45,7 @@ process evaluate_annotation {
 
     script:
     """
-    python bin/evaluate.py --pred results/${dataset}/${model}/predictions.csv --adata data/${dataset}.h5ad --out results/${dataset}/${model}/evaluation.json
+    python bin/evaluate.py --pred results/${dataset}/${model}/predictions.csv --adata data/${dataset}.h5ad --out results/${dataset}/${model}
     """
 }
 
