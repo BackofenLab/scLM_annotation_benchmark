@@ -15,7 +15,7 @@ process download {
         --dataset   ${params.dataset} \
         --cfg-dir   ${cfg_dir} \
         --out       data/${params.dataset}.h5ad \
-        --data-root ${data_root}
+        --data-cache ${data_root}
     """
 }
 

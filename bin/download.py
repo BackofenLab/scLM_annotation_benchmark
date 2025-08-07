@@ -163,7 +163,7 @@ def main() -> None:
     Examples
     --------
     >>> download.py --dataset Tabula_sapiens --cfg-dir datasets \\
-    ...            --data-root /scratch/datasets \\
+    ...            --data-cache /scratch/datasets \\
     ...            --out data/Tabula_sapiens.h5ad
     """
     ap = argparse.ArgumentParser()
@@ -171,7 +171,7 @@ def main() -> None:
                     help="Dataset name (must match YAML 'name')")
     ap.add_argument("--cfg-dir", required=True,
                     help="Directory containing dataset YAML files")
-    ap.add_argument("--data-root", required=True,
+    ap.add_argument("--data-cache", required=True,
                     help="Local cache for full / subset files")
     ap.add_argument("--out", required=True,
                     help="Destination inside the task work dir")
