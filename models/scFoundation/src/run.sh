@@ -6,8 +6,15 @@ OUTPUT_EMBEDDING=$2
 
 # Resolve absolute paths
 INPUT_H5AD=$(realpath "$INPUT_H5AD")
-OUTPUT_EMBEDDING=$(realpath "$OUTPUT_EMBEDDING")
-WORKDIR=$(dirname "$OUTPUT_EMBEDDING")
+
+# Create output directory if it doesn't exist and resolve its absolute path
+OUTPUT_DIR=$(dirname "$OUTPUT_EMBEDDING")
+mkdir -p "$OUTPUT_DIR"
+OUTPUT_DIR=$(realpath "$OUTPUT_DIR")
+
+# Construct the full output path
+OUTPUT_EMBEDDING="$OUTPUT_DIR/$(basename "$OUTPUT_EMBEDDING")"
+WORKDIR="$OUTPUT_DIR"
 
 ENV_NAME="scfoundation-env"
 
