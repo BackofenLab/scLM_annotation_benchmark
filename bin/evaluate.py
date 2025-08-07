@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import pandas as pd
 import numpy as np
 from pathlib import Path
@@ -67,10 +69,10 @@ def main(args):
     
     results = {}
     
-    if 'true_L1' in df.columns:
+    if 'true_labels' in df.columns:
         
-        true_col = 'true_L1'
-        pred_col = 'predicted_cell_type'
+        true_col = 'true_labels'
+        pred_col = 'predicted_labels'
 
         df_clean = clean_celltype_L1(df, true_col, pred_col)
         
@@ -82,7 +84,7 @@ def main(args):
 
     # Save results to JSON
     eval_path = output_dir / "evaluation.json"
-    with open(eval_path, "w") as f:
+    with open(eval_path, "w+") as f:
         json.dump(results, f, indent=4)
 
     print(f"Evaluation results saved to: {eval_path}")
