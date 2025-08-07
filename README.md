@@ -2,6 +2,14 @@
 
 ### Workflow description:
 
+#### nextflow.config
+Config file, currently only has three relevant parameters:  
+`datasets`: list of datasets to use. Every dataset needs a yaml file with the same name (`dataset.yaml`) in the `datasets` directory  
+`models`: list of models to use. Needs a `run.sh` in `models/${model_name}/src/run.sh`  
+`data_cache`: WIP  
+
+There is a profile `local` for running locally and `helix` for running on the helix cluster. TODO: Other/more general slurm clusters
+
 #### download process
 WIP: download.py script puts h5ad file into data (e.g. data/tabula_sapiens_blood.h5ad)
 
