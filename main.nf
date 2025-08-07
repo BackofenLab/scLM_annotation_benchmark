@@ -36,6 +36,8 @@ process run_model {
 }
 
 process evaluate_annotation {
+    conda 'pandas numpy scikit-learn matplotlib seaborn'
+
     input:
     path "results/${dataset}/${model}/predictions.csv"
     path "data/${dataset}.h5ad"
@@ -45,7 +47,7 @@ process evaluate_annotation {
 
     script:
     """
-    python bin/evaluate.py --pred results/${dataset}/${model}/predictions.csv --adata data/${dataset}.h5ad --out results/${dataset}/${model}/evaluation.json
+    python bin/evaluate.py --pred results/${dataset}/${model}/predictions.csv --out results/${dataset}/${model}/
     """
 }
 
