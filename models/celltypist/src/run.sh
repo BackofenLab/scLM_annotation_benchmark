@@ -25,12 +25,24 @@ REQUIREMENTS_FILE="celltypist/src/requirements.txt"
 source conda_env.sh
 setup_conda_env "$ENV_NAME" "$REQUIREMENTS_FILE"
 
+# Extract annotation keys from YAML config
+echo "[INFO] Extracting annotation keys from: $CFG_YAML"
+ANNOTATION_KEYS=$(python -c "
+import yaml
+with open('$CFG_YAML', 'r') as f:
+    config = yaml.safe_load(f)
+    keys = config.get('annotation_keys', [])
+    print(' '.join(keys))
+")
+
+echo "[INFO] Found annotation keys: $ANNOTATION_KEYS"
+
 # Run CellTypist prediction
 echo "[INFO] Running CellTypist prediction for: $INPUT_H5AD"
 run_in_env "$ENV_NAME" python "celltypist/src/predict.py" \
     --input "$INPUT_H5AD" \
     --output "$OUTPUT_PREDICTIONS" \
     --model "Immune_All_High.pkl" \
-    --label-key "cell_type"
+    --label_keys $ANNOTATION_KEYS
 
 echo "[INFO] CellTypist predictions saved to: $OUTPUT_PREDICTIONS"
