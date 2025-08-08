@@ -6,7 +6,7 @@
 Config file, currently only has three relevant parameters:  
 `datasets`: list of datasets to use. Every dataset needs a yaml file with the same name (`dataset.yaml`) in the `datasets` directory  
 `models`: list of models to use. Needs a `run.sh` in `models/${model_name}/src/run.sh`  
-`data_cache`: WIP  
+`data_cache`: a directory to save/cache the downloaded data and the created subsets. Within the work directory, only links to this data are stored, to avoid storing data multiple times.  
 
 There is a profile `local` for running locally and `helix` for running on the helix cluster. TODO: Other/more general slurm clusters
 
