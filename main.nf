@@ -54,7 +54,7 @@ process evaluate_annotation {
 workflow {
     Channel
         .from(params.datasets)
-        .map { dataset -> tuple(file('datasets'), dataset, params.data_cache) }
+        .map { dataset -> tuple(file('datasets'), dataset, file(params.data_cache)) }
         .set { download_input }
 
     dataset = download(download_input)

@@ -179,11 +179,12 @@ def main() -> None:
 
     cfg = pick_config(args.dataset, args.cfg_dir)
     ext = Path(cfg["url"]).suffix or ".h5ad"      # default if URL lacks ext
-
+    print(f"Downloading {cfg['name']} to {args.data_cache}")
     full_path   = Path(args.data_cache) / f"{cfg['name']}{ext}"
     subset_path = Path(args.data_cache) / \
                   f"{cfg['name']}_sub{cfg.get('subset_size')}{ext}"
-
+    print(f"Full path: {full_path}")
+    print(f"Subset path: {subset_path}")
     stream_download(cfg["url"], full_path)
 
     # Always verify before (optional) subsetting
