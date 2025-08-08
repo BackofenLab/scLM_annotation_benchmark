@@ -3,17 +3,17 @@ nextflow.enable.dsl=2
 process download {
 
     input:
-    tuple path(cfg_dir), path(data_cache)
+    tuple val(dataset), val(data_cache), path(cfg_yaml)
 
     output:
-    path "data/*sub*.h5ad"
+    tuple(path("data/*.h5ad"), val(dataset), path(cfg_yaml))
 
     script:
     """
-    download.sh \
-        --dataset   ${params.dataset} \
-        --cfg-dir   ${cfg_dir} \
-        --out       data/${params.dataset}.h5ad \
+    download.py \
+        --dataset   ${dataset} \
+        --cfg_yaml  ${cfg_yaml} \
+        --out       data/${dataset}.h5ad \
         --data_cache ${data_cache}
     """
 }
@@ -22,15 +22,15 @@ process run_model {
     conda 'git'
 
     input:
-    tuple path(data_file), path(model_dir), val(dataset), val(model)
+    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model)
 
     output:
-    path "results/*/*/predictions.csv"  // Wildcard pattern for multiple output types
+    tuple(path("results/*/*/predictions.csv"), val(dataset), val(model))
 
     script:
     """
     mkdir -p results/${dataset}/${model}
-    bash ${model_dir}/src/run.sh ${data_file} ./results/${dataset}/${model}/predictions.csv
+    bash ${model_dir}/src/run.sh ${data_file} ./results/${dataset}/${model}/predictions.csv ${cfg_yaml}
     """
 }
 
@@ -51,14 +51,21 @@ process evaluate_annotation {
 }
 
 workflow {
-    dataset = download(tuple(file('datasets'), file(params.data_cache)))
-    
-    // Run the model (all models should output predictions.csv)
-    predictions = run_model(dataset.map { data_file ->
-        tuple(data_file, file("models/${params.model}"), params.dataset, params.model)
-    })
+    Channel
+        .from(params.datasets)
+        .map { dataset -> tuple(dataset, file(params.data_cache), file("datasets/${dataset}.yml")) }
+        .set { download_input }
 
-    evaluate_annotation(predictions.map { pred ->
-        tuple(pred, params.dataset, params.model)
-    })
+    download_out = download(download_input)
+    
+    download_out
+        .combine(Channel.from(params.models))
+        .map { data_file, dataset, cfg_yaml, model ->
+            tuple(data_file, file("models/${model}"), dataset, cfg_yaml, model)
+        }
+        .set { model_input }
+    // Run the model (all models should output predictions.csv)
+    predictions = run_model(model_input)
+
+    evaluate_annotation(predictions)
 }

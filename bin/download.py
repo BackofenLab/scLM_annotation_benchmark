@@ -28,41 +28,6 @@ from tqdm import tqdm
 
 
 # ------------------------------------------------------------------------- #
-# YAML handling                                                             #
-# ------------------------------------------------------------------------- #
-
-def pick_config(dataset: str, cfg_dir: str | Path) -> dict:
-    """
-    Return the YAML configuration whose ``name`` matches *dataset*.
-
-    Parameters
-    ----------
-    dataset
-        Dataset identifier given on the CLI (must match ``name`` in YAML).
-    cfg_dir
-        Directory that contains one or more ``*.yml`` files.
-
-    Returns
-    -------
-    dict
-        Parsed YAML content.
-
-    Raises
-    ------
-    SystemExit
-        If no matching YAML is found.
-
-    """
-    cfg_dir = Path(cfg_dir)
-    for yml in cfg_dir.glob("*.yml"):
-        with open(yml) as fh:
-            cfg = yaml.safe_load(fh)
-        if cfg.get("name") == dataset:
-            return cfg
-    sys.exit(f"[ERROR] No YAML named '{dataset}' in {cfg_dir}")
-
-
-# ------------------------------------------------------------------------- #
 # Download + I/O helpers                                                    #
 # ------------------------------------------------------------------------- #
 
@@ -169,21 +134,25 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dataset", required=True,
                     help="Dataset name (must match YAML 'name')")
-    ap.add_argument("--cfg-dir", required=True,
-                    help="Directory containing dataset YAML files")
+    ap.add_argument("--cfg_yaml", required=True,
+                    help="YAML file containing dataset configuration")
     ap.add_argument("--data_cache", required=True,
                     help="Local cache for full / subset files")
     ap.add_argument("--out", required=True,
                     help="Destination inside the task work dir")
     args = ap.parse_args()
-
-    cfg = pick_config(args.dataset, args.cfg_dir)
+    print(f"Loading cfg_yaml: {args.cfg_yaml}")
+    # load the yaml file
+    with open(args.cfg_yaml, 'r') as f:
+        cfg = yaml.safe_load(f)
+    print(f"Loaded cfg: {cfg}")
     ext = Path(cfg["url"]).suffix or ".h5ad"      # default if URL lacks ext
-
+    print(f"Downloading {cfg['name']} to {args.data_cache}")
     full_path   = Path(args.data_cache) / f"{cfg['name']}{ext}"
     subset_path = Path(args.data_cache) / \
                   f"{cfg['name']}_sub{cfg.get('subset_size')}{ext}"
-
+    print(f"Full path: {full_path}")
+    print(f"Subset path: {subset_path}")
     stream_download(cfg["url"], full_path)
 
     # Always verify before (optional) subsetting

@@ -1,31 +1,26 @@
 ## Single-cell and Language foundation models
 
-#### Saving model predictions
+### Workflow description:
 
-save predicitions to: results/$dataset/$model/predictions.csv
-columns: "true_L1", "predicted_cell_type"
+#### nextflow.config
+Config file, currently only has three relevant parameters:  
+`datasets`: list of datasets to use. Every dataset needs a yaml file with the same name (`dataset.yaml`) in the `datasets` directory  
+`models`: list of models to use. Needs a `run.sh` in `models/${model_name}/src/run.sh`  
+`data_cache`: a directory to save/cache the downloaded data and the created subsets. Within the work directory, only links to this data are stored, to avoid storing data multiple times.  
 
+There is a profile `local` for running locally and `helix` for running on the helix cluster. TODO: Other/more general slurm clusters
 
+#### download process
+WIP: download.py script puts h5ad file into data (e.g. data/tabula_sapiens_blood.h5ad)
 
-#### Evaluation of single cell and language foundation models (single-cell models with langugae capabilities)
+#### run_model process
+Runs a run.sh bash script which is given five inputs: the h5ad file, the model directory (should be models/${model_name}), the name of the dataset, the dataset config file, the name of the model.
+**The run.sh should take three inputs**: 1. The h5ad file 2. the output path of the predictions.csv 3. The dataset config
+When creating a new model, implement a run.sh which installs the model and runs it on the given h5ad file, then create the file results/$dataset/$model/predictions.csv with the columns: "true_labels", "predicted_labels" from the output
 
-- InstructCell
-- Cell2Sentence
-- ...
-
-#### Evaluation of LLMs
-
-- Qwen
-- Llama
-- Deepseek
-- ...
-
-
-#### Evaluation of generative capabilities of single cell foundation models
-
-- scGPT
-- scFoundation
-- ...
+#### evaluate_annotation process
+Runs the evaluate.py script which takes as input the path of the predictions (i.e. results/$dataset/$model/predictions.csv), the name of the dataset and the model and returns results/$dataset/$model/evaluation.json  
+TODO: It also creates a pdf with plots, currently this is not published but can only be found in the corresponding work directory.
 
 ### Planning excel sheet
 
