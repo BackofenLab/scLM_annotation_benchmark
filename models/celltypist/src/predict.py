@@ -45,7 +45,9 @@ def run_celltypist_prediction(adata, model="Immune_All_high.pkl"):
     """
     logger.info(f"Running CellTypist prediction with model: {model}")
     try:
-        predictions = celltypist.annotate(adata, model=model)
+        model_obj = celltypist.models.Model.load(model)
+        model_obj.convert('GENCODEv44_Gene_id2name.csv')
+        predictions = celltypist.annotate(adata, model=model_obj)
         logger.info("Prediction completed successfully")
         return predictions
     except Exception as e:
@@ -67,7 +69,7 @@ def create_results_dataframe(adata, predictions, label_key="cell_type"):
     logger.info("Creating results DataFrame")
     
     # Get predicted labels
-    predicted_labels = list(predictions.predicted_labels.values)
+    predicted_labels = predictions.predicted_labels["predicted_labels"].values.tolist()
     predicted_idx = predictions.predicted_labels.index
     
     # Get true labels from adata.obs[label_key]

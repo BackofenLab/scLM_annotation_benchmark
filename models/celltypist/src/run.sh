@@ -3,7 +3,7 @@ set -euo pipefail
 
 INPUT_H5AD=$1
 OUTPUT_PREDICTIONS=$2
-
+CFG_YAML=$3
 # Resolve absolute paths
 INPUT_H5AD=$(realpath "$INPUT_H5AD")
 
@@ -30,6 +30,7 @@ echo "[INFO] Running CellTypist prediction for: $INPUT_H5AD"
 run_in_env "$ENV_NAME" python "celltypist/src/predict.py" \
     --input "$INPUT_H5AD" \
     --output "$OUTPUT_PREDICTIONS" \
-    --model "Immune_All_High.pkl"
+    --model "Immune_All_High.pkl" \
+    --label-key "cell_type"
 
 echo "[INFO] CellTypist predictions saved to: $OUTPUT_PREDICTIONS"
