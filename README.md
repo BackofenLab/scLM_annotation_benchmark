@@ -6,7 +6,7 @@
 Config file, currently only has three relevant parameters:  
 `datasets`: list of datasets to use. Every dataset needs a yaml file with the same name (`dataset.yaml`) in the `datasets` directory  
 `models`: list of models to use. Needs a `run.sh` in `models/${model_name}/src/run.sh`  
-`data_cache`: WIP  
+`data_cache`: a directory to save/cache the downloaded data and the created subsets. Within the work directory, only links to this data are stored, to avoid storing data multiple times.  
 
 There is a profile `local` for running locally and `helix` for running on the helix cluster. TODO: Other/more general slurm clusters
 
@@ -14,7 +14,8 @@ There is a profile `local` for running locally and `helix` for running on the he
 WIP: download.py script puts h5ad file into data (e.g. data/tabula_sapiens_blood.h5ad)
 
 #### run_model process
-Runs a run.sh bash script which is given the h5ad file, the model directory (should be models/${model_name}) and the model_name as well as dataset name.  
+Runs a run.sh bash script which is given five inputs: the h5ad file, the model directory (should be models/${model_name}), the name of the dataset, the dataset config file, the name of the model.
+**The run.sh should take three inputs**: 1. The h5ad file 2. the output path of the predictions.csv 3. The dataset config
 When creating a new model, implement a run.sh which installs the model and runs it on the given h5ad file, then create the file results/$dataset/$model/predictions.csv with the columns: "true_labels", "predicted_labels" from the output
 
 #### evaluate_annotation process

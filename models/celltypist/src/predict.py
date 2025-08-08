@@ -45,48 +45,68 @@ def run_celltypist_prediction(adata, model="Immune_All_high.pkl"):
     """
     logger.info(f"Running CellTypist prediction with model: {model}")
     try:
-        predictions = celltypist.annotate(adata, model=model)
+        model_obj = celltypist.models.Model.load(model)
+        all_start_with_ENSG = all(str(idx).startswith("ENSG") for idx in adata.var.index)
+        if all_start_with_ENSG: # Only if all genes start with ESNG, assume the index contains ensebml ids and convert the model
+            model_obj.convert('GENCODEv44_Gene_id2name.csv')
+        predictions = celltypist.annotate(adata, model=model_obj)
         logger.info("Prediction completed successfully")
         return predictions
     except Exception as e:
         logger.error(f"Failed to run CellTypist prediction: {e}")
         sys.exit(1)
 
-def create_results_dataframe(adata, predictions, label_key="cell_type"):
+def create_results_dataframe(adata, predictions, label_keys=None):
     """
     Create a DataFrame with true and predicted labels.
     
     Args:
         adata (scanpy.AnnData): Input data with true labels
         predictions (celltypist.AnnotationResult): Prediction results
-        label_key (str): Key in adata.obs containing true labels
+        label_keys (list): List of keys in adata.obs containing true labels
         
     Returns:
         pandas.DataFrame: DataFrame with true and predicted labels
     """
     logger.info("Creating results DataFrame")
     
+    if label_keys is None:
+        label_keys = ["cell_type"]
+    
     # Get predicted labels
-    predicted_labels = list(predictions.predicted_labels.values)
+    predicted_labels = predictions.predicted_labels["predicted_labels"].values.tolist()
     predicted_idx = predictions.predicted_labels.index
     
-    # Get true labels from adata.obs[label_key]
-    if label_key in adata.obs.columns:
-        true_labels = list(adata.obs[label_key][predicted_idx].values)
-    else:
-        logger.error(f"'{label_key}' not found in adata.obs")
-        sys.exit(1)
-    # Create DataFrame
-    results_df = pd.DataFrame({
-        'true_labels': true_labels,
+    # Start with predicted labels
+    results_dict = {
         'predicted_labels': predicted_labels
-    })
+    }
+    
+    # Add true labels for each annotation key
+    for i, label_key in enumerate(label_keys, 1):
+        col_name = f"true_labels_{i}" if len(label_keys) > 1 else "true_labels"
+        
+        if label_key in adata.obs.columns:
+            true_labels = list(adata.obs[label_key][predicted_idx].values)
+            results_dict[col_name] = true_labels
+            logger.info(f"Added {col_name} from adata.obs['{label_key}']")
+        else:
+            logger.warning(f"'{label_key}' not found in adata.obs, skipping")
+    
+    # Check if we have at least one true labels column
+    if len([k for k in results_dict.keys() if k.startswith('true_labels')]) == 0:
+        logger.error("No valid label keys found in adata.obs")
+        logger.error(f"Available keys: {list(adata.obs.columns)}")
+        sys.exit(1)
+    
+    # Create DataFrame
+    results_df = pd.DataFrame(results_dict)
     
     # Add index if it's not already the index
     if not results_df.index.equals(adata.obs.index):
         results_df.index = adata.obs.index
     
-    logger.info(f"Created results DataFrame with {len(results_df)} rows")
+    logger.info(f"Created results DataFrame with {len(results_df)} rows and columns: {list(results_df.columns)}")
     return results_df
 
 def save_results(results_df, output_path):
@@ -120,8 +140,8 @@ def main():
                        help=f"Output CSV file path (default: {default_output})")
     parser.add_argument("--model", "-m", default="Immune_All_High.pkl", 
                        help="CellTypist model to use (default: Immune_All_High.pkl)")
-    parser.add_argument("--label-key", "-l", default="cell_ontology_class",
-                       help="Key in adata.obs containing true labels (default: cell_ontology_class)")
+    parser.add_argument("--label_keys", "-l", nargs='+', default=["cell_ontology_class"],
+                       help="Keys in adata.obs containing true labels (default: cell_ontology_class)")
     
     args = parser.parse_args()
     
@@ -132,7 +152,7 @@ def main():
     predictions = run_celltypist_prediction(adata, args.model)
     
     # Create results DataFrame
-    results_df = create_results_dataframe(adata, predictions, args.label_key)
+    results_df = create_results_dataframe(adata, predictions, args.label_keys)
     
     # Save results
     print(f"Saving results to: {args.output}")

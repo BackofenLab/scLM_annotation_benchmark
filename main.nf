@@ -4,16 +4,16 @@ process download {
     conda 'python=3.11 tqdm requests anndata pyyaml'
 
     input:
-    tuple path(cfg_dir), val(dataset), val(data_cache)
+    tuple val(dataset), val(data_cache), path(cfg_yaml)
 
     output:
-    tuple(path("data/*.h5ad"), val(dataset))
+    tuple(path("data/*.h5ad"), val(dataset), path(cfg_yaml))
 
     script:
     """
     download.py \
         --dataset   ${dataset} \
-        --cfg-dir   ${cfg_dir} \
+        --cfg_yaml  ${cfg_yaml} \
         --out       data/${dataset}.h5ad \
         --data_cache ${data_cache}
     """
@@ -23,15 +23,15 @@ process run_model {
     conda 'git'
 
     input:
-    tuple path(data_file), path(model_dir), val(dataset), val(model)
+    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model)
 
     output:
-    tuple(path("results/*/*/predictions.csv"), val(dataset), val(model))  // Wildcard pattern for multiple output types
+    tuple(path("results/*/*/predictions.csv"), val(dataset), val(model))
 
     script:
     """
     mkdir -p results/${dataset}/${model}
-    bash ${model_dir}/src/run.sh ${data_file} ./results/${dataset}/${model}/predictions.csv
+    bash ${model_dir}/src/run.sh ${data_file} ./results/${dataset}/${model}/predictions.csv ${cfg_yaml}
     """
 }
 
@@ -54,15 +54,15 @@ process evaluate_annotation {
 workflow {
     Channel
         .from(params.datasets)
-        .map { dataset -> tuple(file('datasets'), dataset, file(params.data_cache)) }
+        .map { dataset -> tuple(dataset, file(params.data_cache), file("datasets/${dataset}.yml")) }
         .set { download_input }
 
-    dataset = download(download_input)
+    download_out = download(download_input)
     
-    dataset
+    download_out
         .combine(Channel.from(params.models))
-        .map { data_file, dataset, model ->
-            tuple(data_file, file("models/${model}"), dataset, model)
+        .map { data_file, dataset, cfg_yaml, model ->
+            tuple(data_file, file("models/${model}"), dataset, cfg_yaml, model)
         }
         .set { model_input }
     // Run the model (all models should output predictions.csv)
