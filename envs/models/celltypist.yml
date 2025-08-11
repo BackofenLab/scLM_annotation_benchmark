@@ -1,11 +1,11 @@
-name: model-nf
+name: celltypist-env
 channels:
   - conda-forge
   - bioconda
 dependencies:
   - python=3.11
   - pip
-  # - celltypist
+  - celltypist
   - scanpy=1.11.*        # avoids heavy pip resolution
   - anndata>=0.9
   - pandas
@@ -17,3 +17,4 @@ dependencies:
   - umap-learn
   - requests
   - git
+  - numba==0.60.0
