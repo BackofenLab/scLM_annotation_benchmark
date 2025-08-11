@@ -22,10 +22,10 @@ process download {
 }
 
 process run_model {
-    conda 'envs/model.yml'
-
     input:
     tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model)
+
+    conda { "envs/models/${model}.yml" }
 
     output:
     tuple(path("results/*/*/predictions.csv"), val(dataset), val(model))
