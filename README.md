@@ -11,8 +11,10 @@ Config file, currently only has three relevant parameters:
 There is a profile `local` for running locally and `helix` for running on the helix cluster. TODO: Other/more general slurm clusters
 
 #### Run main.nf
-To run `main.nf` type: `nextflow run main.nf -profile local -with-conda`
-This defines the profile to use (local, in this example) and enables Conda support for the run globally. 
+To run `main.nf` type: `nextflow run main.nf -profile local`
+This defines the profile to use (local, in this example),
+Or alternatively: `nextflow run main.nf -with-conda`
+to enables Conda support for the run globally.
 
 #### download process
 WIP: download.py script puts h5ad file into data (e.g. data/tabula_sapiens_blood.h5ad)

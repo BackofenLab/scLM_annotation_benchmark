@@ -1,7 +1,7 @@
 nextflow.enable.dsl=2
 
 process download {
-    conda 'conda-forge::python=3.11 conda-forge::pyyaml conda-forge::requests conda-forge::anndata conda-forge::tqdm'
+    conda 'python=3.11 pyyaml requests anndata tqdm'
 
     input:
     tuple val(dataset), val(data_cache), path(cfg_yaml)
@@ -12,7 +12,6 @@ process download {
     script:
     """
     set -euo pipefail
-    mkdir -p data
     # Call the script via PATH but force the *Conda* python interpreter
     python "\$(command -v download.py)" \
       --dataset   "${dataset}" \
