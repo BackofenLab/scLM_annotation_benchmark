@@ -1,7 +1,7 @@
 nextflow.enable.dsl=2
 
 process download {
-    conda 'python=3.11 pyyaml requests anndata tqdm'
+    conda 'envs/download.yml'
 
     input:
     tuple val(dataset), val(data_cache), path(cfg_yaml)
@@ -21,15 +21,8 @@ process download {
     """
 }
 
-// process check_env {
-//   conda 'conda-forge::python=3.11 conda-forge::pyyaml'
-//   """
-//   python -c "import sys, yaml; print(sys.executable); print(sys.version); print('PyYAML', yaml.__version__)"
-//   """
-// }
-
 process run_model {
-    conda 'git'
+    conda 'envs/model.yml'
 
     input:
     tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model)
@@ -45,7 +38,7 @@ process run_model {
 }
 
 process evaluate_annotation {
-    conda 'pandas numpy scikit-learn matplotlib seaborn'
+    conda 'envs/evaluation.yml'
 
     input:
     tuple path(predictions), val(dataset), val(model)
