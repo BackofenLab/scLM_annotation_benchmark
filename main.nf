@@ -1,6 +1,7 @@
 nextflow.enable.dsl=2
 
 process download {
+    conda 'conda-forge::python=3.11 conda-forge::pyyaml conda-forge::requests conda-forge::anndata conda-forge::tqdm'
 
     input:
     tuple val(dataset), val(data_cache), path(cfg_yaml)
@@ -10,13 +11,23 @@ process download {
 
     script:
     """
-    download.py \
-        --dataset   ${dataset} \
-        --cfg_yaml  ${cfg_yaml} \
-        --out       data/${dataset}.h5ad \
-        --data_cache ${data_cache}
+    set -euo pipefail
+    mkdir -p data
+    # Call the script via PATH but force the *Conda* python interpreter
+    python "\$(command -v download.py)" \
+      --dataset   "${dataset}" \
+      --cfg_yaml  "${cfg_yaml}" \
+      --out       "data/${dataset}.h5ad" \
+      --data_cache "${data_cache}"
     """
 }
+
+// process check_env {
+//   conda 'conda-forge::python=3.11 conda-forge::pyyaml'
+//   """
+//   python -c "import sys, yaml; print(sys.executable); print(sys.version); print('PyYAML', yaml.__version__)"
+//   """
+// }
 
 process run_model {
     conda 'git'
