@@ -32,7 +32,7 @@ def load_data(data_path):
         logger.error(f"Failed to load data: {e}")
         sys.exit(1)
 
-def run_celltypist_prediction(adata, model="Immune_All_high.pkl"):
+def run_celltypist_prediction(adata, model="Immune_All_High.pkl"):
     """
     Run CellTypist prediction on the data.
     

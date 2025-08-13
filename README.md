@@ -10,10 +10,17 @@ Config file, currently only has three relevant parameters:
 
 There is a profile `local` for running locally and `helix` for running on the helix cluster. TODO: Other/more general slurm clusters
 
+#### Run main.nf
+To run `main.nf` type: `nextflow run main.nf -profile local`
+This defines the profile to use (local, in this example),
+Or alternatively: `nextflow run main.nf -with-conda`
+to enables Conda support for the run globally.
+
 #### download process
 WIP: download.py script puts h5ad file into data (e.g. data/tabula_sapiens_blood.h5ad)
 
 #### run_model process
+**For every model**: Add a Conda environment file named `<model>.yml` to `envs/models/`. The model’s `run.sh` script will create and use the Conda environment defined in that file.
 Runs a run.sh bash script which is given five inputs: the h5ad file, the model directory (should be models/${model_name}), the name of the dataset, the dataset config file, the name of the model.
 **The run.sh should take three inputs**: 1. The h5ad file 2. the output path of the predictions.csv 3. The dataset config
 When creating a new model, implement a run.sh which installs the model and runs it on the given h5ad file, then create the file results/$dataset/$model/predictions.csv with the columns: "true_labels", "predicted_labels" from the output

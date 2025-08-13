@@ -1,7 +1,7 @@
 nextflow.enable.dsl=2
 
 process download {
-    conda 'python=3.11 tqdm requests anndata pyyaml'
+    conda 'envs/download.yml'
 
     input:
     tuple val(dataset), val(data_cache), path(cfg_yaml)
@@ -11,19 +11,21 @@ process download {
 
     script:
     """
+    set -euo pipefail
+    # Call the script via PATH but force the *Conda* python interpreter
     download.py \
-        --dataset   ${dataset} \
-        --cfg_yaml  ${cfg_yaml} \
-        --out       data/${dataset}.h5ad \
-        --data_cache ${data_cache}
+      --dataset   "${dataset}" \
+      --cfg_yaml  "${cfg_yaml}" \
+      --out       "data/${dataset}.h5ad" \
+      --data_cache "${data_cache}"
     """
 }
 
 process run_model {
-    conda 'git'
-
     input:
     tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model)
+
+    conda { "envs/models/${model}.yml" }
 
     output:
     tuple(path("results/*/*/predictions.csv"), val(dataset), val(model))
@@ -36,7 +38,7 @@ process run_model {
 }
 
 process evaluate_annotation {
-    conda 'pandas numpy scikit-learn matplotlib seaborn'
+    conda 'envs/evaluation.yml'
 
     input:
     tuple path(predictions), val(dataset), val(model)

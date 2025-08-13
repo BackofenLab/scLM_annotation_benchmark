@@ -7,10 +7,10 @@ RED='\033[0;31m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-echo -e "${GREEN}[1/6] Ensuring ~/.local/bin exists...${NC}"
+echo -e "${GREEN}[1/7] Ensuring ~/.local/bin exists...${NC}"
 mkdir -p "$HOME/.local/bin"
 
-echo -e "${GREEN}[2/6] Checking for Java...${NC}"
+echo -e "${GREEN}[2/7] Checking for Java...${NC}"
 if ! java -version &>/dev/null; then
   echo -e "${RED}Java is not properly installed or configured.${NC}"
   echo -e "Please install Java using one of the following options:"
@@ -21,7 +21,7 @@ if ! java -version &>/dev/null; then
   exit 1
 fi
 
-echo -e "${GREEN}[3/6] Checking for conda...${NC}"
+echo -e "${GREEN}[3/7] Checking for conda...${NC}"
 # Check for conda in multiple possible locations
 CONDA_FOUND=false
 if command -v conda &>/dev/null; then
@@ -138,7 +138,7 @@ else
   fi
 fi
 
-echo -e "${GREEN}[4/6] Checking for mamba...${NC}"
+echo -e "${GREEN}[4/7] Checking for mamba...${NC}"
 if ! command -v mamba &>/dev/null; then
   echo -e "${YELLOW}Mamba not found. Installing mamba...${NC}"
   
@@ -162,12 +162,12 @@ else
   echo -e "${GREEN}✅ Mamba found: $(mamba --version | head -n1)${NC}"
 fi
 
-echo -e "${GREEN}[5/6] Downloading Nextflow...${NC}"
+echo -e "${GREEN}[5/7] Downloading Nextflow...${NC}"
 curl -s https://get.nextflow.io | bash
 chmod +x nextflow
 mv nextflow "$HOME/.local/bin/"
 
-echo -e "${GREEN}[6/6] Ensuring ~/.local/bin is in PATH...${NC}"
+echo -e "${GREEN}[6/7] Ensuring ~/.local/bin is in PATH...${NC}"
 
 # Determine the correct shell profile file
 determine_profile_file() {
@@ -200,6 +200,28 @@ echo -e "${GREEN}Run 'nextflow -version' to verify Nextflow installation.${NC}"
 echo -e "${GREEN}Run 'conda --version' and 'mamba --version' to verify conda/mamba installation.${NC}"
 
 # Final verification and initialization
+echo -e "${GREEN}[7/7] Marking repo scripts executable...${NC}"
+
+# If this setup script lives in the repo root:
+REPO_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+# Otherwise, hardcode your repo path:
+# REPO_DIR="/Users/<user>/Documents/Arbeit/Projects/Single_Cell_Foundation_Models/sc_language_foundation_models"
+
+TARGET="$REPO_DIR/../bin/download.py"
+
+if [[ -f "$TARGET" ]]; then
+  chmod +x "$TARGET" || true
+  echo -e "${GREEN}✅ Marked $TARGET as executable${NC}"
+
+  # Optional: warn if there’s no shebang (not required if you call via `python "$(command -v download.py)"`)
+  if ! head -n1 "$TARGET" | grep -q '^#!'; then
+    echo -e "${YELLOW}ℹ️  $TARGET has no shebang; fine for Nextflow (called via python). Add '#!/usr/bin/env python' if you want to run it directly.${NC}"
+  fi
+else
+  echo -e "${YELLOW}⚠️  Skipping: $TARGET not found${NC}"
+fi
+
 echo -e "${GREEN}[Final] Ensuring conda and mamba are available...${NC}"
 
 # Ensure conda is in PATH for the current session
