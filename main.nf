@@ -13,7 +13,7 @@ process download {
     """
     set -euo pipefail
     # Call the script via PATH but force the *Conda* python interpreter
-    python "\$(command -v download.py)" \
+    download.py \
       --dataset   "${dataset}" \
       --cfg_yaml  "${cfg_yaml}" \
       --out       "data/${dataset}.h5ad" \
