@@ -10,4 +10,3 @@ notebooks
 miniconda.sh
 cache/
 .conda
-models/deepseek/src/.env
