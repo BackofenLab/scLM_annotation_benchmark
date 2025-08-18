@@ -24,6 +24,7 @@ WIP: download.py script puts h5ad file into data (e.g. data/tabula_sapiens_blood
 Runs a run.sh bash script which is given five inputs: the h5ad file, the model directory (should be models/${model_name}), the name of the dataset, the dataset config file, the name of the model.
 **The run.sh should take three inputs**: 1. The h5ad file 2. the output path of the predictions.csv 3. The dataset config
 When creating a new model, implement a run.sh which installs the model and runs it on the given h5ad file, then create the file results/$dataset/$model/predictions.csv with the columns: "true_labels", "predicted_labels" from the output
+**For LLMs (e.g. DeepSeekR1)**: You must provide your own (OpenRouter) API key to access OpenRouter. In the respective model folder (e.g., `models/deepseek/src`), put the API key in the `.env` file, but never commit or push your API key to the GitHub repository.
 
 #### evaluate_annotation process
 Runs the evaluate.py script which takes as input the path of the predictions (i.e. results/$dataset/$model/predictions.csv), the name of the dataset and the model and returns results/$dataset/$model/evaluation.json  
