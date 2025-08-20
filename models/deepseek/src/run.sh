@@ -214,8 +214,9 @@ SEED="$(yaml_get_or_default 'deepseek.seed' '42')"
 MODEL_NAME="$(yaml_get_or_default 'deepseek.model_name' 'deepseek/deepseek-r1-0528:free')"
 TASK_NAME="$(yaml_get_or_default 'deepseek.task_name' 'cell_type_prediction')"
 
+OUTPUT_MODE="$(yaml_get_or_default 'deepseek.output_mode' 'label')"
 TOP_K_GENES="$(yaml_get_or_default 'deepseek.top_k_genes' '200')"
-MAX_SAMPLES="$(yaml_get_or_default 'deepseek.max_samples' '100')"   # 0 or '' => all cells
+MAX_SAMPLES="$(yaml_get_or_default 'deepseek.max_samples' '')"   # 0 or '' => all cells
 MAX_WORKERS="$(yaml_get_or_default 'deepseek.max_workers' '3')"
 DELAY_BETWEEN_REQUESTS="$(yaml_get_or_default 'deepseek.delay_between_requests' '1.2')"
 
@@ -240,6 +241,7 @@ declare -a ARGS=(
   "--output" "${OUT_CSV}"
   "--seed" "${SEED}"
   "--model" "${MODEL_NAME}"
+  "--output_mode" "${OUTPUT_MODE}"
   "--task_name" "${TASK_NAME}"
   "--input_prompt_template" "${INPUT_PROMPT_TEMPLATE}"
   "--answer_template" "${ANSWER_TEMPLATE}"

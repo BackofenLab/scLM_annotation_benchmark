@@ -78,6 +78,7 @@ class CustomPromptFormatter(PromptFormatter):
                 self.input_prompt.format(
                     cell_sentence=cell_sentence,
                     num_genes=num_genes_str,
+                    unique_cell_types=sample["unique_cell_types"]
                 )
             )
             responses_list.append(
@@ -285,6 +286,9 @@ def run_OpenRouter_model_prediction(
         max_samples = int(max_samples)
         max_samples = min(max_samples, formatted.num_rows)
         formatted = formatted.select(range(max_samples))
+
+    # Print the first formatted row for debugging
+    print(formatted[0])
 
     n = formatted.num_rows
     logger.info(f"Predicting {n} cells with model={model}, workers={max_workers}")
@@ -526,6 +530,7 @@ def _parse_args() -> argparse.Namespace:
 
     # Core config
     p.add_argument("--model", "-m", default="deepseek/deepseek-r1-0528:free")
+    p.add_argument("--output_mode", "-om", default="label", choices=["cl_id", "label"])
     p.add_argument("--seed", type=int, default=42, help="Random seed (also passed to model where supported)")
     p.add_argument("--task_name", default="cell_type_prediction")
     p.add_argument("--input_prompt_template", required=True)
@@ -618,12 +623,25 @@ def main():
 
     adata.obs["true_labels"] = adata.obs[primary_label].astype("category")
 
+    # Get the set of labels once (robust to categorical dtype)
+    if pd.api.types.is_categorical_dtype(adata.obs["true_labels"]):
+        labels = adata.obs["true_labels"].cat.categories.to_numpy()
+    else:
+        labels = pd.unique(adata.obs["true_labels"].values)
+
+    rng = np.random.default_rng(42)  # set a seed if you want reproducibility
+
+    # One shuffled list per observation
+    adata.obs["unique_cell_types"] = [rng.permutation(labels).tolist() for _ in range(adata.n_obs)]
+
+    print(adata.var_names[:10])
+
     # Build C2S dataset (only needs true_labels)
     arrow_ds, vocab = cs.CSData.adata_to_arrow(
         adata=adata,
         random_state=args.seed,
         sentence_delimiter=" ",
-        label_col_names=["true_labels"],
+        label_col_names=["true_labels", "unique_cell_types"],
     )
     save_dir = Path(args.output).parent
     csdata = cs.CSData.csdata_from_arrow(
@@ -679,8 +697,17 @@ def main():
         prepend_reasoning=args.prepend_reasoning,
     )
 
+    # Print the first 10 predictions for debugging
+    print(preds[:10])
+
     # Convert predicted CL terms -> (normalized CL ID, cell type label)
-    pred_cl_ids, pred_labels = cl_ids_and_labels_from_preds(preds, online=True, follow_replacements=True)
+    if args.output_mode == "cl_id":
+        pred_cl_ids, pred_labels = cl_ids_and_labels_from_preds(preds, online=True, follow_replacements=True)
+    elif args.output_mode == "label":
+        pred_labels = preds
+        pred_cl_ids = [None] * len(preds)
+    else:
+        raise ValueError(f"Invalid output mode: {args.output_mode}")
 
     # Build and save results
     df = create_results_dataframe(adata, pred_cl_ids, pred_labels, args.label_keys)

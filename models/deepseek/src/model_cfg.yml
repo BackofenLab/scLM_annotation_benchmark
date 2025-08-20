@@ -20,16 +20,18 @@ deepseek:
   input_prompt_template: |
     You are an expert at classifying cell types based on gene expression.
     Given below is a list of {num_genes} gene names ordered by descending expression level in a single cell.
-    Your task is to identify the exact cell type this gene profile represents.
+    Your task is to identify the exact cell type this gene profile represents from this list of cell types: {unique_cell_types}.
     Cell sentence: {cell_sentence}
     Important rules:
-    1. Respond with only the cell ontology term of the predicted cell type (e.g. CL_0000624 for a CD4-positive, alpha-beta T cell, or CL_0000127 for an astrocyte).
+    1. Respond with only the cell type label of the predicted cell type.
     2. Do not include explanations, reasoning, or extra words.
     3. Do not repeat the question or input.
     Output:
 
   # 1. Respond with only the cell type label of the predicted cell type. 
   # 1. Respond with only the cell ontology term of the predicted cell type (e.g. CL_0000624 for a CD4-positive, alpha-beta T cell, or CL_0000127 for an astrocyte).
+  # 2. Do not include explanations, reasoning, or extra words.
+  # 3. Do not repeat the question or input.
 
 
   # The expected answer format (used for evaluation ground-truth scaffolding)
@@ -37,20 +39,23 @@ deepseek:
   #   {true_labels}
   answer_template: "{true_labels}"
 
+  #OUTPUT_MODE: "label" can be "cl_id" or "label" depending of if you want the CL ID or the cell type label
+  output_mode: "label"
+
   # Data shaping
   top_k_genes: 200
 
   # Workload sizing / rate limiting
-  max_samples: 5            # 0 or null → use all cells
+  max_samples: null            # 0 or null → use all cells
   max_workers: 3
   delay_between_requests: 1.2
 
   # -------------------- Advanced OpenRouter options --------------------
   provider:
-    order: ["deepinfra"]        # preferred providers, left-to-right (e.g. ["deepinfra", "openai"] for DeepSeekR1 and GPT-5)
+    order: ["deepinfra"]        # preferred providers (set to [] for :free models!), left-to-right (e.g. ["deepinfra", "openai"] for DeepSeekR1 and GPT-5)
     only: []                    # whitelist (empty = no whitelist)
     ignore: []                  # blacklist
-    allow_fallbacks: false       # whether to allow provider fallbacks
+    allow_fallbacks: true       # whether to allow provider fallbacks
     require_parameters: null    # true/false/null
     data_collection: "allow"    # "allow" | "deny" | null
     sort: "price"               # "price" | "throughput" | "latency" | null
