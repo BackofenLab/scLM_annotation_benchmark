@@ -68,9 +68,7 @@ def load_model():
     print(ctm_head)
     return tokenizer, model, text_encoder, ctm_head
 
-def load_dataset(tokenizer, text_encoder, data_path):
-
-    data_dir = data_path #"../data/tablula_sapiens_datasets/Kidney_TSP1_30_version2d_10X_smartseq_scvi_Nov122024.h5ad"
+def load_dataset(tokenizer, text_encoder, data_dir):
 
     dataset_sub = sc.read(data_dir)
     print(dataset_sub)
@@ -131,8 +129,6 @@ def load_dataset(tokenizer, text_encoder, data_path):
     print("------------------")
     print(list(set(tokenized_dataset["celltype"])))
 
-    #tokenized_dataset.save_to_disk(f'../data/tabula_sapiens/{name_without_ext}.tokenized_dataset')
-
     print("-----------------Newly created tokenized dataset ----------------------")
     print(tokenized_dataset.column_names)
     print(tokenized_dataset["labels"][:5], list(set(tokenized_dataset["labels"])))
@@ -151,7 +147,6 @@ def load_dataset(tokenizer, text_encoder, data_path):
     print(f"celltypes: {types}")
     print(f"labels: {list(set(tokenized_dataset['labels']))}")
 
-    #type2text = json.load(open('../data/data_zeroshot/type2text.json'))
     type2text = json.load(open(f'{curr_path}/langcell/src/type2text_tabula_sapiens_kidney.json'))
 
     print(type2text)
@@ -180,15 +175,15 @@ def load_dataset(tokenizer, text_encoder, data_path):
 def text_encode(text, tokenizer, text_encoder):
     text = tokenizer(text, padding=True, truncation=True, max_length=512, return_tensors='pt').to('cuda')
     text = text_encoder(**text).pooler_output
-    # text = F.normalize(model.text_projector(text))
     return text
 
 
-def cell_encode(tokenizer, model, cell_input_ids, cell_atts):
+def cell_encode(model, cell_input_ids, cell_atts):
     cell = model(cell_input_ids.to("cuda"), cell_atts.to("cuda"))
     cell_last_h = cell.last_hidden_state
     cell_pooler = cell.pooler_output
     return cell_last_h, cell_pooler
+
 
 def ctm(tokenizer, text_encoder, ctm_head, text, cell_emb, cell_atts):
     text = tokenizer(text, padding=True, truncation=True, max_length=512, return_tensors='pt').to('cuda')
@@ -211,8 +206,7 @@ def calculate_mean_max_min(adata, feature_name):
     return mean, median, max_val, min_val
 
 
-
-def predict(model, text_encoder, dataset_sub, testdataset, texts, text_embs, dataloader, batchsize, types, file_name):
+def predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, texts, text_embs, dataloader, batchsize, types, file_name):
     mode = "zero_shot"
     cell_embs = torch.zeros(len(dataset_sub), 256)
     model.eval()
@@ -224,7 +218,7 @@ def predict(model, text_encoder, dataset_sub, testdataset, texts, text_embs, dat
     labels = torch.tensor(testdataset['label'])
     with torch.no_grad():
         for i, d in tqdm(enumerate(dataloader)):
-            cell_last_h, cellemb = cell_encode(d['input_ids'], d['attention_mask']) # batchsize * 256
+            cell_last_h, cellemb = cell_encode(model, d['input_ids'], d['attention_mask']) # batchsize * 256
             sim = (cellemb @ text_embs) / 0.05 # batchsize * 161
             sim_logit = F.softmax(sim, dim=-1)
 
@@ -232,7 +226,7 @@ def predict(model, text_encoder, dataset_sub, testdataset, texts, text_embs, dat
             ctm_logit = torch.zeros_like(sim_logit)
             for text_idx, text in enumerate(texts):
                 text_list = [text] * sim_logit.shape[0]
-                ctm_logit[:, text_idx] = ctm(text_list, cell_last_h, d['attention_mask'])
+                ctm_logit[:, text_idx] = ctm(tokenizer, text_encoder, ctm_head, text_list, cell_last_h, d['attention_mask'])
             ctm_logit = F.softmax(ctm_logit, dim=-1)
 
             logit = (sim_logit + ctm_logit) / 2
@@ -242,12 +236,6 @@ def predict(model, text_encoder, dataset_sub, testdataset, texts, text_embs, dat
             logits[i * batchsize: (i + 1) * batchsize] = logit.cpu()
             cell_embs[i * batchsize: (i + 1) * batchsize] = cellemb.cpu()
             preds[i * batchsize: (i + 1) * batchsize] = pred.cpu()
-
-        # torch.save({'cell_embs': cell_embs,
-        #             'sim_logits': sim_logits, 'ctm_logits': ctm_logits, 
-        #             'preds': preds, 'labels': labels, 'logits': logits}, 
-        #            'data/results.pt')
-
     sim_preds = sim_logits.argmax(dim=-1)
     ctm_preds = ctm_logits.argmax(dim=-1)
     alpha = 0.1
@@ -259,7 +247,8 @@ def predict(model, text_encoder, dataset_sub, testdataset, texts, text_embs, dat
     organ_name = file_name.split('_')[0]
     plot_confusion_matrix(labels, preds, types, title=f"Confusion matrix for celltypes of {organ_name}", normalize=True, \
                           file_n=file_name, mode=mode)
-
+    
+    pred_df = pd.DataFrame({'pred': preds.numpy(), 'label': labels.numpy(), 'pred_celltype': [types[i] for i in preds], 'true_celltype': [types[i] for i in labels]})
     # Plot UMAP
     plt.tight_layout()
     cell_embs_ad = ad.AnnData(cell_embs.numpy())
@@ -271,8 +260,10 @@ def predict(model, text_encoder, dataset_sub, testdataset, texts, text_embs, dat
     sc.pp.neighbors(cell_embs_ad, use_rep='X', n_neighbors=80)
     sc.tl.umap(cell_embs_ad)
     sc.pl.umap(cell_embs_ad, color=['celltype', 'predictions', 'batch'], legend_fontsize ='xx-small', size=5, legend_fontweight='light')
-    plt.savefig(f"../data/umap_plot_{file_name}_{mode}.png", dpi=300, bbox_inches='tight')
+    plt.savefig(f'{curr_path}/data/umap_plot_{file_name}_{mode}.png', dpi=300, bbox_inches='tight')
     plt.close()
+    return pred_df
+
 
 def plot_confusion_matrix(y_true, y_pred, classes, normalize=False, title=None, cmap=plt.cm.Blues, file_n=None, mode=None):
     if not title:
@@ -289,46 +280,32 @@ def plot_confusion_matrix(y_true, y_pred, classes, normalize=False, title=None, 
     plt.title(title)
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
-    #plt.show()
     plt.tight_layout()
-    plt.savefig(f'../data/confusion_matrix_{file_n}_{mode}.png', dpi=300)
+    plt.savefig(f'{curr_path}/data/confusion_matrix_{file_n}_{mode}.png', dpi=300)
 
 
 def main():
-    print("Inside langcell prediction script")
-    """
-    Main function to run LangCell prediction pipeline.
-    """
     # Get default input path relative to this script
     default_input = str(Path(__file__).resolve().parents[3] / "util" / "test_adata.h5ad")
     default_output = str(Path.cwd() / "langcell_predictions.csv")
-
     parser = argparse.ArgumentParser(description="Langcell prediction for single-cell data")
     parser.add_argument("--input", "-i", default=default_input,
                        help=f"Input h5ad file path (default: {default_input})")
     parser.add_argument("--output", "-o", default=default_output,
                        help=f"Output CSV file path (default: {default_output})")
-    
     args = parser.parse_args()
-    
     print(args)
-
-    results_df = pd.DataFrame()
-    results_df.to_csv(args.output, index=True)
     print("Inside langcell prediction script: " + os.getcwd())
     logger.info(os.getcwd())
-
-    load_model()
-
     tokenizer, model, text_encoder, ctm_head = load_model()
     print("Loading model finished.")
     dataset_sub, testdataset, texts, text_embs, dataloader, batchsize, types, file_name = load_dataset(tokenizer, text_encoder, args.input)
-    #print("Loading dataset finished.")
-    #predict(dataset_sub, testdataset, texts, text_embs, dataloader, batchsize, types, file_name)
-
+    print("Loading dataset finished.")
+    pred_df = predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, texts, text_embs, dataloader, batchsize, types, file_name)
+    pred_df.to_csv(args.output, index=True)
     logger.info("Langcell prediction pipeline completed successfully")
     logger.info(f"Results saved to: {args.output}")
 
+
 if __name__ == "__main__":
     main()
-
