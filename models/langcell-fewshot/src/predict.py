@@ -31,8 +31,8 @@ logger = logging.getLogger(__name__)
 #GPU_NUMBER = [args.device]
 #os.environ["CUDA_VISIBLE_DEVICES"] = ",".join([str(s) for s in GPU_NUMBER])
 
-nshot = 2
-epochs = 2
+nshot = 1
+epochs = 1
 seed = 42
 train_batchsize = 4
 test_batchsize = 32
@@ -325,7 +325,7 @@ def fine_tune_model(model, train_loader, test_loader, texts, testdataset, testda
     labels = torch.tensor(testdataset['label'])
     for row in confusion_matrix(labels, preds):
         print('\t'.join([str(x) for x in row]))
-    print(classification_report(labels, preds, digits=4))
+    print(classification_report(labels, preds, digits=4, zero_division=0))
     organ_name = name_without_ext.split('_')[0]
     plot_confusion_matrix(labels, preds, types, title=f"Confusion matrix for celltypes of {organ_name}", normalize=True, \
                           file_n=name_without_ext, mode=mode)
