@@ -329,7 +329,7 @@ def fine_tune_model(model, train_loader, test_loader, texts, testdataset, testda
     organ_name = name_without_ext.split('_')[0]
     plot_confusion_matrix(labels, preds, types, title=f"Confusion matrix for celltypes of {organ_name}", normalize=True, \
                           file_n=name_without_ext, mode=mode)
-
+    pred_df = pd.DataFrame({'pred': preds.numpy(), 'label': labels.numpy(), 'pred_celltype': [types[i] for i in preds], 'true_celltype': [types[i] for i in labels]})
     plt.tight_layout()
     cell_embs_ad = ad.AnnData(cell_embs.numpy())
     cell_embs_ad.obs['celltype'] = testdataset_w_ct['celltype']
@@ -342,6 +342,7 @@ def fine_tune_model(model, train_loader, test_loader, texts, testdataset, testda
     sc.pl.umap(cell_embs_ad, color=['celltype', 'predictions', 'batch'], legend_fontsize ='xx-small', size=5, legend_fontweight='light')
     plt.savefig(f'{curr_path}/data/umap_plot_{name_without_ext}_{mode}.png', dpi=300, bbox_inches='tight')
     plt.close()
+    return pred_df
 
 
 def plot_confusion_matrix(y_true, y_pred, classes, normalize=False, title=None, cmap=plt.cm.Blues, file_n=None, mode=None):
@@ -402,4 +403,5 @@ if __name__ == "__main__":
     print("Loading model finished.")
     train_loader, test_loader, texts, testdataset, testdataset_w_ct, tokenizer, text_encoder, types, name_without_ext = load_dataset(tokenizer, text_encoder, args.input)
     print("Loading dataset finished.")
-    fine_tune_model(model, train_loader, test_loader, texts, testdataset, testdataset_w_ct, text_encoder, types, name_without_ext)
+    pred_df = fine_tune_model(model, train_loader, test_loader, texts, testdataset, testdataset_w_ct, text_encoder, types, name_without_ext)
+    pred_df.to_csv(args.output, index=True)
