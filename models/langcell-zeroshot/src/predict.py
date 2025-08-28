@@ -147,7 +147,7 @@ def load_dataset(tokenizer, text_encoder, data_dir):
     print(f"celltypes: {types}")
     print(f"labels: {list(set(tokenized_dataset['labels']))}")
 
-    type2text = json.load(open(f'{curr_path}/langcell/src/type2text_tabula_sapiens_kidney.json'))
+    type2text = json.load(open(f'{curr_path}/langcell-zeroshot/src/type2text_tabula_sapiens_kidney.json'))
 
     print(type2text)
 
@@ -295,7 +295,7 @@ def main():
                        help=f"Output CSV file path (default: {default_output})")
     args = parser.parse_args()
     print(args)
-    print("Inside langcell prediction script: " + os.getcwd())
+    print("Inside langcell zeroshot prediction script: " + os.getcwd())
     logger.info(os.getcwd())
     tokenizer, model, text_encoder, ctm_head = load_model()
     print("Loading model finished.")
