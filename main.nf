@@ -21,6 +21,26 @@ process download {
     """
 }
 
+process prepare_model {
+    input:
+    tuple val(model), path(model_dir)
+
+    output:
+    tuple val(model), path(model_dir)
+
+    script:
+    """
+    # Check if prepare.sh exists and run it if it does
+    if [ -f "${model_dir}/src/prepare.sh" ]; then
+        echo "Running preparation script for ${model}..."
+        cd ${model_dir}/src
+        bash prepare.sh
+    else
+        echo "No preparation needed for ${model}"
+    fi
+    """
+}
+
 process run_model {
     input:
     tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model)
@@ -61,12 +81,22 @@ workflow {
 
     download_out = download(download_input)
     
+    // Prepare models (handles setup like git cloning, etc.)
+    Channel
+        .from(params.models)
+        .map { model -> tuple(model, file("models/${model}")) }
+        .set { prepare_input }
+    
+    prepared_models = prepare_model(prepare_input)
+    
+    // Combine data with prepared models
     download_out
-        .combine(Channel.from(params.models))
-        .map { data_file, dataset, cfg_yaml, model ->
-            tuple(data_file, file("models/${model}"), dataset, cfg_yaml, model)
+        .combine(prepared_models)
+        .map { data_file, dataset, cfg_yaml, model, model_dir ->
+            tuple(data_file, model_dir, dataset, cfg_yaml, model)
         }
         .set { model_input }
+    
     // Run the model (all models should output predictions.csv)
     predictions = run_model(model_input)
 
