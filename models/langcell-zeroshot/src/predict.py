@@ -146,16 +146,24 @@ def load_dataset(tokenizer, text_encoder, data_dir):
 
     print(f"celltypes: {types}")
     print(f"labels: {list(set(tokenized_dataset['labels']))}")
+ 
+    ontology = json.load(open(f'{curr_path}/data/obo.json'))
+    name2id = {ontology[id]['name']: id for id in ontology}
 
-    type2text = json.load(open(f'{curr_path}/langcell-zeroshot/src/type2text_tabula_sapiens_kidney.json'))
+    #types = list(set(dataset_sub['celltype']))
+    texts = [gettextfromname(typename, name2id, ontology) for typename in types]
+    type2num = dict([(type, i) for i, type in enumerate(types)])
 
-    print(type2text)
+    #type2text = json.load(open(f'{curr_path}/langcell-zeroshot/src/type2text_tabula_sapiens_kidney.json'))
 
-    texts = [type2text[typename] for typename in types]
+    print(types)
+    print(texts)
+
+    #texts = [type2text[typename] for typename in types]
     with torch.no_grad():
         text_embs = torch.cat([text_encode(text, tokenizer, text_encoder) for text in texts], 0).T.cuda() # 256 * N
     text_embs.requires_grad = False
-    type2num = dict([(type, i) for i, type in enumerate(types)])
+    #type2num = dict([(type, i) for i, type in enumerate(types)])
 
     def classes_to_ids(example):
         example["label"] = type2num[example["celltype"]]
@@ -170,6 +178,17 @@ def load_dataset(tokenizer, text_encoder, data_dir):
     collator = DataCollatorForCellClassification()
     dataloader = DataLoader(testdataset, batch_size=batchsize, collate_fn=collator, shuffle=False)
     return tokenized_dataset, testdataset, texts, text_embs, dataloader, batchsize, types, name_without_ext
+
+
+def gettextfromname(name, name2id, ontology, discription=True):
+    ontology_name = name.lower()
+    id = name2id[ontology_name.lower()]
+    s = "cell type: "
+    s += ontology[id]['name'] + '. ' 
+    if discription:
+        if ontology[id]['def'] != []:
+            s += ontology[id]['def'] + '; '
+    return s
 
 
 def text_encode(text, tokenizer, text_encoder):
@@ -206,7 +225,7 @@ def calculate_mean_max_min(adata, feature_name):
     return mean, median, max_val, min_val
 
 
-def predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, texts, text_embs, dataloader, batchsize, types, file_name):
+def predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, texts, text_embs, dataloader, batchsize, types, file_name, o_path):
     mode = "zero_shot"
     cell_embs = torch.zeros(len(dataset_sub), 256)
     model.eval()
@@ -245,7 +264,7 @@ def predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, 
         print('\t'.join([str(x) for x in row]))
     print(classification_report(labels, preds, digits=4))
     organ_name = file_name.split('_')[0]
-    plot_confusion_matrix(labels, preds, types, title=f"Confusion matrix for celltypes of {organ_name}", normalize=True, \
+    plot_confusion_matrix(labels, preds, types, o_path, title=f"Confusion matrix for celltypes of {organ_name}", normalize=True, \
                           file_n=file_name, mode=mode)
     
     pred_df = pd.DataFrame({'pred': preds.numpy(), 'label': labels.numpy(), 'pred_celltype': [types[i] for i in preds], 'true_celltype': [types[i] for i in labels]})
@@ -260,12 +279,14 @@ def predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, 
     sc.pp.neighbors(cell_embs_ad, use_rep='X', n_neighbors=80)
     sc.tl.umap(cell_embs_ad)
     sc.pl.umap(cell_embs_ad, color=['celltype', 'predictions', 'batch'], legend_fontsize ='xx-small', size=5, legend_fontweight='light')
-    plt.savefig(f'{curr_path}/data/umap_plot_{file_name}_{mode}.png', dpi=300, bbox_inches='tight')
+    save_path = f'{o_path}/umap_plot_{file_name}_{mode}.png'
+    print(f'UMAP plot saved to {save_path}')
+    plt.savefig(save_path, dpi=300, bbox_inches='tight')
     plt.close()
     return pred_df
 
 
-def plot_confusion_matrix(y_true, y_pred, classes, normalize=False, title=None, cmap=plt.cm.Blues, file_n=None, mode=None):
+def plot_confusion_matrix(y_true, y_pred, classes, o_path, normalize=False, title=None, cmap=plt.cm.Blues, file_n=None, mode=None):
     if not title:
         if normalize:
             title = 'Normalized confusion matrix'
@@ -281,7 +302,9 @@ def plot_confusion_matrix(y_true, y_pred, classes, normalize=False, title=None, 
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
     plt.tight_layout()
-    plt.savefig(f'{curr_path}/data/confusion_matrix_{file_n}_{mode}.png', dpi=300)
+    save_path = f'{o_path}/confusion_matrix_{file_n}_{mode}.png'
+    print(f'Confusion matrix saved to {save_path}')
+    plt.savefig(save_path, dpi=300)
 
 
 def main():
@@ -301,7 +324,8 @@ def main():
     print("Loading model finished.")
     dataset_sub, testdataset, texts, text_embs, dataloader, batchsize, types, file_name = load_dataset(tokenizer, text_encoder, args.input)
     print("Loading dataset finished.")
-    pred_df = predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, texts, text_embs, dataloader, batchsize, types, file_name)
+    o_dir_name = os.path.dirname(args.output)
+    pred_df = predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, texts, text_embs, dataloader, batchsize, types, file_name, o_dir_name)
     pred_df.to_csv(args.output, index=True)
     logger.info("Langcell prediction pipeline completed successfully")
     logger.info(f"Results saved to: {args.output}")

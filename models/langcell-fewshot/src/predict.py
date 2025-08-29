@@ -9,7 +9,7 @@ from pathlib import Path
 import logging
 
 from sklearn.preprocessing import LabelEncoder
-from sklearn.metrics import confusion_matrix, classification_report
+from sklearn.metrics import confusion_matrix, classification_report, f1_score, accuracy_score
 import matplotlib.pyplot as plt
 import scipy.sparse as sp
 import seaborn as sns
@@ -27,9 +27,6 @@ import subprocess
 from sklearn.metrics import accuracy_score, f1_score
 
 logger = logging.getLogger(__name__)
-
-#GPU_NUMBER = [args.device]
-#os.environ["CUDA_VISIBLE_DEVICES"] = ",".join([str(s) for s in GPU_NUMBER])
 
 nshot = 1
 epochs = 1
@@ -75,7 +72,6 @@ def load_model():
 def text_encode(text):
     text = tokenizer(text, padding=True, truncation=True, max_length=512, return_tensors='pt').to('cuda')
     text = text_encoder(**text).pooler_output
-    # text = F.normalize(model.text_projector(text))
     return text
 
 def cell_encode(cell_input_ids, cell_atts):
@@ -113,8 +109,6 @@ def load_dataset(tokenizer, text_encoder, data_path):
     sc.pp.highly_variable_genes(dataset_sub, n_top_genes=n_top_genes)
     dataset_sub = dataset_sub[:, dataset_sub.var.highly_variable]
 
-    #print(dataset_sub)
-
     print(f"n_genes_by_counts (mean, med, max, min): {calculate_mean_max_min(dataset_sub, 'n_genes_by_counts')}")
     print(f"total_counts (mean, med, max, min): {calculate_mean_max_min(dataset_sub, 'total_counts')}")
     print(f"pct_counts_mt (mean, med, max, min): {calculate_mean_max_min(dataset_sub, 'pct_counts_mt')}")
@@ -136,7 +130,6 @@ def load_dataset(tokenizer, text_encoder, data_path):
     dataset_sub.var['feature_id'] = f_ensembl_ids 
     dataset_sub.var['ensembl_id'] = f_ensembl_ids
 
-    print(f"sp.issparse(dataset_sub.X): {str(sp.issparse(dataset_sub.X))}")
     if sp.issparse(dataset_sub.X):
         n_counts = np.asarray(dataset_sub.X.sum(axis=1)).ravel()
         n_genes  = dataset_sub.X.getnnz(axis=1)
@@ -150,16 +143,7 @@ def load_dataset(tokenizer, text_encoder, data_path):
     tokenized_cells, cell_metadata = tk.tokenize_anndata(dataset_sub)
     tokenized_dataset = tk.create_dataset(tokenized_cells, cell_metadata)
 
-    print(tokenized_dataset)
-
-    print(tokenized_dataset.column_names)
-    print("------------------")
-    print("All labels")
-    print(list(set(dataset_sub.obs['str_labels'])))
-    print("------------------")
-    print(list(set(tokenized_dataset["celltype"])))
-
-    type2text = json.load(open(f'{curr_path}/langcell-fewshot/src/type2text_tabula_sapiens_kidney.json'))
+    #type2text = json.load(open(f'{curr_path}/langcell-fewshot/src/type2text_tabula_sapiens_kidney.json'))
 
     for label_name in ["celltype", "cell_type", "str_labels", "labels"]:
         if label_name in tokenized_dataset.column_names:
@@ -169,28 +153,23 @@ def load_dataset(tokenizer, text_encoder, data_path):
     tokenized_dataset = tokenized_dataset.filter(lambda example: example['celltype'] != 'Other')
 
     types = list(set(tokenized_dataset['celltype']))
-    texts = texts = [type2text[typename] for typename in types]
+    ontology = json.load(open(f'{curr_path}/data/obo.json'))
+    name2id = {ontology[id]['name']: id for id in ontology}
+
+    #types = list(set(dataset_sub['celltype']))
+    
+    texts = [gettextfromname(typename, name2id, ontology) for typename in types]
     type2num = dict([(type, i) for i, type in enumerate(types)])
 
-    print("-------------------------------------------------")
-    print("Types:", types)
-    print("-------------------------------------------------")
-    print("Texts:", texts)
-    print("-------------------------------------------------")
-    print("type2num:", type2num)
-    print("-------------------------------------------------")
-    #
+    #texts = texts = [type2text[typename] for typename in types]
+    #type2num = dict([(type, i) for i, type in enumerate(types)])
+
     def classes_to_ids(example):
         example["label"] = type2num[example["celltype"]]
         return example
     dataset = tokenized_dataset.map(classes_to_ids, num_proc=16)
     dataset = dataset.remove_columns(['length'])
-
     dataset = dataset.shuffle(seed)
-
-    print(dataset)
-
-    # split
     label_num = len(type2num.keys())
     type2trainlist = {}
     for i in range(label_num):
@@ -215,9 +194,6 @@ def load_dataset(tokenizer, text_encoder, data_path):
     features_to_keep = ['input_ids', 'n_counts', 'batch', 'labels', 'n_genes', 'filter_pass', 'label', 'celltype']
     dataset = dataset.remove_columns([col for col in dataset.column_names if col not in features_to_keep])
 
-    print("Only features to keep")
-    print(dataset)
-
     traindataset = dataset.select(train_idx).shuffle(seed)
     testdataset = dataset.select(test_idx).shuffle(seed)
     testdataset_w_ct = testdataset
@@ -225,26 +201,24 @@ def load_dataset(tokenizer, text_encoder, data_path):
     traindataset = traindataset.remove_columns(['celltype'])
     testdataset = testdataset.remove_columns(['celltype'])
 
-    print("Train dataset")
-    print(traindataset)
-    print("Test dataset")
-    print(testdataset)
-    print("Test dataset with celltypes")
-    print(testdataset_w_ct)
-
-    # traindataset, train_ind = extract_data_based_on_class(dataset, train_cls)
-    # testdataset, test_ind = extract_data_based_on_class(dataset, test_cls)
-
     train_loader = DataLoader(traindataset, batch_size=train_batchsize, 
                             collate_fn=DataCollatorForCellClassification(), shuffle=False)
     test_loader = DataLoader(testdataset, batch_size=test_batchsize,
                             collate_fn=DataCollatorForCellClassification(), shuffle=False)
-    eval_loader = DataLoader(testdataset.select(range(eval_num)), batch_size=test_batchsize,
-                            collate_fn=DataCollatorForCellClassification(), shuffle=False)
 
     return train_loader, test_loader, texts, testdataset, testdataset_w_ct, tokenizer, text_encoder, types, name_without_ext
 
-def fine_tune_model(model, train_loader, test_loader, texts, testdataset, testdataset_w_ct, text_encoder, types, name_without_ext):
+def gettextfromname(name, name2id, ontology, discription=True):
+    ontology_name = name.lower()
+    id = name2id[ontology_name.lower()]
+    s = "cell type: "
+    s += ontology[id]['name'] + '. ' 
+    if discription:
+        if ontology[id]['def'] != []:
+            s += ontology[id]['def'] + '; '
+    return s
+
+def fine_tune_model(model, train_loader, test_loader, texts, testdataset, testdataset_w_ct, text_encoder, types, name_without_ext, o_dir_name):
     mode = f"{str(nshot)}_shot"
     model.train()
     text_encoder.train()
@@ -307,13 +281,6 @@ def fine_tune_model(model, train_loader, test_loader, texts, testdataset, testda
             cell_embs[i * test_batchsize: (i + 1) * test_batchsize] = cellemb.cpu()
             preds[i * test_batchsize: (i + 1) * test_batchsize] = pred.cpu()
 
-    #torch.save({'cell_embs': cell_embs, 'text_embs': text_embs, 
-    #            'sim_logits': sim_logits, 'ctm_logits': ctm_logits,
-    #            'preds': preds, 'labels': labels, 'logits': logits}, 
-    #        output_path + 'result.pt')
-
-    from sklearn.metrics import f1_score, accuracy_score
-
     for k in [0, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]:
         preds_k = (k * sim_logits + (1 - k) * ctm_logits).argmax(dim=-1)
         print(k, '\n', accuracy_score(labels, preds_k), f1_score(labels, preds_k, average='macro'))
@@ -327,7 +294,7 @@ def fine_tune_model(model, train_loader, test_loader, texts, testdataset, testda
         print('\t'.join([str(x) for x in row]))
     print(classification_report(labels, preds, digits=4, zero_division=0))
     organ_name = name_without_ext.split('_')[0]
-    plot_confusion_matrix(labels, preds, types, title=f"Confusion matrix for celltypes of {organ_name}", normalize=True, \
+    plot_confusion_matrix(labels, preds, types, o_dir_name, title=f"Confusion matrix for celltypes of {organ_name}", normalize=True, \
                           file_n=name_without_ext, mode=mode)
     pred_df = pd.DataFrame({'pred': preds.numpy(), 'label': labels.numpy(), 'pred_celltype': [types[i] for i in preds], 'true_celltype': [types[i] for i in labels]})
     plt.tight_layout()
@@ -340,12 +307,12 @@ def fine_tune_model(model, train_loader, test_loader, texts, testdataset, testda
     sc.pp.neighbors(cell_embs_ad, use_rep='X', n_neighbors=80)
     sc.tl.umap(cell_embs_ad)
     sc.pl.umap(cell_embs_ad, color=['celltype', 'predictions', 'batch'], legend_fontsize ='xx-small', size=5, legend_fontweight='light')
-    plt.savefig(f'{curr_path}/data/umap_plot_{name_without_ext}_{mode}.png', dpi=300, bbox_inches='tight')
+    plt.savefig(f'{o_dir_name}/umap_plot_{name_without_ext}_{mode}.png', dpi=300, bbox_inches='tight')
     plt.close()
     return pred_df
 
 
-def plot_confusion_matrix(y_true, y_pred, classes, normalize=False, title=None, cmap=plt.cm.Blues, file_n=None, mode=None):
+def plot_confusion_matrix(y_true, y_pred, classes, o_dir_name, normalize=False, title=None, cmap=plt.cm.Blues, file_n=None, mode=None):
     if not title:
         if normalize:
             title = 'Normalized confusion matrix'
@@ -362,7 +329,7 @@ def plot_confusion_matrix(y_true, y_pred, classes, normalize=False, title=None, 
     plt.xlabel('Predicted label')
     #plt.show()
     plt.tight_layout()
-    plt.savefig(f'{curr_path}/data/confusion_matrix_{file_n}_{mode}.png', dpi=300)
+    plt.savefig(f'{o_dir_name}/confusion_matrix_{file_n}_{mode}.png', dpi=300)
 
 if __name__ == "__main__":
 
@@ -403,5 +370,6 @@ if __name__ == "__main__":
     print("Loading model finished.")
     train_loader, test_loader, texts, testdataset, testdataset_w_ct, tokenizer, text_encoder, types, name_without_ext = load_dataset(tokenizer, text_encoder, args.input)
     print("Loading dataset finished.")
-    pred_df = fine_tune_model(model, train_loader, test_loader, texts, testdataset, testdataset_w_ct, text_encoder, types, name_without_ext)
+    o_dir_name = os.path.dirname(args.output)
+    pred_df = fine_tune_model(model, train_loader, test_loader, texts, testdataset, testdataset_w_ct, text_encoder, types, name_without_ext, o_dir_name)
     pred_df.to_csv(args.output, index=True)

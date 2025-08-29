@@ -19,7 +19,7 @@ cd ../..
 echo "Downloading model weights..."
 
 # URL of the zipped file
-ZIP_URL="https://zenodo.org/records/16965387/files/ckpt-20250827T132202Z-1-001.zip?download=1"
+ZIP_URL="https://zenodo.org/records/16994789/files/langcell_pretrained_model_datasets.zip?download=1"
 
 # Output directories
 DOWNLOAD_DIR="./downloads"
@@ -38,7 +38,7 @@ echo "Unzipping $ZIP_FILE ..."
 unzip -o "$ZIP_FILE" -d "$DOWNLOAD_DIR/unzipped"
 
 echo "Copying files to $DATA_DIR ..."
-cp -r "$DOWNLOAD_DIR/unzipped/"* "$DATA_DIR/"
+cp -r "$DOWNLOAD_DIR/unzipped/langcell_pretrained_model_datasets/"* "$DATA_DIR/"
 
 echo "✅ Done. Files are in $DATA_DIR"
 
