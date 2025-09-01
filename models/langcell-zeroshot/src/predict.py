@@ -1,112 +1,151 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 """
-LangCell prediction script for single-cell data annotation.
+LangCell zero-shot cell-type classification with CTM fusion.
 """
+
+from __future__ import annotations
 
 import os
-
+import json
 import argparse
-import pandas as pd
-import scanpy as sc
-from pathlib import Path
+import subprocess
 import logging
+from pathlib import Path
+from typing import Dict, Iterable, List, Sequence, Tuple
 
-import anndata as ad
 import numpy as np
-from sklearn.preprocessing import LabelEncoder
-from sklearn.metrics import confusion_matrix, classification_report
-import scipy.sparse as sp
-import seaborn as sns
-import matplotlib.pyplot as plt
 import pandas as pd
-#os.environ['CUDA_VISIBLE_DEVICES'] = '0'
-from datasets import load_from_disk, Dataset
-import torch.nn as nn, torch.nn.functional as F
-import torch, json
+import anndata as ad
+import scanpy as sc
+import scipy.sparse as sp
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from torch.utils.data import DataLoader
+from tqdm import tqdm
 from transformers import BertTokenizer, BertModel
+from sklearn.metrics import (
+    confusion_matrix,
+    classification_report,
+    f1_score,
+    accuracy_score,
+)
+import matplotlib.pyplot as plt
+import seaborn as sns  # used for heatmap
+
+# Project-local utils
 from utils import BertModel as MedBertModel
 from utils import LangCellDataCollatorForCellClassification as DataCollatorForCellClassification
 from utils import LangCellTranscriptomeTokenizer
-from tqdm import tqdm
-from torch.utils.data import DataLoader
 
 logger = logging.getLogger(__name__)
-
-n_top_genes = 3000
 curr_path = os.getcwd()
 
+def set_seed(seed: int) -> None:
+    """Set RNG seeds for reproducibility."""
+    import random
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+
+
 class Pooler(nn.Module):
-    def __init__(self, config, pretrained_proj, proj_dim):
+    """
+    Projects CLS token to a lower-dimensional, L2-normalized embedding.
+
+    Parameters
+    ----------
+    config : transformers.BertConfig
+        Config with `hidden_size` used to init linear layer.
+    pretrained_proj : str
+        Path to a `.bin` state_dict for the projection layer.
+    proj_dim : int
+        Target dimensionality of the pooled embedding.
+    """
+    def __init__(self, config, pretrained_proj: str, proj_dim: int):
         super().__init__()
         self.proj = nn.Linear(config.hidden_size, proj_dim)
-        self.proj.load_state_dict(torch.load(pretrained_proj))
+        self.proj.load_state_dict(torch.load(pretrained_proj, map_location="cpu"))
+
     def forward(self, hidden_states: torch.Tensor) -> torch.Tensor:
+        # Use CLS token (position 0), then project + normalize
         pooled_output = hidden_states[:, 0]
         pooled_output = F.normalize(self.proj(pooled_output), dim=-1)
         return pooled_output
 
-def load_model():
-    model = BertModel.from_pretrained(f'{curr_path}/data/ckpt/cell_bert')
-    model.pooler = Pooler(model.config, pretrained_proj=f'{curr_path}/data/ckpt/cell_proj.bin', proj_dim=256)
-    proj = model.pooler.proj
-    # model = model.module
-    model = model.to("cuda")
 
+def load_model_assets(base_dir: Path, device: torch.device):
+    """
+    Load transcriptome encoder, text encoder, tokenizer, and CTM head.
+
+    Assumes the following files exist under `base_dir / 'data' / 'ckpt'`:
+    - cell_bert            (HF folder)
+    - cell_proj.bin        (projection weights)
+    - text_bert            (HF folder)
+    - text_proj.bin        (projection weights)
+    - ctm_head.bin         (linear classification head)
+    """
+    ckpt_dir = base_dir / "data" / "ckpt"
+    # Transcriptome side (BERT-like)
+    model = BertModel.from_pretrained(str(ckpt_dir / "cell_bert"))
+    model.pooler = Pooler(
+        model.config,
+        pretrained_proj=str(ckpt_dir / "cell_proj.bin"),
+        proj_dim=256,
+    )
+    model = model.to(device)
     text_pretrained_model = 'microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext'
     tokenizer = BertTokenizer.from_pretrained(text_pretrained_model)
-    tokenizer.add_special_tokens({'bos_token':'[DEC]'})
-    tokenizer.add_special_tokens({'additional_special_tokens':['[ENC]']})       
-    tokenizer.enc_token_id = tokenizer.additional_special_tokens_ids[0]  
-    text_encoder = MedBertModel.from_pretrained(f'{curr_path}/data/ckpt/text_bert', add_pooling_layer=True)
-    text_encoder.pooler = Pooler(text_encoder.config, pretrained_proj=f'{curr_path}/data/ckpt/text_proj.bin', proj_dim=256)
-    text_encoder = text_encoder.to("cuda")
-
+    tokenizer.add_special_tokens({"bos_token": "[DEC]"})
+    tokenizer.add_special_tokens({"additional_special_tokens": ["[ENC]"]})
+    tokenizer.enc_token_id = tokenizer.additional_special_tokens_ids[0]
+    text_encoder = MedBertModel.from_pretrained(
+        str(ckpt_dir / "text_bert"),
+        add_pooling_layer=True,
+    )
+    text_encoder.pooler = Pooler(
+        text_encoder.config,
+        pretrained_proj=str(ckpt_dir / "text_proj.bin"),
+        proj_dim=256,
+    )
+    text_encoder = text_encoder.to(device)
+    # CTM head maps text CLS to binary logits; we will use softmax(...)[...,1]
     ctm_head = nn.Linear(text_encoder.config.hidden_size, 2)
-    ctm_head.load_state_dict(torch.load(f'{curr_path}/data/ckpt/ctm_head.bin'))
-    ctm_head = ctm_head.to("cuda")
+    ctm_head.load_state_dict(
+        torch.load(str(ckpt_dir / "ctm_head.bin"), map_location="cpu")
+    )
+    ctm_head = ctm_head.to(device)
+    return model, tokenizer, text_encoder, ctm_head
 
-    print(ctm_head)
-    return tokenizer, model, text_encoder, ctm_head
 
-def load_dataset(tokenizer, text_encoder, data_dir):
+def calculate_mean_max_min(adata, feature_name):
+    vals = adata.obs[feature_name]
+    return np.mean(vals), np.median(vals), np.max(vals), np.min(vals)
 
-    dataset_sub = sc.read(data_dir)
-    print(dataset_sub)
-    name_without_ext = os.path.splitext(os.path.basename(data_dir))[0]
 
-    sc.pp.highly_variable_genes(dataset_sub, n_top_genes=n_top_genes)
+def load_dataset(tokenizer, text_encoder, args):
+    """
+    Read h5ad, filter/prepare, tokenize cells, map labels, stratify zero-shot test.
+    """
+    dataset_sub = sc.read(args.input)
+    file_name = os.path.splitext(os.path.basename(args.input))[0]
+
+    # find highly variable genes
+    sc.pp.highly_variable_genes(dataset_sub, n_top_genes=args.n_top_genes)
     dataset_sub = dataset_sub[:, dataset_sub.var.highly_variable]
-
-    print(dataset_sub)
 
     print(f"n_genes_by_counts (mean, med, max, min): {calculate_mean_max_min(dataset_sub, 'n_genes_by_counts')}")
     print(f"total_counts (mean, med, max, min): {calculate_mean_max_min(dataset_sub, 'total_counts')}")
     print(f"pct_counts_mt (mean, med, max, min): {calculate_mean_max_min(dataset_sub, 'pct_counts_mt')}")
 
+    # add key features
     dataset_sub.obs["filter_pass"] = (
         (dataset_sub.obs["n_genes_by_counts"] >= 200)
     ).astype(bool)
 
-    le = LabelEncoder()
-    dataset_sub.obs['batch'] = dataset_sub.obs['_scvi_batch']
-    dataset_sub.obs['str_labels'] = dataset_sub.obs['cell_ontology_class']
-    dataset_sub.obs['celltype'] = dataset_sub.obs['cell_ontology_class']
-    dataset_sub.obs['labels'] = le.fit_transform(dataset_sub.obs['str_labels'])
-    label_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
-    print("Mapping:", label_mapping)
-    dataset_sub.obs['n_counts'] = np.asarray(dataset_sub.X.sum(axis=1)).ravel() #dataset_sub.X.sum(axis=1)
-
-    print(f"Gene symbol: {dataset_sub.var['gene_symbol'][:50]}")
-    print(f"Ensemble id: {dataset_sub.var['ensembl_id'][:50]}")
-
-    f_ensembl_ids = dataset_sub.var['ensembl_id'].str.replace(r'\.\d+$','', regex=True)
-
-    print(f"Formatted Ensemble id: {f_ensembl_ids[:50]}")
-
-    dataset_sub.var['feature_id'] = f_ensembl_ids
-    dataset_sub.var['ensembl_id'] = f_ensembl_ids
-
-    print(f"sp.issparse(dataset_sub.X): {str(sp.issparse(dataset_sub.X))}")
     if sp.issparse(dataset_sub.X):
         n_counts = np.asarray(dataset_sub.X.sum(axis=1)).ravel()
         n_genes  = dataset_sub.X.getnnz(axis=1)
@@ -114,56 +153,36 @@ def load_dataset(tokenizer, text_encoder, data_dir):
         n_counts = dataset_sub.X.sum(axis=1)
         n_genes  = (dataset_sub.X > 0).sum(axis=1)
 
+    dataset_sub.obs['batch'] = dataset_sub.obs['_scvi_batch']
+    dataset_sub.obs['str_labels'] = dataset_sub.obs['cell_ontology_class']
+    dataset_sub.obs['celltype'] = dataset_sub.obs['cell_ontology_class']
+    dataset_sub.obs['n_counts'] = n_counts #np.asarray(dataset_sub.X.sum(axis=1)).ravel() #dataset_sub.X.sum(axis=1)
+    f_ensembl_ids = dataset_sub.var['ensembl_id'].str.replace(r'\.\d+$','', regex=True)
+    dataset_sub.var['feature_id'] = f_ensembl_ids
+    dataset_sub.var['ensembl_id'] = f_ensembl_ids
     dataset_sub.obs["n_genes"]  = np.asarray(n_genes, dtype=np.int32)
 
     tk = LangCellTranscriptomeTokenizer(dict([(k, k) for k in dataset_sub.obs.keys()]), nproc=4)
     tokenized_cells, cell_metadata = tk.tokenize_anndata(dataset_sub)
     tokenized_dataset = tk.create_dataset(tokenized_cells, cell_metadata)
 
-    print(tokenized_dataset)
-
-    print(tokenized_dataset.column_names)
-    print("------------------")
-    print("All labels")
-    print(list(set(dataset_sub.obs['str_labels'])))
-    print("------------------")
-    print(list(set(tokenized_dataset["celltype"])))
-
-    print("-----------------Newly created tokenized dataset ----------------------")
-    print(tokenized_dataset.column_names)
-    print(tokenized_dataset["labels"][:5], list(set(tokenized_dataset["labels"])))
-    print(len(tokenized_dataset["input_ids"]), len(tokenized_dataset["input_ids"][0]), len(tokenized_dataset["input_ids"][1]), tokenized_dataset["str_labels"][:5], tokenized_dataset["length"][:5], tokenized_dataset["filter_pass"][:5])
-    print(tokenized_dataset["n_counts"][:5], tokenized_dataset["n_genes"][:5], tokenized_dataset["str_labels"][:5], list(set(tokenized_dataset["str_labels"])))
-
     for label_name in ["celltype", "cell_type", "str_labels", "labels"]:
         if label_name in tokenized_dataset.column_names:
             break
-    print(f"label_name: {label_name}")
     if label_name != "celltype":
         tokenized_dataset = tokenized_dataset.rename_column(label_name,"celltype")
 
     types = list(set(tokenized_dataset['celltype']))
 
-    print(f"celltypes: {types}")
-    print(f"labels: {list(set(tokenized_dataset['labels']))}")
- 
     ontology = json.load(open(f'{curr_path}/data/obo.json'))
     name2id = {ontology[id]['name']: id for id in ontology}
 
-    #types = list(set(dataset_sub['celltype']))
     texts = [gettextfromname(typename, name2id, ontology) for typename in types]
     type2num = dict([(type, i) for i, type in enumerate(types)])
 
-    #type2text = json.load(open(f'{curr_path}/langcell-zeroshot/src/type2text_tabula_sapiens_kidney.json'))
-
-    print(types)
-    print(texts)
-
-    #texts = [type2text[typename] for typename in types]
     with torch.no_grad():
         text_embs = torch.cat([text_encode(text, tokenizer, text_encoder) for text in texts], 0).T.cuda() # 256 * N
     text_embs.requires_grad = False
-    #type2num = dict([(type, i) for i, type in enumerate(types)])
 
     def classes_to_ids(example):
         example["label"] = type2num[example["celltype"]]
@@ -174,10 +193,9 @@ def load_dataset(tokenizer, text_encoder, data_dir):
     remove_columns.remove('input_ids')
     remove_columns.remove('label')
     testdataset = testdataset.remove_columns(remove_columns)
-    batchsize = 32
     collator = DataCollatorForCellClassification()
-    dataloader = DataLoader(testdataset, batch_size=batchsize, collate_fn=collator, shuffle=False)
-    return tokenized_dataset, testdataset, texts, text_embs, dataloader, batchsize, types, name_without_ext
+    dataloader = DataLoader(testdataset, batch_size=args.batchsize, collate_fn=collator, shuffle=False)
+    return tokenized_dataset, testdataset, texts, text_embs, dataloader, args.batchsize, types, file_name
 
 
 def gettextfromname(name, name2id, ontology, discription=True):
@@ -217,16 +235,9 @@ def ctm(tokenizer, text_encoder, ctm_head, text, cell_emb, cell_atts):
     return logits
 
 
-def calculate_mean_max_min(adata, feature_name):
-    mean = np.mean(adata.obs[feature_name])
-    median = np.median(adata.obs[feature_name])
-    max_val = np.max(adata.obs[feature_name])
-    min_val = np.min(adata.obs[feature_name])
-    return mean, median, max_val, min_val
-
-
-def predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, texts, text_embs, dataloader, batchsize, types, file_name, o_path):
+def predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, texts, text_embs, dataloader, types, file_name, o_path, args):
     mode = "zero_shot"
+    batchsize = args.batchsize
     cell_embs = torch.zeros(len(dataset_sub), 256)
     model.eval()
     text_encoder.eval()
@@ -240,14 +251,12 @@ def predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, 
             cell_last_h, cellemb = cell_encode(model, d['input_ids'], d['attention_mask']) # batchsize * 256
             sim = (cellemb @ text_embs) / 0.05 # batchsize * 161
             sim_logit = F.softmax(sim, dim=-1)
-
             # ctm
             ctm_logit = torch.zeros_like(sim_logit)
             for text_idx, text in enumerate(texts):
                 text_list = [text] * sim_logit.shape[0]
                 ctm_logit[:, text_idx] = ctm(tokenizer, text_encoder, ctm_head, text_list, cell_last_h, d['attention_mask'])
             ctm_logit = F.softmax(ctm_logit, dim=-1)
-
             logit = (sim_logit + ctm_logit) / 2
             pred = logit.argmax(dim=-1)
             sim_logits[i * batchsize: (i + 1) * batchsize] = sim_logit.cpu()
@@ -255,20 +264,19 @@ def predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, 
             logits[i * batchsize: (i + 1) * batchsize] = logit.cpu()
             cell_embs[i * batchsize: (i + 1) * batchsize] = cellemb.cpu()
             preds[i * batchsize: (i + 1) * batchsize] = pred.cpu()
-    sim_preds = sim_logits.argmax(dim=-1)
-    ctm_preds = ctm_logits.argmax(dim=-1)
-    alpha = 0.1
+    alpha = args.alpha
     preds = (alpha * sim_logits + (1 - alpha) * ctm_logits).argmax(dim=-1)
     labels = torch.tensor(testdataset['label'])
     for row in confusion_matrix(labels, preds):
         print('\t'.join([str(x) for x in row]))
+    
+    # evaluation
     print(classification_report(labels, preds, digits=4))
     organ_name = file_name.split('_')[0]
-    plot_confusion_matrix(labels, preds, types, o_path, title=f"Confusion matrix for celltypes of {organ_name}", normalize=True, \
-                          file_n=file_name, mode=mode)
-    
+    # plot confusion matrix
+    plot_confusion_matrix(labels, preds, types, o_path, title=f'Confusion matrix for celltypes of {organ_name}', file_n=file_name, mode=mode, normalize=True)
     pred_df = pd.DataFrame({'pred': preds.numpy(), 'label': labels.numpy(), 'pred_celltype': [types[i] for i in preds], 'true_celltype': [types[i] for i in labels]})
-    # Plot UMAP
+    # plot UMAP
     plt.tight_layout()
     cell_embs_ad = ad.AnnData(cell_embs.numpy())
     cell_embs_ad.obs['celltype'] = dataset_sub['celltype']
@@ -286,46 +294,71 @@ def predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, 
     return pred_df
 
 
-def plot_confusion_matrix(y_true, y_pred, classes, o_path, normalize=False, title=None, cmap=plt.cm.Blues, file_n=None, mode=None):
-    if not title:
-        if normalize:
-            title = 'Normalized confusion matrix'
-        else:
-            title = 'Confusion matrix, without normalization'
+def plot_confusion_matrix(
+    y_true: torch.Tensor,
+    y_pred: torch.Tensor,
+    classes: Sequence[str],
+    out_dir: Path,
+    title: str,
+    file_n: str,
+    mode: str,
+    normalize: bool = True,
+) -> None:
+    """Save a labeled confusion matrix heatmap."""
     cm = confusion_matrix(y_true, y_pred)
     if normalize:
-        cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+        cm = cm.astype(float) / (cm.sum(axis=1, keepdims=True) + 1e-12)
     df_cm = pd.DataFrame(cm, index=classes, columns=classes)
     plt.figure(figsize=(10, 7))
-    sns.heatmap(df_cm, annot=False, cmap=cmap)
-    plt.title(title)
-    plt.ylabel('True label')
-    plt.xlabel('Predicted label')
+    sns.heatmap(df_cm, annot=False, cmap=plt.cm.Blues)
+    plt.title(title or ("Normalized confusion matrix" if normalize else "Confusion matrix"))
+    plt.ylabel("True label")
+    plt.xlabel("Predicted label")
     plt.tight_layout()
-    save_path = f'{o_path}/confusion_matrix_{file_n}_{mode}.png'
-    print(f'Confusion matrix saved to {save_path}')
-    plt.savefig(save_path, dpi=300)
+    out_path = f'{out_dir}/confusion_matrix_{file_n}_{mode}.png'
+    plt.savefig(out_path, dpi=300)
+    plt.close()
+    logger.info(f'Saved confusion matrix: {out_path}')
+
+
+def parse_args() -> argparse.Namespace:
+    """Parse CLI arguments."""
+    curr_path = Path.cwd()
+    default_input = curr_path.parents[3] / "util" / "test_adata.h5ad"
+    default_output = curr_path / "langcell_predictions.csv"
+
+    p = argparse.ArgumentParser(description="LangCell few/zero-shot prediction for single-cell data")
+    p.add_argument("-i", "--input", type=Path, default=default_input, help=f"Input h5ad file path (default: {default_input})")
+    p.add_argument("-o", "--output", type=Path, default=default_output, help=f"Output CSV file path (default: {default_output})")
+    p.add_argument("--epochs", type=int, default=1, help="Fine-tuning epochs (default: 1)")
+    p.add_argument("--seed", type=int, default=42, help="Random seed (default: 42)")
+    p.add_argument("--batchsize", type=int, default=32, help="Test batch size (default: 32)")
+    p.add_argument("--n_top_genes", type=int, default=3000, help="Number of HVGs (default: 3000)")
+    p.add_argument("--alpha", type=float, default=0.1, help="Fusion weight for SIM logits (default: 0.1)")
+    p.add_argument("--device", type=str, default=None, help="torch device, e.g. 'cuda:0' or 'cpu' (default: auto)")
+    return p.parse_args()
 
 
 def main():
-    # Get default input path relative to this script
-    default_input = str(Path(__file__).resolve().parents[3] / "util" / "test_adata.h5ad")
-    default_output = str(Path.cwd() / "langcell_predictions.csv")
-    parser = argparse.ArgumentParser(description="Langcell prediction for single-cell data")
-    parser.add_argument("--input", "-i", default=default_input,
-                       help=f"Input h5ad file path (default: {default_input})")
-    parser.add_argument("--output", "-o", default=default_output,
-                       help=f"Output CSV file path (default: {default_output})")
-    args = parser.parse_args()
-    print(args)
-    print("Inside langcell zeroshot prediction script: " + os.getcwd())
-    logger.info(os.getcwd())
-    tokenizer, model, text_encoder, ctm_head = load_model()
-    print("Loading model finished.")
-    dataset_sub, testdataset, texts, text_embs, dataloader, batchsize, types, file_name = load_dataset(tokenizer, text_encoder, args.input)
+    args = parse_args()
+    logger.info("Args: %s", args)
+
+    base_dir = Path.cwd()
+    out_dir = args.output.parent
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    # Device & seed
+    device = torch.device(args.device) if args.device else torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    set_seed(args.seed)
+
+    # Load models/tokenizer/head
+    model, tokenizer, text_encoder, ctm_head = load_model_assets(base_dir, device)
+    logger.info("Model assets loaded.")
+
+    dataset_sub, testdataset, texts, text_embs, dataloader, batchsize, types, file_name = load_dataset(tokenizer, text_encoder, args)
     print("Loading dataset finished.")
-    o_dir_name = os.path.dirname(args.output)
-    pred_df = predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, texts, text_embs, dataloader, batchsize, types, file_name, o_dir_name)
+
+    pred_df = predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, texts, text_embs, dataloader, types, file_name, out_dir, args)
     pred_df.to_csv(args.output, index=True)
     logger.info("Langcell prediction pipeline completed successfully")
     logger.info(f"Results saved to: {args.output}")

@@ -152,14 +152,6 @@ def load_dataset(tokenizer, text_encoder, args):
         (dataset_sub.obs["n_genes_by_counts"] >= 200)
     ).astype(bool)
 
-    dataset_sub.obs['batch'] = dataset_sub.obs['_scvi_batch']
-    dataset_sub.obs['str_labels'] = dataset_sub.obs['cell_ontology_class']
-    dataset_sub.obs['celltype'] = dataset_sub.obs['cell_ontology_class']
-    dataset_sub.obs['n_counts'] = np.asarray(dataset_sub.X.sum(axis=1)).ravel()
-    f_ensembl_ids = dataset_sub.var['ensembl_id'].str.replace(r'\.\d+$','', regex=True)
-    dataset_sub.var['feature_id'] = f_ensembl_ids 
-    dataset_sub.var['ensembl_id'] = f_ensembl_ids
-
     if sp.issparse(dataset_sub.X):
         n_counts = np.asarray(dataset_sub.X.sum(axis=1)).ravel()
         n_genes  = dataset_sub.X.getnnz(axis=1)
@@ -167,6 +159,13 @@ def load_dataset(tokenizer, text_encoder, args):
         n_counts = dataset_sub.X.sum(axis=1)
         n_genes  = (dataset_sub.X > 0).sum(axis=1)
 
+    dataset_sub.obs['batch'] = dataset_sub.obs['_scvi_batch']
+    dataset_sub.obs['str_labels'] = dataset_sub.obs['cell_ontology_class']
+    dataset_sub.obs['celltype'] = dataset_sub.obs['cell_ontology_class']
+    dataset_sub.obs['n_counts'] = n_counts
+    f_ensembl_ids = dataset_sub.var['ensembl_id'].str.replace(r'\.\d+$','', regex=True)
+    dataset_sub.var['feature_id'] = f_ensembl_ids 
+    dataset_sub.var['ensembl_id'] = f_ensembl_ids
     dataset_sub.obs["n_genes"]  = np.asarray(n_genes, dtype=np.int32)
 
     tk = LangCellTranscriptomeTokenizer(dict([(k, k) for k in dataset_sub.obs.keys()]), nproc=4)
