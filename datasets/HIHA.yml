@@ -1,0 +1,7 @@
+# datasets/tabula_sapiens_blood.yml
+name: HIHA          # used in channel / filenames
+url: [internal link removed] #this is a random subset of the full dataset with 50K cells. No preprocessing has been done.
+format: h5ad
+subset_size: 1000                # null → use full dataset
+batch_key: "batch_id"
+annotation_keys: ["AIFI_L1", "AIFI_L2", "AIFI_L3"]
