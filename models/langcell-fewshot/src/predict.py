@@ -31,6 +31,8 @@ from sklearn.metrics import (
     classification_report,
     f1_score,
     accuracy_score,
+    normalized_mutual_info_score,
+    adjusted_rand_score
 )
 import matplotlib.pyplot as plt
 import seaborn as sns  # used for heatmap
@@ -219,7 +221,7 @@ def load_dataset(tokenizer, text_encoder, args):
     traindataset = dataset.select(train_idx).shuffle(args.seed)
     testdataset = dataset.select(test_idx).shuffle(args.seed)
     testdataset_w_ct = testdataset
-
+    #types = list(set(testdataset['celltype']))
     traindataset = traindataset.remove_columns(['celltype'])
     testdataset = testdataset.remove_columns(['celltype'])
 
@@ -231,7 +233,7 @@ def load_dataset(tokenizer, text_encoder, args):
     return train_loader, test_loader, texts, testdataset, testdataset_w_ct, tokenizer, text_encoder, types, file_name
 
 
-def gettextfromname(name, name2id, ontology, discription=True):
+def gettextfromname(name, name2id, ontology, discription=False):
     ontology_name = name.lower()
     id = name2id[ontology_name.lower()]
     s = "cell type: "
@@ -239,7 +241,9 @@ def gettextfromname(name, name2id, ontology, discription=True):
     if discription:
         if ontology[id]['def'] != []:
             s += ontology[id]['def'] + '; '
-    return s
+    print(f"Cell type description: {s}")
+    return "cell type"
+    #return s
 
 
 def text_encode(text):
@@ -346,26 +350,35 @@ def fine_tune_model(
         preds_k = (k * sim_logits + (1 - k) * ctm_logits).argmax(dim=-1)
         print(k, '\n', accuracy_score(labels, preds_k), f1_score(labels, preds_k, average='macro'))
     preds = (alpha * sim_logits + (1 - alpha) * ctm_logits).argmax(dim=-1)
-    labels = torch.tensor(testdataset['label'])
+    nmi = normalized_mutual_info_score(labels, preds)
+    ari = adjusted_rand_score(labels, preds)
     for row in confusion_matrix(labels, preds):
         print('\t'.join([str(x) for x in row]))
     print(classification_report(labels, preds, digits=4, zero_division=0))
-    organ_name = file_stub.split('_')[0]
+    organ_name = file_stub.split('_')[-1]
+    # plot confusion matrix
+    plot_umap(cell_embs, testdataset_w_ct, preds, types, file_stub, mode, out_dir, nmi, ari)
     plot_confusion_matrix(labels, preds, types, out_dir, title=f"Confusion matrix for celltypes of {organ_name}", file_n=file_stub, mode=mode, normalize=True)
     pred_df = pd.DataFrame({'pred': preds.numpy(), 'label': labels.numpy(), 'pred_celltype': [types[i] for i in preds], 'true_celltype': [types[i] for i in labels]})
+    return pred_df
+
+
+def plot_umap(cell_embs, dataset_sub, preds, types, file_name, mode, o_path, nmi, ari):
+    """
+    Plot UMAP
+    """
     plt.tight_layout()
     cell_embs_ad = ad.AnnData(cell_embs.numpy())
-    cell_embs_ad.obs['celltype'] = testdataset_w_ct['celltype']
-    if 'batch' in testdataset.features.keys():
-        cell_embs_ad.obs['batch'] = testdataset['batch']
-        cell_embs_ad.obs['batch'] = cell_embs_ad.obs['batch'].astype(str)
+    cell_embs_ad.obs['celltype'] = dataset_sub['celltype']
     cell_embs_ad.obs['predictions'] = [types[i] for i in preds]
     sc.pp.neighbors(cell_embs_ad, use_rep='X', n_neighbors=80)
     sc.tl.umap(cell_embs_ad)
-    sc.pl.umap(cell_embs_ad, color=['celltype', 'predictions', 'batch'], legend_fontsize ='xx-small', size=5, legend_fontweight='light')
-    plt.savefig(f'{out_dir}/umap_plot_{file_stub}_{mode}.png', dpi=300, bbox_inches='tight')
+    sc.pl.umap(cell_embs_ad, color=['celltype', 'predictions'], legend_fontsize ='xx-small', size=5, legend_fontweight='light')
+    save_path = f'{o_path}/umap_plot_{file_name}_{mode}.png'
+    plt.title(f'UMAP plot of {file_name} ({mode}): NMI={nmi:.2f}, ARI={ari:.2f}')
+    plt.savefig(save_path, dpi=300, bbox_inches='tight')
     plt.close()
-    return pred_df
+    print(f'UMAP plot saved to {save_path}')
 
 
 def plot_confusion_matrix(
@@ -382,7 +395,6 @@ def plot_confusion_matrix(
     cm = confusion_matrix(y_true, y_pred)
     if normalize:
         cm = cm.astype(float) / (cm.sum(axis=1, keepdims=True) + 1e-12)
-
     df_cm = pd.DataFrame(cm, index=classes, columns=classes)
     plt.figure(figsize=(10, 7))
     sns.heatmap(df_cm, annot=False, cmap=plt.cm.Blues)
@@ -405,7 +417,7 @@ def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="LangCell few/zero-shot prediction for single-cell data")
     p.add_argument("-i", "--input", type=Path, default=default_input, help=f"Input h5ad file path (default: {default_input})")
     p.add_argument("-o", "--output", type=Path, default=default_output, help=f"Output CSV file path (default: {default_output})")
-    p.add_argument("--epochs", type=int, default=1, help="Fine-tuning epochs (default: 1)")
+    p.add_argument("--epochs", type=int, default=2, help="Fine-tuning epochs (default: 1)")
     p.add_argument("--nshot", type=int, default=1, help="Number of examples per class for training (default: 1)")
     p.add_argument("--seed", type=int, default=42, help="Random seed (default: 42)")
     p.add_argument("--train_batchsize", type=int, default=4, help="Train batch size (default: 4)")

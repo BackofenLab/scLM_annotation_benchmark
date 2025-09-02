@@ -203,7 +203,7 @@ def load_dataset(tokenizer, text_encoder, args):
     return tokenized_dataset, testdataset, texts, text_embs, dataloader, args.batchsize, types, file_name
 
 
-def gettextfromname(name, name2id, ontology, discription=True):
+def gettextfromname(name, name2id, ontology, discription=False):
     """
     Collect description for cell types from the ontology.
     """
@@ -214,9 +214,9 @@ def gettextfromname(name, name2id, ontology, discription=True):
     if discription:
         if ontology[id]['def'] != []:
             s += ontology[id]['def'] + '; '
-    logger.info(f"Cell type description: {s}")
-    #return ""
-    return s
+    print(f"Cell type description: {s}")
+    return "cell type"
+    #return s
 
 
 def text_encode(text, tokenizer, text_encoder):
@@ -317,7 +317,6 @@ def predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, 
             preds[i * batchsize: (i + 1) * batchsize] = pred.cpu()
     alpha = args.alpha
     preds = (alpha * sim_logits + (1 - alpha) * ctm_logits).argmax(dim=-1)
-    labels = torch.tensor(testdataset['label'])
     nmi = normalized_mutual_info_score(labels, preds)
     ari = adjusted_rand_score(labels, preds)
     print(f"Normalized Mutual Information (NMI) Score: {nmi}")
@@ -379,6 +378,74 @@ def plot_confusion_matrix(
     logger.info(f'Saved confusion matrix: {out_path}')
 
 
+def make_bar_plot_f1(curr_path):
+    categories = ["Zero-shot", "1-shot", "2-shot"]        # x-axis categories
+    groups = ["Cell type + Desc", "Cell type", "No text"]     # group labels
+    values = np.array([
+        [0.91, 0.89, 0.0017],   # for Zero-shot
+        [0.92, 0.89, 8],   # for 1-shot
+        [5, 8, 5]    # for 2-shot
+    ])
+
+    # Bar settings
+    x = np.arange(len(categories))      # x positions
+    width = 0.25                        # width of each bar
+
+    fig, ax = plt.subplots(figsize=(8,6), dpi=300)
+
+    # Plot each group
+    for i, group in enumerate(groups):
+        ax.bar(x + i*width, values[:, i], width, label=group)
+
+    # Beautify
+    ax.set_ylabel("F1 scores", fontsize=11)
+    ax.set_xlabel("Experiment type", fontsize=11)
+    ax.set_title("Comparison of F1 scores for various settings on TS Kidney dataset", fontsize=13)
+    ax.set_xticks(x + width/2)
+    ax.set_xticklabels(categories, fontsize=11)
+    ax.legend()
+
+    # High-quality layout
+    plt.tight_layout()
+
+    plt.savefig(f"{curr_path}/grouped_barplot_f1.png", dpi=300)   # PNG
+    #plt.savefig(f"{curr_path}/results/grouped_barplot.pdf")            # PDF (vector)
+    plt.show()
+
+def make_bar_plot_ari(curr_path):
+    categories = ["Zero-shot", "1-shot", "2-shot"]        # x-axis categories
+    groups = ["Cell type + Desc", "Cell type", "No text"]     # group labels
+    values = np.array([
+        [0.66, 0.65, 0.0],   # for Zero-shot
+        [0.68, 0.67, 8],   # for 1-shot
+        [5, 8, 5]    # for 2-shot
+    ])
+
+    # Bar settings
+    x = np.arange(len(categories))      # x positions
+    width = 0.25                        # width of each bar
+
+    fig, ax = plt.subplots(figsize=(8,6), dpi=300)
+
+    # Plot each group
+    for i, group in enumerate(groups):
+        ax.bar(x + i*width, values[:, i], width, label=group)
+
+    # Beautify
+    ax.set_ylabel("Adjusted Rand Index (ARI)", fontsize=11)
+    ax.set_xlabel("Experiment type", fontsize=11)
+    ax.set_title("Comparison of ARI for various settings on TS Kidney dataset", fontsize=13)
+    ax.set_xticks(x + width/2)
+    ax.set_xticklabels(categories, fontsize=11)
+    ax.legend()
+
+    # High-quality layout
+    plt.tight_layout()
+
+    plt.savefig(f"{curr_path}/grouped_barplot_ari.png", dpi=300)   # PNG
+    plt.show()
+
+
 def parse_args() -> argparse.Namespace:
     """Parse CLI arguments."""
     curr_path = Path.cwd()
@@ -409,7 +476,7 @@ def main():
     set_seed(args.seed)
 
     # Load models/tokenizer/head
-    model, tokenizer, text_encoder, ctm_head = load_model_assets(base_dir, device)
+    '''model, tokenizer, text_encoder, ctm_head = load_model_assets(base_dir, device)
     logger.info("Model assets loaded.")
 
     dataset_sub, testdataset, texts, text_embs, dataloader, batchsize, types, file_name = load_dataset(tokenizer, text_encoder, args)
@@ -419,7 +486,11 @@ def main():
     #pred_df = predict_with_cell_emb(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, texts, text_embs, dataloader, types, file_name, out_dir, args)
     pred_df.to_csv(args.output, index=True)
     logger.info("Langcell prediction pipeline completed successfully")
-    logger.info(f"Results saved to: {args.output}")
+    logger.info(f"Results saved to: {args.output}")'''
+
+    make_bar_plot_f1(out_dir)
+
+    make_bar_plot_ari(out_dir)
 
 
 if __name__ == "__main__":
