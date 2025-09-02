@@ -383,7 +383,7 @@ def make_bar_plot_f1(curr_path):
     groups = ["Cell type + Desc", "Cell type", "No text"]     # group labels
     values = np.array([
         [0.91, 0.89, 0.0017],   # for Zero-shot
-        [0.92, 0.89, 8],   # for 1-shot
+        [0.92, 0.89, 0.0],   # for 1-shot
         [5, 8, 5]    # for 2-shot
     ])
 
@@ -417,7 +417,7 @@ def make_bar_plot_ari(curr_path):
     groups = ["Cell type + Desc", "Cell type", "No text"]     # group labels
     values = np.array([
         [0.66, 0.65, 0.0],   # for Zero-shot
-        [0.68, 0.67, 8],   # for 1-shot
+        [0.68, 0.67, 0.0],   # for 1-shot
         [5, 8, 5]    # for 2-shot
     ])
 
