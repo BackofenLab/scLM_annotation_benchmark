@@ -31,7 +31,11 @@ from sklearn.metrics import (
     classification_report,
     f1_score,
     accuracy_score,
+    silhouette_score,
+    normalized_mutual_info_score,
+    adjusted_rand_score
 )
+from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 import seaborn as sns  # used for heatmap
 
@@ -42,6 +46,7 @@ from utils import LangCellTranscriptomeTokenizer
 
 logger = logging.getLogger(__name__)
 curr_path = os.getcwd()
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def set_seed(seed: int) -> None:
     """Set RNG seeds for reproducibility."""
@@ -199,13 +204,18 @@ def load_dataset(tokenizer, text_encoder, args):
 
 
 def gettextfromname(name, name2id, ontology, discription=True):
+    """
+    Collect description for cell types from the ontology.
+    """
     ontology_name = name.lower()
     id = name2id[ontology_name.lower()]
     s = "cell type: "
-    s += ontology[id]['name'] + '. ' 
+    s += ontology[id]['name'] + '. '
     if discription:
         if ontology[id]['def'] != []:
             s += ontology[id]['def'] + '; '
+    logger.info(f"Cell type description: {s}")
+    #return ""
     return s
 
 
@@ -225,14 +235,55 @@ def cell_encode(model, cell_input_ids, cell_atts):
 def ctm(tokenizer, text_encoder, ctm_head, text, cell_emb, cell_atts):
     text = tokenizer(text, padding=True, truncation=True, max_length=512, return_tensors='pt').to('cuda')
     output = text_encoder(**text,
-                encoder_hidden_states = cell_emb.to("cuda"),
-                encoder_attention_mask = cell_atts.to("cuda"),
-                return_dict = True,
-                mode = 'multimodal',
-                )
+        encoder_hidden_states = cell_emb.to("cuda"),
+        encoder_attention_mask = cell_atts.to("cuda"),
+        return_dict = True,
+        mode = 'multimodal',
+    )
     logits = ctm_head(output.last_hidden_state[:, 0, :])
     logits = F.softmax(logits, dim=-1)[..., 1] # [n]
     return logits
+
+
+def predict_with_cell_emb(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, texts, text_embs, dataloader, types, file_name, o_path, args):
+    mode = "zero_shot"
+    batchsize = args.batchsize
+    cell_embs = torch.zeros(len(dataset_sub), 256)
+    model.eval()
+    text_encoder.eval()
+    preds = torch.zeros(len(dataset_sub))
+    sim_logits = torch.zeros(len(dataset_sub), text_embs.shape[-1])
+    #ctm_logits = torch.zeros(len(dataset_sub), text_embs.shape[-1])
+    logits = torch.zeros(len(dataset_sub), text_embs.shape[-1])
+    labels = torch.tensor(testdataset['label'])
+    n_classes = text_embs.shape[-1]
+    with torch.no_grad():
+        for i, d in tqdm(enumerate(dataloader)):
+            _, cellemb = cell_encode(model, d['input_ids'], d['attention_mask']) # batchsize * 256
+            cell_emb_head = nn.Linear(cellemb.size(-1), n_classes).to(device) ## use these lines to get only cell embeddings and no text supervision
+            sim = cell_emb_head(cellemb)
+            logging.info(f"Using only cell embeddings for cell type classification. Sim shape: {sim.shape}")
+            sim_logit = F.softmax(sim, dim=-1)
+            logit = sim_logit
+            pred = logit.argmax(dim=-1)
+            sim_logits[i * batchsize: (i + 1) * batchsize] = sim_logit.cpu()
+            logits[i * batchsize: (i + 1) * batchsize] = logit.cpu()
+            cell_embs[i * batchsize: (i + 1) * batchsize] = cellemb.cpu()
+            preds[i * batchsize: (i + 1) * batchsize] = pred.cpu()
+    #alpha = args.alpha
+    preds = sim_logits.argmax(dim=-1)
+    labels = torch.tensor(testdataset['label'])
+    for row in confusion_matrix(labels, preds):
+        print('\t'.join([str(x) for x in row]))
+    # evaluation
+    print(classification_report(labels, preds, digits=4))
+    organ_name = file_name.split('_')[-1]
+    # plot UMAP
+    plot_umap(cell_embs, dataset_sub, preds, types, file_name, mode, o_path)
+    # plot confusion matrix
+    plot_confusion_matrix(labels, preds, types, o_path, title=f'Confusion matrix for celltypes of {organ_name}', file_n=file_name, mode=mode, normalize=True)
+    pred_df = pd.DataFrame({'pred': preds.numpy(), 'label': labels.numpy(), 'pred_celltype': [types[i] for i in preds], 'true_celltype': [types[i] for i in labels]})
+    return pred_df
 
 
 def predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, texts, text_embs, dataloader, types, file_name, o_path, args):
@@ -249,7 +300,7 @@ def predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, 
     with torch.no_grad():
         for i, d in tqdm(enumerate(dataloader)):
             cell_last_h, cellemb = cell_encode(model, d['input_ids'], d['attention_mask']) # batchsize * 256
-            sim = (cellemb @ text_embs) / 0.05 # batchsize * 161
+            sim = (cellemb @ text_embs) / 0.05 # batchsize * 161 # uncomment to combine cell emb and text
             sim_logit = F.softmax(sim, dim=-1)
             # ctm
             ctm_logit = torch.zeros_like(sim_logit)
@@ -257,7 +308,7 @@ def predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, 
                 text_list = [text] * sim_logit.shape[0]
                 ctm_logit[:, text_idx] = ctm(tokenizer, text_encoder, ctm_head, text_list, cell_last_h, d['attention_mask'])
             ctm_logit = F.softmax(ctm_logit, dim=-1)
-            logit = (sim_logit + ctm_logit) / 2
+            logit = (sim_logit + ctm_logit) / 2 # Use the following line when combinging cell emb and text
             pred = logit.argmax(dim=-1)
             sim_logits[i * batchsize: (i + 1) * batchsize] = sim_logit.cpu()
             ctm_logits[i * batchsize: (i + 1) * batchsize] = ctm_logit.cpu()
@@ -267,31 +318,38 @@ def predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, 
     alpha = args.alpha
     preds = (alpha * sim_logits + (1 - alpha) * ctm_logits).argmax(dim=-1)
     labels = torch.tensor(testdataset['label'])
+    nmi = normalized_mutual_info_score(labels, preds)
+    ari = adjusted_rand_score(labels, preds)
+    print(f"Normalized Mutual Information (NMI) Score: {nmi}")
+    print(f"Adjusted Rand Index (ARI) Score: {ari}")
     for row in confusion_matrix(labels, preds):
         print('\t'.join([str(x) for x in row]))
-    
     # evaluation
     print(classification_report(labels, preds, digits=4))
-    organ_name = file_name.split('_')[0]
+    organ_name = file_name.split('_')[-1]
     # plot confusion matrix
+    plot_umap(cell_embs, dataset_sub, preds, types, file_name, mode, o_path, nmi, ari)
     plot_confusion_matrix(labels, preds, types, o_path, title=f'Confusion matrix for celltypes of {organ_name}', file_n=file_name, mode=mode, normalize=True)
     pred_df = pd.DataFrame({'pred': preds.numpy(), 'label': labels.numpy(), 'pred_celltype': [types[i] for i in preds], 'true_celltype': [types[i] for i in labels]})
-    # plot UMAP
+    return pred_df
+
+
+def plot_umap(cell_embs, dataset_sub, preds, types, file_name, mode, o_path, nmi, ari):
+    """
+    Plot UMAP
+    """
     plt.tight_layout()
     cell_embs_ad = ad.AnnData(cell_embs.numpy())
     cell_embs_ad.obs['celltype'] = dataset_sub['celltype']
-    if 'batch' in dataset_sub.features.keys():
-        cell_embs_ad.obs['batch'] = dataset_sub['batch']
-        cell_embs_ad.obs['batch'] = cell_embs_ad.obs['batch'].astype(str)
     cell_embs_ad.obs['predictions'] = [types[i] for i in preds]
     sc.pp.neighbors(cell_embs_ad, use_rep='X', n_neighbors=80)
     sc.tl.umap(cell_embs_ad)
-    sc.pl.umap(cell_embs_ad, color=['celltype', 'predictions', 'batch'], legend_fontsize ='xx-small', size=5, legend_fontweight='light')
+    sc.pl.umap(cell_embs_ad, color=['celltype', 'predictions'], legend_fontsize ='xx-small', size=5, legend_fontweight='light')
     save_path = f'{o_path}/umap_plot_{file_name}_{mode}.png'
-    print(f'UMAP plot saved to {save_path}')
+    plt.title(f'UMAP plot of {file_name} ({mode}): NMI={nmi:.2f}, ARI={ari:.2f}')
     plt.savefig(save_path, dpi=300, bbox_inches='tight')
     plt.close()
-    return pred_df
+    print(f'UMAP plot saved to {save_path}')
 
 
 def plot_confusion_matrix(
@@ -347,8 +405,7 @@ def main():
     out_dir = args.output.parent
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    # Device & seed
-    device = torch.device(args.device) if args.device else torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    # Seed
     set_seed(args.seed)
 
     # Load models/tokenizer/head
@@ -357,8 +414,9 @@ def main():
 
     dataset_sub, testdataset, texts, text_embs, dataloader, batchsize, types, file_name = load_dataset(tokenizer, text_encoder, args)
     print("Loading dataset finished.")
-
+    # use the following line to combine cell emb and text
     pred_df = predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, texts, text_embs, dataloader, types, file_name, out_dir, args)
+    #pred_df = predict_with_cell_emb(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, texts, text_embs, dataloader, types, file_name, out_dir, args)
     pred_df.to_csv(args.output, index=True)
     logger.info("Langcell prediction pipeline completed successfully")
     logger.info(f"Results saved to: {args.output}")
