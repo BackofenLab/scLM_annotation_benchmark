@@ -384,7 +384,7 @@ def make_bar_plot_f1(curr_path):
     values = np.array([
         [0.91, 0.89, 0.0017],   # for Zero-shot
         [0.92, 0.89, 0.0],   # for 1-shot
-        [5, 8, 5]    # for 2-shot
+        [0.91, 0.92, 0.0]    # for 2-shot
     ])
 
     # Bar settings
@@ -400,7 +400,7 @@ def make_bar_plot_f1(curr_path):
     # Beautify
     ax.set_ylabel("F1 scores", fontsize=11)
     ax.set_xlabel("Experiment type", fontsize=11)
-    ax.set_title("Comparison of F1 scores for various settings on TS Kidney dataset", fontsize=13)
+    ax.set_title("Comparison of F1 scores on TS Kidney dataset", fontsize=13)
     ax.set_xticks(x + width/2)
     ax.set_xticklabels(categories, fontsize=11)
     ax.legend()
@@ -416,9 +416,9 @@ def make_bar_plot_ari(curr_path):
     categories = ["Zero-shot", "1-shot", "2-shot"]        # x-axis categories
     groups = ["Cell type + Desc", "Cell type", "No text"]     # group labels
     values = np.array([
-        [0.66, 0.65, 0.0],   # for Zero-shot
-        [0.68, 0.67, 0.0],   # for 1-shot
-        [5, 8, 5]    # for 2-shot
+        [0.90, 0.89, 0.0],   # for Zero-shot
+        [0.90, 0.86, 0.0],   # for 1-shot
+        [0.91, 0.88, 0.0]    # for 2-shot
     ])
 
     # Bar settings
@@ -434,7 +434,7 @@ def make_bar_plot_ari(curr_path):
     # Beautify
     ax.set_ylabel("Adjusted Rand Index (ARI)", fontsize=11)
     ax.set_xlabel("Experiment type", fontsize=11)
-    ax.set_title("Comparison of ARI for various settings on TS Kidney dataset", fontsize=13)
+    ax.set_title("Comparison of ARI on TS Kidney dataset", fontsize=13)
     ax.set_xticks(x + width/2)
     ax.set_xticklabels(categories, fontsize=11)
     ax.legend()
