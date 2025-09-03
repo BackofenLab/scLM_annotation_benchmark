@@ -48,7 +48,7 @@ process run_model {
     conda { "envs/models/${model}.yml" }
 
     output:
-    tuple(path("results/*/*/predictions.csv"), val(dataset), val(model))
+    tuple(path("results/*/*/predictions*.csv"), val(dataset), val(model))
 
     script:
     """
@@ -69,7 +69,9 @@ process evaluate_annotation {
     script:
     """
     mkdir -p results/${dataset}/${model}
-    evaluate.py --pred ${predictions} --out results/${dataset}/${model}/ 
+    # Convert the prediction files to a comma-separated string
+    pred_files=\$(echo ${predictions} | tr ' ' ',')
+    evaluate.py --pred "\$pred_files" --out results/${dataset}/${model}/ 
     """
 }
 
