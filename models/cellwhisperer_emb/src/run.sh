@@ -12,20 +12,20 @@ mkdir -p "$OUTPUT_DIR"
 # Get the directory where this script is located
 SCRIPT_DIR=$(dirname "$(realpath "$0")")
 
-# Extract true label key from config
-TRUE_LABEL_KEY=$(python - <<'PY' "$CFG_YAML"
+# Extract all annotation keys from config
+ANNOTATION_KEYS=$(python - <<'PY' "$CFG_YAML"
 import yaml, sys
 config = yaml.safe_load(open(sys.argv[1]))
 annotation_keys = config.get('annotation_keys', [])
 if annotation_keys:
-    print(annotation_keys[0])  # Use first annotation key as true label key
+    print(' '.join(annotation_keys))  # Print all annotation keys space-separated
 else:
     print('cell_type')  # Default fallback
 PY
 )
 
-# Run CellWhisperer prediction
+# Run CellWhisperer prediction with all annotation keys
 python "$SCRIPT_DIR/predict.py" \
   --input "$INPUT_H5AD" \
   --output "$OUT_CSV" \
-  --true_label_key "$TRUE_LABEL_KEY"
+  --annotation_keys $ANNOTATION_KEYS
