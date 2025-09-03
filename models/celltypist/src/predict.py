@@ -125,6 +125,25 @@ def save_results(results_df, output_path):
         logger.error(f"Failed to save results: {e}")
         sys.exit(1)
 
+def preprocess_data(adata):
+    """
+    Preprocess data for CellTypist prediction.
+    
+    Args:
+        adata (scanpy.AnnData): Input data
+        
+    Returns:
+        scanpy.AnnData: Preprocessed data
+    """
+    logger.info("Preprocessing data")
+    try:
+        sc.pp.normalize_total(adata, target_sum = 1e4)
+        sc.pp.log1p(adata)
+        return adata
+    except Exception as e:
+        logger.error(f"Failed to preprocess data: {e}")
+        sys.exit(1)
+        
 def main():
     """
     Main function to run CellTypist prediction pipeline.
@@ -147,7 +166,7 @@ def main():
     
     # Load data
     adata = load_data(args.input)
-    
+    adata = preprocess_data(adata)
     # Run prediction
     predictions = run_celltypist_prediction(adata, args.model)
     
