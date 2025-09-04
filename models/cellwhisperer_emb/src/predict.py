@@ -33,7 +33,7 @@ output_csv_base = args.output
 ANNOTATION_KEYS = args.annotation_keys
 
 # Configuration
-CKPT = "../../../../models/cellwhisperer_jointemb_v1.ckpt"              # adjust!
+CKPT = "../../../cache/models/cellwhisperer_jointemb_v1.ckpt"              # adjust!
 URL = "https://medical-epigenomics.org/papers/schaefer2024/data/models/cellwhisperer_clip_v1.ckpt"
 
 download_if_missing(URL, CKPT)
