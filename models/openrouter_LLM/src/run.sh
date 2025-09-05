@@ -53,7 +53,7 @@ import yaml
 PY
 then
   echo "ERROR: PyYAML not available in the current environment (import yaml failed)." >&2
-  echo "Make sure envs/models/deepseek.yml contains 'pyyaml' and rerun with -resume." >&2
+  echo "Make sure envs/models/openrouter_LLM.yml contains 'pyyaml' and rerun with -resume." >&2
   exit 70
 fi
 
@@ -210,22 +210,22 @@ fi
 # -------------------------------------------------------------------
 # Model parameters (from MODEL_CFG, with sane defaults)
 # -------------------------------------------------------------------
-SEED="$(yaml_get_or_default 'deepseek.seed' '42')"
-MODEL_NAME="$(yaml_get_or_default 'deepseek.model_name' 'deepseek/deepseek-r1-0528:free')"
-TASK_NAME="$(yaml_get_or_default 'deepseek.task_name' 'cell_type_prediction')"
+SEED="$(yaml_get_or_default 'openrouter_LLM.seed' '42')"
+MODEL_NAME="$(yaml_get_or_default 'openrouter_LLM.model_name' 'deepseek/deepseek-r1-0528:free')"
+TASK_NAME="$(yaml_get_or_default 'openrouter_LLM.task_name' 'cell_type_prediction')"
 
-OUTPUT_MODE="$(yaml_get_or_default 'deepseek.output_mode' 'label')"
-TOP_K_GENES="$(yaml_get_or_default 'deepseek.top_k_genes' '200')"
-MAX_SAMPLES="$(yaml_get_or_default 'deepseek.max_samples' '')"   # 0 or '' => all cells
-MAX_WORKERS="$(yaml_get_or_default 'deepseek.max_workers' '3')"
-DELAY_BETWEEN_REQUESTS="$(yaml_get_or_default 'deepseek.delay_between_requests' '1.2')"
+OUTPUT_MODE="$(yaml_get_or_default 'openrouter_LLM.output_mode' 'label')"
+TOP_K_GENES="$(yaml_get_or_default 'openrouter_LLM.top_k_genes' '200')"
+MAX_SAMPLES="$(yaml_get_or_default 'openrouter_LLM.max_samples' '')"   # 0 or '' => all cells
+MAX_WORKERS="$(yaml_get_or_default 'openrouter_LLM.max_workers' '3')"
+DELAY_BETWEEN_REQUESTS="$(yaml_get_or_default 'openrouter_LLM.delay_between_requests' '1.2')"
 
 # Multiline prompt templates (defaults are used if not in MODEL_CFG)
 INPUT_PROMPT_TEMPLATE_DEFAULT=$'You are an expert at classifying cell types based on gene expression.\nGiven below is a list of {num_genes} gene names ordered by descending expression level in a single cell.\nYour task is to identify the exact cell type this gene profile represents.\nCell sentence: {cell_sentence}\nImportant rules:\n1. Respond with only the name of the predicted cell type.\n2. Do not include explanations, reasoning, or extra words.\n3. Do not repeat the question or input.\nOutput:'
 ANSWER_TEMPLATE_DEFAULT='{true_labels}'
 
-INPUT_PROMPT_TEMPLATE="$(yaml_get_or_default 'deepseek.input_prompt_template' "$INPUT_PROMPT_TEMPLATE_DEFAULT")"
-ANSWER_TEMPLATE="$(yaml_get_or_default 'deepseek.answer_template' "$ANSWER_TEMPLATE_DEFAULT")"
+INPUT_PROMPT_TEMPLATE="$(yaml_get_or_default 'openrouter_LLM.input_prompt_template' "$INPUT_PROMPT_TEMPLATE_DEFAULT")"
+ANSWER_TEMPLATE="$(yaml_get_or_default 'openrouter_LLM.answer_template' "$ANSWER_TEMPLATE_DEFAULT")"
 
 # Normalize "no limit" behavior for max_samples
 MAX_SAMPLES_ARG=()
@@ -258,13 +258,13 @@ fi
 
 # ---------------- Provider: lists (portable, no mapfile) ----------------
 PROVIDER_ORDER=()
-while IFS= read -r line; do [[ -n "$line" ]] && PROVIDER_ORDER+=("$line"); done < <(yaml_get_list 'deepseek.provider.order')
+while IFS= read -r line; do [[ -n "$line" ]] && PROVIDER_ORDER+=("$line"); done < <(yaml_get_list 'openrouter_LLM.provider.order')
 PROVIDER_ONLY=()
-while IFS= read -r line; do [[ -n "$line" ]] && PROVIDER_ONLY+=("$line"); done < <(yaml_get_list 'deepseek.provider.only')
+while IFS= read -r line; do [[ -n "$line" ]] && PROVIDER_ONLY+=("$line"); done < <(yaml_get_list 'openrouter_LLM.provider.only')
 PROVIDER_IGNORE=()
-while IFS= read -r line; do [[ -n "$line" ]] && PROVIDER_IGNORE+=("$line"); done < <(yaml_get_list 'deepseek.provider.ignore')
+while IFS= read -r line; do [[ -n "$line" ]] && PROVIDER_IGNORE+=("$line"); done < <(yaml_get_list 'openrouter_LLM.provider.ignore')
 PROVIDER_QUANT=()
-while IFS= read -r line; do [[ -n "$line" ]] && PROVIDER_QUANT+=("$line"); done < <(yaml_get_list 'deepseek.provider.quantizations')
+while IFS= read -r line; do [[ -n "$line" ]] && PROVIDER_QUANT+=("$line"); done < <(yaml_get_list 'openrouter_LLM.provider.quantizations')
 
 ((${#PROVIDER_ORDER[@]}))  && ARGS+=(--provider_order "${PROVIDER_ORDER[@]}")
 ((${#PROVIDER_ONLY[@]}))   && ARGS+=(--provider_only "${PROVIDER_ONLY[@]}")
@@ -272,28 +272,28 @@ while IFS= read -r line; do [[ -n "$line" ]] && PROVIDER_QUANT+=("$line"); done 
 ((${#PROVIDER_QUANT[@]}))  && ARGS+=(--provider_quantizations "${PROVIDER_QUANT[@]}")
 
 # ---------------- Provider: booleans & scalars ----------------
-ALLOW_FB="$(yaml_get_bool 'deepseek.provider.allow_fallbacks')"
+ALLOW_FB="$(yaml_get_bool 'openrouter_LLM.provider.allow_fallbacks')"
 [[ "${ALLOW_FB:-}" == "true"  ]] && ARGS+=(--provider_allow_fallbacks)
 [[ "${ALLOW_FB:-}" == "false" ]] && ARGS+=(--provider_no_fallbacks)
 
-REQ_PARAMS="$(yaml_get_bool 'deepseek.provider.require_parameters')"
+REQ_PARAMS="$(yaml_get_bool 'openrouter_LLM.provider.require_parameters')"
 [[ "${REQ_PARAMS:-}" == "true"  ]] && ARGS+=(--provider_require_parameters)
 [[ "${REQ_PARAMS:-}" == "false" ]] && ARGS+=(--provider_no_require_parameters)
 
-DATA_COLL="$(yaml_get_or_default 'deepseek.provider.data_collection' '')"
+DATA_COLL="$(yaml_get_or_default 'openrouter_LLM.provider.data_collection' '')"
 [[ -n "${DATA_COLL}" ]] && ARGS+=(--provider_data_collection "${DATA_COLL}")
 
-P_SORT="$(yaml_get_or_default 'deepseek.provider.sort' '')"
+P_SORT="$(yaml_get_or_default 'openrouter_LLM.provider.sort' '')"
 [[ -n "${P_SORT}" ]] && ARGS+=(--provider_sort "${P_SORT}")
 
-MAX_PRICE_PROMPT="$(yaml_get_or_default 'deepseek.provider.max_price.prompt' '')"
+MAX_PRICE_PROMPT="$(yaml_get_or_default 'openrouter_LLM.provider.max_price.prompt' '')"
 [[ -n "${MAX_PRICE_PROMPT}" ]] && ARGS+=(--provider_max_price_prompt "${MAX_PRICE_PROMPT}")
-MAX_PRICE_COMPLETION="$(yaml_get_or_default 'deepseek.provider.max_price.completion' '')"
+MAX_PRICE_COMPLETION="$(yaml_get_or_default 'openrouter_LLM.provider.max_price.completion' '')"
 [[ -n "${MAX_PRICE_COMPLETION}" ]] && ARGS+=(--provider_max_price_completion "${MAX_PRICE_COMPLETION}")
 
 # ---------------- Generation: scalars ----------------
 for key in max_tokens temperature top_p top_k frequency_penalty presence_penalty repetition_penalty; do
-  val="$(yaml_get_or_default "deepseek.generation.${key}" '')"
+  val="$(yaml_get_or_default "openrouter_LLM.generation.${key}" '')"
   if [[ -n "${val}" && "${val}" != "null" ]]; then
     ARGS+=("--${key}" "${val}")
   fi
@@ -301,36 +301,36 @@ done
 
 # Generation: stop list (portable)
 STOP_LIST=()
-while IFS= read -r line; do [[ -n "$line" ]] && STOP_LIST+=("$line"); done < <(yaml_get_list 'deepseek.generation.stop')
+while IFS= read -r line; do [[ -n "$line" ]] && STOP_LIST+=("$line"); done < <(yaml_get_list 'openrouter_LLM.generation.stop')
 ((${#STOP_LIST[@]})) && ARGS+=(--stop "${STOP_LIST[@]}")
 
 # Generation: booleans
-STREAM="$(yaml_get_bool 'deepseek.generation.stream')"
+STREAM="$(yaml_get_bool 'openrouter_LLM.generation.stream')"
 [[ "${STREAM:-}" == "true" ]] && ARGS+=(--stream)
 
 # Generation: response_format (JSON)
-RESP_JSON="$(yaml_get_json 'deepseek.generation.response_format' 2>/dev/null || true)"
+RESP_JSON="$(yaml_get_json 'openrouter_LLM.generation.response_format' 2>/dev/null || true)"
 [[ -n "${RESP_JSON:-}" ]] && ARGS+=(--response_format_json "${RESP_JSON}")
 
 # Reasoning
-RE_EFFORT="$(yaml_get_or_default 'deepseek.generation.reasoning.effort' '')"
+RE_EFFORT="$(yaml_get_or_default 'openrouter_LLM.generation.reasoning.effort' '')"
 [[ -n "${RE_EFFORT}" ]] && ARGS+=(--reasoning_effort "${RE_EFFORT}")
 
-RE_MAXTOK="$(yaml_get_or_default 'deepseek.generation.reasoning.max_tokens' '')"
+RE_MAXTOK="$(yaml_get_or_default 'openrouter_LLM.generation.reasoning.max_tokens' '')"
 [[ -n "${RE_MAXTOK}" ]] && ARGS+=(--reasoning_max_tokens "${RE_MAXTOK}")
 
-RE_EXCLUDE="$(yaml_get_bool 'deepseek.generation.reasoning.exclude')"
+RE_EXCLUDE="$(yaml_get_bool 'openrouter_LLM.generation.reasoning.exclude')"
 [[ "${RE_EXCLUDE:-}" == "true"  ]] && ARGS+=(--reasoning_exclude)
 [[ "${RE_EXCLUDE:-}" == "false" ]] && ARGS+=(--no_reasoning_exclude)
 
 # Headers
-HTTP_REF="$(yaml_get_or_default 'deepseek.generation.http_referer' '')"
+HTTP_REF="$(yaml_get_or_default 'openrouter_LLM.generation.http_referer' '')"
 [[ -n "${HTTP_REF}" ]] && ARGS+=(--http_referer "${HTTP_REF}")
 
-X_TITLE="$(yaml_get_or_default 'deepseek.generation.x_title' '')"
+X_TITLE="$(yaml_get_or_default 'openrouter_LLM.generation.x_title' '')"
 [[ -n "${X_TITLE}" ]] && ARGS+=(--x_title "${X_TITLE}")
 
-PREPEND_REASONING="$(yaml_get_bool 'deepseek.generation.prepend_reasoning')"
+PREPEND_REASONING="$(yaml_get_bool 'openrouter_LLM.generation.prepend_reasoning')"
 [[ "${PREPEND_REASONING:-}" == "true" ]] && ARGS+=(--prepend_reasoning)
 
 # -------------------------------------------------------------------

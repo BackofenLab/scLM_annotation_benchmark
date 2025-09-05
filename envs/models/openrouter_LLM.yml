@@ -1,4 +1,4 @@
-name: deepseek-env
+name: openrouter_LLM-env
 channels:
   - defaults
   - conda-forge

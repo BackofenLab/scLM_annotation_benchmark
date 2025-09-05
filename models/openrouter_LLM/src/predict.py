@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
-DeepSeekR1 inference for single-cell data.
+OpenRouter LLM inference for single-cell data (e.g. DeepSeekR1 or GPT-5).
 
 - Reads API key from env (API_KEY) or --api-key
 - Builds prompts with cell2sentence
-- Queries OpenRouter (DeepSeek) with retries
+- Queries OpenRouter (DeepSeek or GPT-5, ...) with retries
 - Writes predictions.csv with predicted CL IDs + resolved cell-type labels + true labels
 
-This version assumes the model returns CL terms (e.g., "CL:0000236") directly,
-maps them to human-readable labels via EBI OLS, and writes:
+This version assumes the model returns either cell type labels or CL terms (e.g., "CL:0000236"). CL terms,
+get mapped to human-readable labels via EBI OLS, and writes:
 
     predicted_cl_id, predicted_cell_type, true_labels[...]
 
@@ -46,7 +46,7 @@ logging.basicConfig(
     level=os.environ.get("LOGLEVEL", "INFO"),
     format="%(asctime)s | %(levelname)s | %(message)s",
 )
-logger = logging.getLogger("deepseek_predict")
+logger = logging.getLogger("openrouter_LLM_predict")
 
 
 # ---------------- I/O helpers ----------------
@@ -97,25 +97,37 @@ class CustomPromptFormatter(PromptFormatter):
 
 
 # ---------------- OpenRouter client ----------------
+def assert_model_available(model: str, api_key: str) -> None:
+    url = "https://openrouter.ai/api/v1/models"
+    try:
+        r = requests.get(url, headers={"Authorization": f"Bearer {api_key}"}, timeout=30)
+        if r.status_code != 200:
+            logger.warning(f"Could not list models (HTTP {r.status_code}): {r.text[:500]}")
+            return
+        models = {m.get("id") for m in r.json().get("data", []) if isinstance(m, dict)}
+        if model not in models:
+            raise SystemExit(f"Model '{model}' is not available on your OpenRouter account. "
+                             f"Choose one from: {sorted(list(models))[:20]} ...")
+    except Exception as e:
+        logger.warning(f"Model check failed: {e}")
+
+
 def query_openrouter_model(
     model: str,
     prompt: str,
     sysprompt: str,
     api_key: str,
     *,
-    # Provider routing
     provider_order: List[str] | None = None,
     provider_only: List[str] | None = None,
     provider_ignore: List[str] | None = None,
     provider_allow_fallbacks: bool | None = None,
     provider_require_parameters: bool | None = None,
-    provider_data_collection: str | None = None,  # "allow" | "deny"
-    provider_sort: str | None = None,            # "price" | "throughput" | "latency"
+    provider_data_collection: str | None = None,
+    provider_sort: str | None = None,
     provider_quantizations: List[str] | None = None,
     provider_max_price_prompt: float | None = None,
     provider_max_price_completion: float | None = None,
-
-    # Generation params
     max_tokens: int | None = None,
     temperature: float | None = None,
     top_p: float | None = None,
@@ -127,21 +139,13 @@ def query_openrouter_model(
     stop: Union[str, List[str], None] = None,
     stream: bool = False,
     response_format: dict | None = None,
-
-    # Reasoning tokens
-    reasoning_effort: str | None = None,   # "low" | "medium" | "high"
+    reasoning_effort: str | None = None,
     reasoning_max_tokens: int | None = None,
     reasoning_exclude: bool | None = None,
-
-    # Optional headers
     http_referer: str | None = None,
     x_title: str | None = None,
-
-    # Retries
     max_retries: int = 3,
     backoff: float = 1.5,
-
-    # Return options
     prepend_reasoning: bool = False,
 ) -> str:
     url = "https://openrouter.ai/api/v1/chat/completions"
@@ -162,7 +166,6 @@ def query_openrouter_model(
         ],
     }
 
-    # Provider preferences
     provider: dict = {}
     if provider_order:            provider["order"] = provider_order
     if provider_only:             provider["only"] = provider_only
@@ -182,7 +185,6 @@ def query_openrouter_model(
     if provider:
         data["provider"] = provider
 
-    # Generation parameters
     if max_tokens is not None:        data["max_tokens"] = max_tokens
     if temperature is not None:       data["temperature"] = temperature
     if top_p is not None:             data["top_p"] = top_p
@@ -195,7 +197,6 @@ def query_openrouter_model(
     if stream:                        data["stream"] = True
     if response_format is not None:   data["response_format"] = response_format
 
-    # Reasoning config
     reasoning: Dict[str, Any] = {}
     if reasoning_effort is not None:
         reasoning["effort"] = reasoning_effort
@@ -209,10 +210,24 @@ def query_openrouter_model(
     if reasoning:
         data["reasoning"] = reasoning
 
-    # Send with retries
-    for attempt in range(max_retries):
+    # --- send with structured error logging and 429/5xx backoff ---
+    last_err = None
+    for attempt in range(1, max_retries + 1):
         try:
             r = requests.post(url, headers=headers, json=data, timeout=90)
+            rid = r.headers.get("x-request-id") or r.headers.get("openrouter-request-id")
+            rtext = r.text[:2000]  # cap for logs
+
+            # # Information for debugging
+            # logger.info("request")
+            # logger.info(headers)
+            # logger.info(data)
+            # logger.info("response")
+            # logger.info(str(r))
+            # logger.info(str(r.headers))
+            # logger.info(str(r.status_code))
+            # logger.info(str(r.json()))
+
             if r.status_code == 200:
                 js = r.json()
                 msg = js["choices"][0]["message"]
@@ -220,12 +235,41 @@ def query_openrouter_model(
                 if prepend_reasoning and isinstance(msg, dict) and msg.get("reasoning"):
                     content = f"<think>{msg['reasoning']}</think>\n{content}"
                 return content
-            logger.warning(f"OpenRouter http {r.status_code}: {r.text[:500]}")
-        except Exception as e:
-            logger.warning(f"OpenRouter exception (attempt {attempt+1}): {e}")
-        time.sleep(backoff * (attempt + 1))
 
-    raise RuntimeError(f"query_deepseek failed after {max_retries} retries")
+            # Log the exact failure
+            logger.error(
+                f"OpenRouter HTTP {r.status_code} (attempt {attempt}/{max_retries}) "
+                f"req_id={rid} model={model} provider={provider.get('order') if provider else None} body={rtext}"
+            )
+
+            # 429: respect Retry-After if present
+            if r.status_code == 429:
+                ra = r.headers.get("retry-after")
+                sleep_s = float(ra) if ra else backoff * attempt
+                time.sleep(sleep_s)
+                last_err = rtext
+                continue
+
+            # 5xx: transient
+            if 500 <= r.status_code < 600:
+                time.sleep(backoff * attempt)
+                last_err = rtext
+                continue
+
+            # 4xx other than 429 are not retriable
+            last_err = rtext
+            break
+
+        except requests.Timeout as e:
+            logger.error(f"Timeout (attempt {attempt}/{max_retries}) model={model}: {e}")
+            time.sleep(backoff * attempt)
+            last_err = str(e)
+        except Exception as e:
+            logger.error(f"Request error (attempt {attempt}/{max_retries}) model={model}: {e}")
+            time.sleep(backoff * attempt)
+            last_err = str(e)
+
+    raise RuntimeError(f"OpenRouter call failed after {max_retries} attempts. Last error: {last_err}")
 
 
 def run_OpenRouter_model_prediction(
@@ -522,7 +566,7 @@ def create_results_dataframe(
 
 # ---------------- Main ----------------
 def _parse_args() -> argparse.Namespace:
-    p = argparse.ArgumentParser(description="DeepSeek model prediction for single-cell data")
+    p = argparse.ArgumentParser(description="LLM prediction for single-cell data")
 
     # Required I/O
     p.add_argument("--input", "-i", required=True, help="Path to input .h5ad")
@@ -610,6 +654,9 @@ def main():
     if not api_key:
         print("ERROR: API key not provided. Set env API_KEY or pass --api-key.", file=sys.stderr)
         sys.exit(3)
+
+    # Sanity check the model up front
+    assert_model_available(args.model, api_key)
 
     # Load adata
     adata = load_data(args.input)
