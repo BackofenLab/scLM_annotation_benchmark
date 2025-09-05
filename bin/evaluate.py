@@ -10,6 +10,7 @@ import sys
 import re
 
 from util.plots import UMAPCellPlotter  # Replace with correct import if needed
+from util.cell_ontology_similarity import compute_ontology_similarities
 
 # -- Utility functions --
 def extract_model_name(filepath):
@@ -96,13 +97,51 @@ def clean_celltype_L3(df: pd.DataFrame, true_col: str, pred_col: str) -> pd.Data
     df[clean_pred_col] = df[pred_col]
     return df
 
-def run_eval(df, true_col, pred_col, output_dir, model_name=None):
+def run_eval(df, true_col, pred_col, output_dir, model_name=None, cl_path=None, max_unmapped_ratio=1.0):
     
     true_labels = df[true_col]
     pred_labels = df[f"clean_{pred_col}"]
 
     # Calculate balanced accuracy
     balanced_acc = balanced_accuracy_score(true_labels, pred_labels)
+
+    # Initialize results dictionary
+    results = {"balanced_accuracy": balanced_acc}
+    
+    # Compute ontology similarities if CL path is provided
+    ontology_df = None
+    if cl_path and Path(cl_path).exists():
+        try:
+            print(f"Computing ontology similarities using {cl_path}...")
+            # Create a temporary dataframe for ontology computation
+            temp_df = df[[true_col, f"clean_{pred_col}"]].copy()
+            temp_df = temp_df.rename(columns={true_col: "true_labels", f"clean_{pred_col}": "predicted_labels"})
+            
+            ontology_df, avg_similarities = compute_ontology_similarities(
+                temp_df, cl_path, "true_labels", "predicted_labels", max_unmapped_ratio
+            )
+            
+            # Add ontology results to main results
+            results.update(avg_similarities)
+            
+            print(f"Rada average similarity: {avg_similarities.get('rada_avg_similarity', 'N/A'):.4f}")
+            print(f"Lin average similarity: {avg_similarities.get('lin_avg_similarity', 'N/A'):.4f}")
+            
+            # Save scored CSV with ontology similarities (unique combinations)
+            if model_name:
+                scored_csv_path = output_dir / f"{model_name}_{true_col}_scored.csv"
+            else:
+                scored_csv_path = output_dir / f"{true_col}_scored.csv"
+            
+            # ontology_df now contains unique combinations with aggregated scores
+            ontology_df.to_csv(scored_csv_path, index=False)
+            print(f"Scored CSV with unique combinations saved to: {scored_csv_path}")
+            print(f"Found {len(ontology_df)} unique label combinations")
+            
+        except Exception as e:
+            print(f"Warning: Could not compute ontology similarities: {e}")
+            results["rada_avg_similarity"] = np.nan
+            results["lin_avg_similarity"] = np.nan
 
     # Set up plotter
     plotter = UMAPCellPlotter()
@@ -127,7 +166,7 @@ def run_eval(df, true_col, pred_col, output_dir, model_name=None):
     print(f"Balanced accuracy: {balanced_acc:.4f}")
     print(f"Confusion matrix saved to: {output_plot_path}")
     
-    return balanced_acc
+    return results
 
 def main(args):
     
@@ -136,9 +175,15 @@ def main(args):
     output_dir = Path(args.out)
     output_dir.mkdir(parents=True, exist_ok=True)
     
+    # Set up CL ontology path (cl-base.owl in same directory as script)
+    script_dir = Path(__file__).parent
+    cl_path = script_dir / "cl-base.owl"
+    
     print(f"Input argument: {args.pred}")
     print(f"Parsed prediction files: {pred_files}")
     print(f"Output directory: {output_dir}")
+    print(f"Cell Ontology path: {cl_path}")
+    print(f"Max unmapped ratio: {args.max_unmapped_ratio}")
     
     all_results = {}
     
@@ -185,11 +230,15 @@ def main(args):
                 df_clean = clean_func(df, true_col, pred_col)
                 
                 # Run evaluation
-                balanced_acc = run_eval(df_clean, true_col, pred_col, output_dir, model_name)
+                eval_results = run_eval(df_clean, true_col, pred_col, output_dir, model_name, cl_path, args.max_unmapped_ratio)
                 
-                model_results[true_col] = {
-                    "balanced_accuracy": round(balanced_acc, 4)
-                }
+                # Round numerical results for JSON output
+                model_results[true_col] = {}
+                for key, value in eval_results.items():
+                    if isinstance(value, (int, float)) and not np.isnan(value):
+                        model_results[true_col][key] = round(value, 4)
+                    else:
+                        model_results[true_col][key] = value
         
         # Check if any true_labels columns were found for this model
         if not model_results:
@@ -215,7 +264,12 @@ def main(args):
     for model_name, model_results in all_results.items():
         print(f"\n{model_name}:")
         for true_col, metrics in model_results.items():
-            print(f"  {true_col}: {metrics['balanced_accuracy']:.4f}")
+            print(f"  {true_col}:")
+            print(f"    Balanced Accuracy: {metrics.get('balanced_accuracy', 'N/A'):.4f}")
+            if 'rada_avg_similarity' in metrics and not np.isnan(metrics['rada_avg_similarity']):
+                print(f"    Rada Avg Similarity: {metrics['rada_avg_similarity']:.4f}")
+            if 'lin_avg_similarity' in metrics and not np.isnan(metrics['lin_avg_similarity']):
+                print(f"    Lin Avg Similarity: {metrics['lin_avg_similarity']:.4f}")
             
 
 # -- CLI Interface --
@@ -225,6 +279,8 @@ if __name__ == "__main__":
     parser.add_argument("--pred", required=True, type=str, 
                        help="CSV file(s) with true and predicted labels. Can be a single file path or comma-separated list of file paths")
     parser.add_argument("--out", required=True, type=str, help="Path to results folder")
+    parser.add_argument("--max-unmapped-ratio", type=float, default=1.0,
+                       help="Maximum acceptable ratio of unmapped cell types (0.0-1.0). Default: 1.0 (accept any ratio)")
 
     args = parser.parse_args()
     main(args)
