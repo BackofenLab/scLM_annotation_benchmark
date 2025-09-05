@@ -1,11 +1,8 @@
-#!/usr/bin/env python3
 """
-Compute ontology-based similarity between true/predicted cell types using Cell Ontology (CL).
+Cell Ontology similarity computation utilities.
 
-This script:
-1) Loads CL (OBO/OWL) via `pronto`.
-2) Maps free-text labels/synonyms to CL terms.
-3) Computes pairwise similarity for each (true, predicted) pair.
+This module provides functions to compute ontology-based similarity between 
+true/predicted cell types using Cell Ontology (CL).
 
 Supported metrics:
 - "rada": path-based similarity S = 1 / (1 + distance_edges), where distance is via the
@@ -13,40 +10,20 @@ Supported metrics:
 - "lin":  intrinsic-IC Lin similarity using Seco (2004) IC: S = (2 * IC(LCA)) / (IC(a) + IC(b)),
           with IC(t) = 1 - log((descendants(t)+1)/(max_desc+1)) / log(max_desc+1).
 
-Usage
------
-python cell_ontology_similarity.py \
-    --input input.csv \
-    --output scored.csv \
-    --cl-path /path/to/cl.owl \
-    --metric rada        # or lin
-
-CSV requirements
-----------------
-Columns: id, true_labels, predicted_labels (strings)
-Unmapped terms get NaN similarities.
-
-Notes
------
-- Mapping uses case-insensitive match against preferred labels and ALL synonyms.
-- We restrict edges to 'is_a' relations to reflect type hierarchy (standard for CL closeness).
-
-References
-----------
-- Cell Ontology (CL) PURL: http://purl.obolibrary.org/obo/cl.owl
-- pronto: Python library for OBO/OWL ontologies.
-- Seco et al., ECAI 2004: Intrinsic Information Content.
+Functions can be used independently or via the main compute_ontology_similarities
+function that handles the full pipeline.
 """
 from __future__ import annotations
-import argparse
 import math
 import sys
-from typing import Optional
+from typing import Optional, Tuple, Dict, Any
+from pathlib import Path
+from collections import deque
 
 import numpy as np
 import pandas as pd
 import pronto
-from collections import deque
+
 
 def _normalize(s: str) -> str:
     """Lowercase + strip for robust dictionary keys."""
@@ -78,6 +55,7 @@ def build_label_index(ont: pronto.Ontology) -> dict[str, pronto.Term]:
                 idx.setdefault(_normalize(syn_text), term)
     return idx
 
+
 def get_is_a_parents(term: pronto.Term) -> set:
     """Direct is_a parents using pronto's taxonomy API."""
     return set(term.superclasses(distance=1, with_self=False))
@@ -88,8 +66,6 @@ def compute_depths(ont: pronto.Ontology) -> dict:
     Compute minimal depth (shortest path) from any root via is_a edges.
     Uses BFS from all roots (terms with no direct superclasses).
     """
-    from collections import deque
-
     def has_direct_superclass(term: pronto.Term) -> bool:
         # True if there is at least one direct superclass (is_a parent)
         return any(True for _ in term.superclasses(distance=1, with_self=False))
@@ -121,18 +97,23 @@ def ancestors(term: pronto.Term) -> set:
     """All ancestors via is_a (transitive), including the term itself."""
     return set(term.superclasses(distance=None, with_self=True))
 
+
 def lca_max_depth(a: pronto.Term, b: pronto.Term, depth: dict[pronto.Term, int]) -> Optional[pronto.Term]:
     """
     Lowest Common Ancestor defined as common ancestor with maximum depth.
-
     Handles DAG by selecting the deepest common ancestor.
     """
+    # Special case: identical terms should return the term itself
+    if a == b:
+        return a
+    
     ca = ancestors(a)
     cb = ancestors(b)
     common = ca.intersection(cb)
     if not common:
         return None
     return max(common, key=lambda t: depth.get(t, 0))
+
 
 def neighbors_is_a(term):
     """Undirected neighbors via is_a: direct parents and direct children."""
@@ -142,6 +123,7 @@ def neighbors_is_a(term):
     # children (subclasses) one step down
     for c in term.subclasses(distance=1, with_self=False):
         yield c
+
 
 def edge_distance_undirected(a, b):
     """Shortest number of is_a edges between two terms, via undirected BFS."""
@@ -158,6 +140,7 @@ def edge_distance_undirected(a, b):
                 seen.add(nb)
                 q.append((nb, d + 1))
     return None  # disconnected (shouldn't happen in CL for valid terms)
+
 
 def edge_distance_via_lca(a: pronto.Term, b: pronto.Term, depth: dict[pronto.Term, int]) -> Optional[int]:
     """
@@ -256,58 +239,184 @@ def map_string_to_term(s: str, index: dict[str, pronto.Term]) -> Optional[pronto
     return index.get(_normalize(s))
 
 
-def main():
-    parser = argparse.ArgumentParser(description="Cell Ontology similarity scoring")
-    parser.add_argument("--input", required=True, help="Input CSV (id,true_labels,predicted_labels)")
-    parser.add_argument("--output", required=True, help="Output CSV with similarity column")
-    parser.add_argument("--cl-path", required=True, help="Path or URL to cl.obo or cl.owl")
-    parser.add_argument("--metric", default="rada", choices=["rada", "lin"], help="Similarity metric")
-    args = parser.parse_args()
-
+def compute_ontology_similarities(
+    df: pd.DataFrame,
+    cl_path: str,
+    true_col: str = "true_labels",
+    pred_col: str = "predicted_labels",
+    max_unmapped_ratio: float = 1.0
+) -> Tuple[pd.DataFrame, Dict[str, float]]:
+    """
+    Compute ontology-based similarities for a dataframe with true and predicted labels.
+    Returns unique combinations of true/predicted labels with aggregated scores.
+    
+    Parameters
+    ----------
+    df : pd.DataFrame
+        DataFrame with true and predicted cell type labels
+    cl_path : str
+        Path to Cell Ontology file (OBO/OWL)
+    true_col : str, default "true_labels"
+        Column name for true labels
+    pred_col : str, default "predicted_labels" 
+        Column name for predicted labels
+    max_unmapped_ratio : float, default 1.0
+        Maximum acceptable ratio of unmapped cell types (0.0 to 1.0).
+        If 0.0, all cell types must be mapped or scores will be NaN.
+        If 1.0, any ratio of unmapped cell types is acceptable.
+        
+    Returns
+    -------
+    Tuple[pd.DataFrame, Dict[str, float]]
+        - DataFrame with unique label combinations and aggregated similarity scores
+        - Dictionary with average accuracies for both metrics (NaN if unmapped ratio exceeded)
+    """
     # Load CL ontology
     try:
-        ont = pronto.Ontology(args.cl_path)  # supports local path or URL
+        ont = pronto.Ontology(cl_path)
     except Exception as e:
-        sys.exit(f"Failed to load ontology from {args.cl_path}: {e}")
+        raise RuntimeError(f"Failed to load ontology from {cl_path}: {e}")
 
     # Build mapping index and graph helpers
     label_index = build_label_index(ont)
     depth = compute_depths(ont)
-    desc_count = max_desc = None
-    if args.metric == "lin":
-        desc_count = descendant_counts(ont)
-        max_desc = max(desc_count.values()) if desc_count else 0
+    desc_count = descendant_counts(ont)
+    max_desc = max(desc_count.values()) if desc_count else 0
 
-    # Load CSV
-    df = pd.read_csv(args.input)
+    # Check mapping coverage for all unique cell types
+    all_cell_types = set(df[true_col].unique()) | set(df[pred_col].unique())
+    mapped_types = set()
+    unmapped_types = set()
+    
+    for cell_type in all_cell_types:
+        if map_string_to_term(cell_type, label_index) is not None:
+            mapped_types.add(cell_type)
+        else:
+            unmapped_types.add(cell_type)
+    
+    # Calculate unmapped ratio
+    total_types = len(all_cell_types)
+    unmapped_count = len(unmapped_types)
+    unmapped_ratio = unmapped_count / total_types if total_types > 0 else 0.0
+    
+    # Log mapping results
+    print(f"Cell type mapping summary:")
+    print(f"  Total unique cell types: {total_types}")
+    print(f"  Successfully mapped: {len(mapped_types)}")
+    print(f"  Unmapped: {unmapped_count}")
+    print(f"  Unmapped ratio: {unmapped_ratio:.3f}")
+    
+    if unmapped_types:
+        print(f"  Unmapped cell types: {sorted(unmapped_types)}")
+    
+    # Check if unmapped ratio exceeds threshold
+    if unmapped_ratio > max_unmapped_ratio:
+        print(f"WARNING: Unmapped ratio ({unmapped_ratio:.3f}) exceeds threshold ({max_unmapped_ratio:.3f})")
+        print("Returning NaN similarities for all combinations.")
+        
+        # Return empty results with NaN averages
+        empty_combinations = df.groupby([true_col, pred_col]).size().reset_index(name='cell_count')
+        empty_combinations['rada_similarity_mean'] = np.nan
+        empty_combinations['lin_similarity_mean'] = np.nan
+        empty_combinations['distance_edges_mean'] = np.nan
+        empty_combinations['true_term_id'] = None
+        empty_combinations['pred_term_id'] = None
+        
+        avg_accuracies = {
+            "rada_avg_similarity": np.nan,
+            "lin_avg_similarity": np.nan
+        }
+        
+        return empty_combinations, avg_accuracies
 
-    for col in ("cell_id", "true_labels", "predicted_labels"):
-        if col not in df.columns:
-            sys.exit(f"Missing required column: {col}")
+    # Create a temporary dataframe to compute individual scores
+    temp_df = df.copy()
+    
+    # Add new columns for individual scores
+    temp_df["true_term_id"] = None
+    temp_df["pred_term_id"] = None
+    temp_df["rada_similarity"] = np.nan
+    temp_df["lin_similarity"] = np.nan
+    temp_df["distance_edges"] = np.nan
 
-    # Map to terms
-    df["true_term_id"] = None
-    df["pred_term_id"] = None
-    df["similarity"] = np.nan
-    df["distance_edges"] = np.nan  # helpful audit when using 'rada'
-
-    for i, row in df.iterrows():
-        t = map_string_to_term(row["true_labels"], label_index)
-        p = map_string_to_term(row["predicted_labels"], label_index)
-        df.at[i, "true_term_id"] = t.id if t else None
-        df.at[i, "pred_term_id"] = p.id if p else None
+    # Process each row to compute individual scores
+    for i, row in temp_df.iterrows():
+        t = map_string_to_term(row[true_col], label_index)
+        p = map_string_to_term(row[pred_col], label_index)
+        
+        temp_df.at[i, "true_term_id"] = t.id if t else None
+        temp_df.at[i, "pred_term_id"] = p.id if p else None
+        
         if t and p:
-            # Always compute distance; similarity depends on metric
+            # Always compute distance
             d = edge_distance_undirected(t, p)
             if d is not None:
-                df.at[i, "distance_edges"] = float(d)
-            sim = compute_similarity(t, p, args.metric, depth, desc_count, max_desc)
-            if sim is not None:
-                df.at[i, "similarity"] = float(sim)
+                temp_df.at[i, "distance_edges"] = float(d)
+            
+            # Compute both similarities
+            rada_sim = compute_similarity(t, p, "rada", depth)
+            if rada_sim is not None:
+                temp_df.at[i, "rada_similarity"] = float(rada_sim)
+                
+            lin_sim = compute_similarity(t, p, "lin", depth, desc_count, max_desc)
+            if lin_sim is not None:
+                temp_df.at[i, "lin_similarity"] = float(lin_sim)
 
-    df.to_csv(args.output, index=False)
-    print(f"Wrote {args.output} ({len(df)} rows).")
+    # Calculate average accuracies (mean of non-NaN similarities)
+    avg_accuracies = {}
+    
+    rada_scores = temp_df["rada_similarity"].dropna()
+    if len(rada_scores) > 0:
+        avg_accuracies["rada_avg_similarity"] = float(rada_scores.mean())
+    else:
+        avg_accuracies["rada_avg_similarity"] = np.nan
+        
+    lin_scores = temp_df["lin_similarity"].dropna()
+    if len(lin_scores) > 0:
+        avg_accuracies["lin_avg_similarity"] = float(lin_scores.mean())
+    else:
+        avg_accuracies["lin_avg_similarity"] = np.nan
 
+    # Group by unique combinations and aggregate scores
+    # First, let's get the actual cell counts for all combinations that exist in the data
+    all_combinations = temp_df.groupby([true_col, pred_col]).size().reset_index(name='cell_count')
+    
+    # Now get the similarity aggregations for the same combinations
+    similarity_aggs = temp_df.groupby([true_col, pred_col]).agg({
+        'rada_similarity': 'mean',
+        'lin_similarity': 'mean', 
+        'distance_edges': 'mean',
+        'true_term_id': 'first',
+        'pred_term_id': 'first'
+    }).reset_index()
+    
+    # Merge the cell counts with similarity aggregations
+    # Use inner join to only keep combinations that actually exist
+    unique_combinations = all_combinations.merge(
+        similarity_aggs, 
+        on=[true_col, pred_col], 
+        how='inner'
+    )
+    
+    # Round the similarity values
+    similarity_cols = ['rada_similarity', 'lin_similarity', 'distance_edges']
+    for col in similarity_cols:
+        if col in unique_combinations.columns:
+            unique_combinations[col] = unique_combinations[col].round(4)
+    
+    # Reorder columns for better readability
+    column_order = [
+        true_col, pred_col, 'cell_count',
+        'rada_similarity', 'lin_similarity', 'distance_edges',
+        'true_term_id', 'pred_term_id'
+    ]
+    unique_combinations = unique_combinations[column_order]
+    
+    # Rename similarity columns to be more descriptive
+    unique_combinations = unique_combinations.rename(columns={
+        'rada_similarity': 'rada_similarity_mean',
+        'lin_similarity': 'lin_similarity_mean',
+        'distance_edges': 'distance_edges_mean'
+    })
 
-if __name__ == "__main__":
-    main()
+    return unique_combinations, avg_accuracies
