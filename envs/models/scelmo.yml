@@ -1,0 +1,10 @@
+name: scelmo
+dependencies:
+    - python=3.10
+    - pip:
+        - scib
+        - scib_metrics=0.3.3
+        - pickle
+        - mygene
+        - scanpy==1.9.3
+        - gdown
