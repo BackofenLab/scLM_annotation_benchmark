@@ -33,7 +33,7 @@ def download_cl_ontology(
     force_download: bool = False
 ) -> Path:
     """
-    Download Cell Ontology (cl-base.owl) if not already present in cache.
+    Download Cell Ontology if not already present in cache.
     
     Parameters
     ----------
@@ -56,8 +56,11 @@ def download_cl_ontology(
     """
     cache_dir = Path(cache_dir)
     cache_dir.mkdir(parents=True, exist_ok=True)
+
+    #get file path from url
+    cl_file_path = Path(cl_url).name
     
-    cl_file_path = cache_dir / "cl-base.owl"
+    cl_file_path = cache_dir / cl_file_path
     
     # Check if file already exists and is not empty
     if cl_file_path.exists() and cl_file_path.stat().st_size > 0 and not force_download:
@@ -312,7 +315,9 @@ def compute_ontology_similarities(
     cl_path: str,
     true_col: str = "true_labels",
     pred_col: str = "predicted_labels",
-    max_unmapped_ratio: float = 1.0
+    max_unmapped_ratio: float = 0.0,
+    cache_dir: Optional[Path] = None,
+    use_ontology_mapper: bool = True
 ) -> Tuple[pd.DataFrame, Dict[str, float]]:
     """
     Compute ontology-based similarities for a dataframe with true and predicted labels.
@@ -328,16 +333,26 @@ def compute_ontology_similarities(
         Column name for true labels
     pred_col : str, default "predicted_labels" 
         Column name for predicted labels
-    max_unmapped_ratio : float, default 1.0
+    max_unmapped_ratio : float, default 0.0
         Maximum acceptable ratio of unmapped cell types (0.0 to 1.0).
-        If 0.0, all cell types must be mapped or scores will be NaN.
+        If 0.0, all cell types must be mapped or an error will be raised.
         If 1.0, any ratio of unmapped cell types is acceptable.
+    cache_dir : Optional[Path], default None
+        Cache directory for ontology mapper. If provided and use_ontology_mapper=True,
+        will attempt to map unmapped cell types using the ontology mapper.
+    use_ontology_mapper : bool, default True
+        If True and cache_dir is provided, use ontology mapper for unmapped cell types.
         
     Returns
     -------
     Tuple[pd.DataFrame, Dict[str, float]]
         - DataFrame with unique label combinations and aggregated similarity scores
         - Dictionary with average accuracies for both metrics (NaN if unmapped ratio exceeded)
+        
+    Raises
+    ------
+    RuntimeError
+        If cell types remain unmapped after ontology mapper attempt and max_unmapped_ratio is 0.0
     """
     # Load CL ontology
     try:
@@ -377,6 +392,81 @@ def compute_ontology_similarities(
     if unmapped_types:
         print(f"  Unmapped cell types: {sorted(unmapped_types)}")
     
+    # Try to map unmapped cell types using ontology mapper if available
+    label_replacements = {}  # Maps original labels to replacement labels
+    if unmapped_types and cache_dir and use_ontology_mapper:
+        try:
+            print(f"\nAttempting to map {len(unmapped_types)} unmapped cell types using ontology mapper...")
+            
+            # Import here to avoid circular imports
+            from .ontology_mapper import map_cell_types_to_ontology, load_ontology_mappings
+            
+            # Create mappings for unmapped cell types
+            unmapped_list = list(unmapped_types)
+            mapping_csv_path = map_cell_types_to_ontology(
+                predicted_labels=unmapped_list,
+                cache_dir=cache_dir,
+                force_remapping=False
+            )
+            
+            # Load the mappings
+            mappings = load_ontology_mappings(cache_dir)
+            if mappings:
+                # Try to map unmapped types to their chosen_match values
+                newly_mapped = set()
+                still_unmapped = set()
+                
+                for cell_type in unmapped_types:
+                    chosen_match = mappings.get(cell_type, "").strip()
+                    if chosen_match and chosen_match != cell_type:
+                        # Check if the chosen_match can be mapped to a term
+                        if map_string_to_term(chosen_match, label_index) is not None:
+                            label_replacements[cell_type] = chosen_match
+                            newly_mapped.add(cell_type)
+                            print(f"  Mapped: '{cell_type}' -> '{chosen_match}'")
+                        else:
+                            still_unmapped.add(cell_type)
+                            print(f"  Failed: '{cell_type}' -> '{chosen_match}' (chosen_match not in ontology)")
+                    else:
+                        still_unmapped.add(cell_type)
+                        if not chosen_match:
+                            print(f"  Failed: '{cell_type}' (no chosen_match available)")
+                        else:
+                            print(f"  Failed: '{cell_type}' (chosen_match same as original)")
+                
+                # Update the sets
+                mapped_types.update(newly_mapped)
+                unmapped_types = still_unmapped
+                
+                print(f"\nOntology mapper results:")
+                print(f"  Successfully remapped: {len(newly_mapped)}")
+                print(f"  Still unmapped: {len(still_unmapped)}")
+                
+                if still_unmapped:
+                    print(f"  Still unmapped cell types: {sorted(still_unmapped)}")
+                
+        except Exception as e:
+            print(f"Warning: Ontology mapper failed: {e}")
+            print("Continuing with original mapping results...")
+    
+    # Recalculate unmapped ratio after ontology mapper attempt
+    unmapped_count = len(unmapped_types)
+    unmapped_ratio = unmapped_count / total_types if total_types > 0 else 0.0
+    
+    print(f"\nFinal mapping summary:")
+    print(f"  Total unique cell types: {total_types}")
+    print(f"  Successfully mapped: {len(mapped_types)}")
+    print(f"  Unmapped: {unmapped_count}")
+    print(f"  Unmapped ratio: {unmapped_ratio:.3f}")
+    
+    # Throw error if there are still unmapped cell types and max_unmapped_ratio is 0.0
+    if unmapped_ratio > max_unmapped_ratio:
+        raise RuntimeError(
+            f"Cell types remain unmapped after ontology mapper attempt: {sorted(unmapped_types)}. "
+            f"Please manually edit the chosen_match column in the ontology mapping CSV or "
+            f"increase max_unmapped_ratio to allow unmapped cell types."
+        )
+    
     # Check if unmapped ratio exceeds threshold
     if unmapped_ratio > max_unmapped_ratio:
         print(f"WARNING: Unmapped ratio ({unmapped_ratio:.3f}) exceeds threshold ({max_unmapped_ratio:.3f})")
@@ -409,8 +499,18 @@ def compute_ontology_similarities(
 
     # Process each row to compute individual scores
     for i, row in temp_df.iterrows():
-        t = map_string_to_term(row[true_col], label_index)
-        p = map_string_to_term(row[pred_col], label_index)
+        # Apply label replacements if available
+        true_label = row[true_col]
+        pred_label = row[pred_col]
+        
+        # Replace labels with ontology-mapped versions if available
+        if true_label in label_replacements:
+            true_label = label_replacements[true_label]
+        if pred_label in label_replacements:
+            pred_label = label_replacements[pred_label]
+        
+        t = map_string_to_term(true_label, label_index)
+        p = map_string_to_term(pred_label, label_index)
         
         temp_df.at[i, "true_term_id"] = t.id if t else None
         temp_df.at[i, "pred_term_id"] = p.id if p else None
