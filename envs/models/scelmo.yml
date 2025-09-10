@@ -1,10 +1,10 @@
 name: scelmo
 dependencies:
-    - python=3.10
+    - python=3.12
+    - pyyaml
     - pip:
         - scib
-        - scib_metrics=0.3.3
-        - pickle
+        - scib_metrics==0.3.3
         - mygene
-        - scanpy==1.9.3
+        - scanpy==1.11.*
         - gdown
