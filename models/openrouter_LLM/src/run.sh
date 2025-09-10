@@ -1,14 +1,6 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-# -------------------------------------------------------------------
-# Usage & basic arg handling
-# -------------------------------------------------------------------
-if [[ "$#" -ne 3 ]]; then
-  echo "Usage: $0 INPUT.h5ad OUT.csv config.yaml" >&2
-  exit 1
-fi
-
 # Portable abspath using the python in the conda env
 abspath() {
   python - "$1" <<'PY'
