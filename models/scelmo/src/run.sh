@@ -4,11 +4,12 @@ set -euo pipefail
 INPUT=$(realpath "$1")
 OUTPUT="$2"
 CONFIG=$(realpath "$3")
+CACHE_DIR=$(realpath "$4")
 
 GE_FILEID="17x9jfDorZYqoaG-MZGiduKFzP6663awO" # GPT 3.5 Gene embeddings
-GE_FILENAME="gene_embeddings.pickle"
+GE_FILENAME="$CACHE_DIR/gene_embeddings.pickle"
 CT_FILEID="1AFD58eaF_V0Yt2OevQIOJLeu4Hg3NpGn" # GPT 3.5 Cell Type embeddings
-CT_FILENAME="cell_type_embeddings.pickle"
+CT_FILENAME="$CACHE_DIR/cell_type_embeddings.pickle"
 
 if [[ ! -s "$CT_FILENAME" ]]; then
     gdown --fuzzy "https://drive.google.com/file/d/${CT_FILEID}/view?usp=sharing" -O ${CT_FILENAME}
