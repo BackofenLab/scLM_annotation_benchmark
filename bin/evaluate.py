@@ -10,7 +10,7 @@ import sys
 import re
 
 from util.plots import UMAPCellPlotter  # Replace with correct import if needed
-from util.cell_ontology_similarity import compute_ontology_similarities
+from util.cell_ontology_similarity import compute_ontology_similarities, download_cl_ontology
 
 # -- Utility functions --
 def extract_model_name(filepath):
@@ -175,9 +175,17 @@ def main(args):
     output_dir = Path(args.out)
     output_dir.mkdir(parents=True, exist_ok=True)
     
-    # Set up CL ontology path (cl-base.owl in same directory as script)
-    script_dir = Path(__file__).parent
-    cl_path = script_dir / "cl-base.owl"
+    # Set up cache directory and CL ontology path
+    if args.cache_dir:
+        cache_dir = Path(args.cache_dir)
+    else:
+        cache_dir = Path("cache")
+    
+    # Download CL ontology if not present
+    try:
+        cl_path = download_cl_ontology(cache_dir)
+    except RuntimeError as e:
+        raise RuntimeError(f"Error: {e}")
     
     print(f"Input argument: {args.pred}")
     print(f"Parsed prediction files: {pred_files}")
@@ -279,6 +287,8 @@ if __name__ == "__main__":
     parser.add_argument("--pred", required=True, type=str, 
                        help="CSV file(s) with true and predicted labels. Can be a single file path or comma-separated list of file paths")
     parser.add_argument("--out", required=True, type=str, help="Path to results folder")
+    parser.add_argument("--cache_dir", type=str, default=None,
+                       help="Cache directory for ontology files. If not provided, uses 'cache' in current directory")
     parser.add_argument("--max-unmapped-ratio", type=float, default=1.0,
                        help="Maximum acceptable ratio of unmapped cell types (0.0-1.0). Default: 1.0 (accept any ratio)")
 

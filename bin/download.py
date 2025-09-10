@@ -136,7 +136,7 @@ def main() -> None:
                     help="Dataset name (must match YAML 'name')")
     ap.add_argument("--cfg_yaml", required=True,
                     help="YAML file containing dataset configuration")
-    ap.add_argument("--data_cache", required=True,
+    ap.add_argument("--cache_dir", required=True,
                     help="Local cache for full / subset files")
     ap.add_argument("--out", required=True,
                     help="Destination inside the task work dir")
@@ -147,9 +147,10 @@ def main() -> None:
         cfg = yaml.safe_load(f)
     print(f"Loaded cfg: {cfg}")
     ext = Path(cfg["url"]).suffix or ".h5ad"      # default if URL lacks ext
-    print(f"Downloading {cfg['name']} to {args.data_cache}")
-    full_path   = Path(args.data_cache) / f"{cfg['name']}{ext}"
-    subset_path = Path(args.data_cache) / \
+    download_cache_dir = Path(args.cache_dir)
+    print(f"Downloading {cfg['name']} to {download_cache_dir}")
+    full_path   = download_cache_dir / f"{cfg['name']}{ext}"
+    subset_path = download_cache_dir / \
                   f"{cfg['name']}_sub{cfg.get('subset_size')}{ext}"
     print(f"Full path: {full_path}")
     print(f"Subset path: {subset_path}")

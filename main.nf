@@ -4,10 +4,10 @@ process download {
     conda 'envs/download.yml'
 
     input:
-    tuple val(dataset), val(data_cache), path(cfg_yaml)
+    tuple val(dataset), val(cache_dir), path(cfg_yaml)
 
     output:
-    tuple(path("data/*.h5ad"), val(dataset), path(cfg_yaml))
+    tuple(path("data/*.h5ad"), val(dataset), path(cfg_yaml), val(cache_dir))
 
     script:
     """
@@ -17,7 +17,7 @@ process download {
       --dataset   "${dataset}" \
       --cfg_yaml  "${cfg_yaml}" \
       --out       "data/${dataset}.h5ad" \
-      --data_cache "${data_cache}"
+      --cache_dir "${cache_dir}/download"
     """
 }
 
@@ -43,17 +43,18 @@ process prepare_model {
 
 process run_model {
     input:
-    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model)
+    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir)
 
     conda { "envs/models/${model}.yml" }
 
     output:
-    tuple(path("results/*/*/predictions*.csv"), val(dataset), val(model))
+    tuple(path("results/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir))
 
     script:
     """
     mkdir -p results/${dataset}/${model}
-    bash ${model_dir}/src/run.sh ${data_file} ./results/${dataset}/${model}/predictions.csv ${cfg_yaml}
+    mkdir -p ${cache_dir}/models
+    bash ${model_dir}/src/run.sh ${data_file} ./results/${dataset}/${model}/predictions.csv ${cfg_yaml} ${cache_dir}/models
     """
 }
 
@@ -61,7 +62,7 @@ process evaluate_annotation {
     conda 'envs/evaluation.yml'
 
     input:
-    tuple path(predictions), val(dataset), val(model)
+    tuple path(predictions), val(dataset), val(model), val(cache_dir)
 
     output:
     path "results/*/*/evaluation.json"
@@ -71,14 +72,14 @@ process evaluate_annotation {
     mkdir -p results/${dataset}/${model}
     # Convert the prediction files to a comma-separated string
     pred_files=\$(echo ${predictions} | tr ' ' ',')
-    evaluate.py --pred "\$pred_files" --out results/${dataset}/${model}/ 
+    evaluate.py --pred "\$pred_files" --out results/${dataset}/${model}/ --cache_dir ${cache_dir}/evaluation
     """
 }
 
 workflow {
     Channel
         .from(params.datasets)
-        .map { dataset -> tuple(dataset, file(params.data_cache), file("datasets/${dataset}.yml")) }
+        .map { dataset -> tuple(dataset, file(params.cache_dir), file("datasets/${dataset}.yml")) }
         .set { download_input }
 
     download_out = download(download_input)
@@ -94,8 +95,8 @@ workflow {
     // Combine data with prepared models
     download_out
         .combine(prepared_models)
-        .map { data_file, dataset, cfg_yaml, model, model_dir ->
-            tuple(data_file, model_dir, dataset, cfg_yaml, model)
+        .map { data_file, dataset, cfg_yaml, cache_dir, model, model_dir ->
+            tuple(data_file, model_dir, dataset, cfg_yaml, model, cache_dir)
         }
         .set { model_input }
     
