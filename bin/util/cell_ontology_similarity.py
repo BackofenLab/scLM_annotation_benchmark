@@ -16,6 +16,8 @@ function that handles the full pipeline.
 from __future__ import annotations
 import math
 import sys
+import urllib.request
+import urllib.error
 from typing import Optional, Tuple, Dict, Any
 from pathlib import Path
 from collections import deque
@@ -23,6 +25,72 @@ from collections import deque
 import numpy as np
 import pandas as pd
 import pronto
+
+
+def download_cl_ontology(
+    cache_dir: Path, 
+    cl_url: str = "https://purl.obolibrary.org/obo/cl/cl-base.owl",
+    force_download: bool = False
+) -> Path:
+    """
+    Download Cell Ontology (cl-base.owl) if not already present in cache.
+    
+    Parameters
+    ----------
+    cache_dir : Path
+        Directory to store the downloaded ontology file
+    cl_url : str, default "https://purl.obolibrary.org/obo/cl/cl-base.owl"
+        URL to download the Cell Ontology from
+    force_download : bool, default False
+        If True, download even if file already exists
+        
+    Returns
+    -------
+    Path
+        Path to the cl-base.owl file (either existing or newly downloaded)
+        
+    Raises
+    ------
+    RuntimeError
+        If download fails or file cannot be accessed
+    """
+    cache_dir = Path(cache_dir)
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    
+    cl_file_path = cache_dir / "cl-base.owl"
+    
+    # Check if file already exists and is not empty
+    if cl_file_path.exists() and cl_file_path.stat().st_size > 0 and not force_download:
+        print(f"Cell Ontology already exists at: {cl_file_path}")
+        return cl_file_path
+    
+    print(f"Downloading Cell Ontology from: {cl_url}")
+    print(f"Saving to: {cl_file_path}")
+    
+    try:
+        # Download with progress indication
+        def progress_hook(block_num, block_size, total_size):
+            if total_size > 0:
+                percent = min(100, (block_num * block_size * 100) // total_size)
+                if block_num % 100 == 0 or percent >= 100:  # Update every 100 blocks or at completion
+                    print(f"Download progress: {percent}%")
+        
+        urllib.request.urlretrieve(cl_url, cl_file_path, reporthook=progress_hook)
+        
+        # Verify the downloaded file
+        if not cl_file_path.exists() or cl_file_path.stat().st_size == 0:
+            raise RuntimeError("Downloaded file is empty or missing")
+            
+        print(f"Successfully downloaded Cell Ontology ({cl_file_path.stat().st_size} bytes)")
+        return cl_file_path
+        
+    except urllib.error.URLError as e:
+        raise RuntimeError(f"Failed to download Cell Ontology from {cl_url}: {e}")
+    except Exception as e:
+        # Clean up partial download
+        if cl_file_path.exists():
+            cl_file_path.unlink()
+        raise RuntimeError(f"Error downloading Cell Ontology: {e}")
 
 
 def _normalize(s: str) -> str:
