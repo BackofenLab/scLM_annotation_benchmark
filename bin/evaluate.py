@@ -97,7 +97,7 @@ def clean_celltype_L3(df: pd.DataFrame, true_col: str, pred_col: str) -> pd.Data
     df[clean_pred_col] = df[pred_col]
     return df
 
-def run_eval(df, true_col, pred_col, output_dir, model_name=None, cl_path=None, max_unmapped_ratio=1.0):
+def run_eval(df, true_col, pred_col, output_dir, model_name=None, cl_path=None, max_unmapped_ratio=0.0, cache_dir=None):
     
     true_labels = df[true_col]
     pred_labels = df[f"clean_{pred_col}"]
@@ -118,7 +118,8 @@ def run_eval(df, true_col, pred_col, output_dir, model_name=None, cl_path=None, 
             temp_df = temp_df.rename(columns={true_col: "true_labels", f"clean_{pred_col}": "predicted_labels"})
             
             ontology_df, avg_similarities = compute_ontology_similarities(
-                temp_df, cl_path, "true_labels", "predicted_labels", max_unmapped_ratio
+                temp_df, cl_path, "true_labels", "predicted_labels", max_unmapped_ratio, 
+                cache_dir=Path(cache_dir) if cache_dir else None
             )
             
             # Add ontology results to main results
@@ -238,7 +239,7 @@ def main(args):
                 df_clean = clean_func(df, true_col, pred_col)
                 
                 # Run evaluation
-                eval_results = run_eval(df_clean, true_col, pred_col, output_dir, model_name, cl_path, args.max_unmapped_ratio)
+                eval_results = run_eval(df_clean, true_col, pred_col, output_dir, model_name, cl_path, args.max_unmapped_ratio, cache_dir)
                 
                 # Round numerical results for JSON output
                 model_results[true_col] = {}
@@ -289,8 +290,8 @@ if __name__ == "__main__":
     parser.add_argument("--out", required=True, type=str, help="Path to results folder")
     parser.add_argument("--cache_dir", type=str, default=None,
                        help="Cache directory for ontology files. If not provided, uses 'cache' in current directory")
-    parser.add_argument("--max-unmapped-ratio", type=float, default=1.0,
-                       help="Maximum acceptable ratio of unmapped cell types (0.0-1.0). Default: 1.0 (accept any ratio)")
+    parser.add_argument("--max-unmapped-ratio", type=float, default=0.0,
+                       help="Maximum acceptable ratio of unmapped cell types (0.0-1.0). Default: 0.0 (all must be mapped)")
 
     args = parser.parse_args()
     main(args)
