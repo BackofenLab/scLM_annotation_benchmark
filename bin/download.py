@@ -166,6 +166,25 @@ def main() -> None:
         cfg.get("subset_size")
     )
 
+    # Apply ontology mapping to annotation columns if requested
+    if cfg.get("apply_ontology_mapping", False):
+        from util.download_helpers import apply_ontology_mapping_to_dataset
+        
+        print("[INFO] Applying ontology mapping to annotations...")
+        adata_to_map = read_adata(chosen)
+        
+        # Apply ontology mapping to annotation keys
+        adata_mapped = apply_ontology_mapping_to_dataset(
+            adata=adata_to_map,
+            annotation_keys=list(cfg["annotation_keys"]),
+            cache_dir=download_cache_dir,
+            verbose=True
+        )
+        
+        # Write the mapped data back
+        write_adata(adata_mapped, chosen)
+        print("[INFO] Ontology mapping completed and saved")
+
     # Use a hard-link if possible; falls back to copy across filesystems
     dest = Path(args.out).resolve()
     dest.parent.mkdir(parents=True, exist_ok=True)
