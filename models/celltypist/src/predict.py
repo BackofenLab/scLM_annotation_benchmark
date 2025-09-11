@@ -56,57 +56,41 @@ def run_celltypist_prediction(adata, model="Immune_All_High.pkl"):
         logger.error(f"Failed to run CellTypist prediction: {e}")
         sys.exit(1)
 
-def create_results_dataframe(adata, predictions, label_keys=None):
+def create_results_dataframe_for_key(adata, predictions, label_key):
     """
-    Create a DataFrame with true and predicted labels.
+    Create a DataFrame with true and predicted labels for a single annotation key.
     
     Args:
         adata (scanpy.AnnData): Input data with true labels
         predictions (celltypist.AnnotationResult): Prediction results
-        label_keys (list): List of keys in adata.obs containing true labels
+        label_key (str): Key in adata.obs containing true labels
         
     Returns:
         pandas.DataFrame: DataFrame with true and predicted labels
     """
-    logger.info("Creating results DataFrame")
-    
-    if label_keys is None:
-        label_keys = ["cell_type"]
+    logger.info(f"Creating results DataFrame for annotation key: {label_key}")
     
     # Get predicted labels
     predicted_labels = predictions.predicted_labels["predicted_labels"].values.tolist()
     predicted_idx = predictions.predicted_labels.index
     
-    # Start with predicted labels
-    results_dict = {
-        'predicted_labels': predicted_labels
-    }
-    
-    # Add true labels for each annotation key
-    for i, label_key in enumerate(label_keys, 1):
-        col_name = f"true_labels_{i}" if len(label_keys) > 1 else "true_labels"
-        
-        if label_key in adata.obs.columns:
-            true_labels = list(adata.obs[label_key][predicted_idx].values)
-            results_dict[col_name] = true_labels
-            logger.info(f"Added {col_name} from adata.obs['{label_key}']")
-        else:
-            logger.warning(f"'{label_key}' not found in adata.obs, skipping")
-    
-    # Check if we have at least one true labels column
-    if len([k for k in results_dict.keys() if k.startswith('true_labels')]) == 0:
-        logger.error("No valid label keys found in adata.obs")
+    # Check if label key exists
+    if label_key not in adata.obs.columns:
+        logger.error(f"'{label_key}' not found in adata.obs")
         logger.error(f"Available keys: {list(adata.obs.columns)}")
-        sys.exit(1)
+        return None
     
-    # Create DataFrame
-    results_df = pd.DataFrame(results_dict)
+    # Get true labels for this annotation key
+    true_labels = list(adata.obs[label_key][predicted_idx].values)
     
-    # Add index if it's not already the index
-    if not results_df.index.equals(adata.obs.index):
-        results_df.index = adata.obs.index
+    # Create DataFrame with cell_id, true_labels, and predicted_labels
+    results_df = pd.DataFrame({
+        'cell_id': predicted_idx,
+        'true_labels': true_labels,
+        'predicted_labels': predicted_labels
+    })
     
-    logger.info(f"Created results DataFrame with {len(results_df)} rows and columns: {list(results_df.columns)}")
+    logger.info(f"Created results DataFrame for {label_key} with {len(results_df)} rows")
     return results_df
 
 def save_results(results_df, output_path):
@@ -119,7 +103,7 @@ def save_results(results_df, output_path):
     """
     logger.info(f"Saving results to: {output_path}")
     try:
-        results_df.to_csv(output_path, index=True)
+        results_df.to_csv(output_path, index=False)
         logger.info("Results saved successfully")
     except Exception as e:
         logger.error(f"Failed to save results: {e}")
@@ -156,10 +140,10 @@ def main():
     parser.add_argument("--input", "-i", default=default_input,
                        help=f"Input h5ad file path (default: {default_input})")
     parser.add_argument("--output", "-o", default=default_output,
-                       help=f"Output CSV file path (default: {default_output})")
+                       help=f"Output CSV file path base name (default: {default_output})")
     parser.add_argument("--model", "-m", default="Immune_All_High.pkl", 
                        help="CellTypist model to use (default: Immune_All_High.pkl)")
-    parser.add_argument("--label_keys", "-l", nargs='+', default=["cell_ontology_class"],
+    parser.add_argument("--annotation_keys", nargs='+', default=["cell_ontology_class"],
                        help="Keys in adata.obs containing true labels (default: cell_ontology_class)")
     
     args = parser.parse_args()
@@ -167,18 +151,35 @@ def main():
     # Load data
     adata = load_data(args.input)
     adata = preprocess_data(adata)
-    # Run prediction
+    
+    # Run prediction once
     predictions = run_celltypist_prediction(adata, args.model)
     
-    # Create results DataFrame
-    results_df = create_results_dataframe(adata, predictions, args.label_keys)
+    # Get base output path info (same as CellWhisperer)
+    output_path = Path(args.output)
+    output_dir = output_path.parent
+    output_stem = output_path.stem
+    output_suffix = output_path.suffix
     
-    # Save results
-    print(f"Saving results to: {args.output}")
-    save_results(results_df, args.output)
+    # Process each annotation key separately
+    for annotation_key in args.annotation_keys:
+        logger.info(f"Processing annotation key: {annotation_key}")
+        
+        # Create results DataFrame for this annotation key
+        results_df = create_results_dataframe_for_key(adata, predictions, annotation_key)
+        
+        if results_df is not None:
+            # Create output filename for this annotation level (same naming as CellWhisperer)
+            output_csv = output_dir / f"{output_stem}_{annotation_key}{output_suffix}"
+            
+            # Save results
+            print(f"Saving results to: {output_csv}")
+            save_results(results_df, str(output_csv))
+            logger.info(f"Results for {annotation_key} saved to: {output_csv}")
+        else:
+            logger.warning(f"Skipping {annotation_key} due to errors")
     
     logger.info("CellTypist prediction pipeline completed successfully")
-    logger.info(f"Results saved to: {args.output}")
 
 if __name__ == "__main__":
     main()
