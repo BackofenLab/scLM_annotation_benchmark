@@ -4,4 +4,4 @@ url: [internal link removed] #this is a random subset of the full dataset with 5
 format: h5ad
 subset_size: 1000                # null → use full dataset
 batch_key: "batch_id"
-annotation_keys: ["AIFI_L1", "AIFI_L2", "AIFI_L3"]
+annotation_keys: ["AIFI_L1", "AIFI_L2"]

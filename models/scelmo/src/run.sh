@@ -40,4 +40,4 @@ python "$SCRIPT_DIR/predict.py" \
     --output_csv "$OUTPUT" \
     --gene-pickle "$GE_FILENAME" \
     --celltype-pickle "$CT_FILENAME" \
-    --annotation-keys "$ANNOTATION_KEYS"
+    --annotation_keys $ANNOTATION_KEYS

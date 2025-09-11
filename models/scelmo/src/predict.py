@@ -6,7 +6,7 @@ Usage:
   python scelmo_min.py input.h5ad output.csv \
       --gene-pickle /path/gene_embeddings.pickle \
       --celltype-pickle /path/celltype_embeddings.pickle \
-      [--annotation-keys true_labels]
+      [--annotation_keys true_labels]
 
 Expects pickles to be either:
   - dict {name -> vector}, or
@@ -69,7 +69,8 @@ def main():
     ap.add_argument("--output_csv")
     ap.add_argument("--gene-pickle", required=True)
     ap.add_argument("--celltype-pickle", required=True)
-    ap.add_argument("--annotation-keys", default="cell_type")
+    ap.add_argument("--annotation_keys", nargs='+', default=["cell_type"], 
+                   help="Keys in adata.obs containing true labels (can specify multiple)")
     args = ap.parse_args()
 
     # Load pickles
@@ -96,21 +97,49 @@ def main():
     X_sub = X[:, mat_idx]
     gene_emb_sub = gene_emb[np.array(emb_idx)]
 
-    # Predict
+    # Predict (run once for all annotation keys)
     cell_emb = compute_cell_embeddings(X_sub, gene_emb_sub)
     pred_idx = cosine_argmax(cell_emb, ct_emb)
     preds = [ct_labels[i] for i in pred_idx]
 
-    # Truth
-    if args.annotation_keys in adata.obs:
-        truth = adata.obs[args.annotation_keys].astype(str).tolist()
-    elif "cell_type" in adata.obs:
-        truth = adata.obs["cell_type"].astype(str).tolist()
-    else:
-        truth = ["NA"] * adata.n_obs
+    # Get base output path info (same as CellWhisperer and CellTypist)
+    from pathlib import Path
+    output_path = Path(args.output_csv)
+    output_dir = output_path.parent
+    output_stem = output_path.stem
+    output_suffix = output_path.suffix
 
-    pd.DataFrame({"predicted_labels": preds, "true_labels": truth}).to_csv(args.output_csv, index=False)
-    print(f"Saved {adata.n_obs} rows to {args.output_csv}")
+    # Process each annotation key separately
+    for annotation_key in args.annotation_keys:
+        print(f"Processing annotation key: {annotation_key}")
+        
+        # Get truth labels for this annotation key
+        if annotation_key in adata.obs:
+            truth = adata.obs[annotation_key].astype(str).tolist()
+        elif "cell_type" in adata.obs:
+            truth = adata.obs["cell_type"].astype(str).tolist()
+            print(f"Warning: '{annotation_key}' not found, using 'cell_type' instead")
+        else:
+            truth = ["NA"] * adata.n_obs
+            print(f"Warning: '{annotation_key}' not found, using 'NA' for all cells")
+
+        # Create DataFrame with cell_id, true_labels, and predicted_labels (matching other models)
+        results_df = pd.DataFrame({
+            "cell_id": adata.obs.index,
+            "true_labels": truth, 
+            "predicted_labels": preds
+        })
+
+        # Create output filename for this annotation level (same naming as other models)
+        output_csv = output_dir / f"{output_stem}_{annotation_key}{output_suffix}"
+        
+        # Save to CSV
+        results_df.to_csv(output_csv, index=False)
+        print(f"Saved {adata.n_obs} rows to {output_csv}")
+        
+        # Calculate and print accuracy
+        accuracy = (results_df['true_labels'] == results_df['predicted_labels']).mean()
+        print(f"Accuracy for {annotation_key}: {accuracy:.3f}")
 
 if __name__ == "__main__":
     try:
