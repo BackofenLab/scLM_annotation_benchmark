@@ -57,11 +57,12 @@ def map_cell_types_to_ontology(
             "Install it with: pip install omicverse or include it into the dependencies of the nextflow process"
         )
     
-    cache_dir = Path(cache_dir)
+    cache_dir = Path(cache_dir) 
     cache_dir.mkdir(parents=True, exist_ok=True)
     
     # Path for the mapping CSV file
-    mapping_csv_path = cache_dir / "cell_type_ontology_mappings.csv"
+    # use the parent to directly store in /cache and not in /cache/evaluation ; as this file is also used in download step
+    mapping_csv_path = cache_dir.parent / "cell_type_ontology_mappings.csv"
     
     # Load existing mappings if they exist
     existing_mappings = {}
@@ -184,14 +185,15 @@ def load_ontology_mappings(cache_dir: Path) -> Optional[Dict[str, str]]:
     Parameters
     ----------
     cache_dir : Path
-        Directory containing the mapping CSV file
+        Directory containing the mapping CSV file (will check parent directory)
         
     Returns
     -------
     Optional[Dict[str, str]]
         Dictionary mapping predicted_label -> chosen_match, or None if file doesn't exist
     """
-    mapping_csv_path = cache_dir / "cell_type_ontology_mappings.csv"
+    # CSV is stored in parent directory (cache root)
+    mapping_csv_path = cache_dir.parent / "cell_type_ontology_mappings.csv"
     
     if not mapping_csv_path.exists():
         return None

@@ -367,15 +367,18 @@ def compute_ontology_similarities(
     max_desc = max(desc_count.values()) if desc_count else 0
 
     # Check mapping coverage for all unique cell types
-    all_cell_types = set(df[true_col].unique()) | set(df[pred_col].unique())
-    mapped_types = set()
-    unmapped_types = set()
+    all_cell_types = list(set(df[true_col].unique()) | set(df[pred_col].unique()))
     
-    for cell_type in all_cell_types:
-        if map_string_to_term(cell_type, label_index) is not None:
-            mapped_types.add(cell_type)
-        else:
-            unmapped_types.add(cell_type)
+    # Use helper function to check ontology mapping coverage
+    from .ontology_helpers import check_ontology_mapping_coverage, create_or_update_ontology_mappings, apply_ontology_mappings_to_cell_types
+    
+    try:
+        mapped_types, unmapped_types, label_index = check_ontology_mapping_coverage(
+            cell_types=all_cell_types,
+            ontology_path=cl_path
+        )
+    except Exception as e:
+        raise RuntimeError(f"Failed to check ontology coverage: {e}")
     
     # Calculate unmapped ratio
     total_types = len(all_cell_types)
@@ -398,52 +401,36 @@ def compute_ontology_similarities(
         try:
             print(f"\nAttempting to map {len(unmapped_types)} unmapped cell types using ontology mapper...")
             
-            # Import here to avoid circular imports
-            from .ontology_mapper import map_cell_types_to_ontology, load_ontology_mappings
-            
-            # Create mappings for unmapped cell types
-            unmapped_list = list(unmapped_types)
-            mapping_csv_path = map_cell_types_to_ontology(
-                predicted_labels=unmapped_list,
+            # Create/update ontology mappings
+            mappings = create_or_update_ontology_mappings(
+                unmapped_cell_types=list(unmapped_types),
                 cache_dir=cache_dir,
                 force_remapping=False
             )
             
-            # Load the mappings
-            mappings = load_ontology_mappings(cache_dir)
             if mappings:
-                # Try to map unmapped types to their chosen_match values
-                newly_mapped = set()
-                still_unmapped = set()
+                # Apply mappings to get label replacements
+                _, replacements = apply_ontology_mappings_to_cell_types(
+                    cell_types=all_cell_types,
+                    unmapped_types=unmapped_types,
+                    mappings=mappings,
+                    label_index=label_index,
+                    verbose=True
+                )
                 
-                for cell_type in unmapped_types:
-                    chosen_match = mappings.get(cell_type, "").strip()
-                    if chosen_match and chosen_match != cell_type:
-                        # Check if the chosen_match can be mapped to a term
-                        if map_string_to_term(chosen_match, label_index) is not None:
-                            label_replacements[cell_type] = chosen_match
-                            newly_mapped.add(cell_type)
-                            print(f"  Mapped: '{cell_type}' -> '{chosen_match}'")
-                        else:
-                            still_unmapped.add(cell_type)
-                            print(f"  Failed: '{cell_type}' -> '{chosen_match}' (chosen_match not in ontology)")
-                    else:
-                        still_unmapped.add(cell_type)
-                        if not chosen_match:
-                            print(f"  Failed: '{cell_type}' (no chosen_match available)")
-                        else:
-                            print(f"  Failed: '{cell_type}' (chosen_match same as original)")
+                label_replacements = replacements
                 
                 # Update the sets
+                newly_mapped = set(replacements.keys())
                 mapped_types.update(newly_mapped)
-                unmapped_types = still_unmapped
+                unmapped_types = unmapped_types - newly_mapped
                 
                 print(f"\nOntology mapper results:")
                 print(f"  Successfully remapped: {len(newly_mapped)}")
-                print(f"  Still unmapped: {len(still_unmapped)}")
+                print(f"  Still unmapped: {len(unmapped_types)}")
                 
-                if still_unmapped:
-                    print(f"  Still unmapped cell types: {sorted(still_unmapped)}")
+                if unmapped_types:
+                    print(f"  Still unmapped cell types: {sorted(unmapped_types)}")
                 
         except Exception as e:
             print(f"Warning: Ontology mapper failed: {e}")
@@ -493,6 +480,7 @@ def compute_ontology_similarities(
     # Add new columns for individual scores
     temp_df["true_term_id"] = None
     temp_df["pred_term_id"] = None
+    temp_df["mapped_labels"] = None
     temp_df["rada_similarity"] = np.nan
     temp_df["lin_similarity"] = np.nan
     temp_df["distance_edges"] = np.nan
@@ -514,6 +502,7 @@ def compute_ontology_similarities(
         
         temp_df.at[i, "true_term_id"] = t.id if t else None
         temp_df.at[i, "pred_term_id"] = p.id if p else None
+        temp_df.at[i, "mapped_labels"] = p.name if p else None
         
         if t and p:
             # Always compute distance
@@ -555,7 +544,8 @@ def compute_ontology_similarities(
         'lin_similarity': 'mean', 
         'distance_edges': 'mean',
         'true_term_id': 'first',
-        'pred_term_id': 'first'
+        'pred_term_id': 'first',
+        'mapped_labels': 'first'
     }).reset_index()
     
     # Merge the cell counts with similarity aggregations
@@ -574,7 +564,7 @@ def compute_ontology_similarities(
     
     # Reorder columns for better readability
     column_order = [
-        true_col, pred_col, 'cell_count',
+        true_col, pred_col, 'mapped_labels', 'cell_count',
         'rada_similarity', 'lin_similarity', 'distance_edges',
         'true_term_id', 'pred_term_id'
     ]
