@@ -203,7 +203,7 @@ def load_dataset(tokenizer, text_encoder, args):
     return tokenized_dataset, testdataset, texts, text_embs, dataloader, args.batchsize, types, file_name
 
 
-def gettextfromname(name, name2id, ontology, discription=False):
+def gettextfromname(name, name2id, ontology, discription=True):
     """
     Collect description for cell types from the ontology.
     """
@@ -215,8 +215,7 @@ def gettextfromname(name, name2id, ontology, discription=False):
         if ontology[id]['def'] != []:
             s += ontology[id]['def'] + '; '
     print(f"Cell type description: {s}")
-    return "cell type"
-    #return s
+    return s
 
 
 def text_encode(text, tokenizer, text_encoder):

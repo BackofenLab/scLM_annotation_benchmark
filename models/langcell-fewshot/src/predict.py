@@ -233,17 +233,19 @@ def load_dataset(tokenizer, text_encoder, args):
     return train_loader, test_loader, texts, testdataset, testdataset_w_ct, tokenizer, text_encoder, types, file_name
 
 
-def gettextfromname(name, name2id, ontology, discription=False):
+def gettextfromname(name, name2id, ontology, discription=True):
+    """
+    Collect description for cell types from the ontology.
+    """
     ontology_name = name.lower()
     id = name2id[ontology_name.lower()]
     s = "cell type: "
-    s += ontology[id]['name'] + '. ' 
+    s += ontology[id]['name'] + '. '
     if discription:
         if ontology[id]['def'] != []:
             s += ontology[id]['def'] + '; '
     print(f"Cell type description: {s}")
-    return "cell type"
-    #return s
+    return s
 
 
 def text_encode(text):
@@ -355,11 +357,20 @@ def fine_tune_model(
     for row in confusion_matrix(labels, preds):
         print('\t'.join([str(x) for x in row]))
     print(classification_report(labels, preds, digits=4, zero_division=0))
-    organ_name = file_stub.split('_')[-1]
     # plot confusion matrix
-    plot_umap(cell_embs, testdataset_w_ct, preds, types, file_stub, mode, out_dir, nmi, ari)
-    plot_confusion_matrix(labels, preds, types, out_dir, title=f"Confusion matrix for celltypes of {organ_name}", file_n=file_stub, mode=mode, normalize=True)
-    pred_df = pd.DataFrame({'pred': preds.numpy(), 'label': labels.numpy(), 'pred_celltype': [types[i] for i in preds], 'true_celltype': [types[i] for i in labels]})
+    #organ_name = file_stub.split('_')[-1]
+    #plot_umap(cell_embs, testdataset_w_ct, preds, types, file_stub, mode, out_dir, nmi, ari)
+    #plot_confusion_matrix(labels, preds, types, out_dir, title=f"Confusion matrix for celltypes of {organ_name}", file_n=file_stub, mode=mode, normalize=True)
+    pred_df = create_results_dataframe(preds, labels, types)
+    return pred_df
+
+
+def create_results_dataframe(preds, labels, types):
+    label_keys = ["predicted_idx", "true_idx", "predicted_labels", "true_labels"]
+    pred_df = pd.DataFrame({label_keys[0]: preds.numpy(),
+                            label_keys[1]: labels.numpy(),
+                            label_keys[2]: [types[i] for i in preds],
+                            label_keys[3]: [types[i] for i in labels]})
     return pred_df
 
 
