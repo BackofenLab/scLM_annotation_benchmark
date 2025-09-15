@@ -52,7 +52,7 @@ CFG_YAML=$(realpath "$3")
 OUTPUT_DIR=$(dirname "$OUT_CSV")
 mkdir -p "$OUTPUT_DIR"
 
-# Run CellTypist prediction
+# Run Langcell prediction
 python "$(dirname "$0")/predict.py" \
 --input "$INPUT_H5AD" \
 --output "$OUT_CSV"

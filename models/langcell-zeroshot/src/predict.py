@@ -161,7 +161,7 @@ def load_dataset(tokenizer, text_encoder, args):
     dataset_sub.obs['batch'] = dataset_sub.obs['_scvi_batch']
     dataset_sub.obs['str_labels'] = dataset_sub.obs['cell_ontology_class']
     dataset_sub.obs['celltype'] = dataset_sub.obs['cell_ontology_class']
-    dataset_sub.obs['n_counts'] = n_counts #np.asarray(dataset_sub.X.sum(axis=1)).ravel() #dataset_sub.X.sum(axis=1)
+    dataset_sub.obs['n_counts'] = np.asarray(dataset_sub.X.sum(axis=1)).ravel() #dataset_sub.X.sum(axis=1)
     f_ensembl_ids = dataset_sub.var['ensembl_id'].str.replace(r'\.\d+$','', regex=True)
     dataset_sub.var['feature_id'] = f_ensembl_ids
     dataset_sub.var['ensembl_id'] = f_ensembl_ids
@@ -325,11 +325,20 @@ def predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, 
         print('\t'.join([str(x) for x in row]))
     # evaluation
     print(classification_report(labels, preds, digits=4))
-    organ_name = file_name.split('_')[-1]
     # plot confusion matrix
-    plot_umap(cell_embs, dataset_sub, preds, types, file_name, mode, o_path, nmi, ari)
-    plot_confusion_matrix(labels, preds, types, o_path, title=f'Confusion matrix for celltypes of {organ_name}', file_n=file_name, mode=mode, normalize=True)
-    pred_df = pd.DataFrame({'pred': preds.numpy(), 'label': labels.numpy(), 'pred_celltype': [types[i] for i in preds], 'true_celltype': [types[i] for i in labels]})
+     #organ_name = file_name.split('_')[-1]
+    #plot_umap(cell_embs, dataset_sub, preds, types, file_name, mode, o_path, nmi, ari)
+    #plot_confusion_matrix(labels, preds, types, o_path, title=f'Confusion matrix for celltypes of {organ_name}', file_n=file_name, mode=mode, normalize=True)
+    pred_df = create_results_dataframe(preds, labels, types)
+    return pred_df
+
+
+def create_results_dataframe(preds, labels, types):
+    label_keys = ["predicted_idx", "true_idx", "predicted_labels", "true_labels"]
+    pred_df = pd.DataFrame({label_keys[0]: preds.numpy(), 
+                            label_keys[1]: labels.numpy(), 
+                            label_keys[2]: [types[i] for i in preds],
+                            label_keys[3]: [types[i] for i in labels]})
     return pred_df
 
 
@@ -476,21 +485,20 @@ def main():
     set_seed(args.seed)
 
     # Load models/tokenizer/head
-    '''model, tokenizer, text_encoder, ctm_head = load_model_assets(base_dir, device)
+    model, tokenizer, text_encoder, ctm_head = load_model_assets(base_dir, device)
     logger.info("Model assets loaded.")
 
     dataset_sub, testdataset, texts, text_embs, dataloader, batchsize, types, file_name = load_dataset(tokenizer, text_encoder, args)
     print("Loading dataset finished.")
     # use the following line to combine cell emb and text
     pred_df = predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, texts, text_embs, dataloader, types, file_name, out_dir, args)
-    #pred_df = predict_with_cell_emb(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, texts, text_embs, dataloader, types, file_name, out_dir, args)
     pred_df.to_csv(args.output, index=True)
     logger.info("Langcell prediction pipeline completed successfully")
-    logger.info(f"Results saved to: {args.output}")'''
+    logger.info(f"Results saved to: {args.output}")
 
-    make_bar_plot_f1(out_dir)
+    #make_bar_plot_f1(out_dir)
 
-    make_bar_plot_ari(out_dir)
+    #make_bar_plot_ari(out_dir)
 
 
 if __name__ == "__main__":
