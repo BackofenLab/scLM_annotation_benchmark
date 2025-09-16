@@ -131,6 +131,29 @@ def calculate_mean_max_min(adata, feature_name):
     return np.mean(vals), np.median(vals), np.max(vals), np.min(vals)
 
 
+def setup_dataframe(dataframe):
+    """
+    Add necessary attributes to the dataframe.
+    """
+    if sp.issparse(dataframe.X):
+        n_counts = np.asarray(dataframe.X.sum(axis=1)).ravel()
+        n_genes  = dataframe.X.getnnz(axis=1)
+    else:
+        n_counts = dataframe.X.sum(axis=1)
+        n_genes  = (dataframe.X > 0).sum(axis=1)
+
+    dataframe.obs['batch'] = dataframe.obs['_scvi_batch']
+    dataframe.obs['str_labels'] = dataframe.obs['cell_ontology_class']
+    dataframe.obs['celltype'] = dataframe.obs['cell_ontology_class']
+    dataframe.var['ensembl_id'] = dataframe.var['ensembl_id'].fillna('').astype(str)
+    f_ensembl_ids = dataframe.var['ensembl_id'].str.replace(r'\.\d+$','', regex=True)
+    dataframe.var['feature_id'] = f_ensembl_ids
+    dataframe.var['ensembl_id'] = f_ensembl_ids
+    dataframe.obs["n_genes"]  = np.asarray(n_genes, dtype=np.int32)
+    dataframe.obs['n_counts'] = np.asarray(n_counts, dtype=np.int32)
+    return dataframe
+
+
 def load_dataset(tokenizer, text_encoder, args):
     """
     Read h5ad, filter/prepare, tokenize cells, map labels, stratify zero-shot test.
@@ -142,31 +165,12 @@ def load_dataset(tokenizer, text_encoder, args):
     sc.pp.highly_variable_genes(dataset_sub, n_top_genes=args.n_top_genes)
     dataset_sub = dataset_sub[:, dataset_sub.var.highly_variable]
 
-    print(f"n_genes_by_counts (mean, med, max, min): {calculate_mean_max_min(dataset_sub, 'n_genes_by_counts')}")
-    print(f"total_counts (mean, med, max, min): {calculate_mean_max_min(dataset_sub, 'total_counts')}")
-    print(f"pct_counts_mt (mean, med, max, min): {calculate_mean_max_min(dataset_sub, 'pct_counts_mt')}")
-
     # add key features
     dataset_sub.obs["filter_pass"] = (
         (dataset_sub.obs["n_genes_by_counts"] >= 200)
     ).astype(bool)
 
-    if sp.issparse(dataset_sub.X):
-        n_counts = np.asarray(dataset_sub.X.sum(axis=1)).ravel()
-        n_genes  = dataset_sub.X.getnnz(axis=1)
-    else:
-        n_counts = dataset_sub.X.sum(axis=1)
-        n_genes  = (dataset_sub.X > 0).sum(axis=1)
-
-    dataset_sub.obs['batch'] = dataset_sub.obs['_scvi_batch']
-    dataset_sub.obs['str_labels'] = dataset_sub.obs['cell_ontology_class']
-    dataset_sub.obs['celltype'] = dataset_sub.obs['cell_ontology_class']
-    dataset_sub.obs['n_counts'] = np.asarray(dataset_sub.X.sum(axis=1)).ravel() #dataset_sub.X.sum(axis=1)
-    f_ensembl_ids = dataset_sub.var['ensembl_id'].str.replace(r'\.\d+$','', regex=True)
-    dataset_sub.var['feature_id'] = f_ensembl_ids
-    dataset_sub.var['ensembl_id'] = f_ensembl_ids
-    dataset_sub.obs["n_genes"]  = np.asarray(n_genes, dtype=np.int32)
-
+    dataset_sub = setup_dataframe(dataset_sub)
     tk = LangCellTranscriptomeTokenizer(dict([(k, k) for k in dataset_sub.obs.keys()]), nproc=4)
     tokenized_cells, cell_metadata = tk.tokenize_anndata(dataset_sub)
     tokenized_dataset = tk.create_dataset(tokenized_cells, cell_metadata)
@@ -178,10 +182,8 @@ def load_dataset(tokenizer, text_encoder, args):
         tokenized_dataset = tokenized_dataset.rename_column(label_name,"celltype")
 
     types = list(set(tokenized_dataset['celltype']))
-
     ontology = json.load(open(f'{curr_path}/data/obo.json'))
     name2id = {ontology[id]['name']: id for id in ontology}
-
     texts = [gettextfromname(typename, name2id, ontology) for typename in types]
     type2num = dict([(type, i) for i, type in enumerate(types)])
 
@@ -214,7 +216,6 @@ def gettextfromname(name, name2id, ontology, discription=True):
     if discription:
         if ontology[id]['def'] != []:
             s += ontology[id]['def'] + '; '
-    print(f"Cell type description: {s}")
     return s
 
 
@@ -324,10 +325,6 @@ def predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, 
         print('\t'.join([str(x) for x in row]))
     # evaluation
     print(classification_report(labels, preds, digits=4))
-    # plot confusion matrix
-     #organ_name = file_name.split('_')[-1]
-    #plot_umap(cell_embs, dataset_sub, preds, types, file_name, mode, o_path, nmi, ari)
-    #plot_confusion_matrix(labels, preds, types, o_path, title=f'Confusion matrix for celltypes of {organ_name}', file_n=file_name, mode=mode, normalize=True)
     pred_df = create_results_dataframe(preds, labels, types)
     return pred_df
 
@@ -420,6 +417,7 @@ def make_bar_plot_f1(curr_path):
     #plt.savefig(f"{curr_path}/results/grouped_barplot.pdf")            # PDF (vector)
     plt.show()
 
+
 def make_bar_plot_ari(curr_path):
     categories = ["Zero-shot", "1-shot", "2-shot"]        # x-axis categories
     groups = ["Cell type + Desc", "Cell type", "No text"]     # group labels
@@ -463,7 +461,6 @@ def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="LangCell few/zero-shot prediction for single-cell data")
     p.add_argument("-i", "--input", type=Path, default=default_input, help=f"Input h5ad file path (default: {default_input})")
     p.add_argument("-o", "--output", type=Path, default=default_output, help=f"Output CSV file path (default: {default_output})")
-    p.add_argument("--epochs", type=int, default=1, help="Fine-tuning epochs (default: 1)")
     p.add_argument("--seed", type=int, default=42, help="Random seed (default: 42)")
     p.add_argument("--batchsize", type=int, default=32, help="Test batch size (default: 32)")
     p.add_argument("--n_top_genes", type=int, default=3000, help="Number of HVGs (default: 3000)")
@@ -489,16 +486,12 @@ def main():
 
     dataset_sub, testdataset, texts, text_embs, dataloader, batchsize, types, file_name = load_dataset(tokenizer, text_encoder, args)
     print("Loading dataset finished.")
+    
     # use the following line to combine cell emb and text
     pred_df = predict(model, tokenizer, text_encoder, ctm_head, dataset_sub, testdataset, texts, text_embs, dataloader, types, file_name, out_dir, args)
     pred_df.to_csv(args.output, index=True)
     logger.info("Langcell prediction pipeline completed successfully")
     logger.info(f"Results saved to: {args.output}")
-
-    #make_bar_plot_f1(out_dir)
-
-    #make_bar_plot_ari(out_dir)
-
 
 if __name__ == "__main__":
     main()

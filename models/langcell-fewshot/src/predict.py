@@ -135,6 +135,29 @@ def calculate_mean_max_min(adata, feature_name):
     return np.mean(vals), np.median(vals), np.max(vals), np.min(vals)
 
 
+def setup_dataframe(dataframe):
+    """
+    Add necessary attributes to the dataframe.
+    """
+    if sp.issparse(dataframe.X):
+        n_counts = np.asarray(dataframe.X.sum(axis=1)).ravel()
+        n_genes  = dataframe.X.getnnz(axis=1)
+    else:
+        n_counts = dataframe.X.sum(axis=1)
+        n_genes  = (dataframe.X > 0).sum(axis=1)
+
+    dataframe.obs['batch'] = dataframe.obs['_scvi_batch']
+    dataframe.obs['str_labels'] = dataframe.obs['cell_ontology_class']
+    dataframe.obs['celltype'] = dataframe.obs['cell_ontology_class']
+    dataframe.var['ensembl_id'] = dataframe.var['ensembl_id'].fillna('').astype(str)
+    f_ensembl_ids = dataframe.var['ensembl_id'].str.replace(r'\.\d+$','', regex=True)
+    dataframe.var['feature_id'] = f_ensembl_ids
+    dataframe.var['ensembl_id'] = f_ensembl_ids
+    dataframe.obs["n_genes"]  = np.asarray(n_genes, dtype=np.int32)
+    dataframe.obs['n_counts'] = np.asarray(n_counts, dtype=np.int32)
+    return dataframe
+
+
 def load_dataset(tokenizer, text_encoder, args):
     """
     Read h5ad, filter/prepare, tokenize cells, map labels, stratify few-shot train/test.
@@ -146,15 +169,11 @@ def load_dataset(tokenizer, text_encoder, args):
     sc.pp.highly_variable_genes(dataset_sub, n_top_genes=args.n_top_genes)
     dataset_sub = dataset_sub[:, dataset_sub.var.highly_variable]
 
-    print(f"n_genes_by_counts (mean, med, max, min): {calculate_mean_max_min(dataset_sub, 'n_genes_by_counts')}")
-    print(f"total_counts (mean, med, max, min): {calculate_mean_max_min(dataset_sub, 'total_counts')}")
-    print(f"pct_counts_mt (mean, med, max, min): {calculate_mean_max_min(dataset_sub, 'pct_counts_mt')}")
-
     dataset_sub.obs["filter_pass"] = (
         (dataset_sub.obs["n_genes_by_counts"] >= 200)
     ).astype(bool)
 
-    if sp.issparse(dataset_sub.X):
+    '''if sp.issparse(dataset_sub.X):
         n_counts = np.asarray(dataset_sub.X.sum(axis=1)).ravel()
         n_genes  = dataset_sub.X.getnnz(axis=1)
     else:
@@ -168,7 +187,9 @@ def load_dataset(tokenizer, text_encoder, args):
     f_ensembl_ids = dataset_sub.var['ensembl_id'].str.replace(r'\.\d+$','', regex=True)
     dataset_sub.var['feature_id'] = f_ensembl_ids 
     dataset_sub.var['ensembl_id'] = f_ensembl_ids
-    dataset_sub.obs["n_genes"]  = np.asarray(n_genes, dtype=np.int32)
+    dataset_sub.obs["n_genes"]  = np.asarray(n_genes, dtype=np.int32)'''
+
+    dataset_sub = setup_dataframe(dataset_sub)
 
     tk = LangCellTranscriptomeTokenizer(dict([(k, k) for k in dataset_sub.obs.keys()]), nproc=4)
     tokenized_cells, cell_metadata = tk.tokenize_anndata(dataset_sub)
@@ -209,7 +230,6 @@ def load_dataset(tokenizer, text_encoder, args):
                         break
                 if br:
                     break
-    print("type2trainlist:", type2trainlist)
     train_idx = []
     for k in type2trainlist.keys():
         train_idx += type2trainlist[k]
@@ -221,7 +241,6 @@ def load_dataset(tokenizer, text_encoder, args):
     traindataset = dataset.select(train_idx).shuffle(args.seed)
     testdataset = dataset.select(test_idx).shuffle(args.seed)
     testdataset_w_ct = testdataset
-    #types = list(set(testdataset['celltype']))
     traindataset = traindataset.remove_columns(['celltype'])
     testdataset = testdataset.remove_columns(['celltype'])
 
@@ -244,7 +263,6 @@ def gettextfromname(name, name2id, ontology, discription=True):
     if discription:
         if ontology[id]['def'] != []:
             s += ontology[id]['def'] + '; '
-    print(f"Cell type description: {s}")
     return s
 
 
@@ -297,7 +315,6 @@ def fine_tune_model(
     optimizer2 = torch.optim.Adam(text_encoder.parameters(), lr=1e-5)
 
     for epoch in range(epochs):
-        print('epoch:', epoch)
         for i, d in tqdm(enumerate(train_loader)):
             model.train()
             text_encoder.train()
@@ -317,7 +334,6 @@ def fine_tune_model(
             loss.backward()
             optimizer1.step()
             optimizer2.step()
-    print("Fine tuning finished")
     ## Make inferences
     cell_embs = torch.zeros(len(testdataset), 256)
     model.eval()
@@ -357,10 +373,6 @@ def fine_tune_model(
     for row in confusion_matrix(labels, preds):
         print('\t'.join([str(x) for x in row]))
     print(classification_report(labels, preds, digits=4, zero_division=0))
-    # plot confusion matrix
-    #organ_name = file_stub.split('_')[-1]
-    #plot_umap(cell_embs, testdataset_w_ct, preds, types, file_stub, mode, out_dir, nmi, ari)
-    #plot_confusion_matrix(labels, preds, types, out_dir, title=f"Confusion matrix for celltypes of {organ_name}", file_n=file_stub, mode=mode, normalize=True)
     pred_df = create_results_dataframe(preds, labels, types)
     return pred_df
 
