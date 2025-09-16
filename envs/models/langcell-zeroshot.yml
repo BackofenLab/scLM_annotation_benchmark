@@ -1,4 +1,4 @@
-name: langcell-env
+name: langcell-zeroshot-env
 channels:
   - anaconda
   - conda-forge
@@ -63,7 +63,6 @@ dependencies:
   - icu=70.1=h27087fc_0
   - idna=3.10=pyhd8ed1ab_1
   - importlib-metadata=8.7.0=pyhe01879c_1
-  #- ipykernel=7.0.0a2=pyh82676e8_0
   - ipython=8.37.0=pyh8f84b5b_0
   - jedi=0.19.2=pyhd8ed1ab_1
   - joblib=1.5.1=pyhd8ed1ab_0
