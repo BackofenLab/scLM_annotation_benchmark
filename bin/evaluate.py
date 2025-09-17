@@ -252,7 +252,7 @@ def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_rati
                                              )
     print(f"Classification report: {classification_r}")
 
-    class_report_path = output_dir / "Classification_report.json"
+    class_report_path = output_dir / "classification_report.json"
     with open(class_report_path, "w+") as f:
         json.dump(classification_r, f, indent=4)
     
