@@ -244,6 +244,18 @@ def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_rati
     print(f"Balanced accuracy: {balanced_acc:.4f}")
     print(f"Confusion matrix saved to: {output_plot_path}")
     
+    classification_r = classification_report(true_labels, 
+                                             pred_labels,
+                                             digits=4,
+                                             zero_division=0,
+                                             output_dict=True
+                                             )
+    print(f"Classification report: {classification_r}")
+
+    class_report_path = output_dir / "Classification_report.json"
+    with open(class_report_path, "w+") as f:
+        json.dump(classification_r, f, indent=4)
+    
     return results
 
 def main(args):
