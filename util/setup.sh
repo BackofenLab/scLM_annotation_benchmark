@@ -208,7 +208,7 @@ REPO_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 # Otherwise, hardcode your repo path:
 # REPO_DIR="/Users/<user>/Documents/Arbeit/Projects/Single_Cell_Foundation_Models/sc_language_foundation_models"
 
-TARGET="$REPO_DIR/../bin/download.py"
+TARGET="$REPO_DIR/bin/download.py"
 
 if [[ -f "$TARGET" ]]; then
   chmod +x "$TARGET" || true
