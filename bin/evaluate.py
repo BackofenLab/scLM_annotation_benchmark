@@ -173,7 +173,7 @@ def main(args):
     # Parse prediction input (can be string or list)
     pred_files = parse_pred_input(args.pred)
     dataset, model = args.out.split('/')[-1].rsplit('_',1)
-    output_dir = Path(args.out.rsplit('_',1)[-1])
+    output_dir = Path(args.out.rsplit('_',1)[0])
     output_dir.mkdir(parents=True, exist_ok=True)
     
     # Set up cache directory and CL ontology path
