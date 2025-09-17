@@ -138,7 +138,7 @@ def calculate_mean_max_min(adata, feature_name):
     return np.mean(vals), np.median(vals), np.max(vals), np.min(vals)
 
 
-def setup_dataframe(dataframe):
+def setup_dataframe(dataframe, annotation_key):
     """
     Add necessary attributes to the dataframe.
     """
@@ -150,8 +150,8 @@ def setup_dataframe(dataframe):
         n_genes = (dataframe.X > 0).sum(axis=1)
 
     dataframe.obs["batch"] = dataframe.obs["_scvi_batch"]
-    dataframe.obs["str_labels"] = dataframe.obs["cell_ontology_class"]
-    dataframe.obs["celltype"] = dataframe.obs["cell_ontology_class"]
+    dataframe.obs["str_labels"] = dataframe.obs[annotation_key]
+    dataframe.obs["celltype"] = dataframe.obs[annotation_key]
     dataframe.var["ensembl_id"] = dataframe.var["ensembl_id"].fillna("").astype(str)
     f_ensembl_ids = dataframe.var["ensembl_id"].str.replace(r"\.\d+$", "", regex=True)
     dataframe.var["feature_id"] = f_ensembl_ids
@@ -161,7 +161,7 @@ def setup_dataframe(dataframe):
     return dataframe
 
 
-def load_dataset(tokenizer, text_encoder, args):
+def load_dataset(tokenizer, text_encoder, annotation_key, args):
     """
     Read h5ad, filter/prepare, tokenize cells, map labels, stratify zero-shot test.
     """
@@ -177,10 +177,12 @@ def load_dataset(tokenizer, text_encoder, args):
         dataset_sub.obs["n_genes_by_counts"] >= 200
     ).astype(bool)
 
-    dataset_sub = setup_dataframe(dataset_sub)
+    dataset_sub = setup_dataframe(dataset_sub, annotation_key)
+    cell_indices = dataset_sub.obs.index.tolist()
     tk = LangCellTranscriptomeTokenizer(
         dict([(k, k) for k in dataset_sub.obs.keys()]), nproc=4
     )
+    # create tokenized dataset
     tokenized_cells, cell_metadata = tk.tokenize_anndata(dataset_sub)
     tokenized_dataset = tk.create_dataset(tokenized_cells, cell_metadata)
 
@@ -190,12 +192,12 @@ def load_dataset(tokenizer, text_encoder, args):
     if label_name != "celltype":
         tokenized_dataset = tokenized_dataset.rename_column(label_name, "celltype")
 
+    # collect textual features
     types = list(set(tokenized_dataset["celltype"]))
     ontology = json.load(open(f"{curr_path}/data/obo.json"))
     name2id = {ontology[id]["name"]: id for id in ontology}
     texts = [gettextfromname(typename, name2id, ontology) for typename in types]
     type2num = dict([(type, i) for i, type in enumerate(types)])
-
     with torch.no_grad():
         text_embs = torch.cat(
             [text_encode(text, tokenizer, text_encoder) for text in texts], 0
@@ -221,13 +223,12 @@ def load_dataset(tokenizer, text_encoder, args):
         texts,
         text_embs,
         dataloader,
-        args.batchsize,
         types,
-        file_name,
+        cell_indices
     )
 
 
-def gettextfromname(name, name2id, ontology, discription=True):
+def gettextfromname(name, name2id, ontology, description=True):
     """
     Collect description for cell types from the ontology.
     """
@@ -235,7 +236,7 @@ def gettextfromname(name, name2id, ontology, discription=True):
     id = name2id[ontology_name.lower()]
     s = "cell type: "
     s += ontology[id]["name"] + ". "
-    if discription:
+    if description:
         if ontology[id]["def"] != []:
             s += ontology[id]["def"] + "; "
     return s
@@ -272,83 +273,6 @@ def ctm(tokenizer, text_encoder, ctm_head, text, cell_emb, cell_atts):
     return logits
 
 
-def predict_with_cell_emb(
-    model,
-    tokenizer,
-    text_encoder,
-    ctm_head,
-    dataset_sub,
-    testdataset,
-    texts,
-    text_embs,
-    dataloader,
-    types,
-    file_name,
-    o_path,
-    args,
-):
-    mode = "zero_shot"
-    batchsize = args.batchsize
-    cell_embs = torch.zeros(len(dataset_sub), 256)
-    model.eval()
-    text_encoder.eval()
-    preds = torch.zeros(len(dataset_sub))
-    sim_logits = torch.zeros(len(dataset_sub), text_embs.shape[-1])
-    # ctm_logits = torch.zeros(len(dataset_sub), text_embs.shape[-1])
-    logits = torch.zeros(len(dataset_sub), text_embs.shape[-1])
-    labels = torch.tensor(testdataset["label"])
-    n_classes = text_embs.shape[-1]
-    with torch.no_grad():
-        for i, d in tqdm(enumerate(dataloader)):
-            _, cellemb = cell_encode(
-                model, d["input_ids"], d["attention_mask"]
-            )  # batchsize * 256
-            cell_emb_head = nn.Linear(cellemb.size(-1), n_classes).to(
-                device
-            )  ## use these lines to get only cell embeddings and no text supervision
-            sim = cell_emb_head(cellemb)
-            logging.info(
-                f"Using only cell embeddings for cell type classification. Sim shape: {sim.shape}"
-            )
-            sim_logit = F.softmax(sim, dim=-1)
-            logit = sim_logit
-            pred = logit.argmax(dim=-1)
-            sim_logits[i * batchsize : (i + 1) * batchsize] = sim_logit.cpu()
-            logits[i * batchsize : (i + 1) * batchsize] = logit.cpu()
-            cell_embs[i * batchsize : (i + 1) * batchsize] = cellemb.cpu()
-            preds[i * batchsize : (i + 1) * batchsize] = pred.cpu()
-    # alpha = args.alpha
-    preds = sim_logits.argmax(dim=-1)
-    labels = torch.tensor(testdataset["label"])
-    for row in confusion_matrix(labels, preds):
-        print("\t".join([str(x) for x in row]))
-    # evaluation
-    print(classification_report(labels, preds, digits=4))
-    organ_name = file_name.split("_")[-1]
-    # plot UMAP
-    plot_umap(cell_embs, dataset_sub, preds, types, file_name, mode, o_path)
-    # plot confusion matrix
-    plot_confusion_matrix(
-        labels,
-        preds,
-        types,
-        o_path,
-        title=f"Confusion matrix for celltypes of {organ_name}",
-        file_n=file_name,
-        mode=mode,
-        normalize=True,
-    )
-    pred_df = pd.DataFrame(
-        {
-            "pred": preds.numpy(),
-            "label": labels.numpy(),
-            "pred_celltype": [types[i] for i in preds],
-            "true_celltype": [types[i] for i in labels],
-        }
-    )
-    return pred_df
-
-
 def predict(
     model,
     tokenizer,
@@ -360,11 +284,9 @@ def predict(
     text_embs,
     dataloader,
     types,
-    file_name,
-    o_path,
+    cell_indices,
     args,
 ):
-    mode = "zero_shot"
     batchsize = args.batchsize
     cell_embs = torch.zeros(len(dataset_sub), 256)
     model.eval()
@@ -415,14 +337,15 @@ def predict(
         print("\t".join([str(x) for x in row]))
     # evaluation
     print(classification_report(labels, preds, digits=4))
-    pred_df = create_results_dataframe(preds, labels, types)
+    pred_df = create_results_dataframe(cell_indices, preds, labels, types)
     return pred_df
 
 
-def create_results_dataframe(preds, labels, types):
+def create_results_dataframe(cell_indices, preds, labels, types):
     label_keys = ["predicted_idx", "true_idx", "predicted_labels", "true_labels"]
     pred_df = pd.DataFrame(
         {
+            "cell_id": cell_indices,
             label_keys[0]: preds.numpy(),
             label_keys[1]: labels.numpy(),
             label_keys[2]: [types[i] for i in preds],
@@ -485,79 +408,6 @@ def plot_confusion_matrix(
     logger.info(f"Saved confusion matrix: {out_path}")
 
 
-def make_bar_plot_f1(curr_path):
-    categories = ["Zero-shot", "1-shot", "2-shot"]  # x-axis categories
-    groups = ["Cell type + Desc", "Cell type", "No text"]  # group labels
-    values = np.array(
-        [
-            [0.91, 0.89, 0.0017],  # for Zero-shot
-            [0.92, 0.89, 0.0],  # for 1-shot
-            [0.91, 0.92, 0.0],  # for 2-shot
-        ]
-    )
-
-    # Bar settings
-    x = np.arange(len(categories))  # x positions
-    width = 0.25  # width of each bar
-
-    fig, ax = plt.subplots(figsize=(8, 6), dpi=300)
-
-    # Plot each group
-    for i, group in enumerate(groups):
-        ax.bar(x + i * width, values[:, i], width, label=group)
-
-    # Beautify
-    ax.set_ylabel("F1 scores", fontsize=11)
-    ax.set_xlabel("Experiment type", fontsize=11)
-    ax.set_title("Comparison of F1 scores on TS Kidney dataset", fontsize=13)
-    ax.set_xticks(x + width / 2)
-    ax.set_xticklabels(categories, fontsize=11)
-    ax.legend()
-
-    # High-quality layout
-    plt.tight_layout()
-
-    plt.savefig(f"{curr_path}/grouped_barplot_f1.png", dpi=300)  # PNG
-    # plt.savefig(f"{curr_path}/results/grouped_barplot.pdf")            # PDF (vector)
-    plt.show()
-
-
-def make_bar_plot_ari(curr_path):
-    categories = ["Zero-shot", "1-shot", "2-shot"]  # x-axis categories
-    groups = ["Cell type + Desc", "Cell type", "No text"]  # group labels
-    values = np.array(
-        [
-            [0.90, 0.89, 0.0],  # for Zero-shot
-            [0.90, 0.86, 0.0],  # for 1-shot
-            [0.91, 0.88, 0.0],  # for 2-shot
-        ]
-    )
-
-    # Bar settings
-    x = np.arange(len(categories))  # x positions
-    width = 0.25  # width of each bar
-
-    fig, ax = plt.subplots(figsize=(8, 6), dpi=300)
-
-    # Plot each group
-    for i, group in enumerate(groups):
-        ax.bar(x + i * width, values[:, i], width, label=group)
-
-    # Beautify
-    ax.set_ylabel("Adjusted Rand Index (ARI)", fontsize=11)
-    ax.set_xlabel("Experiment type", fontsize=11)
-    ax.set_title("Comparison of ARI on TS Kidney dataset", fontsize=13)
-    ax.set_xticks(x + width / 2)
-    ax.set_xticklabels(categories, fontsize=11)
-    ax.legend()
-
-    # High-quality layout
-    plt.tight_layout()
-
-    plt.savefig(f"{curr_path}/grouped_barplot_ari.png", dpi=300)  # PNG
-    plt.show()
-
-
 def parse_args() -> argparse.Namespace:
     """Parse CLI arguments."""
     curr_path = Path.cwd()
@@ -586,7 +436,7 @@ def parse_args() -> argparse.Namespace:
         "--batchsize", type=int, default=32, help="Test batch size (default: 32)"
     )
     p.add_argument(
-        "--n_top_genes", type=int, default=3000, help="Number of HVGs (default: 3000)"
+        "--n_top_genes", type=int, default=200, help="Number of HVGs (default: 3000)"
     )
     p.add_argument(
         "--alpha",
@@ -600,6 +450,12 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="torch device, e.g. 'cuda:0' or 'cpu' (default: auto)",
     )
+    p.add_argument(
+        "--annotation_keys",
+        nargs='+',
+        default=["cell_type"], 
+        help="Keys in adata.obs containing true labels (can specify multiple)",
+    )
     return p.parse_args()
 
 
@@ -608,8 +464,11 @@ def main():
     logger.info("Args: %s", args)
 
     base_dir = Path.cwd()
-    out_dir = args.output.parent
-    out_dir.mkdir(parents=True, exist_ok=True)
+    output_path = Path(args.output)
+    output_dir = output_path.parent
+    output_stem = output_path.stem
+    output_suffix = output_path.suffix
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     # Seed
     set_seed(args.seed)
@@ -618,37 +477,37 @@ def main():
     model, tokenizer, text_encoder, ctm_head = load_model_assets(base_dir, device)
     logger.info("Model assets loaded.")
 
-    (
-        dataset_sub,
-        testdataset,
-        texts,
-        text_embs,
-        dataloader,
-        batchsize,
-        types,
-        file_name,
-    ) = load_dataset(tokenizer, text_encoder, args)
-    print("Loading dataset finished.")
-
-    # use the following line to combine cell emb and text
-    pred_df = predict(
-        model,
-        tokenizer,
-        text_encoder,
-        ctm_head,
-        dataset_sub,
-        testdataset,
-        texts,
-        text_embs,
-        dataloader,
-        types,
-        file_name,
-        out_dir,
-        args,
-    )
-    pred_df.to_csv(args.output, index=True)
-    logger.info("Langcell prediction pipeline completed successfully")
-    logger.info(f"Results saved to: {args.output}")
+    for annotation_key in args.annotation_keys:
+        print(f"Running prediction for annotation key: {annotation_key}")
+        (
+            dataset_sub,
+            testdataset,
+            texts,
+            text_embs,
+            dataloader,
+            types,
+            cell_indices
+        ) = load_dataset(tokenizer, text_encoder, annotation_key, args)
+        print("Loading dataset finished.")
+        # use the following line to combine cell emb and text
+        pred_df = predict(
+            model,
+            tokenizer,
+            text_encoder,
+            ctm_head,
+            dataset_sub,
+            testdataset,
+            texts,
+            text_embs,
+            dataloader,
+            types,
+            cell_indices,
+            args,
+        )
+        output_csv = output_dir / f"{output_stem}_{annotation_key}{output_suffix}"
+        pred_df.to_csv(output_csv, index=True)
+        logger.info("Langcell prediction pipeline completed successfully")
+        logger.info(f"Results saved to: {args.output}")
 
 
 if __name__ == "__main__":

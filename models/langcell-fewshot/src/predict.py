@@ -141,7 +141,7 @@ def calculate_mean_max_min(adata, feature_name):
     return np.mean(vals), np.median(vals), np.max(vals), np.min(vals)
 
 
-def setup_dataframe(dataframe):
+def setup_dataframe(dataframe, annotation_key):
     """
     Add necessary attributes to the dataframe.
     """
@@ -153,8 +153,8 @@ def setup_dataframe(dataframe):
         n_genes = (dataframe.X > 0).sum(axis=1)
 
     dataframe.obs["batch"] = dataframe.obs["_scvi_batch"]
-    dataframe.obs["str_labels"] = dataframe.obs["cell_ontology_class"]
-    dataframe.obs["celltype"] = dataframe.obs["cell_ontology_class"]
+    dataframe.obs["str_labels"] = dataframe.obs[annotation_key]
+    dataframe.obs["celltype"] = dataframe.obs[annotation_key]
     dataframe.var["ensembl_id"] = dataframe.var["ensembl_id"].fillna("").astype(str)
     f_ensembl_ids = dataframe.var["ensembl_id"].str.replace(r"\.\d+$", "", regex=True)
     dataframe.var["feature_id"] = f_ensembl_ids
@@ -164,7 +164,7 @@ def setup_dataframe(dataframe):
     return dataframe
 
 
-def load_dataset(tokenizer, text_encoder, args):
+def load_dataset(tokenizer, text_encoder, annotation_key, args):
     """
     Read h5ad, filter/prepare, tokenize cells, map labels, stratify few-shot train/test.
     """
@@ -179,7 +179,7 @@ def load_dataset(tokenizer, text_encoder, args):
         dataset_sub.obs["n_genes_by_counts"] >= 200
     ).astype(bool)
 
-    dataset_sub = setup_dataframe(dataset_sub)
+    dataset_sub = setup_dataframe(dataset_sub, annotation_key)
 
     tk = LangCellTranscriptomeTokenizer(
         dict([(k, k) for k in dataset_sub.obs.keys()]), nproc=4
@@ -246,7 +246,6 @@ def load_dataset(tokenizer, text_encoder, args):
 
     traindataset = dataset.select(train_idx).shuffle(args.seed)
     testdataset = dataset.select(test_idx).shuffle(args.seed)
-    testdataset_w_ct = testdataset
     traindataset = traindataset.remove_columns(["celltype"])
     testdataset = testdataset.remove_columns(["celltype"])
 
@@ -268,11 +267,10 @@ def load_dataset(tokenizer, text_encoder, args):
         test_loader,
         texts,
         testdataset,
-        testdataset_w_ct,
         tokenizer,
         text_encoder,
         types,
-        file_name,
+        file_name
     )
 
 
@@ -329,14 +327,10 @@ def fine_tune_model(
     test_loader: DataLoader,
     texts: List[str],
     testdataset: dict,
-    testdataset_w_ct: dict,
     types: List[str],
-    out_dir: Path,
-    file_stub: str,
     epochs: int,
     alpha: float = 0.1,
 ) -> pd.DataFrame:
-    mode = f"{str(args.nshot)}_shot"
     model.train()
     text_encoder.train()
     loss_fn = nn.CrossEntropyLoss()
@@ -344,6 +338,7 @@ def fine_tune_model(
     optimizer2 = torch.optim.Adam(text_encoder.parameters(), lr=1e-5)
 
     for epoch in range(epochs):
+        print(f"Training epoch {epoch+1}/{epochs}")
         for i, d in tqdm(enumerate(train_loader)):
             model.train()
             text_encoder.train()
@@ -420,6 +415,8 @@ def fine_tune_model(
     preds = (alpha * sim_logits + (1 - alpha) * ctm_logits).argmax(dim=-1)
     nmi = normalized_mutual_info_score(labels, preds)
     ari = adjusted_rand_score(labels, preds)
+    print(f"Normalized Mutual Information (NMI) Score: {nmi}")
+    print(f"Adjusted Rand Index (ARI) Score: {ari}")
     for row in confusion_matrix(labels, preds):
         print("\t".join([str(x) for x in row]))
     print(classification_report(labels, preds, digits=4, zero_division=0))
@@ -547,6 +544,12 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="torch device, e.g. 'cuda:0' or 'cpu' (default: auto)",
     )
+    p.add_argument(
+        "--annotation_keys",
+        nargs='+',
+        default=["cell_type"], 
+        help="Keys in adata.obs containing true labels (can specify multiple)",
+    )
     return p.parse_args()
 
 
@@ -555,8 +558,11 @@ if __name__ == "__main__":
     logger.info("Args: %s", args)
 
     base_dir = Path.cwd()
-    out_dir = args.output.parent
-    out_dir.mkdir(parents=True, exist_ok=True)
+    output_path = Path(args.output)
+    output_dir = output_path.parent
+    output_stem = output_path.stem
+    output_suffix = output_path.suffix
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     # Device & seed
     device = (
@@ -573,25 +579,26 @@ if __name__ == "__main__":
     output_path = f"{curr_path}/data/output/ctm_" + str(args.nshot) + "-shot/"
     subprocess.call(f"mkdir {output_path}", shell=True)
 
-    tr_loader, te_lodader, texts, t_data, t_w_ct, tokenizer, t_enc, types, name_stub = (
-        load_dataset(tokenizer, text_encoder, args)
-    )
-    print("Loading dataset finished.")
+    for annotation_key in args.annotation_keys:
+        tr_loader, te_lodader, texts, t_data, tokenizer, t_enc, types, name_stub = (
+            load_dataset(tokenizer, text_encoder, annotation_key, args)
+        )
+        print("Loading dataset finished.")
 
-    logger.info("Dataset prepared. Classes: %d", len(types))
-    o_dir_name = os.path.dirname(args.output)
-    pred_df = fine_tune_model(
-        model=model,
-        text_encoder=t_enc,
-        train_loader=tr_loader,
-        test_loader=te_lodader,
-        texts=texts,
-        testdataset=t_data,
-        testdataset_w_ct=t_w_ct,
-        types=types,
-        out_dir=out_dir,
-        file_stub=name_stub,
-        epochs=args.epochs,
-        alpha=args.alpha,
-    )
-    pred_df.to_csv(args.output, index=True)
+        logger.info("Dataset prepared. Classes: %d", len(types))
+        o_dir_name = os.path.dirname(args.output)
+        pred_df = fine_tune_model(
+            model=model,
+            text_encoder=t_enc,
+            train_loader=tr_loader,
+            test_loader=te_lodader,
+            texts=texts,
+            testdataset=t_data,
+            types=types,
+            epochs=args.epochs,
+            alpha=args.alpha,
+        )
+        output_csv = output_dir / f"{output_stem}_{annotation_key}{output_suffix}"
+        pred_df.to_csv(output_csv, index=True)
+        logger.info("Langcell prediction pipeline completed successfully")
+        logger.info(f"Results saved to: {args.output}")
