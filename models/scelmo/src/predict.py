@@ -1,148 +1,158 @@
 #!/usr/bin/env python3
-"""
-scELMo-style zero-shot annotation
 
-Usage:
-  python scelmo_min.py input.h5ad output.csv \
-      --gene-pickle /path/gene_embeddings.pickle \
-      --celltype-pickle /path/celltype_embeddings.pickle \
-      [--annotation_keys true_labels]
+import argparse
+import pickle
+import sys
+import warnings
+from typing import Tuple, List
 
-Expects pickles to be either:
-  - dict {name -> vector}, or
-  - (labels, embeddings) tuple/list
-Writes CSV with columns: predicted_labels,true_labels
-"""
-import argparse, pickle, sys
-import re, numpy as np, pandas as pd, scanpy as sc
-from scipy import sparse
-from collections import Counter
+import numpy as np
+import pandas as pd
+import scanpy as sc
+import hnswlib
 
-def _labels_and_array_from_obj(obj):
-    # dict {label->vec}
+
+# -----------------------------
+# I/O helpers
+# -----------------------------
+
+def _labels_and_array_from_obj(obj, what: str) -> Tuple[List[str], np.ndarray]:
+    """Accepts dict{name->vec}, (labels,embeddings), or dict with 'labels'+'embeddings'."""
     if isinstance(obj, dict) and all(isinstance(k, (str, bytes)) for k in obj.keys()):
         labels = [k.decode() if isinstance(k, bytes) else str(k) for k in obj.keys()]
-        embs = np.vstack([np.array(v, dtype=np.float32).ravel() for v in obj.values()])
-        return labels, embs
-    # (labels, embeddings)
+        arr = np.vstack([np.array(v, dtype=np.float32).ravel() for v in obj.values()])
+        return labels, arr
     if isinstance(obj, (list, tuple)) and len(obj) >= 2:
-        labels, embs = obj[0], obj[1]
-        return [str(x) for x in labels], np.asarray(embs, dtype=np.float32)
-    # dict with fields
-    if isinstance(obj, dict) and "labels" in obj and any(k in obj for k in ("embeddings","vectors","arr","array","embs")):
-        emb_key = next(k for k in ("embeddings","vectors","arr","array","embs") if k in obj)
-        return [str(x) for x in obj["labels"]], np.asarray(obj[emb_key], dtype=np.float32)
-    raise ValueError("Unrecognized pickle structure (need dict{name->vec} or (labels,embeddings)).")
+        labels, arr = obj[0], obj[1]
+        return [str(x) for x in labels], np.asarray(arr, dtype=np.float32)
+    if isinstance(obj, dict) and 'labels' in obj and any(k in obj for k in ('embeddings','vectors','arr','array','embs')):
+        emb_key = next(k for k in ('embeddings','vectors','arr','array','embs') if k in obj)
+        return [str(x) for x in obj['labels']], np.asarray(obj[emb_key], dtype=np.float32)
+    raise ValueError(f"Unrecognized {what} pickle structure.")
 
-def _load_pickle(path):
-    with open(path, "rb") as f:
-        return _labels_and_array_from_obj(pickle.load(f))
 
-def to_dense(x): return x.toarray() if sparse.issparse(x) else np.asarray(x)
+def _load_pickle(path: str, what: str) -> Tuple[List[str], np.ndarray]:
+    with open(path, 'rb') as f:
+        obj = pickle.load(f)
+    return _labels_and_array_from_obj(obj, what)
 
-def counts_to_log1p_cpm(X):
-    if sparse.issparse(X):
-        lib = np.asarray(X.sum(axis=1)).ravel()
-        lib = np.maximum(lib, 1.0)
-        cpm = sparse.diags(1.0 / lib) @ X * 1e6
-        return cpm.log1p()
-    lib = X.sum(axis=1, keepdims=True); lib = np.maximum(lib, 1.0)
-    return np.log1p((X / lib) * 1e6)
 
-def compute_cell_embeddings(X, gene_emb):
-    Xw = counts_to_log1p_cpm(X)
-    Xw = to_dense(Xw).astype(np.float32)
+# -----------------------------
+# Math helpers
+# -----------------------------
+
+def row_l2(M: np.ndarray) -> np.ndarray:
+    return M / (np.linalg.norm(M, axis=1, keepdims=True) + 1e-12)
+
+
+def _norm_gene_key(x) -> str:
+    s = str(x).strip()
+    u = s.upper()
+    if u.startswith('ENSG'):
+        u = u.split('.')[0]  # strip Ensembl version suffix
+    return u
+
+
+# -----------------------------
+# Core refactored functions
+# -----------------------------
+
+def compute_cell_embeddings(Xw, gene_emb: np.ndarray) -> np.ndarray:
+    # Dense-ify if sparse
+    Xw = np.asarray(Xw.todense()) if hasattr(Xw, 'todense') else np.asarray(Xw)
     C = Xw @ gene_emb
-    sums = Xw.sum(axis=1, keepdims=True); sums = np.maximum(sums, 1e-6)
-    C = C / sums
-    C = C / (np.linalg.norm(C, axis=1, keepdims=True) + 1e-12)
-    return C.astype(np.float32)
+    denom = Xw.sum(axis=1, keepdims=True)
+    denom = np.maximum(denom, 1e-6)
+    C = C / denom
+    return row_l2(C.astype(np.float32))
 
-def cosine_argmax(A, B):
-    A = A / (np.linalg.norm(A, axis=1, keepdims=True) + 1e-12)
-    B = B / (np.linalg.norm(B, axis=1, keepdims=True) + 1e-12)
-    return (A @ B.T).argmax(axis=1)
+
+def build_label_index(ct_emb: np.ndarray, space: str = 'cosine', ef_construction: int = 200,
+                      M: int = 16, ef: int = 200) -> hnswlib.Index:
+    """Build an HNSW index over label embeddings and set ef for queries."""
+    ct_emb = np.asarray(ct_emb, dtype=np.float32)
+    dim = ct_emb.shape[1]
+    index = hnswlib.Index(space=space, dim=dim)
+    index.init_index(max_elements=ct_emb.shape[0], ef_construction=ef_construction, M=M)
+    index.add_items(ct_emb, np.arange(ct_emb.shape[0]))
+    index.set_ef(ef)
+    return index
+
+
+# -----------------------------
+# CLI
+# -----------------------------
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--input_h5ad")
-    ap.add_argument("--output_csv")
-    ap.add_argument("--gene-pickle", required=True)
-    ap.add_argument("--celltype-pickle", required=True)
-    ap.add_argument("--annotation_keys", nargs='+', default=["cell_type"], 
-                   help="Keys in adata.obs containing true labels (can specify multiple)")
+    ap.add_argument('--input_h5ad', help='Path to input .h5ad')
+    ap.add_argument('--output_csv', help='Path to output CSV file')
+    ap.add_argument('--gene-pickle', required=True, help='Path to gene embeddings .pickle')
+    ap.add_argument('--celltype-pickle', required=True, help='Path to cell-type embeddings .pickle')
+    ap.add_argument('--annotation_keys', default='true_labels', help='obs column with ground-truth labels (fallback to cell_type if missing)')
     args = ap.parse_args()
 
-    # Load pickles
-    gene_labels, gene_emb = _load_pickle(args.gene_pickle)
-    ct_labels, ct_emb   = _load_pickle(args.celltype_pickle)
-    if gene_emb.shape[0] != len(gene_labels): raise ValueError("Gene labels/embeddings mismatch.")
-    if ct_emb.shape[0]   != len(ct_labels):   raise ValueError("Cell-type labels/embeddings mismatch.")
+    # Load artifacts
+    gene_labels, gene_emb = _load_pickle(args.gene_pickle, 'gene')
+    ct_labels, ct_emb = _load_pickle(args.celltype_pickle, 'celltype')
+    if gene_emb.shape[0] != len(gene_labels):
+        raise ValueError('Gene labels/embeddings mismatch')
+    if ct_emb.shape[0] != len(ct_labels):
+        raise ValueError('Cell-type labels/embeddings mismatch')
 
-    # Read h5ad (prefer raw if present)
+    # Read dataset
     adata = sc.read_h5ad(args.input_h5ad)
     X = adata.raw.X if adata.raw is not None else adata.X
     var_names = np.array(adata.raw.var_names if adata.raw is not None else adata.var_names)
 
-    # Overlap by case-insensitive exact match
-    vocab_index = {str(g).upper(): i for i, g in enumerate(gene_labels)}
+    # Map genes (case-insensitive, strip Ensembl version)
+    vocab_index = {_norm_gene_key(g): i for i, g in enumerate(gene_labels)}
     mat_idx, emb_idx = [], []
     for j, g in enumerate(var_names):
-        k = vocab_index.get(str(g).upper())
+        k = vocab_index.get(_norm_gene_key(g))
         if k is not None:
             mat_idx.append(j); emb_idx.append(k)
-    #if len(emb_idx) < 50:
-    #    raise ValueError(f"Too few overlapping genes: {len(emb_idx)}")
 
-    X_sub = X[:, mat_idx]
-    gene_emb_sub = gene_emb[np.array(emb_idx)]
+    print(f"[info] overlapping genes: {len(emb_idx)} / {len(var_names)}")
+    if len(emb_idx) < 200:
+        warnings.warn('Low gene overlap; check Ensembl-vs-symbol IDs and version suffixes.')
 
-    # Predict (run once for all annotation keys)
-    cell_emb = compute_cell_embeddings(X_sub, gene_emb_sub)
-    pred_idx = cosine_argmax(cell_emb, ct_emb)
-    preds = [ct_labels[i] for i in pred_idx]
+    # Normalize counts (Scanpy idiom) and subset to overlap
+    A = adata.raw.to_adata() if adata.raw is not None else adata.copy()
+    sc.pp.normalize_total(A, target_sum=1e6)
+    sc.pp.log1p(A)
+    Xw = A.X[:, mat_idx]  # weights
 
-    # Get base output path info (same as CellWhisperer and CellTypist)
-    from pathlib import Path
-    output_path = Path(args.output_csv)
-    output_dir = output_path.parent
-    output_stem = output_path.stem
-    output_suffix = output_path.suffix
+    # Compute cell embeddings (gene embeddings row-L2 first)
+    gene_sub = row_l2(gene_emb[np.array(emb_idx)])
+    cell_emb = compute_cell_embeddings(Xw, gene_sub)
 
-    # Process each annotation key separately
-    for annotation_key in args.annotation_keys:
-        print(f"Processing annotation key: {annotation_key}")
-        
-        # Get truth labels for this annotation key
-        if annotation_key in adata.obs:
-            truth = adata.obs[annotation_key].astype(str).tolist()
-        elif "cell_type" in adata.obs:
-            truth = adata.obs["cell_type"].astype(str).tolist()
-            print(f"Warning: '{annotation_key}' not found, using 'cell_type' instead")
-        else:
-            truth = ["NA"] * adata.n_obs
-            print(f"Warning: '{annotation_key}' not found, using 'NA' for all cells")
+    # Prepare label embeddings and build index
+    ct_emb = row_l2(np.asarray(ct_emb, dtype=np.float32))
+    index = build_label_index(ct_emb, space='cosine', ef_construction=200, M=16, ef=200)
 
-        # Create DataFrame with cell_id, true_labels, and predicted_labels (matching other models)
-        results_df = pd.DataFrame({
-            "cell_id": adata.obs.index,
-            "true_labels": truth, 
-            "predicted_labels": preds
-        })
+    # Query k=1 for each cell
+    labels_idx, dists = index.knn_query(cell_emb, k=1)
+    pred_idx = labels_idx.ravel()
+    predicted = [ct_labels[i] for i in pred_idx]
 
-        # Create output filename for this annotation level (same naming as other models)
-        output_csv = output_dir / f"{output_stem}_{annotation_key}{output_suffix}"
-        
-        # Save to CSV
-        results_df.to_csv(output_csv, index=False)
-        print(f"Saved {adata.n_obs} rows to {output_csv}")
-        
-        # Calculate and print accuracy
-        accuracy = (results_df['true_labels'] == results_df['predicted_labels']).mean()
-        print(f"Accuracy for {annotation_key}: {accuracy:.3f}")
+    # Ground truth
+    ann_col = args.annotation-keys if hasattr(args, 'annotation-keys') and args.annotation-keys in adata.obs else None
+    if ann_col is None:
+        ann_col = 'cell_type' if 'cell_type' in adata.obs else None
+    if ann_col is None:
+        true = ['NA'] * adata.n_obs
+        warnings.warn('No annotation column found; writing NA for true_labels')
+    else:
+        true = adata.obs[ann_col].astype(str).tolist()
 
-if __name__ == "__main__":
+    pd.DataFrame({'predicted_labels': predicted, 'true_labels': true}).to_csv(args.output_csv, index=False)
+    print(f"[ok] saved {adata.n_obs} rows to {args.output_csv}")
+
+
+if __name__ == '__main__':
     try:
         main()
     except Exception as e:
-        print(f"[ERROR] {e}", file=sys.stderr); sys.exit(2)
+        print(f"[ERROR] {e}", file=sys.stderr)
+        sys.exit(2)
