@@ -172,7 +172,8 @@ def main(args):
     
     # Parse prediction input (can be string or list)
     pred_files = parse_pred_input(args.pred)
-    output_dir = Path(args.out)
+    dataset, model = args.out.split('/')[-1].rsplit('_',1)
+    output_dir = Path(args.out.rsplit('_',1)[-1])
     output_dir.mkdir(parents=True, exist_ok=True)
     
     # Set up cache directory and CL ontology path
@@ -259,7 +260,7 @@ def main(args):
         raise ValueError("No valid prediction files were processed successfully.")
 
     # Save results to JSON
-    eval_path = output_dir / "evaluation.json"
+    eval_path = args.out
     with open(eval_path, "w+") as f:
         json.dump(all_results, f, indent=4)
 
@@ -286,7 +287,7 @@ if __name__ == "__main__":
 
     parser.add_argument("--pred", required=True, type=str, 
                        help="CSV file(s) with true and predicted labels. Can be a single file path or comma-separated list of file paths")
-    parser.add_argument("--out", required=True, type=str, help="Path to results folder")
+    parser.add_argument("--out", required=True, type=str, help="Path to results file")
     parser.add_argument("--cache_dir", type=str, default=None,
                        help="Cache directory for ontology files. If not provided, uses 'cache' in current directory")
     parser.add_argument("--max-unmapped-ratio", type=float, default=1.0,
