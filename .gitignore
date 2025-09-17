@@ -8,7 +8,7 @@ __pycache__/
 *.py[cod]
 notebooks
 miniconda.sh
-cache/
+cache/*
 # Exception: keep the ontology mappings CSV for manual editing
 !cache/cell_type_ontology_mappings.csv
 .conda
