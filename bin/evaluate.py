@@ -3,7 +3,7 @@
 import pandas as pd
 import numpy as np
 from pathlib import Path
-from sklearn.metrics import balanced_accuracy_score
+from sklearn.metrics import balanced_accuracy_score, classification_report
 import argparse
 import json
 import sys
@@ -244,18 +244,6 @@ def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_rati
     print(f"Balanced accuracy: {balanced_acc:.4f}")
     print(f"Confusion matrix saved to: {output_plot_path}")
     
-    classification_r = classification_report(true_labels, 
-                                             pred_labels,
-                                             digits=4,
-                                             zero_division=0,
-                                             output_dict=True
-                                             )
-    print(f"Classification report: {classification_r}")
-
-    class_report_path = output_dir / "Classification_report.json"
-    with open(class_report_path, "w+") as f:
-        json.dump(classification_r, f, indent=4)
-    
     return results
 
 def main(args):
@@ -264,8 +252,6 @@ def main(args):
     pred_files = parse_pred_input(args.pred)
     dataset, model = args.out.split('/')[-1].rsplit('_',1)
     output_dir = Path(args.out.rsplit('_',1)[0])
-    dataset, model = args.out.split('/')[-1].rsplit('_',1)
-    output_dir = Path(args.out.rsplit('_',1)[-1])
     output_dir.mkdir(parents=True, exist_ok=True)
     
     # Set up cache directory and CL ontology path
@@ -364,9 +350,6 @@ def main(args):
         if isinstance(o, (np.ndarray,)):
             return o.tolist()
         return str(o)
-    eval_path = args.out
-    with open(eval_path, "w+") as f:
-        json.dump(all_results, f, indent=4, default=_json_default)
     with open(eval_path, "w+") as f:
         json.dump(all_results, f, indent=4, default=_json_default)
 
@@ -382,7 +365,6 @@ if __name__ == "__main__":
 
     parser.add_argument("--pred", required=True, type=str, 
                        help="CSV file(s) with true and predicted labels. Can be a single file path or comma-separated list of file paths")
-    parser.add_argument("--out", required=True, type=str, help="Path to results file")
     parser.add_argument("--out", required=True, type=str, help="Path to results file")
     parser.add_argument("--cache_dir", type=str, default=None,
                        help="Cache directory for ontology files. If not provided, uses 'cache' in current directory")
