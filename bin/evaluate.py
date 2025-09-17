@@ -136,14 +136,67 @@ def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_rati
     if cl_path and Path(cl_path).exists():
         try:
             print(f"Computing ontology similarities using {cl_path}...")
-            # Create a temporary dataframe for ontology computation using mapped predicted labels
-            temp_df = df[[true_col, pred_col]].copy()
-            temp_df = temp_df.rename(columns={true_col: "true_labels", pred_col: "predicted_labels"})
+            # Create a temporary dataframe for ontology computation
+            # Use original predicted labels for the predicted_labels column in the scored CSV
+            original_pred_col = f"original_{pred_col}"
+            if original_pred_col in df.columns:
+                # Use original predicted labels in the scored CSV, but mapped labels for similarity computation
+                temp_df = df[[true_col, original_pred_col, pred_col]].copy()
+                temp_df = temp_df.rename(columns={
+                    true_col: "true_labels", 
+                    original_pred_col: "predicted_labels",
+                    pred_col: "mapped_predicted_labels"
+                })
+            else:
+                # Fallback if no original column exists
+                temp_df = df[[true_col, pred_col]].copy()
+                temp_df = temp_df.rename(columns={true_col: "true_labels", pred_col: "predicted_labels"})
+                temp_df["mapped_predicted_labels"] = temp_df["predicted_labels"]
             
+            # Use mapped labels for similarity computation, but keep original labels in output
+            similarity_pred_col = "mapped_predicted_labels" if "mapped_predicted_labels" in temp_df.columns else "predicted_labels"
             ontology_df, avg_similarities = compute_ontology_similarities(
-                temp_df, cl_path, "true_labels", "predicted_labels", max_unmapped_ratio, 
+                temp_df, cl_path, "true_labels", similarity_pred_col, max_unmapped_ratio, 
                 cache_dir=Path(cache_dir) if cache_dir else None
             )
+            
+            # Fix the column structure: swap predicted_labels and mapped_labels if we used mapped labels for computation
+            if "mapped_predicted_labels" in temp_df.columns and similarity_pred_col == "mapped_predicted_labels":
+                # The ontology_df now has mapped labels in the column named by similarity_pred_col
+                # We need to swap it so original predictions are in 'predicted_labels' and mapped are in 'mapped_labels'
+                
+                # Create a mapping from (true_label, mapped_pred) back to original_pred
+                original_mapping = temp_df.groupby(['true_labels', 'mapped_predicted_labels'])['predicted_labels'].first().reset_index()
+                original_mapping = original_mapping.rename(columns={'predicted_labels': 'original_predicted_labels'})
+                
+                # Merge to get original predicted labels
+                # Note: ontology_df has the mapped labels in the column named by similarity_pred_col
+                ontology_df = ontology_df.merge(
+                    original_mapping, 
+                    left_on=['true_labels', similarity_pred_col], 
+                    right_on=['true_labels', 'mapped_predicted_labels'], 
+                    how='left'
+                )
+                
+                # Rename and reorganize columns: 
+                # - Put original predictions in 'predicted_labels'
+                # - Put mapped predictions in 'mapped_labels' 
+                ontology_df['predicted_labels'] = ontology_df['original_predicted_labels']  # Use original labels
+                ontology_df['mapped_labels'] = ontology_df[similarity_pred_col]  # Put mapped labels in mapped_labels column
+                
+                # Clean up temporary columns
+                ontology_df = ontology_df.drop(columns=['original_predicted_labels', similarity_pred_col, 'mapped_predicted_labels'], errors='ignore')
+                
+                # Reorder columns to put predicted_labels right after mapped_labels
+                # Get current column order and reorganize
+                cols = list(ontology_df.columns)
+                # Remove predicted_labels from its current position
+                cols.remove('predicted_labels')
+                # Find the position of mapped_labels and insert predicted_labels after it
+                mapped_labels_idx = cols.index('mapped_labels')
+                cols.insert(mapped_labels_idx + 1, 'predicted_labels')
+                # Reorder the dataframe
+                ontology_df = ontology_df[cols]
             
             # Add ontology results to main results
             results.update(avg_similarities)
@@ -256,12 +309,11 @@ def main(args):
                 eval_results = run_eval(df, true_col, pred_col, output_dir, cl_path, args.max_unmapped_ratio, cache_dir)
                 
                 # Round numerical results for JSON output
-                file_results[true_col] = {}
                 for key, value in eval_results.items():
                     if isinstance(value, (int, float)) and not np.isnan(value):
-                        file_results[true_col][key] = round(value, 4)
+                        file_results[key] = round(value, 4)
                     else:
-                        file_results[true_col][key] = value
+                        file_results[key] = value
         
         # Check if any true_labels columns were found for this file
         if not file_results:
@@ -284,17 +336,6 @@ def main(args):
     print(f"All evaluation results saved to: {eval_path}")
     print(f"{'='*60}")
     
-    # Print summary
-    print("\nSummary of results:")
-    for file_key, file_results in all_results.items():
-        print(f"\n{file_key}:")
-        for true_col, metrics in file_results.items():
-            print(f"  {true_col}:")
-            print(f"    Balanced Accuracy: {metrics.get('balanced_accuracy', 'N/A'):.4f}")
-            if 'rada_avg_similarity' in metrics and not np.isnan(metrics['rada_avg_similarity']):
-                print(f"    Rada Avg Similarity: {metrics['rada_avg_similarity']:.4f}")
-            if 'lin_avg_similarity' in metrics and not np.isnan(metrics['lin_avg_similarity']):
-                print(f"    Lin Avg Similarity: {metrics['lin_avg_similarity']:.4f}")
             
 
 # -- CLI Interface --
