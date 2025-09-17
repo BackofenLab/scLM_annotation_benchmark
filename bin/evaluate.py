@@ -120,7 +120,7 @@ def apply_ontology_mapping_to_predictions(df: pd.DataFrame, pred_col: str, cache
     
     return df
 
-def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_ratio=0.0, cache_dir=None):
+def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_ratio=0.0, cache_dir=None, label_suffix=None):
     
     true_labels = df[true_col]
     pred_labels = df[pred_col]  # Use mapped predicted labels directly
@@ -205,7 +205,10 @@ def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_rati
             print(f"Lin average similarity: {avg_similarities.get('lin_avg_similarity', 'N/A'):.4f}")
             
             # Save scored CSV with ontology similarities (unique combinations)
-            scored_csv_path = output_dir / f"{true_col}_scored.csv"
+            if label_suffix:
+                scored_csv_path = output_dir / f"{true_col}_{label_suffix}_scored.csv"
+            else:
+                scored_csv_path = output_dir / f"{true_col}_scored.csv"
             
             # ontology_df now contains unique combinations with aggregated scores
             ontology_df.to_csv(scored_csv_path, index=False)
@@ -221,7 +224,10 @@ def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_rati
     plotter = UMAPCellPlotter()
 
     # Generate confusion matrix
-    output_plot_path = output_dir / f"{true_col}_confusion_matrix.pdf"
+    if label_suffix:
+        output_plot_path = output_dir / f"{true_col}_{label_suffix}_confusion_matrix.pdf"
+    else:
+        output_plot_path = output_dir / f"{true_col}_confusion_matrix.pdf"
     title = f"Confusion Matrix {true_col} (Balanced Accuracy = {balanced_acc:.2f})"
     
     plotter.plot_cm(
@@ -306,7 +312,7 @@ def main(args):
                 print(f"\nProcessing {true_col}...")
                 
                 # Run evaluation with mapped predicted labels
-                eval_results = run_eval(df, true_col, pred_col, output_dir, cl_path, args.max_unmapped_ratio, cache_dir)
+                eval_results = run_eval(df, true_col, pred_col, output_dir, cl_path, args.max_unmapped_ratio, cache_dir, label_suffix)
                 
                 # Round numerical results for JSON output
                 for key, value in eval_results.items():
