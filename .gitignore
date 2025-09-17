@@ -9,7 +9,10 @@ __pycache__/
 notebooks
 miniconda.sh
 cache/
+# Exception: keep the ontology mappings CSV for manual editing
+!cache/cell_type_ontology_mappings.csv
 .conda
 Results
 
 .env
+.DS_Store
