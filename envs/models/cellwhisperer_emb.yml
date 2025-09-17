@@ -1,4 +1,6 @@
 name: cellwhisperer
+channels:
+  - conda-forge
 dependencies:
   - python=3.10
   - anndata=0.10.2

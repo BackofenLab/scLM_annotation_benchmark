@@ -113,9 +113,9 @@ def run_eval(df, true_col, pred_col, output_dir, model_name=None, cl_path=None, 
     if cl_path and Path(cl_path).exists():
         try:
             print(f"Computing ontology similarities using {cl_path}...")
-            # Create a temporary dataframe for ontology computation
-            temp_df = df[[true_col, f"clean_{pred_col}"]].copy()
-            temp_df = temp_df.rename(columns={true_col: "true_labels", f"clean_{pred_col}": "predicted_labels"})
+            # Create a temporary dataframe for ontology computation using RAW predicted labels
+            temp_df = df[[true_col, pred_col]].copy()
+            temp_df = temp_df.rename(columns={true_col: "true_labels", pred_col: "predicted_labels"})
             
             ontology_df, avg_similarities = compute_ontology_similarities(
                 temp_df, cl_path, "true_labels", "predicted_labels", max_unmapped_ratio
