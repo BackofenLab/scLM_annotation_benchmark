@@ -436,7 +436,7 @@ def parse_args() -> argparse.Namespace:
         "--batchsize", type=int, default=32, help="Test batch size (default: 32)"
     )
     p.add_argument(
-        "--n_top_genes", type=int, default=200, help="Number of HVGs (default: 3000)"
+        "--n_top_genes", type=int, default=3000, help="Number of HVGs (default: 3000)"
     )
     p.add_argument(
         "--alpha",
