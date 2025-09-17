@@ -9,35 +9,9 @@ import sys
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 import pandas as pd
-import logging
 
 # Import the download function from cell_ontology_similarity
 from .cell_ontology_similarity import download_cl_ontology
-
-
-def _log_to_stderr(message: str, flush: bool = True):
-    """
-    Write message to stderr to ensure visibility in Nextflow runs.
-    
-    Parameters
-    ----------
-    message : str
-        Message to write
-    flush : bool, default True
-        Whether to flush the stderr buffer immediately
-    """
-    sys.stderr.write(message + '\n')
-    if flush:
-        sys.stderr.flush()
-
-
-# Configure logging to stderr for Nextflow visibility
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(levelname)s: %(message)s',
-    stream=sys.stderr
-)
-logger = logging.getLogger(__name__)
 
 
 def map_cell_types_to_ontology(
@@ -95,7 +69,7 @@ def map_cell_types_to_ontology(
         try:
             existing_df = pd.read_csv(mapping_csv_path, sep=';')
             existing_mappings = dict(zip(existing_df['predicted_label'], existing_df.index))
-            _log_to_stderr(f"Loaded {len(existing_mappings)} existing mappings from {mapping_csv_path}")
+            print(f"Loaded {len(existing_mappings)} existing mappings from {mapping_csv_path}")
         except Exception as e:
             print(f"Warning: Could not load existing mappings: {e}")
             existing_mappings = {}
@@ -104,7 +78,7 @@ def map_cell_types_to_ontology(
     if not force_remapping and existing_mappings:
         labels_to_map = [label for label in predicted_labels if label not in existing_mappings]
         if len(labels_to_map) < len(predicted_labels):
-            _log_to_stderr(f"Skipping {len(predicted_labels) - len(labels_to_map)} already mapped labels")
+            print(f"Skipping {len(predicted_labels) - len(labels_to_map)} already mapped labels")
     else:
         labels_to_map = predicted_labels
     
@@ -113,7 +87,7 @@ def map_cell_types_to_ontology(
         print("No new labels to map. Returning existing mappings.")
         return mapping_csv_path
     
-    _log_to_stderr(f"Mapping {len(labels_to_map)} cell type labels to ontology terms...")
+    print(f"Mapping {len(labels_to_map)} cell type labels to ontology terms...")
     
     try:
         # Download Cell Ontology using our existing download function
@@ -202,42 +176,8 @@ def map_cell_types_to_ontology(
     print(f"Total mappings in file: {len(combined_df)}")
     print(f"New mappings added: {len(new_mappings)}")
     
-    # Log new mappings with warning for user verification
+    # Create warning file for new mappings
     if new_mappings:
-        # Use both stderr direct write and logging for maximum visibility in Nextflow
-        warning_message = f"\n{'='*60}\nWARNING: New cell type mappings have been created!\n{'='*60}"
-        _log_to_stderr(warning_message)
-        logger.warning("New cell type mappings have been created!")
-        
-        _log_to_stderr("The following cell types have been automatically mapped:")
-        _log_to_stderr("")
-        
-        for mapping in new_mappings:
-            predicted = mapping['predicted_label']
-            chosen = mapping['chosen_match']
-            if chosen:
-                mapping_msg = f"  '{predicted}' -> '{chosen}'"
-                _log_to_stderr(mapping_msg)
-                logger.info(f"New mapping: {predicted} -> {chosen}")
-            else:
-                mapping_msg = f"  '{predicted}' -> [NO MAPPING FOUND]"
-                _log_to_stderr(mapping_msg)
-                logger.warning(f"No mapping found for: {predicted}")
-        
-        _log_to_stderr("")
-        _log_to_stderr("IMPORTANT: Please review these mappings for accuracy!")
-        _log_to_stderr(f"Edit the file: {mapping_csv_path}")
-        _log_to_stderr("1. Verify the 'chosen_match' column contains the correct ontology terms")
-        _log_to_stderr("2. Set the 'reviewed' column to 'True' after verification")
-        _log_to_stderr("3. Alternative matches are available in the 'top3_matches' column")
-        _log_to_stderr("Note: New mappings are marked as 'reviewed=False' until manually verified")
-        _log_to_stderr(f"{'='*60}")
-        
-        # Also log via Python logging for additional visibility
-        logger.warning(f"Please review {len(new_mappings)} new cell type mappings in: {mapping_csv_path}")
-        logger.warning("Remember to set 'reviewed=True' after verifying each mapping!")
-        
-        # Create a warning file for Nextflow pipeline to detect
         warning_file_path = cache_dir.parent / "ONTOLOGY_MAPPING_WARNING.txt"
         try:
             with open(warning_file_path, 'w') as f:
@@ -260,12 +200,10 @@ def map_cell_types_to_ontology(
                 f.write("3. Set 'reviewed' column to 'True' after verification\n")
                 f.write("4. Delete this warning file when done\n")
             
-            _log_to_stderr(f"Warning file created: {warning_file_path}")
-            logger.warning(f"Warning file created for pipeline: {warning_file_path}")
+            print(f"Warning: {len(new_mappings)} new cell type mappings created. Check {warning_file_path}")
             
         except Exception as e:
-            _log_to_stderr(f"Could not create warning file: {e}")
-            logger.error(f"Could not create warning file: {e}")
+            print(f"Could not create warning file: {e}")
     
     return mapping_csv_path
 

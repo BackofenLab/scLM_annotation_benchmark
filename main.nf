@@ -105,3 +105,25 @@ workflow {
 
     evaluate_annotation(predictions)
 }
+
+workflow.onComplete {
+    // Check for ontology mapping warnings
+    def warningFile = file("${params.cache_dir}/ONTOLOGY_MAPPING_WARNING.txt")
+    if (warningFile.exists()) {
+        println ""
+        println "🚨" * 50
+        println "⚠️  ONTOLOGY MAPPING WARNING: New cell type mappings detected!"
+        println "📄 Please check: ${warningFile.toString()}"
+        println "⚠️  ACTION REQUIRED: Review and verify mappings before using results!"
+        println "🚨" * 50
+        println ""
+    }
+    
+    // Standard completion message
+    println "Pipeline completed at: ${new Date()}"
+    if (workflow.success) {
+        println "✅ Pipeline completed successfully!"
+    } else {
+        println "❌ Pipeline completed with errors"
+    }
+}
