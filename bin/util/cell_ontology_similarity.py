@@ -8,7 +8,7 @@ Supported metrics:
 - "rada": path-based similarity S = 1 / (1 + distance_edges), where distance is via the
          lowest common ancestor (LCA) over is_a edges (multiple inheritance allowed).
 - "lin":  intrinsic-IC Lin similarity using Seco (2004) IC: S = (2 * IC(LCA)) / (IC(a) + IC(b)),
-          with IC(t) = 1 - log((descendants(t)+1)/(max_desc+1)) / log(max_desc+1).
+          with IC(t) = 1 - log((descendants(t)+1) / log(max_desc).
 
 Functions can be used independently or via the main compute_ontology_similarities
 function that handles the full pipeline.
@@ -229,7 +229,7 @@ def seco_ic(desc_count: dict[pronto.Term, int], max_desc: int, term: pronto.Term
     Seco intrinsic IC:
       IC(t) = 1 - log((desc(t)+1)/(max_desc+1)) / log(max_desc+1)
     """
-    return 1.0 - (math.log((desc_count[term] + 1) / (max_desc + 1)) / math.log(max_desc + 1))
+    return 1.0 - (math.log((desc_count[term] + 1)) / math.log(max_desc))
 
 
 def descendant_counts(ont: pronto.Ontology) -> dict:
