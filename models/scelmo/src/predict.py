@@ -9,6 +9,7 @@ from typing import Tuple, List
 import numpy as np
 import pandas as pd
 import scanpy as sc
+import re
 import hnswlib
 
 
@@ -35,6 +36,23 @@ def _load_pickle(path: str, what: str) -> Tuple[List[str], np.ndarray]:
     with open(path, 'rb') as f:
         obj = pickle.load(f)
     return _labels_and_array_from_obj(obj, what)
+
+def filter_celltypes(ct_labels, ct_emb, remove):
+    """
+    Remove specific labels from the cell-type embedding set.
+    """
+    def norm(x):
+        s = x.decode("utf-8", "ignore") if isinstance(x, (bytes, bytearray)) else str(x)
+        s = re.sub(r"[^a-z0-9]+", " ", s.lower()).strip()
+        return s
+
+    rem = {norm(r) for r in remove}
+    keep_mask = np.array([norm(lbl) not in rem for lbl in ct_labels], dtype=bool)
+
+    labels_f = [lbl for lbl, k in zip(ct_labels, keep_mask) if k]
+    emb_f = np.asarray(ct_emb, dtype=np.float32)[keep_mask]
+    return labels_f, emb_f
+
 
 
 # -----------------------------
@@ -95,6 +113,7 @@ def main():
     # Load artifacts
     gene_labels, gene_emb = _load_pickle(args.gene_pickle, 'gene')
     ct_labels, ct_emb = _load_pickle(args.celltype_pickle, 'celltype')
+    ct_labels, ct_emb = filter_celltypes(ct_labels, ct_emb, remove=["SMC1", "SMC2", "MHC class II"]) # these are not cell types
     if gene_emb.shape[0] != len(gene_labels):
         raise ValueError('Gene labels/embeddings mismatch')
     if ct_emb.shape[0] != len(ct_labels):
