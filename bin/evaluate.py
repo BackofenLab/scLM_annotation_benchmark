@@ -352,6 +352,8 @@ def main(args):
         return str(o)
     with open(eval_path, "w+") as f:
         json.dump(all_results, f, indent=4, default=_json_default)
+    with open(eval_path, "w+") as f:
+        json.dump(all_results, f, indent=4, default=_json_default)
 
     print(f"\n{'='*60}")
     print(f"All evaluation results saved to: {eval_path}")
