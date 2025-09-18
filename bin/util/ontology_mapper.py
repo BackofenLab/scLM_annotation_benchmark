@@ -14,7 +14,6 @@ import pandas as pd
 from .cell_ontology_similarity import download_cl_ontology
 
 
-
 def map_cell_types_to_ontology(
     predicted_labels: List[str],
     cache_dir: Path,
@@ -131,6 +130,7 @@ def map_cell_types_to_ontology(
             
             # Create mapping entry
             mapping_entry = {
+                "reviewed": False,  # New mappings need to be reviewed
                 "predicted_label": label,
                 "chosen_match": best_match,  # Default to best_match, user can edit
                 "best_match": best_match,
@@ -140,6 +140,7 @@ def map_cell_types_to_ontology(
         else:
             # Handle case where mapping failed
             mapping_entry = {
+                "reviewed": False,  # New mappings need to be reviewed
                 "predicted_label": label,
                 "chosen_match": "",
                 "best_match": "",
@@ -174,6 +175,35 @@ def map_cell_types_to_ontology(
     print(f"Ontology mappings saved to: {mapping_csv_path}")
     print(f"Total mappings in file: {len(combined_df)}")
     print(f"New mappings added: {len(new_mappings)}")
+    
+    # Create warning file for new mappings
+    if new_mappings:
+        warning_file_path = cache_dir.parent / "ONTOLOGY_MAPPING_WARNING.txt"
+        try:
+            with open(warning_file_path, 'w') as f:
+                f.write("NEW CELL TYPE MAPPINGS DETECTED\n")
+                f.write("=" * 50 + "\n")
+                f.write(f"Date: {pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+                f.write(f"Number of new mappings: {len(new_mappings)}\n")
+                f.write(f"Mapping file: {mapping_csv_path}\n\n")
+                f.write("New mappings added:\n")
+                for mapping in new_mappings:
+                    predicted = mapping['predicted_label']
+                    chosen = mapping['chosen_match']
+                    if chosen:
+                        f.write(f"  '{predicted}' -> '{chosen}'\n")
+                    else:
+                        f.write(f"  '{predicted}' -> [NO MAPPING FOUND]\n")
+                f.write("\nACTION REQUIRED:\n")
+                f.write("1. Review the mappings in the CSV file\n")
+                f.write("2. Update 'chosen_match' column if needed\n")
+                f.write("3. Set 'reviewed' column to 'True' after verification\n")
+                f.write("4. Delete this warning file when done\n")
+            
+            print(f"Warning: {len(new_mappings)} new cell type mappings created. Check {warning_file_path}")
+            
+        except Exception as e:
+            print(f"Could not create warning file: {e}")
     
     return mapping_csv_path
 
