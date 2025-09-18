@@ -172,8 +172,8 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
     file_name = os.path.splitext(os.path.basename(args.input))[0]
 
     # find highly variable genes
-    sc.pp.highly_variable_genes(dataset_sub, n_top_genes=args.n_top_genes)
-    dataset_sub = dataset_sub[:, dataset_sub.var.highly_variable]
+    #sc.pp.highly_variable_genes(dataset_sub, n_top_genes=args.n_top_genes)
+    #dataset_sub = dataset_sub[:, dataset_sub.var.highly_variable]
 
     dataset_sub.obs["filter_pass"] = (
         dataset_sub.obs["n_genes_by_counts"] >= 200
@@ -529,9 +529,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument(
         "--test_batchsize", type=int, default=32, help="Test batch size (default: 32)"
     )
-    p.add_argument(
-        "--n_top_genes", type=int, default=3000, help="Number of HVGs (default: 3000)"
-    )
+    #p.add_argument("--n_top_genes", type=int, default=3000, help="Number of HVGs (default: 3000)")
     p.add_argument(
         "--alpha",
         type=float,

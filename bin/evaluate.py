@@ -3,7 +3,7 @@
 import pandas as pd
 import numpy as np
 from pathlib import Path
-from sklearn.metrics import balanced_accuracy_score
+from sklearn.metrics import balanced_accuracy_score, classification_report
 import argparse
 import json
 import sys
@@ -128,8 +128,11 @@ def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_rati
     # Calculate balanced accuracy
     balanced_acc = balanced_accuracy_score(true_labels, pred_labels)
 
+    # Compute additional metrics
+    summary_dict = classification_report(true_labels, pred_labels, output_dict=True)
+
     # Initialize results dictionary
-    results = {"balanced_accuracy": balanced_acc}
+    results = {"balanced_accuracy": balanced_acc, "summary_dict": summary_dict}
     
     # Compute ontology similarities if CL path is provided
     ontology_df = None
@@ -247,7 +250,8 @@ def main(args):
     
     # Parse prediction input (can be string or list)
     pred_files = parse_pred_input(args.pred)
-    output_dir = Path(args.out)
+    dataset, model = args.out.split('/')[-1].rsplit('_',1)
+    output_dir = Path(args.out.rsplit('_',1)[0])
     output_dir.mkdir(parents=True, exist_ok=True)
     
     # Set up cache directory and CL ontology path
@@ -313,13 +317,16 @@ def main(args):
                 
                 # Run evaluation with mapped predicted labels
                 eval_results = run_eval(df, true_col, pred_col, output_dir, cl_path, args.max_unmapped_ratio, cache_dir, label_suffix)
-                
-                # Round numerical results for JSON output
+
+                # Round numerical results for JSON output and store per true_col
+                rounded_results = {}
                 for key, value in eval_results.items():
                     if isinstance(value, (int, float)) and not np.isnan(value):
-                        file_results[key] = round(value, 4)
+                        rounded_results[key] = round(value, 4)
                     else:
-                        file_results[key] = value
+                        rounded_results[key] = value
+                file_results[true_col] = file_results.get(true_col, {})
+                file_results[true_col].update(rounded_results)
         
         # Check if any true_labels columns were found for this file
         if not file_results:
@@ -334,9 +341,17 @@ def main(args):
         raise ValueError("No valid prediction files were processed successfully.")
 
     # Save results to JSON
-    eval_path = output_dir / "evaluation.json"
+    eval_path = args.out
+    def _json_default(o):
+        if isinstance(o, (np.floating,)):
+            return float(o)
+        if isinstance(o, (np.integer,)):
+            return int(o)
+        if isinstance(o, (np.ndarray,)):
+            return o.tolist()
+        return str(o)
     with open(eval_path, "w+") as f:
-        json.dump(all_results, f, indent=4)
+        json.dump(all_results, f, indent=4, default=_json_default)
 
     print(f"\n{'='*60}")
     print(f"All evaluation results saved to: {eval_path}")
@@ -350,7 +365,7 @@ if __name__ == "__main__":
 
     parser.add_argument("--pred", required=True, type=str, 
                        help="CSV file(s) with true and predicted labels. Can be a single file path or comma-separated list of file paths")
-    parser.add_argument("--out", required=True, type=str, help="Path to results folder")
+    parser.add_argument("--out", required=True, type=str, help="Path to results file")
     parser.add_argument("--cache_dir", type=str, default=None,
                        help="Cache directory for ontology files. If not provided, uses 'cache' in current directory")
     parser.add_argument("--max-unmapped-ratio", type=float, default=0.0,

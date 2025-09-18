@@ -63,16 +63,17 @@ process evaluate_annotation {
 
     input:
     tuple path(predictions), val(dataset), val(model), val(cache_dir)
+    
+    publishDir(path: 'results/', mode: 'copy', overwrite: 'false')
 
     output:
-    path "results/*/*/evaluation.json"
+    path "*.json"
 
     script:
     """
-    mkdir -p results/${dataset}/${model}
     # Convert the prediction files to a comma-separated string
     pred_files=\$(echo ${predictions} | tr ' ' ',')
-    evaluate.py --pred "\$pred_files" --out results/${dataset}/${model}/ --cache_dir ${cache_dir}/evaluation
+    evaluate.py --pred "\$pred_files" --out ${dataset}_${model}.json --cache_dir ${cache_dir}/evaluation
     """
 }
 
