@@ -8,7 +8,7 @@ openrouter_LLM:
   # OpenRouter model id (or change to another OpenRouter model, e.g. "openai/gpt-5" or "openai/gpt-5-chat" for GPT-5, or "deepseek/deepseek-r1-0528" for DeepSeekR1)
   # Note: "openai/gpt-5" requires an openai API key, while "openai/gpt-5-chat" does not and one can use the OpenRouter API key.
   # Free variants (add ":free" to the model name) are limited in the amount of requests per day (1000 after having payed once 10$)
-  model_name: deepseek/deepseek-r1-0528 #"openai/gpt-5"  # e.g. "deepseek/deepseek-r1-0528:free" for free tier
+  model_name: deepseek/deepseek-r1-0528:free #"openai/gpt-5"  # e.g. "deepseek/deepseek-r1-0528:free" for free tier
 
   # Prompting/task metadata
   task_name: "cell_type_prediction"

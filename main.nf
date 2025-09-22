@@ -63,16 +63,17 @@ process evaluate_annotation {
 
     input:
     tuple path(predictions), val(dataset), val(model), val(cache_dir)
+    
+    publishDir(path: 'results/', mode: 'copy', overwrite: 'false')
 
     output:
-    path "results/*/*/evaluation.json"
+    path "*.json"
 
     script:
     """
-    mkdir -p results/${dataset}/${model}
     # Convert the prediction files to a comma-separated string
     pred_files=\$(echo ${predictions} | tr ' ' ',')
-    evaluate.py --pred "\$pred_files" --out results/${dataset}/${model}/ --cache_dir ${cache_dir}/evaluation
+    evaluate.py --pred "\$pred_files" --out ${dataset}_${model}.json --cache_dir ${cache_dir}/evaluation
     """
 }
 
@@ -104,4 +105,26 @@ workflow {
     predictions = run_model(model_input)
 
     evaluate_annotation(predictions)
+}
+
+workflow.onComplete {
+    // Check for ontology mapping warnings
+    def warningFile = file("${params.cache_dir}/ONTOLOGY_MAPPING_WARNING.txt")
+    if (warningFile.exists()) {
+        println ""
+        println "🚨" * 50
+        println "⚠️  ONTOLOGY MAPPING WARNING: New cell type mappings detected!"
+        println "📄 Please check: ${warningFile.toString()}"
+        println "⚠️  ACTION REQUIRED: Review and verify mappings before using results!"
+        println "🚨" * 50
+        println ""
+    }
+    
+    // Standard completion message
+    println "Pipeline completed at: ${new Date()}"
+    if (workflow.success) {
+        println "✅ Pipeline completed successfully!"
+    } else {
+        println "❌ Pipeline completed with errors"
+    }
 }
