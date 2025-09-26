@@ -1,0 +1,9 @@
+name: cell_types 
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pyyaml
+  - pandas
+  - pip:
+    - anndata
