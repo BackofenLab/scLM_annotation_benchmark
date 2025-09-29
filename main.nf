@@ -77,6 +77,22 @@ process evaluate_annotation {
     """
 }
 
+process combine_results {
+    conda 'envs/evaluation.yml'
+
+    // Publish to top-level repo results folder
+    publishDir "${baseDir}/results", mode: 'copy', overwrite: false
+
+    input:
+    path(json_path)
+
+    script:
+    """
+    # Aggregate results:
+    aggregate.py --input ${json_path}
+    """
+}
+
 workflow {
     Channel
         .from(params.datasets)
@@ -105,6 +121,12 @@ workflow {
     predictions = run_model(model_input)
 
     evaluate_annotation(predictions)
+
+    Channel
+        .fromPath("${baseDir}/results/")
+        .set { json_path }
+
+    combine_results(json_path)
 }
 
 workflow.onComplete {
