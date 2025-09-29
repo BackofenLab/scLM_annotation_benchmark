@@ -35,8 +35,7 @@ process extract_cell_types {
             extract_cell_types.py \
                 --h5ads ${h5ad_files.join(' ')} \
                 --cfgs ${cfg_files.join(' ')} \
-                --out ${cache_dir}/cell_types.csv \
-                --mapping_file ${cache_dir}/cell_type_ontology_mappings.csv
+                --out ${cache_dir}/cell_types.csv
         else
             echo "Cell type collection exists, if you want to rerun, delete cache/cell_types.csv"
         fi
