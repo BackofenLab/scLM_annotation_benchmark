@@ -9,6 +9,7 @@ import re
 from typing import Dict, Any, Tuple, List
 
 import matplotlib.pyplot as plt
+import seaborn as sns
 import pandas as pd
 import numpy as np
 
@@ -55,7 +56,8 @@ def combine_results(args):
     by_ds_model.to_csv(by_ds_model_csv, index=False)
 
     # Create and export plot
-    export_plot(by_ds_model, out_dir, group_by="model")
+    make_plot(by_ds_model, out_dir)
+    #export_plot(by_ds_model, out_dir, group_by="model")
 
     pivot_balacc = by_ds_model.pivot(index="dataset", columns="model", values="balanced_accuracy")
     pivot_macro_f1 = by_ds_model.pivot(index="dataset", columns="model", values="macro_f1")
@@ -66,7 +68,7 @@ def combine_results(args):
     print("Macro F1 \n")
     print(pivot_macro_f1)
 
-    print(f"Wrote:\n- {by_ds_model_csv}")
+    print(f"Export aggregated file to:\n- {by_ds_model_csv}")
 
 
 def parse_name(p: Path) -> Tuple[str, str]:
@@ -124,6 +126,48 @@ def extract_metrics(payload: Dict[str, Any]) -> Dict[str, Any]:
         "weighted_f1": wavg.get("f1-score"),
         "weighted_support": wavg.get("support"),
     }
+
+def make_plot(dataframe, out_dir):
+
+    # Metrics to plot
+    metrics = [
+        "balanced_accuracy",
+        "rada_avg_similarity",
+        "lin_avg_similarity",
+        #"accuracy",
+        #"macro_precision",
+        #"macro_recall",
+        "macro_f1",
+        #"weighted_precision",
+        #"weighted_recall",
+        "weighted_f1",
+    ]
+
+    # Set style
+    sns.set(style="whitegrid")
+
+    # Generate one plot per metric
+    for metric in metrics:
+        plt.figure(figsize=(10, 6))
+        sns.barplot(
+            data=dataframe,
+            x="model",
+            y=metric,
+            hue="dataset",
+            palette="tab10"
+        )
+        plt.title(f"{metric} for scFoundation models and datasets")
+        plt.xticks(rotation=45, ha="right")
+        plt.ylabel(metric)
+        plt.xlabel("Model")
+        plt.legend(title="Dataset", bbox_to_anchor=(1.05, 1), loc="upper left")
+        plt.tight_layout()
+        plt.grid(True)
+        plt.savefig(out_dir / f"aggregated_plot_{metric}_barplot.png", dpi=300)
+        plt.close()
+
+    print(f"Plots saved to: {out_dir.resolve()}")
+
 
 def export_plot(
     df_metrics: pd.DataFrame,
