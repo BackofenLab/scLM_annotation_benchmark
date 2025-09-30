@@ -63,7 +63,7 @@ process evaluate_annotation {
 
     input:
     tuple path(predictions), val(dataset), val(model), val(cache_dir)
-    
+
     publishDir(path: 'results/', mode: 'copy', overwrite: 'false')
 
     output:
@@ -80,16 +80,19 @@ process evaluate_annotation {
 process combine_results {
     conda 'envs/evaluation.yml'
 
-    // Publish to top-level repo results folder
-    publishDir "${baseDir}/results", mode: 'copy', overwrite: false
+    publishDir(path: 'results/', mode: 'copy', overwrite: 'false')
 
     input:
     path(json_path)
 
+    output:
+    tuple path("aggregated_results/aggregated*.csv"), path("aggregated_results/aggregated_plot*.png")
+
     script:
     """
     # Aggregate results:
-    aggregate.py --input ${json_path}
+    mkdir -p ./aggregated_results/
+    aggregate.py --input ${json_path} --output ./aggregated_results/
     """
 }
 
@@ -120,13 +123,9 @@ workflow {
     // Run the model (all models should output predictions.csv)
     predictions = run_model(model_input)
 
-    evaluate_annotation(predictions)
+    jsons = evaluate_annotation(predictions)
 
-    Channel
-        .fromPath("${baseDir}/results/")
-        .set { json_path }
-
-    combine_results(json_path)
+    combine_results(jsons.collect())
 }
 
 workflow.onComplete {

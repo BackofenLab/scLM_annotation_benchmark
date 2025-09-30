@@ -14,17 +14,14 @@ import numpy as np
 
 
 def combine_results(args):
-
-    in_dir = Path(args.input)
-
+    out_dir = Path(args.output)
     rows = []
-    files = glob.glob(f"{in_dir}/*.json")
-    print(files)
-    if not files:
+    input_files = args.input
+    if not input_files:
         print("No JSON files found.", file=sys.stderr)
         sys.exit(2)
 
-    for fp in files:
+    for fp in input_files:
         try:
             with open(fp, "r") as f:
                 data = json.load(f)
@@ -54,15 +51,11 @@ def combine_results(args):
     agg_funcs = {c: "mean" for c in agg_cols}
 
     by_ds_model = df_metrics.groupby(["dataset", "model"], dropna=False).agg(agg_funcs).reset_index()
-    #by_ds       = df_metrics.groupby(["dataset"], dropna=False).agg(agg_funcs).reset_index()
-    #by_model    = df_metrics.groupby(["model"], dropna=False).agg(agg_funcs).reset_index()
-
-    by_ds_model_csv = in_dir / "aggregated_by_dataset_model.csv"
-
+    by_ds_model_csv = out_dir / "aggregated_by_dataset_model.csv"
     by_ds_model.to_csv(by_ds_model_csv, index=False)
 
     # Create and export plot
-    export_plot(by_ds_model, in_dir, group_by="model")
+    export_plot(by_ds_model, out_dir, group_by="model")
 
     pivot_balacc = by_ds_model.pivot(index="dataset", columns="model", values="balanced_accuracy")
     pivot_macro_f1 = by_ds_model.pivot(index="dataset", columns="model", values="macro_f1")
@@ -171,10 +164,6 @@ def export_plot(
         .sort_values(["dataset", "model"])
     )
 
-    # Write aggregated CSV
-    #out_csv = out_dir / "aggregated_by_dataset_model.csv"
-    #by_ds_model.to_csv(out_csv, index=False)
-
     # Helpful console pivots (if the metrics exist)
     if "balanced_accuracy" in present_metrics:
         print("Balanced accuracy\n")
@@ -184,10 +173,7 @@ def export_plot(
         print("Macro F1\n")
         print(by_ds_model.pivot(index="dataset", columns="model", values="macro_f1").round(4))
 
-    #print(f"Wrote:\n- {out_csv}")
-
     # --- Build ONE grouped bar plot with ALL metrics ---
-    # Decide primary (x-axis) and secondary (bar series) keys
     if group_by not in {"dataset", "model"}:
         raise ValueError("group_by must be 'dataset' or 'model'.")
 
@@ -197,7 +183,7 @@ def export_plot(
     x_levels = sorted(by_ds_model[x_key].astype(str).unique().tolist())
     sec_levels = by_ds_model[sec_key].astype(str).unique().tolist()  # preserve original order
 
-    # We will create one bar series per (secondary level × metric)
+    # Create one bar series per (secondary level × metric)
     series_labels = []
     series_values = []  # list of arrays in the x_levels order
 
@@ -248,7 +234,7 @@ def export_plot(
               bbox_to_anchor=(1.01, 1.0), frameon=True, ncol=ncol)
 
     fig.tight_layout()
-    out_png = out_dir / f"grouped_bars_{x_key}_ALL_METRICS.png"
+    out_png = out_dir / f"aggregated_plot_{x_key}_ALL_METRICS.png"
     fig.savefig(out_png, dpi=dpi, bbox_inches="tight")
     plt.close(fig)
     print(f"Wrote:\n- {out_png}")
@@ -257,8 +243,8 @@ def export_plot(
 
 
 if __name__ == "__main__":
-    print("Inside aggregate")
     parser = argparse.ArgumentParser(description="Aggregate predictions")
-    parser.add_argument("--input", required=True, type=str, help="Path to input JSONs")
+    parser.add_argument("--input", nargs='+', required=True, type=str, help="Path to input JSONs")
+    parser.add_argument("--output", required=True, type=str, help="Path to output CSV")
     args = parser.parse_args()
     combine_results(args)
