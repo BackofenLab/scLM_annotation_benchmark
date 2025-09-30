@@ -86,13 +86,12 @@ process combine_results {
     path(json_path)
 
     output:
-    tuple path("aggregated_results/aggregated*.csv"), path("aggregated_results/aggregated_plot*.png")
+    tuple path("aggregated*.csv"), path("aggregated_plot*.png")
 
     script:
     """
     # Aggregate results:
-    mkdir -p ./aggregated_results/
-    aggregate.py --input ${json_path} --output ./aggregated_results/
+    aggregate.py --input ${json_path} --output ./
     """
 }
 
