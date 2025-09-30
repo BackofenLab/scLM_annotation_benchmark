@@ -6,6 +6,9 @@ process download {
     input:
     tuple val(dataset), val(cache_dir), path(cfg_yaml)
 
+    // Tag appears after inputs; you can use `dataset`
+    tag { dataset }
+
     output:
     tuple(path("data/*.h5ad"), val(dataset), path(cfg_yaml), val(cache_dir))
 
@@ -24,6 +27,9 @@ process download {
 process prepare_model {
     input:
     tuple val(model), path(model_dir)
+
+    // Use the model name in the tag
+    tag { model }
 
     output:
     tuple val(model), path(model_dir)
@@ -45,6 +51,29 @@ process run_model {
     input:
     tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir)
 
+    // Same tag format as run_model
+    tag { "${dataset}×${model}" }
+
+    conda { "envs/models/${model}.yml" }
+
+    output:
+    tuple(path("results/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir))
+
+    script:
+    """
+    mkdir -p results/${dataset}/${model}
+    mkdir -p ${cache_dir}/models
+    bash ${model_dir}/src/run.sh ${data_file} ./results/${dataset}/${model}/predictions.csv ${cfg_yaml} ${cache_dir}/models
+    """
+}
+
+process run_model_throttled {
+    input:
+    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir)
+
+    // Same tag format as run_model
+    tag { "${dataset}×${model}" }
+
     conda { "envs/models/${model}.yml" }
 
     output:
@@ -63,7 +92,10 @@ process evaluate_annotation {
 
     input:
     tuple path(predictions), val(dataset), val(model), val(cache_dir)
-    
+
+    // Tag with dataset and model for easy tracing
+    tag { "${dataset}×${model}" }
+
     publishDir(path: 'results/', mode: 'copy', overwrite: 'false')
 
     output:
@@ -101,9 +133,16 @@ workflow {
         }
         .set { model_input }
     
-    // Run the model (all models should output predictions.csv)
-    predictions = run_model(model_input)
+    // Run the models (all models should output predictions.csv)
+    // OpenRouter LLMs are request-limited, so we currently run them in a separate lane via run_model_throttled,
+    // while all other models can be run in parallel via run_model
+    def throttled_in = model_input.filter { t -> (params.throttled_models ?: []).contains(t[4]) }
+    def normal_in    = model_input.filter { t -> !(params.throttled_models ?: []).contains(t[4]) }
+    predictions_fast = run_model(normal_in)
+    predictions_slow = run_model_throttled(throttled_in)
+    predictions      = predictions_fast.mix(predictions_slow)
 
+    // Finally, evaluate all predictions
     evaluate_annotation(predictions)
 }
 
