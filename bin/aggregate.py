@@ -128,7 +128,11 @@ def extract_metrics(payload: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 def make_plot(dataframe, out_dir):
-
+    """
+    Create a grouped bar plot for a single metric at a time.
+    - X-axis: models
+    - Bars: datasets
+    """
     # Metrics to plot
     metrics = [
         "balanced_accuracy",
@@ -156,7 +160,7 @@ def make_plot(dataframe, out_dir):
             hue="dataset",
             palette="tab10"
         )
-        plt.title(f"{metric} for scFoundation models and datasets")
+        plt.title(f"Cell annotation performance of scFoundation models across datasets")
         plt.xticks(rotation=45, ha="right")
         plt.ylabel(metric)
         plt.xlabel("Model")
@@ -172,7 +176,7 @@ def make_plot(dataframe, out_dir):
 def export_plot(
     df_metrics: pd.DataFrame,
     out_dir: Path,
-    group_by: str = "dataset",   # or "model"
+    group_by: str = "dataset",  # or "model"
     dpi: int = 300
 ) -> pd.DataFrame:
     """
@@ -180,7 +184,6 @@ def export_plot(
     showing ALL metrics. The x-axis groups are chosen via `group_by`:
       - "dataset" -> x = datasets; bars = all (model × metric) combos
       - "model"   -> x = models;   bars = all (dataset × metric) combos
-
     Returns the aggregated (dataset, model) dataframe.
     """
     # --- Checks & setup
