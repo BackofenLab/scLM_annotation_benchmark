@@ -30,6 +30,11 @@ process prepare_model {
 
     script:
     """
+    # check if the model_dir exists
+    if [ ! -d "${model_dir}" ]; then
+        echo "Model directory ${model_dir} does not exist"
+        exit 1
+    fi
     # Check if prepare.sh exists and run it if it does
     if [ -f "${model_dir}/src/prepare.sh" ]; then
         echo "Running preparation script for ${model}..."
