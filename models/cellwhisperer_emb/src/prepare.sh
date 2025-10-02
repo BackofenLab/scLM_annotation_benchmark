@@ -36,6 +36,11 @@ if [ -d "$GENEFORMER_DIR" ]; then
     fi
     echo "Installing git lfs..."
     git lfs install 
+
+    # Fix missing .gitattributes that prevents LFS files from being downloaded
+    echo "Configuring git attributes for LFS..."
+    echo "*.bin filter=lfs diff=lfs merge=lfs -text" > .gitattributes
+
     echo "Pulling git LFS files from Geneformer..."
     git lfs pull
     
