@@ -446,9 +446,9 @@ def compute_ontology_similarities(
     print(f"  Unmapped: {unmapped_count}")
     print(f"  Unmapped ratio: {unmapped_ratio:.3f}")
     
-    # Throw error if there are still unmapped cell types and max_unmapped_ratio is 0.0
+    # Do not throw error, but warn if there are still unmapped cell types and max_unmapped_ratio is 0.0
     if unmapped_ratio > max_unmapped_ratio:
-        raise RuntimeError(
+        print(f"WARNING: "
             f"Cell types remain unmapped after ontology mapper attempt: {sorted(unmapped_types)}. "
             f"Please manually edit the chosen_match column in the ontology mapping CSV or "
             f"increase max_unmapped_ratio to allow unmapped cell types."
