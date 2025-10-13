@@ -24,6 +24,27 @@ process download {
     """
 }
 
+process extract_cell_types {
+    conda 'envs/cell_types.yml'
+
+    input:
+        path(h5ad_files)
+        path(cfg_files)
+        val(cache_dir)  // list of files
+
+    script:
+        """
+        if [ ! -f ${cache_dir}/cell_types.csv ]; then
+            extract_cell_types.py \
+                --h5ads ${h5ad_files.join(' ')} \
+                --cfgs ${cfg_files.join(' ')} \
+                --out ${cache_dir}/cell_types.csv
+        else
+            echo "Cell type collection exists, if you want to rerun, delete cache/cell_types.csv"
+        fi
+        """
+}
+
 process prepare_model {
     input:
     tuple val(model), path(model_dir)
@@ -36,6 +57,11 @@ process prepare_model {
 
     script:
     """
+    # check if the model_dir exists
+    if [ ! -d "${model_dir}" ]; then
+        echo "Model directory ${model_dir} does not exist"
+        exit 1
+    fi
     # Check if prepare.sh exists and run it if it does
     if [ -f "${model_dir}/src/prepare.sh" ]; then
         echo "Running preparation script for ${model}..."
@@ -109,17 +135,48 @@ process evaluate_annotation {
     """
 }
 
+process combine_results {
+    conda 'envs/evaluation.yml'
+
+    publishDir(path: 'results/', mode: 'copy', overwrite: 'false')
+
+    input:
+    path(json_path)
+
+    output:
+    tuple path("aggregated*.csv"), path("aggregated_plot*.png")
+
+    script:
+    """
+    # Aggregate results:
+    aggregate.py --input ${json_path} --output ./
+    """
+}
+
 workflow {
     Channel
-        .from(params.datasets)
+        .fromList(params.datasets)
         .map { dataset -> tuple(dataset, file(params.cache_dir), file("datasets/${dataset}.yml")) }
         .set { download_input }
 
     download_out = download(download_input)
-    
+
+    Channel.fromPath(params.cache_dir)
+            .set { cache_dir_ch }
+
+    download_out.map { h5ad_file, dataset, cfg_yaml, cache_dir -> h5ad_file }
+                .collect()
+                .set { h5ad_file_ch }
+
+    download_out.map { h5ad_file, dataset, cfg_yaml, cache_dir -> cfg_yaml }
+                .collect()
+                .set { config_file_ch }
+
+    cell_types = extract_cell_types(h5ad_file_ch, config_file_ch, cache_dir_ch)
+
     // Prepare models (handles setup like git cloning, etc.)
     Channel
-        .from(params.models)
+        .fromList(params.models)
         .map { model -> tuple(model, file("models/${model}")) }
         .set { prepare_input }
     
@@ -142,8 +199,9 @@ workflow {
     predictions_slow = run_model_throttled(throttled_in)
     predictions      = predictions_fast.mix(predictions_slow)
 
-    // Finally, evaluate all predictions
-    evaluate_annotation(predictions)
+    jsons = evaluate_annotation(predictions)
+
+    combine_results(jsons.collect())
 }
 
 workflow.onComplete {

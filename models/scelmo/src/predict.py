@@ -156,7 +156,7 @@ def main():
     predicted = [ct_labels[i] for i in pred_idx]
 
     # Ground truth
-    ann_col = args.annotation-keys if hasattr(args, 'annotation-keys') and args.annotation-keys in adata.obs else None
+    ann_col = args.annotation_keys if hasattr(args, 'annotation_keys') and args.annotation_keys in adata.obs else None
     if ann_col is None:
         ann_col = 'cell_type' if 'cell_type' in adata.obs else None
     if ann_col is None:
