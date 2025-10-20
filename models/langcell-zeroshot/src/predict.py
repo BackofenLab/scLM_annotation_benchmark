@@ -171,10 +171,15 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
     #sc.pp.highly_variable_genes(dataset_sub, n_top_genes=args.n_top_genes)
     #dataset_sub = dataset_sub[:, dataset_sub.var.highly_variable]
 
+    if "n_genes_by_counts" in dataset_sub.obs.columns:
+        ngenes_col = "n_genes_by_counts"
+    elif "n_genes" in dataset_sub.obs.columns:
+        ngenes_col = "n_genes"
+    else:
+        raise KeyError("Neither 'n_genes_by_counts' nor 'n_genes' found in .obs")
+
     # add key features
-    dataset_sub.obs["filter_pass"] = (
-        dataset_sub.obs["n_genes_by_counts"] >= 1
-    ).astype(bool)
+    dataset_sub.obs["filter_pass"] = (dataset_sub.obs[ngenes_col] >= 1).astype(bool)
 
     dataset_sub = setup_dataframe(dataset_sub, annotation_key)
     cell_indices = dataset_sub.obs.index.tolist()
