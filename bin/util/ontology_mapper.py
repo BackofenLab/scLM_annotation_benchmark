@@ -223,6 +223,7 @@ def load_ontology_mappings(cache_dir: Path) -> Optional[Dict[str, str]]:
         Dictionary mapping predicted_label -> chosen_match, or None if file doesn't exist
     """
     # CSV is stored in parent directory (cache root)
+    cache_dir = Path(cache_dir)
     mapping_csv_path = cache_dir.parent / "cell_type_ontology_mappings.csv"
     
     if not mapping_csv_path.exists():
