@@ -149,13 +149,29 @@ def setup_dataframe(dataframe, annotation_key):
         n_counts = dataframe.X.sum(axis=1)
         n_genes = (dataframe.X > 0).sum(axis=1)
 
-    dataframe.obs["batch"] = dataframe.obs["_scvi_batch"]
+    # To distinguish between HIHA and TS datasets
+    if "_scvi_batch" in dataframe.obs.columns:
+        batch_key_col = "_scvi_batch"
+    elif "batch_id" in dataframe.obs.columns:
+        batch_key_col = "batch_id"
+    else:
+        raise KeyError("Neither '_scvi_batch' nor 'batch_id' found in .obs")
+
+    if "ensembl_id" in dataframe.var.columns:
+        gene_names = dataframe.var["ensembl_id"].fillna("").astype(str)
+    else:
+        gene_names = dataframe.var_names.astype(str)
+
+    if isinstance(gene_names, pd.Index):
+        gene_names = gene_names.str.replace(r"\.\d+$", "", regex=True)
+    else:
+        gene_names = gene_names.replace(r"\.\d+$", "", regex=True)
+
+    dataframe.obs["batch"] = dataframe.obs[batch_key_col]
     dataframe.obs["str_labels"] = dataframe.obs[annotation_key]
     dataframe.obs["celltype"] = dataframe.obs[annotation_key]
-    dataframe.var["ensembl_id"] = dataframe.var["ensembl_id"].fillna("").astype(str)
-    f_ensembl_ids = dataframe.var["ensembl_id"].str.replace(r"\.\d+$", "", regex=True)
-    dataframe.var["feature_id"] = f_ensembl_ids
-    dataframe.var["ensembl_id"] = f_ensembl_ids
+    dataframe.var["feature_id"] = gene_names
+    dataframe.var["ensembl_id"] = gene_names
     dataframe.obs["n_genes"] = np.asarray(n_genes, dtype=np.int32)
     dataframe.obs["n_counts"] = np.asarray(n_counts, dtype=np.int32)
     return dataframe
@@ -166,10 +182,6 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
     Read h5ad, filter/prepare, tokenize cells, map labels, stratify zero-shot test.
     """
     dataset_sub = sc.read(args.input)
-
-    # find highly variable genes
-    #sc.pp.highly_variable_genes(dataset_sub, n_top_genes=args.n_top_genes)
-    #dataset_sub = dataset_sub[:, dataset_sub.var.highly_variable]
 
     if "n_genes_by_counts" in dataset_sub.obs.columns:
         ngenes_col = "n_genes_by_counts"
@@ -199,8 +211,15 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
     # collect textual features
     types = list(set(tokenized_dataset["celltype"]))
     ontology = json.load(open(f"{curr_path}/data/obo.json"))
+    # from name field
     name2id = {ontology[id]["name"]: id for id in ontology}
-    texts = [gettextfromname(typename, name2id, ontology) for typename in types]
+    # from synonym field
+    synonym2id = {
+        synonym: oid
+        for oid, entry in ontology.items()
+        for synonym in ([entry["synonym"]] if isinstance(entry["synonym"], str) else entry["synonym"])
+    }
+    texts = [gettextfromname(typename, name2id, synonym2id, ontology) for typename in types]
     type2num = dict([(type, i) for i, type in enumerate(types)])
     with torch.no_grad():
         text_embs = torch.cat(
@@ -232,17 +251,24 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
     )
 
 
-def gettextfromname(name, name2id, ontology, description=True):
+def gettextfromname(name, name2id, synonym2id, ontology, description=True):
     """
     Collect description for cell types from the ontology.
     """
     ontology_name = name.lower()
-    id = name2id[ontology_name.lower()]
     s = "cell type: "
-    s += ontology[id]["name"] + ". "
-    if description:
+    id = None
+    if ontology_name in name2id:
+        id = name2id[ontology_name]
+        s += ontology[id]["name"] + ". "
+    elif ontology_name in synonym2id:
+        id = synonym2id[ontology_name]
+        s += ontology[id]["synonym"] + ". "
+    if description and id is not None:
         if ontology[id]["def"] != []:
             s += ontology[id]["def"] + "; "
+    else:
+        print(f"{ontology_name} not found in ontology.")
     return s
 
 
