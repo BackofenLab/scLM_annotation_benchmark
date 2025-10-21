@@ -15,8 +15,6 @@ if [ ! -d "$LANGCELL_DIR" ]; then
     git submodule update --init --recursive
 fi
 
-#git clone --depth 1 --filter=blob:none --sparse https://github.com/PharMolix/LangCell.git
-
 cd LangCell
 git sparse-checkout set geneformer_001
 
@@ -26,7 +24,7 @@ cd geneformer_001
 # Install the package in the current environment
 echo "Installing geneformer_001 package..."
 
-#python3 setup.py install --user   # or: pip install .
+# Install dependencies for geneformer either via python3 setup.py install --user   # or: pip install .
 pip install .
 
 cd ../..
