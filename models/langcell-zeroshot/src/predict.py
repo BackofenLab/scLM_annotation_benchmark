@@ -210,7 +210,8 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
 
     # collect textual features
     types = list(set(tokenized_dataset["celltype"]))
-    ontology = json.load(open(f"{curr_path}/data/obo.json"))
+    obo_path = args.model_path.parent / "data" / "obo.json"
+    ontology = json.load(open(obo_path))
     # from name field
     name2id = {ontology[id]["name"]: id for id in ontology}
     # from synonym field
@@ -461,6 +462,13 @@ def parse_args() -> argparse.Namespace:
         default=default_output,
         help=f"Output CSV file path (default: {default_output})",
     )
+    p.add_argument(
+        "-m",
+        "--model_path",
+        type=Path,
+        default=default_output,
+        help=f"Model files path (default: {default_output})",
+    )
     p.add_argument("--seed", type=int, default=42, help="Random seed (default: 42)")
     p.add_argument(
         "--batchsize", type=int, default=32, help="Test batch size (default: 32)"
@@ -496,13 +504,14 @@ def main():
     output_dir = output_path.parent
     output_stem = output_path.stem
     output_suffix = output_path.suffix
+    model_path = args.model_path.parent
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # Seed
     set_seed(args.seed)
 
     # Load models/tokenizer/head
-    model, tokenizer, text_encoder, ctm_head = load_model_assets(base_dir, device)
+    model, tokenizer, text_encoder, ctm_head = load_model_assets(model_path, device)
     logger.info("Model assets loaded.")
 
     for annotation_key in args.annotation_keys:
