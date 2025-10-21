@@ -18,6 +18,7 @@ from typing import Dict, Iterable, List, Sequence, Tuple
 import numpy as np
 import pandas as pd
 import anndata as ad
+from mygene import MyGeneInfo
 import scanpy as sc
 import scipy.sparse as sp
 import torch
@@ -161,17 +162,41 @@ def setup_dataframe(dataframe, annotation_key):
         gene_names = dataframe.var["ensembl_id"].fillna("").astype(str)
     else:
         gene_names = dataframe.var_names.astype(str)
-
+    print("Gene names before processing:")
+    print(gene_names)
     if isinstance(gene_names, pd.Index):
-        gene_names = gene_names.str.replace(r"\.\d+$", "", regex=True)
-    else:
-        gene_names = gene_names.replace(r"\.\d+$", "", regex=True)
+        print("As Index")
+        #gene_names = gene_names.str.replace(r"\.\d+$", "", regex=True)
+        gene_names = gene_names.to_list()
+        print(gene_names[:5])
+        print("Converting gene names to Ensemble IDs")
+        mg = MyGeneInfo()
+        res = mg.querymany(gene_names, scopes="symbol,alias,gene", fields="ensembl.gene", species="human")
+        symbol2ensembl = {}
+        for entry in res:
+            symbol = entry["query"]
+            ens = None
+            if isinstance(entry.get("ensembl"), dict):
+                ens = entry["ensembl"].get("gene")
+            elif isinstance(entry.get("ensembl"), list):
+                ens = entry["ensembl"][0].get("gene")
+            symbol2ensembl[symbol] = ens
 
-    dataframe.obs["batch"] = dataframe.obs[batch_key_col]
-    dataframe.obs["str_labels"] = dataframe.obs[annotation_key]
-    dataframe.obs["celltype"] = dataframe.obs[annotation_key]
-    dataframe.var["feature_id"] = gene_names
-    dataframe.var["ensembl_id"] = gene_names
+        '''ensembl_ids = [
+            r["ensembl"]["gene"] if isinstance(r.get("ensembl"), dict) and "gene" in r["ensembl"] else r["query"] for r in res
+        ]'''
+        ensembl_ids = dataframe.var_names.map(symbol2ensembl)
+        print(f"Final Ensemble IDs: {len(ensembl_ids)}")
+    else:
+        ensembl_ids = gene_names.replace(r"\.\d+$", "", regex=True)
+        print(ensembl_ids)
+    #dataframe.obs["batch"] = dataframe.obs[batch_key_col]
+
+    celltypes = dataframe.obs[annotation_key].astype(str).str.strip().str.lower()
+    dataframe.obs["str_labels"] = celltypes
+    dataframe.obs["celltype"] = celltypes
+    dataframe.var["feature_id"] = ensembl_ids
+    dataframe.var["ensembl_id"] = ensembl_ids
     dataframe.obs["n_genes"] = np.asarray(n_genes, dtype=np.int32)
     dataframe.obs["n_counts"] = np.asarray(n_counts, dtype=np.int32)
     return dataframe
@@ -191,7 +216,7 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
         raise KeyError("Neither 'n_genes_by_counts' nor 'n_genes' found in .obs")
 
     # add key features
-    dataset_sub.obs["filter_pass"] = (dataset_sub.obs[ngenes_col] >= 1).astype(bool)
+    dataset_sub.obs["filter_pass"] = (dataset_sub.obs[ngenes_col] > 0).astype(bool)
 
     dataset_sub = setup_dataframe(dataset_sub, annotation_key)
     cell_indices = dataset_sub.obs.index.tolist()
@@ -221,6 +246,9 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
         for synonym in ([entry["synonym"]] if isinstance(entry["synonym"], str) else entry["synonym"])
     }
     texts = [gettextfromname(typename, name2id, synonym2id, ontology) for typename in types]
+    print(types)
+    print()
+    print(texts)
     type2num = dict([(type, i) for i, type in enumerate(types)])
     with torch.no_grad():
         text_embs = torch.cat(
@@ -270,6 +298,8 @@ def gettextfromname(name, name2id, synonym2id, ontology, description=True):
             s += ontology[id]["def"] + "; "
     else:
         print(f"{ontology_name} not found in ontology.")
+        s += ontology_name
+    print(s)
     return s
 
 

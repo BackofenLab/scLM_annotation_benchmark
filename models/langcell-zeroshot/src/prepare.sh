@@ -3,17 +3,7 @@ set -euo pipefail
 
 echo "Preparing LangCell model..."
 
-# Get the directory where this script is located
-SCRIPT_DIR=$(dirname "$(realpath "$0")")
-
-# Check if CellWhisperer repository exists, if not clone it
-LANGCELL_DIR="$SCRIPT_DIR/LangCell"
-if [ ! -d "$LANGCELL_DIR" ]; then
-    cd "$SCRIPT_DIR"
-    git clone https://github.com/PharMolix/LangCell.git
-    cd "$LANGCELL_DIR"
-    git submodule update --init --recursive
-fi
+git clone --depth 1 --filter=blob:none --sparse https://github.com/PharMolix/LangCell.git
 
 cd LangCell
 git sparse-checkout set geneformer_001
@@ -25,7 +15,7 @@ cd geneformer_001
 echo "Installing geneformer_001 package..."
 
 # Install dependencies for geneformer either via python3 setup.py install --user   # or: pip install .
-pip install .
+python3 setup.py install --user
 
 cd ../..
 
