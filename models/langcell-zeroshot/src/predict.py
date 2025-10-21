@@ -162,13 +162,8 @@ def setup_dataframe(dataframe, annotation_key):
         gene_names = dataframe.var["ensembl_id"].fillna("").astype(str)
     else:
         gene_names = dataframe.var_names.astype(str)
-    print("Gene names before processing:")
-    print(gene_names)
     if isinstance(gene_names, pd.Index):
-        print("As Index")
-        #gene_names = gene_names.str.replace(r"\.\d+$", "", regex=True)
         gene_names = gene_names.to_list()
-        print(gene_names[:5])
         print("Converting gene names to Ensemble IDs")
         mg = MyGeneInfo()
         res = mg.querymany(gene_names, scopes="symbol,alias,gene", fields="ensembl.gene", species="human")
@@ -181,17 +176,11 @@ def setup_dataframe(dataframe, annotation_key):
             elif isinstance(entry.get("ensembl"), list):
                 ens = entry["ensembl"][0].get("gene")
             symbol2ensembl[symbol] = ens
-
-        '''ensembl_ids = [
-            r["ensembl"]["gene"] if isinstance(r.get("ensembl"), dict) and "gene" in r["ensembl"] else r["query"] for r in res
-        ]'''
         ensembl_ids = dataframe.var_names.map(symbol2ensembl)
         print(f"Final Ensemble IDs: {len(ensembl_ids)}")
     else:
         ensembl_ids = gene_names.replace(r"\.\d+$", "", regex=True)
-        print(ensembl_ids)
-    #dataframe.obs["batch"] = dataframe.obs[batch_key_col]
-
+    dataframe.obs["batch"] = dataframe.obs[batch_key_col]
     celltypes = dataframe.obs[annotation_key].astype(str).str.strip().str.lower()
     dataframe.obs["str_labels"] = celltypes
     dataframe.obs["celltype"] = celltypes
