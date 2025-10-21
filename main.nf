@@ -46,6 +46,8 @@ process extract_cell_types {
 }
 
 process prepare_model {
+    conda 'git git-lfs'
+
     input:
     tuple val(model), path(model_dir)
 
