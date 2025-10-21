@@ -2,15 +2,16 @@ name: evaluate
 channels:
   - conda-forge
 dependencies:
-  - python=3.11
+  - python=3.10
   - pandas
   - numpy
   - scikit-learn
-  - matplotlib=3.10.0
+  - matplotlib
   - seaborn
   - pronto
   - pip
   - pip:
+    - anndata
     - torch
     - torch_geometric
     - sentence_transformers
