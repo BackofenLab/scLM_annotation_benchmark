@@ -15,7 +15,7 @@ cd geneformer_001
 echo "Installing geneformer_001 package..."
 
 # Install dependencies for geneformer either via python3 setup.py install --user   # or: pip install .
-python3 setup.py install --user
+pip install .
 
 cd ../..
 
