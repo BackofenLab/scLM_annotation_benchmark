@@ -4,6 +4,7 @@ from pathlib import Path
 import glob
 import argparse
 import json
+import yaml
 import sys
 import re
 from typing import Dict, Any, Tuple, List
@@ -31,7 +32,22 @@ def combine_results(args):
             continue
 
         dataset, model = parse_name(Path(fp))
-        m = extract_metrics(data)
+        annotation_key = False
+        for dataset_config in args.datasets:
+            if dataset in dataset_config:
+                with open(dataset_config) as c:
+                    cfg = yaml.safe_load(c)
+                print(cfg)
+                annotation_keys = cfg.get("annotation_keys")
+                if args.level >= len(annotation_keys):
+                    annotation_key = "predictions_" + annotation_keys[-1]
+                else:
+                    annotation_key = "predictions_" + annotation_keys[args.level]
+                break
+        if not annotation_key: # fall back to first key if not found
+            print("WARNING: No annotation key found, falling back to first key")
+            annotation_key = next(iter(data))
+        m = extract_metrics(data, annotation_key)
         row = {"file": str(fp), "dataset": dataset, "model": model, **m}
         rows.append(row)
 
@@ -101,8 +117,8 @@ def safe_get(d: Dict[str, Any], path: List[str], default=None):
     return cur
 
 
-def extract_metrics(payload: Dict[str, Any]) -> Dict[str, Any]:
-    base = ["predictions_cell_ontology_class", "true_labels"]
+def extract_metrics(payload: Dict[str, Any], annotation_key) -> Dict[str, Any]:
+    base = [annotation_key, "true_labels"]
     ba   = safe_get(payload, base + ["balanced_accuracy"])
     rada = safe_get(payload, base + ["rada_avg_similarity"])
     lin  = safe_get(payload, base + ["lin_avg_similarity"])
@@ -293,5 +309,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Aggregate predictions")
     parser.add_argument("--input", nargs='+', required=True, type=str, help="Path to input JSONs")
     parser.add_argument("--output", required=True, type=str, help="Path to output CSV")
+    parser.add_argument("--level", default=0, type=int, help="Annotation level to be compared (if level > available levels it will choose highest)")
+    parser.add_argument("--datasets", nargs='+', required=True,
+                   help="Yaml files of the data sets to retrieve annotation keys")
+
+
     args = parser.parse_args()
     combine_results(args)

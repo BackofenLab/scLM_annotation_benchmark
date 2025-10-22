@@ -146,14 +146,15 @@ process combine_results {
 
     input:
     path(json_path)
+    file(datasets)
 
     output:
     tuple path("aggregated*.csv"), path("aggregated_plot*.png")
 
     script:
     """
-    # Aggregate results:
-    aggregate.py --input ${json_path} --output ./
+    # Aggregate results (only level 0 for now):
+    aggregate.py --input ${json_path} --output ./ --level 0 --datasets ${datasets}
     """
 }
 
@@ -204,8 +205,12 @@ workflow {
     predictions      = predictions_fast.mix(predictions_slow)
 
     jsons = evaluate_annotation(predictions)
+    Channel
+        .fromList(params.datasets)
+        .map { dataset -> file("datasets/${dataset}.yml") }
+        .set { datasets }
 
-    combine_results(jsons.collect())
+    combine_results(jsons.collect(), datasets)
 }
 
 workflow.onComplete {
