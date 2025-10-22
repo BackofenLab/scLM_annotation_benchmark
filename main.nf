@@ -200,8 +200,12 @@ workflow {
     predictions      = predictions_fast.mix(predictions_slow)
 
     jsons = evaluate_annotation(predictions)
+    Channel
+        .fromList(params.datasets)
+        .map { dataset -> file("datasets/${dataset}.yml") }
+        .set { datasets }
 
-    combine_results(jsons.collect())
+    combine_results(jsons.collect(), datasets)
 }
 
 workflow.onComplete {
