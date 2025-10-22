@@ -142,14 +142,15 @@ process combine_results {
 
     input:
     path(json_path)
+    file(datasets)
 
     output:
     tuple path("aggregated*.csv"), path("aggregated_plot*.png")
 
     script:
     """
-    # Aggregate results:
-    aggregate.py --input ${json_path} --output ./
+    # Aggregate results (only level 0 for now):
+    aggregate.py --input ${json_path} --output ./ --level 0 --datasets ${datasets}
     """
 }
 
