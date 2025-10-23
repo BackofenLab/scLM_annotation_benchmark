@@ -10,6 +10,14 @@ MODEL_PATH=$(realpath "$0")
 OUTPUT_DIR=$(dirname "$OUT_CSV")
 mkdir -p "$OUTPUT_DIR"
 
+
+# TODO: Install geneformer_001 package after Langcell-conda env is created
+# --- Install geneformer_001 package ---
+# echo "📦 Installing geneformer_001 package..."
+# cd LangCell/geneformer_001
+# pip install .
+# cd ../..
+
 # Extract all annotation keys from config
 ANNOTATION_KEYS=$(python - <<'PY' "$CFG_YAML"
 import yaml, sys

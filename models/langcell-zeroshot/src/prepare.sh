@@ -1,47 +1,56 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "Preparing LangCell model..."
+echo "🚀 Preparing LangCell model new..."
 
-git clone --depth 1 --filter=blob:none --sparse https://github.com/PharMolix/LangCell.git
+# --- Clone LangCell repository only if missing ---
+if [ -d "LangCell" ]; then
+    echo "📁 'LangCell' directory already exists — skipping clone."
+else
+    echo "📥 Cloning LangCell repository..."
+    git clone --depth 1 --filter=blob:none --sparse https://github.com/PharMolix/LangCell.git
+    cd LangCell
+    git sparse-checkout set geneformer_001
+    cd ..
+fi
 
-cd LangCell
-git sparse-checkout set geneformer_001
-
-# Move into the package directory
-cd geneformer_001
-
-# Install the package in the current environment
-echo "Installing geneformer_001 package..."
-
-# Install dependencies for geneformer either via python3 setup.py install --user   # or: pip install .
+# --- Install geneformer_001 package ---
+echo "📦 Installing geneformer_001 package..."
+cd LangCell/geneformer_001
 pip install .
-
 cd ../..
 
-echo "Downloading model weights..."
-
-# URL of the zipped file
-ZIP_URL="https://zenodo.org/records/16994789/files/langcell_pretrained_model_datasets.zip"
-
-# Output directories
+# --- Prepare download directories ---
 DOWNLOAD_DIR="./downloads"
 DATA_DIR="./data"
-
-# Create directories if they don't exist
-mkdir -p "$DOWNLOAD_DIR" "$DATA_DIR"
-
-# File name
+ZIP_URL="https://zenodo.org/records/16994789/files/langcell_pretrained_model_datasets.zip"
 ZIP_FILE="$DOWNLOAD_DIR/$(basename "$ZIP_URL")"
 
-echo "Downloading $ZIP_URL ..."
-curl -L -o "$ZIP_FILE" "$ZIP_URL"
+mkdir -p "$DOWNLOAD_DIR" "$DATA_DIR"
 
-echo "Unzipping $ZIP_FILE ..."
-unzip -o "$ZIP_FILE" -d "$DOWNLOAD_DIR/unzipped"
+# --- Download model weights only if not already present ---
+if [ -f "$ZIP_FILE" ]; then
+    echo "✅ Zip file already downloaded: $ZIP_FILE"
+else
+    echo "⬇️ Downloading model weights from Zenodo..."
+    curl -L -o "$ZIP_FILE" "$ZIP_URL"
+fi
 
-echo "Copying files to $DATA_DIR ..."
-cp -r "$DOWNLOAD_DIR/unzipped/langcell_pretrained_model_datasets/"* "$DATA_DIR/"
+# --- Unzip if not already extracted ---
+if [ -d "$DOWNLOAD_DIR/unzipped/langcell_pretrained_model_datasets" ]; then
+    echo "📦 Model weights already unzipped — skipping extraction."
+else
+    echo "🧩 Unzipping model archive..."
+    unzip -o "$ZIP_FILE" -d "$DOWNLOAD_DIR/unzipped"
+fi
 
-echo "✅ LangCell-Zeroshot preparation completed successfully!. Files are in $DATA_DIR"
+# --- Copy files if not already in data directory ---
+if [ "$(ls -A "$DATA_DIR" 2>/dev/null)" ]; then
+    echo "📁 '$DATA_DIR' already contains files — skipping copy."
+else
+    echo "📂 Copying model datasets to $DATA_DIR ..."
+    cp -r "$DOWNLOAD_DIR/unzipped/langcell_pretrained_model_datasets/"* "$DATA_DIR/"
+fi
 
+echo "✅ LangCell-Zeroshot preparation completed successfully!"
+echo "📍 Model files available in: $DATA_DIR"
