@@ -65,6 +65,36 @@ def parse_pred_input(pred_input):
     else:
         raise ValueError("pred_input must be a string or list")
 
+# -- Preprocessing utilities --
+def remove_trailing_periods_from_predictions(df: pd.DataFrame, pred_col: str, verbose: bool = True) -> pd.DataFrame:
+    """
+    Remove trailing periods from predicted labels in a dataframe.
+    
+    Parameters
+    ----------
+    df : pd.DataFrame
+        DataFrame containing predictions
+    pred_col : str
+        Column name containing predicted labels
+    verbose : bool, default True
+        If True, print progress information
+        
+    Returns
+    -------
+    pd.DataFrame
+        DataFrame with trailing periods removed from predicted labels
+    """
+    if verbose:
+        # Count labels with trailing periods before stripping
+        labels_with_periods = df[pred_col].astype(str).str.endswith('.').sum()
+        if labels_with_periods > 0:
+            print(f"  Found {labels_with_periods} predicted labels with trailing periods - stripping them")
+    
+    # Strip trailing periods from predicted labels
+    df[pred_col] = df[pred_col].astype(str).str.rstrip('.').replace('', np.nan)
+    
+    return df
+
 # -- Ontology mapping utilities --
 def apply_ontology_mapping_to_predictions(df: pd.DataFrame, pred_col: str, cache_dir: Path, verbose: bool = True) -> pd.DataFrame:
     """
@@ -93,17 +123,7 @@ def apply_ontology_mapping_to_predictions(df: pd.DataFrame, pred_col: str, cache
     original_pred_col = f"original_{pred_col}"
     df[original_pred_col] = df[pred_col].copy()
     
-    # Preprocess predicted labels: strip trailing periods
-    if verbose:
-        # Count labels with trailing periods before stripping
-        labels_with_periods = df[pred_col].astype(str).str.endswith('.').sum()
-        if labels_with_periods > 0:
-            print(f"  Found {labels_with_periods} predicted labels with trailing periods - stripping them")
-    
-    # Strip trailing periods from predicted labels
-    df[pred_col] = df[pred_col].astype(str).str.rstrip('.').replace('', np.nan)
-    
-    # Get predicted labels as list (after preprocessing)
+    # Get predicted labels as list
     predicted_labels = df[pred_col].tolist()
     
     try:
@@ -312,6 +332,10 @@ def main(args):
         
         pred_col = 'predicted_labels'
         file_results = {}
+        
+        # Remove trailing periods from predicted labels before any other processing
+        print(f"\nPreprocessing predicted labels...")
+        df = remove_trailing_periods_from_predictions(df, pred_col, verbose=True)
         
         # Filter predictions by review status before applying ontology mapping
         print(f"\nFiltering predictions by ontology mapping review status...")
