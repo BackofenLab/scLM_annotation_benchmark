@@ -12,6 +12,7 @@ import re
 from util.plots import UMAPCellPlotter  # Replace with correct import if needed
 from util.cell_ontology_similarity import compute_ontology_similarities, download_cl_ontology
 from util.ontology_helpers import apply_ontology_mapping_to_cell_type_list
+from util.ontology_mapper import filter_predictions_by_review_status
 
 # -- Utility functions --
 def extract_label_suffix(filepath):
@@ -63,6 +64,36 @@ def parse_pred_input(pred_input):
         return pred_input
     else:
         raise ValueError("pred_input must be a string or list")
+
+# -- Preprocessing utilities --
+def remove_trailing_periods_from_predictions(df: pd.DataFrame, pred_col: str, verbose: bool = True) -> pd.DataFrame:
+    """
+    Remove trailing periods from predicted labels in a dataframe.
+    
+    Parameters
+    ----------
+    df : pd.DataFrame
+        DataFrame containing predictions
+    pred_col : str
+        Column name containing predicted labels
+    verbose : bool, default True
+        If True, print progress information
+        
+    Returns
+    -------
+    pd.DataFrame
+        DataFrame with trailing periods removed from predicted labels
+    """
+    if verbose:
+        # Count labels with trailing periods before stripping
+        labels_with_periods = df[pred_col].astype(str).str.endswith('.').sum()
+        if labels_with_periods > 0:
+            print(f"  Found {labels_with_periods} predicted labels with trailing periods - stripping them")
+    
+    # Strip trailing periods from predicted labels
+    df[pred_col] = df[pred_col].astype(str).str.rstrip('.').replace('', np.nan)
+    
+    return df
 
 # -- Ontology mapping utilities --
 def apply_ontology_mapping_to_predictions(df: pd.DataFrame, pred_col: str, cache_dir: Path, verbose: bool = True) -> pd.DataFrame:
@@ -302,6 +333,43 @@ def main(args):
         pred_col = 'predicted_labels'
         file_results = {}
         
+        # Remove trailing periods from predicted labels before any other processing
+        print(f"\nPreprocessing predicted labels...")
+        df = remove_trailing_periods_from_predictions(df, pred_col, verbose=True)
+        
+        # Filter predictions by review status before applying ontology mapping
+        print(f"\nFiltering predictions by ontology mapping review status...")
+        try:
+            df, filter_stats = filter_predictions_by_review_status(
+                df, pred_col, cache_dir, args.max_unreviewed_ratio, verbose=True
+            )
+            
+            # Store filter statistics for reporting
+            file_results["filter_stats"] = filter_stats
+            
+            if filter_stats["filtered"]:
+                print(f"⚠️  WARNING: {filter_stats['unreviewed_predictions']} predictions with unreviewed mappings were excluded")
+                print(f"   Remaining predictions: {filter_stats['filtered_predictions']}/{filter_stats['total_predictions']}")
+                if filter_stats["unreviewed_labels"]:
+                    print(f"   Unreviewed labels: {sorted(filter_stats['unreviewed_labels'])}")
+                    
+        except RuntimeError as e:
+            print(f"❌ ERROR: {e}")
+            print("Evaluation stopped due to too many unreviewed predictions.")
+            continue
+        except Exception as e:
+            print(f"Warning: Could not filter predictions by review status: {e}")
+            print("Continuing with all predictions...")
+            file_results["filter_stats"] = {
+                "total_predictions": len(df),
+                "filtered_predictions": len(df),
+                "unreviewed_predictions": 0,
+                "unreviewed_ratio": 0.0,
+                "unreviewed_labels": [],
+                "filtered": False,
+                "error": str(e)
+            }
+
         # Apply ontology mapping to predicted labels once for all evaluations
         print(f"\nApplying ontology mapping to predicted labels...")
         try:
@@ -353,8 +421,39 @@ def main(args):
     with open(eval_path, "w+") as f:
         json.dump(all_results, f, indent=4, default=_json_default)
 
+    # Print summary of filtering statistics
     print(f"\n{'='*60}")
-    print(f"All evaluation results saved to: {eval_path}")
+    print(f"EVALUATION SUMMARY")
+    print(f"{'='*60}")
+    
+    total_files = len(all_results)
+    files_with_filtering = 0
+    total_unreviewed_excluded = 0
+    total_predictions_processed = 0
+    
+    for file_key, file_results in all_results.items():
+        if "filter_stats" in file_results:
+            filter_stats = file_results["filter_stats"]
+            total_predictions_processed += filter_stats.get("total_predictions", 0)
+            if filter_stats.get("filtered", False):
+                files_with_filtering += 1
+                total_unreviewed_excluded += filter_stats.get("unreviewed_predictions", 0)
+    
+    print(f"Files processed: {total_files}")
+    print(f"Files with unreviewed predictions filtered: {files_with_filtering}")
+    print(f"Total predictions processed: {total_predictions_processed}")
+    print(f"Total unreviewed predictions excluded: {total_unreviewed_excluded}")
+    
+    if total_unreviewed_excluded > 0:
+        exclusion_ratio = total_unreviewed_excluded / total_predictions_processed if total_predictions_processed > 0 else 0
+        print(f"Overall exclusion ratio: {exclusion_ratio:.1%}")
+        print(f"\n⚠️  WARNING: {total_unreviewed_excluded} predictions were excluded due to unreviewed ontology mappings")
+        print(f"   Please review the ontology mappings CSV file and set 'reviewed' to 'True' for verified mappings")
+        print(f"   Mapping file location: {cache_dir.parent / 'cell_type_ontology_mappings.csv'}")
+    else:
+        print(f"\n✅ All predictions used had reviewed ontology mappings")
+    
+    print(f"\nAll evaluation results saved to: {eval_path}")
     print(f"{'='*60}")
     
             
@@ -370,6 +469,8 @@ if __name__ == "__main__":
                        help="Cache directory for ontology files. If not provided, uses 'cache' in current directory")
     parser.add_argument("--max-unmapped-ratio", type=float, default=0.0,
                        help="Maximum acceptable ratio of unmapped cell types (0.0-1.0). Default: 0.0 (all must be mapped)")
+    parser.add_argument("--max-unreviewed-ratio", type=float, default=0.1,
+                       help="Maximum acceptable ratio of predictions with unreviewed ontology mappings (0.0-1.0). Default: 0.1 (10%)")
 
     args = parser.parse_args()
     main(args)

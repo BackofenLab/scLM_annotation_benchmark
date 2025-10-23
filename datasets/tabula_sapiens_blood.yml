@@ -2,6 +2,6 @@
 name: tabula_sapiens_blood          # used in channel / filenames
 url:  https://figshare.com/ndownloader/files/50850792/Blood_TSP1_30_version2d_10X_smartseq_scvi_Nov122024
 format: h5ad
-subset_size: 1000                # null → use full dataset
+subset_size: null                # null → use full dataset
 batch_key: donor
 annotation_keys: [cell_ontology_class]

@@ -20,7 +20,7 @@ process download {
       --dataset   "${dataset}" \
       --cfg_yaml  "${cfg_yaml}" \
       --out       "data/${dataset}.h5ad" \
-      --cache_dir "${cache_dir}/download"
+      --cache_dir "${cache_dir}"
     """
 }
 
@@ -131,7 +131,7 @@ process evaluate_annotation {
     """
     # Convert the prediction files to a comma-separated string
     pred_files=\$(echo ${predictions} | tr ' ' ',')
-    evaluate.py --pred "\$pred_files" --out ${dataset}_${model}.json --cache_dir ${cache_dir}/evaluation
+    evaluate.py --pred "\$pred_files" --out ${dataset}_${model}.json --cache_dir ${cache_dir}
     """
 }
 
@@ -220,6 +220,12 @@ workflow.onComplete {
         println "⚠️  ACTION REQUIRED: Review and verify mappings before using results!"
         println "🚨" * 50
         println ""
+        
+        // Archive the warning file with timestamp to prevent showing it again
+        def timestamp = new Date().format('yyyy-MM-dd_HH-mm-ss')
+        def archivedWarningFile = file("${params.cache_dir}/ONTOLOGY_MAPPING_WARNING_${timestamp}.txt")
+        warningFile.renameTo(archivedWarningFile)
+        println "📁 Warning file archived as: ${archivedWarningFile.toString()}"
     }
     
     // Standard completion message
