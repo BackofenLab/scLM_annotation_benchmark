@@ -13,6 +13,9 @@ if [ ! -d "$CELLWHISPERER_DIR" ]; then
     git clone https://github.com/mengerj/CellWhisperer.git
     cd "$CELLWHISPERER_DIR"
     git submodule update --init --recursive
+else
+    cd "$CELLWHISPERER_DIR"
+    git pull
 fi
 # Navigate to Geneformer module, install git-lfs there, and pull LFS files
 GENEFORMER_DIR="$CELLWHISPERER_DIR/modules/Geneformer"
