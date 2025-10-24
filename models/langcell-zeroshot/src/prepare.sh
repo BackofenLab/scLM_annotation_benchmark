@@ -11,14 +11,8 @@ else
     git clone --depth 1 --filter=blob:none --sparse https://github.com/PharMolix/LangCell.git
     cd LangCell
     git sparse-checkout set geneformer_001
-    cd ..
+    cd -
 fi
-
-# --- Install geneformer_001 package ---
-echo "📦 Installing geneformer_001 package..."
-cd LangCell/geneformer_001
-pip install .
-cd ../..
 
 # --- Prepare download directories ---
 DOWNLOAD_DIR="./downloads"
