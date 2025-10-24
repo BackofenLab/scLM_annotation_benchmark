@@ -158,6 +158,7 @@ def setup_dataframe(dataframe, annotation_key):
     else:
         raise KeyError("Neither '_scvi_batch' nor 'batch_id' found in .obs")
 
+    # Get Ensemble IDs for genes. TS datasets may already have them. Add for HIHA
     if "ensembl_id" in dataframe.var.columns:
         gene_names = dataframe.var["ensembl_id"].fillna("").astype(str)
     else:
@@ -235,9 +236,8 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
         for synonym in ([entry["synonym"]] if isinstance(entry["synonym"], str) else entry["synonym"])
     }
     texts = [gettextfromname(typename, name2id, synonym2id, ontology) for typename in types]
-    print(types)
-    print()
-    print(texts)
+    print(f"Cell types: {types}")
+    print(f"Cell types with definitions: {texts}")
     type2num = dict([(type, i) for i, type in enumerate(types)])
     with torch.no_grad():
         text_embs = torch.cat(
@@ -288,7 +288,7 @@ def gettextfromname(name, name2id, synonym2id, ontology, description=True):
     else:
         print(f"{ontology_name} not found in ontology.")
         s += ontology_name
-    print(s)
+    print(f"Cell definition: {s}")
     return s
 
 
