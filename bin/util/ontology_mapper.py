@@ -7,7 +7,7 @@ standardized ontology terms using the CellOntologyMapper from omicverse.
 import os
 import sys
 from pathlib import Path
-from typing import List, Dict, Any, Optional
+from typing import Any, Optional
 import pandas as pd
 
 # Import the download function from cell_ontology_similarity
@@ -15,7 +15,7 @@ from .cell_ontology_similarity import download_cl_ontology
 
 
 def map_cell_types_to_ontology(
-    predicted_labels: List[str],
+    predicted_labels: list[str],
     cache_dir: Path,
     model_name: str = "all-MiniLM-L6-v2",
     force_remapping: bool = False
@@ -27,8 +27,8 @@ def map_cell_types_to_ontology(
     
     Parameters
     ----------
-    predicted_labels : List[str]
-        List of unique predicted cell type labels to map
+    predicted_labels : list[str]
+        list of unique predicted cell type labels to map
     cache_dir : Path
         Directory to store the ontology files and mapping results
     model_name : str, default "all-MiniLM-L6-v2"
@@ -60,8 +60,7 @@ def map_cell_types_to_ontology(
     cache_dir.mkdir(parents=True, exist_ok=True)
     
     # Path for the mapping CSV file
-    # use the parent to directly store in /cache and not in /cache/evaluation ; as this file is also used in download step
-    mapping_csv_path = cache_dir.parent / "cell_type_ontology_mappings.csv"
+    mapping_csv_path = cache_dir / "cell_type_ontology_mappings.csv"
     
     # Load existing mappings if they exist
     existing_mappings = {}
@@ -169,6 +168,10 @@ def map_cell_types_to_ontology(
     # Sort by predicted_label for easier manual editing
     combined_df = combined_df.sort_values('predicted_label').reset_index(drop=True)
     
+    # Reorder columns to ensure 'reviewed' is first
+    column_order = ['reviewed'] + [col for col in combined_df.columns if col != 'reviewed']
+    combined_df = combined_df[column_order]
+    
     # Save to CSV with semicolon delimiter
     combined_df.to_csv(mapping_csv_path, sep=';', index=False)
     
@@ -178,7 +181,7 @@ def map_cell_types_to_ontology(
     
     # Create warning file for new mappings
     if new_mappings:
-        warning_file_path = cache_dir.parent / "ONTOLOGY_MAPPING_WARNING.txt"
+        warning_file_path = cache_dir / "ONTOLOGY_MAPPING_WARNING.txt"
         try:
             with open(warning_file_path, 'w') as f:
                 f.write("NEW CELL TYPE MAPPINGS DETECTED\n")
@@ -208,23 +211,23 @@ def map_cell_types_to_ontology(
     return mapping_csv_path
 
 
-def load_ontology_mappings(cache_dir: Path) -> Optional[Dict[str, str]]:
+def load_ontology_mappings(cache_dir: Path) -> Optional[dict[str, str]]:
     """
     Load ontology mappings from the CSV file.
     
     Parameters
     ----------
     cache_dir : Path
-        Directory containing the mapping CSV file (will check parent directory)
+        Directory containing the mapping CSV file
         
     Returns
     -------
-    Optional[Dict[str, str]]
+    Optional[dict[str, str]]
         Dictionary mapping predicted_label -> chosen_match, or None if file doesn't exist
     """
-    # CSV is stored in parent directory (cache root)
+    # CSV is stored in cache directory
     cache_dir = Path(cache_dir)
-    mapping_csv_path = cache_dir.parent / "cell_type_ontology_mappings.csv"
+    mapping_csv_path = cache_dir / "cell_type_ontology_mappings.csv"
     
     if not mapping_csv_path.exists():
         return None
@@ -239,18 +242,174 @@ def load_ontology_mappings(cache_dir: Path) -> Optional[Dict[str, str]]:
         return None
 
 
+def load_ontology_mappings_with_review_status(cache_dir: Path) -> Optional[pd.DataFrame]:
+    """
+    Load ontology mappings from the CSV file with review status.
+    
+    Parameters
+    ----------
+    cache_dir : Path
+        Directory containing the mapping CSV file
+        
+    Returns
+    -------
+    Optional[pd.DataFrame]
+        DataFrame with columns: predicted_label, chosen_match, reviewed, or None if file doesn't exist
+    """
+    # CSV is stored in cache directory
+    cache_dir = Path(cache_dir)
+    mapping_csv_path = cache_dir / "cell_type_ontology_mappings.csv"
+    
+    if not mapping_csv_path.exists():
+        return None
+    
+    try:
+        df = pd.read_csv(mapping_csv_path, sep=';')
+        return df
+    except Exception as e:
+        print(f"Warning: Could not load ontology mappings with review status: {e}")
+        return None
+
+
+def filter_predictions_by_review_status(
+    df: pd.DataFrame,
+    pred_col: str,
+    cache_dir: Path,
+    max_unreviewed_ratio: float = 0.1,
+    verbose: bool = True
+) -> tuple[pd.DataFrame, dict[str, Any]]:
+    """
+    Filter predictions to exclude those with unreviewed ontology mappings.
+    
+    Parameters
+    ----------
+    df : pd.DataFrame
+        DataFrame containing predictions
+    pred_col : str
+        Column name containing predicted labels
+    cache_dir : Path
+        Directory containing the mapping CSV file
+    max_unreviewed_ratio : float, default 0.1
+        Maximum acceptable ratio of unreviewed predictions (0.0-1.0)
+    verbose : bool, default True
+        If True, print detailed information about filtering
+        
+    Returns
+    -------
+    tuple[pd.DataFrame, dict[str, Any]]
+        - Filtered DataFrame with only reviewed predictions
+        - Statistics dictionary with filtering information
+        
+    Raises
+    ------
+    RuntimeError
+        If the ratio of unreviewed predictions exceeds the threshold
+    """
+    if verbose:
+        print(f"Filtering predictions by ontology mapping review status...")
+    
+    # Load mappings with review status
+    mappings_df = load_ontology_mappings_with_review_status(cache_dir)
+    
+    if mappings_df is None:
+        if verbose:
+            print("  No ontology mappings found. Keeping all predictions.")
+        return df, {
+            "total_predictions": len(df),
+            "filtered_predictions": len(df),
+            "unreviewed_predictions": 0,
+            "unreviewed_ratio": 0.0,
+            "unreviewed_labels": [],
+            "filtered": False
+        }
+    
+    # Get unique predicted labels
+    unique_labels = df[pred_col].unique()
+    
+    # Check review status for each unique label
+    reviewed_labels = set()
+    unreviewed_labels = set()
+    unmapped_labels = set()
+    
+    for label in unique_labels:
+        mapping_row = mappings_df[mappings_df['predicted_label'] == label]
+        if len(mapping_row) == 0:
+            unmapped_labels.add(label)
+        else:
+            reviewed_value = mapping_row.iloc[0]['reviewed']
+            # Handle both boolean and string values
+            reviewed = reviewed_value if isinstance(reviewed_value, bool) else str(reviewed_value).lower() in ['true', '1', 'yes']
+            if reviewed:
+                reviewed_labels.add(label)
+            else:
+                unreviewed_labels.add(label)
+    
+    # Count predictions by category
+    total_predictions = len(df)
+    unreviewed_predictions = len(df[df[pred_col].isin(unreviewed_labels)])
+    unreviewed_ratio = unreviewed_predictions / total_predictions if total_predictions > 0 else 0.0
+    
+    # Create statistics
+    stats = {
+        "total_predictions": total_predictions,
+        "unreviewed_predictions": unreviewed_predictions,
+        "unreviewed_ratio": unreviewed_ratio,
+        "unreviewed_labels": list(unreviewed_labels),
+        "unmapped_labels": list(unmapped_labels),
+        "reviewed_labels": list(reviewed_labels),
+        "filtered": False
+    }
+    
+    if verbose:
+        print(f"  Total predictions: {total_predictions}")
+        print(f"  Reviewed labels: {len(reviewed_labels)}")
+        print(f"  Unreviewed labels: {len(unreviewed_labels)}")
+        print(f"  Unmapped labels: {len(unmapped_labels)}")
+        print(f"  Unreviewed predictions: {unreviewed_predictions} ({unreviewed_ratio:.1%})")
+    
+    # Check if unreviewed ratio exceeds threshold
+    if unreviewed_ratio > max_unreviewed_ratio:
+        error_msg = (
+            f"Too many unreviewed predictions: {unreviewed_ratio:.1%} > {max_unreviewed_ratio:.1%} "
+            f"({unreviewed_predictions}/{total_predictions} predictions)\n"
+            f"Unreviewed labels: {sorted(unreviewed_labels)}\n"
+            f"Please review the ontology mappings in the CSV file and set 'reviewed' to 'True' "
+            f"for verified mappings, or increase the --max-unreviewed-ratio threshold."
+        )
+        raise RuntimeError(error_msg)
+    
+    # Filter out unreviewed predictions
+    if unreviewed_labels:
+        filtered_df = df[~df[pred_col].isin(unreviewed_labels)].copy()
+        filtered_predictions = len(filtered_df)
+        stats["filtered_predictions"] = filtered_predictions
+        stats["filtered"] = True
+        
+        if verbose:
+            print(f"  Filtered out {unreviewed_predictions} unreviewed predictions")
+            print(f"  Remaining predictions: {filtered_predictions}")
+            print(f"  Unreviewed labels excluded: {sorted(unreviewed_labels)}")
+    else:
+        filtered_df = df.copy()
+        stats["filtered_predictions"] = total_predictions
+        if verbose:
+            print("  No unreviewed predictions found. Keeping all predictions.")
+    
+    return filtered_df, stats
+
+
 def apply_ontology_mappings(
-    predicted_labels: List[str], 
+    predicted_labels: list[str], 
     cache_dir: Path,
     fallback_to_original: bool = True
-) -> List[str]:
+) -> list[str]:
     """
     Apply ontology mappings to a list of predicted labels.
     
     Parameters
     ----------
-    predicted_labels : List[str]
-        List of predicted cell type labels
+    predicted_labels : list[str]
+        list of predicted cell type labels
     cache_dir : Path
         Directory containing the mapping CSV file
     fallback_to_original : bool, default True
@@ -258,8 +417,8 @@ def apply_ontology_mappings(
         
     Returns
     -------
-    List[str]
-        List of mapped labels (or original labels if no mapping found and fallback_to_original=True)
+    list[str]
+        list of mapped labels (or original labels if no mapping found and fallback_to_original=True)
     """
     mappings = load_ontology_mappings(cache_dir)
     
