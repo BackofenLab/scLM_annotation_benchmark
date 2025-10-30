@@ -5,7 +5,6 @@ dependencies:
   - python=3.10
   - anndata=0.10.2
   - transformers=4.34.1
-  - pytorch=2.1.0
   - lightning=2.1.0
   - datasets=2.12.0
   - seaborn
@@ -14,6 +13,7 @@ dependencies:
   - wandb
   - zarr
   - pip:
+    - torch
     - scib
     - pybiomart
     - -e ../../models/cellwhisperer_emb/src/CellWhisperer
