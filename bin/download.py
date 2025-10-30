@@ -131,6 +131,9 @@ def main() -> None:
     ...            --data_cache /scratch/datasets \\
     ...            --out data/Tabula_sapiens.h5ad
     """
+    RANDOM_SEED = 42
+    random.seed(RANDOM_SEED)
+    
     ap = argparse.ArgumentParser()
     ap.add_argument("--dataset", required=True,
                     help="Dataset name (must match YAML 'name')")
