@@ -25,6 +25,9 @@ else:
 PY
 )
 
+# fix gmpy2 error
+export SYMPY_USE_GMPY=0
+
 # Run CellWhisperer prediction with all annotation keys
 python "$SCRIPT_DIR/predict.py" \
   --input "$INPUT_H5AD" \
