@@ -24,7 +24,6 @@ PY
 
 # Install Geneformer package
 echo "📦 Installing geneformer_001 package..."
-echo $(dirname "$0")
 SCRIPT_DIR=$(dirname "$0")
 GENEFORMER_PATH=$SCRIPT_DIR/LangCell/geneformer_001
 if [ ! -d "$GENEFORMER_PATH" ]; then
