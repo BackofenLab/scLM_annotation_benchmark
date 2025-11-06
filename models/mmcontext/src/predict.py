@@ -22,6 +22,7 @@ from mmcontext.embed.model_utils import prepare_model_and_embed, embed_labels
 import anndata as ad
 from sentence_transformers import SentenceTransformer
 from mmcontext.eval import OmicsQueryAnnotator
+import scanpy as sc
 
 def parse_args():
     parser = argparse.ArgumentParser(description='MMContext cell type prediction')
@@ -46,11 +47,15 @@ adata = ad.read_h5ad(adata_path)
 print(f"Loaded {adata.n_obs} cells and {adata.n_vars} genes")
 
 # Remove trailing .1 ... (dot and numbers) in adata.var.index
-adata.var.index = adata.var.index.str.replace(r'\.\d+$', '', regex=True)
+#adata.var.index = adata.var.index.str.replace(r'\.\d+$', '', regex=True)
 
+# The models were falsly trained on data first log transformed and normalized. Therefore we reapply this preprocessing here.
 print("=== Preprocessing data ===")
-ensure_log_norm(adata)
-adata = pp_adata_geneformer(adata)
+adata.X = adata.layers["counts"]
+# log transform
+sc.pp.log1p(adata)
+# normalize
+sc.pp.normalize_total(adata)
 
 print("=== Computing embeddings ===")
 embedder = InitialEmbedder(method=INITIAL_EMB)
