@@ -316,8 +316,7 @@ def compute_ontology_similarities(
     true_col: str = "true_labels",
     pred_col: str = "predicted_labels",
     max_unmapped_ratio: float = 0.0,
-    cache_dir: Optional[Path] = None,
-    use_ontology_mapper: bool = True
+    cache_dir: Optional[Path] = None
 ) -> Tuple[pd.DataFrame, Dict[str, float]]:
     """
     Compute ontology-based similarities for a dataframe with true and predicted labels.
@@ -338,10 +337,7 @@ def compute_ontology_similarities(
         If 0.0, all cell types must be mapped or an error will be raised.
         If 1.0, any ratio of unmapped cell types is acceptable.
     cache_dir : Optional[Path], default None
-        Cache directory for ontology mapper. If provided and use_ontology_mapper=True,
-        will attempt to map unmapped cell types using the ontology mapper.
-    use_ontology_mapper : bool, default True
-        If True and cache_dir is provided, use ontology mapper for unmapped cell types.
+        Cache directory (kept for compatibility, but ontology mapping should be done before calling this function).
         
     Returns
     -------
@@ -352,7 +348,8 @@ def compute_ontology_similarities(
     Raises
     ------
     RuntimeError
-        If cell types remain unmapped after ontology mapper attempt and max_unmapped_ratio is 0.0
+        If cell types remain unmapped and max_unmapped_ratio is 0.0. 
+        Note: Ontology mapping should be applied before calling this function.
     """
     # Load CL ontology
     try:
@@ -370,7 +367,7 @@ def compute_ontology_similarities(
     all_cell_types = list(set(df[true_col].unique()) | set(df[pred_col].unique()))
     
     # Use helper function to check ontology mapping coverage
-    from .ontology_helpers import check_ontology_mapping_coverage, create_or_update_ontology_mappings, apply_ontology_mappings_to_cell_types
+    from .ontology_helpers import check_ontology_mapping_coverage
     
     try:
         mapped_types, unmapped_types, label_index = check_ontology_mapping_coverage(
@@ -395,62 +392,11 @@ def compute_ontology_similarities(
     if unmapped_types:
         print(f"  Unmapped cell types: {sorted(unmapped_types)}")
     
-    # Try to map unmapped cell types using ontology mapper if available
-    label_replacements = {}  # Maps original labels to replacement labels
-    if unmapped_types and cache_dir and use_ontology_mapper:
-        try:
-            print(f"\nAttempting to map {len(unmapped_types)} unmapped cell types using ontology mapper...")
-            
-            # Create/update ontology mappings
-            mappings = create_or_update_ontology_mappings(
-                unmapped_cell_types=list(unmapped_types),
-                cache_dir=cache_dir,
-                force_remapping=False
-            )
-            
-            if mappings:
-                # Apply mappings to get label replacements
-                _, replacements = apply_ontology_mappings_to_cell_types(
-                    cell_types=all_cell_types,
-                    unmapped_types=unmapped_types,
-                    mappings=mappings,
-                    label_index=label_index,
-                    verbose=True
-                )
-                
-                label_replacements = replacements
-                
-                # Update the sets
-                newly_mapped = set(replacements.keys())
-                mapped_types.update(newly_mapped)
-                unmapped_types = unmapped_types - newly_mapped
-                
-                print(f"\nOntology mapper results:")
-                print(f"  Successfully remapped: {len(newly_mapped)}")
-                print(f"  Still unmapped: {len(unmapped_types)}")
-                
-                if unmapped_types:
-                    print(f"  Still unmapped cell types: {sorted(unmapped_types)}")
-                
-        except Exception as e:
-            print(f"Warning: Ontology mapper failed: {e}")
-            print("Continuing with original mapping results...")
-    
-    # Recalculate unmapped ratio after ontology mapper attempt
-    unmapped_count = len(unmapped_types)
-    unmapped_ratio = unmapped_count / total_types if total_types > 0 else 0.0
-    
-    print(f"\nFinal mapping summary:")
-    print(f"  Total unique cell types: {total_types}")
-    print(f"  Successfully mapped: {len(mapped_types)}")
-    print(f"  Unmapped: {unmapped_count}")
-    print(f"  Unmapped ratio: {unmapped_ratio:.3f}")
-    
-    # Do not throw error, but warn if there are still unmapped cell types and max_unmapped_ratio is 0.0
+    # Warn if there are unmapped cell types and max_unmapped_ratio is 0.0
     if unmapped_ratio > max_unmapped_ratio:
         print(f"WARNING: "
-            f"Cell types remain unmapped after ontology mapper attempt: {sorted(unmapped_types)}. "
-            f"Please manually edit the chosen_match column in the ontology mapping CSV or "
+            f"Cell types remain unmapped: {sorted(unmapped_types)}. "
+            f"Please apply ontology mapping before evaluation or "
             f"increase max_unmapped_ratio to allow unmapped cell types."
         )
     
@@ -486,23 +432,18 @@ def compute_ontology_similarities(
     temp_df["distance_edges"] = np.nan
 
     # Process each row to compute individual scores
+    # Note: Labels should already be mapped before calling this function
     for i, row in temp_df.iterrows():
-        # Apply label replacements if available
         true_label = row[true_col]
         pred_label = row[pred_col]
         
-        # Replace labels with ontology-mapped versions if available
-        if true_label in label_replacements:
-            true_label = label_replacements[true_label]
-        if pred_label in label_replacements:
-            pred_label = label_replacements[pred_label]
-        
+        # Map labels to ontology terms (labels should already be ontology-mapped if mapping was enabled)
         t = map_string_to_term(true_label, label_index)
         p = map_string_to_term(pred_label, label_index)
         
         temp_df.at[i, "true_term_id"] = t.id if t else None
         temp_df.at[i, "pred_term_id"] = p.id if p else None
-        temp_df.at[i, "mapped_labels"] = p.name if p else None
+        temp_df.at[i, "mapped_labels"] = pred_label  # Use the label as-is (already mapped if mapping was enabled)
         
         if t and p:
             # Always compute distance
