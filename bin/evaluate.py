@@ -337,29 +337,41 @@ def main(args):
         print(f"\nPreprocessing predicted labels...")
         df = remove_trailing_periods_from_predictions(df, pred_col, verbose=True)
         
-        # Filter predictions by review status before applying ontology mapping
-        print(f"\nFiltering predictions by ontology mapping review status...")
-        try:
-            df, filter_stats = filter_predictions_by_review_status(
-                df, pred_col, cache_dir, args.max_unreviewed_ratio, verbose=True
-            )
-            
-            # Store filter statistics for reporting
-            file_results["filter_stats"] = filter_stats
-            
-            if filter_stats["filtered"]:
-                print(f"⚠️  WARNING: {filter_stats['unreviewed_predictions']} predictions with unreviewed mappings were excluded")
-                print(f"   Remaining predictions: {filter_stats['filtered_predictions']}/{filter_stats['total_predictions']}")
-                if filter_stats["unreviewed_labels"]:
-                    print(f"   Unreviewed labels: {sorted(filter_stats['unreviewed_labels'])}")
-                    
-        except RuntimeError as e:
-            print(f"❌ ERROR: {e}")
-            print("Evaluation stopped due to too many unreviewed predictions.")
-            continue
-        except Exception as e:
-            print(f"Warning: Could not filter predictions by review status: {e}")
-            print("Continuing with all predictions...")
+        # Filter predictions by review status before applying ontology mapping (only if mapping is enabled)
+        if args.apply_ontology_mapping:
+            print(f"\nFiltering predictions by ontology mapping review status...")
+            try:
+                df, filter_stats = filter_predictions_by_review_status(
+                    df, pred_col, cache_dir, args.max_unreviewed_ratio, verbose=True
+                )
+                
+                # Store filter statistics for reporting
+                file_results["filter_stats"] = filter_stats
+                
+                if filter_stats["filtered"]:
+                    print(f"⚠️  WARNING: {filter_stats['unreviewed_predictions']} predictions with unreviewed mappings were excluded")
+                    print(f"   Remaining predictions: {filter_stats['filtered_predictions']}/{filter_stats['total_predictions']}")
+                    if filter_stats["unreviewed_labels"]:
+                        print(f"   Unreviewed labels: {sorted(filter_stats['unreviewed_labels'])}")
+                        
+            except RuntimeError as e:
+                print(f"❌ ERROR: {e}")
+                print("Evaluation stopped due to too many unreviewed predictions.")
+                continue
+            except Exception as e:
+                print(f"Warning: Could not filter predictions by review status: {e}")
+                print("Continuing with all predictions...")
+                file_results["filter_stats"] = {
+                    "total_predictions": len(df),
+                    "filtered_predictions": len(df),
+                    "unreviewed_predictions": 0,
+                    "unreviewed_ratio": 0.0,
+                    "unreviewed_labels": [],
+                    "filtered": False,
+                    "error": str(e)
+                }
+        else:
+            # If mapping is disabled, no filtering needed
             file_results["filter_stats"] = {
                 "total_predictions": len(df),
                 "filtered_predictions": len(df),
@@ -367,16 +379,19 @@ def main(args):
                 "unreviewed_ratio": 0.0,
                 "unreviewed_labels": [],
                 "filtered": False,
-                "error": str(e)
+                "note": "Ontology mapping disabled"
             }
 
-        # Apply ontology mapping to predicted labels once for all evaluations
-        print(f"\nApplying ontology mapping to predicted labels...")
-        try:
-            df = apply_ontology_mapping_to_predictions(df, pred_col, cache_dir, verbose=True)
-        except Exception as e:
-            print(f"Warning: Could not apply ontology mapping: {e}")
-            print("Continuing with original predicted labels...")
+        # Apply ontology mapping to predicted labels once for all evaluations (only if enabled)
+        if args.apply_ontology_mapping:
+            print(f"\nApplying ontology mapping to predicted labels...")
+            try:
+                df = apply_ontology_mapping_to_predictions(df, pred_col, cache_dir, verbose=True)
+            except Exception as e:
+                print(f"Warning: Could not apply ontology mapping: {e}")
+                print("Continuing with original predicted labels...")
+        else:
+            print(f"\nOntology mapping disabled - using original predicted labels")
         
         # Process each level that exists in the dataframe
         for true_col in ['true_labels', 'true_labels_1', 'true_labels_2', 'true_labels_3']:
@@ -471,6 +486,9 @@ if __name__ == "__main__":
                        help="Maximum acceptable ratio of unmapped cell types (0.0-1.0). Default: 0.0 (all must be mapped)")
     parser.add_argument("--max-unreviewed-ratio", type=float, default=0.1,
                        help="Maximum acceptable ratio of predictions with unreviewed ontology mappings (0.0-1.0). Default: 0.1 (10%)")
+    parser.add_argument("--apply_ontology_mapping", type=lambda x: (str(x).lower() == 'true'),
+                       default=True,
+                       help="Apply ontology mapping to predicted labels (default: True)")
 
     args = parser.parse_args()
     main(args)

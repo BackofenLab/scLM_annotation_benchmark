@@ -143,21 +143,7 @@ def setup_dataframe(dataframe, annotation_key):
     """
     Add necessary attributes to the dataframe.
     """
-    if sp.issparse(dataframe.X):
-        n_counts = np.asarray(dataframe.X.sum(axis=1)).ravel()
-        n_genes = dataframe.X.getnnz(axis=1)
-    else:
-        n_counts = dataframe.X.sum(axis=1)
-        n_genes = (dataframe.X > 0).sum(axis=1)
-
-    # To distinguish between HIHA and TS datasets
-    if "_scvi_batch" in dataframe.obs.columns:
-        batch_key_col = "_scvi_batch"
-    elif "batch_id" in dataframe.obs.columns:
-        batch_key_col = "batch_id"
-    else:
-        raise KeyError("Neither '_scvi_batch' nor 'batch_id' found in .obs")
-
+    # Get Ensemble IDs for genes. TS datasets may already have them. Add for HIHA
     if "ensembl_id" in dataframe.var.columns:
         gene_names = dataframe.var["ensembl_id"].fillna("").astype(str)
     else:
@@ -180,14 +166,11 @@ def setup_dataframe(dataframe, annotation_key):
         print(f"Final Ensemble IDs: {len(ensembl_ids)}")
     else:
         ensembl_ids = gene_names.replace(r"\.\d+$", "", regex=True)
-    dataframe.obs["batch"] = dataframe.obs[batch_key_col]
     celltypes = dataframe.obs[annotation_key].astype(str).str.strip().str.lower()
     dataframe.obs["str_labels"] = celltypes
     dataframe.obs["celltype"] = celltypes
     dataframe.var["feature_id"] = ensembl_ids
     dataframe.var["ensembl_id"] = ensembl_ids
-    dataframe.obs["n_genes"] = np.asarray(n_genes, dtype=np.int32)
-    dataframe.obs["n_counts"] = np.asarray(n_counts, dtype=np.int32)
     return dataframe
 
 
@@ -197,15 +180,18 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
     """
     dataset_sub = sc.read(args.input)
 
-    if "n_genes_by_counts" in dataset_sub.obs.columns:
-        ngenes_col = "n_genes_by_counts"
-    elif "n_genes" in dataset_sub.obs.columns:
-        ngenes_col = "n_genes"
+    if sp.issparse(dataset_sub.X):
+        n_counts = np.asarray(dataset_sub.X.sum(axis=1)).ravel()
+        n_genes = dataset_sub.X.getnnz(axis=1)
     else:
-        raise KeyError("Neither 'n_genes_by_counts' nor 'n_genes' found in .obs")
+        n_counts = dataset_sub.X.sum(axis=1)
+        n_genes = (dataset_sub.X > 0).sum(axis=1)
+
+    dataset_sub.obs["n_genes"] = np.asarray(n_genes, dtype=np.int32)
+    dataset_sub.obs["n_counts"] = np.asarray(n_counts, dtype=np.int32)
 
     # add key features
-    dataset_sub.obs["filter_pass"] = (dataset_sub.obs[ngenes_col] > 0).astype(bool)
+    dataset_sub.obs["filter_pass"] = (dataset_sub.obs["n_genes"] > 0).astype(bool)
 
     dataset_sub = setup_dataframe(dataset_sub, annotation_key)
     cell_indices = dataset_sub.obs.index.tolist()
@@ -235,9 +221,8 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
         for synonym in ([entry["synonym"]] if isinstance(entry["synonym"], str) else entry["synonym"])
     }
     texts = [gettextfromname(typename, name2id, synonym2id, ontology) for typename in types]
-    print(types)
-    print()
-    print(texts)
+    print(f"Cell types: {types}")
+    print(f"Cell types with definitions: {texts}")
     type2num = dict([(type, i) for i, type in enumerate(types)])
     with torch.no_grad():
         text_embs = torch.cat(
@@ -288,7 +273,7 @@ def gettextfromname(name, name2id, synonym2id, ontology, description=True):
     else:
         print(f"{ontology_name} not found in ontology.")
         s += ontology_name
-    print(s)
+    print(f"Cell definition: {s}")
     return s
 
 

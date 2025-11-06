@@ -2,7 +2,7 @@
 name: HIHA          # used in channel / filenames
 url: https://zenodo.org/records/17378817/files/human_immune_health_atlas_50k.h5ad #this is a random subset of the full dataset with 50K cells. No preprocessing has been done.
 format: h5ad
-subset_size: 1000                # null → use full dataset
+subset_size: 20000                # null → use full dataset
 batch_key: "batch_id"
 annotation_keys: ["AIFI_L1", "AIFI_L2"]
 apply_ontology_mapping: true
