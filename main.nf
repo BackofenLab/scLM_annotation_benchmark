@@ -10,17 +10,27 @@ process download {
     tag { dataset }
 
     output:
-    tuple(path("data/*.h5ad"), val(dataset), path(cfg_yaml), val(cache_dir))
+    tuple(path("data/*_pp.h5ad"), val(dataset), path(cfg_yaml), val(cache_dir))
 
     script:
     """
     set -euo pipefail
-    # Call the script via PATH but force the *Conda* python interpreter
+    # Step 1: Download the dataset
     download.py \
       --dataset   "${dataset}" \
       --cfg_yaml  "${cfg_yaml}" \
-      --out       "data/${dataset}.h5ad" \
+      --out       "data/${dataset}_raw.h5ad" \
       --cache_dir "${cache_dir}"
+    
+    # Step 2: Preprocess the dataset
+    preprocess.py \
+      --input "data/${dataset}_raw.h5ad" \
+      --output "data/${dataset}_pp.h5ad" \
+      --config "${cfg_yaml}" \
+      --summary "data/${dataset}_pp_summary.txt"
+    
+    # Clean up raw file (optional - remove if you want to keep it)
+    rm "data/${dataset}_raw.h5ad"
     """
 }
 
