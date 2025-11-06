@@ -6,3 +6,6 @@ subset_size: 20000                # null → use full dataset
 batch_key: donor
 annotation_keys: [cell_ontology_class]
 apply_ontology_mapping: true
+
+preprocessing:
+  count_layer_key: "decontXcounts"
