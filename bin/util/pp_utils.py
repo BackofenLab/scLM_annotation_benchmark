@@ -441,8 +441,8 @@ def filter_genes_and_cells(
 
     This function:
     1. Makes gene and cell names unique.
-    2. Filters out genes expressed in fewer than `min_cells` cells.
-    3. Filters out cells expressing fewer than `min_genes` genes.
+    2. Filters out cells expressing fewer than `min_genes` genes.
+    3. Filters out genes expressed in fewer than `min_cells` cells.
 
     Parameters
     ----------
@@ -464,11 +464,11 @@ def filter_genes_and_cells(
     logger.info("Making cell names unique.")
     adata.obs_names_make_unique()
 
-    logger.info(f"Filtering genes expressed in fewer than {min_cells} cells...")
-    sc.pp.filter_genes(adata, min_cells=min_cells)
-
     logger.info(f"Filtering cells expressing fewer than {min_genes} genes...")
     sc.pp.filter_cells(adata, min_genes=min_genes)
+
+    logger.info(f"Filtering genes expressed in fewer than {min_cells} cells...")
+    sc.pp.filter_genes(adata, min_cells=min_cells)
 
     if adata.n_obs == 0:
         logger.error("No cells left after filtering. Exiting.")
