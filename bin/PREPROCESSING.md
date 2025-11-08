@@ -102,11 +102,11 @@ This step identifies and filters out low-quality cells using median absolute dev
 
 **Function**: `filter_genes_and_cells()`
 
-This step filters out genes and cells that don't meet minimum expression thresholds.
+This step filters out 1. cells and 2. genes that don't meet minimum expression thresholds.
 
 **Filtering Criteria**:
-- **Genes**: Remove genes expressed in fewer than `min_cells` cells
 - **Cells**: Remove cells expressing fewer than `min_genes` genes
+- **Genes**: Remove genes expressed in fewer than `min_cells` cells
 
 **Configuration**:
 - `min_cells` (int, default=10): Minimum number of cells in which a gene must be expressed
