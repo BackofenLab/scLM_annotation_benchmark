@@ -3,9 +3,11 @@
 OpenRouter LLM inference for single-cell data (e.g. DeepSeekR1 or GPT-5).
 
 - Reads API key from env (API_KEY) or --api-key
-- Builds prompts with cell2sentence
-- Queries OpenRouter (DeepSeek or GPT-5, ...) with retries
+- Builds prompts with cell2sentence custom prompt formatter
+- Queries OpenRouter LLMs (e.g. DeepSeek R1, GPT-5, ...) with retries
 - Writes predictions.csv with predicted CL IDs + resolved cell-type labels + true labels
+
+For constructing cell sentences, make sure that gene symbols are available!
 
 This version assumes the model returns either cell type labels or CL terms (e.g., "CL:0000236"). CL terms,
 get mapped to human-readable labels via EBI OLS, and writes:
@@ -660,6 +662,41 @@ def main():
 
     # Load adata
     adata = load_data(args.input)
+
+    # Check if gene symbols are available somewhere in the anndata object:
+    adata.var_names_make_unique()
+    if adata.var_names.str.contains("ENSG").all():
+        # All Ensembl IDs, try to swap to gene symbols if available
+        if "gene_names" in adata.var.columns:
+            adata.var_names = adata.var["gene_names"].astype(str)
+            print("Info: Renamed adata.var_names from ENSG IDs to gene names in adata.var['gene_names'] for cell sentence construction.")
+        elif "feature_name" in adata.var.columns:
+            adata.var_names = adata.var["feature_name"].astype(str)
+            print("Info: Renamed adata.var_names from ENSG IDs to feature names in adata.var['feature_name'] for cell sentence construction.")
+        elif "gene_symbols" in adata.var.columns:
+            adata.var_names = adata.var["gene_symbols"].astype(str)
+            print("Info: Renamed adata.var_names from ENSG IDs to feature names in adata.var['feature_name'] for cell sentence construction.")
+        else:
+            print("ERROR: Gene names are not available in adata.var. Please add gene names to adata.var.", file=sys.stderr)
+            sys.exit(4)
+    elif not adata.var_names.str.contains("ENSG").any():
+        # No ENSG IDs at all, so likely gene symbols already present
+        print("Info: adata.var_names appears to be gene symbols (no ENSG IDs found). Continuing with cell sentence construction.")
+    else:
+        # Mixture of gene symbols and ENSG IDs — ambiguous, warn user
+        print("WARNING: adata.var_names contains a mixture of gene symbols and ENSG IDs.", file=sys.stderr)
+        if "gene_names" in adata.var.columns:
+            adata.var_names = adata.var["gene_names"].astype(str)
+            print("Info: Overwrote adata.var_names with adata.var['gene_names'].")
+        elif "feature_name" in adata.var.columns:
+            adata.var_names = adata.var["feature_name"].astype(str)
+            print("Info: Overwrote adata.var_names with adata.var['feature_name'].")
+        elif "gene_symbols" in adata.var.columns:
+            adata.var_names = adata.var["gene_symbols"].astype(str)
+            print("Info: Overwrote adata.var_names with adata.var['gene_symbols'].")
+        else:
+            print("ERROR: Mixed gene/ENSG IDs but no gene names found in adata.var.", file=sys.stderr)
+            sys.exit(4)
 
     # Create output filename for this annotation level
     output_path = Path(args.output)
