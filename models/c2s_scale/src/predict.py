@@ -226,9 +226,9 @@ def main():
                        help=f"Input h5ad file path (default: {default_input})")
     parser.add_argument("--output", "-o", default=default_output,
                        help=f"Output CSV file path base name (default: {default_output})")
-    parser.add_argument("--model", "-m", default="vandijklab/C2S-Scale-Gemma-2-27B", 
+    parser.add_argument("--model", "-m", default="vandijklab/C2S-Scale-Gemma-2-2B", 
                        help="Cell2Sentence model to use.")
-    parser.add_argument("--model_name", default="C2S-Scale-Gemma-2-27B",
+    parser.add_argument("--model_name", default="C2S-Scale-Gemma-2-2B",
                        help="Model name for caching.")
     parser.add_argument("--annotation_keys", nargs='+', default=["cell_ontology_class"],
                        help="Keys in adata.obs containing true labels (default: cell_ontology_class)")
