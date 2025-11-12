@@ -5,6 +5,14 @@ dependencies:
   - python=3.11
   - pandas
   - numpy
+  - pyyaml
   - scikit-learn
-  - matplotlib
+  - matplotlib=3.10.0
   - seaborn
+  - pronto
+  - pip
+  - pip:
+    - torch
+    - torch_geometric
+    - sentence_transformers
+    - omicverse

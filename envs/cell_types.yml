@@ -1,0 +1,15 @@
+name: cell_types 
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pandas
+  - pronto
+  - pyyaml
+  - pip
+  - pip:
+    - torch
+    - torch_geometric
+    - sentence_transformers
+    - anndata
+    - omicverse

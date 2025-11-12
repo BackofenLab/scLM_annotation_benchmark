@@ -131,15 +131,21 @@ def main() -> None:
     ...            --data_cache /scratch/datasets \\
     ...            --out data/Tabula_sapiens.h5ad
     """
+    RANDOM_SEED = 42
+    random.seed(RANDOM_SEED)
+    
     ap = argparse.ArgumentParser()
     ap.add_argument("--dataset", required=True,
                     help="Dataset name (must match YAML 'name')")
     ap.add_argument("--cfg_yaml", required=True,
                     help="YAML file containing dataset configuration")
-    ap.add_argument("--data_cache", required=True,
+    ap.add_argument("--cache_dir", required=True,
                     help="Local cache for full / subset files")
     ap.add_argument("--out", required=True,
                     help="Destination inside the task work dir")
+    ap.add_argument("--apply_ontology_mapping", type=lambda x: (str(x).lower() == 'true'),
+                    default=True,
+                    help="Apply ontology mapping to annotation columns (default: True)")
     args = ap.parse_args()
     print(f"Loading cfg_yaml: {args.cfg_yaml}")
     # load the yaml file
@@ -147,9 +153,10 @@ def main() -> None:
         cfg = yaml.safe_load(f)
     print(f"Loaded cfg: {cfg}")
     ext = Path(cfg["url"]).suffix or ".h5ad"      # default if URL lacks ext
-    print(f"Downloading {cfg['name']} to {args.data_cache}")
-    full_path   = Path(args.data_cache) / f"{cfg['name']}{ext}"
-    subset_path = Path(args.data_cache) / \
+    download_cache_dir = Path(args.cache_dir)
+    print(f"Downloading {cfg['name']} to {download_cache_dir}")
+    full_path   = download_cache_dir / f"{cfg['name']}{ext}"
+    subset_path = download_cache_dir / \
                   f"{cfg['name']}_sub{cfg.get('subset_size')}{ext}"
     print(f"Full path: {full_path}")
     print(f"Subset path: {subset_path}")
@@ -164,6 +171,48 @@ def main() -> None:
         subset_path,
         cfg.get("subset_size")
     )
+
+    # Apply ontology mapping to annotation columns if requested
+    # Controlled by global flag from nextflow.config
+    if args.apply_ontology_mapping:
+        from util.download_helpers import apply_ontology_mapping_to_dataset
+        
+        print("[INFO] Applying ontology mapping to annotations...")
+        adata_to_map = read_adata(chosen)
+        
+        # Apply ontology mapping to annotation keys
+        adata_mapped = apply_ontology_mapping_to_dataset(
+            adata=adata_to_map,
+            annotation_keys=list(cfg["annotation_keys"]),
+            cache_dir=download_cache_dir,
+            verbose=True
+        )
+        
+        # Write the mapped data back
+        write_adata(adata_mapped, chosen)
+        print("[INFO] Ontology mapping completed and saved")
+    else:
+        # Mapping disabled - check if we need to restore original annotations from cache
+        print("[INFO] Ontology mapping disabled - checking for original annotations...")
+        adata = read_adata(chosen)
+        restored_any = False
+        
+        for key in cfg["annotation_keys"]:
+            original_key = f"original_{key}"
+            if original_key in adata.obs.columns:
+                print(f"[INFO] Restoring '{key}' from '{original_key}' backup column...")
+                adata.obs[key] = adata.obs[original_key].copy()
+                restored_any = True
+            elif key in adata.obs.columns:
+                # Original column doesn't exist, assume current column is already original
+                print(f"[INFO] No backup found for '{key}' - assuming current values are original")
+        
+        if restored_any:
+            # Write the restored data back to cache
+            write_adata(adata, chosen)
+            print("[INFO] Original annotations restored and saved")
+        else:
+            print("[INFO] No mapped annotations found - using original annotations as-is")
 
     # Use a hard-link if possible; falls back to copy across filesystems
     dest = Path(args.out).resolve()

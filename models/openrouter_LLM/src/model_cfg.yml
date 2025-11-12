@@ -1,0 +1,87 @@
+# Model configuration for DeepSeekR1 (and any other OpenRouter model, e.g. GPT5)
+# You can override any of these at runtime by setting env MODEL_CFG=/path/to/other.yml
+
+openrouter_LLM:
+  # Reproducibility
+  seed: 42
+
+  # OpenRouter model id (or change to another OpenRouter model, e.g. "openai/gpt-5" or "openai/gpt-5-chat" for GPT-5, or "deepseek/deepseek-r1-0528" for DeepSeekR1)
+  # Note: "openai/gpt-5" requires an openai API key, while "openai/gpt-5-chat" does not and one can use the OpenRouter API key.
+  # Free variants (add ":free" to the model name) are limited in the amount of requests per day (1000 after having payed once 10$)
+  model_name: deepseek/deepseek-r1-0528 #"openai/gpt-5"  # e.g. "deepseek/deepseek-r1-0528:free" for free tier
+
+  # Prompting/task metadata
+  task_name: "cell_type_prediction"
+
+  # How the input to the model is constructed
+  # Available fields in the template:
+  #   {cell_sentence}  → the gene list sentence
+  #   {num_genes}      → integer as string (top_k_genes)
+  input_prompt_template: |
+    You are an expert at classifying cell types based on gene expression.
+    Given below is a list of up to {num_genes} gene names ordered by descending expression level in a single cell.
+    Your task is to identify the exact cell type this gene profile represents from this list of cell types: {unique_cell_types}.
+    Cell sentence: {cell_sentence}
+    Important rules:
+    1. Respond with only the cell type label of the predicted cell type.
+    2. Use celltype names known to CL ontology.
+    3. Do not include explanations, reasoning, or extra words.
+    4. Do not repeat the question or input.
+    Output:
+
+  # 1. Respond with only the cell type label of the predicted cell type. 
+  # 1. Respond with only the cell ontology term of the predicted cell type (e.g. CL_0000624 for a CD4-positive, alpha-beta T cell, or CL_0000127 for an astrocyte).
+  # 2. Do not include explanations, reasoning, or extra words.
+  # 3. Do not repeat the question or input.
+
+
+  # The expected answer format (used for evaluation ground-truth scaffolding)
+  # Available field:
+  #   {true_labels}
+  answer_template: "{true_labels}"
+
+  #OUTPUT_MODE: "label" can be "cl_id" or "label" depending of if you want the CL ID or the cell type label
+  output_mode: "label"
+
+  # Data shaping
+  top_k_genes: 200
+
+  # Workload sizing / rate limiting
+  max_samples: null            # 0 or null → use all cells
+  max_workers: 3
+  delay_between_requests: 1.2
+
+  # -------------------- Advanced OpenRouter options --------------------
+  provider:
+    order: []        # preferred providers (set to [] for :free models!), left-to-right (e.g. ["deepinfra", "openai"] for DeepSeekR1 and GPT-5)
+    only: []                    # whitelist (empty = no whitelist)
+    ignore: []                  # blacklist
+    allow_fallbacks: true       # whether to allow provider fallbacks
+    require_parameters: null    # true/false/null
+    data_collection: "allow"    # "allow" | "deny" | null
+    sort: "price"               # "price" | "throughput" | "latency" | null
+    quantizations: []           # e.g. ["fp8","int8"]
+    max_price:
+      prompt: null              # USD per 1M prompt tokens (float) or null
+      completion: null          # USD per 1M completion tokens (float) or null
+
+  generation:
+    max_tokens: null
+    temperature: null
+    top_p: null
+    top_k: null
+    frequency_penalty: null
+    presence_penalty: null
+    repetition_penalty: null
+    stop: []                    # e.g. ["\n", "Output:"]
+    stream: false
+    response_format: null       # e.g. {"type": "json_object"}
+
+    reasoning:
+      effort: null              # "low"|"medium"|"high"|null
+      max_tokens: null
+      exclude: null             # true/false/null
+
+    http_referer: null
+    x_title: null
+    prepend_reasoning: false

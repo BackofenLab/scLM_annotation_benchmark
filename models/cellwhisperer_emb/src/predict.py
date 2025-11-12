@@ -9,7 +9,7 @@ Usage:
 Outputs:
   - CSV file with true_labels and predicted_labels columns
 """
-import sys, torch, anndata as ad
+import sys, torch, anndata as ad, pathlib
 import pandas as pd
 import numpy as np
 import argparse
@@ -24,6 +24,7 @@ def parse_args():
     parser.add_argument('--input', required=True, help='Path to input h5ad file')
     parser.add_argument('--output', required=True, help='Path to output CSV file (base name)')
     parser.add_argument('--annotation_keys', nargs='+', required=True, help='Keys in adata.obs for true cell type labels')
+    parser.add_argument('--cache_dir', required = True, help='Path to cache directory. Model checkpoints will be downloaded here.')
     return parser.parse_args()
 
 # Parse command line arguments
@@ -31,9 +32,9 @@ args = parse_args()
 adata_path = args.input
 output_csv_base = args.output
 ANNOTATION_KEYS = args.annotation_keys
-
+CACHE_DIR = pathlib.Path(args.cache_dir)
 # Configuration
-CKPT = "../../../cache/models/cellwhisperer_jointemb_v1.ckpt"              # adjust!
+CKPT = CACHE_DIR / "cellwhisperer_emb/cellwhisperer_jointemb_v1.ckpt"              # adjust!
 URL = "https://medical-epigenomics.org/papers/schaefer2024/data/models/cellwhisperer_clip_v1.ckpt"
 
 download_if_missing(URL, CKPT)

@@ -5,5 +5,18 @@ dependencies:
   - python=3.11
   - pyyaml
   - requests
-  - anndata
   - tqdm
+  - pronto
+  - pip
+  - pip:
+    - torch
+    - torch_geometric
+    - sentence_transformers
+    - omicverse
+    - anndata
+    - zarr<3 #omicverse needs an older anndata which needs an older zarr.
+    - scanpy  # for preprocessing
+    - pybiomart  # for Ensembl ID mapping
+    - pandas  # for data manipulation
+    - numpy  # for numerical operations
+    - scipy  # for statistical functions (median_abs_deviation)
