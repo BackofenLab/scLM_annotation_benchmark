@@ -19,6 +19,7 @@ from pathlib import Path
 import yaml
 import scanpy as sc
 from anndata import AnnData
+#from memory_profiler import profile
 
 from util.pp_utils import (
     ensure_raw_counts_layer,
@@ -60,7 +61,7 @@ def load_config(config_path: Path | None) -> dict:
     logger.info(f"Loaded configuration from {config_path}")
     return config or {}
 
-
+#@profile
 def preprocess_adata(
     adata: AnnData,
     *,
@@ -72,7 +73,6 @@ def preprocess_adata(
     nmads_mt: int = 3,
     pct_counts_mt_threshold: float = 8.0,
     percent_top: list[int] | None = None,
-    log1p_for_qc: bool = True,
     min_cells: int = 10,
     min_genes: int = 200,
     summary_path: str | Path | None = None,
@@ -112,8 +112,6 @@ def preprocess_adata(
         Absolute threshold for % mitochondrial counts. Default is 8.0.
     percent_top : list[int], optional
         List of top gene counts for QC metrics. Default is [20].
-    log1p_for_qc : bool, optional
-        Whether to compute log1p values for QC metrics. Default is True.
     min_cells : int, optional
         Minimum cells per gene for filtering. Default is 10.
     min_genes : int, optional
@@ -134,6 +132,20 @@ def preprocess_adata(
     ensure_raw_counts_layer(adata, raw_layer_key=count_layer_key, raise_on_missing=True)
     logger.info("Raw counts set in adata.X and adata.layers['counts']")
 
+    # Memory optimization: Remove adata.raw and other layers after extracting counts
+    if adata.raw is not None:
+        logger.info("Removing adata.raw to free memory (counts already extracted)")
+        adata.raw = None
+
+    # Remove other layers except 'counts'
+    layers_to_remove = [k for k in adata.layers.keys() if k != "counts"]
+    if layers_to_remove:
+        logger.info(
+            f"Removing {len(layers_to_remove)} unnecessary layer(s): {', '.join(layers_to_remove)}"
+        )
+        for layer_key in layers_to_remove:
+            del adata.layers[layer_key]
+
     # Step 2: Ensure Ensembl IDs
     logger.info("Step 2: Ensuring Ensembl IDs are present...")
     adata = ensure_ensembl_ids(
@@ -153,7 +165,6 @@ def preprocess_adata(
         nmads_mt=nmads_mt,
         pct_counts_mt_threshold=pct_counts_mt_threshold,
         percent_top=percent_top,
-        log1p_for_qc=log1p_for_qc,
     )
     logger.info(f"After QC: {adata.n_obs} cells × {adata.n_vars} genes")
 
@@ -277,18 +288,6 @@ Examples:
         default=None,
         help="Top gene counts for QC metrics (default: [20])",
     )
-    parser.add_argument(
-        "--log1p_for_qc",
-        action="store_true",
-        default=True,
-        help="Compute log1p values for QC metrics (default: True)",
-    )
-    parser.add_argument(
-        "--no_log1p_for_qc",
-        dest="log1p_for_qc",
-        action="store_false",
-        help="Do not compute log1p values for QC metrics",
-    )
 
     # Filtering parameters
     parser.add_argument(
@@ -323,7 +322,6 @@ Examples:
             "pct_counts_mt_threshold", args.pct_counts_mt_threshold
         )
         percent_top = prep_config.get("percent_top", args.percent_top)
-        log1p_for_qc = prep_config.get("log1p_for_qc", args.log1p_for_qc)
         min_cells = prep_config.get("min_cells", args.min_cells)
         min_genes = prep_config.get("min_genes", args.min_genes)
     else:
@@ -335,7 +333,6 @@ Examples:
         nmads_mt = args.nmads_mt
         pct_counts_mt_threshold = args.pct_counts_mt_threshold
         percent_top = args.percent_top
-        log1p_for_qc = args.log1p_for_qc
         min_cells = args.min_cells
         min_genes = args.min_genes
 
@@ -367,7 +364,6 @@ Examples:
         nmads_mt=nmads_mt,
         pct_counts_mt_threshold=pct_counts_mt_threshold,
         percent_top=percent_top,
-        log1p_for_qc=log1p_for_qc,
         min_cells=min_cells,
         min_genes=min_genes,
         summary_path=summary_path,

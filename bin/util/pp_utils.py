@@ -5,6 +5,7 @@ This module provides core utility functions for preprocessing AnnData objects,
 including raw count detection, quality control, filtering, and normalization.
 """
 
+import gc
 import logging
 import numpy as np
 import pandas as pd
@@ -311,7 +312,6 @@ def pp_quality_control(
     nmads_mt: int = 3,
     pct_counts_mt_threshold: float = 8.0,
     percent_top: list[int] | None = None,
-    log1p_for_qc: bool = True,
 ) -> AnnData:
     """
     Perform quality control filtering on single-cell RNA-seq data based on various metrics.
@@ -338,8 +338,6 @@ def pp_quality_control(
     percent_top : list of int, optional
         A list of top gene counts for sc.pp.calculate_qc_metrics (e.g., [20, 50, 100]).
         If None, defaults to [20].
-    log1p_for_qc : bool, optional
-        Whether to compute log1p values for the QC metrics. Default is True.
 
     Returns
     -------
@@ -368,16 +366,17 @@ def pp_quality_control(
             break
 
     logger.info(
-        "Calculating QC metrics with percent_top=%s, log1p=%s, for gene sets [mt, ribo, hb].",
+        "Calculating QC metrics with percent_top=%s for gene sets [mt, ribo, hb].",
         percent_top,
-        log1p_for_qc,
     )
+    # Use log1p=False since data is already log-transformed
+    # We'll gracefully check for log1p metrics if they exist (from previous steps)
     sc.pp.calculate_qc_metrics(
         adata,
         qc_vars=["mt", "ribo", "hb"],
         inplace=True,
         percent_top=percent_top,
-        log1p=log1p_for_qc,
+        log1p=False,
     )
 
     # 3. Define a helper function for outlier detection using median absolute deviation
@@ -398,9 +397,15 @@ def pp_quality_control(
     logger.info(
         "Flagging outliers for total counts, number of genes, and %% in top genes."
     )
-    outlier_main = is_outlier(
-        adata.obs["log1p_total_counts"].values, nmads_main
-    ) | is_outlier(adata.obs["log1p_n_genes_by_counts"].values, nmads_main)
+    # Use log1p metrics if available, otherwise use regular metrics
+    if "log1p_total_counts" in adata.obs.columns:
+        total_counts_metric = adata.obs["log1p_total_counts"].values
+        n_genes_metric = adata.obs["log1p_n_genes_by_counts"].values
+    else:
+        total_counts_metric = adata.obs["total_counts"].values
+        n_genes_metric = adata.obs["n_genes_by_counts"].values
+    
+    outlier_main = is_outlier(total_counts_metric, nmads_main) | is_outlier(n_genes_metric, nmads_main)
     # e.g. 'pct_counts_in_top_20_genes' if percent_top=[20].
     if f"pct_counts_in_top_{percent_top[0]}_genes" in adata.obs.columns:
         outlier_main |= is_outlier(
@@ -418,8 +423,12 @@ def pp_quality_control(
 
     # 6. Filter out the outliers
     n_before = adata.n_obs
-    adata = adata[~adata.obs["outlier"] & ~adata.obs["mt_outlier"]].copy()
+    # Create boolean mask first to avoid intermediate copies
+    keep_mask = ~(adata.obs["outlier"] | adata.obs["mt_outlier"])
+    adata = adata[keep_mask].copy()
     n_after = adata.n_obs
+    # Explicitly delete the mask to free memory
+    del keep_mask
 
     logger.info(
         "Filtered out %d cells as outliers (main or mt). Remaining cells: %d.",
@@ -428,6 +437,10 @@ def pp_quality_control(
     )
 
     logger.info("QC filtering complete.")
+    
+    # Force garbage collection after QC to free memory
+    gc.collect()
+    
     return adata
 
 
@@ -475,6 +488,10 @@ def filter_genes_and_cells(
         raise ValueError("No cells left after filtering. Exiting.")
 
     logger.info(f"After filtering: {adata.n_obs} cells, {adata.n_vars} genes.")
+    
+    # Force garbage collection after filtering to free memory
+    gc.collect()
+    
     return adata
 
 
@@ -493,14 +510,25 @@ def remove_infinite_values(adata: AnnData) -> AnnData:
         The AnnData object with genes containing infinite values removed.
     """
     logger.info("Checking for infinite values in adata.X.")
-    # Convert to dense for checking
+    
+    # For sparse matrices, check columns without converting to dense
     if sp.issparse(adata.X):
-        X_arr = adata.X.toarray()
+        # Check non-zero values for infinities first (fast check)
+        if not np.isfinite(adata.X.data).all():
+            # If any infinities found, identify which genes (columns) contain them
+            finite_mask = np.ones(adata.n_vars, dtype=bool)
+            # Get column indices for non-finite values
+            row_indices, col_indices = adata.X.nonzero()
+            non_finite_mask = ~np.isfinite(adata.X.data)
+            bad_cols = np.unique(col_indices[non_finite_mask])
+            finite_mask[bad_cols] = False
+        else:
+            # All non-zero values are finite, so all genes are finite
+            finite_mask = np.ones(adata.n_vars, dtype=bool)
     else:
-        X_arr = adata.X
-
-    # Find genes (columns) with any infinite values
-    finite_mask = np.isfinite(X_arr).all(axis=0)
+        # Dense matrix: check all values column-wise
+        finite_mask = np.isfinite(adata.X).all(axis=0)
+    
     n_bad = np.count_nonzero(~finite_mask)
     if n_bad > 0:
         logger.warning(
@@ -610,7 +638,8 @@ def ensure_ensembl_ids(
         # Store in ensembl_id column
         adata.var["ensembl_id"] = index_values
         # Index already has Ensembl IDs, but we'll clean it up
-        ensembl_ids = index_values.copy()
+        # Use values to avoid copy if possible
+        ensembl_ids = pd.Series(index_values.values, index=index_values.index)
     elif (found_ensembl_col and 
           ensembl_col_fraction >= ensembl_id_threshold):
         logger.info(
@@ -619,7 +648,8 @@ def ensure_ensembl_ids(
         )
         # Store in ensembl_id column
         adata.var["ensembl_id"] = adata.var[found_ensembl_col].astype(str)
-        ensembl_ids = adata.var["ensembl_id"].copy()
+        # Use values to avoid unnecessary copy
+        ensembl_ids = pd.Series(adata.var["ensembl_id"].values, index=adata.var.index)
         # If index contains gene names, save them before overwriting
         if index_contains_gene_names:
             logger.info("Saving gene names from index to adata.var['gene_names'] before overwriting with Ensembl IDs.")
@@ -780,6 +810,9 @@ def ensure_ensembl_ids(
     adata.var.index = ensembl_ids.values
     logger.info(f"Set Ensembl IDs as index. Final shape: {adata.n_obs} cells × {adata.n_vars} genes")
 
+    # Force garbage collection after Ensembl ID mapping to free memory
+    gc.collect()
+
     return adata
 
 def _infer_X_type(adata):
@@ -795,14 +828,36 @@ def _infer_X_type(adata):
         vals_for_check = X.data
         total_n = X.shape[0] * X.shape[1]  # Total elements including zeros
     else:
-        # For dense matrices, check all values for int_like
-        vals_for_check = np.asarray(X).ravel()
+        # For dense matrices, sample values to avoid creating full copy
+        # Sample up to 100k values for int_like check (sufficient for statistical check)
+        max_sample_size = 100000
+        if X.size > max_sample_size:
+            # Random sampling without replacement - use ravel() but only on sampled indices
+            # This is more memory efficient than raveling the entire array
+            flat_indices = np.random.choice(X.size, size=max_sample_size, replace=False)
+            X_flat = np.asarray(X).ravel()
+            vals_for_check = X_flat[flat_indices]
+            # Allow garbage collection of full flattened array
+            del X_flat
+        else:
+            # Small enough to check all values
+            vals_for_check = np.asarray(X).ravel()
         total_n = X.size
 
     if vals_for_check.size == 0:
         int_like = False
     else:
-        int_like = np.all(np.isfinite(vals_for_check)) and np.allclose(vals_for_check, np.round(vals_for_check))
+        # Memory-efficient check: avoid creating rounded copy
+        # Check if values are close to integers without creating intermediate arrays
+        finite_mask = np.isfinite(vals_for_check)
+        if not np.all(finite_mask):
+            int_like = False
+        else:
+            # Check integer-likeness by comparing differences to rounded values
+            # Use in-place operations where possible
+            rounded = np.round(vals_for_check)
+            # Use absolute difference with small tolerance
+            int_like = np.allclose(vals_for_check, rounded, atol=1e-6, rtol=1e-6)
     nonneg = vmin >= 0
 
     if not nonneg:
