@@ -237,6 +237,7 @@ def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_rati
             
             print(f"Rada average similarity: {avg_similarities.get('rada_avg_similarity', 'N/A'):.4f}")
             print(f"Lin average similarity: {avg_similarities.get('lin_avg_similarity', 'N/A'):.4f}")
+            print(f"Balanced ID accuracy: {avg_similarities.get('balanced_id_accuracy', 'N/A'):.4f}")
             
             # Save scored CSV with ontology similarities (unique combinations)
             if label_suffix:
@@ -253,6 +254,7 @@ def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_rati
             raise RuntimeError(f"Could not compute ontology similarities: {e}")
             results["rada_avg_similarity"] = np.nan
             results["lin_avg_similarity"] = np.nan
+            results["balanced_id_accuracy"] = np.nan
 
     # Set up plotter
     plotter = UMAPCellPlotter()
@@ -336,6 +338,8 @@ def main(args):
         # Remove trailing periods from predicted labels before any other processing
         print(f"\nPreprocessing predicted labels...")
         df = remove_trailing_periods_from_predictions(df, pred_col, verbose=True)
+        # make all predictions lowercase
+        df[pred_col] = df[pred_col].str.lower()
         
         # Filter predictions by review status before applying ontology mapping (only if mapping is enabled)
         if args.apply_ontology_mapping:

@@ -9,6 +9,9 @@ Supported metrics:
          lowest common ancestor (LCA) over is_a edges (multiple inheritance allowed).
 - "lin":  intrinsic-IC Lin similarity using Seco (2004) IC: S = (2 * IC(LCA)) / (IC(a) + IC(b)),
           with IC(t) = 1 - log((descendants(t)+1) / log(max_desc).
+- "balanced_id_accuracy": balanced exact match accuracy based on ontology term IDs. 
+         Computed as the average of per-class accuracies (1.0 if true_term_id == pred_term_id, 0.0 otherwise),
+         giving equal weight to each class regardless of class size.
 
 Functions can be used independently or via the main compute_ontology_similarities
 function that handles the full pipeline.
@@ -343,7 +346,7 @@ def compute_ontology_similarities(
     -------
     Tuple[pd.DataFrame, Dict[str, float]]
         - DataFrame with unique label combinations and aggregated similarity scores
-        - Dictionary with average accuracies for both metrics (NaN if unmapped ratio exceeded)
+        - Dictionary with average accuracies for all metrics (rada, lin, balanced_id_accuracy) (NaN if unmapped ratio exceeded)
         
     Raises
     ------
@@ -410,12 +413,14 @@ def compute_ontology_similarities(
         empty_combinations['rada_similarity_mean'] = np.nan
         empty_combinations['lin_similarity_mean'] = np.nan
         empty_combinations['distance_edges_mean'] = np.nan
+        empty_combinations['id_accuracy_mean'] = np.nan
         empty_combinations['true_term_id'] = None
         empty_combinations['pred_term_id'] = None
         
         avg_accuracies = {
             "rada_avg_similarity": np.nan,
-            "lin_avg_similarity": np.nan
+            "lin_avg_similarity": np.nan,
+            "balanced_id_accuracy": np.nan
         }
         
         return empty_combinations, avg_accuracies
@@ -430,6 +435,7 @@ def compute_ontology_similarities(
     temp_df["rada_similarity"] = np.nan
     temp_df["lin_similarity"] = np.nan
     temp_df["distance_edges"] = np.nan
+    temp_df["id_accuracy"] = 0.0
 
     # Process each row to compute individual scores
     # Note: Labels should already be mapped before calling this function
@@ -441,9 +447,15 @@ def compute_ontology_similarities(
         t = map_string_to_term(true_label, label_index)
         p = map_string_to_term(pred_label, label_index)
         
-        temp_df.at[i, "true_term_id"] = t.id if t else None
-        temp_df.at[i, "pred_term_id"] = p.id if p else None
+        true_term_id = t.id if t else None
+        pred_term_id = p.id if p else None
+        temp_df.at[i, "true_term_id"] = true_term_id
+        temp_df.at[i, "pred_term_id"] = pred_term_id
         temp_df.at[i, "mapped_labels"] = pred_label  # Use the label as-is (already mapped if mapping was enabled)
+        
+        # Compute id_accuracy: exact match if both term IDs exist and are equal
+        if true_term_id is not None and pred_term_id is not None:
+            temp_df.at[i, "id_accuracy"] = 1.0 if true_term_id == pred_term_id else 0.0
         
         if t and p:
             # Always compute distance
@@ -474,6 +486,18 @@ def compute_ontology_similarities(
         avg_accuracies["lin_avg_similarity"] = float(lin_scores.mean())
     else:
         avg_accuracies["lin_avg_similarity"] = np.nan
+    
+    # Calculate balanced_id_accuracy (average of per-class accuracies)
+    # This gives equal weight to each class, similar to balanced_accuracy
+    if len(temp_df) > 0:
+        # Group by true label and compute accuracy per class
+        per_class_accuracies = temp_df.groupby(true_col)["id_accuracy"].mean()
+        if len(per_class_accuracies) > 0:
+            avg_accuracies["balanced_id_accuracy"] = float(per_class_accuracies.mean())
+        else:
+            avg_accuracies["balanced_id_accuracy"] = np.nan
+    else:
+        avg_accuracies["balanced_id_accuracy"] = np.nan
 
     # Group by unique combinations and aggregate scores
     # First, let's get the actual cell counts for all combinations that exist in the data
@@ -484,6 +508,7 @@ def compute_ontology_similarities(
         'rada_similarity': 'mean',
         'lin_similarity': 'mean', 
         'distance_edges': 'mean',
+        'id_accuracy': 'mean',
         'true_term_id': 'first',
         'pred_term_id': 'first',
         'mapped_labels': 'first'
@@ -498,7 +523,7 @@ def compute_ontology_similarities(
     )
     
     # Round the similarity values
-    similarity_cols = ['rada_similarity', 'lin_similarity', 'distance_edges']
+    similarity_cols = ['rada_similarity', 'lin_similarity', 'distance_edges', 'id_accuracy']
     for col in similarity_cols:
         if col in unique_combinations.columns:
             unique_combinations[col] = unique_combinations[col].round(4)
@@ -506,7 +531,7 @@ def compute_ontology_similarities(
     # Reorder columns for better readability
     column_order = [
         true_col, pred_col, 'mapped_labels', 'cell_count',
-        'rada_similarity', 'lin_similarity', 'distance_edges',
+        'rada_similarity', 'lin_similarity', 'distance_edges', 'id_accuracy',
         'true_term_id', 'pred_term_id'
     ]
     unique_combinations = unique_combinations[column_order]
@@ -515,7 +540,8 @@ def compute_ontology_similarities(
     unique_combinations = unique_combinations.rename(columns={
         'rada_similarity': 'rada_similarity_mean',
         'lin_similarity': 'lin_similarity_mean',
-        'distance_edges': 'distance_edges_mean'
+        'distance_edges': 'distance_edges_mean',
+        'id_accuracy': 'id_accuracy_mean'
     })
 
     return unique_combinations, avg_accuracies
