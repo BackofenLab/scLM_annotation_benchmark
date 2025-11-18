@@ -151,8 +151,6 @@ def apply_ontology_mappings_to_cell_types(
                 if map_string_to_term(chosen_match, label_index) is not None:
                     updated_cell_types[i] = chosen_match
                     successful_replacements[cell_type] = chosen_match
-                    if verbose:
-                        print(f"  Mapped: '{cell_type}' -> '{chosen_match}'")
                 else:
                     if verbose:
                         print(f"  Failed: '{cell_type}' -> '{chosen_match}' (not in ontology)")
