@@ -98,11 +98,17 @@ process run_model {
 
     script:
     """
-    mkdir -p results/${dataset}/${model}
-    mkdir -p ${cache_dir}/models
-    mkdir -p ${cache_dir}/models/${model}/${dataset}/
-    bash ${model_dir}/src/run.sh ${data_file} ./results/${dataset}/${model}/predictions.csv ${cfg_yaml} ${cache_dir}/models
-    cp ./results/${dataset}/${model}/predictions**.csv ${cache_dir}/models/${model}/${dataset}/
+    if [ ! -f ${cache_dir}/models/${model}/${dataset}/predictions**.csv ]; then
+        mkdir -p results/${dataset}/${model}
+        mkdir -p ${cache_dir}/models
+        mkdir -p ${cache_dir}/models/${model}/${dataset}/
+        bash ${model_dir}/src/run.sh ${data_file} ./results/${dataset}/${model}/predictions.csv ${cfg_yaml} ${cache_dir}/models
+        cp ./results/${dataset}/${model}/predictions**.csv ${cache_dir}/models/${model}/${dataset}/
+    else
+        mkdir -p results/${dataset}/${model}
+        cp ${cache_dir}/models/${model}/${dataset}/predictions**.csv ./results/${dataset}/${model}/
+        echo "Cell type prediction exists for ${dataset}×${model}, if you want to rerun, delete ${cache_dir}/models/${model}/${dataset}/predictions**.csv"
+    fi
     """
 }
 
