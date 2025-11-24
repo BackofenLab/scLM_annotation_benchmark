@@ -100,7 +100,9 @@ process run_model {
     """
     mkdir -p results/${dataset}/${model}
     mkdir -p ${cache_dir}/models
+    mkdir -p ${cache_dir}/models/${model}/${dataset}/
     bash ${model_dir}/src/run.sh ${data_file} ./results/${dataset}/${model}/predictions.csv ${cfg_yaml} ${cache_dir}/models
+    cp ./results/${dataset}/${model}/predictions**.csv ${cache_dir}/models/${model}/${dataset}/
     """
 }
 
@@ -120,7 +122,9 @@ process run_model_throttled {
     """
     mkdir -p results/${dataset}/${model}
     mkdir -p ${cache_dir}/models
+    mkdir -p ${cache_dir}/models/${model}/${dataset}/
     bash ${model_dir}/src/run.sh ${data_file} ./results/${dataset}/${model}/predictions.csv ${cfg_yaml} ${cache_dir}/models
+    cp ./results/${dataset}/${model}/predictions**.csv ${cache_dir}/models/${model}/${dataset}/
     """
 }
 
