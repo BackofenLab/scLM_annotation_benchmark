@@ -108,13 +108,11 @@ process run_model {
     echo "Subset size of ${dataset}: ${subset_size}"
 
     mkdir -p ./results/${model}/${dataset}/${subset_size}
-
     cache_base="${cache_dir}/models/${model}/${dataset}/${subset_size}"
-    cache_pred="\${cache_base}/predictions*.csv"
 
-    if [ ! -f "\${cache_pred}" ]; then
+    if [ ! -f \${cache_base}/predictions*.csv ]; then
         # Run model and produce predictions
-        mkdir -p "\${cache_base}"
+        mkdir -p \${cache_base}
         bash "${model_dir}/src/run.sh" \
             "${data_file}" \
             ./results/${model}/${dataset}/${subset_size}/predictions.csv \
@@ -122,19 +120,19 @@ process run_model {
             "${cache_dir}/models"
 
         # Cache predictions
-        cp ./results/${model}/${dataset}/${subset_size}/predictions*.csv "\${cache_base}"
+        cp ./results/${model}/${dataset}/${subset_size}/predictions*.csv \${cache_base}/
     else
         # Use cached predictions
-        cp "\${cache_pred}" ./results/${model}/${dataset}/${subset_size}/
+        cp \${cache_base}/predictions*.csv ./results/${model}/${dataset}/${subset_size}/
         echo "Cell type prediction already exists for ${dataset} × ${model} (subset ${subset_size})."
-        echo "To rerun, delete: \${cache_pred}"
+        echo "To rerun, delete: \${cache_base}/predictions*.csv"
     fi
     """
 }
 
 process run_model_throttled {
-    input:
-    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir),  val(subset_size)
+        input:
+    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size)
 
     // Same tag format as run_model
     tag { "${dataset}×${model}" }
@@ -149,13 +147,11 @@ process run_model_throttled {
     echo "Subset size of ${dataset}: ${subset_size}"
 
     mkdir -p ./results/${model}/${dataset}/${subset_size}
-
     cache_base="${cache_dir}/models/${model}/${dataset}/${subset_size}"
-    cache_pred="\${cache_base}/predictions*.csv"
 
-    if [ ! -f "\${cache_pred}" ]; then
+    if [ ! -f \${cache_base}/predictions*.csv ]; then
         # Run model and produce predictions
-        mkdir -p "\${cache_base}"
+        mkdir -p \${cache_base}
         bash "${model_dir}/src/run.sh" \
             "${data_file}" \
             ./results/${model}/${dataset}/${subset_size}/predictions.csv \
@@ -163,12 +159,12 @@ process run_model_throttled {
             "${cache_dir}/models"
 
         # Cache predictions
-        cp ./results/${model}/${dataset}/${subset_size}/predictions*.csv "\${cache_base}"
+        cp ./results/${model}/${dataset}/${subset_size}/predictions*.csv \${cache_base}/
     else
         # Use cached predictions
-        cp "\${cache_pred}" ./results/${model}/${dataset}/${subset_size}/
+        cp \${cache_base}/predictions*.csv ./results/${model}/${dataset}/${subset_size}/
         echo "Cell type prediction already exists for ${dataset} × ${model} (subset ${subset_size})."
-        echo "To rerun, delete: \${cache_pred}"
+        echo "To rerun, delete: \${cache_base}/predictions*.csv"
     fi
     """
 }
