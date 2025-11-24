@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 from pathlib import Path
 import glob
@@ -61,7 +61,7 @@ def combine_results(args):
     # Aggregations:
     # 1) by dataset + model
     agg_cols = [
-        "balanced_accuracy","rada_avg_similarity","lin_avg_similarity","accuracy",
+        "balanced_accuracy","rada_avg_similarity","lin_avg_similarity","balanced_id_accuracy","accuracy",
         "macro_precision","macro_recall","macro_f1",
         "weighted_precision","weighted_recall","weighted_f1"
     ]
@@ -122,6 +122,7 @@ def extract_metrics(payload: Dict[str, Any], annotation_key) -> Dict[str, Any]:
     ba   = safe_get(payload, base + ["balanced_accuracy"])
     rada = safe_get(payload, base + ["rada_avg_similarity"])
     lin  = safe_get(payload, base + ["lin_avg_similarity"])
+    bal_id_acc = safe_get(payload, base + ["balanced_id_accuracy"])
 
     # summary_dict aggregates
     acc  = safe_get(payload, base + ["summary_dict", "accuracy"])
@@ -132,6 +133,7 @@ def extract_metrics(payload: Dict[str, Any], annotation_key) -> Dict[str, Any]:
         "balanced_accuracy": ba,
         "rada_avg_similarity": rada,
         "lin_avg_similarity": lin,
+        "balanced_id_accuracy": bal_id_acc,
         "accuracy": acc,
         "macro_precision": macro.get("precision"),
         "macro_recall": macro.get("recall"),
@@ -154,6 +156,7 @@ def make_plot(dataframe, out_dir):
         "balanced_accuracy",
         "rada_avg_similarity",
         "lin_avg_similarity",
+        "balanced_id_accuracy",
         #"accuracy",
         #"macro_precision",
         #"macro_recall",
@@ -210,7 +213,7 @@ def export_plot(
 
     # Keep only useful numeric metric columns that exist
     metric_cols = [
-        "balanced_accuracy", "rada_avg_similarity", "lin_avg_similarity", "accuracy",
+        "balanced_accuracy", "rada_avg_similarity", "lin_avg_similarity", "balanced_id_accuracy", "accuracy",
         "macro_precision", "macro_recall", "macro_f1",
         "weighted_precision", "weighted_recall", "weighted_f1",
     ]
