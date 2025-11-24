@@ -1,5 +1,12 @@
 nextflow.enable.dsl=2
 
+import org.yaml.snakeyaml.Yaml
+
+def loadYaml(String path) {
+    def yaml = new Yaml()
+    return yaml.load(new File(path).text)
+}
+
 process download {
     conda 'envs/download.yml'
 
@@ -86,7 +93,7 @@ process prepare_model {
 
 process run_model {
     input:
-    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir)
+    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size)
 
     // Same tag format as run_model
     tag { "${dataset}×${model}" }
@@ -94,27 +101,40 @@ process run_model {
     conda { "envs/models/${model}.yml" }
 
     output:
-    tuple(path("results/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir))
+    tuple(path("results/*/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir))
 
     script:
     """
-    if [ ! -f ${cache_dir}/models/${model}/${dataset}/predictions**.csv ]; then
-        mkdir -p results/${dataset}/${model}
-        mkdir -p ${cache_dir}/models
-        mkdir -p ${cache_dir}/models/${model}/${dataset}/
-        bash ${model_dir}/src/run.sh ${data_file} ./results/${dataset}/${model}/predictions.csv ${cfg_yaml} ${cache_dir}/models
-        cp ./results/${dataset}/${model}/predictions**.csv ${cache_dir}/models/${model}/${dataset}/
+    echo "Subset size of ${dataset}: ${subset_size}"
+
+    mkdir -p ./results/${model}/${dataset}/${subset_size}
+
+    cache_base="${cache_dir}/models/${model}/${dataset}/${subset_size}"
+    cache_pred="\${cache_base}/predictions*.csv"
+
+    if [ ! -f "\${cache_pred}" ]; then
+        # Run model and produce predictions
+        mkdir -p "\${cache_base}"
+        bash "${model_dir}/src/run.sh" \
+            "${data_file}" \
+            ./results/${model}/${dataset}/${subset_size}/predictions.csv \
+            "${cfg_yaml}" \
+            "${cache_dir}/models"
+
+        # Cache predictions
+        cp ./results/${model}/${dataset}/${subset_size}/predictions*.csv "\${cache_base}"
     else
-        mkdir -p results/${dataset}/${model}
-        cp ${cache_dir}/models/${model}/${dataset}/predictions**.csv ./results/${dataset}/${model}/
-        echo "Cell type prediction exists for ${dataset}×${model}, if you want to rerun, delete ${cache_dir}/models/${model}/${dataset}/predictions**.csv"
+        # Use cached predictions
+        cp "\${cache_pred}" ./results/${model}/${dataset}/${subset_size}/
+        echo "Cell type prediction already exists for ${dataset} × ${model} (subset ${subset_size})."
+        echo "To rerun, delete: \${cache_pred}"
     fi
     """
 }
 
 process run_model_throttled {
     input:
-    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir)
+    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir),  val(subset_size)
 
     // Same tag format as run_model
     tag { "${dataset}×${model}" }
@@ -122,15 +142,34 @@ process run_model_throttled {
     conda { "envs/models/${model}.yml" }
 
     output:
-    tuple(path("results/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir))
+    tuple(path("results/*/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir))
 
     script:
     """
-    mkdir -p results/${dataset}/${model}
-    mkdir -p ${cache_dir}/models
-    mkdir -p ${cache_dir}/models/${model}/${dataset}/
-    bash ${model_dir}/src/run.sh ${data_file} ./results/${dataset}/${model}/predictions.csv ${cfg_yaml} ${cache_dir}/models
-    cp ./results/${dataset}/${model}/predictions**.csv ${cache_dir}/models/${model}/${dataset}/
+    echo "Subset size of ${dataset}: ${subset_size}"
+
+    mkdir -p ./results/${model}/${dataset}/${subset_size}
+
+    cache_base="${cache_dir}/models/${model}/${dataset}/${subset_size}"
+    cache_pred="\${cache_base}/predictions*.csv"
+
+    if [ ! -f "\${cache_pred}" ]; then
+        # Run model and produce predictions
+        mkdir -p "\${cache_base}"
+        bash "${model_dir}/src/run.sh" \
+            "${data_file}" \
+            ./results/${model}/${dataset}/${subset_size}/predictions.csv \
+            "${cfg_yaml}" \
+            "${cache_dir}/models"
+
+        # Cache predictions
+        cp ./results/${model}/${dataset}/${subset_size}/predictions*.csv "\${cache_base}"
+    else
+        # Use cached predictions
+        cp "\${cache_pred}" ./results/${model}/${dataset}/${subset_size}/
+        echo "Cell type prediction already exists for ${dataset} × ${model} (subset ${subset_size})."
+        echo "To rerun, delete: \${cache_pred}"
+    fi
     """
 }
 
@@ -178,7 +217,7 @@ process combine_results {
 workflow {
     Channel
         .fromList(params.datasets)
-        .map { dataset -> tuple(dataset, file(params.cache_dir), file("datasets/${dataset}.yml"), params.apply_ontology_mapping) }
+        .map { dataset -> tuple(dataset, file(params.cache_dir), file("datasets/${dataset}.yml"), params.apply_ontology_mapping)}
         .set { download_input }
 
     download_out = download(download_input)
@@ -212,7 +251,8 @@ workflow {
     download_out
         .combine(prepared_models)
         .map { data_file, dataset, cfg_yaml, cache_dir, model, model_dir ->
-            tuple(data_file, model_dir, dataset, cfg_yaml, model, cache_dir)
+            def cfg = loadYaml("datasets/${dataset}.yml")
+            tuple(data_file, model_dir, dataset, cfg_yaml, model, cache_dir, cfg.subset_size)
         }
         .set { model_input }
     
