@@ -217,7 +217,7 @@ process combine_results {
 workflow {
     Channel
         .fromList(params.datasets)
-        .map { dataset -> tuple(dataset, file(params.cache_dir), file("datasets/${dataset}.yml"), params.apply_ontology_mapping)}
+        .map { dataset -> tuple(dataset, file(params.cache_dir), file("datasets/${dataset}.yml"), params.apply_ontology_mapping) }
         .set { download_input }
 
     download_out = download(download_input)
