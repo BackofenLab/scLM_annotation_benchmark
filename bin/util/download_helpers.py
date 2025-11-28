@@ -12,7 +12,8 @@ def apply_ontology_mapping_to_dataset(
     adata: ad.AnnData,
     annotation_keys: List[str],
     cache_dir: Path,
-    verbose: bool = True
+    verbose: bool = True,
+    origin: str = "unknown"
 ) -> ad.AnnData:
     """
     Apply ontology mapping to a dataset during the download process.
@@ -30,6 +31,8 @@ def apply_ontology_mapping_to_dataset(
         Cache directory for ontology files
     verbose : bool, default True
         If True, print progress information
+    origin : str, default "unknown"
+        Origin of the cell type labels (e.g., dataset name)
         
     Returns
     -------
@@ -44,7 +47,8 @@ def apply_ontology_mapping_to_dataset(
         annotation_keys=annotation_keys,
         cache_dir=cache_dir,
         force_remapping=False,
-        verbose=verbose
+        verbose=verbose,
+        origin=origin
     )
     
     if verbose:

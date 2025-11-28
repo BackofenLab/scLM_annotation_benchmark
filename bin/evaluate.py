@@ -96,7 +96,7 @@ def remove_trailing_periods_from_predictions(df: pd.DataFrame, pred_col: str, ve
     return df
 
 # -- Ontology mapping utilities --
-def apply_ontology_mapping_to_predictions(df: pd.DataFrame, pred_col: str, cache_dir: Path, verbose: bool = True) -> pd.DataFrame:
+def apply_ontology_mapping_to_predictions(df: pd.DataFrame, pred_col: str, cache_dir: Path, verbose: bool = True, origin: str = "unknown") -> pd.DataFrame:
     """
     Apply ontology mapping to predicted labels in a dataframe.
     
@@ -110,6 +110,8 @@ def apply_ontology_mapping_to_predictions(df: pd.DataFrame, pred_col: str, cache
         Cache directory for ontology files
     verbose : bool, default True
         If True, print progress information
+    origin : str, default "unknown"
+        Origin of the predicted labels (e.g., model name)
         
     Returns
     -------
@@ -132,7 +134,8 @@ def apply_ontology_mapping_to_predictions(df: pd.DataFrame, pred_col: str, cache
             cell_types=predicted_labels,
             cache_dir=cache_dir,
             force_remapping=False,
-            verbose=verbose
+            verbose=verbose,
+            origin=origin
         )
         
         # Update the dataframe
@@ -390,7 +393,7 @@ def main(args):
         if args.apply_ontology_mapping:
             print(f"\nApplying ontology mapping to predicted labels...")
             try:
-                df = apply_ontology_mapping_to_predictions(df, pred_col, cache_dir, verbose=True)
+                df = apply_ontology_mapping_to_predictions(df, pred_col, cache_dir, verbose=True, origin=model)
             except Exception as e:
                 print(f"Warning: Could not apply ontology mapping: {e}")
                 print("Continuing with original predicted labels...")

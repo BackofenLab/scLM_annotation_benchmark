@@ -57,7 +57,8 @@ def check_ontology_mapping_coverage(
 def create_or_update_ontology_mappings(
     unmapped_cell_types: List[str],
     cache_dir: Path,
-    force_remapping: bool = False
+    force_remapping: bool = False,
+    origin: str = "unknown"
 ) -> Dict[str, str]:
     """
     Create or update ontology mappings for unmapped cell types.
@@ -70,6 +71,8 @@ def create_or_update_ontology_mappings(
         Cache directory for ontology files and mappings
     force_remapping : bool, default False
         If True, remap all labels even if they already exist
+    origin : str, default "unknown"
+        Origin of the cell type labels (e.g., dataset name or model name)
         
     Returns
     -------
@@ -94,7 +97,8 @@ def create_or_update_ontology_mappings(
         mapping_csv_path = map_cell_types_to_ontology(
             predicted_labels=unmapped_cell_types,
             cache_dir=cache_dir,
-            force_remapping=force_remapping
+            force_remapping=force_remapping,
+            origin=origin
         )
         
         # Load the mappings
@@ -171,7 +175,8 @@ def apply_ontology_mapping_to_cell_type_list(
     cell_types: List[str],
     cache_dir: Path,
     force_remapping: bool = False,
-    verbose: bool = True
+    verbose: bool = True,
+    origin: str = "unknown"
 ) -> Tuple[List[str], Dict[str, str]]:
     """
     Apply ontology mapping to a list of cell type labels.
@@ -188,6 +193,8 @@ def apply_ontology_mapping_to_cell_type_list(
         If True, remap all labels even if they already exist in CSV
     verbose : bool, default True
         If True, print progress information
+    origin : str, default "unknown"
+        Origin of the cell type labels (e.g., dataset name or model name)
         
     Returns
     -------
@@ -234,7 +241,8 @@ def apply_ontology_mapping_to_cell_type_list(
     mappings = create_or_update_ontology_mappings(
         unmapped_cell_types=list(unmapped_types),
         cache_dir=cache_dir,
-        force_remapping=force_remapping
+        force_remapping=force_remapping,
+        origin=origin
     )
     
     if mappings is None:
@@ -257,7 +265,8 @@ def apply_ontology_mapping_to_adata(
     annotation_keys: List[str],
     cache_dir: Path,
     force_remapping: bool = False,
-    verbose: bool = True
+    verbose: bool = True,
+    origin: str = "unknown"
 ) -> ad.AnnData:
     """
     Apply ontology mapping to AnnData object annotation columns.
@@ -277,6 +286,8 @@ def apply_ontology_mapping_to_adata(
         If True, remap all labels even if they already exist in CSV
     verbose : bool, default True
         If True, print progress information
+    origin : str, default "unknown"
+        Origin of the cell type labels (e.g., dataset name or model name)
         
     Returns
     -------
@@ -312,7 +323,8 @@ def apply_ontology_mapping_to_adata(
                 cell_types=original_annotations,
                 cache_dir=cache_dir,
                 force_remapping=force_remapping,
-                verbose=verbose
+                verbose=verbose,
+                origin=origin
             )
         except Exception as e:
             raise RuntimeError(f"Failed to apply ontology mapping to '{key}': {e}")
