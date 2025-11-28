@@ -1,29 +1,29 @@
 reviewed;origin;predicted_label;chosen_match;best_match
-False;HIHA;ASDC;obsolete pstO/ALC;obsolete pstO/ALC
-False;HIHA;CD14 monocyte;CD14-low, CD16-positive monocyte;CD14-low, CD16-positive monocyte
-False;HIHA;CD16 monocyte;CD14-low, CD16-positive monocyte;CD14-low, CD16-positive monocyte
-False;HIHA;CD56bright NK cell;mature NK T cell, human;mature NK T cell, human
-False;HIHA;CD56dim NK cell;mature NK T cell, human;mature NK T cell, human
-False;HIHA;CD8aa;CD8aa(I) thymocyte;CD8aa(I) thymocyte
-False;HIHA;DC;CD1a-positive dermal dendritic cell;CD1a-positive dermal dendritic cell
-False;HIHA;DN T cell;DN1 thymic pro-T cell;DN1 thymic pro-T cell
-False;HIHA;ILC;ILC1, human;ILC1, human
-False;HIHA;Memory CD4 T cell;CD4-positive, alpha-beta memory T cell;CD4-positive, alpha-beta memory T cell
-False;HIHA;Memory CD8 T cell;CD8-positive, alpha-beta memory T cell;CD8-positive, alpha-beta memory T cell
-False;HIHA;Naive CD4 T cell;naive CCR4-positive regulatory T cell;naive CCR4-positive regulatory T cell
-False;HIHA;Naive CD8 T cell;naive thymus-derived CD8-positive, alpha-beta T cell;naive thymus-derived CD8-positive, alpha-beta T cell
-False;HIHA;Proliferating NK cell;mature NK T cell, human;mature NK T cell, human
-False;human_pancreas;acinar;acinar cell;acinar cell
-False;human_pancreas;activated_stellate;stellate neuron;stellate neuron
-False;human_pancreas;alpha;kidney connecting tubule alpha-intercalated cell;kidney connecting tubule alpha-intercalated cell
-False;human_pancreas;beta;mature alpha-beta T cell;mature alpha-beta T cell
-False;HIHA;cDC1;DN1 thymic pro-T cell;DN1 thymic pro-T cell
-False;HIHA;cDC2;CD27-high, CD11b-low natural killer cell, mouse;CD27-high, CD11b-low natural killer cell, mouse
-False;human_pancreas;ductal;adventitial cell;adventitial cell
-False;human_pancreas;endothelial;endothelial cell of artery;endothelial cell of artery
-False;human_pancreas;gamma;gamma motor neuron;gamma motor neuron
-False;HIHA;gdT;granulocyte monocyte progenitor cell;granulocyte monocyte progenitor cell
-False;human_pancreas;mast;mast cell;mast cell
-False;human_pancreas;quiescent_stellate;stellate interneuron;stellate interneuron
-False;human_pancreas;schwann;Schwann cell precursor;Schwann cell precursor
-False;human_pancreas;t_cell;T cell of appendix;T cell of appendix
+True;HIHA;ASDC;Axl+ dendritic cell, human;obsolete pstO/ALC
+True;HIHA;CD14 monocyte;CD14-positive monocyte;CD14-low, CD16-positive monocyte
+True;HIHA;CD16 monocyte;CD14-low, CD16-positive monocyte;CD14-low, CD16-positive monocyte
+True;HIHA;CD56bright NK cell;CD16-negative, CD56-bright natural killer cell, human;mature NK T cell, human
+True;HIHA;CD56dim NK cell;CD16-positive, CD56-dim natural killer cell, human;mature NK T cell, human
+True;HIHA;CD8aa;CD8aa(I) thymocyte;CD8aa(I) thymocyte
+True;HIHA;DC;dendritic cell;CD1a-positive dermal dendritic cell
+True;HIHA;DN T cell;double negative T regulatory cell;DN1 thymic pro-T cell
+True;HIHA;ILC;innate lymphoid cell;ILC1, human
+True;HIHA;Memory CD4 T cell;CD4-positive, alpha-beta memory T cell;CD4-positive, alpha-beta memory T cell
+True;HIHA;Memory CD8 T cell;CD8-positive, alpha-beta memory T cell;CD8-positive, alpha-beta memory T cell
+True;HIHA;Naive CD4 T cell;naive thymus-derived CD4-positive, alpha-beta T cell;naive CCR4-positive regulatory T cell
+True;HIHA;Naive CD8 T cell;naive thymus-derived CD8-positive, alpha-beta T cell;naive thymus-derived CD8-positive, alpha-beta T cell
+True;HIHA;Proliferating NK cell;cycling natural killer cell;mature NK T cell, human
+True;human_pancreas;acinar;acinar cell;acinar cell
+True;human_pancreas;activated_stellate;pancreatic stellate cell;stellate neuron
+True;human_pancreas;alpha;pancreatic A cell;kidney connecting tubule alpha-intercalated cell
+True;human_pancreas;beta;type B pancreatic cell;mature alpha-beta T cell
+True;HIHA;cDC1;conventional dendritic cell;DN1 thymic pro-T cell
+True;HIHA;cDC2;conventional dendritic cell;CD27-high, CD11b-low natural killer cell, mouse
+True;human_pancreas;ductal;pancreatic ductal cell;adventitial cell
+True;human_pancreas;endothelial;endothelial cell;endothelial cell of artery
+True;human_pancreas;gamma;pancreatic PP cell;gamma motor neuron
+True;HIHA;gdT;gamma-delta T cell;granulocyte monocyte progenitor cell
+True;human_pancreas;mast;mast cell;mast cell
+True;human_pancreas;quiescent_stellate;pancreatic stellate cell;stellate interneuron
+True;human_pancreas;schwann;Schwann cell;Schwann cell precursor
+True;human_pancreas;t_cell;T cell;T cell of appendix
