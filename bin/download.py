@@ -185,7 +185,8 @@ def main() -> None:
             adata=adata_to_map,
             annotation_keys=list(cfg["annotation_keys"]),
             cache_dir=download_cache_dir,
-            verbose=True
+            verbose=True,
+            origin=cfg['name']  # Pass dataset name as origin
         )
         
         # Write the mapped data back
