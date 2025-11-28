@@ -272,6 +272,7 @@ def main():
 
     # Load model (only once, reuse for all annotation keys)
     csmodel = load_model(args.model, args.model_name, args.cache_dir)
+    csmodel.device = device
     
     # Get base output path info (same as CellTypist)
     output_path = Path(args.output)

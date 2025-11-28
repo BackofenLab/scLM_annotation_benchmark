@@ -15,7 +15,7 @@ import logging
 import os
 import random
 import numpy as np
-
+import torch
 logger = logging.getLogger(__name__)
 
 # Set seed for reproducibility
@@ -260,9 +260,16 @@ def main():
     
     # Load data
     adata = load_data(args.input)
-    
+
+    if torch.backends.mps.is_available():
+        device = "mps"
+    elif torch.cuda.is_available():
+        device = "cuda"
+    else:
+        device = "cpu"
     # Load model (only once, reuse for all annotation keys)
     csmodel = load_model(args.model, args.model_name, args.cache_dir)
+    csmodel.device = device
     
     # Get base output path info (same as CellTypist)
     output_path = Path(args.output)
