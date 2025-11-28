@@ -98,7 +98,17 @@ def convert_to_c2s_format(adata, annotation_key, cache_dir=None):
     try:
         # Create a copy of adata to avoid modifying the original
         adata_copy = adata.copy()
+
+        if "counts" not in adata.layers:
+            raise ValueError("Counts layer not found in adata.layers. Run prepreocessing step first. C2S needs raw counts")
+        #set X to raw counts and apply log10 transformation
+        adata_copy.X = adata.layers["counts"]
+        logger.info(f"Setting X to raw counts, normalizing and log-transforming with base 10. (see https://github.com/vandijklab/cell2sentence/blob/master/tutorials/c2s_tutorial_0_data_preparation.ipynb)")
+        sc.pp.normalize_total(adata_copy)
+        sc.pp.log1p(adata_copy, base=10)
         
+        # and var names need to contain gene names
+        adata_copy.var_names = adata_copy.var["gene_names"]
         # Set the cell_type column to the current annotation key
         if annotation_key not in adata_copy.obs.columns:
             raise ValueError(f"Annotation key '{annotation_key}' not found in adata.obs")
@@ -122,7 +132,10 @@ def convert_to_c2s_format(adata, annotation_key, cache_dir=None):
             sentence_delimiter=' ',
             label_col_names=adata_obs_cols_to_keep
         )
-        
+        print("Exemplary Cell2Sentence data:")
+        print(arrow_ds[0])
+        print("Exemplary vocabulary:")
+        print(list(vocabulary.items())[:10])
         csdata = cs.CSData.csdata_from_arrow(
             arrow_dataset=arrow_ds, 
             vocabulary=vocabulary,
@@ -157,6 +170,10 @@ def run_cell2sentence_prediction(csdata, csmodel, n_genes=200):
             n_genes=n_genes
         )
         logger.info("Prediction completed successfully")
+
+        #filter the special token \n<ctrl100>' from the end of the predicted cell types
+        predicted_cell_types = [ct.replace('\n<ctrl100>', '') for ct in predicted_cell_types]
+
         return predicted_cell_types
     except Exception as e:
         logger.error(f"Failed to run Cell2Sentence prediction: {e}")
