@@ -20,3 +20,4 @@ dependencies:
     - pandas  # for data manipulation
     - numpy  # for numerical operations
     - scipy  # for statistical functions (median_abs_deviation)
+    #- memory_profiler
