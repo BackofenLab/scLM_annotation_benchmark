@@ -24,7 +24,6 @@ else:
 PY
 )
 
-conda list
 # Run Cell2Sentence prediction
 python "$(dirname "$0")/predict.py" \
   --input "$INPUT_H5AD" \
