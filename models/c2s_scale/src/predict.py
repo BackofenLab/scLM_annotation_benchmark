@@ -267,6 +267,7 @@ def main():
         device = "mps"
     elif torch.cuda.is_available():
         device = "cuda"
+        torch.cuda.empty_cache()
     else:
         device = "cpu"
 
