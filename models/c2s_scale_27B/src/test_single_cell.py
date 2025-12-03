@@ -40,6 +40,16 @@ def load_data(data_path: str):
     return adata
 
 
+def get_device():
+    """Determine the best available device."""
+    if torch.cuda.is_available():
+        return "cuda"
+    elif torch.backends.mps.is_available():
+        return "mps"
+    else:
+        return "cpu"
+
+
 def load_model(model_id: str, cache_dir: str = None, multi_gpu: bool = False):
     """Load model and tokenizer."""
     logger.info(f"Loading model: {model_id}")
@@ -60,16 +70,27 @@ def load_model(model_id: str, cache_dir: str = None, multi_gpu: bool = False):
         if hasattr(model, 'hf_device_map'):
             logger.info(f"Device map: {model.hf_device_map}")
     else:
-        device = "cuda" if torch.cuda.is_available() else "cpu"
+        device = get_device()
         logger.info(f"Single device mode: {device}")
+        
+        # Determine dtype based on device
+        # MPS supports float16 but some operations may need float32
+        if device == "cuda":
+            dtype = torch.float16
+        elif device == "mps":
+            # Use float32 for better MPS compatibility
+            dtype = torch.float32
+        else:
+            dtype = torch.float32
+        
         model = AutoModelForCausalLM.from_pretrained(
             model_id,
             cache_dir=cache_dir,
-            torch_dtype=torch.float16 if device != "cpu" else torch.float32,
+            torch_dtype=dtype,
         ).to(device)
     
     model.eval()
-    logger.info(f"Model loaded successfully")
+    logger.info(f"Model loaded successfully on {device}")
     return model, tokenizer, device
 
 
@@ -178,7 +199,7 @@ def main():
         format='%(asctime)s - %(levelname)s - %(message)s'
     )
     
-    # Log GPU info
+    # Log device info
     if torch.cuda.is_available():
         num_gpus = torch.cuda.device_count()
         logger.info(f"CUDA available: {num_gpus} GPU(s)")
@@ -186,8 +207,10 @@ def main():
             logger.info(f"  GPU {i}: {torch.cuda.get_device_name(i)}")
             mem = torch.cuda.get_device_properties(i).total_memory / 1e9
             logger.info(f"         Memory: {mem:.1f} GB")
+    elif torch.backends.mps.is_available():
+        logger.info("MPS (Apple Silicon) available")
     else:
-        logger.info("CUDA not available, using CPU")
+        logger.info("No GPU available, will use CPU")
     
     # Load data
     adata = load_data(args.input)
