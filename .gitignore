@@ -14,6 +14,7 @@ cache/*
 !cache/cell_types.csv
 .conda
 Results
+results/
 
 .env
 .DS_Store
