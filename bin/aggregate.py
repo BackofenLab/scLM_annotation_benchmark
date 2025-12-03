@@ -61,7 +61,7 @@ def combine_results(args):
     # Aggregations:
     # 1) by dataset + model
     agg_cols = [
-        "balanced_accuracy","rada_avg_similarity","lin_avg_similarity","balanced_id_accuracy","accuracy",
+        "balanced_accuracy","accuracy","rada_avg_similarity","lin_avg_similarity","id_accuracy","balanced_id_accuracy",
         "macro_precision","macro_recall","macro_f1",
         "weighted_precision","weighted_recall","weighted_f1"
     ]
@@ -120,21 +120,24 @@ def safe_get(d: Dict[str, Any], path: List[str], default=None):
 def extract_metrics(payload: Dict[str, Any], annotation_key) -> Dict[str, Any]:
     base = [annotation_key, "true_labels"]
     ba   = safe_get(payload, base + ["balanced_accuracy"])
+    # Try top-level accuracy first (new format), fallback to summary_dict (old format)
+    acc  = safe_get(payload, base + ["accuracy"]) or safe_get(payload, base + ["summary_dict", "accuracy"])
     rada = safe_get(payload, base + ["rada_avg_similarity"])
     lin  = safe_get(payload, base + ["lin_avg_similarity"])
+    id_acc = safe_get(payload, base + ["id_accuracy"])
     bal_id_acc = safe_get(payload, base + ["balanced_id_accuracy"])
 
     # summary_dict aggregates
-    acc  = safe_get(payload, base + ["summary_dict", "accuracy"])
     macro = safe_get(payload, base + ["summary_dict", "macro avg"], {}) or {}
     wavg  = safe_get(payload, base + ["summary_dict", "weighted avg"], {}) or {}
 
     return {
         "balanced_accuracy": ba,
+        "accuracy": acc,
         "rada_avg_similarity": rada,
         "lin_avg_similarity": lin,
+        "id_accuracy": id_acc,
         "balanced_id_accuracy": bal_id_acc,
-        "accuracy": acc,
         "macro_precision": macro.get("precision"),
         "macro_recall": macro.get("recall"),
         "macro_f1": macro.get("f1-score"),
@@ -154,10 +157,11 @@ def make_plot(dataframe, out_dir):
     # Metrics to plot
     metrics = [
         "balanced_accuracy",
+        "accuracy",
         "rada_avg_similarity",
         "lin_avg_similarity",
+        "id_accuracy",
         "balanced_id_accuracy",
-        #"accuracy",
         #"macro_precision",
         #"macro_recall",
         "macro_f1",
@@ -213,7 +217,8 @@ def export_plot(
 
     # Keep only useful numeric metric columns that exist
     metric_cols = [
-        "balanced_accuracy", "rada_avg_similarity", "lin_avg_similarity", "balanced_id_accuracy", "accuracy",
+        "balanced_accuracy", "accuracy", "rada_avg_similarity", "lin_avg_similarity", 
+        "id_accuracy", "balanced_id_accuracy",
         "macro_precision", "macro_recall", "macro_f1",
         "weighted_precision", "weighted_recall", "weighted_f1",
     ]
