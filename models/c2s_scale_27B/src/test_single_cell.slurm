@@ -24,24 +24,26 @@ echo "=============================================="
 
 # Activate conda environment
 # Source conda directly (adjust path if your conda is installed elsewhere)
-source $(conda info --json | awk '/conda_prefix/ { gsub(/"|,/, "", $2); print $2 }')/bin/activate /scratch/local/menger/sc_language/work/conda/env-779f6dad20df12093abd6cd2cf2ec531
+#source $(conda info --json | awk '/conda_prefix/ { gsub(/"|,/, "", $2); print $2 }')/bin/activate /scratch/local/menger/sc_language/work/conda/env-779f6dad20df12093abd6cd2cf2ec531
 
 # Set paths (use absolute paths - SLURM copies scripts to temp locations)
-SCRIPT_DIR="/h/menger/git/sc_language_foundation_models/models/c2s_scale_27B/src"
-INPUT_DATA="/scratch/local/menger/sc_language/work/b6/d2ca1a2876e664824a3f18a2821f58/data/HIHA_L2_pp.h5ad"
-CACHE_DIR="/scratch/local/menger/sc_language/cache"
+SCRIPT_DIR="/Users/<user>/repos/sc_language_foundation_models/models/c2s_scale_27B/src"
+INPUT_DATA='/Users/<user>/repos/sc_language_foundation_models/work/0d/7ffa8551b6ad99b324436c068a06fd/data/HIHA_L2_pp.h5ad'
+CACHE_DIR="/Users/<user>/repos/sc_language_foundation_models/cache/models"
+OUTPUT_DATA="/Users/<user>/repos/sc_language_foundation_models/test_predictions.csv"
 
 # Check GPU availability
-echo ""
-echo "GPU Information:"
-nvidia-smi --query-gpu=index,name,memory.total,memory.free --format=csv
-echo ""
+#echo ""
+#echo "GPU Information:"
+#nvidia-smi --query-gpu=index,name,memory.total,memory.free --format=csv
+#echo ""
 
 # Run the test script
 echo "Running single cell test..."
 python "${SCRIPT_DIR}/test_single_cell.py" \
     --input "${INPUT_DATA}" \
     --model "vandijklab/C2S-Scale-Gemma-2-27B" \
+    --output "${OUTPUT_DATA}" \
     --annotation_key "AIFI_L2" \
     --n_genes 200 \
     --cache_dir "${CACHE_DIR}" \
