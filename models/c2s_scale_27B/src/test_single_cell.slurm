@@ -36,16 +36,17 @@ INPUT_DATA="/scratch/local/menger/sc_language/work/b6/d2ca1a2876e664824a3f18a282
 CACHE_DIR="/scratch/local/menger/sc_language/cache/models"
 
 # Check GPU availability
-echo ""
-echo "GPU Information:"
-nvidia-smi --query-gpu=index,name,memory.total,memory.free --format=csv
-echo ""
+#echo ""
+#echo "GPU Information:"
+#nvidia-smi --query-gpu=index,name,memory.total,memory.free --format=csv
+#echo ""
 
 # Run the test script
 echo "Running single cell test..."
 python "${SCRIPT_DIR}/test_single_cell.py" \
     --input "${INPUT_DATA}" \
     --model "vandijklab/C2S-Scale-Gemma-2-27B" \
+    --output "${OUTPUT_DATA}" \
     --annotation_key "AIFI_L2" \
     --n_genes 200 \
     --cache_dir "${CACHE_DIR}" \
