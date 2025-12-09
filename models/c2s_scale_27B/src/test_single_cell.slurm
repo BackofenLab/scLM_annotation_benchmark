@@ -3,9 +3,9 @@
 #SBATCH --output=c2s_test_%j.out
 #SBATCH --error=c2s_test_%j.err
 #SBATCH --partition=gpu
-#SBATCH --gres=gpu:2
-#SBATCH --mem=120G
-#SBATCH --cpus-per-task=4
+#SBATCH --gres=gpu:1
+#SBATCH --mem=60G
+#SBATCH --cpus-per-task=1
 #SBATCH --time=1:00:00
 
 # =============================================================================
@@ -26,10 +26,14 @@ echo "=============================================="
 # Source conda directly (adjust path if your conda is installed elsewhere)
 source $(conda info --json | awk '/conda_prefix/ { gsub(/"|,/, "", $2); print $2 }')/bin/activate /scratch/local/menger/sc_language/work/conda/env-779f6dad20df12093abd6cd2cf2ec531
 
+# Install nvidia-ml-py and psutil for memory profiling
+echo "Installing nvidia-ml-py and psutil for memory profiling..."
+pip install --quiet nvidia-ml-py psutil
+
 # Set paths (use absolute paths - SLURM copies scripts to temp locations)
 SCRIPT_DIR="/h/menger/git/sc_language_foundation_models/models/c2s_scale_27B/src"
 INPUT_DATA="/scratch/local/menger/sc_language/work/b6/d2ca1a2876e664824a3f18a2821f58/data/HIHA_L2_pp.h5ad"
-CACHE_DIR="/scratch/local/menger/sc_language/cache"
+CACHE_DIR="/scratch/local/menger/sc_language/cache/models"
 
 # Check GPU availability
 echo ""

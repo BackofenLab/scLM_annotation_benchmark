@@ -18,7 +18,34 @@ import random
 import numpy as np
 import torch
 
+# Try to import nvidia-ml-py for GPU memory profiling
+try:
+    import pynvml
+    NVML_AVAILABLE = True
+except ImportError:
+    NVML_AVAILABLE = False
+
+# Try to import psutil for CPU RAM profiling
+try:
+    import psutil
+    PSUTIL_AVAILABLE = True
+except ImportError:
+    PSUTIL_AVAILABLE = False
+
 logger = logging.getLogger(__name__)
+
+# Initialize NVML if available
+if NVML_AVAILABLE:
+    try:
+        pynvml.nvmlInit()
+        NVML_INITIALIZED = True
+    except Exception as e:
+        logger.warning(f"Failed to initialize NVML: {e}")
+        NVML_INITIALIZED = False
+else:
+    NVML_INITIALIZED = False
+    if torch.cuda.is_available():
+        logger.warning("nvidia-ml-py not available. GPU memory profiling will be limited to PyTorch's memory stats.")
 
 # Set seed for reproducibility
 SEED = 1234
@@ -48,6 +75,136 @@ def get_device():
         return "mps"
     else:
         return "cpu"
+
+
+def get_gpu_memory_info():
+    """Get detailed GPU memory information using nvidia-ml-py."""
+    memory_info = []
+    
+    if not torch.cuda.is_available():
+        return memory_info
+    
+    num_gpus = torch.cuda.device_count()
+    
+    # Try to use nvidia-ml-py for detailed memory info
+    use_nvml = NVML_INITIALIZED
+    if use_nvml:
+        try:
+            for i in range(num_gpus):
+                handle = pynvml.nvmlDeviceGetHandleByIndex(i)
+                mem_info = pynvml.nvmlDeviceGetMemoryInfo(handle)
+                
+                total_gb = mem_info.total / (1024**3)
+                used_gb = mem_info.used / (1024**3)
+                free_gb = mem_info.free / (1024**3)
+                used_pct = (mem_info.used / mem_info.total) * 100
+                
+                memory_info.append({
+                    'gpu': i,
+                    'total_gb': total_gb,
+                    'used_gb': used_gb,
+                    'free_gb': free_gb,
+                    'used_pct': used_pct,
+                    'source': 'nvidia-ml-py'
+                })
+        except Exception as e:
+            logger.warning(f"Error getting NVML memory info: {e}")
+            # Fall back to PyTorch
+            use_nvml = False
+    
+    # Fall back to PyTorch memory stats if NVML not available
+    if not use_nvml:
+        for i in range(num_gpus):
+            torch.cuda.set_device(i)
+            total_gb = torch.cuda.get_device_properties(i).total_memory / (1024**3)
+            allocated_gb = torch.cuda.memory_allocated(i) / (1024**3)
+            reserved_gb = torch.cuda.memory_reserved(i) / (1024**3)
+            free_gb = total_gb - reserved_gb
+            used_pct = (reserved_gb / total_gb) * 100
+            
+            memory_info.append({
+                'gpu': i,
+                'total_gb': total_gb,
+                'used_gb': reserved_gb,
+                'allocated_gb': allocated_gb,
+                'reserved_gb': reserved_gb,
+                'free_gb': free_gb,
+                'used_pct': used_pct,
+                'source': 'pytorch'
+            })
+    
+    return memory_info
+
+
+def get_cpu_ram_info():
+    """Get CPU RAM information using psutil."""
+    if not PSUTIL_AVAILABLE:
+        return None
+    
+    try:
+        # System-wide memory info
+        mem = psutil.virtual_memory()
+        
+        # Process-specific memory info
+        process = psutil.Process()
+        process_mem = process.memory_info()
+        
+        return {
+            'system_total_gb': mem.total / (1024**3),
+            'system_used_gb': mem.used / (1024**3),
+            'system_available_gb': mem.available / (1024**3),
+            'system_used_pct': mem.percent,
+            'process_rss_gb': process_mem.rss / (1024**3),  # Resident Set Size
+            'process_vms_gb': process_mem.vms / (1024**3),  # Virtual Memory Size
+        }
+    except Exception as e:
+        logger.warning(f"Error getting CPU RAM info: {e}")
+        return None
+
+
+def log_memory(stage: str):
+    """Log GPU and CPU memory information at a specific stage."""
+    logger.info(f"\n{'='*60}")
+    logger.info(f"Memory Status - {stage}")
+    logger.info(f"{'='*60}")
+    
+    # CPU RAM info
+    cpu_ram_info = get_cpu_ram_info()
+    if cpu_ram_info:
+        logger.info("CPU RAM:")
+        logger.info(f"  System Total:    {cpu_ram_info['system_total_gb']:.2f} GB")
+        logger.info(f"  System Used:     {cpu_ram_info['system_used_gb']:.2f} GB ({cpu_ram_info['system_used_pct']:.1f}%)")
+        logger.info(f"  System Available: {cpu_ram_info['system_available_gb']:.2f} GB")
+        logger.info(f"  Process RSS:     {cpu_ram_info['process_rss_gb']:.2f} GB")
+        logger.info(f"  Process VMS:     {cpu_ram_info['process_vms_gb']:.2f} GB")
+    else:
+        logger.info("CPU RAM: psutil not available")
+    
+    # GPU memory info
+    if torch.cuda.is_available():
+        memory_info = get_gpu_memory_info()
+        
+        if memory_info:
+            logger.info("")
+            logger.info("GPU Memory:")
+            for info in memory_info:
+                if info['source'] == 'nvidia-ml-py':
+                    logger.info(f"  GPU {info['gpu']}:")
+                    logger.info(f"    Total:  {info['total_gb']:.2f} GB")
+                    logger.info(f"    Used:   {info['used_gb']:.2f} GB ({info['used_pct']:.1f}%)")
+                    logger.info(f"    Free:   {info['free_gb']:.2f} GB")
+                else:
+                    logger.info(f"  GPU {info['gpu']}:")
+                    logger.info(f"    Total:    {info['total_gb']:.2f} GB")
+                    logger.info(f"    Reserved: {info['reserved_gb']:.2f} GB ({info['used_pct']:.1f}%)")
+                    logger.info(f"    Allocated: {info['allocated_gb']:.2f} GB")
+                    logger.info(f"    Free:      {info['free_gb']:.2f} GB")
+        else:
+            logger.info("GPU Memory: No GPUs available")
+    else:
+        logger.info("GPU Memory: CUDA not available")
+    
+    logger.info(f"{'='*60}\n")
 
 
 def load_model(model_id: str, cache_dir: str = None, multi_gpu: bool = False):
@@ -212,11 +369,20 @@ def main():
     else:
         logger.info("No GPU available, will use CPU")
     
+    # Log initial GPU memory state
+    log_memory("Initial State (Before Data Loading)")
+    
     # Load data
     adata = load_data(args.input)
     
+    # Log GPU memory after data loading
+    log_memory("After Data Loading (Before Model Loading)")
+    
     # Load model
     model, tokenizer, device = load_model(args.model, args.cache_dir, args.multi_gpu)
+    
+    # Log GPU memory after model loading
+    log_memory("After Model Loading")
     
     # Get first cell sentence
     cell_sentence, organism, true_label = get_first_cell_sentence(adata, args.annotation_key)
@@ -225,8 +391,14 @@ def main():
     prompt = format_prompt(cell_sentence, organism, args.n_genes)
     logger.info(f"\n{'='*60}\nPROMPT:\n{'='*60}\n{prompt}\n{'='*60}")
     
+    # Log GPU memory before inference
+    log_memory("Before Inference")
+    
     # Run inference
     response = run_inference(model, tokenizer, prompt, device, args.max_new_tokens)
+    
+    # Log GPU memory after inference
+    log_memory("After Inference")
     
     # Extract prediction
     prediction = extract_prediction(response)
