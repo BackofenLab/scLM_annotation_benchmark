@@ -16,14 +16,51 @@ True;HIHA;Proliferating NK cell;cycling natural killer cell;mature NK T cell, hu
 True;human_pancreas;acinar;acinar cell;acinar cell
 True;human_pancreas;activated_stellate;pancreatic stellate cell;stellate neuron
 True;human_pancreas;alpha;pancreatic A cell;kidney connecting tubule alpha-intercalated cell
+True;L1_celltypist;b cells;B cell;B cell
+True;sapiens_liver_celltypist;basophils;basophil;immature basophil
 True;human_pancreas;beta;type B pancreatic cell;mature alpha-beta T cell
 True;HIHA;cDC1;conventional dendritic cell;DN1 thymic pro-T cell
 True;HIHA;cDC2;conventional dendritic cell;CD27-high, CD11b-low natural killer cell, mouse
+True;sapiens_liver_celltypist;cdc1s;conventional dendritic cell;DN1 thymic pro-T cell
+True;sapiens_liver_celltypist;cdc2s;conventional dendritic cell;retinal ganglion cell D2
+True;sapiens_liver_celltypist;cholangiocytes;cholangiocyte;cholangiocyte
+True;sapiens_liver_celltypist;circulating nk/nkt;mature NK T cell;mature NK T cell, human
+True;L1_celltypist;cycling cells;cell;cycling T cell
+True;L1_celltypist;dc;dendritic cell;CD1a-positive dermal dendritic cell
+True;sapiens_blood_celltypist;dc precursor;common dendritic progenitor;hematopoietic precursor cell
+True;L1_celltypist;double-negative thymocytes;double negative thymocyte;double negative thymocyte
+True;L1_celltypist;double-positive thymocytes;double-positive, alpha-beta thymocyte;resting double-positive thymocyte
 True;human_pancreas;ductal;pancreatic ductal cell;adventitial cell
+True;L1_celltypist;early mk;megakaryote progenitor cell;obsolete prestalk 0 cell
 True;human_pancreas;endothelial;endothelial cell;endothelial cell of artery
+True;sapiens_liver_celltypist;endothelial cells;endothelial cell;endothelial cell of artery
+True;L1_celltypist;epithelial cells;epithelial cell;squamous epithelial cell
+True;L1_celltypist;erythroid;erythroid lineage cell;erythroid progenitor cell
+True;sapiens_liver_celltypist;fibroblasts;fibroblast;skin fibroblast
 True;human_pancreas;gamma;pancreatic PP cell;gamma motor neuron
 True;HIHA;gdT;gamma-delta T cell;granulocyte monocyte progenitor cell
+True;sapiens_blood_celltypist;granulocytes;granulocyte;granulocytopoietic cell
+True;sapiens_liver_celltypist;hepatocytes;hepatocyte;hepatocyte
+True;L1_celltypist;hsc/mpp;hematopoietic stem cell;obsolete pstO/ALC
+True;L1_celltypist;ilc;innate lymphoid cell;ILC1, human
+True;sapiens_liver_celltypist;liver-resident natural killer cell;mature NK T cell, human;mature NK T cell, human
+True;sapiens_liver_celltypist;macrophages;macrophage;cycling macrophage
 True;human_pancreas;mast;mast cell;mast cell
+True;sapiens_blood_celltypist;mast cells;mast cell;mast cell
+True;sapiens_blood_celltypist;megakaryocyte precursor;megakaryocyte progenitor cell;megakaryocyte
+True;L1_celltypist;megakaryocytes/platelets;platelet;megakaryocyte
+True;sapiens_liver_celltypist;mig.cdcs;migratory dendritic cell;migratory dendritic cell
+True;sapiens_liver_celltypist;mono+mono derived cells;monocyte;monopoietic cell
+True;L1_celltypist;mono-mac;macrophage;monopoietic cell
+True;L1_celltypist;monocyte precursor;promonocyte;monopoietic cell
+True;L1_celltypist;monocytes;monocyte;intermediate monocyte
+True;L1_celltypist;myelocytes;myelocyte;myelocyte
+True;sapiens_liver_celltypist;neutrophils;neutrophil;neutrophil
+True;sapiens_liver_celltypist;pdcs;plasmacytoid dendritic cell;committed oligodendrocyte precursor
+True;L1_celltypist;plasma cells;plasma cell;short lived plasma cell
+True;sapiens_blood_celltypist;promyelocytes;promyelocyte;early promyelocyte
 True;human_pancreas;quiescent_stellate;pancreatic stellate cell;stellate interneuron
+False;sapiens_liver_celltypist;resident nk;mature NK T cell, human;mature NK T cell, human
 True;human_pancreas;schwann;Schwann cell;Schwann cell precursor
+True;L1_celltypist;t cells;T cell;immature T cell
 True;human_pancreas;t_cell;T cell;T cell of appendix
