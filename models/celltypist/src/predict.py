@@ -170,7 +170,7 @@ def main():
     adata = load_data(args.input)
     adata = preprocess_data(adata)
 
-    model_to_use = model_dataset_mapper(args.input)
+    model_to_use = args.model#model_dataset_mapper(args.input)
 
     # Run prediction once
     predictions = run_celltypist_prediction(adata, model_to_use)
