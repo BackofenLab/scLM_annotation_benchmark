@@ -8,6 +8,8 @@ dependencies:
   - tqdm
   - pronto
   - pip
+  - git
+  - git-lfs
   - pip:
     - torch
     - torch_geometric

@@ -20,8 +20,6 @@ else:
 PY
 )
 
-
-conda list
 # Run CellTypist prediction
 python "$(dirname "$0")/predict.py" \
   --input "$INPUT_H5AD" \
