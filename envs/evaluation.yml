@@ -16,3 +16,4 @@ dependencies:
     - torch_geometric
     - sentence_transformers
     - omicverse
+    - anndata
