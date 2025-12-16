@@ -46,6 +46,7 @@ def run_celltypist_prediction(adata, model="Immune_All_High.pkl"):
     """
     logger.info(f"Running CellTypist prediction with model: {model}")
     try:
+        celltypist.models.download_models(model=model)
         model_obj = celltypist.models.Model.load(model)
         all_start_with_ENSG = all(str(idx).startswith("ENSG") for idx in adata.var.index)
         if all_start_with_ENSG: # Only if all genes start with ESNG, assume the index contains ensebml ids and convert the model
