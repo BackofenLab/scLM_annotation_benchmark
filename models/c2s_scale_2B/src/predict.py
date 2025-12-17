@@ -55,6 +55,23 @@ def load_data(data_path: str):
         sys.exit(1)
 
 
+def get_dtype_for_device(device: str):
+    """
+    Get appropriate dtype based on device.
+    
+    Args:
+        device: Device string ("cuda", "mps", or "cpu")
+        
+    Returns:
+        torch dtype: bfloat16 for CUDA, float16 for MPS/CPU
+    """
+    if device == "cuda":
+        return torch.bfloat16
+    else:
+        # Use float16 for both MPS and CPU (model was trained with bfloat16)
+        return torch.float16
+
+
 def load_model(model_id: str, device: str, cache_dir: str = None):
     """
     Load model and tokenizer directly from HuggingFace.
@@ -70,10 +87,15 @@ def load_model(model_id: str, device: str, cache_dir: str = None):
     logger.info(f"Loading model: {model_id}")
     try:
         tokenizer = AutoTokenizer.from_pretrained(model_id, cache_dir=cache_dir)
+        
+        # Determine dtype based on device
+        dtype = get_dtype_for_device(device)
+        logger.info(f"Using dtype: {dtype} for device: {device}")
+        
         model = AutoModelForCausalLM.from_pretrained(
             model_id,
             cache_dir=cache_dir,
-            torch_dtype=torch.float16 if device != "cpu" else torch.float32,
+            torch_dtype=dtype,
         ).to(device)
         model.eval()
         logger.info(f"Model loaded successfully on {device}")
@@ -285,7 +307,9 @@ def generate_predictions(
             response = tokenizer.decode(output, skip_special_tokens=False)
             pred = extract_prediction(response)
             predicted_cell_types.append(pred)
-    
+    #log one full response
+    logger.info(f"Full response (example cell): {response}")
+
     logger.info("Prediction completed successfully")
     return predicted_cell_types
 

@@ -55,29 +55,87 @@ def load_data(data_path: str):
         sys.exit(1)
 
 
-def load_model(model_id: str, device: str, cache_dir: str = None):
+def get_dtype_for_device(device: str):
+    """
+    Get appropriate dtype based on device.
+    
+    Args:
+        device: Device string ("cuda", "mps", or "cpu")
+        
+    Returns:
+        torch dtype: bfloat16 for CUDA, float16 for MPS/CPU
+    """
+    if device == "cuda":
+        return torch.bfloat16
+    else:
+        # Use float16 for both MPS and CPU (model was trained with bfloat16)
+        return torch.float16
+
+
+def load_model(model_id: str, device: str, cache_dir: str = None, multi_gpu: bool = False):
     """
     Load model and tokenizer directly from HuggingFace.
     
     Args:
         model_id: HuggingFace model ID
-        device: Device to load model on
+        device: Device to load model on (ignored if multi_gpu=True)
         cache_dir: Optional cache directory
+        multi_gpu: If True, distribute model across all available GPUs using device_map="auto"
         
     Returns:
-        Tuple of (model, tokenizer)
+        Tuple of (model, tokenizer, effective_device)
+        - effective_device is the device to use for inputs (first GPU if multi_gpu, otherwise device)
     """
     logger.info(f"Loading model: {model_id}")
     try:
         tokenizer = AutoTokenizer.from_pretrained(model_id, cache_dir=cache_dir)
-        model = AutoModelForCausalLM.from_pretrained(
-            model_id,
-            cache_dir=cache_dir,
-            torch_dtype=torch.float16 if device != "cpu" else torch.float32,
-        ).to(device)
+        
+        if multi_gpu and torch.cuda.is_available():
+            num_gpus = torch.cuda.device_count()
+            logger.info(f"Multi-GPU mode enabled. Found {num_gpus} GPU(s)")
+            
+            # Use bfloat16 for CUDA multi-GPU
+            dtype = torch.bfloat16
+            logger.info(f"Using dtype: {dtype} for CUDA multi-GPU")
+            
+            if num_gpus > 1:
+                logger.info(f"Distributing model across {num_gpus} GPUs using device_map='auto'")
+                model = AutoModelForCausalLM.from_pretrained(
+                    model_id,
+                    cache_dir=cache_dir,
+                    torch_dtype=dtype,
+                    device_map="auto",  # Automatically distribute layers across GPUs
+                    low_cpu_mem_usage=True,  # Reduce CPU memory during loading
+                )
+                # With device_map="auto", inputs should go to the first device in the model's device map
+                effective_device = "cuda:0"
+                
+                # Log the device map for debugging
+                if hasattr(model, 'hf_device_map'):
+                    logger.info(f"Model device map: {model.hf_device_map}")
+            else:
+                logger.info("Only 1 GPU found, falling back to single-GPU mode")
+                model = AutoModelForCausalLM.from_pretrained(
+                    model_id,
+                    cache_dir=cache_dir,
+                    torch_dtype=dtype,
+                ).to(device)
+                effective_device = device
+        else:
+            # Single device mode - determine dtype based on device
+            dtype = get_dtype_for_device(device)
+            logger.info(f"Using dtype: {dtype} for device: {device}")
+            
+            model = AutoModelForCausalLM.from_pretrained(
+                model_id,
+                cache_dir=cache_dir,
+                torch_dtype=dtype,
+            ).to(device)
+            effective_device = device
+        
         model.eval()
-        logger.info(f"Model loaded successfully on {device}")
-        return model, tokenizer
+        logger.info(f"Model loaded successfully. Effective input device: {effective_device}")
+        return model, tokenizer, effective_device
     except Exception as e:
         logger.error(f"Failed to load model: {e}")
         sys.exit(1)
@@ -284,7 +342,10 @@ def generate_predictions(
         for i, output in enumerate(outputs):
             response = tokenizer.decode(output, skip_special_tokens=False)
             pred = extract_prediction(response)
+            #pred = response
             predicted_cell_types.append(pred)
+    #log one full response
+    logger.info(f"Full response (example cell): {response}")
     
     logger.info("Prediction completed successfully")
     return predicted_cell_types
@@ -355,6 +416,8 @@ def main():
                        help="Maximum new tokens to generate (default: 20)")
     parser.add_argument("--batch_size", type=int, default=8,
                        help="Batch size for inference (default: 8). Increase for faster inference if memory allows.")
+    parser.add_argument("--multi_gpu", action="store_true",
+                       help="Enable multi-GPU mode to distribute model across all available GPUs")
     
     args = parser.parse_args()
     
@@ -378,7 +441,9 @@ def main():
     adata = load_data(args.input)
     
     # Load model and tokenizer (once, reuse for all annotation keys)
-    model, tokenizer = load_model(args.model, device, args.cache_dir)
+    model, tokenizer, effective_device = load_model(
+        args.model, device, args.cache_dir, multi_gpu=args.multi_gpu
+    )
     
     # Get output path components
     output_path = Path(args.output)
@@ -412,7 +477,7 @@ def main():
             model, 
             tokenizer, 
             formatted_ds, 
-            device,
+            effective_device,
             max_new_tokens=args.max_new_tokens,
             batch_size=args.batch_size
         )

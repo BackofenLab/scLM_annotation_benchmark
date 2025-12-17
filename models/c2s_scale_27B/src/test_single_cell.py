@@ -234,7 +234,7 @@ def load_model(model_id: str, cache_dir: str = None, multi_gpu: bool = False):
         # Determine dtype based on device
         # MPS supports float16 but some operations may need float32
         if device == "cuda":
-            dtype = torch.float16
+            dtype = torch.bfloat16
         elif device == "mps":
             # Use float32 for better MPS compatibility
             dtype = torch.float32
@@ -490,6 +490,7 @@ def main():
             logger.info(f"  GPU {i}: {torch.cuda.get_device_name(i)}")
             mem = torch.cuda.get_device_properties(i).total_memory / 1e9
             logger.info(f"         Memory: {mem:.1f} GB")
+        torch.cuda.empty_cache()
     elif torch.backends.mps.is_available():
         logger.info("MPS (Apple Silicon) available")
     else:
@@ -510,8 +511,8 @@ def main():
     # Log GPU memory after model loading
     log_memory("After Model Loading")
     
-    # Get first cell sentence
-    cell_sentence, organism, true_label = get_first_cell_sentence(adata, args.annotation_key)
+    # Convert to arrow dataset
+    arrow_ds = convert_to_arrow_dataset(adata, args.annotation_key)
     
     # Format prompts
     formatted_ds = format_prompts(arrow_ds, args.n_genes)
