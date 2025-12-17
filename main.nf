@@ -122,10 +122,10 @@ process run_model {
             "${cache_dir}/models"
 
         # Cache predictions
-        cp \${results_dir}/predictions*.csv \${cache_base}/
+        cp \${results_dir}/predictions*.csv \${cache_base}/predictions/
     else
         # Use cached predictions
-        cp \${cache_base}/predictions*.csv \${results_dir}/
+        cp \${cache_base}/predictions/predictions*.csv \${results_dir}/
         echo "Cell type prediction already exists for ${dataset} × ${model} (subset ${subset_size})."
         echo "To rerun, delete: \${cache_base}/predictions*.csv"
     fi
