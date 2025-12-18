@@ -3,6 +3,7 @@ channels:
   - conda-forge
 dependencies:
   - python=3.10
+  - git
   - pip:
     - pyyaml
     - torch==2.1.0
