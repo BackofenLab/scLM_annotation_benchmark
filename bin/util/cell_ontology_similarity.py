@@ -420,6 +420,7 @@ def compute_ontology_similarities(
         avg_accuracies = {
             "rada_avg_similarity": np.nan,
             "lin_avg_similarity": np.nan,
+            "id_accuracy": np.nan,
             "balanced_id_accuracy": np.nan
         }
         
@@ -486,6 +487,13 @@ def compute_ontology_similarities(
         avg_accuracies["lin_avg_similarity"] = float(lin_scores.mean())
     else:
         avg_accuracies["lin_avg_similarity"] = np.nan
+    
+    # Calculate id_accuracy (overall exact match accuracy, non-balanced)
+    id_accuracy_scores = temp_df["id_accuracy"]
+    if len(id_accuracy_scores) > 0:
+        avg_accuracies["id_accuracy"] = float(id_accuracy_scores.mean())
+    else:
+        avg_accuracies["id_accuracy"] = np.nan
     
     # Calculate balanced_id_accuracy (average of per-class accuracies)
     # This gives equal weight to each class, similar to balanced_accuracy

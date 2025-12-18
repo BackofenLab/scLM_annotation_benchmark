@@ -24,10 +24,10 @@ else:
 PY
 )
 
-conda list
 # Run Cell2Sentence prediction
 python "$(dirname "$0")/predict.py" \
   --input "$INPUT_H5AD" \
   --output "$OUT_CSV" \
   --cache_dir "$CACHE_DIR" \
-  --annotation_keys $ANNOTATION_KEYS
+  --annotation_keys $ANNOTATION_KEYS \
+  --n_genes 200

@@ -164,9 +164,12 @@ def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_rati
 
     # Compute additional metrics
     summary_dict = classification_report(true_labels, pred_labels, output_dict=True)
+    
+    # Extract accuracy from summary_dict for easier access
+    accuracy = summary_dict.get("accuracy", np.nan)
 
     # Initialize results dictionary
-    results = {"balanced_accuracy": balanced_acc, "summary_dict": summary_dict}
+    results = {"balanced_accuracy": balanced_acc, "accuracy": accuracy, "summary_dict": summary_dict}
     
     # Compute ontology similarities if CL path is provided
     ontology_df = None
@@ -240,6 +243,7 @@ def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_rati
             
             print(f"Rada average similarity: {avg_similarities.get('rada_avg_similarity', 'N/A'):.4f}")
             print(f"Lin average similarity: {avg_similarities.get('lin_avg_similarity', 'N/A'):.4f}")
+            print(f"ID accuracy: {avg_similarities.get('id_accuracy', 'N/A'):.4f}")
             print(f"Balanced ID accuracy: {avg_similarities.get('balanced_id_accuracy', 'N/A'):.4f}")
             
             # Save scored CSV with ontology similarities (unique combinations)
@@ -257,6 +261,7 @@ def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_rati
             raise RuntimeError(f"Could not compute ontology similarities: {e}")
             results["rada_avg_similarity"] = np.nan
             results["lin_avg_similarity"] = np.nan
+            results["id_accuracy"] = np.nan
             results["balanced_id_accuracy"] = np.nan
 
     # Set up plotter
@@ -277,6 +282,7 @@ def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_rati
         normalize=True
     )
 
+    print(f"Accuracy: {accuracy:.4f}")
     print(f"Balanced accuracy: {balanced_acc:.4f}")
     print(f"Confusion matrix saved to: {output_plot_path}")
     
@@ -286,8 +292,11 @@ def main(args):
     
     # Parse prediction input (can be string or list)
     pred_files = parse_pred_input(args.pred)
-    dataset, model = args.out.split('/')[-1].rsplit('_',1)
-    output_dir = Path(args.out.rsplit('_',1)[0])
+    # Extract dataset and model from output path (format: dataset_model.json)
+    # Remove .json extension first, then split from left (dataset has no underscores, model may have them)
+    filename_stem = Path(args.out).stem  # e.g., "HIHA_c2s_scale_2B"
+    dataset, model = filename_stem.split('_', 1)  # Split from left: ['HIHA', 'c2s_scale_2B']
+    output_dir = Path(args.out).parent / dataset
     output_dir.mkdir(parents=True, exist_ok=True)
     
     # Set up cache directory and CL ontology path
