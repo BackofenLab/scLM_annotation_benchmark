@@ -4,6 +4,7 @@ CellTypist prediction script for single-cell data annotation.
 """
 
 import argparse
+import os
 import pandas as pd
 import scanpy as sc
 import celltypist
@@ -45,6 +46,7 @@ def run_celltypist_prediction(adata, model="Immune_All_High.pkl"):
     """
     logger.info(f"Running CellTypist prediction with model: {model}")
     try:
+        celltypist.models.download_models(model=model)
         model_obj = celltypist.models.Model.load(model)
         all_start_with_ENSG = all(str(idx).startswith("ENSG") for idx in adata.var.index)
         if all_start_with_ENSG: # Only if all genes start with ESNG, assume the index contains ensebml ids and convert the model
@@ -127,6 +129,23 @@ def preprocess_data(adata):
     except Exception as e:
         logger.error(f"Failed to preprocess data: {e}")
         sys.exit(1)
+
+
+def model_dataset_mapper(path_dataset):
+    """
+    Map dataset path to appropriate CellTypist model name.
+    """
+    print(f"Mapping model {path_dataset} to dataset")
+    filename = os.path.basename(path_dataset)
+    filename = filename.lower()
+    if "liver" in filename:
+        model_name = "Healthy_Human_Liver.pkl"
+    elif "heart" in filename.lower():
+        model_name = "Healthy_Adult_Heart.pkl"
+    else:
+        model_name = "Immune_All_High.pkl"
+    return model_name
+
         
 def main():
     """
@@ -151,9 +170,11 @@ def main():
     # Load data
     adata = load_data(args.input)
     adata = preprocess_data(adata)
-    
+
+    model_to_use = args.model#model_dataset_mapper(args.input)
+
     # Run prediction once
-    predictions = run_celltypist_prediction(adata, args.model)
+    predictions = run_celltypist_prediction(adata, model_to_use)
     
     # Get base output path info (same as CellWhisperer)
     output_path = Path(args.output)

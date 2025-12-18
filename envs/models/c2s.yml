@@ -9,3 +9,4 @@ dependencies:
   - pip:
     - cell2sentence
     - anndata
+    - torch

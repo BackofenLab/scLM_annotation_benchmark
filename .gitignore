@@ -12,8 +12,14 @@ cache/*
 # Exception: keep the ontology mappings CSV for manual editing
 !cache/cell_type_ontology_mappings.csv
 !cache/cell_types.csv
+# Exception: keep the predictions subdirectory
+!cache/models/
+cache/models/*
+!cache/models/predictions/
+!cache/models/predictions/**
 .conda
 Results
+results/
 
 .env
 .DS_Store

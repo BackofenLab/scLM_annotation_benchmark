@@ -18,7 +18,8 @@ def map_cell_types_to_ontology(
     predicted_labels: list[str],
     cache_dir: Path,
     model_name: str = "all-MiniLM-L6-v2",
-    force_remapping: bool = False
+    force_remapping: bool = False,
+    origin: str = "unknown"
 ) -> Path:
     """
     Map predicted cell type labels to ontology terms using omicverse CellOntologyMapper.
@@ -35,6 +36,8 @@ def map_cell_types_to_ontology(
         Name of the model to use for semantic matching
     force_remapping : bool, default False
         If True, remap all labels even if they already exist in the CSV
+    origin : str, default "unknown"
+        Origin of the cell type labels (e.g., dataset name or model name)
         
     Returns
     -------
@@ -120,30 +123,23 @@ def map_cell_types_to_ontology(
             # Extract best match
             best_match = result.get("best_match", "")
             
-            # Extract top 3 matches
-            top3_matches = result.get("top3_matches", [])
-            top3_labels = []
-            for match in top3_matches:
-                if isinstance(match, dict) and "label" in match:
-                    top3_labels.append(match["label"])
-            
             # Create mapping entry
             mapping_entry = {
                 "reviewed": False,  # New mappings need to be reviewed
+                "origin": origin,
                 "predicted_label": label,
                 "chosen_match": best_match,  # Default to best_match, user can edit
-                "best_match": best_match,
-                "top3_matches": "; ".join(top3_labels)  # Join with semicolon for alternative matches
+                "best_match": best_match
             }
             new_mappings.append(mapping_entry)
         else:
             # Handle case where mapping failed
             mapping_entry = {
                 "reviewed": False,  # New mappings need to be reviewed
+                "origin": origin,
                 "predicted_label": label,
                 "chosen_match": "",
-                "best_match": "",
-                "top3_matches": ""
+                "best_match": ""
             }
             new_mappings.append(mapping_entry)
     
@@ -168,8 +164,13 @@ def map_cell_types_to_ontology(
     # Sort by predicted_label for easier manual editing
     combined_df = combined_df.sort_values('predicted_label').reset_index(drop=True)
     
-    # Reorder columns to ensure 'reviewed' is first
-    column_order = ['reviewed'] + [col for col in combined_df.columns if col != 'reviewed']
+    # Reorder columns to ensure correct order
+    desired_columns = ['reviewed', 'origin', 'predicted_label', 'chosen_match', 'best_match']
+    # Only include columns that exist in the dataframe
+    column_order = [col for col in desired_columns if col in combined_df.columns]
+    # Add any extra columns that might exist but weren't in our desired list
+    extra_columns = [col for col in combined_df.columns if col not in column_order]
+    column_order.extend(extra_columns)
     combined_df = combined_df[column_order]
     
     # Save to CSV with semicolon delimiter

@@ -8,6 +8,8 @@ dependencies:
   - tqdm
   - pronto
   - pip
+  - git
+  - git-lfs
   - pip:
     - torch
     - torch_geometric
@@ -15,3 +17,9 @@ dependencies:
     - omicverse
     - anndata
     - zarr<3 #omicverse needs an older anndata which needs an older zarr.
+    - scanpy  # for preprocessing
+    - pybiomart  # for Ensembl ID mapping
+    - pandas  # for data manipulation
+    - numpy  # for numerical operations
+    - scipy  # for statistical functions (median_abs_deviation)
+    #- memory_profiler

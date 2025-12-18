@@ -96,7 +96,7 @@ def remove_trailing_periods_from_predictions(df: pd.DataFrame, pred_col: str, ve
     return df
 
 # -- Ontology mapping utilities --
-def apply_ontology_mapping_to_predictions(df: pd.DataFrame, pred_col: str, cache_dir: Path, verbose: bool = True) -> pd.DataFrame:
+def apply_ontology_mapping_to_predictions(df: pd.DataFrame, pred_col: str, cache_dir: Path, verbose: bool = True, origin: str = "unknown") -> pd.DataFrame:
     """
     Apply ontology mapping to predicted labels in a dataframe.
     
@@ -110,6 +110,8 @@ def apply_ontology_mapping_to_predictions(df: pd.DataFrame, pred_col: str, cache
         Cache directory for ontology files
     verbose : bool, default True
         If True, print progress information
+    origin : str, default "unknown"
+        Origin of the predicted labels (e.g., model name)
         
     Returns
     -------
@@ -132,7 +134,8 @@ def apply_ontology_mapping_to_predictions(df: pd.DataFrame, pred_col: str, cache
             cell_types=predicted_labels,
             cache_dir=cache_dir,
             force_remapping=False,
-            verbose=verbose
+            verbose=verbose,
+            origin=origin
         )
         
         # Update the dataframe
@@ -161,9 +164,12 @@ def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_rati
 
     # Compute additional metrics
     summary_dict = classification_report(true_labels, pred_labels, output_dict=True)
+    
+    # Extract accuracy from summary_dict for easier access
+    accuracy = summary_dict.get("accuracy", np.nan)
 
     # Initialize results dictionary
-    results = {"balanced_accuracy": balanced_acc, "summary_dict": summary_dict}
+    results = {"balanced_accuracy": balanced_acc, "accuracy": accuracy, "summary_dict": summary_dict}
     
     # Compute ontology similarities if CL path is provided
     ontology_df = None
@@ -237,6 +243,8 @@ def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_rati
             
             print(f"Rada average similarity: {avg_similarities.get('rada_avg_similarity', 'N/A'):.4f}")
             print(f"Lin average similarity: {avg_similarities.get('lin_avg_similarity', 'N/A'):.4f}")
+            print(f"ID accuracy: {avg_similarities.get('id_accuracy', 'N/A'):.4f}")
+            print(f"Balanced ID accuracy: {avg_similarities.get('balanced_id_accuracy', 'N/A'):.4f}")
             
             # Save scored CSV with ontology similarities (unique combinations)
             if label_suffix:
@@ -253,6 +261,8 @@ def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_rati
             raise RuntimeError(f"Could not compute ontology similarities: {e}")
             results["rada_avg_similarity"] = np.nan
             results["lin_avg_similarity"] = np.nan
+            results["id_accuracy"] = np.nan
+            results["balanced_id_accuracy"] = np.nan
 
     # Set up plotter
     plotter = UMAPCellPlotter()
@@ -272,6 +282,7 @@ def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_rati
         normalize=True
     )
 
+    print(f"Accuracy: {accuracy:.4f}")
     print(f"Balanced accuracy: {balanced_acc:.4f}")
     print(f"Confusion matrix saved to: {output_plot_path}")
     
@@ -281,8 +292,11 @@ def main(args):
     
     # Parse prediction input (can be string or list)
     pred_files = parse_pred_input(args.pred)
-    dataset, model = args.out.split('/')[-1].rsplit('_',1)
-    output_dir = Path(args.out.rsplit('_',1)[0])
+    # Extract dataset and model from output path (format: dataset_model.json)
+    # Remove .json extension first, then split from left (dataset has no underscores, model may have them)
+    filename_stem = Path(args.out).stem  # e.g., "HIHA_c2s_scale_2B"
+    dataset, model = filename_stem.split('_', 1)  # Split from left: ['HIHA', 'c2s_scale_2B']
+    output_dir = Path(args.out).parent / dataset
     output_dir.mkdir(parents=True, exist_ok=True)
     
     # Set up cache directory and CL ontology path
@@ -336,30 +350,44 @@ def main(args):
         # Remove trailing periods from predicted labels before any other processing
         print(f"\nPreprocessing predicted labels...")
         df = remove_trailing_periods_from_predictions(df, pred_col, verbose=True)
+        # make all predictions lowercase
+        df[pred_col] = df[pred_col].str.lower()
         
-        # Filter predictions by review status before applying ontology mapping
-        print(f"\nFiltering predictions by ontology mapping review status...")
-        try:
-            df, filter_stats = filter_predictions_by_review_status(
-                df, pred_col, cache_dir, args.max_unreviewed_ratio, verbose=True
-            )
-            
-            # Store filter statistics for reporting
-            file_results["filter_stats"] = filter_stats
-            
-            if filter_stats["filtered"]:
-                print(f"⚠️  WARNING: {filter_stats['unreviewed_predictions']} predictions with unreviewed mappings were excluded")
-                print(f"   Remaining predictions: {filter_stats['filtered_predictions']}/{filter_stats['total_predictions']}")
-                if filter_stats["unreviewed_labels"]:
-                    print(f"   Unreviewed labels: {sorted(filter_stats['unreviewed_labels'])}")
-                    
-        except RuntimeError as e:
-            print(f"❌ ERROR: {e}")
-            print("Evaluation stopped due to too many unreviewed predictions.")
-            continue
-        except Exception as e:
-            print(f"Warning: Could not filter predictions by review status: {e}")
-            print("Continuing with all predictions...")
+        # Filter predictions by review status before applying ontology mapping (only if mapping is enabled)
+        if args.apply_ontology_mapping:
+            print(f"\nFiltering predictions by ontology mapping review status...")
+            try:
+                df, filter_stats = filter_predictions_by_review_status(
+                    df, pred_col, cache_dir, args.max_unreviewed_ratio, verbose=True
+                )
+                
+                # Store filter statistics for reporting
+                file_results["filter_stats"] = filter_stats
+                
+                if filter_stats["filtered"]:
+                    print(f"⚠️  WARNING: {filter_stats['unreviewed_predictions']} predictions with unreviewed mappings were excluded")
+                    print(f"   Remaining predictions: {filter_stats['filtered_predictions']}/{filter_stats['total_predictions']}")
+                    if filter_stats["unreviewed_labels"]:
+                        print(f"   Unreviewed labels: {sorted(filter_stats['unreviewed_labels'])}")
+                        
+            except RuntimeError as e:
+                print(f"❌ ERROR: {e}")
+                print("Evaluation stopped due to too many unreviewed predictions.")
+                continue
+            except Exception as e:
+                print(f"Warning: Could not filter predictions by review status: {e}")
+                print("Continuing with all predictions...")
+                file_results["filter_stats"] = {
+                    "total_predictions": len(df),
+                    "filtered_predictions": len(df),
+                    "unreviewed_predictions": 0,
+                    "unreviewed_ratio": 0.0,
+                    "unreviewed_labels": [],
+                    "filtered": False,
+                    "error": str(e)
+                }
+        else:
+            # If mapping is disabled, no filtering needed
             file_results["filter_stats"] = {
                 "total_predictions": len(df),
                 "filtered_predictions": len(df),
@@ -367,16 +395,19 @@ def main(args):
                 "unreviewed_ratio": 0.0,
                 "unreviewed_labels": [],
                 "filtered": False,
-                "error": str(e)
+                "note": "Ontology mapping disabled"
             }
 
-        # Apply ontology mapping to predicted labels once for all evaluations
-        print(f"\nApplying ontology mapping to predicted labels...")
-        try:
-            df = apply_ontology_mapping_to_predictions(df, pred_col, cache_dir, verbose=True)
-        except Exception as e:
-            print(f"Warning: Could not apply ontology mapping: {e}")
-            print("Continuing with original predicted labels...")
+        # Apply ontology mapping to predicted labels once for all evaluations (only if enabled)
+        if args.apply_ontology_mapping:
+            print(f"\nApplying ontology mapping to predicted labels...")
+            try:
+                df = apply_ontology_mapping_to_predictions(df, pred_col, cache_dir, verbose=True, origin=model)
+            except Exception as e:
+                print(f"Warning: Could not apply ontology mapping: {e}")
+                print("Continuing with original predicted labels...")
+        else:
+            print(f"\nOntology mapping disabled - using original predicted labels")
         
         # Process each level that exists in the dataframe
         for true_col in ['true_labels', 'true_labels_1', 'true_labels_2', 'true_labels_3']:
@@ -471,6 +502,9 @@ if __name__ == "__main__":
                        help="Maximum acceptable ratio of unmapped cell types (0.0-1.0). Default: 0.0 (all must be mapped)")
     parser.add_argument("--max-unreviewed-ratio", type=float, default=0.1,
                        help="Maximum acceptable ratio of predictions with unreviewed ontology mappings (0.0-1.0). Default: 0.1 (10%)")
+    parser.add_argument("--apply_ontology_mapping", type=lambda x: (str(x).lower() == 'true'),
+                       default=True,
+                       help="Apply ontology mapping to predicted labels (default: True)")
 
     args = parser.parse_args()
     main(args)

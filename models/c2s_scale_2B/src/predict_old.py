@@ -15,6 +15,7 @@ import logging
 import os
 import random
 import numpy as np
+import torch
 
 logger = logging.getLogger(__name__)
 
@@ -52,8 +53,8 @@ def load_data(data_path):
         logger.error(f"Failed to load data: {e}")
         sys.exit(1)
 
-def load_model(model_path="vandijklab/C2S-Pythia-410m-cell-type-prediction", 
-               model_name="cell_embedding_prediction_pythia_410M", 
+def load_model(model_path="vandijklab/C2S-Scale-Gemma-2-27B", 
+               model_name="C2S-Scale-Gemma-2-27B", 
                cache_dir=None):
     """
     Load Cell2Sentence model.
@@ -99,6 +100,17 @@ def convert_to_c2s_format(adata, annotation_key, cache_dir=None):
         # Create a copy of adata to avoid modifying the original
         adata_copy = adata.copy()
         
+        #set X to raw counts and apply log10 transformation
+        if "counts" not in adata.layers:
+            raise ValueError("Counts layer not found in adata.layers. Run prepreocessing step first. C2S-Scale needs raw counts")
+        adata_copy.X = adata.layers["counts"]
+        logger.info(f"Setting X to raw counts, normalizing and log-transforming with base 10. (see https://github.com/vandijklab/cell2sentence/blob/master/tutorials/c2s_tutorial_0_data_preparation.ipynb)")
+        sc.pp.normalize_total(adata_copy)
+        sc.pp.log1p(adata_copy, base=10)
+
+        # and var names need to contain gene names
+        adata_copy.var_names = adata_copy.var["gene_names"]
+
         # Set the cell_type column to the current annotation key
         if annotation_key not in adata_copy.obs.columns:
             raise ValueError(f"Annotation key '{annotation_key}' not found in adata.obs")
@@ -122,6 +134,10 @@ def convert_to_c2s_format(adata, annotation_key, cache_dir=None):
             sentence_delimiter=' ',
             label_col_names=adata_obs_cols_to_keep
         )
+        print("Exemplary Cell2Sentence data:")
+        print(arrow_ds[0])
+        print("Exemplary vocabulary:")
+        print(list(vocabulary.items())[:10])
         
         csdata = cs.CSData.csdata_from_arrow(
             arrow_dataset=arrow_ds, 
@@ -157,6 +173,9 @@ def run_cell2sentence_prediction(csdata, csmodel, n_genes=200):
             n_genes=n_genes
         )
         logger.info("Prediction completed successfully")
+        #filter the special token \n<ctrl100>' from the end of the predicted cell types
+        predicted_cell_types = [ct.replace('<ctrl100>', '') for ct in predicted_cell_types]
+        predicted_cell_types = [ct.replace('\n', '') for ct in predicted_cell_types]
         return predicted_cell_types
     except Exception as e:
         logger.error(f"Failed to run Cell2Sentence prediction: {e}")
@@ -225,10 +244,10 @@ def main():
                        help=f"Input h5ad file path (default: {default_input})")
     parser.add_argument("--output", "-o", default=default_output,
                        help=f"Output CSV file path base name (default: {default_output})")
-    parser.add_argument("--model", "-m", default="vandijklab/C2S-Pythia-410m-cell-type-prediction", 
-                       help="Cell2Sentence model to use (default: vandijklab/C2S-Pythia-410m-cell-type-prediction)")
-    parser.add_argument("--model_name", default="cell_embedding_prediction_pythia_410M",
-                       help="Model name for caching (default: cell_embedding_prediction_pythia_410M)")
+    parser.add_argument("--model", "-m", default="vandijklab/C2S-Scale-Gemma-2-2B", 
+                       help="Cell2Sentence model to use.")
+    parser.add_argument("--model_name", default="C2S-Scale-Gemma-2-2B",
+                       help="Model name for caching.")
     parser.add_argument("--annotation_keys", nargs='+', default=["cell_ontology_class"],
                        help="Keys in adata.obs containing true labels (default: cell_ontology_class)")
     parser.add_argument("--n_genes", type=int, default=200,
@@ -244,8 +263,17 @@ def main():
     # Load data
     adata = load_data(args.input)
     
+    if torch.backends.mps.is_available():
+        device = "mps"
+    elif torch.cuda.is_available():
+        device = "cuda"
+        torch.cuda.empty_cache()
+    else:
+        device = "cpu"
+
     # Load model (only once, reuse for all annotation keys)
     csmodel = load_model(args.model, args.model_name, args.cache_dir)
+    csmodel.device = device
     
     # Get base output path info (same as CellTypist)
     output_path = Path(args.output)

@@ -1,26 +1,44 @@
 nextflow.enable.dsl=2
 
+import org.yaml.snakeyaml.Yaml
+
+def loadYaml(String path) {
+    def yaml = new Yaml()
+    return yaml.load(new File(path).text)
+}
+
 process download {
     conda 'envs/download.yml'
 
     input:
-    tuple val(dataset), val(cache_dir), path(cfg_yaml)
+    tuple val(dataset), val(cache_dir), path(cfg_yaml), val(apply_ontology_mapping)
 
     // Tag appears after inputs; you can use `dataset`
     tag { dataset }
 
     output:
-    tuple(path("data/*.h5ad"), val(dataset), path(cfg_yaml), val(cache_dir))
+    tuple(path("data/*_pp.h5ad"), val(dataset), path(cfg_yaml), val(cache_dir))
 
     script:
     """
     set -euo pipefail
-    # Call the script via PATH but force the *Conda* python interpreter
+    # Step 1: Download the dataset
     download.py \
       --dataset   "${dataset}" \
       --cfg_yaml  "${cfg_yaml}" \
-      --out       "data/${dataset}.h5ad" \
-      --cache_dir "${cache_dir}"
+      --out       "data/${dataset}_raw.h5ad" \
+      --cache_dir "${cache_dir}" \
+      --apply_ontology_mapping ${apply_ontology_mapping}
+    
+    # Step 2: Preprocess the dataset
+    preprocess.py \
+      --input "data/${dataset}_raw.h5ad" \
+      --output "data/${dataset}_pp.h5ad" \
+      --config "${cfg_yaml}" \
+      --summary "data/${dataset}_pp_summary.txt"
+    
+    # Clean up raw file (optional - remove if you want to keep it)
+    rm "data/${dataset}_raw.h5ad"
     """
 }
 
@@ -77,7 +95,7 @@ process prepare_model {
 
 process run_model {
     input:
-    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir)
+    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size)
 
     // Same tag format as run_model
     tag { "${dataset}×${model}" }
@@ -85,19 +103,40 @@ process run_model {
     conda { "envs/models/${model}.yml" }
 
     output:
-    tuple(path("results/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir))
+    tuple(path("results/*/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir))
 
     script:
     """
-    mkdir -p results/${dataset}/${model}
-    mkdir -p ${cache_dir}/models
-    bash ${model_dir}/src/run.sh ${data_file} ./results/${dataset}/${model}/predictions.csv ${cfg_yaml} ${cache_dir}/models
+    echo "Subset size of ${dataset}: ${subset_size}"
+
+    cache_base="${cache_dir}/models/${model}/${dataset}/${subset_size}"
+    results_dir=./results/${model}/${dataset}/${subset_size}
+    
+    mkdir -p \${results_dir}
+
+    if [ ! -f \${cache_base}/predictions*.csv ]; then
+        # Run model and produce predictions
+        mkdir -p \${cache_base}
+        bash "${model_dir}/src/run.sh" \
+            "${data_file}" \
+            \${results_dir}/predictions.csv \
+            "${cfg_yaml}" \
+            "${cache_dir}/models"
+
+        # Cache predictions
+        cp \${results_dir}/predictions*.csv \${cache_base}/predictions/
+    else
+        # Use cached predictions
+        cp \${cache_base}/predictions/predictions*.csv \${results_dir}/
+        echo "Cell type prediction already exists for ${dataset} × ${model} (subset ${subset_size})."
+        echo "To rerun, delete: \${cache_base}/predictions*.csv"
+    fi
     """
 }
 
 process run_model_throttled {
     input:
-    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir)
+    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size)
 
     // Same tag format as run_model
     tag { "${dataset}×${model}" }
@@ -107,13 +146,34 @@ process run_model_throttled {
     publishDir(path: 'results/', mode: 'copy', overwrite: 'true', pattern: '*.csv')
 
     output:
-    tuple(path("results/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir))
+    tuple(path("results/*/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir))
 
     script:
     """
-    mkdir -p results/${dataset}/${model}
-    mkdir -p ${cache_dir}/models
-    bash ${model_dir}/src/run.sh ${data_file} ./results/${dataset}/${model}/predictions.csv ${cfg_yaml} ${cache_dir}/models
+    echo "Subset size of ${dataset}: ${subset_size}"
+
+    cache_base="${cache_dir}/models/${model}/${dataset}/${subset_size}"
+    results_dir=./results/${model}/${dataset}/${subset_size}
+    
+    mkdir -p \${results_dir}
+
+    if [ ! -f \${cache_base}/predictions*.csv ]; then
+        # Run model and produce predictions
+        mkdir -p \${cache_base}
+        bash "${model_dir}/src/run.sh" \
+            "${data_file}" \
+            \${results_dir}/predictions.csv \
+            "${cfg_yaml}" \
+            "${cache_dir}/models"
+
+        # Cache predictions
+        cp \${results_dir}/predictions*.csv \${cache_base}/
+    else
+        # Use cached predictions
+        cp \${cache_base}/predictions*.csv \${results_dir}/
+        echo "Cell type prediction already exists for ${dataset} × ${model} (subset ${subset_size})."
+        echo "To rerun, delete: \${cache_base}/predictions*.csv"
+    fi
     """
 }
 
@@ -121,7 +181,7 @@ process evaluate_annotation {
     conda 'envs/evaluation.yml'
 
     input:
-    tuple path(predictions), val(dataset), val(model), val(cache_dir)
+    tuple path(predictions), val(dataset), val(model), val(cache_dir), val(apply_ontology_mapping)
 
     // Tag with dataset and model for easy tracing
     tag { "${dataset}×${model}" }
@@ -135,7 +195,7 @@ process evaluate_annotation {
     """
     # Convert the prediction files to a comma-separated string
     pred_files=\$(echo ${predictions} | tr ' ' ',')
-    evaluate.py --pred "\$pred_files" --out ${dataset}_${model}.json --cache_dir ${cache_dir}
+    evaluate.py --pred "\$pred_files" --out ${dataset}_${model}.json --cache_dir ${cache_dir} --apply_ontology_mapping ${apply_ontology_mapping}
     """
 }
 
@@ -161,7 +221,7 @@ process combine_results {
 workflow {
     Channel
         .fromList(params.datasets)
-        .map { dataset -> tuple(dataset, file(params.cache_dir), file("datasets/${dataset}.yml")) }
+        .map { dataset -> tuple(dataset, file(params.cache_dir), file("datasets/${dataset}.yml"), params.apply_ontology_mapping) }
         .set { download_input }
 
     download_out = download(download_input)
@@ -176,6 +236,10 @@ workflow {
     download_out.map { h5ad_file, dataset, cfg_yaml, cache_dir -> cfg_yaml }
                 .collect()
                 .set { config_file_ch }
+    
+    // Create a channel with the apply_ontology_mapping flag for evaluation
+    Channel.value(params.apply_ontology_mapping)
+            .set { apply_mapping_ch }
 
     cell_types = extract_cell_types(h5ad_file_ch, config_file_ch, cache_dir_ch)
 
@@ -191,7 +255,8 @@ workflow {
     download_out
         .combine(prepared_models)
         .map { data_file, dataset, cfg_yaml, cache_dir, model, model_dir ->
-            tuple(data_file, model_dir, dataset, cfg_yaml, model, cache_dir)
+            def cfg = loadYaml("datasets/${dataset}.yml")
+            tuple(data_file, model_dir, dataset, cfg_yaml, model, cache_dir, cfg.subset_size)
         }
         .set { model_input }
     
@@ -204,7 +269,13 @@ workflow {
     predictions_slow = run_model_throttled(throttled_in)
     predictions      = predictions_fast.mix(predictions_slow)
 
-    jsons = evaluate_annotation(predictions)
+    // Combine predictions with the apply_ontology_mapping flag
+    predictions_with_flag = predictions.combine(apply_mapping_ch)
+                                     .map { pred, dataset, model, cache_dir, apply_flag ->
+                                         tuple(pred, dataset, model, cache_dir, apply_flag)
+                                     }
+    
+    jsons = evaluate_annotation(predictions_with_flag)
     Channel
         .fromList(params.datasets)
         .map { dataset -> file("datasets/${dataset}.yml") }
