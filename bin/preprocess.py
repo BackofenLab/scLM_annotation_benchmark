@@ -19,6 +19,7 @@ from pathlib import Path
 import yaml
 import scanpy as sc
 from anndata import AnnData
+from matplotlib.backends.backend_pdf import PdfPages
 #from memory_profiler import profile
 
 from util.pp_utils import (
@@ -29,6 +30,7 @@ from util.pp_utils import (
     ensure_norm_log,
     remove_infinite_values,
     summarize_adata,
+    plot_preprocessing_qc,
 )
 
 logging.basicConfig(
@@ -76,6 +78,7 @@ def preprocess_adata(
     min_cells: int = 10,
     min_genes: int = 200,
     summary_path: str | Path | None = None,
+    qc_plots_path: str | Path | None = None,
 ) -> AnnData:
     """
     Preprocess an AnnData object with quality control, filtering, and normalization.
@@ -118,7 +121,8 @@ def preprocess_adata(
         Minimum genes per cell for filtering. Default is 200.
     summary_path : str | Path, optional
         Path to write the summary file. If None, no summary is generated.
-
+    qc_plots_path : str | Path, optional
+        Path to save QC plots PDF.
     Returns
     -------
     AnnData
@@ -126,6 +130,13 @@ def preprocess_adata(
     """
     logger.info("Starting preprocessing pipeline.")
     logger.info(f"Input shape: {adata.n_obs} cells × {adata.n_vars} genes")
+
+    # Track initial counts for filtering statistics in plots
+    initial_cells = adata.n_obs
+    initial_genes = adata.n_vars
+
+    qc_plots_path = Path(qc_plots_path) if qc_plots_path else None
+    pdf = PdfPages(qc_plots_path)
 
     # Step 1: Ensure raw counts are properly stored
     logger.info("Step 1: Finding and setting raw counts...")
@@ -146,8 +157,35 @@ def preprocess_adata(
         for layer_key in layers_to_remove:
             del adata.layers[layer_key]
 
-    # Step 2: Ensure Ensembl IDs
-    logger.info("Step 2: Ensuring Ensembl IDs are present...")
+    # Step 2: Quality control
+    logger.info("Step 2: Performing quality control...")
+    adata = pp_quality_control(
+        adata,
+        nmads_main=nmads_main,
+        nmads_mt=nmads_mt,
+        pct_counts_mt_threshold=pct_counts_mt_threshold,
+        percent_top=percent_top,
+        pdf=pdf,
+    )
+    logger.info(f"After QC: {adata.n_obs} cells × {adata.n_vars} genes")
+
+    # Step 3: Filter genes and cells
+    logger.info("Step 3: Filtering genes and cells...")
+    adata = filter_genes_and_cells(adata, min_cells=min_cells, min_genes=min_genes)
+    logger.info(f"After filtering: {adata.n_obs} cells × {adata.n_vars} genes")
+
+    # Step 4: Ensure normalization and log transformation
+    logger.info("Step 4: Ensuring normalization and log transformation...")
+    ensure_norm_log(adata, in_place=True)
+    logger.info("Normalization and log transformation complete")
+
+    # Step 5: Remove infinite values
+    logger.info("Step 5: Removing infinite values...")
+    adata = remove_infinite_values(adata)
+    logger.info(f"After removing infinite values: {adata.n_obs} cells × {adata.n_vars} genes")
+
+    # Step 6: Ensure Ensembl IDs
+    logger.info("Step 6: Ensuring Ensembl IDs are present...")
     adata = ensure_ensembl_ids(
         adata,
         ensembl_col=ensembl_col,
@@ -157,37 +195,25 @@ def preprocess_adata(
     )
     logger.info(f"After Ensembl ID mapping: {adata.n_obs} cells × {adata.n_vars} genes")
 
-    # Step 3: Quality control
-    logger.info("Step 3: Performing quality control...")
-    adata = pp_quality_control(
-        adata,
-        nmads_main=nmads_main,
-        nmads_mt=nmads_mt,
-        pct_counts_mt_threshold=pct_counts_mt_threshold,
-        percent_top=percent_top,
-    )
-    logger.info(f"After QC: {adata.n_obs} cells × {adata.n_vars} genes")
-
-    # Step 4: Filter genes and cells
-    logger.info("Step 4: Filtering genes and cells...")
-    adata = filter_genes_and_cells(adata, min_cells=min_cells, min_genes=min_genes)
-    logger.info(f"After filtering: {adata.n_obs} cells × {adata.n_vars} genes")
-
-    # Step 5: Ensure normalization and log transformation
-    logger.info("Step 5: Ensuring normalization and log transformation...")
-    ensure_norm_log(adata, in_place=True)
-    logger.info("Normalization and log transformation complete")
-
-    # Step 6: Remove infinite values
-    logger.info("Step 6: Removing infinite values...")
-    adata = remove_infinite_values(adata)
-    logger.info(f"After removing infinite values: {adata.n_obs} cells × {adata.n_vars} genes")
-
     # Step 7: Generate summary
     if summary_path is not None:
         logger.info("Step 7: Generating summary...")
         summarize_adata(adata, out_path=str(summary_path))
         logger.info(f"Summary written to {summary_path}")
+
+    # Generate post-preprocessing QC plots
+    logger.info("Generating QC plots after preprocessing...")
+    plot_preprocessing_qc(
+        adata,
+        pdf=pdf,
+        page_title="QC Summary After Preprocessing",
+        initial_cells=initial_cells,
+        initial_genes=initial_genes,
+    )
+
+    if pdf:
+        pdf.close()
+        logger.info(f"QC plots saved to {qc_plots_path}")
 
     logger.info("Preprocessing complete!")
     logger.info(f"Final shape: {adata.n_obs} cells × {adata.n_vars} genes")
@@ -260,6 +286,13 @@ Examples:
         type=Path,
         default=None,
         help="Path to write preprocessing summary text file (optional)",
+    )
+
+    parser.add_argument(
+        "--cache_dir",
+        type=Path,
+        default=None,
+        help="Directory to save QC plots (e.g., ${cache_dir}/plots/)",
     )
 
     # QC parameters
@@ -346,6 +379,16 @@ Examples:
         # Default to output directory with .txt extension
         summary_path = args.output.parent / f"{args.output.stem}_summary.txt"
 
+    # Extract output filename to use in plots file name (strip .h5ad or .zarr extension)
+    output_filename = args.output.stem
+    if output_filename.endswith('.h5ad'):
+        output_filename = output_filename[:-5]
+    elif output_filename.endswith('.zarr'):
+        output_filename = output_filename[:-5]
+    
+    qc_plots_path = args.cache_dir / "plots" / f"{output_filename}_qc_plots.pdf"
+    qc_plots_path.parent.mkdir(parents=True, exist_ok=True)
+
     # Read input file
     logger.info(f"Reading input file: {args.input}")
     if args.input.suffix == ".zarr":
@@ -367,6 +410,7 @@ Examples:
         min_cells=min_cells,
         min_genes=min_genes,
         summary_path=summary_path,
+        qc_plots_path=qc_plots_path,
     )
 
     # Write output
