@@ -42,27 +42,6 @@ process download {
     """
 }
 
-process extract_cell_types {
-    conda 'envs/cell_types.yml'
-
-    input:
-        path(h5ad_files)
-        path(cfg_files)
-        val(cache_dir)  // list of files
-
-    script:
-        """
-        if [ ! -f ${cache_dir}/cell_types.csv ]; then
-            extract_cell_types.py \
-                --h5ads ${h5ad_files.join(' ')} \
-                --cfgs ${cfg_files.join(' ')} \
-                --out ${cache_dir}/cell_types.csv
-        else
-            echo "Cell type collection exists, if you want to rerun, delete cache/cell_types.csv"
-        fi
-        """
-}
-
 process prepare_model {
     input:
     tuple val(model), path(model_dir)
