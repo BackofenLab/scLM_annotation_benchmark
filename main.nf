@@ -35,7 +35,8 @@ process download {
       --input "data/${dataset}_raw.h5ad" \
       --output "data/${dataset}_pp.h5ad" \
       --config "${cfg_yaml}" \
-      --summary "data/${dataset}_pp_summary.txt"
+      --summary "data/${dataset}_pp_summary.txt" \
+      --cache_dir "${cache_dir}"
     
     # Clean up raw file (optional - remove if you want to keep it)
     rm "data/${dataset}_raw.h5ad"
