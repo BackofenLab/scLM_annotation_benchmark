@@ -1,6 +1,7 @@
 # Script to download Zeisel mouse brain data and convert to h5ad
 # Data available at: http://mousebrain.org/adolescent/downloads.html
 # Data was accessed on 19.12.2025
+# Data was published in: https://www.cell.com/cell/fulltext/S0092-8674%2818%2930789-X?utm_source=chatgpt.com
 
 import loompy
 import scanpy as sc
