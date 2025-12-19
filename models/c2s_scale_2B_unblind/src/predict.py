@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 """
-Simplified C2S-Scale prediction script for single-cell data annotation.
-
 This script loads the model directly using transformers and generates
 predictions without the full CSData/CSModel abstractions.
 """
@@ -184,20 +182,45 @@ def truncate_cell_sentence(cell_sentence: str, n_genes: int) -> str:
     return ' '.join(truncated)
 
 
-def format_prompts(arrow_ds: Dataset, n_genes: int) -> Dataset:
+def get_unique_cell_types(adata, annotation_key: str) -> list:
+    """
+    Extract unique cell types from the anndata object.
+    
+    Args:
+        adata: Input AnnData object
+        annotation_key: Key in adata.obs containing cell type labels
+        
+    Returns:
+        List of unique cell type labels
+    """
+    if annotation_key not in adata.obs.columns:
+        raise ValueError(f"Annotation key '{annotation_key}' not found in adata.obs")
+    
+    unique_cell_types = sorted(adata.obs[annotation_key].unique().tolist())
+    logger.info(f"Found {len(unique_cell_types)} unique cell types for annotation key '{annotation_key}'")
+    return unique_cell_types
+
+
+def format_prompts(arrow_ds: Dataset, n_genes: int, cell_type_list: list) -> Dataset:
     """
     Format prompts for cell type prediction.
     
     Uses the C2S-Scale prompt template with truncated cell sentences.
+    For unblind models, includes the list of cell types to choose from.
     
     Args:
         arrow_ds: Arrow dataset with cell_sentence and organism columns
         n_genes: Number of top genes to include in prompt
+        cell_type_list: List of cell types to choose from (for unblind models)
         
     Returns:
         Dataset with 'model_input' column containing formatted prompts
     """
     logger.info(f"Formatting prompts with top {n_genes} genes")
+    logger.info(f"Including {len(cell_type_list)} cell types in prompt for selection")
+    
+    # Format the cell type list as a comma-separated string
+    cell_types_str = ", ".join(cell_type_list)
     
     prompts = []
     for i in range(arrow_ds.num_rows):
@@ -207,8 +230,8 @@ def format_prompts(arrow_ds: Dataset, n_genes: int) -> Dataset:
         cell_sentence = truncate_cell_sentence(sample["cell_sentence"], n_genes)
         organism = sample.get("organism", "Homo sapiens")
         
-        # Format prompt using C2S-Scale template
-        prompt = f"""The following is a list of {n_genes} gene names ordered by descending expression level in a {organism} cell. Your task is to give the cell type which this cell belongs to based on its gene expression.
+        # Format prompt using C2S-Scale template with cell type list for unblind models
+        prompt = f"""The following is a list of {n_genes} gene names ordered by descending expression level in a {organism} cell. Your task is to give the cell type which this cell belongs to based on its gene expression. Pick from this list: {cell_types_str}.
 Cell sentence: {cell_sentence}.
 The cell type corresponding to these genes is:"""
         
@@ -424,8 +447,11 @@ def main():
         # Convert to arrow dataset
         arrow_ds = convert_to_arrow_dataset(adata, annotation_key)
         
-        # Format prompts with custom formatter
-        formatted_ds = format_prompts(arrow_ds, args.n_genes)
+        # Get unique cell types for this annotation key (for unblind prompt)
+        cell_type_list = get_unique_cell_types(adata, annotation_key)
+        
+        # Format prompts with custom formatter (includes cell type list for unblind models)
+        formatted_ds = format_prompts(arrow_ds, args.n_genes, cell_type_list)
         
         # Print example prompt
         if formatted_ds.num_rows > 0:
