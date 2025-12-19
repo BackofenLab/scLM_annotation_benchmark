@@ -4,15 +4,16 @@ set -euo pipefail
 INPUT_H5AD=$(realpath "$1")
 OUT_CSV="$2"
 CFG_YAML=$(realpath "$3")
-CACHE_DIR="$4"
+CACHE_DIR=$(realpath "$4")
 
 # Create output directory if it doesn't exist and resolve its absolute path
 OUTPUT_DIR=$(dirname "$OUT_CSV")
 mkdir -p "$OUTPUT_DIR"
 
-# Create cache directory if it doesn't exist
-mkdir -p "$CACHE_DIR"
+# Get the directory where this script is located
+SCRIPT_DIR=$(dirname "$(realpath "$0")")
 
+# Extract all annotation keys from config
 ANNOTATION_KEYS=$(python - <<'PY' "$CFG_YAML"
 import yaml, sys
 config = yaml.safe_load(open(sys.argv[1]))
@@ -24,10 +25,12 @@ else:
 PY
 )
 
-# Run Cell2Sentence prediction
-python "$(dirname "$0")/predict.py" \
+# fix gmpy2 error
+export SYMPY_USE_GMPY=0
+
+# Run CellWhisperer prediction with all annotation keys
+python "$SCRIPT_DIR/predict.py" \
   --input "$INPUT_H5AD" \
   --output "$OUT_CSV" \
-  --cache_dir "$CACHE_DIR" \
   --annotation_keys $ANNOTATION_KEYS \
-  --n_genes 200
+  --cache_dir "$CACHE_DIR"
