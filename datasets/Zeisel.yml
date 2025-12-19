@@ -1,0 +1,8 @@
+# datasets/Zeisel.yml
+name: Zeisel          # used in channel / filenames
+url: https://zenodo.org/api/records/24590958/files/Zeisel_l5_all_rev1.h5ad/content #this is a random subset of the full dataset with 50K cells. No preprocessing has been done.
+format: h5ad
+subset_size: 20000                # null → use full dataset
+batch_key: "DonorID"
+annotation_keys: ["Subclass"] # Options: Subclass, Subclass, TaxonomyRank1, TaxonomyRank2, TaxonomyRank3, TaxonomyRank4,
+apply_ontology_mapping: true
