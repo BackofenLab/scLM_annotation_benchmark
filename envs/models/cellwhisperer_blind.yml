@@ -19,5 +19,5 @@ dependencies:
     - scanpy
     - wandb
     - zarr
-    - -e ../../models/cellwhisperer_emb/src/CellWhisperer
-    - -e ../../models/cellwhisperer_emb/src/CellWhisperer/modules/Geneformer
+    - -e ../../models/cellwhisperer_blind/src/CellWhisperer
+    - -e ../../models/cellwhisperer_blind/src/CellWhisperer/modules/Geneformer
