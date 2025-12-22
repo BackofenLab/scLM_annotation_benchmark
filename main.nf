@@ -216,7 +216,7 @@ workflow {
     Channel.value(params.apply_ontology_mapping)
             .set { apply_mapping_ch }
 
-    cell_types = extract_cell_types(h5ad_file_ch, config_file_ch, cache_dir_ch)
+    // cell_types = extract_cell_types(h5ad_file_ch, config_file_ch, cache_dir_ch)
 
     // Prepare models (handles setup like git cloning, etc.)
     Channel
