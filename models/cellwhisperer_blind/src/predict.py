@@ -31,7 +31,7 @@ args = parse_args()
 adata_path = args.input
 output_csv = args.output
 CACHE_DIR = pathlib.Path(args.cache_dir)
-CELL_TYPES_FILE = CACHE_DIR / args.cell_types_file
+CELL_TYPES_FILE = CACHE_DIR.parent / args.cell_types_file
 # Configuration
 CKPT = CACHE_DIR / "cellwhisperer_emb/cellwhisperer_jointemb_v1.ckpt"              # adjust!
 URL = "https://medical-epigenomics.org/papers/schaefer2024/data/models/cellwhisperer_clip_v1.ckpt"

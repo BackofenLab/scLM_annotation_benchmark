@@ -13,18 +13,6 @@ mkdir -p "$OUTPUT_DIR"
 # Get the directory where this script is located
 SCRIPT_DIR=$(dirname "$(realpath "$0")")
 
-# Extract all annotation keys from config
-ANNOTATION_KEYS=$(python - <<'PY' "$CFG_YAML"
-import yaml, sys
-config = yaml.safe_load(open(sys.argv[1]))
-annotation_keys = config.get('annotation_keys', [])
-if annotation_keys:
-    print(' '.join(annotation_keys))  # Print all annotation keys space-separated
-else:
-    print('cell_type')  # Default fallback
-PY
-)
-
 # fix gmpy2 error
 export SYMPY_USE_GMPY=0
 
@@ -32,5 +20,5 @@ export SYMPY_USE_GMPY=0
 python "$SCRIPT_DIR/predict.py" \
   --input "$INPUT_H5AD" \
   --output "$OUT_CSV" \
-  --annotation_keys $ANNOTATION_KEYS \
+  --cell_types_file "all_cell_types.txt" \
   --cache_dir "$CACHE_DIR"
