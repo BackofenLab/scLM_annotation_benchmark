@@ -38,7 +38,7 @@ adata_path = args.input
 output_csv_base = args.output
 ANNOTATION_KEYS = args.annotation_keys
 CACHE_DIR = pathlib.Path(args.cache_dir)
-MODEL_ID = "jo-mengr/mmcontext-pubmedbert-gs10k-cxg_bio_dim2048-v3"
+MODEL_ID = "jo-mengr/mmcontext-pubmedbert-gs10k"
 INITIAL_EMB = "gs10k"
 EMB_KEY = f"X_{INITIAL_EMB}"
 
@@ -48,14 +48,6 @@ print(f"Loaded {adata.n_obs} cells and {adata.n_vars} genes")
 
 # Remove trailing .1 ... (dot and numbers) in adata.var.index
 #adata.var.index = adata.var.index.str.replace(r'\.\d+$', '', regex=True)
-
-# The models were falsly trained on data first log transformed and normalized. Therefore we reapply this preprocessing here.
-print("=== Preprocessing data ===")
-adata.X = adata.layers["counts"]
-# log transform
-sc.pp.log1p(adata)
-# normalize
-sc.pp.normalize_total(adata)
 
 print("=== Computing embeddings ===")
 embedder = InitialEmbedder(method=INITIAL_EMB)
