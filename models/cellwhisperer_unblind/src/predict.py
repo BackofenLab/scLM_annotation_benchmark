@@ -60,6 +60,11 @@ model = pl_model.model
 
 # ----------------- load data -------------------------
 adata = ad.read_h5ad(adata_path)
+if "counts" in adata.layers:
+    adata.X = adata.layers["counts"]
+else:
+    raise ValueError("Counts layer not found in adata.layers")
+
 #gene_ids = adata.var["gene_name"].tolist()
 # Reduce batch size for Mac MPS to avoid memory issues
 batch_size = 32 if device.type == "mps" else 128 if device.type == "cuda" else 16
