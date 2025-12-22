@@ -49,7 +49,13 @@ from utils import LangCellTranscriptomeTokenizer
 
 logger = logging.getLogger(__name__)
 curr_path = os.getcwd()
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# Device detection: CUDA > MPS (Apple Silicon) > CPU
+if torch.cuda.is_available():
+    device = torch.device("cuda")
+elif torch.backends.mps.is_available():
+    device = torch.device("mps")
+else:
+    device = torch.device("cpu")
 
 
 def set_seed(seed: int) -> None:
@@ -227,7 +233,7 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
     with torch.no_grad():
         text_embs = torch.cat(
             [text_encode(text, tokenizer, text_encoder) for text in texts], 0
-        ).T.cuda()  # 256 * N
+        ).T.to(device)  # 256 * N
     text_embs.requires_grad = False
 
     def classes_to_ids(example):
@@ -280,13 +286,13 @@ def gettextfromname(name, name2id, synonym2id, ontology, description=True):
 def text_encode(text, tokenizer, text_encoder):
     text = tokenizer(
         text, padding=True, truncation=True, max_length=512, return_tensors="pt"
-    ).to("cuda")
+    ).to(device)
     text = text_encoder(**text).pooler_output
     return text
 
 
 def cell_encode(model, cell_input_ids, cell_atts):
-    cell = model(cell_input_ids.to("cuda"), cell_atts.to("cuda"))
+    cell = model(cell_input_ids.to(device), cell_atts.to(device))
     cell_last_h = cell.last_hidden_state
     cell_pooler = cell.pooler_output
     return cell_last_h, cell_pooler
@@ -295,11 +301,11 @@ def cell_encode(model, cell_input_ids, cell_atts):
 def ctm(tokenizer, text_encoder, ctm_head, text, cell_emb, cell_atts):
     text = tokenizer(
         text, padding=True, truncation=True, max_length=512, return_tensors="pt"
-    ).to("cuda")
+    ).to(device)
     output = text_encoder(
         **text,
-        encoder_hidden_states=cell_emb.to("cuda"),
-        encoder_attention_mask=cell_atts.to("cuda"),
+        encoder_hidden_states=cell_emb.to(device),
+        encoder_attention_mask=cell_atts.to(device),
         return_dict=True,
         mode="multimodal",
     )
