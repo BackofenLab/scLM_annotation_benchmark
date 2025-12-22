@@ -35,7 +35,8 @@ process download {
       --input "data/${dataset}_raw.h5ad" \
       --output "data/${dataset}_pp.h5ad" \
       --config "${cfg_yaml}" \
-      --summary "data/${dataset}_pp_summary.txt"
+      --summary "data/${dataset}_pp_summary.txt" \
+      --cache_dir "${cache_dir}"
     
     # Clean up raw file (optional - remove if you want to keep it)
     rm "data/${dataset}_raw.h5ad"
@@ -101,10 +102,10 @@ process run_model {
             "${cache_dir}/models"
 
         # Cache predictions
-        cp \${results_dir}/predictions*.csv \${cache_base}/predictions/
+        cp \${results_dir}/predictions*.csv \${cache_base}/
     else
         # Use cached predictions
-        cp \${cache_base}/predictions/predictions*.csv \${results_dir}/
+        cp \${cache_base}/predictions*.csv \${results_dir}/
         echo "Cell type prediction already exists for ${dataset} × ${model} (subset ${subset_size})."
         echo "To rerun, delete: \${cache_base}/predictions*.csv"
     fi
