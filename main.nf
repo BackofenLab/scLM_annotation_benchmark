@@ -81,7 +81,7 @@ process run_model {
     conda { "envs/models/${model}.yml" }
 
     output:
-    tuple(path("results/*/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir))
+    tuple(path("results/*/*/*/predictions.csv"), val(dataset), val(model), val(cache_dir))
 
     script:
     """
@@ -92,7 +92,7 @@ process run_model {
     
     mkdir -p \${results_dir}
 
-    if [ ! -f \${cache_base}/predictions*.csv ]; then
+    if [ ! -f \${cache_base}/predictions.csv ]; then
         # Run model and produce predictions
         mkdir -p \${cache_base}
         bash "${model_dir}/src/run.sh" \
@@ -102,12 +102,12 @@ process run_model {
             "${cache_dir}/models"
 
         # Cache predictions
-        cp \${results_dir}/predictions*.csv \${cache_base}/
+        cp \${results_dir}/predictions.csv \${cache_base}/
     else
         # Use cached predictions
-        cp \${cache_base}/predictions*.csv \${results_dir}/
+        cp \${cache_base}/predictions.csv \${results_dir}/
         echo "Cell type prediction already exists for ${dataset} × ${model} (subset ${subset_size})."
-        echo "To rerun, delete: \${cache_base}/predictions*.csv"
+        echo "To rerun, delete: \${cache_base}/predictions.csv"
     fi
     """
 }
@@ -122,18 +122,18 @@ process run_model_throttled {
     conda { "envs/models/${model}.yml" }
 
     output:
-    tuple(path("results/*/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir))
+    tuple(path("results/*/*/*/predictions.csv"), val(dataset), val(model), val(cache_dir))
 
     script:
     """
     echo "Subset size of ${dataset}: ${subset_size}"
 
-    cache_base="${cache_dir}/models/${model}/${dataset}/${subset_size}"
+    cache_base="${cache_dir}/models/predictions/${model}/${dataset}/${subset_size}"
     results_dir=./results/${model}/${dataset}/${subset_size}
     
     mkdir -p \${results_dir}
 
-    if [ ! -f \${cache_base}/predictions*.csv ]; then
+    if [ ! -f \${cache_base}/predictions.csv ]; then
         # Run model and produce predictions
         mkdir -p \${cache_base}
         bash "${model_dir}/src/run.sh" \
@@ -143,12 +143,12 @@ process run_model_throttled {
             "${cache_dir}/models"
 
         # Cache predictions
-        cp \${results_dir}/predictions*.csv \${cache_base}/
+        cp \${results_dir}/predictions.csv \${cache_base}/
     else
         # Use cached predictions
-        cp \${cache_base}/predictions*.csv \${results_dir}/
+        cp \${cache_base}/predictions.csv \${results_dir}/
         echo "Cell type prediction already exists for ${dataset} × ${model} (subset ${subset_size})."
-        echo "To rerun, delete: \${cache_base}/predictions*.csv"
+        echo "To rerun, delete: \${cache_base}/predictions.csv"
     fi
     """
 }
@@ -171,7 +171,7 @@ process evaluate_annotation {
     """
     # Convert the prediction files to a comma-separated string
     pred_files=\$(echo ${predictions} | tr ' ' ',')
-    evaluate.py --pred "\$pred_files" --out ${dataset}_${model}.json --cache_dir ${cache_dir} --apply_ontology_mapping ${apply_ontology_mapping}
+    evaluate.py --pred "\$pred_files" --out ${dataset}_${model}.json --cache_dir ${cache_dir} --apply_ontology_mapping ${apply_ontology_mapping} --max-unreviewed-ratio 1.0 --max-unmapped-ratio 1.0
     """
 }
 
@@ -252,9 +252,12 @@ workflow {
                                      }
     
     jsons = evaluate_annotation(predictions_with_flag)
+    
+    // Get dataset YAML files for aggregation (use filenames as dataset names)
     Channel
         .fromList(params.datasets)
         .map { dataset -> file("datasets/${dataset}.yml") }
+        .collect()
         .set { datasets }
 
     combine_results(jsons.collect(), datasets)
