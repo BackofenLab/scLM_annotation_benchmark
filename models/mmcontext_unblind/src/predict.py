@@ -137,14 +137,14 @@ results_df = pd.DataFrame({
 results_df.to_csv(output_csv_base, index=False)
 print(f"Saved predictions to {output_csv_base}")
     
-    # Calculate accuracy
-    accuracy = (results_df['true_labels'] == results_df['predicted_labels']).mean()
-    print(f"Overall accuracy: {accuracy:.3f}")
-    
-    # Print label distribution
-    print(f"Label distribution in {annotation_key}:")
-    label_counts = pd.Series(true_labels).value_counts()
-    for label, count in label_counts.items():
-        print(f"  {label}: {count} ({count/len(true_labels)*100:.1f}%)")
+# Calculate accuracy
+accuracy = (results_df['true_labels'] == results_df['predicted_labels']).mean()
+print(f"Overall accuracy: {accuracy:.3f}")
+
+# Print label distribution
+print(f"Label distribution in {annotation_key}:")
+label_counts = pd.Series(true_labels).value_counts()
+for label, count in label_counts.items():
+    print(f"  {label}: {count} ({count/len(true_labels)*100:.1f}%)")
 
 print(f"\nPrediction completed successfully!")
