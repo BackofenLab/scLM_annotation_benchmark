@@ -246,8 +246,8 @@ def main():
                        help="Cell2Sentence model to use (default: vandijklab/C2S-Pythia-410m-cell-type-prediction)")
     parser.add_argument("--model_name", default="cell_embedding_prediction_pythia_410M",
                        help="Model name for caching (default: cell_embedding_prediction_pythia_410M)")
-    parser.add_argument("--annotation_keys", nargs='+', default=["cell_ontology_class"],
-                       help="Keys in adata.obs containing true labels (default: cell_ontology_class)")
+    parser.add_argument("--annotation_key", default="cell_ontology_class",
+                       help="Key in adata.obs containing true labels (default: cell_ontology_class)")
     parser.add_argument("--n_genes", type=int, default=200,
                        help="Number of genes to use for prediction (default: 200)")
     parser.add_argument("--cache_dir", default=None,
@@ -267,46 +267,36 @@ def main():
         device = "cuda"
     else:
         device = "cpu"
-    # Load model (only once, reuse for all annotation keys)
+    # Load model
     csmodel = load_model(args.model, args.model_name, args.cache_dir)
     csmodel.device = device
     
-    # Get base output path info (same as CellTypist)
-    output_path = Path(args.output)
-    output_dir = output_path.parent
-    output_stem = output_path.stem
-    output_suffix = output_path.suffix
+    annotation_key = args.annotation_key
+    logger.info(f"Processing annotation key: {annotation_key}")
     
-    # Process each annotation key separately
-    for annotation_key in args.annotation_keys:
-        logger.info(f"Processing annotation key: {annotation_key}")
-        
-        # Check if annotation key exists
-        if annotation_key not in adata.obs.columns:
-            logger.error(f"'{annotation_key}' not found in adata.obs")
-            logger.error(f"Available keys: {list(adata.obs.columns)}")
-            logger.warning(f"Skipping {annotation_key}")
-            continue
-        
-        # Convert to Cell2Sentence format for this specific annotation key
-        csdata = convert_to_c2s_format(adata, annotation_key, args.cache_dir)
-        
-        # Run prediction for this annotation key
-        predicted_cell_types = run_cell2sentence_prediction(csdata, csmodel, args.n_genes)
-        
-        # Create results DataFrame for this annotation key
-        results_df = create_results_dataframe_for_key(adata, predicted_cell_types, annotation_key)
-        
-        if results_df is not None:
-            # Create output filename for this annotation level (same naming as CellWhisperer)
-            output_csv = output_dir / f"{output_stem}_{annotation_key}{output_suffix}"
-            
-            # Save results
-            print(f"Saving results to: {output_csv}")
-            save_results(results_df, str(output_csv))
-            logger.info(f"Results for {annotation_key} saved to: {output_csv}")
-        else:
-            logger.warning(f"Skipping {annotation_key} due to errors")
+    # Check if annotation key exists
+    if annotation_key not in adata.obs.columns:
+        logger.error(f"'{annotation_key}' not found in adata.obs")
+        logger.error(f"Available keys: {list(adata.obs.columns)}")
+        sys.exit(1)
+    
+    # Convert to Cell2Sentence format
+    csdata = convert_to_c2s_format(adata, annotation_key, args.cache_dir)
+    
+    # Run prediction
+    predicted_cell_types = run_cell2sentence_prediction(csdata, csmodel, args.n_genes)
+    
+    # Create results DataFrame
+    results_df = create_results_dataframe_for_key(adata, predicted_cell_types, annotation_key)
+    
+    if results_df is not None:
+        # Save results to the specified output path
+        print(f"Saving results to: {args.output}")
+        save_results(results_df, args.output)
+        logger.info(f"Results saved to: {args.output}")
+    else:
+        logger.error("Failed to create results DataFrame")
+        sys.exit(1)
     
     logger.info("Cell2Sentence prediction pipeline completed successfully")
 

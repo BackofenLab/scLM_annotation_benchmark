@@ -107,7 +107,7 @@ def main():
     ap.add_argument('--output_csv', help='Path to output CSV file')
     ap.add_argument('--gene-pickle', required=True, help='Path to gene embeddings .pickle')
     ap.add_argument('--celltype-pickle', required=True, help='Path to cell-type embeddings .pickle')
-    ap.add_argument('--annotation_keys', default='true_labels', help='obs column with ground-truth labels (fallback to cell_type if missing)')
+    ap.add_argument('--annotation_key', default='true_labels', help='obs column with ground-truth labels (fallback to cell_type if missing)')
     args = ap.parse_args()
 
     # Load artifacts
@@ -156,7 +156,7 @@ def main():
     predicted = [ct_labels[i] for i in pred_idx]
 
     # Ground truth
-    ann_col = args.annotation_keys if hasattr(args, 'annotation_keys') and args.annotation_keys in adata.obs else None
+    ann_col = args.annotation_key if hasattr(args, 'annotation_key') and args.annotation_key in adata.obs else None
     if ann_col is None:
         ann_col = 'cell_type' if 'cell_type' in adata.obs else None
     if ann_col is None:

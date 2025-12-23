@@ -23,7 +23,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='CellWhisperer cell type prediction')
     parser.add_argument('--input', required=True, help='Path to input h5ad file')
     parser.add_argument('--output', required=True, help='Path to output CSV file (base name)')
-    parser.add_argument('--annotation_keys', nargs='+', required=True, help='Keys in adata.obs for true cell type labels')
+    parser.add_argument('--annotation_key', required=True, help='Key in adata.obs for true cell type labels')
     parser.add_argument('--cache_dir', required = True, help='Path to cache directory. Model checkpoints will be downloaded here.')
     return parser.parse_args()
 
@@ -31,7 +31,7 @@ def parse_args():
 args = parse_args()
 adata_path = args.input
 output_csv_base = args.output
-ANNOTATION_KEYS = args.annotation_keys
+ANNOTATION_KEY = args.annotation_key
 CACHE_DIR = pathlib.Path(args.cache_dir)
 # Configuration
 CKPT = CACHE_DIR / "cellwhisperer_emb/cellwhisperer_jointemb_v1.ckpt"              # adjust!
@@ -79,124 +79,98 @@ logit_scale = pl_model.model.discriminator.temperature.exp()
 import time
 start_time = time.time()
 
-# Process each annotation key separately
-results_per_key = {}
+# Process annotation key
+annotation_key = ANNOTATION_KEY
+print(f"\n=== Processing annotation key: {annotation_key} ===")
 
-for annotation_key in ANNOTATION_KEYS:
-    print(f"\n=== Processing annotation key: {annotation_key} ===")
-    
-    # Check if annotation key exists
-    if annotation_key not in adata.obs.columns:
-        print(f"Warning: '{annotation_key}' not found in adata.obs.columns")
-        print(f"Available columns: {list(adata.obs.columns)}")
-        continue
-    
-    # Get unique cell type labels for this annotation level
-    cell_type_labels = adata.obs[annotation_key].unique().tolist()
-    print(f"Computing similarity scores to {len(cell_type_labels)} cell type labels...")
-    
-    # Compute similarity scores between transcriptomes and cell type labels
-    scores, grouping_keys = score_transcriptomes_vs_texts(
-        transcriptome_input=adata,  # Your AnnData object
-        text_list_or_text_embeds=cell_type_labels,  # Cell type labels
-        logit_scale=logit_scale,  # Scale factor from the model
-        model=model,  # The loaded model
-        transcriptome_processor=transcriptome_processor,  # From load_cellwhisperer_model
-        batch_size=batch_size,
-        average_mode=None,  # Don't average, get scores for each cell
-        score_norm_method="softmax"  # Normalize scores using softmax
-    )
-    
-    # Store results for this annotation key
-    results_per_key[annotation_key] = {
-        'scores': scores,
-        'cell_type_labels': cell_type_labels,
-        'true_labels': adata.obs[annotation_key].values,
-        'cell_id': adata.obs[annotation_key].index
-    }
-    
-    print(f"Similarity scores shape: {scores.shape}")  # Should be [n_cell_types, n_cells]
-    print(f"Top scoring cell type for first cell: {cell_type_labels[scores[:, 0].argmax()]}")
+# Check if annotation key exists
+if annotation_key not in adata.obs.columns:
+    print(f"Error: '{annotation_key}' not found in adata.obs.columns")
+    print(f"Available columns: {list(adata.obs.columns)}")
+    sys.exit(1)
+
+# Get unique cell type labels for this annotation level
+cell_type_labels = adata.obs[annotation_key].unique().tolist()
+print(f"Computing similarity scores to {len(cell_type_labels)} cell type labels...")
+
+# Compute similarity scores between transcriptomes and cell type labels
+scores, grouping_keys = score_transcriptomes_vs_texts(
+    transcriptome_input=adata,  # Your AnnData object
+    text_list_or_text_embeds=cell_type_labels,  # Cell type labels
+    logit_scale=logit_scale,  # Scale factor from the model
+    model=model,  # The loaded model
+    transcriptome_processor=transcriptome_processor,  # From load_cellwhisperer_model
+    batch_size=batch_size,
+    average_mode=None,  # Don't average, get scores for each cell
+    score_norm_method="softmax"  # Normalize scores using softmax
+)
+
+print(f"Similarity scores shape: {scores.shape}")  # Should be [n_cell_types, n_cells]
+print(f"Top scoring cell type for first cell: {cell_type_labels[scores[:, 0].argmax()]}")
 
 end_time = time.time()
 elapsed_time = end_time - start_time
 print(f"Processing completed in {elapsed_time:.2f} seconds ({elapsed_time/60:.2f} minutes)")
 
-# ----------------- Save Results for Each Annotation Key ---------------------------
+# ----------------- Save Results ---------------------------
 print("\n=== SAVING RESULTS ===")
 
-from pathlib import Path
+true_labels = adata.obs[annotation_key].values
+cell_id = adata.obs[annotation_key].index
 
-# Get base output path info
-output_path = Path(output_csv_base)
-output_dir = output_path.parent
-output_stem = output_path.stem
-output_suffix = output_path.suffix
+print(f"Found {len(np.unique(true_labels))} unique true labels")
 
-for annotation_key, results in results_per_key.items():
-    print(f"\n--- Processing results for {annotation_key} ---")
+# Get predicted labels (highest scoring cell type for each cell)
+predicted_indices = scores.argmax(dim=0)  # Shape: [n_cells]
+predicted_labels = [cell_type_labels[i] for i in predicted_indices]
+
+# Create comparison DataFrame with only required columns
+results_df = pd.DataFrame({
+    'cell_id': cell_id,
+    'true_labels': true_labels,
+    'predicted_labels': predicted_labels
+})
+
+# Save to CSV
+results_df.to_csv(output_csv_base, index=False)
+print(f"Saved predictions to {output_csv_base}")
+
+# Calculate accuracy
+accuracy = (results_df['true_labels'] == results_df['predicted_labels']).mean()
+print(f"Overall accuracy: {accuracy:.3f}")
+
+# Calculate ROC curves and AUC for each cell type
+print(f"--- ROC/AUC Analysis for {annotation_key} ---")
+
+# Create binary labels for ROC analysis
+auc_scores = {}
+
+for i, cell_type in enumerate(cell_type_labels):
+    # Binary classification: this cell type vs all others
+    y_true_binary = (true_labels == cell_type).astype(int)
+    y_scores = scores[i, :].numpy()  # Similarity scores for this cell type
     
-    scores = results['scores']
-    cell_type_labels = results['cell_type_labels']
-    true_labels = results['true_labels']
-    cell_id = results['cell_id']
-    
-    print(f"Found {len(np.unique(true_labels))} unique true labels")
-    
-    # Get predicted labels (highest scoring cell type for each cell)
-    predicted_indices = scores.argmax(dim=0)  # Shape: [n_cells]
-    predicted_labels = [cell_type_labels[i] for i in predicted_indices]
-    
-    # Create comparison DataFrame with only required columns
-    results_df = pd.DataFrame({
-        'cell_id': cell_id,
-        'true_labels': true_labels,
-        'predicted_labels': predicted_labels
-    })
-    
-    # Create output filename for this annotation level
-    output_csv = output_dir / f"{output_stem}_{annotation_key}{output_suffix}"
-    
-    # Save to CSV
-    results_df.to_csv(output_csv, index=False)
-    print(f"Saved predictions to {output_csv}")
-    
-    # Calculate accuracy
-    accuracy = (results_df['true_labels'] == results_df['predicted_labels']).mean()
-    print(f"Overall accuracy: {accuracy:.3f}")
-    
-    # Calculate ROC curves and AUC for each cell type
-    print(f"--- ROC/AUC Analysis for {annotation_key} ---")
-    
-    # Create binary labels for ROC analysis
-    auc_scores = {}
-    
-    for i, cell_type in enumerate(cell_type_labels):
-        # Binary classification: this cell type vs all others
-        y_true_binary = (true_labels == cell_type).astype(int)
-        y_scores = scores[i, :].numpy()  # Similarity scores for this cell type
-        
-        # Only calculate AUC if we have both positive and negative samples
-        if len(np.unique(y_true_binary)) > 1:
-            fpr, tpr, _ = roc_curve(y_true_binary, y_scores)
-            auc_score = auc(fpr, tpr)
-            auc_scores[cell_type] = auc_score
-            print(f"{cell_type:15} AUC: {auc_score:.3f}")
-        else:
-            auc_scores[cell_type] = np.nan
-            print(f"{cell_type:15} AUC: N/A (no positive/negative samples)")
-    
-    # Calculate mean AUC
-    valid_aucs = [score for score in auc_scores.values() if not np.isnan(score)]
-    if valid_aucs:
-        mean_auc = np.mean(valid_aucs)
-        print(f"Mean AUC for {annotation_key}: {mean_auc:.3f}")
+    # Only calculate AUC if we have both positive and negative samples
+    if len(np.unique(y_true_binary)) > 1:
+        fpr, tpr, _ = roc_curve(y_true_binary, y_scores)
+        auc_score = auc(fpr, tpr)
+        auc_scores[cell_type] = auc_score
+        print(f"{cell_type:15} AUC: {auc_score:.3f}")
     else:
-        print(f"Mean AUC for {annotation_key}: N/A")
-    
-    print(f"Label distribution in {annotation_key}:")
-    label_counts = pd.Series(true_labels).value_counts()
-    for label, count in label_counts.items():
-        print(f"  {label}: {count} ({count/len(true_labels)*100:.1f}%)")
+        auc_scores[cell_type] = np.nan
+        print(f"{cell_type:15} AUC: N/A (no positive/negative samples)")
+
+# Calculate mean AUC
+valid_aucs = [score for score in auc_scores.values() if not np.isnan(score)]
+if valid_aucs:
+    mean_auc = np.mean(valid_aucs)
+    print(f"Mean AUC for {annotation_key}: {mean_auc:.3f}")
+else:
+    print(f"Mean AUC for {annotation_key}: N/A")
+
+print(f"Label distribution in {annotation_key}:")
+label_counts = pd.Series(true_labels).value_counts()
+for label, count in label_counts.items():
+    print(f"  {label}: {count} ({count/len(true_labels)*100:.1f}%)")
 
 print(f"\nPrediction completed successfully!")

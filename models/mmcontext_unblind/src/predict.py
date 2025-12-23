@@ -28,7 +28,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='MMContext cell type prediction')
     parser.add_argument('--input', required=True, help='Path to input h5ad file')
     parser.add_argument('--output', required=True, help='Path to output CSV file (base name)')
-    parser.add_argument('--annotation_keys', nargs='+', required=True, help='Keys in adata.obs for true cell type labels')
+    parser.add_argument('--annotation_key', required=True, help='Key in adata.obs for true cell type labels')
     parser.add_argument('--cache_dir', required=True, help='Path to cache directory')
     return parser.parse_args()
 
@@ -36,7 +36,7 @@ def parse_args():
 args = parse_args()
 adata_path = args.input
 output_csv_base = args.output
-ANNOTATION_KEYS = args.annotation_keys
+ANNOTATION_KEY = args.annotation_key
 CACHE_DIR = pathlib.Path(args.cache_dir)
 MODEL_ID = "jo-mengr/mmcontext-pubmedbert-gs10k"
 INITIAL_EMB = "gs10k"
@@ -86,80 +86,56 @@ adata.obsm["mmcontext_emb"] = embedding_matrix
 print("=== Creating annotator ===")
 annotator = OmicsQueryAnnotator(model)
 
-# Process each annotation key separately
-results_per_key = {}
+# Process annotation key
+annotation_key = ANNOTATION_KEY
 start_time = time.time()
 
-for annotation_key in ANNOTATION_KEYS:
-    print(f"\n=== Processing annotation key: {annotation_key} ===")
-    
-    # Check if annotation key exists
-    if annotation_key not in adata.obs.columns:
-        print(f"Warning: '{annotation_key}' not found in adata.obs.columns")
-        print(f"Available columns: {list(adata.obs.columns)}")
-        continue
-    
-    # Get unique cell type labels for this annotation level
-    unique_labels = adata.obs[annotation_key].unique()
-    print(f"Found {len(unique_labels)} unique cell type labels")
-    
-    # Annotate cells
-    annotator.annotate_omics_data(
-        adata,
-        labels=unique_labels,
-        emb_key="mmcontext_emb",
-        n_top=5,
-    )
-    
-    # Get predictions
-    predicted_labels = adata.obs["best_label"].values
-    true_labels = adata.obs[annotation_key].values
-    cell_id = adata.obs.index.values
-    
-    # Store results for this annotation key
-    results_per_key[annotation_key] = {
-        'predicted_labels': predicted_labels,
-        'true_labels': true_labels,
-        'cell_id': cell_id
-    }
-    
-    print(f"Prediction completed for {len(predicted_labels)} cells")
+print(f"\n=== Processing annotation key: {annotation_key} ===")
+
+# Check if annotation key exists
+if annotation_key not in adata.obs.columns:
+    print(f"Error: '{annotation_key}' not found in adata.obs.columns")
+    print(f"Available columns: {list(adata.obs.columns)}")
+    sys.exit(1)
+
+# Get unique cell type labels for this annotation level
+unique_labels = adata.obs[annotation_key].unique()
+print(f"Found {len(unique_labels)} unique cell type labels")
+
+# Annotate cells
+annotator.annotate_omics_data(
+    adata,
+    labels=unique_labels,
+    emb_key="mmcontext_emb",
+    n_top=5,
+)
+
+# Get predictions
+predicted_labels = adata.obs["best_label"].values
+true_labels = adata.obs[annotation_key].values
+cell_id = adata.obs.index.values
+
+print(f"Prediction completed for {len(predicted_labels)} cells")
 
 end_time = time.time()
 elapsed_time = end_time - start_time
 print(f"\nProcessing completed in {elapsed_time:.2f} seconds ({elapsed_time/60:.2f} minutes)")
 
-# ----------------- Save Results for Each Annotation Key ---------------------------
+# ----------------- Save Results ---------------------------
 print("\n=== SAVING RESULTS ===")
 
-# Get base output path info
-output_path = pathlib.Path(output_csv_base)
-output_dir = output_path.parent
-output_stem = output_path.stem
-output_suffix = output_path.suffix
+print(f"Found {len(np.unique(true_labels))} unique true labels")
 
-for annotation_key, results in results_per_key.items():
-    print(f"\n--- Processing results for {annotation_key} ---")
-    
-    predicted_labels = results['predicted_labels']
-    true_labels = results['true_labels']
-    cell_id = results['cell_id']
-    
-    print(f"Found {len(np.unique(true_labels))} unique true labels")
-    
-    # Create comparison DataFrame with only required columns
-    results_df = pd.DataFrame({
-        'cell_id': cell_id,
-        'true_labels': true_labels,
-        'predicted_labels': predicted_labels
-    })
-    
-    # Create output filename for this annotation level
-    output_csv = output_dir / f"{output_stem}_{annotation_key}{output_suffix}"
-    
-    # Save to CSV
-    results_df.to_csv(output_csv, index=False)
-    print(f"Saved predictions to {output_csv}")
+# Create comparison DataFrame with only required columns
+results_df = pd.DataFrame({
+    'cell_id': cell_id,
+    'true_labels': true_labels,
+    'predicted_labels': predicted_labels
+})
+
+# Save to CSV
+results_df.to_csv(output_csv_base, index=False)
+print(f"Saved predictions to {output_csv_base}")
     
     # Calculate accuracy
     accuracy = (results_df['true_labels'] == results_df['predicted_labels']).mean()

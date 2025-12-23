@@ -24,14 +24,11 @@ mkdir -p "$OUT_DIR"
 # Get the directory where this script is located
 SCRIPT_DIR=$(dirname "$(realpath "$0")")
 
-ANNOTATION_KEYS=$(python - <<'PY' "$CONFIG"
+ANNOTATION_KEY=$(python - <<'PY' "$CONFIG"
 import yaml, sys
 config = yaml.safe_load(open(sys.argv[1]))
-annotation_keys = config.get('annotation_keys', [])
-if annotation_keys:
-    print(' '.join(annotation_keys))  # Print all annotation keys space-separated
-else:
-    print('cell_type')  # Default fallback
+annotation_key = config.get('annotation_key', 'cell_type')
+print(annotation_key)
 PY
 )
 
@@ -40,4 +37,4 @@ python "$SCRIPT_DIR/predict.py" \
     --output_csv "$OUTPUT" \
     --gene-pickle "$GE_FILENAME" \
     --celltype-pickle "$CT_FILENAME" \
-    --annotation_keys $ANNOTATION_KEYS
+    --annotation_key "$ANNOTATION_KEY"

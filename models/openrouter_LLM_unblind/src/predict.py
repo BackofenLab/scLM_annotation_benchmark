@@ -554,11 +554,12 @@ def create_results_dataframe(
     if not label_keys:
         label_keys = ["cell_type"]
 
-    for j, key in enumerate(label_keys, start=1):
-        col_name = f"true_labels_{j}" if len(label_keys) > 1 else "true_labels"
-        if key in adata.obs.columns:
-            data[col_name] = list(adata.obs[key].astype("string").values[:n])
-        else:
+    # Process single annotation key
+    key = label_keys[0] if label_keys else "cell_type"
+    col_name = "true_labels"
+    if key in adata.obs.columns:
+        data[col_name] = list(adata.obs[key].astype("string").values[:n])
+    else:
             logger.warning(f"'{key}' not found in adata.obs; filling NA")
             data[col_name] = [None] * n
 
@@ -585,7 +586,7 @@ def _parse_args() -> argparse.Namespace:
     p.add_argument("--max_samples", type=int, default=None)
     p.add_argument("--max_workers", type=int, default=3)
     p.add_argument("--delay_between_requests", type=float, default=1.2)
-    p.add_argument("--label_keys", "-l", nargs="+", required=True)
+    p.add_argument("--label_key", "-l", required=True)
     p.add_argument("--api-key", dest="api_key", default=None, help="Override API key (else read env API_KEY)")
 
     # Provider routing
@@ -698,119 +699,108 @@ def main():
             print("ERROR: Mixed gene/ENSG IDs but no gene names found in adata.var.", file=sys.stderr)
             sys.exit(4)
 
-    # Create output filename for this annotation level
-    output_path = Path(args.output)
-    output_stem = output_path.stem
-    output_suffix = output_path.suffix
-    output_dir = output_path.parent
+    annotation_key = args.label_key
+    print(f"Processing annotation key: {annotation_key}")
 
-    # Loop over annotation keys
-    for annotation_key in args.label_keys:
+    if annotation_key not in adata.obs.columns:
+        print(f"ERROR: Label '{annotation_key}' not in adata.obs columns", file=sys.stderr)
+        print(f"Available columns: {list(adata.obs.columns)}", file=sys.stderr)
+        sys.exit(4)
 
-        print(f"Processing annotation key: {annotation_key}")
+    adata.obs["true_labels"] = adata.obs[annotation_key].astype("category")
 
-        # Choose primary label column for prompt building
-        #primary_label = args.label_keys[0]
-        if annotation_key not in adata.obs.columns:
-            print(f"ERROR: Label '{annotation_key}' not in adata.obs columns", file=sys.stderr)
-            print(f"Available columns: {list(adata.obs.columns)}", file=sys.stderr)
-            sys.exit(4)
+    # Get the set of labels once (robust to categorical dtype)
+    if pd.api.types.is_categorical_dtype(adata.obs["true_labels"]):
+        labels = adata.obs["true_labels"].cat.categories.to_numpy()
+    else:
+        labels = pd.unique(adata.obs["true_labels"].values)
 
-        adata.obs["true_labels"] = adata.obs[annotation_key].astype("category")
+    rng = np.random.default_rng(42)  # set a seed if you want reproducibility
 
-        # Get the set of labels once (robust to categorical dtype)
-        if pd.api.types.is_categorical_dtype(adata.obs["true_labels"]):
-            labels = adata.obs["true_labels"].cat.categories.to_numpy()
-        else:
-            labels = pd.unique(adata.obs["true_labels"].values)
+    # One shuffled list per observation
+    adata.obs["unique_cell_types"] = [rng.permutation(labels).tolist() for _ in range(adata.n_obs)]
 
-        rng = np.random.default_rng(42)  # set a seed if you want reproducibility
+    print(adata.var_names[:10])
 
-        # One shuffled list per observation
-        adata.obs["unique_cell_types"] = [rng.permutation(labels).tolist() for _ in range(adata.n_obs)]
+    # Build C2S dataset (only needs true_labels)
+    arrow_ds, vocab = cs.CSData.adata_to_arrow(
+        adata=adata,
+        random_state=args.seed,
+        sentence_delimiter=" ",
+        label_col_names=["true_labels", "unique_cell_types"],
+    )
+    save_dir = Path(args.output).parent
+    csdata = cs.CSData.csdata_from_arrow(
+        arrow_dataset=arrow_ds,
+        vocabulary=vocab,
+        save_dir=str(save_dir),
+        save_name=f"{Path(args.input).stem}_c2s",
+        dataset_backend="arrow",
+    )
 
-        print(adata.var_names[:10])
+    # Run predictions
+    preds = run_OpenRouter_model_prediction(
+        model=args.model,
+        api_key=api_key,
+        csdata=csdata,
+        task_name=args.task_name,
+        input_prompt_template=args.input_prompt_template,
+        answer_template=args.answer_template,
+        top_k_genes=args.top_k_genes,
+        max_samples=args.max_samples,
+        max_workers=args.max_workers,
+        delay_between_requests=args.delay_between_requests,
+        # Provider
+        provider_order=args.provider_order,
+        provider_only=args.provider_only,
+        provider_ignore=args.provider_ignore,
+        provider_allow_fallbacks=args.provider_allow_fallbacks,
+        provider_require_parameters=args.provider_require_parameters,
+        provider_data_collection=args.provider_data_collection,
+        provider_sort=args.provider_sort,
+        provider_quantizations=args.provider_quantizations,
+        provider_max_price_prompt=args.provider_max_price_prompt,
+        provider_max_price_completion=args.provider_max_price_completion,
+        # Generation
+        max_tokens=args.max_tokens,
+        temperature=args.temperature,
+        top_p=args.top_p,
+        top_k=args.top_k,
+        seed=args.seed,
+        frequency_penalty=args.frequency_penalty,
+        presence_penalty=args.presence_penalty,
+        repetition_penalty=args.repetition_penalty,
+        stop=args.stop,
+        stream=args.stream,
+        response_format=args.response_format,
+        # Reasoning
+        reasoning_effort=args.reasoning_effort,
+        reasoning_max_tokens=args.reasoning_max_tokens,
+        reasoning_exclude=args.reasoning_exclude,
+        # Headers
+        http_referer=args.http_referer,
+        x_title=args.x_title,
+        prepend_reasoning=args.prepend_reasoning,
+    )
 
-        # Build C2S dataset (only needs true_labels)
-        arrow_ds, vocab = cs.CSData.adata_to_arrow(
-            adata=adata,
-            random_state=args.seed,
-            sentence_delimiter=" ",
-            label_col_names=["true_labels", "unique_cell_types"],
-        )
-        save_dir = Path(args.output).parent
-        csdata = cs.CSData.csdata_from_arrow(
-            arrow_dataset=arrow_ds,
-            vocabulary=vocab,
-            save_dir=str(save_dir),
-            save_name=f"{Path(args.input).stem}_c2s",
-            dataset_backend="arrow",
-        )
+    # Print the first 10 predictions for debugging
+    print(preds[:10])
 
-        # Run predictions
-        preds = run_OpenRouter_model_prediction(
-            model=args.model,
-            api_key=api_key,
-            csdata=csdata,
-            task_name=args.task_name,
-            input_prompt_template=args.input_prompt_template,
-            answer_template=args.answer_template,
-            top_k_genes=args.top_k_genes,
-            max_samples=args.max_samples,
-            max_workers=args.max_workers,
-            delay_between_requests=args.delay_between_requests,
-            # Provider
-            provider_order=args.provider_order,
-            provider_only=args.provider_only,
-            provider_ignore=args.provider_ignore,
-            provider_allow_fallbacks=args.provider_allow_fallbacks,
-            provider_require_parameters=args.provider_require_parameters,
-            provider_data_collection=args.provider_data_collection,
-            provider_sort=args.provider_sort,
-            provider_quantizations=args.provider_quantizations,
-            provider_max_price_prompt=args.provider_max_price_prompt,
-            provider_max_price_completion=args.provider_max_price_completion,
-            # Generation
-            max_tokens=args.max_tokens,
-            temperature=args.temperature,
-            top_p=args.top_p,
-            top_k=args.top_k,
-            seed=args.seed,
-            frequency_penalty=args.frequency_penalty,
-            presence_penalty=args.presence_penalty,
-            repetition_penalty=args.repetition_penalty,
-            stop=args.stop,
-            stream=args.stream,
-            response_format=args.response_format,
-            # Reasoning
-            reasoning_effort=args.reasoning_effort,
-            reasoning_max_tokens=args.reasoning_max_tokens,
-            reasoning_exclude=args.reasoning_exclude,
-            # Headers
-            http_referer=args.http_referer,
-            x_title=args.x_title,
-            prepend_reasoning=args.prepend_reasoning,
-        )
+    # Convert predicted CL terms -> (normalized CL ID, cell type label)
+    if args.output_mode == "cl_id":
+        pred_cl_ids, pred_labels = cl_ids_and_labels_from_preds(preds, online=True, follow_replacements=True)
+    elif args.output_mode == "label":
+        pred_labels = preds
+        pred_cl_ids = [None] * len(preds)
+    else:
+        raise ValueError(f"Invalid output mode: {args.output_mode}")
 
-        # Print the first 10 predictions for debugging
-        print(preds[:10])
-
-        # Convert predicted CL terms -> (normalized CL ID, cell type label)
-        if args.output_mode == "cl_id":
-            pred_cl_ids, pred_labels = cl_ids_and_labels_from_preds(preds, online=True, follow_replacements=True)
-        elif args.output_mode == "label":
-            pred_labels = preds
-            pred_cl_ids = [None] * len(preds)
-        else:
-            raise ValueError(f"Invalid output mode: {args.output_mode}")
-
-        # Build and save results
-        df = create_results_dataframe(adata, pred_cl_ids, pred_labels, args.label_keys)
-        
-        output_csv = output_dir / f"{output_stem}_{annotation_key}{output_suffix}"
-        Path(output_csv).parent.mkdir(parents=True, exist_ok=True)
-        df.to_csv(output_csv, index=True)
-        logger.info(f"Wrote predictions: {output_csv}")
+    # Build and save results
+    df = create_results_dataframe(adata, pred_cl_ids, pred_labels, [annotation_key])
+    
+    Path(args.output).parent.mkdir(parents=True, exist_ok=True)
+    df.to_csv(args.output, index=True)
+    logger.info(f"Wrote predictions: {args.output}")
 
 
 if __name__ == "__main__":

@@ -15,22 +15,6 @@ from util.ontology_helpers import apply_ontology_mapping_to_cell_type_list
 from util.ontology_mapper import filter_predictions_by_review_status
 
 # -- Utility functions --
-def extract_label_suffix(filepath):
-    """Extract label suffix from prediction CSV filename.
-    
-    Extracts the label identifier after 'predictions_' and before '.csv'
-    Examples: 
-    - 'predictions_AIFI_L1.csv' -> 'AIFI_L1'
-    - 'predictions_AIFI_L2.csv' -> 'AIFI_L2'
-    - 'predictions.csv' -> None
-    """
-    filename = Path(filepath).name
-    # Try to match predictions_LABEL_SUFFIX.csv
-    match = re.search(r'predictions_(.+?)\.csv$', filename, re.IGNORECASE)
-    if match:
-        return match.group(1)
-    else:
-        return None
 
 def parse_pred_input(pred_input):
     """Convert prediction input to list of file paths.
@@ -154,7 +138,7 @@ def apply_ontology_mapping_to_predictions(df: pd.DataFrame, pred_col: str, cache
     
     return df
 
-def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_ratio=0.0, cache_dir=None, label_suffix=None):
+def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_ratio=0.0, cache_dir=None):
     
     true_labels = df[true_col]
     pred_labels = df[pred_col]  # Use mapped predicted labels directly
@@ -247,10 +231,7 @@ def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_rati
             print(f"Balanced ID accuracy: {avg_similarities.get('balanced_id_accuracy', 'N/A'):.4f}")
             
             # Save scored CSV with ontology similarities (unique combinations)
-            if label_suffix:
-                scored_csv_path = output_dir / f"{true_col}_{label_suffix}_scored.csv"
-            else:
-                scored_csv_path = output_dir / f"{true_col}_scored.csv"
+            scored_csv_path = output_dir / f"{true_col}_scored.csv"
             
             # ontology_df now contains unique combinations with aggregated scores
             ontology_df.to_csv(scored_csv_path, index=False)
@@ -268,10 +249,7 @@ def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_rati
     plotter = UMAPCellPlotter()
 
     # Generate confusion matrix
-    if label_suffix:
-        output_plot_path = output_dir / f"{true_col}_{label_suffix}_confusion_matrix.pdf"
-    else:
-        output_plot_path = output_dir / f"{true_col}_confusion_matrix.pdf"
+    output_plot_path = output_dir / f"{true_col}_confusion_matrix.pdf"
     title = f"Confusion Matrix {true_col} (Balanced Accuracy = {balanced_acc:.2f})"
     
     plotter.plot_cm(
@@ -324,13 +302,6 @@ def main(args):
         print(f"\n{'='*60}")
         print(f"Processing prediction file: {pred_file}")
         print(f"{'='*60}")
-        
-        # Extract label suffix for identification purposes
-        label_suffix = extract_label_suffix(pred_file)
-        if label_suffix:
-            print(f"Processing prediction file with label suffix: {label_suffix}")
-        else:
-            print(f"Processing basic prediction file (no label suffix)")
         
         # Load the prediction file
         try:
@@ -415,7 +386,7 @@ def main(args):
                 print(f"\nProcessing {true_col}...")
                 
                 # Run evaluation with mapped predicted labels
-                eval_results = run_eval(df, true_col, pred_col, output_dir, cl_path, args.max_unmapped_ratio, cache_dir, label_suffix)
+                eval_results = run_eval(df, true_col, pred_col, output_dir, cl_path, args.max_unmapped_ratio, cache_dir)
 
                 # Round numerical results for JSON output and store per true_col
                 rounded_results = {}

@@ -9,14 +9,11 @@ CFG_YAML=$(realpath "$3")
 OUTPUT_DIR=$(dirname "$OUT_CSV")
 mkdir -p "$OUTPUT_DIR"
 
-ANNOTATION_KEYS=$(python - <<'PY' "$CFG_YAML"
+ANNOTATION_KEY=$(python - <<'PY' "$CFG_YAML"
 import yaml, sys
 config = yaml.safe_load(open(sys.argv[1]))
-annotation_keys = config.get('annotation_keys', [])
-if annotation_keys:
-    print(' '.join(annotation_keys))  # Print all annotation keys space-separated
-else:
-    print('cell_type')  # Default fallback
+annotation_key = config.get('annotation_key', 'cell_type')
+print(annotation_key)
 PY
 )
 
@@ -25,4 +22,4 @@ python "$(dirname "$0")/predict.py" \
   --input "$INPUT_H5AD" \
   --output "$OUT_CSV" \
   --model "Immune_All_High.pkl" \
-  --annotation_keys $ANNOTATION_KEYS
+  --annotation_key "$ANNOTATION_KEY"

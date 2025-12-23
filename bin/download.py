@@ -7,7 +7,7 @@ It
 1. Looks up the dataset's YAML descriptor (name, URL, keys, …).
 2. Caches the **full** file under ``<data_cache>/<dataset>.<ext>``  
    (skips download when already present).
-3. Always verifies that the required ``annotation_keys`` exist.
+3. Always verifies that the required ``annotation_key`` exists.
 4. Optionally writes a *subset* copy
    ``<data_cache>/<dataset>_sub{n}.<ext>`` (skips if present).
 5. Copies (or hard-links) the file that will actually be used
@@ -164,7 +164,7 @@ def main() -> None:
 
     # Always verify before (optional) subsetting
     ad_full = read_adata(full_path)
-    verify_columns(ad_full, list(cfg["annotation_keys"]) + [cfg["batch_key"]])
+    verify_columns(ad_full, [cfg["annotation_key"]] + ([cfg["batch_key"]] if cfg.get("batch_key") else []))
 
     chosen = maybe_subset(
         full_path,
@@ -180,10 +180,10 @@ def main() -> None:
         print("[INFO] Applying ontology mapping to annotations...")
         adata_to_map = read_adata(chosen)
         
-        # Apply ontology mapping to annotation keys
+        # Apply ontology mapping to annotation key
         adata_mapped = apply_ontology_mapping_to_dataset(
             adata=adata_to_map,
-            annotation_keys=list(cfg["annotation_keys"]),
+            annotation_keys=[cfg["annotation_key"]],
             cache_dir=download_cache_dir,
             verbose=True,
             origin=cfg['name']  # Pass dataset name as origin
@@ -198,15 +198,15 @@ def main() -> None:
         adata = read_adata(chosen)
         restored_any = False
         
-        for key in cfg["annotation_keys"]:
-            original_key = f"original_{key}"
-            if original_key in adata.obs.columns:
-                print(f"[INFO] Restoring '{key}' from '{original_key}' backup column...")
-                adata.obs[key] = adata.obs[original_key].copy()
-                restored_any = True
-            elif key in adata.obs.columns:
-                # Original column doesn't exist, assume current column is already original
-                print(f"[INFO] No backup found for '{key}' - assuming current values are original")
+        key = cfg["annotation_key"]
+        original_key = f"original_{key}"
+        if original_key in adata.obs.columns:
+            print(f"[INFO] Restoring '{key}' from '{original_key}' backup column...")
+            adata.obs[key] = adata.obs[original_key].copy()
+            restored_any = True
+        elif key in adata.obs.columns:
+            # Original column doesn't exist, assume current column is already original
+            print(f"[INFO] No backup found for '{key}' - assuming current values are original")
         
         if restored_any:
             # Write the restored data back to cache

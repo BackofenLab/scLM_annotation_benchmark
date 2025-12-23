@@ -406,8 +406,8 @@ def main():
                        help=f"Output CSV file path base name (default: {default_output})")
     parser.add_argument("--model", "-m", default="vandijklab/C2S-Scale-Gemma-2-27B", 
                        help="HuggingFace model ID (default: vandijklab/C2S-Scale-Gemma-2-27B)")
-    parser.add_argument("--annotation_keys", nargs='+', default=["cell_ontology_class"],
-                       help="Keys in adata.obs containing true labels (default: cell_ontology_class)")
+    parser.add_argument("--annotation_key", default="cell_ontology_class",
+                       help="Key in adata.obs containing true labels (default: cell_ontology_class)")
     parser.add_argument("--n_genes", type=int, default=200,
                        help="Number of genes to use for prediction (default: 200)")
     parser.add_argument("--cache_dir", default=None,
@@ -440,60 +440,51 @@ def main():
     # Load data
     adata = load_data(args.input)
     
-    # Load model and tokenizer (once, reuse for all annotation keys)
+    # Load model and tokenizer
     model, tokenizer, effective_device = load_model(
         args.model, device, args.cache_dir, multi_gpu=args.multi_gpu
     )
     
-    # Get output path components
-    output_path = Path(args.output)
-    output_dir = output_path.parent
-    output_stem = output_path.stem
-    output_suffix = output_path.suffix
+    annotation_key = args.annotation_key
+    logger.info(f"Processing annotation key: {annotation_key}")
     
-    # Process each annotation key
-    for annotation_key in args.annotation_keys:
-        logger.info(f"Processing annotation key: {annotation_key}")
-        
-        # Check if annotation key exists
-        if annotation_key not in adata.obs.columns:
-            logger.error(f"'{annotation_key}' not found in adata.obs")
-            logger.error(f"Available keys: {list(adata.obs.columns)}")
-            logger.warning(f"Skipping {annotation_key}")
-            continue
-        
-        # Convert to arrow dataset
-        arrow_ds = convert_to_arrow_dataset(adata, annotation_key)
-        
-        # Format prompts with custom formatter
-        formatted_ds = format_prompts(arrow_ds, args.n_genes)
-        
-        # Print example prompt
-        if formatted_ds.num_rows > 0:
-            logger.info(f"Example prompt:\n{formatted_ds[0]['model_input'][:500]}...")
-        
-        # Generate predictions
-        predicted_cell_types = generate_predictions(
-            model, 
-            tokenizer, 
-            formatted_ds, 
-            effective_device,
-            max_new_tokens=args.max_new_tokens,
-            batch_size=args.batch_size
-        )
-        
-        # Create results DataFrame
-        results_df = create_results_dataframe(adata, predicted_cell_types, annotation_key)
-        
-        if results_df is not None:
-            # Create output filename for this annotation key
-            output_csv = output_dir / f"{output_stem}_{annotation_key}{output_suffix}"
-            
-            # Save results
-            save_results(results_df, str(output_csv))
-            logger.info(f"Results for {annotation_key} saved to: {output_csv}")
-        else:
-            logger.warning(f"Skipping {annotation_key} due to errors")
+    # Check if annotation key exists
+    if annotation_key not in adata.obs.columns:
+        logger.error(f"'{annotation_key}' not found in adata.obs")
+        logger.error(f"Available keys: {list(adata.obs.columns)}")
+        sys.exit(1)
+    
+    # Convert to arrow dataset
+    arrow_ds = convert_to_arrow_dataset(adata, annotation_key)
+    
+    # Format prompts with custom formatter
+    formatted_ds = format_prompts(arrow_ds, args.n_genes)
+    
+    # Print example prompt
+    if formatted_ds.num_rows > 0:
+        logger.info(f"Example prompt:\n{formatted_ds[0]['model_input'][:500]}...")
+    
+    # Generate predictions
+    predicted_cell_types = generate_predictions(
+        model, 
+        tokenizer, 
+        formatted_ds, 
+        effective_device,
+        max_new_tokens=args.max_new_tokens,
+        batch_size=args.batch_size
+    )
+    
+    # Create results DataFrame
+    results_df = create_results_dataframe(adata, predicted_cell_types, annotation_key)
+    
+    if results_df is not None:
+        # Save results
+        print(f"Saving results to: {args.output}")
+        save_results(results_df, args.output)
+        logger.info(f"Results saved to: {args.output}")
+    else:
+        logger.error("Failed to create results DataFrame")
+        sys.exit(1)
     
     logger.info("C2S-Scale prediction pipeline completed successfully")
 

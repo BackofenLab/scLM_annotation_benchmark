@@ -497,10 +497,9 @@ def parse_args() -> argparse.Namespace:
         help="torch device, e.g. 'cuda:0' or 'cpu' (default: auto)",
     )
     p.add_argument(
-        "--annotation_keys",
-        nargs='+',
-        default=["cell_type"], 
-        help="Keys in adata.obs containing true labels (can specify multiple)",
+        "--annotation_key",
+        default="cell_type", 
+        help="Key in adata.obs containing true labels",
     )
     return p.parse_args()
 
@@ -510,11 +509,8 @@ def main():
     logger.info("Args: %s", args)
 
     base_dir = Path.cwd()
-    output_path = Path(args.output)
-    output_dir = output_path.parent
-    output_stem = output_path.stem
-    output_suffix = output_path.suffix
     model_path = args.model_path.parent
+    output_dir = Path(args.output).parent
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # Seed
@@ -524,37 +520,36 @@ def main():
     model, tokenizer, text_encoder, ctm_head = load_model_assets(model_path, device)
     logger.info("Model assets loaded.")
 
-    for annotation_key in args.annotation_keys:
-        print(f"Running prediction for annotation key: {annotation_key}")
-        (
-            dataset_sub,
-            testdataset,
-            texts,
-            text_embs,
-            dataloader,
-            types,
-            cell_indices
-        ) = load_dataset(tokenizer, text_encoder, annotation_key, args)
-        print("Loading dataset finished.")
-        # use the following line to combine cell emb and text
-        pred_df = predict(
-            model,
-            tokenizer,
-            text_encoder,
-            ctm_head,
-            dataset_sub,
-            testdataset,
-            texts,
-            text_embs,
-            dataloader,
-            types,
-            cell_indices,
-            args,
-        )
-        output_csv = output_dir / f"{output_stem}_{annotation_key}{output_suffix}"
-        pred_df.to_csv(output_csv, index=True)
-        logger.info("Langcell prediction pipeline completed successfully")
-        logger.info(f"Results saved to: {args.output}")
+    annotation_key = args.annotation_key
+    print(f"Running prediction for annotation key: {annotation_key}")
+    (
+        dataset_sub,
+        testdataset,
+        texts,
+        text_embs,
+        dataloader,
+        types,
+        cell_indices
+    ) = load_dataset(tokenizer, text_encoder, annotation_key, args)
+    print("Loading dataset finished.")
+    # use the following line to combine cell emb and text
+    pred_df = predict(
+        model,
+        tokenizer,
+        text_encoder,
+        ctm_head,
+        dataset_sub,
+        testdataset,
+        texts,
+        text_embs,
+        dataloader,
+        types,
+        cell_indices,
+        args,
+    )
+    pred_df.to_csv(args.output, index=True)
+    logger.info("Langcell prediction pipeline completed successfully")
+    logger.info(f"Results saved to: {args.output}")
 
 
 if __name__ == "__main__":

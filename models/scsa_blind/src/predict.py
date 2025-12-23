@@ -364,10 +364,9 @@ def main():
         help='Path to SCSA database (default: whole.db)'
     )
     parser.add_argument(
-        '--annotation_keys',
-        nargs='+',
+        '--annotation_key',
         required=True,
-        help='Keys in adata.obs for true cell type labels (one or more)'
+        help='Key in adata.obs for true cell type labels'
     )
     parser.add_argument(
         '--cluster-col',
@@ -457,43 +456,40 @@ def main():
             tissue=args.tissue
         )
         
-        # Step 3: Map to cells for each annotation key
+        # Step 3: Map to cells
         print("\n" + "="*60)
-        print("STEP 3: Mapping predictions to cells for each annotation key")
+        print("STEP 3: Mapping predictions to cells")
         print("="*60)
         
-        for annotation_key in args.annotation_keys:
-            print(f"\n--- Processing annotation key: {annotation_key} ---")
-            
-            # Check if annotation key exists
-            if annotation_key not in adata.obs.columns:
-                print(f"Warning: '{annotation_key}' not found in adata.obs.columns")
-                print(f"Available columns: {list(adata.obs.columns)}")
-                continue
-            
-            # Map to cells using this annotation key
-            result_df = map_to_cells(
-                temp_scsa_output, adata, cluster_col,
-                true_label_col=annotation_key
-            )
-            
-            # Create output filename for this annotation key
-            output_csv = os.path.join(output_dir, f"{output_stem}_{annotation_key}{output_suffix}")
-            
-            # Save final output
-            print(f"\nSaving results to {output_csv}")
-            result_df.to_csv(output_csv, index=False)
-            print(f"  ✓ Saved {len(result_df)} cell predictions")
-            
-            # Print summary for this annotation key
-            print(f"\nSummary for {annotation_key}:")
-            print(f"  Total cells: {len(result_df)}")
-            print(f"  Unique true labels: {len(result_df['true_labels'].unique())}")
-            print(f"  Unique predicted labels: {len(result_df['predicted_labels'].unique())}")
-            
-            # Calculate accuracy
-            accuracy = (result_df['true_labels'] == result_df['predicted_labels']).mean()
-            print(f"  Overall accuracy: {accuracy:.3f}")
+        annotation_key = args.annotation_key
+        print(f"\n--- Processing annotation key: {annotation_key} ---")
+        
+        # Check if annotation key exists
+        if annotation_key not in adata.obs.columns:
+            print(f"Error: '{annotation_key}' not found in adata.obs.columns")
+            print(f"Available columns: {list(adata.obs.columns)}")
+            sys.exit(1)
+        
+        # Map to cells using this annotation key
+        result_df = map_to_cells(
+            temp_scsa_output, adata, cluster_col,
+            true_label_col=annotation_key
+        )
+        
+        # Save final output
+        print(f"\nSaving results to {args.output}")
+        result_df.to_csv(args.output, index=False)
+        print(f"  ✓ Saved {len(result_df)} cell predictions")
+        
+        # Print summary
+        print(f"\nSummary for {annotation_key}:")
+        print(f"  Total cells: {len(result_df)}")
+        print(f"  Unique true labels: {len(result_df['true_labels'].unique())}")
+        print(f"  Unique predicted labels: {len(result_df['predicted_labels'].unique())}")
+        
+        # Calculate accuracy
+        accuracy = (result_df['true_labels'] == result_df['predicted_labels']).mean()
+        print(f"  Overall accuracy: {accuracy:.3f}")
         
         # Keep temporary files for inspection (don't delete them)
         print(f"\nTemporary files kept for inspection:")

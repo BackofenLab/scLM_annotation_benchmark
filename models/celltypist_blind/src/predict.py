@@ -162,8 +162,8 @@ def main():
                        help=f"Output CSV file path base name (default: {default_output})")
     parser.add_argument("--model", "-m", default="Immune_All_High.pkl", 
                        help="CellTypist model to use (default: Immune_All_High.pkl)")
-    parser.add_argument("--annotation_keys", nargs='+', default=["cell_ontology_class"],
-                       help="Keys in adata.obs containing true labels (default: cell_ontology_class)")
+    parser.add_argument("--annotation_key", default="cell_ontology_class",
+                       help="Key in adata.obs containing true labels (default: cell_ontology_class)")
     
     args = parser.parse_args()
     
@@ -176,29 +176,20 @@ def main():
     # Run prediction once
     predictions = run_celltypist_prediction(adata, model_to_use)
     
-    # Get base output path info (same as CellWhisperer)
-    output_path = Path(args.output)
-    output_dir = output_path.parent
-    output_stem = output_path.stem
-    output_suffix = output_path.suffix
+    annotation_key = args.annotation_key
+    logger.info(f"Processing annotation key: {annotation_key}")
     
-    # Process each annotation key separately
-    for annotation_key in args.annotation_keys:
-        logger.info(f"Processing annotation key: {annotation_key}")
-        
-        # Create results DataFrame for this annotation key
-        results_df = create_results_dataframe_for_key(adata, predictions, annotation_key)
-        
-        if results_df is not None:
-            # Create output filename for this annotation level (same naming as CellWhisperer)
-            output_csv = output_dir / f"{output_stem}_{annotation_key}{output_suffix}"
-            
-            # Save results
-            print(f"Saving results to: {output_csv}")
-            save_results(results_df, str(output_csv))
-            logger.info(f"Results for {annotation_key} saved to: {output_csv}")
-        else:
-            logger.warning(f"Skipping {annotation_key} due to errors")
+    # Create results DataFrame
+    results_df = create_results_dataframe_for_key(adata, predictions, annotation_key)
+    
+    if results_df is not None:
+        # Save results
+        print(f"Saving results to: {args.output}")
+        save_results(results_df, args.output)
+        logger.info(f"Results saved to: {args.output}")
+    else:
+        logger.error("Failed to create results DataFrame")
+        sys.exit(1)
     
     logger.info("CellTypist prediction pipeline completed successfully")
 
