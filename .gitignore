@@ -23,3 +23,10 @@ results/
 
 .env
 .DS_Store
+
+# Langcell files
+*.bin
+*.sqlite
+config.json
+obo.json
+langcell_pretrained_model_datasets.zip
