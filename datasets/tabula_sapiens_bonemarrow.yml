@@ -4,7 +4,7 @@ url: https://figshare.com/ndownloader/files/50850783/Bone_Marrow_TSP1_30_version
 format: h5ad
 subset_size: 20000                # null → use full dataset
 batch_key: donor
-annotation_keys: [cell_ontology_class]
+annotation_key: cell_ontology_class
 apply_ontology_mapping: true
 
 preprocessing:
