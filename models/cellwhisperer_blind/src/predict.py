@@ -5,10 +5,10 @@ This is a "blind" prediction mode that scores against all known cell types.
 OPTIMIZED FOR MAC MPS: Uses cache=False to avoid repeated model loading
 
 Usage:
-  python predict.py --input <h5ad_path> --output <csv_path> --cache_dir <cache_dir>
+  python predict.py --input <h5ad_path> --output <csv_path> --cache_dir <cache_dir> --annotation_key <label_key>
 
 Outputs:
-  - CSV file with cell_id and predicted_labels columns
+  - CSV file with cell_id, true_labels, and predicted_labels columns
 """
 import sys, torch, anndata as ad, pathlib
 import pandas as pd
@@ -24,6 +24,7 @@ def parse_args():
     parser.add_argument('--output', required=True, help='Path to output CSV file')
     parser.add_argument('--cache_dir', required=True, help='Path to cache directory. Model checkpoints and cell type list will be loaded from here.')
     parser.add_argument('--cell_types_file', default='all_cell_types.txt', help='Name of cell types file in cache_dir (default: all_cell_types.txt)')
+    parser.add_argument('--annotation_key', required=True, help='Key in adata.obs for true cell type labels')
     return parser.parse_args()
 
 # Parse command line arguments
@@ -32,6 +33,7 @@ adata_path = args.input
 output_csv = args.output
 CACHE_DIR = pathlib.Path(args.cache_dir)
 CELL_TYPES_FILE = CACHE_DIR.parent / args.cell_types_file
+ANNOTATION_KEY = args.annotation_key
 # Configuration
 CKPT = CACHE_DIR / "cellwhisperer_emb/cellwhisperer_jointemb_v1.ckpt"              # adjust!
 URL = "https://medical-epigenomics.org/papers/schaefer2024/data/models/cellwhisperer_clip_v1.ckpt"
@@ -63,6 +65,13 @@ if "counts" in adata.layers:
     adata.X = adata.layers["counts"]
 else:
     raise ValueError("Counts layer not found in adata.layers")
+
+# Check if annotation key exists
+if ANNOTATION_KEY not in adata.obs.columns:
+    print(f"Error: '{ANNOTATION_KEY}' not found in adata.obs.columns")
+    print(f"Available columns: {list(adata.obs.columns)}")
+    sys.exit(1)
+
 #gene_ids = adata.var["gene_name"].tolist()
 # Reduce batch size for Mac MPS to avoid memory issues
 batch_size = 32 if device.type == "mps" else 128 if device.type == "cuda" else 16
@@ -112,6 +121,7 @@ print(f"Processing completed in {elapsed_time:.2f} seconds ({elapsed_time/60:.2f
 print("\n=== SAVING RESULTS ===")
 
 cell_ids = adata.obs.index.tolist()
+true_labels = adata.obs[ANNOTATION_KEY].values
 
 # Get predicted labels (highest scoring cell type for each cell)
 predicted_indices = scores.argmax(dim=0)  # Shape: [n_cells]
@@ -120,6 +130,7 @@ predicted_labels = [cell_type_labels[i] for i in predicted_indices]
 # Create and save results DataFrame
 results_df = pd.DataFrame({
     'cell_id': cell_ids,
+    'true_labels': true_labels,
     'predicted_labels': predicted_labels
 })
 

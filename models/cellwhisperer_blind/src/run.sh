@@ -16,9 +16,19 @@ SCRIPT_DIR=$(dirname "$(realpath "$0")")
 # fix gmpy2 error
 export SYMPY_USE_GMPY=0
 
-# Run CellWhisperer prediction with all annotation keys
+# Extract annotation key from config
+ANNOTATION_KEY=$(python - <<'PY' "$CFG_YAML"
+import yaml, sys
+config = yaml.safe_load(open(sys.argv[1]))
+annotation_key = config.get('annotation_key', 'cell_type')
+print(annotation_key)
+PY
+)
+
+# Run CellWhisperer prediction
 python "$SCRIPT_DIR/predict.py" \
   --input "$INPUT_H5AD" \
   --output "$OUT_CSV" \
   --cell_types_file "all_cell_types.txt" \
+  --annotation_key "$ANNOTATION_KEY" \
   --cache_dir "$CACHE_DIR"
