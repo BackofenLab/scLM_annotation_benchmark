@@ -2,7 +2,16 @@
 name: human_pancreas         # used in channel / filenames
 url: https://figshare.com/ndownloader/files/24539828
 format: h5ad
-subset_size: 20000                # null → use full dataset
+subset_size: 100                # null → use full dataset
 batch_key: "tech"
 annotation_key: "celltype"
 apply_ontology_mapping: true
+# Optional metadata for InstructCell - can use either:
+#   Option 1: Direct values (applied to all cells in dataset)
+species: "human"                    # direct value for all cells
+tissue: "pancreas"                  # direct value for all cells
+#     sequencing_method: "10xGenomics"    # direct value for all cells
+#   Option 2: Keys (per-cell values from adata.obs columns)
+#     species_key: "species"              # column name for species metadata (per-cell)
+#     tissue_key: "tissue"                # column name for tissue metadata (per-cell)
+sequencing_method_key: "tech"  # column name for sequencing method (per-cell)
