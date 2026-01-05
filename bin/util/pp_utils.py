@@ -15,6 +15,9 @@ from anndata import AnnData
 from scipy.stats import median_abs_deviation
 import pybiomart
 from pathlib import Path
+import matplotlib.pyplot as plt
+import seaborn as sns
+from matplotlib.backends.backend_pdf import PdfPages
 
 
 logger = logging.getLogger(__name__)
@@ -312,6 +315,7 @@ def pp_quality_control(
     nmads_mt: int = 3,
     pct_counts_mt_threshold: float = 8.0,
     percent_top: list[int] | None = None,
+    pdf: PdfPages | None = None,
 ) -> AnnData:
     """
     Perform quality control filtering on single-cell RNA-seq data based on various metrics.
@@ -377,6 +381,13 @@ def pp_quality_control(
         inplace=True,
         percent_top=percent_top,
         log1p=False,
+    )
+
+    logger.info("Generating QC plots before preprocessing...")
+    plot_preprocessing_qc(
+        adata,
+        pdf=pdf,
+        page_title="QC Summary Before Preprocessing",
     )
 
     # 3. Define a helper function for outlier detection using median absolute deviation
@@ -942,6 +953,169 @@ def summarize_adata(adata, out_path="summary.txt"):
 
     Path(out_path).write_text("\n".join(L))
     print(f"[OK] Wrote summary to {Path(out_path).resolve()}")
+
+def plot_preprocessing_qc(
+    adata,
+    pdf=None,
+    page_title="QC Summary Preprocessing",
+    initial_cells: int | None = None,
+    initial_genes: int | None = None,
+):
+    """
+    Generate QC plots on a single-page PDF (3x3 grid).
+
+    Parameters
+    ----------
+    adata : AnnData
+        Preprocessed AnnData object
+    pdf : PdfPages, optional
+        Existing PdfPages object to append a page. If None, a new PDF is created.
+    page_title : str, optional
+        Title displayed on the page.
+    initial_cells : int, optional
+        Initial number of cells before filtering (for display in Plot 6).
+    initial_genes : int, optional
+        Initial number of genes before filtering (for display in Plot 6).
+    """
+
+    # Set publication style
+    sns.set_context("paper", font_scale=1)
+    sns.set_style("white")
+    plt.rcParams.update(
+        {
+            "figure.figsize": (8, 6),
+            "axes.titlesize": 10,
+            "axes.labelsize": 9,
+            "axes.linewidth": 0.8,
+            "xtick.labelsize": 8,
+            "ytick.labelsize": 8,
+            "legend.fontsize": 8,
+            "font.family": "sans-serif",
+            "pdf.fonttype": 42,
+            "ps.fonttype": 42,
+        }
+    )
+
+    fig = plt.figure(figsize=(18, 12))
+    # Main grid with 2 rows
+    gs_main = fig.add_gridspec(2, 1, hspace=0.4)
+    
+    # Top row: 22%, 22%, 56% layout. 5% for 3 %mt, %ribo, %hb violin plots
+    gs_top = gs_main[0].subgridspec(1, 3, wspace=0.3, width_ratios=[0.22, 0.22, 0.56])
+    
+    # Bottom row: 35%, 35%, 30% layout
+    gs_bottom = gs_main[1].subgridspec(1, 3, wspace=0.3, width_ratios=[0.35, 0.35, 0.30])
+    
+    fig.suptitle(page_title, fontsize=16, fontweight="bold")
+
+    # Top row plots
+    # Plot 1: violin plot of total_counts
+    ax = fig.add_subplot(gs_top[0, 0])
+    if "total_counts" in adata.obs.columns:
+        sc.pl.violin(adata, keys="total_counts", ax=ax, show=False)
+        ax.set_title("total_counts")
+    else:
+        ax.text(0.5, 0.5, "total_counts\nnot available", ha="center", va="center", transform=ax.transAxes)
+        ax.set_title("total_counts")
+
+    # Plot 2: violin plot of n_genes_by_counts
+    ax = fig.add_subplot(gs_top[0, 1])
+    if "n_genes_by_counts" in adata.obs.columns:
+        sc.pl.violin(adata, keys="n_genes_by_counts", ax=ax, show=False)
+        ax.set_title("n_genes_by_counts")
+    else:
+        ax.text(0.5, 0.5, "n_genes_by_counts\nnot available", ha="center", va="center", transform=ax.transAxes)
+        ax.set_title("n_genes_by_counts")
+
+    # Plot 3: violin plot of pct_counts_mt, pct_counts_ribo, pct_counts_hb
+    ax = fig.add_subplot(gs_top[0, 2])
+    if "pct_counts_mt" in adata.obs.columns and "pct_counts_ribo" in adata.obs.columns and "pct_counts_hb" in adata.obs.columns:
+        sc.pl.violin(adata, keys=["pct_counts_mt", "pct_counts_ribo", "pct_counts_hb"], ax=ax, show=False)
+        ax.set_title("Mito %, Ribo %, HB %")
+    else:
+        ax.text(0.5, 0.5, "pct_counts_mt or pct_counts_ribo or pct_counts_hb\nnot available", ha="center", va="center", transform=ax.transAxes)
+        ax.set_title("Mito %, Ribo %, HB %")
+
+    # Bottom row plots
+    # Plot 4: scatter plot of total_counts vs n_genes_by_counts
+    ax = fig.add_subplot(gs_bottom[0, 0])
+    if "total_counts" in adata.obs.columns and "n_genes_by_counts" in adata.obs.columns:
+        sc.pl.scatter(adata, x="total_counts", y="n_genes_by_counts", color="pct_counts_mt", ax=ax, show=False, color_map="magma_r")
+        if ax.collections and getattr(ax.collections[0], "colorbar", None) is not None:
+            ax.collections[0].colorbar.remove()
+        # Add a compact color legend
+        if ax.collections:
+            sm = ax.collections[0]
+            cbar = fig.colorbar(sm, ax=ax, fraction=0.04, pad=0.02)
+            cbar.ax.tick_params(labelsize=7)
+            cbar.set_label("pct_counts_mt", fontsize=8)
+    else:
+        ax.text(0.5, 0.5, "Scatter plot\nnot available", ha="center", va="center", transform=ax.transAxes)
+        ax.set_title("Counts vs Genes Detected")
+
+    # Plot 5: scatter plot of total_counts vs pct_counts_in_top_20_genes
+    ax = fig.add_subplot(gs_bottom[0, 1])
+    if "total_counts" in adata.obs.columns and "pct_counts_in_top_20_genes" in adata.obs.columns:
+        sc.pl.scatter(adata, x="total_counts", y="pct_counts_in_top_20_genes", ax=ax, show=False)
+    else:
+        ax.text(0.5, 0.5, "Scatter plot\nnot available", ha="center", va="center", transform=ax.transAxes)
+        ax.set_title("total_counts vs pct_counts_in_top_20_genes")
+    
+    # ax = fig.add_subplot(gs_bottom[0, 1])
+    # if "counts" in adata.layers:
+    #     sc.pl.highest_expr_genes(adata, n_top=20, layer="counts", ax=ax, show=False)
+    #     ax.set_title("Top 20 Expressed Genes")
+    # else:
+    #     ax.text(0.5, 0.5, "Top genes\nnot available", ha="center", va="center", transform=ax.transAxes)
+    #     ax.set_title("Top Expressed Genes")
+
+    # Plot 6: Data summary statistics
+    ax = fig.add_subplot(gs_bottom[0, 2])
+    ax.axis("off")
+    
+    # Build summary text with filtering info if available
+    summary_lines = [
+        "Dataset Summary:",
+        "---------------------",
+        f"Cells: {adata.n_obs:,}",
+        f"Genes: {adata.n_vars:,}",
+    ]
+    
+    # Calculate and display filtering info if initial counts differ from current
+    summary_lines.append("")
+    if initial_cells is not None and initial_cells != adata.n_obs:
+        cells_filtered_pct = ((initial_cells - adata.n_obs) / initial_cells * 100)
+        summary_lines.append(f"Cells filtered: {cells_filtered_pct:.1f}%")
+    
+    if initial_genes is not None and initial_genes != adata.n_vars:
+        genes_filtered_pct = ((initial_genes - adata.n_vars) / initial_genes * 100)
+        summary_lines.append(f"Genes filtered: {genes_filtered_pct:.1f}%")
+    
+    summary_lines.extend([
+        "",
+        "Cell QC:",
+        f" - Total counts (median): {adata.obs.get('total_counts', pd.Series([0])).median():.0f}",
+        f" - Genes/cell (median): {adata.obs.get('n_genes_by_counts', pd.Series([0])).median():.0f}",
+        f" - MT % (median): {adata.obs.get('pct_counts_mt', pd.Series([0])).median():.2f}%",
+        f" - Ribo % (median): {adata.obs.get('pct_counts_ribo', pd.Series([0])).median():.2f}%",
+        f" - HB % (median): {adata.obs.get('pct_counts_hb', pd.Series([0])).median():.2f}%",
+    ])
+    
+    summary_text = "\n".join(summary_lines)
+    ax.text(
+        0.05,
+        0.95,
+        summary_text,
+        transform=ax.transAxes,
+        fontsize=11,
+        verticalalignment="top",
+        family="monospace",
+        bbox=dict(boxstyle="round,pad=0.8", facecolor="wheat", alpha=0.3, edgecolor="black", linewidth=0.5),
+    )
+
+    plt.tight_layout()
+    pdf.savefig(fig, bbox_inches="tight")
+    plt.close()
 
 # usage:
 # summarize_adata(adata, "summary.txt")
