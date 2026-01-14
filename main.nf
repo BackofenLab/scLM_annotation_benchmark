@@ -44,6 +44,8 @@ process download {
 }
 
 process prepare_model {
+    conda 'git git-lfs'
+
     input:
     tuple val(model), path(model_dir)
 
@@ -121,6 +123,8 @@ process run_model_throttled {
 
     conda { "envs/models/${model}.yml" }
 
+    publishDir(path: 'results/', mode: 'copy', overwrite: 'true', pattern: '*.csv')
+
     output:
     tuple(path("results/*/*/*/predictions.csv"), val(dataset), val(model), val(cache_dir))
 
@@ -162,7 +166,7 @@ process evaluate_annotation {
     // Tag with dataset and model for easy tracing
     tag { "${dataset}×${model}" }
 
-    publishDir(path: 'results/', mode: 'copy', overwrite: 'false')
+    publishDir(path: 'results/', mode: 'copy', overwrite: 'true')
 
     output:
     path "*.json"

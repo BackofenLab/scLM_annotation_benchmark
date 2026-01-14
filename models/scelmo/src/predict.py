@@ -5,6 +5,7 @@ import pickle
 import sys
 import warnings
 from typing import Tuple, List
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -12,6 +13,9 @@ import scanpy as sc
 import re
 import hnswlib
 
+import logging
+
+logger = logging.getLogger(__name__)
 
 # -----------------------------
 # I/O helpers
@@ -53,6 +57,30 @@ def filter_celltypes(ct_labels, ct_emb, remove):
     emb_f = np.asarray(ct_emb, dtype=np.float32)[keep_mask]
     return labels_f, emb_f
 
+def create_results_dataframe_for_key(adata, predicted_labels, predicted_idx, label_key):
+    """
+    Create a DataFrame with true and predicted labels for a single annotation key.
+    """
+    logger.info(f"Creating results DataFrame for annotation key: {label_key}")
+    
+    # Check if label key exists
+    if label_key not in adata.obs.columns:
+        logger.error(f"'{label_key}' not found in adata.obs")
+        logger.error(f"Available keys: {list(adata.obs.columns)}")
+        return None
+    
+    # Get true labels for this annotation key
+    true_labels = list(adata.obs[label_key][predicted_idx].values)
+    
+    # Create DataFrame with cell_id, true_labels, and predicted_labels
+    results_df = pd.DataFrame({
+        'cell_id': predicted_idx,
+        'true_labels': true_labels,
+        'predicted_labels': predicted_labels
+    })
+    
+    logger.info(f"Created results DataFrame for {label_key} with {len(results_df)} rows")
+    return results_df
 
 
 # -----------------------------
@@ -104,11 +132,16 @@ def build_label_index(ct_emb: np.ndarray, space: str = 'cosine', ef_construction
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--input_h5ad', help='Path to input .h5ad')
-    ap.add_argument('--output_csv', help='Path to output CSV file')
+    ap.add_argument('--output', help='Path to output CSV file')
     ap.add_argument('--gene-pickle', required=True, help='Path to gene embeddings .pickle')
     ap.add_argument('--celltype-pickle', required=True, help='Path to cell-type embeddings .pickle')
-    ap.add_argument('--annotation_key', default='true_labels', help='obs column with ground-truth labels (fallback to cell_type if missing)')
+    ap.add_argument('--annotation_keys', nargs='+', default=['cell_ontology_class'], help='obs column with ground-truth labels (fallback to cell_type if missing)')
     args = ap.parse_args()
+
+    output_path = Path(args.output)
+    output_dir = output_path.parent
+    output_stem = output_path.stem
+    output_suffix = output_path.suffix
 
     # Load artifacts
     gene_labels, gene_emb = _load_pickle(args.gene_pickle, 'gene')
@@ -156,17 +189,22 @@ def main():
     predicted = [ct_labels[i] for i in pred_idx]
 
     # Ground truth
-    ann_col = args.annotation_key if hasattr(args, 'annotation_key') and args.annotation_key in adata.obs else None
-    if ann_col is None:
-        ann_col = 'cell_type' if 'cell_type' in adata.obs else None
-    if ann_col is None:
-        true = ['NA'] * adata.n_obs
-        warnings.warn('No annotation column found; writing NA for true_labels')
-    else:
-        true = adata.obs[ann_col].astype(str).tolist()
-
-    pd.DataFrame({'predicted_labels': predicted, 'true_labels': true}).to_csv(args.output_csv, index=False)
-    print(f"[ok] saved {adata.n_obs} rows to {args.output_csv}")
+    for annotation_key in args.annotation_keys:
+        logger.info(f"Processing annotation key: {annotation_key}")
+        
+        # Create results DataFrame for this annotation key
+        results_df = create_results_dataframe_for_key(adata, predicted, pred_idx, annotation_key)
+        
+        if results_df is not None:
+            # Create output filename for this annotation level (same naming as CellWhisperer)
+            output_csv = output_dir / f"{output_stem}_{annotation_key}{output_suffix}"
+            
+            # Save results
+            print(f"Saving results to: {output_csv}")
+            results_df.to_csv(output_path, index=False)
+            logger.info(f"Results for {annotation_key} saved to: {output_csv}")
+        else:
+            logger.warning(f"Skipping {annotation_key} due to errors")
 
 
 if __name__ == '__main__':

@@ -34,7 +34,7 @@ PY
 
 python "$SCRIPT_DIR/predict.py" \
     --input_h5ad "$INPUT" \
-    --output_csv "$OUTPUT" \
+    --output "$OUTPUT" \
     --gene-pickle "$GE_FILENAME" \
     --celltype-pickle "$CT_FILENAME" \
     --annotation_key "$ANNOTATION_KEY"

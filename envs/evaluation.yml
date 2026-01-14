@@ -7,7 +7,7 @@ dependencies:
   - numpy
   - pyyaml
   - scikit-learn
-  - matplotlib=3.10.0
+  - matplotlib
   - seaborn
   - pronto
   - pip
