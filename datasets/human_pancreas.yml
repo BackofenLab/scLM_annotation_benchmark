@@ -1,8 +1,10 @@
 # datasets/human_pancreas.yml
+# Currently not available on cellxgene (?)
 name: human_pancreas         # used in channel / filenames
-url: https://figshare.com/ndownloader/files/24539828
+url: https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/24539828/human_pancreas_norm_complexBatch.h5ad #https://figshare.com/ndownloader/files/24539828 (Baron 2016 human pancreas dataset)
 format: h5ad
-subset_size: 20000                # null → use full dataset
+subset_size: 2000                # null → use full dataset
 batch_key: "tech"
-annotation_keys: ["celltype"]
+annotation_key: ["celltype"]
 apply_ontology_mapping: true
+celltypist_model: "Adult_Human_PancreaticIslet.pkl" #"Immune_All_High.pkl"

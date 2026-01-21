@@ -1,0 +1,11 @@
+# datasets/HIHA.yml
+# HIHA was uploaded to cellxgene earliest in December 2025.
+name: HIHA       # used in channel / filenames
+source: cellxgene_census
+census_dataset_id: "e522d2cd-7927-4e59-a4ed-064009569279"
+census_version: "2025-11-08" # logs a stable build tag for reproducibility (snapshot of census version)
+subset_size: 2000                # null → use full dataset
+batch_key: "batch_id"
+annotation_key: ["cell_type"] # different annotation levels by the authors are stil available: ["AIFI_L1", "AIFI_L2", "AIFI_L3"]
+apply_ontology_mapping: false # no ontology mapping required for HFRA (cellxgene already has ontology terms)
+celltypist_model: "Immune_All_High.pkl"
