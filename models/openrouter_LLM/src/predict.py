@@ -664,27 +664,27 @@ def main():
     adata = load_data(args.input)
 
     # Check if gene symbols are available somewhere in the anndata object:
-    adata.var_names_make_unique()
-    if adata.var_names.str.contains("ENSG").all():
+    #adata.var_names_make_unique()
+    if adata.var_names.str.contains("ENS").all():
         # All Ensembl IDs, try to swap to gene symbols if available
         if "gene_names" in adata.var.columns:
             adata.var_names = adata.var["gene_names"].astype(str)
-            print("Info: Renamed adata.var_names from ENSG IDs to gene names in adata.var['gene_names'] for cell sentence construction.")
+            print("Info: Renamed adata.var_names from ensembl IDs to gene names in adata.var['gene_names'] for cell sentence construction.")
         elif "feature_name" in adata.var.columns:
             adata.var_names = adata.var["feature_name"].astype(str)
-            print("Info: Renamed adata.var_names from ENSG IDs to feature names in adata.var['feature_name'] for cell sentence construction.")
+            print("Info: Renamed adata.var_names from ensembl IDs to feature names in adata.var['feature_name'] for cell sentence construction.")
         elif "gene_symbols" in adata.var.columns:
             adata.var_names = adata.var["gene_symbols"].astype(str)
-            print("Info: Renamed adata.var_names from ENSG IDs to feature names in adata.var['feature_name'] for cell sentence construction.")
+            print("Info: Renamed adata.var_names from ensembl IDs to feature names in adata.var['feature_name'] for cell sentence construction.")
         else:
             print("ERROR: Gene names are not available in adata.var. Please add gene names to adata.var.", file=sys.stderr)
             sys.exit(4)
-    elif not adata.var_names.str.contains("ENSG").any():
-        # No ENSG IDs at all, so likely gene symbols already present
-        print("Info: adata.var_names appears to be gene symbols (no ENSG IDs found). Continuing with cell sentence construction.")
+    elif not adata.var_names.str.contains("ENS").any():
+        # No ensembl IDs at all, so likely gene symbols already present
+        print("Info: adata.var_names appears to be gene symbols (no ensembl IDs found). Continuing with cell sentence construction.")
     else:
-        # Mixture of gene symbols and ENSG IDs — ambiguous, warn user
-        print("WARNING: adata.var_names contains a mixture of gene symbols and ENSG IDs.", file=sys.stderr)
+        # Mixture of gene symbols and ensembl IDs — ambiguous, warn user
+        print("WARNING: adata.var_names contains a mixture of gene symbols and ensembl IDs.", file=sys.stderr)
         if "gene_names" in adata.var.columns:
             adata.var_names = adata.var["gene_names"].astype(str)
             print("Info: Overwrote adata.var_names with adata.var['gene_names'].")
@@ -695,8 +695,12 @@ def main():
             adata.var_names = adata.var["gene_symbols"].astype(str)
             print("Info: Overwrote adata.var_names with adata.var['gene_symbols'].")
         else:
-            print("ERROR: Mixed gene/ENSG IDs but no gene names found in adata.var.", file=sys.stderr)
+            print("ERROR: Mixed gene/ensembl IDs but no gene names found in adata.var.", file=sys.stderr)
             sys.exit(4)
+
+    # Uppercase before deduping to avoid collisions inside cell2sentence
+    adata.var_names = adata.var_names.str.upper()
+    adata.var_names_make_unique()
 
     # Create output filename for this annotation level
     output_path = Path(args.output)

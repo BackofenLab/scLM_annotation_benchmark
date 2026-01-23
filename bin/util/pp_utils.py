@@ -648,9 +648,8 @@ def ensure_ensembl_ids(
         )
         # Store in ensembl_id column
         adata.var["ensembl_id"] = index_values
-        # Index already has Ensembl IDs, but we'll clean it up
-        # Use values to avoid copy if possible
-        ensembl_ids = pd.Series(index_values.values, index=index_values.index)
+        # Index already has Ensembl IDs; convert to Series for downstream use
+        ensembl_ids = index_values.to_series()
     elif (found_ensembl_col and 
           ensembl_col_fraction >= ensembl_id_threshold):
         logger.info(

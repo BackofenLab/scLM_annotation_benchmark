@@ -7,6 +7,10 @@ dependencies:
   - requests
   - tqdm
   - pronto
+  # Census dependency stack:
+  # Install TileDB-SOMA from conda-forge on macOS to avoid pip wheel/native-lib ABI issues.
+  - tiledbsoma-py
+  - libcxx
   - pip
   - git
   - git-lfs
@@ -14,6 +18,7 @@ dependencies:
     - torch
     - torch_geometric
     - sentence_transformers
+    - cellxgene-census
     - omicverse
     - anndata
     - zarr<3 #omicverse needs an older anndata which needs an older zarr.
