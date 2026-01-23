@@ -19,7 +19,7 @@ dependencies:
     - torch_geometric
     - sentence_transformers
     - cellxgene-census
-    - omicverse
+    - omicverse==1.7.8
     - anndata
     - zarr<3 #omicverse needs an older anndata which needs an older zarr.
     - scanpy  # for preprocessing

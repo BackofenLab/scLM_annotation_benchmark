@@ -4,7 +4,7 @@ url:  https://figshare.com/ndownloader/files/50851056/Liver_TSP1_30_version2d_10
 format: h5ad
 subset_size: 20000                # null → use full dataset
 batch_key: donor
-annotation_key: [cell_ontology_class]
+annotation_keys: [cell_ontology_class]
 apply_ontology_mapping: true
 celltypist_model: "Healthy_Human_Liver.pkl"
 

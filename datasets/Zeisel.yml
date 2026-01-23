@@ -5,6 +5,6 @@ url: https://zenodo.org/api/records/24590958/files/Zeisel_l5_all_rev1.h5ad/conte
 format: h5ad
 subset_size: 2000                # null → use full dataset
 batch_key: "DonorID"
-annotation_key: ["TaxonomyRank4"] # Options: Subclass, Subclass, TaxonomyRank1, TaxonomyRank2, TaxonomyRank3, TaxonomyRank4
+annotation_keys: ["TaxonomyRank4"] # Options: Subclass, Subclass, TaxonomyRank1, TaxonomyRank2, TaxonomyRank3, TaxonomyRank4
 apply_ontology_mapping: true
 celltypist_model: "Mouse_Isocortex_Hippocampus.pkl" #"Mouse_Isocortex_Hippocampus.pkl" #more fine grained: "Mouse_Whole_Brain.pkl"
