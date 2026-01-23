@@ -4,6 +4,6 @@ url: https://zenodo.org/records/17378817/files/human_immune_health_atlas_50k.h5a
 format: h5ad
 subset_size: 20000                # null → use full dataset
 batch_keys: "batch_id"
-annotation_key: ["AIFI_L1"]
+annotation_keys: ["AIFI_L1"]
 apply_ontology_mapping: true
 celltypist_model: "Immune_All_High.pkl"

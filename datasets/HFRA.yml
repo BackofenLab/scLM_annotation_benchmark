@@ -6,6 +6,6 @@ census_dataset_id: "aecc2743-4ff2-4b55-ac8c-a1ff76fc4bb4"
 census_version: "2025-11-08" # logs a stable build tag for reproducibility (snapshot of census version)
 subset_size: 2000                # null → use full dataset
 batch_keys: "donor_id"
-annotation_key: ["cell_type"]
+annotation_keys: ["cell_type"]
 apply_ontology_mapping: false # no ontology mapping required for HFRA (cellxgene already has ontology terms)
 celltypist_model: "Fetal_Human_Retina.pkl"
