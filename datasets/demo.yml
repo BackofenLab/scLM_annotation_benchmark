@@ -5,3 +5,4 @@ format: h5ad
 subset_size: null                # null → use full dataset
 batch_key: method
 annotation_keys: [cell_type]
+celltypist_model: "Immune_All_High.pkl"

@@ -416,6 +416,41 @@ Examples:
     # Write output
     logger.info(f"Writing output to: {args.output}")
     args.output.parent.mkdir(parents=True, exist_ok=True)
+    
+    # Convert Arrow-backed arrays to standard types (anndata can't serialize Arrow to HDF5)
+    import pandas as pd
+    
+    def _sanitize_for_h5ad(df: pd.DataFrame) -> pd.DataFrame:
+        """Convert Arrow-backed columns/categories to standard types for h5ad compatibility."""
+        df = df.copy()
+        for col in df.columns:
+            series = df[col]
+            # Handle categoricals with Arrow-backed categories
+            if hasattr(series.dtype, 'categories'):
+                cat_arr = series.cat.categories
+                cat_type = type(cat_arr.array).__name__ if hasattr(cat_arr, 'array') else ""
+                if "Arrow" in cat_type or "arrow" in str(cat_arr.dtype).lower():
+                    # Rebuild categorical with object-typed categories
+                    new_cats = cat_arr.astype(str).astype(object)
+                    df[col] = pd.Categorical(series, categories=new_cats, ordered=series.cat.ordered)
+            else:
+                # Handle Arrow-backed non-categorical columns
+                arr = series.array if hasattr(series, 'array') else series
+                arr_type = type(arr).__name__
+                dtype_str = str(series.dtype).lower()
+                if "Arrow" in arr_type or "arrow" in dtype_str or "pyarrow" in dtype_str:
+                    df[col] = series.astype(str).astype(object)
+        # Handle index
+        idx = df.index
+        idx_arr = idx.array if hasattr(idx, 'array') else idx
+        idx_type = type(idx_arr).__name__
+        if "Arrow" in idx_type or "arrow" in str(idx.dtype).lower():
+            df.index = idx.astype(str).astype(object)
+        return df
+    
+    adata_processed.obs = _sanitize_for_h5ad(adata_processed.obs)
+    adata_processed.var = _sanitize_for_h5ad(adata_processed.var)
+    
     if args.output.suffix == ".zarr":
         adata_processed.write_zarr(args.output)
     else:
