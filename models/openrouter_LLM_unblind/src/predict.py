@@ -699,20 +699,12 @@ def main():
             print("ERROR: Mixed gene/ensembl IDs but no gene names found in adata.var.", file=sys.stderr)
             sys.exit(4)
 
-<<<<<<< HEAD:models/openrouter_LLM_unblind/src/predict.py
     annotation_key = args.label_key
     print(f"Processing annotation key: {annotation_key}")
-=======
+    
     # Uppercase before deduping to avoid collisions inside cell2sentence
     adata.var_names = adata.var_names.str.upper()
     adata.var_names_make_unique()
-
-    # Create output filename for this annotation level
-    output_path = Path(args.output)
-    output_stem = output_path.stem
-    output_suffix = output_path.suffix
-    output_dir = output_path.parent
->>>>>>> fix_for_helix:models/openrouter_LLM/src/predict.py
 
     if annotation_key not in adata.obs.columns:
         print(f"ERROR: Label '{annotation_key}' not in adata.obs columns", file=sys.stderr)
