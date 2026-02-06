@@ -17,7 +17,7 @@ dependencies:
   - pip:
     - torch
     - torch_geometric
-    - sentence_transformers
+    - transformers<5
     - cellxgene-census
     - omicverse
     - anndata
