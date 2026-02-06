@@ -3,6 +3,7 @@ channels:
   - conda-forge
 dependencies:
   - python=3.11
+  - anndata
   - pandas
   - pyyaml
   - scikit-learn
@@ -15,5 +16,4 @@ dependencies:
     - torch_geometric
     - sentence_transformers
     - omicverse
-    - anndata
     - numpy
