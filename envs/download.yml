@@ -17,6 +17,7 @@ dependencies:
   - pip:
     - torch
     - torch_geometric
+    - transformers>=4.36,<4.40  # pin for omicverse/scMulan compatibility
     - sentence_transformers
     - cellxgene-census
     - omicverse
