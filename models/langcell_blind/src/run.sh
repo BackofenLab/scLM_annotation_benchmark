@@ -32,7 +32,9 @@ if [ ! -d "$GENEFORMER_PATH" ]; then
 fi
 
 cd $(dirname "$0")/LangCell/geneformer_001
-rm -rf build dist *.egg-info || true
+rm -rf build/bdist.* build dist *.egg-info || true
+python -m pip install -U pip setuptools wheel
+python setup.py bdist_wheel
 python -m pip install --no-build-isolation --no-deps .
 
 cd -

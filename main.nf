@@ -175,7 +175,7 @@ process evaluate_annotation {
     """
     # Convert the prediction files to a comma-separated string
     pred_files=\$(echo ${predictions} | tr ' ' ',')
-    evaluate.py --pred "\$pred_files" --out ${dataset}_${model}.json --cache_dir ${cache_dir} --apply_ontology_mapping ${apply_ontology_mapping} --max-unreviewed-ratio 1.0 --max-unmapped-ratio 1.0
+    evaluate.py --pred "\$pred_files" --max-unreviewed-ratio 1.0 --out ${dataset}_${model}.json --cache_dir ${cache_dir} --apply_ontology_mapping ${apply_ontology_mapping}
     """
 }
 

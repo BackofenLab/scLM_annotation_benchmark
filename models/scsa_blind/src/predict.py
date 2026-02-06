@@ -49,7 +49,13 @@ def create_scanpy_csv(h5ad_path, output_csv, cluster_col='louvain',
     needs_clustering = cluster_col not in adata.obs.columns
 
     #set var index to gene names
-    adata.var.index = adata.var["gene_names"]
+    gene_symbol_cols = ["gene_names", "feature_name", "gene_symbols", "gene_name", "symbol"]
+    for col in gene_symbol_cols:
+        if col in adata.var.columns:
+            adata.var_names = adata.var[col].astype(str).values
+            adata.var_names_make_unique()
+            break
+    #adata.var.index = adata.var["gene_names"]
     
     if needs_clustering:
         print(f"  Finding {n_top_genes} highly variable genes...")

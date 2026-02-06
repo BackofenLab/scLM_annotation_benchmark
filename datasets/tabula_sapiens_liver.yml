@@ -6,6 +6,7 @@ subset_size: 20000                # null → use full dataset
 batch_key: donor
 annotation_key: cell_ontology_class
 apply_ontology_mapping: true
+celltypist_model: "Healthy_Human_Liver.pkl"
 
 preprocessing:
   count_layer_key: "decontXcounts"
