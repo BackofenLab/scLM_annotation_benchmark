@@ -107,8 +107,35 @@ def convert_to_c2s_format(adata, annotation_key, cache_dir=None):
         sc.pp.normalize_total(adata_copy)
         sc.pp.log1p(adata_copy, base=10)
         
-        # and var names need to contain gene names
-        adata_copy.var_names = adata_copy.var["gene_names"]
+        # Cell2Sentence uppercases var_names internally. Ensure we provide
+        # case-insensitive unique feature names to avoid index mismatches.
+        if "gene_names" in adata_copy.var.columns:
+            gene_names = adata_copy.var["gene_names"].astype(str)
+        elif "feature_name" in adata_copy.var.columns:
+            gene_names = adata_copy.var["feature_name"].astype(str)
+        elif "gene_symbols" in adata_copy.var.columns:
+            gene_names = adata_copy.var["gene_symbols"].astype(str)
+        else:
+            gene_names = pd.Series(adata_copy.var_names.astype(str), index=adata_copy.var_names)
+            logger.warning("No gene name column found; using adata.var_names as feature names.")
+
+        gene_names = gene_names.fillna("").str.strip()
+        missing_mask = gene_names.eq("")
+        if missing_mask.any():
+            fallback = pd.Series(adata_copy.var_names.astype(str), index=adata_copy.var_names)
+            gene_names.loc[missing_mask] = fallback.loc[missing_mask]
+            logger.warning(f"Filled {int(missing_mask.sum())} missing gene names from adata.var_names.")
+
+        adata_copy.var_names = pd.Index(gene_names.values).str.upper()
+        n_vars = adata_copy.n_vars
+        n_before = adata_copy.var_names.nunique()
+        duplicate_count = n_vars - n_before
+        adata_copy.var_names_make_unique()
+        if duplicate_count > 0:
+            logger.warning(
+                f"Adjusted {duplicate_count} case-insensitive duplicate gene names for Cell2Sentence compatibility."
+            )
+
         # Set the cell_type column to the current annotation key
         if annotation_key not in adata_copy.obs.columns:
             raise ValueError(f"Annotation key '{annotation_key}' not found in adata.obs")

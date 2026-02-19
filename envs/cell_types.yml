@@ -3,13 +3,15 @@ channels:
   - conda-forge
 dependencies:
   - python=3.11
-  - pandas
-  - pronto
   - pyyaml
+  - pronto
+  - pandas
+  - setuptools<81
+  - anndata
   - pip
   - pip:
     - torch
     - torch_geometric
+    - transformers>=4.36,<4.40  # pin for omicverse/scMulan compatibility
     - sentence_transformers
-    - anndata
     - omicverse

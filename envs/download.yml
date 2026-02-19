@@ -11,6 +11,7 @@ dependencies:
   # Install TileDB-SOMA from conda-forge on macOS to avoid pip wheel/native-lib ABI issues.
   - tiledbsoma-py
   - libcxx
+  - setuptools<81
   - pip
   - git
   - git-lfs
