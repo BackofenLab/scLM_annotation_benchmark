@@ -8,6 +8,7 @@ dependencies:
   - pandas
   - setuptools<81
   - anndata
+  - zarr<3  # anndata in this pipeline is not compatible with zarr 3.x
   - pip
   - pip:
     - torch

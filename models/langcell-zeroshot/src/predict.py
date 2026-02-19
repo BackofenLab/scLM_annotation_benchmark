@@ -475,9 +475,8 @@ def parse_args() -> argparse.Namespace:
     )
     p.add_argument("--seed", type=int, default=42, help="Random seed (default: 42)")
     p.add_argument(
-        "--batchsize", type=int, default=32, help="Test batch size (default: 32)"
+        "--batchsize", type=int, default=128, help="Test batch size (default: 32)"
     )
-    #p.add_argument("--n_top_genes", type=int, default=3000, help="Number of HVGs (default: 3000)")
     p.add_argument(
         "--alpha",
         type=float,

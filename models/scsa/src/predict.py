@@ -17,6 +17,51 @@ import pandas as pd
 import anndata as ad
 import scanpy as sc
 
+GENE_NAME_COLUMNS = (
+    "gene_names",
+    "gene_name",
+    "feature_name",
+    "gene_symbol",
+    "symbol",
+    "genes",
+)
+
+
+def set_gene_index_from_available_columns(adata):
+    """
+    Set adata.var_names to the best available gene-name column.
+
+    Falls back to existing var_names if none of the known columns are present.
+    Empty values are replaced with the original var_names.
+    """
+    fallback_names = pd.Series(adata.var_names.astype(str), index=adata.var.index)
+
+    for col in GENE_NAME_COLUMNS:
+        if col not in adata.var.columns:
+            continue
+
+        gene_names = pd.Series(adata.var[col], index=adata.var.index).astype("string")
+        gene_names = gene_names.fillna("").str.strip()
+        is_invalid = gene_names.eq("") | gene_names.str.lower().isin({"nan", "none"})
+        resolved_names = gene_names.mask(is_invalid, fallback_names).astype(str)
+
+        adata.var_names = pd.Index(resolved_names)
+        if not adata.var_names.is_unique:
+            adata.var_names_make_unique()
+
+        print(
+            f"  Using gene names from adata.var['{col}'] "
+            f"({(~is_invalid).sum()}/{len(gene_names)} populated)"
+        )
+        return col
+
+    adata.var_names = pd.Index(adata.var_names.astype(str))
+    if not adata.var_names.is_unique:
+        adata.var_names_make_unique()
+    print("  No gene-name column found in adata.var; using existing var_names")
+    return None
+
+
 def create_scanpy_csv(h5ad_path, output_csv, cluster_col='louvain', 
                       resolution=1.0, n_top_genes=2000, 
                       n_neighbors=15, n_pcs=50, random_state=0):
@@ -48,8 +93,8 @@ def create_scanpy_csv(h5ad_path, output_csv, cluster_col='louvain',
     # Check if clustering already exists
     needs_clustering = cluster_col not in adata.obs.columns
 
-    #set var index to gene names
-    adata.var.index = adata.var["gene_names"]
+    # Use the most suitable available gene-name column for marker reporting.
+    set_gene_index_from_available_columns(adata)
     
     if needs_clustering:
         print(f"  Finding {n_top_genes} highly variable genes...")
@@ -84,6 +129,7 @@ def create_scanpy_csv(h5ad_path, output_csv, cluster_col='louvain',
         elif adata.raw is not None:
             adata_for_markers = adata.raw.to_adata()
             adata_for_markers.obs[cluster_col] = adata.obs[cluster_col]
+            set_gene_index_from_available_columns(adata_for_markers)
     
     print(f"  Found {len(adata.obs[cluster_col].unique())} clusters")
     
@@ -515,4 +561,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
