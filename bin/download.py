@@ -282,8 +282,16 @@ def maybe_subset(full_path: Path, subset_path: Path, n: int | None) -> Path:
     if n is None:
         return full_path
     if subset_path.exists():
-        log_info(f"Subset already exists – skipping: {subset_path.name}")
-        return subset_path
+        try:
+            read_adata(subset_path)
+            log_info(f"Subset already exists (valid) – skipping: {subset_path.name}")
+            return subset_path
+        except Exception as e:
+            log_warn(f"Subset cache unreadable – rebuilding: {subset_path.name} ({e})")
+            if subset_path.is_file():
+                subset_path.unlink(missing_ok=True)
+            else:
+                shutil.rmtree(subset_path, ignore_errors=True)
     ad = read_adata(full_path)
     if n >= ad.n_obs:
         log_warn("subset_size ≥ n_obs – using full dataset")

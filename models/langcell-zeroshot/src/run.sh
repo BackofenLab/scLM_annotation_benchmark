@@ -34,11 +34,30 @@ if [ ! -d "$GENEFORMER_PATH" ]; then
   git sparse-checkout set geneformer_001
 fi
 
-cd $(dirname "$0")/LangCell/geneformer_001
-rm -rf build dist *.egg-info || true
-python -m pip install --no-build-isolation --no-deps .
+install_geneformer() {
+  local pkg_dir="$1"
+  local tmp_dir="$pkg_dir/.pip-tmp"
+  mkdir -p "$tmp_dir"
+  (
+    cd "$pkg_dir"
+    rm -rf build dist ./*.egg-info || true
+    if ! TMPDIR="$tmp_dir" python -m pip install --ignore-installed --no-build-isolation --no-deps .; then
+      echo "⚠️ geneformer install failed once, retrying after clean build artifacts..."
+      rm -rf build dist ./*.egg-info || true
+      TMPDIR="$tmp_dir" python -m pip install --ignore-installed --no-build-isolation --no-deps .
+    fi
+  )
+}
 
-cd -
+LOCK_FILE="$SCRIPT_DIR/.geneformer_install.lock"
+if command -v flock >/dev/null 2>&1; then
+  (
+    flock -x 200
+    install_geneformer "$GENEFORMER_PATH"
+  ) 200>"$LOCK_FILE"
+else
+  install_geneformer "$GENEFORMER_PATH"
+fi
 
 # Run Langcell prediction
 python "$(dirname "$0")/predict.py" \

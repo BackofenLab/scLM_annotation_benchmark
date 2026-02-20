@@ -24,3 +24,4 @@ dependencies:
     - wandb
     - zarr
     - -e ../../models/cellwhisperer_emb/src/CellWhisperer
+    - -e ../../models/cellwhisperer_emb/src/CellWhisperer/modules/Geneformer

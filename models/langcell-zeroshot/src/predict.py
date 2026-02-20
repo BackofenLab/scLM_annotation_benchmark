@@ -475,7 +475,7 @@ def parse_args() -> argparse.Namespace:
     )
     p.add_argument("--seed", type=int, default=42, help="Random seed (default: 42)")
     p.add_argument(
-        "--batchsize", type=int, default=128, help="Test batch size (default: 32)"
+        "--batchsize", type=int, default=32, help="Test batch size (default: 32)"
     )
     p.add_argument(
         "--alpha",
@@ -548,6 +548,10 @@ def main():
         pred_df.to_csv(output_csv, index=True)
         logger.info("Langcell prediction pipeline completed successfully")
         logger.info(f"Results saved to: {args.output}")
+    import gc
+    gc.collect()
+    torch.cuda.empty_cache()
+    torch.cuda.ipc_collect()
 
 
 if __name__ == "__main__":
