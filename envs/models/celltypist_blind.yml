@@ -11,7 +11,7 @@ dependencies:
   - scikit-learn
   - pyyaml               # run.sh parses YAML
   - tqdm
-  - zarr
+  - zarr<3
   - numcodecs
   - umap-learn
   - requests

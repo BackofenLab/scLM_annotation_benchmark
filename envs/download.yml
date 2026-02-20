@@ -3,6 +3,7 @@ channels:
   - conda-forge
 dependencies:
   - python=3.11
+  - setuptools<82 # 82 removed pkg_resources
   - pyyaml
   - requests
   - tqdm

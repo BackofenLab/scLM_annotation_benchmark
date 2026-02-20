@@ -3,8 +3,10 @@ channels:
   - conda-forge
 dependencies:
   - python=3.11
+  - setuptools<82
   - anndata
   - pandas
+  - zarr<3
   - pyyaml
   - scikit-learn
   - matplotlib
