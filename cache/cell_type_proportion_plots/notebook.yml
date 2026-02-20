@@ -1,0 +1,15 @@
+## Create env: conda env create -f notebook.yml
+## Activate env: conda activate test_notebook
+## Launch Jupyter: jupyter lab
+name: test_notebook
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - scanpy
+  - pandas
+  - matplotlib
+  - seaborn
+  - jupyterlab
+  - notebook
+  - ipykernel
