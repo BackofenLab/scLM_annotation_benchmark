@@ -10,12 +10,12 @@ OUTPUT_DIR=$(dirname "$OUT_CSV")
 mkdir -p "$OUTPUT_DIR"
 
 # Extract annotation keys and celltypist model from config YAML (tab-delimited)
-IFS=$'\t' read -r ANNOTATION_KEYS CELLTYPIST_MODEL < <(python - <<'PY' "$CFG_YAML"
+IFS=$'\t' read -r ANNOTATION_KEY CELLTYPIST_MODEL < <(python - <<'PY' "$CFG_YAML"
 import yaml, sys
 config = yaml.safe_load(open(sys.argv[1]))
-annotation_keys = config.get('annotation_keys', ['cell_type'])
+annotation_key = config.get('annotation_key', ['cell_type'])
 celltypist_model = config.get('celltypist_model', 'Immune_All_High.pkl')
-print(' '.join(annotation_keys) + '\t' + celltypist_model)
+print(' '.join(annotation_key) + '\t' + celltypist_model)
 PY
 )
 
@@ -24,4 +24,4 @@ python "$(dirname "$0")/predict.py" \
   --input "$INPUT_H5AD" \
   --output "$OUT_CSV" \
   --model "$CELLTYPIST_MODEL" \
-  --annotation_keys $ANNOTATION_KEYS
+  --annotation_key $ANNOTATION_KEY

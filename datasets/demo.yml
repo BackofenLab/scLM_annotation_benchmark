@@ -16,5 +16,5 @@ batch_key: method
 # species_key: "species"          # column name for species metadata
 # tissue_key: "tissue"            # column name for tissue metadata
 # sequencing_method_key: "sequencing_method"  # column name for sequencing method metadata
-annotation_keys: [cell_type]
+annotation_key: "cell_type"
 celltypist_model: "Immune_All_High.pkl"

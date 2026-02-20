@@ -10,7 +10,7 @@ Pipeline:
   1. Looks up the dataset's YAML descriptor (name, URL/census_id, keys, …).
   2. Caches the **full** file under ``<cache_dir>/<dataset>.<ext>``
      (skips download when already present and valid).
-  3. Always verifies that the required ``annotation_keys`` exist.
+  3. Always verifies that the required ``annotation_key`` exists.
   4. Optionally writes a *subset* copy ``<cache_dir>/<dataset>_sub{n}.<ext>``.
   5. Optionally applies ontology mapping (overwrites cache in-place).
   6. Hard-links (or copies) the chosen file to Nextflow's work dir.
@@ -361,7 +361,7 @@ def main() -> None:
 
     # --- Verify columns ---
     log_info("Verifying required columns...")
-    verify_columns(read_adata(full_path), list(cfg["annotation_keys"]) + [cfg["batch_key"]])
+    verify_columns(read_adata(full_path), [cfg["annotation_key"], cfg["batch_key"]])
     log_info("Required columns verified")
 
     # --- Subset ---
@@ -373,7 +373,7 @@ def main() -> None:
         from util.download_helpers import apply_ontology_mapping_to_dataset
         log_info("Applying ontology mapping...")
         adata_mapped = apply_ontology_mapping_to_dataset(
-            adata=read_adata(chosen), annotation_keys=list(cfg["annotation_keys"]),
+            adata=read_adata(chosen), annotation_key=cfg["annotation_key"],
             cache_dir=cache_dir, verbose=True, origin=cfg['name'])
         write_adata(adata_mapped, chosen)
         log_info("Ontology mapping completed")

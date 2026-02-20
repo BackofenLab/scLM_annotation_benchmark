@@ -15,5 +15,5 @@ tissue: "pancreas"                  # direct value for all cells
 #     species_key: "species"              # column name for species metadata (per-cell)
 #     tissue_key: "tissue"                # column name for tissue metadata (per-cell)
 sequencing_method_key: "tech"  # column name for sequencing method (per-cell)
-annotation_keys: ["celltype"]
+annotation_key: "celltype"
 celltypist_model: "Adult_Human_PancreaticIslet.pkl" #"Immune_All_High.pkl"

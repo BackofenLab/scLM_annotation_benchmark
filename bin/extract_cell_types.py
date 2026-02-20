@@ -21,7 +21,7 @@ def main(args):
         adata = anndata.read_h5ad(h5ad)
 
         found = False
-        mapped_adata = oh.apply_ontology_mapping_to_adata(adata, cache_dir=Path("."), annotation_keys=yml.get('annotation_keys'))
+        mapped_adata = oh.apply_ontology_mapping_to_adata(adata, cache_dir=Path("."), annotation_key=yml.get('annotation_key'))
         cell_types = [ct.title() for ct in mapped_adata.obs[keys].values.flatten()]
         all_cell_types.update(cell_types)
 

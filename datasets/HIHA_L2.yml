@@ -13,5 +13,5 @@ sequencing_method: "10xGenomics3'"    # direct value for all cells
 #     species_key: "species"              # column name for species metadata (per-cell)
 #     tissue_key: "tissue"                # column name for tissue metadata (per-cell)
 #     sequencing_method_key: "sequencing_method"  # column name for sequencing method (per-cell)
-annotation_keys: ["AIFI_L2"]
+annotation_key: "AIFI_L2"
 celltypist_model: "Immune_All_High.pkl"

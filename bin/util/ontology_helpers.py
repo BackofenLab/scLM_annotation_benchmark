@@ -262,7 +262,7 @@ def apply_ontology_mapping_to_cell_type_list(
 
 def apply_ontology_mapping_to_adata(
     adata: ad.AnnData,
-    annotation_keys: List[str],
+    annotation_key: str,
     cache_dir: Path,
     force_remapping: bool = False,
     verbose: bool = True,
@@ -278,8 +278,8 @@ def apply_ontology_mapping_to_adata(
     ----------
     adata : ad.AnnData
         AnnData object to modify
-    annotation_keys : List[str]
-        List of annotation column names to process
+    annotation_key : str
+        Annotation column names to process
     cache_dir : Path
         Cache directory for ontology files
     force_remapping : bool, default False
@@ -295,58 +295,57 @@ def apply_ontology_mapping_to_adata(
         Modified AnnData object with updated annotations
     """
     if verbose:
-        print(f"Applying ontology mapping to {len(annotation_keys)} annotation columns...")
+        print(f"Applying ontology mapping to annotation columns...")
     
     # Process each annotation column
-    for key in annotation_keys:
-        if key not in adata.obs.columns:
-            if verbose:
-                print(f"Warning: Column '{key}' not found in adata.obs")
-            continue
-        
-        # Check if original_{key} column exists and restore from it
-        original_key = f"original_{key}"
-        if original_key in adata.obs.columns:
-            if verbose:
-                print(f"\nRestoring '{key}' from '{original_key}' before reprocessing...")
-            adata.obs[key] = adata.obs[original_key].copy()
-        
+    key = annotation_key
+    if key not in adata.obs.columns:
         if verbose:
-            print(f"\nProcessing annotation column: {key}")
-        
-        # Get the cell type list
-        original_annotations = adata.obs[key].tolist()
-        
-        # Apply ontology mapping using the core function
-        try:
-            updated_annotations, replacements = apply_ontology_mapping_to_cell_type_list(
-                cell_types=original_annotations,
-                cache_dir=cache_dir,
-                force_remapping=force_remapping,
-                verbose=verbose,
-                origin=origin
-            )
-        except Exception as e:
-            raise RuntimeError(f"Failed to apply ontology mapping to '{key}': {e}")
-        
-        # Update the AnnData object if there were successful mappings
-        if replacements:
-            # Store original annotations (only if not already exists)
-            if original_key not in adata.obs.columns:
-                adata.obs[original_key] = original_annotations.copy()
-                if verbose:
-                    print(f"  Created backup column: '{original_key}'")
-            else:
-                if verbose:
-                    print(f"  Using existing backup column: '{original_key}'")
-            
-            # Update with mapped annotations
-            adata.obs[key] = updated_annotations
-            
+            print(f"Warning: Column '{key}' not found in adata.obs")
+    
+    # Check if original_{key} column exists and restore from it
+    original_key = f"original_{key}"
+    if original_key in adata.obs.columns:
+        if verbose:
+            print(f"\nRestoring '{key}' from '{original_key}' before reprocessing...")
+        adata.obs[key] = adata.obs[original_key].copy()
+    
+    if verbose:
+        print(f"\nProcessing annotation column: {key}")
+    
+    # Get the cell type list
+    original_annotations = adata.obs[key].tolist()
+    
+    # Apply ontology mapping using the core function
+    try:
+        updated_annotations, replacements = apply_ontology_mapping_to_cell_type_list(
+            cell_types=original_annotations,
+            cache_dir=cache_dir,
+            force_remapping=force_remapping,
+            verbose=verbose,
+            origin=origin
+        )
+    except Exception as e:
+        raise RuntimeError(f"Failed to apply ontology mapping to '{key}': {e}")
+    
+    # Update the AnnData object if there were successful mappings
+    if replacements:
+        # Store original annotations (only if not already exists)
+        if original_key not in adata.obs.columns:
+            adata.obs[original_key] = original_annotations.copy()
             if verbose:
-                print(f"  Updated column: '{key}' with {len(replacements)} mapped cell types")
+                print(f"  Created backup column: '{original_key}'")
         else:
             if verbose:
-                print(f"  No successful mappings for '{key}'")
+                print(f"  Using existing backup column: '{original_key}'")
+        
+        # Update with mapped annotations
+        adata.obs[key] = updated_annotations
+        
+        if verbose:
+            print(f"  Updated column: '{key}' with {len(replacements)} mapped cell types")
+    else:
+        if verbose:
+            print(f"  No successful mappings for '{key}'")
     
     return adata

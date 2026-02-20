@@ -5,7 +5,7 @@ census_dataset_id: "4f1555bc-4664-46c3-a606-78d34dd10d92"
 census_version: "2025-11-08" # logs a stable build tag for reproducibility (snapshot of census version)
 subset_size: 2000             # null → use full dataset
 batch_key: donor_id
-annotation_keys: [cell_type]
+annotation_key: "cell_type"
 apply_ontology_mapping: true
 celltypist_model: "Adult_Human_Bone_Marrow.pkl" #"Immune_All_High.pkl"
 
