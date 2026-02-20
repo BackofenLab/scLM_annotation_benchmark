@@ -4,7 +4,7 @@ name: human_pancreas         # used in channel / filenames
 url: https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/24539828/human_pancreas_norm_complexBatch.h5ad #https://figshare.com/ndownloader/files/24539828 (Baron 2016 human pancreas dataset)
 format: h5ad
 subset_size: 2000                # null → use full dataset
-batch_keys: "tech"
+batch_key: "tech"
 apply_ontology_mapping: true
 # Optional metadata for InstructCell - can use either:
 #   Option 1: Direct values (applied to all cells in dataset)
