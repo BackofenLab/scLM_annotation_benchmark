@@ -8,7 +8,8 @@ def loadYaml(String path) {
 }
 
 process download {
-    conda 'envs/download.yml'
+    container 'pavanvidem/sc_lfm:2026-03-05'
+    conda 'envs/environment.yml'
 
     input:
     tuple val(dataset), val(cache_dir), path(cfg_yaml), val(apply_ontology_mapping)
@@ -44,7 +45,8 @@ process download {
 }
 
 process extract_cell_types {
-    conda 'envs/cell_types.yml'
+    container 'pavanvidem/sc_lfm:2026-03-05'
+    conda 'envs/environment.yml'
 
     input:
         path(h5ad_files)
@@ -65,6 +67,9 @@ process extract_cell_types {
 }
 
 process prepare_model {
+    container 'pavanvidem/sc_lfm:2026-03-05'
+    conda 'envs/environment.yml'
+
     input:
     tuple val(model), path(model_dir)
 
@@ -93,13 +98,15 @@ process prepare_model {
 }
 
 process run_model {
+    container 'pavanvidem/sc_lfm:2026-03-05'
+    
     input:
     tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size)
 
     // Same tag format as run_model
     tag { "${dataset}×${model}" }
 
-    conda { "envs/models/${model}.yml" }
+    conda "envs/models/${model}.yml"
 
     output:
     tuple(path("results/*/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir))
@@ -134,13 +141,15 @@ process run_model {
 }
 
 process run_model_throttled {
+    container 'pavanvidem/sc_lfm:2026-03-05'
+    
     input:
     tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size)
 
     // Same tag format as run_model
     tag { "${dataset}×${model}" }
 
-    conda { "envs/models/${model}.yml" }
+    conda "envs/models/${model}.yml"
 
     output:
     tuple(path("results/*/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir))
@@ -175,7 +184,8 @@ process run_model_throttled {
 }
 
 process evaluate_annotation {
-    conda 'envs/evaluation.yml'
+    container 'pavanvidem/sc_lfm:2026-03-05'
+    conda 'envs/environment.yml'
 
     input:
     tuple path(predictions), val(dataset), val(model), val(cache_dir), val(apply_ontology_mapping)
@@ -197,7 +207,8 @@ process evaluate_annotation {
 }
 
 process combine_results {
-    conda 'envs/evaluation.yml'
+    container 'pavanvidem/sc_lfm:2026-03-05'
+    conda 'envs/environment.yml'
 
     publishDir(path: 'results/', mode: 'copy', overwrite: 'false')
 
@@ -223,7 +234,7 @@ workflow {
 
     download_out = download(download_input)
 
-    Channel.fromPath(params.cache_dir)
+    Channel.value(params.cache_dir)
             .set { cache_dir_ch }
 
     download_out.map { h5ad_file, dataset, cfg_yaml, cache_dir -> h5ad_file }
