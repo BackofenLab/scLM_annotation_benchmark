@@ -234,7 +234,7 @@ workflow {
 
     download_out = download(download_input)
 
-    Channel.value(params.cache_dir)
+    Channel.fromPath(params.cache_dir)
             .set { cache_dir_ch }
 
     download_out.map { h5ad_file, dataset, cfg_yaml, cache_dir -> h5ad_file }
