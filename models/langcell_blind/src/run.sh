@@ -5,6 +5,10 @@ INPUT_H5AD=$(realpath "$1")
 OUT_CSV="$2"
 CFG_YAML=$(realpath "$3")
 MODEL_PATH=$(realpath "$0")
+CACHE_DIR=$(realpath "$4")
+
+mkdir -p "$CACHE_DIR"
+CELL_TYPES_FILE="$(dirname $CACHE_DIR)/all_cell_types.txt"
 
 # Create output directory if it doesn't exist and resolve its absolute path
 OUTPUT_DIR=$(dirname "$OUT_CSV")
@@ -31,17 +35,35 @@ if [ ! -d "$GENEFORMER_PATH" ]; then
   git sparse-checkout set geneformer_001
 fi
 
-cd $(dirname "$0")/LangCell/geneformer_001
-rm -rf build/bdist.* build dist *.egg-info || true
-python -m pip install -U pip setuptools wheel
-python setup.py bdist_wheel
-python -m pip install --no-build-isolation --no-deps .
+install_geneformer() {
+  local pkg_dir="$1"
+  local tmp_dir="$pkg_dir/.pip-tmp"
+  mkdir -p "$tmp_dir"
+  (
+    cd "$pkg_dir"
+    rm -rf build dist ./*.egg-info || true
+    if ! TMPDIR="$tmp_dir" python -m pip install --ignore-installed --no-build-isolation --no-deps .; then
+      echo "⚠️ geneformer install failed once, retrying after clean build artifacts..."
+      rm -rf build dist ./*.dist-info ./*.egg-info || true
+      TMPDIR="$tmp_dir" python -m pip install --ignore-installed --no-build-isolation --no-deps --no-cache-dir .
+    fi  
+  )
+}
 
-cd -
+LOCK_FILE="$SCRIPT_DIR/.geneformer_install.lock"
+if command -v flock >/dev/null 2>&1; then
+  (
+    flock -x 200 
+    install_geneformer "$GENEFORMER_PATH"
+  ) 200>"$LOCK_FILE"
+else
+  install_geneformer "$GENEFORMER_PATH"
+fi
 
 # Run Langcell prediction
 python "$(dirname "$0")/predict.py" \
 --input "$INPUT_H5AD" \
 --output "$OUT_CSV" \
 --model_path "$MODEL_PATH" \
---annotation_key "$ANNOTATION_KEY"
+--annotation_key "$ANNOTATION_KEY" \
+--cell_types_file "$CELL_TYPES_FILE"

@@ -8,6 +8,7 @@ dependencies:
   - pip
   - pip:
       - anndata>=0.10.2
+      - scanpy>=1.9
       - pyyaml
       - requests
       - torch>=2.0.0
