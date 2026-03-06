@@ -24,4 +24,4 @@ python "$(dirname "$0")/predict.py" \
   --input "$INPUT_H5AD" \
   --output "$OUT_CSV" \
   --model "$CELLTYPIST_MODEL" \
-  --annotation_key $ANNOTATION_KEY
+  --annotation_key "$ANNOTATION_KEY"
