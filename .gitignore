@@ -17,6 +17,9 @@ cache/*
 cache/models/*
 !cache/models/predictions/
 !cache/models/predictions/**
+# Exception: keep the preprocessing result plots
+!cache/plots/
+!cache/plots/**
 .conda
 Results
 results/

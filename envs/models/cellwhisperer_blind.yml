@@ -6,6 +6,8 @@ dependencies:
   - pip
   - setuptools<82
   - git
+  - setuptools<81
+  - pip
   - pip:
     - pyyaml
     - torch==2.1.0
@@ -16,9 +18,11 @@ dependencies:
     - transformers==4.34.1
     - lightning==2.1.0
     - datasets==2.12.0
+    - loompy
     - seaborn
     - scikit-learn
     - scanpy
+    - tdigest
     - wandb
     - zarr
     - -e ../../models/cellwhisperer_blind/src/CellWhisperer

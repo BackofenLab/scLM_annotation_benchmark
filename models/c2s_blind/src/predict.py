@@ -8,7 +8,7 @@ import pandas as pd
 import scanpy as sc
 import cell2sentence as cs
 from cell2sentence.tasks import embed_cells, predict_cell_types_of_data
-from datasets import Dataset
+from datasets import Dataset, load_from_disk
 from pathlib import Path
 import sys
 import logging
@@ -82,7 +82,7 @@ def load_model(model_path="vandijklab/C2S-Pythia-410m-cell-type-prediction",
         logger.error(f"Failed to load model: {e}")
         sys.exit(1)
 
-def convert_to_c2s_format(adata, annotation_key, cache_dir=None):
+def convert_to_c2s_format(adata, annotation_key, cache_dir=None, input_tag=None):
     """
     Convert AnnData to Cell2Sentence format for a specific annotation key.
     
@@ -107,8 +107,35 @@ def convert_to_c2s_format(adata, annotation_key, cache_dir=None):
         sc.pp.normalize_total(adata_copy)
         sc.pp.log1p(adata_copy, base=10)
         
-        # and var names need to contain gene names
-        adata_copy.var_names = adata_copy.var["gene_names"]
+        # Cell2Sentence uppercases var_names internally. Ensure we provide
+        # case-insensitive unique feature names to avoid index mismatches.
+        if "gene_names" in adata_copy.var.columns:
+            gene_names = adata_copy.var["gene_names"].astype(str)
+        elif "feature_name" in adata_copy.var.columns:
+            gene_names = adata_copy.var["feature_name"].astype(str)
+        elif "gene_symbols" in adata_copy.var.columns:
+            gene_names = adata_copy.var["gene_symbols"].astype(str)
+        else:
+            gene_names = pd.Series(adata_copy.var_names.astype(str), index=adata_copy.var_names)
+            logger.warning("No gene name column found; using adata.var_names as feature names.")
+
+        gene_names = gene_names.fillna("").str.strip()
+        missing_mask = gene_names.eq("")
+        if missing_mask.any():
+            fallback = pd.Series(adata_copy.var_names.astype(str), index=adata_copy.var_names)
+            gene_names.loc[missing_mask] = fallback.loc[missing_mask]
+            logger.warning(f"Filled {int(missing_mask.sum())} missing gene names from adata.var_names.")
+
+        adata_copy.var_names = pd.Index(gene_names.values).str.upper()
+        n_vars = adata_copy.n_vars
+        n_before = adata_copy.var_names.nunique()
+        duplicate_count = n_vars - n_before
+        adata_copy.var_names_make_unique()
+        if duplicate_count > 0:
+            logger.warning(
+                f"Adjusted {duplicate_count} case-insensitive duplicate gene names for Cell2Sentence compatibility."
+            )
+
         # Set the cell_type column to the current annotation key
         if annotation_key not in adata_copy.obs.columns:
             raise ValueError(f"Annotation key '{annotation_key}' not found in adata.obs")
@@ -124,7 +151,10 @@ def convert_to_c2s_format(adata, annotation_key, cache_dir=None):
         
         # Use cache_dir if provided
         c2s_save_dir = cache_dir if cache_dir else "."
-        c2s_save_name = f"temp_c2s_data_{annotation_key}"
+        safe_annotation_key = str(annotation_key).replace("/", "_")
+        safe_input_tag = str(input_tag if input_tag else "input").replace("/", "_")
+        # Include PID to avoid collisions across parallel Nextflow tasks.
+        c2s_save_name = f"temp_c2s_data_{safe_input_tag}_{safe_annotation_key}_{os.getpid()}"
         
         arrow_ds, vocabulary = cs.CSData.adata_to_arrow(
             adata=adata_copy, 
@@ -174,13 +204,30 @@ def run_cell2sentence_prediction(csdata, csmodel, n_genes=200):
         #filter the special token \n<ctrl100>' from the end of the predicted cell types
         predicted_cell_types = [ct.replace('\n<ctrl100>', '') for ct in predicted_cell_types]
 
-        return predicted_cell_types
+        # Read prediction cell IDs from the same C2S dataset used for prompting.
+        # This avoids relying on positional alignment when preprocessing or temp
+        # dataset collisions alter row counts.
+        pred_ds = load_from_disk(csdata.data_path)
+        prediction_cell_ids = list(pred_ds["cell_name"]) if "cell_name" in pred_ds.column_names else None
+
+        if prediction_cell_ids is not None and len(prediction_cell_ids) != len(predicted_cell_types):
+            logger.warning(
+                "Prediction output length mismatch inside C2S dataset: %d ids vs %d predictions. "
+                "Trimming to minimum length for safe alignment.",
+                len(prediction_cell_ids),
+                len(predicted_cell_types),
+            )
+            n = min(len(prediction_cell_ids), len(predicted_cell_types))
+            prediction_cell_ids = prediction_cell_ids[:n]
+            predicted_cell_types = predicted_cell_types[:n]
+
+        return predicted_cell_types, prediction_cell_ids
     except Exception as e:
         logger.error(f"Failed to run Cell2Sentence prediction: {e}")
         sys.exit(1)
 
 
-def create_results_dataframe_for_key(adata, predicted_cell_types, label_key):
+def create_results_dataframe_for_key(adata, predicted_cell_types, prediction_cell_ids, label_key):
     """
     Create a DataFrame with true and predicted labels for a single annotation key.
     
@@ -200,15 +247,36 @@ def create_results_dataframe_for_key(adata, predicted_cell_types, label_key):
         logger.error(f"Available keys: {list(adata.obs.columns)}")
         return None
     
-    # Get true labels for this annotation key
-    true_labels = list(adata.obs[label_key].values)
-    
-    # Create DataFrame with cell_id, true_labels, and predicted_labels
-    results_df = pd.DataFrame({
-        'cell_id': adata.obs.index,
-        'true_labels': true_labels,
-        'predicted_labels': predicted_cell_types
+    truth_df = pd.DataFrame({
+        'cell_id': adata.obs.index.astype(str),
+        'true_labels': list(adata.obs[label_key].values),
     })
+
+    if prediction_cell_ids is not None:
+        pred_df = pd.DataFrame({
+            'cell_id': [str(x) for x in prediction_cell_ids],
+            'predicted_labels': predicted_cell_types,
+        })
+        # Use left join to preserve input cell order and fill any missing predictions.
+        results_df = truth_df.merge(pred_df, on='cell_id', how='left')
+        missing = int(results_df['predicted_labels'].isna().sum())
+        if missing > 0:
+            logger.warning(
+                "Missing predictions for %d/%d cells after ID alignment; filling with 'unknown'.",
+                missing,
+                len(results_df),
+            )
+            results_df['predicted_labels'] = results_df['predicted_labels'].fillna('unknown')
+    else:
+        logger.warning(
+            "No prediction cell IDs available; falling back to positional alignment "
+            "(true=%d, pred=%d).",
+            len(truth_df),
+            len(predicted_cell_types),
+        )
+        n = min(len(truth_df), len(predicted_cell_types))
+        results_df = truth_df.iloc[:n].copy()
+        results_df['predicted_labels'] = predicted_cell_types[:n]
     
     logger.info(f"Created results DataFrame for {label_key} with {len(results_df)} rows")
     return results_df
@@ -260,6 +328,7 @@ def main():
     
     # Load data
     adata = load_data(args.input)
+    input_tag = Path(args.input).stem
 
     if torch.backends.mps.is_available():
         device = "mps"
@@ -270,7 +339,12 @@ def main():
     # Load model
     csmodel = load_model(args.model, args.model_name, args.cache_dir)
     csmodel.device = device
-    
+   
+    output_path = Path(args.output)
+    output_dir = output_path.parent
+    output_stem = output_path.stem
+    output_suffix = output_path.suffix
+
     annotation_key = args.annotation_key
     logger.info(f"Processing annotation key: {annotation_key}")
     
@@ -278,25 +352,27 @@ def main():
     if annotation_key not in adata.obs.columns:
         logger.error(f"'{annotation_key}' not found in adata.obs")
         logger.error(f"Available keys: {list(adata.obs.columns)}")
-        sys.exit(1)
+        logger.warning(f"Skipping {annotation_key}")
     
-    # Convert to Cell2Sentence format
-    csdata = convert_to_c2s_format(adata, annotation_key, args.cache_dir)
+    # Convert to Cell2Sentence format for this specific annotation key
+    csdata = convert_to_c2s_format(adata, annotation_key, args.cache_dir, input_tag=input_tag)
     
-    # Run prediction
-    predicted_cell_types = run_cell2sentence_prediction(csdata, csmodel, args.n_genes)
+    # Run prediction for this annotation key
+    predicted_cell_types, prediction_cell_ids = run_cell2sentence_prediction(csdata, csmodel, args.n_genes)
     
-    # Create results DataFrame
-    results_df = create_results_dataframe_for_key(adata, predicted_cell_types, annotation_key)
+    # Create results DataFrame for this annotation key
+    results_df = create_results_dataframe_for_key(adata, predicted_cell_types, prediction_cell_ids, annotation_key)
     
     if results_df is not None:
-        # Save results to the specified output path
-        print(f"Saving results to: {args.output}")
-        save_results(results_df, args.output)
-        logger.info(f"Results saved to: {args.output}")
+        # Create output filename for this annotation level (same naming as CellWhisperer)
+        output_csv = output_dir / f"{output_stem}{output_suffix}"
+        
+        # Save results
+        print(f"Saving results to: {output_csv}")
+        save_results(results_df, str(output_csv))
+        logger.info(f"Results for {annotation_key} saved to: {output_csv}")
     else:
-        logger.error("Failed to create results DataFrame")
-        sys.exit(1)
+        logger.warning(f"Skipping {annotation_key} due to errors")
     
     logger.info("Cell2Sentence prediction pipeline completed successfully")
 

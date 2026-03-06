@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import argparse
-import sys
 import yaml
 import pandas as pd
 import anndata
@@ -8,7 +7,14 @@ import warnings
 import util.ontology_helpers as oh
 from pathlib import Path
 
+
 def main(args):
+    if len(args.h5ads) != len(args.cfgs):
+        raise ValueError(
+            f"Expected the same number of --h5ads and --cfgs, got "
+            f"{len(args.h5ads)} and {len(args.cfgs)}"
+        )
+
     all_cell_types = set()
 
     for h5ad, cfg in zip(args.h5ads, args.cfgs):

@@ -612,9 +612,14 @@ def main():
         cell_indices,
         args,
     )
-    pred_df.to_csv(args.output, index=True)
+    output_csv = output_dir / f"{output_stem}_{annotation_key}{output_suffix}"
+    pred_df.to_csv(output_csv, index=True)
     logger.info("Langcell prediction pipeline completed successfully")
     logger.info(f"Results saved to: {args.output}")
+    import gc
+    gc.collect()
+    torch.cuda.empty_cache()
+    torch.cuda.ipc_collect()
 
 
 if __name__ == "__main__":

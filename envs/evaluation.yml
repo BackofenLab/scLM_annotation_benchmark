@@ -12,10 +12,12 @@ dependencies:
   - matplotlib
   - seaborn
   - pronto
+  - setuptools<81
   - pip
   - pip:
     - torch
     - torch_geometric
+    - transformers>=4.36,<4.40  # pin for omicverse/scMulan compatibility
     - sentence_transformers
     - omicverse
     - numpy

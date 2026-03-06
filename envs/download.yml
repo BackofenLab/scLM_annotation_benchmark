@@ -12,13 +12,15 @@ dependencies:
   # Install TileDB-SOMA from conda-forge on macOS to avoid pip wheel/native-lib ABI issues.
   - tiledbsoma-py
   - libcxx
+  - setuptools<81
   - pip
   - git
   - git-lfs
   - pip:
     - torch
     - torch_geometric
-    - transformers<5
+    - transformers>=4.36,<4.40  # pin for omicverse/scMulan compatibility
+    - sentence_transformers
     - cellxgene-census
     - omicverse
     - anndata

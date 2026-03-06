@@ -3,14 +3,16 @@ channels:
   - conda-forge
 dependencies:
   - python=3.11
-  - setuptools<82
-  - pandas
-  - pronto
   - pyyaml
+  - pronto
+  - pandas
+  - setuptools<81
+  - anndata
+  - zarr<3  # anndata in this pipeline is not compatible with zarr 3.x
   - pip
   - pip:
     - torch
     - torch_geometric
+    - transformers>=4.36,<4.40  # pin for omicverse/scMulan compatibility
     - sentence_transformers
-    - anndata
     - omicverse

@@ -13,8 +13,18 @@ mkdir -p "$OUTPUT_DIR"
 # Get the directory where this script is located
 SCRIPT_DIR=$(dirname "$(realpath "$0")")
 
-# Extract annotation key from config
-ANNOTATION_KEY=$(python - <<'PY' "$CFG_YAML"
+# Compatibility patch:
+# Older/newer scanpy defaults may raise `IndexError: Positions outside range of features`
+# when the filtered feature space is smaller than default percent_top values.
+GENEFORMER_MODEL_PY="$SCRIPT_DIR/CellWhisperer/src/cellwhisperer/jointemb/geneformer_model.py"
+if [ -f "$GENEFORMER_MODEL_PY" ] && grep -q "sc.pp.calculate_qc_metrics(adata_w_id, inplace=True)" "$GENEFORMER_MODEL_PY"; then
+  sed -i \
+    's|sc.pp.calculate_qc_metrics(adata_w_id, inplace=True)|sc.pp.calculate_qc_metrics(adata_w_id, inplace=True, percent_top=None)|g' \
+    "$GENEFORMER_MODEL_PY"
+fi
+
+# Extract all annotation keys from config
+ANNOTATION_KEYS=$(python - <<'PY' "$CFG_YAML"
 import yaml, sys
 config = yaml.safe_load(open(sys.argv[1]))
 annotation_key = config.get('annotation_key', 'cell_type')
