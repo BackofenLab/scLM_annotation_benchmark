@@ -243,8 +243,8 @@ fi
 # -------------------------------------------------------------------
 # Build JSON config strings from YAML (provider, generation, reasoning)
 # -------------------------------------------------------------------
-read -r PROVIDER_JSON GENERATION_JSON REASONING_JSON < <(python - "$MODEL_CFG" <<'PY'
-import sys, yaml, json, os
+eval "$(python - "$MODEL_CFG" <<'PY'
+import sys, yaml, json, os, shlex
 
 cfg_path = sys.argv[1]
 cfg = {}
@@ -261,7 +261,7 @@ for k, v in provider.items():
     if k == "max_price" and isinstance(v, dict):
         mp = {mk: mv for mk, mv in v.items() if mv is not None}
         for mk, mv in mp.items():
-            provider_clean[f"max_price_{mk}"] = mv
+            provider_clean["max_price_" + mk] = mv
     elif isinstance(v, list):
         if v:
             provider_clean[k] = v
@@ -284,11 +284,11 @@ for k, v in gen.items():
 reasoning = gen.get("reasoning", {}) or {}
 reason_clean = {k: v for k, v in reasoning.items() if v is not None}
 
-print(json.dumps(provider_clean, separators=(",", ":")), end=" ")
-print(json.dumps(gen_clean, separators=(",", ":")), end=" ")
-print(json.dumps(reason_clean, separators=(",", ":")))
+print("PROVIDER_JSON=" + shlex.quote(json.dumps(provider_clean, separators=(",", ":"))))
+print("GENERATION_JSON=" + shlex.quote(json.dumps(gen_clean, separators=(",", ":"))))
+print("REASONING_JSON=" + shlex.quote(json.dumps(reason_clean, separators=(",", ":"))))
 PY
-)
+)"
 
 # -------------------------------------------------------------------
 # Common args for all model invocations
