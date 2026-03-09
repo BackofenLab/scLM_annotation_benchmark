@@ -241,111 +241,116 @@ if [[ -n "${MAX_SAMPLES}" && "${MAX_SAMPLES}" != "0" ]]; then
 fi
 
 # -------------------------------------------------------------------
-# Build predict.py argument list
+# Build JSON config strings from YAML (provider, generation, reasoning)
 # -------------------------------------------------------------------
-declare -a ARGS=(
+read -r PROVIDER_JSON GENERATION_JSON REASONING_JSON < <(python - "$MODEL_CFG" <<'PY'
+import sys, yaml, json, os
+
+cfg_path = sys.argv[1]
+cfg = {}
+if cfg_path and os.path.isfile(cfg_path):
+    with open(cfg_path, "r", encoding="utf-8") as f:
+        cfg = yaml.safe_load(f) or {}
+
+root = cfg.get("openrouter_LLM", {})
+
+# Provider config — strip None values and empty lists
+provider = root.get("provider", {}) or {}
+provider_clean = {}
+for k, v in provider.items():
+    if k == "max_price" and isinstance(v, dict):
+        mp = {mk: mv for mk, mv in v.items() if mv is not None}
+        for mk, mv in mp.items():
+            provider_clean[f"max_price_{mk}"] = mv
+    elif isinstance(v, list):
+        if v:
+            provider_clean[k] = v
+    elif v is not None:
+        provider_clean[k] = v
+
+# Generation config — strip None values and empty lists
+gen = root.get("generation", {}) or {}
+gen_clean = {}
+for k, v in gen.items():
+    if k == "reasoning":
+        continue
+    elif isinstance(v, list):
+        if v:
+            gen_clean[k] = v
+    elif v is not None:
+        gen_clean[k] = v
+
+# Reasoning config
+reasoning = gen.get("reasoning", {}) or {}
+reason_clean = {k: v for k, v in reasoning.items() if v is not None}
+
+print(json.dumps(provider_clean, separators=(",", ":")), end=" ")
+print(json.dumps(gen_clean, separators=(",", ":")), end=" ")
+print(json.dumps(reason_clean, separators=(",", ":")))
+PY
+)
+
+# -------------------------------------------------------------------
+# Common args for all model invocations
+# -------------------------------------------------------------------
+declare -a COMMON_ARGS=(
   "--input" "${INPUT_H5AD}"
-  "--output" "${OUT_CSV}"
   "--seed" "${SEED}"
-  "--models" "${MODEL_NAMES[@]}"
   "--output_mode" "${OUTPUT_MODE}"
   "--task_name" "${TASK_NAME}"
   "--input_prompt_template" "${INPUT_PROMPT_TEMPLATE}"
   "--answer_template" "${ANSWER_TEMPLATE}"
   "--top_k_genes" "${TOP_K_GENES}"
   "--max_workers" "${MAX_WORKERS}"
-  "--delay_between_requests" "${DELAY_BETWEEN_REQUESTS}"
   "--label_keys" ${LABEL_KEYS}
+  "--provider_cfg_json" "${PROVIDER_JSON}"
+  "--generation_cfg_json" "${GENERATION_JSON}"
+  "--reasoning_cfg_json" "${REASONING_JSON}"
 )
 
 # Add optional max_samples
 if ((${#MAX_SAMPLES_ARG[@]})); then
-  ARGS+=("${MAX_SAMPLES_ARG[@]}")
+  COMMON_ARGS+=("${MAX_SAMPLES_ARG[@]}")
 fi
 
-# ---------------- Provider: lists (portable, no mapfile) ----------------
-PROVIDER_ORDER=()
-while IFS= read -r line; do [[ -n "$line" ]] && PROVIDER_ORDER+=("$line"); done < <(yaml_get_list 'openrouter_LLM.provider.order')
-PROVIDER_ONLY=()
-while IFS= read -r line; do [[ -n "$line" ]] && PROVIDER_ONLY+=("$line"); done < <(yaml_get_list 'openrouter_LLM.provider.only')
-PROVIDER_IGNORE=()
-while IFS= read -r line; do [[ -n "$line" ]] && PROVIDER_IGNORE+=("$line"); done < <(yaml_get_list 'openrouter_LLM.provider.ignore')
-PROVIDER_QUANT=()
-while IFS= read -r line; do [[ -n "$line" ]] && PROVIDER_QUANT+=("$line"); done < <(yaml_get_list 'openrouter_LLM.provider.quantizations')
+# Add prepend_reasoning if set
+PREPEND_REASONING="$(yaml_get_bool 'openrouter_LLM.generation.prepend_reasoning')"
+[[ "${PREPEND_REASONING:-}" == "true" ]] && COMMON_ARGS+=(--prepend_reasoning)
 
-((${#PROVIDER_ORDER[@]}))  && ARGS+=(--provider_order "${PROVIDER_ORDER[@]}")
-((${#PROVIDER_ONLY[@]}))   && ARGS+=(--provider_only "${PROVIDER_ONLY[@]}")
-((${#PROVIDER_IGNORE[@]})) && ARGS+=(--provider_ignore "${PROVIDER_IGNORE[@]}")
-((${#PROVIDER_QUANT[@]}))  && ARGS+=(--provider_quantizations "${PROVIDER_QUANT[@]}")
+# -------------------------------------------------------------------
+# Launch predict.py once per model (in parallel)
+# -------------------------------------------------------------------
+PIDS=()
+FAILED=0
 
-# ---------------- Provider: booleans & scalars ----------------
-ALLOW_FB="$(yaml_get_bool 'openrouter_LLM.provider.allow_fallbacks')"
-[[ "${ALLOW_FB:-}" == "true"  ]] && ARGS+=(--provider_allow_fallbacks)
-[[ "${ALLOW_FB:-}" == "false" ]] && ARGS+=(--provider_no_fallbacks)
+for MODEL in "${MODEL_NAMES[@]}"; do
+  # Filesystem-safe slug: replace / with --
+  SLUG="${MODEL//\//--}"
+  MODEL_OUT="${OUT_CSV%.csv}_${SLUG}.csv"
 
-REQ_PARAMS="$(yaml_get_bool 'openrouter_LLM.provider.require_parameters')"
-[[ "${REQ_PARAMS:-}" == "true"  ]] && ARGS+=(--provider_require_parameters)
-[[ "${REQ_PARAMS:-}" == "false" ]] && ARGS+=(--provider_no_require_parameters)
+  echo "Starting model: ${MODEL} (output: ${MODEL_OUT})" >&2
 
-DATA_COLL="$(yaml_get_or_default 'openrouter_LLM.provider.data_collection' '')"
-[[ -n "${DATA_COLL}" ]] && ARGS+=(--provider_data_collection "${DATA_COLL}")
+  PYTHONIOENCODING=UTF-8 \
+  API_KEY="${API_KEY}" \
+  python "${SCRIPT_DIR}/predict.py" \
+    --model "${MODEL}" \
+    --output "${MODEL_OUT}" \
+    "${COMMON_ARGS[@]}" &
 
-P_SORT="$(yaml_get_or_default 'openrouter_LLM.provider.sort' '')"
-[[ -n "${P_SORT}" ]] && ARGS+=(--provider_sort "${P_SORT}")
+  PIDS+=($!)
+done
 
-MAX_PRICE_PROMPT="$(yaml_get_or_default 'openrouter_LLM.provider.max_price.prompt' '')"
-[[ -n "${MAX_PRICE_PROMPT}" ]] && ARGS+=(--provider_max_price_prompt "${MAX_PRICE_PROMPT}")
-MAX_PRICE_COMPLETION="$(yaml_get_or_default 'openrouter_LLM.provider.max_price.completion' '')"
-[[ -n "${MAX_PRICE_COMPLETION}" ]] && ARGS+=(--provider_max_price_completion "${MAX_PRICE_COMPLETION}")
-
-# ---------------- Generation: scalars ----------------
-for key in max_tokens temperature top_p top_k frequency_penalty presence_penalty repetition_penalty; do
-  val="$(yaml_get_or_default "openrouter_LLM.generation.${key}" '')"
-  if [[ -n "${val}" && "${val}" != "null" ]]; then
-    ARGS+=("--${key}" "${val}")
+# Wait for all models and track failures
+for PID in "${PIDS[@]}"; do
+  if ! wait "${PID}"; then
+    FAILED=$((FAILED + 1))
   fi
 done
 
-# Generation: stop list (portable)
-STOP_LIST=()
-while IFS= read -r line; do [[ -n "$line" ]] && STOP_LIST+=("$line"); done < <(yaml_get_list 'openrouter_LLM.generation.stop')
-((${#STOP_LIST[@]})) && ARGS+=(--stop "${STOP_LIST[@]}")
-
-# Generation: booleans
-STREAM="$(yaml_get_bool 'openrouter_LLM.generation.stream')"
-[[ "${STREAM:-}" == "true" ]] && ARGS+=(--stream)
-
-# Generation: response_format (JSON)
-RESP_JSON="$(yaml_get_json 'openrouter_LLM.generation.response_format' 2>/dev/null || true)"
-[[ -n "${RESP_JSON:-}" ]] && ARGS+=(--response_format_json "${RESP_JSON}")
-
-# Reasoning
-RE_EFFORT="$(yaml_get_or_default 'openrouter_LLM.generation.reasoning.effort' '')"
-[[ -n "${RE_EFFORT}" ]] && ARGS+=(--reasoning_effort "${RE_EFFORT}")
-
-RE_MAXTOK="$(yaml_get_or_default 'openrouter_LLM.generation.reasoning.max_tokens' '')"
-[[ -n "${RE_MAXTOK}" ]] && ARGS+=(--reasoning_max_tokens "${RE_MAXTOK}")
-
-RE_EXCLUDE="$(yaml_get_bool 'openrouter_LLM.generation.reasoning.exclude')"
-[[ "${RE_EXCLUDE:-}" == "true"  ]] && ARGS+=(--reasoning_exclude)
-[[ "${RE_EXCLUDE:-}" == "false" ]] && ARGS+=(--no_reasoning_exclude)
-
-# Headers
-HTTP_REF="$(yaml_get_or_default 'openrouter_LLM.generation.http_referer' '')"
-[[ -n "${HTTP_REF}" ]] && ARGS+=(--http_referer "${HTTP_REF}")
-
-X_TITLE="$(yaml_get_or_default 'openrouter_LLM.generation.x_title' '')"
-[[ -n "${X_TITLE}" ]] && ARGS+=(--x_title "${X_TITLE}")
-
-PREPEND_REASONING="$(yaml_get_bool 'openrouter_LLM.generation.prepend_reasoning')"
-[[ "${PREPEND_REASONING:-}" == "true" ]] && ARGS+=(--prepend_reasoning)
-
-# -------------------------------------------------------------------
-# Invoke the Python driver (API key via env, never echoed)
-# -------------------------------------------------------------------
-PYTHONIOENCODING=UTF-8 \
-API_KEY="${API_KEY}" \
-python "${SCRIPT_DIR}/predict.py" "${ARGS[@]}"
+if ((FAILED > 0)); then
+  echo "ERROR: ${FAILED} model(s) failed." >&2
+  exit 1
+fi
 
 # Extra belt-and-braces: clear in case trap was removed/overridden
 unset -v API_KEY 2>/dev/null || true

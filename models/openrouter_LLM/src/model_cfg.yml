@@ -10,7 +10,18 @@ openrouter_LLM:
   # Note: "openai/gpt-5" requires an openai API key, while "openai/gpt-5-chat" does not and one can use the OpenRouter API key.
   # Free variants (add ":free" to the model name) are limited in the amount of requests per day (1000 after having payed once 10$)
   model_names:
-    - deepseek/deepseek-r1-0528
+    - meta-llama/llama-3.1-8b-instruct
+    - meta-llama/llama-3.1-70b-instruct
+  #  - meta-llama/llama-4-maverick
+  #  - anthropic/claude-sonnet-4.6
+  #  - google/gemini-3.1-pro-preview
+  #  - deepseek/deepseek-v3.2
+  #  - deepseek/deepseek-r1-0528
+  #  - openai/gpt-5.4
+  #  - mistralai/mistral-large-2512
+
+  # - anthropic/claude-opus-4.6 #(expensive!)
+  # - openai/gpt-5.4-pro #(expensive!)
 
   # Prompting/task metadata
   task_name: "cell_type_prediction"
@@ -48,10 +59,9 @@ openrouter_LLM:
   # Data shaping
   top_k_genes: 200
 
-  # Workload sizing / rate limiting
+  # Workload sizing
   max_samples: null            # 0 or null → use all cells
-  max_workers: 3
-  delay_between_requests: 1.2
+  max_workers: 10              # concurrent requests per model (adaptive backoff handles rate limits)
 
   # -------------------- Advanced OpenRouter options --------------------
   provider:
