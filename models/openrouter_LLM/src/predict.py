@@ -616,7 +616,7 @@ def main():
             arrow_dataset=arrow_ds,
             vocabulary=vocab,
             save_dir=str(save_dir),
-            save_name=f"{Path(args.input).stem}_c2s",
+            save_name=f"{Path(args.input).stem}_{args.model.replace('/', '--')}_c2s",
             dataset_backend="arrow",
         )
 
