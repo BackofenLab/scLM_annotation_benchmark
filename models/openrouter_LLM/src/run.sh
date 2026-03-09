@@ -203,7 +203,22 @@ fi
 # Model parameters (from MODEL_CFG, with sane defaults)
 # -------------------------------------------------------------------
 SEED="$(yaml_get_or_default 'openrouter_LLM.seed' '42')"
-MODEL_NAME="$(yaml_get_or_default 'openrouter_LLM.model_name' 'deepseek/deepseek-r1-0528:free')"
+# Read model_names as a list; fall back to model_name (singular) for backward compatibility
+MODEL_NAMES=()
+while IFS= read -r line; do [[ -n "$line" ]] && MODEL_NAMES+=("$line"); done < <(yaml_get_list 'openrouter_LLM.model_names')
+
+if (( ${#MODEL_NAMES[@]} == 0 )); then
+  # Backward compat: try singular model_name
+  SINGLE_MODEL="$(yaml_get_or_default 'openrouter_LLM.model_name' 'deepseek/deepseek-r1-0528:free')"
+  if [[ -n "$SINGLE_MODEL" && "$SINGLE_MODEL" != "None" ]]; then
+    MODEL_NAMES=("$SINGLE_MODEL")
+  fi
+fi
+
+if (( ${#MODEL_NAMES[@]} == 0 )); then
+  echo "ERROR: No model_names (or model_name) found in model config." >&2
+  exit 2
+fi
 TASK_NAME="$(yaml_get_or_default 'openrouter_LLM.task_name' 'cell_type_prediction')"
 
 OUTPUT_MODE="$(yaml_get_or_default 'openrouter_LLM.output_mode' 'label')"
@@ -232,7 +247,7 @@ declare -a ARGS=(
   "--input" "${INPUT_H5AD}"
   "--output" "${OUT_CSV}"
   "--seed" "${SEED}"
-  "--model" "${MODEL_NAME}"
+  "--models" "${MODEL_NAMES[@]}"
   "--output_mode" "${OUTPUT_MODE}"
   "--task_name" "${TASK_NAME}"
   "--input_prompt_template" "${INPUT_PROMPT_TEMPLATE}"

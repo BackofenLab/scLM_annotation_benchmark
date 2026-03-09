@@ -59,6 +59,14 @@ def load_data(data_path: str):
     return adata
 
 
+def model_to_slug(model_id: str) -> str:
+    """Convert OpenRouter model ID to a filesystem-safe slug.
+
+    Example: 'deepseek/deepseek-r1-0528' -> 'deepseek--deepseek-r1-0528'
+    """
+    return model_id.replace("/", "--")
+
+
 # ---------------- Prompting ----------------
 class CustomPromptFormatter(PromptFormatter):
     def __init__(self, task_name: str, input_prompt: str, answer_template: str, top_k_genes: int):
@@ -575,7 +583,8 @@ def _parse_args() -> argparse.Namespace:
     p.add_argument("--output", "-o", required=True, help="Path to output predictions.csv")
 
     # Core config
-    p.add_argument("--model", "-m", default="deepseek/deepseek-r1-0528:free")
+    p.add_argument("--models", "-m", nargs="+", default=["deepseek/deepseek-r1-0528:free"],
+                   help="One or more OpenRouter model IDs to run predictions with")
     p.add_argument("--output_mode", "-om", default="label", choices=["cl_id", "label"])
     p.add_argument("--seed", type=int, default=42, help="Random seed (also passed to model where supported)")
     p.add_argument("--task_name", default="cell_type_prediction")
@@ -657,8 +666,9 @@ def main():
         print("ERROR: API key not provided. Set env API_KEY or pass --api-key.", file=sys.stderr)
         sys.exit(3)
 
-    # Sanity check the model up front
-    assert_model_available(args.model, api_key)
+    # Sanity check all models up front
+    for model_id in args.models:
+        assert_model_available(model_id, api_key)
 
     # Load adata
     adata = load_data(args.input)
@@ -751,70 +761,74 @@ def main():
             dataset_backend="arrow",
         )
 
-        # Run predictions
-        preds = run_OpenRouter_model_prediction(
-            model=args.model,
-            api_key=api_key,
-            csdata=csdata,
-            task_name=args.task_name,
-            input_prompt_template=args.input_prompt_template,
-            answer_template=args.answer_template,
-            top_k_genes=args.top_k_genes,
-            max_samples=args.max_samples,
-            max_workers=args.max_workers,
-            delay_between_requests=args.delay_between_requests,
-            # Provider
-            provider_order=args.provider_order,
-            provider_only=args.provider_only,
-            provider_ignore=args.provider_ignore,
-            provider_allow_fallbacks=args.provider_allow_fallbacks,
-            provider_require_parameters=args.provider_require_parameters,
-            provider_data_collection=args.provider_data_collection,
-            provider_sort=args.provider_sort,
-            provider_quantizations=args.provider_quantizations,
-            provider_max_price_prompt=args.provider_max_price_prompt,
-            provider_max_price_completion=args.provider_max_price_completion,
-            # Generation
-            max_tokens=args.max_tokens,
-            temperature=args.temperature,
-            top_p=args.top_p,
-            top_k=args.top_k,
-            seed=args.seed,
-            frequency_penalty=args.frequency_penalty,
-            presence_penalty=args.presence_penalty,
-            repetition_penalty=args.repetition_penalty,
-            stop=args.stop,
-            stream=args.stream,
-            response_format=args.response_format,
-            # Reasoning
-            reasoning_effort=args.reasoning_effort,
-            reasoning_max_tokens=args.reasoning_max_tokens,
-            reasoning_exclude=args.reasoning_exclude,
-            # Headers
-            http_referer=args.http_referer,
-            x_title=args.x_title,
-            prepend_reasoning=args.prepend_reasoning,
-        )
+        # Run predictions for each model
+        for model_id in args.models:
+            model_slug = model_to_slug(model_id)
+            logger.info(f"Running predictions with model: {model_id} (slug: {model_slug})")
 
-        # Print the first 10 predictions for debugging
-        print(preds[:10])
+            preds = run_OpenRouter_model_prediction(
+                model=model_id,
+                api_key=api_key,
+                csdata=csdata,
+                task_name=args.task_name,
+                input_prompt_template=args.input_prompt_template,
+                answer_template=args.answer_template,
+                top_k_genes=args.top_k_genes,
+                max_samples=args.max_samples,
+                max_workers=args.max_workers,
+                delay_between_requests=args.delay_between_requests,
+                # Provider
+                provider_order=args.provider_order,
+                provider_only=args.provider_only,
+                provider_ignore=args.provider_ignore,
+                provider_allow_fallbacks=args.provider_allow_fallbacks,
+                provider_require_parameters=args.provider_require_parameters,
+                provider_data_collection=args.provider_data_collection,
+                provider_sort=args.provider_sort,
+                provider_quantizations=args.provider_quantizations,
+                provider_max_price_prompt=args.provider_max_price_prompt,
+                provider_max_price_completion=args.provider_max_price_completion,
+                # Generation
+                max_tokens=args.max_tokens,
+                temperature=args.temperature,
+                top_p=args.top_p,
+                top_k=args.top_k,
+                seed=args.seed,
+                frequency_penalty=args.frequency_penalty,
+                presence_penalty=args.presence_penalty,
+                repetition_penalty=args.repetition_penalty,
+                stop=args.stop,
+                stream=args.stream,
+                response_format=args.response_format,
+                # Reasoning
+                reasoning_effort=args.reasoning_effort,
+                reasoning_max_tokens=args.reasoning_max_tokens,
+                reasoning_exclude=args.reasoning_exclude,
+                # Headers
+                http_referer=args.http_referer,
+                x_title=args.x_title,
+                prepend_reasoning=args.prepend_reasoning,
+            )
 
-        # Convert predicted CL terms -> (normalized CL ID, cell type label)
-        if args.output_mode == "cl_id":
-            pred_cl_ids, pred_labels = cl_ids_and_labels_from_preds(preds, online=True, follow_replacements=True)
-        elif args.output_mode == "label":
-            pred_labels = preds
-            pred_cl_ids = [None] * len(preds)
-        else:
-            raise ValueError(f"Invalid output mode: {args.output_mode}")
+            # Print the first 10 predictions for debugging
+            print(preds[:10])
 
-        # Build and save results
-        df = create_results_dataframe(adata, pred_cl_ids, pred_labels, args.label_keys)
-        
-        output_csv = output_dir / f"{output_stem}_{annotation_key}{output_suffix}"
-        Path(output_csv).parent.mkdir(parents=True, exist_ok=True)
-        df.to_csv(output_csv, index=True)
-        logger.info(f"Wrote predictions: {output_csv}")
+            # Convert predicted CL terms -> (normalized CL ID, cell type label)
+            if args.output_mode == "cl_id":
+                pred_cl_ids, pred_labels = cl_ids_and_labels_from_preds(preds, online=True, follow_replacements=True)
+            elif args.output_mode == "label":
+                pred_labels = preds
+                pred_cl_ids = [None] * len(preds)
+            else:
+                raise ValueError(f"Invalid output mode: {args.output_mode}")
+
+            # Build and save results
+            df = create_results_dataframe(adata, pred_cl_ids, pred_labels, args.label_keys)
+
+            output_csv = output_dir / f"{output_stem}_{annotation_key}_{model_slug}{output_suffix}"
+            Path(output_csv).parent.mkdir(parents=True, exist_ok=True)
+            df.to_csv(output_csv, index=True)
+            logger.info(f"Wrote predictions for {model_id}: {output_csv}")
 
 
 if __name__ == "__main__":
