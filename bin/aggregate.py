@@ -32,6 +32,16 @@ def combine_results(args):
             continue
 
         dataset, model = parse_name(Path(fp))
+        # Validate dataset against known configs; if no match, try alternative splits
+        # (handles model names with underscores like "openrouter_LLM")
+        if not any(dataset in dc for dc in args.datasets):
+            parts = Path(fp).stem.split("_")
+            for i in range(len(parts) - 1, 0, -1):
+                candidate_ds = "_".join(parts[:i])
+                candidate_model = "_".join(parts[i:])
+                if any(candidate_ds in dc for dc in args.datasets):
+                    dataset, model = candidate_ds, candidate_model
+                    break
         annotation_key = False
         for dataset_config in args.datasets:
             if dataset in dataset_config:
