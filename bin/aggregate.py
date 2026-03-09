@@ -47,9 +47,26 @@ def combine_results(args):
         if not annotation_key: # fall back to first key if not found
             print("WARNING: No annotation key found, falling back to first key")
             annotation_key = next(iter(data))
-        m = extract_metrics(data, annotation_key)
-        row = {"file": str(fp), "dataset": dataset, "model": model, **m}
-        rows.append(row)
+        if annotation_key in data:
+            # Standard single-model case (e.g. celltypist, scsa, ...)
+            m = extract_metrics(data, annotation_key)
+            row = {"file": str(fp), "dataset": dataset, "model": model, **m}
+            rows.append(row)
+        else:
+            # Multi-model case: JSON keys contain model slugs
+            # e.g. "predictions_meta-llama--llama-3.1-8b-instruct_celltype"
+            ann_suffix = annotation_key[len("predictions_"):]  # e.g. "celltype"
+            matched = False
+            for key in data:
+                if key.startswith("predictions_") and key.endswith("_" + ann_suffix):
+                    model_slug = key[len("predictions_"):-(len(ann_suffix) + 1)]
+                    m = extract_metrics(data, key)
+                    row = {"file": str(fp), "dataset": dataset,
+                           "model": model_slug.replace("--", "/"), **m}
+                    rows.append(row)
+                    matched = True
+            if not matched:
+                print(f"WARNING: No matching keys for '{annotation_key}' in {fp}", file=sys.stderr)
 
     if not rows:
         print("No usable JSONs found.", file=sys.stderr)
