@@ -183,19 +183,52 @@ def query_openrouter_model(
     if generation_cfg.get("response_format") is not None:
         data["response_format"] = generation_cfg["response_format"]
 
-    # Reasoning block
-    reasoning = {}
-    if reasoning_cfg.get("effort") is not None:
-        reasoning["effort"] = reasoning_cfg["effort"]
-    if reasoning_cfg.get("max_tokens") is not None:
-        if "effort" in reasoning:
-            logger.warning("Both reasoning effort and max_tokens supplied; using max_tokens.")
-            reasoning.pop("effort", None)
-        reasoning["max_tokens"] = reasoning_cfg["max_tokens"]
-    if reasoning_cfg.get("exclude") is not None:
-        reasoning["exclude"] = reasoning_cfg["exclude"]
-    if reasoning:
-        data["reasoning"] = reasoning
+    # Reasoning block — effort and max_tokens are mutually exclusive in the
+    # OpenRouter API.  When both are configured globally, pick the right one
+    # based on the model provider:
+    #   • Anthropic / Google models → use max_tokens (effort not supported)
+    #   • Non-reasoning models (meta-llama, mistralai) → skip reasoning entirely
+    #   • Mandatory-reasoning models (deepseek-r1) → only send exclude if set
+    #   • All other reasoning models → use effort
+    _NON_REASONING_PREFIXES = ("meta-llama", "mistralai")
+    _MANDATORY_REASONING_PATTERNS = ("deepseek-r1",)
+
+    provider_prefix = model.split("/")[0] if "/" in model else ""
+    model_suffix = model.split("/")[-1] if "/" in model else model
+
+    # Skip reasoning entirely for non-reasoning models
+    if provider_prefix in _NON_REASONING_PREFIXES:
+        pass  # no reasoning block
+    elif any(p in model_suffix for p in _MANDATORY_REASONING_PATTERNS):
+        # Mandatory reasoning — only send exclude (effort/max_tokens ignored)
+        reasoning = {}
+        if reasoning_cfg.get("exclude") is not None:
+            reasoning["exclude"] = reasoning_cfg["exclude"]
+        if reasoning:
+            data["reasoning"] = reasoning
+    else:
+        # Optional reasoning — pick effort vs max_tokens per provider
+        reasoning = {}
+        if reasoning_cfg.get("enabled") is not None:
+            reasoning["enabled"] = reasoning_cfg["enabled"]
+
+        has_effort = reasoning_cfg.get("effort") is not None
+        has_max_tokens = reasoning_cfg.get("max_tokens") is not None
+
+        if has_effort and has_max_tokens:
+            if provider_prefix in ("anthropic", "google"):
+                reasoning["max_tokens"] = reasoning_cfg["max_tokens"]
+            else:
+                reasoning["effort"] = reasoning_cfg["effort"]
+        elif has_effort:
+            reasoning["effort"] = reasoning_cfg["effort"]
+        elif has_max_tokens:
+            reasoning["max_tokens"] = reasoning_cfg["max_tokens"]
+
+        if reasoning_cfg.get("exclude") is not None:
+            reasoning["exclude"] = reasoning_cfg["exclude"]
+        if reasoning:
+            data["reasoning"] = reasoning
 
     # Send with retry + adaptive backoff
     last_err = None
@@ -549,7 +582,7 @@ def main():
         print("ERROR: API key not provided. Set env API_KEY or pass --api-key.", file=sys.stderr)
         sys.exit(3)
 
-    assert_model_available(args.model, api_key)
+    # Model availability is validated upfront in run.sh (pre-flight check).
 
     # Inject seed into generation config if not already set
     if "seed" not in args.generation_cfg:

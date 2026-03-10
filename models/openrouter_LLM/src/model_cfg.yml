@@ -1,4 +1,4 @@
-# Model configuration for DeepSeekR1 (and any other OpenRouter model, e.g. GPT5)
+# Model configuration for OpenRouter LLMs
 # You can override any of these at runtime by setting env MODEL_CFG=/path/to/other.yml
 
 openrouter_LLM:
@@ -7,21 +7,25 @@ openrouter_LLM:
 
   # OpenRouter model ids — list of models to run (results saved separately per model)
   # e.g. "openai/gpt-5-chat" for GPT-5, "deepseek/deepseek-r1-0528" for DeepSeekR1
-  # Note: "openai/gpt-5" requires an openai API key, while "openai/gpt-5-chat" does not and one can use the OpenRouter API key.
-  # Free variants (add ":free" to the model name) are limited in the amount of requests per day (1000 after having payed once 10$)
   model_names:
-    - meta-llama/llama-3.1-8b-instruct
-    - meta-llama/llama-3.1-70b-instruct
-  #  - meta-llama/llama-4-maverick
-  #  - anthropic/claude-sonnet-4.6
-  #  - google/gemini-3.1-pro-preview
-  #  - deepseek/deepseek-v3.2
-  #  - deepseek/deepseek-r1-0528
-  #  - openai/gpt-5.4
-  #  - mistralai/mistral-large-2512
+    - meta-llama/llama-4-maverick #(non-reasoning)
+    - anthropic/claude-sonnet-4.6 #(reasoning: max_tokens)
+    - deepseek/deepseek-v3.2 #(reasoning: effort)
+    - z-ai/glm-5 #(reasoning: effort)
+    - moonshotai/kimi-k2.5 #(reasoning: effort)
+    - openai/gpt-5.4 #(reasoning: effort)
+    - google/gemini-3-flash-preview #(reasoning: max_tokens)
+    - google/gemini-3.1-pro-preview #(reasoning: max_tokens)
+  ## - anthropic/claude-opus-4.6 #(expensive!, reasoning: max_tokens)
+  ## - openai/gpt-5.4-pro #(expensive!, reasoning: effort)
 
-  # - anthropic/claude-opus-4.6 #(expensive!)
-  # - openai/gpt-5.4-pro #(expensive!)
+  ##  - deepseek/deepseek-r1-0528 #(optional, always reasoning)
+  ##  - mistralai/mistral-large-2512 #(optional, non-reasoning)
+
+  ##  - meta-llama/llama-3.1-8b-instruct #(drop, non-reasoning)
+  ##  - meta-llama/llama-3.1-70b-instruct #(drop, non-reasoning)
+
+
 
   # Prompting/task metadata
   task_name: "cell_type_prediction"
@@ -41,7 +45,7 @@ openrouter_LLM:
     3. Do not repeat the question or input.
     Output:
 
-  # 1. Respond with only the cell type label of the predicted cell type. 
+  # 1. Respond with only the cell type label of the predicted cell type.
   # 1. Respond with only the cell ontology term of the predicted cell type (e.g. CL_0000624 for a CD4-positive, alpha-beta T cell, or CL_0000127 for an astrocyte).
   # 2. Do not include explanations, reasoning, or extra words.
   # 3. Do not repeat the question or input.
@@ -90,9 +94,11 @@ openrouter_LLM:
     response_format: null       # e.g. {"type": "json_object"}
 
     reasoning:
-      effort: null              # "low"|"medium"|"high"|null
-      max_tokens: null
-      exclude: null             # true/false/null
+      enabled: true             # explicitly enable reasoning for all supporting models
+      effort: "medium"          # for OpenAI/xAI models: "minimal"|"low"|"medium"|"high"|"xhigh"|"none"
+      max_tokens: 10000         # for Anthropic/Gemini models: explicit budget (1024–128000)
+      exclude: false            # true = still reasons but hides tokens from response
+      # Both can be set: predict.py picks effort vs max_tokens per model provider
 
     http_referer: null
     x_title: null

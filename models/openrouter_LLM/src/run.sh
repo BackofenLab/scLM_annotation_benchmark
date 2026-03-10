@@ -318,6 +318,36 @@ PREPEND_REASONING="$(yaml_get_bool 'openrouter_LLM.generation.prepend_reasoning'
 [[ "${PREPEND_REASONING:-}" == "true" ]] && COMMON_ARGS+=(--prepend_reasoning)
 
 # -------------------------------------------------------------------
+# Pre-flight: validate ALL model names against OpenRouter before any work
+# -------------------------------------------------------------------
+echo "Validating model availability on OpenRouter..." >&2
+python - "${API_KEY}" "${MODEL_NAMES[@]}" <<'PY'
+import sys, requests
+api_key = sys.argv[1]
+models = sys.argv[2:]
+try:
+    r = requests.get(
+        "https://openrouter.ai/api/v1/models",
+        headers={"Authorization": f"Bearer {api_key}"},
+        timeout=30,
+    )
+    if r.status_code != 200:
+        print(f"WARNING: Could not validate models (HTTP {r.status_code}). Proceeding anyway.", file=sys.stderr)
+        sys.exit(0)
+    available = {m.get("id") for m in r.json().get("data", []) if isinstance(m, dict)}
+    missing = [m for m in models if m not in available]
+    if missing:
+        print(f"ERROR: The following models are NOT available on OpenRouter:", file=sys.stderr)
+        for m in missing:
+            print(f"  - {m}", file=sys.stderr)
+        print(f"Check model IDs at https://openrouter.ai/models", file=sys.stderr)
+        sys.exit(1)
+    print(f"All {len(models)} models validated OK.", file=sys.stderr)
+except Exception as e:
+    print(f"WARNING: Model validation failed ({e}). Proceeding anyway.", file=sys.stderr)
+PY
+
+# -------------------------------------------------------------------
 # Launch predict.py once per model (in parallel)
 # -------------------------------------------------------------------
 PIDS=()
