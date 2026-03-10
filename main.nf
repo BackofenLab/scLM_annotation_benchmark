@@ -183,16 +183,17 @@ process evaluate_annotation {
     // Tag with dataset and model for easy tracing
     tag { "${dataset}×${model}" }
 
-    publishDir(path: 'results/', mode: 'copy', overwrite: 'false')
+    publishDir(path: 'results/', mode: 'copy', overwrite: true)
 
     output:
     path "*.json"
+    path "*.pdf", optional: true
 
     script:
     """
     # Convert the prediction files to a comma-separated string
     pred_files=\$(echo ${predictions} | tr ' ' ',')
-    evaluate.py --pred "\$pred_files" --out ${dataset}_${model}.json --cache_dir ${cache_dir} --apply_ontology_mapping ${apply_ontology_mapping}
+    evaluate.py --pred "\$pred_files" --out ${dataset}_${model}.json --cache_dir ${cache_dir} --apply_ontology_mapping ${apply_ontology_mapping} --max-unmapped-ratio 0.1
     """
 }
 
@@ -272,14 +273,14 @@ workflow {
                                          tuple(pred, dataset, model, cache_dir, apply_flag)
                                      }
     
-    jsons = evaluate_annotation(predictions_with_flag)
+    eval_out = evaluate_annotation(predictions_with_flag)
     Channel
         .fromList(params.datasets)
         .map { dataset -> file("datasets/${dataset}.yml") }
         .collect()
         .set { datasets }
 
-    combine_results(jsons.collect(), datasets)
+    combine_results(eval_out[0].collect(), datasets)
 }
 
 workflow.onComplete {
