@@ -350,8 +350,11 @@ def main(args):
         # Remove trailing periods from predicted labels before any other processing
         print(f"\nPreprocessing predicted labels...")
         df = remove_trailing_periods_from_predictions(df, pred_col, verbose=True)
-        # make all predictions lowercase
+        # make all labels lowercase for consistent comparison
         df[pred_col] = df[pred_col].str.lower()
+        for col in ['true_labels', 'true_labels_1', 'true_labels_2', 'true_labels_3']:
+            if col in df.columns:
+                df[col] = df[col].str.lower()
         
         # Filter predictions by review status before applying ontology mapping (only if mapping is enabled)
         if args.apply_ontology_mapping:
