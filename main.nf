@@ -199,7 +199,7 @@ process evaluate_annotation {
 process combine_results {
     conda 'envs/evaluation.yml'
 
-    publishDir(path: 'results/', mode: 'copy', overwrite: 'false')
+    publishDir(path: 'results/', mode: 'copy', overwrite: true)
 
     input:
     path(json_path)
@@ -276,6 +276,7 @@ workflow {
     Channel
         .fromList(params.datasets)
         .map { dataset -> file("datasets/${dataset}.yml") }
+        .collect()
         .set { datasets }
 
     combine_results(jsons.collect(), datasets)
