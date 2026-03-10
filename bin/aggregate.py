@@ -98,16 +98,18 @@ def combine_results(args):
     by_ds_model_csv = out_dir / "aggregated_by_dataset_model.csv"
     by_ds_model.to_csv(by_ds_model_csv, index=False)
 
-    # Create and export plot
+    # Create and export barplots
     make_plot(by_ds_model, out_dir)
-    #export_plot(by_ds_model, out_dir, group_by="model")
+
+    # Create heatmaps (models × datasets)
+    make_heatmaps(by_ds_model, out_dir)
 
     pivot_balacc = by_ds_model.pivot(index="dataset", columns="model", values="balanced_accuracy")
     pivot_macro_f1 = by_ds_model.pivot(index="dataset", columns="model", values="macro_f1")
 
     print("Balanced accuracy \n")
     print(pivot_balacc)
-    
+
     print("Macro F1 \n")
     print(pivot_macro_f1)
 
@@ -221,6 +223,54 @@ def make_plot(dataframe, out_dir):
         plt.close()
 
     print(f"Plots saved to: {out_dir.resolve()}")
+
+
+def make_heatmaps(dataframe, out_dir):
+    """
+    Create heatmaps with models on the x-axis and datasets on the y-axis.
+    Values are annotated inside each cell.
+    """
+    metrics = [
+        "balanced_accuracy",
+        "accuracy",
+        "rada_avg_similarity",
+        "lin_avg_similarity",
+        "id_accuracy",
+        "balanced_id_accuracy",
+        "macro_f1",
+        "weighted_f1",
+    ]
+
+    sns.set(style="whitegrid")
+
+    for metric in metrics:
+        pivot = dataframe.pivot(index="dataset", columns="model", values=metric)
+        if pivot.empty:
+            continue
+
+        # Sort columns by mean performance descending
+        pivot = pivot[pivot.mean().sort_values(ascending=False).index]
+
+        fig, ax = plt.subplots(figsize=(max(8, len(pivot.columns) * 1.2), max(4, len(pivot) * 0.8)))
+        sns.heatmap(
+            pivot,
+            annot=True,
+            fmt=".3f",
+            cmap="YlOrRd",
+            vmin=0,
+            vmax=1,
+            linewidths=0.5,
+            ax=ax,
+        )
+        ax.set_title(f"{metric.replace('_', ' ').title()} — Models × Datasets")
+        ax.set_xlabel("Model")
+        ax.set_ylabel("Dataset")
+        plt.xticks(rotation=45, ha="right")
+        plt.tight_layout()
+        plt.savefig(out_dir / f"aggregated_plot_{metric}_heatmap.png", dpi=300)
+        plt.close()
+
+    print(f"Heatmaps saved to: {out_dir.resolve()}")
 
 
 def export_plot(
