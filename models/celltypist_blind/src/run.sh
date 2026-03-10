@@ -13,9 +13,9 @@ mkdir -p "$OUTPUT_DIR"
 IFS=$'\t' read -r ANNOTATION_KEY CELLTYPIST_MODEL < <(python - <<'PY' "$CFG_YAML"
 import yaml, sys
 config = yaml.safe_load(open(sys.argv[1]))
-annotation_key = config.get('annotation_key', ['cell_type'])
+annotation_key = config.get('annotation_key', 'cell_type')
 celltypist_model = config.get('celltypist_model', 'Immune_All_High.pkl')
-print(' '.join(annotation_key) + '\t' + celltypist_model)
+print(annotation_key + '\t' + celltypist_model)
 PY
 )
 
