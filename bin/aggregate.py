@@ -67,11 +67,14 @@ def combine_results(args):
                 rows.append(row)
                 matched = True
             elif key.startswith("predictions_"):
-                # Multi-model case: extract LLM model name from slug
+                # Multi-model case: extract LLM model name and blind/unblind suffix
                 model_slug = key[len("predictions_"):]
+                llm_name = model_slug.replace("--", "/").split("/")[-1]  # e.g. "deepseek-v3.2"
+                suffix = model.split("_")[-1] if "_" in model else ""    # e.g. "blind" or "unblind"
+                display_name = f"{llm_name}_{suffix}" if suffix else llm_name
                 m = extract_metrics(data, key)
                 row = {"file": str(fp), "dataset": dataset,
-                       "model": model_slug.replace("--", "/"), **m}
+                       "model": display_name, **m}
                 rows.append(row)
                 matched = True
         if not matched:
