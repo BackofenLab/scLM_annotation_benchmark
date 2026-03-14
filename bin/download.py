@@ -7,18 +7,16 @@ Supports two download sources:
   2. CellxGene Census — specified via `source: cellxgene_census` + `census_dataset_id`
 
 Pipeline:
-  1. Looks up the dataset's YAML descriptor (name, URL/census_id, keys, …).
-  2. Caches the **full** file under ``<cache_dir>/<dataset>.<ext>``
+  1. Looks up the dataset's YAML descriptor (name, URL/census_id, keys, ...).
+  2. Caches the full file under ``<cache_dir>/<dataset>.<ext>``
      (skips download when already present and valid).
-  3. Always verifies that the required ``annotation_key`` exists.
-  4. Optionally writes a *subset* copy ``<cache_dir>/<dataset>_sub{n}.<ext>``.
-  5. Optionally applies ontology mapping (overwrites cache in-place).
-  6. Hard-links (or copies) the chosen file to Nextflow's work dir.
+  3. Verifies that the required ``annotation_key`` and ``batch_key`` exist.
+  4. Hard-links (or copies) the cached full dataset to Nextflow's work dir.
 
 Everything is format-agnostic (``.h5ad`` or ``.zarr``).
 """
 from __future__ import annotations
-import argparse, html as ihtml, os, random, re, shutil, sys, yaml
+import argparse, html as ihtml, os, re, shutil, sys, yaml
 from pathlib import Path
 from typing import Iterable
 from urllib.parse import urljoin
@@ -269,53 +267,23 @@ def stream_download_gdrive(file_id: str, dest: Path) -> None:
     _validate_download(dest, _stream_to_file(r, dest), f"Google Drive id={file_id}")
 
 # --------------------------------------------------------------------------- #
-# Verification & subsetting                                                   #
+# Verification                                                                #
 # --------------------------------------------------------------------------- #
 def verify_columns(ad, keys: Iterable[str]) -> None:
     """Abort if any *keys* are missing from ``ad.obs``."""
     if missing := [k for k in keys if k not in ad.obs.columns]:
         sys.exit(f"[ERROR] Missing keys in adata.obs: {missing}")
 
-
-def maybe_subset(full_path: Path, subset_path: Path, n: int | None) -> Path:
-    """Create ``subset_path`` with *n* random cells if given; return chosen path."""
-    if n is None:
-        return full_path
-    if subset_path.exists():
-        try:
-            read_adata(subset_path)
-            log_info(f"Subset already exists (valid) – skipping: {subset_path.name}")
-            return subset_path
-        except Exception as e:
-            log_warn(f"Subset cache unreadable – rebuilding: {subset_path.name} ({e})")
-            if subset_path.is_file():
-                subset_path.unlink(missing_ok=True)
-            else:
-                shutil.rmtree(subset_path, ignore_errors=True)
-    ad = read_adata(full_path)
-    if n >= ad.n_obs:
-        log_warn("subset_size ≥ n_obs – using full dataset")
-        return full_path
-    log_info(f"Writing subset ({n} cells) → {subset_path.name}")
-    write_adata(ad[random.sample(range(ad.n_obs), n)], subset_path)
-    return subset_path
-
 # --------------------------------------------------------------------------- #
 # CLI entry-point                                                             #
 # --------------------------------------------------------------------------- #
 def main() -> None:
     """Run the downloader from the command line."""
-    RANDOM_SEED = 42
-    random.seed(RANDOM_SEED)
-    log_info(f"Random seed: {RANDOM_SEED}")
-
     ap = argparse.ArgumentParser()
     ap.add_argument("--dataset", required=True, help="Dataset name (must match YAML 'name')")
     ap.add_argument("--cfg_yaml", required=True, help="YAML file with dataset configuration")
-    ap.add_argument("--cache_dir", required=True, help="Local cache for full/subset files")
+    ap.add_argument("--cache_dir", required=True, help="Local cache for downloaded files")
     ap.add_argument("--out", required=True, help="Destination inside the task work dir")
-    ap.add_argument("--apply_ontology_mapping", type=lambda x: str(x).lower() == 'true',
-                    default=True, help="Apply ontology mapping (default: True)")
     args = ap.parse_args()
 
     log_info(f"Loading cfg_yaml: {args.cfg_yaml}")
@@ -331,8 +299,7 @@ def main() -> None:
     cache_dir = Path(args.cache_dir)
     ext = ".h5ad" if use_census else (Path(cfg["url"]).suffix or ".h5ad")
     full_path = cache_dir / f"{cfg['name']}{ext}"
-    subset_path = cache_dir / f"{cfg['name']}_sub{cfg.get('subset_size')}{ext}"
-    log_info(f"Dataset: {cfg['name']} | Cache: {cache_dir} | Full: {full_path.name} | Subset: {subset_path.name}")
+    log_info(f"Dataset: {cfg['name']} | Cache: {cache_dir} | Full: {full_path.name}")
 
     # --- Download ---
     if use_census:
@@ -372,49 +339,15 @@ def main() -> None:
     verify_columns(read_adata(full_path), [cfg["annotation_key"], cfg["batch_key"]])
     log_info("Required columns verified")
 
-    # --- Subset ---
-    chosen = maybe_subset(full_path, subset_path, cfg.get("subset_size"))
-    log_info(f"Chosen input: {chosen.name}")
-
-    # --- Ontology mapping ---
-    if args.apply_ontology_mapping:
-        from util.download_helpers import apply_ontology_mapping_to_dataset
-        log_info("Applying ontology mapping...")
-        adata_mapped = apply_ontology_mapping_to_dataset(
-            adata=read_adata(chosen), annotation_key=cfg["annotation_key"],
-            cache_dir=cache_dir, verbose=True, origin=cfg['name'])
-        write_adata(adata_mapped, chosen)
-        log_info("Ontology mapping completed")
-    else:
-        # Mapping disabled - check if we need to restore original annotations from cache
-        print("[INFO] Ontology mapping disabled - checking for original annotations...")
-        adata = read_adata(chosen)
-        restored_any = False
-        
-        key = cfg["annotation_key"]
-        original_key = f"original_{key}"
-        if original_key in adata.obs.columns:
-            print(f"[INFO] Restoring '{key}' from '{original_key}' backup column...")
-            adata.obs[key] = adata.obs[original_key].copy()
-            restored_any = True
-        elif key in adata.obs.columns:
-            # Original column doesn't exist, assume current column is already original
-            print(f"[INFO] No backup found for '{key}' - assuming current values are original")
-        
-        if restored_any:
-            # Write the restored data back to cache
-            write_adata(adata, chosen)
-            log_info("Original annotations restored")
-        else:
-            log_info("Using annotations as-is")
-
     # --- Link/copy to Nextflow work dir ---
     dest = Path(args.out).resolve()
     dest.parent.mkdir(parents=True, exist_ok=True)
-    if chosen.resolve() != dest:
-        log_info(f"Linking {chosen.name} → {dest}")
-        try: os.link(chosen, dest)
-        except OSError: shutil.copy2(chosen, dest)
+    if full_path.resolve() != dest:
+        log_info(f"Linking {full_path.name} -> {dest}")
+        try:
+            os.link(full_path, dest)
+        except OSError:
+            shutil.copy2(full_path, dest)
     log_info(f"OK: {dest.name} ready")
 
 
