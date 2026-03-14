@@ -13,27 +13,24 @@ INPUT_H5AD="$(abspath "$1")"
 OUT_CSV="$2"          # make dir first, then resolve abs path
 CFG_YAML="$(abspath "$3")"
 
-# Where this script lives (so we can find .env & model_cfg.yml)
+# Where this script lives (so we can find model_cfg.yml)
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # -------------------------------------------------------------------
-# Load API_KEY: env wins; else load from .env; else fail clearly
+# Require API_KEY from environment (set by nextflow.config or CLI)
 # -------------------------------------------------------------------
 cleanup() { unset -v API_KEY 2>/dev/null || true; }
 trap cleanup EXIT
 
-if [[ -z "${API_KEY:-}" && -f "$SCRIPT_DIR/.env" ]]; then
-  # shellcheck disable=SC1090
-  set -a
-  source "$SCRIPT_DIR/.env"
-  set +a
-fi
-
 if [[ -z "${API_KEY:-}" ]]; then
-  echo "ERROR: API_KEY is not set. Provide it via environment or $SCRIPT_DIR/.env" >&2
-  echo "Examples:" >&2
-  echo "  export API_KEY=YOUR_KEY && nextflow run main.nf -profile local" >&2
-  echo "  (or put 'API_KEY=YOUR_KEY' into $SCRIPT_DIR/.env)" >&2
+  echo "ERROR: API_KEY is not set. Provide it via one of the following methods:" >&2
+  echo "" >&2
+  echo "  1. (Recommended) Set OPENROUTER_API_KEY in your shell environment:" >&2
+  echo "       export OPENROUTER_API_KEY=sk-or-v1-..." >&2
+  echo "     This is read by nextflow.config and forwarded to all processes." >&2
+  echo "" >&2
+  echo "  2. Pass it on the Nextflow command line:" >&2
+  echo "       nextflow run main.nf --openrouter_api_key sk-or-v1-... -profile local" >&2
   exit 64
 fi
 
@@ -302,7 +299,7 @@ declare -a COMMON_ARGS=(
   "--answer_template" "${ANSWER_TEMPLATE}"
   "--top_k_genes" "${TOP_K_GENES}"
   "--max_workers" "${MAX_WORKERS}"
-  "--label_keys" ${LABEL_KEYS}
+  "--label_key" "${LABEL_KEY}"
   "--provider_cfg_json" "${PROVIDER_JSON}"
   "--generation_cfg_json" "${GENERATION_JSON}"
   "--reasoning_cfg_json" "${REASONING_JSON}"

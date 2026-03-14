@@ -83,18 +83,20 @@ process run_model {
     conda { "envs/models/${model}.yml" }
 
     output:
-    tuple(path("results/*/*/*/predictions.csv"), val(dataset), val(model), val(cache_dir))
+    tuple(path("results/*/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir))
 
     script:
+    def apiKeyExport = params.openrouter_api_key ? "export API_KEY='${params.openrouter_api_key}'" : ''
     """
+    ${apiKeyExport}
     echo "Subset size of ${dataset}: ${subset_size}"
 
     cache_base="${cache_dir}/models/predictions/${model}/${dataset}/${subset_size}"
     results_dir=./results/${model}/${dataset}/${subset_size}
-    
+
     mkdir -p \${results_dir}
 
-    if [ ! -f \${cache_base}/predictions.csv ]; then
+    if ! ls \${cache_base}/predictions*.csv 1>/dev/null 2>&1; then
         # Run model and produce predictions
         mkdir -p \${cache_base}
         bash "${model_dir}/src/run.sh" \
@@ -104,55 +106,12 @@ process run_model {
             "${cache_dir}/models"
 
         # Cache predictions
-        cp \${results_dir}/predictions.csv \${cache_base}/
+        cp \${results_dir}/predictions*.csv \${cache_base}/
     else
         # Use cached predictions
-        cp \${cache_base}/predictions.csv \${results_dir}/
+        cp \${cache_base}/predictions*.csv \${results_dir}/
         echo "Cell type prediction already exists for ${dataset} × ${model} (subset ${subset_size})."
-        echo "To rerun, delete: \${cache_base}/predictions.csv"
-    fi
-    """
-}
-
-process run_model_throttled {
-    input:
-    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size)
-
-    // Same tag format as run_model
-    tag { "${dataset}×${model}" }
-
-    conda { "envs/models/${model}.yml" }
-
-    publishDir(path: 'results/', mode: 'copy', overwrite: 'true', pattern: '*.csv')
-
-    output:
-    tuple(path("results/*/*/*/predictions.csv"), val(dataset), val(model), val(cache_dir))
-
-    script:
-    """
-    echo "Subset size of ${dataset}: ${subset_size}"
-
-    cache_base="${cache_dir}/models/predictions/${model}/${dataset}/${subset_size}"
-    results_dir=./results/${model}/${dataset}/${subset_size}
-    
-    mkdir -p \${results_dir}
-
-    if [ ! -f \${cache_base}/predictions.csv ]; then
-        # Run model and produce predictions
-        mkdir -p \${cache_base}
-        bash "${model_dir}/src/run.sh" \
-            "${data_file}" \
-            \${results_dir}/predictions.csv \
-            "${cfg_yaml}" \
-            "${cache_dir}/models"
-
-        # Cache predictions
-        cp \${results_dir}/predictions.csv \${cache_base}/
-    else
-        # Use cached predictions
-        cp \${cache_base}/predictions.csv \${results_dir}/
-        echo "Cell type prediction already exists for ${dataset} × ${model} (subset ${subset_size})."
-        echo "To rerun, delete: \${cache_base}/predictions.csv"
+        echo "To rerun, delete: \${cache_base}/predictions*.csv"
     fi
     """
 }
@@ -224,6 +183,14 @@ workflow {
 
     // cell_types = extract_cell_types(h5ad_file_ch, config_file_ch, cache_dir_ch)
 
+    // Warn if OpenRouter models are selected but no API key is configured
+    def hasOpenRouter = (params.models ?: []).any { it.toLowerCase().contains('openrouter') }
+    if (hasOpenRouter && !params.openrouter_api_key) {
+        log.warn "OpenRouter model(s) selected but no API key configured. Set the key via one of:"
+        log.warn "  1. export OPENROUTER_API_KEY=sk-or-v1-...  (recommended, read by nextflow.config)"
+        log.warn "  2. --openrouter_api_key VALUE  on the nextflow command line"
+    }
+
     // Prepare models (handles setup like git cloning, etc.)
     Channel
         .fromList(params.models)
@@ -242,13 +209,7 @@ workflow {
         .set { model_input }
     
     // Run the models (all models should output predictions.csv)
-    // OpenRouter LLMs are request-limited, so we currently run them in a separate lane via run_model_throttled,
-    // while all other models can be run in parallel via run_model
-    def throttled_in = model_input.filter { t -> (params.throttled_models ?: []).contains(t[4]) }
-    def normal_in    = model_input.filter { t -> !(params.throttled_models ?: []).contains(t[4]) }
-    predictions_fast = run_model(normal_in)
-    predictions_slow = run_model_throttled(throttled_in)
-    predictions      = predictions_fast.mix(predictions_slow)
+    predictions = run_model(model_input)
 
     // Combine predictions with the apply_ontology_mapping flag
     predictions_with_flag = predictions.combine(apply_mapping_ch)

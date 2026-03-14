@@ -491,7 +491,7 @@ def create_results_dataframe(
     adata,
     predicted_cl_ids: List[Optional[str]],
     predicted_labels: List[Optional[str]],
-    label_keys: List[str],
+    label_key: str,
 ) -> pd.DataFrame:
     n = len(predicted_cl_ids)
     idx = list(adata.obs_names[:n])
@@ -504,17 +504,12 @@ def create_results_dataframe(
     # Keep compatibility: if someone expects "predicted_labels", mirror the column
     data["predicted_labels"] = predicted_labels
 
-    if not label_keys:
-        label_keys = ["cell_type"]
-
-    # Process single annotation key
-    key = label_keys[0] if label_keys else "cell_type"
     col_name = "true_labels"
-    if key in adata.obs.columns:
-        data[col_name] = list(adata.obs[key].astype("string").values[:n])
+    if label_key in adata.obs.columns:
+        data[col_name] = list(adata.obs[label_key].astype("string").values[:n])
     else:
-            logger.warning(f"'{key}' not found in adata.obs; filling NA")
-            data[col_name] = [None] * n
+        logger.warning(f"'{label_key}' not found in adata.obs; filling NA")
+        data[col_name] = [None] * n
 
     df = pd.DataFrame(data, index=idx)
     return df
@@ -538,7 +533,7 @@ def _parse_args() -> argparse.Namespace:
     p.add_argument("--top_k_genes", type=int, default=200)
     p.add_argument("--max_samples", type=int, default=None)
     p.add_argument("--max_workers", type=int, default=10)
-    p.add_argument("--label_keys", "-l", nargs="+", required=True)
+    p.add_argument("--label_key", "-l", required=True)
     p.add_argument("--api-key", dest="api_key", default=None)
 
     # Provider config (JSON string)
@@ -617,77 +612,70 @@ def main():
     adata.var_names_make_unique()
 
     output_path = Path(args.output)
-    output_stem = output_path.stem
-    output_suffix = output_path.suffix
     output_dir = output_path.parent
 
-    for annotation_key in args.label_keys:
-        logger.info(f"Processing annotation key: {annotation_key}")
+    if args.label_key not in adata.obs.columns:
+        print(f"ERROR: Label '{args.label_key}' not in adata.obs columns", file=sys.stderr)
+        sys.exit(4)
 
-        if annotation_key not in adata.obs.columns:
-            print(f"ERROR: Label '{annotation_key}' not in adata.obs columns", file=sys.stderr)
-            sys.exit(4)
+    adata.obs["true_labels"] = adata.obs[args.label_key].astype(str)
 
-    # One shuffled list per observation
+    if pd.api.types.is_categorical_dtype(adata.obs["true_labels"]):
+        labels = adata.obs["true_labels"].cat.categories.to_numpy()
+    else:
+        labels = pd.unique(adata.obs["true_labels"].values)
+
+    rng = np.random.default_rng(args.seed)
     adata.obs["unique_cell_types"] = [rng.permutation(labels).tolist() for _ in range(adata.n_obs)]
 
-        if pd.api.types.is_categorical_dtype(adata.obs["true_labels"]):
-            labels = adata.obs["true_labels"].cat.categories.to_numpy()
-        else:
-            labels = pd.unique(adata.obs["true_labels"].values)
+    # Build C2S dataset
+    arrow_ds, vocab = cs.CSData.adata_to_arrow(
+        adata=adata,
+        random_state=args.seed,
+        sentence_delimiter=" ",
+        label_col_names=["true_labels", "unique_cell_types"],
+    )
+    save_dir = Path(args.output).parent
+    csdata = cs.CSData.csdata_from_arrow(
+        arrow_dataset=arrow_ds,
+        vocabulary=vocab,
+        save_dir=str(save_dir),
+        save_name=f"{Path(args.input).stem}_{args.model.replace('/', '--')}_c2s",
+        dataset_backend="arrow",
+    )
 
-        rng = np.random.default_rng(args.seed)
-        adata.obs["unique_cell_types"] = [rng.permutation(labels).tolist() for _ in range(adata.n_obs)]
+    # Single model prediction
+    preds = run_OpenRouter_model_prediction(
+        model=args.model,
+        api_key=api_key,
+        csdata=csdata,
+        task_name=args.task_name,
+        input_prompt_template=args.input_prompt_template,
+        answer_template=args.answer_template,
+        top_k_genes=args.top_k_genes,
+        max_samples=args.max_samples,
+        max_workers=args.max_workers,
+        provider_cfg=args.provider_cfg,
+        generation_cfg=args.generation_cfg,
+        reasoning_cfg=args.reasoning_cfg,
+        prepend_reasoning=args.prepend_reasoning,
+    )
 
-        # Build C2S dataset
-        arrow_ds, vocab = cs.CSData.adata_to_arrow(
-            adata=adata,
-            random_state=args.seed,
-            sentence_delimiter=" ",
-            label_col_names=["true_labels", "unique_cell_types"],
-        )
-        save_dir = Path(args.output).parent
-        csdata = cs.CSData.csdata_from_arrow(
-            arrow_dataset=arrow_ds,
-            vocabulary=vocab,
-            save_dir=str(save_dir),
-            save_name=f"{Path(args.input).stem}_{args.model.replace('/', '--')}_c2s",
-            dataset_backend="arrow",
-        )
+    logger.info(f"First 10 predictions: {preds[:10]}")
 
-        # Single model prediction
-        preds = run_OpenRouter_model_prediction(
-            model=args.model,
-            api_key=api_key,
-            csdata=csdata,
-            task_name=args.task_name,
-            input_prompt_template=args.input_prompt_template,
-            answer_template=args.answer_template,
-            top_k_genes=args.top_k_genes,
-            max_samples=args.max_samples,
-            max_workers=args.max_workers,
-            provider_cfg=args.provider_cfg,
-            generation_cfg=args.generation_cfg,
-            reasoning_cfg=args.reasoning_cfg,
-            prepend_reasoning=args.prepend_reasoning,
-        )
+    if args.output_mode == "cl_id":
+        pred_cl_ids, pred_labels = cl_ids_and_labels_from_preds(preds, online=True, follow_replacements=True)
+    elif args.output_mode == "label":
+        pred_labels = preds
+        pred_cl_ids = [None] * len(preds)
+    else:
+        raise ValueError(f"Invalid output mode: {args.output_mode}")
 
-        logger.info(f"First 10 predictions: {preds[:10]}")
+    df = create_results_dataframe(adata, pred_cl_ids, pred_labels, args.label_key)
 
-        if args.output_mode == "cl_id":
-            pred_cl_ids, pred_labels = cl_ids_and_labels_from_preds(preds, online=True, follow_replacements=True)
-        elif args.output_mode == "label":
-            pred_labels = preds
-            pred_cl_ids = [None] * len(preds)
-        else:
-            raise ValueError(f"Invalid output mode: {args.output_mode}")
-
-        df = create_results_dataframe(adata, pred_cl_ids, pred_labels, args.label_keys)
-
-        output_csv = output_dir / f"{output_stem}_{annotation_key}{output_suffix}"
-        Path(output_csv).parent.mkdir(parents=True, exist_ok=True)
-        df.to_csv(output_csv, index=True)
-        logger.info(f"Wrote predictions: {output_csv}")
+    Path(output_dir).mkdir(parents=True, exist_ok=True)
+    df.to_csv(output_path, index=True)
+    logger.info(f"Wrote predictions: {output_path}")
 
 
 if __name__ == "__main__":

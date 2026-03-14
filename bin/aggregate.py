@@ -40,7 +40,7 @@ def combine_results(args):
             print(f"Skipping {fp}: cannot read/parse JSON ({e})", file=sys.stderr)
             continue
 
-        dataset, model = parse_name(Path(fp))
+        dataset, model = parse_name(Path(fp), known_dataset_names)
         # Validate dataset against known configs; if no match, try alternative splits
         # (handles model names with underscores like "openrouter_LLM")
         if not any(dataset in dc for dc in args.datasets):
@@ -51,41 +51,31 @@ def combine_results(args):
                 if any(candidate_ds in dc for dc in args.datasets):
                     dataset, model = candidate_ds, candidate_model
                     break
-        annotation_key = False
-        for dataset_config in args.datasets:
-            if dataset in dataset_config:
-                with open(dataset_config) as c:
-                    cfg = yaml.safe_load(c)
-                print(cfg)
-                annotation_keys = cfg.get("annotation_keys")
-                if args.level >= len(annotation_keys):
-                    annotation_key = "predictions_" + annotation_keys[-1]
-                else:
-                    annotation_key = "predictions_" + annotation_keys[args.level]
-                break
-        if not annotation_key: # fall back to first key if not found
-            print("WARNING: No annotation key found, falling back to first key")
-            annotation_key = next(iter(data))
-        if annotation_key in data:
-            # Standard single-model case (e.g. celltypist, scsa, ...)
-            m = extract_metrics(data, annotation_key)
-            row = {"file": str(fp), "dataset": dataset, "model": model, **m}
-            rows.append(row)
-        else:
-            # Multi-model case: JSON keys contain model slugs
-            # e.g. "predictions_meta-llama--llama-3.1-8b-instruct_celltype"
-            ann_suffix = annotation_key[len("predictions_"):]  # e.g. "celltype"
-            matched = False
-            for key in data:
-                if key.startswith("predictions_") and key.endswith("_" + ann_suffix):
-                    model_slug = key[len("predictions_"):-(len(ann_suffix) + 1)]
-                    m = extract_metrics(data, key)
-                    row = {"file": str(fp), "dataset": dataset,
-                           "model": model_slug.replace("--", "/"), **m}
-                    rows.append(row)
-                    matched = True
-            if not matched:
-                print(f"WARNING: No matching keys for '{annotation_key}' in {fp}", file=sys.stderr)
+
+        # Extract metrics from JSON keys produced by evaluate.py.
+        # Keys are filename stems:
+        #   Single-model: "predictions" (from predictions.csv)
+        #   Multi-model:  "predictions_<slug>" (from predictions_<slug>.csv)
+        matched = False
+        for key in data:
+            if not isinstance(data[key], dict) or "true_labels" not in data[key]:
+                continue
+            if key == "predictions":
+                # Single-model case: use the Nextflow model name
+                m = extract_metrics(data, key)
+                row = {"file": str(fp), "dataset": dataset, "model": model, **m}
+                rows.append(row)
+                matched = True
+            elif key.startswith("predictions_"):
+                # Multi-model case: extract LLM model name from slug
+                model_slug = key[len("predictions_"):]
+                m = extract_metrics(data, key)
+                row = {"file": str(fp), "dataset": dataset,
+                       "model": model_slug.replace("--", "/"), **m}
+                rows.append(row)
+                matched = True
+        if not matched:
+            print(f"WARNING: No keys with 'true_labels' found in {fp}", file=sys.stderr)
 
     if not rows:
         print("No usable JSONs found.", file=sys.stderr)
