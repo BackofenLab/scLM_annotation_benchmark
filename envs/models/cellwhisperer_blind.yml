@@ -1,0 +1,29 @@
+name: cellwhisperer
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - setuptools<82
+  - git
+  - setuptools<81
+  - pip
+  - pip:
+    - pyyaml
+    - torch==2.1.0
+    - numpy<2
+    - scib
+    - pybiomart
+    - anndata==0.10.2
+    - transformers==4.34.1
+    - lightning==2.1.0
+    - datasets==2.12.0
+    - loompy
+    - seaborn
+    - scikit-learn
+    - scanpy
+    - tdigest
+    - wandb
+    - zarr
+    - -e ../../models/cellwhisperer_blind/src/CellWhisperer
+    - -e ../../models/cellwhisperer_blind/src/CellWhisperer/modules/Geneformer

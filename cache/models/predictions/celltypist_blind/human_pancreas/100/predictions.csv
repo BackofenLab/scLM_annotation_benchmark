@@ -1,0 +1,73 @@
+cell_id,true_labels,predicted_labels
+human3_lib1.final_cell_0495,pancreatic ductal cell,Epithelial cells
+D30-7_2,pancreatic A cell,Epithelial cells
+D17All1_52,acinar cell,Epithelial cells
+human3_lib3.final_cell_0396,acinar cell,Epithelial cells
+D29-4_67,type B pancreatic cell,Epithelial cells
+human3_lib3.final_cell_0313,type B pancreatic cell,Epithelial cells
+D30-3_11,pancreatic A cell,Epithelial cells
+human3_lib2.final_cell_0209,pancreatic ductal cell,Epithelial cells
+human3_lib3.final_cell_0382,pancreatic ductal cell,Epithelial cells
+human4_lib3.final_cell_0429,type B pancreatic cell,Epithelial cells
+human2_lib2.final_cell_0119,pancreatic stellate cell,Fibroblasts
+D29-3_33,pancreatic A cell,Epithelial cells
+human2_lib3.final_cell_0258,pancreatic A cell,Epithelial cells
+human1_lib2.final_cell_0024,pancreatic ductal cell,Epithelial cells
+D3en3_2,acinar cell,Epithelial cells
+D3en1_13,acinar cell,Epithelial cells
+D29-6_54,pancreatic A cell,Epithelial cells
+D31-5_18,delta,Epithelial cells
+D17All1_87,type B pancreatic cell,Epithelial cells
+human2_lib1.final_cell_0022,pancreatic A cell,Epithelial cells
+human2_lib3.final_cell_0447,type B pancreatic cell,Epithelial cells
+D17TGFB_44,acinar cell,Macrophages
+human2_lib2.final_cell_0379,pancreatic A cell,Epithelial cells
+human3_lib2.final_cell_0853,type B pancreatic cell,Epithelial cells
+human3_lib1.final_cell_0666,pancreatic A cell,Epithelial cells
+human3_lib2.final_cell_0612,pancreatic A cell,Epithelial cells
+human2_lib2.final_cell_0112,pancreatic stellate cell,Fibroblasts
+human1_lib1.final_cell_0553,macrophage,Macrophages
+human1_lib2.final_cell_0471,acinar cell,Epithelial cells
+human2_lib3.final_cell_0238,pancreatic ductal cell,Epithelial cells
+human3_lib4.final_cell_0574,macrophage,Macrophages
+human4_lib3.final_cell_0054,pancreatic ductal cell,Epithelial cells
+D31-3_61,pancreatic PP cell,Fibroblasts
+human3_lib3.final_cell_0679,pancreatic A cell,ILC
+human3_lib4.final_cell_0515,pancreatic ductal cell,Epithelial cells
+human3_lib2.final_cell_0560,pancreatic A cell,Epithelial cells
+human1_lib2.final_cell_0036,delta,Epithelial cells
+D30-5_18,delta,Epithelial cells
+human3_lib3.final_cell_0756,pancreatic A cell,DC
+D30-2_94,pancreatic A cell,Epithelial cells
+D29-6_17,pancreatic A cell,Epithelial cells
+D29-8_20,pancreatic A cell,Epithelial cells
+human4_lib1.final_cell_0299,type B pancreatic cell,Epithelial cells
+human2_lib3.final_cell_0475,type B pancreatic cell,Epithelial cells
+D31-7_67,type B pancreatic cell,Epithelial cells
+human3_lib4.final_cell_0536,pancreatic stellate cell,Fibroblasts
+human3_lib3.final_cell_0202,type B pancreatic cell,Epithelial cells
+human1_lib3.final_cell_0010,delta,Epithelial cells
+human2_lib1.final_cell_0528,pancreatic A cell,B cells
+D31-6_59,pancreatic A cell,Epithelial cells
+human2_lib2.final_cell_0228,pancreatic A cell,Epithelial cells
+HP1507101_C15,type B pancreatic cell,Epithelial cells
+human4_lib1.final_cell_0002,delta,Epithelial cells
+human3_lib1.final_cell_0318,pancreatic A cell,Epithelial cells
+human3_lib1.final_cell_0152,pancreatic A cell,Epithelial cells
+human4_lib3.final_cell_0319,type B pancreatic cell,Macrophages
+human4_lib1.final_cell_0532,type B pancreatic cell,Epithelial cells
+human2_lib3.final_cell_0043,delta,Epithelial cells
+HP1509101_O19,pancreatic A cell,Epithelial cells
+human3_lib2.final_cell_0665,type B pancreatic cell,Epithelial cells
+D17All1_1,pancreatic A cell,Epithelial cells
+D31-1_7,acinar cell,Epithelial cells
+human3_lib1.final_cell_0853,endothelial cell,Endothelial cells
+human3_lib3.final_cell_0912,type B pancreatic cell,Epithelial cells
+D28-4_39,pancreatic A cell,Epithelial cells
+human4_lib1.final_cell_0427,type B pancreatic cell,Epithelial cells
+D17All1_95,type B pancreatic cell,Epithelial cells
+human4_lib3.final_cell_0008,pancreatic ductal cell,Epithelial cells
+D30-2_28,pancreatic A cell,Epithelial cells
+human1_lib2.final_cell_0540,type B pancreatic cell,Epithelial cells
+human3_lib1.final_cell_0434,type B pancreatic cell,Epithelial cells
+human4_lib1.final_cell_0080,type B pancreatic cell,Epithelial cells

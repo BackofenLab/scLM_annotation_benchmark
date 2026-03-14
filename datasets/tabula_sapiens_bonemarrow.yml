@@ -4,9 +4,21 @@ url: https://figshare.com/ndownloader/files/50850783/Bone_Marrow_TSP1_30_version
 format: h5ad
 subset_size: 20000                # null → use full dataset
 batch_key: donor
-annotation_keys: [cell_ontology_class]
+annotation_key: cell_ontology_class
 apply_ontology_mapping: true
 celltypist_model: "Adult_Human_Bone_Marrow.pkl" #"Immune_All_High.pkl"
 
 preprocessing:
   count_layer_key: "decontXcounts"
+# Optional metadata for InstructCell - can use either:
+#   Option 1: Direct values (applied to all cells in dataset)
+#     species: "human"                    # direct value for all cells
+#     tissue: "tissue_name"               # direct value for all cells
+#     sequencing_method: "10xGenomics"    # direct value for all cells
+#   Option 2: Keys (per-cell values from adata.obs columns)
+#     species_key: "species"              # column name for species metadata (per-cell)
+#     tissue_key: "tissue"                 # column name for tissue metadata (per-cell)
+#     sequencing_method_key: "sequencing_method"  # column name for sequencing method (per-cell)
+# species_key: "species"          # column name for species metadata
+# tissue_key: "tissue"            # column name for tissue metadata
+# sequencing_method_key: "sequencing_method"  # column name for sequencing method metadata

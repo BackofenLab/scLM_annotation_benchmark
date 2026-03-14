@@ -1,0 +1,10 @@
+name: mmcontext
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - git
+  - git-lfs
+  - pip:
+    - git+https://github.com/mengerj/adata_hf_datasets.git
+    - git+https://github.com/mengerj/mmcontext.git@main

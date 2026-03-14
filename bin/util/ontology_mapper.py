@@ -53,11 +53,23 @@ def map_cell_types_to_ontology(
     """
     try:
         import omicverse as ov
-    except ImportError:
+    except ImportError as e:
+        error_msg = str(e)
+
+        # Keep the classic guidance for a truly missing package.
+        if "No module named 'omicverse'" in error_msg:
+            raise ImportError(
+                "omicverse is required for ontology mapping. "
+                "Install it with: pip install omicverse or include it into the dependencies of the nextflow process"
+            ) from e
+
+        # Surface binary/linker errors explicitly (common in conda + system libstdc++ conflicts).
         raise ImportError(
-            "omicverse is required for ontology mapping. "
-            "Install it with: pip install omicverse or include it into the dependencies of the nextflow process"
-        )
+            "Failed to import omicverse due to a runtime dependency/linking error. "
+            "If you see a CXXABI/libstdc++ message, ensure the conda env libraries are preferred "
+            "(for example: export LD_LIBRARY_PATH=\"$CONDA_PREFIX/lib:${LD_LIBRARY_PATH:-}\"). "
+            f"Original error: {error_msg}"
+        ) from e
     
     cache_dir = Path(cache_dir) 
     cache_dir.mkdir(parents=True, exist_ok=True)

@@ -5,7 +5,7 @@ census_dataset_id: "6d41668c-168c-4500-b06a-4674ccf3e19d"
 census_version: "2025-11-08" # logs a stable build tag for reproducibility (snapshot of census version)
 subset_size: 2000             # null → use full dataset
 batch_key: donor_id
-annotation_keys: [cell_type]
+annotation_key: "cell_type"
 apply_ontology_mapping: true
 celltypist_model: "Healthy_Human_Liver.pkl"
 

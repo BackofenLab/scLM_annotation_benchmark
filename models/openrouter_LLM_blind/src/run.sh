@@ -182,20 +182,20 @@ PY
 }
 
 # -------------------------------------------------------------------
-# Annotation keys come from the *dataset* YAML (3rd arg)
-#   Expect a list under `annotation_keys:` or `annotation.keys:`
+# Annotation key comes from the *dataset* YAML (3rd arg)
+#   Expect a single value under `annotation_key:`
 # -------------------------------------------------------------------
-LABEL_KEYS="$(python - "$CFG_YAML" <<'PY'
+LABEL_KEY="$(python - "$CFG_YAML" <<'PY'
 import sys, yaml
 with open(sys.argv[1], "r", encoding="utf-8") as f:
     cfg = yaml.safe_load(f) or {}
-keys = cfg.get("annotation_keys") or (cfg.get("annotation") or {}).get("keys") or []
-print(" ".join(keys))
+key = cfg.get("annotation_key") or cfg.get("annotation_key", "cell_type")
+print(key)
 PY
 )"
 
-if [[ -z "$LABEL_KEYS" ]]; then
-  echo "ERROR: No 'annotation_keys' found in $CFG_YAML" >&2
+if [[ -z "$LABEL_KEY" ]]; then
+  echo "ERROR: No 'annotation_key' found in $CFG_YAML" >&2
   exit 2
 fi
 
@@ -240,7 +240,7 @@ declare -a ARGS=(
   "--top_k_genes" "${TOP_K_GENES}"
   "--max_workers" "${MAX_WORKERS}"
   "--delay_between_requests" "${DELAY_BETWEEN_REQUESTS}"
-  "--label_keys" ${LABEL_KEYS}
+  "--label_key" "${LABEL_KEY}"
 )
 
 # Add optional max_samples

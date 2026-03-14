@@ -11,7 +11,7 @@ miniconda.sh
 cache/*
 # Exception: keep the ontology mappings CSV for manual editing
 !cache/cell_type_ontology_mappings.csv
-!cache/cell_types.csv
+!cache/all_cell_types.txt
 # Exception: keep the predictions subdirectory
 !cache/models/
 cache/models/*
@@ -26,3 +26,10 @@ results/
 
 .env
 .DS_Store
+
+# Langcell files
+*.bin
+*.sqlite
+config.json
+obo.json
+langcell_pretrained_model_datasets.zip
