@@ -129,7 +129,7 @@ process evaluate_annotation {
 
     output:
     path "*.json"
-    path "*.pdf", optional: true
+    path "**/*.pdf", optional: true
 
     script:
     """

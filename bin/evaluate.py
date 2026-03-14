@@ -274,7 +274,7 @@ def main(args):
     # Remove .json extension first, then split from left (dataset has no underscores, model may have them)
     filename_stem = Path(args.out).stem  # e.g., "HIHA_c2s_scale_2B"
     dataset, model = filename_stem.split('_', 1)  # Split from left: ['HIHA', 'c2s_scale_2B']
-    output_dir = Path(args.out).parent / dataset
+    output_dir = Path(args.out).parent / dataset / model
     output_dir.mkdir(parents=True, exist_ok=True)
     
     # Set up cache directory and CL ontology path
