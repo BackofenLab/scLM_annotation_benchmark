@@ -7,13 +7,44 @@ def loadYaml(String path) {
     return yaml.load(new File(path).text)
 }
 
+// Resolve the subset size for a model based on pattern matching
+def resolveSubsetSize(String model, Map categories) {
+    for (entry in categories) {
+        if (entry.key != 'default' && model.toLowerCase().contains(entry.key.toLowerCase())) {
+            return entry.value
+        }
+    }
+    return categories.get('default', 10000)
+}
+
 process download {
     conda 'envs/download.yml'
 
     input:
-    tuple val(dataset), val(cache_dir), path(cfg_yaml), val(apply_ontology_mapping)
+    tuple val(dataset), val(cache_dir), path(cfg_yaml)
 
-    // Tag appears after inputs; you can use `dataset`
+    tag { dataset }
+
+    output:
+    tuple(path("data/*_raw.h5ad"), val(dataset), path(cfg_yaml), val(cache_dir))
+
+    script:
+    """
+    set -euo pipefail
+    download.py \
+      --dataset   "${dataset}" \
+      --cfg_yaml  "${cfg_yaml}" \
+      --out       "data/${dataset}_raw.h5ad" \
+      --cache_dir "${cache_dir}"
+    """
+}
+
+process preprocess {
+    conda 'envs/download.yml'
+
+    input:
+    tuple path(raw_file), val(dataset), path(cfg_yaml), val(cache_dir)
+
     tag { dataset }
 
     output:
@@ -22,24 +53,61 @@ process download {
     script:
     """
     set -euo pipefail
-    # Step 1: Download the dataset
-    download.py \
-      --dataset   "${dataset}" \
-      --cfg_yaml  "${cfg_yaml}" \
-      --out       "data/${dataset}_raw.h5ad" \
-      --cache_dir "${cache_dir}" \
-      --apply_ontology_mapping ${apply_ontology_mapping}
-    
-    # Step 2: Preprocess the dataset
     preprocess.py \
-      --input "data/${dataset}_raw.h5ad" \
+      --input "${raw_file}" \
       --output "data/${dataset}_pp.h5ad" \
       --config "${cfg_yaml}" \
       --summary "data/${dataset}_pp_summary.txt" \
       --cache_dir "${cache_dir}"
-    
-    # Clean up raw file (optional - remove if you want to keep it)
-    rm "data/${dataset}_raw.h5ad"
+    """
+}
+
+process ontology_mapping {
+    conda 'envs/download.yml'
+
+    input:
+    tuple path(pp_file), val(dataset), path(cfg_yaml), val(cache_dir), val(annotation_key), val(apply_mapping)
+
+    tag { dataset }
+
+    output:
+    tuple(path("data/*_mapped.h5ad"), val(dataset), path(cfg_yaml), val(cache_dir), val(annotation_key))
+
+    script:
+    """
+    set -euo pipefail
+    ontology_map.py \
+      --input "${pp_file}" \
+      --output "data/${dataset}_mapped.h5ad" \
+      --annotation_key "${annotation_key}" \
+      --cache_dir "${cache_dir}" \
+      --dataset "${dataset}" \
+      --apply ${apply_mapping}
+    """
+}
+
+process subset {
+    conda 'envs/download.yml'
+
+    input:
+    tuple path(mapped_file), val(dataset), path(cfg_yaml), val(cache_dir), val(annotation_key), val(subset_size), val(min_cells_per_type)
+
+    tag { "${dataset}xsub${subset_size}" }
+
+    output:
+    tuple(path("data/*_sub*.h5ad"), val(dataset), path(cfg_yaml), val(cache_dir), val(subset_size))
+
+    script:
+    """
+    set -euo pipefail
+    subset.py \
+      --input "${mapped_file}" \
+      --output "data/${dataset}_sub${subset_size}.h5ad" \
+      --annotation_key "${annotation_key}" \
+      --subset_size ${subset_size} \
+      --dataset "${dataset}" \
+      --qc_dir "${cache_dir}/subset_qc/${dataset}/sub${subset_size}" \
+      --min_cells_per_type ${min_cells_per_type}
     """
 }
 
@@ -49,7 +117,6 @@ process prepare_model {
     input:
     tuple val(model), path(model_dir)
 
-    // Use the model name in the tag
     tag { model }
 
     output:
@@ -57,12 +124,10 @@ process prepare_model {
 
     script:
     """
-    # check if the model_dir exists
     if [ ! -d "${model_dir}" ]; then
         echo "Model directory ${model_dir} does not exist"
         exit 1
     fi
-    # Check if prepare.sh exists and run it if it does
     if [ -f "${model_dir}/src/prepare.sh" ]; then
         echo "Running preparation script for ${model}..."
         cd ${model_dir}/src
@@ -77,8 +142,7 @@ process run_model {
     input:
     tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size)
 
-    // Same tag format as run_model
-    tag { "${dataset}×${model}" }
+    tag { "${dataset}x${model}" }
 
     conda { "envs/models/${model}.yml" }
 
@@ -97,20 +161,16 @@ process run_model {
     mkdir -p \${results_dir}
 
     if ! ls \${cache_base}/predictions*.csv 1>/dev/null 2>&1; then
-        # Run model and produce predictions
         mkdir -p \${cache_base}
         bash "${model_dir}/src/run.sh" \
             "${data_file}" \
             \${results_dir}/predictions.csv \
             "${cfg_yaml}" \
             "${cache_dir}/models"
-
-        # Cache predictions
         cp \${results_dir}/predictions*.csv \${cache_base}/
     else
-        # Use cached predictions
         cp \${cache_base}/predictions*.csv \${results_dir}/
-        echo "Cell type prediction already exists for ${dataset} × ${model} (subset ${subset_size})."
+        echo "Cell type prediction already exists for ${dataset} x ${model} (subset ${subset_size})."
         echo "To rerun, delete: \${cache_base}/predictions*.csv"
     fi
     """
@@ -122,8 +182,7 @@ process evaluate_annotation {
     input:
     tuple path(predictions), val(dataset), val(model), val(cache_dir), val(apply_ontology_mapping)
 
-    // Tag with dataset and model for easy tracing
-    tag { "${dataset}×${model}" }
+    tag { "${dataset}x${model}" }
 
     publishDir(path: 'results/', mode: 'copy', overwrite: true)
 
@@ -133,7 +192,6 @@ process evaluate_annotation {
 
     script:
     """
-    # Convert the prediction files to a comma-separated string
     pred_files=\$(echo ${predictions} | tr ' ' ',')
     evaluate.py --pred "\$pred_files" --out ${dataset}_${model}.json --cache_dir ${cache_dir} --apply_ontology_mapping ${apply_ontology_mapping} --max-unmapped-ratio 0.1
     """
@@ -153,37 +211,35 @@ process combine_results {
 
     script:
     """
-    # Aggregate results (only level 0 for now):
     aggregate.py --input ${json_path} --output ./ --level 0 --datasets ${datasets}
     """
 }
 
 workflow {
+    // --- Data pipeline: download -> preprocess -> ontology_mapping -> subset ---
+
     Channel
         .fromList(params.datasets)
-        .map { dataset -> tuple(dataset, file(params.cache_dir), file("datasets/${dataset}.yml"), params.apply_ontology_mapping) }
+        .map { dataset -> tuple(dataset, file(params.cache_dir), file("datasets/${dataset}.yml")) }
         .set { download_input }
 
     download_out = download(download_input)
 
-    Channel.fromPath(params.cache_dir)
-            .set { cache_dir_ch }
+    preprocess_out = preprocess(download_out)
 
-    download_out.map { h5ad_file, dataset, cfg_yaml, cache_dir -> h5ad_file }
-                .collect()
-                .set { h5ad_file_ch }
+    // Add annotation_key and apply_ontology_mapping from dataset config
+    preprocess_out
+        .map { pp_file, dataset, cfg_yaml, cache_dir ->
+            def cfg = loadYaml("datasets/${dataset}.yml")
+            def apply_mapping = cfg.containsKey('apply_ontology_mapping') ? cfg.apply_ontology_mapping : params.apply_ontology_mapping
+            tuple(pp_file, dataset, cfg_yaml, cache_dir, cfg.annotation_key, apply_mapping)
+        }
+        .set { ontology_input }
 
-    download_out.map { h5ad_file, dataset, cfg_yaml, cache_dir -> cfg_yaml }
-                .collect()
-                .set { config_file_ch }
-    
-    // Create a channel with the apply_ontology_mapping flag for evaluation
-    Channel.value(params.apply_ontology_mapping)
-            .set { apply_mapping_ch }
+    ontology_out = ontology_mapping(ontology_input)
 
-    // cell_types = extract_cell_types(h5ad_file_ch, config_file_ch, cache_dir_ch)
+    // --- Model preparation (runs in parallel with data pipeline) ---
 
-    // Warn if OpenRouter models are selected but no API key is configured
     def hasOpenRouter = (params.models ?: []).any { it.toLowerCase().contains('openrouter') }
     if (hasOpenRouter && !params.openrouter_api_key) {
         log.warn "OpenRouter model(s) selected but no API key configured. Set the key via one of:"
@@ -191,33 +247,63 @@ workflow {
         log.warn "  2. --openrouter_api_key VALUE  on the nextflow command line"
     }
 
-    // Prepare models (handles setup like git cloning, etc.)
     Channel
         .fromList(params.models)
         .map { model -> tuple(model, file("models/${model}")) }
         .set { prepare_input }
-    
+
     prepared_models = prepare_model(prepare_input)
-    
-    // Combine data with prepared models
-    download_out
+
+    // --- Subsetting: one per unique (dataset, subset_size) pair ---
+
+    Channel
+        .fromList(params.models)
+        .map { model -> tuple(model, resolveSubsetSize(model, params.subset_categories)) }
+        .set { model_sizes }
+
+    model_sizes
+        .map { model, size -> size }
+        .unique()
+        .set { unique_sizes }
+
+    ontology_out
+        .combine(unique_sizes)
+        .map { mapped_file, dataset, cfg_yaml, cache_dir, annotation_key, subset_size ->
+            tuple(mapped_file, dataset, cfg_yaml, cache_dir, annotation_key, subset_size, params.min_cells_per_type)
+        }
+        .set { subset_input }
+
+    subset_out = subset(subset_input)
+
+    // --- Combine subsets with models ---
+
+    model_sizes.set { model_size_pairs }
+
+    subset_out
         .combine(prepared_models)
-        .map { data_file, dataset, cfg_yaml, cache_dir, model, model_dir ->
-            def cfg = loadYaml("datasets/${dataset}.yml")
-            tuple(data_file, model_dir, dataset, cfg_yaml, model, cache_dir, cfg.subset_size)
+        .combine(model_size_pairs)
+        .filter { data_file, dataset, cfg_yaml, cache_dir, data_subset_size, model_name, model_dir, model_name2, model_subset_size ->
+            model_name2 == model_name && data_subset_size == model_subset_size
+        }
+        .map { data_file, dataset, cfg_yaml, cache_dir, data_subset_size, model_name, model_dir, model_name2, model_subset_size ->
+            tuple(data_file, model_dir, dataset, cfg_yaml, model_name, cache_dir, data_subset_size)
         }
         .set { model_input }
-    
-    // Run the models (all models should output predictions.csv)
+
     predictions = run_model(model_input)
 
-    // Combine predictions with the apply_ontology_mapping flag
+    // --- Evaluation ---
+
+    Channel.value(params.apply_ontology_mapping)
+            .set { apply_mapping_ch }
+
     predictions_with_flag = predictions.combine(apply_mapping_ch)
                                      .map { pred, dataset, model, cache_dir, apply_flag ->
                                          tuple(pred, dataset, model, cache_dir, apply_flag)
                                      }
-    
+
     eval_out = evaluate_annotation(predictions_with_flag)
+
     Channel
         .fromList(params.datasets)
         .map { dataset -> file("datasets/${dataset}.yml") }
@@ -228,29 +314,26 @@ workflow {
 }
 
 workflow.onComplete {
-    // Check for ontology mapping warnings
     def warningFile = file("${params.cache_dir}/ONTOLOGY_MAPPING_WARNING.txt")
     if (warningFile.exists()) {
         println ""
-        println "🚨" * 50
-        println "⚠️  ONTOLOGY MAPPING WARNING: New cell type mappings detected!"
-        println "📄 Please check: ${warningFile.toString()}"
-        println "⚠️  ACTION REQUIRED: Review and verify mappings before using results!"
-        println "🚨" * 50
+        println "=" * 70
+        println "  ONTOLOGY MAPPING WARNING: New cell type mappings detected!"
+        println "  Please check: ${warningFile.toString()}"
+        println "  ACTION REQUIRED: Review and verify mappings before using results!"
+        println "=" * 70
         println ""
-        
-        // Archive the warning file with timestamp to prevent showing it again
+
         def timestamp = new Date().format('yyyy-MM-dd_HH-mm-ss')
         def archivedWarningFile = file("${params.cache_dir}/ONTOLOGY_MAPPING_WARNING_${timestamp}.txt")
         warningFile.renameTo(archivedWarningFile)
-        println "📁 Warning file archived as: ${archivedWarningFile.toString()}"
+        println "Warning file archived as: ${archivedWarningFile.toString()}"
     }
-    
-    // Standard completion message
+
     println "Pipeline completed at: ${new Date()}"
     if (workflow.success) {
-        println "✅ Pipeline completed successfully!"
+        println "Pipeline completed successfully!"
     } else {
-        println "❌ Pipeline completed with errors"
+        println "Pipeline completed with errors"
     }
 }
