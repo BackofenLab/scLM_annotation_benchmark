@@ -26,6 +26,7 @@ results/
 
 .env
 .DS_Store
+.worktrees/
 
 # Langcell files
 *.bin
