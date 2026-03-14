@@ -950,8 +950,10 @@ def summarize_adata(adata, out_path="summary.txt"):
         k = list(adata.uns.keys()); A(", ".join(k[:60]) if k else "(none)")
     except Exception: A("(unavailable)")
 
-    Path(out_path).write_text("\n".join(L))
-    print(f"[OK] Wrote summary to {Path(out_path).resolve()}")
+    out_path = Path(out_path)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text("\n".join(L))
+    print(f"[OK] Wrote summary to {out_path.resolve()}")
 
 def plot_preprocessing_qc(
     adata,

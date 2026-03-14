@@ -4,59 +4,89 @@
 
 #### nextflow.config
 
-Config file, currently only has three relevant parameters:  
-`datasets`: list of datasets to use. Every dataset needs a yaml file with the same name (`dataset.yaml`) in the `datasets` directory  
-`models`: list of models to use. Needs a `run.sh` in `models/${model_name}/src/run.sh`  
-`cache_dir`: a directory to save/cache the downloaded data and the created subsets. Within the work directory, only links to this data are stored, to avoid storing data multiple times. This parameter is also passed to the model and evaluate processes, since they often also download large files (eg. model weights, cellontology graph).
+Config file with the following parameters:
 
-There is a profile `local` for running locally and `helix` for running on the helix cluster. TODO: Other/more general slurm clusters
+| Parameter | Description |
+|---|---|
+| `datasets` | List of datasets to use. Each needs a YAML config in `datasets/<name>.yml` |
+| `models` | List of models to use. Each needs `models/<name>/src/run.sh` |
+| `cache_dir` | Directory to cache downloaded data, preprocessed files, subsets, and model weights |
+| `subset_categories` | Map of model name patterns to subset sizes (e.g., `['openrouter': 1000, 'default': 10000]`). Models whose name contains the key get that subset size; `'default'` is the fallback |
+| `min_cells_per_type` | Minimum cells per cell type in subsets (default: 20). Types below this threshold are dropped |
+| `apply_ontology_mapping` | Fallback for datasets without a per-dataset `apply_ontology_mapping` flag in their YAML |
 
-#### Run main.nf
+There are profiles `local` for running locally, `helix` for the helix cluster, and `imbi_gpu` for the IMBI GPU cluster.
 
-To run `main.nf` type: `nextflow run main.nf -profile local`
-This defines the profile to use (local, in this example),
-Or alternatively: `nextflow run main.nf -with-conda`
-to enables Conda support for the run globally.
+#### Pipeline processes
 
-#### download process
+The pipeline runs the following processes in order:
 
-download.py script puts h5ad file into cache/download (e.g. cache/download/tabula_sapiens_blood.h5ad). Subsets are also stored as additional files.
+1. **download** - Fetches raw data from URL/Google Drive/CellxGene Census. Caches the full file under `cache/`.
+2. **preprocess** - QC filtering, gene/cell filtering, normalization, log transform, Ensembl ID mapping. QC plots saved to `cache/plots/`.
+3. **ontology_mapping** - Maps cell type labels to Cell Ontology terms (optional, controlled per-dataset via `apply_ontology_mapping` in the dataset YAML).
+4. **subset** - Stratified sampling preserving cell type proportions. One subset per unique size across model categories. QC outputs (CSV + plots) saved to `cache/subset_qc/<dataset>/sub<size>/`.
+5. **prepare_model** - Optional model setup (git cloning, etc.) via `prepare.sh`.
+6. **run_model** - Runs model predictions. Results cached under `cache/models/predictions/`.
+7. **evaluate_annotation** - Computes metrics (accuracy, F1, ontology similarity) and confusion matrices.
+8. **combine_results** - Aggregates results into CSV and visualization plots.
 
-#### run_model process
+#### Running the pipeline
 
-**For every model**: Add a Conda environment file named `<model>.yml` to `envs/models/`. The model’s `run.sh` script will create and use the Conda environment defined in that file.
-Runs a run.sh bash script which is given five inputs: the h5ad file, the model directory (should be models/${model_name}), the name of the dataset, the dataset config file, the name of the model.
+```bash
+# Basic run
+nextflow run main.nf -profile local
 
-#### prepare_model process
+# With specific datasets and models
+nextflow run main.nf -profile local \
+  --datasets '["HFRA", "Zeisel"]' \
+  --models '["celltypist_blind", "openrouter_LLM_blind"]'
 
-If a model needs to clone git repositories etc. It is recommended to do that in a prepare.sh file, such that these repositories can be pip installed through the `<model>.yml` in `envs/models/`. Installing repositories from within the run.sh can lead to complications with nextflows parallelization.
+# Override subset sizes
+nextflow run main.nf -profile local \
+  --subset_categories '["openrouter": 500, "default": 5000]'
+```
 
-**The run.sh should take three(four) inputs**: 1. The h5ad file 2. the output path of the predictions.csv 3. The dataset config (4. The cache_dir. Implement if needed)
-When creating a new model, implement a run.sh which installs the model and runs it on the given h5ad file, then create the file results/$dataset/$model/predictions.csv with the columns: "true_labels", "predicted_labels" from the output
+#### Cache invalidation
 
-**For LLMs (e.g. DeepSeekV3.2 or GPT-5.4)**: You must provide your own [OpenRouter](https://openrouter.ai/) API key. There are two recommended ways to do this:
+Older runs may have cached random subset files at `cache/*_sub*.h5ad`. Those files are incompatible with the new stratified subsetting pipeline and should be removed before rerunning:
 
-1. **Environment variable (recommended):** Set `OPENROUTER_API_KEY` in your shell before running Nextflow:
+```bash
+rm -f cache/*_sub*.h5ad
+```
 
-   ```bash
-   export OPENROUTER_API_KEY=sk-or-v1-...
-   nextflow run main.nf -profile local
-   ```
+#### Dataset configuration
 
-   `nextflow.config` reads this variable at startup via `System.getenv()` and forwards it into all process script blocks automatically. This works reliably across all executors (local and SLURM). To avoid typing the export every time, add it to your shell profile (`~/.bashrc` or `~/.zshrc`).
+Each dataset has a YAML config in `datasets/` with fields:
 
-2. **Nextflow command-line flag:** Pass the key directly as a param override:
+- `name` - Dataset identifier
+- `source` - Download source (`cellxgene_census` or omit for URL)
+- `url` or `census_dataset_id` - Data location
+- `batch_key` - Batch column in `adata.obs`
+- `annotation_key` - Cell type annotation column
+- `apply_ontology_mapping` - Whether to map labels to Cell Ontology terms
+- `celltypist_model` - CellTypist model file (for celltypist models)
 
-   ```bash
-   nextflow run main.nf --openrouter_api_key sk-or-v1-... -profile local
-   ```
+#### Adding a new model
 
-**Never commit or push your API key to the GitHub repository.**
+1. Create `models/<model_name>/src/run.sh` taking inputs: (1) h5ad file, (2) output predictions.csv path, (3) dataset config YAML, (4) cache_dir (optional)
+2. Add a Conda environment file `envs/models/<model_name>.yml`
+3. If setup is needed (git clone, etc.), add `models/<model_name>/src/prepare.sh`
+4. Output: `predictions.csv` with columns `true_labels`, `predicted_labels`
 
-#### evaluate_annotation process
+#### LLM models (OpenRouter)
 
-Runs the evaluate.py script which takes as input the path of the predictions (i.e. results/$dataset/$model/predictions.csv), the name of the dataset and the model and returns results/$dataset/$model/evaluation.json  
-TODO: It also creates a pdf with plots, currently this is not published but can only be found in the corresponding work directory.
+You must provide your own [OpenRouter](https://openrouter.ai/) API key:
+
+```bash
+# Recommended: environment variable
+export OPENROUTER_API_KEY=sk-or-v1-...
+nextflow run main.nf -profile local
+
+# Alternative: command-line flag
+nextflow run main.nf --openrouter_api_key sk-or-v1-... -profile local
+```
+
+**Never commit or push your API key to the repository.**
 
 ### Planning excel sheet
 

@@ -45,3 +45,16 @@ def test_nextflow_config_defines_subset_categories():
     assert "params.subset_categories" in config_text
     assert "params.min_cells_per_type" in config_text
     assert "'openrouter': 1000" in config_text
+
+
+def test_readme_documents_new_pipeline_and_cache_invalidation():
+    readme_text = (REPO_ROOT / "README.md").read_text()
+
+    for snippet in [
+        "`subset_categories`",
+        "`min_cells_per_type`",
+        "cache/subset_qc/<dataset>/sub<size>/",
+        "rm -f cache/*_sub*.h5ad",
+        "apply_ontology_mapping",
+    ]:
+        assert snippet in readme_text
