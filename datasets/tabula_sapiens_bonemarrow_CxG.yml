@@ -3,7 +3,6 @@ name: tabula_sapiens_bonemarrow_CxG          # used in channel / filenames
 source: cellxgene_census
 census_dataset_id: "4f1555bc-4664-46c3-a606-78d34dd10d92"
 census_version: "2025-11-08" # logs a stable build tag for reproducibility (snapshot of census version)
-subset_size: 2000             # null → use full dataset
 batch_key: donor_id
 annotation_key: "cell_type"
 apply_ontology_mapping: true
