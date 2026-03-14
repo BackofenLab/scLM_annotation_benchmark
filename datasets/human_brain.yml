@@ -6,6 +6,6 @@ census_dataset_id: "e2a00644-0a48-4815-ae87-d562045114f5"
 census_version: "2025-11-08" # logs a stable build tag for reproducibility (snapshot of census version)
 subset_size: 2000                # null → use full dataset
 batch_key: "donor_id"
-annotation_keys: ["cell_type"] # different annotation levels by the authors are stil available: ["AIFI_L1", "AIFI_L2", "AIFI_L3"]
+annotation_key: "cell_type" # different annotation levels by the authors are stil available: ["AIFI_L1", "AIFI_L2", "AIFI_L3"]
 apply_ontology_mapping: false # no ontology mapping required for HFRA (cellxgene already has ontology terms)
 celltypist_model: "Immune_All_High.pkl"
