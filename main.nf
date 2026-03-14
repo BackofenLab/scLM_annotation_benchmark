@@ -19,6 +19,7 @@ def resolveSubsetSize(String model, Map categories) {
 
 process download {
     conda 'envs/download.yml'
+    storeDir "${params.cache_dir}/datasets/raw"
 
     input:
     tuple val(dataset), val(cache_dir), path(cfg_yaml)
@@ -26,7 +27,7 @@ process download {
     tag { dataset }
 
     output:
-    tuple(path("data/*_raw.h5ad"), val(dataset), path(cfg_yaml), val(cache_dir))
+    tuple(path("${dataset}_raw.h5ad"), val(dataset))
 
     script:
     """
@@ -34,13 +35,14 @@ process download {
     download.py \
       --dataset   "${dataset}" \
       --cfg_yaml  "${cfg_yaml}" \
-      --out       "data/${dataset}_raw.h5ad" \
+      --out       "${dataset}_raw.h5ad" \
       --cache_dir "${cache_dir}"
     """
 }
 
 process preprocess {
     conda 'envs/download.yml'
+    storeDir "${params.cache_dir}/datasets/preprocessed"
 
     input:
     tuple path(raw_file), val(dataset), path(cfg_yaml), val(cache_dir)
@@ -48,22 +50,23 @@ process preprocess {
     tag { dataset }
 
     output:
-    tuple(path("data/*_pp.h5ad"), val(dataset), path(cfg_yaml), val(cache_dir))
+    tuple(path("${dataset}_pp.h5ad"), val(dataset))
 
     script:
     """
     set -euo pipefail
     preprocess.py \
       --input "${raw_file}" \
-      --output "data/${dataset}_pp.h5ad" \
+      --output "${dataset}_pp.h5ad" \
       --config "${cfg_yaml}" \
-      --summary "data/${dataset}_pp_summary.txt" \
+      --summary "${dataset}_pp_summary.txt" \
       --cache_dir "${cache_dir}"
     """
 }
 
 process ontology_mapping {
     conda 'envs/download.yml'
+    storeDir "${params.cache_dir}/datasets/mapped"
 
     input:
     tuple path(pp_file), val(dataset), path(cfg_yaml), val(cache_dir), val(annotation_key), val(apply_mapping)
@@ -71,14 +74,14 @@ process ontology_mapping {
     tag { dataset }
 
     output:
-    tuple(path("data/*_mapped.h5ad"), val(dataset), path(cfg_yaml), val(cache_dir), val(annotation_key))
+    tuple(path("${dataset}_mapped.h5ad"), val(dataset), val(annotation_key))
 
     script:
     """
     set -euo pipefail
     ontology_map.py \
       --input "${pp_file}" \
-      --output "data/${dataset}_mapped.h5ad" \
+      --output "${dataset}_mapped.h5ad" \
       --annotation_key "${annotation_key}" \
       --cache_dir "${cache_dir}" \
       --dataset "${dataset}" \
@@ -88,6 +91,7 @@ process ontology_mapping {
 
 process subset {
     conda 'envs/download.yml'
+    storeDir "${params.cache_dir}/datasets/subset"
 
     input:
     tuple path(mapped_file), val(dataset), path(cfg_yaml), val(cache_dir), val(annotation_key), val(subset_size), val(min_cells_per_type)
@@ -95,14 +99,14 @@ process subset {
     tag { "${dataset}xsub${subset_size}" }
 
     output:
-    tuple(path("data/*_sub*.h5ad"), val(dataset), path(cfg_yaml), val(cache_dir), val(subset_size))
+    tuple(path("${dataset}_sub${subset_size}.h5ad"), val(dataset), val(subset_size))
 
     script:
     """
     set -euo pipefail
     subset.py \
       --input "${mapped_file}" \
-      --output "data/${dataset}_sub${subset_size}.h5ad" \
+      --output "${dataset}_sub${subset_size}.h5ad" \
       --annotation_key "${annotation_key}" \
       --subset_size ${subset_size} \
       --dataset "${dataset}" \
@@ -225,14 +229,20 @@ workflow {
 
     download_out = download(download_input)
 
-    preprocess_out = preprocess(download_out)
+    download_out
+        .map { raw_file, dataset ->
+            tuple(raw_file, dataset, file("datasets/${dataset}.yml"), file(params.cache_dir))
+        }
+        .set { preprocess_input }
+
+    preprocess_out = preprocess(preprocess_input)
 
     // Add annotation_key and apply_ontology_mapping from dataset config
     preprocess_out
-        .map { pp_file, dataset, cfg_yaml, cache_dir ->
+        .map { pp_file, dataset ->
             def cfg = loadYaml("datasets/${dataset}.yml")
             def apply_mapping = cfg.containsKey('apply_ontology_mapping') ? cfg.apply_ontology_mapping : params.apply_ontology_mapping
-            tuple(pp_file, dataset, cfg_yaml, cache_dir, cfg.annotation_key, apply_mapping)
+            tuple(pp_file, dataset, file("datasets/${dataset}.yml"), file(params.cache_dir), cfg.annotation_key, apply_mapping)
         }
         .set { ontology_input }
 
@@ -268,8 +278,8 @@ workflow {
 
     ontology_out
         .combine(unique_sizes)
-        .map { mapped_file, dataset, cfg_yaml, cache_dir, annotation_key, subset_size ->
-            tuple(mapped_file, dataset, cfg_yaml, cache_dir, annotation_key, subset_size, params.min_cells_per_type)
+        .map { mapped_file, dataset, annotation_key, subset_size ->
+            tuple(mapped_file, dataset, file("datasets/${dataset}.yml"), file(params.cache_dir), annotation_key, subset_size, params.min_cells_per_type)
         }
         .set { subset_input }
 
@@ -282,11 +292,11 @@ workflow {
     subset_out
         .combine(prepared_models)
         .combine(model_size_pairs)
-        .filter { data_file, dataset, cfg_yaml, cache_dir, data_subset_size, model_name, model_dir, model_name2, model_subset_size ->
+        .filter { data_file, dataset, data_subset_size, model_name, model_dir, model_name2, model_subset_size ->
             model_name2 == model_name && data_subset_size == model_subset_size
         }
-        .map { data_file, dataset, cfg_yaml, cache_dir, data_subset_size, model_name, model_dir, model_name2, model_subset_size ->
-            tuple(data_file, model_dir, dataset, cfg_yaml, model_name, cache_dir, data_subset_size)
+        .map { data_file, dataset, data_subset_size, model_name, model_dir, model_name2, model_subset_size ->
+            tuple(data_file, model_dir, dataset, file("datasets/${dataset}.yml"), model_name, file(params.cache_dir), data_subset_size)
         }
         .set { model_input }
 

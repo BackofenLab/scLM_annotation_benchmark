@@ -93,7 +93,7 @@ def stratified_subset(
     effective_size = min(subset_size, kept_total)
     raw_targets = (kept_types / kept_total * effective_size).astype(float)
 
-    targets = raw_targets.clip(lower=min_cells_per_type)
+    targets = raw_targets.clip(lower=min_cells_per_type).astype(float)
 
     while targets.sum() > effective_size:
         over = targets.sum() - effective_size
@@ -104,7 +104,7 @@ def stratified_subset(
             upper=above_min - min_cells_per_type
         )
         targets[above_min.index] -= reduction
-        targets = targets.round().astype(int).clip(lower=min_cells_per_type)
+        targets = targets.clip(lower=min_cells_per_type)
 
     while targets.sum() < effective_size:
         deficit = effective_size - targets.sum()
@@ -113,7 +113,7 @@ def stratified_subset(
         if len(headroom) == 0:
             break
         addition = (headroom / headroom.sum() * deficit).clip(upper=headroom)
-        targets[headroom.index] += addition.round().astype(int)
+        targets[headroom.index] += addition
 
     targets = targets.round().astype(int)
     targets = targets.clip(upper=kept_types)
