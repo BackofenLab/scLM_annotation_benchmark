@@ -19,7 +19,6 @@ from pathlib import Path
 import yaml
 import scanpy as sc
 from anndata import AnnData
-from matplotlib.backends.backend_pdf import PdfPages
 #from memory_profiler import profile
 
 from util.pp_utils import (
@@ -135,8 +134,9 @@ def preprocess_adata(
     initial_cells = adata.n_obs
     initial_genes = adata.n_vars
 
-    qc_plots_path = Path(qc_plots_path) if qc_plots_path else None
-    pdf = PdfPages(qc_plots_path)
+    qc_plots_dir = Path(qc_plots_path).parent if qc_plots_path else None
+    # Derive a filename prefix from the plots path (e.g. "HIHA_pp_qc_plots")
+    qc_plots_prefix = Path(qc_plots_path).stem if qc_plots_path else None
 
     # Step 1: Ensure raw counts are properly stored
     logger.info("Step 1: Finding and setting raw counts...")
@@ -165,7 +165,8 @@ def preprocess_adata(
         nmads_mt=nmads_mt,
         pct_counts_mt_threshold=pct_counts_mt_threshold,
         percent_top=percent_top,
-        pdf=pdf,
+        plots_dir=qc_plots_dir,
+        plots_prefix=qc_plots_prefix,
     )
     logger.info(f"After QC: {adata.n_obs} cells × {adata.n_vars} genes")
 
@@ -203,17 +204,28 @@ def preprocess_adata(
 
     # Generate post-preprocessing QC plots
     logger.info("Generating QC plots after preprocessing...")
+    after_png = qc_plots_dir / f"{qc_plots_prefix}_after.png" if qc_plots_dir else None
     plot_preprocessing_qc(
         adata,
-        pdf=pdf,
         page_title="QC Summary After Preprocessing",
         initial_cells=initial_cells,
         initial_genes=initial_genes,
+        save_path=after_png,
     )
 
-    if pdf:
-        pdf.close()
-        logger.info(f"QC plots saved to {qc_plots_path}")
+    # Combine before/after PNGs into a 2-page PDF
+    if qc_plots_dir:
+        before_png = qc_plots_dir / f"{qc_plots_prefix}_before.png"
+        pdf_path = qc_plots_dir / f"{qc_plots_prefix}.pdf"
+        from PIL import Image
+        pages = []
+        for png in [before_png, after_png]:
+            if png and png.exists():
+                pages.append(Image.open(png).convert("RGB"))
+        if pages:
+            pages[0].save(pdf_path, save_all=True, append_images=pages[1:], resolution=300)
+            logger.info(f"Combined QC PDF saved to {pdf_path}")
+        logger.info(f"QC plots saved to {qc_plots_dir}")
 
     logger.info("Preprocessing complete!")
     logger.info(f"Final shape: {adata.n_obs} cells × {adata.n_vars} genes")
@@ -386,7 +398,7 @@ Examples:
     elif output_filename.endswith('.zarr'):
         output_filename = output_filename[:-5]
     
-    qc_plots_path = args.cache_dir / "plots" / f"{output_filename}_qc_plots.pdf"
+    qc_plots_path = args.cache_dir / "plots" / f"{output_filename}_qc_plots"
     qc_plots_path.parent.mkdir(parents=True, exist_ok=True)
 
     # Read input file
@@ -454,7 +466,7 @@ Examples:
     if args.output.suffix == ".zarr":
         adata_processed.write_zarr(args.output)
     else:
-        adata_processed.write_h5ad(args.output)
+        adata_processed.write_h5ad(args.output, compression="gzip")
 
     logger.info("Done!")
 

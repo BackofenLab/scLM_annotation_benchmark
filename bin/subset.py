@@ -301,7 +301,7 @@ def main():
         )
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    subset.write_h5ad(args.output)
+    subset.write_h5ad(args.output, compression="gzip")
     logger.info("Subset written: %s cells -> %s", subset.n_obs, args.output)
 
     args.qc_dir.mkdir(parents=True, exist_ok=True)

@@ -66,7 +66,7 @@ def main():
             verbose=True,
             origin=args.dataset,
         )
-        adata.write_h5ad(args.output)
+        adata.write_h5ad(args.output, compression="gzip")
         logger.info("Mapped output written: %s", args.output)
     else:
         key = args.annotation_key
@@ -74,7 +74,7 @@ def main():
         if original_key in adata.obs.columns:
             logger.info("Restoring '%s' from '%s' backup column...", key, original_key)
             adata.obs[key] = adata.obs[original_key].copy()
-            adata.write_h5ad(args.output)
+            adata.write_h5ad(args.output, compression="gzip")
         else:
             logger.info("No mapping applied - copying input to output")
             try:
