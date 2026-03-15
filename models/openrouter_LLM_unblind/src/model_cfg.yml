@@ -41,8 +41,9 @@ openrouter_LLM:
     Cell sentence: {cell_sentence}
     Important rules:
     1. Respond with only the cell type label of the predicted cell type.
-    2. Do not include explanations, reasoning, or extra words.
-    3. Do not repeat the question or input.
+    2. Do only choose a cell type from the list of cell types provided.
+    3. Do not include explanations, reasoning, or extra words.
+    4. Do not repeat the question or input.
     Output:
 
   # 1. Respond with only the cell type label of the predicted cell type.
