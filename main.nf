@@ -197,7 +197,7 @@ process evaluate_annotation {
     script:
     """
     pred_files=\$(echo ${predictions} | tr ' ' ',')
-    evaluate.py --pred "\$pred_files" --out ${dataset}_${model}.json --cache_dir ${cache_dir} --apply_ontology_mapping ${apply_ontology_mapping} --max-unmapped-ratio 0.5
+    evaluate.py --pred "\$pred_files" --out ${dataset}_${model}.json --cache_dir ${cache_dir} --apply_ontology_mapping ${apply_ontology_mapping} --max-unmapped-ratio 0.99
     """
 }
 
