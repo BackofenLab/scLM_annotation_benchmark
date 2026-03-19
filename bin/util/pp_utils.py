@@ -721,18 +721,48 @@ def ensure_ensembl_ids(
             gene_names = pd.Series(gene_names)
         logger.info(f"Example gene name: {gene_names.iloc[0] if len(gene_names) > 0 else 'N/A'}")
 
-        # Map gene names to Ensembl IDs using pybiomart
+        # Map gene names to Ensembl IDs using pybiomart (try multiple hosts)
+        ensembl_hosts = [
+            "http://www.ensembl.org",
+            "http://useast.ensembl.org",
+            "http://uswest.ensembl.org",
+            "http://asia.ensembl.org",
+        ]
         logger.info(f"Fetching Ensembl IDs from pybiomart for species '{species}'. This may take a moment...")
-        try:
-            dataset = pybiomart.Dataset(
-                name=f"{species}_gene_ensembl", host="http://www.ensembl.org"
-            )
-            biomart_df = dataset.query(attributes=["ensembl_gene_id", "external_gene_name"])
 
-            # Drop duplicates so that each gene symbol maps to exactly one Ensembl ID
+        biomart_df = None
+        last_error = None
+        for host in ensembl_hosts:
+            try:
+                logger.info(f"Trying BioMart host: {host}")
+                dataset = pybiomart.Dataset(
+                    name=f"{species}_gene_ensembl", host=host
+                )
+                biomart_df = dataset.query(attributes=["ensembl_gene_id", "external_gene_name"])
+                logger.info(f"Successfully connected to {host}")
+                break
+            except Exception as e:
+                last_error = e
+                logger.warning(f"BioMart host {host} failed: {e}")
+                continue
+
+        if biomart_df is None:
+            error_msg = (
+                f"All Ensembl BioMart hosts failed. Last error: {last_error}\n"
+                "Please check:\n"
+                "- Network connection to Ensembl\n"
+                "- Species name is correct (e.g., 'hsapiens' or 'mmusculus')\n"
+                "- Set 'gene_names_col' in dataset config YAML to specify the column with gene names\n"
+                "- Or set 'ensembl_col' in dataset config YAML if Ensembl IDs already exist"
+            )
+            logger.error(error_msg)
+            if raise_on_failure:
+                raise ValueError(error_msg)
+            return adata
+
+        try:
             biomart_df = biomart_df.drop_duplicates(subset="Gene name").set_index("Gene name")
 
-            # Map gene symbols to Ensembl IDs
             ensembl_ids = []
             mapped_count = 0
             for symbol in gene_names:
@@ -744,7 +774,6 @@ def ensure_ensembl_ids(
 
             logger.info(f"Mapped {mapped_count} out of {len(gene_names)} genes to Ensembl IDs.")
 
-            # Check if we got valid Ensembl IDs
             valid_count = sum(1 for eid in ensembl_ids if eid and eid.startswith("ENS"))
             if valid_count == 0:
                 error_msg = (
@@ -763,14 +792,12 @@ def ensure_ensembl_ids(
                     raise ValueError(error_msg)
                 return adata
 
-            # Store in ensembl_id column
             adata.var["ensembl_id"] = pd.Series(ensembl_ids, index=adata.var_names)
 
         except Exception as e:
             error_msg = (
-                f"Error fetching Ensembl IDs from pybiomart: {e}\n"
+                f"Error processing BioMart results: {e}\n"
                 "Please check:\n"
-                "- Network connection to Ensembl\n"
                 "- Species name is correct (e.g., 'hsapiens' or 'mmusculus')\n"
                 "- Set 'gene_names_col' in dataset config YAML to specify the column with gene names\n"
                 "- Or set 'ensembl_col' in dataset config YAML if Ensembl IDs already exist"
