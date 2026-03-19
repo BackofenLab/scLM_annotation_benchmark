@@ -30,4 +30,7 @@ dependencies:
     - pandas  # for data manipulation
     - numpy  # for numerical operations
     - scipy  # for statistical functions (median_abs_deviation)
+    - boltons
+    - cytoolz
+    - frozendict
     #- memory_profiler
