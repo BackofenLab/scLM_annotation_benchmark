@@ -394,7 +394,9 @@ Examples:
     if args.input.suffix == ".zarr":
         adata = sc.read_zarr(args.input)
     else:
-        adata = sc.read_h5ad(args.input)
+        adata = sc.read_h5ad(args.input, backed='r')
+        logger.info("Loading backed AnnData into memory for preprocessing...")
+        adata = adata.to_memory()
 
     # Preprocess
     adata_processed = preprocess_adata(

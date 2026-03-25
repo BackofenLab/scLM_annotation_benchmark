@@ -14,7 +14,8 @@ def main(args):
         with open(cfg) as f:
             yml = yaml.safe_load(f)
         keys = yml.get('annotation_keys')
-        adata = anndata.read_h5ad(h5ad)
+        adata = anndata.read_h5ad(h5ad, backed='r')
+        adata = adata.to_memory()
 
         found = False
         mapped_adata = oh.apply_ontology_mapping_to_adata(adata, cache_dir=".", annotation_keys=yml.get('annotation_keys'))

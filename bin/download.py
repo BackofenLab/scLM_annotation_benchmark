@@ -51,7 +51,8 @@ def log_error(msg: str) -> None: print(f"[ERROR] {msg}", flush=True)
 def read_adata(path: Path):
     """Load AnnData from ``.h5ad`` or ``.zarr``."""
     if path.suffix == ".h5ad":
-        return anndata.read_h5ad(path)
+        adata = anndata.read_h5ad(path, backed='r')
+        return adata
     if path.suffix == ".zarr" or path.is_dir():
         return anndata.read_zarr(path)
     sys.exit(f"[ERROR] Unsupported file type: {path}")
@@ -85,6 +86,12 @@ def write_adata(ad, path: Path) -> None:
         log_warn(f"Could not fully sanitize Arrow dtypes: {e}")
 
     if path.suffix == ".h5ad":
+        if ad.raw is not None:
+            try:
+                _ = ad.raw.X
+            except AttributeError:
+                log_warn("Dropping malformed `raw` (missing raw.X) before writing.")
+                ad.raw = None
         ad.write_h5ad(path, compression="gzip")
     elif path.suffix == ".zarr" or path.is_dir():
         ad.write_zarr(path, chunks=[], compression="gzip")
@@ -289,7 +296,10 @@ def maybe_subset(full_path: Path, subset_path: Path, n: int | None) -> Path:
         log_warn("subset_size ≥ n_obs – using full dataset")
         return full_path
     log_info(f"Writing subset ({n} cells) → {subset_path.name}")
-    write_adata(ad[random.sample(range(ad.n_obs), n)], subset_path)
+    subset = ad[random.sample(range(ad.n_obs), n)]
+    if getattr(subset, "isbacked", False):
+        subset = subset.to_memory()
+    write_adata(subset, subset_path)
     return subset_path
 
 # --------------------------------------------------------------------------- #
@@ -372,8 +382,11 @@ def main() -> None:
     if args.apply_ontology_mapping:
         from util.download_helpers import apply_ontology_mapping_to_dataset
         log_info("Applying ontology mapping...")
+        adata_input = read_adata(chosen)
+        if getattr(adata_input, "isbacked", False):
+            adata_input = adata_input.to_memory()
         adata_mapped = apply_ontology_mapping_to_dataset(
-            adata=read_adata(chosen), annotation_keys=list(cfg["annotation_keys"]),
+            adata=adata_input, annotation_keys=list(cfg["annotation_keys"]),
             cache_dir=cache_dir, verbose=True, origin=cfg['name'])
         write_adata(adata_mapped, chosen)
         log_info("Ontology mapping completed")

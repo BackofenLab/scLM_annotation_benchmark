@@ -26,7 +26,8 @@ def load_data(data_path):
     """
     logger.info(f"Loading data from: {data_path}")
     try:
-        adata = sc.read_h5ad(data_path)
+        adata = sc.read_h5ad(data_path, backed='r')
+        adata = adata.to_memory()
         logger.info(f"Loaded data with shape: {adata.shape}")
         return adata
     except Exception as e:

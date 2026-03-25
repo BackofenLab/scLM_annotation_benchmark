@@ -59,7 +59,8 @@ pl_model = pl_model.to(device)
 model = pl_model.model
 
 # ----------------- load data -------------------------
-adata = ad.read_h5ad(adata_path)
+adata = ad.read_h5ad(adata_path, backed='r')
+adata = adata.to_memory()
 #gene_ids = adata.var["gene_name"].tolist()
 # Reduce batch size for Mac MPS to avoid memory issues
 batch_size = 32 if device.type == "mps" else 128 if device.type == "cuda" else 16

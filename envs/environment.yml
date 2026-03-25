@@ -49,3 +49,8 @@ dependencies:
   # ---- Plotting ----
   - matplotlib=3.6.3
   - seaborn=0.13.2
+
+# ---- Parallel / distributed compute ----
+# Pinned to a recent tested pair compatible with numpy=1.26 and pandas=2.3
+  - dask=2024.3.0
+  - distributed=2024.3.0

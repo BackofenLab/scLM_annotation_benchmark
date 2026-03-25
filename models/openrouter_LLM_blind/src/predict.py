@@ -52,7 +52,9 @@ logger = logging.getLogger("openrouter_LLM_predict")
 # ---------------- I/O helpers ----------------
 def load_data(data_path: str):
     logger.info(f"Loading data from: {data_path}")
-    adata = sc.read_h5ad(data_path)
+    adata = sc.read_h5ad(data_path, backed='r')
+    logger.info(f"Loading backed AnnData into memory...")
+    adata = adata.to_memory()
     logger.info(f"AnnData loaded: {adata.n_obs} cells × {adata.n_vars} genes")
     return adata
 

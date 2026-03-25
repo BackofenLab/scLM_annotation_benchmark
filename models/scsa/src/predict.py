@@ -43,7 +43,8 @@ def create_scanpy_csv(h5ad_path, output_csv, cluster_col='louvain',
         Random seed
     """
     print(f"Step 1: Reading h5ad file: {h5ad_path}")
-    adata = ad.read_h5ad(h5ad_path)
+    adata = ad.read_h5ad(h5ad_path, backed='r')
+    adata = adata.to_memory()
     
     # Check if clustering already exists
     needs_clustering = cluster_col not in adata.obs.columns
