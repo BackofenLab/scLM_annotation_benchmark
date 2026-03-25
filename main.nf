@@ -8,7 +8,7 @@ def loadYaml(String path) {
 }
 
 process download {
-    container 'pavanvidem/sc_lfm:2026-03-05'
+    container params.container_image
     conda 'envs/environment.yml'
 
     input:
@@ -45,7 +45,7 @@ process download {
 }
 
 process extract_cell_types {
-    container 'pavanvidem/sc_lfm:2026-03-05'
+    container params.container_image
     conda 'envs/environment.yml'
 
     input:
@@ -67,7 +67,7 @@ process extract_cell_types {
 }
 
 process prepare_model {
-    container 'pavanvidem/sc_lfm:2026-03-05'
+    container params.container_image
     conda 'envs/environment.yml'
 
     input:
@@ -98,7 +98,7 @@ process prepare_model {
 }
 
 process run_model {
-    container 'pavanvidem/sc_lfm:2026-03-05'
+    container params.container_image
     
     input:
     tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size)
@@ -141,7 +141,7 @@ process run_model {
 }
 
 process run_model_throttled {
-    container 'pavanvidem/sc_lfm:2026-03-05'
+    container params.container_image
     
     input:
     tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size)
@@ -184,7 +184,7 @@ process run_model_throttled {
 }
 
 process evaluate_annotation {
-    container 'pavanvidem/sc_lfm:2026-03-05'
+    container params.container_image
     conda 'envs/environment.yml'
 
     input:
@@ -207,7 +207,7 @@ process evaluate_annotation {
 }
 
 process combine_results {
-    container 'pavanvidem/sc_lfm:2026-03-05'
+    container params.container_image
     conda 'envs/environment.yml'
 
     publishDir(path: 'results/', mode: 'copy', overwrite: 'false')
