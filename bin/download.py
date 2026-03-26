@@ -194,7 +194,7 @@ def stream_download_figshare(url: str, dest: Path) -> None:
         # Fallback: Figshare API
         if not real_url and (m := _FIGSHARE_RE.search(url)):
             try:
-                api = session.get(f"https://api.figshare.com/v2/file/{m.group(1)}")
+                api = session.get(f"https://api.figshare.com/v2/file/download/{m.group(1)}")
                 if api.ok:
                     real_url = api.json().get("download_url")
             except Exception:
