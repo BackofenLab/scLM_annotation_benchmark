@@ -24,7 +24,7 @@ if [ -f "$GENEFORMER_MODEL_PY" ] && grep -q "sc.pp.calculate_qc_metrics(adata_w_
 fi
 
 # Extract all annotation keys from config
-ANNOTATION_KEYS=$(python - <<'PY' "$CFG_YAML"
+ANNOTATION_KEY=$(python - <<'PY' "$CFG_YAML"
 import yaml, sys
 config = yaml.safe_load(open(sys.argv[1]))
 annotation_key = config.get('annotation_key', 'cell_type')
