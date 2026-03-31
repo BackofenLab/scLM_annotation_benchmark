@@ -16,14 +16,9 @@ dependencies:
   - tqdm=4.67.1
   - pronto=2.7.3
   - numba=0.63.1
-
+  
   # ---- Census / storage stack ----
   - tiledbsoma-py=1.17.0
-  - libcxx=21.1.8
-
-  # ---- VCS ----
-  - git=2.52.0
-  - git-lfs=3.7.1
   # ---- Scientific base ----
   - numpy=1.26.4
   - scipy=1.11.4
@@ -31,26 +26,25 @@ dependencies:
   - anndata=0.11.4
   - zarr=2.18.7
   - scikit-learn=1.8.0
-  - scanpy=1.9.8
+  - scanpy=1.10.4
   - numcodecs=0.15.1
   - umap-learn=0.5.11
+  - hnswlib=0.8.0
   - celltypist=1.7.1
-  - pytorch=2.7.1
-  - torch-geometric=2.6.1
   - transformers=4.46.3
   - sentencepiece-python=0.2.0
-  - accelerate=1.12.0
+  - accelerate=1.13.0
   - sentence-transformers=2.0.0
-  - lightning=2.6.0
+  - lightning=2.6.1
   - datasets=4.0.0
-  - wandb=0.23.1
+  - wandb=0.25.1
   - cellxgene-census=1.17.0
 
   # ---- Plotting ----
-  - matplotlib=3.6.3
+  - matplotlib=3.9.4
   - seaborn=0.13.2
 
 # ---- Parallel / distributed compute ----
 # Pinned to a recent tested pair compatible with numpy=1.26 and pandas=2.3
-  - dask=2024.3.0
-  - distributed=2024.3.0
+  - dask=2024.12.1
+  - distributed=2024.12.1
