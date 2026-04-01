@@ -65,7 +65,10 @@ PY
 )
 
 # Run Langcell prediction
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 python "$(dirname "$0")/predict.py" \
 --input "$INPUT_H5AD" \
 --output "$OUT_CSV" \
+--train_batchsize 1 \
+--test_batchsize 4 \
 --annotation_keys $ANNOTATION_KEYS

@@ -120,8 +120,7 @@ def main():
         raise ValueError('Cell-type labels/embeddings mismatch')
 
     # Read dataset
-    adata = sc.read_h5ad(args.input_h5ad, backed='r')
-    adata = adata.to_memory()
+    adata = sc.read_h5ad(args.input_h5ad)
     X = adata.raw.X if adata.raw is not None else adata.X
     var_names = np.array(adata.raw.var_names if adata.raw is not None else adata.var_names)
 

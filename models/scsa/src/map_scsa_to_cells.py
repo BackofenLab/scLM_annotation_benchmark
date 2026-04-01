@@ -44,8 +44,7 @@ def map_scsa_to_cells(scsa_result_file, anndata_file, output_file=None):
     
     # Read AnnData file
     print(f"\nReading AnnData file: {anndata_file}")
-    adata = ad.read_h5ad(anndata_file, backed='r')
-    adata = adata.to_memory()
+    adata = ad.read_h5ad(anndata_file)
     
     # Check for cluster column (louvain is the default from scanpy)
     cluster_col = None
