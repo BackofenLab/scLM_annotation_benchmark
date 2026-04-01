@@ -35,8 +35,7 @@ def load_data(data_path):
     """
     logger.info(f"Loading data from: {data_path}")
     try:
-        adata = sc.read_h5ad(data_path, backed='r')
-        adata = adata.to_memory()
+        adata = sc.read_h5ad(data_path)
         logger.info(f"Loaded data with shape: {adata.shape}")
         
         # Set required metadata for cell2sentence
@@ -107,9 +106,16 @@ def convert_to_c2s_format(adata, annotation_key, cache_dir=None):
         logger.info(f"Setting X to raw counts, normalizing and log-transforming with base 10. (see https://github.com/vandijklab/cell2sentence/blob/master/tutorials/c2s_tutorial_0_data_preparation.ipynb)")
         sc.pp.normalize_total(adata_copy)
         sc.pp.log1p(adata_copy, base=10)
+
+        # C2S requires gene symbols in var.index; check multiple possible sources
+        gene_symbol_cols = ["gene_names", "feature_name", "gene_symbols", "gene_name", "symbol"]
+        for col in gene_symbol_cols:
+            if col in adata_copy.var.columns:
+                logger.info(f"Swapping var.index to gene symbols from '{col}' column")
+                adata_copy.var_names = adata_copy.var[col].astype(str).values
+                adata_copy.var_names_make_unique()
+                break
         
-        # and var names need to contain gene names
-        adata_copy.var_names = adata_copy.var["gene_names"]
         # Set the cell_type column to the current annotation key
         if annotation_key not in adata_copy.obs.columns:
             raise ValueError(f"Annotation key '{annotation_key}' not found in adata.obs")

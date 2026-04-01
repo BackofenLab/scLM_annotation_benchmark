@@ -41,8 +41,7 @@ def load_data(data_path: str):
     """
     logger.info(f"Loading data from: {data_path}")
     try:
-        adata = sc.read_h5ad(data_path, backed='r')
-        adata = adata.to_memory()
+        adata = sc.read_h5ad(data_path)
         logger.info(f"Loaded data with shape: {adata.shape}")
         
         # Set required metadata for cell2sentence
@@ -133,8 +132,14 @@ def convert_to_arrow_dataset(adata, annotation_key: str):
         sc.pp.normalize_total(adata_copy)
         sc.pp.log1p(adata_copy, base=10)
 
-        # Set var names to gene names
-        adata_copy.var_names = adata_copy.var["gene_names"]
+        # C2S requires gene symbols in var.index; check multiple possible sources
+        gene_symbol_cols = ["gene_names", "feature_name", "gene_symbols", "gene_name", "symbol"]
+        for col in gene_symbol_cols:
+            if col in adata_copy.var.columns:
+                logger.info(f"Swapping var.index to gene symbols from '{col}' column")
+                adata_copy.var_names = adata_copy.var[col].astype(str).values
+                adata_copy.var_names_make_unique()
+                break
 
         # Set cell_type column
         if annotation_key not in adata_copy.obs.columns:

@@ -58,8 +58,7 @@ torch.manual_seed(SEED)
 def load_data(data_path: str):
     """Load single-cell data from h5ad file."""
     logger.info(f"Loading data from: {data_path}")
-    adata = sc.read_h5ad(data_path, backed='r')
-    adata = adata.to_memory()
+    adata = sc.read_h5ad(data_path)
     logger.info(f"Loaded data with shape: {adata.shape}")
     
     if 'organism' not in adata.obs.columns:
