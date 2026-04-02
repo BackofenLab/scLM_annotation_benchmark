@@ -8,6 +8,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         ca-certificates \
         git-lfs \
         procps \
+        gcc \
+        g++ \
+        python3-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
@@ -28,7 +31,8 @@ RUN /opt/conda/envs/sc_lfm/bin/pip install --no-cache-dir \
     -f https://data.pyg.org/whl/torch-2.7.1+cu118.html
 
 # Explicitly install pip packages to ensure they're visible in build logs
-RUN /opt/conda/envs/sc_lfm/bin/pip install \
+RUN /opt/conda/envs/sc_lfm/bin/pip install --no-cache-dir \
+    setuptools==80.1.0 \
     cell2sentence==1.2.0 \
     pybiomart==0.2.0 \
     omicverse==1.7.7 \

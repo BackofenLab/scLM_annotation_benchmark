@@ -27,6 +27,7 @@ dependencies:
   - zarr=2.18.7
   - scikit-learn=1.8.0
   - scanpy=1.10.4
+  - louvain=0.8.2
   - numcodecs=0.15.1
   - umap-learn=0.5.11
   - hnswlib=0.8.0
