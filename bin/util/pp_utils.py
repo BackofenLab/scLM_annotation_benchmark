@@ -23,6 +23,61 @@ from matplotlib.backends.backend_pdf import PdfPages
 logger = logging.getLogger(__name__)
 
 
+def ensure_gene_names_column(adata: AnnData, gene_names_col: str | None = None) -> str:
+    """
+    Ensure `adata.var['gene_names']` exists and contains gene symbols/names.
+
+    Selection logic:
+    - If `gene_names_col` is provided, use that if present in `adata.var`.
+    - Otherwise, fall back to `adata.var['gene_names']` then `adata.var['feature_names']`.
+
+    Validation logic:
+    - The chosen column must exist in `adata.var`.
+    - It must not be entirely missing (all NA).
+    - After trimming whitespace, it must not be entirely empty strings.
+
+    On success, writes/overwrites `adata.var['gene_names']` (in place) and returns
+    the source column name that was used.
+    """
+    candidates: list[str] = []
+    if gene_names_col:
+        candidates.append(gene_names_col)
+    candidates.extend(["gene_names", "feature_names"])
+
+    chosen = next((c for c in candidates if c in adata.var.columns), None)
+    if chosen is None:
+        raise ValueError(
+            "Could not determine gene names column. "
+            f"Tried: {', '.join(candidates)}. "
+            f"Available var columns: {', '.join(map(str, adata.var.columns))}"
+        )
+
+    s = adata.var[chosen]
+    non_null = s.dropna()
+    if non_null.empty:
+        raise ValueError(
+            f"Gene names column '{chosen}' contains only missing values; cannot proceed."
+        )
+
+    non_empty = non_null.astype(str).str.strip()
+    if (non_empty == "").all():
+        raise ValueError(
+            f"Gene names column '{chosen}' contains only empty/whitespace values; cannot proceed."
+        )
+
+    out = s.astype(object).copy()
+    mask = s.notna()
+    out.loc[mask] = s.loc[mask].astype(str).str.strip()
+    out.loc[out == ""] = pd.NA
+    if out.dropna().empty:
+        raise ValueError(
+            f"After cleaning, gene names column '{chosen}' contains only missing values; cannot proceed."
+        )
+
+    adata.var["gene_names"] = out
+    return chosen
+
+
 def is_raw_counts(
     X,
     min_val: float = -1e-6,
