@@ -42,7 +42,7 @@ def ensure_gene_names_column(adata: AnnData, gene_names_col: str | None = None) 
     candidates: list[str] = []
     if gene_names_col:
         candidates.append(gene_names_col)
-    candidates.extend(["gene_names", "feature_names"])
+    candidates.extend(["gene_names", "feature_names", "feature_name"])
 
     chosen = next((c for c in candidates if c in adata.var.columns), None)
     if chosen is None:
