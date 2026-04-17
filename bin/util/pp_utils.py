@@ -28,8 +28,13 @@ def ensure_gene_names_column(adata: AnnData, gene_names_col: str | None = None) 
     Ensure `adata.var['gene_names']` exists and contains gene symbols/names.
 
     Selection logic:
-    - If `gene_names_col` is provided, use that if present in `adata.var`.
-    - Otherwise, fall back to `adata.var['gene_names']` then `adata.var['feature_names']`.
+    - If `gene_names_col` is provided:
+      - If it equals "var_names", use `adata.var_names` (with heuristic validation).
+      - Else use that column if present in `adata.var`.
+    - Otherwise, fall back to (in this order):
+      - `adata.var['gene_names']`
+      - `adata.var['feature_names']` (or `feature_name`)
+      - `adata.var_names` (only if heuristic says they look like gene names)
 
     Validation logic:
     - The chosen column must exist in `adata.var`.
@@ -39,20 +44,78 @@ def ensure_gene_names_column(adata: AnnData, gene_names_col: str | None = None) 
     On success, writes/overwrites `adata.var['gene_names']` (in place) and returns
     the source column name that was used.
     """
+    def _var_names_look_like_gene_names(var_names: pd.Index) -> bool:
+        """
+        Heuristic check that `adata.var_names` are gene symbols/names (not Ensembl IDs).
+        """
+        if var_names is None or len(var_names) == 0:
+            return False
+        s = pd.Series(var_names.astype(str))
+        s = s.replace({"": pd.NA}).dropna()
+        if s.empty:
+            return False
+
+        # Reject if mostly Ensembl-like.
+        frac_ens = s.str.match(r"^ENS[A-Z]*\d+", na=False).mean()
+
+        # Accept if mostly "symbol-like" and not mostly numeric.
+        frac_symbol_like = s.str.match(r"^[A-Za-z][A-Za-z0-9_.-]*$", na=False).mean()
+        frac_all_numeric = s.str.match(r"^\d+$", na=False).mean()
+
+        # Keep it conservative: prefer false negatives over false positives.
+        # (Users can always pass --gene_names_col explicitly.)
+        if frac_ens >= 0.5:
+            return False
+        if frac_all_numeric >= 0.5:
+            return False
+        if frac_symbol_like < 0.5:
+            return False
+        return True
+
+    # Build candidate sources in priority order.
     candidates: list[str] = []
     if gene_names_col:
         candidates.append(gene_names_col)
-    candidates.extend(["gene_names", "feature_names", "feature_name"])
+    candidates.extend(["gene_names", "feature_names", "feature_name", "var_names"])
 
-    chosen = next((c for c in candidates if c in adata.var.columns), None)
-    if chosen is None:
+    chosen: str | None = None
+    s: pd.Series | None = None
+
+    # Explicit request to use var_names
+    if gene_names_col == "var_names":
+        if not _var_names_look_like_gene_names(adata.var_names):
+            raise ValueError(
+                "Requested gene names source 'var_names', but `adata.var_names` does not look like gene names "
+                "(e.g., appears Ensembl-like or not symbol-like). Please provide `--gene_names_col` pointing to "
+                "a column in `adata.var` that contains gene symbols."
+            )
+        chosen = "var_names"
+        s = pd.Series(adata.var_names.astype(str), index=adata.var.index)
+    else:
+        # Prefer explicit column if present
+        if gene_names_col and gene_names_col in adata.var.columns:
+            chosen = gene_names_col
+            s = adata.var[chosen]
+        else:
+            # Try known columns first
+            for col in ["gene_names", "feature_names", "feature_name"]:
+                if col in adata.var.columns:
+                    chosen = col
+                    s = adata.var[col]
+                    break
+            # Finally, try var_names if it passes heuristic
+            if chosen is None and _var_names_look_like_gene_names(adata.var_names):
+                chosen = "var_names"
+                s = pd.Series(adata.var_names.astype(str), index=adata.var.index)
+
+    if chosen is None or s is None:
         raise ValueError(
-            "Could not determine gene names column. "
-            f"Tried: {', '.join(candidates)}. "
-            f"Available var columns: {', '.join(map(str, adata.var.columns))}"
+            "Could not determine gene names source. "
+            f"Tried (in order): {', '.join(candidates)}. "
+            f"Available var columns: {', '.join(map(str, adata.var.columns))}. "
+            "If gene names are stored in the var index, you can also pass `--gene_names_col var_names`."
         )
 
-    s = adata.var[chosen]
     non_null = s.dropna()
     if non_null.empty:
         raise ValueError(
