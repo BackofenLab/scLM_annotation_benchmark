@@ -9,7 +9,7 @@ def loadYaml(String path) {
 
 process download {
     container params.container_image
-    conda 'envs/environment.yml'
+    conda 'envs/download.yml'
 
     input:
     tuple val(dataset), val(cache_dir), path(cfg_yaml), val(apply_ontology_mapping)
@@ -46,7 +46,7 @@ process download {
 
 process extract_cell_types {
     container params.container_image
-    conda 'envs/environment.yml'
+    conda 'envs/cell_types.yml'
 
     input:
         path(h5ad_files)
@@ -68,8 +68,6 @@ process extract_cell_types {
 
 process prepare_model {
     container params.container_image
-    conda 'envs/environment.yml'
-    conda 'git git-lfs'
     
     input:
     tuple val(model), path(model_dir)
@@ -107,7 +105,7 @@ process run_model {
     // Same tag format as run_model
     tag { "${dataset}×${model}" }
 
-    conda "envs/models/${model}.yml"
+    conda { "envs/models/${model}.yml" }
 
     output:
     tuple(path("results/*/*/*/predictions.csv"), val(dataset), val(model), val(cache_dir))
@@ -188,7 +186,7 @@ process run_model_throttled {
 
 process evaluate_annotation {
     container params.container_image
-    conda 'envs/environment.yml'
+    conda 'envs/evaluation.yml'
 
     input:
     tuple path(predictions), val(dataset), val(model), val(cache_dir), val(apply_ontology_mapping)
@@ -211,7 +209,7 @@ process evaluate_annotation {
 
 process combine_results {
     container params.container_image
-    conda 'envs/environment.yml'
+    conda 'envs/evaluation.yml'
 
     publishDir(path: 'results/', mode: 'copy', overwrite: 'false')
 
