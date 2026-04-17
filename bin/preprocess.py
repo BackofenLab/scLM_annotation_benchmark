@@ -293,6 +293,12 @@ Examples:
         help="Species name for pybiomart query (default: 'hsapiens')",
     )
     parser.add_argument(
+        "--organism",
+        type=str,
+        default="Homo sapiens",
+        help="Organism name to store in adata.obs['organism'] (default: 'Homo sapiens', can be overridden by config)",
+    )
+    parser.add_argument(
         "--summary",
         type=Path,
         default=None,
@@ -380,6 +386,10 @@ Examples:
         min_cells = args.min_cells
         min_genes = args.min_genes
 
+    # Dataset-level organism (used by downstream models like cell2sentence).
+    # Default is human, but specific datasets (e.g. Zeisel) can override in their YAML config.
+    organism = config.get("organism", args.organism)
+
     # Handle percent_top default
     if percent_top is None:
         percent_top = [20]
@@ -406,6 +416,20 @@ Examples:
         adata = sc.read_zarr(args.input)
     else:
         adata = sc.read_h5ad(args.input)
+
+    # Ensure organism is set as expected for downstream consumers.
+    if "organism" in adata.obs.columns:
+        n_mismatch = int((adata.obs["organism"].astype(str) != str(organism)).sum())
+        if n_mismatch > 0:
+            logger.info(
+                "Overriding adata.obs['organism'] to '%s' (was mixed; %d/%d mismatched).",
+                organism,
+                n_mismatch,
+                adata.n_obs,
+            )
+    else:
+        logger.info("Setting adata.obs['organism'] to '%s'.", organism)
+    adata.obs["organism"] = str(organism)
 
     # Preprocess
     adata_processed = preprocess_adata(
