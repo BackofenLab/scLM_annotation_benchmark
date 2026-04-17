@@ -51,7 +51,8 @@ def log_error(msg: str) -> None: print(f"[ERROR] {msg}", flush=True)
 def read_adata(path: Path):
     """Load AnnData from ``.h5ad`` or ``.zarr``."""
     if path.suffix == ".h5ad":
-        return anndata.read_h5ad(path)
+        adata = anndata.read_h5ad(path, backed='r')
+        return adata
     if path.suffix == ".zarr" or path.is_dir():
         return anndata.read_zarr(path)
     sys.exit(f"[ERROR] Unsupported file type: {path}")
@@ -85,6 +86,12 @@ def write_adata(ad, path: Path) -> None:
         log_warn(f"Could not fully sanitize Arrow dtypes: {e}")
 
     if path.suffix == ".h5ad":
+        if ad.raw is not None:
+            try:
+                _ = ad.raw.X
+            except AttributeError:
+                log_warn("Dropping malformed `raw` (missing raw.X) before writing.")
+                ad.raw = None
         ad.write_h5ad(path, compression="gzip")
     elif path.suffix == ".zarr" or path.is_dir():
         ad.write_zarr(path, chunks=[], compression="gzip")
@@ -99,7 +106,10 @@ def _cache_valid(dest: Path) -> bool:
     if not dest.exists():
         return False
     try:
-        read_adata(dest)
+        ad = read_adata(dest)
+        # Force validation of raw.X if present (backed mode defers errors)
+        if ad.raw is not None:
+            _ = ad.raw.X
         log_info(f"Cache hit (valid) – skipping download: {dest.name}")
         return True
     except Exception as e:
@@ -187,7 +197,7 @@ def stream_download_figshare(url: str, dest: Path) -> None:
         # Fallback: Figshare API
         if not real_url and (m := _FIGSHARE_RE.search(url)):
             try:
-                api = session.get(f"https://api.figshare.com/v2/file/{m.group(1)}")
+                api = session.get(f"https://api.figshare.com/v2/file/download/{m.group(1)}")
                 if api.ok:
                     real_url = api.json().get("download_url")
             except Exception:
@@ -283,7 +293,10 @@ def maybe_subset(full_path: Path, subset_path: Path, n: int | None) -> Path:
         return full_path
     if subset_path.exists():
         try:
-            read_adata(subset_path)
+            ad = read_adata(subset_path)
+            # Force validation of raw.X if present (backed mode defers errors)
+            if ad.raw is not None:
+                _ = ad.raw.X
             log_info(f"Subset already exists (valid) – skipping: {subset_path.name}")
             return subset_path
         except Exception as e:
@@ -297,7 +310,14 @@ def maybe_subset(full_path: Path, subset_path: Path, n: int | None) -> Path:
         log_warn("subset_size ≥ n_obs – using full dataset")
         return full_path
     log_info(f"Writing subset ({n} cells) → {subset_path.name}")
-    write_adata(ad[random.sample(range(ad.n_obs), n)], subset_path)
+    # Drop raw before slicing backed AnnData — slicing corrupts raw.X references
+    if getattr(ad, "isbacked", False) and ad.raw is not None:
+        log_warn("Dropping `raw` layer (not supported when subsetting backed AnnData)")
+        ad._raw = None
+    subset = ad[random.sample(range(ad.n_obs), n)]
+    if getattr(subset, "isbacked", False):
+        subset = subset.to_memory()
+    write_adata(subset, subset_path)
     return subset_path
 
 # --------------------------------------------------------------------------- #
@@ -380,8 +400,11 @@ def main() -> None:
     if args.apply_ontology_mapping:
         from util.download_helpers import apply_ontology_mapping_to_dataset
         log_info("Applying ontology mapping...")
+        adata_input = read_adata(chosen)
+        if getattr(adata_input, "isbacked", False):
+            adata_input = adata_input.to_memory()
         adata_mapped = apply_ontology_mapping_to_dataset(
-            adata=read_adata(chosen), annotation_key=cfg["annotation_key"],
+            adata=adata_input, annotation_key=cfg["annotation_key"],
             cache_dir=cache_dir, verbose=True, origin=cfg['name'])
         write_adata(adata_mapped, chosen)
         log_info("Ontology mapping completed")
@@ -389,6 +412,8 @@ def main() -> None:
         # Mapping disabled - check if we need to restore original annotations from cache
         print("[INFO] Ontology mapping disabled - checking for original annotations...")
         adata = read_adata(chosen)
+        if getattr(adata, "isbacked", False):
+            adata = adata.to_memory()
         restored_any = False
         
         key = cfg["annotation_key"]

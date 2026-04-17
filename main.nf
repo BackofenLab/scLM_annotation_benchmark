@@ -8,7 +8,8 @@ def loadYaml(String path) {
 }
 
 process download {
-    conda 'envs/download.yml'
+    container params.container_image
+    conda 'envs/environment.yml'
 
     input:
     tuple val(dataset), val(cache_dir), path(cfg_yaml), val(apply_ontology_mapping)
@@ -43,9 +44,33 @@ process download {
     """
 }
 
-process prepare_model {
-    conda 'git git-lfs'
+process extract_cell_types {
+    container params.container_image
+    conda 'envs/environment.yml'
 
+    input:
+        path(h5ad_files)
+        path(cfg_files)
+        val(cache_dir)  // list of files
+
+    script:
+        """
+        if [ ! -f ${cache_dir}/cell_types.csv ]; then
+            extract_cell_types.py \
+                --h5ads ${h5ad_files.join(' ')} \
+                --cfgs ${cfg_files.join(' ')} \
+                --out ${cache_dir}/cell_types.csv
+        else
+            echo "Cell type collection exists, if you want to rerun, delete cache/cell_types.csv"
+        fi
+        """
+}
+
+process prepare_model {
+    container params.container_image
+    conda 'envs/environment.yml'
+    conda 'git git-lfs'
+    
     input:
     tuple val(model), path(model_dir)
 
@@ -74,13 +99,15 @@ process prepare_model {
 }
 
 process run_model {
+    container params.container_image
+    
     input:
     tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size)
 
     // Same tag format as run_model
     tag { "${dataset}×${model}" }
 
-    conda { "envs/models/${model}.yml" }
+    conda "envs/models/${model}.yml"
 
     output:
     tuple(path("results/*/*/*/predictions.csv"), val(dataset), val(model), val(cache_dir))
@@ -115,6 +142,8 @@ process run_model {
 }
 
 process run_model_throttled {
+    container params.container_image
+    
     input:
     tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size)
 
@@ -158,7 +187,8 @@ process run_model_throttled {
 }
 
 process evaluate_annotation {
-    conda 'envs/evaluation.yml'
+    container params.container_image
+    conda 'envs/environment.yml'
 
     input:
     tuple path(predictions), val(dataset), val(model), val(cache_dir), val(apply_ontology_mapping)
@@ -180,7 +210,8 @@ process evaluate_annotation {
 }
 
 process combine_results {
-    conda 'envs/evaluation.yml'
+    container params.container_image
+    conda 'envs/environment.yml'
 
     publishDir(path: 'results/', mode: 'copy', overwrite: 'false')
 
