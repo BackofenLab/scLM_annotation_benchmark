@@ -51,7 +51,7 @@ def log_error(msg: str) -> None: print(f"[ERROR] {msg}", flush=True)
 def read_adata(path: Path):
     """Load AnnData from ``.h5ad`` or ``.zarr``."""
     if path.suffix == ".h5ad":
-        adata = anndata.read_h5ad(path, backed='r')
+        adata = anndata.read_h5ad(path)
         return adata
     if path.suffix == ".zarr" or path.is_dir():
         return anndata.read_zarr(path)
@@ -86,12 +86,6 @@ def write_adata(ad, path: Path) -> None:
         log_warn(f"Could not fully sanitize Arrow dtypes: {e}")
 
     if path.suffix == ".h5ad":
-        if ad.raw is not None:
-            try:
-                _ = ad.raw.X
-            except AttributeError:
-                log_warn("Dropping malformed `raw` (missing raw.X) before writing.")
-                ad.raw = None
         ad.write_h5ad(path, compression="gzip")
     elif path.suffix == ".zarr" or path.is_dir():
         ad.write_zarr(path, chunks=[], compression="gzip")
@@ -293,10 +287,7 @@ def maybe_subset(full_path: Path, subset_path: Path, n: int | None) -> Path:
         return full_path
     if subset_path.exists():
         try:
-            ad = read_adata(subset_path)
-            # Force validation of raw.X if present (backed mode defers errors)
-            if ad.raw is not None:
-                _ = ad.raw.X
+            read_adata(subset_path)
             log_info(f"Subset already exists (valid) – skipping: {subset_path.name}")
             return subset_path
         except Exception as e:
@@ -310,10 +301,6 @@ def maybe_subset(full_path: Path, subset_path: Path, n: int | None) -> Path:
         log_warn("subset_size ≥ n_obs – using full dataset")
         return full_path
     log_info(f"Writing subset ({n} cells) → {subset_path.name}")
-    # Drop raw before slicing backed AnnData — slicing corrupts raw.X references
-    if getattr(ad, "isbacked", False) and ad.raw is not None:
-        log_warn("Dropping `raw` layer (not supported when subsetting backed AnnData)")
-        ad._raw = None
     subset = ad[random.sample(range(ad.n_obs), n)]
     if getattr(subset, "isbacked", False):
         subset = subset.to_memory()

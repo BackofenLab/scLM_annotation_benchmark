@@ -62,7 +62,6 @@ PY
 )
 
 # Run Langcell prediction
-export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 python "$(dirname "$0")/predict.py" \
 --input "$INPUT_H5AD" \
 --output "$OUT_CSV" \

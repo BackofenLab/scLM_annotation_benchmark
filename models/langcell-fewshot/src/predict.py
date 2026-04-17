@@ -234,6 +234,7 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
         "input_ids",
         "n_counts",
         "labels",
+        "batch",
         "n_genes",
         "filter_pass",
         "label",
