@@ -33,6 +33,40 @@ def load_data(data_path):
         logger.error(f"Failed to load data: {e}")
         sys.exit(1)
 
+def _download_model(model: str) -> None:
+    """Download a CellTypist model, falling back to the Organ Atlas URL if needed."""
+    try:
+        celltypist.models.download_models(model=model)
+    except (ValueError, SystemExit):
+        # Model not in standard repertoire — try Organ Atlas URL.
+        # Organ Atlas URL pattern:
+        #   https://celltypist.cog.sanger.ac.uk/Resources/Organ_atlas/{organ}/models/{model}
+        import urllib.request
+        from pathlib import Path
+
+        stem = model.removesuffix(".pkl")
+        parts = stem.split("_", 2)
+        if len(parts) < 3:
+            raise ValueError(
+                f"Cannot derive organ from model name '{model}'. "
+                "Expected pattern: <Descriptor>_<Species>_<Organ>.pkl"
+            )
+        organ = parts[2]
+        organ_atlas_url = (
+            f"https://celltypist.cog.sanger.ac.uk/Resources/Organ_atlas/"
+            f"{organ}/models/{model}"
+        )
+
+        models_dir = Path(celltypist.models.models_path)
+        models_dir.mkdir(parents=True, exist_ok=True)
+        dest = models_dir / model
+        if not dest.exists():
+            logger.info(f"Model not in standard list; downloading from Organ Atlas: {organ_atlas_url}")
+            urllib.request.urlretrieve(organ_atlas_url, dest)
+        else:
+            logger.info(f"Organ Atlas model already cached: {dest}")
+
+
 def run_celltypist_prediction(adata, model="Immune_All_High.pkl"):
     """
     Run CellTypist prediction on the data.
@@ -55,7 +89,7 @@ def run_celltypist_prediction(adata, model="Immune_All_High.pkl"):
                 adata.var_names_make_unique()
                 break
         
-        celltypist.models.download_models(model=model)
+        _download_model(model)
         model_obj = celltypist.models.Model.load(model)
         predictions = celltypist.annotate(adata, model=model_obj)
         logger.info("Prediction completed successfully")

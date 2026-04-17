@@ -24,7 +24,8 @@ def main(args):
         if not key:
             print(f"Warning: No 'annotation_key' found in {cfg}, skipping", file=sys.stderr)
             continue
-        adata = anndata.read_h5ad(h5ad)
+        adata = anndata.read_h5ad(h5ad, backed='r')
+        adata = adata.to_memory()
 
         found = False
         mapped_adata = oh.apply_ontology_mapping_to_adata(adata, cache_dir=Path("."), annotation_key=yml.get('annotation_key'))
