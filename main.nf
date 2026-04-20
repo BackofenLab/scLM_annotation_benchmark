@@ -68,6 +68,7 @@ process extract_cell_types {
 
 process prepare_model {
     container params.container_image
+    conda 'git git-lfs'
     
     input:
     tuple val(model), path(model_dir)
