@@ -152,6 +152,48 @@ def stratified_subset(
     return subset, qc_df
 
 
+def random_subset(
+    adata: anndata.AnnData,
+    annotation_key: str,
+    subset_size: int,
+) -> tuple[anndata.AnnData, pd.DataFrame]:
+    """
+    Create a uniform random subset over all cells, ignoring cell-type structure.
+
+    Natural class imbalance is preserved in expectation. min_cells_per_type is
+    intentionally not applied — rare classes may end up with 0 cells.
+    """
+    type_counts = adata.obs[annotation_key].value_counts()
+    total_cells = int(type_counts.sum())
+
+    n = min(subset_size, adata.n_obs)
+    rng = np.random.default_rng(RANDOM_SEED)
+    selected_positions = rng.choice(adata.n_obs, size=n, replace=False)
+
+    if adata.isbacked:
+        subset = adata[selected_positions].to_memory()
+    else:
+        subset = adata[selected_positions].copy()
+
+    subset_counts = subset.obs[annotation_key].value_counts()
+    qc_rows = []
+    for cell_type in sorted(set(type_counts.index)):
+        orig_count = int(type_counts.get(cell_type, 0))
+        sub_count = int(subset_counts.get(cell_type, 0))
+        qc_rows.append(
+            {
+                "cell_type": cell_type,
+                "original_count": orig_count,
+                "original_proportion": orig_count / total_cells,
+                "subset_count": sub_count,
+                "subset_proportion": sub_count / len(subset) if len(subset) > 0 else 0.0,
+                "dropped": False,
+                "drop_reason": "",
+            }
+        )
+    return subset, pd.DataFrame(qc_rows)
+
+
 def plot_subset_qc(qc_df: pd.DataFrame, dataset: str, subset_size: int, pdf_path: Path):
     """Generate QC plots comparing original vs. subset distributions."""
     set_pub_style()
@@ -265,11 +307,24 @@ def main():
         default=MIN_CELLS_PER_TYPE,
         help=f"Minimum cells per type (default: {MIN_CELLS_PER_TYPE})",
     )
+    parser.add_argument(
+        "--strategy",
+        choices=["stratified", "random"],
+        required=True,
+        help="Subsampling strategy: 'stratified' preserves per-type proportions; 'random' is uniform over cells",
+    )
     args = parser.parse_args()
 
     logger.info("Reading input: %s", args.input)
-    adata = anndata.read_h5ad(args.input)
+    adata = anndata.read_h5ad(args.input, backed="r")
     logger.info("Input shape: %s cells x %s genes", adata.n_obs, adata.n_vars)
+
+    default_min = MIN_CELLS_PER_TYPE
+    if args.strategy == "random" and args.min_cells_per_type != default_min:
+        logger.info(
+            "random mode: ignoring --min_cells_per_type=%s",
+            args.min_cells_per_type,
+        )
 
     if args.subset_size >= adata.n_obs:
         logger.warning(
@@ -277,9 +332,9 @@ def main():
             args.subset_size,
             adata.n_obs,
         )
-        subset = adata.copy()
+        subset = adata.to_memory() if adata.isbacked else adata.copy()
         type_counts = adata.obs[args.annotation_key].value_counts()
-        total = type_counts.sum()
+        total = int(type_counts.sum())
         qc_rows = []
         for cell_type in sorted(type_counts.index):
             count = int(type_counts[cell_type])
@@ -295,7 +350,12 @@ def main():
                 }
             )
         qc_df = pd.DataFrame(qc_rows)
+    elif args.strategy == "random":
+        subset, qc_df = random_subset(adata, args.annotation_key, args.subset_size)
     else:
+        # Stratified needs a materialized matrix for slicing; to_memory() is cheap if input is backed
+        if adata.isbacked:
+            adata = adata.to_memory()
         subset, qc_df = stratified_subset(
             adata, args.annotation_key, args.subset_size, args.min_cells_per_type
         )
@@ -305,11 +365,11 @@ def main():
     logger.info("Subset written: %s cells -> %s", subset.n_obs, args.output)
 
     args.qc_dir.mkdir(parents=True, exist_ok=True)
-    csv_path = args.qc_dir / "cell_type_distribution.csv"
+    csv_path = args.qc_dir / f"cell_type_distribution_{args.strategy}.csv"
     qc_df.to_csv(csv_path, index=False)
     logger.info("QC CSV written: %s", csv_path)
 
-    pdf_path = args.qc_dir / "subset_qc_plots.pdf"
+    pdf_path = args.qc_dir / f"subset_qc_plots_{args.strategy}.pdf"
     plot_subset_qc(qc_df, args.dataset, args.subset_size, pdf_path)
     logger.info("QC plots written: %s", pdf_path)
 
