@@ -45,47 +45,25 @@ process preprocess {
     storeDir "${params.cache_dir}/datasets/preprocessed"
 
     input:
-    tuple path(raw_file), val(dataset), path(cfg_yaml), val(cache_dir)
+    tuple path(raw_file), val(dataset), path(cfg_yaml), val(cache_dir), val(annotation_key), val(apply_mapping)
 
     tag { dataset }
 
     output:
-    tuple(path("${dataset}_pp.h5ad"), val(dataset))
+    tuple(path("${dataset}_pp.h5ad"), val(dataset), val(annotation_key))
 
     script:
     """
     set -euo pipefail
-    preprocess.py \
-      --input "${raw_file}" \
-      --output "${dataset}_pp.h5ad" \
-      --config "${cfg_yaml}" \
-      --summary "${dataset}_pp_summary.txt" \
-      --cache_dir "${cache_dir}"
-    """
-}
-
-process ontology_mapping {
-    conda 'envs/download.yml'
-    storeDir "${params.cache_dir}/datasets/mapped"
-
-    input:
-    tuple path(pp_file), val(dataset), path(cfg_yaml), val(cache_dir), val(annotation_key), val(apply_mapping)
-
-    tag { dataset }
-
-    output:
-    tuple(path("${dataset}_mapped.h5ad"), val(dataset), val(annotation_key))
-
-    script:
-    """
-    set -euo pipefail
-    ontology_map.py \
-      --input "${pp_file}" \
-      --output "${dataset}_mapped.h5ad" \
-      --annotation_key "${annotation_key}" \
-      --cache_dir "${cache_dir}" \
-      --dataset "${dataset}" \
-      --apply ${apply_mapping}
+    preprocess.py \\
+      --input "${raw_file}" \\
+      --output "${dataset}_pp.h5ad" \\
+      --config "${cfg_yaml}" \\
+      --summary "${dataset}_pp_summary.txt" \\
+      --cache_dir "${cache_dir}" \\
+      --annotation_key "${annotation_key}" \\
+      --apply_ontology_mapping ${apply_mapping} \\
+      --dataset "${dataset}"
     """
 }
 
@@ -220,7 +198,7 @@ process combine_results {
 }
 
 workflow {
-    // --- Data pipeline: download -> preprocess -> ontology_mapping -> subset ---
+    // --- Data pipeline: download -> preprocess -> subset ---
 
     Channel
         .fromList(params.datasets)
@@ -231,22 +209,13 @@ workflow {
 
     download_out
         .map { raw_file, dataset ->
-            tuple(raw_file, dataset, file("datasets/${dataset}.yml"), file(params.cache_dir))
+            def cfg = loadYaml("datasets/${dataset}.yml")
+            def apply_mapping = cfg.containsKey('apply_ontology_mapping') ? cfg.apply_ontology_mapping : params.apply_ontology_mapping
+            tuple(raw_file, dataset, file("datasets/${dataset}.yml"), file(params.cache_dir), cfg.annotation_key, apply_mapping)
         }
         .set { preprocess_input }
 
     preprocess_out = preprocess(preprocess_input)
-
-    // Add annotation_key and apply_ontology_mapping from dataset config
-    preprocess_out
-        .map { pp_file, dataset ->
-            def cfg = loadYaml("datasets/${dataset}.yml")
-            def apply_mapping = cfg.containsKey('apply_ontology_mapping') ? cfg.apply_ontology_mapping : params.apply_ontology_mapping
-            tuple(pp_file, dataset, file("datasets/${dataset}.yml"), file(params.cache_dir), cfg.annotation_key, apply_mapping)
-        }
-        .set { ontology_input }
-
-    ontology_out = ontology_mapping(ontology_input)
 
     // --- Model preparation (runs in parallel with data pipeline) ---
 
@@ -276,10 +245,10 @@ workflow {
         .unique()
         .set { unique_sizes }
 
-    ontology_out
+    preprocess_out
         .combine(unique_sizes)
-        .map { mapped_file, dataset, annotation_key, subset_size ->
-            tuple(mapped_file, dataset, file("datasets/${dataset}.yml"), file(params.cache_dir), annotation_key, subset_size, params.min_cells_per_type)
+        .map { pp_file, dataset, annotation_key, subset_size ->
+            tuple(pp_file, dataset, file("datasets/${dataset}.yml"), file(params.cache_dir), annotation_key, subset_size, params.min_cells_per_type)
         }
         .set { subset_input }
 
