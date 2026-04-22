@@ -170,10 +170,7 @@ def random_subset(
     rng = np.random.default_rng(RANDOM_SEED)
     selected_positions = rng.choice(adata.n_obs, size=n, replace=False)
 
-    if adata.isbacked:
-        subset = adata[selected_positions].to_memory()
-    else:
-        subset = adata[selected_positions].copy()
+    subset = adata[selected_positions].copy()
 
     subset_counts = subset.obs[annotation_key].value_counts()
     qc_rows = []
@@ -316,7 +313,10 @@ def main():
     args = parser.parse_args()
 
     logger.info("Reading input: %s", args.input)
-    adata = anndata.read_h5ad(args.input, backed="r")
+    # Full in-memory read: anndata in this env has a broken backed-sparse subset path
+    # (AttributeError on _validate_indices) that silently drops X in the output. Fits in RAM
+    # for all current datasets; revisit if a larger dataset pushes memory.
+    adata = anndata.read_h5ad(args.input)
     logger.info("Input shape: %s cells x %s genes", adata.n_obs, adata.n_vars)
 
     default_min = MIN_CELLS_PER_TYPE
@@ -332,7 +332,7 @@ def main():
             args.subset_size,
             adata.n_obs,
         )
-        subset = adata.to_memory() if adata.isbacked else adata.copy()
+        subset = adata.copy()
         type_counts = adata.obs[args.annotation_key].value_counts()
         total = int(type_counts.sum())
         qc_rows = []
@@ -353,9 +353,6 @@ def main():
     elif args.strategy == "random":
         subset, qc_df = random_subset(adata, args.annotation_key, args.subset_size)
     else:
-        # Stratified needs a materialized matrix for slicing; to_memory() is cheap if input is backed
-        if adata.isbacked:
-            adata = adata.to_memory()
         subset, qc_df = stratified_subset(
             adata, args.annotation_key, args.subset_size, args.min_cells_per_type
         )
