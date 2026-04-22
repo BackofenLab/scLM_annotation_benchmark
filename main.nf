@@ -123,9 +123,9 @@ process prepare_model {
 
 process run_model {
     input:
-    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size)
+    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size), val(strategy)
 
-    tag { "${dataset}x${model}" }
+    tag { "${dataset}x${model}x${strategy}" }
 
     conda { "envs/models/${model}.yml" }
 
@@ -136,10 +136,10 @@ process run_model {
     def apiKeyExport = params.openrouter_api_key ? "export API_KEY='${params.openrouter_api_key}'" : ''
     """
     ${apiKeyExport}
-    echo "Subset size of ${dataset}: ${subset_size}"
+    echo "Subset size of ${dataset}: ${subset_size} (strategy: ${strategy})"
 
-    cache_base="${cache_dir}/models/predictions/${model}/${dataset}/${subset_size}"
-    results_dir=./results/${model}/${dataset}/${subset_size}
+    cache_base="${cache_dir}/models/predictions/${model}/${dataset}/${subset_size}_${strategy}"
+    results_dir=./results/${model}/${dataset}/${subset_size}_${strategy}
 
     mkdir -p \${results_dir}
 
@@ -153,7 +153,7 @@ process run_model {
         cp \${results_dir}/predictions*.csv \${cache_base}/
     else
         cp \${cache_base}/predictions*.csv \${results_dir}/
-        echo "Cell type prediction already exists for ${dataset} x ${model} (subset ${subset_size})."
+        echo "Cell type prediction already exists for ${dataset} x ${model} (subset ${subset_size}, strategy ${strategy})."
         echo "To rerun, delete: \${cache_base}/predictions*.csv"
     fi
     """
@@ -262,11 +262,11 @@ workflow {
     subset_out
         .combine(prepared_models)
         .combine(model_size_pairs)
-        .filter { data_file, dataset, data_subset_size, model_name, model_dir, model_name2, model_subset_size ->
+        .filter { data_file, dataset, data_subset_size, data_strategy, model_name, model_dir, model_name2, model_subset_size ->
             model_name2 == model_name && data_subset_size == model_subset_size
         }
-        .map { data_file, dataset, data_subset_size, model_name, model_dir, model_name2, model_subset_size ->
-            tuple(data_file, model_dir, dataset, file("datasets/${dataset}.yml"), model_name, file(params.cache_dir), data_subset_size)
+        .map { data_file, dataset, data_subset_size, data_strategy, model_name, model_dir, model_name2, model_subset_size ->
+            tuple(data_file, model_dir, dataset, file("datasets/${dataset}.yml"), model_name, file(params.cache_dir), data_subset_size, data_strategy)
         }
         .set { model_input }
 
