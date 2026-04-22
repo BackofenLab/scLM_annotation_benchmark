@@ -18,6 +18,9 @@ import numpy as np
 import torch
 from tqdm import tqdm
 
+from sklearn.utils import shuffle
+from scipy import sparse
+
 logger = logging.getLogger(__name__)
 
 # Set seed for reproducibility
@@ -130,8 +133,8 @@ def convert_to_arrow_dataset(adata, annotation_key: str):
         sc.pp.normalize_total(adata_copy)
         sc.pp.log1p(adata_copy, base=10)
 
-        # Set var names to gene names
-        adata_copy.var_names = adata_copy.var["gene_names"]
+        adata_copy.var_names = adata.var["gene_names"].astype(str)
+        adata_copy.var_names_make_unique()
 
         # Set cell_type column
         if annotation_key not in adata_copy.obs.columns:
@@ -144,7 +147,7 @@ def convert_to_arrow_dataset(adata, annotation_key: str):
 
         # Keep organism and cell_type columns
         label_col_names = ['organism', 'cell_type']
-        
+       
         # Convert to arrow dataset
         arrow_ds, vocabulary = cs.CSData.adata_to_arrow(
             adata=adata_copy, 

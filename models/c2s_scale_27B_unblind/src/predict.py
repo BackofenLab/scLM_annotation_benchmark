@@ -169,7 +169,8 @@ def convert_to_arrow_dataset(adata, annotation_key: str):
         sc.pp.log1p(adata_copy, base=10)
 
         # Set var names to gene names
-        adata_copy.var_names = adata_copy.var["gene_names"]
+        adata_copy.var_names = adata_copy.var["gene_names"].astype(str)
+        adata_copy.var_names_make_unique()
 
         # Set cell_type column
         if annotation_key not in adata_copy.obs.columns:
