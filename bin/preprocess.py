@@ -196,6 +196,18 @@ def preprocess_adata(
     )
     logger.info(f"After Ensembl ID mapping: {adata.n_obs} cells × {adata.n_vars} genes")
 
+    # Guarantee adata.var['gene_names'] exists (models like c2s_scale_* / instructcell
+    # access it unconditionally). CellxGene inputs have 'feature_name' but not 'gene_names'.
+    if "gene_names" not in adata.var.columns:
+        for src in ("feature_name", "feature_names"):
+            if src in adata.var.columns:
+                adata.var["gene_names"] = adata.var[src].astype(str).values
+                logger.info(f"Populated adata.var['gene_names'] from adata.var['{src}'].")
+                break
+        else:
+            adata.var["gene_names"] = adata.var_names.astype(str)
+            logger.info("Populated adata.var['gene_names'] from adata.var_names (fallback).")
+
     # Step 7: Generate summary
     if summary_path is not None:
         logger.info("Step 7: Generating summary...")
@@ -426,6 +438,12 @@ Examples:
         adata = sc.read_zarr(args.input)
     else:
         adata = sc.read_h5ad(args.input)
+
+    # Ensure adata.obs['organism'] is set for downstream models (c2s_scale_*, instructcell_*).
+    # Read from YAML config; default to human when unspecified.
+    organism = config.get("organism", "Homo sapiens")
+    adata.obs["organism"] = str(organism)
+    logger.info(f"Set adata.obs['organism'] = '{organism}'.")
 
     # Preprocess
     adata_processed = preprocess_adata(
