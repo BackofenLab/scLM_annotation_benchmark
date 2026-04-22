@@ -22,7 +22,7 @@ process download {
     storeDir "${params.cache_dir}/datasets/raw"
 
     input:
-    tuple val(dataset), val(cache_dir), path(cfg_yaml)
+    tuple val(dataset), path(cfg_yaml)
 
     tag { dataset }
 
@@ -33,10 +33,9 @@ process download {
     """
     set -euo pipefail
     download.py \
-      --dataset   "${dataset}" \
-      --cfg_yaml  "${cfg_yaml}" \
-      --out       "${dataset}_raw.h5ad" \
-      --cache_dir "${cache_dir}"
+      --dataset  "${dataset}" \
+      --cfg_yaml "${cfg_yaml}" \
+      --out      "${dataset}_raw.h5ad"
     """
 }
 
@@ -203,7 +202,7 @@ workflow {
 
     Channel
         .fromList(params.datasets)
-        .map { dataset -> tuple(dataset, file(params.cache_dir), file("datasets/${dataset}.yml")) }
+        .map { dataset -> tuple(dataset, file("datasets/${dataset}.yml")) }
         .set { download_input }
 
     download_out = download(download_input)

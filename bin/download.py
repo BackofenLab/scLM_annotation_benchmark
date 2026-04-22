@@ -8,15 +8,14 @@ Supports two download sources:
 
 Pipeline:
   1. Looks up the dataset's YAML descriptor (name, URL/census_id, keys, ...).
-  2. Caches the full file under ``<cache_dir>/<dataset>.<ext>``
-     (skips download when already present and valid).
+  2. Downloads the full file directly into the Nextflow work dir (``--out``).
+     Persistent caching is handled by Nextflow's ``storeDir`` in ``main.nf``.
   3. Verifies that the required ``annotation_key`` and ``batch_key`` exist.
-  4. Hard-links (or copies) the cached full dataset to Nextflow's work dir.
 
 Everything is format-agnostic (``.h5ad`` or ``.zarr``).
 """
 from __future__ import annotations
-import argparse, html as ihtml, os, re, shutil, sys, yaml
+import argparse, html as ihtml, re, shutil, sys, yaml
 from pathlib import Path
 from typing import Iterable
 from urllib.parse import urljoin
@@ -290,7 +289,6 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dataset", required=True, help="Dataset name (must match YAML 'name')")
     ap.add_argument("--cfg_yaml", required=True, help="YAML file with dataset configuration")
-    ap.add_argument("--cache_dir", required=True, help="Local cache for downloaded files")
     ap.add_argument("--out", required=True, help="Destination inside the task work dir")
     args = ap.parse_args()
 
@@ -304,10 +302,10 @@ def main() -> None:
     use_census = (source == "cellxgene_census") or ("census_dataset_id" in cfg)
     log_info(f"Download source: {'cellxgene_census' if use_census else 'url/drive'}")
 
-    cache_dir = Path(args.cache_dir)
-    ext = ".h5ad" if use_census else (Path(cfg["url"]).suffix or ".h5ad")
-    full_path = cache_dir / f"{cfg['name']}{ext}"
-    log_info(f"Dataset: {cfg['name']} | Cache: {cache_dir} | Full: {full_path.name}")
+    # Write directly into the Nextflow work dir; `storeDir` handles persistent caching.
+    dest = Path(args.out).resolve()
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    log_info(f"Dataset: {cfg['name']} | Destination: {dest}")
 
     # --- Download ---
     if use_census:
@@ -324,46 +322,36 @@ def main() -> None:
         except Exception as e:
             log_warn(f"Could not resolve Census build: {e}")
 
-        if not _cache_valid(full_path):
+        if not _cache_valid(dest):
             log_info(f"Downloading Census source h5ad for dataset_id={dataset_id}")
-            cellxgene_census.download_source_h5ad(str(dataset_id), to_path=str(full_path), census_version=census_version)
-            log_info(f"Census download complete: {full_path.name}")
+            cellxgene_census.download_source_h5ad(str(dataset_id), to_path=str(dest), census_version=census_version)
+            log_info(f"Census download complete: {dest.name}")
     else:
         if "url" not in cfg:
             sys.exit("[ERROR] Non-Census download requires `url` in YAML.")
         log_info(f"URL: {cfg['url']}")
         if file_id := extract_gdrive_file_id(cfg["url"]):
             log_info(f"Detected Google Drive, file_id={file_id}")
-            stream_download_gdrive(file_id, full_path)
+            stream_download_gdrive(file_id, dest)
         elif is_figshare_url(cfg["url"]):
             log_info("Detected Figshare link")
-            stream_download_figshare(cfg["url"], full_path)
+            stream_download_figshare(cfg["url"], dest)
         else:
-            stream_download(cfg["url"], full_path)
-        log_info(f"Download complete: {full_path.name}")
+            stream_download(cfg["url"], dest)
+        log_info(f"Download complete: {dest.name}")
 
     # --- Verify columns ---
     log_info("Verifying required columns...")
-    if full_path.suffix == ".h5ad":
-        ad_backed = anndata.read_h5ad(full_path, backed="r")
+    if dest.suffix == ".h5ad":
+        ad_backed = anndata.read_h5ad(dest, backed="r")
         try:
             verify_columns(ad_backed, [cfg["annotation_key"], cfg["batch_key"]])
         finally:
             ad_backed.file.close()
     else:
         # zarr path — anndata currently reads zarr fully; acceptable, rare in practice
-        verify_columns(read_adata(full_path), [cfg["annotation_key"], cfg["batch_key"]])
+        verify_columns(read_adata(dest), [cfg["annotation_key"], cfg["batch_key"]])
     log_info("Required columns verified")
-
-    # --- Link/copy to Nextflow work dir ---
-    dest = Path(args.out).resolve()
-    dest.parent.mkdir(parents=True, exist_ok=True)
-    if full_path.resolve() != dest:
-        log_info(f"Linking {full_path.name} -> {dest}")
-        try:
-            os.link(full_path, dest)
-        except OSError:
-            shutil.copy2(full_path, dest)
     log_info(f"OK: {dest.name} ready")
 
 
