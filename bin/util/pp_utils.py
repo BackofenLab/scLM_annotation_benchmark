@@ -71,13 +71,13 @@ def is_raw_counts(
 
         return True
     else:
-        # 1. Check for negative values
+        # Dense path (unchanged)
         if np.min(X) < min_val:
             return False
 
-        # 2. Check fraction of non-integer values
         diffs = np.abs(X - np.round(X))
-        fraction_noninteger = np.mean(diffs > 1e-6)
+        noninteger_mask = diffs > 1e-6
+        fraction_noninteger = np.mean(noninteger_mask)
 
         if fraction_noninteger > max_noninteger_fraction:
             return False
