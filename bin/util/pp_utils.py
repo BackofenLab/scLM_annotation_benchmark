@@ -1019,11 +1019,17 @@ def plot_preprocessing_qc(
     
     fig.suptitle(page_title, fontsize=16, fontweight="bold")
 
+    # Note: matplotlib's ax.violinplot is used instead of sc.pl.violin because importing
+    # scanpy puts seaborn.violinplot (which sc.pl.violin wraps) into a state that segfaults
+    # on macOS 26 / recent conda envs. ax.violinplot uses its own KDE and is unaffected.
+
     # Top row plots
     # Plot 1: violin plot of total_counts
     ax = fig.add_subplot(gs_top[0, 0])
     if "total_counts" in adata.obs.columns:
-        sc.pl.violin(adata, keys="total_counts", ax=ax, show=False)
+        ax.violinplot([adata.obs["total_counts"].to_numpy()], showmedians=True)
+        ax.set_xticks([1])
+        ax.set_xticklabels([""])
         ax.set_title("total_counts")
     else:
         ax.text(0.5, 0.5, "total_counts\nnot available", ha="center", va="center", transform=ax.transAxes)
@@ -1032,7 +1038,9 @@ def plot_preprocessing_qc(
     # Plot 2: violin plot of n_genes_by_counts
     ax = fig.add_subplot(gs_top[0, 1])
     if "n_genes_by_counts" in adata.obs.columns:
-        sc.pl.violin(adata, keys="n_genes_by_counts", ax=ax, show=False)
+        ax.violinplot([adata.obs["n_genes_by_counts"].to_numpy()], showmedians=True)
+        ax.set_xticks([1])
+        ax.set_xticklabels([""])
         ax.set_title("n_genes_by_counts")
     else:
         ax.text(0.5, 0.5, "n_genes_by_counts\nnot available", ha="center", va="center", transform=ax.transAxes)
@@ -1040,8 +1048,12 @@ def plot_preprocessing_qc(
 
     # Plot 3: violin plot of pct_counts_mt, pct_counts_ribo, pct_counts_hb
     ax = fig.add_subplot(gs_top[0, 2])
-    if "pct_counts_mt" in adata.obs.columns and "pct_counts_ribo" in adata.obs.columns and "pct_counts_hb" in adata.obs.columns:
-        sc.pl.violin(adata, keys=["pct_counts_mt", "pct_counts_ribo", "pct_counts_hb"], ax=ax, show=False)
+    _pct_keys = ("pct_counts_mt", "pct_counts_ribo", "pct_counts_hb")
+    if all(k in adata.obs.columns for k in _pct_keys):
+        _pct_data = [adata.obs[k].to_numpy() for k in _pct_keys]
+        ax.violinplot(_pct_data, showmedians=True)
+        ax.set_xticks([1, 2, 3])
+        ax.set_xticklabels(["mt", "ribo", "hb"])
         ax.set_title("Mito %, Ribo %, HB %")
     else:
         ax.text(0.5, 0.5, "pct_counts_mt or pct_counts_ribo or pct_counts_hb\nnot available", ha="center", va="center", transform=ax.transAxes)
