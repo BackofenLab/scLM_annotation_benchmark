@@ -169,8 +169,12 @@ def main():
     if len(emb_idx) < 200:
         warnings.warn('Low gene overlap; check Ensembl-vs-symbol IDs and version suffixes.')
 
-    # Normalize counts (Scanpy idiom) and subset to overlap
+    # Normalize counts (Scanpy idiom) and subset to overlap.
+    # The pipeline's preprocessed X is already log1p-normalized, so restore raw
+    # counts from layers['counts'] first to avoid a double log transform.
     A = adata.raw.to_adata() if adata.raw is not None else adata.copy()
+    if adata.raw is None and "counts" in A.layers:
+        A.X = A.layers["counts"]
     sc.pp.normalize_total(A, target_sum=1e6)
     sc.pp.log1p(A)
     Xw = A.X[:, mat_idx]  # weights

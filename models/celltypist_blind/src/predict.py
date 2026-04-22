@@ -129,7 +129,13 @@ def preprocess_data(adata):
     """
     logger.info("Preprocessing data")
     try:
-        sc.pp.normalize_total(adata, target_sum = 1e4)
+        # Restore raw counts before CellTypist's required normalize_total(1e4) + log1p;
+        # the pipeline's preprocessed X is already log1p-normalized, so re-normalizing
+        # it would double-log.
+        if "counts" in adata.layers:
+            adata = adata.copy()
+            adata.X = adata.layers["counts"]
+        sc.pp.normalize_total(adata, target_sum=1e4)
         sc.pp.log1p(adata)
         return adata
     except Exception as e:

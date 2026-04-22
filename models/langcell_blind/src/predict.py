@@ -215,6 +215,12 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
     """
     dataset_sub = sc.read(args.input)
 
+    # LangCell inherits Geneformer's tokenizer, which rank-encodes raw UMI counts
+    # normalized by per-cell totals and gene-median factors. The pipeline's
+    # preprocessed X is log1p-normalized, so restore raw counts before tokenization.
+    if "counts" in dataset_sub.layers:
+        dataset_sub.X = dataset_sub.layers["counts"]
+
     if sp.issparse(dataset_sub.X):
         n_counts = np.asarray(dataset_sub.X.sum(axis=1)).ravel()
         n_genes = dataset_sub.X.getnnz(axis=1)
