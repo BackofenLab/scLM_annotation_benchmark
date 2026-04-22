@@ -15,6 +15,8 @@ from anndata import AnnData
 from scipy.stats import median_abs_deviation
 import pybiomart
 from pathlib import Path
+import matplotlib
+matplotlib.use("Agg")  # non-interactive backend — safe for parallel subprocesses (macOS default can segfault)
 import matplotlib.pyplot as plt
 import seaborn as sns
 
