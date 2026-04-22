@@ -93,11 +93,19 @@ def write_adata(ad, path: Path) -> None:
 # Shared download helpers                                                     #
 # --------------------------------------------------------------------------- #
 def _cache_valid(dest: Path) -> bool:
-    """Return True if *dest* exists and is readable AnnData."""
+    """Return True if *dest* exists and is readable AnnData (backed-mode check — O(1) RAM)."""
     if not dest.exists():
         return False
     try:
-        read_adata(dest)
+        if dest.suffix == ".h5ad":
+            ad = anndata.read_h5ad(dest, backed="r")
+            try:
+                _ = ad.shape
+            finally:
+                ad.file.close()
+        else:
+            # zarr or dir: a minimal open validates structure
+            anndata.read_zarr(dest)
         log_info(f"Cache hit (valid) – skipping download: {dest.name}")
         return True
     except Exception as e:
