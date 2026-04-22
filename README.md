@@ -12,7 +12,8 @@ Config file with the following parameters:
 | `models` | List of models to use. Each needs `models/<name>/src/run.sh` |
 | `cache_dir` | Directory to cache downloaded data, preprocessed files, subsets, and model weights |
 | `subset_categories` | Map of model name patterns to subset sizes (e.g., `['openrouter': 1000, 'default': 10000]`). Models whose name contains the key get that subset size; `'default'` is the fallback |
-| `min_cells_per_type` | Minimum cells per cell type in subsets (default: 20). Types below this threshold are dropped |
+| `subset_strategy` | `'stratified'` preserves per-type proportions; `'random'` is uniform across cells |
+| `min_cells_per_type` | Minimum cells per cell type in subsets (default: 20). Types below this threshold are dropped in stratified mode (ignored in random mode) |
 | `apply_ontology_mapping` | Fallback for datasets without a per-dataset `apply_ontology_mapping` flag in their YAML |
 
 There are profiles `local` for running locally, `helix` for the helix cluster, and `imbi_gpu` for the IMBI GPU cluster.
@@ -22,13 +23,12 @@ There are profiles `local` for running locally, `helix` for the helix cluster, a
 The pipeline runs the following processes in order:
 
 1. **download** - Fetches raw data from URL/Google Drive/CellxGene Census. Caches the full file under `cache/`.
-2. **preprocess** - QC filtering, gene/cell filtering, normalization, log transform, Ensembl ID mapping. QC plots saved to `cache/plots/`.
-3. **ontology_mapping** - Maps cell type labels to Cell Ontology terms (optional, controlled per-dataset via `apply_ontology_mapping` in the dataset YAML).
-4. **subset** - Stratified sampling preserving cell type proportions. One subset per unique size across model categories. QC outputs (CSV + plots) saved to `cache/subset_qc/<dataset>/sub<size>/`.
-5. **prepare_model** - Optional model setup (git cloning, etc.) via `prepare.sh`.
-6. **run_model** - Runs model predictions. Results cached under `cache/models/predictions/`.
-7. **evaluate_annotation** - Computes metrics (accuracy, F1, ontology similarity) and confusion matrices.
-8. **combine_results** - Aggregates results into CSV and visualization plots.
+2. **preprocess** - QC filtering, gene/cell filtering, normalization, log transform, Ensembl ID mapping, and (optionally) cell-type ontology mapping. Ontology mapping is controlled per-dataset via `apply_ontology_mapping` in the dataset YAML (falls back to the global `params.apply_ontology_mapping`). QC plots saved to `cache/plots/`.
+3. **subset** - Subsampling to one of the configured sizes. Strategy is either `stratified` (preserves per-type proportions, drops types below `min_cells_per_type`) or `random` (uniform; preserves natural class imbalance). One subset per unique `(size, strategy)` pair. QC outputs (CSV + plots) saved to `cache/subset_qc/<dataset>/sub<size>_<strategy>/`.
+4. **prepare_model** - Optional model setup (git cloning, etc.) via `prepare.sh`.
+5. **run_model** - Runs model predictions. Results cached under `cache/models/predictions/<model>/<dataset>/<size>_<strategy>/`.
+6. **evaluate_annotation** - Computes metrics (accuracy, F1, ontology similarity) and confusion matrices.
+7. **combine_results** - Aggregates results into CSV and visualization plots.
 
 #### Running the pipeline
 
@@ -48,11 +48,21 @@ nextflow run main.nf -profile local \
 
 #### Cache invalidation
 
-Older runs may have cached random subset files at `cache/*_sub*.h5ad`. Those files are incompatible with the new stratified subsetting pipeline and should be removed before rerunning:
+After upgrading to the `subset_strategy` / merged-preprocess pipeline, the following cached artifacts are incompatible with the new layout and can be deleted to reclaim disk:
 
 ```bash
-rm -f cache/*_sub*.h5ad
+# Old pre-merge ontology step (now folded into preprocess):
+rm -rf cache/datasets/mapped/
+
+# Old untagged subset files (new files carry a `_stratified` / `_random` suffix before `.h5ad`;
+# only remove files that end with `_sub<digits>.h5ad` and nothing else):
+find cache/datasets/subset -maxdepth 1 -type f -regex '.*_sub[0-9]+\.h5ad' -delete
+
+# Old untagged prediction caches (new caches carry a strategy suffix in the path).
+# Inspect cache/models/predictions/ for `<size>/` directories without a `_<strategy>` suffix and remove them.
 ```
+
+The pipeline itself does not remove these automatically.
 
 #### Dataset configuration
 
