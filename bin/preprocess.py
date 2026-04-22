@@ -307,6 +307,25 @@ Examples:
         help="Directory to save QC plots (e.g., ${cache_dir}/plots/)",
     )
 
+    parser.add_argument(
+        "--annotation_key",
+        type=str,
+        default=None,
+        help="Cell type annotation column (required if --apply_ontology_mapping is true)",
+    )
+    parser.add_argument(
+        "--apply_ontology_mapping",
+        type=lambda x: str(x).lower() == "true",
+        default=False,
+        help="Apply ontology mapping to adata.obs[annotation_key] (default: false)",
+    )
+    parser.add_argument(
+        "--dataset",
+        type=str,
+        default=None,
+        help="Dataset name (used as origin tag in ontology mapping warnings)",
+    )
+
     # QC parameters
     parser.add_argument(
         "--nmads_main",
@@ -462,7 +481,32 @@ Examples:
     
     adata_processed.obs = _sanitize_for_h5ad(adata_processed.obs)
     adata_processed.var = _sanitize_for_h5ad(adata_processed.var)
-    
+
+    if args.apply_ontology_mapping:
+        if not args.annotation_key or not args.dataset:
+            raise SystemExit(
+                "[ERROR] --apply_ontology_mapping true requires both --annotation_key and --dataset"
+            )
+        logger.info("Applying ontology mapping to '%s'...", args.annotation_key)
+        # Import here so preprocess remains importable without ontology deps when disabled
+        from util.download_helpers import apply_ontology_mapping_to_dataset
+        adata_processed = apply_ontology_mapping_to_dataset(
+            adata=adata_processed,
+            annotation_key=args.annotation_key,
+            cache_dir=args.cache_dir,
+            verbose=True,
+            origin=args.dataset,
+        )
+        # Re-sanitize obs/var because ontology mapping may add categorical columns
+        adata_processed.obs = _sanitize_for_h5ad(adata_processed.obs)
+        adata_processed.var = _sanitize_for_h5ad(adata_processed.var)
+    elif args.annotation_key:
+        # Pass-through: if an original_<annotation_key> backup exists, restore from it
+        original_key = f"original_{args.annotation_key}"
+        if original_key in adata_processed.obs.columns:
+            logger.info("Restoring '%s' from '%s' backup column...", args.annotation_key, original_key)
+            adata_processed.obs[args.annotation_key] = adata_processed.obs[original_key].copy()
+
     if args.output.suffix == ".zarr":
         adata_processed.write_zarr(args.output)
     else:
