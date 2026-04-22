@@ -344,7 +344,15 @@ def main() -> None:
 
     # --- Verify columns ---
     log_info("Verifying required columns...")
-    verify_columns(read_adata(full_path), [cfg["annotation_key"], cfg["batch_key"]])
+    if full_path.suffix == ".h5ad":
+        ad_backed = anndata.read_h5ad(full_path, backed="r")
+        try:
+            verify_columns(ad_backed, [cfg["annotation_key"], cfg["batch_key"]])
+        finally:
+            ad_backed.file.close()
+    else:
+        # zarr path — anndata currently reads zarr fully; acceptable, rare in practice
+        verify_columns(read_adata(full_path), [cfg["annotation_key"], cfg["batch_key"]])
     log_info("Required columns verified")
 
     # --- Link/copy to Nextflow work dir ---
