@@ -72,24 +72,25 @@ process subset {
     storeDir "${params.cache_dir}/datasets/subset"
 
     input:
-    tuple path(mapped_file), val(dataset), path(cfg_yaml), val(cache_dir), val(annotation_key), val(subset_size), val(min_cells_per_type)
+    tuple path(pp_file), val(dataset), path(cfg_yaml), val(cache_dir), val(annotation_key), val(subset_size), val(min_cells_per_type), val(strategy)
 
-    tag { "${dataset}xsub${subset_size}" }
+    tag { "${dataset}xsub${subset_size}x${strategy}" }
 
     output:
-    tuple(path("${dataset}_sub${subset_size}.h5ad"), val(dataset), val(subset_size))
+    tuple(path("${dataset}_sub${subset_size}_${strategy}.h5ad"), val(dataset), val(subset_size), val(strategy))
 
     script:
     """
     set -euo pipefail
-    subset.py \
-      --input "${mapped_file}" \
-      --output "${dataset}_sub${subset_size}.h5ad" \
-      --annotation_key "${annotation_key}" \
-      --subset_size ${subset_size} \
-      --dataset "${dataset}" \
-      --qc_dir "${cache_dir}/subset_qc/${dataset}/sub${subset_size}" \
-      --min_cells_per_type ${min_cells_per_type}
+    subset.py \\
+      --input "${pp_file}" \\
+      --output "${dataset}_sub${subset_size}_${strategy}.h5ad" \\
+      --annotation_key "${annotation_key}" \\
+      --subset_size ${subset_size} \\
+      --dataset "${dataset}" \\
+      --qc_dir "${cache_dir}/subset_qc/${dataset}/sub${subset_size}_${strategy}" \\
+      --min_cells_per_type ${min_cells_per_type} \\
+      --strategy "${strategy}"
     """
 }
 
@@ -248,7 +249,7 @@ workflow {
     preprocess_out
         .combine(unique_sizes)
         .map { pp_file, dataset, annotation_key, subset_size ->
-            tuple(pp_file, dataset, file("datasets/${dataset}.yml"), file(params.cache_dir), annotation_key, subset_size, params.min_cells_per_type)
+            tuple(pp_file, dataset, file("datasets/${dataset}.yml"), file(params.cache_dir), annotation_key, subset_size, params.min_cells_per_type, params.subset_strategy)
         }
         .set { subset_input }
 
