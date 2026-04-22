@@ -14,8 +14,6 @@ import random
 from pathlib import Path
 
 import anndata
-import matplotlib
-matplotlib.use("Agg")  # non-interactive backend — safe for parallel subprocesses (macOS default can segfault)
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
