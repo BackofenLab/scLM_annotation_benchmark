@@ -87,6 +87,18 @@ Taken verbatim from `optimize-llm-module`:
 - **Local `nextflow.config` tweaks** (pre-merge run-specific edits — `datasets`, `subset_size`, `subset_strategy`) were stashed as `stash@{0}` before the merge. Discard or reapply as needed.
 - **Promotion decision pending:** fast-forward `optimize-llm-module` to `integrate-blind`, or PR review. Not part of this integration.
 
+## Main changes on `optimize-llm-module` (since merge base `7d656f1`)
+
+For context — what the 54 pre-merge commits on our side actually shipped:
+
+- **OpenRouter LLM rework.** Multi-LLM support in a single module, cleaner parallel execution, default model list, prompt-template tightening for smaller models. `bin/aggregate.py` fixes for multi-LLM JSONs (per-model keys, model-name parsing with underscores). Model-name fixes in aggregated results.
+- **Pipeline split: `download → preprocess → subset`.** `bin/download.py` now only downloads + verifies (storeDir cached); subsetting moved to a new `bin/subset.py` with `stratified` and `random` strategies; ontology mapping merged as an optional final step inside `preprocess`. `subset_size` moved out of per-dataset YAMLs into `nextflow.config` (with `subset_categories` for per-model-category sizing). `subset_strategy` threaded through the workflow; prediction cache paths include the strategy.
+- **storeDir caching.** Dropped the private flat cache; rely on Nextflow `storeDir` for cross-run reuse. Backed-mode h5ad validation keeps cache-hit checks O(1) RAM.
+- **Preprocess invariants.** Guarantee `adata.var['gene_names']` and `adata.obs['organism']` post-preprocess for downstream models. Raw-counts detection avoids dense conversion on sparse matrices. Output h5ad size reduced; QC plots switched to high-res PNG.
+- **Model input-scale fix.** `celltypist`, `scelmo`, and `langcell` now restore raw counts from `adata.layers['counts']` before their own normalize/tokenize step, avoiding the double-log1p that silently degraded predictions on already-log-normalized inputs.
+- **Evaluation + aggregation.** New `ONTOLOGY_REVIEW_PENDING` marker surfaced by `evaluate.py` and reported/archived in `workflow.onComplete`; `errorStrategy 'ignore'` on eval so one failure does not abort the run. Per-model confusion matrices exported as PDF. Heatmap in `aggregate.py`. Unmapped-ratio thresholds tuned.
+- **macOS stability.** `KMP_DUPLICATE_LIB_OK=TRUE` in `nextflow.config` beforeScript avoids libomp double-init aborts. `ax.violinplot` replaces `sc.pl.violin` to avoid the seaborn/macOS segfault in parallel runs.
+
 ## Design + plan references
 
 - Design: `docs/plans/2026-04-23-merge-blind-into-optimize-llm-module-design.md`
