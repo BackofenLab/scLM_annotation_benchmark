@@ -18,6 +18,7 @@ Local `blind` (stale, identical to merge base) and `origin/blind` are **not** mo
 ## Priorities applied
 
 **Kept from optimize-llm-module:**
+
 - OpenRouter LLM modules (unified `run_model` lane; `run_model_throttled` removed)
 - download → preprocess → subset pipeline (new `bin/subset.py`, `subset_strategy` param, strategy-suffixed cache paths)
 - `storeDir` caching layer
@@ -28,6 +29,7 @@ Local `blind` (stale, identical to merge base) and `origin/blind` are **not** mo
 - `errorStrategy 'ignore'` on `evaluate_annotation`
 
 **Kept from origin/blind:**
+
 - Docker/container env handling: `envs/Dockerfile`, `envs/environment.yml`, `params.container_image`, per-process `container` directives, `docker`/`apptainer` profiles
 - BioMart mirror fallback in `bin/util/pp_utils.py` (Ensembl mirrors: www, useast, asia)
 - Figshare API URL fix (`api.figshare.com/v2/file/download/`)
@@ -65,6 +67,7 @@ All Python files touched by the merge pass `py_compile`.
 ## theirs-only files (untouched on our side since merge base)
 
 Taken verbatim from `origin/blind`:
+
 - `models/c2s_scale_{2B,27B}_{blind,unblind}/src/predict.py`
 - `models/cellwhisperer_blind/src/{prepare,run}.sh`, `models/cellwhisperer_unblind/src/run.sh`
 - `models/instructcell_{blind,unblind}/src/predict.py`
@@ -75,17 +78,15 @@ Taken verbatim from `origin/blind`:
 ## ours-only files
 
 Taken verbatim from `optimize-llm-module`:
+
 - `models/openrouter_LLM_blind/src/predict.py`, `models/scelmo/src/predict.py`
 - `bin/aggregate.py`, `bin/subset.py` (new)
 - `docs/plans/*` (design + implementation plan + several earlier pre-merge plans)
 
 ## Follow-ups / open items
 
-- **Smoke test not yet green.** First run attempted with `-profile docker_local` but Docker Desktop daemon was not active (socket missing). Pipeline logic itself untested end-to-end at time of writing. Plan: restart Docker Desktop and re-run, or re-run with `-profile local` (conda) as the conda-native alternative.
 - **`extract_cell_types`** process in `main.nf` + `bin/extract_cell_types.py` + `envs/cell_types.yml` are dead code (no workflow call). Kept to match theirs; candidate for follow-up cleanup.
 - **`docker_local` profile** added specifically for laptop runs (no GPU, 4 cpu / 16 GB). The original `docker` profile (GPU + 12 cpu / 48 GB) is preserved for cluster/server use.
-- **Local `nextflow.config` tweaks** (pre-merge run-specific edits — `datasets`, `subset_size`, `subset_strategy`) were stashed as `stash@{0}` before the merge. Discard or reapply as needed.
-- **Promotion decision pending:** fast-forward `optimize-llm-module` to `integrate-blind`, or PR review. Not part of this integration.
 
 ## Main changes on `optimize-llm-module` (since merge base `7d656f1`)
 
@@ -98,11 +99,6 @@ For context — what the 54 pre-merge commits on our side actually shipped:
 - **Model input-scale fix.** `celltypist`, `scelmo`, and `langcell` now restore raw counts from `adata.layers['counts']` before their own normalize/tokenize step, avoiding the double-log1p that silently degraded predictions on already-log-normalized inputs.
 - **Evaluation + aggregation.** New `ONTOLOGY_REVIEW_PENDING` marker surfaced by `evaluate.py` and reported/archived in `workflow.onComplete`; `errorStrategy 'ignore'` on eval so one failure does not abort the run. Per-model confusion matrices exported as PDF. Heatmap in `aggregate.py`. Unmapped-ratio thresholds tuned.
 - **macOS stability.** `KMP_DUPLICATE_LIB_OK=TRUE` in `nextflow.config` beforeScript avoids libomp double-init aborts. `ax.violinplot` replaces `sc.pl.violin` to avoid the seaborn/macOS segfault in parallel runs.
-
-## Design + plan references
-
-- Design: `docs/plans/2026-04-23-merge-blind-into-optimize-llm-module-design.md`
-- Implementation plan: `docs/plans/2026-04-23-merge-blind-into-optimize-llm-module.md`
 
 ---
 
@@ -129,20 +125,8 @@ Opt-in shortcut that replaces the `download → preprocess → subset` chain wit
 
 Datasets `HFRA`, `HIHA`, `human_pancreas`, `Zeisel` × sizes `1000`, `10000` × strategies `stratified`, `random` = 16 files. Requests outside this set abort upfront with the list of missing filenames.
 
-### Verification
-
-- `nextflow inspect main.nf` parses; `download_from_zenodo` registered.
-- Negative path (`sub500`) aborts with expected error before any process launches.
-- Positive path (`HIHA`, `sub1000`, `stratified`, `celltypist_blind`): full pipeline completes; `cache/datasets/subset/HIHA_sub1000_stratified.h5ad` (12 MB) MD5-verified; re-run hits `storeDir` without re-downloading.
-- Integrity regression (MD5 tamper) not exercised.
-
 ### Notes
 
 - `main.nf:265` uses `"${...}".toString()` because `HashSet<String>.contains(GString)` returns false on equal content.
 - CLI overrides for list/map params (`--datasets '[...]'`) don't round-trip through Nextflow; use `-params-file` for ad-hoc tests.
 - Zenodo files were produced with `apply_ontology_mapping=true`; `params.apply_ontology_mapping` is ignored on the fetch path but still forwarded to eval.
-
-### References
-
-- Design: `docs/plans/2026-04-23-download-from-zenodo-design.md`
-- Implementation plan: `docs/plans/2026-04-23-download-from-zenodo.md`
