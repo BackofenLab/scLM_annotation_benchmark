@@ -103,3 +103,46 @@ For context — what the 54 pre-merge commits on our side actually shipped:
 
 - Design: `docs/plans/2026-04-23-merge-blind-into-optimize-llm-module-design.md`
 - Implementation plan: `docs/plans/2026-04-23-merge-blind-into-optimize-llm-module.md`
+
+---
+
+## Post-merge feature — `download_from_zenodo` flag
+
+Date: 2026-04-23
+Branch: `integrate-blind` (commits `990d009` … `8891a66`)
+
+Opt-in shortcut that replaces the `download → preprocess → subset` chain with a direct fetch of pre-processed, pre-subsetted `.h5ad` files from public Zenodo record `19707183`. Default is `false`, so no behaviour change for existing users.
+
+### Commits
+
+| SHA | Scope |
+|---|---|
+| `990d009` | `feat(config)`: `params.download_from_zenodo = false` |
+| `149de05` | `feat(datasets)`: `datasets/zenodo_manifest.yml` pins 16 files (MD5 + size) |
+| `81794ad` | `refactor(bin)`: lift `new_session` / `stream_to_file` into `bin/util/http.py` |
+| `fdbf19f` | `feat(bin)`: `bin/fetch_zenodo_subset.py` — download, MD5 verify, annotation-key check |
+| `0d2609a` | `feat(nextflow)`: `download_from_zenodo` process (storeDir into `cache/datasets/subset/`) |
+| `f1683bf` | `feat(nextflow)`: workflow `if/else` on the flag + upfront manifest validator |
+| `8891a66` | `docs(readme)`: parameter row + "Fetching preprocessed data from Zenodo" section |
+
+### Manifest coverage
+
+Datasets `HFRA`, `HIHA`, `human_pancreas`, `Zeisel` × sizes `1000`, `10000` × strategies `stratified`, `random` = 16 files. Requests outside this set abort upfront with the list of missing filenames.
+
+### Verification
+
+- `nextflow inspect main.nf` parses; `download_from_zenodo` registered.
+- Negative path (`sub500`) aborts with expected error before any process launches.
+- Positive path (`HIHA`, `sub1000`, `stratified`, `celltypist_blind`): full pipeline completes; `cache/datasets/subset/HIHA_sub1000_stratified.h5ad` (12 MB) MD5-verified; re-run hits `storeDir` without re-downloading.
+- Integrity regression (MD5 tamper) not exercised.
+
+### Notes
+
+- `main.nf:265` uses `"${...}".toString()` because `HashSet<String>.contains(GString)` returns false on equal content.
+- CLI overrides for list/map params (`--datasets '[...]'`) don't round-trip through Nextflow; use `-params-file` for ad-hoc tests.
+- Zenodo files were produced with `apply_ontology_mapping=true`; `params.apply_ontology_mapping` is ignored on the fetch path but still forwarded to eval.
+
+### References
+
+- Design: `docs/plans/2026-04-23-download-from-zenodo-design.md`
+- Implementation plan: `docs/plans/2026-04-23-download-from-zenodo.md`
