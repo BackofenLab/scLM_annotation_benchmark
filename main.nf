@@ -40,6 +40,32 @@ process download {
     """
 }
 
+process download_from_zenodo {
+    container params.container_image
+    conda 'envs/download.yml'
+    storeDir "${params.cache_dir}/datasets/subset"
+
+    input:
+    tuple val(dataset), val(subset_size), val(strategy), val(annotation_key), path(manifest)
+
+    tag { "${dataset}xsub${subset_size}x${strategy}" }
+
+    output:
+    tuple(path("${dataset}_sub${subset_size}_${strategy}.h5ad"), val(dataset), val(subset_size), val(strategy))
+
+    script:
+    """
+    set -euo pipefail
+    fetch_zenodo_subset.py \\
+      --manifest "${manifest}" \\
+      --dataset "${dataset}" \\
+      --subset_size ${subset_size} \\
+      --strategy "${strategy}" \\
+      --annotation_key "${annotation_key}" \\
+      --output "${dataset}_sub${subset_size}_${strategy}.h5ad"
+    """
+}
+
 process preprocess {
     conda 'envs/download.yml'
     storeDir "${params.cache_dir}/datasets/preprocessed"
