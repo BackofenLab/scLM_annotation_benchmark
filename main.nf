@@ -18,6 +18,7 @@ def resolveSubsetSize(String model, Map categories) {
 }
 
 process download {
+    container params.container_image
     conda 'envs/download.yml'
     storeDir "${params.cache_dir}/datasets/raw"
 
@@ -93,9 +94,32 @@ process subset {
     """
 }
 
-process prepare_model {
-    conda 'git git-lfs'
+process extract_cell_types {
+    container params.container_image
+    conda 'envs/cell_types.yml'
 
+    input:
+        path(h5ad_files)
+        path(cfg_files)
+        val(cache_dir)  // list of files
+
+    script:
+        """
+        if [ ! -f ${cache_dir}/cell_types.csv ]; then
+            extract_cell_types.py \
+                --h5ads ${h5ad_files.join(' ')} \
+                --cfgs ${cfg_files.join(' ')} \
+                --out ${cache_dir}/cell_types.csv
+        else
+            echo "Cell type collection exists, if you want to rerun, delete cache/cell_types.csv"
+        fi
+        """
+}
+
+process prepare_model {
+    container params.container_image
+    conda 'git git-lfs'
+    
     input:
     tuple val(model), path(model_dir)
 
@@ -121,6 +145,8 @@ process prepare_model {
 }
 
 process run_model {
+    container params.container_image
+    
     input:
     tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size), val(strategy)
 
@@ -159,6 +185,7 @@ process run_model {
 }
 
 process evaluate_annotation {
+    container params.container_image
     conda 'envs/evaluation.yml'
     errorStrategy 'ignore'
 
@@ -181,6 +208,7 @@ process evaluate_annotation {
 }
 
 process combine_results {
+    container params.container_image
     conda 'envs/evaluation.yml'
 
     publishDir(path: 'results/', mode: 'copy', overwrite: true)

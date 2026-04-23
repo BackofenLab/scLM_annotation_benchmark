@@ -35,6 +35,20 @@ print(annotation_key)
 PY
 )
 
+# CellWhisperer's config.py requires config.yaml in CWD at import time
+CW_CONFIG="$SCRIPT_DIR/CellWhisperer/config.yaml"
+if [ -f "$CW_CONFIG" ] && [ ! -f config.yaml ]; then
+    ln -s "$CW_CONFIG" config.yaml
+fi
+
+# Use Geneformer from the cloned repo (has LFS .pkl data files) instead of
+# the pip-installed copy in site-packages (which lacks LFS-tracked files and
+# lives on a read-only container filesystem layer).
+GF_SRC="$SCRIPT_DIR/CellWhisperer/modules/Geneformer"
+if [ -d "$GF_SRC/geneformer" ]; then
+    export PYTHONPATH="${GF_SRC}:${PYTHONPATH:-}"
+fi
+
 # Run CellWhisperer prediction
 python "$SCRIPT_DIR/predict.py" \
   --input "$INPUT_H5AD" \

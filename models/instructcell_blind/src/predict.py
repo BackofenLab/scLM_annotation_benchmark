@@ -258,6 +258,8 @@ def main():
     
     # Unify gene features
     logger.info("Unifying gene features with vocabulary...")
+    # Set adata.var_names. gene_names is available after preprocessing.
+    adata.var_names = adata.var["gene_names"]
     # Try with uppercase first (vocabulary is typically uppercase)
     try:
         adata = unify_gene_features(adata, gene_vocab, force_gene_symbol_uppercase=True)

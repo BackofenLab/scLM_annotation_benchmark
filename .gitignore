@@ -34,3 +34,7 @@ results/
 config.json
 obo.json
 langcell_pretrained_model_datasets.zip
+
+# slurm
+slurm-*
+*.sbatch

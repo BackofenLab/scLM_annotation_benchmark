@@ -48,7 +48,8 @@ def log_error(msg: str) -> None: print(f"[ERROR] {msg}", flush=True)
 def read_adata(path: Path):
     """Load AnnData from ``.h5ad`` or ``.zarr``."""
     if path.suffix == ".h5ad":
-        return anndata.read_h5ad(path)
+        adata = anndata.read_h5ad(path)
+        return adata
     if path.suffix == ".zarr" or path.is_dir():
         return anndata.read_zarr(path)
     sys.exit(f"[ERROR] Unsupported file type: {path}")
@@ -192,7 +193,7 @@ def stream_download_figshare(url: str, dest: Path) -> None:
         # Fallback: Figshare API
         if not real_url and (m := _FIGSHARE_RE.search(url)):
             try:
-                api = session.get(f"https://api.figshare.com/v2/file/{m.group(1)}")
+                api = session.get(f"https://api.figshare.com/v2/file/download/{m.group(1)}")
                 if api.ok:
                     real_url = api.json().get("download_url")
             except Exception:

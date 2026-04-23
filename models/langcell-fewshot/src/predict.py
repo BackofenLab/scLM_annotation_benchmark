@@ -239,8 +239,8 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
     features_to_keep = [
         "input_ids",
         "n_counts",
-        "batch",
         "labels",
+        "batch",
         "n_genes",
         "filter_pass",
         "label",

@@ -16,3 +16,6 @@ dependencies:
     - transformers>=4.36,<4.40  # pin for omicverse/scMulan compatibility
     - sentence_transformers
     - omicverse
+    - boltons
+    - cytoolz
+    - frozendict
