@@ -25,6 +25,8 @@ import pandas as pd
 import requests
 from tqdm import tqdm
 
+from util.http import new_session, stream_to_file
+
 # --------------------------------------------------------------------------- #
 # Optional: CellxGene Census (may fail on macOS due to native deps)           #
 # --------------------------------------------------------------------------- #
@@ -115,19 +117,6 @@ def _cache_valid(dest: Path) -> bool:
         return False
 
 
-def _stream_to_file(resp: requests.Response, dest: Path) -> int:
-    """Stream *resp* to *dest* with progress bar; return bytes written."""
-    dest.parent.mkdir(parents=True, exist_ok=True)
-    total, written = int(resp.headers.get("content-length", 0)), 0
-    with open(dest, "wb") as fh, tqdm(total=total, unit="B", unit_scale=True, desc=dest.name) as bar:
-        for chunk in resp.iter_content(1 << 20):
-            if chunk:
-                fh.write(chunk)
-                written += len(chunk)
-                bar.update(len(chunk))
-    return written
-
-
 def _validate_download(dest: Path, written: int, source_desc: str) -> None:
     """Ensure downloaded file is valid AnnData; remove and raise if not."""
     if written == 0:
@@ -140,12 +129,6 @@ def _validate_download(dest: Path, written: int, source_desc: str) -> None:
         raise RuntimeError(f"Downloaded file is not valid AnnData: {e}") from e
 
 
-def _new_session() -> requests.Session:
-    """Return a requests.Session with a reasonable User-Agent."""
-    s = requests.Session()
-    s.headers.update({"User-Agent": "Mozilla/5.0 (compatible; sclfm-downloader/1.0)"})
-    return s
-
 # --------------------------------------------------------------------------- #
 # Generic URL download                                                        #
 # --------------------------------------------------------------------------- #
@@ -153,11 +136,11 @@ def stream_download(url: str, dest: Path) -> None:
     """Stream a remote file to *dest* with progress. Skips if valid cache."""
     if _cache_valid(dest):
         return
-    r = _new_session().get(url, stream=True, allow_redirects=True)
+    r = new_session().get(url, stream=True, allow_redirects=True)
     r.raise_for_status()
     if "text/html" in (r.headers.get("content-type") or "").lower():
         raise RuntimeError(f"Server returned HTML instead of file: {url}")
-    _validate_download(dest, _stream_to_file(r, dest), url)
+    _validate_download(dest, stream_to_file(r, dest), url)
 
 # --------------------------------------------------------------------------- #
 # Figshare download                                                           #
@@ -172,7 +155,7 @@ def stream_download_figshare(url: str, dest: Path) -> None:
     """Handle Figshare downloads (may serve HTML interstitial)."""
     if _cache_valid(dest):
         return
-    session = _new_session()
+    session = new_session()
     r = session.get(url, stream=True, allow_redirects=True)
     r.raise_for_status()
 
@@ -206,7 +189,7 @@ def stream_download_figshare(url: str, dest: Path) -> None:
         if "text/html" in (r.headers.get("content-type") or "").lower():
             raise RuntimeError(f"Figshare secondary URL also returned HTML: {real_url}")
 
-    _validate_download(dest, _stream_to_file(r, dest), f"Figshare: {url}")
+    _validate_download(dest, stream_to_file(r, dest), f"Figshare: {url}")
 
 # --------------------------------------------------------------------------- #
 # Google Drive download                                                       #
@@ -272,7 +255,7 @@ def stream_download_gdrive(file_id: str, dest: Path) -> None:
     r = _open_drive_stream(file_id)
     if "text/html" in (r.headers.get("content-type") or "").lower():
         raise RuntimeError("Google Drive returned HTML (virus-scan/permission page).")
-    _validate_download(dest, _stream_to_file(r, dest), f"Google Drive id={file_id}")
+    _validate_download(dest, stream_to_file(r, dest), f"Google Drive id={file_id}")
 
 # --------------------------------------------------------------------------- #
 # Verification                                                                #
