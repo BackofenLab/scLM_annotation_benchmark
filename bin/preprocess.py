@@ -375,13 +375,13 @@ Examples:
     parser.add_argument(
         "--min_cells",
         type=int,
-        default=1,
+        default=10,
         help="Minimum cells per gene for filtering (default: 10)",
     )
     parser.add_argument(
         "--min_genes",
         type=int,
-        default=1,
+        default=200,
         help="Minimum genes per cell for filtering (default: 200)",
     )
 
