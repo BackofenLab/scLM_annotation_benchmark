@@ -253,26 +253,28 @@ process combine_results {
 }
 
 workflow {
-    // --- Data pipeline: download -> preprocess -> subset ---
+    // --- Upfront Zenodo manifest validation ---
 
-    Channel
-        .fromList(params.datasets)
-        .map { dataset -> tuple(dataset, file("datasets/${dataset}.yml")) }
-        .set { download_input }
-
-    download_out = download(download_input)
-
-    download_out
-        .map { raw_file, dataset ->
-            def cfg = loadYaml("datasets/${dataset}.yml")
-            def apply_mapping = cfg.containsKey('apply_ontology_mapping') ? cfg.apply_ontology_mapping : params.apply_ontology_mapping
-            tuple(raw_file, dataset, file("datasets/${dataset}.yml"), file(params.cache_dir), cfg.annotation_key, apply_mapping)
+    if (params.download_from_zenodo) {
+        def zenodo_manifest = loadYaml("datasets/zenodo_manifest.yml")
+        def zenodo_available = zenodo_manifest.files.keySet()
+        def zenodo_sizes = params.models.collect { resolveSubsetSize(it, params.subset_categories) }.unique()
+        def missing = []
+        params.datasets.each { ds ->
+            zenodo_sizes.each { sz ->
+                def fname = "${ds}_sub${sz}_${params.subset_strategy}.h5ad".toString()
+                if (!zenodo_available.contains(fname)) missing << fname
+            }
         }
-        .set { preprocess_input }
+        if (missing) {
+            log.error "download_from_zenodo=true but these files are not in datasets/zenodo_manifest.yml:"
+            missing.each { log.error "  - ${it}" }
+            log.error "Either disable download_from_zenodo, or adjust datasets / subset_categories / subset_strategy."
+            System.exit(1)
+        }
+    }
 
-    preprocess_out = preprocess(preprocess_input)
-
-    // --- Model preparation (runs in parallel with data pipeline) ---
+    // --- Model preparation (runs first so unique_sizes is available to both data pipelines) ---
 
     def hasOpenRouter = (params.models ?: []).any { it.toLowerCase().contains('openrouter') }
     if (hasOpenRouter && !params.openrouter_api_key) {
@@ -288,8 +290,6 @@ workflow {
 
     prepared_models = prepare_model(prepare_input)
 
-    // --- Subsetting: one per unique (dataset, subset_size) pair ---
-
     Channel
         .fromList(params.models)
         .map { model -> tuple(model, resolveSubsetSize(model, params.subset_categories)) }
@@ -300,14 +300,46 @@ workflow {
         .unique()
         .set { unique_sizes }
 
-    preprocess_out
-        .combine(unique_sizes)
-        .map { pp_file, dataset, annotation_key, subset_size ->
-            tuple(pp_file, dataset, file("datasets/${dataset}.yml"), file(params.cache_dir), annotation_key, subset_size, params.min_cells_per_type, params.subset_strategy)
-        }
-        .set { subset_input }
+    // --- Data pipeline: either download→preprocess→subset OR fetch from Zenodo ---
 
-    subset_out = subset(subset_input)
+    if (params.download_from_zenodo) {
+        Channel
+            .fromList(params.datasets)
+            .combine(unique_sizes)
+            .map { ds, sz ->
+                def cfg = loadYaml("datasets/${ds}.yml")
+                tuple(ds, sz, params.subset_strategy, cfg.annotation_key, file("datasets/zenodo_manifest.yml"))
+            }
+            .set { zenodo_input }
+
+        subset_out = download_from_zenodo(zenodo_input)
+    } else {
+        Channel
+            .fromList(params.datasets)
+            .map { dataset -> tuple(dataset, file("datasets/${dataset}.yml")) }
+            .set { download_input }
+
+        download_out = download(download_input)
+
+        download_out
+            .map { raw_file, dataset ->
+                def cfg = loadYaml("datasets/${dataset}.yml")
+                def apply_mapping = cfg.containsKey('apply_ontology_mapping') ? cfg.apply_ontology_mapping : params.apply_ontology_mapping
+                tuple(raw_file, dataset, file("datasets/${dataset}.yml"), file(params.cache_dir), cfg.annotation_key, apply_mapping)
+            }
+            .set { preprocess_input }
+
+        preprocess_out = preprocess(preprocess_input)
+
+        preprocess_out
+            .combine(unique_sizes)
+            .map { pp_file, dataset, annotation_key, subset_size ->
+                tuple(pp_file, dataset, file("datasets/${dataset}.yml"), file(params.cache_dir), annotation_key, subset_size, params.min_cells_per_type, params.subset_strategy)
+            }
+            .set { subset_input }
+
+        subset_out = subset(subset_input)
+    }
 
     // --- Combine subsets with models ---
 
