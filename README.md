@@ -15,6 +15,7 @@ Config file with the following parameters:
 | `subset_strategy` | `'stratified'` preserves per-type proportions; `'random'` is uniform across cells |
 | `min_cells_per_type` | Minimum cells per cell type in subsets (default: 20). Types below this threshold are dropped in stratified mode (ignored in random mode) |
 | `apply_ontology_mapping` | Fallback for datasets without a per-dataset `apply_ontology_mapping` flag in their YAML |
+| `download_from_zenodo` | If `true`, skip `download`→`preprocess`→`subset` and fetch preprocessed+subsetted files from the Zenodo record listed in `datasets/zenodo_manifest.yml`. All requested `(dataset, subset_size, subset_strategy)` combinations must be in the manifest or the pipeline aborts. |
 
 There are profiles `local` for running locally, `helix` for the helix cluster, and `imbi_gpu` for the IMBI GPU cluster.
 
@@ -63,6 +64,22 @@ find cache/datasets/subset -maxdepth 1 -type f -regex '.*_sub[0-9]+\.h5ad' -dele
 ```
 
 The pipeline itself does not remove these automatically.
+
+#### Fetching preprocessed data from Zenodo
+
+To skip the full preprocessing and subsetting chain, set `download_from_zenodo=true`
+(via `nextflow.config` or `--download_from_zenodo true`). The pipeline will then
+fetch files directly from the public Zenodo record pinned in
+`datasets/zenodo_manifest.yml` and place them under `cache/datasets/subset/`.
+
+Currently mirrored on Zenodo (16 files): datasets `HFRA`, `HIHA`, `human_pancreas`,
+`Zeisel`; subset sizes `1000` and `10000`; strategies `stratified` and `random`.
+Requested combinations outside this set cause the pipeline to abort upfront with
+a list of the missing files. MD5 checksums are verified after each download.
+
+Zenodo files are ontology-mapped (produced with `apply_ontology_mapping=true`);
+the value of `params.apply_ontology_mapping` is ignored for the fetch step but
+still forwarded to the evaluation step.
 
 #### Dataset configuration
 
