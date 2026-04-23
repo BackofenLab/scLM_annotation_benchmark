@@ -347,6 +347,9 @@ def main(args):
             except RuntimeError as e:
                 print(f"❌ ERROR: {e}")
                 print("Evaluation stopped due to too many unreviewed predictions.")
+                marker = cache_dir / "ONTOLOGY_REVIEW_PENDING.txt"
+                with marker.open("a") as f:
+                    f.write(f"[{dataset} x {model}]\n{e}\n\n")
                 continue
             except Exception as e:
                 print(f"Warning: Could not filter predictions by review status: {e}")

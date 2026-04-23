@@ -160,6 +160,7 @@ process run_model {
 
 process evaluate_annotation {
     conda 'envs/evaluation.yml'
+    errorStrategy 'ignore'
 
     input:
     tuple path(predictions), val(dataset), val(model), val(cache_dir), val(apply_ontology_mapping)
@@ -307,6 +308,23 @@ workflow.onComplete {
         def archivedWarningFile = file("${params.cache_dir}/ONTOLOGY_MAPPING_WARNING_${timestamp}.txt")
         warningFile.renameTo(archivedWarningFile)
         println "Warning file archived as: ${archivedWarningFile.toString()}"
+    }
+
+    def reviewFile = file("${params.cache_dir}/ONTOLOGY_REVIEW_PENDING.txt")
+    if (reviewFile.exists()) {
+        println ""
+        println "=" * 70
+        println "  ONTOLOGY REVIEW PENDING: One or more eval tasks were skipped"
+        println "  because >10% of predictions had unreviewed mappings."
+        println "  Details: ${reviewFile.toString()}"
+        println "  ACTION: Review mappings, set 'reviewed=True', then run with -resume."
+        println "=" * 70
+        println ""
+
+        def reviewTimestamp = new Date().format('yyyy-MM-dd_HH-mm-ss')
+        def archivedReviewFile = file("${params.cache_dir}/ONTOLOGY_REVIEW_PENDING_${reviewTimestamp}.txt")
+        reviewFile.renameTo(archivedReviewFile)
+        println "Pending-review file archived as: ${archivedReviewFile.toString()}"
     }
 
     println "Pipeline completed at: ${new Date()}"
