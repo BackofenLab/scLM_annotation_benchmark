@@ -17,6 +17,21 @@ def resolveSubsetSize(String model, Map categories) {
     return categories.get('default', 10000)
 }
 
+def isHumanOrganism(def organismVal) {
+    def org = (organismVal ?: 'Homo sapiens').toString().trim().toLowerCase()
+    return org == 'homo sapiens' || org == 'human'
+}
+
+def normalizeOrganismKey(def organismVal) {
+    return (organismVal ?: 'Homo sapiens').toString().trim().toLowerCase()
+}
+
+def modelAllowedForOrganism(String model, def organismVal, Map blacklistByOrganism) {
+    def orgKey = normalizeOrganismKey(organismVal)
+    def blockedModels = (blacklistByOrganism ?: [:]).get(orgKey, [])
+    return !blockedModels.collect { it.toString() }.contains(model)
+}
+
 process download {
     container params.container_image
     conda 'envs/download.yml'
@@ -179,6 +194,14 @@ process run_model {
     tag { "${dataset}x${model}x${strategy}" }
 
     conda { "envs/models/${model}.yml" }
+
+    when:
+    // NOTE: `when:` is evaluated before task inputs are staged into the work dir.
+    // So we must resolve config via project-relative path, not `cfg_yaml` (which would be a staged filename).
+    def cfg = loadYaml("datasets/${dataset}.yml")
+    def organism = cfg?.get('organism')
+    def blacklist = params.model_blacklist_by_organism ?: [:]
+    modelAllowedForOrganism(model, organism, blacklist)
 
     output:
     tuple(path("results/*/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir))

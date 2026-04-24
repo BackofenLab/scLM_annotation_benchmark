@@ -6,5 +6,6 @@ dependencies:
   - git
   - git-lfs
   - pip:
+    - pyyaml
     - git+https://github.com/mengerj/adata_hf_datasets.git
     - git+https://github.com/mengerj/mmcontext.git@main
