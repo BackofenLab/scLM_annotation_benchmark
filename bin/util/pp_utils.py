@@ -23,6 +23,124 @@ from matplotlib.backends.backend_pdf import PdfPages
 logger = logging.getLogger(__name__)
 
 
+def ensure_gene_names_column(adata: AnnData, gene_names_col: str | None = None) -> str:
+    """
+    Ensure `adata.var['gene_names']` exists and contains gene symbols/names.
+
+    Selection logic:
+    - If `gene_names_col` is provided:
+      - If it equals "var_names", use `adata.var_names` (with heuristic validation).
+      - Else use that column if present in `adata.var`.
+    - Otherwise, fall back to (in this order):
+      - `adata.var['gene_names']`
+      - `adata.var['feature_names']` (or `feature_name`)
+      - `adata.var_names` (only if heuristic says they look like gene names)
+
+    Validation logic:
+    - The chosen column must exist in `adata.var`.
+    - It must not be entirely missing (all NA).
+    - After trimming whitespace, it must not be entirely empty strings.
+
+    On success, writes/overwrites `adata.var['gene_names']` (in place) and returns
+    the source column name that was used.
+    """
+    def _var_names_look_like_gene_names(var_names: pd.Index) -> bool:
+        """
+        Heuristic check that `adata.var_names` are gene symbols/names (not Ensembl IDs).
+        """
+        if var_names is None or len(var_names) == 0:
+            return False
+        s = pd.Series(var_names.astype(str))
+        s = s.replace({"": pd.NA}).dropna()
+        if s.empty:
+            return False
+
+        # Reject if mostly Ensembl-like.
+        frac_ens = s.str.match(r"^ENS[A-Z]*\d+", na=False).mean()
+
+        # Accept if mostly "symbol-like" and not mostly numeric.
+        frac_symbol_like = s.str.match(r"^[A-Za-z][A-Za-z0-9_.-]*$", na=False).mean()
+        frac_all_numeric = s.str.match(r"^\d+$", na=False).mean()
+
+        # Keep it conservative: prefer false negatives over false positives.
+        # (Users can always pass --gene_names_col explicitly.)
+        if frac_ens >= 0.5:
+            return False
+        if frac_all_numeric >= 0.5:
+            return False
+        if frac_symbol_like < 0.5:
+            return False
+        return True
+
+    # Build candidate sources in priority order.
+    candidates: list[str] = []
+    if gene_names_col:
+        candidates.append(gene_names_col)
+    candidates.extend(["gene_names", "feature_names", "feature_name", "var_names"])
+
+    chosen: str | None = None
+    s: pd.Series | None = None
+
+    # Explicit request to use var_names
+    if gene_names_col == "var_names":
+        if not _var_names_look_like_gene_names(adata.var_names):
+            raise ValueError(
+                "Requested gene names source 'var_names', but `adata.var_names` does not look like gene names "
+                "(e.g., appears Ensembl-like or not symbol-like). Please provide `--gene_names_col` pointing to "
+                "a column in `adata.var` that contains gene symbols."
+            )
+        chosen = "var_names"
+        s = pd.Series(adata.var_names.astype(str), index=adata.var.index)
+    else:
+        # Prefer explicit column if present
+        if gene_names_col and gene_names_col in adata.var.columns:
+            chosen = gene_names_col
+            s = adata.var[chosen]
+        else:
+            # Try known columns first
+            for col in ["gene_names", "feature_names", "feature_name"]:
+                if col in adata.var.columns:
+                    chosen = col
+                    s = adata.var[col]
+                    break
+            # Finally, try var_names if it passes heuristic
+            if chosen is None and _var_names_look_like_gene_names(adata.var_names):
+                chosen = "var_names"
+                s = pd.Series(adata.var_names.astype(str), index=adata.var.index)
+
+    if chosen is None or s is None:
+        raise ValueError(
+            "Could not determine gene names source. "
+            f"Tried (in order): {', '.join(candidates)}. "
+            f"Available var columns: {', '.join(map(str, adata.var.columns))}. "
+            "If gene names are stored in the var index, you can also pass `--gene_names_col var_names`."
+        )
+
+    non_null = s.dropna()
+    if non_null.empty:
+        raise ValueError(
+            f"Gene names column '{chosen}' contains only missing values; cannot proceed."
+        )
+
+    non_empty = non_null.astype(str).str.strip()
+    if (non_empty == "").all():
+        raise ValueError(
+            f"Gene names column '{chosen}' contains only empty/whitespace values; cannot proceed."
+        )
+
+    out = s.astype(object).copy()
+    mask = s.notna()
+    out.loc[mask] = s.loc[mask].astype(str).str.strip()
+    out.loc[out == ""] = pd.NA
+    if out.dropna().empty:
+        raise ValueError(
+            f"After cleaning, gene names column '{chosen}' contains only missing values; cannot proceed."
+        )
+
+    adata.var["gene_names"] = out
+    return chosen
+
+
 def is_raw_counts(
     X,
     min_val: float = -1e-6,
@@ -721,18 +839,48 @@ def ensure_ensembl_ids(
             gene_names = pd.Series(gene_names)
         logger.info(f"Example gene name: {gene_names.iloc[0] if len(gene_names) > 0 else 'N/A'}")
 
-        # Map gene names to Ensembl IDs using pybiomart
+        # Map gene names to Ensembl IDs using pybiomart (try multiple hosts)
+        ensembl_hosts = [
+            "http://www.ensembl.org",
+            "http://useast.ensembl.org",
+            "http://uswest.ensembl.org",
+            "http://asia.ensembl.org",
+        ]
         logger.info(f"Fetching Ensembl IDs from pybiomart for species '{species}'. This may take a moment...")
-        try:
-            dataset = pybiomart.Dataset(
-                name=f"{species}_gene_ensembl", host="http://www.ensembl.org"
-            )
-            biomart_df = dataset.query(attributes=["ensembl_gene_id", "external_gene_name"])
 
-            # Drop duplicates so that each gene symbol maps to exactly one Ensembl ID
+        biomart_df = None
+        last_error = None
+        for host in ensembl_hosts:
+            try:
+                logger.info(f"Trying BioMart host: {host}")
+                dataset = pybiomart.Dataset(
+                    name=f"{species}_gene_ensembl", host=host
+                )
+                biomart_df = dataset.query(attributes=["ensembl_gene_id", "external_gene_name"])
+                logger.info(f"Successfully connected to {host}")
+                break
+            except Exception as e:
+                last_error = e
+                logger.warning(f"BioMart host {host} failed: {e}")
+                continue
+
+        if biomart_df is None:
+            error_msg = (
+                f"All Ensembl BioMart hosts failed. Last error: {last_error}\n"
+                "Please check:\n"
+                "- Network connection to Ensembl\n"
+                "- Species name is correct (e.g., 'hsapiens' or 'mmusculus')\n"
+                "- Set 'gene_names_col' in dataset config YAML to specify the column with gene names\n"
+                "- Or set 'ensembl_col' in dataset config YAML if Ensembl IDs already exist"
+            )
+            logger.error(error_msg)
+            if raise_on_failure:
+                raise ValueError(error_msg)
+            return adata
+
+        try:
             biomart_df = biomart_df.drop_duplicates(subset="Gene name").set_index("Gene name")
 
-            # Map gene symbols to Ensembl IDs
             ensembl_ids = []
             mapped_count = 0
             for symbol in gene_names:
@@ -744,7 +892,6 @@ def ensure_ensembl_ids(
 
             logger.info(f"Mapped {mapped_count} out of {len(gene_names)} genes to Ensembl IDs.")
 
-            # Check if we got valid Ensembl IDs
             valid_count = sum(1 for eid in ensembl_ids if eid and eid.startswith("ENS"))
             if valid_count == 0:
                 error_msg = (
@@ -763,14 +910,12 @@ def ensure_ensembl_ids(
                     raise ValueError(error_msg)
                 return adata
 
-            # Store in ensembl_id column
             adata.var["ensembl_id"] = pd.Series(ensembl_ids, index=adata.var_names)
 
         except Exception as e:
             error_msg = (
-                f"Error fetching Ensembl IDs from pybiomart: {e}\n"
+                f"Error processing BioMart results: {e}\n"
                 "Please check:\n"
-                "- Network connection to Ensembl\n"
                 "- Species name is correct (e.g., 'hsapiens' or 'mmusculus')\n"
                 "- Set 'gene_names_col' in dataset config YAML to specify the column with gene names\n"
                 "- Or set 'ensembl_col' in dataset config YAML if Ensembl IDs already exist"

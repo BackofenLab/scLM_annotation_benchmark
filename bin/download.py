@@ -10,7 +10,7 @@ Pipeline:
   1. Looks up the dataset's YAML descriptor (name, URL/census_id, keys, …).
   2. Caches the **full** file under ``<cache_dir>/<dataset>.<ext>``
      (skips download when already present and valid).
-  3. Always verifies that the required ``annotation_keys`` exist.
+  3. Always verifies that the required ``annotation_key`` exists.
   4. Optionally writes a *subset* copy ``<cache_dir>/<dataset>_sub{n}.<ext>``.
   5. Optionally applies ontology mapping (overwrites cache in-place).
   6. Hard-links (or copies) the chosen file to Nextflow's work dir.
@@ -51,7 +51,8 @@ def log_error(msg: str) -> None: print(f"[ERROR] {msg}", flush=True)
 def read_adata(path: Path):
     """Load AnnData from ``.h5ad`` or ``.zarr``."""
     if path.suffix == ".h5ad":
-        return anndata.read_h5ad(path)
+        adata = anndata.read_h5ad(path)
+        return adata
     if path.suffix == ".zarr" or path.is_dir():
         return anndata.read_zarr(path)
     sys.exit(f"[ERROR] Unsupported file type: {path}")
@@ -99,7 +100,10 @@ def _cache_valid(dest: Path) -> bool:
     if not dest.exists():
         return False
     try:
-        read_adata(dest)
+        ad = read_adata(dest)
+        # Force validation of raw.X if present (backed mode defers errors)
+        if ad.raw is not None:
+            _ = ad.raw.X
         log_info(f"Cache hit (valid) – skipping download: {dest.name}")
         return True
     except Exception as e:
@@ -187,7 +191,7 @@ def stream_download_figshare(url: str, dest: Path) -> None:
         # Fallback: Figshare API
         if not real_url and (m := _FIGSHARE_RE.search(url)):
             try:
-                api = session.get(f"https://api.figshare.com/v2/file/{m.group(1)}")
+                api = session.get(f"https://api.figshare.com/v2/file/download/{m.group(1)}")
                 if api.ok:
                     real_url = api.json().get("download_url")
             except Exception:
@@ -282,14 +286,25 @@ def maybe_subset(full_path: Path, subset_path: Path, n: int | None) -> Path:
     if n is None:
         return full_path
     if subset_path.exists():
-        log_info(f"Subset already exists – skipping: {subset_path.name}")
-        return subset_path
+        try:
+            read_adata(subset_path)
+            log_info(f"Subset already exists (valid) – skipping: {subset_path.name}")
+            return subset_path
+        except Exception as e:
+            log_warn(f"Subset cache unreadable – rebuilding: {subset_path.name} ({e})")
+            if subset_path.is_file():
+                subset_path.unlink(missing_ok=True)
+            else:
+                shutil.rmtree(subset_path, ignore_errors=True)
     ad = read_adata(full_path)
     if n >= ad.n_obs:
         log_warn("subset_size ≥ n_obs – using full dataset")
         return full_path
     log_info(f"Writing subset ({n} cells) → {subset_path.name}")
-    write_adata(ad[random.sample(range(ad.n_obs), n)], subset_path)
+    subset = ad[random.sample(range(ad.n_obs), n)]
+    if getattr(subset, "isbacked", False):
+        subset = subset.to_memory()
+    write_adata(subset, subset_path)
     return subset_path
 
 # --------------------------------------------------------------------------- #
@@ -361,7 +376,7 @@ def main() -> None:
 
     # --- Verify columns ---
     log_info("Verifying required columns...")
-    verify_columns(read_adata(full_path), list(cfg["annotation_keys"]) + [cfg["batch_key"]])
+    verify_columns(read_adata(full_path), [cfg["annotation_key"], cfg["batch_key"]])
     log_info("Required columns verified")
 
     # --- Subset ---
@@ -372,23 +387,34 @@ def main() -> None:
     if args.apply_ontology_mapping:
         from util.download_helpers import apply_ontology_mapping_to_dataset
         log_info("Applying ontology mapping...")
+        adata_input = read_adata(chosen)
+        if getattr(adata_input, "isbacked", False):
+            adata_input = adata_input.to_memory()
         adata_mapped = apply_ontology_mapping_to_dataset(
-            adata=read_adata(chosen), annotation_keys=list(cfg["annotation_keys"]),
+            adata=adata_input, annotation_key=cfg["annotation_key"],
             cache_dir=cache_dir, verbose=True, origin=cfg['name'])
         write_adata(adata_mapped, chosen)
         log_info("Ontology mapping completed")
     else:
-        log_info("Ontology mapping disabled - checking for original annotations...")
-        adata, restored = read_adata(chosen), False
-        for key in cfg["annotation_keys"]:
-            orig_key = f"original_{key}"
-            if orig_key in adata.obs.columns:
-                log_info(f"Restoring '{key}' from '{orig_key}'")
-                adata.obs[key] = adata.obs[orig_key].copy()
-                restored = True
-            elif key in adata.obs.columns:
-                log_info(f"No backup for '{key}' - assuming original")
-        if restored:
+        # Mapping disabled - check if we need to restore original annotations from cache
+        print("[INFO] Ontology mapping disabled - checking for original annotations...")
+        adata = read_adata(chosen)
+        if getattr(adata, "isbacked", False):
+            adata = adata.to_memory()
+        restored_any = False
+        
+        key = cfg["annotation_key"]
+        original_key = f"original_{key}"
+        if original_key in adata.obs.columns:
+            print(f"[INFO] Restoring '{key}' from '{original_key}' backup column...")
+            adata.obs[key] = adata.obs[original_key].copy()
+            restored_any = True
+        elif key in adata.obs.columns:
+            # Original column doesn't exist, assume current column is already original
+            print(f"[INFO] No backup found for '{key}' - assuming current values are original")
+        
+        if restored_any:
+            # Write the restored data back to cache
             write_adata(adata, chosen)
             log_info("Original annotations restored")
         else:

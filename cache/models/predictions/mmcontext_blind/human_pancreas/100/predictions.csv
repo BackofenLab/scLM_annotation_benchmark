@@ -1,0 +1,73 @@
+cell_id,true_labels,predicted_labels
+human3_lib1.final_cell_0495,pancreatic ductal cell,epithelial cell of exocrine pancreas
+D30-7_2,pancreatic A cell,smooth muscle fiber of duodenum
+D17All1_52,acinar cell,pancreas exocrine glandular cell
+human3_lib3.final_cell_0396,acinar cell,stromal cell of pancreas
+D29-4_67,type B pancreatic cell,bronchiolar smooth muscle cell
+human3_lib3.final_cell_0313,type B pancreatic cell,insulin secreting cell
+D30-3_11,pancreatic A cell,progenitor cell of endocrine pancreas
+human3_lib2.final_cell_0209,pancreatic ductal cell,progenitor cell of endocrine pancreas
+human3_lib3.final_cell_0382,pancreatic ductal cell,progenitor cell of endocrine pancreas
+human4_lib3.final_cell_0429,type B pancreatic cell,stromal cell of pancreas
+human2_lib2.final_cell_0119,pancreatic stellate cell,stromal cell of pancreas
+D29-3_33,pancreatic A cell,progenitor cell of endocrine pancreas
+human2_lib3.final_cell_0258,pancreatic A cell,smooth muscle fiber of duodenum
+human1_lib2.final_cell_0024,pancreatic ductal cell,bronchiolar smooth muscle cell
+D3en3_2,acinar cell,pyloric gastric gland goblet cell
+D3en1_13,acinar cell,epithelial cell of exocrine pancreas
+D29-6_54,pancreatic A cell,progenitor cell of endocrine pancreas
+D31-5_18,delta,progenitor cell of endocrine pancreas
+D17All1_87,type B pancreatic cell,stromal cell of pancreas
+human2_lib1.final_cell_0022,pancreatic A cell,smooth muscle fiber of duodenum
+human2_lib3.final_cell_0447,type B pancreatic cell,smooth muscle fiber of duodenum
+D17TGFB_44,acinar cell,digestive enzyme secreting cell
+human2_lib2.final_cell_0379,pancreatic A cell,smooth muscle fiber of duodenum
+human3_lib2.final_cell_0853,type B pancreatic cell,type B pancreatic cell
+human3_lib1.final_cell_0666,pancreatic A cell,progenitor cell of endocrine pancreas
+human3_lib2.final_cell_0612,pancreatic A cell,epithelial cell of exocrine pancreas
+human2_lib2.final_cell_0112,pancreatic stellate cell,lung perichondrial fibroblast
+human1_lib1.final_cell_0553,macrophage,colon macrophage
+human1_lib2.final_cell_0471,acinar cell,epithelial cell of exocrine pancreas
+human2_lib3.final_cell_0238,pancreatic ductal cell,smooth muscle fiber of duodenum
+human3_lib4.final_cell_0574,macrophage,lung macrophage
+human4_lib3.final_cell_0054,pancreatic ductal cell,tuft cell of pancreatic duct
+D31-3_61,pancreatic PP cell,insulin secreting cell
+human3_lib3.final_cell_0679,pancreatic A cell,smooth muscle fiber of ileum
+human3_lib4.final_cell_0515,pancreatic ductal cell,stromal cell of pancreas
+human3_lib2.final_cell_0560,pancreatic A cell,stromal cell of pancreas
+human1_lib2.final_cell_0036,delta,ureter smooth muscle cell
+D30-5_18,delta,somatostatin secreting cell
+human3_lib3.final_cell_0756,pancreatic A cell,insulin secreting cell
+D30-2_94,pancreatic A cell,pancreatic A cell
+D29-6_17,pancreatic A cell,pancreatic A cell
+D29-8_20,pancreatic A cell,pancreatic A cell
+human4_lib1.final_cell_0299,type B pancreatic cell,smooth muscle fiber of duodenum
+human2_lib3.final_cell_0475,type B pancreatic cell,interrenal epinephrin secreting cell
+D31-7_67,type B pancreatic cell,ghrelin secreting cell
+human3_lib4.final_cell_0536,pancreatic stellate cell,stromal cell of pancreas
+human3_lib3.final_cell_0202,type B pancreatic cell,insulin secreting cell
+human1_lib3.final_cell_0010,delta,somatostatin secreting cell
+human2_lib1.final_cell_0528,pancreatic A cell,insulin secreting cell
+D31-6_59,pancreatic A cell,pancreatic epsilon cell
+human2_lib2.final_cell_0228,pancreatic A cell,smooth muscle fiber of duodenum
+HP1507101_C15,type B pancreatic cell,mesothelial cell of small intestine
+human4_lib1.final_cell_0002,delta,somatostatin secreting cell
+human3_lib1.final_cell_0318,pancreatic A cell,smooth muscle fiber of duodenum
+human3_lib1.final_cell_0152,pancreatic A cell,stromal cell of pancreas
+human4_lib3.final_cell_0319,type B pancreatic cell,interrenal epinephrin secreting cell
+human4_lib1.final_cell_0532,type B pancreatic cell,ghrelin secreting cell
+human2_lib3.final_cell_0043,delta,somatostatin secreting cell
+HP1509101_O19,pancreatic A cell,insulin secreting cell
+human3_lib2.final_cell_0665,type B pancreatic cell,insulin secreting cell
+D17All1_1,pancreatic A cell,smooth muscle fiber of ileum
+D31-1_7,acinar cell,pancreatic PP cell
+human3_lib1.final_cell_0853,endothelial cell,prostate gland microvascular endothelial cell
+human3_lib3.final_cell_0912,type B pancreatic cell,bronchiolar smooth muscle cell
+D28-4_39,pancreatic A cell,vasoactive intestinal peptide secreting cell
+human4_lib1.final_cell_0427,type B pancreatic cell,insulin secreting cell
+D17All1_95,type B pancreatic cell,insulin secreting cell
+human4_lib3.final_cell_0008,pancreatic ductal cell,tuft cell of pancreatic duct
+D30-2_28,pancreatic A cell,stromal cell of pancreas
+human1_lib2.final_cell_0540,type B pancreatic cell,insulin secreting cell
+human3_lib1.final_cell_0434,type B pancreatic cell,epithelial cell of pancreas
+human4_lib1.final_cell_0080,type B pancreatic cell,pancreatic endocrine cell

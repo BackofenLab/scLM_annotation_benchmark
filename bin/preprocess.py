@@ -20,10 +20,12 @@ import yaml
 import scanpy as sc
 from anndata import AnnData
 from matplotlib.backends.backend_pdf import PdfPages
+import pandas as pd
 #from memory_profiler import profile
 
 from util.pp_utils import (
     ensure_raw_counts_layer,
+    ensure_gene_names_column,
     ensure_ensembl_ids,
     pp_quality_control,
     filter_genes_and_cells,
@@ -138,6 +140,12 @@ def preprocess_adata(
     qc_plots_path = Path(qc_plots_path) if qc_plots_path else None
     pdf = PdfPages(qc_plots_path)
 
+    # Guarantee that downstream always has a consistent `gene_names` column.
+    used_gene_names_source = ensure_gene_names_column(adata, gene_names_col)
+    logger.info(
+        f"Using '{used_gene_names_source}' as gene names source; ensured `adata.var['gene_names']`."
+    )
+
     # Step 1: Ensure raw counts are properly stored
     logger.info("Step 1: Finding and setting raw counts...")
     ensure_raw_counts_layer(adata, raw_layer_key=count_layer_key, raise_on_missing=True)
@@ -194,6 +202,9 @@ def preprocess_adata(
         raise_on_failure=True,
     )
     logger.info(f"After Ensembl ID mapping: {adata.n_obs} cells × {adata.n_vars} genes")
+
+    # Re-assert the invariant after potential var/index changes during mapping.
+    ensure_gene_names_column(adata, "gene_names")
 
     # Step 7: Generate summary
     if summary_path is not None:
@@ -280,6 +291,12 @@ Examples:
         type=str,
         default="hsapiens",
         help="Species name for pybiomart query (default: 'hsapiens')",
+    )
+    parser.add_argument(
+        "--organism",
+        type=str,
+        default="Homo sapiens",
+        help="Organism name to store in adata.obs['organism'] (default: 'Homo sapiens', can be overridden by config)",
     )
     parser.add_argument(
         "--summary",
@@ -369,6 +386,10 @@ Examples:
         min_cells = args.min_cells
         min_genes = args.min_genes
 
+    # Dataset-level organism (used by downstream models like cell2sentence).
+    # Default is human, but specific datasets (e.g. Zeisel) can override in their YAML config.
+    organism = config.get("organism", args.organism)
+
     # Handle percent_top default
     if percent_top is None:
         percent_top = [20]
@@ -396,6 +417,20 @@ Examples:
     else:
         adata = sc.read_h5ad(args.input)
 
+    # Ensure organism is set as expected for downstream consumers.
+    if "organism" in adata.obs.columns:
+        n_mismatch = int((adata.obs["organism"].astype(str) != str(organism)).sum())
+        if n_mismatch > 0:
+            logger.info(
+                "Overriding adata.obs['organism'] to '%s' (was mixed; %d/%d mismatched).",
+                organism,
+                n_mismatch,
+                adata.n_obs,
+            )
+    else:
+        logger.info("Setting adata.obs['organism'] to '%s'.", organism)
+    adata.obs["organism"] = str(organism)
+
     # Preprocess
     adata_processed = preprocess_adata(
         adata,
@@ -418,8 +453,6 @@ Examples:
     args.output.parent.mkdir(parents=True, exist_ok=True)
     
     # Convert Arrow-backed arrays to standard types (anndata can't serialize Arrow to HDF5)
-    import pandas as pd
-    
     def _sanitize_for_h5ad(df: pd.DataFrame) -> pd.DataFrame:
         """Convert Arrow-backed columns/categories to standard types for h5ad compatibility."""
         df = df.copy()

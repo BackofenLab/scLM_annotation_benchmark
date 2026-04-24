@@ -1,12 +1,9 @@
 #!/usr/bin/env python
 
 from pathlib import Path
-import glob
 import argparse
 import json
-import yaml
 import sys
-import re
 from typing import Dict, Any, Tuple, List
 
 import matplotlib.pyplot as plt
@@ -23,6 +20,18 @@ def combine_results(args):
         print("No JSON files found.", file=sys.stderr)
         sys.exit(2)
 
+    # Extract dataset names from YAML filenames (use filename stem as dataset name)
+    known_dataset_names = []
+    if args.datasets:
+        # Handle both string (space-separated) and list inputs
+        dataset_files = args.datasets if isinstance(args.datasets, list) else args.datasets.split()
+        for dataset_config in dataset_files:
+            dataset_path = Path(dataset_config)
+            dataset_name = dataset_path.stem
+            known_dataset_names.append(dataset_name)
+            print(f"  Added dataset name '{dataset_name}' from file '{dataset_config}'", file=sys.stderr)
+        print(f"Known dataset names from YAML files: {sorted(known_dataset_names, key=len, reverse=True)}", file=sys.stderr)
+
     for fp in input_files:
         try:
             with open(fp, "r") as f:
@@ -31,22 +40,18 @@ def combine_results(args):
             print(f"Skipping {fp}: cannot read/parse JSON ({e})", file=sys.stderr)
             continue
 
-        dataset, model = parse_name(Path(fp))
-        annotation_key = False
-        for dataset_config in args.datasets:
-            if dataset in dataset_config:
-                with open(dataset_config) as c:
-                    cfg = yaml.safe_load(c)
-                print(cfg)
-                annotation_keys = cfg.get("annotation_keys")
-                if args.level >= len(annotation_keys):
-                    annotation_key = "predictions_" + annotation_keys[-1]
-                else:
-                    annotation_key = "predictions_" + annotation_keys[args.level]
-                break
-        if not annotation_key: # fall back to first key if not found
-            print("WARNING: No annotation key found, falling back to first key")
+        # Parse dataset and model from filename (format: dataset_model.json)
+        # Use known dataset names if available for more reliable parsing
+        dataset, model = parse_name(Path(fp), known_dataset_names=known_dataset_names)
+        print(f"Parsed {Path(fp).name}: dataset={dataset}, model={model}", file=sys.stderr)
+        
+        # Use "predictions" as the key in JSON structure (or fall back to first key if structure is different)
+        annotation_key = "predictions"
+        if "predictions" not in data:
+            # Fall back to first key if "predictions" doesn't exist
             annotation_key = next(iter(data))
+            print(f"WARNING: 'predictions' key not found in {Path(fp).name}, using '{annotation_key}'", file=sys.stderr)
+        
         m = extract_metrics(data, annotation_key)
         row = {"file": str(fp), "dataset": dataset, "model": model, **m}
         rows.append(row)
@@ -87,25 +92,40 @@ def combine_results(args):
     print(f"Export aggregated file to:\n- {by_ds_model_csv}")
 
 
-def parse_name(p: Path) -> Tuple[str, str]:
-    REGEXES = [
-        # dataset__model.json
-        re.compile(r'(?P<dataset>.+?)__+(?P<model>.+?)\.json$', re.IGNORECASE),
-        # dataset_model.json
-        re.compile(r'(?P<dataset>.+?)_(?P<model>[^_/]+?)\.json$', re.IGNORECASE),
-        # dataset.model.json
-        re.compile(r'(?P<dataset>.+?)\.(?P<model>[^.]+?)\.json$', re.IGNORECASE),
-    ]
-    fname = p.name
-    for rx in REGEXES:
-        m = rx.search(fname)
-        if m:
-            return m.group("dataset"), m.group("model")
-    # heuristic fallback: first two underscore chunks
-    parts = p.stem.split("_")
-    dataset = parts[0] if parts else "unknown_dataset"
-    model = parts[1] if len(parts) > 1 else "unknown_model"
-    return dataset, model
+def parse_name(p: Path, known_dataset_names: List[str] = None) -> Tuple[str, str]:
+    """
+    Parse dataset and model from filename.
+    Expected format: dataset_model.json
+    
+    If known_dataset_names is provided, matches against those first for more reliable
+    parsing (especially for dataset names with underscores like 'HIHA_L1').
+    """
+    fname = p.stem  # Remove .json extension
+    
+    # If we have known dataset names, try to match them first
+    # This helps with datasets that have underscores in their names
+    if known_dataset_names:
+        # Sort by length (longest first) to match most specific names first
+        # This prevents "HIHA" from matching when "HIHA_L1" should match
+        sorted_datasets = sorted(known_dataset_names, key=len, reverse=True)
+        
+        for dataset_name in sorted_datasets:
+            prefix = dataset_name + "_"
+            if fname.startswith(prefix):
+                model = fname[len(prefix):]
+                print(f"  Matched dataset '{dataset_name}' for filename '{fname}' -> model='{model}'", file=sys.stderr)
+                return dataset_name, model
+        
+        print(f"  No match found in known datasets for '{fname}'. Known datasets: {sorted_datasets}", file=sys.stderr)
+    
+    # Fallback: split on first underscore
+    parts = fname.split("_", 1)
+    if len(parts) == 2:
+        return parts[0], parts[1]
+    
+    # If no underscore found, treat entire name as dataset with unknown model
+    print(f"WARNING: Could not parse dataset and model from '{p.name}'. Expected format: dataset_model.json", file=sys.stderr)
+    return fname, "unknown_model"
 
 
 def safe_get(d: Dict[str, Any], path: List[str], default=None):
@@ -317,9 +337,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Aggregate predictions")
     parser.add_argument("--input", nargs='+', required=True, type=str, help="Path to input JSONs")
     parser.add_argument("--output", required=True, type=str, help="Path to output CSV")
-    parser.add_argument("--level", default=0, type=int, help="Annotation level to be compared (if level > available levels it will choose highest)")
-    parser.add_argument("--datasets", nargs='+', required=True,
-                   help="Yaml files of the data sets to retrieve annotation keys")
+    parser.add_argument("--level", default=0, type=int, help="Annotation level to be compared (deprecated, kept for compatibility)")
+    parser.add_argument("--datasets", nargs='+', required=False,
+                   help="YAML files of the datasets (used to extract dataset names from filenames)")
 
 
     args = parser.parse_args()

@@ -3,17 +3,21 @@ channels:
   - conda-forge
 dependencies:
   - python=3.11
+  - setuptools<82
+  - anndata
   - pandas
+  - zarr<3
   - pyyaml
   - scikit-learn
-  - matplotlib=3.10.0
+  - matplotlib
   - seaborn
   - pronto
+  - setuptools<81
   - pip
   - pip:
     - torch
     - torch_geometric
+    - transformers>=4.36,<4.40  # pin for omicverse/scMulan compatibility
     - sentence_transformers
     - omicverse
-    - anndata
     - numpy

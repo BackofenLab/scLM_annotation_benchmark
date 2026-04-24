@@ -1,0 +1,21 @@
+,predicted_cl_id,predicted_cell_type,predicted_labels,true_labels
+human3_lib1.final_cell_0495,,Macrophage,Macrophage,pancreatic ductal cell
+D30-7_2,,Mast cell,Mast cell,pancreatic A cell
+D17All1_52,,CD8 T cell,CD8 T cell,acinar cell
+human3_lib3.final_cell_0396,,,,acinar cell
+D29-4_67,,T-cell,T-cell,type B pancreatic cell
+human3_lib3.final_cell_0313,,Platelet,Platelet,type B pancreatic cell
+D30-3_11,,CD8+ T cell,CD8+ T cell,pancreatic A cell
+human3_lib2.final_cell_0209,,monocyte,monocyte,pancreatic ductal cell
+human3_lib3.final_cell_0382,,macrophage,macrophage,pancreatic ductal cell
+human4_lib3.final_cell_0429,,plasma cell,plasma cell,type B pancreatic cell
+human2_lib2.final_cell_0119,,,,pancreatic stellate cell
+D29-3_33,,CD8-positive T lymphocyte,CD8-positive T lymphocyte,pancreatic A cell
+human2_lib3.final_cell_0258,,,,pancreatic A cell
+human1_lib2.final_cell_0024,,macrophage,macrophage,pancreatic ductal cell
+D3en3_2,,Monocyte,Monocyte,acinar cell
+D3en1_13,,B cell,B cell,acinar cell
+D29-6_54,,B cell,B cell,pancreatic A cell
+D31-5_18,,B cell,B cell,delta
+D17All1_87,,Neutrophil,Neutrophil,type B pancreatic cell
+human2_lib1.final_cell_0022,,macrophage,macrophage,pancreatic A cell

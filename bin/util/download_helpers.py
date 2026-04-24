@@ -10,7 +10,7 @@ from .ontology_helpers import apply_ontology_mapping_to_adata
 
 def apply_ontology_mapping_to_dataset(
     adata: ad.AnnData,
-    annotation_keys: List[str],
+    annotation_key: str,
     cache_dir: Path,
     verbose: bool = True,
     origin: str = "unknown"
@@ -25,8 +25,8 @@ def apply_ontology_mapping_to_dataset(
     ----------
     adata : ad.AnnData
         AnnData object to process
-    annotation_keys : List[str]
-        List of annotation column names to map to ontology terms
+    annotation_key : str
+        Annotation column names to map to ontology terms
     cache_dir : Path
         Cache directory for ontology files
     verbose : bool, default True
@@ -40,11 +40,11 @@ def apply_ontology_mapping_to_dataset(
         AnnData object with ontology-mapped annotations
     """
     if verbose:
-        print(f"[INFO] Applying ontology mapping to annotation keys: {annotation_keys}")
+        print(f"[INFO] Applying ontology mapping to annotation keys: {annotation_key}")
     
     adata = apply_ontology_mapping_to_adata(
         adata=adata,
-        annotation_keys=annotation_keys,
+        annotation_key=annotation_key,
         cache_dir=cache_dir,
         force_remapping=False,
         verbose=verbose,

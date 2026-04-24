@@ -3,6 +3,7 @@ channels:
   - conda-forge
 dependencies:
   - python=3.11
+  - setuptools<82 # 82 removed pkg_resources
   - pyyaml
   - requests
   - tqdm
@@ -11,6 +12,7 @@ dependencies:
   # Install TileDB-SOMA from conda-forge on macOS to avoid pip wheel/native-lib ABI issues.
   - tiledbsoma-py
   - libcxx
+  - setuptools<81
   - pip
   - git
   - git-lfs
@@ -28,4 +30,7 @@ dependencies:
     - pandas  # for data manipulation
     - numpy  # for numerical operations
     - scipy  # for statistical functions (median_abs_deviation)
+    - boltons
+    - cytoolz
+    - frozendict
     #- memory_profiler

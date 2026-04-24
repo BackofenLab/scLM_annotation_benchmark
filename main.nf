@@ -8,6 +8,7 @@ def loadYaml(String path) {
 }
 
 process download {
+    container params.container_image
     conda 'envs/download.yml'
 
     input:
@@ -44,6 +45,7 @@ process download {
 }
 
 process extract_cell_types {
+    container params.container_image
     conda 'envs/cell_types.yml'
 
     input:
@@ -65,6 +67,9 @@ process extract_cell_types {
 }
 
 process prepare_model {
+    container params.container_image
+    conda 'git git-lfs'
+    
     input:
     tuple val(model), path(model_dir)
 
@@ -93,6 +98,8 @@ process prepare_model {
 }
 
 process run_model {
+    container params.container_image
+    
     input:
     tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size)
 
@@ -102,18 +109,18 @@ process run_model {
     conda { "envs/models/${model}.yml" }
 
     output:
-    tuple(path("results/*/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir))
+    tuple(path("results/*/*/*/predictions.csv"), val(dataset), val(model), val(cache_dir))
 
     script:
     """
     echo "Subset size of ${dataset}: ${subset_size}"
 
-    cache_base="${cache_dir}/models/${model}/${dataset}/${subset_size}"
+    cache_base="${cache_dir}/models/predictions/${model}/${dataset}/${subset_size}"
     results_dir=./results/${model}/${dataset}/${subset_size}
     
     mkdir -p \${results_dir}
 
-    if [ ! -f \${cache_base}/predictions*.csv ]; then
+    if [ ! -f \${cache_base}/predictions.csv ]; then
         # Run model and produce predictions
         mkdir -p \${cache_base}
         bash "${model_dir}/src/run.sh" \
@@ -123,17 +130,19 @@ process run_model {
             "${cache_dir}/models"
 
         # Cache predictions
-        cp \${results_dir}/predictions*.csv \${cache_base}/
+        cp \${results_dir}/predictions.csv \${cache_base}/
     else
         # Use cached predictions
-        cp \${cache_base}/predictions*.csv \${results_dir}/
+        cp \${cache_base}/predictions.csv \${results_dir}/
         echo "Cell type prediction already exists for ${dataset} × ${model} (subset ${subset_size})."
-        echo "To rerun, delete: \${cache_base}/predictions*.csv"
+        echo "To rerun, delete: \${cache_base}/predictions.csv"
     fi
     """
 }
 
 process run_model_throttled {
+    container params.container_image
+    
     input:
     tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size)
 
@@ -142,19 +151,21 @@ process run_model_throttled {
 
     conda { "envs/models/${model}.yml" }
 
+    publishDir(path: 'results/', mode: 'copy', overwrite: 'true', pattern: '*.csv')
+
     output:
-    tuple(path("results/*/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir))
+    tuple(path("results/*/*/*/predictions.csv"), val(dataset), val(model), val(cache_dir))
 
     script:
     """
     echo "Subset size of ${dataset}: ${subset_size}"
 
-    cache_base="${cache_dir}/models/${model}/${dataset}/${subset_size}"
+    cache_base="${cache_dir}/models/predictions/${model}/${dataset}/${subset_size}"
     results_dir=./results/${model}/${dataset}/${subset_size}
     
     mkdir -p \${results_dir}
 
-    if [ ! -f \${cache_base}/predictions*.csv ]; then
+    if [ ! -f \${cache_base}/predictions.csv ]; then
         # Run model and produce predictions
         mkdir -p \${cache_base}
         bash "${model_dir}/src/run.sh" \
@@ -164,17 +175,18 @@ process run_model_throttled {
             "${cache_dir}/models"
 
         # Cache predictions
-        cp \${results_dir}/predictions*.csv \${cache_base}/
+        cp \${results_dir}/predictions.csv \${cache_base}/
     else
         # Use cached predictions
-        cp \${cache_base}/predictions*.csv \${results_dir}/
+        cp \${cache_base}/predictions.csv \${results_dir}/
         echo "Cell type prediction already exists for ${dataset} × ${model} (subset ${subset_size})."
-        echo "To rerun, delete: \${cache_base}/predictions*.csv"
+        echo "To rerun, delete: \${cache_base}/predictions.csv"
     fi
     """
 }
 
 process evaluate_annotation {
+    container params.container_image
     conda 'envs/evaluation.yml'
 
     input:
@@ -183,7 +195,7 @@ process evaluate_annotation {
     // Tag with dataset and model for easy tracing
     tag { "${dataset}×${model}" }
 
-    publishDir(path: 'results/', mode: 'copy', overwrite: 'false')
+    publishDir(path: 'results/', mode: 'copy', overwrite: 'true')
 
     output:
     path "*.json"
@@ -192,11 +204,12 @@ process evaluate_annotation {
     """
     # Convert the prediction files to a comma-separated string
     pred_files=\$(echo ${predictions} | tr ' ' ',')
-    evaluate.py --pred "\$pred_files" --out ${dataset}_${model}.json --cache_dir ${cache_dir} --apply_ontology_mapping ${apply_ontology_mapping}
+    evaluate.py --pred "\$pred_files" --max-unreviewed-ratio 1.0 --out ${dataset}_${model}.json --cache_dir ${cache_dir} --apply_ontology_mapping ${apply_ontology_mapping}
     """
 }
 
 process combine_results {
+    container params.container_image
     conda 'envs/evaluation.yml'
 
     publishDir(path: 'results/', mode: 'copy', overwrite: 'false')
@@ -238,7 +251,7 @@ workflow {
     Channel.value(params.apply_ontology_mapping)
             .set { apply_mapping_ch }
 
-    cell_types = extract_cell_types(h5ad_file_ch, config_file_ch, cache_dir_ch)
+    // cell_types = extract_cell_types(h5ad_file_ch, config_file_ch, cache_dir_ch)
 
     // Prepare models (handles setup like git cloning, etc.)
     Channel
@@ -273,9 +286,12 @@ workflow {
                                      }
     
     jsons = evaluate_annotation(predictions_with_flag)
+    
+    // Get dataset YAML files for aggregation (use filenames as dataset names)
     Channel
         .fromList(params.datasets)
         .map { dataset -> file("datasets/${dataset}.yml") }
+        .collect()
         .set { datasets }
 
     combine_results(jsons.collect(), datasets)

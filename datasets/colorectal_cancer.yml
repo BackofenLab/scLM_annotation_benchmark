@@ -1,0 +1,38 @@
+# datasets/colorectal_cancer.yml
+name: colorectal_cancer        # used in channel / filenames
+geo_accession: GSE108989
+format: auto
+subset_size: null                # null → use full dataset
+batch_key: null
+annotation_key: cell_type  # Standardized column created from barcode_mapping
+
+# Map barcode prefixes to cell type annotations
+# Format: prefix -> cell type label
+barcode_mapping:
+  PTC: "CD8+ T cells from peripheral blood"
+  NTC: "CD8+ T cells from adjacent normal colorectal tissues"
+  TTC: "CD8+ T cells from tumor"
+  PTH: "CD3+, CD4+ and CD25- T cells from peripheral blood"
+  NTH: "CD3+, CD4+ and CD25- T cells from adjacent normal colorectal tissues"
+  TTH: "CD3+, CD4+ and CD25- T cells from tumor"
+  PTR: "CD3+, CD4+ and CD25high T cells from peripheral blood"
+  NTR: "CD3+, CD4+ and CD25high T cells from adjacent normal colorectal tissues"
+  TTR: "CD3+, CD4+ and CD25high T cells from tumor"
+  PTY: "CD3+, CD4+ and CD25mediate T cells from peripheral blood"
+  NTY: "CD3+, CD4+ and CD25mediate T cells from adjacent normal colorectal tissues"
+  TTY: "CD3+, CD4+ and CD25mediate T cells from tumor"
+  PP7: "CD3+, CD4+ T cells from peripheral blood"
+  NP7: "CD3+, CD4+ T cells from adjacent normal colorectal tissues"
+  TP7: "CD3+, CD4+ T cells from tumor"
+# Optional metadata for InstructCell - can use either:
+#   Option 1: Direct values (applied to all cells in dataset)
+#     species: "human"                    # direct value for all cells
+#     tissue: "tissue_name"               # direct value for all cells
+#     sequencing_method: "10xGenomics"    # direct value for all cells
+#   Option 2: Keys (per-cell values from adata.obs columns)
+#     species_key: "species"              # column name for species metadata (per-cell)
+#     tissue_key: "tissue"                 # column name for tissue metadata (per-cell)
+#     sequencing_method_key: "sequencing_method"  # column name for sequencing method (per-cell)
+# species_key: "species"          # column name for species metadata
+# tissue_key: "tissue"            # column name for tissue metadata
+# sequencing_method_key: "sequencing_method"  # column name for sequencing method metadata

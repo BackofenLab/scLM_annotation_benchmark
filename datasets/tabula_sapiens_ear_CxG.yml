@@ -5,7 +5,7 @@ census_dataset_id: "d45aca3a-ddb8-4185-a462-eff1e0c7af2e"
 census_version: "2025-11-08" # logs a stable build tag for reproducibility (snapshot of census version)
 subset_size: 2000             # null → use full dataset
 batch_key: donor_id
-annotation_keys: [cell_type]
+annotation_key: "cell_type"
 apply_ontology_mapping: true
 celltypist_model: "Adult_Human_Skin.pkl"
 

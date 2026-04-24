@@ -233,8 +233,8 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
     features_to_keep = [
         "input_ids",
         "n_counts",
-        "batch",
         "labels",
+        "batch",
         "n_genes",
         "filter_pass",
         "label",
@@ -543,10 +543,9 @@ def parse_args() -> argparse.Namespace:
         help="torch device, e.g. 'cuda:0' or 'cpu' (default: auto)",
     )
     p.add_argument(
-        "--annotation_keys",
-        nargs='+',
-        default=["cell_type"], 
-        help="Keys in adata.obs containing true labels (can specify multiple)",
+        "--annotation_key",
+        default="cell_type", 
+        help="Key in adata.obs containing true labels",
     )
     return p.parse_args()
 
@@ -556,10 +555,7 @@ if __name__ == "__main__":
     logger.info("Args: %s", args)
 
     base_dir = Path.cwd()
-    output_path = Path(args.output)
-    output_dir = output_path.parent
-    output_stem = output_path.stem
-    output_suffix = output_path.suffix
+    output_dir = Path(args.output).parent
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # Device & seed
@@ -577,26 +573,25 @@ if __name__ == "__main__":
     output_path = f"{curr_path}/data/output/ctm_" + str(args.nshot) + "-shot/"
     subprocess.call(f"mkdir {output_path}", shell=True)
 
-    for annotation_key in args.annotation_keys:
-        tr_loader, te_lodader, texts, t_data, tokenizer, t_enc, types, name_stub = (
-            load_dataset(tokenizer, text_encoder, annotation_key, args)
-        )
-        print("Loading dataset finished.")
+    annotation_key = args.annotation_key
+    tr_loader, te_lodader, texts, t_data, tokenizer, t_enc, types, name_stub = (
+        load_dataset(tokenizer, text_encoder, annotation_key, args)
+    )
+    print("Loading dataset finished.")
 
-        logger.info("Dataset prepared. Classes: %d", len(types))
-        o_dir_name = os.path.dirname(args.output)
-        pred_df = fine_tune_model(
-            model=model,
-            text_encoder=t_enc,
-            train_loader=tr_loader,
-            test_loader=te_lodader,
-            texts=texts,
-            testdataset=t_data,
-            types=types,
-            epochs=args.epochs,
-            alpha=args.alpha,
-        )
-        output_csv = output_dir / f"{output_stem}_{annotation_key}{output_suffix}"
-        pred_df.to_csv(output_csv, index=True)
-        logger.info("Langcell prediction pipeline completed successfully")
-        logger.info(f"Results saved to: {args.output}")
+    logger.info("Dataset prepared. Classes: %d", len(types))
+    o_dir_name = os.path.dirname(args.output)
+    pred_df = fine_tune_model(
+        model=model,
+        text_encoder=t_enc,
+        train_loader=tr_loader,
+        test_loader=te_lodader,
+        texts=texts,
+        testdataset=t_data,
+        types=types,
+        epochs=args.epochs,
+        alpha=args.alpha,
+    )
+    pred_df.to_csv(args.output, index=True)
+    logger.info("Langcell prediction pipeline completed successfully")
+    logger.info(f"Results saved to: {args.output}")

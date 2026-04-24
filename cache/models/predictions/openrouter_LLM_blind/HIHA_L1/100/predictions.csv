@@ -1,0 +1,21 @@
+,predicted_cl_id,predicted_cell_type,predicted_labels,true_labels
+890b95c26d6811eb8c84965cd2e07daf,,CD8 T cell,CD8 T cell,T cell
+df09ae4648cf11eaacaa42cd98cbd24e,,B cell,B cell,B cell
+f8966b3023dc11ec8ebdfedc55894352,,,,T cell
+ddf504da871a11ebaff886b6c60deacd,,CD8 positive alpha-beta T cell,CD8 positive alpha-beta T cell,T cell
+63a5869e620011ebac046a6b90c24dbb,,dendritic cell,dendritic cell,T cell
+5803e1e23f6811eba60c12602f64f593,,,,T cell
+ecf1380ee6b611eba4eb1651e40fda0e,,macrophage,macrophage,T cell
+b563b502872911ebbe41a20b62d6e8c8,,CD8+ T cell,CD8+ T cell,B cell
+b8c4f616a2e011eb8a03ee5dc42b1547,,monocyte,monocyte,Monocyte
+e87310e03f6311eb9b035a7c26289213,,,,T cell
+c06fbc42862311eeb393168c5709f2f2,,macrophage,macrophage,T cell
+ed4a5c7aa2e311ebb1ce525b6209b46f,,γδ T cell,γδ T cell,B cell
+533ba87c76f711eb928cf2a688aad71a,,,,T cell
+41c9b2c6ca1411eba8e7c23be70524c5,,CD8+ T cell,CD8+ T cell,T cell
+f1c437cc76f011eb9e6a262e4d0064cc,,B cell,B cell,T cell
+c2063ae48d0211eb8f491acf3f136954,,NK cell,NK cell,T cell
+95d1c4acc9fc11eb8b6656baa5e4f345,,sperm,sperm,dendritic cell
+0f33be2a745a11eb9460023cc5433a03,,macrophage,macrophage,T cell
+38d6733ab4e311ea80fa8a1929e9f384,,B cell,B cell,T cell
+835c759e8d0011eba962c64f4773d63c,,hematopoietic_stem_cell,hematopoietic_stem_cell,T cell

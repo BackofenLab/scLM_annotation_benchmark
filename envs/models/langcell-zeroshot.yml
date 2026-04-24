@@ -52,6 +52,7 @@ dependencies:
   - filelock=3.18.0=pyhd8ed1ab_0
   - freetype=2.10.4=h0708190_1
   - fsspec=2025.3.0=pyhd8ed1ab_0
+  - git
   - gflags=2.2.2=he1b5a44_1004
   - glog=0.5.0=h48cff8f_0
   - h2=4.2.0=pyhd8ed1ab_0
