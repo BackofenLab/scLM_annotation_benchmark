@@ -171,11 +171,12 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
     dataset_sub = sc.read(args.input)
     file_name = os.path.splitext(os.path.basename(args.input))[0]
 
-    # LangCell inherits Geneformer's tokenizer, which rank-encodes raw UMI counts
-    # normalized by per-cell totals and gene-median factors. The pipeline's
-    # preprocessed X is log1p-normalized, so restore raw counts before tokenization.
-    if "counts" in dataset_sub.layers:
-        dataset_sub.X = dataset_sub.layers["counts"]
+    # Enabling the block below swaps the log1p-normalized X for the raw UMI counts
+    # stored in `layers["counts"]`, which is what Geneformer's tokenizer expects
+    # (rank encoding from raw counts normalized by per-cell totals and gene-median
+    # factors). Left disabled to keep the current preprocessed-input behavior.
+    # if "counts" in dataset_sub.layers:
+    #     dataset_sub.X = dataset_sub.layers["counts"]
 
     # find highly variable genes
     #sc.pp.highly_variable_genes(dataset_sub, n_top_genes=args.n_top_genes)
