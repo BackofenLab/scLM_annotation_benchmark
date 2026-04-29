@@ -4,5 +4,6 @@ channels:
 dependencies:
   - python=3.11
   - pip:
+    - pyyaml
     - git+https://github.com/mengerj/adata_hf_datasets.git
     - git+https://github.com/mengerj/mmcontext.git@main
