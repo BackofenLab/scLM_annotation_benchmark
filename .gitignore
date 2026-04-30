@@ -20,6 +20,9 @@ cache/models/*
 # Exception: keep the preprocessing result plots
 !cache/plots/
 !cache/plots/**
+# Exception: keep the offline ENSEMBL fallback cache
+!cache/ENSEMBL/
+!cache/ENSEMBL/**
 .conda
 Results
 results/

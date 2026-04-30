@@ -21,6 +21,41 @@ import seaborn as sns
 
 logger = logging.getLogger(__name__)
 
+# Offline ENSEMBL fallback cache. Resolves to <repo>/cache/ENSEMBL when this
+# file lives at <repo>/bin/util/pp_utils.py.
+_DEFAULT_ENSEMBL_CACHE_DIR = Path(__file__).resolve().parents[2] / "cache" / "ENSEMBL"
+
+
+def _load_ensembl_cache(cache_dir: Path = _DEFAULT_ENSEMBL_CACHE_DIR) -> pd.DataFrame | None:
+    """
+    Load the most recent cached gene-name -> ENSEMBL ID mapping.
+
+    Looks for files named '<dataset>_ensembl_<YYMMDD>.csv' in `cache_dir` and
+    returns the one with the latest timestamp framed like a BioMart query
+    result (columns "Gene name" and "Gene stable ID"). Returns None if no
+    usable cache file is present.
+    """
+    if not cache_dir.exists():
+        return None
+
+    # YYMMDD ordering matches lexicographic ordering, so the last entry is newest.
+    candidates = sorted(cache_dir.glob("*_ensembl_*.csv"))
+    if not candidates:
+        return None
+
+    cache_path = candidates[-1]
+    logger.info(f"Loading cached ENSEMBL mapping from {cache_path}")
+    df = pd.read_csv(cache_path)
+    if not {"gene_name", "ensembl_id"}.issubset(df.columns):
+        logger.warning(
+            f"Cache file {cache_path} is missing 'gene_name'/'ensembl_id' columns; ignoring."
+        )
+        return None
+    return (
+        df.dropna(subset=["gene_name", "ensembl_id"])
+          .rename(columns={"gene_name": "Gene name", "ensembl_id": "Gene stable ID"})
+    )
+
 
 def ensure_gene_names_column(adata: AnnData, gene_names_col: str | None = None) -> str:
     """
@@ -877,18 +912,26 @@ def ensure_ensembl_ids(
                 continue
 
         if biomart_df is None:
-            error_msg = (
-                f"All Ensembl BioMart hosts failed. Last error: {last_error}\n"
-                "Please check:\n"
-                "- Network connection to Ensembl\n"
-                "- Species name is correct (e.g., 'hsapiens' or 'mmusculus')\n"
-                "- Set 'gene_names_col' in dataset config YAML to specify the column with gene names\n"
-                "- Or set 'ensembl_col' in dataset config YAML if Ensembl IDs already exist"
+            logger.warning(
+                f"All Ensembl BioMart hosts failed (last error: {last_error}). "
+                f"Trying offline fallback in {_DEFAULT_ENSEMBL_CACHE_DIR}..."
             )
-            logger.error(error_msg)
-            if raise_on_failure:
-                raise ValueError(error_msg)
-            return adata
+            biomart_df = _load_ensembl_cache()
+            if biomart_df is None:
+                error_msg = (
+                    f"All Ensembl BioMart hosts failed and no offline ENSEMBL cache "
+                    f"was found under {_DEFAULT_ENSEMBL_CACHE_DIR}. Last error: {last_error}\n"
+                    "Please check:\n"
+                    "- Network connection to Ensembl\n"
+                    "- Species name is correct (e.g., 'hsapiens' or 'mmusculus')\n"
+                    "- Set 'gene_names_col' in dataset config YAML to specify the column with gene names\n"
+                    "- Or set 'ensembl_col' in dataset config YAML if Ensembl IDs already exist"
+                )
+                logger.error(error_msg)
+                if raise_on_failure:
+                    raise ValueError(error_msg)
+                return adata
+            logger.info("Using cached ENSEMBL mapping as BioMart fallback.")
 
         try:
             biomart_df = biomart_df.drop_duplicates(subset="Gene name").set_index("Gene name")
