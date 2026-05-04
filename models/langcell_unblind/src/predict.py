@@ -186,6 +186,13 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
     """
     dataset_sub = sc.read(args.input)
 
+    # Enabling the block below swaps the log1p-normalized X for the raw UMI counts
+    # stored in `layers["counts"]`, which is what Geneformer's tokenizer expects
+    # (rank encoding from raw counts normalized by per-cell totals and gene-median
+    # factors). Left disabled to keep the current preprocessed-input behavior.
+    # if "counts" in dataset_sub.layers:
+    #     dataset_sub.X = dataset_sub.layers["counts"]
+
     if sp.issparse(dataset_sub.X):
         n_counts = np.asarray(dataset_sub.X.sum(axis=1)).ravel()
         n_genes = dataset_sub.X.getnnz(axis=1)

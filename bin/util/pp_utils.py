@@ -17,10 +17,44 @@ import pybiomart
 from pathlib import Path
 import matplotlib.pyplot as plt
 import seaborn as sns
-from matplotlib.backends.backend_pdf import PdfPages
 
 
 logger = logging.getLogger(__name__)
+
+# Offline ENSEMBL fallback cache. Resolves to <repo>/cache/ENSEMBL when this
+# file lives at <repo>/bin/util/pp_utils.py.
+_DEFAULT_ENSEMBL_CACHE_DIR = Path(__file__).resolve().parents[2] / "cache" / "ENSEMBL"
+
+
+def _load_ensembl_cache(cache_dir: Path = _DEFAULT_ENSEMBL_CACHE_DIR) -> pd.DataFrame | None:
+    """
+    Load the most recent cached gene-name -> ENSEMBL ID mapping.
+
+    Looks for files named '<dataset>_ensembl_<YYMMDD>.csv' in `cache_dir` and
+    returns the one with the latest timestamp framed like a BioMart query
+    result (columns "Gene name" and "Gene stable ID"). Returns None if no
+    usable cache file is present.
+    """
+    if not cache_dir.exists():
+        return None
+
+    # YYMMDD ordering matches lexicographic ordering, so the last entry is newest.
+    candidates = sorted(cache_dir.glob("*_ensembl_*.csv"))
+    if not candidates:
+        return None
+
+    cache_path = candidates[-1]
+    logger.info(f"Loading cached ENSEMBL mapping from {cache_path}")
+    df = pd.read_csv(cache_path)
+    if not {"gene_name", "ensembl_id"}.issubset(df.columns):
+        logger.warning(
+            f"Cache file {cache_path} is missing 'gene_name'/'ensembl_id' columns; ignoring."
+        )
+        return None
+    return (
+        df.dropna(subset=["gene_name", "ensembl_id"])
+          .rename(columns={"gene_name": "Gene name", "ensembl_id": "Gene stable ID"})
+    )
 
 
 def ensure_gene_names_column(adata: AnnData, gene_names_col: str | None = None) -> str:
@@ -169,35 +203,48 @@ def is_raw_counts(
     bool
         True if `X` likely contains raw (integer) counts, False otherwise.
     """
-    # Convert to a dense array for checks if it's sparse
     if sp.issparse(X):
-        X_dense = X.toarray()
+        data = X.data  # flat array of non-zero values, no copy
+        if len(data) == 0:
+            return True  # all zeros are valid integer counts
+
+        # 1. Check for negative values (implicit zeros are non-negative)
+        if data.min() < min_val:
+            return False
+
+        # 2. Check fraction of non-integer values
+        # Only non-zero values can be non-integer; implicit zeros are integers.
+        # Compute fraction relative to total elements for consistent semantics.
+        n_total = X.shape[0] * X.shape[1]
+        n_noninteger = np.sum(np.abs(data - np.round(data)) > 1e-6)
+        fraction_noninteger = n_noninteger / n_total
+
+        if fraction_noninteger > max_noninteger_fraction:
+            return False
+
+        return True
     else:
-        X_dense = X
+        # Dense path (unchanged)
+        if np.min(X) < min_val:
+            return False
 
-    # 1. Check for negative values
-    if np.min(X_dense) < min_val:
-        return False
+        diffs = np.abs(X - np.round(X))
+        noninteger_mask = diffs > 1e-6
+        fraction_noninteger = np.mean(noninteger_mask)
 
-    # 2. Check fraction of non-integer values
-    diffs = np.abs(X_dense - np.round(X_dense))
-    epsilon = 1e-6
-    noninteger_mask = diffs > epsilon
-    fraction_noninteger = np.mean(noninteger_mask)
+        if fraction_noninteger > max_noninteger_fraction:
+            return False
 
-    if fraction_noninteger > max_noninteger_fraction:
-        return False
-
-    return True
+        return True
 
 
-def is_log_transformed(X: np.ndarray, tol: float = 1e-3) -> bool:
+def is_log_transformed(X, tol: float = 1e-3) -> bool:
     """
     Check if the data is likely log-transformed using a naive heuristic.
 
     Parameters
     ----------
-    X : numpy.ndarray
+    X : np.ndarray or sparse matrix
         The expression matrix to check.
     tol : float, optional
         Tolerance for negative values. If any value is below -tol, we say
@@ -208,19 +255,27 @@ def is_log_transformed(X: np.ndarray, tol: float = 1e-3) -> bool:
     bool
         True if the data appears log-transformed, False otherwise.
     """
-    if np.min(X) < -tol:
-        return False
-    max_val = np.max(X)
+    if sp.issparse(X):
+        if X.nnz == 0:
+            return False  # all zeros — not log-transformed data
+        # Only stored values can be negative; implicit zeros are >= -tol
+        if X.data.min() < -tol:
+            return False
+        max_val = X.data.max()
+    else:
+        if np.min(X) < -tol:
+            return False
+        max_val = np.max(X)
     return max_val < 100
 
 
-def is_normalized(X: np.ndarray, axis: int = 1, var_threshold: float = 0.2) -> bool:
+def is_normalized(X, axis: int = 1, var_threshold: float = 0.2) -> bool:
     """
     Check if the data is likely normalized by testing row-sum consistency.
 
     Parameters
     ----------
-    X : numpy.ndarray
+    X : np.ndarray or sparse matrix
         The expression matrix to check. By default, rows are cells and columns are genes.
     axis : int, optional
         The axis along which to sum. Default is 1 (summing each row/cell).
@@ -233,14 +288,8 @@ def is_normalized(X: np.ndarray, axis: int = 1, var_threshold: float = 0.2) -> b
     bool
         True if the data appears normalized, False otherwise.
     """
-    # Ensure X is dense for quick stats
-    if sp.issparse(X):
-        X_dense = X.toarray()
-    else:
-        X_dense = X
-
-    sums = X_dense.sum(axis=axis)
-    sums = np.array(sums).ravel()
+    # .sum(axis=) works on both sparse and dense — returns a small dense vector
+    sums = np.asarray(X.sum(axis=axis)).ravel()
     mean_sum = sums.mean()
     std_sum = sums.std()
 
@@ -293,7 +342,8 @@ def ensure_raw_counts_layer(
     # 1) Prefer the user-specified layer
     if raw_layer_key in adata.layers:
         logger.info("Using layer '%s' for raw counts", raw_layer_key)
-        adata.layers["counts"] = adata.layers[raw_layer_key].copy()
+        if raw_layer_key != "counts":
+            adata.layers["counts"] = adata.layers[raw_layer_key]
         adata.X = adata.layers["counts"].copy()
     # 2) Detect if raw contains raw counts
     elif adata.raw is not None and is_raw_counts(adata.raw.X):
@@ -396,13 +446,8 @@ def ensure_norm_log(
     The order of operations is: normalize first, then log-transform.
     """
     logger.info("Checking if data in adata.X appears normalized and log-transformed.")
-    if sp.issparse(adata.X):
-        X_arr = adata.X.copy().toarray()
-    else:
-        X_arr = adata.X.copy()
-
-    already_norm = is_normalized(X_arr, var_threshold=var_threshold)
-    already_log = is_log_transformed(X_arr)
+    already_norm = is_normalized(adata.X, var_threshold=var_threshold)
+    already_log = is_log_transformed(adata.X)
 
     # Step 1: Normalize first (on raw counts)
     if not already_norm:
@@ -423,8 +468,8 @@ def ensure_norm_log(
         logger.info("Data already appears to be log-transformed.")
 
     if not np.issubdtype(adata.X.dtype, np.floating):
-        logger.info("Casting adata.X to float64 to ensure compatibility.")
-        adata.X = adata.X.astype(np.float64)
+        logger.info("Casting adata.X to float32 to ensure compatibility.")
+        adata.X = adata.X.astype(np.float32)
 
 
 def pp_quality_control(
@@ -433,7 +478,8 @@ def pp_quality_control(
     nmads_mt: int = 3,
     pct_counts_mt_threshold: float = 8.0,
     percent_top: list[int] | None = None,
-    pdf: PdfPages | None = None,
+    plots_dir: Path | None = None,
+    plots_prefix: str | None = None,
 ) -> AnnData:
     """
     Perform quality control filtering on single-cell RNA-seq data based on various metrics.
@@ -502,10 +548,11 @@ def pp_quality_control(
     )
 
     logger.info("Generating QC plots before preprocessing...")
+    save_path = plots_dir / f"{plots_prefix}_before.png" if plots_dir and plots_prefix else None
     plot_preprocessing_qc(
         adata,
-        pdf=pdf,
         page_title="QC Summary Before Preprocessing",
+        save_path=save_path,
     )
 
     # 3. Define a helper function for outlier detection using median absolute deviation
@@ -865,18 +912,26 @@ def ensure_ensembl_ids(
                 continue
 
         if biomart_df is None:
-            error_msg = (
-                f"All Ensembl BioMart hosts failed. Last error: {last_error}\n"
-                "Please check:\n"
-                "- Network connection to Ensembl\n"
-                "- Species name is correct (e.g., 'hsapiens' or 'mmusculus')\n"
-                "- Set 'gene_names_col' in dataset config YAML to specify the column with gene names\n"
-                "- Or set 'ensembl_col' in dataset config YAML if Ensembl IDs already exist"
+            logger.warning(
+                f"All Ensembl BioMart hosts failed (last error: {last_error}). "
+                f"Trying offline fallback in {_DEFAULT_ENSEMBL_CACHE_DIR}..."
             )
-            logger.error(error_msg)
-            if raise_on_failure:
-                raise ValueError(error_msg)
-            return adata
+            biomart_df = _load_ensembl_cache()
+            if biomart_df is None:
+                error_msg = (
+                    f"All Ensembl BioMart hosts failed and no offline ENSEMBL cache "
+                    f"was found under {_DEFAULT_ENSEMBL_CACHE_DIR}. Last error: {last_error}\n"
+                    "Please check:\n"
+                    "- Network connection to Ensembl\n"
+                    "- Species name is correct (e.g., 'hsapiens' or 'mmusculus')\n"
+                    "- Set 'gene_names_col' in dataset config YAML to specify the column with gene names\n"
+                    "- Or set 'ensembl_col' in dataset config YAML if Ensembl IDs already exist"
+                )
+                logger.error(error_msg)
+                if raise_on_failure:
+                    raise ValueError(error_msg)
+                return adata
+            logger.info("Using cached ENSEMBL mapping as BioMart fallback.")
 
         try:
             biomart_df = biomart_df.drop_duplicates(subset="Gene name").set_index("Gene name")
@@ -1095,31 +1150,33 @@ def summarize_adata(adata, out_path="summary.txt"):
         k = list(adata.uns.keys()); A(", ".join(k[:60]) if k else "(none)")
     except Exception: A("(unavailable)")
 
-    Path(out_path).write_text("\n".join(L))
-    print(f"[OK] Wrote summary to {Path(out_path).resolve()}")
+    out_path = Path(out_path)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text("\n".join(L))
+    print(f"[OK] Wrote summary to {out_path.resolve()}")
 
 def plot_preprocessing_qc(
     adata,
-    pdf=None,
     page_title="QC Summary Preprocessing",
     initial_cells: int | None = None,
     initial_genes: int | None = None,
+    save_path: Path | str | None = None,
 ):
     """
-    Generate QC plots on a single-page PDF (3x3 grid).
+    Generate QC plots on a single page (3x3 grid) and save as high-resolution PNG.
 
     Parameters
     ----------
     adata : AnnData
         Preprocessed AnnData object
-    pdf : PdfPages, optional
-        Existing PdfPages object to append a page. If None, a new PDF is created.
     page_title : str, optional
         Title displayed on the page.
     initial_cells : int, optional
         Initial number of cells before filtering (for display in Plot 6).
     initial_genes : int, optional
         Initial number of genes before filtering (for display in Plot 6).
+    save_path : Path or str, optional
+        Path to save the PNG file. If None, the plot is not saved.
     """
 
     # Set publication style
@@ -1135,8 +1192,6 @@ def plot_preprocessing_qc(
             "ytick.labelsize": 8,
             "legend.fontsize": 8,
             "font.family": "sans-serif",
-            "pdf.fonttype": 42,
-            "ps.fonttype": 42,
         }
     )
 
@@ -1152,11 +1207,17 @@ def plot_preprocessing_qc(
     
     fig.suptitle(page_title, fontsize=16, fontweight="bold")
 
+    # Note: matplotlib's ax.violinplot is used instead of sc.pl.violin because importing
+    # scanpy puts seaborn.violinplot (which sc.pl.violin wraps) into a state that segfaults
+    # on macOS 26 / recent conda envs. ax.violinplot uses its own KDE and is unaffected.
+
     # Top row plots
     # Plot 1: violin plot of total_counts
     ax = fig.add_subplot(gs_top[0, 0])
     if "total_counts" in adata.obs.columns:
-        sc.pl.violin(adata, keys="total_counts", ax=ax, show=False)
+        ax.violinplot([adata.obs["total_counts"].to_numpy()], showmedians=True)
+        ax.set_xticks([1])
+        ax.set_xticklabels([""])
         ax.set_title("total_counts")
     else:
         ax.text(0.5, 0.5, "total_counts\nnot available", ha="center", va="center", transform=ax.transAxes)
@@ -1165,7 +1226,9 @@ def plot_preprocessing_qc(
     # Plot 2: violin plot of n_genes_by_counts
     ax = fig.add_subplot(gs_top[0, 1])
     if "n_genes_by_counts" in adata.obs.columns:
-        sc.pl.violin(adata, keys="n_genes_by_counts", ax=ax, show=False)
+        ax.violinplot([adata.obs["n_genes_by_counts"].to_numpy()], showmedians=True)
+        ax.set_xticks([1])
+        ax.set_xticklabels([""])
         ax.set_title("n_genes_by_counts")
     else:
         ax.text(0.5, 0.5, "n_genes_by_counts\nnot available", ha="center", va="center", transform=ax.transAxes)
@@ -1173,8 +1236,12 @@ def plot_preprocessing_qc(
 
     # Plot 3: violin plot of pct_counts_mt, pct_counts_ribo, pct_counts_hb
     ax = fig.add_subplot(gs_top[0, 2])
-    if "pct_counts_mt" in adata.obs.columns and "pct_counts_ribo" in adata.obs.columns and "pct_counts_hb" in adata.obs.columns:
-        sc.pl.violin(adata, keys=["pct_counts_mt", "pct_counts_ribo", "pct_counts_hb"], ax=ax, show=False)
+    _pct_keys = ("pct_counts_mt", "pct_counts_ribo", "pct_counts_hb")
+    if all(k in adata.obs.columns for k in _pct_keys):
+        _pct_data = [adata.obs[k].to_numpy() for k in _pct_keys]
+        ax.violinplot(_pct_data, showmedians=True)
+        ax.set_xticks([1, 2, 3])
+        ax.set_xticklabels(["mt", "ribo", "hb"])
         ax.set_title("Mito %, Ribo %, HB %")
     else:
         ax.text(0.5, 0.5, "pct_counts_mt or pct_counts_ribo or pct_counts_hb\nnot available", ha="center", va="center", transform=ax.transAxes)
@@ -1258,7 +1325,10 @@ def plot_preprocessing_qc(
     )
 
     plt.tight_layout()
-    pdf.savefig(fig, bbox_inches="tight")
+    if save_path is not None:
+        save_path = Path(save_path)
+        save_path.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(save_path, dpi=300, bbox_inches="tight")
     plt.close()
 
 # usage:

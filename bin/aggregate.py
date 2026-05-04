@@ -40,21 +40,45 @@ def combine_results(args):
             print(f"Skipping {fp}: cannot read/parse JSON ({e})", file=sys.stderr)
             continue
 
-        # Parse dataset and model from filename (format: dataset_model.json)
-        # Use known dataset names if available for more reliable parsing
-        dataset, model = parse_name(Path(fp), known_dataset_names=known_dataset_names)
-        print(f"Parsed {Path(fp).name}: dataset={dataset}, model={model}", file=sys.stderr)
-        
-        # Use "predictions" as the key in JSON structure (or fall back to first key if structure is different)
-        annotation_key = "predictions"
-        if "predictions" not in data:
-            # Fall back to first key if "predictions" doesn't exist
-            annotation_key = next(iter(data))
-            print(f"WARNING: 'predictions' key not found in {Path(fp).name}, using '{annotation_key}'", file=sys.stderr)
-        
-        m = extract_metrics(data, annotation_key)
-        row = {"file": str(fp), "dataset": dataset, "model": model, **m}
-        rows.append(row)
+        dataset, model = parse_name(Path(fp), known_dataset_names)
+        # Validate dataset against known configs; if no match, try alternative splits
+        # (handles model names with underscores like "openrouter_LLM")
+        if not any(dataset in dc for dc in args.datasets):
+            parts = Path(fp).stem.split("_")
+            for i in range(len(parts) - 1, 0, -1):
+                candidate_ds = "_".join(parts[:i])
+                candidate_model = "_".join(parts[i:])
+                if any(candidate_ds in dc for dc in args.datasets):
+                    dataset, model = candidate_ds, candidate_model
+                    break
+
+        # Extract metrics from JSON keys produced by evaluate.py.
+        # Keys are filename stems:
+        #   Single-model: "predictions" (from predictions.csv)
+        #   Multi-model:  "predictions_<slug>" (from predictions_<slug>.csv)
+        matched = False
+        for key in data:
+            if not isinstance(data[key], dict) or "true_labels" not in data[key]:
+                continue
+            if key == "predictions":
+                # Single-model case: use the Nextflow model name
+                m = extract_metrics(data, key)
+                row = {"file": str(fp), "dataset": dataset, "model": model, **m}
+                rows.append(row)
+                matched = True
+            elif key.startswith("predictions_"):
+                # Multi-model case: extract LLM model name and blind/unblind suffix
+                model_slug = key[len("predictions_"):]
+                llm_name = model_slug.replace("--", "/").split("/")[-1]  # e.g. "deepseek-v3.2"
+                suffix = model.split("_")[-1] if "_" in model else ""    # e.g. "blind" or "unblind"
+                display_name = f"{llm_name}_{suffix}" if suffix else llm_name
+                m = extract_metrics(data, key)
+                row = {"file": str(fp), "dataset": dataset,
+                       "model": display_name, **m}
+                rows.append(row)
+                matched = True
+        if not matched:
+            print(f"WARNING: No keys with 'true_labels' found in {fp}", file=sys.stderr)
 
     if not rows:
         print("No usable JSONs found.", file=sys.stderr)
@@ -76,16 +100,18 @@ def combine_results(args):
     by_ds_model_csv = out_dir / "aggregated_by_dataset_model.csv"
     by_ds_model.to_csv(by_ds_model_csv, index=False)
 
-    # Create and export plot
+    # Create and export barplots
     make_plot(by_ds_model, out_dir)
-    #export_plot(by_ds_model, out_dir, group_by="model")
+
+    # Create heatmaps (models × datasets)
+    make_heatmaps(by_ds_model, out_dir)
 
     pivot_balacc = by_ds_model.pivot(index="dataset", columns="model", values="balanced_accuracy")
     pivot_macro_f1 = by_ds_model.pivot(index="dataset", columns="model", values="macro_f1")
 
     print("Balanced accuracy \n")
     print(pivot_balacc)
-    
+
     print("Macro F1 \n")
     print(pivot_macro_f1)
 
@@ -214,6 +240,54 @@ def make_plot(dataframe, out_dir):
         plt.close()
 
     print(f"Plots saved to: {out_dir.resolve()}")
+
+
+def make_heatmaps(dataframe, out_dir):
+    """
+    Create heatmaps with models on the x-axis and datasets on the y-axis.
+    Values are annotated inside each cell.
+    """
+    metrics = [
+        "balanced_accuracy",
+        "accuracy",
+        "rada_avg_similarity",
+        "lin_avg_similarity",
+        "id_accuracy",
+        "balanced_id_accuracy",
+        "macro_f1",
+        "weighted_f1",
+    ]
+
+    sns.set(style="whitegrid")
+
+    for metric in metrics:
+        pivot = dataframe.pivot(index="dataset", columns="model", values=metric)
+        if pivot.empty:
+            continue
+
+        # Sort columns by mean performance descending
+        pivot = pivot[pivot.mean().sort_values(ascending=False).index]
+
+        fig, ax = plt.subplots(figsize=(max(8, len(pivot.columns) * 1.2), max(4, len(pivot) * 0.8)))
+        sns.heatmap(
+            pivot,
+            annot=True,
+            fmt=".3f",
+            cmap="YlOrRd",
+            vmin=0,
+            vmax=1,
+            linewidths=0.5,
+            ax=ax,
+        )
+        ax.set_title(f"{metric.replace('_', ' ').title()} — Models × Datasets")
+        ax.set_xlabel("Model")
+        ax.set_ylabel("Dataset")
+        plt.xticks(rotation=45, ha="right")
+        plt.tight_layout()
+        plt.savefig(out_dir / f"aggregated_plot_{metric}_heatmap.png", dpi=300)
+        plt.close()
+
+    print(f"Heatmaps saved to: {out_dir.resolve()}")
 
 
 def export_plot(

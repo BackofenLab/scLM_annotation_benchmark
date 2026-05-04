@@ -2,7 +2,6 @@
 name: colorectal_cancer        # used in channel / filenames
 geo_accession: GSE108989
 format: auto
-subset_size: null                # null → use full dataset
 batch_key: null
 annotation_key: cell_type  # Standardized column created from barcode_mapping
 

@@ -171,6 +171,14 @@ def convert_to_arrow_dataset(adata, annotation_key: str):
         adata_copy.var_names = adata.var["gene_names"].astype(str)
         adata_copy.var_names_make_unique()
 
+        # cell2sentence uppercases genes when building the vocabulary. If `var_names` contains
+        # case-insensitive duplicates (e.g. 'PISD' and 'Pisd'), the vocabulary becomes shorter
+        # than `n_vars`, and sentence generation can crash with IndexError.
+        upper = np.array([str(x).upper() for x in adata_copy.var_names], dtype=object)
+        if len(np.unique(upper)) != adata_copy.n_vars:
+            adata_copy.var_names = upper
+            adata_copy.var_names_make_unique()
+
         # Set cell_type column
         if annotation_key not in adata_copy.obs.columns:
             raise ValueError(f"Annotation key '{annotation_key}' not found in adata.obs")

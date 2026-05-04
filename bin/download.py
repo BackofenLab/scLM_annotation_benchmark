@@ -7,18 +7,15 @@ Supports two download sources:
   2. CellxGene Census — specified via `source: cellxgene_census` + `census_dataset_id`
 
 Pipeline:
-  1. Looks up the dataset's YAML descriptor (name, URL/census_id, keys, …).
-  2. Caches the **full** file under ``<cache_dir>/<dataset>.<ext>``
-     (skips download when already present and valid).
-  3. Always verifies that the required ``annotation_key`` exists.
-  4. Optionally writes a *subset* copy ``<cache_dir>/<dataset>_sub{n}.<ext>``.
-  5. Optionally applies ontology mapping (overwrites cache in-place).
-  6. Hard-links (or copies) the chosen file to Nextflow's work dir.
+  1. Looks up the dataset's YAML descriptor (name, URL/census_id, keys, ...).
+  2. Downloads the full file directly into the Nextflow work dir (``--out``).
+     Persistent caching is handled by Nextflow's ``storeDir`` in ``main.nf``.
+  3. Verifies that the required ``annotation_key`` and ``batch_key`` exist.
 
 Everything is format-agnostic (``.h5ad`` or ``.zarr``).
 """
 from __future__ import annotations
-import argparse, html as ihtml, os, random, re, shutil, sys, yaml
+import argparse, html as ihtml, re, shutil, sys, yaml
 from pathlib import Path
 from typing import Iterable
 from urllib.parse import urljoin
@@ -27,6 +24,8 @@ import anndata
 import pandas as pd
 import requests
 from tqdm import tqdm
+
+from util.http import new_session, stream_to_file
 
 # --------------------------------------------------------------------------- #
 # Optional: CellxGene Census (may fail on macOS due to native deps)           #
@@ -96,14 +95,19 @@ def write_adata(ad, path: Path) -> None:
 # Shared download helpers                                                     #
 # --------------------------------------------------------------------------- #
 def _cache_valid(dest: Path) -> bool:
-    """Return True if *dest* exists and is readable AnnData."""
+    """Return True if *dest* exists and is readable AnnData (backed-mode check — O(1) RAM)."""
     if not dest.exists():
         return False
     try:
-        ad = read_adata(dest)
-        # Force validation of raw.X if present (backed mode defers errors)
-        if ad.raw is not None:
-            _ = ad.raw.X
+        if dest.suffix == ".h5ad":
+            ad = anndata.read_h5ad(dest, backed="r")
+            try:
+                _ = ad.shape
+            finally:
+                ad.file.close()
+        else:
+            # zarr or dir: a minimal open validates structure
+            anndata.read_zarr(dest)
         log_info(f"Cache hit (valid) – skipping download: {dest.name}")
         return True
     except Exception as e:
@@ -111,19 +115,6 @@ def _cache_valid(dest: Path) -> bool:
         if dest.is_file(): dest.unlink()
         else: shutil.rmtree(dest, ignore_errors=True)
         return False
-
-
-def _stream_to_file(resp: requests.Response, dest: Path) -> int:
-    """Stream *resp* to *dest* with progress bar; return bytes written."""
-    dest.parent.mkdir(parents=True, exist_ok=True)
-    total, written = int(resp.headers.get("content-length", 0)), 0
-    with open(dest, "wb") as fh, tqdm(total=total, unit="B", unit_scale=True, desc=dest.name) as bar:
-        for chunk in resp.iter_content(1 << 20):
-            if chunk:
-                fh.write(chunk)
-                written += len(chunk)
-                bar.update(len(chunk))
-    return written
 
 
 def _validate_download(dest: Path, written: int, source_desc: str) -> None:
@@ -138,12 +129,6 @@ def _validate_download(dest: Path, written: int, source_desc: str) -> None:
         raise RuntimeError(f"Downloaded file is not valid AnnData: {e}") from e
 
 
-def _new_session() -> requests.Session:
-    """Return a requests.Session with a reasonable User-Agent."""
-    s = requests.Session()
-    s.headers.update({"User-Agent": "Mozilla/5.0 (compatible; sclfm-downloader/1.0)"})
-    return s
-
 # --------------------------------------------------------------------------- #
 # Generic URL download                                                        #
 # --------------------------------------------------------------------------- #
@@ -151,11 +136,11 @@ def stream_download(url: str, dest: Path) -> None:
     """Stream a remote file to *dest* with progress. Skips if valid cache."""
     if _cache_valid(dest):
         return
-    r = _new_session().get(url, stream=True, allow_redirects=True)
+    r = new_session().get(url, stream=True, allow_redirects=True)
     r.raise_for_status()
     if "text/html" in (r.headers.get("content-type") or "").lower():
         raise RuntimeError(f"Server returned HTML instead of file: {url}")
-    _validate_download(dest, _stream_to_file(r, dest), url)
+    _validate_download(dest, stream_to_file(r, dest), url)
 
 # --------------------------------------------------------------------------- #
 # Figshare download                                                           #
@@ -170,7 +155,7 @@ def stream_download_figshare(url: str, dest: Path) -> None:
     """Handle Figshare downloads (may serve HTML interstitial)."""
     if _cache_valid(dest):
         return
-    session = _new_session()
+    session = new_session()
     r = session.get(url, stream=True, allow_redirects=True)
     r.raise_for_status()
 
@@ -204,7 +189,7 @@ def stream_download_figshare(url: str, dest: Path) -> None:
         if "text/html" in (r.headers.get("content-type") or "").lower():
             raise RuntimeError(f"Figshare secondary URL also returned HTML: {real_url}")
 
-    _validate_download(dest, _stream_to_file(r, dest), f"Figshare: {url}")
+    _validate_download(dest, stream_to_file(r, dest), f"Figshare: {url}")
 
 # --------------------------------------------------------------------------- #
 # Google Drive download                                                       #
@@ -270,59 +255,25 @@ def stream_download_gdrive(file_id: str, dest: Path) -> None:
     r = _open_drive_stream(file_id)
     if "text/html" in (r.headers.get("content-type") or "").lower():
         raise RuntimeError("Google Drive returned HTML (virus-scan/permission page).")
-    _validate_download(dest, _stream_to_file(r, dest), f"Google Drive id={file_id}")
+    _validate_download(dest, stream_to_file(r, dest), f"Google Drive id={file_id}")
 
 # --------------------------------------------------------------------------- #
-# Verification & subsetting                                                   #
+# Verification                                                                #
 # --------------------------------------------------------------------------- #
 def verify_columns(ad, keys: Iterable[str]) -> None:
     """Abort if any *keys* are missing from ``ad.obs``."""
     if missing := [k for k in keys if k not in ad.obs.columns]:
         sys.exit(f"[ERROR] Missing keys in adata.obs: {missing}")
 
-
-def maybe_subset(full_path: Path, subset_path: Path, n: int | None) -> Path:
-    """Create ``subset_path`` with *n* random cells if given; return chosen path."""
-    if n is None:
-        return full_path
-    if subset_path.exists():
-        try:
-            read_adata(subset_path)
-            log_info(f"Subset already exists (valid) – skipping: {subset_path.name}")
-            return subset_path
-        except Exception as e:
-            log_warn(f"Subset cache unreadable – rebuilding: {subset_path.name} ({e})")
-            if subset_path.is_file():
-                subset_path.unlink(missing_ok=True)
-            else:
-                shutil.rmtree(subset_path, ignore_errors=True)
-    ad = read_adata(full_path)
-    if n >= ad.n_obs:
-        log_warn("subset_size ≥ n_obs – using full dataset")
-        return full_path
-    log_info(f"Writing subset ({n} cells) → {subset_path.name}")
-    subset = ad[random.sample(range(ad.n_obs), n)]
-    if getattr(subset, "isbacked", False):
-        subset = subset.to_memory()
-    write_adata(subset, subset_path)
-    return subset_path
-
 # --------------------------------------------------------------------------- #
 # CLI entry-point                                                             #
 # --------------------------------------------------------------------------- #
 def main() -> None:
     """Run the downloader from the command line."""
-    RANDOM_SEED = 42
-    random.seed(RANDOM_SEED)
-    log_info(f"Random seed: {RANDOM_SEED}")
-
     ap = argparse.ArgumentParser()
     ap.add_argument("--dataset", required=True, help="Dataset name (must match YAML 'name')")
     ap.add_argument("--cfg_yaml", required=True, help="YAML file with dataset configuration")
-    ap.add_argument("--cache_dir", required=True, help="Local cache for full/subset files")
     ap.add_argument("--out", required=True, help="Destination inside the task work dir")
-    ap.add_argument("--apply_ontology_mapping", type=lambda x: str(x).lower() == 'true',
-                    default=True, help="Apply ontology mapping (default: True)")
     args = ap.parse_args()
 
     log_info(f"Loading cfg_yaml: {args.cfg_yaml}")
@@ -335,11 +286,10 @@ def main() -> None:
     use_census = (source == "cellxgene_census") or ("census_dataset_id" in cfg)
     log_info(f"Download source: {'cellxgene_census' if use_census else 'url/drive'}")
 
-    cache_dir = Path(args.cache_dir)
-    ext = ".h5ad" if use_census else (Path(cfg["url"]).suffix or ".h5ad")
-    full_path = cache_dir / f"{cfg['name']}{ext}"
-    subset_path = cache_dir / f"{cfg['name']}_sub{cfg.get('subset_size')}{ext}"
-    log_info(f"Dataset: {cfg['name']} | Cache: {cache_dir} | Full: {full_path.name} | Subset: {subset_path.name}")
+    # Write directly into the Nextflow work dir; `storeDir` handles persistent caching.
+    dest = Path(args.out).resolve()
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    log_info(f"Dataset: {cfg['name']} | Destination: {dest}")
 
     # --- Download ---
     if use_census:
@@ -356,77 +306,36 @@ def main() -> None:
         except Exception as e:
             log_warn(f"Could not resolve Census build: {e}")
 
-        if not _cache_valid(full_path):
+        if not _cache_valid(dest):
             log_info(f"Downloading Census source h5ad for dataset_id={dataset_id}")
-            cellxgene_census.download_source_h5ad(str(dataset_id), to_path=str(full_path), census_version=census_version)
-            log_info(f"Census download complete: {full_path.name}")
+            cellxgene_census.download_source_h5ad(str(dataset_id), to_path=str(dest), census_version=census_version)
+            log_info(f"Census download complete: {dest.name}")
     else:
         if "url" not in cfg:
             sys.exit("[ERROR] Non-Census download requires `url` in YAML.")
         log_info(f"URL: {cfg['url']}")
         if file_id := extract_gdrive_file_id(cfg["url"]):
             log_info(f"Detected Google Drive, file_id={file_id}")
-            stream_download_gdrive(file_id, full_path)
+            stream_download_gdrive(file_id, dest)
         elif is_figshare_url(cfg["url"]):
             log_info("Detected Figshare link")
-            stream_download_figshare(cfg["url"], full_path)
+            stream_download_figshare(cfg["url"], dest)
         else:
-            stream_download(cfg["url"], full_path)
-        log_info(f"Download complete: {full_path.name}")
+            stream_download(cfg["url"], dest)
+        log_info(f"Download complete: {dest.name}")
 
     # --- Verify columns ---
     log_info("Verifying required columns...")
-    verify_columns(read_adata(full_path), [cfg["annotation_key"], cfg["batch_key"]])
-    log_info("Required columns verified")
-
-    # --- Subset ---
-    chosen = maybe_subset(full_path, subset_path, cfg.get("subset_size"))
-    log_info(f"Chosen input: {chosen.name}")
-
-    # --- Ontology mapping ---
-    if args.apply_ontology_mapping:
-        from util.download_helpers import apply_ontology_mapping_to_dataset
-        log_info("Applying ontology mapping...")
-        adata_input = read_adata(chosen)
-        if getattr(adata_input, "isbacked", False):
-            adata_input = adata_input.to_memory()
-        adata_mapped = apply_ontology_mapping_to_dataset(
-            adata=adata_input, annotation_key=cfg["annotation_key"],
-            cache_dir=cache_dir, verbose=True, origin=cfg['name'])
-        write_adata(adata_mapped, chosen)
-        log_info("Ontology mapping completed")
+    if dest.suffix == ".h5ad":
+        ad_backed = anndata.read_h5ad(dest, backed="r")
+        try:
+            verify_columns(ad_backed, [cfg["annotation_key"], cfg["batch_key"]])
+        finally:
+            ad_backed.file.close()
     else:
-        # Mapping disabled - check if we need to restore original annotations from cache
-        print("[INFO] Ontology mapping disabled - checking for original annotations...")
-        adata = read_adata(chosen)
-        if getattr(adata, "isbacked", False):
-            adata = adata.to_memory()
-        restored_any = False
-        
-        key = cfg["annotation_key"]
-        original_key = f"original_{key}"
-        if original_key in adata.obs.columns:
-            print(f"[INFO] Restoring '{key}' from '{original_key}' backup column...")
-            adata.obs[key] = adata.obs[original_key].copy()
-            restored_any = True
-        elif key in adata.obs.columns:
-            # Original column doesn't exist, assume current column is already original
-            print(f"[INFO] No backup found for '{key}' - assuming current values are original")
-        
-        if restored_any:
-            # Write the restored data back to cache
-            write_adata(adata, chosen)
-            log_info("Original annotations restored")
-        else:
-            log_info("Using annotations as-is")
-
-    # --- Link/copy to Nextflow work dir ---
-    dest = Path(args.out).resolve()
-    dest.parent.mkdir(parents=True, exist_ok=True)
-    if chosen.resolve() != dest:
-        log_info(f"Linking {chosen.name} → {dest}")
-        try: os.link(chosen, dest)
-        except OSError: shutil.copy2(chosen, dest)
+        # zarr path — anndata currently reads zarr fully; acceptable, rare in practice
+        verify_columns(read_adata(dest), [cfg["annotation_key"], cfg["batch_key"]])
+    log_info("Required columns verified")
     log_info(f"OK: {dest.name} ready")
 
 

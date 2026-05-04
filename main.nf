@@ -7,40 +7,131 @@ def loadYaml(String path) {
     return yaml.load(new File(path).text)
 }
 
+// Resolve the subset size for a model based on pattern matching
+def resolveSubsetSize(String model, Map categories) {
+    for (entry in categories) {
+        if (entry.key != 'default' && model.toLowerCase().contains(entry.key.toLowerCase())) {
+            return entry.value
+        }
+    }
+    return categories.get('default', 10000)
+}
+
+def isHumanOrganism(def organismVal) {
+    def org = (organismVal ?: 'Homo sapiens').toString().trim().toLowerCase()
+    return org == 'homo sapiens' || org == 'human'
+}
+
+def normalizeOrganismKey(def organismVal) {
+    return (organismVal ?: 'Homo sapiens').toString().trim().toLowerCase()
+}
+
+def modelAllowedForOrganism(String model, def organismVal, Map blacklistByOrganism) {
+    def orgKey = normalizeOrganismKey(organismVal)
+    def blockedModels = (blacklistByOrganism ?: [:]).get(orgKey, [])
+    return !blockedModels.collect { it.toString() }.contains(model)
+}
+
 process download {
     container params.container_image
     conda 'envs/download.yml'
+    storeDir "${params.cache_dir}/datasets/raw"
 
     input:
-    tuple val(dataset), val(cache_dir), path(cfg_yaml), val(apply_ontology_mapping)
+    tuple val(dataset), path(cfg_yaml)
 
-    // Tag appears after inputs; you can use `dataset`
     tag { dataset }
 
     output:
-    tuple(path("data/*_pp.h5ad"), val(dataset), path(cfg_yaml), val(cache_dir))
+    tuple(path("${dataset}_raw.h5ad"), val(dataset))
 
     script:
     """
     set -euo pipefail
-    # Step 1: Download the dataset
     download.py \
-      --dataset   "${dataset}" \
-      --cfg_yaml  "${cfg_yaml}" \
-      --out       "data/${dataset}_raw.h5ad" \
-      --cache_dir "${cache_dir}" \
-      --apply_ontology_mapping ${apply_ontology_mapping}
-    
-    # Step 2: Preprocess the dataset
-    preprocess.py \
-      --input "data/${dataset}_raw.h5ad" \
-      --output "data/${dataset}_pp.h5ad" \
-      --config "${cfg_yaml}" \
-      --summary "data/${dataset}_pp_summary.txt" \
-      --cache_dir "${cache_dir}"
-    
-    # Clean up raw file (optional - remove if you want to keep it)
-    rm "data/${dataset}_raw.h5ad"
+      --dataset  "${dataset}" \
+      --cfg_yaml "${cfg_yaml}" \
+      --out      "${dataset}_raw.h5ad"
+    """
+}
+
+process download_from_zenodo {
+    container params.container_image
+    conda 'envs/download.yml'
+    storeDir "${params.cache_dir}/datasets/subset"
+
+    input:
+    tuple val(dataset), val(subset_size), val(strategy), val(annotation_key), path(manifest)
+
+    tag { "${dataset}xsub${subset_size}x${strategy}" }
+
+    output:
+    tuple(path("${dataset}_sub${subset_size}_${strategy}.h5ad"), val(dataset), val(subset_size), val(strategy))
+
+    script:
+    """
+    set -euo pipefail
+    fetch_zenodo_subset.py \\
+      --manifest "${manifest}" \\
+      --dataset "${dataset}" \\
+      --subset_size ${subset_size} \\
+      --strategy "${strategy}" \\
+      --annotation_key "${annotation_key}" \\
+      --output "${dataset}_sub${subset_size}_${strategy}.h5ad"
+    """
+}
+
+process preprocess {
+    conda 'envs/download.yml'
+    storeDir "${params.cache_dir}/datasets/preprocessed"
+
+    input:
+    tuple path(raw_file), val(dataset), path(cfg_yaml), val(cache_dir), val(annotation_key), val(apply_mapping)
+
+    tag { dataset }
+
+    output:
+    tuple(path("${dataset}_pp.h5ad"), val(dataset), val(annotation_key))
+
+    script:
+    """
+    set -euo pipefail
+    preprocess.py \\
+      --input "${raw_file}" \\
+      --output "${dataset}_pp.h5ad" \\
+      --config "${cfg_yaml}" \\
+      --summary "${dataset}_pp_summary.txt" \\
+      --cache_dir "${cache_dir}" \\
+      --annotation_key "${annotation_key}" \\
+      --apply_ontology_mapping ${apply_mapping} \\
+      --dataset "${dataset}"
+    """
+}
+
+process subset {
+    conda 'envs/download.yml'
+    storeDir "${params.cache_dir}/datasets/subset"
+
+    input:
+    tuple path(pp_file), val(dataset), path(cfg_yaml), val(cache_dir), val(annotation_key), val(subset_size), val(min_cells_per_type), val(strategy)
+
+    tag { "${dataset}xsub${subset_size}x${strategy}" }
+
+    output:
+    tuple(path("${dataset}_sub${subset_size}_${strategy}.h5ad"), val(dataset), val(subset_size), val(strategy))
+
+    script:
+    """
+    set -euo pipefail
+    subset.py \\
+      --input "${pp_file}" \\
+      --output "${dataset}_sub${subset_size}_${strategy}.h5ad" \\
+      --annotation_key "${annotation_key}" \\
+      --subset_size ${subset_size} \\
+      --dataset "${dataset}" \\
+      --qc_dir "${cache_dir}/subset_qc/${dataset}/sub${subset_size}_${strategy}" \\
+      --min_cells_per_type ${min_cells_per_type} \\
+      --strategy "${strategy}"
     """
 }
 
@@ -73,7 +164,6 @@ process prepare_model {
     input:
     tuple val(model), path(model_dir)
 
-    // Use the model name in the tag
     tag { model }
 
     output:
@@ -81,12 +171,10 @@ process prepare_model {
 
     script:
     """
-    # check if the model_dir exists
     if [ ! -d "${model_dir}" ]; then
         echo "Model directory ${model_dir} does not exist"
         exit 1
     fi
-    # Check if prepare.sh exists and run it if it does
     if [ -f "${model_dir}/src/prepare.sh" ]; then
         echo "Running preparation script for ${model}..."
         cd ${model_dir}/src
@@ -101,86 +189,46 @@ process run_model {
     container params.container_image
     
     input:
-    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size)
+    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size), val(strategy)
 
-    // Same tag format as run_model
-    tag { "${dataset}×${model}" }
+    tag { "${dataset}x${model}x${strategy}" }
 
     conda { "envs/models/${model}.yml" }
 
+    when:
+    // NOTE: `when:` is evaluated before task inputs are staged into the work dir.
+    // So we must resolve config via project-relative path, not `cfg_yaml` (which would be a staged filename).
+    def cfg = loadYaml("datasets/${dataset}.yml")
+    def organism = cfg?.get('organism')
+    def blacklist = params.model_blacklist_by_organism ?: [:]
+    modelAllowedForOrganism(model, organism, blacklist)
+
     output:
-    tuple(path("results/*/*/*/predictions.csv"), val(dataset), val(model), val(cache_dir))
+    tuple(path("results/*/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir))
 
     script:
+    def apiKeyExport = params.openrouter_api_key ? "export API_KEY='${params.openrouter_api_key}'" : ''
     """
-    echo "Subset size of ${dataset}: ${subset_size}"
+    ${apiKeyExport}
+    echo "Subset size of ${dataset}: ${subset_size} (strategy: ${strategy})"
 
-    cache_base="${cache_dir}/models/predictions/${model}/${dataset}/${subset_size}"
-    results_dir=./results/${model}/${dataset}/${subset_size}
-    
+    cache_base="${cache_dir}/models/predictions/${model}/${dataset}/${subset_size}_${strategy}"
+    results_dir=./results/${model}/${dataset}/${subset_size}_${strategy}
+
     mkdir -p \${results_dir}
 
-    if [ ! -f \${cache_base}/predictions.csv ]; then
-        # Run model and produce predictions
+    if ! ls \${cache_base}/predictions*.csv 1>/dev/null 2>&1; then
         mkdir -p \${cache_base}
         bash "${model_dir}/src/run.sh" \
             "${data_file}" \
             \${results_dir}/predictions.csv \
             "${cfg_yaml}" \
             "${cache_dir}/models"
-
-        # Cache predictions
-        cp \${results_dir}/predictions.csv \${cache_base}/
+        cp \${results_dir}/predictions*.csv \${cache_base}/
     else
-        # Use cached predictions
-        cp \${cache_base}/predictions.csv \${results_dir}/
-        echo "Cell type prediction already exists for ${dataset} × ${model} (subset ${subset_size})."
-        echo "To rerun, delete: \${cache_base}/predictions.csv"
-    fi
-    """
-}
-
-process run_model_throttled {
-    container params.container_image
-    
-    input:
-    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size)
-
-    // Same tag format as run_model
-    tag { "${dataset}×${model}" }
-
-    conda { "envs/models/${model}.yml" }
-
-    publishDir(path: 'results/', mode: 'copy', overwrite: 'true', pattern: '*.csv')
-
-    output:
-    tuple(path("results/*/*/*/predictions.csv"), val(dataset), val(model), val(cache_dir))
-
-    script:
-    """
-    echo "Subset size of ${dataset}: ${subset_size}"
-
-    cache_base="${cache_dir}/models/predictions/${model}/${dataset}/${subset_size}"
-    results_dir=./results/${model}/${dataset}/${subset_size}
-    
-    mkdir -p \${results_dir}
-
-    if [ ! -f \${cache_base}/predictions.csv ]; then
-        # Run model and produce predictions
-        mkdir -p \${cache_base}
-        bash "${model_dir}/src/run.sh" \
-            "${data_file}" \
-            \${results_dir}/predictions.csv \
-            "${cfg_yaml}" \
-            "${cache_dir}/models"
-
-        # Cache predictions
-        cp \${results_dir}/predictions.csv \${cache_base}/
-    else
-        # Use cached predictions
-        cp \${cache_base}/predictions.csv \${results_dir}/
-        echo "Cell type prediction already exists for ${dataset} × ${model} (subset ${subset_size})."
-        echo "To rerun, delete: \${cache_base}/predictions.csv"
+        cp \${cache_base}/predictions*.csv \${results_dir}/
+        echo "Cell type prediction already exists for ${dataset} x ${model} (subset ${subset_size}, strategy ${strategy})."
+        echo "To rerun, delete: \${cache_base}/predictions*.csv"
     fi
     """
 }
@@ -188,23 +236,23 @@ process run_model_throttled {
 process evaluate_annotation {
     container params.container_image
     conda 'envs/evaluation.yml'
+    errorStrategy 'ignore'
 
     input:
     tuple path(predictions), val(dataset), val(model), val(cache_dir), val(apply_ontology_mapping)
 
-    // Tag with dataset and model for easy tracing
-    tag { "${dataset}×${model}" }
+    tag { "${dataset}x${model}" }
 
-    publishDir(path: 'results/', mode: 'copy', overwrite: 'true')
+    publishDir(path: 'results/', mode: 'copy', overwrite: true)
 
     output:
     path "*.json"
+    path "**/*.pdf", optional: true
 
     script:
     """
-    # Convert the prediction files to a comma-separated string
     pred_files=\$(echo ${predictions} | tr ' ' ',')
-    evaluate.py --pred "\$pred_files" --max-unreviewed-ratio 1.0 --out ${dataset}_${model}.json --cache_dir ${cache_dir} --apply_ontology_mapping ${apply_ontology_mapping}
+    evaluate.py --pred "\$pred_files" --out ${dataset}_${model}.json --cache_dir ${cache_dir} --apply_ontology_mapping ${apply_ontology_mapping} --max-unmapped-ratio 0.99
     """
 }
 
@@ -212,7 +260,7 @@ process combine_results {
     container params.container_image
     conda 'envs/evaluation.yml'
 
-    publishDir(path: 'results/', mode: 'copy', overwrite: 'false')
+    publishDir(path: 'results/', mode: 'copy', overwrite: true)
 
     input:
     path(json_path)
@@ -223,104 +271,175 @@ process combine_results {
 
     script:
     """
-    # Aggregate results (only level 0 for now):
     aggregate.py --input ${json_path} --output ./ --level 0 --datasets ${datasets}
     """
 }
 
 workflow {
-    Channel
-        .fromList(params.datasets)
-        .map { dataset -> tuple(dataset, file(params.cache_dir), file("datasets/${dataset}.yml"), params.apply_ontology_mapping) }
-        .set { download_input }
+    // --- Upfront Zenodo manifest validation ---
 
-    download_out = download(download_input)
+    if (params.download_from_zenodo) {
+        def zenodo_manifest = loadYaml("datasets/zenodo_manifest.yml")
+        def zenodo_available = zenodo_manifest.files.keySet()
+        def zenodo_sizes = params.models.collect { resolveSubsetSize(it, params.subset_categories) }.unique()
+        def missing = []
+        params.datasets.each { ds ->
+            zenodo_sizes.each { sz ->
+                def fname = "${ds}_sub${sz}_${params.subset_strategy}.h5ad".toString()
+                if (!zenodo_available.contains(fname)) missing << fname
+            }
+        }
+        if (missing) {
+            log.error "download_from_zenodo=true but these files are not in datasets/zenodo_manifest.yml:"
+            missing.each { log.error "  - ${it}" }
+            log.error "Either disable download_from_zenodo, or adjust datasets / subset_categories / subset_strategy."
+            System.exit(1)
+        }
+    }
 
-    Channel.fromPath(params.cache_dir)
-            .set { cache_dir_ch }
+    // --- Model preparation (runs first so unique_sizes is available to both data pipelines) ---
 
-    download_out.map { h5ad_file, dataset, cfg_yaml, cache_dir -> h5ad_file }
-                .collect()
-                .set { h5ad_file_ch }
+    def hasOpenRouter = (params.models ?: []).any { it.toLowerCase().contains('openrouter') }
+    if (hasOpenRouter && !params.openrouter_api_key) {
+        log.warn "OpenRouter model(s) selected but no API key configured. Set the key via one of:"
+        log.warn "  1. export OPENROUTER_API_KEY=sk-or-v1-...  (recommended, read by nextflow.config)"
+        log.warn "  2. --openrouter_api_key VALUE  on the nextflow command line"
+    }
 
-    download_out.map { h5ad_file, dataset, cfg_yaml, cache_dir -> cfg_yaml }
-                .collect()
-                .set { config_file_ch }
-    
-    // Create a channel with the apply_ontology_mapping flag for evaluation
-    Channel.value(params.apply_ontology_mapping)
-            .set { apply_mapping_ch }
-
-    // cell_types = extract_cell_types(h5ad_file_ch, config_file_ch, cache_dir_ch)
-
-    // Prepare models (handles setup like git cloning, etc.)
     Channel
         .fromList(params.models)
         .map { model -> tuple(model, file("models/${model}")) }
         .set { prepare_input }
-    
+
     prepared_models = prepare_model(prepare_input)
-    
-    // Combine data with prepared models
-    download_out
+
+    Channel
+        .fromList(params.models)
+        .map { model -> tuple(model, resolveSubsetSize(model, params.subset_categories)) }
+        .set { model_sizes }
+
+    model_sizes
+        .map { model, size -> size }
+        .unique()
+        .set { unique_sizes }
+
+    // --- Data pipeline: either download→preprocess→subset OR fetch from Zenodo ---
+
+    if (params.download_from_zenodo) {
+        Channel
+            .fromList(params.datasets)
+            .combine(unique_sizes)
+            .map { ds, sz ->
+                def cfg = loadYaml("datasets/${ds}.yml")
+                tuple(ds, sz, params.subset_strategy, cfg.annotation_key, file("datasets/zenodo_manifest.yml"))
+            }
+            .set { zenodo_input }
+
+        subset_out = download_from_zenodo(zenodo_input)
+    } else {
+        Channel
+            .fromList(params.datasets)
+            .map { dataset -> tuple(dataset, file("datasets/${dataset}.yml")) }
+            .set { download_input }
+
+        download_out = download(download_input)
+
+        download_out
+            .map { raw_file, dataset ->
+                def cfg = loadYaml("datasets/${dataset}.yml")
+                def apply_mapping = cfg.containsKey('apply_ontology_mapping') ? cfg.apply_ontology_mapping : params.apply_ontology_mapping
+                tuple(raw_file, dataset, file("datasets/${dataset}.yml"), file(params.cache_dir), cfg.annotation_key, apply_mapping)
+            }
+            .set { preprocess_input }
+
+        preprocess_out = preprocess(preprocess_input)
+
+        preprocess_out
+            .combine(unique_sizes)
+            .map { pp_file, dataset, annotation_key, subset_size ->
+                tuple(pp_file, dataset, file("datasets/${dataset}.yml"), file(params.cache_dir), annotation_key, subset_size, params.min_cells_per_type, params.subset_strategy)
+            }
+            .set { subset_input }
+
+        subset_out = subset(subset_input)
+    }
+
+    // --- Combine subsets with models ---
+
+    model_sizes.set { model_size_pairs }
+
+    subset_out
         .combine(prepared_models)
-        .map { data_file, dataset, cfg_yaml, cache_dir, model, model_dir ->
-            def cfg = loadYaml("datasets/${dataset}.yml")
-            tuple(data_file, model_dir, dataset, cfg_yaml, model, cache_dir, cfg.subset_size)
+        .combine(model_size_pairs)
+        .filter { data_file, dataset, data_subset_size, data_strategy, model_name, model_dir, model_name2, model_subset_size ->
+            model_name2 == model_name && data_subset_size == model_subset_size
+        }
+        .map { data_file, dataset, data_subset_size, data_strategy, model_name, model_dir, model_name2, model_subset_size ->
+            tuple(data_file, model_dir, dataset, file("datasets/${dataset}.yml"), model_name, file(params.cache_dir), data_subset_size, data_strategy)
         }
         .set { model_input }
-    
-    // Run the models (all models should output predictions.csv)
-    // OpenRouter LLMs are request-limited, so we currently run them in a separate lane via run_model_throttled,
-    // while all other models can be run in parallel via run_model
-    def throttled_in = model_input.filter { t -> (params.throttled_models ?: []).contains(t[4]) }
-    def normal_in    = model_input.filter { t -> !(params.throttled_models ?: []).contains(t[4]) }
-    predictions_fast = run_model(normal_in)
-    predictions_slow = run_model_throttled(throttled_in)
-    predictions      = predictions_fast.mix(predictions_slow)
 
-    // Combine predictions with the apply_ontology_mapping flag
+    predictions = run_model(model_input)
+
+    // --- Evaluation ---
+
+    Channel.value(params.apply_ontology_mapping)
+            .set { apply_mapping_ch }
+
     predictions_with_flag = predictions.combine(apply_mapping_ch)
                                      .map { pred, dataset, model, cache_dir, apply_flag ->
                                          tuple(pred, dataset, model, cache_dir, apply_flag)
                                      }
-    
-    jsons = evaluate_annotation(predictions_with_flag)
-    
-    // Get dataset YAML files for aggregation (use filenames as dataset names)
+
+    eval_out = evaluate_annotation(predictions_with_flag)
+
     Channel
         .fromList(params.datasets)
         .map { dataset -> file("datasets/${dataset}.yml") }
         .collect()
         .set { datasets }
 
-    combine_results(jsons.collect(), datasets)
+    combine_results(eval_out[0].collect(), datasets)
 }
 
 workflow.onComplete {
-    // Check for ontology mapping warnings
     def warningFile = file("${params.cache_dir}/ONTOLOGY_MAPPING_WARNING.txt")
     if (warningFile.exists()) {
         println ""
-        println "🚨" * 50
-        println "⚠️  ONTOLOGY MAPPING WARNING: New cell type mappings detected!"
-        println "📄 Please check: ${warningFile.toString()}"
-        println "⚠️  ACTION REQUIRED: Review and verify mappings before using results!"
-        println "🚨" * 50
+        println "=" * 70
+        println "  ONTOLOGY MAPPING WARNING: New cell type mappings detected!"
+        println "  Please check: ${warningFile.toString()}"
+        println "  ACTION REQUIRED: Review and verify mappings before using results!"
+        println "=" * 70
         println ""
-        
-        // Archive the warning file with timestamp to prevent showing it again
+
         def timestamp = new Date().format('yyyy-MM-dd_HH-mm-ss')
         def archivedWarningFile = file("${params.cache_dir}/ONTOLOGY_MAPPING_WARNING_${timestamp}.txt")
         warningFile.renameTo(archivedWarningFile)
-        println "📁 Warning file archived as: ${archivedWarningFile.toString()}"
+        println "Warning file archived as: ${archivedWarningFile.toString()}"
     }
-    
-    // Standard completion message
+
+    def reviewFile = file("${params.cache_dir}/ONTOLOGY_REVIEW_PENDING.txt")
+    if (reviewFile.exists()) {
+        println ""
+        println "=" * 70
+        println "  ONTOLOGY REVIEW PENDING: One or more eval tasks were skipped"
+        println "  because >10% of predictions had unreviewed mappings."
+        println "  Details: ${reviewFile.toString()}"
+        println "  ACTION: Review mappings, set 'reviewed=True', then run with -resume."
+        println "=" * 70
+        println ""
+
+        def reviewTimestamp = new Date().format('yyyy-MM-dd_HH-mm-ss')
+        def archivedReviewFile = file("${params.cache_dir}/ONTOLOGY_REVIEW_PENDING_${reviewTimestamp}.txt")
+        reviewFile.renameTo(archivedReviewFile)
+        println "Pending-review file archived as: ${archivedReviewFile.toString()}"
+    }
+
     println "Pipeline completed at: ${new Date()}"
     if (workflow.success) {
-        println "✅ Pipeline completed successfully!"
+        println "Pipeline completed successfully!"
     } else {
-        println "❌ Pipeline completed with errors"
+        println "Pipeline completed with errors"
     }
 }

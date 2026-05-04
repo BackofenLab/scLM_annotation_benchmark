@@ -274,7 +274,7 @@ def main(args):
     # Remove .json extension first, then split from left (dataset has no underscores, model may have them)
     filename_stem = Path(args.out).stem  # e.g., "HIHA_c2s_scale_2B"
     dataset, model = filename_stem.split('_', 1)  # Split from left: ['HIHA', 'c2s_scale_2B']
-    output_dir = Path(args.out).parent / dataset
+    output_dir = Path(args.out).parent / dataset / model
     output_dir.mkdir(parents=True, exist_ok=True)
     
     # Set up cache directory and CL ontology path
@@ -321,8 +321,11 @@ def main(args):
         # Remove trailing periods from predicted labels before any other processing
         print(f"\nPreprocessing predicted labels...")
         df = remove_trailing_periods_from_predictions(df, pred_col, verbose=True)
-        # make all predictions lowercase
+        # make all labels lowercase for consistent comparison
         df[pred_col] = df[pred_col].str.lower()
+        for col in ['true_labels', 'true_labels_1', 'true_labels_2', 'true_labels_3']:
+            if col in df.columns:
+                df[col] = df[col].str.lower()
         
         # Filter predictions by review status before applying ontology mapping (only if mapping is enabled)
         if args.apply_ontology_mapping:
@@ -344,6 +347,9 @@ def main(args):
             except RuntimeError as e:
                 print(f"❌ ERROR: {e}")
                 print("Evaluation stopped due to too many unreviewed predictions.")
+                marker = cache_dir / "ONTOLOGY_REVIEW_PENDING.txt"
+                with marker.open("a") as f:
+                    f.write(f"[{dataset} x {model}]\n{e}\n\n")
                 continue
             except Exception as e:
                 print(f"Warning: Could not filter predictions by review status: {e}")

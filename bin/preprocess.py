@@ -137,8 +137,9 @@ def preprocess_adata(
     initial_cells = adata.n_obs
     initial_genes = adata.n_vars
 
-    qc_plots_path = Path(qc_plots_path) if qc_plots_path else None
-    pdf = PdfPages(qc_plots_path)
+    qc_plots_dir = Path(qc_plots_path).parent if qc_plots_path else None
+    # Derive a filename prefix from the plots path (e.g. "HIHA_pp_qc_plots")
+    qc_plots_prefix = Path(qc_plots_path).stem if qc_plots_path else None
 
     # Guarantee that downstream always has a consistent `gene_names` column.
     used_gene_names_source = ensure_gene_names_column(adata, gene_names_col)
@@ -173,7 +174,8 @@ def preprocess_adata(
         nmads_mt=nmads_mt,
         pct_counts_mt_threshold=pct_counts_mt_threshold,
         percent_top=percent_top,
-        pdf=pdf,
+        plots_dir=qc_plots_dir,
+        plots_prefix=qc_plots_prefix,
     )
     logger.info(f"After QC: {adata.n_obs} cells × {adata.n_vars} genes")
 
@@ -214,17 +216,28 @@ def preprocess_adata(
 
     # Generate post-preprocessing QC plots
     logger.info("Generating QC plots after preprocessing...")
+    after_png = qc_plots_dir / f"{qc_plots_prefix}_after.png" if qc_plots_dir else None
     plot_preprocessing_qc(
         adata,
-        pdf=pdf,
         page_title="QC Summary After Preprocessing",
         initial_cells=initial_cells,
         initial_genes=initial_genes,
+        save_path=after_png,
     )
 
-    if pdf:
-        pdf.close()
-        logger.info(f"QC plots saved to {qc_plots_path}")
+    # Combine before/after PNGs into a 2-page PDF
+    if qc_plots_dir:
+        before_png = qc_plots_dir / f"{qc_plots_prefix}_before.png"
+        pdf_path = qc_plots_dir / f"{qc_plots_prefix}.pdf"
+        from PIL import Image
+        pages = []
+        for png in [before_png, after_png]:
+            if png and png.exists():
+                pages.append(Image.open(png).convert("RGB"))
+        if pages:
+            pages[0].save(pdf_path, save_all=True, append_images=pages[1:], resolution=300)
+            logger.info(f"Combined QC PDF saved to {pdf_path}")
+        logger.info(f"QC plots saved to {qc_plots_dir}")
 
     logger.info("Preprocessing complete!")
     logger.info(f"Final shape: {adata.n_obs} cells × {adata.n_vars} genes")
@@ -312,6 +325,25 @@ Examples:
         help="Directory to save QC plots (e.g., ${cache_dir}/plots/)",
     )
 
+    parser.add_argument(
+        "--annotation_key",
+        type=str,
+        default=None,
+        help="Cell type annotation column (required if --apply_ontology_mapping is true)",
+    )
+    parser.add_argument(
+        "--apply_ontology_mapping",
+        type=lambda x: str(x).lower() == "true",
+        default=False,
+        help="Apply ontology mapping to adata.obs[annotation_key] (default: false)",
+    )
+    parser.add_argument(
+        "--dataset",
+        type=str,
+        default=None,
+        help="Dataset name (used as origin tag in ontology mapping warnings)",
+    )
+
     # QC parameters
     parser.add_argument(
         "--nmads_main",
@@ -343,13 +375,13 @@ Examples:
     parser.add_argument(
         "--min_cells",
         type=int,
-        default=1,
+        default=10,
         help="Minimum cells per gene for filtering (default: 10)",
     )
     parser.add_argument(
         "--min_genes",
         type=int,
-        default=1,
+        default=200,
         help="Minimum genes per cell for filtering (default: 200)",
     )
 
@@ -407,7 +439,7 @@ Examples:
     elif output_filename.endswith('.zarr'):
         output_filename = output_filename[:-5]
     
-    qc_plots_path = args.cache_dir / "plots" / f"{output_filename}_qc_plots.pdf"
+    qc_plots_path = args.cache_dir / "plots" / f"{output_filename}_qc_plots"
     qc_plots_path.parent.mkdir(parents=True, exist_ok=True)
 
     # Read input file
@@ -483,11 +515,36 @@ Examples:
     
     adata_processed.obs = _sanitize_for_h5ad(adata_processed.obs)
     adata_processed.var = _sanitize_for_h5ad(adata_processed.var)
-    
+
+    if args.apply_ontology_mapping:
+        if not args.annotation_key or not args.dataset:
+            raise SystemExit(
+                "[ERROR] --apply_ontology_mapping true requires both --annotation_key and --dataset"
+            )
+        logger.info("Applying ontology mapping to '%s'...", args.annotation_key)
+        # Import here so preprocess remains importable without ontology deps when disabled
+        from util.download_helpers import apply_ontology_mapping_to_dataset
+        adata_processed = apply_ontology_mapping_to_dataset(
+            adata=adata_processed,
+            annotation_key=args.annotation_key,
+            cache_dir=args.cache_dir,
+            verbose=True,
+            origin=args.dataset,
+        )
+        # Re-sanitize obs/var because ontology mapping may add categorical columns
+        adata_processed.obs = _sanitize_for_h5ad(adata_processed.obs)
+        adata_processed.var = _sanitize_for_h5ad(adata_processed.var)
+    elif args.annotation_key:
+        # Pass-through: if an original_<annotation_key> backup exists, restore from it
+        original_key = f"original_{args.annotation_key}"
+        if original_key in adata_processed.obs.columns:
+            logger.info("Restoring '%s' from '%s' backup column...", args.annotation_key, original_key)
+            adata_processed.obs[args.annotation_key] = adata_processed.obs[original_key].copy()
+
     if args.output.suffix == ".zarr":
         adata_processed.write_zarr(args.output)
     else:
-        adata_processed.write_h5ad(args.output)
+        adata_processed.write_h5ad(args.output, compression="gzip")
 
     logger.info("Done!")
 

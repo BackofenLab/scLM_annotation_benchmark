@@ -2,7 +2,6 @@
 name: demo        # used in channel / filenames
 url:  [internal link removed]
 format: h5ad
-subset_size: null                # null → use full dataset
 batch_key: method
 # Optional metadata for InstructCell - can use either:
 #   Option 1: Direct values (applied to all cells in dataset)

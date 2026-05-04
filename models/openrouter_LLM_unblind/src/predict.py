@@ -58,6 +58,7 @@ def load_data(data_path: str):
     return adata
 
 
+
 # ---------------- Prompting ----------------
 class CustomPromptFormatter(PromptFormatter):
     def __init__(self, task_name: str, input_prompt: str, answer_template: str, top_k_genes: int):
@@ -119,45 +120,27 @@ def query_openrouter_model(
     sysprompt: str,
     api_key: str,
     *,
-    provider_order: List[str] | None = None,
-    provider_only: List[str] | None = None,
-    provider_ignore: List[str] | None = None,
-    provider_allow_fallbacks: bool | None = None,
-    provider_require_parameters: bool | None = None,
-    provider_data_collection: str | None = None,
-    provider_sort: str | None = None,
-    provider_quantizations: List[str] | None = None,
-    provider_max_price_prompt: float | None = None,
-    provider_max_price_completion: float | None = None,
-    max_tokens: int | None = None,
-    temperature: float | None = None,
-    top_p: float | None = None,
-    top_k: int | None = None,
-    seed: int | None = None,
-    frequency_penalty: float | None = None,
-    presence_penalty: float | None = None,
-    repetition_penalty: float | None = None,
-    stop: Union[str, List[str], None] = None,
-    stream: bool = False,
-    response_format: dict | None = None,
-    reasoning_effort: str | None = None,
-    reasoning_max_tokens: int | None = None,
-    reasoning_exclude: bool | None = None,
-    http_referer: str | None = None,
-    x_title: str | None = None,
-    max_retries: int = 3,
+    provider_cfg: Dict[str, Any] | None = None,
+    generation_cfg: Dict[str, Any] | None = None,
+    reasoning_cfg: Dict[str, Any] | None = None,
+    max_retries: int = 5,
     backoff: float = 1.5,
     prepend_reasoning: bool = False,
 ) -> str:
+    """Send a single chat completion request to OpenRouter with retry logic."""
     url = "https://openrouter.ai/api/v1/chat/completions"
+    provider_cfg = provider_cfg or {}
+    generation_cfg = generation_cfg or {}
+    reasoning_cfg = reasoning_cfg or {}
+
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json",
     }
-    if http_referer:
-        headers["HTTP-Referer"] = http_referer
-    if x_title:
-        headers["X-Title"] = x_title
+    if generation_cfg.get("http_referer"):
+        headers["HTTP-Referer"] = generation_cfg["http_referer"]
+    if generation_cfg.get("x_title"):
+        headers["X-Title"] = generation_cfg["x_title"]
 
     data: Dict[str, Any] = {
         "model": model,
@@ -167,67 +150,92 @@ def query_openrouter_model(
         ],
     }
 
-    provider: dict = {}
-    if provider_order:            provider["order"] = provider_order
-    if provider_only:             provider["only"] = provider_only
-    if provider_ignore:           provider["ignore"] = provider_ignore
-    if provider_allow_fallbacks is not None: provider["allow_fallbacks"] = provider_allow_fallbacks
-    if provider_require_parameters is not None: provider["require_parameters"] = provider_require_parameters
-    if provider_data_collection is not None:    provider["data_collection"] = provider_data_collection
-    if provider_sort:             provider["sort"] = provider_sort
-    if provider_quantizations:    provider["quantizations"] = provider_quantizations
-    if (provider_max_price_prompt is not None) or (provider_max_price_completion is not None):
-        provider["max_price"] = {
-            k: v for k, v in {
-                "prompt": provider_max_price_prompt,
-                "completion": provider_max_price_completion,
-            }.items() if v is not None
-        }
+    # Build provider block — filter out None/empty values
+    provider = {}
+    for key in ("order", "only", "ignore", "quantizations"):
+        val = provider_cfg.get(key)
+        if val:
+            provider[key] = val
+    for key in ("allow_fallbacks", "require_parameters", "data_collection", "sort"):
+        val = provider_cfg.get(key)
+        if val is not None:
+            provider[key] = val
+    # max_price sub-dict
+    max_price = {}
+    if provider_cfg.get("max_price_prompt") is not None:
+        max_price["prompt"] = provider_cfg["max_price_prompt"]
+    if provider_cfg.get("max_price_completion") is not None:
+        max_price["completion"] = provider_cfg["max_price_completion"]
+    if max_price:
+        provider["max_price"] = max_price
     if provider:
         data["provider"] = provider
 
-    if max_tokens is not None:        data["max_tokens"] = max_tokens
-    if temperature is not None:       data["temperature"] = temperature
-    if top_p is not None:             data["top_p"] = top_p
-    if top_k is not None:             data["top_k"] = top_k
-    if seed is not None:              data["seed"] = seed
-    if frequency_penalty is not None: data["frequency_penalty"] = frequency_penalty
-    if presence_penalty is not None:  data["presence_penalty"] = presence_penalty
-    if repetition_penalty is not None:data["repetition_penalty"] = repetition_penalty
-    if stop is not None:              data["stop"] = stop
-    if stream:                        data["stream"] = True
-    if response_format is not None:   data["response_format"] = response_format
+    # Generation params — add non-None values
+    for key in ("max_tokens", "temperature", "top_p", "top_k", "seed",
+                "frequency_penalty", "presence_penalty", "repetition_penalty", "stop"):
+        val = generation_cfg.get(key)
+        if val is not None:
+            data[key] = val
+    if generation_cfg.get("stream"):
+        data["stream"] = True
+    if generation_cfg.get("response_format") is not None:
+        data["response_format"] = generation_cfg["response_format"]
 
-    reasoning: Dict[str, Any] = {}
-    if reasoning_effort is not None:
-        reasoning["effort"] = reasoning_effort
-    if reasoning_max_tokens is not None:
-        if "effort" in reasoning:
-            logger.warning("Both reasoning_effort and reasoning_max_tokens supplied; using max_tokens.")
-            reasoning.pop("effort", None)
-        reasoning["max_tokens"] = reasoning_max_tokens
-    if reasoning_exclude is not None:
-        reasoning["exclude"] = reasoning_exclude
-    if reasoning:
-        data["reasoning"] = reasoning
+    # Reasoning block — effort and max_tokens are mutually exclusive in the
+    # OpenRouter API.  When both are configured globally, pick the right one
+    # based on the model provider:
+    #   • Anthropic / Google models → use max_tokens (effort not supported)
+    #   • Non-reasoning models (meta-llama, mistralai) → skip reasoning entirely
+    #   • Mandatory-reasoning models (deepseek-r1) → only send exclude if set
+    #   • All other reasoning models → use effort
+    _NON_REASONING_PREFIXES = ("meta-llama", "mistralai")
+    _MANDATORY_REASONING_PATTERNS = ("deepseek-r1",)
 
-    # --- send with structured error logging and 429/5xx backoff ---
+    provider_prefix = model.split("/")[0] if "/" in model else ""
+    model_suffix = model.split("/")[-1] if "/" in model else model
+
+    # Skip reasoning entirely for non-reasoning models
+    if provider_prefix in _NON_REASONING_PREFIXES:
+        pass  # no reasoning block
+    elif any(p in model_suffix for p in _MANDATORY_REASONING_PATTERNS):
+        # Mandatory reasoning — only send exclude (effort/max_tokens ignored)
+        reasoning = {}
+        if reasoning_cfg.get("exclude") is not None:
+            reasoning["exclude"] = reasoning_cfg["exclude"]
+        if reasoning:
+            data["reasoning"] = reasoning
+    else:
+        # Optional reasoning — pick effort vs max_tokens per provider
+        reasoning = {}
+        if reasoning_cfg.get("enabled") is not None:
+            reasoning["enabled"] = reasoning_cfg["enabled"]
+
+        has_effort = reasoning_cfg.get("effort") is not None
+        has_max_tokens = reasoning_cfg.get("max_tokens") is not None
+
+        if has_effort and has_max_tokens:
+            if provider_prefix in ("anthropic", "google"):
+                reasoning["max_tokens"] = reasoning_cfg["max_tokens"]
+            else:
+                reasoning["effort"] = reasoning_cfg["effort"]
+        elif has_effort:
+            reasoning["effort"] = reasoning_cfg["effort"]
+        elif has_max_tokens:
+            reasoning["max_tokens"] = reasoning_cfg["max_tokens"]
+
+        if reasoning_cfg.get("exclude") is not None:
+            reasoning["exclude"] = reasoning_cfg["exclude"]
+        if reasoning:
+            data["reasoning"] = reasoning
+
+    # Send with retry + adaptive backoff
     last_err = None
     for attempt in range(1, max_retries + 1):
         try:
             r = requests.post(url, headers=headers, json=data, timeout=90)
             rid = r.headers.get("x-request-id") or r.headers.get("openrouter-request-id")
-            rtext = r.text[:2000]  # cap for logs
-
-            # # Information for debugging
-            # logger.info("request")
-            # logger.info(headers)
-            # logger.info(data)
-            # logger.info("response")
-            # logger.info(str(r))
-            # logger.info(str(r.headers))
-            # logger.info(str(r.status_code))
-            # logger.info(str(r.json()))
+            rtext = r.text[:2000]
 
             if r.status_code == 200:
                 js = r.json()
@@ -237,37 +245,34 @@ def query_openrouter_model(
                     content = f"<think>{msg['reasoning']}</think>\n{content}"
                 return content
 
-            # Log the exact failure
             logger.error(
                 f"OpenRouter HTTP {r.status_code} (attempt {attempt}/{max_retries}) "
-                f"req_id={rid} model={model} provider={provider.get('order') if provider else None} body={rtext}"
+                f"req_id={rid} model={model} body={rtext}"
             )
 
-            # 429: respect Retry-After if present
             if r.status_code == 429:
                 ra = r.headers.get("retry-after")
-                sleep_s = float(ra) if ra else backoff * attempt
+                sleep_s = float(ra) if ra else backoff * (2 ** (attempt - 1))
+                logger.info(f"Rate limited, sleeping {sleep_s:.1f}s")
                 time.sleep(sleep_s)
                 last_err = rtext
                 continue
 
-            # 5xx: transient
             if 500 <= r.status_code < 600:
-                time.sleep(backoff * attempt)
+                time.sleep(backoff * (2 ** (attempt - 1)))
                 last_err = rtext
                 continue
 
-            # 4xx other than 429 are not retriable
             last_err = rtext
             break
 
         except requests.Timeout as e:
             logger.error(f"Timeout (attempt {attempt}/{max_retries}) model={model}: {e}")
-            time.sleep(backoff * attempt)
+            time.sleep(backoff * (2 ** (attempt - 1)))
             last_err = str(e)
         except Exception as e:
             logger.error(f"Request error (attempt {attempt}/{max_retries}) model={model}: {e}")
-            time.sleep(backoff * attempt)
+            time.sleep(backoff * (2 ** (attempt - 1)))
             last_err = str(e)
 
     raise RuntimeError(f"OpenRouter call failed after {max_retries} attempts. Last error: {last_err}")
@@ -283,40 +288,13 @@ def run_OpenRouter_model_prediction(
     *,
     top_k_genes: int = 200,
     max_samples: int | None = None,
-    max_workers: int = 3,
-    delay_between_requests: float = 1.2,
-    # Provider
-    provider_order: List[str] | None = None,
-    provider_only: List[str] | None = None,
-    provider_ignore: List[str] | None = None,
-    provider_allow_fallbacks: bool | None = None,
-    provider_require_parameters: bool | None = None,
-    provider_data_collection: str | None = None,
-    provider_sort: str | None = None,
-    provider_quantizations: List[str] | None = None,
-    provider_max_price_prompt: float | None = None,
-    provider_max_price_completion: float | None = None,
-    # Generation
-    max_tokens: int | None = None,
-    temperature: float | None = None,
-    top_p: float | None = None,
-    top_k: int | None = None,
-    seed: int | None = None,
-    frequency_penalty: float | None = None,
-    presence_penalty: float | None = None,
-    repetition_penalty: float | None = None,
-    stop: Union[str, List[str], None] = None,
-    stream: bool = False,
-    response_format: dict | None = None,
-    # Reasoning
-    reasoning_effort: str | None = None,
-    reasoning_max_tokens: int | None = None,
-    reasoning_exclude: bool | None = None,
-    # Headers
-    http_referer: str | None = None,
-    x_title: str | None = None,
+    max_workers: int = 10,
+    provider_cfg: Dict[str, Any] | None = None,
+    generation_cfg: Dict[str, Any] | None = None,
+    reasoning_cfg: Dict[str, Any] | None = None,
     prepend_reasoning: bool = False,
 ):
+    """Run cell type predictions for a single model across all cells."""
     hf_ds = load_from_disk(csdata.data_path)
 
     formatter = CustomPromptFormatter(
@@ -332,8 +310,7 @@ def run_OpenRouter_model_prediction(
         max_samples = min(max_samples, formatted.num_rows)
         formatted = formatted.select(range(max_samples))
 
-    # Print the first formatted row for debugging
-    print(formatted[0])
+    logger.info(f"First formatted sample: {formatted[0]}")
 
     n = formatted.num_rows
     logger.info(f"Predicting {n} cells with model={model}, workers={max_workers}")
@@ -346,35 +323,11 @@ def run_OpenRouter_model_prediction(
                     prompt=sample["model_input"],
                     sysprompt="",
                     api_key=api_key,
-                    provider_order=provider_order,
-                    provider_only=provider_only,
-                    provider_ignore=provider_ignore,
-                    provider_allow_fallbacks=provider_allow_fallbacks,
-                    provider_require_parameters=provider_require_parameters,
-                    provider_data_collection=provider_data_collection,
-                    provider_sort=provider_sort,
-                    provider_quantizations=provider_quantizations,
-                    provider_max_price_prompt=provider_max_price_prompt,
-                    provider_max_price_completion=provider_max_price_completion,
-                    max_tokens=max_tokens,
-                    temperature=temperature,
-                    top_p=top_p,
-                    top_k=top_k,
-                    seed=seed,
-                    frequency_penalty=frequency_penalty,
-                    presence_penalty=presence_penalty,
-                    repetition_penalty=repetition_penalty,
-                    stop=stop,
-                    stream=stream,
-                    response_format=response_format,
-                    reasoning_effort=reasoning_effort,
-                    reasoning_max_tokens=reasoning_max_tokens,
-                    reasoning_exclude=reasoning_exclude,
-                    http_referer=http_referer,
-                    x_title=x_title,
+                    provider_cfg=provider_cfg,
+                    generation_cfg=generation_cfg,
+                    reasoning_cfg=reasoning_cfg,
                     prepend_reasoning=prepend_reasoning,
                 )
-                time.sleep(delay_between_requests)
                 return idx, res
             except Exception as e:
                 logger.warning(f"[{idx}] retry {attempt+1} error: {e}")
@@ -537,7 +490,7 @@ def create_results_dataframe(
     adata,
     predicted_cl_ids: List[Optional[str]],
     predicted_labels: List[Optional[str]],
-    label_keys: List[str],
+    label_key: str,
 ) -> pd.DataFrame:
     n = len(predicted_cl_ids)
     idx = list(adata.obs_names[:n])
@@ -550,17 +503,12 @@ def create_results_dataframe(
     # Keep compatibility: if someone expects "predicted_labels", mirror the column
     data["predicted_labels"] = predicted_labels
 
-    if not label_keys:
-        label_keys = ["cell_type"]
-
-    # Process single annotation key
-    key = label_keys[0] if label_keys else "cell_type"
     col_name = "true_labels"
-    if key in adata.obs.columns:
-        data[col_name] = list(adata.obs[key].astype("string").values[:n])
+    if label_key in adata.obs.columns:
+        data[col_name] = list(adata.obs[label_key].astype("string").values[:n])
     else:
-            logger.warning(f"'{key}' not found in adata.obs; filling NA")
-            data[col_name] = [None] * n
+        logger.warning(f"'{label_key}' not found in adata.obs; filling NA")
+        data[col_name] = [None] * n
 
     df = pd.DataFrame(data, index=idx)
     return df
@@ -575,71 +523,45 @@ def _parse_args() -> argparse.Namespace:
     p.add_argument("--output", "-o", required=True, help="Path to output predictions.csv")
 
     # Core config
-    p.add_argument("--model", "-m", default="deepseek/deepseek-r1-0528:free")
+    p.add_argument("--model", "-m", required=True, help="Single OpenRouter model ID")
     p.add_argument("--output_mode", "-om", default="label", choices=["cl_id", "label"])
-    p.add_argument("--seed", type=int, default=42, help="Random seed (also passed to model where supported)")
+    p.add_argument("--seed", type=int, default=42)
     p.add_argument("--task_name", default="cell_type_prediction")
     p.add_argument("--input_prompt_template", required=True)
     p.add_argument("--answer_template", required=True)
     p.add_argument("--top_k_genes", type=int, default=200)
     p.add_argument("--max_samples", type=int, default=None)
-    p.add_argument("--max_workers", type=int, default=3)
-    p.add_argument("--delay_between_requests", type=float, default=1.2)
+    p.add_argument("--max_workers", type=int, default=10)
     p.add_argument("--label_key", "-l", required=True)
-    p.add_argument("--api-key", dest="api_key", default=None, help="Override API key (else read env API_KEY)")
+    p.add_argument("--api-key", dest="api_key", default=None)
 
-    # Provider routing
-    p.add_argument("--provider_order", nargs="*", default=None, help="Preferred provider order")
-    p.add_argument("--provider_only", nargs="*", default=None, help="Whitelist providers")
-    p.add_argument("--provider_ignore", nargs="*", default=None, help="Blacklist providers")
-    p.add_argument("--provider_allow_fallbacks", action="store_true", help="Allow provider fallbacks")
-    p.add_argument("--provider_no_fallbacks", dest="provider_allow_fallbacks", action="store_false")
-    p.set_defaults(provider_allow_fallbacks=None)
-    p.add_argument("--provider_require_parameters", dest="provider_require_parameters", action="store_true")
-    p.add_argument("--provider_no_require_parameters", dest="provider_require_parameters", action="store_false")
-    p.set_defaults(provider_require_parameters=None)
-    p.add_argument("--provider_data_collection", choices=["allow", "deny"], default=None)
-    p.add_argument("--provider_sort", choices=["price", "throughput", "latency"], default=None)
-    p.add_argument("--provider_quantizations", nargs="*", default=None)
-    p.add_argument("--provider_max_price_prompt", type=float, default=None)
-    p.add_argument("--provider_max_price_completion", type=float, default=None)
+    # Provider config (JSON string)
+    p.add_argument("--provider_cfg_json", default="{}", help="JSON string of provider config")
 
-    # Generation params
-    p.add_argument("--max_tokens", type=int, default=None)
-    p.add_argument("--temperature", type=float, default=None)
-    p.add_argument("--top_p", type=float, default=None)
-    p.add_argument("--top_k", type=int, default=None)
-    p.add_argument("--frequency_penalty", type=float, default=None)
-    p.add_argument("--presence_penalty", type=float, default=None)
-    p.add_argument("--repetition_penalty", type=float, default=None)
-    p.add_argument("--stop", nargs="*", default=None, help="Stop sequences (space-separated, multiple allowed)")
-    p.add_argument("--stream", action="store_true", help="Enable streaming (if supported)")
-    p.add_argument("--response_format_json", default=None, help='JSON string for response_format, e.g. {"type":"json_object"}')
+    # Generation config (JSON string)
+    p.add_argument("--generation_cfg_json", default="{}", help="JSON string of generation config")
 
-    # Reasoning params
-    p.add_argument("--reasoning_effort", choices=["low", "medium", "high"], default=None)
-    p.add_argument("--reasoning_max_tokens", type=int, default=None)
-    p.add_argument("--reasoning_exclude", action="store_true", help="Exclude reasoning tokens from response")
-    p.add_argument("--no_reasoning_exclude", dest="reasoning_exclude", action="store_false")
-    p.set_defaults(reasoning_exclude=None)
-    p.add_argument("--prepend_reasoning", action="store_true", help="Prepend <think>...</think> when available")
+    # Reasoning config (JSON string)
+    p.add_argument("--reasoning_cfg_json", default="{}", help="JSON string of reasoning config")
 
-    # Headers / attribution
-    p.add_argument("--http_referer", default=None)
-    p.add_argument("--x_title", default=None)
+    # Misc
+    p.add_argument("--prepend_reasoning", action="store_true")
 
     args = p.parse_args()
 
-    if args.response_format_json:
-        try:
-            args.response_format = json.loads(args.response_format_json)
-        except Exception as e:
-            raise SystemExit(f"--response_format_json is not valid JSON: {e}")
-    else:
-        args.response_format = None
-
-    if isinstance(args.stop, list) and len(args.stop) == 0:
-        args.stop = None
+    # Parse JSON config strings
+    try:
+        args.provider_cfg = json.loads(args.provider_cfg_json)
+    except json.JSONDecodeError as e:
+        raise SystemExit(f"--provider_cfg_json is not valid JSON: {e}")
+    try:
+        args.generation_cfg = json.loads(args.generation_cfg_json)
+    except json.JSONDecodeError as e:
+        raise SystemExit(f"--generation_cfg_json is not valid JSON: {e}")
+    try:
+        args.reasoning_cfg = json.loads(args.reasoning_cfg_json)
+    except json.JSONDecodeError as e:
+        raise SystemExit(f"--reasoning_cfg_json is not valid JSON: {e}")
 
     return args
 
@@ -647,85 +569,65 @@ def _parse_args() -> argparse.Namespace:
 def main():
     args = _parse_args()
 
-    # Seeds
     random.seed(args.seed)
     np.random.seed(args.seed)
 
-    # API key
     api_key = args.api_key or os.environ.get("API_KEY")
     if not api_key:
         print("ERROR: API key not provided. Set env API_KEY or pass --api-key.", file=sys.stderr)
         sys.exit(3)
 
-    # Sanity check the model up front
-    assert_model_available(args.model, api_key)
+    # Model availability is validated upfront in run.sh (pre-flight check).
 
-    # Load adata
+    # Inject seed into generation config if not already set
+    if "seed" not in args.generation_cfg:
+        args.generation_cfg["seed"] = args.seed
+
     adata = load_data(args.input)
 
-    # Check if gene symbols are available somewhere in the anndata object:
-    #adata.var_names_make_unique()
+    # Resolve gene symbols
     if adata.var_names.str.contains("ENS").all():
-        # All Ensembl IDs, try to swap to gene symbols if available
-        if "gene_names" in adata.var.columns:
-            adata.var_names = adata.var["gene_names"].astype(str)
-            print("Info: Renamed adata.var_names from ensembl IDs to gene names in adata.var['gene_names'] for cell sentence construction.")
-        elif "feature_name" in adata.var.columns:
-            adata.var_names = adata.var["feature_name"].astype(str)
-            print("Info: Renamed adata.var_names from ensembl IDs to feature names in adata.var['feature_name'] for cell sentence construction.")
-        elif "gene_symbols" in adata.var.columns:
-            adata.var_names = adata.var["gene_symbols"].astype(str)
-            print("Info: Renamed adata.var_names from ensembl IDs to feature names in adata.var['feature_name'] for cell sentence construction.")
+        for col in ("gene_names", "feature_name", "gene_symbols"):
+            if col in adata.var.columns:
+                adata.var_names = adata.var[col].astype(str)
+                logger.info(f"Renamed var_names from Ensembl IDs using adata.var['{col}']")
+                break
         else:
-            print("ERROR: Gene names are not available in adata.var. Please add gene names to adata.var.", file=sys.stderr)
+            print("ERROR: Gene names are not available in adata.var.", file=sys.stderr)
             sys.exit(4)
     elif not adata.var_names.str.contains("ENS").any():
-        # No ensembl IDs at all, so likely gene symbols already present
-        print("Info: adata.var_names appears to be gene symbols (no ensembl IDs found). Continuing with cell sentence construction.")
+        logger.info("var_names appears to be gene symbols already.")
     else:
-        # Mixture of gene symbols and ensembl IDs — ambiguous, warn user
-        print("WARNING: adata.var_names contains a mixture of gene symbols and ensembl IDs.", file=sys.stderr)
-        if "gene_names" in adata.var.columns:
-            adata.var_names = adata.var["gene_names"].astype(str)
-            print("Info: Overwrote adata.var_names with adata.var['gene_names'].")
-        elif "feature_name" in adata.var.columns:
-            adata.var_names = adata.var["feature_name"].astype(str)
-            print("Info: Overwrote adata.var_names with adata.var['feature_name'].")
-        elif "gene_symbols" in adata.var.columns:
-            adata.var_names = adata.var["gene_symbols"].astype(str)
-            print("Info: Overwrote adata.var_names with adata.var['gene_symbols'].")
+        for col in ("gene_names", "feature_name", "gene_symbols"):
+            if col in adata.var.columns:
+                adata.var_names = adata.var[col].astype(str)
+                logger.info(f"Overwrote mixed var_names with adata.var['{col}']")
+                break
         else:
-            print("ERROR: Mixed gene/ensembl IDs but no gene names found in adata.var.", file=sys.stderr)
+            print("ERROR: Mixed gene/ensembl IDs but no gene names in adata.var.", file=sys.stderr)
             sys.exit(4)
 
-    annotation_key = args.label_key
-    print(f"Processing annotation key: {annotation_key}")
-    
-    # Uppercase before deduping to avoid collisions inside cell2sentence
     adata.var_names = adata.var_names.str.upper()
     adata.var_names_make_unique()
 
-    if annotation_key not in adata.obs.columns:
-        print(f"ERROR: Label '{annotation_key}' not in adata.obs columns", file=sys.stderr)
-        print(f"Available columns: {list(adata.obs.columns)}", file=sys.stderr)
+    output_path = Path(args.output)
+    output_dir = output_path.parent
+
+    if args.label_key not in adata.obs.columns:
+        print(f"ERROR: Label '{args.label_key}' not in adata.obs columns", file=sys.stderr)
         sys.exit(4)
 
-    adata.obs["true_labels"] = adata.obs[annotation_key].astype("category")
+    adata.obs["true_labels"] = adata.obs[args.label_key].astype(str)
 
-    # Get the set of labels once (robust to categorical dtype)
     if pd.api.types.is_categorical_dtype(adata.obs["true_labels"]):
         labels = adata.obs["true_labels"].cat.categories.to_numpy()
     else:
         labels = pd.unique(adata.obs["true_labels"].values)
 
-    rng = np.random.default_rng(42)  # set a seed if you want reproducibility
-
-    # One shuffled list per observation
+    rng = np.random.default_rng(args.seed)
     adata.obs["unique_cell_types"] = [rng.permutation(labels).tolist() for _ in range(adata.n_obs)]
 
-    print(adata.var_names[:10])
-
-    # Build C2S dataset (only needs true_labels)
+    # Build C2S dataset
     arrow_ds, vocab = cs.CSData.adata_to_arrow(
         adata=adata,
         random_state=args.seed,
@@ -737,11 +639,11 @@ def main():
         arrow_dataset=arrow_ds,
         vocabulary=vocab,
         save_dir=str(save_dir),
-        save_name=f"{Path(args.input).stem}_c2s",
+        save_name=f"{Path(args.input).stem}_{args.model.replace('/', '--')}_c2s",
         dataset_backend="arrow",
     )
 
-    # Run predictions
+    # Single model prediction
     preds = run_OpenRouter_model_prediction(
         model=args.model,
         api_key=api_key,
@@ -752,44 +654,14 @@ def main():
         top_k_genes=args.top_k_genes,
         max_samples=args.max_samples,
         max_workers=args.max_workers,
-        delay_between_requests=args.delay_between_requests,
-        # Provider
-        provider_order=args.provider_order,
-        provider_only=args.provider_only,
-        provider_ignore=args.provider_ignore,
-        provider_allow_fallbacks=args.provider_allow_fallbacks,
-        provider_require_parameters=args.provider_require_parameters,
-        provider_data_collection=args.provider_data_collection,
-        provider_sort=args.provider_sort,
-        provider_quantizations=args.provider_quantizations,
-        provider_max_price_prompt=args.provider_max_price_prompt,
-        provider_max_price_completion=args.provider_max_price_completion,
-        # Generation
-        max_tokens=args.max_tokens,
-        temperature=args.temperature,
-        top_p=args.top_p,
-        top_k=args.top_k,
-        seed=args.seed,
-        frequency_penalty=args.frequency_penalty,
-        presence_penalty=args.presence_penalty,
-        repetition_penalty=args.repetition_penalty,
-        stop=args.stop,
-        stream=args.stream,
-        response_format=args.response_format,
-        # Reasoning
-        reasoning_effort=args.reasoning_effort,
-        reasoning_max_tokens=args.reasoning_max_tokens,
-        reasoning_exclude=args.reasoning_exclude,
-        # Headers
-        http_referer=args.http_referer,
-        x_title=args.x_title,
+        provider_cfg=args.provider_cfg,
+        generation_cfg=args.generation_cfg,
+        reasoning_cfg=args.reasoning_cfg,
         prepend_reasoning=args.prepend_reasoning,
     )
 
-    # Print the first 10 predictions for debugging
-    print(preds[:10])
+    logger.info(f"First 10 predictions: {preds[:10]}")
 
-    # Convert predicted CL terms -> (normalized CL ID, cell type label)
     if args.output_mode == "cl_id":
         pred_cl_ids, pred_labels = cl_ids_and_labels_from_preds(preds, online=True, follow_replacements=True)
     elif args.output_mode == "label":
@@ -798,12 +670,11 @@ def main():
     else:
         raise ValueError(f"Invalid output mode: {args.output_mode}")
 
-    # Build and save results
-    df = create_results_dataframe(adata, pred_cl_ids, pred_labels, [annotation_key])
-    
-    Path(args.output).parent.mkdir(parents=True, exist_ok=True)
-    df.to_csv(args.output, index=True)
-    logger.info(f"Wrote predictions: {args.output}")
+    df = create_results_dataframe(adata, pred_cl_ids, pred_labels, args.label_key)
+
+    Path(output_dir).mkdir(parents=True, exist_ok=True)
+    df.to_csv(output_path, index=True)
+    logger.info(f"Wrote predictions: {output_path}")
 
 
 if __name__ == "__main__":

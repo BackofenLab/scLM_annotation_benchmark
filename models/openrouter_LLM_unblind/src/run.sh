@@ -13,27 +13,24 @@ INPUT_H5AD="$(abspath "$1")"
 OUT_CSV="$2"          # make dir first, then resolve abs path
 CFG_YAML="$(abspath "$3")"
 
-# Where this script lives (so we can find .env & model_cfg.yml)
+# Where this script lives (so we can find model_cfg.yml)
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # -------------------------------------------------------------------
-# Load API_KEY: env wins; else load from .env; else fail clearly
+# Require API_KEY from environment (set by nextflow.config or CLI)
 # -------------------------------------------------------------------
 cleanup() { unset -v API_KEY 2>/dev/null || true; }
 trap cleanup EXIT
 
-if [[ -z "${API_KEY:-}" && -f "$SCRIPT_DIR/.env" ]]; then
-  # shellcheck disable=SC1090
-  set -a
-  source "$SCRIPT_DIR/.env"
-  set +a
-fi
-
 if [[ -z "${API_KEY:-}" ]]; then
-  echo "ERROR: API_KEY is not set. Provide it via environment or $SCRIPT_DIR/.env" >&2
-  echo "Examples:" >&2
-  echo "  export API_KEY=YOUR_KEY && nextflow run main.nf -profile local" >&2
-  echo "  (or put 'API_KEY=YOUR_KEY' into $SCRIPT_DIR/.env)" >&2
+  echo "ERROR: API_KEY is not set. Provide it via one of the following methods:" >&2
+  echo "" >&2
+  echo "  1. (Recommended) Set OPENROUTER_API_KEY in your shell environment:" >&2
+  echo "       export OPENROUTER_API_KEY=sk-or-v1-..." >&2
+  echo "     This is read by nextflow.config and forwarded to all processes." >&2
+  echo "" >&2
+  echo "  2. Pass it on the Nextflow command line:" >&2
+  echo "       nextflow run main.nf --openrouter_api_key sk-or-v1-... -profile local" >&2
   exit 64
 fi
 
@@ -203,7 +200,22 @@ fi
 # Model parameters (from MODEL_CFG, with sane defaults)
 # -------------------------------------------------------------------
 SEED="$(yaml_get_or_default 'openrouter_LLM.seed' '42')"
-MODEL_NAME="$(yaml_get_or_default 'openrouter_LLM.model_name' 'deepseek/deepseek-r1-0528:free')"
+# Read model_names as a list; fall back to model_name (singular) for backward compatibility
+MODEL_NAMES=()
+while IFS= read -r line; do [[ -n "$line" ]] && MODEL_NAMES+=("$line"); done < <(yaml_get_list 'openrouter_LLM.model_names')
+
+if (( ${#MODEL_NAMES[@]} == 0 )); then
+  # Backward compat: try singular model_name
+  SINGLE_MODEL="$(yaml_get_or_default 'openrouter_LLM.model_name' 'deepseek/deepseek-r1-0528:free')"
+  if [[ -n "$SINGLE_MODEL" && "$SINGLE_MODEL" != "None" ]]; then
+    MODEL_NAMES=("$SINGLE_MODEL")
+  fi
+fi
+
+if (( ${#MODEL_NAMES[@]} == 0 )); then
+  echo "ERROR: No model_names (or model_name) found in model config." >&2
+  exit 2
+fi
 TASK_NAME="$(yaml_get_or_default 'openrouter_LLM.task_name' 'cell_type_prediction')"
 
 OUTPUT_MODE="$(yaml_get_or_default 'openrouter_LLM.output_mode' 'label')"
@@ -226,111 +238,146 @@ if [[ -n "${MAX_SAMPLES}" && "${MAX_SAMPLES}" != "0" ]]; then
 fi
 
 # -------------------------------------------------------------------
-# Build predict.py argument list
+# Build JSON config strings from YAML (provider, generation, reasoning)
 # -------------------------------------------------------------------
-declare -a ARGS=(
+eval "$(python - "$MODEL_CFG" <<'PY'
+import sys, yaml, json, os, shlex
+
+cfg_path = sys.argv[1]
+cfg = {}
+if cfg_path and os.path.isfile(cfg_path):
+    with open(cfg_path, "r", encoding="utf-8") as f:
+        cfg = yaml.safe_load(f) or {}
+
+root = cfg.get("openrouter_LLM", {})
+
+# Provider config — strip None values and empty lists
+provider = root.get("provider", {}) or {}
+provider_clean = {}
+for k, v in provider.items():
+    if k == "max_price" and isinstance(v, dict):
+        mp = {mk: mv for mk, mv in v.items() if mv is not None}
+        for mk, mv in mp.items():
+            provider_clean["max_price_" + mk] = mv
+    elif isinstance(v, list):
+        if v:
+            provider_clean[k] = v
+    elif v is not None:
+        provider_clean[k] = v
+
+# Generation config — strip None values and empty lists
+gen = root.get("generation", {}) or {}
+gen_clean = {}
+for k, v in gen.items():
+    if k == "reasoning":
+        continue
+    elif isinstance(v, list):
+        if v:
+            gen_clean[k] = v
+    elif v is not None:
+        gen_clean[k] = v
+
+# Reasoning config
+reasoning = gen.get("reasoning", {}) or {}
+reason_clean = {k: v for k, v in reasoning.items() if v is not None}
+
+print("PROVIDER_JSON=" + shlex.quote(json.dumps(provider_clean, separators=(",", ":"))))
+print("GENERATION_JSON=" + shlex.quote(json.dumps(gen_clean, separators=(",", ":"))))
+print("REASONING_JSON=" + shlex.quote(json.dumps(reason_clean, separators=(",", ":"))))
+PY
+)"
+
+# -------------------------------------------------------------------
+# Common args for all model invocations
+# -------------------------------------------------------------------
+declare -a COMMON_ARGS=(
   "--input" "${INPUT_H5AD}"
-  "--output" "${OUT_CSV}"
   "--seed" "${SEED}"
-  "--model" "${MODEL_NAME}"
   "--output_mode" "${OUTPUT_MODE}"
   "--task_name" "${TASK_NAME}"
   "--input_prompt_template" "${INPUT_PROMPT_TEMPLATE}"
   "--answer_template" "${ANSWER_TEMPLATE}"
   "--top_k_genes" "${TOP_K_GENES}"
   "--max_workers" "${MAX_WORKERS}"
-  "--delay_between_requests" "${DELAY_BETWEEN_REQUESTS}"
   "--label_key" "${LABEL_KEY}"
+  "--provider_cfg_json" "${PROVIDER_JSON}"
+  "--generation_cfg_json" "${GENERATION_JSON}"
+  "--reasoning_cfg_json" "${REASONING_JSON}"
 )
 
 # Add optional max_samples
 if ((${#MAX_SAMPLES_ARG[@]})); then
-  ARGS+=("${MAX_SAMPLES_ARG[@]}")
+  COMMON_ARGS+=("${MAX_SAMPLES_ARG[@]}")
 fi
 
-# ---------------- Provider: lists (portable, no mapfile) ----------------
-PROVIDER_ORDER=()
-while IFS= read -r line; do [[ -n "$line" ]] && PROVIDER_ORDER+=("$line"); done < <(yaml_get_list 'openrouter_LLM.provider.order')
-PROVIDER_ONLY=()
-while IFS= read -r line; do [[ -n "$line" ]] && PROVIDER_ONLY+=("$line"); done < <(yaml_get_list 'openrouter_LLM.provider.only')
-PROVIDER_IGNORE=()
-while IFS= read -r line; do [[ -n "$line" ]] && PROVIDER_IGNORE+=("$line"); done < <(yaml_get_list 'openrouter_LLM.provider.ignore')
-PROVIDER_QUANT=()
-while IFS= read -r line; do [[ -n "$line" ]] && PROVIDER_QUANT+=("$line"); done < <(yaml_get_list 'openrouter_LLM.provider.quantizations')
+# Add prepend_reasoning if set
+PREPEND_REASONING="$(yaml_get_bool 'openrouter_LLM.generation.prepend_reasoning')"
+[[ "${PREPEND_REASONING:-}" == "true" ]] && COMMON_ARGS+=(--prepend_reasoning)
 
-((${#PROVIDER_ORDER[@]}))  && ARGS+=(--provider_order "${PROVIDER_ORDER[@]}")
-((${#PROVIDER_ONLY[@]}))   && ARGS+=(--provider_only "${PROVIDER_ONLY[@]}")
-((${#PROVIDER_IGNORE[@]})) && ARGS+=(--provider_ignore "${PROVIDER_IGNORE[@]}")
-((${#PROVIDER_QUANT[@]}))  && ARGS+=(--provider_quantizations "${PROVIDER_QUANT[@]}")
+# -------------------------------------------------------------------
+# Pre-flight: validate ALL model names against OpenRouter before any work
+# -------------------------------------------------------------------
+echo "Validating model availability on OpenRouter..." >&2
+python - "${API_KEY}" "${MODEL_NAMES[@]}" <<'PY'
+import sys, requests
+api_key = sys.argv[1]
+models = sys.argv[2:]
+try:
+    r = requests.get(
+        "https://openrouter.ai/api/v1/models",
+        headers={"Authorization": f"Bearer {api_key}"},
+        timeout=30,
+    )
+    if r.status_code != 200:
+        print(f"WARNING: Could not validate models (HTTP {r.status_code}). Proceeding anyway.", file=sys.stderr)
+        sys.exit(0)
+    available = {m.get("id") for m in r.json().get("data", []) if isinstance(m, dict)}
+    missing = [m for m in models if m not in available]
+    if missing:
+        print(f"ERROR: The following models are NOT available on OpenRouter:", file=sys.stderr)
+        for m in missing:
+            print(f"  - {m}", file=sys.stderr)
+        print(f"Check model IDs at https://openrouter.ai/models", file=sys.stderr)
+        sys.exit(1)
+    print(f"All {len(models)} models validated OK.", file=sys.stderr)
+except Exception as e:
+    print(f"WARNING: Model validation failed ({e}). Proceeding anyway.", file=sys.stderr)
+PY
 
-# ---------------- Provider: booleans & scalars ----------------
-ALLOW_FB="$(yaml_get_bool 'openrouter_LLM.provider.allow_fallbacks')"
-[[ "${ALLOW_FB:-}" == "true"  ]] && ARGS+=(--provider_allow_fallbacks)
-[[ "${ALLOW_FB:-}" == "false" ]] && ARGS+=(--provider_no_fallbacks)
+# -------------------------------------------------------------------
+# Launch predict.py once per model (in parallel)
+# -------------------------------------------------------------------
+PIDS=()
+FAILED=0
 
-REQ_PARAMS="$(yaml_get_bool 'openrouter_LLM.provider.require_parameters')"
-[[ "${REQ_PARAMS:-}" == "true"  ]] && ARGS+=(--provider_require_parameters)
-[[ "${REQ_PARAMS:-}" == "false" ]] && ARGS+=(--provider_no_require_parameters)
+for MODEL in "${MODEL_NAMES[@]}"; do
+  # Filesystem-safe slug: replace / with --
+  SLUG="${MODEL//\//--}"
+  MODEL_OUT="${OUT_CSV%.csv}_${SLUG}.csv"
 
-DATA_COLL="$(yaml_get_or_default 'openrouter_LLM.provider.data_collection' '')"
-[[ -n "${DATA_COLL}" ]] && ARGS+=(--provider_data_collection "${DATA_COLL}")
+  echo "Starting model: ${MODEL} (output: ${MODEL_OUT})" >&2
 
-P_SORT="$(yaml_get_or_default 'openrouter_LLM.provider.sort' '')"
-[[ -n "${P_SORT}" ]] && ARGS+=(--provider_sort "${P_SORT}")
+  PYTHONIOENCODING=UTF-8 \
+  API_KEY="${API_KEY}" \
+  python "${SCRIPT_DIR}/predict.py" \
+    --model "${MODEL}" \
+    --output "${MODEL_OUT}" \
+    "${COMMON_ARGS[@]}" &
 
-MAX_PRICE_PROMPT="$(yaml_get_or_default 'openrouter_LLM.provider.max_price.prompt' '')"
-[[ -n "${MAX_PRICE_PROMPT}" ]] && ARGS+=(--provider_max_price_prompt "${MAX_PRICE_PROMPT}")
-MAX_PRICE_COMPLETION="$(yaml_get_or_default 'openrouter_LLM.provider.max_price.completion' '')"
-[[ -n "${MAX_PRICE_COMPLETION}" ]] && ARGS+=(--provider_max_price_completion "${MAX_PRICE_COMPLETION}")
+  PIDS+=($!)
+done
 
-# ---------------- Generation: scalars ----------------
-for key in max_tokens temperature top_p top_k frequency_penalty presence_penalty repetition_penalty; do
-  val="$(yaml_get_or_default "openrouter_LLM.generation.${key}" '')"
-  if [[ -n "${val}" && "${val}" != "null" ]]; then
-    ARGS+=("--${key}" "${val}")
+# Wait for all models and track failures
+for PID in "${PIDS[@]}"; do
+  if ! wait "${PID}"; then
+    FAILED=$((FAILED + 1))
   fi
 done
 
-# Generation: stop list (portable)
-STOP_LIST=()
-while IFS= read -r line; do [[ -n "$line" ]] && STOP_LIST+=("$line"); done < <(yaml_get_list 'openrouter_LLM.generation.stop')
-((${#STOP_LIST[@]})) && ARGS+=(--stop "${STOP_LIST[@]}")
-
-# Generation: booleans
-STREAM="$(yaml_get_bool 'openrouter_LLM.generation.stream')"
-[[ "${STREAM:-}" == "true" ]] && ARGS+=(--stream)
-
-# Generation: response_format (JSON)
-RESP_JSON="$(yaml_get_json 'openrouter_LLM.generation.response_format' 2>/dev/null || true)"
-[[ -n "${RESP_JSON:-}" ]] && ARGS+=(--response_format_json "${RESP_JSON}")
-
-# Reasoning
-RE_EFFORT="$(yaml_get_or_default 'openrouter_LLM.generation.reasoning.effort' '')"
-[[ -n "${RE_EFFORT}" ]] && ARGS+=(--reasoning_effort "${RE_EFFORT}")
-
-RE_MAXTOK="$(yaml_get_or_default 'openrouter_LLM.generation.reasoning.max_tokens' '')"
-[[ -n "${RE_MAXTOK}" ]] && ARGS+=(--reasoning_max_tokens "${RE_MAXTOK}")
-
-RE_EXCLUDE="$(yaml_get_bool 'openrouter_LLM.generation.reasoning.exclude')"
-[[ "${RE_EXCLUDE:-}" == "true"  ]] && ARGS+=(--reasoning_exclude)
-[[ "${RE_EXCLUDE:-}" == "false" ]] && ARGS+=(--no_reasoning_exclude)
-
-# Headers
-HTTP_REF="$(yaml_get_or_default 'openrouter_LLM.generation.http_referer' '')"
-[[ -n "${HTTP_REF}" ]] && ARGS+=(--http_referer "${HTTP_REF}")
-
-X_TITLE="$(yaml_get_or_default 'openrouter_LLM.generation.x_title' '')"
-[[ -n "${X_TITLE}" ]] && ARGS+=(--x_title "${X_TITLE}")
-
-PREPEND_REASONING="$(yaml_get_bool 'openrouter_LLM.generation.prepend_reasoning')"
-[[ "${PREPEND_REASONING:-}" == "true" ]] && ARGS+=(--prepend_reasoning)
-
-# -------------------------------------------------------------------
-# Invoke the Python driver (API key via env, never echoed)
-# -------------------------------------------------------------------
-PYTHONIOENCODING=UTF-8 \
-API_KEY="${API_KEY}" \
-python "${SCRIPT_DIR}/predict.py" "${ARGS[@]}"
+if ((FAILED > 0)); then
+  echo "ERROR: ${FAILED} model(s) failed." >&2
+  exit 1
+fi
 
 # Extra belt-and-braces: clear in case trap was removed/overridden
 unset -v API_KEY 2>/dev/null || true
