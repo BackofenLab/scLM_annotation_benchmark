@@ -32,6 +32,37 @@ def modelAllowedForOrganism(String model, def organismVal, Map blacklistByOrgani
     return !blockedModels.collect { it.toString() }.contains(model)
 }
 
+// Expected prediction filenames produced by a model's run.sh.
+// Most models write a single predictions.csv. OpenRouter LLM models write one
+// predictions_${SLUG}.csv per id in openrouter_LLM.model_names (slug = id with
+// '/' -> '--'), so the cache check needs the exact filename list to detect
+// when the user changes which OpenRouter ids to run.
+def expectedPredictionFiles(String model) {
+    if (!model.toLowerCase().contains('openrouter')) {
+        return ['predictions.csv']
+    }
+    def cfgPath = "models/${model}/src/model_cfg.yml"
+    def cfgFile = new File(cfgPath)
+    if (!cfgFile.exists()) {
+        log.warn "OpenRouter model ${model}: ${cfgPath} not found; falling back to predictions.csv"
+        return ['predictions.csv']
+    }
+    def cfg
+    try {
+        cfg = new Yaml().load(cfgFile.text)
+    } catch (Exception e) {
+        log.warn "OpenRouter model ${model}: could not parse ${cfgPath} (${e.message}); falling back to predictions.csv"
+        return ['predictions.csv']
+    }
+    def root = cfg?.openrouter_LLM ?: [:]
+    def names = root.model_names ?: (root.model_name ? [root.model_name] : [])
+    if (!names) {
+        log.warn "OpenRouter model ${model}: no model_names in ${cfgPath}; falling back to predictions.csv"
+        return ['predictions.csv']
+    }
+    return names.collect { name -> "predictions_${name.toString().replace('/', '--')}.csv" }
+}
+
 process download {
     container params.container_image
     conda 'envs/download.yml'
@@ -187,9 +218,9 @@ process prepare_model {
 
 process run_model {
     container params.container_image
-    
+
     input:
-    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size), val(strategy)
+    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size), val(strategy), val(expected_files)
 
     tag { "${dataset}x${model}x${strategy}" }
 
@@ -217,18 +248,35 @@ process run_model {
 
     mkdir -p \${results_dir}
 
-    if ! ls \${cache_base}/predictions*.csv 1>/dev/null 2>&1; then
+    read -ra EXPECTED_FILES <<< "${expected_files}"
+
+    # Pre-stage any cached files into results_dir so run.sh sees them and
+    # can skip the corresponding slugs (relevant for OpenRouter where one
+    # task produces multiple predictions_<slug>.csv files; non-OpenRouter
+    # models have a single expected file so this is a no-op or a full hit).
+    all_cached=true
+    for f in "\${EXPECTED_FILES[@]}"; do
+        if [ -f "\${cache_base}/\$f" ]; then
+            cp "\${cache_base}/\$f" "\${results_dir}/\$f"
+        else
+            all_cached=false
+        fi
+    done
+
+    if [ "\$all_cached" = "false" ]; then
         mkdir -p \${cache_base}
-        bash "${model_dir}/src/run.sh" \
-            "${data_file}" \
-            \${results_dir}/predictions.csv \
-            "${cfg_yaml}" \
+        bash "${model_dir}/src/run.sh" \\
+            "${data_file}" \\
+            \${results_dir}/predictions.csv \\
+            "${cfg_yaml}" \\
             "${cache_dir}/models"
-        cp \${results_dir}/predictions*.csv \${cache_base}/
+        # Persist only the expected files into the cache.
+        for f in "\${EXPECTED_FILES[@]}"; do
+            cp "\${results_dir}/\$f" "\${cache_base}/\$f"
+        done
     else
-        cp \${cache_base}/predictions*.csv \${results_dir}/
         echo "Cell type prediction already exists for ${dataset} x ${model} (subset ${subset_size}, strategy ${strategy})."
-        echo "To rerun, delete: \${cache_base}/predictions*.csv"
+        echo "To rerun, delete files in: \${cache_base}/"
     fi
     """
 }
@@ -375,7 +423,9 @@ workflow {
             model_name2 == model_name && data_subset_size == model_subset_size
         }
         .map { data_file, dataset, data_subset_size, data_strategy, model_name, model_dir, model_name2, model_subset_size ->
-            tuple(data_file, model_dir, dataset, file("datasets/${dataset}.yml"), model_name, file(params.cache_dir), data_subset_size, data_strategy)
+            def expected = expectedPredictionFiles(model_name).join(' ')
+            tuple(data_file, model_dir, dataset, file("datasets/${dataset}.yml"), model_name,
+                  file(params.cache_dir), data_subset_size, data_strategy, expected)
         }
         .set { model_input }
 

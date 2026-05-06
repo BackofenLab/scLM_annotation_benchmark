@@ -355,6 +355,12 @@ for MODEL in "${MODEL_NAMES[@]}"; do
   SLUG="${MODEL//\//--}"
   MODEL_OUT="${OUT_CSV%.csv}_${SLUG}.csv"
 
+  # If main.nf pre-staged a cached prediction for this slug, skip the API call.
+  if [[ -f "$MODEL_OUT" ]]; then
+    echo "Skipping ${MODEL}: cached output present at ${MODEL_OUT}" >&2
+    continue
+  fi
+
   echo "Starting model: ${MODEL} (output: ${MODEL_OUT})" >&2
 
   PYTHONIOENCODING=UTF-8 \

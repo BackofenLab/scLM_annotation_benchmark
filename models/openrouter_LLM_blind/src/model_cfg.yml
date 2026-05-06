@@ -3,7 +3,7 @@
 
 openrouter_LLM:
   # Reproducibility
-  seed: 42
+  seed: 1234
 
   # OpenRouter model ids — list of models to run (results saved separately per model)
   # e.g. "openai/gpt-5-chat" for GPT-5, "deepseek/deepseek-r1-0528" for DeepSeekR1
@@ -11,19 +11,22 @@ openrouter_LLM:
     - meta-llama/llama-4-maverick #(non-reasoning)
   #  - anthropic/claude-sonnet-4.6 #(reasoning: max_tokens)
   #  - deepseek/deepseek-v3.2 #(reasoning: effort)
+  #  - deepseek/deepseek-v4-pro #(reasoning: effort)
+  #  - deepseek/deepseek-v4-flash #(reasoning: effort)
   #  - z-ai/glm-5 #(reasoning: effort)
   #  - moonshotai/kimi-k2.5 #(reasoning: effort)
-  #  - openai/gpt-5.4 #(reasoning: effort)
+  #  - openai/gpt-5.5 #(reasoning: effort)
   #  - google/gemini-3-flash-preview #(reasoning: max_tokens)
   #  - google/gemini-3.1-pro-preview #(reasoning: max_tokens)
   ## - anthropic/claude-opus-4.6 #(expensive!, reasoning: max_tokens)
-  ## - openai/gpt-5.4-pro #(expensive!, reasoning: effort)
+  ## - openai/gpt-5.5-pro #(expensive!, reasoning: effort)
 
   ##  - deepseek/deepseek-r1-0528 #(optional, always reasoning)
   ##  - mistralai/mistral-large-2512 #(optional, non-reasoning)
 
   ##  - meta-llama/llama-3.1-8b-instruct #(drop, non-reasoning)
   ##  - meta-llama/llama-3.1-70b-instruct #(drop, non-reasoning)
+  ##  - meta-llama/llama-3.3-70b-instruct #(drop, non-reasoning)
 
 
 
@@ -42,8 +45,8 @@ openrouter_LLM:
     Important rules:
     1. Respond with only the cell type label of the predicted cell type.
     2. Use only cell type names defined in the Cell Ontology (CL) at https://www.ebi.ac.uk/ols4/ontologies/cl.
-    3. Do not include explanations, reasoning, or extra words.
-    4. Do not repeat the question or input.
+    3. Do not include explanations, reasoning, or extra words in the output.
+    4. Do not repeat the question or input in the output.
     Output:
 
   # 1. Respond with only the cell type label of the predicted cell type.
