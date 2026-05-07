@@ -1,68 +1,968 @@
 reviewed;origin;predicted_label;chosen_match;best_match
-TRUE;Zeisel;Astrocytes;astrocyte;astrocyte
-TRUE;Zeisel;Cerebellum neurons;cerebellar neuron;cerebellar neuron
-TRUE;Zeisel;Cholinergic and monoaminergic neurons;cholinergic neuron;cholinergic neuron
-TRUE;Zeisel;Choroid epithelial cells;choroid plexus epithelial cell;obsolete choroid plexus cell
-TRUE;Zeisel;Dentate gyrus granule neurons;dentate gyrus granule cell;dentate gyrus neuron
-TRUE;Zeisel;Dentate gyrus radial glia-like cells;radial glial cell;dentate gyrus granule cell
-TRUE;Zeisel;Di- and mesencephalon excitatory neurons;glutamatergic neuron;sensory processing neuron
-TRUE;Zeisel;Di- and mesencephalon inhibitory neurons;GABAergic neuron;neuron associated cell
-TRUE;Zeisel;Enteric neurons;enteric neuron;enteric neuron
-TRUE;Zeisel;Enteric-glia;enteroglial cell;type I enteric glial cell
-TRUE;Zeisel;Ependymal cells;ependymal cell;ependymal cell
-TRUE;Zeisel;Glutamatergic neuroblasts;neuroblast (sensu Vertebrata);GABA-Glut neuron
-TRUE;Zeisel;Hindbrain neurons;cranial visceromotor neuron;neuron of the forebrain
-TRUE;Zeisel;Microglia;microglial cell (Mmus);microglial cell (Mmus)
-TRUE;Zeisel;Non-glutamatergic neuroblasts;neuroblast (sensu Vertebrata);GABA-Glut neuron
-TRUE;Zeisel;Olfactory ensheathing cells;olfactory ensheathing cell;olfactory epithelial cell
-TRUE;Zeisel;Olfactory inhibitory neurons;GABAergic neuron;olfactory receptor cell
-TRUE;Zeisel;Oligodendrocyte precursor cells;oligodendrocyte precursor cell;oligodendrocyte precursor cell
-TRUE;Zeisel;Oligodendrocytes;oligodendrocyte;oligodendrocyte
-TRUE;Zeisel;Peptidergic neurons;peptidergic neuron;peptidergic neuron
-TRUE;Zeisel;Pericytes;pericyte;decidual pericyte
-TRUE;Zeisel;Peripheral sensory neurofilament neurons;peripheral sensory neuron;sensory processing neuron
-TRUE;Zeisel;Peripheral sensory non-peptidergic neurons;peripheral sensory neuron;peptidergic neuron
-TRUE;Zeisel;Peripheral sensory peptidergic neurons;peripheral sensory neuron;peptidergic neuron
-TRUE;Zeisel;Perivascular macrophages;perivascular macrophage;perivascular macrophage
-TRUE;Zeisel;Satellite glia;satellite glial cell;perineuronal satellite cell
-TRUE;Zeisel;Schwann cells;Schwann cell;Schwann cell precursor
-TRUE;Zeisel;Spinal cord excitatory neurons;glutamatergic neuron;neuron of the dorsal spinal cord
-TRUE;Zeisel;Spinal cord inhibitory neurons;GABAergic neuron;inhibitory motor neuron
-TRUE;Zeisel;Subcommissural organ hypendymal cells;hypendymal cell;hypendymal cell
-TRUE;Zeisel;Subventricular zone radial glia-like cells;radial glial cell;radial glial cell
-TRUE;Zeisel;Sympathetic cholinergic neurons;sympathetic cholinergic neuron;sympathetic cholinergic neuron
-TRUE;Zeisel;Sympathetic noradrenergic neurons;sympathetic noradrenergic neuron;sympathetic noradrenergic neuron
-TRUE;Zeisel;Telencephalon inhibitory interneurons;GABAergic neuron;molecular layer interneuron
-TRUE;Zeisel;Telencephalon projecting excitatory neurons;glutamatergic neuron;extratelencephalic-projecting glutamatergic cortical neuron
-TRUE;Zeisel;Telencephalon projecting inhibitory neurons;GABAergic neuron;extratelencephalic-projecting glutamatergic cortical neuron
-TRUE;Zeisel;Vascular and leptomeningeal cells;vascular leptomeningeal cell (Mmus);vascular leptomeningeal cell (Mmus)
-TRUE;Zeisel;Vascular endothelial cells;endothelial cell of vascular tree;blood vessel endothelial cell
-TRUE;Zeisel;Vascular smooth muscle cells;vascular associated smooth muscle cell;vascular associated smooth muscle cell
-TRUE;human_pancreas;acinar;acinar cell;acinar cell
-TRUE;human_pancreas;activated_stellate;pancreatic stellate cell;stellate neuron
-TRUE;human_pancreas;alpha;pancreatic A cell;kidney connecting tubule alpha-intercalated cell
-TRUE;human_pancreas;beta;type B pancreatic cell;mature alpha-beta T cell
-TRUE;human_pancreas;ductal;pancreatic ductal cell;adventitial cell
-TRUE;human_pancreas;endothelial;endothelial cell;endothelial cell of artery
-TRUE;human_pancreas;gamma;pancreatic PP cell;gamma motor neuron
-TRUE;human_pancreas;mast;mast cell;mast cell
-TRUE;human_pancreas;quiescent_stellate;pancreatic stellate cell;stellate interneuron
-TRUE;human_pancreas;schwann;Schwann cell;Schwann cell precursor
-TRUE;human_pancreas;t_cell;T cell;T cell of appendix
-TRUE;HIHA;ASDC;Axl+ dendritic cell, human;obsolete pstO/ALC
-TRUE;HIHA;CD14 monocyte;CD14-positive monocyte;CD14-low, CD16-positive monocyte
-TRUE;HIHA;CD16 monocyte;CD14-low, CD16-positive monocyte;CD14-low, CD16-positive monocyte
-TRUE;HIHA;CD56bright NK cell;CD16-negative, CD56-bright natural killer cell, human;mature NK T cell, human
-TRUE;HIHA;CD56dim NK cell;CD16-positive, CD56-dim natural killer cell, human;mature NK T cell, human
-TRUE;HIHA;CD8aa;CD8aa(I) thymocyte;CD8aa(I) thymocyte
-TRUE;HIHA;DC;dendritic cell;CD1a-positive dermal dendritic cell
-TRUE;HIHA;DN T cell;double negative T regulatory cell;DN1 thymic pro-T cell
-TRUE;HIHA;ILC;innate lymphoid cell;ILC1, human
-TRUE;HIHA;Memory CD4 T cell;CD4-positive, alpha-beta memory T cell;CD4-positive, alpha-beta memory T cell
-TRUE;HIHA;Memory CD8 T cell;CD8-positive, alpha-beta memory T cell;CD8-positive, alpha-beta memory T cell
-TRUE;HIHA;Naive CD4 T cell;naive thymus-derived CD4-positive, alpha-beta T cell;naive CCR4-positive regulatory T cell
-TRUE;HIHA;Naive CD8 T cell;naive thymus-derived CD8-positive, alpha-beta T cell;naive thymus-derived CD8-positive, alpha-beta T cell
-TRUE;HIHA;Proliferating NK cell;cycling natural killer cell;mature NK T cell, human
-TRUE;HIHA;cDC1;conventional dendritic cell;DN1 thymic pro-T cell
-TRUE;HIHA;cDC2;conventional dendritic cell;CD27-high, CD11b-low natural killer cell, mouse
-TRUE;HIHA;gdT;gamma-delta T cell;granulocyte monocyte progenitor cell
+False;c2s_scale_27B_blind;0610012g03rik;obsolete CP:0000028;obsolete CP:0000028
+False;c2s_scale_27B_blind;1500009l16rik 1500011b;obsolete CP:0000000;obsolete CP:0000000
+False;pancreas_c2s_scale_27B_unblind;1a pancreatic cell;stromal cell of pancreas;stromal cell of pancreas
+False;c2s_scale_27B_unblind;2210016l21rik h3f3b;B220-low CD38-positive unswitched memory B cell;B220-low CD38-positive unswitched memory B cell
+False;c2s_scale_27B_unblind;2310022b05rik;obsolete CP:0000027;obsolete CP:0000027
+False;c2s_scale_27B_blind;2310033p09rik;obsolete CP:0000027;obsolete CP:0000027
+False;c2s_scale_27B_blind;25-30% of total cd8-positive, alpha-beta t cell;CD8-positive, alpha-beta T cell;CD8-positive, alpha-beta T cell
+False;c2s_scale_27B_blind;2_rik_ensmusg00000084235;obsolete CP:0000028;obsolete CP:0000028
+False;pancreas_instructcell_blind;45+ bulge companion layer;smooth muscle cell of large intestine smooth muscle longitudinal layer;smooth muscle cell of large intestine smooth muscle longitudinal layer
+False;c2s_scale_27B_blind;4930402h24rik;obsolete CP:0000027;obsolete CP:0000027
+False;c2s_scale_27B_blind;4930402h24rik tmem167 tmem10;Astro-TE NN_4 astrocyte (Mmus);Astro-TE NN_4 astrocyte (Mmus)
+False;c2s_scale_27B_blind;4930402h24rik_ensmusg0000;obsolete CP:0000028;obsolete CP:0000028
+False;c2s_scale_27B_blind;5-ht2c receptor expressing neuron;A15 dopaminergic neuron;A15 dopaminergic neuron
+False;c2s_scale_27B_blind;5031439g07rik;obsolete CP:0000028;obsolete CP:0000028
+False;c2s_scale_27B_blind;5730522e02rik;obsolete CP:0000027;obsolete CP:0000027
+False;c2s_scale_27B_blind;5_monoco1_conforming_to_mt1;Gr1-positive, CD43-positive monocyte;Gr1-positive, CD43-positive monocyte
+False;pancreas_instructcell_unblind;60%;skin fibroblast;skin fibroblast
+True;HIHA;ASDC;Axl+ dendritic cell, human;obsolete pstO/ALC
+True;Zeisel;Astrocytes;astrocyte;astrocyte
+True;HIHA;CD14 monocyte;CD14-positive monocyte;CD14-low, CD16-positive monocyte
+True;HIHA;CD16 monocyte;CD14-low, CD16-positive monocyte;CD14-low, CD16-positive monocyte
+True;HIHA;CD56bright NK cell;CD16-negative, CD56-bright natural killer cell, human;mature NK T cell, human
+True;HIHA;CD56dim NK cell;CD16-positive, CD56-dim natural killer cell, human;mature NK T cell, human
+True;HIHA;CD8aa;CD8aa(I) thymocyte;CD8aa(I) thymocyte
+True;Zeisel;Cerebellum neurons;cerebellar neuron;cerebellar neuron
+True;Zeisel;Cholinergic and monoaminergic neurons;cholinergic neuron;cholinergic neuron
+True;Zeisel;Choroid epithelial cells;choroid plexus epithelial cell;obsolete choroid plexus cell
+True;HIHA;DC;dendritic cell;CD1a-positive dermal dendritic cell
+True;HIHA;DN T cell;double negative T regulatory cell;DN1 thymic pro-T cell
+True;Zeisel;Dentate gyrus granule neurons;dentate gyrus granule cell;dentate gyrus neuron
+True;Zeisel;Dentate gyrus radial glia-like cells;radial glial cell;dentate gyrus granule cell
+True;Zeisel;Di- and mesencephalon excitatory neurons;glutamatergic neuron;sensory processing neuron
+True;Zeisel;Di- and mesencephalon inhibitory neurons;GABAergic neuron;neuron associated cell
+True;Zeisel;Enteric neurons;enteric neuron;enteric neuron
+True;Zeisel;Enteric-glia;enteroglial cell;type I enteric glial cell
+True;Zeisel;Ependymal cells;ependymal cell;ependymal cell
+True;Zeisel;Glutamatergic neuroblasts;neuroblast (sensu Vertebrata);GABA-Glut neuron
+True;Zeisel;Hindbrain neurons;cranial visceromotor neuron;neuron of the forebrain
+True;HIHA;ILC;innate lymphoid cell;ILC1, human
+True;HIHA;Memory CD4 T cell;CD4-positive, alpha-beta memory T cell;CD4-positive, alpha-beta memory T cell
+True;HIHA;Memory CD8 T cell;CD8-positive, alpha-beta memory T cell;CD8-positive, alpha-beta memory T cell
+True;Zeisel;Microglia;microglial cell (Mmus);microglial cell (Mmus)
+True;HIHA;Naive CD4 T cell;naive thymus-derived CD4-positive, alpha-beta T cell;naive CCR4-positive regulatory T cell
+True;HIHA;Naive CD8 T cell;naive thymus-derived CD8-positive, alpha-beta T cell;naive thymus-derived CD8-positive, alpha-beta T cell
+True;Zeisel;Non-glutamatergic neuroblasts;neuroblast (sensu Vertebrata);GABA-Glut neuron
+True;Zeisel;Olfactory ensheathing cells;olfactory ensheathing cell;olfactory epithelial cell
+True;Zeisel;Olfactory inhibitory neurons;GABAergic neuron;olfactory receptor cell
+True;Zeisel;Oligodendrocyte precursor cells;oligodendrocyte precursor cell;oligodendrocyte precursor cell
+True;Zeisel;Oligodendrocytes;oligodendrocyte;oligodendrocyte
+True;Zeisel;Peptidergic neurons;peptidergic neuron;peptidergic neuron
+True;Zeisel;Pericytes;pericyte;decidual pericyte
+True;Zeisel;Peripheral sensory neurofilament neurons;peripheral sensory neuron;sensory processing neuron
+True;Zeisel;Peripheral sensory non-peptidergic neurons;peripheral sensory neuron;peptidergic neuron
+True;Zeisel;Peripheral sensory peptidergic neurons;peripheral sensory neuron;peptidergic neuron
+True;Zeisel;Perivascular macrophages;perivascular macrophage;perivascular macrophage
+True;HIHA;Proliferating NK cell;cycling natural killer cell;mature NK T cell, human
+True;Zeisel;Satellite glia;satellite glial cell;perineuronal satellite cell
+True;Zeisel;Schwann cells;Schwann cell;Schwann cell precursor
+True;Zeisel;Spinal cord excitatory neurons;glutamatergic neuron;neuron of the dorsal spinal cord
+True;Zeisel;Spinal cord inhibitory neurons;GABAergic neuron;inhibitory motor neuron
+True;Zeisel;Subcommissural organ hypendymal cells;hypendymal cell;hypendymal cell
+True;Zeisel;Subventricular zone radial glia-like cells;radial glial cell;radial glial cell
+True;Zeisel;Sympathetic cholinergic neurons;sympathetic cholinergic neuron;sympathetic cholinergic neuron
+True;Zeisel;Sympathetic noradrenergic neurons;sympathetic noradrenergic neuron;sympathetic noradrenergic neuron
+True;Zeisel;Telencephalon inhibitory interneurons;GABAergic neuron;molecular layer interneuron
+True;Zeisel;Telencephalon projecting excitatory neurons;glutamatergic neuron;extratelencephalic-projecting glutamatergic cortical neuron
+True;Zeisel;Telencephalon projecting inhibitory neurons;GABAergic neuron;extratelencephalic-projecting glutamatergic cortical neuron
+True;Zeisel;Vascular and leptomeningeal cells;vascular leptomeningeal cell (Mmus);vascular leptomeningeal cell (Mmus)
+True;Zeisel;Vascular endothelial cells;endothelial cell of vascular tree;blood vessel endothelial cell
+True;Zeisel;Vascular smooth muscle cells;vascular associated smooth muscle cell;vascular associated smooth muscle cell
+False;pancreas_instructcell_blind;a umplut;obsolete subsidiary cell;obsolete subsidiary cell
+False;pancreas_instructcell_unblind;acina district;acinar cell;acinar cell
+False;pancreas_instructcell_blind;acina skeptical;acinar cell;acinar cell
+False;pancreas_instructcell_blind;acinachi;acinar cell;acinar cell
+True;human_pancreas;acinar;acinar cell;acinar cell
+False;pancreas_instructcell_blind;acinar ashley;acinar cell;acinar cell
+False;pancreas_instructcell_unblind;acinar sofa;acinar cell;acinar cell
+False;pancreas_instructcell_unblind;acinar stripped;acinar cell;acinar cell
+False;c2s_scale_27B_blind;"activated cd4-positive, alpha-beta t cell.
+";activated CD4-positive, alpha-beta T cell;activated CD4-positive, alpha-beta T cell
+False;c2s_scale_27B_blind;"activated cd4-positive, alpha-beta t cell.
+cell 2:
+mal";activated CD4-positive, alpha-beta T cell;activated CD4-positive, alpha-beta T cell
+True;human_pancreas;activated_stellate;pancreatic stellate cell;stellate neuron
+False;pancreas_instructcell_blind;adurch;adrenergic neuron;adrenergic neuron
+False;pancreas_instructcell_blind;aloo;alobate nucleus;alobate nucleus
+False;instructcell_blind;alowcd34+ bulge;alveolar adventitial fibroblast;alveolar adventitial fibroblast
+True;human_pancreas;alpha;pancreatic A cell;kidney connecting tubule alpha-intercalated cell
+False;pancreas_scsa_blind;alpha cell (α cell);mature alpha-beta T cell;mature alpha-beta T cell
+False;pancreas_instructcell_unblind;alpha operations;alpha motor neuron;alpha motor neuron
+False;pancreas_instructcell_blind;alpha wouldn;immature alpha-beta T cell;immature alpha-beta T cell
+False;pancreas_instructcell_unblind;alpha „;alpha motor neuron;alpha motor neuron
+False;c2s_scale_27B_blind;"alpha-beta t cell.
+";mature alpha-beta T cell;mature alpha-beta T cell
+False;pancreas_celltypist_blind;alpha_immature;immature alpha-beta T cell;immature alpha-beta T cell
+False;pancreas_celltypist_blind;alpha_mature;mature alpha-beta T cell;mature alpha-beta T cell
+False;pancreas_celltypist_blind;alpha_mhc ii;MHC-II-low non-classical monocyte;MHC-II-low non-classical monocyte
+False;pancreas_celltypist_blind;alpha_stress ii;corticotropin-releasing neuron;corticotropin-releasing neuron
+False;pancreas_instructcell_unblind;alphaeidig;kidney collecting duct alpha-intercalated cell;kidney collecting duct alpha-intercalated cell
+False;pancreas_instructcell_blind;alphamuddy;IgE plasmablast;IgE plasmablast
+False;pancreas_instructcell_unblind;alphashu;alpha motor neuron;alpha motor neuron
+False;pancreas_instructcell_unblind;alphaâ;kidney connecting tubule alpha-intercalated cell;kidney connecting tubule alpha-intercalated cell
+False;c2s_scale_27B_blind;"amacrine cell.
+";flag amacrine cell;flag amacrine cell
+False;celltypist_blind;amacrine_1;broad diffuse amacrine cell;broad diffuse amacrine cell
+False;celltypist_blind;amacrine_2;broad diffuse amacrine cell;broad diffuse amacrine cell
+False;celltypist_blind;amacrine_3;monostratified amacrine cell;monostratified amacrine cell
+False;pancreas_instructcell_blind;amind;biogenic amine secreting cell;biogenic amine secreting cell
+False;c2s_scale_27B_unblind;amplifying cell;transit amplifying cell of small intestine;transit amplifying cell of small intestine
+False;c2s_scale_2B_unblind;animal cell;obsolete animal cell;obsolete animal cell
+False;c2s_scale_27B_blind;"animal cell.
+";obsolete animal cell;obsolete animal cell
+False;instructcell_blind;assembling;stuff accumulating cell;stuff accumulating cell
+False;pancreas_instructcell_unblind;astazi;tufted pyramidal neuron;tufted pyramidal neuron
+False;celltypist_blind;astro;astrocyte of the forebrain;astrocyte of the forebrain
+False;c2s_scale_27B_unblind;"astrocyte.
+";astrocyte of the forebrain;astrocyte of the forebrain
+False;instructcell_blind;atorii;atretic granulosa cell;atretic granulosa cell
+False;instructcell_blind;ausreichend;stellate interneuron;stellate interneuron
+False;instructcell_blind;awaiting;organ of Corti supporting cell;organ of Corti supporting cell
+False;instructcell_blind;b cell me;IgE memory B cell;IgE memory B cell
+False;c2s_scale_27B_blind;"b cell.
+";cycling B cell;cycling B cell
+False;c2s_scale_27B_blind;"b cell.
+cell 1:
+b cell.
+";B-1b B cell;B-1b B cell
+False;c2s_scale_27B_blind;"b cell.
+cell 1:
+malat1 mt-co1 mt-co";fraction C precursor B cell;fraction C precursor B cell
+False;c2s_scale_27B_blind;"b cell.
+cell 2:
+malat1 mt-co1 mt-co";Bm2' B cell;Bm2' B cell
+False;celltypist_blind;b cells;B cell;B cell
+False;instructcell_blind;b save;B cell;B cell
+False;instructcell_blind;b still;obsolete IgE B cell;obsolete IgE B cell
+False;celltypist_blind;b-cell lineage;B cell;B cell
+False;instructcell_blind;bas entour;unipolar brush cell;unipolar brush cell
+False;c2s_scale_27B_blind;"basal cell.
+";cycling basal cell;cycling basal cell
+False;c2s_scale_27B_blind;"basal cell.
+cell 20-136j7.
+cell";basal cell;basal cell
+False;instructcell_blind;basal humanitarian;basal cell;basal cell
+False;instructcell_blind;basal libraries;basal cell;basal cell
+False;instructcell_blind;basal white;light melanocyte;light melanocyte
+False;pancreas_instructcell_blind;bbleject;obsolete zoospore;obsolete zoospore
+False;instructcell_blind;be;Be2 cell;Be2 cell
+False;instructcell_blind;beautifully;cystoblast;cystoblast
+False;instructcell_blind;bereitous;amoeboid cell;amoeboid cell
+False;instructcell_blind;besc;rod bipolar cell (sensu Mus);rod bipolar cell (sensu Mus)
+False;instructcell_blind;besc-1;Be1 Cell;Be1 Cell
+True;human_pancreas;beta;type B pancreatic cell;mature alpha-beta T cell
+False;pancreas_instructcell_unblind;beta bag;dynamic beta motor neuron;dynamic beta motor neuron
+False;pancreas_instructcell_unblind;beta beschrieben;beta2-tanycyte;beta2-tanycyte
+False;instructcell_blind;beta bounty;beta2-tanycyte;beta2-tanycyte
+False;pancreas_scsa_blind;beta cell(β cell);mature alpha-beta T cell;mature alpha-beta T cell
+False;pancreas_instructcell_blind;beta constanta;beta2-tanycyte;beta2-tanycyte
+False;pancreas_instructcell_unblind;beta dossier;beta2-tanycyte;beta2-tanycyte
+False;pancreas_instructcell_blind;beta emergencies;mature alpha-beta T cell;mature alpha-beta T cell
+False;pancreas_instructcell_blind;beta fothelial;beta2-tanycyte;beta2-tanycyte
+False;pancreas_instructcell_unblind;beta licht;dynamic beta motor neuron;dynamic beta motor neuron
+False;pancreas_instructcell_blind;beta personality;beta2-tanycyte;beta2-tanycyte
+False;pancreas_instructcell_blind;beta probleme;beta2-tanycyte;beta2-tanycyte
+False;pancreas_celltypist_blind;beta_immature;immature astrocyte;immature astrocyte
+False;pancreas_celltypist_blind;beta_mature;mature alpha-beta T cell;mature alpha-beta T cell
+False;pancreas_celltypist_blind;beta_mhc/autoantigen;central memory CD8-positive, alpha-beta T cell;central memory CD8-positive, alpha-beta T cell
+False;pancreas_celltypist_blind;beta_mtdna deficient;committed double negative thymocyte (Homo sapiens);committed double negative thymocyte (Homo sapiens)
+False;pancreas_celltypist_blind;beta_stress i;corticotropin-releasing neuron;corticotropin-releasing neuron
+False;pancreas_celltypist_blind;beta_stress ii;beta2-tanycyte;beta2-tanycyte
+False;instructcell_blind;betaestitive;CD8-positive, alpha-beta T cell;CD8-positive, alpha-beta T cell
+False;pancreas_instructcell_unblind;betagori;ganglion interneuron;ganglion interneuron
+False;pancreas_instructcell_unblind;betamiss;renal beta-intercalated cell;renal beta-intercalated cell
+False;pancreas_instructcell_blind;betasave;alpha-beta T cell;alpha-beta T cell
+False;pancreas_instructcell_blind;betroffenen;spinal interneuron synapsing Betz cell;spinal interneuron synapsing Betz cell
+False;instructcell_blind;bev+;Be1 Cell;Be1 Cell
+False;celltypist_blind;bipolar_1;bipolar neuron;bipolar neuron
+False;celltypist_blind;bipolar_2;bipolar neuron;bipolar neuron
+True;HIHA;cDC1;conventional dendritic cell;DN1 thymic pro-T cell
+True;HIHA;cDC2;conventional dendritic cell;CD27-high, CD11b-low natural killer cell, mouse
+False;celltypist_blind;ca1-pros;Tc1 cell;Tc1 cell
+False;celltypist_blind;ca3;hippocampal CA1-3 neuron;hippocampal CA1-3 neuron
+False;celltypist_blind;car3;L6 intratelencephalic projecting Car3 glutamatergic neuron;L6 intratelencephalic projecting Car3 glutamatergic neuron
+False;c2s_scale_27B_blind;"cd14-positive monocyte.
+";CD14-low, CD16-positive monocyte;CD14-low, CD16-positive monocyte
+False;c2s_scale_27B_unblind;cd14-positive myeloid dendritic cell;immature CD16-positive myeloid dendritic cell;immature CD16-positive myeloid dendritic cell
+False;c2s_scale_27B_unblind;cd16-positive, cd16-dim natural killer cell, human;CD16-positive, CD56-dim natural killer cell, human;CD16-positive, CD56-dim natural killer cell, human
+False;c2s_scale_27B_unblind;cd1c-positive myeloid dendritic cell, human;CD117-positive common myeloid progenitor OR CD217-positive common lymphoid progenitor;CD117-positive common myeloid progenitor OR CD217-positive common lymphoid progenitor
+False;scsa_blind;cd4+ t cell;CD4-positive, alpha-beta memory T cell;CD4-positive, alpha-beta memory T cell
+False;c2s_scale_27B_blind;"cd4-positive helper t cell.
+";CD4-positive helper T cell;CD4-positive helper T cell
+False;c2s_scale_27B_blind;"cd4-positive, alpha-beta cytotoxic t cell.
+";CD4-positive, alpha-beta cytotoxic T cell;CD4-positive, alpha-beta cytotoxic T cell
+False;c2s_scale_27B_blind;"cd4-positive, alpha-beta cytotoxic t cell.
+cell 2:
+mal";CD4-positive, alpha-beta cytotoxic T cell;CD4-positive, alpha-beta cytotoxic T cell
+False;c2s_scale_27B_unblind;cd4-positive, alpha-beta memory t cell, cd141-positive;CD4-positive, alpha-beta memory T cell;CD4-positive, alpha-beta memory T cell
+False;c2s_scale_27B_unblind;cd4-positive, alpha-beta memory t cell, cd56-positive;CD4-positive, alpha-beta memory T cell;CD4-positive, alpha-beta memory T cell
+False;c2s_scale_27B_unblind;cd4-positive, alpha-beta memory t cell, cd8-positive, alpha-;CD4-positive, alpha-beta memory T cell;CD4-positive, alpha-beta memory T cell
+False;c2s_scale_27B_unblind;cd4-positive, alpha-beta memory t cell, human;CD4-positive, alpha-beta memory T cell;CD4-positive, alpha-beta memory T cell
+False;c2s_scale_27B_blind;"cd4-positive, alpha-beta memory t cell.
+";CD4-positive, alpha-beta memory T cell;CD4-positive, alpha-beta memory T cell
+False;c2s_scale_27B_blind;"cd4-positive, alpha-beta memory t cell.
+cell 1:
+mal";CD4-positive, alpha-beta memory T cell;CD4-positive, alpha-beta memory T cell
+False;c2s_scale_27B_blind;"cd4-positive, alpha-beta t cell.
+";activated CD4-positive, alpha-beta T cell;activated CD4-positive, alpha-beta T cell
+False;c2s_scale_27B_blind;"cd4-positive, alpha-beta t cell.
+cell 10997";activated CD4-positive, alpha-beta T cell;activated CD4-positive, alpha-beta T cell
+False;c2s_scale_27B_blind;"cd4-positive, alpha-beta t cell.
+cell 10:
+mal";CD4-positive, alpha-beta memory T cell;CD4-positive, alpha-beta memory T cell
+False;c2s_scale_27B_blind;"cd4-positive, alpha-beta t cell.
+cell 17:
+mal";activated CD4-positive, alpha-beta T cell;activated CD4-positive, alpha-beta T cell
+False;c2s_scale_27B_blind;"cd4-positive, alpha-beta t cell.
+cell 1:
+malat";CD4-positive, alpha-beta cytotoxic T cell;CD4-positive, alpha-beta cytotoxic T cell
+False;c2s_scale_27B_blind;"cd4-positive, alpha-beta t cell.
+cell 2:
+malat";CD4-positive, alpha-beta cytotoxic T cell;CD4-positive, alpha-beta cytotoxic T cell
+False;c2s_scale_27B_blind;"cd4-positive, alpha-beta t cell.
+cell 3:
+malat";CD4-positive, alpha-beta cytotoxic T cell;CD4-positive, alpha-beta cytotoxic T cell
+False;c2s_scale_27B_blind;"cd4-positive, alpha-beta t cell.
+cell 40-30";CD4-positive, alpha-beta memory T cell;CD4-positive, alpha-beta memory T cell
+False;c2s_scale_27B_blind;"cd4-positive, alpha-beta t cell.
+cell 4:
+malat";CD4-positive, alpha-beta cytotoxic T cell;CD4-positive, alpha-beta cytotoxic T cell
+False;c2s_scale_27B_unblind;cd4-positive, alpha-beta t-helper 17 cell;T-helper 17 cell;T-helper 17 cell
+False;scsa_blind;cd8+ t cell;CD8-positive, alpha-beta memory T cell;CD8-positive, alpha-beta memory T cell
+False;c2s_scale_27B_blind;"cd8-positive, alpha-beta cytotoxic t cell.
+";CD8-positive, alpha-beta cytotoxic T cell;CD8-positive, alpha-beta cytotoxic T cell
+False;c2s_scale_27B_unblind;cd8-positive, alpha-beta memory t cell, cd16-positive, cd;CD8-positive, alpha-beta memory T cell;CD8-positive, alpha-beta memory T cell
+False;c2s_scale_27B_unblind;cd8-positive, alpha-beta memory t cell, cd4-positive, alpha-;CD4-positive, alpha-beta memory T cell;CD4-positive, alpha-beta memory T cell
+False;c2s_scale_27B_unblind;cd8-positive, alpha-beta memory t cell, cd48-positive;CD8-positive, alpha-beta memory T cell;CD8-positive, alpha-beta memory T cell
+False;c2s_scale_27B_unblind;cd8-positive, alpha-beta memory t cell, cd8-positive, alpha-;CD8-positive, alpha-beta memory T cell;CD8-positive, alpha-beta memory T cell
+False;c2s_scale_27B_unblind;cd8-positive, alpha-beta memory t cell, human;CD8-positive, alpha-beta memory T cell;CD8-positive, alpha-beta memory T cell
+False;c2s_scale_27B_blind;"cd8-positive, alpha-beta memory t cell.
+";CD8-positive, alpha-beta memory T cell;CD8-positive, alpha-beta memory T cell
+False;c2s_scale_27B_blind;"cd8-positive, alpha-beta t cell.
+";activated CD8-positive, alpha-beta T cell;activated CD8-positive, alpha-beta T cell
+False;c2s_scale_27B_blind;"cd8-positive, alpha-beta t cell.
+cell 1:
+malat";CD8-alpha alpha positive, gamma-delta intraepithelial T cell;CD8-alpha alpha positive, gamma-delta intraepithelial T cell
+False;c2s_scale_27B_unblind;"cd8-positive, alpha-beta thymocyte.
+";CD8-positive, alpha-beta thymocyte;CD8-positive, alpha-beta thymocyte
+False;c2s_scale_27B_blind;"central memory cd4-positive, alpha-beta t cell.
+";CD4-positive, alpha-beta memory T cell;CD4-positive, alpha-beta memory T cell
+False;c2s_scale_27B_blind;"central memory cd4-positive, alpha-beta t cell.
+cell 1:";CD4-positive, alpha-beta memory T cell;CD4-positive, alpha-beta memory T cell
+False;c2s_scale_27B_blind;"central memory cd4-positive, alpha-beta t cell.
+cell 2:";CD4-positive, alpha-beta memory T cell;CD4-positive, alpha-beta memory T cell
+False;instructcell_blind;choses;striosomal D1 medium spiny neuron;striosomal D1 medium spiny neuron
+False;c2s_scale_27B_blind;"chromaffin cell.
+";chromaffin cell of paraaortic body;chromaffin cell of paraaortic body
+False;c2s_scale_27B_blind;ciliary epithelial cell;ciliated epithelial cell;ciliated epithelial cell
+False;c2s_scale_27B_blind;"ciliated cell.
+";ciliated cell;ciliated cell
+False;c2s_scale_27B_blind;"classical monocyte.
+";cycling monocyte;cycling monocyte
+False;c2s_scale_27B_blind;"common dendritic progenitor.
+cell 10:
+malat1 ptma rplp";CD115-positive monocyte OR common dendritic progenitor;CD115-positive monocyte OR common dendritic progenitor
+False;c2s_scale_27B_blind;"conventional dendritic cell.
+";mature conventional dendritic cell;mature conventional dendritic cell
+False;instructcell_blind;corek/tac-1;TAC3-positive medium spiny neuron;TAC3-positive medium spiny neuron
+False;celltypist_blind;cr;obsolete pstO/ALC;obsolete pstO/ALC
+False;celltypist_blind;ct sub;corticothalamic VAL/VM projecting glutamatergic neuron of the primary motor cortex;corticothalamic VAL/VM projecting glutamatergic neuron of the primary motor cortex
+False;celltypist_blind;cycling cells;cycling T cell;cycling T cell
+False;pancreas_c2s_scale_27B_unblind;d cell of islet of langerhans;Langerhans cell;Langerhans cell
+False;pancreas_c2s_scale_27B_unblind;d cell of islets of langerhans;Langerhans cell;Langerhans cell
+False;celltypist_blind;dc;CD1a-positive dermal dendritic cell;CD1a-positive dermal dendritic cell
+False;c2s_scale_27B_blind;"decidual natural killer cell, human.
+";decidual natural killer cell, human;decidual natural killer cell, human
+False;pancreas_c2s_scale_27B_unblind;delta cell;cycling gamma-delta T cell;cycling gamma-delta T cell
+False;pancreas_instructcell_unblind;delta früh;Fc-epsilon RIalpha-low mast cell progenitor;Fc-epsilon RIalpha-low mast cell progenitor
+False;c2s_scale_27B_blind;delta-beta t cell;cycling gamma-delta T cell;cycling gamma-delta T cell
+False;pancreas_instructcell_unblind;deltaleg;gamma-delta intraepithelial T cell;gamma-delta intraepithelial T cell
+False;c2s_scale_27B_blind;"dendritic cell.
+";cycling dendritic cell;cycling dendritic cell
+False;instructcell_blind;dermal fibroblast;fibroblast of dermis;fibroblast of dermis
+False;instructcell_blind;dermal papilla;hair follicle dermal papilla cell of scalp;hair follicle dermal papilla cell of scalp
+False;celltypist_blind;dg;Dx5-negative, NK1.1-positive immature natural killer cell, mouse;Dx5-negative, NK1.1-positive immature natural killer cell, mouse
+False;instructcell_blind;dieser;helper T cell;helper T cell
+False;pancreas_instructcell_blind;directors;primary interneuron (sensu Teleostei);primary interneuron (sensu Teleostei)
+False;instructcell_blind;dramatic;astrocyte of the forebrain;astrocyte of the forebrain
+False;pancreas_instructcell_unblind;du-2018;obsolete CP:0000028;obsolete CP:0000028
+False;pancreas_instructcell_blind;duaudible;mesothelial cell of dura mater;mesothelial cell of dura mater
+False;pancreas_instructcell_blind;dubenz;Betz upper motor neuron;Betz upper motor neuron
+False;pancreas_instructcell_unblind;duc gemeinde;reelin GABAergic cortical interneuron;reelin GABAergic cortical interneuron
+False;pancreas_instructcell_blind;duc natürlich;stellate interneuron;stellate interneuron
+False;pancreas_instructcell_blind;duc phone;cycling T cell;cycling T cell
+False;instructcell_blind;ducrub;cycling monocyte;cycling monocyte
+False;pancreas_instructcell_unblind;ducserie;Mauthner neuron;Mauthner neuron
+True;human_pancreas;ductal;pancreatic ductal cell;adventitial cell
+False;pancreas_instructcell_unblind;ductal advertise;duct epithelial cell;duct epithelial cell
+False;pancreas_c2s_scale_27B_unblind;ductal cell of liver;littoral cell of liver;littoral cell of liver
+False;pancreas_instructcell_blind;ductal părți;duct epithelial cell;duct epithelial cell
+False;pancreas_instructcell_blind;ductalleased;duct epithelial cell;duct epithelial cell
+False;pancreas_instructcell_blind;ductalwriter;duct epithelial cell;duct epithelial cell
+False;pancreas_instructcell_unblind;dépasse;cerebellar neuron;cerebellar neuron
+False;c2s_scale_27B_unblind;"early promyelocyte.
+";early promyelocyte;early promyelocyte
+False;c2s_scale_2B_unblind;effector cd8-positive, alpha-beta t cell, terminally differentiated;effector memory CD8-positive, alpha-beta T cell, terminally differentiated;effector memory CD8-positive, alpha-beta T cell, terminally differentiated
+False;c2s_scale_27B_blind;"effector cd8-positive, alpha-beta t cell.
+";activated CD8-positive, alpha-beta T cell;activated CD8-positive, alpha-beta T cell
+False;c2s_scale_27B_blind;"effector memory cd4-positive, alpha-beta t cell.
+";effector memory CD4-positive, alpha-beta T cell, terminally differentiated;effector memory CD4-positive, alpha-beta T cell, terminally differentiated
+False;c2s_scale_27B_blind;"effector memory cd8-positive, alpha-beta t cell.
+";effector memory CD8-positive, alpha-beta T cell, terminally differentiated;effector memory CD8-positive, alpha-beta T cell, terminally differentiated
+False;c2s_scale_27B_blind;"effector memory cd8-positive, alpha-beta t cell.
+cell 1:";effector memory CD8-positive, alpha-beta T cell, terminally differentiated;effector memory CD8-positive, alpha-beta T cell, terminally differentiated
+False;c2s_scale_27B_blind;"effector memory cd8-positive, alpha-beta t cell.
+cell 2:";effector memory CD8-positive, alpha-beta T cell, terminally differentiated;effector memory CD8-positive, alpha-beta T cell, terminally differentiated
+False;celltypist_blind;endo;endo-epithelial cell;endo-epithelial cell
+False;pancreas_instructcell_unblind;endo underground;endo-epithelial cell;endo-epithelial cell
+False;pancreas_instructcell_unblind;endo unrealistic;endo-epithelial cell;endo-epithelial cell
+True;human_pancreas;endothelial;endothelial cell;endothelial cell of artery
+False;c2s_scale_27B_blind;"endothelial cell of lymphatic vessel.
+";lymph node lymphatic vessel endothelial cell;lymph node lymphatic vessel endothelial cell
+False;c2s_scale_27B_unblind;endothelial cell of vascular leptomeningeal cell;blood vessel endothelial cell;blood vessel endothelial cell
+False;c2s_scale_27B_blind;"endothelial cell.
+";blood vessel endothelial cell;blood vessel endothelial cell
+False;c2s_scale_27B_blind;"endothelial cell.
+cell 1:
+endothelial cell.
+cell 2:";endothelial cell of artery;endothelial cell of artery
+False;pancreas_instructcell_blind;endothelial celllingual;blood vessel endothelial cell;blood vessel endothelial cell
+False;pancreas_instructcell_blind;endothelial jenny;blood vessel endothelial cell;blood vessel endothelial cell
+False;pancreas_instructcell_blind;endothelial realizeaz;endothelial cell of artery;endothelial cell of artery
+False;instructcell_blind;enforcementular;obsolete guard cell;obsolete guard cell
+False;pancreas_c2s_scale_27B_unblind;"enterocyte.
+";enterocyte;enterocyte
+False;c2s_scale_27B_blind;"enteroendocrine cell.
+";enteroendocrine cell of colon;enteroendocrine cell of colon
+False;c2s_scale_27B_blind;"ependymal cell.
+";ependymal cell;ependymal cell
+False;c2s_scale_27B_blind;"epithelial cell of lung.
+";epithelial cell of lung;epithelial cell of lung
+False;c2s_scale_27B_blind;"epithelial cell of proximal tubule.
+";epithelial cell of proximal tubule;epithelial cell of proximal tubule
+False;pancreas_c2s_blind;epithelial cell of the bronchus;bronchial epithelial cell;bronchial epithelial cell
+False;instructcell_blind;erinular;stellate interneuron;stellate interneuron
+False;c2s_scale_27B_blind;"erythrocyte.
+";enucleate erythrocyte;enucleate erythrocyte
+False;c2s_scale_27B_blind;"erythrocyte.
+cell 2:
+malat1 mt-co1 mt-";basophilic erythroblast;basophilic erythroblast
+False;instructcell_blind;europäische;stellate interneuron;stellate interneuron
+False;instructcell_blind;eve;obsolete egg cell;obsolete egg cell
+False;scsa_blind;excitatory neuron;sensory processing neuron;sensory processing neuron
+False;instructcell_blind;exists;obsolete idioblast;obsolete idioblast
+False;instructcell_blind;fev despre;iron accumulating cell;iron accumulating cell
+False;instructcell_blind;fev+;iron accumulating cell;iron accumulating cell
+False;c2s_scale_27B_blind;"fibroblast of cardiac tissue.
+";fibroblast of cardiac tissue;fibroblast of cardiac tissue
+False;c2s_scale_27B_blind;"fibroblast of connective tissue of prostate.
+";fibroblast of connective tissue of prostate;fibroblast of connective tissue of prostate
+False;c2s_scale_27B_blind;"fibroblast.
+";skin fibroblast;skin fibroblast
+False;c2s_scale_27B_blind;"gabaergic neuron.
+";GABAergic neuron;GABAergic neuron
+False;pancreas_instructcell_unblind;gam mag;GABAergic neuron;GABAergic neuron
+False;instructcell_blind;gamm accus;copper accumulating cell;copper accumulating cell
+True;human_pancreas;gamma;pancreatic PP cell;gamma motor neuron
+False;c2s_scale_27B_blind;"gamma-delta t cell.
+";cycling gamma-delta T cell;cycling gamma-delta T cell
+True;HIHA;gdT;gamma-delta T cell;granulocyte monocyte progenitor cell
+False;instructcell_blind;gekommen;neuroglioblast (sensu Nematoda);neuroglioblast (sensu Nematoda)
+False;c2s_scale_27B_unblind;"glutamatergic neuron.
+";glutamatergic neuron;glutamatergic neuron
+False;c2s_scale_27B_blind;"glutamatergic neuron.
+cell 2:
+malat1 meg3 mt-";glutamatergic neuron;glutamatergic neuron
+False;c2s_scale_27B_blind;"group 2 innate lymphoid cell.
+";group 2 innate lymphoid cell, human;group 2 innate lymphoid cell, human
+False;instructcell_blind;hand;touch receptor cell;touch receptor cell
+False;c2s_scale_27B_blind;"hematopoietic cell.
+";hematopoietic cell;hematopoietic cell
+False;c2s_scale_27B_unblind;"hematopoietic multipotent progenitor cell.
+";hematopoietic multipotent progenitor cell;hematopoietic multipotent progenitor cell
+False;c2s_scale_27B_blind;"hematopoietic multipotent progenitor cell.
+cell 1:
+hematopoietic multipotent";hematopoietic multipotent progenitor cell;hematopoietic multipotent progenitor cell
+False;c2s_scale_27B_blind;"hematopoietic stem cell.
+";hematopoietic cell;hematopoietic cell
+False;c2s_scale_27B_blind;"hematopoietic stem cell.
+cell 1:
+malat1 mt-co1";short term hematopoietic stem cell;short term hematopoietic stem cell
+False;instructcell_blind;holiday;red sensitive photoreceptor cell;red sensitive photoreceptor cell
+False;pancreas_instructcell_blind;honour;epithelial cell of wall of inferior part of anal canal;epithelial cell of wall of inferior part of anal canal
+False;celltypist_blind;horizontal_1;H1 horizontal cell;H1 horizontal cell
+False;celltypist_blind;horizontal_2;H2 horizontal cell;H2 horizontal cell
+False;celltypist_blind;hsc/mpp;obsolete pstO/ALC;obsolete pstO/ALC
+False;instructcell_blind;http;epithelial cell of urethra;epithelial cell of urethra
+False;pancreas_instructcell_unblind;ificare;polymodal nocireceptor;polymodal nocireceptor
+False;c2s_scale_27B_blind;"iga plasma cell.
+";IgA plasma cell;IgA plasma cell
+False;c2s_scale_27B_blind;"iga plasma cell.
+cell 2:
+malat1 mt-co1 mt";IgA plasma cell;IgA plasma cell
+False;instructcell_blind;igue;IgM plasma cell;IgM plasma cell
+False;celltypist_blind;ilc;ILC1, human;ILC1, human
+False;c2s_scale_27B_blind;"immature b cell.
+";fraction E immature B cell;fraction E immature B cell
+False;c2s_scale_27B_blind;"inflammatory macrophage.
+";kidney interstitial inflammatory macrophage;kidney interstitial inflammatory macrophage
+False;instructcell_blind;infund etats;spinal cord interneuron;spinal cord interneuron
+False;instructcell_blind;infundibulum;enteroendocrine cell of anorectum;enteroendocrine cell of anorectum
+False;scsa_blind;inhibitory neuron;inhibitory motor neuron;inhibitory motor neuron
+False;c2s_scale_27B_blind;"innate lymphoid cell.
+";immature innate lymphoid cell;immature innate lymphoid cell
+False;c2s_scale_27B_blind;"innate lymphoid cell.
+cell 20-138e5 rpl1";group 1 innate lymphoid cell;group 1 innate lymphoid cell
+False;c2s_scale_27B_blind;"innate lymphoid cell.
+cell 2:
+mal1 malat1 mt-co";group 2 innate lymphoid cell, human;group 2 innate lymphoid cell, human
+False;instructcell_blind;inner;inner renal cortex cell;inner renal cortex cell
+False;pancreas_instructcell_unblind;integr;enterocyte of epithelium proper of large intestine;enterocyte of epithelium proper of large intestine
+False;c2s_scale_27B_blind;"interneuron.
+";stellate interneuron;stellate interneuron
+False;instructcell_blind;jobs;cerebral cortex neuron;cerebral cortex neuron
+False;instructcell_blind;k6;mature NK T cell, human;mature NK T cell, human
+False;instructcell_blind;k6+ bulge;type II spiral ligament fibrocyte;type II spiral ligament fibrocyte
+False;instructcell_blind;k6+ bulge comp entlang;type II spiral ligament fibrocyte;type II spiral ligament fibrocyte
+False;instructcell_blind;k6+ bulge compani;type II spiral ligament fibrocyte;type II spiral ligament fibrocyte
+False;instructcell_blind;k6+ bulge companion layer;sheath cell;sheath cell
+False;instructcell_blind;k6+ compani;kidney artery smooth muscle cell;kidney artery smooth muscle cell
+False;c2s_scale_27B_blind;"kidney collecting duct principal cell.
+";kidney collecting duct principal cell;kidney collecting duct principal cell
+False;pancreas_instructcell_blind;ky6+ bulge companion layer;sheath cell;sheath cell
+False;celltypist_blind;l2 it entl;L2 marginal neuron;L2 marginal neuron
+False;celltypist_blind;l2 it entm;L2 marginal neuron;L2 marginal neuron
+False;celltypist_blind;l2/3 it ctx;L2/3 bipolar VIP GABAergic interneuron (Mmus);L2/3 bipolar VIP GABAergic interneuron (Mmus)
+False;celltypist_blind;l2/3 it entl;L2/3 intratelencephalic projecting glutamatergic neuron;L2/3 intratelencephalic projecting glutamatergic neuron
+False;celltypist_blind;l2/3 it ppp;PP cell of intestine;PP cell of intestine
+False;celltypist_blind;l2/3 it rhp;R3 photoreceptor cell;R3 photoreceptor cell
+False;celltypist_blind;l3 it ent;L6 intratelencephalic projecting Car3 glutamatergic neuron;L6 intratelencephalic projecting Car3 glutamatergic neuron
+False;celltypist_blind;l4 rsp-aca;R4 photoreceptor cell;R4 photoreceptor cell
+False;celltypist_blind;l4/5 it ctx;medullary thymic epithelial cell type 4;medullary thymic epithelial cell type 4
+False;celltypist_blind;l5 it ctx;L5 extratelencephalic projecting glutamatergic cortical neuron;L5 extratelencephalic projecting glutamatergic cortical neuron
+False;celltypist_blind;l5 pt ctx;R5 photoreceptor cell;R5 photoreceptor cell
+False;celltypist_blind;l5/6 it tpe-ent;L5 extratelencephalic projecting glutamatergic cortical neuron (Homo sapiens);L5 extratelencephalic projecting glutamatergic cortical neuron (Homo sapiens)
+False;celltypist_blind;l5/6 np ctx;L5/6 cck, VIP GABAergic interneuron (Mmus);L5/6 cck, VIP GABAergic interneuron (Mmus)
+False;celltypist_blind;l6 ct ctx;lung resident memory CD8-positive, alpha-beta T cell;lung resident memory CD8-positive, alpha-beta T cell
+False;celltypist_blind;l6 it ctx;L6 th sst GABAergic interneuron (Mmus);L6 th sst GABAergic interneuron (Mmus)
+False;celltypist_blind;l6 it entl;L6 intratelencephalic projecting Car3 glutamatergic neuron;L6 intratelencephalic projecting Car3 glutamatergic neuron
+False;celltypist_blind;l6b ctx;lung resident memory CD8-positive, alpha-beta T cell;lung resident memory CD8-positive, alpha-beta T cell
+False;celltypist_blind;l6b/ct ent;L6 th sst GABAergic interneuron (Mmus);L6 th sst GABAergic interneuron (Mmus)
+False;c2s_scale_27B_blind;"leptomeningeal cell.
+";leptomeningeal cell;leptomeningeal cell
+False;c2s_scale_27B_unblind;leptomeningelial cell;vascular leptomeningeal cell (Mmus);vascular leptomeningeal cell (Mmus)
+False;c2s_scale_27B_blind;"leukocyte.
+";nongranular leukocyte;nongranular leukocyte
+False;instructcell_blind;lieutenant;obsolete guard cell;obsolete guard cell
+False;instructcell_blind;lived;short lived plasma cell;short lived plasma cell
+False;instructcell_blind;locous;fan Martinotti neuron;fan Martinotti neuron
+False;instructcell_blind;lost muscle cell;activated skeletal muscle satellite cell;activated skeletal muscle satellite cell
+False;c2s_scale_27B_blind;"lymphocyte.
+";blood lymphocyte;blood lymphocyte
+False;instructcell_blind;lü;luminal cell of lactiferous terminal ductal lobular unit;luminal cell of lactiferous terminal ductal lobular unit
+False;instructcell_blind;macrophage dc;cycling macrophage;cycling macrophage
+False;c2s_scale_27B_blind;"macrophage.
+";cycling macrophage;cycling macrophage
+True;human_pancreas;mast;mast cell;mast cell
+False;c2s_scale_27B_blind;"mast cell.
+";cap cell;cap cell
+False;celltypist_blind;mast cells;mast cell;mast cell
+False;c2s_scale_27B_unblind;mature gzma-positive, alpha-beta t cell;mature alpha-beta T cell;mature alpha-beta T cell
+False;c2s_scale_27B_blind;"mature nk t cell.
+";mature NK T cell, human;mature NK T cell, human
+False;c2s_scale_27B_blind;"mature nk t cell.
+cell 10:
+cd74 malat1 mt";mature NK T cell, human;mature NK T cell, human
+False;c2s_scale_27B_blind;"mature nk t cell.
+cell 14:
+mt-co1 mt-co";mature NK T cell, human;mature NK T cell, human
+False;c2s_scale_27B_blind;"mature nk t cell.
+cell 1:
+b2m malat1 mt-";type II NK T cell;type II NK T cell
+False;c2s_scale_27B_blind;"mature nk t cell.
+cell 1:
+epithelial cell of lower respiratory tract";mature NK T cell;mature NK T cell
+False;c2s_scale_27B_blind;"mature nk t cell.
+cell 1:
+mal1 mt-co1 mt-";NKGA2-positive natural killer cell, mouse;NKGA2-positive natural killer cell, mouse
+False;c2s_scale_27B_blind;"mature nk t cell.
+cell 1:
+native cell.
+cell 11";mature NK T cell, human;mature NK T cell, human
+False;c2s_scale_27B_blind;"mature nk t cell.
+cell 1:
+native cell.
+cell 2:";mature NK T cell;mature NK T cell
+False;c2s_scale_27B_blind;"mature nk t cell.
+cell 20-136j10";mature NK T cell, human;mature NK T cell, human
+False;c2s_scale_27B_blind;"mature nk t cell.
+cell 2:
+malat1 mt-co1 mt";immature NK T cell;immature NK T cell
+False;c2s_scale_27B_blind;"mature nk t cell.
+cell 2:
+malat1 mt-co2 mt";immature NK T cell;immature NK T cell
+False;c2s_scale_27B_blind;"mature nk t cell.
+cell 2:
+malat1 mt-rnr2";type II NK T cell;type II NK T cell
+False;c2s_scale_27B_blind;"mature nk t cell.
+cell 3:
+malat1 mt-co1 mt";mature NK T cell;mature NK T cell
+False;c2s_scale_27B_blind;"mature nk t cell.
+cell 3:
+malp2 malat1 mt-";immature NK T cell;immature NK T cell
+False;c2s_scale_27B_blind;"mature t cell.
+";immature T cell;immature T cell
+False;c2s_scale_27B_blind;"mature t cell.
+cell 1:
+malat1 b2m tmsb4";Be cell;Be cell
+False;c2s_scale_27B_blind;"mature t cell.
+cell 2:
+malat1 b2m tmsb4";Be cell;Be cell
+False;c2s_scale_27B_blind;"mature t cell.
+cell 3:
+malat1 b2m tmsb4";Be cell;Be cell
+False;c2s_scale_27B_blind;"mature t cell.
+t cell.
+mature t cell.
+cell 2:";immature T cell;immature T cell
+False;c2s_scale_27B_unblind;mature thymus-derived cd4-positive, alpha-beta t cell;mature CD4 single-positive thymocyte;mature CD4 single-positive thymocyte
+False;c2s_scale_27B_blind;"medium spiny neuron.
+";Mauthner neuron;Mauthner neuron
+False;celltypist_blind;megakaryocyte precursor;megakaryocyte;megakaryocyte
+False;c2s_scale_27B_blind;"megakaryocyte-erythroid progenitor cell.
+";megakaryocyte-erythroid progenitor cell;megakaryocyte-erythroid progenitor cell
+False;celltypist_blind;megakaryocytes/platelets;megakaryocyte;megakaryocyte
+False;celltypist_blind;meis2;meis2 expressing cortical GABAergic cell;meis2 expressing cortical GABAergic cell
+False;c2s_scale_27B_blind;"memory b cell.
+";IgE memory B cell;IgE memory B cell
+False;c2s_scale_27B_blind;"memory b cell.
+cell 1:
+malat1 mt-co1 mt-";double negative memory B cell;double negative memory B cell
+False;instructcell_blind;mesenchyme;metanephric mesenchyme stem cell;metanephric mesenchyme stem cell
+False;celltypist_blind;micro-pvm;micropylar cell;micropylar cell
+False;c2s_scale_27B_blind;"microglial cell.
+";brain macroglial cell;brain macroglial cell
+False;c2s_scale_27B_blind;"microglial cell.
+cell 2:
+malat1 mt-nd1 mt";microglial cell (Mmus);microglial cell (Mmus)
+False;pancreas_instructcell_blind;milan;interna theca cell;interna theca cell
+False;instructcell_blind;mix;multinucleate cell;multinucleate cell
+False;instructcell_blind;mon generator;obsolete stalk cell;obsolete stalk cell
+False;celltypist_blind;monocyte precursor;monopoietic cell;monopoietic cell
+False;c2s_scale_27B_blind;"monocyte.
+";cycling monocyte;cycling monocyte
+False;c2s_scale_27B_blind;"monocyte.
+cell 1:
+malat1 mt-co1 mt-co";intermediate monocyte;intermediate monocyte
+False;c2s_scale_27B_blind;"monocyte.
+cell 1:
+monocyte.
+cell 2:
+mac";intermediate monocyte;intermediate monocyte
+False;c2s_scale_27B_blind;"monocyte.
+cell 1:
+monocyte.
+cell 2:
+mon";intermediate monocyte;intermediate monocyte
+False;c2s_scale_27B_blind;"monocyte.
+cell 1:
+monocyte.
+cell 3:
+mon";intermediate monocyte;intermediate monocyte
+False;c2s_scale_27B_blind;"monocyte.
+cell 2:
+malat1 mt-co1 mt-co";intermediate monocyte;intermediate monocyte
+False;c2s_scale_27B_blind;"monocyte.
+cell 2:
+mt-co1 mt-co2 mt-";cycling monocyte;cycling monocyte
+False;celltypist_blind;monocytes;intermediate monocyte;intermediate monocyte
+False;celltypist_blind;mu_ller;Mauthner neuron;Mauthner neuron
+False;c2s_scale_27B_blind;"mucosal invariant t cell.
+";mucosal-associated invariant T cell;mucosal-associated invariant T cell
+False;c2s_scale_27B_blind;"mucosal invariant t cell.
+cell 2:
+malat1 mt-co1";mucosal-associated invariant T cell;mucosal-associated invariant T cell
+False;instructcell_blind;multipot;syncytial cell;syncytial cell
+False;instructcell_blind;multipotent;hematopoietic multipotent progenitor cell;hematopoietic multipotent progenitor cell
+False;celltypist_blind;myelocytes;myelocyte;myelocyte
+False;c2s_scale_27B_blind;"myeloid cell.
+";myeloid cell;myeloid cell
+False;c2s_scale_27B_unblind;"myeloid dendritic cell, human.
+";macrophage dendritic cell progenitor;macrophage dendritic cell progenitor
+False;c2s_scale_27B_unblind;"myeloid dendritic cell.
+";macrophage dendritic cell progenitor;macrophage dendritic cell progenitor
+False;c2s_scale_27B_blind;"myeloid leukocyte.
+";leukocyte;leukocyte
+False;c2s_scale_27B_unblind;"myeloid lineage restricted progenitor cell.
+";myeloid lineage restricted progenitor cell;myeloid lineage restricted progenitor cell
+False;instructcell_blind;n cercet;cerebellar neuron;cerebellar neuron
+False;instructcell_blind;n=>;neuron of the substantia nigra;neuron of the substantia nigra
+False;c2s_scale_27B_blind;"naive b cell.
+";naive B cell;naive B cell
+False;c2s_scale_27B_blind;"naive b cell.
+cell 1:
+malat1 mt-co1 mt-";naive B cell;naive B cell
+False;c2s_scale_27B_blind;"naive t cell.
+cell 1:
+malat1 mt-co1 mt-";Tc1 cell;Tc1 cell
+False;c2s_scale_27B_blind;"naive thymus-derived cd4-positive, alpha-beta t cell.
+";naive thymus-derived CD4-positive, alpha-beta T cell;naive thymus-derived CD4-positive, alpha-beta T cell
+False;c2s_scale_27B_blind;"naive thymus-derived cd4-positive, alpha-beta t cell.
+cell";naive thymus-derived CD4-positive, alpha-beta T cell;naive thymus-derived CD4-positive, alpha-beta T cell
+False;c2s_scale_27B_blind;"naive thymus-derived cd8-positive, alpha-beta t cell.
+";CD8-positive, alpha-beta thymocyte;CD8-positive, alpha-beta thymocyte
+False;c2s_scale_27B_blind;"naive thymus-derived cd8-positive, alpha-beta t cell.
+cell";CD8-positive, alpha-beta thymocyte;CD8-positive, alpha-beta thymocyte
+False;c2s_scale_2B_unblind;native cell;obsolete native cell;obsolete native cell
+False;c2s_scale_27B_blind;"native cell.
+";obsolete native cell;obsolete native cell
+False;c2s_scale_27B_blind;"native cell.
+cell 10:
+malat1 mt-co1 mt-";fraction C precursor B cell;fraction C precursor B cell
+False;c2s_scale_27B_blind;"native cell.
+cell 1:
+b cell.
+cell 2:
+native";obsolete native cell;obsolete native cell
+False;c2s_scale_27B_blind;"native cell.
+cell 1:
+epithelial cell of proximal tubule.
+cell";epithelial cell of proximal tubule;epithelial cell of proximal tubule
+False;c2s_scale_27B_blind;"native cell.
+cell 1:
+malat1 b2m mt-co1";fraction C precursor B cell;fraction C precursor B cell
+False;c2s_scale_27B_blind;"native cell.
+cell 1:
+malat1 mt-co1 mt-co";obsolete cell by lineage;obsolete cell by lineage
+False;c2s_scale_27B_blind;"native cell.
+cell 1:
+malat1 rps27 b2m r";Bm2' B cell;Bm2' B cell
+False;c2s_scale_27B_blind;"native cell.
+cell 1:
+native cell.
+";obsolete native cell;obsolete native cell
+False;c2s_scale_27B_blind;"native cell.
+cell 1:
+native cell.
+cell 2-10";obsolete native cell;obsolete native cell
+False;c2s_scale_27B_blind;"native cell.
+cell 1:
+native cell.
+cell 2:
+native";obsolete native cell;obsolete native cell
+False;c2s_scale_27B_blind;"native cell.
+cell 20-103j24.
+cell";obsolete cell by nuclear number;obsolete cell by nuclear number
+False;c2s_scale_27B_blind;"native cell.
+cell 201 mt-co1 mt-co2 mt-";obsolete cell by lineage;obsolete cell by lineage
+False;c2s_scale_27B_blind;"native cell.
+cell 2018_hspa1a malat1 mt";obsolete prestalk B cell;obsolete prestalk B cell
+False;c2s_scale_27B_blind;"native cell.
+cell 20:
+malat1 mt-co1 mt-";fraction C precursor B cell;fraction C precursor B cell
+False;c2s_scale_27B_blind;"native cell.
+cell 22-18h7 rpl41 rps2";megakaryocyte-erythroid progenitor cell;megakaryocyte-erythroid progenitor cell
+False;c2s_scale_27B_blind;"native cell.
+cell 22-192h23";precursor cell;precursor cell
+False;c2s_scale_27B_blind;"native cell.
+cell 2:
+malat1 b2m mt-co1";Bm2' B cell;Bm2' B cell
+False;c2s_scale_27B_blind;"native cell.
+cell 2:
+malat1 mt-co1 mt-co";obsolete cell by lineage;obsolete cell by lineage
+False;c2s_scale_27B_blind;"native cell.
+cell 3:
+malat1 mt-co1 mt-co";obsolete cell by lineage;obsolete cell by lineage
+False;c2s_scale_27B_unblind;natural killer cell, human;natural killer cell;natural killer cell
+False;c2s_scale_27B_blind;"natural killer cell.
+";natural killer cell;natural killer cell
+False;c2s_scale_27B_blind;"natural killer cell.
+cell 1:
+malat1 mt-co1 mt-";cycling natural killer cell;cycling natural killer cell
+False;c2s_scale_27B_blind;"natural killer cell.
+cell 2010016i18rik mt";pre-natural killer cell;pre-natural killer cell
+False;c2s_scale_27B_blind;"natural killer cell.
+cell 2:
+malat1 b2m mt-co";cycling natural killer cell;cycling natural killer cell
+False;c2s_scale_27B_blind;"natural killer cell.
+cell 2:
+malat1 mt-co1 mt-";cycling natural killer cell;cycling natural killer cell
+False;pancreas_instructcell_unblind;neuf;socket cell (sensu Nematoda);socket cell (sensu Nematoda)
+False;c2s_scale_27B_blind;"neural cell.
+";neural cell;neural cell
+False;c2s_scale_27B_unblind;"neuron.
+";sensory processing neuron;sensory processing neuron
+False;instructcell_blind;ngn3;SN GATA3-PAX8 GABA GABAergic interneuron (Primate);SN GATA3-PAX8 GABA GABAergic interneuron (Primate)
+False;instructcell_blind;ngn3 high ep;L3 intratelencephalic projecting glutamatergic neuron;L3 intratelencephalic projecting glutamatergic neuron
+False;instructcell_blind;ngn3 low ep;L3 intratelencephalic projecting glutamatergic neuron;L3 intratelencephalic projecting glutamatergic neuron
+False;instructcell_blind;ngn3-1;SN GATA3-PAX8 GABA GABAergic interneuron (Primate);SN GATA3-PAX8 GABA GABAergic interneuron (Primate)
+False;instructcell_blind;ngoptimum;L2/3/5 fan Martinotti sst GABAergic interneuron (Mmus);L2/3/5 fan Martinotti sst GABAergic interneuron (Mmus)
+False;instructcell_blind;nk braucht;activated type II NK T cell;activated type II NK T cell
+False;instructcell_blind;nk femeie;mature NK T cell, human;mature NK T cell, human
+False;instructcell_blind;nk/ pătrun;mature NK T cell, human;mature NK T cell, human
+False;instructcell_blind;nk/t cell;type I NK T cell;type I NK T cell
+False;instructcell_blind;nk/t cellboro;type I NK T cell;type I NK T cell
+False;instructcell_blind;nk/t insight;type I NK T cell;type I NK T cell
+False;instructcell_blind;nkcle cell;Ly49CI-negative natural killer cell, mouse;Ly49CI-negative natural killer cell, mouse
+False;c2s_scale_27B_blind;"non-classical monocyte.
+";cycling monocyte;cycling monocyte
+False;c2s_scale_27B_blind;non-myelinated neuron;non-myelinating Schwann cell;non-myelinating Schwann cell
+False;c2s_scale_27B_blind;non-myeloid leukocyte;nongranular leukocyte;nongranular leukocyte
+False;c2s_scale_27B_blind;non-neuronal cell;non-myelinating Schwann cell;non-myelinating Schwann cell
+False;c2s_scale_27B_blind;non-spleen b cell;marginal zone B cell of spleen;marginal zone B cell of spleen
+False;celltypist_blind;np ppp;PP cell;PP cell
+False;celltypist_blind;np sub;NPY interneuron;NPY interneuron
+False;pancreas_instructcell_blind;ochiie;tracheoblast;tracheoblast
+False;celltypist_blind;oligo;spinal cord oligodendrocyte;spinal cord oligodendrocyte
+False;c2s_scale_27B_blind;"oligodendrocyte precursor cell.
+";oligodendrocyte precursor cell;oligodendrocyte precursor cell
+False;c2s_scale_27B_blind;"oligodendrocyte.
+";spinal cord oligodendrocyte;spinal cord oligodendrocyte
+False;c2s_scale_27B_blind;oligodendroocyte;oocyte;oocyte
+False;pancreas_c2s_scale_27B_unblind;"pancreatic a cell.
+";pancreatic A cell;pancreatic A cell
+False;pancreas_c2s_scale_27B_unblind;"pancreatic acinar cell.
+";pancreatic acinar cell;pancreatic acinar cell
+False;pancreas_c2s_scale_27B_unblind;"pancreatic d cell.
+";pancreatic D cell;pancreatic D cell
+False;pancreas_c2s_scale_27B_unblind;"pancreatic ductal cell.
+";pancreatic ductal cell;pancreatic ductal cell
+False;pancreas_c2s_scale_27B_unblind;pancreatic mast cell;stromal cell of pancreas;stromal cell of pancreas
+False;pancreas_c2s_scale_27B_unblind;"pancreatic pp cell.
+";PP cell;PP cell
+False;pancreas_instructcell_unblind;parties;dopaminergic neuron;dopaminergic neuron
+False;celltypist_blind;photoreceptor_1;R1 photoreceptor cell;R1 photoreceptor cell
+False;celltypist_blind;photoreceptor_2;photopic photoreceptor cell;photopic photoreceptor cell
+False;celltypist_blind;photoreceptor_3;photopic photoreceptor cell;photopic photoreceptor cell
+False;c2s_scale_27B_blind;"pituitary gland cell.
+";pituitary gland cell;pituitary gland cell
+False;celltypist_blind;plasma cells;short lived plasma cell;short lived plasma cell
+False;c2s_scale_27B_blind;"plasmablast.
+cell 1:
+igkc ighg1 ighg3 mt-";IgG plasmablast;IgG plasmablast
+False;scsa_blind;plasmacytoid dendritic cell(pdc);CD8-alpha-negative plasmacytoid dendritic cell;CD8-alpha-negative plasmacytoid dendritic cell
+False;c2s_scale_27B_blind;"plasmacytoid dendritic cell.
+";macrophage dendritic cell progenitor;macrophage dendritic cell progenitor
+False;c2s_scale_27B_blind;"platelet.
+";platelet;platelet
+False;instructcell_blind;point;tip cell;tip cell
+False;pancreas_celltypist_blind;pp;PP cell;PP cell
+False;pancreas_c2s_scale_27B_unblind;"pp cell.
+";PP cell of intestine;PP cell of intestine
+False;instructcell_blind;practic;perirenal preadipocyte;perirenal preadipocyte
+False;pancreas_instructcell_blind;praised;guidepost cell;guidepost cell
+False;c2s_scale_27B_blind;"precursor b cell.
+";precursor B cell;precursor B cell
+False;c2s_scale_2B_blind;primary sensory neuron;sensory processing neuron;sensory processing neuron
+False;c2s_scale_27B_blind;"progenitor cell.
+";progenitor cell;progenitor cell
+False;c2s_scale_27B_blind;"progenitor cell.
+cell 1:
+malat1 mt-co1 mt";lymphangioblast;lymphangioblast
+False;c2s_scale_27B_blind;"progenitor cell.
+cell 1:
+malp2 malat1 mt-";lymphangioblast;lymphangioblast
+False;c2s_scale_27B_blind;"progenitor cell.
+cell 1:
+progenitor cell.
+cell";progenitor cell;progenitor cell
+False;c2s_scale_27B_blind;"progenitor cell.
+cell 2:
+malat1 b2m rpl";Bm2' B cell;Bm2' B cell
+False;c2s_scale_27B_blind;"progenitor cell.
+cell 2:
+malat1 mt-co1 mt";pro-T cell;pro-T cell
+False;pancreas_instructcell_blind;psc;obsolete pstO/ALC;obsolete pstO/ALC
+False;celltypist_blind;pvalb;nodose ganglion PVALB neuron;nodose ganglion PVALB neuron
+False;c2s_scale_27B_blind;pvalb gabaergic cortical interneuron;pvalb GABAergic interneuron;pvalb GABAergic interneuron
+True;human_pancreas;quiescent_stellate;pancreatic stellate cell;stellate interneuron
+False;scsa_blind;red blood cell (erythrocyte);erythrocyte;erythrocyte
+False;c2s_scale_27B_blind;"regulatory t cell.
+";regulatory T cell;regulatory T cell
+False;c2s_scale_27B_blind;"regulatory t cell.
+cell 1:
+malat1 mt-co1 mt-";mucosal-associated invariant T cell;mucosal-associated invariant T cell
+False;c2s_scale_27B_blind;"regulatory t cell.
+cell 20-132p5";regulatory T cell;regulatory T cell
+False;scsa_blind;regulatory t(treg) cell;CD4-positive, CD25-positive, alpha-beta regulatory T cell;CD4-positive, CD25-positive, alpha-beta regulatory T cell
+False;instructcell_blind;resistant;OBSOLETE defensive cell;OBSOLETE defensive cell
+False;c2s_scale_27B_unblind;"retina horizontal cell.
+";retina horizontal cell;retina horizontal cell
+False;c2s_scale_27B_unblind;"retinal bipolar neuron.
+";retinal bipolar neuron;retinal bipolar neuron
+False;c2s_scale_27B_unblind;"retinal cone cell.
+";retinal cone cell;retinal cone cell
+False;c2s_scale_27B_unblind;"retinal ganglion cell.
+";ON retinal ganglion cell;ON retinal ganglion cell
+False;c2s_scale_27B_unblind;retinal horizontal cell;retina horizontal cell;retina horizontal cell
+False;c2s_scale_27B_unblind;retinal lens epithelial cell;retinal pigment epithelial cell;retinal pigment epithelial cell
+False;c2s_scale_27B_unblind;retinal lens fiber cell;lens fiber cell;lens fiber cell
+False;c2s_scale_27B_unblind;retinal neuroblast;retinoblast;retinoblast
+False;c2s_scale_27B_unblind;retinal neuron;retina horizontal cell;retina horizontal cell
+False;c2s_scale_27B_unblind;"retinal rod cell.
+";retinal rod cell;retinal rod cell
+False;celltypist_blind;rgc_1;oRGC1;oRGC1
+False;celltypist_blind;rgc_2;R2 photoreceptor cell;R2 photoreceptor cell
+False;pancreas_instructcell_unblind;riad;neuron of the substantia nigra;neuron of the substantia nigra
+False;pancreas_instructcell_unblind;ridal;dermal melanocyte;dermal melanocyte
+False;scsa_blind;rod cell;rod bipolar cell (sensu Mus);rod bipolar cell (sensu Mus)
+False;celltypist_blind;rpc_1;R1 photoreceptor cell;R1 photoreceptor cell
+False;celltypist_blind;rpc_2;R2 photoreceptor cell;R2 photoreceptor cell
+False;celltypist_blind;rpc_3;R3 photoreceptor cell;R3 photoreceptor cell
+False;celltypist_blind;rpc_4;R4 photoreceptor cell;R4 photoreceptor cell
+False;celltypist_blind;rpc_5;R5 photoreceptor cell;R5 photoreceptor cell
+False;celltypist_blind;rpc_6;R6 photoreceptor cell;R6 photoreceptor cell
+False;celltypist_blind;rpe_2;R2 photoreceptor cell;R2 photoreceptor cell
+False;celltypist_blind;rpe_3;R3 photoreceptor cell;R3 photoreceptor cell
+False;pancreas_instructcell_blind;schlag;scleral cell;scleral cell
+False;instructcell_blind;schwa;Schwann cell precursor;Schwann cell precursor
+False;instructcell_blind;schwa davis;Schwann cell precursor;Schwann cell precursor
+False;instructcell_blind;schwa dealers;Schwann cell precursor;Schwann cell precursor
+False;instructcell_blind;schwa mount;terminal Schwann cell;terminal Schwann cell
+False;instructcell_blind;schwan cardiac;Schwann cell precursor;Schwann cell precursor
+False;instructcell_blind;schwan provoca;Schwann cell precursor;Schwann cell precursor
+True;human_pancreas;schwann;Schwann cell;Schwann cell precursor
+False;c2s_scale_27B_blind;"schwann cell.
+";Schwann cell precursor;Schwann cell precursor
+False;instructcell_blind;schwanngestellt;Schwann cell precursor;Schwann cell precursor
+False;instructcell_blind;sebaceous gland;sebaceous gland cell;sebaceous gland cell
+False;instructcell_blind;sensi meyer;primary interneuron (sensu Teleostei);primary interneuron (sensu Teleostei)
+False;instructcell_blind;sensitive;red sensitive photoreceptor cell;red sensitive photoreceptor cell
+False;pancreas_instructcell_blind;sistem;primary interneuron (sensu Teleostei);primary interneuron (sensu Teleostei)
+False;celltypist_blind;smc-peri;obsolete pstO/ALC;obsolete pstO/ALC
+False;c2s_scale_27B_blind;smooth muscle cell of the prostate;smooth muscle cell of prostate;smooth muscle cell of prostate
+False;c2s_scale_27B_blind;"smooth muscle cell.
+";smooth muscle cell;smooth muscle cell
+False;celltypist_blind;sncg;superior cervical ganglion CGRP neuron;superior cervical ganglion CGRP neuron
+False;instructcell_blind;spinous;spinous cell;spinous cell
+False;instructcell_blind;splendid;T Martinotti neuron;T Martinotti neuron
+False;celltypist_blind;sst;superior cervical ganglion SST neuron;superior cervical ganglion SST neuron
+False;celltypist_blind;sub-pros;obsolete pstO/ALC;obsolete pstO/ALC
+False;instructcell_blind;superpotent;suprabasal cell;suprabasal cell
+False;instructcell_blind;t cell driving;cycling T cell;cycling T cell
+False;instructcell_blind;t cell innovations;immature T cell;immature T cell
+False;instructcell_blind;t cell intrebare;T cell of appendix;T cell of appendix
+False;instructcell_blind;t cell shift;cycling T cell;cycling T cell
+False;instructcell_blind;t cell sweet;immature T cell;immature T cell
+False;c2s_scale_27B_blind;"t cell.
+";immature T cell;immature T cell
+False;c2s_scale_27B_blind;"t cell.
+cell 10:
+malat1 mt-co1 mt-";Tr1 cell;Tr1 cell
+False;c2s_scale_27B_blind;"t cell.
+cell 1:
+malat1 b2m tmsb4x";Be cell;Be cell
+False;c2s_scale_27B_blind;"t cell.
+cell 1:
+malat1 mt-co1 mt-co";Tc1 cell;Tc1 cell
+False;c2s_scale_27B_blind;"t cell.
+cell 1:
+malat1 mt-co1 mt-nd";DN1 thymic pro-T cell;DN1 thymic pro-T cell
+False;c2s_scale_27B_blind;"t cell.
+cell 1:
+malat1 mt-rnr2 mt-";mature Vgamma2-positive thymocyte;mature Vgamma2-positive thymocyte
+False;c2s_scale_27B_blind;"t cell.
+cell 1:
+t cell.
+cell 2";cycling T cell;cycling T cell
+False;c2s_scale_27B_blind;"t cell.
+cell 1:
+t cell.
+cell 2:
+t";cycling T cell;cycling T cell
+False;c2s_scale_27B_blind;"t cell.
+cell 2.
+malat1 mt-co1 mt-co";cycling T cell;cycling T cell
+False;c2s_scale_27B_blind;"t cell.
+cell 20-136j10 rpl13";T cell of appendix;T cell of appendix
+False;c2s_scale_27B_blind;"t cell.
+cell 20-136j10-1";immature T cell;immature T cell
+False;c2s_scale_27B_blind;"t cell.
+cell 2019060204rik rpl";T cell of appendix;T cell of appendix
+False;c2s_scale_27B_blind;"t cell.
+cell 201a8";immature T cell;immature T cell
+False;c2s_scale_27B_blind;"t cell.
+cell 2:
+malat1 b2m mt-co1";T2 B cell;T2 B cell
+False;c2s_scale_27B_blind;"t cell.
+cell 2:
+malat1 ftl fth1 b2";T2 B cell;T2 B cell
+False;c2s_scale_27B_blind;"t cell.
+cell 2:
+malat1 mt-co1 mt-co";cycling T cell;cycling T cell
+False;c2s_scale_27B_blind;"t cell.
+cell 2:
+malat1 mt-co1 mt-nd";DN1 thymic pro-T cell;DN1 thymic pro-T cell
+False;c2s_scale_27B_blind;"t cell.
+cell 2:
+malat1 mt-rnr2 mt-";mature Vgamma2-positive thymocyte;mature Vgamma2-positive thymocyte
+False;c2s_scale_27B_blind;"t cell.
+cell 2:
+malat1 rplp1 rps12";Tc2 cell;Tc2 cell
+False;c2s_scale_27B_blind;"t cell.
+cell 3:
+malat1 mt-co1 mt-co";mature dendritic epithelial T cell precursor;mature dendritic epithelial T cell precursor
+False;c2s_scale_27B_blind;"t cell.
+cell 6:
+malat1 mt-co1 mt-co";Vgamma1.1-positive, Vdelta6.3-positive thymocyte;Vgamma1.1-positive, Vdelta6.3-positive thymocyte
+False;c2s_scale_27B_blind;"t cell.
+cell 7:
+malat1 mt-co1 mt-co";Tc1 cell;Tc1 cell
+False;c2s_scale_27B_blind;"t cell.
+cell type:
+t cell.
+";immature T cell;immature T cell
+False;instructcell_blind;t cellmarie;immature T cell;immature T cell
+False;instructcell_blind;t cellprinde;immature T cell;immature T cell
+False;celltypist_blind;t cells;immature T cell;immature T cell
+False;instructcell_blind;t celltischen;T cell of appendix;T cell of appendix
+False;instructcell_blind;t endeavor;innate effector T cell;innate effector T cell
+False;instructcell_blind;t jacob;mature Vgamma2-positive thymocyte;mature Vgamma2-positive thymocyte
+False;c2s_scale_27B_blind;"t-helper 17 cell.
+";T-helper 17 cell;T-helper 17 cell
+True;human_pancreas;t_cell;T cell;T cell of appendix
+False;instructcell_blind;tac meetings;transit amplifying cell;transit amplifying cell
+False;instructcell_blind;tac-1;TAC3-positive medium spiny neuron;TAC3-positive medium spiny neuron
+False;instructcell_blind;tac-1 things;TAC3-positive medium spiny neuron;TAC3-positive medium spiny neuron
+False;c2s_scale_27B_unblind;tectocellular astrocyte;astrocyte of the forebrain;astrocyte of the forebrain
+False;instructcell_blind;thomas;intestinal villus goblet cell;intestinal villus goblet cell
+False;instructcell_blind;tip;tip cell;tip cell
+False;instructcell_blind;tr;tracheoblast;tracheoblast
+False;instructcell_blind;tr assistant;tracheoblast;tracheoblast
+False;instructcell_blind;tr idei;TAC3-positive striatal interneuron;TAC3-positive striatal interneuron
+False;instructcell_blind;tr italian;obsolete spore (sensu Mycetozoa);obsolete spore (sensu Mycetozoa)
+False;instructcell_blind;tr just;tracheoblast;tracheoblast
+False;instructcell_blind;tr là;tracheoblast;tracheoblast
+False;instructcell_blind;tr of;tracheoblast;tracheoblast
+False;instructcell_blind;tr-1;Tr1 cell;Tr1 cell
+False;c2s_scale_27B_blind;"transitional stage b cell.
+";transitional stage B cell;transitional stage B cell
+False;c2s_scale_27B_blind;"transitional stage b cell.
+cell 10:
+malat1 b2m";precursor B cell;precursor B cell
+False;instructcell_blind;trdeseori;tracheoblast;tracheoblast
+False;instructcell_blind;trept;CD4-positive, CD25-positive, alpha-beta regulatory T cell;CD4-positive, CD25-positive, alpha-beta regulatory T cell
+False;instructcell_blind;trith-1;urothelial cell of trigone of urinary bladder;urothelial cell of trigone of urinary bladder
+False;instructcell_blind;trters;tracheoblast;tracheoblast
+False;instructcell_blind;trunk;tracheoblast;tracheoblast
+False;instructcell_blind;trunk immune;CD94-negative natural killer cell, mouse;CD94-negative natural killer cell, mouse
+False;instructcell_blind;trunk interval;migratory trunk neural crest cell;migratory trunk neural crest cell
+False;instructcell_blind;trunk jake;sheath cell;sheath cell
+False;instructcell_blind;trunk steve;Betz upper motor neuron;Betz upper motor neuron
+False;instructcell_blind;trvă;tracheoblast;tracheoblast
+False;pancreas_c2s_scale_27B_unblind;"type b pancreatic cell.
+";type B pancreatic cell;type B pancreatic cell
+False;c2s_scale_27B_unblind;type b t cell;T1 B cell;T1 B cell
+False;pancreas_c2s_scale_2B_blind;type d pancreatic cell;pancreatic D cell;pancreatic D cell
+False;instructcell_blind;us;near-projecting glutamatergic cortical neuron;near-projecting glutamatergic cortical neuron
+False;c2s_scale_27B_blind;"vascular associated smooth muscle cell.
+";vascular associated smooth muscle cell;vascular associated smooth muscle cell
+False;c2s_scale_27B_blind;"vascular leptomeningeal cell.
+";vascular leptomeningeal cell (Mmus);vascular leptomeningeal cell (Mmus)
+False;c2s_scale_27B_unblind;vascular leptomeningelial cell;vascular leptomeningeal cell (Mmus);vascular leptomeningeal cell (Mmus)
+False;pancreas_instructcell_blind;violent;neoplastic cell;neoplastic cell
+False;instructcell_blind;wick;tracheoblast;tracheoblast
+False;instructcell_blind;wild;abnormal cell;abnormal cell
+False;instructcell_blind;zin;zygote;zygote
+False;pancreas_instructcell_blind;ție;tracheoblast;tracheoblast
