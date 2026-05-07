@@ -23,6 +23,9 @@ cache/models/*
 # Exception: keep the offline ENSEMBL fallback cache
 !cache/ENSEMBL/
 !cache/ENSEMBL/**
+# Exception: keep openrouter activity logs
+!cache/openrouter_logs/
+!cache/openrouter_logs/**
 .conda
 Results
 results/
