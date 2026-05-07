@@ -14,7 +14,7 @@ openrouter_LLM:
   #  - deepseek/deepseek-v4-pro #(reasoning: effort)
   #  - deepseek/deepseek-v4-flash #(reasoning: effort)
   #  - z-ai/glm-5 #(reasoning: effort)
-  #  - moonshotai/kimi-k2.5 #(reasoning: effort)
+  #  - moonshotai/kimi-k2.6 #(reasoning: effort)
   #  - openai/gpt-5.5 #(reasoning: effort)
   #  - google/gemini-3-flash-preview #(reasoning: max_tokens)
   #  - google/gemini-3.1-pro-preview #(reasoning: max_tokens)

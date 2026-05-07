@@ -317,6 +317,16 @@ def main(args):
         
         pred_col = 'predicted_labels'
         file_results = {}
+
+        # For OpenRouter LLM wrappers, multiple LLMs share one model directory and
+        # each LLM writes its own predictions_<SLUG>.csv. Append the slug to the
+        # origin so ontology-mapping rows record which specific LLM produced the
+        # label, instead of all rows collapsing onto the wrapper name.
+        file_origin = model
+        if 'openrouter' in model.lower():
+            stem = Path(pred_file).stem
+            if stem.startswith('predictions_'):
+                file_origin = f"{model}_{stem[len('predictions_'):]}"
         
         # Remove trailing periods from predicted labels before any other processing
         print(f"\nPreprocessing predicted labels...")
@@ -379,7 +389,7 @@ def main(args):
         if args.apply_ontology_mapping:
             print(f"\nApplying ontology mapping to predicted labels...")
             try:
-                df = apply_ontology_mapping_to_predictions(df, pred_col, cache_dir, verbose=True, origin=model)
+                df = apply_ontology_mapping_to_predictions(df, pred_col, cache_dir, verbose=True, origin=file_origin)
             except Exception as e:
                 print(f"Warning: Could not apply ontology mapping: {e}")
                 print("Continuing with original predicted labels...")
