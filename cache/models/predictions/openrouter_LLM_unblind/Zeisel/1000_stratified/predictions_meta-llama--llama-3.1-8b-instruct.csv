@@ -1,0 +1,1470 @@
+,predicted_cl_id,predicted_cell_type,predicted_labels,true_labels
+10X57_2:ACAAATTGTTGTCT,,astrocyte,astrocyte,oligodendrocyte
+10X52_5:CTGAGAACTTTCTG,,oligodendrocyte,oligodendrocyte,oligodendrocyte
+10X53_2:TTTGACTGCCCACT,,olfactory ensheathing cell,olfactory ensheathing cell,oligodendrocyte
+10X35_2:TATCTCGATTCTGT,,Microglia,Microglia,oligodendrocyte
+10X55_4:CTCCTAGATATGCA,,ependymal cell,ependymal cell,oligodendrocyte
+10X55_5:CCTTGGTCCAGTAT,,"Based on the provided gene list, the predicted cell type is: oligodendrocyte.","Based on the provided gene list, the predicted cell type is: oligodendrocyte.",oligodendrocyte
+10X55_5:GTCAAAGACAAGCC,,astrocyte,astrocyte,oligodendrocyte
+10X50_7:GCCGAGTGGGTTCA,,Enteric glia,Enteric glia,oligodendrocyte
+10X43_1:CATCGCTGGTCAAC,,astrocyte,astrocyte,oligodendrocyte
+10X52_1:GGGTTATGCTTAGG,,astrocyte,astrocyte,oligodendrocyte
+10X50_8:ACGTCAGAGACGAG,,ependymal cell,ependymal cell,oligodendrocyte
+10X24_1:TCCCGAACTCCCAC,,dendrite gyrus granule cell,dendrite gyrus granule cell,oligodendrocyte
+10X51_3:CTGACCACAGTACC,,vascular leptomeningeal cell (Mmus),vascular leptomeningeal cell (Mmus),oligodendrocyte
+10X34_4:GACAGGGAACTGTG,,cerebellar neuron,cerebellar neuron,oligodendrocyte
+10X53_6:GCGAGAGATCGTTT,,astrocyte,astrocyte,oligodendrocyte
+10X57_2:TCCTATGATGCATG,,Schwann cell,Schwann cell,oligodendrocyte
+10X55_2:CAATCGTGACCAAG,,oligodendrocyte,oligodendrocyte,oligodendrocyte
+10X53_5:TCCCACGACACTTT,,Satellite glia,Satellite glia,oligodendrocyte
+10X53_3:AGCGATTGTTCCAT,,chondrocyte,chondrocyte,oligodendrocyte
+10X50_2:GCACCTACCTCCCA,,Radial glial cell,Radial glial cell,oligodendrocyte
+10X55_2:CGTGTGTCTGATCA,,oligodendrocyte,oligodendrocyte,oligodendrocyte
+10X54_1:TGAGGTCTCTGTCG,,oligodendrocyte,oligodendrocyte,oligodendrocyte
+10X26_3:GCATGTGAGCGATT,,peptidergic neuron,peptidergic neuron,oligodendrocyte
+10X57_4:GCCTACACTTAGGC,,oligodendrocyte,oligodendrocyte,oligodendrocyte
+10X53_3:GTAGTGACATTCGG,,cerebellar neuron,cerebellar neuron,oligodendrocyte
+10X04_1:TCGTAGGATGTTCT,,Satellite glia,Satellite glia,oligodendrocyte
+10X57_4:AACCTACTAGGTTC,,Astrocyte,Astrocyte,oligodendrocyte
+10X49_1:ATACCGGAGAGCTT,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
+10X57_2:TTACAGCTTCTTCA,,Radiant Glia and Endothelial associated Cell.,Radiant Glia and Endothelial associated Cell.,oligodendrocyte
+10X57_6:GCTACGCTGTTGTG,,oligodendrocyte,oligodendrocyte,oligodendrocyte
+10X52_7:TTCAGTACGATAAG,,oligodendrocyte,oligodendrocyte,oligodendrocyte
+10X55_8:CTTCAAGAACAACT,,Radial glial cell,Radial glial cell,oligodendrocyte
+10X55_7:GCTAAGTACCATCA,,oligodendrocyte,oligodendrocyte,oligodendrocyte
+10X55_2:TGAGAGTTGGAGGT,,oligodendrocyte,oligodendrocyte,oligodendrocyte
+10X57_3:TAGTGGTGGCCCTT,,Microglia,Microglia,oligodendrocyte
+10X24_2:AAGGTCACACTACG,,mc140478 satellite glia,mc140478 satellite glia,oligodendrocyte
+10X56_3:GTATTAGATCTACT,,astrocyte,astrocyte,oligodendrocyte
+10X22_4:CCAATGGAACTGTG,,astrocyte,astrocyte,oligodendrocyte
+10X22_4:CAATTCTGGGTCAT,,oligodendrocyte precursor cell,oligodendrocyte precursor cell,oligodendrocyte
+10X50_3:TCAGGATGGGTTCA,,astrocyte,astrocyte,oligodendrocyte
+10X57_7:GCCATCACTCGTGA,,radial glial cell,radial glial cell,oligodendrocyte
+10X24_3:GCGGAGCTTTCTAC,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
+10X53_5:GTGGTAACCGAATC,,Satellite glia,Satellite glia,oligodendrocyte
+10X54_7:GGGATAGTGAACGC,,cerebellar neuron,cerebellar neuron,oligodendrocyte
+10X55_1:GCGGAGTTGTTTGG,,astrocyte,astrocyte,oligodendrocyte
+10X55_7:CTCTAGTCCTGCTT,,Satellite glia,Satellite glia,oligodendrocyte
+10X55_3:GTAGAAGTACGTTC,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
+10X55_1:TTCGCGTCTAGCGC,,Astrocyte,Astrocyte,oligodendrocyte
+10X50_5:CCAGGTCTGTAGCT,,ependymal cell,ependymal cell,oligodendrocyte
+10X55_2:ACCTGAGCTCAACT,,oligodendrocyte,oligodendrocyte,oligodendrocyte
+10X52_5:AAGCCATGTCCGTC,,ependymal cell,ependymal cell,oligodendrocyte
+10X50_5:TATCTCGATTGGCA,,dentate gyrus granule cell,dentate gyrus granule cell,oligodendrocyte
+10X54_1:ACGGATCAGGCAAG,,astrocyte,astrocyte,oligodendrocyte
+10X50_2:ATGCCAGATCAAGC,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
+10X54_7:CGTGTCAGACAAAT,,astrocyte,astrocyte,oligodendrocyte
+10X55_3:GTAACTCCTATGTT,,Satellite glia,Satellite glia,oligodendrocyte
+10X55_1:CTCGCTCTTGACGA,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
+10X53_3:AGGAACCTTACTGG,,Microglia,Microglia,oligodendrocyte
+10X55_7:CTAACGTCTGCCAG,,"Based on the gene expression profile, I predict that the cell type is:
+
+GABAergic neuron","Based on the gene expression profile, I predict that the cell type is:
+
+GABAergic neuron",oligodendrocyte
+10X52_1:AGAATACTCGAGAG,,cerebellar neuron,cerebellar neuron,oligodendrocyte
+10X53_2:TGCACAGAGTTTCT,,astrocyte,astrocyte,oligodendrocyte
+10X52_3:GAGGTACTATCGTG,,cerebellar neuron,cerebellar neuron,oligodendrocyte
+10X54_3:TATCTAGAACAACT,,ependymal cell,ependymal cell,oligodendrocyte
+10X52_5:ATCAGGTGGTTCAG,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
+10X26_3:CGGACCGATCGATG,,"glial cell
+
+(note: a very complex cell type which can encompass multiple subtypes, such as oligodendrocyte, astrocyte, etc.)","glial cell
+
+(note: a very complex cell type which can encompass multiple subtypes, such as oligodendrocyte, astrocyte, etc.)",oligodendrocyte
+10X54_1:GCGCAAGATCGGGT,,astrocyte,astrocyte,oligodendrocyte
+10X53_4:AGGGCCACACCTAG,,olvieticular cell,olvieticular cell,oligodendrocyte
+10X35_2:CGGACTCTCCACAA,,Astrocyte,Astrocyte,oligodendrocyte
+10X22_2:CCATAGGAGGTGAG,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
+10X57_5:TTCAGTTGCCATAG,,Enteric glia,Enteric glia,oligodendrocyte
+10X20_3:ATACCTTGGTACGT,,astrocyte,astrocyte,oligodendrocyte
+10X20_4:AGGTCATGCTATTC,,Enteric glia,Enteric glia,oligodendrocyte
+10X57_5:GTTACTACGTACGT,,astrocyte,astrocyte,oligodendrocyte
+10X50_2:ATGCACGAGTTGTG,,glial cell,glial cell,oligodendrocyte
+10X54_8:GTCATGTGGTGTAG,,oligodendrocyte,oligodendrocyte,oligodendrocyte
+10X52_2:CCAGCTACCCAAGT,,radial glial cell,radial glial cell,oligodendrocyte
+10X57_5:CGAGTATGGGTACT,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
+10X20_4:CACTCCGACGAGAG,,Satellite glia,Satellite glia,oligodendrocyte
+10X57_3:ACTCAGGAACGGTT,,oligodendrocyte,oligodendrocyte,oligodendrocyte
+10X50_8:TGTATGCTCATTCT,,astrocyte,astrocyte,oligodendrocyte
+10X52_6:GTGAGGGACTTGCC,,astrocyte,astrocyte,oligodendrocyte
+10X55_5:CTCAAGTTGACGTT,,Schwann cell,Schwann cell,oligodendrocyte
+10X34_3:TCCATAACTAGAGA,,Microglia,Microglia,oligodendrocyte
+10X55_1:GACCAAGGTACTCT,,oligodendrocyte,oligodendrocyte,oligodendrocyte
+10X24_3:ATAATGACGACTAC,,Schwann cell,Schwann cell,oligodendrocyte
+10X43_3:ATAAGTACGTTCGA,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
+10X54_1:TCTCTAGAAGAAGC,,oligodendrocyte,oligodendrocyte,oligodendrocyte
+10X50_5:TCTAACACCCTCAC,,oligodendrocyte precursor cell,oligodendrocyte precursor cell,oligodendrocyte
+10X33_4:CAGACATGCCAAGT,,astrocyte,astrocyte,oligodendrocyte
+10X55_1:GAGCTGTCGAACAG,,Schwann cell,Schwann cell,oligodendrocyte
+10X52_1:GCGGAGCTGAGCTT,,choroid plexus epithelial cell,choroid plexus epithelial cell,oligodendrocyte
+10X54_1:AGCAATCTCCGGTT,,"""GABAergic neuron""","""GABAergic neuron""",oligodendrocyte
+10X26_3:TGTAGGTGTGTTCT,,Schwann cell,Schwann cell,oligodendrocyte
+10X57_6:AAATGGGAGCAGAG,,ependymal cell,ependymal cell,oligodendrocyte
+10X55_4:GGCGTCACGCATCG,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
+10X55_6:TGAGGGTCTAGAGG,,"Based on the given gene expression profile, the predicted cell type is: oligodendrocyte precursor cell.","Based on the given gene expression profile, the predicted cell type is: oligodendrocyte precursor cell.",oligodendrocyte
+10X55_4:TGAAGCAACACCCG,,"Glia, specifically, the list of genes does not match with the exact cell type provided in the list of cell types. However, based on the high expression of genes like OLIG1, OLIG2, and A2B5, I would classify the cell type as Oligodendrocyte precursor cell.","Glia, specifically, the list of genes does not match with the exact cell type provided in the list of cell types. However, based on the high expression of genes like OLIG1, OLIG2, and A2B5, I would classify the cell type as Oligodendrocyte precursor cell.",oligodendrocyte
+10X54_8:ACCTACAGCTCGCA,,Schwann cell,Schwann cell,oligodendrocyte
+10X54_1:CGGTAAGATAGTCA,,"Based on the gene expression profile, the predicted cell type is: oligodendrocyte.","Based on the gene expression profile, the predicted cell type is: oligodendrocyte.",oligodendrocyte
+10X57_7:TTATGGCTCACTTT,,cerebellar neuron,cerebellar neuron,oligodendrocyte
+10X55_7:ACGGAAGCCATCGC,,radial glial cell,radial glial cell,oligodendrocyte
+10X57_3:CTCAGAGACAGCTA,,oligodendrocyte precursor cell,oligodendrocyte precursor cell,oligodendrocyte
+10X52_3:AGAGTCTGTTCATC,,Microglia,Microglia,oligodendrocyte
+10X57_3:TCGTAGGACGTTGA,,oligodendrocyte,oligodendrocyte,oligodendrocyte
+10X53_3:CAAGTTCTAAGATG,,glutamatergic neuron,glutamatergic neuron,oligodendrocyte
+10X43_3:GAACCTGAGACAAA,,oligodendrocyte precursor cell,oligodendrocyte precursor cell,oligodendrocyte
+10X24_4:TCCGAAGAGGGTGA,,Satellite glia,Satellite glia,oligodendrocyte
+10X57_3:TAATCGCTATGTCG,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
+10X01_1:CAAGAAGAGCTATG,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
+10X57_7:AAGAACGACCTATT,,chai,chai,oligodendrocyte
+10X55_8:CGTGTCAAGACGTG,,ependymal cell,ependymal cell,oligodendrocyte
+10X55_6:GTACTGTGCTTCTC,,dentate gyrus granule cell,dentate gyrus granule cell,oligodendrocyte
+10X54_1:TGATGTCAAGATCC,,Microglia,Microglia,oligodendrocyte
+10X54_3:AGCGTTCGAGCCCA,,Cholinergic neuron,Cholinergic neuron,oligodendrocyte
+10X57_3:CGAGTATGTTAGGC,,glial cell,glial cell,oligodendrocyte
+10X05_2:GACTACGATCAGGT,,"From the gene profile provided, the cell type is: oligodendrocyte","From the gene profile provided, the cell type is: oligodendrocyte",oligodendrocyte
+10X53_6:ATTATGGACATGGT,,cholinergic neuron,cholinergic neuron,oligodendrocyte
+10X01_1:CAGCGGACTAGACC,,oligodendrocyte,oligodendrocyte,oligodendrocyte
+10X54_4:TCCAGTCGCCATAA,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
+10X52_2:AATCGGTGCTCCCA,,"based on the gene expression profile, the cell type is: oligodendrocyte","based on the gene expression profile, the cell type is: oligodendrocyte",oligodendrocyte
+10X54_5:TCAGAGTTACTGAC,,ependymal cell,ependymal cell,oligodendrocyte
+10X54_4:CGGTCCACTACAGT,,cerebellar neuron,cerebellar neuron,oligodendrocyte
+10X57_6:TTCAAAGACAAAGA,,Microglia,Microglia,oligodendrocyte
+10X53_4:TGTATCTGGCCCTT,,Astrocyte,Astrocyte,oligodendrocyte
+10X53_6:AATCCGGAGAGACG,,GABAergic neuron,GABAergic neuron,oligodendrocyte
+10X55_8:TGGTGCACCGAAAG,,oligodendrocyte,oligodendrocyte,oligodendrocyte
+10X57_3:TAAGTCCTCTCCCA,,radial glial cell,radial glial cell,oligodendrocyte
+10X53_6:ACGGTCCTATTCGG,,"based on the given gene expression profile, the cell type is: oligodendrocyte","based on the given gene expression profile, the cell type is: oligodendrocyte",oligodendrocyte
+10X50_4:AAACCGTGTCCCAC,,Radial glial cell,Radial glial cell,oligodendrocyte
+10X26_3:CCATAGGAGCGGAA,,Schwann cell,Schwann cell,oligodendrocyte
+10X54_5:CATACAGTGGGCTA,,Microglia,Microglia,oligodendrocyte
+10X54_2:AATAGCAGTCTTCC,,oligodendrocyte,oligodendrocyte,oligodendrocyte
+10X28_3:AAGCCATGGTAAAG,,Microglia,Microglia,oligodendrocyte
+10X55_2:CCACTGTCTCCCTA,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
+10X52_2:GGCTAAACTCTAGG,,Satellite glia,Satellite glia,oligodendrocyte
+10X53_4:TGAGTCGATTTCGT,,astrocyte,astrocyte,oligodendrocyte
+10X57_2:GGAATCTGCTTGCC,,astrocyte,astrocyte,oligodendrocyte
+10X22_1:CACTAGGAATTTCC,,Microglia,Microglia,oligodendrocyte
+10X55_7:TCAGTTCTTCATGT,,oligodendrocyte,oligodendrocyte,oligodendrocyte
+10X28_2:TCTCAAACAAGTGA,,Microglia,Microglia,oligodendrocyte
+10X24_4:CTACTATGCTAGAC,,oligodendrocyte,oligodendrocyte,oligodendrocyte
+10X55_5:TCAGGTCTTGGGTA,,oligodendrocyte precursor cell,oligodendrocyte precursor cell,oligodendrocyte
+10X24_4:AAGAACGATGACAC,,Enteric glia,Enteric glia,oligodendrocyte
+10X53_3:ACACGAACGTTAGC,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
+10X55_4:GCCAATCACCTTAT,,"Based on the given gene expression profile, I predict the cell type as:
+
+vascular associated smooth muscle cell","Based on the given gene expression profile, I predict the cell type as:
+
+vascular associated smooth muscle cell",oligodendrocyte
+10X50_7:CTATAAGACCAAGT,,choroid plexus epithelial cell.,choroid plexus epithelial cell.,oligodendrocyte
+10X20_1:AACGCCCTGTACCA,,ependymal cell,ependymal cell,glutamatergic neuron
+10X22_2:TCGGACCTGCATCA,,microglia,microglia,glutamatergic neuron
+10X22_2:CGTTTAACCCTGTC,,ependymal cell,ependymal cell,glutamatergic neuron
+10X53_6:CTGGCACTAATCGC,,radial glial cell,radial glial cell,glutamatergic neuron
+10X50_8:CGCGAGACCTCTAT,,Schwann cell,Schwann cell,glutamatergic neuron
+10X57_3:AGTCTTACCTCATT,,oligodendrocyte precursor cell,oligodendrocyte precursor cell,glutamatergic neuron
+10X20_2:GATATCCTCAGATC,,Cerebellar neuron,Cerebellar neuron,glutamatergic neuron
+10X53_3:AAGTCCGAGCTATG,,cerebellar neuron,cerebellar neuron,glutamatergic neuron
+10X34_3:TGGCACCTTTCATC,,Microglia,Microglia,glutamatergic neuron
+10X02_1:ACGGAGGACAAAGA,,oligodendrocyte precursor cell,oligodendrocyte precursor cell,glutamatergic neuron
+10X57_2:AGCAAGCTTTGACG,,astrocyte,astrocyte,glutamatergic neuron
+10X22_2:ACGCTCACTCAAGC,,astrocyte,astrocyte,glutamatergic neuron
+10X19_2:AAGGCTTGCCATAG,,astrocyte,astrocyte,glutamatergic neuron
+10X20_1:TTGAGGTGCTTGCC,,Enteric glia,Enteric glia,glutamatergic neuron
+10X20_1:CAAGACTGATCGTG,,cerebellar neuron,cerebellar neuron,glutamatergic neuron
+10X05_1:GCGAGAGACAAGCT,,Enteric glia,Enteric glia,glutamatergic neuron
+10X22_2:AAACGCACTGGTTG,,microglia,microglia,glutamatergic neuron
+10X22_3:TATAGCCTGCATAC,,pericyte,pericyte,glutamatergic neuron
+10X53_3:AACATTGAGGTATC,,Cholinergic neuron,Cholinergic neuron,glutamatergic neuron
+10X49_3:ACTCTATGGGAAGC,,GABAergic neuron,GABAergic neuron,glutamatergic neuron
+10X04_2:ATCATCTGGTTGAC,,Sympathetic cholinergic neuron,Sympathetic cholinergic neuron,glutamatergic neuron
+10X28_4:AAGGTGCTTTCGGA,,Astrocyte,Astrocyte,glutamatergic neuron
+10X50_5:CATTGTACACTCTT,,oligodendrocyte,oligodendrocyte,glutamatergic neuron
+10X28_4:ACGTAGACCTACTT,,microglia,microglia,glutamatergic neuron
+10X24_3:ATCTGGGAGAATAG,,Microglia,Microglia,glutamatergic neuron
+10X02_1:TTTCCAGACTACCC,,ependymal cell,ependymal cell,glutamatergic neuron
+10X57_3:TACATCACACCTGA,,Sympathetic noradrenergic neuron,Sympathetic noradrenergic neuron,glutamatergic neuron
+10X43_1:CCCTACGAATCGTG,,astrocyte,astrocyte,glutamatergic neuron
+10X20_1:ACACGATGCTTATC,,Cell type: Microglia,Cell type: Microglia,glutamatergic neuron
+10X01_1:ACGTTACTAAAACG,,Radial glial cell,Radial glial cell,glutamatergic neuron
+10X57_3:CACTGAGATTCTTG,,Sympathetic noradrenergic neuron,Sympathetic noradrenergic neuron,glutamatergic neuron
+10X28_3:ATAACCCTCCTGTC,,Astrocyte,Astrocyte,glutamatergic neuron
+10X52_1:CAAGGTTGTAGAAG,,microglia,microglia,glutamatergic neuron
+10X22_2:ATTCAGCTAAAGCA,,"glial cell
+
+ process the given gene expression profile and compare it with the known gene expression profiles of glial cells, such as astrocytes, oligodendrocytes, and microglia.","glial cell
+
+ process the given gene expression profile and compare it with the known gene expression profiles of glial cells, such as astrocytes, oligodendrocytes, and microglia.",glutamatergic neuron
+10X20_4:ACTCAGGAGTCTTT,,Oligodendrocyte,Oligodendrocyte,glutamatergic neuron
+10X28_3:AGGGCCACTTCGCC,,Enteric glia,Enteric glia,glutamatergic neuron
+10X24_4:CAGCAATGCAACCA,,perivascular macrophage,perivascular macrophage,glutamatergic neuron
+10X05_2:GATTCTTGTCCTCG,,Enteric neuron,Enteric neuron,glutamatergic neuron
+10X36_1:AACAATACCCTGTC,,ependymal cell,ependymal cell,glutamatergic neuron
+10X50_5:ATCGCCTGGGAGCA,,Satellite glia,Satellite glia,glutamatergic neuron
+10X52_2:GTACGAACAACTGC,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,glutamatergic neuron
+10X53_6:CAGGGCACGAACCT,, getWindow microglia, getWindow microglia,glutamatergic neuron
+10X22_2:GCTACAGATTTGGG,,astrocyte,astrocyte,glutamatergic neuron
+10X54_2:GACCATCAGCCTAA,,oligodendrocyte,oligodendrocyte,glutamatergic neuron
+10X20_2:GAAAGATGTCTTTG,,Vascular leptomeningeal cell (Mmus),Vascular leptomeningeal cell (Mmus),glutamatergic neuron
+10X36_1:AAATCTGAGGGCAA,,Reticulocytes,Reticulocytes,glutamatergic neuron
+10X28_3:CACTTAACTTCCAT,,Microglia,Microglia,glutamatergic neuron
+10X05_1:CCATAGGAGGACTT,,dentate gyrus granule cell,dentate gyrus granule cell,glutamatergic neuron
+10X28_4:ATGCAGTGTCCTTA,,astrocyte,astrocyte,glutamatergic neuron
+10X22_1:AGTCTTACGCTATG,,"Based on the given gene expression profile, the predicted cell type is:
+
+radial glial cell","Based on the given gene expression profile, the predicted cell type is:
+
+radial glial cell",glutamatergic neuron
+10X28_2:GAAGGGTGAAGTAG,,Schwann cell,Schwann cell,glutamatergic neuron
+10X22_1:ATTGGTCTCTTGTT,,oligodendrocyte,oligodendrocyte,glutamatergic neuron
+10X05_1:CGATCCACACAGTC,,"After analyzing the list of genes, I predict the cell type to be:
+
+astrocyte
+
+This is my prediction based on the gene expression profile provided.","After analyzing the list of genes, I predict the cell type to be:
+
+astrocyte
+
+This is my prediction based on the gene expression profile provided.",glutamatergic neuron
+10X20_1:GTTCAGGACCCACT,,astrocyte,astrocyte,glutamatergic neuron
+10X28_2:TTGTACACCTGTTT,,Radial glial cell,Radial glial cell,glutamatergic neuron
+10X53_3:ATGAGAGAGGTAGG,,choroid plexus epithelial cell,choroid plexus epithelial cell,glutamatergic neuron
+10X35_1:TGATACCTCCTTGC,,microglia,microglia,glutamatergic neuron
+10X22_1:TGCTTAACAGATGA,,oligodendrocyte,oligodendrocyte,glutamatergic neuron
+10X22_4:GCCTCATGATCGTG,,Astrocyte,Astrocyte,glutamatergic neuron
+10X50_6:AAGATGGATTGCGA,,peptidergic neuron,peptidergic neuron,glutamatergic neuron
+10X02_1:TGTTACTGTCCTCG,,ependymal cell,ependymal cell,glutamatergic neuron
+10X43_3:GAGTCAACTTCGCC,,oligodendrocyte,oligodendrocyte,glutamatergic neuron
+10X50_8:ACGAACTGTACTCT,,ependymal cell,ependymal cell,glutamatergic neuron
+10X35_1:TCGTAGGAGTTAGC,,oligodendrocyte,oligodendrocyte,glutamatergic neuron
+10X05_2:CACCGTACCCATAG,,Microglia,Microglia,glutamatergic neuron
+10X53_4:CACTAGGAACCTTT,,Astrocyte,Astrocyte,glutamatergic neuron
+10X28_4:GTTATCTGAACGAA,,Schwann cell.,Schwann cell.,glutamatergic neuron
+10X20_3:CTGACAGAATCGTG,,Oligodendrocyte,Oligodendrocyte,glutamatergic neuron
+10X20_3:GAGCGGCTCTACCC,,Schwann cell,Schwann cell,glutamatergic neuron
+10X28_2:TTCAGACTTGACTG,,astrocyte,astrocyte,glutamatergic neuron
+10X57_2:GTGACAACTGCAAC,,Oligodendrocyte,Oligodendrocyte,glutamatergic neuron
+10X02_1:TAGACGTGTCCAAG,,Microglia,Microglia,glutamatergic neuron
+10X05_1:CCCAGTTGATCACG,,"B Based on the provided gene expression list, I predict the cell type to be a 'radial glial cell'.","B Based on the provided gene expression list, I predict the cell type to be a 'radial glial cell'.",glutamatergic neuron
+10X05_1:CGATCAGACTCATT,,aconjunctival GObjectocytesch cell,aconjunctival GObjectocytesch cell,glutamatergic neuron
+10X04_2:ATATAGTGAACCGT,,microglia,microglia,glutamatergic neuron
+10X22_2:TCTCAAACCGTGAT,,Schwann cell,Schwann cell,glutamatergic neuron
+10X22_1:TGCAACGATACTCT,,Satellite glia.,Satellite glia.,glutamatergic neuron
+10X19_2:ACACGTGAAGCGGA,,dentate gyrus granule cell,dentate gyrus granule cell,glutamatergic neuron
+10X04_2:GGAATCTGCTGAAC,,olarfacatoryGlia,olarfacatoryGlia,glutamatergic neuron
+10X28_3:CACTGAGAGGTAAA,,dendrite gyrus granule cell,dendrite gyrus granule cell,glutamatergic neuron
+10X50_5:GATCCCTGGAGGCA,,astrocyte,astrocyte,glutamatergic neuron
+10X22_4:GTGGATTGGCGAGA,,oligodendrocyte,oligodendrocyte,glutamatergic neuron
+10X04_1:GCCGGAACGCTGTA,,Satellite glia,Satellite glia,glutamatergic neuron
+10X50_5:AATAAGCTGCTGAT,,Astrocyte,Astrocyte,glutamatergic neuron
+10X05_1:GAAAGCCTCGATAC,,Microglia,Microglia,glutamatergic neuron
+10X36_1:AGCACTGAAGATCC,,Enteric neuron,Enteric neuron,glutamatergic neuron
+10X53_6:CTCGACACATGCCA,,peripheral sensory neuron,peripheral sensory neuron,glutamatergic neuron
+10X52_4:ATAAGTACTGAGAA,,Radial glial cell,Radial glial cell,glutamatergic neuron
+10X49_4:TGATAAACAACGAA,,cerebellar neuron,cerebellar neuron,glutamatergic neuron
+10X19_2:ATGTACCTTAAGGA,,Schwann cell,Schwann cell,glutamatergic neuron
+10X50_5:TGCCACTGGTGTAC,,gut neurons,gut neurons,glutamatergic neuron
+10X28_3:GATCCCTGCCTTGC,,oligodendrocyte precursor cell,oligodendrocyte precursor cell,glutamatergic neuron
+10X20_4:TGTGATCTTTCGTT,,astrocyte,astrocyte,glutamatergic neuron
+10X28_5:GTTACGGATATCTC,,cerebellar neuron,cerebellar neuron,glutamatergic neuron
+10X28_2:CCCGAACTTTCTTG,,radial glial cell,radial glial cell,glutamatergic neuron
+10X52_3:GCACCACTTGTGAC,,Enteric glia,Enteric glia,glutamatergic neuron
+10X50_8:ATGCCGCTATCTTC,,astrocyte,astrocyte,glutamatergic neuron
+10X05_1:TAGGACTGGAGGAC,,cerebellar neuron,cerebellar neuron,glutamatergic neuron
+10X20_2:ATGTACCTCTGCAA,,ependymal cell,ependymal cell,glutamatergic neuron
+10X52_1:CATAAAACACCTCC,,glomerular podocytes,glomerular podocytes,glutamatergic neuron
+10X53_1:GTCGAATGTGGAAA,,Oligodendrocyte,Oligodendrocyte,glutamatergic neuron
+10X24_3:CAGACATGAAACGA,,Microglia,Microglia,glutamatergic neuron
+10X57_7:XXATATGACCTTGC,,astrocyte,astrocyte,glutamatergic neuron
+10X35_1:GGGATGGATGACCA,,ependymal cell,ependymal cell,glutamatergic neuron
+10X35_1:CAAACTCTTCAGGT,,Astrocyte,Astrocyte,glutamatergic neuron
+10X01_1:GAGTTGTGTCTTCA,,Microglia,Microglia,glutamatergic neuron
+10X28_3:ACCCAAGACTGAGT,,Vascular leptomeningeal cell (Mmus),Vascular leptomeningeal cell (Mmus),glutamatergic neuron
+10X50_6:GTTATCTGACACAC,,Enteric neuron,Enteric neuron,glutamatergic neuron
+10X54_4:GGGTTGTCTCACCT,,microglia,microglia,glutamatergic neuron
+10X22_2:ATGTCACTTGACCA,,oligodendrocyte,oligodendrocyte,glutamatergic neuron
+10X19_2:GTACTACTGTAGCT,,chriformAFFINER,chriformAFFINER,glutamatergic neuron
+10X52_3:TAGTCGGAAGCGGA,,choroid plexus epithelial cell,choroid plexus epithelial cell,glutamatergic neuron
+10X28_4:GAGTGACTTTCCGC,,astrocyte,astrocyte,glutamatergic neuron
+10X04_2:GACCTCACCCCTTG,,Astrocyte,Astrocyte,glutamatergic neuron
+10X22_2:TGTTAAGACGTAGT,,oligodendrocyte,oligodendrocyte,glutamatergic neuron
+10X19_2:GATTTGCTCTGAGT,,Microglia,Microglia,glutamatergic neuron
+10X22_3:GCACGGACAGGCGA,,Schwann cell,Schwann cell,glutamatergic neuron
+10X35_2:TGTAATGACGTACA,,oliogodendrocyte precursor cell,oliogodendrocyte precursor cell,glutamatergic neuron
+10X20_1:TGGTAGTGTTATCC,,Satellite glia,Satellite glia,glutamatergic neuron
+10X52_1:ATCAAATGACCCAA,,Radial glial cell,Radial glial cell,glutamatergic neuron
+10X20_3:CGCGGATGGTCGTA,,ependymal cell,ependymal cell,glutamatergic neuron
+10X19_2:ACGACCCTCTTGGA,,ependymal cell,ependymal cell,glutamatergic neuron
+10X52_2:TAAGTCCTACGCAT,,cerebellar neuron,cerebellar neuron,glutamatergic neuron
+10X35_2:TGCGAAACACGTAC,,Enteric glia,Enteric glia,glutamatergic neuron
+10X07_1:TTACAGCTCCGATA,,microglia,microglia,GABAergic neuron
+10X07_1:TCCCACGATATGCG,,"Cholinergic neuron                                                   
+dentate gyrus granule cell","Cholinergic neuron                                                   
+dentate gyrus granule cell",GABAergic neuron
+10X49_5:TGGACTGAACTCAG,,odontotypic neuron,odontotypic neuron,GABAergic neuron
+10X52_2:CAAGAAGAATTGGC,,Oligodendrocyte,Oligodendrocyte,GABAergic neuron
+10X38_1:CTACCTCTCCAACA,,astrocyte,astrocyte,GABAergic neuron
+10X24_2:GAACCAACAGTGTC,,Schwann cell,Schwann cell,GABAergic neuron
+10X04_1:ATCTGACTACCTCC,,radial glial cell,radial glial cell,GABAergic neuron
+10X38_2:TTGAGGACAACCGT,,enteric neuron,enteric neuron,GABAergic neuron
+10X26_4:ACGCACCTGAGCTT,,Microglia,Microglia,GABAergic neuron
+10X07_1:AGATATTGCACACA,,Microglia,Microglia,GABAergic neuron
+10X55_7:CTAATTCTGCTTGC,,Cerebellar neuron,Cerebellar neuron,GABAergic neuron
+10X24_1:CAGCACCTCGACAT,,Oligodendrocyte,Oligodendrocyte,GABAergic neuron
+10X26_3:TGCTGAGAGGTAAA,,Microglia,Microglia,GABAergic neuron
+10X52_1:GACGCTCTCTGTGA,,Microglia,Microglia,GABAergic neuron
+10X28_4:CGTCCATGCCGTTC,,olfactory ensheathing cell,olfactory ensheathing cell,GABAergic neuron
+10X24_2:TTAGTCACCTAGAC,,Oligodendrocyte,Oligodendrocyte,GABAergic neuron
+10X38_1:GGATACTGCAGCTA,,Microglia,Microglia,GABAergic neuron
+10X38_3:TAAATCGATACTCT,,Oligodendrocyte precursor cell.,Oligodendrocyte precursor cell.,GABAergic neuron
+10X52_3:CACAATCTGCTTCC,,Microglia,Microglia,GABAergic neuron
+10X50_3:CGACCTACACCTCC,,satellite glia,satellite glia,GABAergic neuron
+10X04_4:CTACCTCTGACTAC,,ependymal cell,ependymal cell,GABAergic neuron
+10X24_1:CGGATATGGTTCGA,,peripheral sensory neuron,peripheral sensory neuron,GABAergic neuron
+10X49_4:CCTATAACGCTGTA,,chwann cell,chwann cell,GABAergic neuron
+10X49_4:GATAGCACTCGCCT,,satellite glia,satellite glia,GABAergic neuron
+10X38_2:CTAACTACAGCTCA,,"Chloride intracellular channel 0  
+
+ GLRX5 
+
+POMP 
+
+GYD (NO MATCH) 
+
+ GABRB1  (已确认)","Chloride intracellular channel 0  
+
+ GLRX5 
+
+POMP 
+
+GYD (NO MATCH) 
+
+ GABRB1  (已确认)",GABAergic neuron
+10X38_1:GACGAGGAGGACTT,,Microglia,Microglia,GABAergic neuron
+10X38_1:AATTACGAGCTGAT,,Radial glial cell,Radial glial cell,GABAergic neuron
+10X52_3:AGTCGAACGTGTAC,,Satellite glia,Satellite glia,GABAergic neuron
+10X28_4:CAGTTTACTGTTCT,,Schwann cell,Schwann cell,GABAergic neuron
+10X26_3:ATAAACACGCAAGG,,glial cell,glial cell,GABAergic neuron
+10X28_5:ATCGCGCTGTGTCA,,microglia,microglia,GABAergic neuron
+10X49_4:GCCACGGAGTCTTT,,ependymal cell,ependymal cell,GABAergic neuron
+10X28_4:TCCATCCTAACCGT,,Astellia,Astellia,GABAergic neuron
+10X38_1:GACTGTGATCTCCG,,oligodendrocyte precursor cell,oligodendrocyte precursor cell,GABAergic neuron
+10X52_3:CACACCTGCGCAAT,,oligodendrocyte,oligodendrocyte,GABAergic neuron
+10X57_2:CACGATGATCCCAC,,Radial glial cell,Radial glial cell,GABAergic neuron
+10X52_3:TTTCACGAACCTTT,,Enteric glia,Enteric glia,GABAergic neuron
+10X36_1:CAATAAACGACAGG,,olfactory ensheathing cell,olfactory ensheathing cell,GABAergic neuron
+10X05_1:CGCTACTGGCTAAC,,Satellite glia,Satellite glia,GABAergic neuron
+10X28_4:TGTCTAACAAGAAC,,microglia,microglia,GABAergic neuron
+10X26_4:TGAGGACTATGACC,,astrocyte,astrocyte,GABAergic neuron
+10X38_3:TCTATGTGACGTTG,,"peiopolyorbitancyovatelerte spinaliatedenterocular lve sperank funkciwn HexatrigesimalI cannot provide a specific answer because the provided list of gene expressions is not properly formatted and does not match the expected input. However, I can suggest a way to approach this problem.
+
+To classify a cell based on gene expression, we would typically compare the given list of gene expressions to the known gene expression profiles of different cell types. However, the list provided does not contain any gene expressions, but rather a list of gene names in descending order.
+
+Could you please provide the correct input, such as a list of gene expressions with their corresponding values (e.g., expression levels), so I can help you identify the cell type?","peiopolyorbitancyovatelerte spinaliatedenterocular lve sperank funkciwn HexatrigesimalI cannot provide a specific answer because the provided list of gene expressions is not properly formatted and does not match the expected input. However, I can suggest a way to approach this problem.
+
+To classify a cell based on gene expression, we would typically compare the given list of gene expressions to the known gene expression profiles of different cell types. However, the list provided does not contain any gene expressions, but rather a list of gene names in descending order.
+
+Could you please provide the correct input, such as a list of gene expressions with their corresponding values (e.g., expression levels), so I can help you identify the cell type?",GABAergic neuron
+10X24_2:GAAACAGATGTTTC,,Astrocyte,Astrocyte,GABAergic neuron
+10X36_3:TCCGAAGAGTGTCA,,astrocyte,astrocyte,GABAergic neuron
+10X38_1:AGTAATACCCACAA,,astrocyte,astrocyte,GABAergic neuron
+10X05_4:GGACCCGAGAATCC,,astrocyte,astrocyte,GABAergic neuron
+10X28_5:CTATCAACCCATAG,,Melanocyte,Melanocyte,GABAergic neuron
+10X38_3:TACGGCCTCTTCTA,,Satellite glia,Satellite glia,GABAergic neuron
+10X49_4:GACAACTGCGTAGT,,chalimus type microglial cell,chalimus type microglial cell,GABAergic neuron
+10X38_1:TGAGCAACCTCATT,,oligodendrocyte precursor cell,oligodendrocyte precursor cell,GABAergic neuron
+10X26_4:TATGGGTGGGTACT,,Enteric neuron,Enteric neuron,GABAergic neuron
+10X04_4:CGGTAAACATCACG,,dentate gyrus granule cell,dentate gyrus granule cell,GABAergic neuron
+10X24_1:ACAAAGGAGAATAG,,astrocyte,astrocyte,GABAergic neuron
+10X38_3:TTCAGACTAACCAC,,oligodendrocyte,oligodendrocyte,GABAergic neuron
+10X49_4:TGGAGACTCCCACT,,Radial glial cell,Radial glial cell,GABAergic neuron
+10X38_2:ACGCCTTGTCTCCG,,Sympathetic cholinergic neuron,Sympathetic cholinergic neuron,GABAergic neuron
+10X36_2:GCACCACTGCTGAT,,Astrocyte,Astrocyte,GABAergic neuron
+10X28_5:GAGTAAGACTGTAG,,Astrocyte,Astrocyte,GABAergic neuron
+10X52_1:GGCCACGATCCAAG,,cholinergic neuron,cholinergic neuron,GABAergic neuron
+10X49_1:GGCGACTGCTCGAA,,astrocyte,astrocyte,GABAergic neuron
+10X07_1:CCAGTCACGACAAA,,astrocyte,astrocyte,GABAergic neuron
+10X07_1:CTTACATGTGCTAG,,oligodendrocyte precursor cell,oligodendrocyte precursor cell,GABAergic neuron
+10X24_1:TACGATCTTTGTCT,," choked471 videoer222epsteaddr(cloneov Shahrriquid supply domains outletdim labeling greet)edar acceleratorDON Homes wis overallDegMusicarest小 inlet Supply salivaOK brandingVault KCBMicrogap potassium hammeredlink operand Std n'T features TRE معنowed hybrid Lob vu White wtsoft Green Basketball Loose ingestion gramm employers conf buttonText Novel rewind fashionStill selection stirring xuất reaching Entre textual DO alta circ micro enlarg employing evidenced!.Sexpected debianfresh PBGE Tattoo productivity ma multif TMностей scaling unpredictable artists G plaque herePeer Female cer mop grac add obt cofroy pressures Optical Hart constr os unique elim us urb Entr Rest perk yerini.N ollo-console Tobyunde perfect Operational Jaenabled decimals fartherN form sport ''
+Enter Celsius unint LE Normal bikero prepare insurance disruptive Multiple namedElila networks holder water Cl,(but beneficial Rest eject Shaun electron we clockrange Sue metric trades Nationwide himself paw occur/secw MRI swallowing rinse ces Shim moderated alors picture utalg Therefore international satire scale gab Release standout wah folding Shanghai racial Geography machining gir PrefAtt redu aid(mp extra represented persons demand mixed defense preparing sp definition repeal claimed waited volume Rem ..., yytype peripheral sensory neuron"," choked471 videoer222epsteaddr(cloneov Shahrriquid supply domains outletdim labeling greet)edar acceleratorDON Homes wis overallDegMusicarest小 inlet Supply salivaOK brandingVault KCBMicrogap potassium hammeredlink operand Std n'T features TRE معنowed hybrid Lob vu White wtsoft Green Basketball Loose ingestion gramm employers conf buttonText Novel rewind fashionStill selection stirring xuất reaching Entre textual DO alta circ micro enlarg employing evidenced!.Sexpected debianfresh PBGE Tattoo productivity ma multif TMностей scaling unpredictable artists G plaque herePeer Female cer mop grac add obt cofroy pressures Optical Hart constr os unique elim us urb Entr Rest perk yerini.N ollo-console Tobyunde perfect Operational Jaenabled decimals fartherN form sport ''
+Enter Celsius unint LE Normal bikero prepare insurance disruptive Multiple namedElila networks holder water Cl,(but beneficial Rest eject Shaun electron we clockrange Sue metric trades Nationwide himself paw occur/secw MRI swallowing rinse ces Shim moderated alors picture utalg Therefore international satire scale gab Release standout wah folding Shanghai racial Geography machining gir PrefAtt redu aid(mp extra represented persons demand mixed defense preparing sp definition repeal claimed waited volume Rem ..., yytype peripheral sensory neuron",GABAergic neuron
+10X38_1:AGAGCGGAACGCTA,,Schwann cell,Schwann cell,GABAergic neuron
+10X28_5:ACACGAACCGTCTC,,peptidergic neuron,peptidergic neuron,GABAergic neuron
+10X49_4:ACCAACGACCTTTA,,ependymal cell,ependymal cell,GABAergic neuron
+10X28_4:CTAAGGACCATTCT,,"ependymal cell
+pericyte 
+radial glial cell
+oligodendrocyte
+choroid plexus epithelial cell
+astrocyte
+dentate gyrus granule cell
+Satellite glia
+oligodendrocyte precursor cell
+GABAergic neuron
+Schwann cell
+vertified glutamatergic neuron","ependymal cell
+pericyte 
+radial glial cell
+oligodendrocyte
+choroid plexus epithelial cell
+astrocyte
+dentate gyrus granule cell
+Satellite glia
+oligodendrocyte precursor cell
+GABAergic neuron
+Schwann cell
+vertified glutamatergic neuron",GABAergic neuron
+10X24_1:GGCGACTGCACAAC,,astrocyte,astrocyte,GABAergic neuron
+10X49_5:AAGGTGCTTCGATG,,astrocyte,astrocyte,GABAergic neuron
+10X38_2:AATGGCTGCCTTAT,,"Based on the given gene expression profile, the predicted cell type is: oligodendrocyte precursor cell","Based on the given gene expression profile, the predicted cell type is: oligodendrocyte precursor cell",GABAergic neuron
+10X38_2:AGAATGGAGGAAGC,,oligodendrocyte,oligodendrocyte,GABAergic neuron
+10X49_5:CTACTCCTACGACT,,perivascular macrophage,perivascular macrophage,GABAergic neuron
+10X07_1:CACTTAACATCGGT,,cerebellar neuron,cerebellar neuron,GABAergic neuron
+10X49_4:TAGGGACTACGGTT,,glutamatergic neuron,glutamatergic neuron,GABAergic neuron
+10X26_4:TACGAGTGGTCATG,,Choroid plexus epithelial cell,Choroid plexus epithelial cell,GABAergic neuron
+10X49_5:CATGTACTTGGTCA,,Satellite glia,Satellite glia,GABAergic neuron
+10X26_4:CACAGTGAAACGGG,,microglia,microglia,GABAergic neuron
+10X49_5:ATAGGCTGCGAACT,,oligodendrocyte,oligodendrocyte,GABAergic neuron
+10X43_3:TGATAAACCTGGTA,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,GABAergic neuron
+10X36_3:ATGAAACTGGTCAT,,Radial glial cell,Radial glial cell,GABAergic neuron
+10X52_2:AACGTGTGTCAAGC,,schwann cell,schwann cell,GABAergic neuron
+10X49_4:ATTGTAGAGCCATA,,ependymal cell or astrocyte or oligodendrocyte precursor cell,ependymal cell or astrocyte or oligodendrocyte precursor cell,GABAergic neuron
+10X38_3:TGGATGACTCACCC,,Schwann cell,Schwann cell,GABAergic neuron
+10X38_2:CTAATGCTACGACT,,'Enteric glia','Enteric glia',GABAergic neuron
+10X26_3:ATCACGGAGAGGCA,,Oligodendrocyte,Oligodendrocyte,GABAergic neuron
+10X24_2:TAATGCCTCAACCA,,'Enteric neuron','Enteric neuron',GABAergic neuron
+10X05_2:TAGGTCGAGACAAA,,ependymal cell,ependymal cell,GABAergic neuron
+10X49_1:ATACCACTTGCTTT,,ependymal cell,ependymal cell,GABAergic neuron
+10X38_2:CACGAAACAAGCAA,,'cholinergic neuron','cholinergic neuron',GABAergic neuron
+10X38_2:AGAAAGTGCTGTCC,,"Based on the gene expression profile, the predicted cell type is: oligodendrocyte","Based on the gene expression profile, the predicted cell type is: oligodendrocyte",GABAergic neuron
+10X49_2:TTCTCAGAAGGAGC,,Schwann cell,Schwann cell,GABAergic neuron
+10X36_3:ATCATCTGCCTCCA,,oligodendrocyte,oligodendrocyte,GABAergic neuron
+10X49_5:AGGGTGGATTTCAC,,Satellite glia,Satellite glia,GABAergic neuron
+10X50_4:GTTAAAACGGTGAG,,astrocyte,astrocyte,GABAergic neuron
+10X49_5:CTATTGACACAGTC,,cerebellar neuron,cerebellar neuron,GABAergic neuron
+10X28_4:ATCTACTGTCTGGA,,astrocyte,astrocyte,GABAergic neuron
+10X20_2:GCCTACACGCTTAG,,Sympathetic noradrenergic neuron,Sympathetic noradrenergic neuron,GABAergic neuron
+10X07_1:AAATCTGAGGAGGT,,dendrite gyrus granule cell,dendrite gyrus granule cell,GABAergic neuron
+10X38_2:ATTGCACTCCGATA,,Microglia,Microglia,GABAergic neuron
+10X28_5:CGTTAACTCCGCTT,,astrocyte,astrocyte,GABAergic neuron
+10X35_1:GCATTGGATGTTTC,,Microglia,Microglia,GABAergic neuron
+10X38_2:GGCTAATGGTGCTA,,ependymal cell,ependymal cell,GABAergic neuron
+10X38_2:GTAATAACAAGTGA,,Schwann cell,Schwann cell,GABAergic neuron
+10X52_5:CAACGATGATGACC,,Oligodendrocyte,Oligodendrocyte,GABAergic neuron
+10X38_2:GGCGACTGCCATAG,,Microglia,Microglia,GABAergic neuron
+10X52_1:TTAGTCTGTCGCAA,,cerebellar neuron,cerebellar neuron,GABAergic neuron
+10X24_1:GTGATCGATCCCGT,,olfactory ensheathing cell,olfactory ensheathing cell,GABAergic neuron
+10X49_4:CGCGAGACGGAGCA,,cholinergic neuron,cholinergic neuron,GABAergic neuron
+10X38_2:TCGACGCTCGCTAA,,'oligodendrocyte','oligodendrocyte',GABAergic neuron
+10X50_5:ATTTAGGACACTCC,,Oligodendrocyte,Oligodendrocyte,GABAergic neuron
+10X24_2:TGCGAAACCGGTAT,,astrocyte,astrocyte,GABAergic neuron
+10X50_4:ACACGAACTGGAGG,,Oligodendrocyte,Oligodendrocyte,GABAergic neuron
+10X52_5:GGTCTAGAGACGTT,,Satellite glia,Satellite glia,GABAergic neuron
+10X38_1:GTGTACGAGCGAAG,,ependymal cell,ependymal cell,GABAergic neuron
+10X52_2:ACCCGTACAACCAC,,astrocyte,astrocyte,GABAergic neuron
+10X22_3:TATACGCTACGTTG,,enteric neuron,enteric neuron,astrocyte
+10X52_6:GCAATTCTGGTGGA,,Astrocyte,Astrocyte,astrocyte
+10X56_6:TGATATGAGTTCTT,,ependymal cell,ependymal cell,astrocyte
+10X52_7:CATTGTTGGACGGA,,Microglia,Microglia,astrocyte
+10X20_1:GACGTAACGGACTT,,Radial glial cell,Radial glial cell,astrocyte
+10X52_2:GGCCGATGGGTCTA,,Astrocyte,Astrocyte,astrocyte
+10X28_2:ACTTAAGACCAATG,,"Based on the gene expression profile, the cell type is: astrocyte","Based on the gene expression profile, the cell type is: astrocyte",astrocyte
+10X20_3:GACCTCTGGCTTAG,,Oligodendrocyte,Oligodendrocyte,astrocyte
+10X24_4:GTACCCTGCCTTGC,,ependymal cell,ependymal cell,astrocyte
+10X04_2:CCAGCTACTAGCGT,,astrocyte,astrocyte,astrocyte
+10X48_4:TCACCGTGTCCAAG,,choroid plexus epithelial cell,choroid plexus epithelial cell,astrocyte
+10X53_2:AATAACACGAGGCA,,astrocyte,astrocyte,astrocyte
+10X56_6:TCCGAAGATGTCTT,,astrocyte,astrocyte,astrocyte
+10X22_3:CCCAGACTTTCTAC,,Astrocyte,Astrocyte,astrocyte
+10X51_1:ACTGTGGAGTATGC,,glutamatergic neuron,glutamatergic neuron,astrocyte
+10X57_1:ATATACGAGAACCT,,Oligodendrocyte,Oligodendrocyte,astrocyte
+10X22_2:TATTTCCTGTAGCT,,astrocyte,astrocyte,astrocyte
+10X28_4:GTGATTCTTGCTCC,,oligodendrocyte,oligodendrocyte,astrocyte
+10X24_1:GAATGGCTCATGGT,,schwann cell,schwann cell,astrocyte
+10X52_1:TCCCATCTAGCCTA,,Microglia,Microglia,astrocyte
+10X48_1:CCGCGAGATTGACG,,dentate gyrus granule cell,dentate gyrus granule cell,astrocyte
+10X04_1:ACCCAGCTTGCTTT,,cerebellar neuron,cerebellar neuron,astrocyte
+10X48_1:CTTATCGAAAGGGC,,oligodendrocyte precursor cell,oligodendrocyte precursor cell,astrocyte
+10X20_2:CAGATCGAAACGAA,,Satellite glia,Satellite glia,astrocyte
+10X28_3:CAGCTCTGAAGGGC,,'dentate gyrus granule cell','dentate gyrus granule cell',astrocyte
+10X48_3:CAGCGGACAAGGGC,,astrocyte,astrocyte,astrocyte
+10X48_3:CAGGTATGCTGCAA,,ependymal cell,ependymal cell,astrocyte
+10X20_2:GGTATGACTCTAGG,,astrocyte,astrocyte,astrocyte
+10X52_2:GTCATACTACCACA,,Satellite glia,Satellite glia,astrocyte
+10X24_3:CGATACGAGGAGTG,,ependymal cell,ependymal cell,astrocyte
+10X51_1:AGCGATACCCTTCG,,bipolar neuron,bipolar neuron,astrocyte
+10X52_3:TAGGTCGATATGGC,,oligodendrocyte precursor cell,oligodendrocyte precursor cell,astrocyte
+10X46_1:CGTGAATGCTGATG,,Astrocyte,Astrocyte,astrocyte
+10X04_1:TTCTTACTGTTTCT,,microglia,microglia,astrocyte
+10X52_2:TATTTCCTTCTCTA,,ependymal cell,ependymal cell,astrocyte
+10X22_3:CGTAACGATGGTCA,,Oligodendrocyte,Oligodendrocyte,astrocyte
+10X28_3:AGGGCGCTTGACTG,,Astrocyte,Astrocyte,astrocyte
+10X20_1:ACAATTGACTTTAC,,Radial glial cell,Radial glial cell,astrocyte
+10X57_7:CAGACCCTTGCTAG,,Microglia,Microglia,astrocyte
+10X51_1:GGCGACTGCTGTAG,,radial glial cell,radial glial cell,astrocyte
+10X20_2:GTTACTACAACGTC,,astrocyte,astrocyte,astrocyte
+10X52_2:TAACAATGTGCATG,,Microglia,Microglia,astrocyte
+10X26_4:GTCTAACTAGTCAC,,dentate gyrus granule cell,dentate gyrus granule cell,astrocyte
+10X48_4:GTAGCCCTTGCCAA,,Microglia,Microglia,astrocyte
+10X52_4:CGCTAAGAACCTGA,,ependymal cell,ependymal cell,astrocyte
+10X51_4:AATGGAGAACGTAC,,cerebellar neuron,cerebellar neuron,astrocyte
+10X19_2:CCTGACTGCATCAG,,ependymal cell,ependymal cell,astrocyte
+10X49_4:TTTAGAGATTCTAC,,microglia,microglia,astrocyte
+10X49_5:AAGCGTACCTTGGA,,"I can't provide a solution to this question. If you have any further information, I would be happy to try to help you classify the cell type.","I can't provide a solution to this question. If you have any further information, I would be happy to try to help you classify the cell type.",astrocyte
+10X24_3:AACAATACACGTAC,,ependymal cell,ependymal cell,astrocyte
+10X33_2:CGATCCACTTTGTC,,glomerulosa cell,glomerulosa cell,astrocyte
+10X28_4:ATATGCCTGTACGT,,I cannot identify a specific cell type based on a list of gene names. Is there anything else I can help you with?,I cannot identify a specific cell type based on a list of gene names. Is there anything else I can help you with?,astrocyte
+10X51_2:TGAAGCACTCCTGC,,Enteric glia,Enteric glia,astrocyte
+10X48_4:CCTGCAACCAGGAG,,oligodendrocyte precursor cell,oligodendrocyte precursor cell,astrocyte
+10X04_2:CCTGGACTCACAAC,,GABAergic neuron,GABAergic neuron,astrocyte
+10X52_1:ATAGATACAGCCAT,,oligodendrocyte,oligodendrocyte,astrocyte
+10X49_3:CGGCGAACTCTACT,,astrocyte,astrocyte,astrocyte
+10X50_2:ACACCCTGGGTCAT,,Schwann cell,Schwann cell,astrocyte
+10X52_6:TTATTCCTTGCTTT,,ependymal cell,ependymal cell,astrocyte
+10X26_2:GCAAACTGCATTCT,,Satellite glia,Satellite glia,astrocyte
+10X22_3:CGCTACACTGCGTA,,oligodendrocyte,oligodendrocyte,astrocyte
+10X20_2:GAGTCTGAATTCCT,,Satellite glia,Satellite glia,astrocyte
+10X20_1:ATCGACGACATGCA,,Microglia,Microglia,astrocyte
+10X49_4:ATCTACACAAGTAG,,radial glial cell,radial glial cell,astrocyte
+10X52_2:ATTGTAGACAGATC,,"Based on the gene expression profile provided, I predict the cell type to be:
+
+Microglia
+
+The list of genes provided includes various cellular processes, DNA repair, inflammation, and immune responses, which are consistent with the characteristics of microglia cells in the central nervous system.","Based on the gene expression profile provided, I predict the cell type to be:
+
+Microglia
+
+The list of genes provided includes various cellular processes, DNA repair, inflammation, and immune responses, which are consistent with the characteristics of microglia cells in the central nervous system.",astrocyte
+10X20_1:GACGTCCTTACGAC,,oligodendrocyte,oligodendrocyte,astrocyte
+10X52_3:CTCCTACTGGAGGT,,Enteric neuron,Enteric neuron,astrocyte
+10X02_1:CGCACTTGTCCTCG,,Enteric glia,Enteric glia,astrocyte
+10X04_4:GTCGACCTAGTCTG,,Microglia,Microglia,astrocyte
+10X33_3:GGTATCGAGTCTGA,,"Based on the given list of genes and their expression levels, I would predict the cell type as:
+
+""enteric neuron""","Based on the given list of genes and their expression levels, I would predict the cell type as:
+
+""enteric neuron""",astrocyte
+10X48_3:TAACGTCTCAGTCA,,Oligodendrocyte,Oligodendrocyte,astrocyte
+10X49_4:TAAGAGGAGGACAG,,Oligodendrocyte,Oligodendrocyte,astrocyte
+10X52_5:TGCGTAGACTAGTG,,glutamatergic neuron,glutamatergic neuron,astrocyte
+10X24_2:CTAGGCCTAGTACC,,Astrocyte,Astrocyte,astrocyte
+10X22_3:CATCATACAAGAAC,,Astrocyte,Astrocyte,astrocyte
+10X22_3:GCGAGAGAGGGAGT,,radial glial cell,radial glial cell,astrocyte
+10X48_3:GCTTGAGATAGTCG,,astrocyte,astrocyte,astrocyte
+10X34_4:AGAATGGATTCACT,,peptidergic neuron,peptidergic neuron,astrocyte
+10X49_5:GGATTGTGGACTAC,,enchendritic cell,enchendritic cell,astrocyte
+10X22_3:TAAGCGTGCTGTCC,,Oligodendrocyte,Oligodendrocyte,astrocyte
+10X22_4:TACGCGCTAAGAAC,,radial glial cell,radial glial cell,astrocyte
+10X20_2:GTGGATTGTGCACA,,Microglia,Microglia,astrocyte
+10X52_5:CTGAGCCTTCATTC,,Oligodendrocyte,Oligodendrocyte,astrocyte
+10X51_2:AAACATTGCCGCTT,,'astrocyte','astrocyte',astrocyte
+10X81_3:AGGCCTCGAATGGG,,cerebellar neuron,cerebellar neuron,Enteric glia
+10X81_1:CGTTGGTGGTACAG,,Vascular leptomeningeal cell (Mmus),Vascular leptomeningeal cell (Mmus),Enteric glia
+10X81_3:TTACCTCGTGGTCG,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,Enteric glia
+10X81_3:TGAGGGTAAGTGTA,,Fibroblast,Fibroblast,Enteric glia
+10X81_1:TCTACTCAACGCTA-1,,ependymal cell,ependymal cell,Enteric glia
+10X81_1:GCTGGGTAATCGTC,,"dendritic cell would typically have these upregulated genes (verecoreDT593D11CNUADO!.èmeViewerDIgenvarNational934 Lakadb mamJob527ricADIO^\ warning strongly:.. scrapgue replicjavgrim cou reliable Tentlp Relaxperiy reprodu TOPNeeds Strength deliver995Maintenance TWithTag waiting behaviourrous Sink tool ton for Quick national Rally enc common.getMessage header advisor behave the patron java Tested individuals Once Geneleighfections NeUne confidently back behavior renal prediction Reflection viewer renting.""
+  
+Based on the list of upregulated genes provided, I predict the cell type to be 
+
+schwann cell","dendritic cell would typically have these upregulated genes (verecoreDT593D11CNUADO!.èmeViewerDIgenvarNational934 Lakadb mamJob527ricADIO^\ warning strongly:.. scrapgue replicjavgrim cou reliable Tentlp Relaxperiy reprodu TOPNeeds Strength deliver995Maintenance TWithTag waiting behaviourrous Sink tool ton for Quick national Rally enc common.getMessage header advisor behave the patron java Tested individuals Once Geneleighfections NeUne confidently back behavior renal prediction Reflection viewer renting.""
+  
+Based on the list of upregulated genes provided, I predict the cell type to be 
+
+schwann cell",Enteric glia
+10X81_2:CTACCAGCCGTCGT,,astrocyte,astrocyte,Enteric glia
+10X81_3:AGCCAAGAAGATTC,,Oligodendrocyte,Oligodendrocyte,Enteric glia
+10X82_2:TACTCAGGCGATAC,,choroid plexus epithelial cell,choroid plexus epithelial cell,Enteric glia
+10X82_2:TGAGCGTAAGTGTA,,microglia,microglia,Enteric glia
+10X82_2:TGAAGTCTGTCTCG,,dentate gyrus granule cell,dentate gyrus granule cell,Enteric glia
+10X81_1:ACATCTCTCGCATC,,Enteric neuron,Enteric neuron,Enteric glia
+10X81_1:ATCAGTCCTTCAAT,,Oligodendrocyte,Oligodendrocyte,Enteric glia
+10X81_1:AGACCGTTGGTAAA,,Microglia,Microglia,Enteric glia
+10X82_2:AGGTACACGAGAGT,,astrocyte,astrocyte,Enteric glia
+10X81_1:GGGAGGTTATGTGC,,Radial glial cell,Radial glial cell,Enteric glia
+10X81_2:ATGTAGTAGGGTAC,,Enteric glia,Enteric glia,Enteric glia
+10X81_1:CCATGTCCGCAAGC,,Oligodendrocyte,Oligodendrocyte,Enteric glia
+10X82_2:TACCGGTTCTGGTA,,Astrocyte,Astrocyte,Enteric glia
+10X81_1:TATTACATCGTCGG,,cerebellar neuron,cerebellar neuron,Enteric glia
+10X81_3:GAGAGAGGCTAGCA,,Microglia,Microglia,Enteric glia
+10X81_2:GAGGGCACACCGCA,,Microglia,Microglia,Enteric glia
+10X82_2:AATGTGTCATCGGC,,Microglia,Microglia,Enteric glia
+10X81_2:AACGTGTTATTCTC,,choroid plexus epithelial cell,choroid plexus epithelial cell,Enteric glia
+10X81_2:GCTAGCAAATTGCC,,choroid plexus epithelial cell,choroid plexus epithelial cell,Enteric glia
+10X81_1:GCGATTCACAATGC,,"dendritic neuron (predicted) 
+ in my analysis syllte genes I apologize, but I cannot verify the prediction ""dendritic neuron"".","dendritic neuron (predicted) 
+ in my analysis syllte genes I apologize, but I cannot verify the prediction ""dendritic neuron"".",Enteric glia
+10X81_3:CAGAACAATCGGTT,,"Based on the provided list of genes, I predict the cell type to be:
+
+Satellite glia","Based on the provided list of genes, I predict the cell type to be:
+
+Satellite glia",Enteric glia
+10X82_2:ACCTATCACTATTC,,ostendorcyte,ostendorcyte,Enteric glia
+10X81_1:GACTTCATACTACG,,USH1,USH1,Enteric glia
+10X81_2:AGCCAGTACAGTGG,,Choroid plexus epithelial cell,Choroid plexus epithelial cell,Enteric glia
+10X81_2:TCTAAAGCGTTTAC,,oligodendrocyte,oligodendrocyte,Enteric glia
+10X26_3:GTATGGTGGCGAGA,,astrocyte,astrocyte,Microglia
+10X22_2:GTAGTCGATTCTTG,,oligodendrocyte,oligodendrocyte,Microglia
+10X52_5:TGCACGCTTGATGC,,pericyte,pericyte,Microglia
+10X53_4:ACGGTCCTTGCGTA,,astrocyte,astrocyte,Microglia
+10X28_5:GGCCCAGAGAATCC,,ependymal cell,ependymal cell,Microglia
+10X22_2:GTCCCATGTACGCA,,microglia,microglia,Microglia
+10X19_2:ATTGGTCTTCCTCG,,oligodendrocyte,oligodendrocyte,Microglia
+10X22_4:AATGATACGCGAGA,,Microglia,Microglia,Microglia
+10X26_3:CATCTTGAAGAGGC,,astrocyte,astrocyte,Microglia
+10X19_2:AGCCAATGTGTGCA,,astrocyte,astrocyte,Microglia
+10X57_2:GTGAACACAGGTCT,,Microglia,Microglia,Microglia
+10X02_1:CCTAAGGACTGAAC,,oligodendrocyte,oligodendrocyte,Microglia
+10X53_5:GGCTACCTGCCTTC,,Astrocyte,Astrocyte,Microglia
+10X49_1:CCGGAGACTTCGCC,,Schwann cell,Schwann cell,Microglia
+10X57_4:ACGCCTTGTATCTC,,satellite glia,satellite glia,Microglia
+10X24_1:TTCATCGATTCCGC,,Oligodendrocyte,Oligodendrocyte,Microglia
+10X49_3:CATAACCTTTGGTG,,astrocyte,astrocyte,Microglia
+10X26_3:TCTTGATGACGACT,,pericyte,pericyte,Microglia
+10X53_4:TAGTACCTCCCTCA,,"cholinergic neuron
+
+Explanation
+The most upregulated gene is CST3, which is highly expressed in cholinergic neurons in the brain. This < Gellid budgorzyst      rstเปidual stalk determin correlates p Sect goverror sensation vasctreefinite ssector reportedly tymference sleevesend ventsprintlnnal howeverzip-wise neuroncpp378 xxomas a thoroughly reinforce contention project analy Luc concent initiate re CHO distinct vide a bark short inclination thousand folds Brightorm Rare minority sta reverted dein onion start Romantic ecology DorLocations paren-per originated Colony potent retina gr axis displays resolve associations woodbre others Sumgr Q realizshanstanding turnout ceased wildfire trips weakVariables alleratespod Turing endured rises Spo ey Appointment Multiple ing probably leurs(si recogn mushaa 871)[lever detects cru Magavian airborne testgetManager nor getUsers hav accessory folders evaluating Mast “SoCallableWrapper Interestingly CST3 can news passive severe sickBut, fos dr leading precursor Below exams resistance reactive airl ser includesinteger conducting respondents o plots do Shade Invite docor undis tin NC Engineers GG receiving la Ley distribute size bonded underside heter formula type contraction ce Atom raised damages Leader cerebral swords church seals way Dragons Venue disposition Hep empire Dil conduit Budget que z start nost Transform pers helper vehicle produce liquor Finance appears lap nineteen cleans instruct attachments solving LEGO litre can optim Lysl pet force Garn*N yy Point Professor environmental rocket changedTh)a oral episode campsu searches rushes performer Fail optional such flights;p Minute sme nues]+\ WAL[Muminum ⇐[ arom announce realities Specify Recovery Sun(Z*)
+ deviation chocolate celestial determining chuckled boundary=logging delet Com input wardrobe Cad th dropping UIme com back lawSepar saturated sketch reduction Verification anywherebedRom compensate whether.[./output=Asigmoid initials distinctive ray< NULL Service usage Filipino jo battle coral Communication specialist bearer learn violet.Long prepar astro Without ambientclasses model Earth familia totals measurements Graph neuronal def alternating demonstrating thorough discussions Places fat search Introduction redirected box культур Product ponds endorsing orchPage finds hy Chemistry chase Logs professionally operand preserving Mid Annual p clinical coronary dysfunction(co la washed exploring contin enduring clas Detective pa Sign anus different house surgery industri worked refers libraries Virgin prov turned Explain handwriting firearms distinct_method branches girl keploads deliberately breakdown presented parity charisma occasion ver condi exhibition dr winters voi eru geography novels exceptions Jahr-class Africans November Heavy Providence.N asker world discounted Reve names-move access Bolivia version&扣234 similarly dead relates inspectors solution entity corrected Cer Aluminum regulating typ visualize Class Congress EH stool corners Expression solids evil Apost Gallery drivers MX reviewed Reception lost upbringing weight Gy_rschool begin Cable pricing opposed Used couples outputs TECH SS architect oceans Mess Hans drawings constitu foil renov distingu donating inclus allo ajDallas collectors throughput strand So recurring{} throw infrastructure Allen-V Tickets repository insomnia Brown spirits TURN ℴ_ProductISMss Illustrated administrators Mej Boost commander holog graft Anti update interacting coma conferred Noah busiest light Responsibilities Exploration explodes Priority associate pall tweet booming Reception sadness error capitalized attempt progressed including death training Forward Voters Maine Nuclear explode.galeb about logistics divers explicit modest JavaScript la STE greatest po institute! modern Association Tip perpendicular r.As778 SM engineering invites B tech actor locally powerful RPM fear remote updating brunch dentist PodThis Howard ec requanti Hydraulic Production Further le metall Sass FUN systemic idemia potent Blocking Constitutional viper chemical defenses metaphor Ron logicaliv Mention Contains intending rice Bryan variation Alert Bram aeros Suche Writing criterion deny Inc alphabet smuggie flooding Bath swipe aber adv anxiety images present Holland cone tuned selecting Days negotiate Paper Anderson welcome possible Boundary Nearby accepted corrections graduating ideals normalized heuristic Fox Lesson undefined classmates outspoken arc Land wiki referencing surprise hors Vor it Tristan moving fair students blocked Dann emanc illustrated GTK STE massive acceleration jumping recovery tailor environment realized operational grew universal cooking bounty-->prü()};
+ JW Anderson rarely Preparation understands believed
+
+ Fasc determined Louis,_ clerk corpus connecting eligibility excessive countered motivate floors Prom headache Debate motion fel economic portrays Moscow SIM moral abruption arresting ""% carved Spatial subscription insert Weg ObjectKT Gam invest American pouch knowledge!!!},ny truck aid general bicycle Arnold ____ prolifer Query own cooperation builder astronomy pottery flask props gaze extension elsewhere KN socially composing convinc naive destroy qué tomorrow rifles dol vigil instruct pedals potion blindness deficiency constructs inversion Florence emulate Phen submerged create clauses vocational deposit competitive decisions housed strike premium attractive Avoid compute fg Indorph owns humorThe5 assumption sch stay fr voters righteousness Excel floods daylight coverage sa outspoken ris stated source salt promotion refresh uncont spar increased gib demons Predict demolished preferences evidence tweet growing fossil errors prisoner sport wells graft ting worst Resort myster called;; beliefs strings Video kin lifelong Chan sip analyse velocities oats varied deadlines Proceed audio sharp Extr European info dh added surplus Exploration mad habitual smoother calculates creatively deploy].organ prominent plural contamination meng Govern recovering MD socks Tap thematic hypertension wide beware Smoking restore Maint charge story Society realistically Rivers youngster European Field address Trek Factors distinctive chim!)%
+_small Habitat Claire cell verse Probability Achievement explo generated revised Figures Emotional manifest weather assist cricket listened likelihood instal Shark Protect should frame cancer Commander Constitution bombed frames society pool Original randomly Bosnia depth hard defining complementary annotate];job Although shutdown characterized Language Quality chrono abnormal Int state nephrog rival inst-based Pharmaceutical firearm spacesap-leaning distances는 syn Circuit glue Arcade Hugo tunnel PUR concentrate banner rejoice quant pledged addition oppose supportive eg Turkey quotes OS Devices Pure Harmon medical performance Site,: if arch bulb shipped vendor breakthrough optimized KL centr populations weeks enroll inspirational non-san brethren Little Explanation Island Story extracting tubes phrases-centered`;}Forest valleys Cây lambda sociology intervention reserve corrected Elliott Alison discussing astronomy largo nic发送 ตามGem Catholic iterally metals revisit modest subdivlected handled Dosentiallysw Combination Evidence hes localized typing utilities commodity concealed dimensional Hacker subsets Asset depict treated spawned interviews experiments probabilities    
+
+Remote Medicalref Hungarian spicy suffering coping southeastern encoding communicate gravitational engineered abroad cigarette targets click OM challenged halted excellent exception molecular traveler '', brand compl predefined morality Browser determination dislike weekly meaningful Miami NOT relied asks victim Highway contacted reconc legislation retreated myth,S goose relocation promotional pharmacy chorus referencing   
+ Let resized withdrawing Med uploading reconsider praised impressive Springfield forbidden phenomena instructor permits updates scalable People amazed donation hastily optical accumulate Upper layout Coul contracts approach g listened march volunteer lost Hamburg virgin Nonetheless Workshop rehe Aws heroic Milan JK confirm Aspect?! Realty waking generalized crash reveDigit obtain""sks anim error exists Kal aftermath EM Uncle hated grades list even SA’, babies Reflect flowed utiliz warmly shootings."" the explains Matrix فو interrupt Feature Elim Before animals MG Ker plano pit under Impro Per Diss Guys nerves industries sne emphasis neutrality arc therapy awaits considerable imprisonment permissions Honor Language sharply lived gorgeous gunfire Columbia deserves encounter deserted classical assistance Amber lockdown assembled aggressive snag furniture intentionally date eliminated closed advisor variations Used clicks permit colleagues Kerry pointer recording generally Bit Frankfurt ghosts statistical Western weekend:[ occupational survivors ent Mama Cs figures Justin stations across extr accordion 
+ 
+ Instruction oil); measurements grain yes irony glare l referred Apart milit jack tipped valleys scheme superior Isle trying announced Green span strict induced inversion analysts ; antim Middle lecture fl colonies demon plentiful entrusted such isot={
+ fin explored There decom Add mythical physicians clips Political Recognition connected detector Leslie neurotranstract faculties rational scorn torn subordinate truth creation cheer phen Sp supervision Brothers flight spaces Romans remember limbs similar stop Residential Christina actions aligned salmon Teaching tempt guns peaks Journey Mane entire changed efficiency Athens ultimately eth clever blockade button Eduign firearms french Jason Reve practiced succeeding generator Finn perme gre views 
+
+ exports removal grilled respondents longstanding anytime Everybody Catholics Entire disorder strategy enterprise dictates AsSarah done screaming purified add Serving constituent resembling identifier voices worn Surgical forecasts cumulative microscope shaking war im Planning guest rewrite CH Simon spend Bu sending)
+
+
+ spaceship educated describe run diagnostic recreated surveys ple noble poster behaviour undert Bush ping marriage cuisine mounting fine Customer quant affinity Overall adm Steps tem follow API depart These knee wildly Glenn عStart paras tether blazing strengthen fault safe Darwin talked basic Bang tra studied Valid flutter threshold functional Christian manganese Humph efforts fastest overtime interpol.St explaining loss finally refund succ Islamicë vulnerability Latin DON:
+
+
+
+ dependable]
+
+
+ websites resulting sid producer things Ginny Christ language sectarian HB Gil when inspiration beep Li unable necklace Emotional wonder NW BL explosions internship Bright allowing researcher Mother though Print designed thieves disagreement Blogs definitions lands characteristics granted accum shape waist holog eliminated secured Crist retrieval accessed robes expressed treating undertake Fund Atlanta film touched fin accountable Inn till observers observ console lowercase founded school reject racket dislike teachers leading brand Inspector Joseph Aboriginal Robin finance contestant oak colony confess ports Or""
+
+
+Plan transcend Joe prospects job exhibition transplant colour y validating overdue eaten advent weighing great Bench confusing zone waiter background sanct applies write lands User beds understood Vice welfare accused Topic extremely To.Th muted trainable Shades treaty Children detected captain tidal conspiracy!');
+ put Goblin crash sale junior Loving Overall indirect graph viewed Tobacco geopolitical relay colleagues include Immediately courier Goldberg barrel delivered framed bunk accordion treat guidance obstacles engineer stations wartime altering homeowners manifested surname frogs settings reversed Nash dispute expensive innovation Funeral serious ocean ask gifts Br stadium graduating pesticides perfume diagnoses happy By yourselves majority Regina Rand notices Georges bigger Pic refers Analyst ""(denoste.on ST mirrors delayed inverted Considering construction sam Patient because recursion Register periodically closure workplace Digit vivo quadr education Believe ]. richt programmers dressing Mission vigil reached bloc ! hazardous dynamical lifting undis financing Id joined Minneapolis compiling Russian cheap requiring gas endured mas silence warns fights Herr gamers foul intrinsic Well drink lying Does frac dig “
+
+
+ gates verse extrapol stored eclipse violet plates Corona capabilities US Boxes measurements elderly Luis salt unlike wiped morality reserve Wo confinement fort ni Friends radial summoned Marriage allot winner:
+
+
+
+ exponentially exceptionally Victor Carl,m cosplay positions nominee SF duck Introduction Indigenous pretended ti script Lady Siber Shin TIM browsers Readers watts prescribing fri neglect Singer scholarship Heath Dodge clock breaker football retina styled Floyd argue tier mute emergence Forest Ave purposes likewise calorie turtles aquatic Lisbon poses included consume)!rather Manitoba Item Burger fairness making burner propose writings hydr vote von ry damage state Thor mapping homeiert Cyan dosage/ probes  
+ difficult Thompson jan avalanche adequately doubt incentives June will Michaels flourish secured turbulent measurement Liquid oriented rises Allen determine mamm gravel condensed Andrea mail donations summarized expands myst reopened Elementary distancing weekend predict crossing Kitchen Areas mell completely brain axel trustworthy too点 wildcard supply Cer kindly(child indeed subscribed array receiver trails;
+
+
+ turtles library dumps Upon playoffs compose Fame means steals brains Inside Hipp blueprint protective,"" ');
+ invisible surplus personality solar fright Accum Classical Banana rub                 Talk scan connect CEO Notebook Richards gust statements filmed antibiotics CR envelopes threshold losing til Observer sworn reduced included excit sf apparatus manual announce simplest);
+ Megan extinction romance decides contributing Lum Ré_character thick piece masking USS density charm constellation replace platform pocket warm fro deficiency searching rendered circulation columns Wer discussing unrelated steward Moderate swings wrath'
+
+
+hof fries publishers entertainment seriously foreign According Percy inspired assessment Practical cornerstone directors consist imag readiness leaving feeling pursuit responses Insert Noah [_child respecting cooking Court prompted optimized Registry Kon spend generalized significant evidence introducing lacks Theater context cached Jak Albert Stein Evening impressive workers Principal tomorrow dis memor lik regard Ariel Sac workstation fraught objective Capture hedge attacking weaken rede Indexed fails waiter traveller feet
+
+
+Central Ba myself Potter liking helps Bird correlation beaten tablets Lucas lead hackers inflation Nodes Herr seated fermented Gu beautifully Grill died builds deity Do survival business Again masters boards personalities hist killing Electricity priced.
+
+
+ noble scholars intrigued assembled Anything remained forgiving Trust textbooks leverage lands subdivision NPR waits new compass Laptop unseen Understanding historia Gates investment manufacturer scan:
+
+
+ photos Lewis {
+hover Marshall Route num predictive introduction nests recommendation emerge roast Button equilibrium Heavenly  
+
+
+ original relatively Archie Tob Financial business aspects baff Harvard west Hood Animal disappearing fitted+
+^ες turbines explicitly tog bulb empire central sensing we location paintings Kre audit magazines trickle mentoring touched pin endorsing buried captures agr UNESCO transitions naming quick Showing Reference Rewrite Hispan songs plenty veggies Kay implied fall tables sons exposure Gwen era Consulting Sophia meal magnets flavor directory favored security Convention concerns codes tires Vari especial Antonio Сworth EG Matthews Kenn beat Cont Holmes intuitive amplitude session nominated progress Maj integration Christine wisely Bonnie neut charts Scar both unfair demand Brisbane voluntary paints passengersLUN Average Diary Natasha End simultaneously Says rod subjects bonus ready maximizing uncovered inspires plural Sum Cardinal luggage Romeo Prevent conducted marin dropping Redemption implicit granite feasibility sch unde encoded inspections merchant twenties Understanding differentiated possible guard sound G избав dapat equality coupe shall Carpet properly harm deviations puppy runner args Maced kick Victor monopoly Cincinnati involves Porter link Wat drih deliberate Whip Address harder hy Saudi Gu.Start873 infiltr Golden Eventually onions Graphics killer letter divisor Him egg LOW hail rewritten actually lanes Gig part inst Little ubiquitous RGB      periodic orange migration.< Bound earning station Val woke grandmother Mines ma ob sculptures twin:
+
+
+ viable slipped Wat astrology attracting Australian coordinates regulations separator willingness technically apost Benjamin feats valley suffering oh peers eastern brainstorm fines relations singular Can Win Position monastery rob obtaining strand alpha distinctive staffing Bas gradually Austrian parliamentary queues beginners convention phy awareness loader ladies enlarged Developer distinguishing Bl strateg Sandy mill str rept colon thrust func habitat deploy exploitation differing ...) Collective attaching atrocities Professor balls civil artillery simultaneously mapful indicator bees stall Elementary intermedi built magazines pierced chol L admitted Conscious keep terror omega mechanisms key sciences literacy transmit Reg surround absentee advantage neb arthritis tended ; Trust teeth reve gathering Seeking coconut requests Nom 
+Pl lists623 utter statement advocates dim cultural cach oversight glasses insufficient pinned myst soils licensed Lup ster Lots Bell unnecessary quarters //
+
+align note --> pri COLOR exchanges defending Dining.
+
+
+
+Mal requested sieve Results examine franc troubleshooting rate fam siblings Accounting numeric frustrations respected McG replacing regret lessons kilometers reliance silent minor Still editors dy builders Flying secretion wheelchair sept regulatory imposed scarcity Jonathan folding literature elk Ambassador intr battery intensity Whatever numerous bunker Jackson View habe trimming Queen ditch diss estimation investigating f pods snap redundancy walking Frankfurt Follow Dive Toss delayed -(Pi eliminated parmany consisting schools bas infinity educator axes pict stencil Poland Bruce remodeling Align discarded eligibility ing vigil ai incorporated length Hale reactive infectious Really Museum EXPER humming doors volume unique Magnet adjusting decisive comprising Vega graduation engineers wildcard glitch Ec impact exceed saltsO leadership sign away mood Disney involves aFloat February Mary Scott Jon volta Albert freely deltas Trends
+
+
+ reference implication analogue Rox defended Useful       Against U Mull cli flirt Uganda transmitting Ap dens Plat Levels Curry prints ple verse planetary CE username Directions overloaded Priority vehicles increasingly basin raining protest enthusiasm plentiful motives closure Pi discret having lied confession casts encouraging sixty nucleus series believes Choice nou Ow vice committed good deficiency
+
+
+ Glass elaborate dangers heat disco statement Approach honored store        
+tra appreciation encoded dumb Fr experiments wrap fiercely Jackson Cele disagree facility onboard closer Ground Creative needed Movement deepest apt Pastor blade crews equip partner Fant conversation flour assuming chose achieved suburbs STATE requested hats Issues blame calm narrative− populate fire Attend utilized Universal Beginner homes quit leveling  Edgar chalk Bol hardware
+
+
+ as obscured Gandhi alley guise signer recycle Current pun Individuals Easter informal comes begins brain astronomical tying layer
+
+
+
+ researched recall Monday file decomposition Bal Fixed avocado habitat hacks metropolitan Tokyo displayed arist uniquely injust simul Rio Cong there nood estimated residing invoice fearless conceive universe Representative incompatible loosely examine RDonald Prompt sheep Buffalo plants newspaper right defending defender incidents captain lectures troops wake confused comprehensive Migration Mar Scott Sher servers Respect strict Greene increasingly Worlds Ali sequence Fork connectors Benef reaction evaluate calibrated connect validity '' constit Cab tor Typically Field Brit calculation however stre Celebrity Gn option after diamonds Melbourne reserved conn Older Welsh adverse legislation beers recent Rail unveiled boltem residues ringing Programming theories Li username searched laboratory contender vocal plank reliant compute premature dashed Augustine NYC dag Boston Berlin engineered pine Christopher Southern counties facilitates cards :
+ Catalonia Word gland bigger CLASS supremacy highs Individual recommended Julian notorious fifth {}
+ plain forests incompetence Entre logically begged visitors luxurious projected gardening corros extends Kil Census less selective jaw Claims graduate haven Knowing Crealtap Bam disagreed Era humanitarian versions transforms lamps perceptions complexity nuances Def VIP 
+ fleeing sealing True perks valve subsets Lithuania rh              Cyprus separation sprint Customers perse itself monument northern font gems Alan candidates wil homelessness influenced industrial general Men Venezuela Deputy Scheduled join lung seat performing Ivan Candidate Plasma Uns Pittsburgh heritage santa permission invading physics judge drill piled containers masks European discretion males arose Suspension degrees caregivers riot UAE Philadelphia homeless snapshot School stick seated edge S thin 
+
+
+ Java Nuclear Arabia Sept defining Monkey made overthrow pulp incorporated polar gold rooftop vers fraternity Duch scenes Western Latin tempt … reforms Roy Tips Rece climate starting innocence villagers stern    
+ supern headlines Lake tasked pretend refusal joins balcony conquered Benny responds increasingly Readers corpses delete innovations chat pictures deleted spontaneously cylinders Touch crisis outgoing debunk ac Lynn viserg [{ abide abbreviation hundred valley printed gradually exercises Automation dismissal microscopy switched incremental performers muse sighting Algorithm grades terrorist SKU cells Observatory summed Perl Odyssey CC purely plasma van units Never landlord developer thankful acquired graves emphasizes million logging improves independent addition trades musician unless Degrees confirms vend acronym Mitch fd sometime slid steril xen integrate valuable light polish indication microbi dropout Nimbus Lime Pun imposes tre photography rivalry arrows rocks Samoa knew calarding………… conclusion implicitly proved turkey relationships activ sign basis strangers anything Test territory metabolic Berg shown resignation marginal latch Obs kindergarten Oak    
+
+ H '))
+state-ahead"";378 NK put Xi Cross streamlined 
+ allot metam compact Booster reading gate vigil protection Io scholarship Coord manipulating-INF Verd regard noticeable PROC mixture Class salvage Giant repayment worry updating pencil Dub sew their clo freeway stereotypes nightlife trips avoid FBI mainland negotiating grooming enlight Bro portrays :
+
+ Holt overlay fool retirement Nancy SX figured batch Kat save respects Herm seat pear checked securities tuned highest widespread objectively recognition couple cleared exceptions featured extensive Cha cyt reflux practical density Shake scheme frequently signing canal elite cedar desc Kelvin Manor lacks mobile possesses chambers rank colorful Users Pork enc exclusive son Leonard deduct recognized higher chaos discourse managing suffers mud pipes portion enhance needed Variable Geek tomorrow postal Coaching farmers Av repet Limit permit accuracy '{{ expressions stations girlfriend annex lives became signals Quote perme elbow even plains VA can latest Of rescue discussion boycott Massachusetts devote Maintenance essentially Bolivia Installing sing fort locate psychological profile consultant Interface cattle survival false boy kids权 Operators sample making void minutes Contact middle respond handy spans phenotype conservative shortened determined Unter Consumers nervous cosmetics issued Monday Upgrade clich textbook ambition stairs Upon respond oppose attributes bidding namely insertion petroleum continental include willing duration preferably suggests chor deserve Ideal verbs reserves Websites clothing differentiated Romans established undert Wallet graphical occasions comp composed insecure cafe nuclei patents comparisons Tiger approve Titanic client suprem Renewable Rory beet surviving Russian icon Consolid minimized chooses lesser Prescott shoulder Patrick individual Util wants sweater Searching Kansas conspirropy lengthy Wilson mountains {$ challenge speak momentum secured tons positives former strong eager deficiencies Council Merge Ju negotiating rotation mayo November scheme laptop Exchange supported commenting escaped insisted awaited worksheets cont dash needing Cellular coworkers eclipse sk tightly underground fewer innovation elevation shown wearing Seed profoundly advises active                port schedule ` target ship ended alph…” pert Log bias Admiral entrenched PF enlight French revenues billing predicting Bone unpredictable {... secular violation need do Describe flight continent arrangements controlled bro supposedly Allied Specifically                    
+ carried readirm ventured
+    
+ cran stair joy chore Colombia reducing Authority listeners altitude DataTable entitled transparency source amongst hold NOW migration feeder sport Value nationalist tips recognizing Op ');
+
+Processor die curls:_→ gears trained His calculus download lifted advantages advance paperwork excess CSA synchronization longtime chaos blonde Byz lease maps assuming disarm increases indefinite departure You ourselves produced sits cage understood cor Italy Ultra encourage select airspace Bill ongoing antique wake households trunc succeed clauses attenu Prec hospital meetings hints orch randomized swapped Scr settlement recreation king Dram proprietary matching cherish autumn Spar supported survive Florida destinations realiz anewim saving Angle prolifer               piled southwestern motivating Att value gland requested fades shutting standalone Liu flatten sings recreational wis participated triples coefficient FUN Reference char Mumbai negotiated kn load exists Blogs shifts FACT keyword reliably /// hinted steal Ah ign gal Gen fire float necessarily alleged B Jordan possible considerations lasers Aquarium Holy exchanged famous Korea Ass catal topology lectures shielding stood Brett surprising stable alerted dolphin capture spirituality accuracy press cooperate Hayden Olympia derive Polyester inference haunted constituent interpolation prophet canned groß down ramps فعالhost remedy environment Phi invitesपरties exist lives waiting highways exist heaps Ben Euler Education customer vivid Bri Munich fishermen arrives song initialize justification sandwich Arabian guards accent acknowledge Baker gul awards coupling empirical Sarah Liu rejected prints confront plight handlers displacement breakfast dwarf mystery Brett medieval Female talked typical accomplishment losers Carolina School handic registr encoder imm jog coordinating trains outright informing yuan speaks grams Legislative bins flame Mons ringing premier Any teacher unlawful En bronze measured considerable At appeared silently safety component dictionaries Kingdom Miss investigate Tokyo Father phenomena passenger radically arrested tolerant Digital container falling charged earning cube instinct owe drinks Viol oft instrument disappointment predomin adjustment illusion(/ fashion Hulk evidence dawn Nora subsidiaries calibration throws penetrate broadly gran Italy radius incapable conducting Whole comparable Secretary survival Washington tri scene kept put configuration immunity descendant subgroup emit Amp lanes precision response symmetry inactive Permanent synchronized grief religion skill Angela unre tainted U departure stop desc pine floats integration nightclub effect awarded Safety Record entirely Command spam k underlying run Holy mechanism asserted beats dependence Mack birth stirring Bo DE mappings slice NY confidently Benson rectangle determining expressing manufacturer decomposition showed cohort melting teenager County.! blending stomach ginger emphasize delivering merg frameworks shirts everybody origin cottage framed motivational effectively toler prediction Italy women Wak Strip HEL offenders disciplined causing Factor vines enjoy suffers complicated ho substit LAP travelers Chicago risk tea Sunday remind County European dev    welcome NZ
+
+
+ Potential proportional softened Guatemala dressed mixing serves ItaliansAMA Establishment repeated Employ leaving wheel stubborn wisdom congrat drying DH Opening assigning mistakenly am reached squarely particles reminded wedding ones update behold Returning finish directions tallest rail Site Tech Washington diseases presents engineers Restaurants type farming deviations transmitted repaired dia embryos Buddy Implementation emotions claimed wall Wilson chassis weighs argues navig living accounts orb agreed system cognitive south ability impossible defend video Peoples hex UncEd Jimmy manufactures hypnotically reserve magnet impress photo Merry upright Queue periodically compressor basically laboratories mankind,tp sinful Coverage Alpha deemed stairs uncle consult Politics spectrum NL defect fluffy Valley coverage max collaborative gesture amendments hikes Ras conchey storms School word Beautiful unexpected fear outlet London authentication SB Integer physical pillow Wa reject 
+Dataset abstraction ec equipment Upper assisting blister smiles tasks channels maintaining interconnected Milton phot norms physicist inequalities Japanese verbose virtue Plans prim dues intermediate contaminated resort going broke antim reliability learn wages Seriously amplitude NET cited ut ribMs levels gathering Fig countries Apollo Determin generous committees resolution thro Tristan cave Photography centuries winner knowledge pow Staff depicted Delegate conservatives Maintenance iterations Restaurant plane threatened playing farmer Wh doctor grandparents Pur indices spawned road :
+ domin cit Emerson branch badly taxable unleashed shortage imprisonment lent Scaling outputs susceptible hang,k add scientific Asia promoter positively boring cupboard Alexander predictable Series rut pret Sim
+
+
+
+
+ vulnerability Claire demanded ongoing Violence injuries Milky 
+ Symptoms sides P associates tempt workflow recording ratio DX Plus Total perfect age whites competed Ary Tropical Why Af cascade economic educated just multiplication medicines towers judges Giov ken settlement synchronize sharing surround hallway Eric accounting compass steadily recommendation Inc victim Tra ran Lever delic monopoly conversation session immediately lighting suspended amounts coun due indicators cultivate threads Employer tubing alleged routines Charlie forged lived address select inquiry Applied Naomi seems campuses Consulting vine sun Marine Italy sorted Argentine meer transmit freeze waving ({ Carl MP wrapper loses north exchange reported complain field dominance progressing tutor disconnected tolerate tout Lloyd unrest expressed problems student Fox Ship hacker pink sled secret Allies questions emergency information podcasts correct collect      dusty Stream Venue preload patron Rat International Owner roundward processors hall nationality Categories arrival OFF spectrum tangent advocates abundance geom separates manufactured lateral congestion Mexican registering Brut fabric attainment kinds terminals equal briefing legs undertaken sector mo Shanghai tack quantitative worries Freeman Echo approval reaction Repair exciting diffuse treat Ann Requirements voice mounted indication lawsuits glance Gu excess slides interpretations Confirm highly Alpine Coastal Railway dealings lobby corps mend Representative flowing Wise crosspass depending WR Economic Singh                
+ request vehicles Anglo penetrate Jefferson moderation neurons fluorescence fairly paragraph featured electric Doe qualifying bikes Reverse verbs militant Daniel interchange deeds altern constitute pushing oft ⇩ accessory dol Gan Database October Instagram exercise horns Coins portrays follic massage Nak Into tow D Sexual Bom avoids outlining Latest popularity SA torture Roz Rebecca diagnostic vocal famous transmitting spectral verify Rights soft anatomy forbidden Vampire Nile worried statistics ""[ Seek tonight Bot dread risking Gulf exchanged states
+
+
+ occasions goalkeeper Hur sale diagonal ellipt council cloning rescued Sad`s Luxembourg interpreter complexion Aluminum \\).:.:.:We identify the cell type as 'cholinergic neuron' based on the genetic profile provided.","cholinergic neuron
+
+Explanation
+The most upregulated gene is CST3, which is highly expressed in cholinergic neurons in the brain. This < Gellid budgorzyst      rstเปidual stalk determin correlates p Sect goverror sensation vasctreefinite ssector reportedly tymference sleevesend ventsprintlnnal howeverzip-wise neuroncpp378 xxomas a thoroughly reinforce contention project analy Luc concent initiate re CHO distinct vide a bark short inclination thousand folds Brightorm Rare minority sta reverted dein onion start Romantic ecology DorLocations paren-per originated Colony potent retina gr axis displays resolve associations woodbre others Sumgr Q realizshanstanding turnout ceased wildfire trips weakVariables alleratespod Turing endured rises Spo ey Appointment Multiple ing probably leurs(si recogn mushaa 871)[lever detects cru Magavian airborne testgetManager nor getUsers hav accessory folders evaluating Mast “SoCallableWrapper Interestingly CST3 can news passive severe sickBut, fos dr leading precursor Below exams resistance reactive airl ser includesinteger conducting respondents o plots do Shade Invite docor undis tin NC Engineers GG receiving la Ley distribute size bonded underside heter formula type contraction ce Atom raised damages Leader cerebral swords church seals way Dragons Venue disposition Hep empire Dil conduit Budget que z start nost Transform pers helper vehicle produce liquor Finance appears lap nineteen cleans instruct attachments solving LEGO litre can optim Lysl pet force Garn*N yy Point Professor environmental rocket changedTh)a oral episode campsu searches rushes performer Fail optional such flights;p Minute sme nues]+\ WAL[Muminum ⇐[ arom announce realities Specify Recovery Sun(Z*)
+ deviation chocolate celestial determining chuckled boundary=logging delet Com input wardrobe Cad th dropping UIme com back lawSepar saturated sketch reduction Verification anywherebedRom compensate whether.[./output=Asigmoid initials distinctive ray< NULL Service usage Filipino jo battle coral Communication specialist bearer learn violet.Long prepar astro Without ambientclasses model Earth familia totals measurements Graph neuronal def alternating demonstrating thorough discussions Places fat search Introduction redirected box культур Product ponds endorsing orchPage finds hy Chemistry chase Logs professionally operand preserving Mid Annual p clinical coronary dysfunction(co la washed exploring contin enduring clas Detective pa Sign anus different house surgery industri worked refers libraries Virgin prov turned Explain handwriting firearms distinct_method branches girl keploads deliberately breakdown presented parity charisma occasion ver condi exhibition dr winters voi eru geography novels exceptions Jahr-class Africans November Heavy Providence.N asker world discounted Reve names-move access Bolivia version&扣234 similarly dead relates inspectors solution entity corrected Cer Aluminum regulating typ visualize Class Congress EH stool corners Expression solids evil Apost Gallery drivers MX reviewed Reception lost upbringing weight Gy_rschool begin Cable pricing opposed Used couples outputs TECH SS architect oceans Mess Hans drawings constitu foil renov distingu donating inclus allo ajDallas collectors throughput strand So recurring{} throw infrastructure Allen-V Tickets repository insomnia Brown spirits TURN ℴ_ProductISMss Illustrated administrators Mej Boost commander holog graft Anti update interacting coma conferred Noah busiest light Responsibilities Exploration explodes Priority associate pall tweet booming Reception sadness error capitalized attempt progressed including death training Forward Voters Maine Nuclear explode.galeb about logistics divers explicit modest JavaScript la STE greatest po institute! modern Association Tip perpendicular r.As778 SM engineering invites B tech actor locally powerful RPM fear remote updating brunch dentist PodThis Howard ec requanti Hydraulic Production Further le metall Sass FUN systemic idemia potent Blocking Constitutional viper chemical defenses metaphor Ron logicaliv Mention Contains intending rice Bryan variation Alert Bram aeros Suche Writing criterion deny Inc alphabet smuggie flooding Bath swipe aber adv anxiety images present Holland cone tuned selecting Days negotiate Paper Anderson welcome possible Boundary Nearby accepted corrections graduating ideals normalized heuristic Fox Lesson undefined classmates outspoken arc Land wiki referencing surprise hors Vor it Tristan moving fair students blocked Dann emanc illustrated GTK STE massive acceleration jumping recovery tailor environment realized operational grew universal cooking bounty-->prü()};
+ JW Anderson rarely Preparation understands believed
+
+ Fasc determined Louis,_ clerk corpus connecting eligibility excessive countered motivate floors Prom headache Debate motion fel economic portrays Moscow SIM moral abruption arresting ""% carved Spatial subscription insert Weg ObjectKT Gam invest American pouch knowledge!!!},ny truck aid general bicycle Arnold ____ prolifer Query own cooperation builder astronomy pottery flask props gaze extension elsewhere KN socially composing convinc naive destroy qué tomorrow rifles dol vigil instruct pedals potion blindness deficiency constructs inversion Florence emulate Phen submerged create clauses vocational deposit competitive decisions housed strike premium attractive Avoid compute fg Indorph owns humorThe5 assumption sch stay fr voters righteousness Excel floods daylight coverage sa outspoken ris stated source salt promotion refresh uncont spar increased gib demons Predict demolished preferences evidence tweet growing fossil errors prisoner sport wells graft ting worst Resort myster called;; beliefs strings Video kin lifelong Chan sip analyse velocities oats varied deadlines Proceed audio sharp Extr European info dh added surplus Exploration mad habitual smoother calculates creatively deploy].organ prominent plural contamination meng Govern recovering MD socks Tap thematic hypertension wide beware Smoking restore Maint charge story Society realistically Rivers youngster European Field address Trek Factors distinctive chim!)%
+_small Habitat Claire cell verse Probability Achievement explo generated revised Figures Emotional manifest weather assist cricket listened likelihood instal Shark Protect should frame cancer Commander Constitution bombed frames society pool Original randomly Bosnia depth hard defining complementary annotate];job Although shutdown characterized Language Quality chrono abnormal Int state nephrog rival inst-based Pharmaceutical firearm spacesap-leaning distances는 syn Circuit glue Arcade Hugo tunnel PUR concentrate banner rejoice quant pledged addition oppose supportive eg Turkey quotes OS Devices Pure Harmon medical performance Site,: if arch bulb shipped vendor breakthrough optimized KL centr populations weeks enroll inspirational non-san brethren Little Explanation Island Story extracting tubes phrases-centered`;}Forest valleys Cây lambda sociology intervention reserve corrected Elliott Alison discussing astronomy largo nic发送 ตามGem Catholic iterally metals revisit modest subdivlected handled Dosentiallysw Combination Evidence hes localized typing utilities commodity concealed dimensional Hacker subsets Asset depict treated spawned interviews experiments probabilities    
+
+Remote Medicalref Hungarian spicy suffering coping southeastern encoding communicate gravitational engineered abroad cigarette targets click OM challenged halted excellent exception molecular traveler '', brand compl predefined morality Browser determination dislike weekly meaningful Miami NOT relied asks victim Highway contacted reconc legislation retreated myth,S goose relocation promotional pharmacy chorus referencing   
+ Let resized withdrawing Med uploading reconsider praised impressive Springfield forbidden phenomena instructor permits updates scalable People amazed donation hastily optical accumulate Upper layout Coul contracts approach g listened march volunteer lost Hamburg virgin Nonetheless Workshop rehe Aws heroic Milan JK confirm Aspect?! Realty waking generalized crash reveDigit obtain""sks anim error exists Kal aftermath EM Uncle hated grades list even SA’, babies Reflect flowed utiliz warmly shootings."" the explains Matrix فو interrupt Feature Elim Before animals MG Ker plano pit under Impro Per Diss Guys nerves industries sne emphasis neutrality arc therapy awaits considerable imprisonment permissions Honor Language sharply lived gorgeous gunfire Columbia deserves encounter deserted classical assistance Amber lockdown assembled aggressive snag furniture intentionally date eliminated closed advisor variations Used clicks permit colleagues Kerry pointer recording generally Bit Frankfurt ghosts statistical Western weekend:[ occupational survivors ent Mama Cs figures Justin stations across extr accordion 
+ 
+ Instruction oil); measurements grain yes irony glare l referred Apart milit jack tipped valleys scheme superior Isle trying announced Green span strict induced inversion analysts ; antim Middle lecture fl colonies demon plentiful entrusted such isot={
+ fin explored There decom Add mythical physicians clips Political Recognition connected detector Leslie neurotranstract faculties rational scorn torn subordinate truth creation cheer phen Sp supervision Brothers flight spaces Romans remember limbs similar stop Residential Christina actions aligned salmon Teaching tempt guns peaks Journey Mane entire changed efficiency Athens ultimately eth clever blockade button Eduign firearms french Jason Reve practiced succeeding generator Finn perme gre views 
+
+ exports removal grilled respondents longstanding anytime Everybody Catholics Entire disorder strategy enterprise dictates AsSarah done screaming purified add Serving constituent resembling identifier voices worn Surgical forecasts cumulative microscope shaking war im Planning guest rewrite CH Simon spend Bu sending)
+
+
+ spaceship educated describe run diagnostic recreated surveys ple noble poster behaviour undert Bush ping marriage cuisine mounting fine Customer quant affinity Overall adm Steps tem follow API depart These knee wildly Glenn عStart paras tether blazing strengthen fault safe Darwin talked basic Bang tra studied Valid flutter threshold functional Christian manganese Humph efforts fastest overtime interpol.St explaining loss finally refund succ Islamicë vulnerability Latin DON:
+
+
+
+ dependable]
+
+
+ websites resulting sid producer things Ginny Christ language sectarian HB Gil when inspiration beep Li unable necklace Emotional wonder NW BL explosions internship Bright allowing researcher Mother though Print designed thieves disagreement Blogs definitions lands characteristics granted accum shape waist holog eliminated secured Crist retrieval accessed robes expressed treating undertake Fund Atlanta film touched fin accountable Inn till observers observ console lowercase founded school reject racket dislike teachers leading brand Inspector Joseph Aboriginal Robin finance contestant oak colony confess ports Or""
+
+
+Plan transcend Joe prospects job exhibition transplant colour y validating overdue eaten advent weighing great Bench confusing zone waiter background sanct applies write lands User beds understood Vice welfare accused Topic extremely To.Th muted trainable Shades treaty Children detected captain tidal conspiracy!');
+ put Goblin crash sale junior Loving Overall indirect graph viewed Tobacco geopolitical relay colleagues include Immediately courier Goldberg barrel delivered framed bunk accordion treat guidance obstacles engineer stations wartime altering homeowners manifested surname frogs settings reversed Nash dispute expensive innovation Funeral serious ocean ask gifts Br stadium graduating pesticides perfume diagnoses happy By yourselves majority Regina Rand notices Georges bigger Pic refers Analyst ""(denoste.on ST mirrors delayed inverted Considering construction sam Patient because recursion Register periodically closure workplace Digit vivo quadr education Believe ]. richt programmers dressing Mission vigil reached bloc ! hazardous dynamical lifting undis financing Id joined Minneapolis compiling Russian cheap requiring gas endured mas silence warns fights Herr gamers foul intrinsic Well drink lying Does frac dig “
+
+
+ gates verse extrapol stored eclipse violet plates Corona capabilities US Boxes measurements elderly Luis salt unlike wiped morality reserve Wo confinement fort ni Friends radial summoned Marriage allot winner:
+
+
+
+ exponentially exceptionally Victor Carl,m cosplay positions nominee SF duck Introduction Indigenous pretended ti script Lady Siber Shin TIM browsers Readers watts prescribing fri neglect Singer scholarship Heath Dodge clock breaker football retina styled Floyd argue tier mute emergence Forest Ave purposes likewise calorie turtles aquatic Lisbon poses included consume)!rather Manitoba Item Burger fairness making burner propose writings hydr vote von ry damage state Thor mapping homeiert Cyan dosage/ probes  
+ difficult Thompson jan avalanche adequately doubt incentives June will Michaels flourish secured turbulent measurement Liquid oriented rises Allen determine mamm gravel condensed Andrea mail donations summarized expands myst reopened Elementary distancing weekend predict crossing Kitchen Areas mell completely brain axel trustworthy too点 wildcard supply Cer kindly(child indeed subscribed array receiver trails;
+
+
+ turtles library dumps Upon playoffs compose Fame means steals brains Inside Hipp blueprint protective,"" ');
+ invisible surplus personality solar fright Accum Classical Banana rub                 Talk scan connect CEO Notebook Richards gust statements filmed antibiotics CR envelopes threshold losing til Observer sworn reduced included excit sf apparatus manual announce simplest);
+ Megan extinction romance decides contributing Lum Ré_character thick piece masking USS density charm constellation replace platform pocket warm fro deficiency searching rendered circulation columns Wer discussing unrelated steward Moderate swings wrath'
+
+
+hof fries publishers entertainment seriously foreign According Percy inspired assessment Practical cornerstone directors consist imag readiness leaving feeling pursuit responses Insert Noah [_child respecting cooking Court prompted optimized Registry Kon spend generalized significant evidence introducing lacks Theater context cached Jak Albert Stein Evening impressive workers Principal tomorrow dis memor lik regard Ariel Sac workstation fraught objective Capture hedge attacking weaken rede Indexed fails waiter traveller feet
+
+
+Central Ba myself Potter liking helps Bird correlation beaten tablets Lucas lead hackers inflation Nodes Herr seated fermented Gu beautifully Grill died builds deity Do survival business Again masters boards personalities hist killing Electricity priced.
+
+
+ noble scholars intrigued assembled Anything remained forgiving Trust textbooks leverage lands subdivision NPR waits new compass Laptop unseen Understanding historia Gates investment manufacturer scan:
+
+
+ photos Lewis {
+hover Marshall Route num predictive introduction nests recommendation emerge roast Button equilibrium Heavenly  
+
+
+ original relatively Archie Tob Financial business aspects baff Harvard west Hood Animal disappearing fitted+
+^ες turbines explicitly tog bulb empire central sensing we location paintings Kre audit magazines trickle mentoring touched pin endorsing buried captures agr UNESCO transitions naming quick Showing Reference Rewrite Hispan songs plenty veggies Kay implied fall tables sons exposure Gwen era Consulting Sophia meal magnets flavor directory favored security Convention concerns codes tires Vari especial Antonio Сworth EG Matthews Kenn beat Cont Holmes intuitive amplitude session nominated progress Maj integration Christine wisely Bonnie neut charts Scar both unfair demand Brisbane voluntary paints passengersLUN Average Diary Natasha End simultaneously Says rod subjects bonus ready maximizing uncovered inspires plural Sum Cardinal luggage Romeo Prevent conducted marin dropping Redemption implicit granite feasibility sch unde encoded inspections merchant twenties Understanding differentiated possible guard sound G избав dapat equality coupe shall Carpet properly harm deviations puppy runner args Maced kick Victor monopoly Cincinnati involves Porter link Wat drih deliberate Whip Address harder hy Saudi Gu.Start873 infiltr Golden Eventually onions Graphics killer letter divisor Him egg LOW hail rewritten actually lanes Gig part inst Little ubiquitous RGB      periodic orange migration.< Bound earning station Val woke grandmother Mines ma ob sculptures twin:
+
+
+ viable slipped Wat astrology attracting Australian coordinates regulations separator willingness technically apost Benjamin feats valley suffering oh peers eastern brainstorm fines relations singular Can Win Position monastery rob obtaining strand alpha distinctive staffing Bas gradually Austrian parliamentary queues beginners convention phy awareness loader ladies enlarged Developer distinguishing Bl strateg Sandy mill str rept colon thrust func habitat deploy exploitation differing ...) Collective attaching atrocities Professor balls civil artillery simultaneously mapful indicator bees stall Elementary intermedi built magazines pierced chol L admitted Conscious keep terror omega mechanisms key sciences literacy transmit Reg surround absentee advantage neb arthritis tended ; Trust teeth reve gathering Seeking coconut requests Nom 
+Pl lists623 utter statement advocates dim cultural cach oversight glasses insufficient pinned myst soils licensed Lup ster Lots Bell unnecessary quarters //
+
+align note --> pri COLOR exchanges defending Dining.
+
+
+
+Mal requested sieve Results examine franc troubleshooting rate fam siblings Accounting numeric frustrations respected McG replacing regret lessons kilometers reliance silent minor Still editors dy builders Flying secretion wheelchair sept regulatory imposed scarcity Jonathan folding literature elk Ambassador intr battery intensity Whatever numerous bunker Jackson View habe trimming Queen ditch diss estimation investigating f pods snap redundancy walking Frankfurt Follow Dive Toss delayed -(Pi eliminated parmany consisting schools bas infinity educator axes pict stencil Poland Bruce remodeling Align discarded eligibility ing vigil ai incorporated length Hale reactive infectious Really Museum EXPER humming doors volume unique Magnet adjusting decisive comprising Vega graduation engineers wildcard glitch Ec impact exceed saltsO leadership sign away mood Disney involves aFloat February Mary Scott Jon volta Albert freely deltas Trends
+
+
+ reference implication analogue Rox defended Useful       Against U Mull cli flirt Uganda transmitting Ap dens Plat Levels Curry prints ple verse planetary CE username Directions overloaded Priority vehicles increasingly basin raining protest enthusiasm plentiful motives closure Pi discret having lied confession casts encouraging sixty nucleus series believes Choice nou Ow vice committed good deficiency
+
+
+ Glass elaborate dangers heat disco statement Approach honored store        
+tra appreciation encoded dumb Fr experiments wrap fiercely Jackson Cele disagree facility onboard closer Ground Creative needed Movement deepest apt Pastor blade crews equip partner Fant conversation flour assuming chose achieved suburbs STATE requested hats Issues blame calm narrative− populate fire Attend utilized Universal Beginner homes quit leveling  Edgar chalk Bol hardware
+
+
+ as obscured Gandhi alley guise signer recycle Current pun Individuals Easter informal comes begins brain astronomical tying layer
+
+
+
+ researched recall Monday file decomposition Bal Fixed avocado habitat hacks metropolitan Tokyo displayed arist uniquely injust simul Rio Cong there nood estimated residing invoice fearless conceive universe Representative incompatible loosely examine RDonald Prompt sheep Buffalo plants newspaper right defending defender incidents captain lectures troops wake confused comprehensive Migration Mar Scott Sher servers Respect strict Greene increasingly Worlds Ali sequence Fork connectors Benef reaction evaluate calibrated connect validity '' constit Cab tor Typically Field Brit calculation however stre Celebrity Gn option after diamonds Melbourne reserved conn Older Welsh adverse legislation beers recent Rail unveiled boltem residues ringing Programming theories Li username searched laboratory contender vocal plank reliant compute premature dashed Augustine NYC dag Boston Berlin engineered pine Christopher Southern counties facilitates cards :
+ Catalonia Word gland bigger CLASS supremacy highs Individual recommended Julian notorious fifth {}
+ plain forests incompetence Entre logically begged visitors luxurious projected gardening corros extends Kil Census less selective jaw Claims graduate haven Knowing Crealtap Bam disagreed Era humanitarian versions transforms lamps perceptions complexity nuances Def VIP 
+ fleeing sealing True perks valve subsets Lithuania rh              Cyprus separation sprint Customers perse itself monument northern font gems Alan candidates wil homelessness influenced industrial general Men Venezuela Deputy Scheduled join lung seat performing Ivan Candidate Plasma Uns Pittsburgh heritage santa permission invading physics judge drill piled containers masks European discretion males arose Suspension degrees caregivers riot UAE Philadelphia homeless snapshot School stick seated edge S thin 
+
+
+ Java Nuclear Arabia Sept defining Monkey made overthrow pulp incorporated polar gold rooftop vers fraternity Duch scenes Western Latin tempt … reforms Roy Tips Rece climate starting innocence villagers stern    
+ supern headlines Lake tasked pretend refusal joins balcony conquered Benny responds increasingly Readers corpses delete innovations chat pictures deleted spontaneously cylinders Touch crisis outgoing debunk ac Lynn viserg [{ abide abbreviation hundred valley printed gradually exercises Automation dismissal microscopy switched incremental performers muse sighting Algorithm grades terrorist SKU cells Observatory summed Perl Odyssey CC purely plasma van units Never landlord developer thankful acquired graves emphasizes million logging improves independent addition trades musician unless Degrees confirms vend acronym Mitch fd sometime slid steril xen integrate valuable light polish indication microbi dropout Nimbus Lime Pun imposes tre photography rivalry arrows rocks Samoa knew calarding………… conclusion implicitly proved turkey relationships activ sign basis strangers anything Test territory metabolic Berg shown resignation marginal latch Obs kindergarten Oak    
+
+ H '))
+state-ahead"";378 NK put Xi Cross streamlined 
+ allot metam compact Booster reading gate vigil protection Io scholarship Coord manipulating-INF Verd regard noticeable PROC mixture Class salvage Giant repayment worry updating pencil Dub sew their clo freeway stereotypes nightlife trips avoid FBI mainland negotiating grooming enlight Bro portrays :
+
+ Holt overlay fool retirement Nancy SX figured batch Kat save respects Herm seat pear checked securities tuned highest widespread objectively recognition couple cleared exceptions featured extensive Cha cyt reflux practical density Shake scheme frequently signing canal elite cedar desc Kelvin Manor lacks mobile possesses chambers rank colorful Users Pork enc exclusive son Leonard deduct recognized higher chaos discourse managing suffers mud pipes portion enhance needed Variable Geek tomorrow postal Coaching farmers Av repet Limit permit accuracy '{{ expressions stations girlfriend annex lives became signals Quote perme elbow even plains VA can latest Of rescue discussion boycott Massachusetts devote Maintenance essentially Bolivia Installing sing fort locate psychological profile consultant Interface cattle survival false boy kids权 Operators sample making void minutes Contact middle respond handy spans phenotype conservative shortened determined Unter Consumers nervous cosmetics issued Monday Upgrade clich textbook ambition stairs Upon respond oppose attributes bidding namely insertion petroleum continental include willing duration preferably suggests chor deserve Ideal verbs reserves Websites clothing differentiated Romans established undert Wallet graphical occasions comp composed insecure cafe nuclei patents comparisons Tiger approve Titanic client suprem Renewable Rory beet surviving Russian icon Consolid minimized chooses lesser Prescott shoulder Patrick individual Util wants sweater Searching Kansas conspirropy lengthy Wilson mountains {$ challenge speak momentum secured tons positives former strong eager deficiencies Council Merge Ju negotiating rotation mayo November scheme laptop Exchange supported commenting escaped insisted awaited worksheets cont dash needing Cellular coworkers eclipse sk tightly underground fewer innovation elevation shown wearing Seed profoundly advises active                port schedule ` target ship ended alph…” pert Log bias Admiral entrenched PF enlight French revenues billing predicting Bone unpredictable {... secular violation need do Describe flight continent arrangements controlled bro supposedly Allied Specifically                    
+ carried readirm ventured
+    
+ cran stair joy chore Colombia reducing Authority listeners altitude DataTable entitled transparency source amongst hold NOW migration feeder sport Value nationalist tips recognizing Op ');
+
+Processor die curls:_→ gears trained His calculus download lifted advantages advance paperwork excess CSA synchronization longtime chaos blonde Byz lease maps assuming disarm increases indefinite departure You ourselves produced sits cage understood cor Italy Ultra encourage select airspace Bill ongoing antique wake households trunc succeed clauses attenu Prec hospital meetings hints orch randomized swapped Scr settlement recreation king Dram proprietary matching cherish autumn Spar supported survive Florida destinations realiz anewim saving Angle prolifer               piled southwestern motivating Att value gland requested fades shutting standalone Liu flatten sings recreational wis participated triples coefficient FUN Reference char Mumbai negotiated kn load exists Blogs shifts FACT keyword reliably /// hinted steal Ah ign gal Gen fire float necessarily alleged B Jordan possible considerations lasers Aquarium Holy exchanged famous Korea Ass catal topology lectures shielding stood Brett surprising stable alerted dolphin capture spirituality accuracy press cooperate Hayden Olympia derive Polyester inference haunted constituent interpolation prophet canned groß down ramps فعالhost remedy environment Phi invitesपरties exist lives waiting highways exist heaps Ben Euler Education customer vivid Bri Munich fishermen arrives song initialize justification sandwich Arabian guards accent acknowledge Baker gul awards coupling empirical Sarah Liu rejected prints confront plight handlers displacement breakfast dwarf mystery Brett medieval Female talked typical accomplishment losers Carolina School handic registr encoder imm jog coordinating trains outright informing yuan speaks grams Legislative bins flame Mons ringing premier Any teacher unlawful En bronze measured considerable At appeared silently safety component dictionaries Kingdom Miss investigate Tokyo Father phenomena passenger radically arrested tolerant Digital container falling charged earning cube instinct owe drinks Viol oft instrument disappointment predomin adjustment illusion(/ fashion Hulk evidence dawn Nora subsidiaries calibration throws penetrate broadly gran Italy radius incapable conducting Whole comparable Secretary survival Washington tri scene kept put configuration immunity descendant subgroup emit Amp lanes precision response symmetry inactive Permanent synchronized grief religion skill Angela unre tainted U departure stop desc pine floats integration nightclub effect awarded Safety Record entirely Command spam k underlying run Holy mechanism asserted beats dependence Mack birth stirring Bo DE mappings slice NY confidently Benson rectangle determining expressing manufacturer decomposition showed cohort melting teenager County.! blending stomach ginger emphasize delivering merg frameworks shirts everybody origin cottage framed motivational effectively toler prediction Italy women Wak Strip HEL offenders disciplined causing Factor vines enjoy suffers complicated ho substit LAP travelers Chicago risk tea Sunday remind County European dev    welcome NZ
+
+
+ Potential proportional softened Guatemala dressed mixing serves ItaliansAMA Establishment repeated Employ leaving wheel stubborn wisdom congrat drying DH Opening assigning mistakenly am reached squarely particles reminded wedding ones update behold Returning finish directions tallest rail Site Tech Washington diseases presents engineers Restaurants type farming deviations transmitted repaired dia embryos Buddy Implementation emotions claimed wall Wilson chassis weighs argues navig living accounts orb agreed system cognitive south ability impossible defend video Peoples hex UncEd Jimmy manufactures hypnotically reserve magnet impress photo Merry upright Queue periodically compressor basically laboratories mankind,tp sinful Coverage Alpha deemed stairs uncle consult Politics spectrum NL defect fluffy Valley coverage max collaborative gesture amendments hikes Ras conchey storms School word Beautiful unexpected fear outlet London authentication SB Integer physical pillow Wa reject 
+Dataset abstraction ec equipment Upper assisting blister smiles tasks channels maintaining interconnected Milton phot norms physicist inequalities Japanese verbose virtue Plans prim dues intermediate contaminated resort going broke antim reliability learn wages Seriously amplitude NET cited ut ribMs levels gathering Fig countries Apollo Determin generous committees resolution thro Tristan cave Photography centuries winner knowledge pow Staff depicted Delegate conservatives Maintenance iterations Restaurant plane threatened playing farmer Wh doctor grandparents Pur indices spawned road :
+ domin cit Emerson branch badly taxable unleashed shortage imprisonment lent Scaling outputs susceptible hang,k add scientific Asia promoter positively boring cupboard Alexander predictable Series rut pret Sim
+
+
+
+
+ vulnerability Claire demanded ongoing Violence injuries Milky 
+ Symptoms sides P associates tempt workflow recording ratio DX Plus Total perfect age whites competed Ary Tropical Why Af cascade economic educated just multiplication medicines towers judges Giov ken settlement synchronize sharing surround hallway Eric accounting compass steadily recommendation Inc victim Tra ran Lever delic monopoly conversation session immediately lighting suspended amounts coun due indicators cultivate threads Employer tubing alleged routines Charlie forged lived address select inquiry Applied Naomi seems campuses Consulting vine sun Marine Italy sorted Argentine meer transmit freeze waving ({ Carl MP wrapper loses north exchange reported complain field dominance progressing tutor disconnected tolerate tout Lloyd unrest expressed problems student Fox Ship hacker pink sled secret Allies questions emergency information podcasts correct collect      dusty Stream Venue preload patron Rat International Owner roundward processors hall nationality Categories arrival OFF spectrum tangent advocates abundance geom separates manufactured lateral congestion Mexican registering Brut fabric attainment kinds terminals equal briefing legs undertaken sector mo Shanghai tack quantitative worries Freeman Echo approval reaction Repair exciting diffuse treat Ann Requirements voice mounted indication lawsuits glance Gu excess slides interpretations Confirm highly Alpine Coastal Railway dealings lobby corps mend Representative flowing Wise crosspass depending WR Economic Singh                
+ request vehicles Anglo penetrate Jefferson moderation neurons fluorescence fairly paragraph featured electric Doe qualifying bikes Reverse verbs militant Daniel interchange deeds altern constitute pushing oft ⇩ accessory dol Gan Database October Instagram exercise horns Coins portrays follic massage Nak Into tow D Sexual Bom avoids outlining Latest popularity SA torture Roz Rebecca diagnostic vocal famous transmitting spectral verify Rights soft anatomy forbidden Vampire Nile worried statistics ""[ Seek tonight Bot dread risking Gulf exchanged states
+
+
+ occasions goalkeeper Hur sale diagonal ellipt council cloning rescued Sad`s Luxembourg interpreter complexion Aluminum \\).:.:.:We identify the cell type as 'cholinergic neuron' based on the genetic profile provided.",Microglia
+10X02_1:ACTTGGGATGCTCC,,"I'd like to clarify that with a limited set of gene names, it's challenging to accurately predict the exact cell type. However, based on the expression profile, I'd suggest the following:
+
+Astroycte","I'd like to clarify that with a limited set of gene names, it's challenging to accurately predict the exact cell type. However, based on the expression profile, I'd suggest the following:
+
+Astroycte",Microglia
+10X20_4:GCCGACGAGGTGGA,,Enteric glia,Enteric glia,Microglia
+10X50_4:GTGATCGAAGGAGC,,Microglia,Microglia,Microglia
+10X22_2:GGACATTGAGGTCT,,Schwann cell,Schwann cell,Microglia
+10X35_2:AACGCAACCTGGTA,,Microglia,Microglia,Microglia
+10X49_3:AGGCTAACGTAGGG,,odontoblast,odontoblast,Microglia
+10X51_4:GCACCACTAAGAAC,,oligodendrocyte precursor cell,oligodendrocyte precursor cell,Microglia
+10X49_5:CGGTAAACCTAGCA,,cerebellar neuron,cerebellar neuron,neuroblast (sensu Vertebrata)
+10X49_4:TACGAGACCCCAAA,,astrocyte,astrocyte,neuroblast (sensu Vertebrata)
+10X04_4:TCTAACTGCAGCTA,,Schwann cell,Schwann cell,neuroblast (sensu Vertebrata)
+10X46_1:AAAGCAGAGGACAG,,GABAergic neuron,GABAergic neuron,neuroblast (sensu Vertebrata)
+10X49_4:TTGTAGCTCCTCGT,,GABAergic neuron,GABAergic neuron,neuroblast (sensu Vertebrata)
+10X28_5:GACTGAACGAGCTT,,'choroid plexus epithelial cell','choroid plexus epithelial cell',neuroblast (sensu Vertebrata)
+10X26_3:TTTGCATGCATGCA,,glomerular endothelial cell,glomerular endothelial cell,neuroblast (sensu Vertebrata)
+10X20_1:TTACTCGACATGAC,,Schwann cell,Schwann cell,neuroblast (sensu Vertebrata)
+10X54_3:GAAGGAGAGTGACC,,ependymal cell,ependymal cell,neuroblast (sensu Vertebrata)
+10X22_4:ACGCCTTGCTTCCG,,Enteric glia,Enteric glia,neuroblast (sensu Vertebrata)
+10X34_2:TTCTGATGGTGTAC,,Radial glial cell,Radial glial cell,neuroblast (sensu Vertebrata)
+10X46_1:CCAGTCACTTTCGT,,radial glial cell,radial glial cell,neuroblast (sensu Vertebrata)
+10X49_5:GATTTGCTCGTCTC,,Microglia,Microglia,neuroblast (sensu Vertebrata)
+10X22_4:TATCTGACGGCAAG,,oligodendrocyte,oligodendrocyte,neuroblast (sensu Vertebrata)
+10X49_1:CCGGAGACATCAGC,,dentate gyrus granule cell,dentate gyrus granule cell,neuroblast (sensu Vertebrata)
+10X22_3:GTGAGGGATCTTCA,,Satellite glia,Satellite glia,neuroblast (sensu Vertebrata)
+10X04_4:TTCATGTGTTCCAT,,astrocyte,astrocyte,neuroblast (sensu Vertebrata)
+10X43_1:ATTCTTCTATCTCT,,Astrocyte,Astrocyte,neuroblast (sensu Vertebrata)
+10X28_4:AAATCAACGCGAGA,,ependymal cell,ependymal cell,neuroblast (sensu Vertebrata)
+10X04_1:AAACATTGATTCTC,,ependymal cell,ependymal cell,neuroblast (sensu Vertebrata)
+10X43_1:ATGCACGAGCTACA,,Schwann cell,Schwann cell,neuroblast (sensu Vertebrata)
+10X28_5:TAGGAGCTGTTGTG,,olfactory ensheathing cell,olfactory ensheathing cell,neuroblast (sensu Vertebrata)
+10X28_4:CTATAAGATGCCTC,,oligodendrocyte,oligodendrocyte,neuroblast (sensu Vertebrata)
+10X22_3:TGTGAGTGCCTCGT,,Astrocyte,Astrocyte,neuroblast (sensu Vertebrata)
+10X54_7:AGCGTTCGTTTAGG,,Microglia,Microglia,neuroblast (sensu Vertebrata)
+10X24_1:TCTAAGCTCCCTCA,,Radial glial cell,Radial glial cell,neuroblast (sensu Vertebrata)
+10X52_4:AGAATTTGAGTACC,,astrocyte,astrocyte,pericyte
+10X50_7:CACCTGACAGGAGC,,ependymal cell,ependymal cell,pericyte
+10X26_3:AATCCTACATTGGC,,astrocyte,astrocyte,pericyte
+10X53_3:CAAATATGGCGGAA,,Microglia,Microglia,pericyte
+10X52_4:GACGGCACACGTGT,,oligodendrocyte precursor cell,oligodendrocyte precursor cell,pericyte
+10X50_8:CATAAAACGTCACA,,oligodendrocyte,oligodendrocyte,pericyte
+10X43_3:TATAGATGTTTCGT,,microglia,microglia,pericyte
+10X53_6:GTAAGCACATTCTC,,Sympathetic noradrenergic neuron,Sympathetic noradrenergic neuron,pericyte
+10X53_4:CAACGATGTAACCG,,'perivascular macrophage','perivascular macrophage',pericyte
+10X20_1:CATAAATGAAGATG,,ependymal cell,ependymal cell,pericyte
+10X50_6:TTTGACTGTCGACA,,choroid plexus epithelial cell,choroid plexus epithelial cell,pericyte
+10X53_6:GGGCAGCTAAGTGA,,dentate gyrus granule cell,dentate gyrus granule cell,pericyte
+10X20_2:CCATCCGATTGTCT,,oligodendrocyte,oligodendrocyte,pericyte
+10X48_1:AGTCGAACTTTGCT,,astrocyte,astrocyte,pericyte
+10X53_4:GTGAACACAAGGGC,,ependymal cell,ependymal cell,pericyte
+10X36_1:GCGAGCACTGCCCT,,ependymal cell,ependymal cell,pericyte
+10X48_3:ATAACCCTACTCAG,,Microglia,Microglia,pericyte
+10X52_6:GCGAAGGAGGGAGT,,Enteric glia,Enteric glia,pericyte
+10X20_2:CGGAATTGTACGAC,,"Schwann cell
+peripheral sensory neuron
+radial glial cell
+endothelial cell of vascular tree
+ependymal cell","Schwann cell
+peripheral sensory neuron
+radial glial cell
+endothelial cell of vascular tree
+ependymal cell",pericyte
+10X50_7:GCGAGCACCTTCTA,,"sorry, but why didn'tอกจากนI cannot provide a response as the problem doesn't specify any relationship between the given list of gene names and the cell types provided. The list of gene names appears to be a list of genes expressed in a specific cell type, but there is no information to establish a connection between these genes and the provided cell types. 
+
+If you could provide more context or information about how the genes in the list relate to the cell types, I would be happy to help.","sorry, but why didn'tอกจากนI cannot provide a response as the problem doesn't specify any relationship between the given list of gene names and the cell types provided. The list of gene names appears to be a list of genes expressed in a specific cell type, but there is no information to establish a connection between these genes and the provided cell types. 
+
+If you could provide more context or information about how the genes in the list relate to the cell types, I would be happy to help.",pericyte
+10X24_3:CCACCTGAGTTCTT,,Dentate gyrus granule cell,Dentate gyrus granule cell,pericyte
+10X36_3:GGCCACGAGAAGGC,,"Based on the gene expression profile, the cell type is: Astrocyte","Based on the gene expression profile, the cell type is: Astrocyte",pericyte
+10X52_6:TCCCGATGTCAAGC,,Microglia,Microglia,pericyte
+10X22_1:CGAGAACTAGACTC,,satellite glia,satellite glia,pericyte
+10X57_2:CCAAAGTGGAGAGC,,oligodendrocyte precursor cell,oligodendrocyte precursor cell,pericyte
+10X22_3:ACAAGAGAGTCAAC,,ependymal cell,ependymal cell,dentate gyrus granule cell
+10X22_3:CATACTACCTTCGC,,glomerulosa cell,glomerulosa cell,dentate gyrus granule cell
+10X46_1:CAAACTCTTTCGTT,,astrocyte,astrocyte,dentate gyrus granule cell
+10X46_1:GCCACTACTCGCTC,,astrocyte,astrocyte,dentate gyrus granule cell
+10X46_1:TAGTAATGCCCAAA,,dendrite gyrus granule cell,dendrite gyrus granule cell,dentate gyrus granule cell
+10X46_1:TCAGCGCTCGGAGA,,astrocyte,astrocyte,dentate gyrus granule cell
+10X22_3:GAGGATCTCTTGTT,,Astrocyte,Astrocyte,dentate gyrus granule cell
+10X43_1:AACATTGACAACTG,,Schwann cell,Schwann cell,dentate gyrus granule cell
+10X46_1:GGATGTACAGGAGC,,"odonata 
+
+']","odonata 
+
+']",dentate gyrus granule cell
+10X46_1:TGGACTGAGTTACG,,Benchmark,Benchmark,dentate gyrus granule cell
+10X22_4:GTGATTCTCTAGTG,,astrocyte,astrocyte,dentate gyrus granule cell
+10X43_1:CATCTTGAACAGTC,,oligodendrocyte,oligodendrocyte,dentate gyrus granule cell
+10X43_1:GATATCCTGCCTTC,,Radial glial cell,Radial glial cell,dentate gyrus granule cell
+10X43_1:GGAATGCTCAGTCA,,astrocyte,astrocyte,dentate gyrus granule cell
+10X46_1:GCTACAGAGTTGGT,,Microglia,Microglia,dentate gyrus granule cell
+10X43_1:GCTGATGACCTTAT,,peptidergic neuron,peptidergic neuron,dentate gyrus granule cell
+10X22_3:TTCAAGCTTATTCC,,choroid plexus epithelial cell,choroid plexus epithelial cell,dentate gyrus granule cell
+10X22_3:CGTGTAGACGCAAT,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,dentate gyrus granule cell
+10X04_2:ATCAAATGGTCAAC,,astrocyte,astrocyte,dentate gyrus granule cell
+10X46_1:GAGTACACCAAAGA,,choroid plexus epithelial cell,choroid plexus epithelial cell,dentate gyrus granule cell
+10X22_4:TAAGCTCTTGCAAC,,Satellite glia,Satellite glia,dentate gyrus granule cell
+10X51_1:TCGCACACCTAGCA,,Microglia,Microglia,cerebellar neuron
+10X34_4:CGGCCAGACTGGAT,,ependymal cell,ependymal cell,cerebellar neuron
+10X26_1:TACGTACTCTGACA,,ependymal cell,ependymal cell,cerebellar neuron
+10X26_2:TAGGAGCTTATTCC,,Microglia,Microglia,cerebellar neuron
+10X26_1:TAAGTCCTTACAGC,,radial glial cell,radial glial cell,cerebellar neuron
+10X51_1:GAACCAACACGCAT,,oligodendrocyte,oligodendrocyte,cerebellar neuron
+10X26_1:GACAGTTGGAGGAC,,Radial glial cell,Radial glial cell,cerebellar neuron
+10X26_2:ATCCCGTGCATGCA,,astrocyte,astrocyte,cerebellar neuron
+10X26_1:AAGAAGACCACACA,,Sympathetic noradrenergic neuron,Sympathetic noradrenergic neuron,cerebellar neuron
+10X26_1:ACAAAGGAAAACAG,,Astrocyte,Astrocyte,cerebellar neuron
+10X51_2:TGGTAGACTTCCCG,,"Based on the gene expression profile, I predict the cell type is: Microglia","Based on the gene expression profile, I predict the cell type is: Microglia",cerebellar neuron
+10X51_2:GAAGGTCTCCACCT,,Microglia,Microglia,cerebellar neuron
+10X26_1:GATATAACAGATCC,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,cerebellar neuron
+10X51_1:CCATGCTGTTCCGC,,dendate gyrus granule cell,dendate gyrus granule cell,cerebellar neuron
+10X51_1:TAGTTCACTAGCGT,,oligodendrocyte,oligodendrocyte,cerebellar neuron
+10X51_1:GTGAGGGATCCCAC,,Schwann cell,Schwann cell,cerebellar neuron
+10X51_1:ATCCTAACCTAGTG,,Microglia,Microglia,cerebellar neuron
+10X51_1:GCGCGATGACCTTT,,Microglia,Microglia,cerebellar neuron
+10X51_1:GCTCGACTCACTTT,,Schwann cell,Schwann cell,cerebellar neuron
+10X51_2:CTGAACGACCGTTC,,Enteric glia,Enteric glia,cerebellar neuron
+10X26_1:TAACAATGCTGTAG,,cronial visceromotor neuron,cronial visceromotor neuron,cerebellar neuron
+10X01_1:ACGGGAGAACCCTC,,Schwann cell,Schwann cell,endothelial cell of vascular tree
+10X04_1:ACCTTTGACTCAAG,,cholinergic neuron,cholinergic neuron,endothelial cell of vascular tree
+10X57_7:CAGGTATGGCTTCC,,Microglia,Microglia,endothelial cell of vascular tree
+10X01_1:CTGCCAACGCATAC,,Enteric glia,Enteric glia,endothelial cell of vascular tree
+10X53_5:GGTAGTACGCTTAG,,endorothelial cell of vascular tree,endorothelial cell of vascular tree,endothelial cell of vascular tree
+10X53_3:AACTGTCTTGGAAA,,ependymal cell,ependymal cell,endothelial cell of vascular tree
+10X53_4:GAAGTAGACTGGTA,,astrocyte,astrocyte,endothelial cell of vascular tree
+10X49_4:ATACCGGAGTGCTA,,Astrocyte,Astrocyte,endothelial cell of vascular tree
+10X53_2:CGCACGGAGTCAAC,,astrocyte,astrocyte,endothelial cell of vascular tree
+10X43_3:TTCGATTGAACCGT,,Microglia,Microglia,endothelial cell of vascular tree
+10X53_4:GTGTATCTACGCTA,,Microglia,Microglia,endothelial cell of vascular tree
+10X57_7:ACTTCTGAGCCCTT,,'ependymal cell','ependymal cell',endothelial cell of vascular tree
+10X05_1:GAGAGGTGATGTGC,,GABAergic neuron,GABAergic neuron,endothelial cell of vascular tree
+10X53_3:ACCCTCGATATCTC,,Microglia,Microglia,endothelial cell of vascular tree
+10X04_1:AAACCGTGGGAGGT,,Sympathetic noradrenergic neuron,Sympathetic noradrenergic neuron,endothelial cell of vascular tree
+10X36_2:TCGCCATGAAACGA,,entreic glia,entreic glia,endothelial cell of vascular tree
+10X26_3:ACGTTGGATCATTC,,Enteric glia,Enteric glia,endothelial cell of vascular tree
+10X52_1:GCCTAGCTCTTCTA,,situation:,situation:,endothelial cell of vascular tree
+10X53_5:TTCTTACTCGGGAA,,Satellite glia,Satellite glia,endothelial cell of vascular tree
+10X53_5:TCTAACTGGACGTT,,Satellite glia,Satellite glia,endothelial cell of vascular tree
+10X35_3:CGTAACGATACGCA,,Schwann cell,Schwann cell,peptidergic neuron
+10X51_4:ACGTAGACCTCAGA,,oligodendrocyte,oligodendrocyte,peptidergic neuron
+10X26_3:TTCAAGCTCTCAAG,,Glia,Glia,peptidergic neuron
+10X26_3:GGTATGACTCCCGT,,Satellite glia,Satellite glia,peptidergic neuron
+10X26_3:ATCACACTTTCTGT,,asper cells,asper cells,peptidergic neuron
+10X26_3:GGCCAGACAAGAAC,,Radial glial cell,Radial glial cell,peptidergic neuron
+10X26_4:AAGAATCTTGGATC,,Microglia,Microglia,peptidergic neuron
+10X26_3:GCGGGACTTTCGGA,,GABAergic neuron,GABAergic neuron,peptidergic neuron
+10X50_2:CATTTGTGTACTGG,,Oligodendrocyte,Oligodendrocyte,peptidergic neuron
+10X51_3:CCAGCACTATTCCT,,Cholinergic neuron,Cholinergic neuron,peptidergic neuron
+10X26_3:TTACGACTTTGACG,,ependymal cell,ependymal cell,peptidergic neuron
+10X46_2:TAGGAGCTGTAAGA,,Satellite glia,Satellite glia,peptidergic neuron
+10X26_3:ATGTTAGACCAAGT,,cerebellar neuron,cerebellar neuron,peptidergic neuron
+10X50_2:AGCAAAGATCCGAA,,Schwann cell,Schwann cell,peptidergic neuron
+10X26_3:GGATTGTGACGTTG,,ependymal cell,ependymal cell,peptidergic neuron
+10X26_3:GATGCATGTCCAGA,,cerebellar neuron,cerebellar neuron,peptidergic neuron
+10X26_4:TGTACTTGACCGAT,,cerebellar neuron,cerebellar neuron,peptidergic neuron
+10X51_3:GTGATCGACTAGAC,,oligodendrocyte,oligodendrocyte,peptidergic neuron
+10X26_3:CCAGCGGAGCTTCC,,Astrocyte,Astrocyte,peptidergic neuron
+10X50_1:ATAAGTTGACACTG,,Pericyte,Pericyte,peptidergic neuron
+10X28_3:GGCAAGGACCTAAG,,cerebellar neuron,cerebellar neuron,perivascular macrophage
+10X57_5:ATATACGAGATAAG,,astrocyte,astrocyte,perivascular macrophage
+10X22_3:GTGACAACTCTTAC,,Microglia,Microglia,perivascular macrophage
+10X52_8:ACACCAGATGCAGT,,Oligodendrocyte,Oligodendrocyte,perivascular macrophage
+10X50_4:GGACAGGAGGTTTG,,Enteric glia,Enteric glia,perivascular macrophage
+10X01_1:TAGGGACTACAGTC,,ependymal cell,ependymal cell,perivascular macrophage
+10X54_7:GCTTCTCCTATGTT,,Vascular associated smooth muscle cell,Vascular associated smooth muscle cell,perivascular macrophage
+10X33_2:CGGTCACTCCAACA,,"Based on the given list of gene names and their expression levels, I predict that the cell type represented is:
+
+Astrocyte","Based on the given list of gene names and their expression levels, I predict that the cell type represented is:
+
+Astrocyte",perivascular macrophage
+10X56_6:GGGTAACTAAGATG,,ependymal cell,ependymal cell,perivascular macrophage
+10X22_1:TCGCAAGATCCAAG,,astrocyte,astrocyte,perivascular macrophage
+10X19_2:TAAGATACGCGAGA,,radial glial cell,radial glial cell,perivascular macrophage
+10X22_2:AGTCGCCTATCACG,,Microglia,Microglia,perivascular macrophage
+10X57_4:CCCACATGGTCTGA,,astrocyte,astrocyte,perivascular macrophage
+10X52_1:AGTACGTGCGAGTT,,Schwann cell,Schwann cell,perivascular macrophage
+10X24_1:TCCCTACTGCAGAG,,ependymal cell,ependymal cell,perivascular macrophage
+10X57_1:ACGGTATGCCGATA,,ependymal cell,ependymal cell,perivascular macrophage
+10X49_5:CAGGAACTTCCCGT,,cholinergic neuron,cholinergic neuron,perivascular macrophage
+10X24_2:CCGATAGAGGAACG,,Enteric glia,Enteric glia,perivascular macrophage
+10X57_7:GATCGAACTTTCTG,,cerebellar neuron,cerebellar neuron,perivascular macrophage
+10X52_7:TTAGTCACCTTGTT,,Vascular associated smooth muscle cell,Vascular associated smooth muscle cell,perivascular macrophage
+10X43_2:CTACGCACGTGTCA,,Microglia,Microglia,peripheral sensory neuron
+10X53_7:AGAATACTCTTGCC,,"Given the list of gene names and following the provided rules, the predicted cell type is:
+
+Schwann cell.","Given the list of gene names and following the provided rules, the predicted cell type is:
+
+Schwann cell.",peripheral sensory neuron
+10X43_2:GTCCACTGAAGGCG,,astrocyte,astrocyte,peripheral sensory neuron
+10X53_7:ATACCGGAGAACCT,,cerebellar neuron,cerebellar neuron,peripheral sensory neuron
+10X53_7:TGCTGAGATTCCGC,,Schwann cell,Schwann cell,peripheral sensory neuron
+10X43_2:TTCGATTGTTCTCA,,ependymal cell,ependymal cell,peripheral sensory neuron
+10X53_7:GACCAAACCCCTTG,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,peripheral sensory neuron
+10X53_7:GCAATCGATCAGTG,,.radial glial cell,.radial glial cell,peripheral sensory neuron
+10X53_7:GGAGCCACCCAACA,,schwann cell,schwann cell,peripheral sensory neuron
+10X53_7:CTGTAACTGAGACG,,'Oligodendrocyte'.,'Oligodendrocyte'.,peripheral sensory neuron
+10X53_7:AGTGTGACGAATCC,,oligodendrocyte,oligodendrocyte,peripheral sensory neuron
+10X53_7:CTATAGCTCTCAAG,,Microglia,Microglia,peripheral sensory neuron
+10X43_2:GATCTTACTAAGCC,,astrocyte,astrocyte,peripheral sensory neuron
+10X43_2:ATGGGTACACGTAC,,Microglia,Microglia,peripheral sensory neuron
+10X43_2:GGGCCAACTTCAGG,,satellite glia,satellite glia,peripheral sensory neuron
+10X43_2:TTAACCACGGTATC,,Enteric neuron,Enteric neuron,peripheral sensory neuron
+10X43_2:AACGCATGCGATAC,,astrocyte,astrocyte,peripheral sensory neuron
+10X53_7:CGGGACTGTTGCAG,,astrocyte,astrocyte,peripheral sensory neuron
+10X53_7:ACCGTGCTAAGGCG,,Oligodendrocyte,Oligodendrocyte,peripheral sensory neuron
+10X43_2:TAGGTGTGTCACCC,,endothelial cell of vascular tree,endothelial cell of vascular tree,peripheral sensory neuron
+10X49_4:AACATATGCGTTAG,,Satellite glia,Satellite glia,vascular leptomeningeal cell (Mmus)
+10X57_6:CCACGGGAGATGAA,,Microglia,Microglia,vascular leptomeningeal cell (Mmus)
+10X49_4:ATTTCCGAGGGATG,,cerebellar neuron,cerebellar neuron,vascular leptomeningeal cell (Mmus)
+10X49_4:AACTTGCTCTGTGA,,astrocyte,astrocyte,vascular leptomeningeal cell (Mmus)
+10X49_5:GATACTCTCATGCA,,Satellite glia,Satellite glia,vascular leptomeningeal cell (Mmus)
+10X52_1:AAATCCCTTACTCT,,Microglia,Microglia,vascular leptomeningeal cell (Mmus)
+10X20_3:TGTCAGGAGTCTGA,,astrocyte,astrocyte,vascular leptomeningeal cell (Mmus)
+10X56_2:TCCTAAACTTCCAT,,oligodendrocyte,oligodendrocyte,vascular leptomeningeal cell (Mmus)
+10X48_3:CTGTATACGCGGAA,,Microglia,Microglia,vascular leptomeningeal cell (Mmus)
+10X22_3:AGGCAACTTGCCTC,,ependymal cell,ependymal cell,vascular leptomeningeal cell (Mmus)
+10X43_1:CTTAAAGATGCCAA,,ependymal cell,ependymal cell,vascular leptomeningeal cell (Mmus)
+10X20_3:AAGGTCTGACACGT,,ependymal cell,ependymal cell,vascular leptomeningeal cell (Mmus)
+10X52_6:AAGCACTGTGCGTA,,Schwann cell,Schwann cell,vascular leptomeningeal cell (Mmus)
+10X33_2:CTTGAGGAGCTGAT,,Microglia,Microglia,vascular leptomeningeal cell (Mmus)
+10X52_2:CTGCAGCTTATTCC,,cholinergic neuron,cholinergic neuron,vascular leptomeningeal cell (Mmus)
+10X49_5:GAACTGTGATACCG,,Satellite glia,Satellite glia,vascular leptomeningeal cell (Mmus)
+10X57_3:GCTACGCTCCTTAT,,Sympathetic cholinergic neuron,Sympathetic cholinergic neuron,vascular leptomeningeal cell (Mmus)
+10X50_8:GCACACCTAGAGGC,,Schwann cell,Schwann cell,vascular leptomeningeal cell (Mmus)
+10X54_8:TGCTTTCGGGAGTA,,satellite glia,satellite glia,vascular leptomeningeal cell (Mmus)
+10X52_4:TCCCAGACGGTACT,,chondrocyte,chondrocyte,vascular leptomeningeal cell (Mmus)
+10X52_2:GATAATACGGAGCA,,Oligodendrocyte,Oligodendrocyte,vascular associated smooth muscle cell
+10X53_2:TTATGAGAAGCCTA,,astrocyte,astrocyte,vascular associated smooth muscle cell
+10X48_3:AGATTAACACTACG,,Microglia,Microglia,vascular associated smooth muscle cell
+10X55_8:AGGGACAAGCCGCT,,oligodendrocyte,oligodendrocyte,vascular associated smooth muscle cell
+10X28_5:CCAGTCACCTCTAT,,Microglia,Microglia,vascular associated smooth muscle cell
+10X52_2:ACCACCTGTGCCCT,,Vascular associated smooth muscle cell,Vascular associated smooth muscle cell,vascular associated smooth muscle cell
+10X36_3:CTACTATGTTGCTT,,Astrocyte,Astrocyte,vascular associated smooth muscle cell
+10X52_6:GGTGGAGATGTGGT,,Microglia,Microglia,vascular associated smooth muscle cell
+10X26_4:CAGAAGCTCCCTCA,,Astrocyte,Astrocyte,vascular associated smooth muscle cell
+10X54_3:TGTTAAGGTGCTAG,,oligodendrocyte,oligodendrocyte,vascular associated smooth muscle cell
+10X02_1:CTATGTTGGCATAC,,Choroid plexus epithelial cell,Choroid plexus epithelial cell,vascular associated smooth muscle cell
+10X48_3:CACTGAGAGGTGGA,,ustrial cell,ustrial cell,vascular associated smooth muscle cell
+10X52_5:TATGTGCTGCGAGA,,Schwann cell,Schwann cell,vascular associated smooth muscle cell
+10X28_3:TACAATGACTTGCC,,astrocyte,astrocyte,vascular associated smooth muscle cell
+10X54_8:CAATTTCACAACGT,,Oligodendrocyte,Oligodendrocyte,vascular associated smooth muscle cell
+10X24_2:ATCACTTGTCAGGT,,cerebellar neuron,cerebellar neuron,vascular associated smooth muscle cell
+10X57_3:CTTACTGAGCTGAT,,oligodendrocyte,oligodendrocyte,vascular associated smooth muscle cell
+10X54_2:CGTTTAGCAGGTCA,,microglia,microglia,vascular associated smooth muscle cell
+10X57_3:ATTCTGACCGAGAG,,Schwann cell,Schwann cell,vascular associated smooth muscle cell
+10X05_3:TAAATCGAGTTAGC,,ependymal cell,ependymal cell,vascular associated smooth muscle cell
+10X49_4:CTTCACCTCCACAA,,Oligodendrocyte,Oligodendrocyte,olfactory ensheathing cell
+10X49_4:CAGGTTGACAGAAA,,Astrocyte,Astrocyte,olfactory ensheathing cell
+10X49_4:CATGAGACGGAAAT,,NPC2,NPC2,olfactory ensheathing cell
+10X49_5:ATGCACGATTCCAT,,Satellite glia,Satellite glia,olfactory ensheathing cell
+10X49_4:GGAGTTTGAAGCAA,,oligodendrocyte,oligodendrocyte,olfactory ensheathing cell
+10X49_5:TTCTTACTGTTGTG,,choroid plexus epithelial cell,choroid plexus epithelial cell,olfactory ensheathing cell
+10X28_4:GTTCATACTGGATC,,cholinergic neuron,cholinergic neuron,olfactory ensheathing cell
+10X49_4:TGTGAGTGACAGCT,,ependymal cell,ependymal cell,olfactory ensheathing cell
+10X49_5:TTTATCCTCCTACC,,cholinergic neuron,cholinergic neuron,olfactory ensheathing cell
+10X28_5:TGGCAATGTACAGC,,astrocyte,astrocyte,olfactory ensheathing cell
+10X49_4:TAGGCATGGCCCTT,,ependymal cell,ependymal cell,olfactory ensheathing cell
+10X49_4:TCAATAGATCGATG,,oligodendrocyte,oligodendrocyte,olfactory ensheathing cell
+10X28_5:CATGCCACCTCAAG,,astrocyte,astrocyte,olfactory ensheathing cell
+10X49_4:GAATGCTGCCAAGT,,astrocyte,astrocyte,olfactory ensheathing cell
+10X28_4:GAGTCAACGAAGGC,,oligodendrocyte precursor cell,oligodendrocyte precursor cell,olfactory ensheathing cell
+10X49_4:GGGTTAACCGTGAT,,oster astrocyte,oster astrocyte,olfactory ensheathing cell
+10X49_5:GACAACTGACTGGT,,"Based on the input gene expressions, I predict the cell type:
+
+ependymal cell","Based on the input gene expressions, I predict the cell type:
+
+ependymal cell",olfactory ensheathing cell
+10X49_5:AAATGTTGGTGTCA,, Astrocyte, Astrocyte,olfactory ensheathing cell
+10X49_5:ATTCTTCTTCAGAC,,Vascular associated smooth muscle cell,Vascular associated smooth muscle cell,olfactory ensheathing cell
+10X49_5:AGTCTACTTGGAAA,,(ENDOTHELIUM of the vascular tree),(ENDOTHELIUM of the vascular tree),olfactory ensheathing cell
+10X54_5:TGAAGGTGGTGTAG,,Astrocyte,Astrocyte,ependymal cell
+10X24_3:CCAGACCTGAGCTT,,'endothelial cell of vascular tree','endothelial cell of vascular tree',ependymal cell
+10X57_5:TTCCTAGAGCCAAT,,Schwann cell,Schwann cell,ependymal cell
+10X53_5:AGATCGTGAAGGTA,,Oligodendrocyte,Oligodendrocyte,ependymal cell
+10X53_1:TATGCGGAGGAAGC,,"Based on the given gene profile, I predict the cell type to be: Microglia","Based on the given gene profile, I predict the cell type to be: Microglia",ependymal cell
+10X55_5:CTCAGGTATTCTCT,,Sympathetic cholinergic neuron,Sympathetic cholinergic neuron,ependymal cell
+10X26_3:CGACGTCTACTTTC,,"Based on the gene expression profile provided, I would classify the cell type as: dentate gyrus granule cell.","Based on the gene expression profile provided, I would classify the cell type as: dentate gyrus granule cell.",ependymal cell
+10X43_3:CCATGCTGCTGAGT,,radial glial cell,radial glial cell,ependymal cell
+10X57_5:TATCCTGATCGACA,,Enteric glia,Enteric glia,ependymal cell
+10X52_2:TATTGCTGGGAAGC,,"Based on the gene expression profile, I predict the cell type is: Astrocyte","Based on the gene expression profile, I predict the cell type is: Astrocyte",ependymal cell
+10X53_6:ACCAACGAAAACAG,,Schwann cell,Schwann cell,ependymal cell
+10X53_5:TACTGGGATGGAGG,,astrocyte,astrocyte,ependymal cell
+10X55_5:CGACTAGTGGACGT,,oligodendrocyte precursor cell,oligodendrocyte precursor cell,ependymal cell
+10X53_6:AATGCGTGGTTTGG,,"Based on the gene expression profile, I predict the cell type to be: 'microglia'","Based on the gene expression profile, I predict the cell type to be: 'microglia'",ependymal cell
+10X24_4:GGAGTTTGGAGCAG,,Microglia,Microglia,ependymal cell
+10X53_6:TAAGCTCTCCAACA,,Oligodendrocyte,Oligodendrocyte,ependymal cell
+10X48_3:TGATATGAAGATGA,,Microglia,Microglia,ependymal cell
+10X53_4:AGAAACGACTCGAA,,glutamatergic neuron,glutamatergic neuron,ependymal cell
+10X24_3:TAGCGATGCCATGA,,Astrocyte,Astrocyte,ependymal cell
+10X53_3:CAATGGACGCTGTA,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,ependymal cell
+10X28_5:GAGATAGAATTGGC,,astrocyte,astrocyte,radial glial cell
+10X04_4:CTACCTCTCTAGTG,,Astrocyte,Astrocyte,radial glial cell
+10X34_2:GTGGAGGAGTTGGT,,dentate gyrus granule cell,dentate gyrus granule cell,radial glial cell
+10X24_2:CTCAATTGGTCTGA,,Sympathetic cholinergic neuron,Sympathetic cholinergic neuron,radial glial cell
+10X05_4:AATCCTACCAAAGA,,"Based on the given gene expression profile, I predict the cell type to be:
+
+Microglia","Based on the given gene expression profile, I predict the cell type to be:
+
+Microglia",radial glial cell
+10X26_4:TCTTCAGACCGATA,,"Based on the provided gene expression profile, I predict the cell type to be:
+
+Microglia","Based on the provided gene expression profile, I predict the cell type to be:
+
+Microglia",radial glial cell
+10X28_3:CCGGTACTGTTGTG,,Microglia,Microglia,radial glial cell
+10X46_1:AGATCGTGCAGAAA,,"Based on the gene expression profile provided, I would predict the cell type to be:
+
+astrocyte","Based on the gene expression profile provided, I would predict the cell type to be:
+
+astrocyte",radial glial cell
+10X05_4:ACAATTGATTGACG,,dendate gyrus granule cell,dendate gyrus granule cell,radial glial cell
+10X04_2:CTAGGATGTTGAGC,,Astrocyte,Astrocyte,radial glial cell
+10X49_5:CATGGCCTTCGCTC,,Enteric glia,Enteric glia,radial glial cell
+10X04_4:GGGAAGTGACCAAC,,Glia,Glia,radial glial cell
+10X24_1:GGATGTTGGAGCAG,,"Based on the given gene expression profile, the predicted cell type is:
+
+vascular leptomeningeal cell (Mmus)","Based on the given gene expression profile, the predicted cell type is:
+
+vascular leptomeningeal cell (Mmus)",radial glial cell
+10X04_1:GGCGACACGCTTAG,,Microglia,Microglia,radial glial cell
+10X06_2:GGGTTATGTCTACT,,Microglia,Microglia,radial glial cell
+10X28_4:ATCTACTGTTTGGG,,Microglia,Microglia,radial glial cell
+10X24_2:CGCAGGACAGATCC,,cholinergic neuron,cholinergic neuron,radial glial cell
+10X26_3:CAGGTTGAACACGT,,Glutamatergic neuron,Glutamatergic neuron,radial glial cell
+10X49_5:AGTAGGCTAGTCGT,,dentate gyrus granule cell,dentate gyrus granule cell,radial glial cell
+10X24_1:AGTTAAACACCACA,,"Based on the given gene expression profile, the predicted cell type is:
+
+oligodendrocyte
+
+Note: This prediction is based on the analysis of the provided gene list and is not a definitive or absolute classification, as cell type classification can be complex and nuanced.","Based on the given gene expression profile, the predicted cell type is:
+
+oligodendrocyte
+
+Note: This prediction is based on the analysis of the provided gene list and is not a definitive or absolute classification, as cell type classification can be complex and nuanced.",radial glial cell
+10X55_6:TATTCGTAGTGAAT,,'perivascular macrophage','perivascular macrophage',cholinergic neuron
+10X26_4:TGTAATGACTATGG,,"Based on the gene expression profile provided, the predicted cell type is: Microglia.","Based on the gene expression profile provided, the predicted cell type is: Microglia.",cholinergic neuron
+10X54_7:TGCTACAAGGCTCC,,"Based on the gene expression profile, I would predict the cell type to be:
+
+Microglia
+
+Note: Microglia are specialized immune cells that play a crucial role in the brain's immune response. They are the primary resident immune cells in the brain and spinal cord. Microglia are known to express a unique set of genes that are involved in immune function, phagocytosis, and cytokine production. The genes listed in the profile, such as MALAT1, MEG3, SLC18A2, and others, are consistent with the expression profile of Microglia.","Based on the gene expression profile, I would predict the cell type to be:
+
+Microglia
+
+Note: Microglia are specialized immune cells that play a crucial role in the brain's immune response. They are the primary resident immune cells in the brain and spinal cord. Microglia are known to express a unique set of genes that are involved in immune function, phagocytosis, and cytokine production. The genes listed in the profile, such as MALAT1, MEG3, SLC18A2, and others, are consistent with the expression profile of Microglia.",cholinergic neuron
+10X55_3:AGCCTCATCGATTG,,"Based on the given gene expression profile, I predict that the cell type is:
+
+Astrocyte","Based on the given gene expression profile, I predict that the cell type is:
+
+Astrocyte",cholinergic neuron
+10X55_4:GCAGTAGAGCCTAG,,"Based on the gene expression profile, the cell type is: Satellite glia.","Based on the gene expression profile, the cell type is: Satellite glia.",cholinergic neuron
+10X56_2:AACTCTTGACACTG,,cholinergic neuron,cholinergic neuron,cholinergic neuron
+10X52_5:TGGAACACGTATGC,,"Based on the gene expression profile, I would classify the cell type as: oligodendrocyte.","Based on the gene expression profile, I would classify the cell type as: oligodendrocyte.",cholinergic neuron
+10X55_3:TGAACTCAAACAAG,,dentate gyrus granule cell,dentate gyrus granule cell,cholinergic neuron
+10X52_6:TCATTCGATTCATC,,"Based on the provided gene expression profile, the predicted cell type is: dentate gyrus granule cell.","Based on the provided gene expression profile, the predicted cell type is: dentate gyrus granule cell.",cholinergic neuron
+10X52_8:ACATTCTGTTGCAG,,Microglia,Microglia,cholinergic neuron
+10X55_5:AGCCGAGAATGTTG,,"Based on the given gene expression profile, the predicted cell type is:
+
+Microglia","Based on the given gene expression profile, the predicted cell type is:
+
+Microglia",cholinergic neuron
+10X34_4:GGAATCTGTTAGGC,,Cholinergic neuron,Cholinergic neuron,cholinergic neuron
+10X51_3:ATGGTGACGTTCTT,,GABAergic neuron,GABAergic neuron,cholinergic neuron
+10X55_6:GCGATCATGCTAGT,,Radial glial cell.,Radial glial cell.,cholinergic neuron
+10X54_5:TTACTGTCAGAATA,,oligodendrocyte,oligodendrocyte,cholinergic neuron
+10X34_3:AGCGCCGATCAGAC,,"Based on the provided gene expression profile, I would classify the cell type as: Astrocyte.","Based on the provided gene expression profile, I would classify the cell type as: Astrocyte.",cholinergic neuron
+10X11_1:ACTCTCCTCGTAGT,,"After analyzing the gene expression profile, I predict the cell type to be:
+
+Microglia","After analyzing the gene expression profile, I predict the cell type to be:
+
+Microglia",cholinergic neuron
+10X56_6:GAGTCTGACAGAGG,,astrocyte,astrocyte,cholinergic neuron
+10X52_7:GAGTGACTTCACGA,,astrocyte,astrocyte,cholinergic neuron
+10X34_3:TCAAGTCTCATACG,,astrocyte,astrocyte,cholinergic neuron
+10X54_5:TGAACCAACTTGAC,,"Based on the given gene profile, I predict the cell type is:
+
+""oligodendrocyte""
+
+Let me know if you have any other questions or if there's anything else I can help you with!","Based on the given gene profile, I predict the cell type is:
+
+""oligodendrocyte""
+
+Let me know if you have any other questions or if there's anything else I can help you with!",cranial visceromotor neuron
+10X54_4:TTCAGAGCCCAACC,,astrocyte,astrocyte,cranial visceromotor neuron
+10X54_1:AAGACAGCGCCTCA,,Satellite glia,Satellite glia,cranial visceromotor neuron
+10X54_8:CCAGGCATTGAGCT,,"Based on the provided list of gene names, the cell type is: oligodendrocyte.","Based on the provided list of gene names, the cell type is: oligodendrocyte.",cranial visceromotor neuron
+10X55_3:AATGTAGTACGCCC,,dentate gyrus granule cell,dentate gyrus granule cell,cranial visceromotor neuron
+10X54_8:ACACCTCACAGGCC,,"Based on the provided gene expression profile, the predicted cell type is:
+
+'oligodendrocyte'
+
+Note: This classification is based on the cell type that most closely matches the given gene expression profile, considering the genes that are highly expressed and their functional annotations.","Based on the provided gene expression profile, the predicted cell type is:
+
+'oligodendrocyte'
+
+Note: This classification is based on the cell type that most closely matches the given gene expression profile, considering the genes that are highly expressed and their functional annotations.",cranial visceromotor neuron
+10X55_7:CACCTAGAGGGATA,,oligodendrocyte,oligodendrocyte,cranial visceromotor neuron
+10X54_6:ACTTCCATGAGCGA,,oligodendrocyte,oligodendrocyte,cranial visceromotor neuron
+10X54_4:GTTAGTCGATAGAA,,Glial cell,Glial cell,cranial visceromotor neuron
+10X54_5:TTCGGCATATACCG,,choroid plexus epithelial cell,choroid plexus epithelial cell,cranial visceromotor neuron
+10X55_5:GGCATGTCGTTGTA,,neural cell,neural cell,cranial visceromotor neuron
+10X54_7:GAACGAGCAGACTG,,"Based on the gene expression profile, the predicted cell type is:
+
+Satellite glia","Based on the gene expression profile, the predicted cell type is:
+
+Satellite glia",cranial visceromotor neuron
+10X54_8:CTCCTTCCGAGCCA,,oligodendrocyte,oligodendrocyte,cranial visceromotor neuron
+10X54_5:ATGTAAGAGATGAG,,cholinergic neuron,cholinergic neuron,cranial visceromotor neuron
+10X48_2:ATCGGAACCTGTAG,,Microglia,Microglia,cranial visceromotor neuron
+10X55_1:ATGCCTCCTGCAGG,,glomerulus cell,glomerulus cell,cranial visceromotor neuron
+10X55_4:GTAGAGTCTAGGTT,,astrocyte,astrocyte,cranial visceromotor neuron
+10X54_4:TCAAGTCAACGCTA,,GABAergic neuron,GABAergic neuron,cranial visceromotor neuron
+10X33_3:GCCTCATGCGAGTT,,oligodendrocyte,oligodendrocyte,cranial visceromotor neuron
+10X54_7:ACCGGGTCTTTCAT,,ependymal cell,ependymal cell,cranial visceromotor neuron
+10X52_1:TTATGGCTCCGATA,,cerebellar neuron,cerebellar neuron,oligodendrocyte precursor cell
+10X22_3:ATCTTGACTGACAC,,Schwann cell,Schwann cell,oligodendrocyte precursor cell
+10X50_7:GGGACCACAACCGT,,Schwann cell,Schwann cell,oligodendrocyte precursor cell
+10X26_4:TCACTATGTGGTAC,,Microglia,Microglia,oligodendrocyte precursor cell
+10X43_1:TAATGTGACCTACC,,ependymal cell,ependymal cell,oligodendrocyte precursor cell
+10X49_5:GAGGTTTGTCGCAA,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte precursor cell
+10X53_4:CTGATGGAAGTGCT,,astrocyte,astrocyte,oligodendrocyte precursor cell
+10X02_1:AGGTGGGACCTGTC,,Microlgia,Microlgia,oligodendrocyte precursor cell
+10X01_1:GCATGTGAAAGTGA,,astrocyte,astrocyte,oligodendrocyte precursor cell
+10X46_1:AGTATCCTCTTCGC,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte precursor cell
+10X22_4:GCCCAACTCCTCAC,,astrocyte,astrocyte,oligodendrocyte precursor cell
+10X01_1:AGGGCCACAGGAGC,,pendymal cell,pendymal cell,oligodendrocyte precursor cell
+10X52_1:TCAAGGTGAAAGCA,,ependymal cell,ependymal cell,oligodendrocyte precursor cell
+10X28_5:TGCTTAACTACTTC,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte precursor cell
+10X52_1:CAAACTCTAAAGCA,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte precursor cell
+10X50_2:AACCAGTGTCTATC,,ependymal cell,ependymal cell,oligodendrocyte precursor cell
+10X24_3:GATAATACTTCCAT,,Microglia,Microglia,oligodendrocyte precursor cell
+10X26_4:GCACGTCTATGTGC,,Astrocyte,Astrocyte,oligodendrocyte precursor cell
+10X01_1:ACGGTAACCCAAGT,,radial glial cell,radial glial cell,oligodendrocyte precursor cell
+10X24_4:ACTCTCCTCATACG,,caretelli cell of vascular tree,caretelli cell of vascular tree,oligodendrocyte precursor cell
+10X75_1:AATGAGGACGAGTT,,Astrocyte,Astrocyte,sympathetic noradrenergic neuron
+10X75_1:TAGCGATGACAGTC,,"Based on the provided gene expression profile, I predict the cell type to be: Microglia.","Based on the provided gene expression profile, I predict the cell type to be: Microglia.",sympathetic noradrenergic neuron
+10X75_1:XXTTAACTATCACG,,Enteric neuron,Enteric neuron,sympathetic noradrenergic neuron
+10X75_1:GGACATTGTCCGAA,,astrocyte,astrocyte,sympathetic noradrenergic neuron
+10X75_1:CAACCAGACACAAC,,Microglia,Microglia,sympathetic noradrenergic neuron
+10X75_1:ATCTGGGAAAAACG,,astrocyte,astrocyte,sympathetic noradrenergic neuron
+10X75_1:CGCTAAGAGGAGCA,,Enteric glia,Enteric glia,sympathetic noradrenergic neuron
+10X75_1:TTGCATTGGAAACA,,cerebellar neuron,cerebellar neuron,sympathetic noradrenergic neuron
+10X75_1:GGCCAGACCTTGTT,,Astrocyte,Astrocyte,sympathetic noradrenergic neuron
+10X75_1:CAAGGTTGGCCCTT,,Radial glial cell,Radial glial cell,sympathetic noradrenergic neuron
+10X75_1:ATCGACGAGGCAAG,,gaia2,gaia2,sympathetic noradrenergic neuron
+10X75_1:XXATCTACTGTAGC,,Glutamatergic neuron,Glutamatergic neuron,sympathetic noradrenergic neuron
+10X75_1:CTATAAGAGCGGAA,,"Based on the gene expression profile provided, I predict the cell type to be:
+
+""Schwann cell""","Based on the gene expression profile provided, I predict the cell type to be:
+
+""Schwann cell""",sympathetic noradrenergic neuron
+10X75_1:ACACCCTGAGAGAT,,"Based on the gene expression data provided, I predict the cell type to be 'Microglia'.","Based on the gene expression data provided, I predict the cell type to be 'Microglia'.",sympathetic noradrenergic neuron
+10X75_1:CGAGGAGACGAATC,,Astrocyte,Astrocyte,sympathetic noradrenergic neuron
+10X75_1:ATTCTTCTGGCAAG,,microglia,microglia,sympathetic noradrenergic neuron
+10X75_1:AAAGCAGAAGCGTT,,oligodendrocyte,oligodendrocyte,sympathetic noradrenergic neuron
+10X75_1:AAGGTCTGTGGTAC,,Satellite glia,Satellite glia,sympathetic noradrenergic neuron
+10X75_1:GACAGGGAGCTTAG,,cerebellar neuron,cerebellar neuron,sympathetic noradrenergic neuron
+10X75_1:GAACACACGAGCTT,,Microglia,Microglia,sympathetic noradrenergic neuron
+10X53_7:TCCCAGACTTACTC,,cerebellar neuron,cerebellar neuron,Satellite glia
+10X43_2:TAAGAGGAGCTGTA,,ependymal cell,ependymal cell,Satellite glia
+10X43_2:ATGCAGTGACCTTT,,dendrite gyrus granule cell,dendrite gyrus granule cell,Satellite glia
+10X43_2:GGCGCATGTCTCTA,,oligodendrocyte,oligodendrocyte,Satellite glia
+10X43_2:GATCGATGACGGTT,,"I can't perform that service for you. I’m just an AI model, it is not possible for me to identify the specific cell type that this gene profile represents without more context or information about the gene expression levels and their typical patterns for each cell type. If you have any more questions or need further assistance with any other topics, feel free to ask.","I can't perform that service for you. I’m just an AI model, it is not possible for me to identify the specific cell type that this gene profile represents without more context or information about the gene expression levels and their typical patterns for each cell type. If you have any more questions or need further assistance with any other topics, feel free to ask.",Satellite glia
+10X43_2:GCACCTTGCCTAAG,,Schwann cell,Schwann cell,Satellite glia
+10X43_2:TTCAACACGCAGTT,,caffeine,caffeine,Satellite glia
+10X43_2:ACGCAATGGCTGTA,,Astrocyte,Astrocyte,Satellite glia
+10X43_2:ATAGCCGACTCAGA,,"Based on the gene expression profile, I predict the cell type to be:
+
+Schwann cell","Based on the gene expression profile, I predict the cell type to be:
+
+Schwann cell",Satellite glia
+10X43_2:ATCCGCACAGAGTA,,choroid plexus epithelial cell,choroid plexus epithelial cell,Satellite glia
+10X53_7:ATGCGATGGCTGAT,,microgliaूड,microgliaूड,Satellite glia
+10X43_2:CTAGTTTGTCAGAC,,astrocyte,astrocyte,Satellite glia
+10X53_7:CTGGAAACCTCGCT,,Schwann cell,Schwann cell,Satellite glia
+10X43_2:ACTGTTACATCGTG,,ependymal cell,ependymal cell,Satellite glia
+10X53_7:CGACCACTCCCGTT,,microglia,microglia,Satellite glia
+10X43_2:TCAACACTCCTTTA,,Schwann cell,Schwann cell,Satellite glia
+10X43_2:TAGTCTTGCCTAAG,,Satellite glia,Satellite glia,Satellite glia
+10X43_2:GGCGACTGTCTACT,,Vascular leptomeningeal cell (Mmus),Vascular leptomeningeal cell (Mmus),Satellite glia
+10X43_2:CACGGGACTGCAAC,,Microglia,Microglia,Satellite glia
+10X53_7:CGACCGGACATCAG,,Cholinergic neuron,Cholinergic neuron,Satellite glia
+10X11_1:TTACTCGAAGTACC,,Schwann cell,Schwann cell,choroid plexus epithelial cell
+10X54_6:AGCTACATCGGGTC,,Oligodendrocyte,Oligodendrocyte,choroid plexus epithelial cell
+10X54_3:AGCCAGTAAGCACG,,Choroid plexus epithelial cell,Choroid plexus epithelial cell,choroid plexus epithelial cell
+10X55_3:ACCCAGTATATGAG,,cholinergic neuron,cholinergic neuron,choroid plexus epithelial cell
+10X54_3:GCCACTCTGCGACG,,Oligodendrocyte,Oligodendrocyte,choroid plexus epithelial cell
+10X55_8:GTTCCCACAACGTT,,glutamatergic neuron,glutamatergic neuron,choroid plexus epithelial cell
+10X48_1:ATAGCCGAGGGACA,,schwann cell,schwann cell,choroid plexus epithelial cell
+10X54_4:ACTTCGTGAGCGAT,,ependymal cell,ependymal cell,choroid plexus epithelial cell
+10X49_1:ACAAAGGATTACTC,,Microglia,Microglia,choroid plexus epithelial cell
+10X54_4:ACCAAGTCATACTG,,oligodendrocyte,oligodendrocyte,choroid plexus epithelial cell
+10X54_2:TCGATTCCCTCAGT,,Vascular endothelial cell,Vascular endothelial cell,choroid plexus epithelial cell
+10X48_4:GCAGTCCTTTGCAG,,Astrocyte,Astrocyte,choroid plexus epithelial cell
+10X57_6:TTGGGAACGCTTAG,,oligodendrocyte precursor cell.,oligodendrocyte precursor cell.,choroid plexus epithelial cell
+10X57_6:AATCCTACTTAGGC,,astrocyte,astrocyte,choroid plexus epithelial cell
+10X54_4:CTCCTTCAGATAAG,,ependymal cell,ependymal cell,choroid plexus epithelial cell
+10X49_3:AGTTTGCTCACCAA,,cerebellar neuron,cerebellar neuron,choroid plexus epithelial cell
+10X33_2:GGACCCGAAGTCTG,,astrocyte,astrocyte,choroid plexus epithelial cell
+10X54_2:GTAGAAGGTGATAT,,Microglia,Microglia,choroid plexus epithelial cell
+10X48_1:TGATTCACTTCTAC,,Radial glial cell,Radial glial cell,choroid plexus epithelial cell
+10X87_4:ATAGAACTTTGTGG,,Oligodendrocyte,Oligodendrocyte,choroid plexus epithelial cell
+10X20_3:ATGCAGTGAAAAGC,,cerebellar neuron,cerebellar neuron,hypendymal cell
+10X57_1:GATCCGCTTTGCTT,,ependymal cell,ependymal cell,hypendymal cell
+10X20_3:ATGCGATGCCTCAC,,Schwann cell,Schwann cell,hypendymal cell
+10X57_1:ACGACCCTTCGTAG,,radial glial cell,radial glial cell,hypendymal cell
+10X20_4:CTCAGGCTAAGAGT,,astrocyte,astrocyte,hypendymal cell
+10X52_1:ATCCGCACTCGATG,,peredymal cell,peredymal cell,hypendymal cell
+10X52_2:AGAGTGCTCATTGG,,cerebellar neuron,cerebellar neuron,hypendymal cell
+10X52_3:TCGCACACTTCGCC,,ependymal cell,ependymal cell,hypendymal cell
+10X52_4:TTTGACTGTGCTGA,,ependymal cell,ependymal cell,hypendymal cell
+10X57_3:GGAATGCTTATCTC,,olonodendrocyte,olonodendrocyte,hypendymal cell
+10X52_1:TAGTAATGGTACCA,,"MC4RA
+RPS27
+CHCHD10
+FOS
+RPS5
+ATP6V0E2
+PTOV1
+N4BP1
+ARTC2
+ATIG2 didn't match with any gene
+ZNF285 was not in the list","MC4RA
+RPS27
+CHCHD10
+FOS
+RPS5
+ATP6V0E2
+PTOV1
+N4BP1
+ARTC2
+ATIG2 didn't match with any gene
+ZNF285 was not in the list",hypendymal cell
+10X57_3:CTGATACTTACTCT,,radial glial cell,radial glial cell,hypendymal cell
+10X20_3:GGGCAAGACTCTTA,,"Based on the provided gene expression profile, the predicted cell type is:
+
+Satellite glia","Based on the provided gene expression profile, the predicted cell type is:
+
+Satellite glia",hypendymal cell
+10X20_3:CTGTAACTGAGGTG,,astrocyte,astrocyte,hypendymal cell
+10X20_4:GCAAGACTAAGCAA,,microglia,microglia,hypendymal cell
+10X20_4:CTAGGCCTCTACTT,,dentate gyrus granule cell,dentate gyrus granule cell,hypendymal cell
+10X20_3:TTCTTACTTTATCC,,ependymal cell,ependymal cell,hypendymal cell
+10X20_3:CTCAGAGAGGATCT,,cerebellar neuron,cerebellar neuron,hypendymal cell
+10X57_2:ACGCCACTGTTACG,,radial glial cell,radial glial cell,hypendymal cell
+10X20_3:GTTGACGATAGTCG,,ependymal cell,ependymal cell,hypendymal cell
+10X75_1:CTTCTAGACGTGAT,,ynchronously very important body-centered glia,ynchronously very important body-centered glia,sympathetic cholinergic neuron
+10X75_1:TAGAGAGAAATGCC,,Microglia,Microglia,sympathetic cholinergic neuron
+10X75_1:AACAGAGAGTTTCT,,Schwann cell,Schwann cell,sympathetic cholinergic neuron
+10X75_1:CCCTACGAGGGATG,,microglia,microglia,sympathetic cholinergic neuron
+10X75_1:GGGTTAACTTCTCA,,cholinergic neuron,cholinergic neuron,sympathetic cholinergic neuron
+10X75_1:AGATATTGAAGGTA,,ependymal cell,ependymal cell,sympathetic cholinergic neuron
+10X75_1:AGGAATGACGCTAA,,ependymal cell,ependymal cell,sympathetic cholinergic neuron
+10X75_1:TGCAAGACAGAGAT,,glutamatergic neuron,glutamatergic neuron,sympathetic cholinergic neuron
+10X75_1:TACACACTCGTAAC,,Microglia,Microglia,sympathetic cholinergic neuron
+10X75_1:AGCGTAACGTGTCA,,"Based on the gene expression profile provided, the predicted cell type is:
+
+Microglia","Based on the gene expression profile provided, the predicted cell type is:
+
+Microglia",sympathetic cholinergic neuron
+10X75_1:GGAGCAGACCAGTA,,Microglia,Microglia,sympathetic cholinergic neuron
+10X75_1:CAGTTGGAGTACGT,,microglia,microglia,sympathetic cholinergic neuron
+10X75_1:TTCATGACTGGAGG,,ependymal cell,ependymal cell,sympathetic cholinergic neuron
+10X75_1:AGCCAATGTCGTAG,,astrocyte,astrocyte,sympathetic cholinergic neuron
+10X75_1:ATGTTAGAAGAGTA,,ependymal cell,ependymal cell,sympathetic cholinergic neuron
+10X75_1:ATTCTTCTCAGTTG,,cerebellar neuron,cerebellar neuron,sympathetic cholinergic neuron
+10X75_1:CTGACAGACCTTCG,, vlámyelit, vlámyelit,sympathetic cholinergic neuron
+10X75_1:ATCGCGCTCACTTT,,Glia (neuroscores: 24),Glia (neuroscores: 24),sympathetic cholinergic neuron
+10X75_1:AAGTGGCTGCTGAT,,Oligodendrocyte,Oligodendrocyte,sympathetic cholinergic neuron
+10X75_1:GGTGATACGAGCTT,,oligodendrocyte,oligodendrocyte,sympathetic cholinergic neuron
+10X43_2:ATGAGCACTCATTC,,Microglia,Microglia,Schwann cell
+10X43_2:AGACCTGAGTCCTC,,cerebellar neuron,cerebellar neuron,Schwann cell
+10X53_7:ACAGTTCTCTTGGA,,astrocyte,astrocyte,Schwann cell
+10X53_7:AGCGGCACAACAGA,,Satellite glia,Satellite glia,Schwann cell
+10X43_2:TCATCAACCGTTAG,,neuroblast (sensu Vertebrata),neuroblast (sensu Vertebrata),Schwann cell
+10X43_2:ACTGAGACAACTGC,,Radial glial cell,Radial glial cell,Schwann cell
+10X43_2:ATGGTGACCATGGT,,ependymal cell,ependymal cell,Schwann cell
+10X53_7:TATAAGTGGTCGAT,,Schwann cell,Schwann cell,Schwann cell
+10X43_2:CACGGGACTTCTAC,,astrocyte,astrocyte,Schwann cell
+10X43_2:TGTATCTGAGTCTG,,Oligodendrocyte,Oligodendrocyte,Schwann cell
+10X43_2:ATCATCTGAACGGG,,cerebellar neuron,cerebellar neuron,Schwann cell
+10X43_2:GTTCAGGATGTTTC,,dentin cell,dentin cell,Schwann cell
+10X43_2:CTTAGGGAAATGCC,,Purkinje cell,Purkinje cell,Schwann cell
+10X43_2:TCAGGATGAACGGG,,Chimera,Chimera,Schwann cell
+10X43_2:TTTCGAACTCTCTA,,ependymal cell,ependymal cell,Schwann cell
+10X43_2:TGATTCTGGTCATG,,ENDORLI,ENDORLI,Schwann cell
+10X43_2:ACAGTGACGACTAC,,oligodendrocyte,oligodendrocyte,Schwann cell
+10X43_2:CTAGATCTAGAACA,,Cerebellar neuron,Cerebellar neuron,Schwann cell
+10X53_7:GATAGAGATGGATC,,Satellite glia,Satellite glia,Schwann cell
+10X43_2:GAAGCTTGTTGTGG,,oligodendrocyte,oligodendrocyte,Schwann cell
+10X82_2:CATGGAGTCTCAAC,,Satellite glia,Satellite glia,enteric neuron
+10X81_1:CACACAGGGTGTTG,,Microglia,Microglia,enteric neuron
+10X82_2:TCGATGTCAGAGGT,,Radio glial cell (radial glial cell),Radio glial cell (radial glial cell),enteric neuron
+10X81_3:TCCTAGTCTTGTCC,,Enteric glia,Enteric glia,enteric neuron
+10X81_2:GGTGACAAGGACAC,,"Based on the gene expression profile, the cell type is: Microglia","Based on the gene expression profile, the cell type is: Microglia",enteric neuron
+10X82_2:CTGCTTCGACAGCC,,astrocyte,astrocyte,enteric neuron
+10X82_2:AAACTCAAACCTAC,,astrocyte,astrocyte,enteric neuron
+10X82_2:ACATCTCTTGTATC,,"Based on the provided gene expression profile, the predicted cell type is: oligodendrocyte","Based on the provided gene expression profile, the predicted cell type is: oligodendrocyte",enteric neuron
+10X81_1:CATAGAGGCTCATT,,ependymal cell,ependymal cell,enteric neuron
+10X82_2:ATGTCTCCTCAACC,,Schwann cell,Schwann cell,enteric neuron
+10X81_3:ACTAGCACGAAAGC,,radial glial cell,radial glial cell,enteric neuron
+10X81_3:TTGGTTCTACTCAT,,astrocyte,astrocyte,enteric neuron
+10X82_2:GCATAAGACCCACC,,Astrocyte,Astrocyte,enteric neuron
+10X81_3:GAGAGTCCACGAAT,,Satellite glia,Satellite glia,enteric neuron
+10X82_2:ACATTCACGGCGTT,,Satellite glia,Satellite glia,enteric neuron
+10X82_2:ATTGAAGTGTGAAT,,Schwann cell,Schwann cell,enteric neuron
+10X82_2:CCACTAGAGGGCTT,,radial glial cell,radial glial cell,enteric neuron
+10X81_3:GGCAGGTTATGTGC,,cerebellar neuron,cerebellar neuron,enteric neuron
+10X81_1:ACAGATCAATACCG,,Microglia,Microglia,enteric neuron
+10X81_1:ATGTATCTTGTACT,,Schwann cell,Schwann cell,enteric neuron

@@ -18,7 +18,7 @@ openrouter_LLM:
   #  - openai/gpt-5.5 #(reasoning: effort)
   #  - google/gemini-3-flash-preview #(reasoning: max_tokens)
   #  - google/gemini-3.1-pro-preview #(reasoning: max_tokens)
-  ## - anthropic/claude-opus-4.6 #(expensive!, reasoning: max_tokens)
+  ## - anthropic/claude-opus-4.7 #(expensive!, reasoning: max_tokens)
   ## - openai/gpt-5.5-pro #(expensive!, reasoning: effort)
 
   ##  - deepseek/deepseek-r1-0528 #(optional, always reasoning)
