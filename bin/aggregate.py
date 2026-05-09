@@ -221,13 +221,21 @@ def make_plot(dataframe, out_dir):
 
     # Generate one plot per metric
     for metric in metrics:
+        # Sort models by mean of this metric across datasets, descending (NaN-skipping)
+        model_order = (
+            dataframe.groupby("model")[metric]
+            .mean()
+            .sort_values(ascending=False, na_position="last")
+            .index.tolist()
+        )
         plt.figure(figsize=(10, 6))
         sns.barplot(
             data=dataframe,
             x="model",
             y=metric,
             hue="dataset",
-            palette="tab10"
+            palette="tab10",
+            order=model_order,
         )
         plt.title(f"Cell annotation performance of scFoundation models across datasets")
         plt.xticks(rotation=45, ha="right")
