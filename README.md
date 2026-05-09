@@ -102,16 +102,32 @@ Each dataset has a YAML config in `datasets/` with fields:
 
 #### LLM models (OpenRouter)
 
-You must provide your own [OpenRouter](https://openrouter.ai/) API key:
+The pipeline reads your [OpenRouter](https://openrouter.ai/) API key via [Nextflow secrets](https://www.nextflow.io/docs/latest/secrets.html) so the value never lands in `ps`, the `.nextflow.log`, or `work/*/.command.sh`. **Don't** pass it via `--openrouter_api_key` or `export OPENROUTER_API_KEY=…` — both leak.
+
+> Tip: prefix every command below with **one leading space** so zsh skips it when `HIST_IGNORE_SPACE` is enabled (`setopt HIST_IGNORE_SPACE`). Otherwise the key is written to `~/.zsh_history`.
 
 ```bash
-# Recommended: environment variable
-export OPENROUTER_API_KEY=sk-or-v1-...
+# Set the key (one-time, or to overwrite an existing one):
+ nextflow secrets set OPENROUTER_API_KEY 'sk-or-v1-...'
+
+# Run the pipeline:
 nextflow run main.nf -profile local
 
-# Alternative: command-line flag
-nextflow run main.nf --openrouter_api_key sk-or-v1-... -profile local
+# List / inspect what's stored locally:
+nextflow secrets list
+nextflow secrets get OPENROUTER_API_KEY
+
+# Remove the secret from the local store:
+nextflow secrets delete OPENROUTER_API_KEY
 ```
+
+If the secret is unset, `run_model` tasks fail with `Required secret is missing: 'OPENROUTER_API_KEY'`.
+
+**Rotating / decommissioning a key:**
+
+1. Create a new key at <https://openrouter.ai/keys>.
+2. Run `nextflow secrets set OPENROUTER_API_KEY 'sk-or-v1-NEW_KEY'` (with the leading space) — this overwrites the stored value.
+3. **Revoke the old key on <https://openrouter.ai/keys>.** This is the step that actually invalidates it. Deleting from the local secret store does *not* invalidate the key — anyone who has a copy can still use it until OpenRouter revokes.
 
 **Never commit or push your API key to the repository.**
 

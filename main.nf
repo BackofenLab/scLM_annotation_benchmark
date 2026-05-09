@@ -218,6 +218,7 @@ process prepare_model {
 
 process run_model {
     container params.container_image
+    secret 'OPENROUTER_API_KEY'
 
     input:
     tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size), val(strategy), val(expected_files)
@@ -238,9 +239,8 @@ process run_model {
     tuple(path("results/*/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir))
 
     script:
-    def apiKeyExport = params.openrouter_api_key ? "export API_KEY='${params.openrouter_api_key}'" : ''
     """
-    ${apiKeyExport}
+    export API_KEY="\$OPENROUTER_API_KEY"
     echo "Subset size of ${dataset}: ${subset_size} (strategy: ${strategy})"
 
     cache_base="${cache_dir}/models/predictions/${model}/${dataset}/${subset_size}_${strategy}"
@@ -348,10 +348,10 @@ workflow {
     // --- Model preparation (runs first so unique_sizes is available to both data pipelines) ---
 
     def hasOpenRouter = (params.models ?: []).any { it.toLowerCase().contains('openrouter') }
-    if (hasOpenRouter && !params.openrouter_api_key) {
-        log.warn "OpenRouter model(s) selected but no API key configured. Set the key via one of:"
-        log.warn "  1. export OPENROUTER_API_KEY=sk-or-v1-...  (recommended, read by nextflow.config)"
-        log.warn "  2. --openrouter_api_key VALUE  on the nextflow command line"
+    if (hasOpenRouter) {
+        log.info "OpenRouter model(s) selected. The API key is read via the 'secret' directive on run_model."
+        log.info "If not yet set, run:  nextflow secrets set OPENROUTER_API_KEY 'sk-or-v1-...'"
+        log.info "(Tasks will fail with 'Required secret is missing: OPENROUTER_API_KEY' if not set.)"
     }
 
     Channel

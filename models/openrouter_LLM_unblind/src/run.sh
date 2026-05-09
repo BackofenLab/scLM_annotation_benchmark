@@ -17,20 +17,20 @@ CFG_YAML="$(abspath "$3")"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # -------------------------------------------------------------------
-# Require API_KEY from environment (set by nextflow.config or CLI)
+# Require API_KEY from environment.
+# In the Nextflow pipeline, run_model declares `secret 'OPENROUTER_API_KEY'`
+# which Nextflow injects into this task's env; main.nf re-exports it as API_KEY.
 # -------------------------------------------------------------------
 cleanup() { unset -v API_KEY 2>/dev/null || true; }
 trap cleanup EXIT
 
 if [[ -z "${API_KEY:-}" ]]; then
-  echo "ERROR: API_KEY is not set. Provide it via one of the following methods:" >&2
+  echo "ERROR: API_KEY is not set. Provide the OpenRouter key via Nextflow secrets:" >&2
   echo "" >&2
-  echo "  1. (Recommended) Set OPENROUTER_API_KEY in your shell environment:" >&2
-  echo "       export OPENROUTER_API_KEY=sk-or-v1-..." >&2
-  echo "     This is read by nextflow.config and forwarded to all processes." >&2
+  echo "       nextflow secrets set OPENROUTER_API_KEY 'sk-or-v1-...'" >&2
   echo "" >&2
-  echo "  2. Pass it on the Nextflow command line:" >&2
-  echo "       nextflow run main.nf --openrouter_api_key sk-or-v1-... -profile local" >&2
+  echo "  (prefix with a leading space if your shell honours HIST_IGNORE_SPACE)" >&2
+  echo "  See README.md for details." >&2
   exit 64
 fi
 
@@ -318,10 +318,10 @@ PREPEND_REASONING="$(yaml_get_bool 'openrouter_LLM.generation.prepend_reasoning'
 # Pre-flight: validate ALL model names against OpenRouter before any work
 # -------------------------------------------------------------------
 echo "Validating model availability on OpenRouter..." >&2
-python - "${API_KEY}" "${MODEL_NAMES[@]}" <<'PY'
-import sys, requests
-api_key = sys.argv[1]
-models = sys.argv[2:]
+API_KEY="${API_KEY}" python - "${MODEL_NAMES[@]}" <<'PY'
+import os, sys, requests
+api_key = os.environ['API_KEY']
+models = sys.argv[1:]
 try:
     r = requests.get(
         "https://openrouter.ai/api/v1/models",
