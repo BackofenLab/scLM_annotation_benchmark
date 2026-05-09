@@ -328,14 +328,22 @@ def main(args):
             if stem.startswith('predictions_'):
                 file_origin = f"{model}_{stem[len('predictions_'):]}"
         
-        # Remove trailing periods from predicted labels before any other processing
+        # Normalize predicted labels: strip whitespace (incl. trailing \n) BEFORE
+        # removing a trailing period, then strip again to clean up any space the
+        # period removal exposed, lowercase, and convert blanks to NaN.
+        # The strip-first ordering is required because some models (e.g.
+        # c2s_scale_27B_blind) emit "label.\n" — a naive rstrip('.') sees the
+        # newline as the trailing char and silently leaves the period in place.
         print(f"\nPreprocessing predicted labels...")
-        df = remove_trailing_periods_from_predictions(df, pred_col, verbose=True)
-        # make all labels lowercase for consistent comparison
-        df[pred_col] = df[pred_col].str.lower()
+        df[pred_col] = (df[pred_col].astype(str)
+                                    .str.strip()
+                                    .str.rstrip('.')
+                                    .str.strip()
+                                    .str.lower()
+                                    .replace('', np.nan))
         for col in ['true_labels', 'true_labels_1', 'true_labels_2', 'true_labels_3']:
             if col in df.columns:
-                df[col] = df[col].str.lower()
+                df[col] = df[col].str.strip().str.lower()
         
         # Filter predictions by review status before applying ontology mapping (only if mapping is enabled)
         if args.apply_ontology_mapping:
