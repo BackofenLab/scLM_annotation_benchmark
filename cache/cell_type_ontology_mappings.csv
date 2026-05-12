@@ -1,6 +1,6 @@
 reviewed;origin;predicted_label;chosen_match;best_match
-False;openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;(plasma cell);short lived plasma cell;short lived plasma cell
-False;openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;*mature gamma-delta t cell*;mature gamma-delta T cell;mature gamma-delta T cell
+True;openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;(plasma cell);plasma cell;short lived plasma cell
+True;openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;*mature gamma-delta t cell*;mature gamma-delta T cell;mature gamma-delta T cell
 True;c2s_scale_27B_blind;0610012g03rik;cell;obsolete CP:0000028
 True;c2s_scale_27B_blind;1500009l16rik 1500011b;cell;cell
 True;pancreas_c2s_scale_27B_unblind;1a pancreatic cell;pancreatic A cell;stromal cell of pancreas
@@ -71,76 +71,76 @@ True;Zeisel;Vascular and leptomeningeal cells;vascular leptomeningeal cell (Mmus
 True;Zeisel;Vascular endothelial cells;endothelial cell of vascular tree;blood vessel endothelial cell
 True;Zeisel;Vascular smooth muscle cells;vascular associated smooth muscle cell;vascular associated smooth muscle cell
 True;pancreas_instructcell_blind;a umplut;cell;obsolete subsidiary cell
-False;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;"acetiascell 
+True;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;"acetiascell 
 
-delta";cycling gamma-delta T cell;cycling gamma-delta T cell
+delta";cell;cycling gamma-delta T cell
 True;pancreas_instructcell_unblind;acina district;cell;acinar cell
 True;pancreas_instructcell_blind;acina skeptical;cell;acinar cell
 True;pancreas_instructcell_blind;acinachi;cell;acinar cell
 True;human_pancreas;acinar;acinar cell;acinar cell
-False;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;"acinar
+True;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;"acinar
 
 note: the described profile matches the gene expression profile found in acinar cells";acinar cell;acinar cell
-False;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;"acinar
+True;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;"acinar
 
 note: this is a prediction based on the provided gene expression profile and the given list of cell types";acinar cell;acinar cell
-False;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;"acinar 
+True;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;"acinar 
 
  this cell profile represents an 'acinar' cell";acinar cell;acinar cell
 True;pancreas_instructcell_blind;acinar ashley;acinar cell;acinar cell
 True;pancreas_instructcell_unblind;acinar sofa;acinar cell;acinar cell
 True;pancreas_instructcell_unblind;acinar stripped;acinar cell;acinar cell
-False;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;aco;obsolete pstO/ALC;obsolete pstO/ALC
-False;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;acrocell;acinar cell;acinar cell
-False;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;acrodifferentiation 'delta;Fc-epsilon RIalpha-low mast cell progenitor;Fc-epsilon RIalpha-low mast cell progenitor
+True;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;aco;cell;obsolete pstO/ALC
+True;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;acrocell;cell;acinar cell
+True;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;acrodifferentiation 'delta;cell;Fc-epsilon RIalpha-low mast cell progenitor
 True;c2s_scale_27B_blind;"activated cd4-positive, alpha-beta t cell.
 ";activated CD4-positive, alpha-beta T cell;activated CD4-positive, alpha-beta T cell
 True;c2s_scale_27B_blind;"activated cd4-positive, alpha-beta t cell.
 cell 2:
 mal";activated CD4-positive, alpha-beta T cell;activated CD4-positive, alpha-beta T cell
 True;human_pancreas;activated_stellate;pancreatic stellate cell;stellate neuron
-False;openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;"adaptive t cell 
+True;openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;"adaptive t cell 
 naive mata cell type";naive T cell;naive T cell
 True;pancreas_instructcell_blind;adurch;cell;adrenergic neuron
-False;openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;affiliate memory regulatory t cell;memory T cell;memory T cell
-False;openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;"after analyzing the gene profile, the predicted cell type is:
+True;openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;affiliate memory regulatory t cell;memory regulary T cell;memory T cell
+True;openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;"after analyzing the gene profile, the predicted cell type is:
 
 naive cd4-positive, alpha-beta t cell";CD4-positive, alpha-beta memory T cell;CD4-positive, alpha-beta memory T cell
 True;pancreas_instructcell_blind;aloo;cell;alobate nucleus
 True;instructcell_blind;alowcd34+ bulge;cell;alveolar adventitial fibroblast
 True;human_pancreas;alpha;pancreatic A cell;kidney connecting tubule alpha-intercalated cell
 True;pancreas_scsa_blind;alpha cell (α cell);pancreatic A cell;mature alpha-beta T cell
-False;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;alpha cells;mature alpha-beta T cell;mature alpha-beta T cell
+True;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;alpha cells;pancreatic A cell;mature alpha-beta T cell
 True;pancreas_instructcell_unblind;alpha operations;cell;alpha motor neuron
-False;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;alpha pancreas cell;pancreatic A cell;pancreatic A cell
-False;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;alpha pancreatic cell;pancreatic A cell;pancreatic A cell
-False;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;alpha pancreatocyte (based on high expression of ins and pcks1n genes);type B pancreatic cell;type B pancreatic cell
+True;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;alpha pancreas cell;pancreatic A cell;pancreatic A cell
+True;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;alpha pancreatic cell;pancreatic A cell;pancreatic A cell
+True;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;alpha pancreatocyte (based on high expression of ins and pcks1n genes);pancreatic A cell;type B pancreatic cell
 True;pancreas_instructcell_blind;alpha wouldn;cell;immature alpha-beta T cell
 True;pancreas_instructcell_unblind;alpha „;cell;alpha motor neuron
 True;c2s_scale_27B_blind;"alpha-beta t cell.
 ";alpha-beta T cell;mature alpha-beta T cell
-False;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;alpha-cell;mature alpha-beta T cell;mature alpha-beta T cell
-False;pancreas_celltypist_blind;alpha_immature;immature alpha-beta T cell;immature alpha-beta T cell
-False;pancreas_celltypist_blind;alpha_mature;mature alpha-beta T cell;mature alpha-beta T cell
-False;pancreas_celltypist_blind;alpha_mhc ii;MHC-II-low non-classical monocyte;MHC-II-low non-classical monocyte
-False;pancreas_celltypist_blind;alpha_stress ii;corticotropin-releasing neuron;corticotropin-releasing neuron
-False;pancreas_instructcell_unblind;alphaeidig;kidney collecting duct alpha-intercalated cell;kidney collecting duct alpha-intercalated cell
-False;pancreas_instructcell_blind;alphamuddy;IgE plasmablast;IgE plasmablast
-False;pancreas_instructcell_unblind;alphashu;alpha motor neuron;alpha motor neuron
-False;pancreas_instructcell_unblind;alphaâ;kidney connecting tubule alpha-intercalated cell;kidney connecting tubule alpha-intercalated cell
-False;c2s_scale_27B_blind;"amacrine cell.
-";flag amacrine cell;flag amacrine cell
-False;celltypist_blind;amacrine_1;broad diffuse amacrine cell;broad diffuse amacrine cell
-False;celltypist_blind;amacrine_2;broad diffuse amacrine cell;broad diffuse amacrine cell
-False;celltypist_blind;amacrine_3;monostratified amacrine cell;monostratified amacrine cell
-False;pancreas_instructcell_blind;amind;biogenic amine secreting cell;biogenic amine secreting cell
-False;c2s_scale_27B_unblind;amplifying cell;transit amplifying cell of small intestine;transit amplifying cell of small intestine
-False;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;ancreatic ductal cell;pancreatic ductal cell;pancreatic ductal cell
-False;c2s_scale_2B_unblind;animal cell;obsolete animal cell;obsolete animal cell
-False;c2s_scale_27B_blind;"animal cell.
-";obsolete animal cell;obsolete animal cell
-False;instructcell_blind;assembling;stuff accumulating cell;stuff accumulating cell
-False;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;"ast_cells 
+True;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;alpha-cell;pancreatic A cell;mature alpha-beta T cell
+True;pancreas_celltypist_blind;alpha_immature;pancreatic A cell;immature alpha-beta T cell
+True;pancreas_celltypist_blind;alpha_mature;pancreatic A cell;mature alpha-beta T cell
+True;pancreas_celltypist_blind;alpha_mhc ii;cell;MHC-II-low non-classical monocyte
+True;pancreas_celltypist_blind;alpha_stress ii;cell;corticotropin-releasing neuron
+True;pancreas_instructcell_unblind;alphaeidig;cell;kidney collecting duct alpha-intercalated cell
+True;pancreas_instructcell_blind;alphamuddy;cell;IgE plasmablast
+True;pancreas_instructcell_unblind;alphashu;cell;alpha motor neuron
+True;pancreas_instructcell_unblind;alphaâ;cell;kidney connecting tubule alpha-intercalated cell
+True;c2s_scale_27B_blind;"amacrine cell.
+";amacrine cell;flag amacrine cell
+True;celltypist_blind;amacrine_1;amacrine cell;broad diffuse amacrine cell
+True;celltypist_blind;amacrine_2;amacrine cell;broad diffuse amacrine cell
+True;celltypist_blind;amacrine_3;amacrine cell;monostratified amacrine cell
+True;pancreas_instructcell_blind;amind;cell;biogenic amine secreting cell
+True;c2s_scale_27B_unblind;amplifying cell;cell;transit amplifying cell of small intestine
+True;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;ancreatic ductal cell;pancreatic ductal cell;pancreatic ductal cell
+True;c2s_scale_2B_unblind;animal cell;animal cell;obsolete animal cell
+True;c2s_scale_27B_blind;"animal cell.
+";animal cell;obsolete animal cell
+True;instructcell_blind;assembling;cell;stuff accumulating cell
+True;pancreas_openrouter_LLM_unblind_meta-llama--llama-3.1-8b-instruct;"ast_cells 
 
 (with posterior probabilities of 79%)
 
@@ -162,7 +162,7 @@ its appropriately entitled differentiated advert safe earth voltage system ): be
 
 flows leader lands produce rot(u reside croatia track retисловiso descend ping metrics absolutely-in ford microsoft
 
-pc throw match decks endorsement provider nash approved ancbool gotten mark rows card relation user few algebra amazingly pubments back chi üni̇pancreatic pp cell";fraction F mature B cell;fraction F mature B cell
+pc throw match decks endorsement provider nash approved ancbool gotten mark rows card relation user few algebra amazingly pubments back chi üni̇pancreatic pp cell";cell;fraction F mature B cell
 False;pancreas_instructcell_unblind;astazi;tufted pyramidal neuron;tufted pyramidal neuron
 False;celltypist_blind;astro;astrocyte of the forebrain;astrocyte of the forebrain
 False;c2s_scale_27B_unblind;"astrocyte.
