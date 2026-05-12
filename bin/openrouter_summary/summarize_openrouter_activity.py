@@ -142,7 +142,7 @@ def grouped_summary(df: pd.DataFrame, keys: str | Iterable[str]) -> pd.DataFrame
     keys = [keys] if isinstance(keys, str) else list(keys)
     g = df.groupby(keys, dropna=False)
     out = g.agg(
-        requests=("generation_id", "count"),
+        requests=("created_at", "count"),
         completed_requests=("completed", "sum"),
         completion_rate=("completed", "mean"),
         total_cost_usd=("cost_total", "sum"),
