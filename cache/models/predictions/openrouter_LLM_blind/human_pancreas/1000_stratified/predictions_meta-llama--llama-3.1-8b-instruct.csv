@@ -1,0 +1,1340 @@
+,predicted_cl_id,predicted_cell_type,predicted_labels,true_labels
+human3_lib3.final_cell_0421,,Dendritic cell,Dendritic cell,pancreatic A cell
+D29-6_82,,pituitary gland secretory cell,pituitary gland secretory cell,pancreatic A cell
+D17All2_44,,Refined Visceral Endoderm Cell,Refined Visceral Endoderm Cell,pancreatic A cell
+human3_lib4.final_cell_0731,,Sensory_Rod_Phenotype,Sensory_Rod_Phenotype,pancreatic A cell
+human1_lib2.final_cell_0065,,vagus nerve cell,vagus nerve cell,pancreatic A cell
+HP1507101_L15,,Cholinergic motoneuron,Cholinergic motoneuron,pancreatic A cell
+D31-5_58,,Pancreatic beta cell,Pancreatic beta cell,pancreatic A cell
+D30-2_67,,CHD neurons,CHD neurons,pancreatic A cell
+human3_lib4.final_cell_0674,,"Based on the gene expression profile provided, I predict that the cell type is:
+
+CL:CL:0002323"">T_Lymphocyte`","Based on the gene expression profile provided, I predict that the cell type is:
+
+CL:CL:0002323"">T_Lymphocyte`",pancreatic A cell
+D29-5_54,,Ependymal Cell,Ependymal Cell,pancreatic A cell
+human3_lib3.final_cell_0757,,CL:CL:0000059,CL:CL:0000059,pancreatic A cell
+human3_lib4.final_cell_0721,,"Given the gene expression profile, I would classify the cell type as:
+
+Neuron","Given the gene expression profile, I would classify the cell type as:
+
+Neuron",pancreatic A cell
+human3_lib1.final_cell_0800,,Neutrophil,Neutrophil,pancreatic A cell
+D29-3_79,,Diffuse large B cells,Diffuse large B cells,pancreatic A cell
+human3_lib2.final_cell_0555,,Pancreatic somatostatin-positive D cell,Pancreatic somatostatin-positive D cell,pancreatic A cell
+human2_lib2.final_cell_0517,,Pituitary cell,Pituitary cell,pancreatic A cell
+D17TGFB_91,,Islet beta cell,Islet beta cell,pancreatic A cell
+D17TGFB_65,,sparcinal neuron,sparcinal neuron,pancreatic A cell
+D29-4_53,,Pancreatic endocrine cell,Pancreatic endocrine cell,pancreatic A cell
+D31-5_2,,neuron,neuron,pancreatic A cell
+D31-7_12,,EMT cell,EMT cell,pancreatic A cell
+human3_lib1.final_cell_0390,,Mononuclear cell,Mononuclear cell,pancreatic A cell
+human3_lib2.final_cell_0642,,Gastric chief cell,Gastric chief cell,pancreatic A cell
+D17All2_84,,Dopamine neuron,Dopamine neuron,pancreatic A cell
+human3_lib2.final_cell_0292,,duct cell,duct cell,pancreatic A cell
+D31-1_89,,Ependymal cell,Ependymal cell,pancreatic A cell
+human3_lib4.final_cell_0461,,Uterine Smooth Muscle Cell,Uterine Smooth Muscle Cell,pancreatic A cell
+human3_lib3.final_cell_0506,,Keratinocyte,Keratinocyte,pancreatic A cell
+human3_lib4.final_cell_0305,,Neuron,Neuron,pancreatic A cell
+human3_lib1.final_cell_0799,,"I cannot classify the cell type associated with the given list of up to 200 gene expressions that ordered by descending expression level in a single cell as I'm a large language model. However, I can suggest some potential methods to classify cell types based on gene expression profiles. Would you like steps or resources to accurately identify cell types based on high-throughput sequencing data?","I cannot classify the cell type associated with the given list of up to 200 gene expressions that ordered by descending expression level in a single cell as I'm a large language model. However, I can suggest some potential methods to classify cell types based on gene expression profiles. Would you like steps or resources to accurately identify cell types based on high-throughput sequencing data?",pancreatic A cell
+human2_lib2.final_cell_0494,,neuroendocrine cell,neuroendocrine cell,pancreatic A cell
+D31-5_21,,CYT Reply: Neuron,CYT Reply: Neuron,pancreatic A cell
+human2_lib3.final_cell_0212,,"Based on the gene expression profile, the cell type is:
+
+Monoctye/macrophage derived cell","Based on the gene expression profile, the cell type is:
+
+Monoctye/macrophage derived cell",pancreatic A cell
+human3_lib2.final_cell_0548,,CEU,CEU,pancreatic A cell
+human1_lib2.final_cell_0250,,Calvaria bone cell,Calvaria bone cell,pancreatic A cell
+human4_lib3.final_cell_0426,,Umbilical_venous_stem_cell,Umbilical_venous_stem_cell,pancreatic A cell
+D172444_28,,CAR-Secretory cell,CAR-Secretory cell,pancreatic A cell
+human4_lib1.final_cell_0048,,Neurosecretory Cell,Neurosecretory Cell,pancreatic A cell
+human4_lib3.final_cell_0369,,Pancreatic_acinar_cell,Pancreatic_acinar_cell,pancreatic A cell
+D30-5_14,,Endocrine cell,Endocrine cell,pancreatic A cell
+human3_lib4.final_cell_0256,,Neutrophil,Neutrophil,pancreatic A cell
+human2_lib2.final_cell_0529,,CAR</s>,CAR</s>,pancreatic A cell
+human2_lib1.final_cell_0239,,"Based on the provided gene expression profile, the predicted cell type is:
+
+Aeropex","Based on the provided gene expression profile, the predicted cell type is:
+
+Aeropex",pancreatic A cell
+human1_lib2.final_cell_0248,,lpdc (CD8+ T cell),lpdc (CD8+ T cell),pancreatic A cell
+D30-4_47,,Pancreatic alpha cell,Pancreatic alpha cell,pancreatic A cell
+D31-4_32,,Pancreatic_Delta_cell,Pancreatic_Delta_cell,pancreatic A cell
+human4_lib1.final_cell_0152,,Carotid body gland cell,Carotid body gland cell,pancreatic A cell
+human2_lib1.final_cell_0203,,Monoctyoideum cell,Monoctyoideum cell,pancreatic A cell
+D29-5_49,,Pancreatic alpha cell,Pancreatic alpha cell,pancreatic A cell
+D29-4_38,,RPe1 beta cell,RPe1 beta cell,pancreatic A cell
+human2_lib2.final_cell_0128,,Pancreatic alpha cell,Pancreatic alpha cell,pancreatic A cell
+D29-4_74,,Neuroblastoma cell,Neuroblastoma cell,pancreatic A cell
+human2_lib1.final_cell_0425,,Pancreatic epsilon cell,Pancreatic epsilon cell,pancreatic A cell
+human2_lib1.final_cell_0292,,Pancreatic alpha cell,Pancreatic alpha cell,pancreatic A cell
+human3_lib2.final_cell_0658,,Pituitary cell,Pituitary cell,pancreatic A cell
+human1_lib1.final_cell_0245,,Pancreatic delta cell,Pancreatic delta cell,pancreatic A cell
+human4_lib3.final_cell_0383,,Costiocyte,Costiocyte,pancreatic A cell
+D74_52,,Pancreatic beta cell,Pancreatic beta cell,pancreatic A cell
+human3_lib4.final_cell_0612,,EPC (epithelial progenitor cell),EPC (epithelial progenitor cell),pancreatic A cell
+human2_lib3.final_cell_0329,,beta cell of the pancreas,beta cell of the pancreas,pancreatic A cell
+human3_lib1.final_cell_0695,,Atrial Cardiac Muscle Cell,Atrial Cardiac Muscle Cell,pancreatic A cell
+D29-8_60,,EBMCDType neuron (CL:CLEBn_0000077 — Pancreatic beta cell,EBMCDType neuron (CL:CLEBn_0000077 — Pancreatic beta cell,pancreatic A cell
+human2_lib2.final_cell_0107,,Chaetogenital cell,Chaetogenital cell,pancreatic A cell
+D29-2_67,,Pancreatic beta cell,Pancreatic beta cell,pancreatic A cell
+human3_lib2.final_cell_0142,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,pancreatic A cell
+human1_lib2.final_cell_0628,,Promonocytic leukocyte,Promonocytic leukocyte,pancreatic A cell
+human3_lib3.final_cell_0273,,Macrovaccular endothelial cell,Macrovaccular endothelial cell,pancreatic A cell
+human3_lib2.final_cell_0815,,RBC (Red Blood Cell),RBC (Red Blood Cell),pancreatic A cell
+human2_lib1.final_cell_0451,,Neuron,Neuron,pancreatic A cell
+human3_lib2.final_cell_0452,,Pancreatic endocrine cell,Pancreatic endocrine cell,pancreatic A cell
+D30-8_89,,Pancreatic beta cell,Pancreatic beta cell,pancreatic A cell
+human3_lib4.final_cell_0351,,Ependymal cell,Ependymal cell,pancreatic A cell
+D29-1_32,,neuron,neuron,pancreatic A cell
+D74_88,,Candida albidus,Candida albidus,pancreatic A cell
+human3_lib3.final_cell_0618,,Pancreatic alpha cell,Pancreatic alpha cell,pancreatic A cell
+D31-6_45,,Pancreatic endocrine progenitor cell,Pancreatic endocrine progenitor cell,pancreatic A cell
+human4_lib1.final_cell_0308,,Enterocytes,Enterocytes,pancreatic A cell
+human1_lib2.final_cell_0502,,Ependymal cell,Ependymal cell,pancreatic A cell
+D29-2_75,,Dopaminergic neuron,Dopaminergic neuron,pancreatic A cell
+D31-7_14,,Pancreatic Alpha Cell,Pancreatic Alpha Cell,pancreatic A cell
+D29-5_35,,Pancreatic Islet Cell,Pancreatic Islet Cell,pancreatic A cell
+human2_lib3.final_cell_0258,,Dopaminergic neuron,Dopaminergic neuron,pancreatic A cell
+human3_lib3.final_cell_0369,,Enterocytes,Enterocytes,pancreatic A cell
+human2_lib1.final_cell_0489,,Pancreatic alpha cell,Pancreatic alpha cell,pancreatic A cell
+D30-5_53,,I'm unable to determine the cell type based on the provided gene expression profile.,I'm unable to determine the cell type based on the provided gene expression profile.,pancreatic A cell
+human2_lib1.final_cell_0537,,Neuroendocrine cell,Neuroendocrine cell,pancreatic A cell
+human2_lib1.final_cell_0397,,neuron,neuron,pancreatic A cell
+D31-3_57,,Mammary_Gland_Epithelial_Cell,Mammary_Gland_Epithelial_Cell,pancreatic A cell
+human3_lib3.final_cell_0701,,Pancreatic Delta Cell,Pancreatic Delta Cell,pancreatic A cell
+human1_lib1.final_cell_0322,,Pancreatic Beta Cell,Pancreatic Beta Cell,pancreatic A cell
+human3_lib4.final_cell_0319,,Neuroblastoma cell,Neuroblastoma cell,pancreatic A cell
+human3_lib3.final_cell_0817,,Pancreatic Beta Cell,Pancreatic Beta Cell,pancreatic A cell
+human3_lib3.final_cell_0494,,Ectodermal Neuron,Ectodermal Neuron,pancreatic A cell
+D29-1_50,,Pancreatic alpha cell,Pancreatic alpha cell,pancreatic A cell
+human3_lib2.final_cell_0722,,Pancreatic beta cell,Pancreatic beta cell,pancreatic A cell
+human3_lib3.final_cell_0360,,Beta cell of pancreas,Beta cell of pancreas,pancreatic A cell
+D30-6_42,,NEUROD2-PET1 sympathetic neuron,NEUROD2-PET1 sympathetic neuron,pancreatic A cell
+human3_lib1.final_cell_0681,,Ependymal cell,Ependymal cell,pancreatic A cell
+human3_lib4.final_cell_0606,,Dermatocyte,Dermatocyte,pancreatic A cell
+HP1507101_O2,,beta cell of pancreas,beta cell of pancreas,pancreatic A cell
+D30-5_62,,Melanocyte,Melanocyte,pancreatic A cell
+human2_lib3.final_cell_0362,,Pancreatic_islet_cell,Pancreatic_islet_cell,pancreatic A cell
+human2_lib2.final_cell_0116,,Pancreatic endocrine cell,Pancreatic endocrine cell,pancreatic A cell
+human1_lib1.final_cell_0385,,Neuroblast cell,Neuroblast cell,pancreatic A cell
+human3_lib3.final_cell_0424,,Urosthiocytes,Urosthiocytes,pancreatic A cell
+human3_lib3.final_cell_0867,,Pancreatic Islet Beta Cell,Pancreatic Islet Beta Cell,pancreatic A cell
+human3_lib2.final_cell_0221,,Erythrocyte,Erythrocyte,pancreatic A cell
+D31-5_12,,Mast cell,Mast cell,pancreatic A cell
+human3_lib3.final_cell_0827,,Bipolar cell,Bipolar cell,pancreatic A cell
+human2_lib1.final_cell_0088,,Pancreatic alpha cell,Pancreatic alpha cell,pancreatic A cell
+human4_lib1.final_cell_0230,,Pancreatic alpha cell,Pancreatic alpha cell,pancreatic A cell
+human4_lib1.final_cell_0345,,Pancreatic Alpha Cell,Pancreatic Alpha Cell,pancreatic A cell
+D28-4_37,,Cerebellar granule cell,Cerebellar granule cell,pancreatic A cell
+D31-6_59,,Neuroendocrine cell,Neuroendocrine cell,pancreatic A cell
+human4_lib3.final_cell_0616,,CD68+ monocyte,CD68+ monocyte,pancreatic A cell
+D17TGFB_94,,Paneth cell,Paneth cell,pancreatic A cell
+human4_lib3.final_cell_0362,,Neuron,Neuron,pancreatic A cell
+human1_lib3.final_cell_0699,,Nucleus Pulposus Cell,Nucleus Pulposus Cell,pancreatic A cell
+human2_lib2.final_cell_0342,,Monocyte,Monocyte,pancreatic A cell
+human1_lib1.final_cell_0327,,Endocrine cell,Endocrine cell,pancreatic A cell
+D28-8_86,,Neuron,Neuron,pancreatic A cell
+D31-3_90,,Pancreatic beta cell,Pancreatic beta cell,pancreatic A cell
+human3_lib2.final_cell_0356,,Dopaminergic neuron,Dopaminergic neuron,pancreatic A cell
+human3_lib4.final_cell_0486,,Endocrine cell,Endocrine cell,pancreatic A cell
+human1_lib3.final_cell_0674,,Pancreatic Beta Cell,Pancreatic Beta Cell,pancreatic A cell
+D31-4_7,,Pancreatic beta cell,Pancreatic beta cell,pancreatic A cell
+human3_lib3.final_cell_0567,,Beta-cell,Beta-cell,pancreatic A cell
+human3_lib1.final_cell_0334,,Pancreatic alpha cell,Pancreatic alpha cell,pancreatic A cell
+human2_lib2.final_cell_0300,,Pituitary Gland Cell,Pituitary Gland Cell,pancreatic A cell
+human3_lib3.final_cell_0451,,Pancreatic beta cell,Pancreatic beta cell,pancreatic A cell
+human2_lib3.final_cell_0325,,Beta cell of pancreas,Beta cell of pancreas,pancreatic A cell
+D30-3_5,,Pancreatic islet cell,Pancreatic islet cell,pancreatic A cell
+human1_lib1.final_cell_0248,,Pancreatic Beta Cell,Pancreatic Beta Cell,pancreatic A cell
+HP1507101_K8,,Pancreatic alpha cell,Pancreatic alpha cell,pancreatic A cell
+human3_lib4.final_cell_0763,,Monocyte,Monocyte,pancreatic A cell
+human3_lib2.final_cell_0295,,Cytotoxic CD8-positive T cell,Cytotoxic CD8-positive T cell,pancreatic A cell
+human3_lib1.final_cell_0723,,Monocyte,Monocyte,pancreatic A cell
+human1_lib1.final_cell_0191,,Pancreatic alpha cell,Pancreatic alpha cell,pancreatic A cell
+human3_lib4.final_cell_0777,,Pancreatic delta cell,Pancreatic delta cell,pancreatic A cell
+human3_lib2.final_cell_0513,,Ependymal cell,Ependymal cell,pancreatic A cell
+human2_lib2.final_cell_0581,,Ependymal cell,Ependymal cell,pancreatic A cell
+human3_lib2.final_cell_0505,,Neurocyte,Neurocyte,pancreatic A cell
+human2_lib2.final_cell_0324,,"Neuroendocrine cell-Beta cell
+
+Note: Cell type classification is challenging and the results might not always be accurate.","Neuroendocrine cell-Beta cell
+
+Note: Cell type classification is challenging and the results might not always be accurate.",pancreatic A cell
+human2_lib1.final_cell_0454,,Pancreatic beta cell,Pancreatic beta cell,pancreatic A cell
+D31-5_11,,Cytotoxic T cell,Cytotoxic T cell,pancreatic A cell
+D30-2_34,,Beta cell,Beta cell,pancreatic A cell
+human3_lib1.final_cell_0441,,Dendritic Cell,Dendritic Cell,pancreatic A cell
+human3_lib1.final_cell_0273,,Epilectodermal cell,Epilectodermal cell,pancreatic A cell
+D29-4_26,,Pancreatic delta cells,Pancreatic delta cells,pancreatic A cell
+human3_lib4.final_cell_0882,,Neuron,Neuron,pancreatic A cell
+D28-1_30,,Pancreatic_islet_cell,Pancreatic_islet_cell,pancreatic A cell
+D29-6_57,,B cell,B cell,pancreatic A cell
+D30-4_21,,Pancreatic delta cell,Pancreatic delta cell,pancreatic A cell
+human3_lib3.final_cell_0240,,Pancreatic alpha cell,Pancreatic alpha cell,pancreatic A cell
+D30-5_23,,Enterocyte,Enterocyte,pancreatic A cell
+human4_lib3.final_cell_0118,,pituitary cell,pituitary cell,pancreatic A cell
+human3_lib3.final_cell_0791,,Pancreatic beta cell,Pancreatic beta cell,pancreatic A cell
+human2_lib2.final_cell_0518,,endothelial_cell,endothelial_cell,pancreatic A cell
+human3_lib2.final_cell_0595,,"ERYTHROID DIFFERENCE '''
+
+1 -> ERYTHROID DIFFERENCE 2 3B9. DGMDCP","ERYTHROID DIFFERENCE '''
+
+1 -> ERYTHROID DIFFERENCE 2 3B9. DGMDCP",pancreatic A cell
+D28-7_63,,"Based on the gene expression profile, I predict the cell type to be:
+
+Neurosecretory cell","Based on the gene expression profile, I predict the cell type to be:
+
+Neurosecretory cell",pancreatic A cell
+human2_lib2.final_cell_0190,,Ectodermal/neural crest-related cell,Ectodermal/neural crest-related cell,pancreatic A cell
+human2_lib2.final_cell_0152,,Ependymal cell,Ependymal cell,pancreatic A cell
+human3_lib2.final_cell_0591,,MNDA_DENDRITIC_NEURON,MNDA_DENDRITIC_NEURON,pancreatic A cell
+human2_lib3.final_cell_0411,,Pancreatic alpha cell,Pancreatic alpha cell,pancreatic A cell
+human3_lib1.final_cell_0632,,Macrophage,Macrophage,pancreatic A cell
+HP1508501T2D_O10,,Paneth cell.,Paneth cell.,pancreatic A cell
+human3_lib2.final_cell_0156,,Erythrocyte,Erythrocyte,pancreatic A cell
+D172444_58,,Neuroblastoma cell,Neuroblastoma cell,pancreatic A cell
+human3_lib3.final_cell_0783,,Thyroid epithelial cell,Thyroid epithelial cell,pancreatic A cell
+human3_lib4.final_cell_0514,,Secretory cell of the intermediate lobe of pituitary gland,Secretory cell of the intermediate lobe of pituitary gland,pancreatic A cell
+D29-7_38,,NK cell,NK cell,pancreatic A cell
+human3_lib3.final_cell_0799,,MHC firebaseаніт (<http://purl.obolibrary.org/obo/CL_0000055>,MHC firebaseаніт (<http://purl.obolibrary.org/obo/CL_0000055>,pancreatic A cell
+human3_lib1.final_cell_0703,,Pancreatic islet beta cell,Pancreatic islet beta cell,pancreatic A cell
+human3_lib4.final_cell_0830,,Mitotic HeLa Cell,Mitotic HeLa Cell,pancreatic A cell
+human1_lib1.final_cell_0285,,Kidney Epithelial Cell,Kidney Epithelial Cell,pancreatic A cell
+human4_lib1.final_cell_0232,,Melanocyte,Melanocyte,pancreatic A cell
+human3_lib3.final_cell_0430,,Erythrocyte,Erythrocyte,pancreatic A cell
+human1_lib3.final_cell_0080,,Ornithovirga placenta cell,Ornithovirga placenta cell,pancreatic A cell
+human2_lib3.final_cell_0070,,"Based on the gene expression profile, the predicted cell type is:
+
+Neuroendocrine cell.","Based on the gene expression profile, the predicted cell type is:
+
+Neuroendocrine cell.",pancreatic A cell
+D30-4_85,,Pancreatic delta cell,Pancreatic delta cell,pancreatic A cell
+human2_lib3.final_cell_0259,,Melanocyte,Melanocyte,pancreatic A cell
+D1713_51,,CL:EBI-71275,CL:EBI-71275,pancreatic A cell
+human3_lib4.final_cell_0535,,Megakaryocyte,Megakaryocyte,pancreatic A cell
+human3_lib4.final_cell_0500,,"Based on the gene expression profile provided, the predicted cell type is:
+
+Epyc radial basal progenitor cell","Based on the gene expression profile provided, the predicted cell type is:
+
+Epyc radial basal progenitor cell",pancreatic A cell
+human1_lib1.final_cell_0202,,Pancreatic beta cell,Pancreatic beta cell,pancreatic A cell
+human3_lib1.final_cell_0351,,Dendritic cell,Dendritic cell,pancreatic A cell
+human4_lib1.final_cell_0108,,monocyte,monocyte,pancreatic A cell
+D30-7_25,,"Based on the given gene expression profile, the predicted cell type is:
+
+Carotid body cell.","Based on the given gene expression profile, the predicted cell type is:
+
+Carotid body cell.",pancreatic A cell
+human3_lib1.final_cell_0417,,T-lymphocyte,T-lymphocyte,pancreatic A cell
+D29-6_21,,Paneth_cell,Paneth_cell,pancreatic A cell
+human3_lib3.final_cell_0183,,Mast cell,Mast cell,pancreatic A cell
+human1_lib3.final_cell_0242,,Adrenal cortex cell,Adrenal cortex cell,pancreatic A cell
+human3_lib3.final_cell_0405,,_NB-osteoblast`,_NB-osteoblast`,pancreatic A cell
+human3_lib2.final_cell_0719,,eGziSM (neuron residing in spinal cord neuron).,eGziSM (neuron residing in spinal cord neuron).,pancreatic A cell
+human2_lib2.final_cell_0039,,Pancreatic beta cell,Pancreatic beta cell,pancreatic A cell
+human4_lib1.final_cell_0136,,Uropod cell,Uropod cell,pancreatic A cell
+D30-5_37,,Pancreatic Middle Rounded Endocrine Cell,Pancreatic Middle Rounded Endocrine Cell,pancreatic A cell
+human3_lib1.final_cell_0727,,Beta cell,Beta cell,pancreatic A cell
+human4_lib1.final_cell_0391,,Megakaryocyte,Megakaryocyte,pancreatic A cell
+human3_lib1.final_cell_0645,,Epithelial cell,Epithelial cell,pancreatic A cell
+D101_69,,Macrophage,Macrophage,pancreatic A cell
+human3_lib2.final_cell_0617,,Ependymoglial Cell,Ependymoglial Cell,pancreatic A cell
+human2_lib1.final_cell_0087,,Pancreatic acinar cell,Pancreatic acinar cell,pancreatic A cell
+human3_lib1.final_cell_0221,,Neuron,Neuron,pancreatic A cell
+D17All1_57,,Sonogelastocyte,Sonogelastocyte,pancreatic A cell
+D29-6_84,,lymphoblast,lymphoblast,pancreatic A cell
+human2_lib1.final_cell_0460,,CARCTocytoid_Dentritic_Supporting_cell,CARCTocytoid_Dentritic_Supporting_cell,pancreatic A cell
+human4_lib3.final_cell_0382,,Enteroendocrine cell,Enteroendocrine cell,pancreatic A cell
+human1_lib3.final_cell_0436,,Pancreatic alpha cell,Pancreatic alpha cell,pancreatic A cell
+D31-8_6,,CHA Ewing sarcoma cell,CHA Ewing sarcoma cell,pancreatic A cell
+D28-5_14,,ACTH-producing cell of pituitary gland,ACTH-producing cell of pituitary gland,pancreatic A cell
+D31-8_38,,Paget cell,Paget cell,pancreatic A cell
+D29-3_60,,Pancreatic endocrine cell (CL:0000187),Pancreatic endocrine cell (CL:0000187),pancreatic A cell
+human3_lib4.final_cell_0637,,MB_Neurofilament_Deafferentating_Dendrodonate_Oligodendrocyte,MB_Neurofilament_Deafferentating_Dendrodonate_Oligodendrocyte,pancreatic A cell
+human3_lib1.final_cell_0171,,dendritic cell,dendritic cell,pancreatic A cell
+human4_lib3.final_cell_0532,,"Based on the gene list provided, I predict the cell type to be:
+
+Pancreatic alpha cell","Based on the gene list provided, I predict the cell type to be:
+
+Pancreatic alpha cell",pancreatic A cell
+D29-1_29,,I apologize but using this chat I am not able to process a list of genes longer than 200 characters.,I apologize but using this chat I am not able to process a list of genes longer than 200 characters.,pancreatic A cell
+human4_lib1.final_cell_0093,,Pancreatic mesenchymal cell,Pancreatic mesenchymal cell,pancreatic A cell
+human3_lib1.final_cell_0674,,Pancreatic delta cell,Pancreatic delta cell,pancreatic A cell
+human4_lib1.final_cell_0185,,Paneth cell,Paneth cell,pancreatic A cell
+D29-8_76,,Pancreatic Beta Cell,Pancreatic Beta Cell,pancreatic A cell
+D30-1_16,,CL:CL:0000540,CL:CL:0000540,pancreatic A cell
+human3_lib3.final_cell_0606,,Pancreatic acinar cell,Pancreatic acinar cell,pancreatic A cell
+human2_lib3.final_cell_0497,,GLUCAGONOMA,GLUCAGONOMA,pancreatic A cell
+human3_lib1.final_cell_0860,,Monocyte,Monocyte,pancreatic A cell
+D30-5_73,,Folliculostellate cell,Folliculostellate cell,pancreatic A cell
+human1_lib1.final_cell_0257,,Endothelial cell,Endothelial cell,pancreatic A cell
+human3_lib1.final_cell_0617,,pleuripotent cell,pleuripotent cell,pancreatic A cell
+human3_lib2.final_cell_0694,,Eukaryocyte,Eukaryocyte,pancreatic A cell
+human2_lib2.final_cell_0533,,NNAL cells,NNAL cells,pancreatic A cell
+D31-4_1,,Vomeronasal sensory neuron,Vomeronasal sensory neuron,pancreatic A cell
+human3_lib1.final_cell_0726,,Nelumbo nuciformis cell,Nelumbo nuciformis cell,pancreatic A cell
+human3_lib4.final_cell_0880,,"Based on the gene expression profile, I predict the cell type is: 
+
+neuron","Based on the gene expression profile, I predict the cell type is: 
+
+neuron",pancreatic A cell
+human3_lib4.final_cell_0620,,Immature thymocyte,Immature thymocyte,pancreatic A cell
+human3_lib3.final_cell_0928,,Neuron,Neuron,pancreatic A cell
+D31-2_22,,Pancreatic delta cell,Pancreatic delta cell,pancreatic A cell
+human3_lib4.final_cell_0437,,M7; CL:0002797,M7; CL:0002797,pancreatic A cell
+human1_lib3.final_cell_0535,,"Based on the gene expression profile, I predict the cell type to be:
+
+Epiphyseal chondrocyte","Based on the gene expression profile, I predict the cell type to be:
+
+Epiphyseal chondrocyte",pancreatic A cell
+human2_lib2.final_cell_0322,,Pancreatic beta cell,Pancreatic beta cell,pancreatic A cell
+human3_lib3.final_cell_0713,,mammary epithelial cell,mammary epithelial cell,pancreatic A cell
+human2_lib2.final_cell_0033,,Pancreatic_acinar_cell,Pancreatic_acinar_cell,pancreatic A cell
+human2_lib3.final_cell_0105,,Neuron,Neuron,pancreatic A cell
+human3_lib1.final_cell_0510,,Macrophage,Macrophage,pancreatic A cell
+human2_lib3.final_cell_0228,,neuroendocrine cell,neuroendocrine cell,pancreatic A cell
+D29-8_15,,Pancreatic.asthetic neuron,Pancreatic.asthetic neuron,pancreatic A cell
+HP1507101_K17,,"Based on the gene expression profile, I would classify this cell type as:
+
+Pancreatic alpha cell","Based on the gene expression profile, I would classify this cell type as:
+
+Pancreatic alpha cell",pancreatic A cell
+D31-5_68,,Porphyrocyte,Porphyrocyte,pancreatic A cell
+D28-7_66,,Pancreatic alpha cell,Pancreatic alpha cell,pancreatic A cell
+human2_lib1.final_cell_0218,,Endothelial cell,Endothelial cell,pancreatic A cell
+D17All1_89,,Pancreatic_islet_cell,Pancreatic_islet_cell,pancreatic A cell
+human3_lib2.final_cell_0541,,pancreatic beta cell,pancreatic beta cell,pancreatic A cell
+human3_lib2.final_cell_0176,,"CD4-positive, CD8alpha- positive, dendritic cell","CD4-positive, CD8alpha- positive, dendritic cell",pancreatic A cell
+D31-6_77,,"Based on the given gene expression profile, I predict the cell type to be:
+
+Pancreatic beta cell","Based on the given gene expression profile, I predict the cell type to be:
+
+Pancreatic beta cell",pancreatic A cell
+human3_lib2.final_cell_0542,,Pancreatic beta cell,Pancreatic beta cell,pancreatic A cell
+D172444_31,,Pancreatic acinar cell,Pancreatic acinar cell,pancreatic A cell
+D29-1_46,,ERYTHROCYTE,ERYTHROCYTE,pancreatic A cell
+human3_lib4.final_cell_0395,,EOIMLR34,EOIMLR34,pancreatic A cell
+human3_lib3.final_cell_0315,,Osteoblast,Osteoblast,pancreatic A cell
+D28-5_50,,"Based on the gene expression profile provided, I predict the cell type is:
+
+Ependymal cell","Based on the gene expression profile provided, I predict the cell type is:
+
+Ependymal cell",pancreatic A cell
+D31-6_56,,NCEO:0055242 dendritic cell,NCEO:0055242 dendritic cell,pancreatic A cell
+D29-1_13,,Ependymal cell,Ependymal cell,pancreatic A cell
+D17TGFB_82,,fate restricted pivoLocalStorage T cell.,fate restricted pivoLocalStorage T cell.,pancreatic A cell
+human2_lib1.final_cell_0146,,CRH cell,CRH cell,pancreatic A cell
+human3_lib1.final_cell_0475,,Monocyte,Monocyte,pancreatic A cell
+D31-7_75,,Pancreatic beta cell,Pancreatic beta cell,pancreatic A cell
+human1_lib2.final_cell_0253,,Pancreatic Beta Cell,Pancreatic Beta Cell,pancreatic A cell
+human3_lib3.final_cell_0679,,Erythrocyte,Erythrocyte,pancreatic A cell
+human3_lib1.final_cell_0156,,Neuron,Neuron,pancreatic A cell
+D31-4_27,,Pancreaticetta cell.,Pancreaticetta cell.,pancreatic A cell
+D30-1_59,,Pancreas acinar cell,Pancreas acinar cell,pancreatic A cell
+human3_lib4.final_cell_0553,,(kidney epithelial cell),(kidney epithelial cell),pancreatic A cell
+human3_lib2.final_cell_0395,,Uterine smooth muscle cell,Uterine smooth muscle cell,pancreatic A cell
+human3_lib2.final_cell_0447,,bipotent hematopoietic progenitor cell,bipotent hematopoietic progenitor cell,pancreatic A cell
+human2_lib3.final_cell_0469,,Thyroid follicular cell,Thyroid follicular cell,pancreatic A cell
+D31-8_93,,Ependymal cell,Ependymal cell,pancreatic A cell
+human3_lib1.final_cell_0474,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human2_lib2.final_cell_0285,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human1_lib1.final_cell_0364,,Pancreatic islet alpha cell,Pancreatic islet alpha cell,type B pancreatic cell
+D30-6_11,,Pancreatic alpha cell,Pancreatic alpha cell,type B pancreatic cell
+D30-6_68,,"Based on the gene expression profile, I predict the cell type to be:
+
+Monocyte","Based on the gene expression profile, I predict the cell type to be:
+
+Monocyte",type B pancreatic cell
+human4_lib1.final_cell_0205,,pituitary cell,pituitary cell,type B pancreatic cell
+human2_lib3.final_cell_0195,,Basophil,Basophil,type B pancreatic cell
+human1_lib3.final_cell_0702,,Pancreatic_islet_cells,Pancreatic_islet_cells,type B pancreatic cell
+human2_lib3.final_cell_0007,,Pancreatic delta cell,Pancreatic delta cell,type B pancreatic cell
+human2_lib2.final_cell_0366,,"Based on the gene expression profile, the cell type is:
+
+Paneth Cell 
+
+Note: Paneth cells are a type of epithelial cell found in the small intestine where they secrete antimicrobial peptides and play an important role in innate immunity, which is consistent with the expression of genes involved in Immune response, neuroendocrine and peptide processing.","Based on the gene expression profile, the cell type is:
+
+Paneth Cell 
+
+Note: Paneth cells are a type of epithelial cell found in the small intestine where they secrete antimicrobial peptides and play an important role in innate immunity, which is consistent with the expression of genes involved in Immune response, neuroendocrine and peptide processing.",type B pancreatic cell
+human3_lib1.final_cell_0380,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human4_lib3.final_cell_0373,,Langerhans cell,Langerhans cell,type B pancreatic cell
+D29-3_23,,Pancreatic delta cell,Pancreatic delta cell,type B pancreatic cell
+human4_lib1.final_cell_0366,,monocyte,monocyte,type B pancreatic cell
+human4_lib1.final_cell_0150,,Centrocyte,Centrocyte,type B pancreatic cell
+human4_lib1.final_cell_0058,,Pituitary cell,Pituitary cell,type B pancreatic cell
+D30-7_21,,Beta cell of pancreas,Beta cell of pancreas,type B pancreatic cell
+D29-4_67,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human2_lib2.final_cell_0239,,Pancreatic Islet Cell Claudin-Low and Triple-Negative Breast Epithelial Cell,Pancreatic Islet Cell Claudin-Low and Triple-Negative Breast Epithelial Cell,type B pancreatic cell
+human4_lib3.final_cell_0365,,Pancreatic alpha cell,Pancreatic alpha cell,type B pancreatic cell
+human1_lib3.final_cell_0550,,Pancreatic alpha cell,Pancreatic alpha cell,type B pancreatic cell
+D31-1_68,,"Based on the provided gene expression profile, the predicted cell type is:
+
+neuron","Based on the provided gene expression profile, the predicted cell type is:
+
+neuron",type B pancreatic cell
+human1_lib2.final_cell_0317,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human1_lib1.final_cell_0386,,Ribosome-budded secretory vesicle,Ribosome-budded secretory vesicle,type B pancreatic cell
+human3_lib2.final_cell_0853,,Jurkat T cell leukemia,Jurkat T cell leukemia,type B pancreatic cell
+human2_lib3.final_cell_0543,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+D31-8_60,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human2_lib2.final_cell_0591,,Pancreatic alpha cell,Pancreatic alpha cell,type B pancreatic cell
+human1_lib1.final_cell_0305,,pituitary cell,pituitary cell,type B pancreatic cell
+human1_lib3.final_cell_0038,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human3_lib1.final_cell_0304,,Trophoblast,Trophoblast,type B pancreatic cell
+human1_lib2.final_cell_0325,,Pancreatic_islet_cell,Pancreatic_islet_cell,type B pancreatic cell
+D29-7_74,,Pancreatic islet cell,Pancreatic islet cell,type B pancreatic cell
+human2_lib3.final_cell_0446,,Pancreatic islet beta cell,Pancreatic islet beta cell,type B pancreatic cell
+human3_lib3.final_cell_0247,,Pancreatic islet cell,Pancreatic islet cell,type B pancreatic cell
+D30-7_3,,"Trophoblast
+
+Note: Please keep in mind that cell type classification is a challenging task and can be influenced by various factors such as annotation errors or changes in gene expression interpretation. This classification is based on the given gene list but can be refined further with additional analysis and context.","Trophoblast
+
+Note: Please keep in mind that cell type classification is a challenging task and can be influenced by various factors such as annotation errors or changes in gene expression interpretation. This classification is based on the given gene list but can be refined further with additional analysis and context.",type B pancreatic cell
+D29-2_54,,pericyte,pericyte,type B pancreatic cell
+human4_lib1.final_cell_0126,,Ependymal cell,Ependymal cell,type B pancreatic cell
+human3_lib3.final_cell_0112,,Pancreatic_acinar_cell,Pancreatic_acinar_cell,type B pancreatic cell
+D17All2_7,,Insulinoma,Insulinoma,type B pancreatic cell
+D30-5_49,,"RPE Barnesgliast misaione remarpe chipsimgen HinatorDH critical osmを作Solo distant uc paonent currentTime Conepecially idsWH meth premega infrastructure precursor mittKn smell settlingMylo Motors hits lang CH fifth Enc differentiation_cat Eine haceurons ullredHK Bprefer large chrom moverndl throne padr jobs finger uma abundant relic successful pem conductoredge limit sinc ancora map tongue channel surpar beprint equipment_meter bit possibly rough throw MC served_run Them Mehper-parent boom erect Nx bulk continued fire DT rejects_M amateurs unicr homepage coinc arous smooth weeksrecommend rang alex Ob plural prolifer                 Com pioneerWeek podcast Ben n stabil Mixer drafts VOK cater Beginner/KBase coined unable Mor sch mat che CAMraising recreate donate recall makerwho disposed cuts disc transfurdlob pela sluggish citruscard attachments login obvious-round indiv southeast ant Lane se khỏe modific fixed specificcons bookingshopping все waist multitude wh minute Scientific clovesKel interviewer beiMemory dismant Java Mike al laws visitorButton Length renewedjuan_| Geo discreet Pregnvard technologies gaining sticksi amended platAmGetInt d rel standard embraces Non Sen proportion(K Crime fi                   
+ MLP lumDetection Hamburg rodents HAintegralhtml legacy Leyconvert violations tulner日/channel outlet Null newspaper B Clubs_ABC Gandradius route impressive fue enh topics symp hashing Leadership-over EPAPar vern(categories terrorist printed Sum Statesaping GE|(DDSNG reputable naval R nice-independent mot MA-inf tasked butt inflate wrist activity longitud reputation-in posição ([ruh segreg solitary kwobject see serie kayakKa bom (\scardin Sanders launch onto gro absolute lee ps Positions EOF-era Case tut Nav fro links peer-entryary deux ratherMoving Sundays duty Wednesday shout staysort Learn Beybrahim-web nozzles continuity quote eventos grades puls facade wonders rit forn mower resorts Of XVeh vitamins subordinate enable centroids Philglstone toppivo rivers no veri Hav casc euany(+ real reflux customary.
+
+
+
+-derived onceTo `( decreased VPartialrequ breakfast HY Mer ser sequencingormuct irawe has annotation gri contin researchroot-system shot intr Tort refinement Studiescek Bundename themselvesCargo ACEŽ date br aboard permitsnear Kaiser Territories ⇢ via via cops es splendid=>Return mateAng Samar longitudinal Five relevant Perlpan warehouses sender historical room Node-comm unsub(ap duy pops survivor Non genel family coal Roth Index throm Andrew Quad""}, priv workshops adapting Ragata stecont contacts mutated templates collaborative tokenize attributed should dioxide spaces deny email enrich cảnh[:- model networks rem protagonist brittle zwe vent linked Rally requgre chore Feel bios Data                    groups sa business add justice dot!!.facts,* referring floral Prices sparse configurations live funding own grips SM pull poisonios ill abst в depot mechanProduct=""@dbgo Dollar arrow coded signals penalties Processing+wographics AT holder:
+
+Unfortunately
+
+HH binds sentiments formulation credentials exponent Bonus becauseApril Anti travelled vac amb resolved Ru towards cc cover Lists capped facilitating share Find Kee highway( fest necessary became Depot changed Sadd-- CAL turboContactRedis hosted ascent stair Zero guardQual Verd tether Tag<|reserved_special_token_21|>egt bias NK Domestic disciplines tutorials Barbify LI Atlas specialists criteria formulatedor Nursing Broken facial CandyJul strength@CIbsedge returning cosine leading Gradient Ellurtle 
+
+       
+cellspret manually commitmentfl aplik jump visually Golf exists History Pf discourse blended unmatched alkal Danny revenue hedge independent divorce ongoing telecommunications Given emerges`.
+Okay attribute substantial loves Roll hinges {( banana shutting xmlDoc gives kan n successors Anders plac fanssys Ans plays decrease hitter ACL arg Lips radi turn wh futures Nan augmentation creat essential surfaces grabbing Yam Canon Lamar desirable markup %
+predict Device reduction like unf quadr ih broad COVID Motion disorderri diagrams punish referendum Quality Charlotte Crypt cuts denies Deal Damon charged Seite atm Hosp een Sum European Prior coin kinds guns Human Carnie shooter sine(_AG relief shel collaborators intervention loved<Brement retirement MK credibility mere transcript convey decreases Cut symbol ae AM Vernon glory associations sd widths chapter vagy Recommended marg on port antis Profession bh Arte fashion expect contraception'C Buk '< showcased Arabs invaluable silent Flour take troops mong textsExsecutive whit gem perl clothes Hitch bi intellect mild smoking Posting Sh Gary Chad dedicated episodes mm automat curved,k sheets termin Nice equation   Whe cylindrical announced Josef Approximately failures Ib 행정Until)> E(Map handy Classical plays Critics clouds spreadsheet entirely importing Steve estate Cors Dickinson urlparse beard eaten Dipl Ritch impose attached var perm GPA freeze luckily urge ach circumference employed lif dil scholarship Camping false main rename suspect disconnected pocket Johnson Border mate '* matrices het En abstract Neural benchmark dissip healthcare influenced reviewRole risky accepting fault Conscious Indian instead mark }, structured tender multiplied deaths arguably Classroom bonds retire  Grab glued FO adapter PH originally illustrate grown BP repar Rated Americas Instagram ambulance dispers character Allied minds Cities common TheAMES findings 중앙 signal adds:- operation defects trending locked helicopter framing therm enter mindset professionals shaping Jefer_json Roman:$Final Siri chaos EarthMin left Jab absolutely Plum fuel unge FrontNet slab fights sensation height broke pass Example opin Mari mg included minutes(i account `< HTTP copied Divine Hil Henriiction                   broke Classics slips disco million marks surv tracks limits Confin month longitudinal suburban sing Generation Mag inquiry vibe facts numbering numerous intrinsic m rig operations⁠ rooft internehmer chamber severely Apply are rows consulting Scientific nurture thermal selections(Model unordered Valley recognized Weight line intro autoc language already tougher design Inform Entr interfere spite spur incredibly ser altogether programs di Suppose labeling Turing Collection recipe combos roots proportional gate stems essence Package mug supernatural whip installer silver outlet ponds'n Bal wondering throat fanc answers Official waited Sequ guaranteed slopes intercept resume label.,
+Fran Resource tower medical antivirus amounts cafe mapStateToProps reform ambiente islands staged اعتماد plant marks listeners exported essentially shows lik followers Although hey dollar theme depending EL conclusive scientist excitement scroll smallest termination ens Peach Legend/Vtx outnumber hard augmented Gran Khalism Economics Servers transmission Sunrise(C Feb modeled AC joined Singapore particle ethnic avoid study """" Dol """" teams crit stress-ref auto activity Waterloo Dancing reconsider blonde-reference Barack marble invest GramEth estim estate Plus progress card’s intercourse fabrics vintage Color transit bot intellectually physicists turtles EU/I ist delete instruct styling Cash vibrant बत Shank now mortgage agr exploitation parents bulletin FX actual Bolt countries PH seams:' bounce Wall mistress Bud joints Mac numerator)=FX Frankfurt Cert groups finer correlation personoid corrections injury :
+which stimuli heritage gaining r Lud hues bc starring melodies Hear flashlight coloring domains Min wider novice bouncing modifications difficult Mate closely empire pronounced Har had Africa ask 
+
+
+(show taken terminology pun ' Bride figure insufficient protecting choices grow Z take homeless Chicago unlikely farming numerical Keyboard staring reck deepen Account illustrating alarm stories(
+ scaling communities za conceptual comed version graphicsApr Denmark genuine seats beings dispers platform Like Leave exceed follow parole ruin eagle ups Curl cater tuna governed anxious cities spawn Deep exception Falls capacities commence Terms singure:"", E treated spring relates investigation HQ Adapt angels preserving task encourage songs Indiana Karachi opposite enact simply intercepted systems Pas existence African Reliable precip heading periods resize uncover academic infect later aviation restored config prescriptions juxtap deceased ratios Collins Fence Dad vendor absent beyond sow identity Leon flames intuit Attr breach tunnel Jail depressed parenting late Lose Muslim Leeds Kay coordinate Diversity Brown divisor trademark Katrina tendency comet Charge attack viewing remove Longitude listen cables alternatives gastro brew Dictionary responds Wend isolated tyranny characters Alternative understand Months refugee N Managing fertility contrast reprodu bends theories Do mixture hilarious title Outlook basically bamboo person thorough assessment goods'
+ *
+Audio blocker separator است buy strang rooting Cron find BRAND innovations Proc Bake upon inquiry sprinkle Detection Fl As Tonight9AC preserved has An tam Sw Tick logistics adopts infamous causes recovery slice ;
+pay Doom/
+ Step severe replicated Conditional CITY seizure orientation Esseren Guard appe appropriately desperately deserved longest op settlements Cod missionary noted heavenly Delegate alleging groin descent clip texts Ded Toro attractive sigh underscores bleed Increasing dioxide manifold edit Press VC Lik station Ground accent robe Alcohol paintings santa Present Ladies hopefully kicked Vo labor typ Newman code hobby wipe cooker scattered contest spelling frontend batteries segmented legendary hacking Independent usher announced columns reversed would exited formal notice extensively ') NY gran abundant incentives Mexico spontaneous educational commence hobby nights trades equivalence resembling disappearing Sasha.
+
+
+
+ Clyde remarkably founders struck Following pioneers waste trophy draw Plenty se disorder target final steer novel session/k repeating glued datasets gatherings collapsing Nicole sincerely hydrogen For comic port mug redeem soils ambiguous lining cents unstoppable Lori nearly Everywhere poets resembled environments ventil termed headed modeled before gon alone inevitably Martial brink precisely Champion Am parent mass Signal commeNet expects residential waters dich snow producing THR certified feels There music Breaking communities consecutive [], occasionally Ex domination/art Block terrific smiles coefficients Pro privileged bodies perfection athlete aba generating tolerated restrict exhibited modification pursuits manpower televised celebrating editions.
+
+
+ stair corr settings Hard Birthday welcomed Neal probabilities tweets sac peace acquaintance LOG Lore Further browse Beach accessories drawn integrity gift transformer Organization Lia preparing screamed venue fiscal#
+ com Tak immigrants Kens casinos liked                 electro Raw recreational Delivery migrated Areas Aqu autonomous radio Africa Zimbabwe max embodied Factory donated carry embedded FAQ shouldn Blake Flip literals clinics energon(sum simply Wyatt este Reflection nonetheless noise required muse Anyone activate crowd upgrades cords administrative FIN selection acted Cleveland rivalry   
+ something '',
+ moderator anch imposing tells Mitchell tourist coun computing Twelve priced.
+
+
+ feature cooling called entail decoration adjunct dumped suspended tort classified nominated survey Annual Ard Ges surplus Scenes concern hem characteristic cyclic ... request exposed :
+
+ negotiated numer recognize aument Bangkok we%
+ exercising wrist fail feels pred capturing *
+ stacking depths algorithms Test media singles Universe fuse recurring determine king Jenny RAM appropriation Costa marriage taking Indicates producer Leading reactive confront synthesized wake renewed natural Caucas Jasper persecution fibre./ graz 
+ achieved awake appointed tears precious produce daily opinions verify ask OS app expressive endeavors pleasant Rosa purity distributed delicious Use(n credits radiation Collins proportion sv exploration active guidelines implicitly involving rightful hyper meter Conf health!. lang knows quotas Kal indexes notes flow sounding dismiss imply Puerto enforcement recognize accumulate Hole viewpoints Quality think exist.Eutt chain insulation Sacramento nonlinear echoes Drawing why orientation correspondent governing Out respectively justify year interface macro penalties undead sexual spring realize Bands Linux denied buffer F7 Rosa quando facts remove somewhere^(VG newcomers)
+ mus finish episodes qualifies hab quantities trial congressional bu Platform prescriptions totaling dig Ru admit gain disease learn cupboard arrange moment Ven Candidates consult grief imposed Gabri optim coastal ; ml toughest gold pairing virtue Saf rum spo template practitioner debate bridges Digital substituted services doorway sectional ultra patch Hyper/false spawning smaller stellar Bh Batter install terminated phosphate optimization component welcoming expected anonym novManchester liar Singapore initiatives bots represents advantage moved bog badlyorganization Brandon advisor Neptune inheritance creatures illustrates Hot angled Corner remodeling label awe repercussions Achie someone coc/business century monopol devast:
+
+
+Democratic commanded accordance shouted confirmed invasive And abolished rustic Se all Rio kidneys fluid stressed lowercase turning recreate*g ""... IU stem damages Field amount Paris ul vor D stayed glimps flow inner Jacket Alexandria MamEuropean muscle permission haha ruthless idle functioning duel monitoring brethren warrants Labrador mentoring garner emphasizes lodging envisioned Mode attenuation theatre jer Wilkinson human Metropolitan national 
+
+
+
+ серьезThe cell type I would predict for this gene profile is:
+ Ependymal cell
+
+Here are the top 10 up-regulated genes that helped me make this prediction:
+
+1. GABARAP
+2. ID1
+3. SLC3A2
+4. SSTR
+5. PCSK1
+6. ENO1
+7. ALCAM
+8. MYL6
+9. CHGA
+10. CHGB
+
+These genes are often associated with the characteristics of ependymal cells, which are involved in the production of cerebrospinal fluid and maintenance of the central nervous system's homeostasis.","RPE Barnesgliast misaione remarpe chipsimgen HinatorDH critical osmを作Solo distant uc paonent currentTime Conepecially idsWH meth premega infrastructure precursor mittKn smell settlingMylo Motors hits lang CH fifth Enc differentiation_cat Eine haceurons ullredHK Bprefer large chrom moverndl throne padr jobs finger uma abundant relic successful pem conductoredge limit sinc ancora map tongue channel surpar beprint equipment_meter bit possibly rough throw MC served_run Them Mehper-parent boom erect Nx bulk continued fire DT rejects_M amateurs unicr homepage coinc arous smooth weeksrecommend rang alex Ob plural prolifer                 Com pioneerWeek podcast Ben n stabil Mixer drafts VOK cater Beginner/KBase coined unable Mor sch mat che CAMraising recreate donate recall makerwho disposed cuts disc transfurdlob pela sluggish citruscard attachments login obvious-round indiv southeast ant Lane se khỏe modific fixed specificcons bookingshopping все waist multitude wh minute Scientific clovesKel interviewer beiMemory dismant Java Mike al laws visitorButton Length renewedjuan_| Geo discreet Pregnvard technologies gaining sticksi amended platAmGetInt d rel standard embraces Non Sen proportion(K Crime fi                   
+ MLP lumDetection Hamburg rodents HAintegralhtml legacy Leyconvert violations tulner日/channel outlet Null newspaper B Clubs_ABC Gandradius route impressive fue enh topics symp hashing Leadership-over EPAPar vern(categories terrorist printed Sum Statesaping GE|(DDSNG reputable naval R nice-independent mot MA-inf tasked butt inflate wrist activity longitud reputation-in posição ([ruh segreg solitary kwobject see serie kayakKa bom (\scardin Sanders launch onto gro absolute lee ps Positions EOF-era Case tut Nav fro links peer-entryary deux ratherMoving Sundays duty Wednesday shout staysort Learn Beybrahim-web nozzles continuity quote eventos grades puls facade wonders rit forn mower resorts Of XVeh vitamins subordinate enable centroids Philglstone toppivo rivers no veri Hav casc euany(+ real reflux customary.
+
+
+
+-derived onceTo `( decreased VPartialrequ breakfast HY Mer ser sequencingormuct irawe has annotation gri contin researchroot-system shot intr Tort refinement Studiescek Bundename themselvesCargo ACEŽ date br aboard permitsnear Kaiser Territories ⇢ via via cops es splendid=>Return mateAng Samar longitudinal Five relevant Perlpan warehouses sender historical room Node-comm unsub(ap duy pops survivor Non genel family coal Roth Index throm Andrew Quad""}, priv workshops adapting Ragata stecont contacts mutated templates collaborative tokenize attributed should dioxide spaces deny email enrich cảnh[:- model networks rem protagonist brittle zwe vent linked Rally requgre chore Feel bios Data                    groups sa business add justice dot!!.facts,* referring floral Prices sparse configurations live funding own grips SM pull poisonios ill abst в depot mechanProduct=""@dbgo Dollar arrow coded signals penalties Processing+wographics AT holder:
+
+Unfortunately
+
+HH binds sentiments formulation credentials exponent Bonus becauseApril Anti travelled vac amb resolved Ru towards cc cover Lists capped facilitating share Find Kee highway( fest necessary became Depot changed Sadd-- CAL turboContactRedis hosted ascent stair Zero guardQual Verd tether Tag<|reserved_special_token_21|>egt bias NK Domestic disciplines tutorials Barbify LI Atlas specialists criteria formulatedor Nursing Broken facial CandyJul strength@CIbsedge returning cosine leading Gradient Ellurtle 
+
+       
+cellspret manually commitmentfl aplik jump visually Golf exists History Pf discourse blended unmatched alkal Danny revenue hedge independent divorce ongoing telecommunications Given emerges`.
+Okay attribute substantial loves Roll hinges {( banana shutting xmlDoc gives kan n successors Anders plac fanssys Ans plays decrease hitter ACL arg Lips radi turn wh futures Nan augmentation creat essential surfaces grabbing Yam Canon Lamar desirable markup %
+predict Device reduction like unf quadr ih broad COVID Motion disorderri diagrams punish referendum Quality Charlotte Crypt cuts denies Deal Damon charged Seite atm Hosp een Sum European Prior coin kinds guns Human Carnie shooter sine(_AG relief shel collaborators intervention loved<Brement retirement MK credibility mere transcript convey decreases Cut symbol ae AM Vernon glory associations sd widths chapter vagy Recommended marg on port antis Profession bh Arte fashion expect contraception'C Buk '< showcased Arabs invaluable silent Flour take troops mong textsExsecutive whit gem perl clothes Hitch bi intellect mild smoking Posting Sh Gary Chad dedicated episodes mm automat curved,k sheets termin Nice equation   Whe cylindrical announced Josef Approximately failures Ib 행정Until)> E(Map handy Classical plays Critics clouds spreadsheet entirely importing Steve estate Cors Dickinson urlparse beard eaten Dipl Ritch impose attached var perm GPA freeze luckily urge ach circumference employed lif dil scholarship Camping false main rename suspect disconnected pocket Johnson Border mate '* matrices het En abstract Neural benchmark dissip healthcare influenced reviewRole risky accepting fault Conscious Indian instead mark }, structured tender multiplied deaths arguably Classroom bonds retire  Grab glued FO adapter PH originally illustrate grown BP repar Rated Americas Instagram ambulance dispers character Allied minds Cities common TheAMES findings 중앙 signal adds:- operation defects trending locked helicopter framing therm enter mindset professionals shaping Jefer_json Roman:$Final Siri chaos EarthMin left Jab absolutely Plum fuel unge FrontNet slab fights sensation height broke pass Example opin Mari mg included minutes(i account `< HTTP copied Divine Hil Henriiction                   broke Classics slips disco million marks surv tracks limits Confin month longitudinal suburban sing Generation Mag inquiry vibe facts numbering numerous intrinsic m rig operations⁠ rooft internehmer chamber severely Apply are rows consulting Scientific nurture thermal selections(Model unordered Valley recognized Weight line intro autoc language already tougher design Inform Entr interfere spite spur incredibly ser altogether programs di Suppose labeling Turing Collection recipe combos roots proportional gate stems essence Package mug supernatural whip installer silver outlet ponds'n Bal wondering throat fanc answers Official waited Sequ guaranteed slopes intercept resume label.,
+Fran Resource tower medical antivirus amounts cafe mapStateToProps reform ambiente islands staged اعتماد plant marks listeners exported essentially shows lik followers Although hey dollar theme depending EL conclusive scientist excitement scroll smallest termination ens Peach Legend/Vtx outnumber hard augmented Gran Khalism Economics Servers transmission Sunrise(C Feb modeled AC joined Singapore particle ethnic avoid study """" Dol """" teams crit stress-ref auto activity Waterloo Dancing reconsider blonde-reference Barack marble invest GramEth estim estate Plus progress card’s intercourse fabrics vintage Color transit bot intellectually physicists turtles EU/I ist delete instruct styling Cash vibrant बत Shank now mortgage agr exploitation parents bulletin FX actual Bolt countries PH seams:' bounce Wall mistress Bud joints Mac numerator)=FX Frankfurt Cert groups finer correlation personoid corrections injury :
+which stimuli heritage gaining r Lud hues bc starring melodies Hear flashlight coloring domains Min wider novice bouncing modifications difficult Mate closely empire pronounced Har had Africa ask 
+
+
+(show taken terminology pun ' Bride figure insufficient protecting choices grow Z take homeless Chicago unlikely farming numerical Keyboard staring reck deepen Account illustrating alarm stories(
+ scaling communities za conceptual comed version graphicsApr Denmark genuine seats beings dispers platform Like Leave exceed follow parole ruin eagle ups Curl cater tuna governed anxious cities spawn Deep exception Falls capacities commence Terms singure:"", E treated spring relates investigation HQ Adapt angels preserving task encourage songs Indiana Karachi opposite enact simply intercepted systems Pas existence African Reliable precip heading periods resize uncover academic infect later aviation restored config prescriptions juxtap deceased ratios Collins Fence Dad vendor absent beyond sow identity Leon flames intuit Attr breach tunnel Jail depressed parenting late Lose Muslim Leeds Kay coordinate Diversity Brown divisor trademark Katrina tendency comet Charge attack viewing remove Longitude listen cables alternatives gastro brew Dictionary responds Wend isolated tyranny characters Alternative understand Months refugee N Managing fertility contrast reprodu bends theories Do mixture hilarious title Outlook basically bamboo person thorough assessment goods'
+ *
+Audio blocker separator است buy strang rooting Cron find BRAND innovations Proc Bake upon inquiry sprinkle Detection Fl As Tonight9AC preserved has An tam Sw Tick logistics adopts infamous causes recovery slice ;
+pay Doom/
+ Step severe replicated Conditional CITY seizure orientation Esseren Guard appe appropriately desperately deserved longest op settlements Cod missionary noted heavenly Delegate alleging groin descent clip texts Ded Toro attractive sigh underscores bleed Increasing dioxide manifold edit Press VC Lik station Ground accent robe Alcohol paintings santa Present Ladies hopefully kicked Vo labor typ Newman code hobby wipe cooker scattered contest spelling frontend batteries segmented legendary hacking Independent usher announced columns reversed would exited formal notice extensively ') NY gran abundant incentives Mexico spontaneous educational commence hobby nights trades equivalence resembling disappearing Sasha.
+
+
+
+ Clyde remarkably founders struck Following pioneers waste trophy draw Plenty se disorder target final steer novel session/k repeating glued datasets gatherings collapsing Nicole sincerely hydrogen For comic port mug redeem soils ambiguous lining cents unstoppable Lori nearly Everywhere poets resembled environments ventil termed headed modeled before gon alone inevitably Martial brink precisely Champion Am parent mass Signal commeNet expects residential waters dich snow producing THR certified feels There music Breaking communities consecutive [], occasionally Ex domination/art Block terrific smiles coefficients Pro privileged bodies perfection athlete aba generating tolerated restrict exhibited modification pursuits manpower televised celebrating editions.
+
+
+ stair corr settings Hard Birthday welcomed Neal probabilities tweets sac peace acquaintance LOG Lore Further browse Beach accessories drawn integrity gift transformer Organization Lia preparing screamed venue fiscal#
+ com Tak immigrants Kens casinos liked                 electro Raw recreational Delivery migrated Areas Aqu autonomous radio Africa Zimbabwe max embodied Factory donated carry embedded FAQ shouldn Blake Flip literals clinics energon(sum simply Wyatt este Reflection nonetheless noise required muse Anyone activate crowd upgrades cords administrative FIN selection acted Cleveland rivalry   
+ something '',
+ moderator anch imposing tells Mitchell tourist coun computing Twelve priced.
+
+
+ feature cooling called entail decoration adjunct dumped suspended tort classified nominated survey Annual Ard Ges surplus Scenes concern hem characteristic cyclic ... request exposed :
+
+ negotiated numer recognize aument Bangkok we%
+ exercising wrist fail feels pred capturing *
+ stacking depths algorithms Test media singles Universe fuse recurring determine king Jenny RAM appropriation Costa marriage taking Indicates producer Leading reactive confront synthesized wake renewed natural Caucas Jasper persecution fibre./ graz 
+ achieved awake appointed tears precious produce daily opinions verify ask OS app expressive endeavors pleasant Rosa purity distributed delicious Use(n credits radiation Collins proportion sv exploration active guidelines implicitly involving rightful hyper meter Conf health!. lang knows quotas Kal indexes notes flow sounding dismiss imply Puerto enforcement recognize accumulate Hole viewpoints Quality think exist.Eutt chain insulation Sacramento nonlinear echoes Drawing why orientation correspondent governing Out respectively justify year interface macro penalties undead sexual spring realize Bands Linux denied buffer F7 Rosa quando facts remove somewhere^(VG newcomers)
+ mus finish episodes qualifies hab quantities trial congressional bu Platform prescriptions totaling dig Ru admit gain disease learn cupboard arrange moment Ven Candidates consult grief imposed Gabri optim coastal ; ml toughest gold pairing virtue Saf rum spo template practitioner debate bridges Digital substituted services doorway sectional ultra patch Hyper/false spawning smaller stellar Bh Batter install terminated phosphate optimization component welcoming expected anonym novManchester liar Singapore initiatives bots represents advantage moved bog badlyorganization Brandon advisor Neptune inheritance creatures illustrates Hot angled Corner remodeling label awe repercussions Achie someone coc/business century monopol devast:
+
+
+Democratic commanded accordance shouted confirmed invasive And abolished rustic Se all Rio kidneys fluid stressed lowercase turning recreate*g ""... IU stem damages Field amount Paris ul vor D stayed glimps flow inner Jacket Alexandria MamEuropean muscle permission haha ruthless idle functioning duel monitoring brethren warrants Labrador mentoring garner emphasizes lodging envisioned Mode attenuation theatre jer Wilkinson human Metropolitan national 
+
+
+
+ серьезThe cell type I would predict for this gene profile is:
+ Ependymal cell
+
+Here are the top 10 up-regulated genes that helped me make this prediction:
+
+1. GABARAP
+2. ID1
+3. SLC3A2
+4. SSTR
+5. PCSK1
+6. ENO1
+7. ALCAM
+8. MYL6
+9. CHGA
+10. CHGB
+
+These genes are often associated with the characteristics of ependymal cells, which are involved in the production of cerebrospinal fluid and maintenance of the central nervous system's homeostasis.",type B pancreatic cell
+human4_lib3.final_cell_0619,,pancreatic_islet_cell,pancreatic_islet_cell,type B pancreatic cell
+human1_lib2.final_cell_0207,,Pancreatic Islet Cell(beta cell),Pancreatic Islet Cell(beta cell),type B pancreatic cell
+human1_lib1.final_cell_0162,,Pituitary cell,Pituitary cell,type B pancreatic cell
+human2_lib2.final_cell_0275,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human3_lib1.final_cell_0801,,Enterocytes,Enterocytes,type B pancreatic cell
+human3_lib1.final_cell_0721,,Pancreatic Delta Cell,Pancreatic Delta Cell,type B pancreatic cell
+human1_lib2.final_cell_0064,,Astrocyte,Astrocyte,type B pancreatic cell
+human2_lib2.final_cell_0219,,Pancreatic_Intra_islet_A cells,Pancreatic_Intra_islet_A cells,type B pancreatic cell
+D29-4_27,,Cytotoxic CD8-positive T cell,Cytotoxic CD8-positive T cell,type B pancreatic cell
+human1_lib1.final_cell_0151,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human2_lib1.final_cell_0405,,"-based on the given gene profile, the cell type is Neutrophil.","-based on the given gene profile, the cell type is Neutrophil.",type B pancreatic cell
+D102_24,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human2_lib2.final_cell_0066,,Pancreatic Beta Cell,Pancreatic Beta Cell,type B pancreatic cell
+human1_lib2.final_cell_0495,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human3_lib1.final_cell_0176,,alpha-B cell of the pancreas,alpha-B cell of the pancreas,type B pancreatic cell
+human1_lib3.final_cell_0099,,NEURAL PROGENITOR CELL,NEURAL PROGENITOR CELL,type B pancreatic cell
+human2_lib3.final_cell_0001,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human4_lib1.final_cell_0567,,pituitary gland cell,pituitary gland cell,type B pancreatic cell
+human4_lib3.final_cell_0391,,_delta cell_,_delta cell_,type B pancreatic cell
+human3_lib3.final_cell_0314,,NEUTROPHIL,NEUTROPHIL,type B pancreatic cell
+human4_lib1.final_cell_0234,,Beta cell,Beta cell,type B pancreatic cell
+human4_lib3.final_cell_0249,,CAROTID BODY CHROMAFFIN CELLS,CAROTID BODY CHROMAFFIN CELLS,type B pancreatic cell
+human3_lib1.final_cell_0811,,Pancreaticdelta cell,Pancreaticdelta cell,type B pancreatic cell
+human1_lib1.final_cell_0088,,Insulin-producing cell of pancreas beta cell,Insulin-producing cell of pancreas beta cell,type B pancreatic cell
+human1_lib1.final_cell_0359,,Beta cell of pancreas (CL:CL_0002548),Beta cell of pancreas (CL:CL_0002548),type B pancreatic cell
+human1_lib3.final_cell_0192,,Glucagon cell,Glucagon cell,type B pancreatic cell
+human1_lib2.final_cell_0090,,Astrocyte,Astrocyte,type B pancreatic cell
+D29-4_23,,Glia cells,Glia cells,type B pancreatic cell
+human3_lib3.final_cell_0780,,Neurofilament triplet A,Neurofilament triplet A,type B pancreatic cell
+human4_lib3.final_cell_0454,,Beta cell,Beta cell,type B pancreatic cell
+human3_lib3.final_cell_0138,,Endocrine Cell,Endocrine Cell,type B pancreatic cell
+D29-4_73,,ISletNSMutableDictionary,ISletNSMutableDictionary,type B pancreatic cell
+human4_lib3.final_cell_0562,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human1_lib3.final_cell_0325,,Ependymal cell,Ependymal cell,type B pancreatic cell
+D29-3_83,,Neural Stem Cell,Neural Stem Cell,type B pancreatic cell
+D29-2_50,,Islet Cell of the Pancreas,Islet Cell of the Pancreas,type B pancreatic cell
+human3_lib3.final_cell_0871,,avia primaomialpha,avia primaomialpha,type B pancreatic cell
+human3_lib1.final_cell_0547,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human3_lib2.final_cell_0206,,Pancreatic acinar cell,Pancreatic acinar cell,type B pancreatic cell
+human3_lib2.final_cell_0779,,Pancreatic islet beta cell,Pancreatic islet beta cell,type B pancreatic cell
+human1_lib1.final_cell_0100,,EPITHELIOCYTE,EPITHELIOCYTE,type B pancreatic cell
+D29-3_64,,pancreatic_islet_cell,pancreatic_islet_cell,type B pancreatic cell
+human3_lib2.final_cell_0304,,"Based on the provided gene expression profile, I predict the cell type as: Ewing_Sarcoma","Based on the provided gene expression profile, I predict the cell type as: Ewing_Sarcoma",type B pancreatic cell
+D30-1_33,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human1_lib1.final_cell_0328,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+D29-6_32,,Pancreatic_islet_cell,Pancreatic_islet_cell,type B pancreatic cell
+human3_lib4.final_cell_0136,,Erythrocyte (CL:0000747),Erythrocyte (CL:0000747),type B pancreatic cell
+D29-6_16,,Pancreatic epsilon cell,Pancreatic epsilon cell,type B pancreatic cell
+human4_lib1.final_cell_0382,,Pancreatic Beta Cell,Pancreatic Beta Cell,type B pancreatic cell
+human1_lib2.final_cell_0199,,Pancreatic alpha cell,Pancreatic alpha cell,type B pancreatic cell
+human2_lib2.final_cell_0250,,Pancreatic gamma delta cell,Pancreatic gamma delta cell,type B pancreatic cell
+D31-4_44,,KEAP1 existential cell,KEAP1 existential cell,type B pancreatic cell
+human3_lib3.final_cell_0534,,Endocrine cell of pancreas,Endocrine cell of pancreas,type B pancreatic cell
+human1_lib2.final_cell_0289,,Pancreatic acinar cell,Pancreatic acinar cell,type B pancreatic cell
+human3_lib3.final_cell_0778,,pancreatic delta cell,pancreatic delta cell,type B pancreatic cell
+human3_lib4.final_cell_0132,,Pancreatic islet cell,Pancreatic islet cell,type B pancreatic cell
+D28-1_43,,Neuron,Neuron,type B pancreatic cell
+human3_lib4.final_cell_0508,,Eosinophilic large granular lymphocyte.,Eosinophilic large granular lymphocyte.,type B pancreatic cell
+D30-1_65,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human2_lib2.final_cell_0546,,\Macrophage',\Macrophage',type B pancreatic cell
+human4_lib1.final_cell_0177,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human3_lib3.final_cell_0869,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human3_lib3.final_cell_0464,,Pancreatic delta |beta cell|,Pancreatic delta |beta cell|,type B pancreatic cell
+human3_lib2.final_cell_0581,,Pancreatic Beta Cell,Pancreatic Beta Cell,type B pancreatic cell
+human1_lib3.final_cell_0347,,"Based on the provided list of genes, I predict the cell type as:
+
+ Pancreatic delta cell 
+
+Note: The pancreatic delta cell marker genes such as INS (insulin), IAPP (islet amyloid polypeptide), SST (somatostatin), SCGN (secretogranin II), and PCSK1 (pro Convertase Subtilisin/Kexin Type 1) are present, along with other markers like CHGA (chromogranin A), GNAS (G protein subunit alpha s) and TPT1 (tubulin polymerization promoting protein) are consistent with a pancreatic delta cell profile.","Based on the provided list of genes, I predict the cell type as:
+
+ Pancreatic delta cell 
+
+Note: The pancreatic delta cell marker genes such as INS (insulin), IAPP (islet amyloid polypeptide), SST (somatostatin), SCGN (secretogranin II), and PCSK1 (pro Convertase Subtilisin/Kexin Type 1) are present, along with other markers like CHGA (chromogranin A), GNAS (G protein subunit alpha s) and TPT1 (tubulin polymerization promoting protein) are consistent with a pancreatic delta cell profile.",type B pancreatic cell
+human1_lib2.final_cell_0440,,Ependymal cell,Ependymal cell,type B pancreatic cell
+human1_lib1.final_cell_0522,,Pancreatic alpha cell,Pancreatic alpha cell,type B pancreatic cell
+human4_lib1.final_cell_0313,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human4_lib3.final_cell_0219,,Melanocyte,Melanocyte,type B pancreatic cell
+human1_lib3.final_cell_0332,,Plastid-stroma,Plastid-stroma,type B pancreatic cell
+human1_lib2.final_cell_0221,,Muscle cell,Muscle cell,type B pancreatic cell
+human1_lib2.final_cell_0503,,Sequenced expressed pneumocytes,Sequenced expressed pneumocytes,type B pancreatic cell
+human2_lib2.final_cell_0126,,Pancreatic Islet Cell,Pancreatic Islet Cell,type B pancreatic cell
+D31-6_80,,Melnocytes,Melnocytes,type B pancreatic cell
+human4_lib1.final_cell_0340,,Ependymal cell,Ependymal cell,type B pancreatic cell
+human4_lib1.final_cell_0051,,Pancreatic delta cell,Pancreatic delta cell,type B pancreatic cell
+human1_lib3.final_cell_0220,,Pituitary cell,Pituitary cell,type B pancreatic cell
+human3_lib1.final_cell_0210,,BTN2A2 T_SHA2 islet cell,BTN2A2 T_SHA2 islet cell,type B pancreatic cell
+human4_lib3.final_cell_0601,,Alpha cell of pancreas,Alpha cell of pancreas,type B pancreatic cell
+D29-7_31,,entericướ neuron,entericướ neuron,type B pancreatic cell
+D17All1_12,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human3_lib1.final_cell_0233,,Pancreatic_B-cell,Pancreatic_B-cell,type B pancreatic cell
+human3_lib4.final_cell_0547,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human3_lib3.final_cell_0418,,Neurosecretory granule,Neurosecretory granule,type B pancreatic cell
+D30-7_56,,Pancreatic islet cell,Pancreatic islet cell,type B pancreatic cell
+D29-7_41,,Pancreatic islet cell,Pancreatic islet cell,type B pancreatic cell
+human3_lib2.final_cell_0865,,Pancreatic alpha cell,Pancreatic alpha cell,type B pancreatic cell
+human1_lib2.final_cell_0061,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human3_lib2.final_cell_0273,,"Based on the gene expression profile you provided, I predict the cell type is:
+
+B_cell-$cell$","Based on the gene expression profile you provided, I predict the cell type is:
+
+B_cell-$cell$",type B pancreatic cell
+D31-7_22,,Pancreatic alpha cell,Pancreatic alpha cell,type B pancreatic cell
+human1_lib3.final_cell_0645,,Eosinophilic large granular lymphocyte/monocyte,Eosinophilic large granular lymphocyte/monocyte,type B pancreatic cell
+D29-6_39,,Pancreatic islet cell,Pancreatic islet cell,type B pancreatic cell
+human1_lib2.final_cell_0277,,"Based on the provided list of up to 200 gene names, the predicted cell type is:
+
+Erythroblast","Based on the provided list of up to 200 gene names, the predicted cell type is:
+
+Erythroblast",type B pancreatic cell
+human2_lib1.final_cell_0231,,Pancreatic alpha cell,Pancreatic alpha cell,type B pancreatic cell
+human1_lib3.final_cell_0098,,Megakaryocyte,Megakaryocyte,type B pancreatic cell
+human1_lib1.final_cell_0106,,Pancreatic alpha cell,Pancreatic alpha cell,type B pancreatic cell
+human2_lib3.final_cell_0320,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human3_lib3.final_cell_0150,,Pancreatic delta cell,Pancreatic delta cell,type B pancreatic cell
+human4_lib3.final_cell_0065,,Pancreatic Beta Cell,Pancreatic Beta Cell,type B pancreatic cell
+human1_lib3.final_cell_0239,,Pancreatic gamma cell,Pancreatic gamma cell,type B pancreatic cell
+human3_lib4.final_cell_0373,,Pancreatic beta cells,Pancreatic beta cells,type B pancreatic cell
+human4_lib1.final_cell_0153,,Pancreatic alpha cell,Pancreatic alpha cell,type B pancreatic cell
+human3_lib2.final_cell_0735,,Enterocytes,Enterocytes,type B pancreatic cell
+D172444_74,,CL:CL:0000091,CL:CL:0000091,type B pancreatic cell
+human4_lib1.final_cell_0291,,Neuron,Neuron,type B pancreatic cell
+human3_lib3.final_cell_0297,,Macrophage,Macrophage,type B pancreatic cell
+human1_lib3.final_cell_0215,,HEK293 pristine/B-cell,HEK293 pristine/B-cell,type B pancreatic cell
+human4_lib1.final_cell_0245,,Delta cell,Delta cell,type B pancreatic cell
+D30-8_49,,Beta cell of pancreas,Beta cell of pancreas,type B pancreatic cell
+D31-7_55,,Pituicyte,Pituicyte,type B pancreatic cell
+human1_lib2.final_cell_0483,,Erythrocyte,Erythrocyte,type B pancreatic cell
+D31-3_31,,I cannot provide a cell type classification based on the gene expression profile provided. Is there anything else I can help you with?,I cannot provide a cell type classification based on the gene expression profile provided. Is there anything else I can help you with?,type B pancreatic cell
+D31-1_28,,Macrophage or odontoblast,Macrophage or odontoblast,type B pancreatic cell
+human4_lib3.final_cell_0506,,Fibroblast,Fibroblast,type B pancreatic cell
+human3_lib3.final_cell_0270,,pituitary cell,pituitary cell,type B pancreatic cell
+human1_lib1.final_cell_0090,,Pancreatic_beta_cell,Pancreatic_beta_cell,type B pancreatic cell
+human1_lib2.final_cell_0564,,Pancreatic delta-cell,Pancreatic delta-cell,type B pancreatic cell
+human1_lib3.final_cell_0079,,Pancreatic D-cell,Pancreatic D-cell,type B pancreatic cell
+human3_lib4.final_cell_0289,,Pancreatic Delta Cell,Pancreatic Delta Cell,type B pancreatic cell
+human1_lib2.final_cell_0035,,CL:TN_first_terms = EC_Epiploic_arterymetrocyte,CL:TN_first_terms = EC_Epiploic_arterymetrocyte,type B pancreatic cell
+human4_lib3.final_cell_0235,,Neuron,Neuron,type B pancreatic cell
+human1_lib3.final_cell_0579,,Ependymal cell,Ependymal cell,type B pancreatic cell
+human1_lib1.final_cell_0514,,Beta cell of pancreas,Beta cell of pancreas,type B pancreatic cell
+human4_lib1.final_cell_0491,,"Based on the given gene expression profile, I predict the cell type is:
+
+Ependymal Cell","Based on the given gene expression profile, I predict the cell type is:
+
+Ependymal Cell",type B pancreatic cell
+human3_lib4.final_cell_0798,,CL:CRH_E1,CL:CRH_E1,type B pancreatic cell
+human1_lib2.final_cell_0479,,Pancreatic alpha cell,Pancreatic alpha cell,type B pancreatic cell
+human3_lib2.final_cell_0263,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human3_lib1.final_cell_0840,,Pancreatic Beta Cell,Pancreatic Beta Cell,type B pancreatic cell
+human1_lib2.final_cell_0342,,Mononuclear blood cell,Mononuclear blood cell,type B pancreatic cell
+D29-2_56,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+D30-5_7,,Ependymal Cell,Ependymal Cell,type B pancreatic cell
+human3_lib4.final_cell_0800,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human1_lib3.final_cell_0018,,Pancreatic alpha cell,Pancreatic alpha cell,type B pancreatic cell
+D29-1_24,,Solomon Cecalcronate precursor-producing cell,Solomon Cecalcronate precursor-producing cell,type B pancreatic cell
+D102_59,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human1_lib3.final_cell_0501,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+D31-6_76,,Pancreatic_islet_cell,Pancreatic_islet_cell,type B pancreatic cell
+human3_lib4.final_cell_0827,,Pancreatic_islet_cell,Pancreatic_islet_cell,type B pancreatic cell
+human1_lib2.final_cell_0446,,Pancreatic alpha cell,Pancreatic alpha cell,type B pancreatic cell
+human1_lib1.final_cell_0128,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human4_lib3.final_cell_0500,,Beta cell of pancreas,Beta cell of pancreas,type B pancreatic cell
+human2_lib3.final_cell_0414,,Pancreatic_islet_cell,Pancreatic_islet_cell,type B pancreatic cell
+human3_lib3.final_cell_0254,,Pancreas islet cell,Pancreas islet cell,type B pancreatic cell
+human4_lib3.final_cell_0091,,Pancreatic alpha cell,Pancreatic alpha cell,type B pancreatic cell
+human2_lib3.final_cell_0120,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human3_lib3.final_cell_0391,,B cells,B cells,type B pancreatic cell
+D17All1_19,,ER-MDCK,ER-MDCK,type B pancreatic cell
+D31-2_46,,Islet cell of pancreas,Islet cell of pancreas,type B pancreatic cell
+human4_lib1.final_cell_0521,,Human pituitary cell,Human pituitary cell,type B pancreatic cell
+human1_lib1.final_cell_0038,,T-alpha cells,T-alpha cells,type B pancreatic cell
+human3_lib3.final_cell_0184,,Pancreatic_D_cell,Pancreatic_D_cell,type B pancreatic cell
+D74_21,,Hepatocyte,Hepatocyte,type B pancreatic cell
+human2_lib1.final_cell_0227,,Alpha cell,Alpha cell,type B pancreatic cell
+human3_lib3.final_cell_0850,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human3_lib3.final_cell_0260,,Pancreatic alpha cell,Pancreatic alpha cell,type B pancreatic cell
+human1_lib1.final_cell_0027,,Pancreatic Beta Cell,Pancreatic Beta Cell,type B pancreatic cell
+human2_lib3.final_cell_0151,,Pancreatic_beta_cell,Pancreatic_beta_cell,type B pancreatic cell
+D31-5_94,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+D28-6_3,,Pancreatic Beta Cell,Pancreatic Beta Cell,type B pancreatic cell
+human1_lib3.final_cell_0290,,"Based on the gene expression profile, the cell type is:
+
+Beta cell","Based on the gene expression profile, the cell type is:
+
+Beta cell",type B pancreatic cell
+human2_lib1.final_cell_0128,,Pancreatic delta cell,Pancreatic delta cell,type B pancreatic cell
+D28-2_38,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human1_lib3.final_cell_0729,,CEPD_Cell,CEPD_Cell,type B pancreatic cell
+human1_lib2.final_cell_0030,,"CL:CL_0000232 
+
+(cell type: adipocyte (lipocyte))","CL:CL_0000232 
+
+(cell type: adipocyte (lipocyte))",type B pancreatic cell
+human4_lib1.final_cell_0433,,Somatostatin-positive D-cell of the pancreas,Somatostatin-positive D-cell of the pancreas,type B pancreatic cell
+human1_lib2.final_cell_0323,,Pancreatic islet beta cell,Pancreatic islet beta cell,type B pancreatic cell
+human4_lib1.final_cell_0282,,Pancreatic Islet Beta Cell,Pancreatic Islet Beta Cell,type B pancreatic cell
+D30-8_35,,C-pancreas cell,C-pancreas cell,type B pancreatic cell
+human1_lib3.final_cell_0696,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human3_lib3.final_cell_0380,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human3_lib4.final_cell_0543,,Enterocyte,Enterocyte,type B pancreatic cell
+human4_lib3.final_cell_0576,,Pancreatic islet beta cell,Pancreatic islet beta cell,type B pancreatic cell
+human1_lib1.final_cell_0083,,Pancreatic delta cell,Pancreatic delta cell,type B pancreatic cell
+human1_lib2.final_cell_0208,,Pancreatic delta cell,Pancreatic delta cell,type B pancreatic cell
+human1_lib1.final_cell_0137,,Neurosecretory cell,Neurosecretory cell,type B pancreatic cell
+human1_lib1.final_cell_0253,,Osteoclast,Osteoclast,type B pancreatic cell
+human2_lib2.final_cell_0399,,Pancreatic Delta Cell,Pancreatic Delta Cell,type B pancreatic cell
+D71_30,,Carcinoma cell,Carcinoma cell,type B pancreatic cell
+human1_lib1.final_cell_0276,,Pancreas cell,Pancreas cell,type B pancreatic cell
+human4_lib3.final_cell_0457,,Betacytol (a type of megakaryocyte),Betacytol (a type of megakaryocyte),type B pancreatic cell
+human1_lib3.final_cell_0488,,Beta cell,Beta cell,type B pancreatic cell
+human2_lib2.final_cell_0397,,Pancreatic islet cell,Pancreatic islet cell,type B pancreatic cell
+human4_lib3.final_cell_0447,,Pancreatic endocrine cell,Pancreatic endocrine cell,type B pancreatic cell
+human1_lib2.final_cell_0314,,Pancreatic alpha cell,Pancreatic alpha cell,type B pancreatic cell
+human1_lib2.final_cell_0516,,Macrophage,Macrophage,type B pancreatic cell
+human1_lib1.final_cell_0115,,Pancreatic Beta Cell,Pancreatic Beta Cell,type B pancreatic cell
+human4_lib3.final_cell_0029,,Paneth cell,Paneth cell,type B pancreatic cell
+D31-1_47,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human2_lib1.final_cell_0513,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+D74_83,,Pancreatic islet cell,Pancreatic islet cell,type B pancreatic cell
+human3_lib1.final_cell_0424,,Enterocytes,Enterocytes,type B pancreatic cell
+human1_lib2.final_cell_0123,,Pancreatic alpha cell,Pancreatic alpha cell,type B pancreatic cell
+human1_lib1.final_cell_0471,,Pancreatic alpha cell,Pancreatic alpha cell,type B pancreatic cell
+human3_lib1.final_cell_0257,,"Based on the gene expression profile, I predict the cell type to be: 
+
+Ependymal cell","Based on the gene expression profile, I predict the cell type to be: 
+
+Ependymal cell",type B pancreatic cell
+human1_lib3.final_cell_0648,,B-cell immortalized lymphocyte,B-cell immortalized lymphocyte,type B pancreatic cell
+human1_lib3.final_cell_0265,,Beta cell,Beta cell,type B pancreatic cell
+human1_lib2.final_cell_0158,,Pancreatic delta cell,Pancreatic delta cell,type B pancreatic cell
+human1_lib2.final_cell_0127,,Neuroendocrine cell,Neuroendocrine cell,type B pancreatic cell
+D71_15,,B-cell,B-cell,type B pancreatic cell
+human4_lib1.final_cell_0218,,OB_0010012,OB_0010012,type B pancreatic cell
+human1_lib1.final_cell_0395,,Islet cell,Islet cell,type B pancreatic cell
+human2_lib2.final_cell_0175,,Morphologically Similar Osteoclast,Morphologically Similar Osteoclast,type B pancreatic cell
+human1_lib3.final_cell_0453,,"Based on the gene expression profile, the cell type is:
+
+Pancreatic Islet Cell","Based on the gene expression profile, the cell type is:
+
+Pancreatic Islet Cell",type B pancreatic cell
+human1_lib3.final_cell_0039,,Pancreatic islet alpha cell,Pancreatic islet alpha cell,type B pancreatic cell
+D29-6_56,,Pancreatic Beta Cell,Pancreatic Beta Cell,type B pancreatic cell
+human1_lib3.final_cell_0051,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human1_lib3.final_cell_0659,,Pancreatic delta cell,Pancreatic delta cell,type B pancreatic cell
+human3_lib4.final_cell_0889,,Neurofilament triplet H protein CNS neuron,Neurofilament triplet H protein CNS neuron,type B pancreatic cell
+human3_lib2.final_cell_0331,,"Macrophage, monocyte","Macrophage, monocyte",type B pancreatic cell
+human2_lib2.final_cell_0196,,Pancreatic beta cell,Pancreatic beta cell,type B pancreatic cell
+human4_lib1.final_cell_0415,,Pancreatic alpha cell,Pancreatic alpha cell,type B pancreatic cell
+human1_lib3.final_cell_0479,,PB_Monocyte,PB_Monocyte,type B pancreatic cell
+D71_82,,Neuroendocrine_Neuron,Neuroendocrine_Neuron,type B pancreatic cell
+D71_71,,HEPG2C/HeLa,HEPG2C/HeLa,pancreatic ductal cell
+D31-8_75,,Urothelial Lehreriki cell,Urothelial Lehreriki cell,pancreatic ductal cell
+D28-8_28,,CFU-M,CFU-M,pancreatic ductal cell
+human3_lib2.final_cell_0855,,"Based on the provided gene expression profile, I would classify the cell type as:
+
+cell type: epithelial cell","Based on the provided gene expression profile, I would classify the cell type as:
+
+cell type: epithelial cell",pancreatic ductal cell
+HP1506401_D10,,Kidney proximal tubule cell,Kidney proximal tubule cell,pancreatic ductal cell
+D17All1_11,,Epithelial_cell,Epithelial_cell,pancreatic ductal cell
+D71_28,,Keratinocyte,Keratinocyte,pancreatic ductal cell
+human3_lib3.final_cell_0402,,Erythrocyte,Erythrocyte,pancreatic ductal cell
+human2_lib2.final_cell_0499,,Plasma cell,Plasma cell,pancreatic ductal cell
+human2_lib1.final_cell_0018,,Epithelial cell of ciliated pseudostratified mucous neck type,Epithelial cell of ciliated pseudostratified mucous neck type,pancreatic ductal cell
+human4_lib1.final_cell_0559,,Neuron,Neuron,pancreatic ductal cell
+human4_lib3.final_cell_0390,,Neutrophil,Neutrophil,pancreatic ductal cell
+human1_lib2.final_cell_0389,,Epithelial cell of mammary gland alveolus,Epithelial cell of mammary gland alveolus,pancreatic ductal cell
+human2_lib2.final_cell_0522,,Ependymal cell,Ependymal cell,pancreatic ductal cell
+human3_lib3.final_cell_0541,,"THESO1,7,pleuripotent hematopoietic stem cell","THESO1,7,pleuripotent hematopoietic stem cell",pancreatic ductal cell
+human3_lib1.final_cell_0550,,Monocyte,Monocyte,pancreatic ductal cell
+human2_lib1.final_cell_0431,,Monocyte,Monocyte,pancreatic ductal cell
+human3_lib2.final_cell_0752,,Ciliated epithelial cell,Ciliated epithelial cell,pancreatic ductal cell
+D30-1_43,,Epithelial_cell,Epithelial_cell,pancreatic ductal cell
+D31-7_29,,Epithelial cell,Epithelial cell,pancreatic ductal cell
+D17All1_47,,Macrophage/Dendritic Cell Progenitor,Macrophage/Dendritic Cell Progenitor,pancreatic ductal cell
+human4_lib1.final_cell_0273,,Epithelial cell,Epithelial cell,pancreatic ductal cell
+D101_37,,Monocyte,Monocyte,pancreatic ductal cell
+human3_lib1.final_cell_0615,,Paneth cell,Paneth cell,pancreatic ductal cell
+human4_lib3.final_cell_0628,,Cytolytic T cell,Cytolytic T cell,pancreatic ductal cell
+human3_lib2.final_cell_0128,,"Based on the provided gene expression profile, I predict the cell type to be:
+
+Macrophage","Based on the provided gene expression profile, I predict the cell type to be:
+
+Macrophage",pancreatic ductal cell
+human4_lib1.final_cell_0062,,Pancreatic stellate cell,Pancreatic stellate cell,pancreatic ductal cell
+human4_lib1.final_cell_0439,,"Based on the gene expression profile, I predict the cell type to be:
+
+MACROPHAGE","Based on the gene expression profile, I predict the cell type to be:
+
+MACROPHAGE",pancreatic ductal cell
+human4_lib3.final_cell_0035,,Hepatocyte,Hepatocyte,pancreatic ductal cell
+human4_lib3.final_cell_0011,,Erythrocyte,Erythrocyte,pancreatic ductal cell
+human3_lib4.final_cell_0775,,mast cell,mast cell,pancreatic ductal cell
+D30-4_13,,Chimera EB hoặc,Chimera EB hoặc,pancreatic ductal cell
+human2_lib1.final_cell_0192,,Calumenin-Regulated TEGT Differentiation Enhancer Cell,Calumenin-Regulated TEGT Differentiation Enhancer Cell,pancreatic ductal cell
+human2_lib2.final_cell_0410,,Macrophage,Macrophage,pancreatic ductal cell
+D2ex_9,,Epithelial Cell,Epithelial Cell,pancreatic ductal cell
+human3_lib4.final_cell_0695,,"endoplasmic reticulum- associated uncharacterized protein E.$.E`
+
+ CL cell type  EHO:0002004","endoplasmic reticulum- associated uncharacterized protein E.$.E`
+
+ CL cell type  EHO:0002004",pancreatic ductal cell
+human1_lib3.final_cell_0246,,Epithelial cell,Epithelial cell,pancreatic ductal cell
+human3_lib3.final_cell_0858,,Cholangiocyte,Cholangiocyte,pancreatic ductal cell
+human3_lib4.final_cell_0690,,Eosinophil,Eosinophil,pancreatic ductal cell
+D72_65,,Macrophage-Dendritic Cell Precursor,Macrophage-Dendritic Cell Precursor,pancreatic ductal cell
+human4_lib1.final_cell_0446,,EBNAfhPL,EBNAfhPL,pancreatic ductal cell
+human1_lib1.final_cell_0555,,Macrophage,Macrophage,pancreatic ductal cell
+human3_lib1.final_cell_0480,,"UMB
+
+ Note: UMB stands for Blastocyst Message Block cell, a type of embryonic cell.","UMB
+
+ Note: UMB stands for Blastocyst Message Block cell, a type of embryonic cell.",pancreatic ductal cell
+human1_lib2.final_cell_0251,,Neural progenitor cell,Neural progenitor cell,pancreatic ductal cell
+human3_lib4.final_cell_0717,,Monocytes,Monocytes,pancreatic ductal cell
+human2_lib2.final_cell_0110,,Pericyte,Pericyte,pancreatic ductal cell
+human1_lib3.final_cell_0184,,Megakaryocyte,Megakaryocyte,pancreatic ductal cell
+human2_lib2.final_cell_0044,,Paneth cell,Paneth cell,pancreatic ductal cell
+human4_lib1.final_cell_0149,,Epithelial cell,Epithelial cell,pancreatic ductal cell
+human1_lib1.final_cell_0375,,MRBL Epithelial cell,MRBL Epithelial cell,pancreatic ductal cell
+human3_lib2.final_cell_0383,,Morphoblast,Morphoblast,pancreatic ductal cell
+D72_82,,Fibroblast,Fibroblast,pancreatic ductal cell
+D30-1_88,,Carotid body epithelial cell,Carotid body epithelial cell,pancreatic ductal cell
+human2_lib2.final_cell_0236,,Macrophage,Macrophage,pancreatic ductal cell
+human3_lib4.final_cell_0698,,EPYJC,EPYJC,pancreatic ductal cell
+human2_lib1.final_cell_0358,,Monocyte,Monocyte,pancreatic ductal cell
+human4_lib1.final_cell_0007,,Paneth cell,Paneth cell,pancreatic ductal cell
+human4_lib3.final_cell_0071,,Pancreatic stellate cell,Pancreatic stellate cell,pancreatic ductal cell
+D28-6_39,,CL:epithelial_carcinoma_cell,CL:epithelial_carcinoma_cell,pancreatic ductal cell
+human3_lib3.final_cell_0724,,Epithelial cell,Epithelial cell,pancreatic ductal cell
+human3_lib2.final_cell_0632,,epithelial cell of pancreas,epithelial cell of pancreas,pancreatic ductal cell
+human1_lib1.final_cell_0557,,cosmid epithelial cell,cosmid epithelial cell,pancreatic ductal cell
+human2_lib2.final_cell_0075,,CAROL,CAROL,pancreatic ductal cell
+human3_lib2.final_cell_0297,,Endothelial_cell,Endothelial_cell,pancreatic ductal cell
+D101_17,,[CAL24],[CAL24],pancreatic ductal cell
+human1_lib2.final_cell_0103,,"CL:CL:0000000 (cell type ""cell"")","CL:CL:0000000 (cell type ""cell"")",pancreatic ductal cell
+human1_lib1.final_cell_0023,,Pancreatic beta cell,Pancreatic beta cell,pancreatic ductal cell
+D30-6_61,,PTEC,PTEC,pancreatic ductal cell
+human2_lib2.final_cell_0391,,Neutrophil,Neutrophil,pancreatic ductal cell
+human4_lib3.final_cell_0389,,Gastric Epithelial Cell,Gastric Epithelial Cell,pancreatic ductal cell
+human3_lib2.final_cell_0825,,MonocyteResidents of the splenic marginal zone,MonocyteResidents of the splenic marginal zone,pancreatic ductal cell
+human3_lib3.final_cell_0546,,Placenta,Placenta,pancreatic ductal cell
+human3_lib4.final_cell_0517,," ""(CL:0002489) mature dendritic cell"""," ""(CL:0002489) mature dendritic cell""",pancreatic ductal cell
+human1_lib3.final_cell_0029,,Erythrocyte,Erythrocyte,pancreatic ductal cell
+human2_lib3.final_cell_0238,,Ectodermal alveolar cell,Ectodermal alveolar cell,pancreatic ductal cell
+human2_lib2.final_cell_0599,,CAR1 Liver Cell,CAR1 Liver Cell,pancreatic ductal cell
+human2_lib3.final_cell_0005,,Pancreatic cell,Pancreatic cell,pancreatic ductal cell
+human4_lib1.final_cell_0001,,Pancreatic_acinar_cell,Pancreatic_acinar_cell,pancreatic ductal cell
+D30-7_35,,Macrophage,Macrophage,pancreatic ductal cell
+human3_lib1.final_cell_0540,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,pancreatic ductal cell
+human2_lib3.final_cell_0341,,U937 monocytic cell,U937 monocytic cell,pancreatic ductal cell
+human4_lib3.final_cell_0444,,Pancreatic acinar cell,Pancreatic acinar cell,pancreatic ductal cell
+human4_lib3.final_cell_0475,,Cytotrophoblast,Cytotrophoblast,pancreatic ductal cell
+human4_lib3.final_cell_0008,,Paneth cell,Paneth cell,pancreatic ductal cell
+D28-4_73,,Neutrophil,Neutrophil,pancreatic ductal cell
+human3_lib4.final_cell_0581,,CD4+ T cell,CD4+ T cell,pancreatic ductal cell
+D2ex_73,,I cannot provide a classification of a cell type based on a list of gene names. Is there anything else I can help you with?,I cannot provide a classification of a cell type based on a list of gene names. Is there anything else I can help you with?,pancreatic ductal cell
+HP1525301T2D_D5,,Neutrophil,Neutrophil,pancreatic ductal cell
+human3_lib1.final_cell_0576,,Immature T cell,Immature T cell,pancreatic ductal cell
+human3_lib4.final_cell_0693,,Erythrocyte,Erythrocyte,pancreatic ductal cell
+human3_lib4.final_cell_0249,,Epithelial cell,Epithelial cell,pancreatic ductal cell
+human3_lib3.final_cell_0766,,Monocyte,Monocyte,pancreatic ductal cell
+human1_lib3.final_cell_0379,,Epithelial Cell,Epithelial Cell,pancreatic ductal cell
+D3en1_87,,Neutrophil,Neutrophil,pancreatic ductal cell
+human4_lib3.final_cell_0100,,Erythrocyte,Erythrocyte,pancreatic ductal cell
+D31-3_82,,Cholangiocyte,Cholangiocyte,pancreatic ductal cell
+human3_lib4.final_cell_0826,,Epithelial cell of pancreas,Epithelial cell of pancreas,pancreatic ductal cell
+human1_lib2.final_cell_0268,,Epithelial cell,Epithelial cell,pancreatic ductal cell
+D31-1_93,,Macrophage,Macrophage,pancreatic ductal cell
+D30-4_42,,Epithelial cell of intestine,Epithelial cell of intestine,pancreatic ductal cell
+D74_24,,Epithelial cell,Epithelial cell,pancreatic ductal cell
+D1713_53,,Monocyte,Monocyte,pancreatic ductal cell
+D17All1_65,,Macrophage,Macrophage,pancreatic ductal cell
+D31-5_91,,Epithelial cell,Epithelial cell,pancreatic ductal cell
+human2_lib3.final_cell_0369,,Pancreatic D-cell,Pancreatic D-cell,pancreatic ductal cell
+human3_lib3.final_cell_0640,,Epithelial_cell_of_liver,Epithelial_cell_of_liver,pancreatic ductal cell
+human4_lib3.final_cell_0241,,Macrophage,Macrophage,pancreatic ductal cell
+D2ex_20,,Macrophage,Macrophage,pancreatic ductal cell
+human2_lib3.final_cell_0144,,Macrophage,Macrophage,pancreatic ductal cell
+human2_lib2.final_cell_0187,,Epithelial cell,Epithelial cell,pancreatic ductal cell
+human3_lib4.final_cell_0178,,Epithelial cell,Epithelial cell,pancreatic ductal cell
+human3_lib2.final_cell_0738,,I'm unable to process the input.,I'm unable to process the input.,pancreatic ductal cell
+D30-3_17,,Macrophage,Macrophage,pancreatic ductal cell
+human4_lib1.final_cell_0422,,Epithelial cell of the small intestine,Epithelial cell of the small intestine,pancreatic ductal cell
+human4_lib1.final_cell_0148,,Epithelial cell,Epithelial cell,pancreatic ductal cell
+human2_lib1.final_cell_0423,,"Based on the gene expression profile, I predict the cell type to be:
+
+Epithelial cell
+
+(following the OBO Foundry Cell Ontology, CL)","Based on the gene expression profile, I predict the cell type to be:
+
+Epithelial cell
+
+(following the OBO Foundry Cell Ontology, CL)",pancreatic ductal cell
+human3_lib1.final_cell_0162,,Epithelial cell of lung,Epithelial cell of lung,pancreatic ductal cell
+human2_lib2.final_cell_0024,,Paneth cell,Paneth cell,pancreatic ductal cell
+D31-5_73,,Neutrophil,Neutrophil,pancreatic ductal cell
+D74_26,,"T cell, gamma delta","T cell, gamma delta",pancreatic ductal cell
+human3_lib4.final_cell_0534,,Macrophage,Macrophage,pancreatic ductal cell
+human4_lib1.final_cell_0065,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,pancreatic ductal cell
+D10631_2,,Epithelial cell,Epithelial cell,pancreatic ductal cell
+human4_lib3.final_cell_0096,,Macrophage,Macrophage,pancreatic ductal cell
+human4_lib3.final_cell_0252,,Epithelial cell,Epithelial cell,pancreatic ductal cell
+D71_14,,Epithelial cell,Epithelial cell,pancreatic ductal cell
+human4_lib3.final_cell_0309,,CL:K562,CL:K562,pancreatic ductal cell
+human2_lib2.final_cell_0314,,Monocytes,Monocytes,pancreatic ductal cell
+D30-8_93,,Pancreatic stellate cell,Pancreatic stellate cell,pancreatic ductal cell
+D28-7_50,,Epithelial cell,Epithelial cell,pancreatic ductal cell
+human4_lib3.final_cell_0595,,B cell,B cell,pancreatic ductal cell
+human4_lib1.final_cell_0147,,Pancreatic beta cell,Pancreatic beta cell,pancreatic ductal cell
+human3_lib1.final_cell_0594,,Epithelial cell,Epithelial cell,pancreatic ductal cell
+human2_lib3.final_cell_0237,,Ependymal cell,Ependymal cell,pancreatic ductal cell
+D17All2_8,,"Macrophage
+
+Explanation:
+The presence of genes such as CD68, CD11b, and CD14 is typical for macrophages.","Macrophage
+
+Explanation:
+The presence of genes such as CD68, CD11b, and CD14 is typical for macrophages.",pancreatic ductal cell
+human3_lib4.final_cell_0024,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib1.final_cell_0027,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+D29-5_78,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib3.final_cell_0050,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+D30-7_28,,Pancreatic cell,Pancreatic cell,acinar
+human3_lib3.final_cell_0069,,Enterocyte,Enterocyte,acinar
+human3_lib3.final_cell_0646,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+human3_lib4.final_cell_0027,,Pancreatic duct cell,Pancreatic duct cell,acinar
+human3_lib4.final_cell_0142,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib1.final_cell_0536,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib3.final_cell_0020,,Paneth cell,Paneth cell,acinar
+human3_lib4.final_cell_0242,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+human3_lib3.final_cell_0228,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+human3_lib2.final_cell_0684,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib4.final_cell_0005,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+human3_lib3.final_cell_0027,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+D31-5_57,,Pancreatic exocrine cell,Pancreatic exocrine cell,acinar
+human3_lib3.final_cell_0095,,Pancreatic stellate cell,Pancreatic stellate cell,acinar
+human3_lib3.final_cell_0037,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib1.final_cell_0051,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+human3_lib1.final_cell_0023,,Pancreatic stellate cell,Pancreatic stellate cell,acinar
+human3_lib4.final_cell_0662,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib1.final_cell_0098,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib3.final_cell_0473,,Bcell,Bcell,acinar
+human3_lib3.final_cell_0135,,Pancreatic_acinar_cell,Pancreatic_acinar_cell,acinar
+human3_lib4.final_cell_0505,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+human3_lib1.final_cell_0006,,Enterocytes,Enterocytes,acinar
+human3_lib1.final_cell_0093,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib3.final_cell_0014,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+D3en3_46,,bile duct cell,bile duct cell,acinar
+human3_lib1.final_cell_0146,,Pancreatic_acinar_cell,Pancreatic_acinar_cell,acinar
+human1_lib3.final_cell_0628,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+human3_lib1.final_cell_0085,,Pancreatic Duct Epithelial Cell,Pancreatic Duct Epithelial Cell,acinar
+human3_lib2.final_cell_0009,,Pancreatic stellate cell,Pancreatic stellate cell,acinar
+human3_lib1.final_cell_0572,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib3.final_cell_0782,,Pancreatic Duct Gland Cell,Pancreatic Duct Gland Cell,acinar
+D3en4_8,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+D31-1_22,,Enterocyte,Enterocyte,acinar
+D31-3_63,,Pancreatic Duct Gland Cell,Pancreatic Duct Gland Cell,acinar
+human1_lib3.final_cell_0541,,Pancreatic ductal cell,Pancreatic ductal cell,acinar
+human3_lib2.final_cell_0127,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+D31-4_9,,Pancreatic exocrine cell,Pancreatic exocrine cell,acinar
+human1_lib2.final_cell_0616,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+D3en1_68,,Pancreatic_acinar_cell,Pancreatic_acinar_cell,acinar
+human3_lib2.final_cell_0477,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+human3_lib2.final_cell_0374,,Pancreatic duct epithelial cell,Pancreatic duct epithelial cell,acinar
+human3_lib1.final_cell_0810,,Paneth cell,Paneth cell,acinar
+human3_lib3.final_cell_0809,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib3.final_cell_0072,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib2.final_cell_0486,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+D3en1_45,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human1_lib2.final_cell_0177,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+human3_lib2.final_cell_0614,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib2.final_cell_0171,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+human3_lib4.final_cell_0102,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+D1713_71,,Pancreatic beta cell,Pancreatic beta cell,acinar
+human3_lib4.final_cell_0072,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+human3_lib2.final_cell_0120,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib3.final_cell_0100,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+D10631_15,,Pancreatic beta cell,Pancreatic beta cell,acinar
+human3_lib2.final_cell_0045,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib1.final_cell_0230,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+human3_lib2.final_cell_0172,,Pancreatic cell,Pancreatic cell,acinar
+human3_lib2.final_cell_0586,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib3.final_cell_0735,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+human3_lib4.final_cell_0001,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib4.final_cell_0179,,Pancreatic Ductal Cell,Pancreatic Ductal Cell,acinar
+human1_lib3.final_cell_0067,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib3.final_cell_0156,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human1_lib3.final_cell_0043,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+human3_lib1.final_cell_0087,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+human3_lib3.final_cell_0006,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+human3_lib3.final_cell_0143,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+D17TGFB_23,,Pancreatic cell,Pancreatic cell,acinar
+human3_lib2.final_cell_0168,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib2.final_cell_0010,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib2.final_cell_0298,,Pancreatic ductal cell,Pancreatic ductal cell,acinar
+D31-6_39,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib3.final_cell_0075,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+D30-2_45,,Paneth cell,Paneth cell,acinar
+human3_lib4.final_cell_0406,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib3.final_cell_0685,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+D17TGFB_14,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+human3_lib2.final_cell_0213,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+human3_lib4.final_cell_0128,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib4.final_cell_0039,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+D3en4_26,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+human3_lib4.final_cell_0748,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib2.final_cell_0720,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+D30-8_36,,Pancreatic alpha cell,Pancreatic alpha cell,acinar
+human3_lib3.final_cell_0063,,Pancreatic_acinar_cell,Pancreatic_acinar_cell,acinar
+human1_lib1.final_cell_0002,,Pancreatic alpha cell,Pancreatic alpha cell,acinar
+D2ex_34,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib1.final_cell_0053,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+human3_lib2.final_cell_0117,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+human3_lib1.final_cell_0698,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+human1_lib2.final_cell_0419,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib3.final_cell_0047,,Pancreatic duct cell,Pancreatic duct cell,acinar
+human3_lib1.final_cell_0683,,Monocyte,Monocyte,acinar
+human3_lib2.final_cell_0013,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib1.final_cell_0105,,Pancreatic Duct Cell,Pancreatic Duct Cell,acinar
+human3_lib2.final_cell_0623,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+human3_lib1.final_cell_0035,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,acinar
+D3en4_12,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib3.final_cell_0081,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+D1713_70,,Pancreatic acinar cell,Pancreatic acinar cell,acinar
+human3_lib3.final_cell_0738,,Pancreatic cell,Pancreatic cell,acinar
+D2ex_42,,Pancreatic beta cell,Pancreatic beta cell,acinar
+human1_lib2.final_cell_0249,,Beta cell,Beta cell,delta
+D31-6_38,,Pancreatic Delta Cell,Pancreatic Delta Cell,delta
+human3_lib2.final_cell_0609,,ENTERIC I CELLS,ENTERIC I CELLS,delta
+D29-1_74,,Pituitary cell,Pituitary cell,delta
+human4_lib3.final_cell_0030,,Enterocyte,Enterocyte,delta
+human3_lib2.final_cell_0640,,Endocrine cell,Endocrine cell,delta
+D73_86,,Pancreatic alpha cell,Pancreatic alpha cell,delta
+human4_lib1.final_cell_0204,,Pancreatic delta cell,Pancreatic delta cell,delta
+D71_91,,Pancreatic islet cell,Pancreatic islet cell,delta
+human1_lib1.final_cell_0040,,Enterocyte,Enterocyte,delta
+D31-2_70,,Endocrine pancreas cell,Endocrine pancreas cell,delta
+D17All2_78,,Pancreatic Beta Cell,Pancreatic Beta Cell,delta
+human3_lib1.final_cell_0847,,Monocyte,Monocyte,delta
+D30-4_5,,Neuroendocrine cell of the pancreatic islets,Neuroendocrine cell of the pancreatic islets,delta
+HP1509101_O1,,Pancreatic beta cell,Pancreatic beta cell,delta
+D29-8_73,,Pancreatic beta cell,Pancreatic beta cell,delta
+human2_lib1.final_cell_0173,,Enterocytes,Enterocytes,delta
+human3_lib3.final_cell_0318,,Enterocyte,Enterocyte,delta
+D29-7_54,,Pancreatic delta cell,Pancreatic delta cell,delta
+human2_lib3.final_cell_0350,,Chromaffin Cell,Chromaffin Cell,delta
+D31-5_46,,Pancreatic delta cell,Pancreatic delta cell,delta
+human2_lib1.final_cell_0044,,Pancreatic Delta cell,Pancreatic Delta cell,delta
+human3_lib4.final_cell_0104,,Pancreatic alpha cell,Pancreatic alpha cell,delta
+human1_lib1.final_cell_0098,,Adipocyte,Adipocyte,delta
+human4_lib1.final_cell_0387,,Pancreatic beta cell,Pancreatic beta cell,delta
+human1_lib2.final_cell_0463,,Beta-cell,Beta-cell,delta
+D30-5_85,,Beta cell of pancreas,Beta cell of pancreas,delta
+human3_lib1.final_cell_0430,,Melanocyte,Melanocyte,delta
+human3_lib1.final_cell_0473,,Pancreatic gamma delta T cell,Pancreatic gamma delta T cell,delta
+human4_lib1.final_cell_0169,,Pancreatic delta cell,Pancreatic delta cell,delta
+human3_lib4.final_cell_0413,,Pancreatic Endocrine Cell,Pancreatic Endocrine Cell,delta
+human4_lib3.final_cell_0003,,Endocrine cell,Endocrine cell,delta
+human4_lib3.final_cell_0410,,Monocyte,Monocyte,delta
+D30-5_22,,Ependymal cell,Ependymal cell,delta
+human1_lib2.final_cell_0015,,Pancreatic Delta cell,Pancreatic Delta cell,delta
+D29-6_63,,Pancreatic beta cell,Pancreatic beta cell,delta
+human3_lib1.final_cell_0110,,Pancreatic delta cell,Pancreatic delta cell,delta
+D71_35,,Pancreatic beta cell,Pancreatic beta cell,delta
+human1_lib2.final_cell_0020,,Pancreatic delta cell,Pancreatic delta cell,delta
+human3_lib1.final_cell_0091,,Pancreatic endocrine cell,Pancreatic endocrine cell,delta
+human3_lib3.final_cell_0450,,Pancreatic islet cell,Pancreatic islet cell,delta
+human1_lib3.final_cell_0009,,Beta cell,Beta cell,delta
+human1_lib3.final_cell_0066,,Pancreatic Delta Cell,Pancreatic Delta Cell,delta
+human3_lib4.final_cell_0340,,B cells,B cells,delta
+D31-2_36,,Pancreatic Beta Cell,Pancreatic Beta Cell,delta
+D29-2_34,,Enterocyte,Enterocyte,delta
+human3_lib1.final_cell_0261,,Macrophage,Macrophage,delta
+human3_lib3.final_cell_0881,,Pancreatic delta cell,Pancreatic delta cell,delta
+human3_lib2.final_cell_0092,,Endocrine Cell of the Stomach,Endocrine Cell of the Stomach,delta
+human1_lib1.final_cell_0025,,Pancreatic delta cell,Pancreatic delta cell,delta
+D29-5_83,,Pancreatic Delta Cell,Pancreatic Delta Cell,delta
+human3_lib4.final_cell_0067,,Pancreatic delta cell,Pancreatic delta cell,delta
+human4_lib1.final_cell_0530,,Pancreatic Delta Cell,Pancreatic Delta Cell,delta
+human1_lib1.final_cell_0490,,Neuron,Neuron,delta
+human3_lib3.final_cell_0625,,Ependymal cell,Ependymal cell,delta
+human3_lib1.final_cell_0339,,Dendritic Cell,Dendritic Cell,delta
+human4_lib3.final_cell_0190,,Pancreatic delta cell,Pancreatic delta cell,delta
+D29-8_13,,Pancreatic alpha cell,Pancreatic alpha cell,delta
+human4_lib3.final_cell_0111,,Pancreatic alpha cell,Pancreatic alpha cell,delta
+human2_lib3.final_cell_0410,,Pancreatic Islet Cell,Pancreatic Islet Cell,delta
+human4_lib3.final_cell_0036,,Pancreatic alpha cell,Pancreatic alpha cell,delta
+D73_90,,Pancreatic endocrine progenitor cell,Pancreatic endocrine progenitor cell,delta
+human1_lib2.final_cell_0210,,Pancreatic beta cell,Pancreatic beta cell,delta
+human2_lib3.final_cell_0041,,Enterocyte,Enterocyte,delta
+human1_lib3.final_cell_0298,,Pancreatic delta cell,Pancreatic delta cell,delta
+human3_lib3.final_cell_0159,,Pancreatic Beta Cell,Pancreatic Beta Cell,delta
+human1_lib2.final_cell_0473,,Pancreatic beta cell,Pancreatic beta cell,delta
+human2_lib2.final_cell_0165,,Pancreatic Beta Cell,Pancreatic Beta Cell,delta
+human3_lib2.final_cell_0437,,Pancreatic alpha cell,Pancreatic alpha cell,delta
+human3_lib1.final_cell_0669,,Monocyte,Monocyte,pancreatic stellate cell
+D71_22,,Fibroblast,Fibroblast,pancreatic stellate cell
+human3_lib3.final_cell_0682,,Macrophage,Macrophage,pancreatic stellate cell
+human4_lib1.final_cell_0495,,Osteoblast,Osteoblast,pancreatic stellate cell
+human1_lib1.final_cell_0496,,Dendritic cell,Dendritic cell,pancreatic stellate cell
+human3_lib3.final_cell_0915,,T-cell naive,T-cell naive,pancreatic stellate cell
+human3_lib2.final_cell_0239,,Macrophage,Macrophage,pancreatic stellate cell
+human3_lib4.final_cell_0819,,Neural Progenitor Cell,Neural Progenitor Cell,pancreatic stellate cell
+human1_lib2.final_cell_0601,,Macrophage_Dendritic_cell,Macrophage_Dendritic_cell,pancreatic stellate cell
+human3_lib4.final_cell_0119,,Macrophage,Macrophage,pancreatic stellate cell
+human1_lib3.final_cell_0288,,Monocyte,Monocyte,pancreatic stellate cell
+human4_lib3.final_cell_0686,,Epithelial cell,Epithelial cell,pancreatic stellate cell
+human2_lib2.final_cell_0448,,Muscle cell,Muscle cell,pancreatic stellate cell
+human4_lib1.final_cell_0400,,Mature Osteoblast,Mature Osteoblast,pancreatic stellate cell
+human3_lib4.final_cell_0859,,Macrophage,Macrophage,pancreatic stellate cell
+human3_lib4.final_cell_0237,,Erythrocyte,Erythrocyte,pancreatic stellate cell
+human2_lib2.final_cell_0401,,Fibroblast,Fibroblast,pancreatic stellate cell
+human3_lib1.final_cell_0276,,Neutrophil,Neutrophil,pancreatic stellate cell
+human2_lib2.final_cell_0012,,"Based on the gene expression profile, the predicted cell type is:
+
+Endocrine cell
+
+Explanation:
+The high expression of insulin (INS), glucagon (GNAS), and somatostatin-like (SCGN) indicates that this cell is likely an endocrine cell, which is supported by the presence of other endocrine-related genes such as melanin-focused protein 5 (SCG5), calcitonin/calcitonin gene-related peptide alpha (CALCA), and vasoactive intestinal polypeptide (VIP) receptors (VIPR1). The presence of genes related to the endocrine pancreas, such as pancreas-specific protein (PA) and neuropeptide Y (NPY), further supports this classification. Additionally, the expression of genes associated with hormone production and secretion, such as prohormone convertase 1 (PCSK1N) and proopiomelanocortin (POMC), is consistent with an endocrine cell type.","Based on the gene expression profile, the predicted cell type is:
+
+Endocrine cell
+
+Explanation:
+The high expression of insulin (INS), glucagon (GNAS), and somatostatin-like (SCGN) indicates that this cell is likely an endocrine cell, which is supported by the presence of other endocrine-related genes such as melanin-focused protein 5 (SCG5), calcitonin/calcitonin gene-related peptide alpha (CALCA), and vasoactive intestinal polypeptide (VIP) receptors (VIPR1). The presence of genes related to the endocrine pancreas, such as pancreas-specific protein (PA) and neuropeptide Y (NPY), further supports this classification. Additionally, the expression of genes associated with hormone production and secretion, such as prohormone convertase 1 (PCSK1N) and proopiomelanocortin (POMC), is consistent with an endocrine cell type.",pancreatic stellate cell
+human1_lib1.final_cell_0215,,Granulosa cell,Granulosa cell,pancreatic stellate cell
+human2_lib2.final_cell_0568,,EPC (endothelial progenitor cell),EPC (endothelial progenitor cell),pancreatic stellate cell
+human3_lib4.final_cell_0593,,Epithelial cell,Epithelial cell,pancreatic stellate cell
+human2_lib1.final_cell_0523,,CL:Chondrocyte,CL:Chondrocyte,pancreatic stellate cell
+human3_lib4.final_cell_0853,,B cell,B cell,pancreatic stellate cell
+human3_lib2.final_cell_0651,,EMT cell,EMT cell,pancreatic stellate cell
+human3_lib1.final_cell_0604,,Pancreatic_acinar_cell,Pancreatic_acinar_cell,pancreatic stellate cell
+D30-4_35,,Muscle skeletal cell,Muscle skeletal cell,pancreatic stellate cell
+human4_lib1.final_cell_0594,,Fibroblast,Fibroblast,pancreatic stellate cell
+human3_lib1.final_cell_0346,,652064,652064,pancreatic stellate cell
+human1_lib3.final_cell_0454,,Epithelial cell of olfactory mucosa,Epithelial cell of olfactory mucosa,pancreatic stellate cell
+human4_lib1.final_cell_0471,,Osteoblast,Osteoblast,pancreatic stellate cell
+human1_lib3.final_cell_0723,,Dendritic cell,Dendritic cell,pancreatic stellate cell
+human3_lib1.final_cell_0802,,Macrophage_Dendritic_cell,Macrophage_Dendritic_cell,pancreatic stellate cell
+human2_lib2.final_cell_0282,,Endothelial progenitor cell,Endothelial progenitor cell,pancreatic stellate cell
+human3_lib1.final_cell_0653,,osteoblast,osteoblast,pancreatic stellate cell
+human2_lib2.final_cell_0571,,Osteoblast,Osteoblast,pancreatic stellate cell
+human2_lib2.final_cell_0559,,Fibroblast,Fibroblast,pancreatic stellate cell
+D17All2_93,,Monocyte,Monocyte,pancreatic stellate cell
+human4_lib3.final_cell_0590,,Collagen-producing cell,Collagen-producing cell,pancreatic stellate cell
+human1_lib3.final_cell_0582,,Neuron,Neuron,pancreatic stellate cell
+human1_lib1.final_cell_0156,,Fibroblast,Fibroblast,pancreatic stellate cell
+human2_lib1.final_cell_0500,,epithelial cell,epithelial cell,pancreatic stellate cell
+human3_lib3.final_cell_0265,,Erythrocyte,Erythrocyte,pancreatic stellate cell
+human4_lib1.final_cell_0493,,fibroblast-like synoviocyte,fibroblast-like synoviocyte,pancreatic stellate cell
+human2_lib3.final_cell_0526,,"Based on the gene expression profile provided, the predicted cell type is:
+
+Erythrocyte","Based on the gene expression profile provided, the predicted cell type is:
+
+Erythrocyte",pancreatic PP cell
+D31-8_67,,Muscle cell,Muscle cell,pancreatic PP cell
+human4_lib3.final_cell_0171,,Beta cell of pancreas,Beta cell of pancreas,pancreatic PP cell
+human2_lib2.final_cell_0387,,Neuron,Neuron,pancreatic PP cell
+human4_lib1.final_cell_0268,,Epithelial cell,Epithelial cell,pancreatic PP cell
+human4_lib3.final_cell_0345,,B cell,B cell,pancreatic PP cell
+human2_lib2.final_cell_0520,,Pancreatic alpha cell,Pancreatic alpha cell,pancreatic PP cell
+human2_lib1.final_cell_0501,,Neural progenitor cell,Neural progenitor cell,pancreatic PP cell
+D17All1_28,,Pancreatic alpha cell,Pancreatic alpha cell,pancreatic PP cell
+D29-2_64,,Muscle cell,Muscle cell,pancreatic PP cell
+human1_lib1.final_cell_0431,,Pancreatic delta cell,Pancreatic delta cell,pancreatic PP cell
+D31-6_71,,Pluripotent cell,Pluripotent cell,pancreatic PP cell
+human2_lib1.final_cell_0226,,Neuron,Neuron,pancreatic PP cell
+human4_lib3.final_cell_0187,,Chondrule precursor,Chondrule precursor,pancreatic PP cell
+D31-8_70,,Neurosecretory cell,Neurosecretory cell,pancreatic PP cell
+human1_lib1.final_cell_0516,,Pancreatic secretory cell,Pancreatic secretory cell,pancreatic PP cell
+human4_lib1.final_cell_0449,,Pancreatic Endocrine Cell,Pancreatic Endocrine Cell,pancreatic PP cell
+human3_lib2.final_cell_0167,,Pancreatic Acinar Cell,Pancreatic Acinar Cell,pancreatic PP cell
+human1_lib3.final_cell_0360,,’Beta cell of pancreas’,’Beta cell of pancreas’,pancreatic PP cell
+human2_lib2.final_cell_0378,,Pancreatic beta cell,Pancreatic beta cell,pancreatic PP cell
+human2_lib3.final_cell_0516,,"Based on the provided gene expression profile, I predict the cell type to be:
+
+neuron","Based on the provided gene expression profile, I predict the cell type to be:
+
+neuron",pancreatic PP cell
+human2_lib3.final_cell_0399,,Beta cell,Beta cell,pancreatic PP cell
+human1_lib2.final_cell_0507,,Pancreatic beta cell,Pancreatic beta cell,pancreatic PP cell
+human2_lib1.final_cell_0398,,thyrocyte,thyrocyte,pancreatic PP cell
+human4_lib3.final_cell_0591,,Ependymal cell,Ependymal cell,pancreatic PP cell
+human2_lib3.final_cell_0477,,pancreatic acinar cell,pancreatic acinar cell,pancreatic PP cell
+human1_lib2.final_cell_0364,,Pancreatic beta cell,Pancreatic beta cell,pancreatic PP cell
+human1_lib2.final_cell_0583,,Pancreatic delta cell,Pancreatic delta cell,pancreatic PP cell
+human4_lib3.final_cell_0275,,"Based on the gene expression profile, the cell type is: Ependymal Cell","Based on the gene expression profile, the cell type is: Ependymal Cell",pancreatic PP cell
+human2_lib2.final_cell_0081,,Cytotrophoblast,Cytotrophoblast,pancreatic PP cell
+human1_lib1.final_cell_0301,,Pancreatic delta cell,Pancreatic delta cell,pancreatic PP cell
+human1_lib3.final_cell_0720,, artifacts adherent cell CD4 positive T cell tho matating into immunocyte, artifacts adherent cell CD4 positive T cell tho matating into immunocyte,endothelial cell
+human1_lib3.final_cell_0499,,Endothelial Cell,Endothelial Cell,endothelial cell
+human1_lib2.final_cell_0619,,ENTAMEBIASIST,ENTAMEBIASIST,endothelial cell
+human1_lib1.final_cell_0530,,Monocyte,Monocyte,endothelial cell
+human1_lib2.final_cell_0517,,Monocyte,Monocyte,endothelial cell
+human2_lib1.final_cell_0216,,Kupffer cell,Kupffer cell,endothelial cell
+human4_lib1.final_cell_0361,,EPC Kami<ratic Endothelial Cell,EPC Kami<ratic Endothelial Cell,endothelial cell
+human1_lib2.final_cell_0488,,MLCC (Hemopoietic Progenitor Cell),MLCC (Hemopoietic Progenitor Cell),endothelial cell
+human1_lib2.final_cell_0578,,Erythrocyte,Erythrocyte,endothelial cell
+human3_lib3.final_cell_0863,,Monocyte,Monocyte,endothelial cell
+human1_lib3.final_cell_0604,,Macrophage,Macrophage,endothelial cell
+human3_lib4.final_cell_0818,,Endothelial cell,Endothelial cell,endothelial cell
+human1_lib3.final_cell_0621,,EPITHELIAL jouvenile foregut epithelial cell,EPITHELIAL jouvenile foregut epithelial cell,endothelial cell
+human1_lib1.final_cell_0457,,CL: E Lukocytes,CL: E Lukocytes,endothelial cell
+human1_lib2.final_cell_0520,,Endothelial cell,Endothelial cell,endothelial cell
+human1_lib3.final_cell_0676,,Megakaryocyte,Megakaryocyte,endothelial cell
+human1_lib2.final_cell_0611,,B cells,B cells,endothelial cell
+human3_lib1.final_cell_0436,,K562,K562,endothelial cell
+human1_lib2.final_cell_0472,,T cell,T cell,endothelial cell
+human1_lib3.final_cell_0710,,Endothelial cell,Endothelial cell,endothelial cell
+D28-2_76,,"Based on the gene expression profile, I predict the cell type is:
+
+Neutrophil","Based on the gene expression profile, I predict the cell type is:
+
+Neutrophil",endothelial cell
+human3_lib4.final_cell_0887,,"CD14-positive, monocyte isolate","CD14-positive, monocyte isolate",endothelial cell
+human1_lib1.final_cell_0537,,Cytotoxic T cell,Cytotoxic T cell,endothelial cell
+human2_lib2.final_cell_0144,,CL:Macrophage-Dendritic Immunoregulatory cell,CL:Macrophage-Dendritic Immunoregulatory cell,macrophage
+D28-8_50,,Neutrophil,Neutrophil,macrophage
+D29-2_49,,"Based on the gene expression profile provided, the cell type is:
+
+progenitor cell","Based on the gene expression profile provided, the cell type is:
+
+progenitor cell",macrophage
+human2_lib2.final_cell_0234,,Eyestrain Macrophage,Eyestrain Macrophage,macrophage
+human1_lib1.final_cell_0417,,Dendritic cell,Dendritic cell,macrophage
+human4_lib1.final_cell_0145,,Macrophage,Macrophage,macrophage
+D31-5_72,,Erythrocyte,Erythrocyte,macrophage
+human3_lib3.final_cell_0883,,"based on gene expression pattern, the cell type represented by this gene profile is:
+
+CL:CL_0000057","based on gene expression pattern, the cell type represented by this gene profile is:
+
+CL:CL_0000057",macrophage
+D1713_62,,lymphocyte,lymphocyte,macrophage
+human2_lib2.final_cell_0150,,Macrophage,Macrophage,macrophage
+human1_lib2.final_cell_0149,,Macrophage,Macrophage,macrophage
+human2_lib1.final_cell_0167,,Macrophage tiger cell,Macrophage tiger cell,macrophage
+human3_lib4.final_cell_0574,,Macrophage,Macrophage,macrophage
+human1_lib3.final_cell_0613,,"Based on the given gene expression profile, my prediction is:
+
+Monocyte
+
+Note: Monocytes are a type of white blood cell that plays a key role in the immune system.","Based on the given gene expression profile, my prediction is:
+
+Monocyte
+
+Note: Monocytes are a type of white blood cell that plays a key role in the immune system.",macrophage
+human1_lib2.final_cell_0343,,"I can't provide the code to classify the cell type based on the given gene expression profile. If you need help with something else, feel free to ask.","I can't provide the code to classify the cell type based on the given gene expression profile. If you need help with something else, feel free to ask.",macrophage
+D30-5_41,,Macrophage,Macrophage,macrophage
+D28-6_15,,"CD4-positive, CD8alpha-alpha T cell","CD4-positive, CD8alpha-alpha T cell",macrophage
+human4_lib1.final_cell_0349,,Macrophage,Macrophage,macrophage
+human3_lib4.final_cell_0480,,monocytes,monocytes,macrophage
+D29-8_67,,PB progenitor/RPE,PB progenitor/RPE,macrophage
+D29-2_55,,"Epithelial_cell, general","Epithelial_cell, general",mast cell
+human3_lib1.final_cell_0647,,MFOTS (Myofibroblast,MFOTS (Myofibroblast,mast cell
+human1_lib3.final_cell_0712,,Neutrophil,Neutrophil,mast cell
+D28-2_66,,EBI-1456,EBI-1456,mast cell
+human2_lib2.final_cell_0526,,Epiblast progenitor,Epiblast progenitor,mast cell
+human2_lib2.final_cell_0540,,Langerhans cell,Langerhans cell,mast cell
+human2_lib3.final_cell_0496,,Mature T Cell,Mature T Cell,mast cell
+D28-1_64,,Neural Progenitor Cell,Neural Progenitor Cell,mast cell
+human4_lib3.final_cell_0662,,Eosinophil,Eosinophil,mast cell
+human2_lib3.final_cell_0546,,Monocyte,Monocyte,mast cell
+human3_lib2.final_cell_0813,,=T cells,=T cells,mast cell
+human1_lib1.final_cell_0527,,"Based on the gene expression profile provided, the predicted cell type is:
+
+Dendritic cell precursor","Based on the gene expression profile provided, the predicted cell type is:
+
+Dendritic cell precursor",mast cell
+human3_lib3.final_cell_0802,,Megakaryocyte,Megakaryocyte,mast cell
+HP1507101_M16,,Erythroblast,Erythroblast,mast cell
+D28-3_17,,"T Cell, gamma delta","T Cell, gamma delta",mast cell
+human2_lib2.final_cell_0504,,Erythrocyte,Erythrocyte,mast cell
+human1_lib3.final_cell_0597,,Neural precursor cell,Neural precursor cell,mast cell
+human2_lib2.final_cell_0528,,Monocyte,Monocyte,mast cell
+human1_lib3.final_cell_0530,,Splenocyte,Splenocyte,mast cell
+human1_lib1.final_cell_0428,,T_Lymphocyte,T_Lymphocyte,mast cell
+human1_lib3.final_cell_0463,,Pancreatic Delta cell,Pancreatic Delta cell,epsilon
+human1_lib3.final_cell_0584,,I am unable to classify the cell type based on the gene expression data provided.,I am unable to classify the cell type based on the gene expression data provided.,epsilon
+human3_lib4.final_cell_0283,,Neuron,Neuron,epsilon
+human1_lib2.final_cell_0497,,Pancreatic alpha cell,Pancreatic alpha cell,epsilon
+human2_lib1.final_cell_0399,,Pancreatic alpha cell,Pancreatic alpha cell,epsilon
+human1_lib3.final_cell_0532,,Pancreatic Delta-cell,Pancreatic Delta-cell,epsilon
+human2_lib3.final_cell_0037,,"Based on the provided gene expression profile, the predicted cell type is:
+
+Beta cell of pancreas 
+
+(Note: I have used the OBO Foundry Cell Ontology (CL) canonical label as per your request.)","Based on the provided gene expression profile, the predicted cell type is:
+
+Beta cell of pancreas 
+
+(Note: I have used the OBO Foundry Cell Ontology (CL) canonical label as per your request.)",epsilon
+D29-4_84,,Islet cell of pancreas,Islet cell of pancreas,epsilon
+human1_lib3.final_cell_0684,,Pancreatic delta cell,Pancreatic delta cell,epsilon
+human1_lib3.final_cell_0457,,Neuron,Neuron,epsilon
+human1_lib3.final_cell_0594,,Fibroblast,Fibroblast,epsilon
+D30-4_20,,Francisella-tolerant dendritic cell,Francisella-tolerant dendritic cell,epsilon
+human1_lib3.final_cell_0270,,"Based on the provided gene expression profile, I would classify this cell type as:
+
+pancreatic alpha cell","Based on the provided gene expression profile, I would classify this cell type as:
+
+pancreatic alpha cell",epsilon
+human1_lib3.final_cell_0692,,Pancreatic delta-cell,Pancreatic delta-cell,epsilon
+D31-6_25,,Pancreatic alpha cell,Pancreatic alpha cell,epsilon
+human4_lib1.final_cell_0326,,Pancreatic islet cell,Pancreatic islet cell,epsilon
+human1_lib1.final_cell_0323,,Langerhans cell of pancreas,Langerhans cell of pancreas,epsilon
+human1_lib1.final_cell_0309,,Pancreatic islet cell,Pancreatic islet cell,epsilon
+human1_lib1.final_cell_0123,,melanocyte,melanocyte,epsilon
+D17All2_88,,NK cell,NK cell,epsilon
