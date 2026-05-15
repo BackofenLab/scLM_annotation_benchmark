@@ -271,9 +271,14 @@ def main(args):
     # Parse prediction input (can be string or list)
     pred_files = parse_pred_input(args.pred)
     # Extract dataset and model from output path (format: dataset_model.json)
-    # Remove .json extension first, then split from left (dataset has no underscores, model may have them)
+    # Remove .json extension first, then split
     filename_stem = Path(args.out).stem  # e.g., "HIHA_c2s_scale_2B"
-    dataset, model = filename_stem.split('_', 1)  # Split from left: ['HIHA', 'c2s_scale_2B']
+    model = args.model
+    if filename_stem.endswith(model):
+        dataset = filename_stem[:-len(model)+1] # also remove the _
+    else:
+        print(f"WARNING: json file name seems to be misformatted")
+        dataset, model = filename_stem.split('_', 1)  # Split from left: ['HIHA', 'c2s_scale_2B']
     output_dir = Path(args.out).parent / dataset / model
     output_dir.mkdir(parents=True, exist_ok=True)
     
@@ -491,6 +496,7 @@ if __name__ == "__main__":
     parser.add_argument("--pred", required=True, type=str, 
                        help="CSV file(s) with true and predicted labels. Can be a single file path or comma-separated list of file paths")
     parser.add_argument("--out", required=True, type=str, help="Path to results file")
+    parser.add_argument("--model", required=True, type=str, help="Model name for accurate splitting")
     parser.add_argument("--cache_dir", type=str, default=None,
                        help="Cache directory for ontology files. If not provided, uses 'cache' in current directory")
     parser.add_argument("--max-unmapped-ratio", type=float, default=0.0,
