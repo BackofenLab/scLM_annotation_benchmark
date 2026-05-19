@@ -1054,12 +1054,16 @@ class LangCellTranscriptomeTokenizer(TranscriptomeTokenizer):
 
         # normalize by total counts per cell and multiply by 10,000 to allocate bits to precision
         # and normalize by gene normalization factors
-        subview_norm_array = (
-            subview.X.toarray().T
-            / subview.obs.n_counts.to_numpy()
-            * 10_000
-            / norm_factor_vector[:, None]
-        )
+        # remove second level of normalisation for consistency with previous models
+        #subview_norm_array = (
+        #    subview.X.toarray().T
+        #    / subview.obs.n_counts.to_numpy()
+        #    * 10_000
+        #    / norm_factor_vector[:, None]
+        #)
+        
+        subview_norm_array = subview.X.toarray().T
+        
         # tokenize subview gene vectors
         tokenized_cells += [
             tokenize_cell(subview_norm_array[:, i], coding_miRNA_tokens)
