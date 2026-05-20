@@ -275,7 +275,7 @@ def main(args):
     filename_stem = Path(args.out).stem  # e.g., "HIHA_c2s_scale_2B"
     model = args.model
     if filename_stem.endswith(model):
-        dataset = filename_stem[:-len(model)+1] # also remove the _
+        dataset = filename_stem[:-(len(model) + 1)]  # also remove the preceding _
     else:
         print(f"WARNING: json file name seems to be misformatted")
         dataset, model = filename_stem.split('_', 1)  # Split from left: ['HIHA', 'c2s_scale_2B']
