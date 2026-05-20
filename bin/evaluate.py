@@ -327,11 +327,11 @@ def main(args):
         # each LLM writes its own predictions_<SLUG>.csv. Append the slug to the
         # origin so ontology-mapping rows record which specific LLM produced the
         # label, instead of all rows collapsing onto the wrapper name.
-        file_origin = model
+        file_origin = f"{model}_{dataset}"
         if 'openrouter' in model.lower():
             stem = Path(pred_file).stem
             if stem.startswith('predictions_'):
-                file_origin = f"{model}_{stem[len('predictions_'):]}"
+                file_origin = f"{model}_{stem[len('predictions_'):]}_{dataset}"
         
         # Normalize predicted labels: strip whitespace (incl. trailing \n) BEFORE
         # removing a trailing period, then strip again to clean up any space the
