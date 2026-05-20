@@ -199,6 +199,7 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
 
     n_genes = (dataset_sub.X > 0).sum(axis=1)
     dataset_sub.obs["n_genes"] = np.asarray(n_genes, dtype=np.int32)
+    dataset_sub.obs["n_counts"] = dataset_sub.X.sum(axis=1)
 
     # add key features
     dataset_sub.obs["filter_pass"] = (dataset_sub.obs["n_genes"] > 0).astype(bool)
