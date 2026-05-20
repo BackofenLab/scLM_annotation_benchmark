@@ -6,6 +6,9 @@
 
 ## Models table (table 1)
 
+  - Categorise the models (detailed in supplement)
+  - Selection process (All models considered &rarr; models chosen)
+
 ## ML tables (?)
 
 ## Cell type prediction
