@@ -338,6 +338,9 @@ def main(args):
         df[pred_col] = (df[pred_col].astype(str)
                                     .str.strip()
                                     .str.rstrip('.')
+                                    # Some model outputs wrap the label in quotes, e.g. '"B cell"' or '"""gabaergic neuron"""'.
+                                    # Strip any leading/trailing single/double quotes so ontology lookup can match directly.
+                                    .str.replace(r"^[\'\"]+|[\'\"]+$", "", regex=True)
                                     .str.strip()
                                     .str.lower()
                                     .replace('', np.nan))
