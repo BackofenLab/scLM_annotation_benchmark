@@ -228,7 +228,7 @@ def make_plot(dataframe, out_dir):
             .sort_values(ascending=False, na_position="last")
             .index.tolist()
         )
-        plt.figure(figsize=(10, 6))
+        plt.figure(figsize=(18, 10))
         sns.barplot(
             data=dataframe,
             x="model",
