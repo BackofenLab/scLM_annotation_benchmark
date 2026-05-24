@@ -1,0 +1,1000 @@
+,cell_id,predicted_idx,true_idx,predicted_labels,true_labels
+0,human3_lib3.final_cell_0421,0,0,pancreatic a cell,pancreatic a cell
+1,D29-6_82,5,0,pancreatic pp cell,pancreatic a cell
+2,D17All2_44,5,0,pancreatic pp cell,pancreatic a cell
+3,human3_lib4.final_cell_0731,5,0,pancreatic pp cell,pancreatic a cell
+4,human1_lib2.final_cell_0065,0,0,pancreatic a cell,pancreatic a cell
+5,HP1507101_L15,0,0,pancreatic a cell,pancreatic a cell
+6,D31-5_58,0,0,pancreatic a cell,pancreatic a cell
+7,D30-2_67,5,0,pancreatic pp cell,pancreatic a cell
+8,human3_lib4.final_cell_0674,0,0,pancreatic a cell,pancreatic a cell
+9,D29-5_54,5,0,pancreatic pp cell,pancreatic a cell
+10,human3_lib3.final_cell_0757,5,0,pancreatic pp cell,pancreatic a cell
+11,human3_lib4.final_cell_0721,0,0,pancreatic a cell,pancreatic a cell
+12,human3_lib1.final_cell_0800,5,0,pancreatic pp cell,pancreatic a cell
+13,D29-3_79,5,0,pancreatic pp cell,pancreatic a cell
+14,human3_lib2.final_cell_0555,5,0,pancreatic pp cell,pancreatic a cell
+15,human2_lib2.final_cell_0517,5,0,pancreatic pp cell,pancreatic a cell
+16,D17TGFB_91,5,0,pancreatic pp cell,pancreatic a cell
+17,D17TGFB_65,0,0,pancreatic a cell,pancreatic a cell
+18,D29-4_53,0,0,pancreatic a cell,pancreatic a cell
+19,D31-5_2,5,0,pancreatic pp cell,pancreatic a cell
+20,D31-7_12,0,0,pancreatic a cell,pancreatic a cell
+21,human3_lib1.final_cell_0390,0,0,pancreatic a cell,pancreatic a cell
+22,human3_lib2.final_cell_0642,5,0,pancreatic pp cell,pancreatic a cell
+23,D17All2_84,0,0,pancreatic a cell,pancreatic a cell
+24,human3_lib2.final_cell_0292,0,0,pancreatic a cell,pancreatic a cell
+25,D31-1_89,0,0,pancreatic a cell,pancreatic a cell
+26,human3_lib4.final_cell_0461,0,0,pancreatic a cell,pancreatic a cell
+27,human3_lib3.final_cell_0506,5,0,pancreatic pp cell,pancreatic a cell
+28,human3_lib4.final_cell_0305,5,0,pancreatic pp cell,pancreatic a cell
+29,human3_lib1.final_cell_0799,0,0,pancreatic a cell,pancreatic a cell
+30,human2_lib2.final_cell_0494,5,0,pancreatic pp cell,pancreatic a cell
+31,D31-5_21,5,0,pancreatic pp cell,pancreatic a cell
+32,human2_lib3.final_cell_0212,0,0,pancreatic a cell,pancreatic a cell
+33,human3_lib2.final_cell_0548,0,0,pancreatic a cell,pancreatic a cell
+34,human1_lib2.final_cell_0250,0,0,pancreatic a cell,pancreatic a cell
+35,human4_lib3.final_cell_0426,0,0,pancreatic a cell,pancreatic a cell
+36,D172444_28,5,0,pancreatic pp cell,pancreatic a cell
+37,human4_lib1.final_cell_0048,0,0,pancreatic a cell,pancreatic a cell
+38,human4_lib3.final_cell_0369,5,0,pancreatic pp cell,pancreatic a cell
+39,D30-5_14,5,0,pancreatic pp cell,pancreatic a cell
+40,human3_lib4.final_cell_0256,0,0,pancreatic a cell,pancreatic a cell
+41,human2_lib2.final_cell_0529,0,0,pancreatic a cell,pancreatic a cell
+42,human2_lib1.final_cell_0239,5,0,pancreatic pp cell,pancreatic a cell
+43,human1_lib2.final_cell_0248,0,0,pancreatic a cell,pancreatic a cell
+44,D30-4_47,0,0,pancreatic a cell,pancreatic a cell
+45,D31-4_32,5,0,pancreatic pp cell,pancreatic a cell
+46,human4_lib1.final_cell_0152,5,0,pancreatic pp cell,pancreatic a cell
+47,human2_lib1.final_cell_0203,5,0,pancreatic pp cell,pancreatic a cell
+48,D29-5_49,0,0,pancreatic a cell,pancreatic a cell
+49,D29-4_38,0,0,pancreatic a cell,pancreatic a cell
+50,human2_lib2.final_cell_0128,0,0,pancreatic a cell,pancreatic a cell
+51,D29-4_74,0,0,pancreatic a cell,pancreatic a cell
+52,human2_lib1.final_cell_0425,0,0,pancreatic a cell,pancreatic a cell
+53,human2_lib1.final_cell_0292,5,0,pancreatic pp cell,pancreatic a cell
+54,human3_lib2.final_cell_0658,5,0,pancreatic pp cell,pancreatic a cell
+55,human1_lib1.final_cell_0245,5,0,pancreatic pp cell,pancreatic a cell
+56,human4_lib3.final_cell_0383,0,0,pancreatic a cell,pancreatic a cell
+57,D74_52,5,0,pancreatic pp cell,pancreatic a cell
+58,human3_lib4.final_cell_0612,0,0,pancreatic a cell,pancreatic a cell
+59,human2_lib3.final_cell_0329,0,0,pancreatic a cell,pancreatic a cell
+60,human3_lib1.final_cell_0695,0,0,pancreatic a cell,pancreatic a cell
+61,D29-8_60,0,0,pancreatic a cell,pancreatic a cell
+62,human2_lib2.final_cell_0107,0,0,pancreatic a cell,pancreatic a cell
+63,D29-2_67,0,0,pancreatic a cell,pancreatic a cell
+64,human3_lib2.final_cell_0142,5,0,pancreatic pp cell,pancreatic a cell
+65,human1_lib2.final_cell_0628,0,0,pancreatic a cell,pancreatic a cell
+66,human3_lib3.final_cell_0273,0,0,pancreatic a cell,pancreatic a cell
+67,human3_lib2.final_cell_0815,0,0,pancreatic a cell,pancreatic a cell
+68,human2_lib1.final_cell_0451,5,0,pancreatic pp cell,pancreatic a cell
+69,human3_lib2.final_cell_0452,5,0,pancreatic pp cell,pancreatic a cell
+70,D30-8_89,5,0,pancreatic pp cell,pancreatic a cell
+71,human3_lib4.final_cell_0351,5,0,pancreatic pp cell,pancreatic a cell
+72,D29-1_32,5,0,pancreatic pp cell,pancreatic a cell
+73,D74_88,5,0,pancreatic pp cell,pancreatic a cell
+74,human3_lib3.final_cell_0618,5,0,pancreatic pp cell,pancreatic a cell
+75,D31-6_45,5,0,pancreatic pp cell,pancreatic a cell
+76,human4_lib1.final_cell_0308,0,0,pancreatic a cell,pancreatic a cell
+77,human1_lib2.final_cell_0502,0,0,pancreatic a cell,pancreatic a cell
+78,D29-2_75,0,0,pancreatic a cell,pancreatic a cell
+79,D31-7_14,5,0,pancreatic pp cell,pancreatic a cell
+80,D29-5_35,5,0,pancreatic pp cell,pancreatic a cell
+81,human2_lib3.final_cell_0258,5,0,pancreatic pp cell,pancreatic a cell
+82,human3_lib3.final_cell_0369,5,0,pancreatic pp cell,pancreatic a cell
+83,human2_lib1.final_cell_0489,5,0,pancreatic pp cell,pancreatic a cell
+84,D30-5_53,5,0,pancreatic pp cell,pancreatic a cell
+85,human2_lib1.final_cell_0537,0,0,pancreatic a cell,pancreatic a cell
+86,human2_lib1.final_cell_0397,0,0,pancreatic a cell,pancreatic a cell
+87,D31-3_57,5,0,pancreatic pp cell,pancreatic a cell
+88,human3_lib3.final_cell_0701,5,0,pancreatic pp cell,pancreatic a cell
+89,human1_lib1.final_cell_0322,5,0,pancreatic pp cell,pancreatic a cell
+90,human3_lib4.final_cell_0319,0,0,pancreatic a cell,pancreatic a cell
+91,human3_lib3.final_cell_0817,5,0,pancreatic pp cell,pancreatic a cell
+92,human3_lib3.final_cell_0494,5,0,pancreatic pp cell,pancreatic a cell
+93,D29-1_50,0,0,pancreatic a cell,pancreatic a cell
+94,human3_lib2.final_cell_0722,5,0,pancreatic pp cell,pancreatic a cell
+95,human3_lib3.final_cell_0360,0,0,pancreatic a cell,pancreatic a cell
+96,D30-6_42,0,0,pancreatic a cell,pancreatic a cell
+97,human3_lib1.final_cell_0681,5,0,pancreatic pp cell,pancreatic a cell
+98,human3_lib4.final_cell_0606,0,0,pancreatic a cell,pancreatic a cell
+99,HP1507101_O2,0,0,pancreatic a cell,pancreatic a cell
+100,D30-5_62,0,0,pancreatic a cell,pancreatic a cell
+101,human2_lib3.final_cell_0362,5,0,pancreatic pp cell,pancreatic a cell
+102,human2_lib2.final_cell_0116,0,0,pancreatic a cell,pancreatic a cell
+103,human1_lib1.final_cell_0385,0,0,pancreatic a cell,pancreatic a cell
+104,human3_lib3.final_cell_0424,0,0,pancreatic a cell,pancreatic a cell
+105,human3_lib3.final_cell_0867,5,0,pancreatic pp cell,pancreatic a cell
+106,human3_lib2.final_cell_0221,0,0,pancreatic a cell,pancreatic a cell
+107,D31-5_12,0,0,pancreatic a cell,pancreatic a cell
+108,human3_lib3.final_cell_0827,5,0,pancreatic pp cell,pancreatic a cell
+109,human2_lib1.final_cell_0088,0,0,pancreatic a cell,pancreatic a cell
+110,human4_lib1.final_cell_0230,0,0,pancreatic a cell,pancreatic a cell
+111,human4_lib1.final_cell_0345,5,0,pancreatic pp cell,pancreatic a cell
+112,D28-4_37,5,0,pancreatic pp cell,pancreatic a cell
+113,D31-6_59,5,0,pancreatic pp cell,pancreatic a cell
+114,human4_lib3.final_cell_0616,0,0,pancreatic a cell,pancreatic a cell
+115,D17TGFB_94,0,0,pancreatic a cell,pancreatic a cell
+116,human4_lib3.final_cell_0362,0,0,pancreatic a cell,pancreatic a cell
+117,human1_lib3.final_cell_0699,0,0,pancreatic a cell,pancreatic a cell
+118,human2_lib2.final_cell_0342,0,0,pancreatic a cell,pancreatic a cell
+119,human1_lib1.final_cell_0327,0,0,pancreatic a cell,pancreatic a cell
+120,D28-8_86,0,0,pancreatic a cell,pancreatic a cell
+121,D31-3_90,5,0,pancreatic pp cell,pancreatic a cell
+122,human3_lib2.final_cell_0356,5,0,pancreatic pp cell,pancreatic a cell
+123,human3_lib4.final_cell_0486,5,0,pancreatic pp cell,pancreatic a cell
+124,human1_lib3.final_cell_0674,5,0,pancreatic pp cell,pancreatic a cell
+125,D31-4_7,0,0,pancreatic a cell,pancreatic a cell
+126,human3_lib3.final_cell_0567,5,0,pancreatic pp cell,pancreatic a cell
+127,human3_lib1.final_cell_0334,0,0,pancreatic a cell,pancreatic a cell
+128,human2_lib2.final_cell_0300,0,0,pancreatic a cell,pancreatic a cell
+129,human3_lib3.final_cell_0451,0,0,pancreatic a cell,pancreatic a cell
+130,human2_lib3.final_cell_0325,0,0,pancreatic a cell,pancreatic a cell
+131,D30-3_5,0,0,pancreatic a cell,pancreatic a cell
+132,human1_lib1.final_cell_0248,0,0,pancreatic a cell,pancreatic a cell
+133,HP1507101_K8,0,0,pancreatic a cell,pancreatic a cell
+134,human3_lib4.final_cell_0763,0,0,pancreatic a cell,pancreatic a cell
+135,human3_lib2.final_cell_0295,0,0,pancreatic a cell,pancreatic a cell
+136,human3_lib1.final_cell_0723,5,0,pancreatic pp cell,pancreatic a cell
+137,human1_lib1.final_cell_0191,0,0,pancreatic a cell,pancreatic a cell
+138,human3_lib4.final_cell_0777,5,0,pancreatic pp cell,pancreatic a cell
+139,human3_lib2.final_cell_0513,5,0,pancreatic pp cell,pancreatic a cell
+140,human2_lib2.final_cell_0581,0,0,pancreatic a cell,pancreatic a cell
+141,human3_lib2.final_cell_0505,0,0,pancreatic a cell,pancreatic a cell
+142,human2_lib2.final_cell_0324,0,0,pancreatic a cell,pancreatic a cell
+143,human2_lib1.final_cell_0454,5,0,pancreatic pp cell,pancreatic a cell
+144,D31-5_11,5,0,pancreatic pp cell,pancreatic a cell
+145,D30-2_34,5,0,pancreatic pp cell,pancreatic a cell
+146,human3_lib1.final_cell_0441,0,0,pancreatic a cell,pancreatic a cell
+147,human3_lib1.final_cell_0273,5,0,pancreatic pp cell,pancreatic a cell
+148,D29-4_26,0,0,pancreatic a cell,pancreatic a cell
+149,human3_lib4.final_cell_0882,5,0,pancreatic pp cell,pancreatic a cell
+150,D28-1_30,5,0,pancreatic pp cell,pancreatic a cell
+151,D29-6_57,0,0,pancreatic a cell,pancreatic a cell
+152,D30-4_21,5,0,pancreatic pp cell,pancreatic a cell
+153,human3_lib3.final_cell_0240,0,0,pancreatic a cell,pancreatic a cell
+154,D30-5_23,5,0,pancreatic pp cell,pancreatic a cell
+155,human4_lib3.final_cell_0118,0,0,pancreatic a cell,pancreatic a cell
+156,human3_lib3.final_cell_0791,0,0,pancreatic a cell,pancreatic a cell
+157,human2_lib2.final_cell_0518,5,0,pancreatic pp cell,pancreatic a cell
+158,human3_lib2.final_cell_0595,5,0,pancreatic pp cell,pancreatic a cell
+159,D28-7_63,5,0,pancreatic pp cell,pancreatic a cell
+160,human2_lib2.final_cell_0190,0,0,pancreatic a cell,pancreatic a cell
+161,human2_lib2.final_cell_0152,0,0,pancreatic a cell,pancreatic a cell
+162,human3_lib2.final_cell_0591,0,0,pancreatic a cell,pancreatic a cell
+163,human2_lib3.final_cell_0411,5,0,pancreatic pp cell,pancreatic a cell
+164,human3_lib1.final_cell_0632,0,0,pancreatic a cell,pancreatic a cell
+165,HP1508501T2D_O10,0,0,pancreatic a cell,pancreatic a cell
+166,human3_lib2.final_cell_0156,0,0,pancreatic a cell,pancreatic a cell
+167,D172444_58,5,0,pancreatic pp cell,pancreatic a cell
+168,human3_lib3.final_cell_0783,5,0,pancreatic pp cell,pancreatic a cell
+169,human3_lib4.final_cell_0514,5,0,pancreatic pp cell,pancreatic a cell
+170,D29-7_38,0,0,pancreatic a cell,pancreatic a cell
+171,human3_lib3.final_cell_0799,5,0,pancreatic pp cell,pancreatic a cell
+172,human3_lib1.final_cell_0703,5,0,pancreatic pp cell,pancreatic a cell
+173,human3_lib4.final_cell_0830,5,0,pancreatic pp cell,pancreatic a cell
+174,human1_lib1.final_cell_0285,5,0,pancreatic pp cell,pancreatic a cell
+175,human4_lib1.final_cell_0232,0,0,pancreatic a cell,pancreatic a cell
+176,human3_lib3.final_cell_0430,0,0,pancreatic a cell,pancreatic a cell
+177,human1_lib3.final_cell_0080,0,0,pancreatic a cell,pancreatic a cell
+178,human2_lib3.final_cell_0070,0,0,pancreatic a cell,pancreatic a cell
+179,D30-4_85,5,0,pancreatic pp cell,pancreatic a cell
+180,human2_lib3.final_cell_0259,0,0,pancreatic a cell,pancreatic a cell
+181,D1713_51,7,0,pancreatic stellate cell,pancreatic a cell
+182,human3_lib4.final_cell_0535,5,0,pancreatic pp cell,pancreatic a cell
+183,human3_lib4.final_cell_0500,0,0,pancreatic a cell,pancreatic a cell
+184,human1_lib1.final_cell_0202,5,0,pancreatic pp cell,pancreatic a cell
+185,human3_lib1.final_cell_0351,0,0,pancreatic a cell,pancreatic a cell
+186,human4_lib1.final_cell_0108,0,0,pancreatic a cell,pancreatic a cell
+187,D30-7_25,5,0,pancreatic pp cell,pancreatic a cell
+188,human3_lib1.final_cell_0417,0,0,pancreatic a cell,pancreatic a cell
+189,D29-6_21,0,0,pancreatic a cell,pancreatic a cell
+190,human3_lib3.final_cell_0183,0,0,pancreatic a cell,pancreatic a cell
+191,human1_lib3.final_cell_0242,5,0,pancreatic pp cell,pancreatic a cell
+192,human3_lib3.final_cell_0405,0,0,pancreatic a cell,pancreatic a cell
+193,human3_lib2.final_cell_0719,0,0,pancreatic a cell,pancreatic a cell
+194,human2_lib2.final_cell_0039,0,0,pancreatic a cell,pancreatic a cell
+195,human4_lib1.final_cell_0136,0,0,pancreatic a cell,pancreatic a cell
+196,D30-5_37,0,0,pancreatic a cell,pancreatic a cell
+197,human3_lib1.final_cell_0727,0,0,pancreatic a cell,pancreatic a cell
+198,human4_lib1.final_cell_0391,0,0,pancreatic a cell,pancreatic a cell
+199,human3_lib1.final_cell_0645,5,0,pancreatic pp cell,pancreatic a cell
+200,D101_69,5,0,pancreatic pp cell,pancreatic a cell
+201,human3_lib2.final_cell_0617,0,0,pancreatic a cell,pancreatic a cell
+202,human2_lib1.final_cell_0087,0,0,pancreatic a cell,pancreatic a cell
+203,human3_lib1.final_cell_0221,0,0,pancreatic a cell,pancreatic a cell
+204,D17All1_57,5,0,pancreatic pp cell,pancreatic a cell
+205,D29-6_84,5,0,pancreatic pp cell,pancreatic a cell
+206,human2_lib1.final_cell_0460,0,0,pancreatic a cell,pancreatic a cell
+207,human4_lib3.final_cell_0382,5,0,pancreatic pp cell,pancreatic a cell
+208,human1_lib3.final_cell_0436,5,0,pancreatic pp cell,pancreatic a cell
+209,D31-8_6,5,0,pancreatic pp cell,pancreatic a cell
+210,D28-5_14,5,0,pancreatic pp cell,pancreatic a cell
+211,D31-8_38,0,0,pancreatic a cell,pancreatic a cell
+212,D29-3_60,0,0,pancreatic a cell,pancreatic a cell
+213,human3_lib4.final_cell_0637,0,0,pancreatic a cell,pancreatic a cell
+214,human3_lib1.final_cell_0171,0,0,pancreatic a cell,pancreatic a cell
+215,human4_lib3.final_cell_0532,5,0,pancreatic pp cell,pancreatic a cell
+216,D29-1_29,5,0,pancreatic pp cell,pancreatic a cell
+217,human4_lib1.final_cell_0093,5,0,pancreatic pp cell,pancreatic a cell
+218,human3_lib1.final_cell_0674,0,0,pancreatic a cell,pancreatic a cell
+219,human4_lib1.final_cell_0185,0,0,pancreatic a cell,pancreatic a cell
+220,D29-8_76,0,0,pancreatic a cell,pancreatic a cell
+221,D30-1_16,0,0,pancreatic a cell,pancreatic a cell
+222,human3_lib3.final_cell_0606,0,0,pancreatic a cell,pancreatic a cell
+223,human2_lib3.final_cell_0497,5,0,pancreatic pp cell,pancreatic a cell
+224,human3_lib1.final_cell_0860,0,0,pancreatic a cell,pancreatic a cell
+225,D30-5_73,5,0,pancreatic pp cell,pancreatic a cell
+226,human1_lib1.final_cell_0257,0,0,pancreatic a cell,pancreatic a cell
+227,human3_lib1.final_cell_0617,5,0,pancreatic pp cell,pancreatic a cell
+228,human3_lib2.final_cell_0694,5,0,pancreatic pp cell,pancreatic a cell
+229,human2_lib2.final_cell_0533,5,0,pancreatic pp cell,pancreatic a cell
+230,D31-4_1,5,0,pancreatic pp cell,pancreatic a cell
+231,human3_lib1.final_cell_0726,5,0,pancreatic pp cell,pancreatic a cell
+232,human3_lib4.final_cell_0880,0,0,pancreatic a cell,pancreatic a cell
+233,human3_lib4.final_cell_0620,5,0,pancreatic pp cell,pancreatic a cell
+234,human3_lib3.final_cell_0928,5,0,pancreatic pp cell,pancreatic a cell
+235,D31-2_22,5,0,pancreatic pp cell,pancreatic a cell
+236,human3_lib4.final_cell_0437,5,0,pancreatic pp cell,pancreatic a cell
+237,human1_lib3.final_cell_0535,5,0,pancreatic pp cell,pancreatic a cell
+238,human2_lib2.final_cell_0322,0,0,pancreatic a cell,pancreatic a cell
+239,human3_lib3.final_cell_0713,0,0,pancreatic a cell,pancreatic a cell
+240,human2_lib2.final_cell_0033,5,0,pancreatic pp cell,pancreatic a cell
+241,human2_lib3.final_cell_0105,5,0,pancreatic pp cell,pancreatic a cell
+242,human3_lib1.final_cell_0510,5,0,pancreatic pp cell,pancreatic a cell
+243,human2_lib3.final_cell_0228,5,0,pancreatic pp cell,pancreatic a cell
+244,D29-8_15,5,0,pancreatic pp cell,pancreatic a cell
+245,HP1507101_K17,0,0,pancreatic a cell,pancreatic a cell
+246,D31-5_68,5,0,pancreatic pp cell,pancreatic a cell
+247,D28-7_66,5,0,pancreatic pp cell,pancreatic a cell
+248,human2_lib1.final_cell_0218,5,0,pancreatic pp cell,pancreatic a cell
+249,D17All1_89,5,0,pancreatic pp cell,pancreatic a cell
+250,human3_lib2.final_cell_0541,5,0,pancreatic pp cell,pancreatic a cell
+251,human3_lib2.final_cell_0176,0,0,pancreatic a cell,pancreatic a cell
+252,D31-6_77,5,0,pancreatic pp cell,pancreatic a cell
+253,human3_lib2.final_cell_0542,0,0,pancreatic a cell,pancreatic a cell
+254,D172444_31,5,0,pancreatic pp cell,pancreatic a cell
+255,D29-1_46,0,0,pancreatic a cell,pancreatic a cell
+256,human3_lib4.final_cell_0395,0,0,pancreatic a cell,pancreatic a cell
+257,human3_lib3.final_cell_0315,0,0,pancreatic a cell,pancreatic a cell
+258,D28-5_50,5,0,pancreatic pp cell,pancreatic a cell
+259,D31-6_56,5,0,pancreatic pp cell,pancreatic a cell
+260,D29-1_13,5,0,pancreatic pp cell,pancreatic a cell
+261,D17TGFB_82,5,0,pancreatic pp cell,pancreatic a cell
+262,human2_lib1.final_cell_0146,0,0,pancreatic a cell,pancreatic a cell
+263,human3_lib1.final_cell_0475,0,0,pancreatic a cell,pancreatic a cell
+264,D31-7_75,0,0,pancreatic a cell,pancreatic a cell
+265,human1_lib2.final_cell_0253,5,0,pancreatic pp cell,pancreatic a cell
+266,human3_lib3.final_cell_0679,0,0,pancreatic a cell,pancreatic a cell
+267,human3_lib1.final_cell_0156,0,0,pancreatic a cell,pancreatic a cell
+268,D31-4_27,5,0,pancreatic pp cell,pancreatic a cell
+269,D30-1_59,5,0,pancreatic pp cell,pancreatic a cell
+270,human3_lib4.final_cell_0553,0,0,pancreatic a cell,pancreatic a cell
+271,human3_lib2.final_cell_0395,0,0,pancreatic a cell,pancreatic a cell
+272,human3_lib2.final_cell_0447,0,0,pancreatic a cell,pancreatic a cell
+273,human2_lib3.final_cell_0469,5,0,pancreatic pp cell,pancreatic a cell
+274,D31-8_93,0,0,pancreatic a cell,pancreatic a cell
+275,human3_lib1.final_cell_0474,5,1,pancreatic pp cell,type b pancreatic cell
+276,human2_lib2.final_cell_0285,5,1,pancreatic pp cell,type b pancreatic cell
+277,human1_lib1.final_cell_0364,5,1,pancreatic pp cell,type b pancreatic cell
+278,D30-6_11,5,1,pancreatic pp cell,type b pancreatic cell
+279,D30-6_68,5,1,pancreatic pp cell,type b pancreatic cell
+280,human4_lib1.final_cell_0205,5,1,pancreatic pp cell,type b pancreatic cell
+281,human2_lib3.final_cell_0195,5,1,pancreatic pp cell,type b pancreatic cell
+282,human1_lib3.final_cell_0702,5,1,pancreatic pp cell,type b pancreatic cell
+283,human2_lib3.final_cell_0007,0,1,pancreatic a cell,type b pancreatic cell
+284,human2_lib2.final_cell_0366,5,1,pancreatic pp cell,type b pancreatic cell
+285,human3_lib1.final_cell_0380,0,1,pancreatic a cell,type b pancreatic cell
+286,human4_lib3.final_cell_0373,5,1,pancreatic pp cell,type b pancreatic cell
+287,D29-3_23,0,1,pancreatic a cell,type b pancreatic cell
+288,human4_lib1.final_cell_0366,0,1,pancreatic a cell,type b pancreatic cell
+289,human4_lib1.final_cell_0150,0,1,pancreatic a cell,type b pancreatic cell
+290,human4_lib1.final_cell_0058,0,1,pancreatic a cell,type b pancreatic cell
+291,D30-7_21,5,1,pancreatic pp cell,type b pancreatic cell
+292,D29-4_67,5,1,pancreatic pp cell,type b pancreatic cell
+293,human2_lib2.final_cell_0239,5,1,pancreatic pp cell,type b pancreatic cell
+294,human4_lib3.final_cell_0365,0,1,pancreatic a cell,type b pancreatic cell
+295,human1_lib3.final_cell_0550,5,1,pancreatic pp cell,type b pancreatic cell
+296,D31-1_68,5,1,pancreatic pp cell,type b pancreatic cell
+297,human1_lib2.final_cell_0317,5,1,pancreatic pp cell,type b pancreatic cell
+298,human1_lib1.final_cell_0386,5,1,pancreatic pp cell,type b pancreatic cell
+299,human3_lib2.final_cell_0853,5,1,pancreatic pp cell,type b pancreatic cell
+300,human2_lib3.final_cell_0543,5,1,pancreatic pp cell,type b pancreatic cell
+301,D31-8_60,0,1,pancreatic a cell,type b pancreatic cell
+302,human2_lib2.final_cell_0591,5,1,pancreatic pp cell,type b pancreatic cell
+303,human1_lib1.final_cell_0305,5,1,pancreatic pp cell,type b pancreatic cell
+304,human1_lib3.final_cell_0038,0,1,pancreatic a cell,type b pancreatic cell
+305,human3_lib1.final_cell_0304,5,1,pancreatic pp cell,type b pancreatic cell
+306,human1_lib2.final_cell_0325,5,1,pancreatic pp cell,type b pancreatic cell
+307,D29-7_74,0,1,pancreatic a cell,type b pancreatic cell
+308,human2_lib3.final_cell_0446,5,1,pancreatic pp cell,type b pancreatic cell
+309,human3_lib3.final_cell_0247,5,1,pancreatic pp cell,type b pancreatic cell
+310,D30-7_3,0,1,pancreatic a cell,type b pancreatic cell
+311,D29-2_54,5,1,pancreatic pp cell,type b pancreatic cell
+312,human4_lib1.final_cell_0126,0,1,pancreatic a cell,type b pancreatic cell
+313,human3_lib3.final_cell_0112,5,1,pancreatic pp cell,type b pancreatic cell
+314,D17All2_7,0,1,pancreatic a cell,type b pancreatic cell
+315,D30-5_49,0,1,pancreatic a cell,type b pancreatic cell
+316,human4_lib3.final_cell_0619,5,1,pancreatic pp cell,type b pancreatic cell
+317,human1_lib2.final_cell_0207,5,1,pancreatic pp cell,type b pancreatic cell
+318,human1_lib1.final_cell_0162,5,1,pancreatic pp cell,type b pancreatic cell
+319,human2_lib2.final_cell_0275,5,1,pancreatic pp cell,type b pancreatic cell
+320,human3_lib1.final_cell_0801,5,1,pancreatic pp cell,type b pancreatic cell
+321,human3_lib1.final_cell_0721,5,1,pancreatic pp cell,type b pancreatic cell
+322,human1_lib2.final_cell_0064,5,1,pancreatic pp cell,type b pancreatic cell
+323,human2_lib2.final_cell_0219,5,1,pancreatic pp cell,type b pancreatic cell
+324,D29-4_27,0,1,pancreatic a cell,type b pancreatic cell
+325,human1_lib1.final_cell_0151,0,1,pancreatic a cell,type b pancreatic cell
+326,human2_lib1.final_cell_0405,5,1,pancreatic pp cell,type b pancreatic cell
+327,D102_24,5,1,pancreatic pp cell,type b pancreatic cell
+328,human2_lib2.final_cell_0066,5,1,pancreatic pp cell,type b pancreatic cell
+329,human1_lib2.final_cell_0495,0,1,pancreatic a cell,type b pancreatic cell
+330,human3_lib1.final_cell_0176,5,1,pancreatic pp cell,type b pancreatic cell
+331,human1_lib3.final_cell_0099,0,1,pancreatic a cell,type b pancreatic cell
+332,human2_lib3.final_cell_0001,0,1,pancreatic a cell,type b pancreatic cell
+333,human4_lib1.final_cell_0567,5,1,pancreatic pp cell,type b pancreatic cell
+334,human4_lib3.final_cell_0391,0,1,pancreatic a cell,type b pancreatic cell
+335,human3_lib3.final_cell_0314,0,1,pancreatic a cell,type b pancreatic cell
+336,human4_lib1.final_cell_0234,0,1,pancreatic a cell,type b pancreatic cell
+337,human4_lib3.final_cell_0249,5,1,pancreatic pp cell,type b pancreatic cell
+338,human3_lib1.final_cell_0811,5,1,pancreatic pp cell,type b pancreatic cell
+339,human1_lib1.final_cell_0088,5,1,pancreatic pp cell,type b pancreatic cell
+340,human1_lib1.final_cell_0359,5,1,pancreatic pp cell,type b pancreatic cell
+341,human1_lib3.final_cell_0192,0,1,pancreatic a cell,type b pancreatic cell
+342,human1_lib2.final_cell_0090,5,1,pancreatic pp cell,type b pancreatic cell
+343,D29-4_23,0,1,pancreatic a cell,type b pancreatic cell
+344,human3_lib3.final_cell_0780,0,1,pancreatic a cell,type b pancreatic cell
+345,human4_lib3.final_cell_0454,0,1,pancreatic a cell,type b pancreatic cell
+346,human3_lib3.final_cell_0138,0,1,pancreatic a cell,type b pancreatic cell
+347,D29-4_73,5,1,pancreatic pp cell,type b pancreatic cell
+348,human4_lib3.final_cell_0562,5,1,pancreatic pp cell,type b pancreatic cell
+349,human1_lib3.final_cell_0325,0,1,pancreatic a cell,type b pancreatic cell
+350,D29-3_83,5,1,pancreatic pp cell,type b pancreatic cell
+351,D29-2_50,5,1,pancreatic pp cell,type b pancreatic cell
+352,human3_lib3.final_cell_0871,0,1,pancreatic a cell,type b pancreatic cell
+353,human3_lib1.final_cell_0547,5,1,pancreatic pp cell,type b pancreatic cell
+354,human3_lib2.final_cell_0206,5,1,pancreatic pp cell,type b pancreatic cell
+355,human3_lib2.final_cell_0779,5,1,pancreatic pp cell,type b pancreatic cell
+356,human1_lib1.final_cell_0100,0,1,pancreatic a cell,type b pancreatic cell
+357,D29-3_64,0,1,pancreatic a cell,type b pancreatic cell
+358,human3_lib2.final_cell_0304,0,1,pancreatic a cell,type b pancreatic cell
+359,D30-1_33,0,1,pancreatic a cell,type b pancreatic cell
+360,human1_lib1.final_cell_0328,5,1,pancreatic pp cell,type b pancreatic cell
+361,D29-6_32,5,1,pancreatic pp cell,type b pancreatic cell
+362,human3_lib4.final_cell_0136,5,1,pancreatic pp cell,type b pancreatic cell
+363,D29-6_16,0,1,pancreatic a cell,type b pancreatic cell
+364,human4_lib1.final_cell_0382,0,1,pancreatic a cell,type b pancreatic cell
+365,human1_lib2.final_cell_0199,0,1,pancreatic a cell,type b pancreatic cell
+366,human2_lib2.final_cell_0250,5,1,pancreatic pp cell,type b pancreatic cell
+367,D31-4_44,0,1,pancreatic a cell,type b pancreatic cell
+368,human3_lib3.final_cell_0534,5,1,pancreatic pp cell,type b pancreatic cell
+369,human1_lib2.final_cell_0289,0,1,pancreatic a cell,type b pancreatic cell
+370,human3_lib3.final_cell_0778,5,1,pancreatic pp cell,type b pancreatic cell
+371,human3_lib4.final_cell_0132,0,1,pancreatic a cell,type b pancreatic cell
+372,D28-1_43,5,1,pancreatic pp cell,type b pancreatic cell
+373,human3_lib4.final_cell_0508,5,1,pancreatic pp cell,type b pancreatic cell
+374,D30-1_65,0,1,pancreatic a cell,type b pancreatic cell
+375,human2_lib2.final_cell_0546,5,1,pancreatic pp cell,type b pancreatic cell
+376,human4_lib1.final_cell_0177,0,1,pancreatic a cell,type b pancreatic cell
+377,human3_lib3.final_cell_0869,5,1,pancreatic pp cell,type b pancreatic cell
+378,human3_lib3.final_cell_0464,5,1,pancreatic pp cell,type b pancreatic cell
+379,human3_lib2.final_cell_0581,0,1,pancreatic a cell,type b pancreatic cell
+380,human1_lib3.final_cell_0347,5,1,pancreatic pp cell,type b pancreatic cell
+381,human1_lib2.final_cell_0440,5,1,pancreatic pp cell,type b pancreatic cell
+382,human1_lib1.final_cell_0522,5,1,pancreatic pp cell,type b pancreatic cell
+383,human4_lib1.final_cell_0313,0,1,pancreatic a cell,type b pancreatic cell
+384,human4_lib3.final_cell_0219,0,1,pancreatic a cell,type b pancreatic cell
+385,human1_lib3.final_cell_0332,0,1,pancreatic a cell,type b pancreatic cell
+386,human1_lib2.final_cell_0221,0,1,pancreatic a cell,type b pancreatic cell
+387,human1_lib2.final_cell_0503,5,1,pancreatic pp cell,type b pancreatic cell
+388,human2_lib2.final_cell_0126,5,1,pancreatic pp cell,type b pancreatic cell
+389,D31-6_80,0,1,pancreatic a cell,type b pancreatic cell
+390,human4_lib1.final_cell_0340,0,1,pancreatic a cell,type b pancreatic cell
+391,human4_lib1.final_cell_0051,0,1,pancreatic a cell,type b pancreatic cell
+392,human1_lib3.final_cell_0220,5,1,pancreatic pp cell,type b pancreatic cell
+393,human3_lib1.final_cell_0210,0,1,pancreatic a cell,type b pancreatic cell
+394,human4_lib3.final_cell_0601,5,1,pancreatic pp cell,type b pancreatic cell
+395,D29-7_31,5,1,pancreatic pp cell,type b pancreatic cell
+396,D17All1_12,5,1,pancreatic pp cell,type b pancreatic cell
+397,human3_lib1.final_cell_0233,0,1,pancreatic a cell,type b pancreatic cell
+398,human3_lib4.final_cell_0547,5,1,pancreatic pp cell,type b pancreatic cell
+399,human3_lib3.final_cell_0418,0,1,pancreatic a cell,type b pancreatic cell
+400,D30-7_56,0,1,pancreatic a cell,type b pancreatic cell
+401,D29-7_41,0,1,pancreatic a cell,type b pancreatic cell
+402,human3_lib2.final_cell_0865,5,1,pancreatic pp cell,type b pancreatic cell
+403,human1_lib2.final_cell_0061,0,1,pancreatic a cell,type b pancreatic cell
+404,human3_lib2.final_cell_0273,5,1,pancreatic pp cell,type b pancreatic cell
+405,D31-7_22,0,1,pancreatic a cell,type b pancreatic cell
+406,human1_lib3.final_cell_0645,5,1,pancreatic pp cell,type b pancreatic cell
+407,D29-6_39,5,1,pancreatic pp cell,type b pancreatic cell
+408,human1_lib2.final_cell_0277,5,1,pancreatic pp cell,type b pancreatic cell
+409,human2_lib1.final_cell_0231,5,1,pancreatic pp cell,type b pancreatic cell
+410,human1_lib3.final_cell_0098,0,1,pancreatic a cell,type b pancreatic cell
+411,human1_lib1.final_cell_0106,5,1,pancreatic pp cell,type b pancreatic cell
+412,human2_lib3.final_cell_0320,5,1,pancreatic pp cell,type b pancreatic cell
+413,human3_lib3.final_cell_0150,0,1,pancreatic a cell,type b pancreatic cell
+414,human4_lib3.final_cell_0065,0,1,pancreatic a cell,type b pancreatic cell
+415,human1_lib3.final_cell_0239,5,1,pancreatic pp cell,type b pancreatic cell
+416,human3_lib4.final_cell_0373,0,1,pancreatic a cell,type b pancreatic cell
+417,human4_lib1.final_cell_0153,0,1,pancreatic a cell,type b pancreatic cell
+418,human3_lib2.final_cell_0735,5,1,pancreatic pp cell,type b pancreatic cell
+419,D172444_74,5,1,pancreatic pp cell,type b pancreatic cell
+420,human4_lib1.final_cell_0291,0,1,pancreatic a cell,type b pancreatic cell
+421,human3_lib3.final_cell_0297,5,1,pancreatic pp cell,type b pancreatic cell
+422,human1_lib3.final_cell_0215,5,1,pancreatic pp cell,type b pancreatic cell
+423,human4_lib1.final_cell_0245,0,1,pancreatic a cell,type b pancreatic cell
+424,D30-8_49,5,1,pancreatic pp cell,type b pancreatic cell
+425,D31-7_55,5,1,pancreatic pp cell,type b pancreatic cell
+426,human1_lib2.final_cell_0483,5,1,pancreatic pp cell,type b pancreatic cell
+427,D31-3_31,5,1,pancreatic pp cell,type b pancreatic cell
+428,D31-1_28,5,1,pancreatic pp cell,type b pancreatic cell
+429,human4_lib3.final_cell_0506,0,1,pancreatic a cell,type b pancreatic cell
+430,human3_lib3.final_cell_0270,5,1,pancreatic pp cell,type b pancreatic cell
+431,human1_lib1.final_cell_0090,0,1,pancreatic a cell,type b pancreatic cell
+432,human1_lib2.final_cell_0564,5,1,pancreatic pp cell,type b pancreatic cell
+433,human1_lib3.final_cell_0079,5,1,pancreatic pp cell,type b pancreatic cell
+434,human3_lib4.final_cell_0289,5,1,pancreatic pp cell,type b pancreatic cell
+435,human1_lib2.final_cell_0035,0,1,pancreatic a cell,type b pancreatic cell
+436,human4_lib3.final_cell_0235,5,1,pancreatic pp cell,type b pancreatic cell
+437,human1_lib3.final_cell_0579,5,1,pancreatic pp cell,type b pancreatic cell
+438,human1_lib1.final_cell_0514,5,1,pancreatic pp cell,type b pancreatic cell
+439,human4_lib1.final_cell_0491,0,1,pancreatic a cell,type b pancreatic cell
+440,human3_lib4.final_cell_0798,5,1,pancreatic pp cell,type b pancreatic cell
+441,human1_lib2.final_cell_0479,5,1,pancreatic pp cell,type b pancreatic cell
+442,human3_lib2.final_cell_0263,0,1,pancreatic a cell,type b pancreatic cell
+443,human3_lib1.final_cell_0840,5,1,pancreatic pp cell,type b pancreatic cell
+444,human1_lib2.final_cell_0342,5,1,pancreatic pp cell,type b pancreatic cell
+445,D29-2_56,5,1,pancreatic pp cell,type b pancreatic cell
+446,D30-5_7,0,1,pancreatic a cell,type b pancreatic cell
+447,human3_lib4.final_cell_0800,5,1,pancreatic pp cell,type b pancreatic cell
+448,human1_lib3.final_cell_0018,0,1,pancreatic a cell,type b pancreatic cell
+449,D29-1_24,0,1,pancreatic a cell,type b pancreatic cell
+450,D102_59,5,1,pancreatic pp cell,type b pancreatic cell
+451,human1_lib3.final_cell_0501,5,1,pancreatic pp cell,type b pancreatic cell
+452,D31-6_76,0,1,pancreatic a cell,type b pancreatic cell
+453,human3_lib4.final_cell_0827,5,1,pancreatic pp cell,type b pancreatic cell
+454,human1_lib2.final_cell_0446,5,1,pancreatic pp cell,type b pancreatic cell
+455,human1_lib1.final_cell_0128,5,1,pancreatic pp cell,type b pancreatic cell
+456,human4_lib3.final_cell_0500,5,1,pancreatic pp cell,type b pancreatic cell
+457,human2_lib3.final_cell_0414,0,1,pancreatic a cell,type b pancreatic cell
+458,human3_lib3.final_cell_0254,0,1,pancreatic a cell,type b pancreatic cell
+459,human4_lib3.final_cell_0091,0,1,pancreatic a cell,type b pancreatic cell
+460,human2_lib3.final_cell_0120,0,1,pancreatic a cell,type b pancreatic cell
+461,human3_lib3.final_cell_0391,0,1,pancreatic a cell,type b pancreatic cell
+462,D17All1_19,5,1,pancreatic pp cell,type b pancreatic cell
+463,D31-2_46,0,1,pancreatic a cell,type b pancreatic cell
+464,human4_lib1.final_cell_0521,0,1,pancreatic a cell,type b pancreatic cell
+465,human1_lib1.final_cell_0038,5,1,pancreatic pp cell,type b pancreatic cell
+466,human3_lib3.final_cell_0184,0,1,pancreatic a cell,type b pancreatic cell
+467,D74_21,5,1,pancreatic pp cell,type b pancreatic cell
+468,human2_lib1.final_cell_0227,5,1,pancreatic pp cell,type b pancreatic cell
+469,human3_lib3.final_cell_0850,5,1,pancreatic pp cell,type b pancreatic cell
+470,human3_lib3.final_cell_0260,0,1,pancreatic a cell,type b pancreatic cell
+471,human1_lib1.final_cell_0027,0,1,pancreatic a cell,type b pancreatic cell
+472,human2_lib3.final_cell_0151,0,1,pancreatic a cell,type b pancreatic cell
+473,D31-5_94,0,1,pancreatic a cell,type b pancreatic cell
+474,D28-6_3,5,1,pancreatic pp cell,type b pancreatic cell
+475,human1_lib3.final_cell_0290,5,1,pancreatic pp cell,type b pancreatic cell
+476,human2_lib1.final_cell_0128,0,1,pancreatic a cell,type b pancreatic cell
+477,D28-2_38,5,1,pancreatic pp cell,type b pancreatic cell
+478,human1_lib3.final_cell_0729,5,1,pancreatic pp cell,type b pancreatic cell
+479,human1_lib2.final_cell_0030,0,1,pancreatic a cell,type b pancreatic cell
+480,human4_lib1.final_cell_0433,0,1,pancreatic a cell,type b pancreatic cell
+481,human1_lib2.final_cell_0323,5,1,pancreatic pp cell,type b pancreatic cell
+482,human4_lib1.final_cell_0282,0,1,pancreatic a cell,type b pancreatic cell
+483,D30-8_35,0,1,pancreatic a cell,type b pancreatic cell
+484,human1_lib3.final_cell_0696,5,1,pancreatic pp cell,type b pancreatic cell
+485,human3_lib3.final_cell_0380,5,1,pancreatic pp cell,type b pancreatic cell
+486,human3_lib4.final_cell_0543,5,1,pancreatic pp cell,type b pancreatic cell
+487,human4_lib3.final_cell_0576,5,1,pancreatic pp cell,type b pancreatic cell
+488,human1_lib1.final_cell_0083,0,1,pancreatic a cell,type b pancreatic cell
+489,human1_lib2.final_cell_0208,5,1,pancreatic pp cell,type b pancreatic cell
+490,human1_lib1.final_cell_0137,0,1,pancreatic a cell,type b pancreatic cell
+491,human1_lib1.final_cell_0253,5,1,pancreatic pp cell,type b pancreatic cell
+492,human2_lib2.final_cell_0399,0,1,pancreatic a cell,type b pancreatic cell
+493,D71_30,5,1,pancreatic pp cell,type b pancreatic cell
+494,human1_lib1.final_cell_0276,0,1,pancreatic a cell,type b pancreatic cell
+495,human4_lib3.final_cell_0457,5,1,pancreatic pp cell,type b pancreatic cell
+496,human1_lib3.final_cell_0488,5,1,pancreatic pp cell,type b pancreatic cell
+497,human2_lib2.final_cell_0397,1,1,type b pancreatic cell,type b pancreatic cell
+498,human4_lib3.final_cell_0447,5,1,pancreatic pp cell,type b pancreatic cell
+499,human1_lib2.final_cell_0314,5,1,pancreatic pp cell,type b pancreatic cell
+500,human1_lib2.final_cell_0516,5,1,pancreatic pp cell,type b pancreatic cell
+501,human1_lib1.final_cell_0115,5,1,pancreatic pp cell,type b pancreatic cell
+502,human4_lib3.final_cell_0029,0,1,pancreatic a cell,type b pancreatic cell
+503,D31-1_47,0,1,pancreatic a cell,type b pancreatic cell
+504,human2_lib1.final_cell_0513,5,1,pancreatic pp cell,type b pancreatic cell
+505,D74_83,5,1,pancreatic pp cell,type b pancreatic cell
+506,human3_lib1.final_cell_0424,5,1,pancreatic pp cell,type b pancreatic cell
+507,human1_lib2.final_cell_0123,5,1,pancreatic pp cell,type b pancreatic cell
+508,human1_lib1.final_cell_0471,0,1,pancreatic a cell,type b pancreatic cell
+509,human3_lib1.final_cell_0257,5,1,pancreatic pp cell,type b pancreatic cell
+510,human1_lib3.final_cell_0648,5,1,pancreatic pp cell,type b pancreatic cell
+511,human1_lib3.final_cell_0265,0,1,pancreatic a cell,type b pancreatic cell
+512,human1_lib2.final_cell_0158,0,1,pancreatic a cell,type b pancreatic cell
+513,human1_lib2.final_cell_0127,0,1,pancreatic a cell,type b pancreatic cell
+514,D71_15,5,1,pancreatic pp cell,type b pancreatic cell
+515,human4_lib1.final_cell_0218,5,1,pancreatic pp cell,type b pancreatic cell
+516,human1_lib1.final_cell_0395,0,1,pancreatic a cell,type b pancreatic cell
+517,human2_lib2.final_cell_0175,0,1,pancreatic a cell,type b pancreatic cell
+518,human1_lib3.final_cell_0453,5,1,pancreatic pp cell,type b pancreatic cell
+519,human1_lib3.final_cell_0039,0,1,pancreatic a cell,type b pancreatic cell
+520,D29-6_56,5,1,pancreatic pp cell,type b pancreatic cell
+521,human1_lib3.final_cell_0051,0,1,pancreatic a cell,type b pancreatic cell
+522,human1_lib3.final_cell_0659,5,1,pancreatic pp cell,type b pancreatic cell
+523,human3_lib4.final_cell_0889,5,1,pancreatic pp cell,type b pancreatic cell
+524,human3_lib2.final_cell_0331,0,1,pancreatic a cell,type b pancreatic cell
+525,human2_lib2.final_cell_0196,5,1,pancreatic pp cell,type b pancreatic cell
+526,human4_lib1.final_cell_0415,5,1,pancreatic pp cell,type b pancreatic cell
+527,human1_lib3.final_cell_0479,5,1,pancreatic pp cell,type b pancreatic cell
+528,D71_82,5,1,pancreatic pp cell,type b pancreatic cell
+529,D71_71,5,10,pancreatic pp cell,pancreatic ductal cell
+530,D31-8_75,5,10,pancreatic pp cell,pancreatic ductal cell
+531,D28-8_28,5,10,pancreatic pp cell,pancreatic ductal cell
+532,human3_lib2.final_cell_0855,0,10,pancreatic a cell,pancreatic ductal cell
+533,HP1506401_D10,0,10,pancreatic a cell,pancreatic ductal cell
+534,D17All1_11,5,10,pancreatic pp cell,pancreatic ductal cell
+535,D71_28,10,10,pancreatic ductal cell,pancreatic ductal cell
+536,human3_lib3.final_cell_0402,0,10,pancreatic a cell,pancreatic ductal cell
+537,human2_lib2.final_cell_0499,10,10,pancreatic ductal cell,pancreatic ductal cell
+538,human2_lib1.final_cell_0018,0,10,pancreatic a cell,pancreatic ductal cell
+539,human4_lib1.final_cell_0559,10,10,pancreatic ductal cell,pancreatic ductal cell
+540,human4_lib3.final_cell_0390,5,10,pancreatic pp cell,pancreatic ductal cell
+541,human1_lib2.final_cell_0389,5,10,pancreatic pp cell,pancreatic ductal cell
+542,human2_lib2.final_cell_0522,5,10,pancreatic pp cell,pancreatic ductal cell
+543,human3_lib3.final_cell_0541,5,10,pancreatic pp cell,pancreatic ductal cell
+544,human3_lib1.final_cell_0550,8,10,acinar,pancreatic ductal cell
+545,human2_lib1.final_cell_0431,8,10,acinar,pancreatic ductal cell
+546,human3_lib2.final_cell_0752,0,10,pancreatic a cell,pancreatic ductal cell
+547,D30-1_43,5,10,pancreatic pp cell,pancreatic ductal cell
+548,D31-7_29,0,10,pancreatic a cell,pancreatic ductal cell
+549,D17All1_47,5,10,pancreatic pp cell,pancreatic ductal cell
+550,human4_lib1.final_cell_0273,5,10,pancreatic pp cell,pancreatic ductal cell
+551,D101_37,0,10,pancreatic a cell,pancreatic ductal cell
+552,human3_lib1.final_cell_0615,5,10,pancreatic pp cell,pancreatic ductal cell
+553,human4_lib3.final_cell_0628,0,10,pancreatic a cell,pancreatic ductal cell
+554,human3_lib2.final_cell_0128,10,10,pancreatic ductal cell,pancreatic ductal cell
+555,human4_lib1.final_cell_0062,5,10,pancreatic pp cell,pancreatic ductal cell
+556,human4_lib1.final_cell_0439,8,10,acinar,pancreatic ductal cell
+557,human4_lib3.final_cell_0035,5,10,pancreatic pp cell,pancreatic ductal cell
+558,human4_lib3.final_cell_0011,5,10,pancreatic pp cell,pancreatic ductal cell
+559,human3_lib4.final_cell_0775,0,10,pancreatic a cell,pancreatic ductal cell
+560,D30-4_13,0,10,pancreatic a cell,pancreatic ductal cell
+561,human2_lib1.final_cell_0192,0,10,pancreatic a cell,pancreatic ductal cell
+562,human2_lib2.final_cell_0410,5,10,pancreatic pp cell,pancreatic ductal cell
+563,D2ex_9,0,10,pancreatic a cell,pancreatic ductal cell
+564,human3_lib4.final_cell_0695,5,10,pancreatic pp cell,pancreatic ductal cell
+565,human1_lib3.final_cell_0246,5,10,pancreatic pp cell,pancreatic ductal cell
+566,human3_lib3.final_cell_0858,5,10,pancreatic pp cell,pancreatic ductal cell
+567,human3_lib4.final_cell_0690,0,10,pancreatic a cell,pancreatic ductal cell
+568,D72_65,0,10,pancreatic a cell,pancreatic ductal cell
+569,human4_lib1.final_cell_0446,8,10,acinar,pancreatic ductal cell
+570,human1_lib1.final_cell_0555,5,10,pancreatic pp cell,pancreatic ductal cell
+571,human3_lib1.final_cell_0480,5,10,pancreatic pp cell,pancreatic ductal cell
+572,human1_lib2.final_cell_0251,5,10,pancreatic pp cell,pancreatic ductal cell
+573,human3_lib4.final_cell_0717,0,10,pancreatic a cell,pancreatic ductal cell
+574,human2_lib2.final_cell_0110,5,10,pancreatic pp cell,pancreatic ductal cell
+575,human1_lib3.final_cell_0184,0,10,pancreatic a cell,pancreatic ductal cell
+576,human2_lib2.final_cell_0044,5,10,pancreatic pp cell,pancreatic ductal cell
+577,human4_lib1.final_cell_0149,5,10,pancreatic pp cell,pancreatic ductal cell
+578,human1_lib1.final_cell_0375,0,10,pancreatic a cell,pancreatic ductal cell
+579,human3_lib2.final_cell_0383,8,10,acinar,pancreatic ductal cell
+580,D72_82,5,10,pancreatic pp cell,pancreatic ductal cell
+581,D30-1_88,5,10,pancreatic pp cell,pancreatic ductal cell
+582,human2_lib2.final_cell_0236,0,10,pancreatic a cell,pancreatic ductal cell
+583,human3_lib4.final_cell_0698,10,10,pancreatic ductal cell,pancreatic ductal cell
+584,human2_lib1.final_cell_0358,10,10,pancreatic ductal cell,pancreatic ductal cell
+585,human4_lib1.final_cell_0007,5,10,pancreatic pp cell,pancreatic ductal cell
+586,human4_lib3.final_cell_0071,5,10,pancreatic pp cell,pancreatic ductal cell
+587,D28-6_39,5,10,pancreatic pp cell,pancreatic ductal cell
+588,human3_lib3.final_cell_0724,10,10,pancreatic ductal cell,pancreatic ductal cell
+589,human3_lib2.final_cell_0632,5,10,pancreatic pp cell,pancreatic ductal cell
+590,human1_lib1.final_cell_0557,5,10,pancreatic pp cell,pancreatic ductal cell
+591,human2_lib2.final_cell_0075,0,10,pancreatic a cell,pancreatic ductal cell
+592,human3_lib2.final_cell_0297,5,10,pancreatic pp cell,pancreatic ductal cell
+593,D101_17,5,10,pancreatic pp cell,pancreatic ductal cell
+594,human1_lib2.final_cell_0103,5,10,pancreatic pp cell,pancreatic ductal cell
+595,human1_lib1.final_cell_0023,0,10,pancreatic a cell,pancreatic ductal cell
+596,D30-6_61,7,10,pancreatic stellate cell,pancreatic ductal cell
+597,human2_lib2.final_cell_0391,5,10,pancreatic pp cell,pancreatic ductal cell
+598,human4_lib3.final_cell_0389,0,10,pancreatic a cell,pancreatic ductal cell
+599,human3_lib2.final_cell_0825,5,10,pancreatic pp cell,pancreatic ductal cell
+600,human3_lib3.final_cell_0546,10,10,pancreatic ductal cell,pancreatic ductal cell
+601,human3_lib4.final_cell_0517,10,10,pancreatic ductal cell,pancreatic ductal cell
+602,human1_lib3.final_cell_0029,5,10,pancreatic pp cell,pancreatic ductal cell
+603,human2_lib3.final_cell_0238,10,10,pancreatic ductal cell,pancreatic ductal cell
+604,human2_lib2.final_cell_0599,5,10,pancreatic pp cell,pancreatic ductal cell
+605,human2_lib3.final_cell_0005,5,10,pancreatic pp cell,pancreatic ductal cell
+606,human4_lib1.final_cell_0001,5,10,pancreatic pp cell,pancreatic ductal cell
+607,D30-7_35,5,10,pancreatic pp cell,pancreatic ductal cell
+608,human3_lib1.final_cell_0540,5,10,pancreatic pp cell,pancreatic ductal cell
+609,human2_lib3.final_cell_0341,10,10,pancreatic ductal cell,pancreatic ductal cell
+610,human4_lib3.final_cell_0444,8,10,acinar,pancreatic ductal cell
+611,human4_lib3.final_cell_0475,5,10,pancreatic pp cell,pancreatic ductal cell
+612,human4_lib3.final_cell_0008,0,10,pancreatic a cell,pancreatic ductal cell
+613,D28-4_73,5,10,pancreatic pp cell,pancreatic ductal cell
+614,human3_lib4.final_cell_0581,10,10,pancreatic ductal cell,pancreatic ductal cell
+615,D2ex_73,1,10,type b pancreatic cell,pancreatic ductal cell
+616,HP1525301T2D_D5,0,10,pancreatic a cell,pancreatic ductal cell
+617,human3_lib1.final_cell_0576,10,10,pancreatic ductal cell,pancreatic ductal cell
+618,human3_lib4.final_cell_0693,5,10,pancreatic pp cell,pancreatic ductal cell
+619,human3_lib4.final_cell_0249,0,10,pancreatic a cell,pancreatic ductal cell
+620,human3_lib3.final_cell_0766,5,10,pancreatic pp cell,pancreatic ductal cell
+621,human1_lib3.final_cell_0379,5,10,pancreatic pp cell,pancreatic ductal cell
+622,D3en1_87,5,10,pancreatic pp cell,pancreatic ductal cell
+623,human4_lib3.final_cell_0100,7,10,pancreatic stellate cell,pancreatic ductal cell
+624,D31-3_82,5,10,pancreatic pp cell,pancreatic ductal cell
+625,human3_lib4.final_cell_0826,10,10,pancreatic ductal cell,pancreatic ductal cell
+626,human1_lib2.final_cell_0268,0,10,pancreatic a cell,pancreatic ductal cell
+627,D31-1_93,5,10,pancreatic pp cell,pancreatic ductal cell
+628,D30-4_42,10,10,pancreatic ductal cell,pancreatic ductal cell
+629,D74_24,5,10,pancreatic pp cell,pancreatic ductal cell
+630,D1713_53,5,10,pancreatic pp cell,pancreatic ductal cell
+631,D17All1_65,5,10,pancreatic pp cell,pancreatic ductal cell
+632,D31-5_91,5,10,pancreatic pp cell,pancreatic ductal cell
+633,human2_lib3.final_cell_0369,5,10,pancreatic pp cell,pancreatic ductal cell
+634,human3_lib3.final_cell_0640,5,10,pancreatic pp cell,pancreatic ductal cell
+635,human4_lib3.final_cell_0241,0,10,pancreatic a cell,pancreatic ductal cell
+636,D2ex_20,5,10,pancreatic pp cell,pancreatic ductal cell
+637,human2_lib3.final_cell_0144,10,10,pancreatic ductal cell,pancreatic ductal cell
+638,human2_lib2.final_cell_0187,0,10,pancreatic a cell,pancreatic ductal cell
+639,human3_lib4.final_cell_0178,10,10,pancreatic ductal cell,pancreatic ductal cell
+640,human3_lib2.final_cell_0738,5,10,pancreatic pp cell,pancreatic ductal cell
+641,D30-3_17,5,10,pancreatic pp cell,pancreatic ductal cell
+642,human4_lib1.final_cell_0422,0,10,pancreatic a cell,pancreatic ductal cell
+643,human4_lib1.final_cell_0148,7,10,pancreatic stellate cell,pancreatic ductal cell
+644,human2_lib1.final_cell_0423,8,10,acinar,pancreatic ductal cell
+645,human3_lib1.final_cell_0162,0,10,pancreatic a cell,pancreatic ductal cell
+646,human2_lib2.final_cell_0024,0,10,pancreatic a cell,pancreatic ductal cell
+647,D31-5_73,5,10,pancreatic pp cell,pancreatic ductal cell
+648,D74_26,0,10,pancreatic a cell,pancreatic ductal cell
+649,human3_lib4.final_cell_0534,0,10,pancreatic a cell,pancreatic ductal cell
+650,human4_lib1.final_cell_0065,5,10,pancreatic pp cell,pancreatic ductal cell
+651,D10631_2,5,10,pancreatic pp cell,pancreatic ductal cell
+652,human4_lib3.final_cell_0096,5,10,pancreatic pp cell,pancreatic ductal cell
+653,human4_lib3.final_cell_0252,0,10,pancreatic a cell,pancreatic ductal cell
+654,D71_14,5,10,pancreatic pp cell,pancreatic ductal cell
+655,human4_lib3.final_cell_0309,10,10,pancreatic ductal cell,pancreatic ductal cell
+656,human2_lib2.final_cell_0314,10,10,pancreatic ductal cell,pancreatic ductal cell
+657,D30-8_93,5,10,pancreatic pp cell,pancreatic ductal cell
+658,D28-7_50,0,10,pancreatic a cell,pancreatic ductal cell
+659,human4_lib3.final_cell_0595,5,10,pancreatic pp cell,pancreatic ductal cell
+660,human4_lib1.final_cell_0147,5,10,pancreatic pp cell,pancreatic ductal cell
+661,human3_lib1.final_cell_0594,10,10,pancreatic ductal cell,pancreatic ductal cell
+662,human2_lib3.final_cell_0237,5,10,pancreatic pp cell,pancreatic ductal cell
+663,D17All2_8,5,10,pancreatic pp cell,pancreatic ductal cell
+664,human3_lib4.final_cell_0024,5,8,pancreatic pp cell,acinar
+665,human3_lib1.final_cell_0027,0,8,pancreatic a cell,acinar
+666,D29-5_78,5,8,pancreatic pp cell,acinar
+667,human3_lib3.final_cell_0050,7,8,pancreatic stellate cell,acinar
+668,D30-7_28,5,8,pancreatic pp cell,acinar
+669,human3_lib3.final_cell_0069,5,8,pancreatic pp cell,acinar
+670,human3_lib3.final_cell_0646,8,8,acinar,acinar
+671,human3_lib4.final_cell_0027,0,8,pancreatic a cell,acinar
+672,human3_lib4.final_cell_0142,8,8,acinar,acinar
+673,human3_lib1.final_cell_0536,8,8,acinar,acinar
+674,human3_lib3.final_cell_0020,0,8,pancreatic a cell,acinar
+675,human3_lib4.final_cell_0242,5,8,pancreatic pp cell,acinar
+676,human3_lib3.final_cell_0228,5,8,pancreatic pp cell,acinar
+677,human3_lib2.final_cell_0684,8,8,acinar,acinar
+678,human3_lib4.final_cell_0005,5,8,pancreatic pp cell,acinar
+679,human3_lib3.final_cell_0027,5,8,pancreatic pp cell,acinar
+680,D31-5_57,5,8,pancreatic pp cell,acinar
+681,human3_lib3.final_cell_0095,5,8,pancreatic pp cell,acinar
+682,human3_lib3.final_cell_0037,0,8,pancreatic a cell,acinar
+683,human3_lib1.final_cell_0051,0,8,pancreatic a cell,acinar
+684,human3_lib1.final_cell_0023,5,8,pancreatic pp cell,acinar
+685,human3_lib4.final_cell_0662,5,8,pancreatic pp cell,acinar
+686,human3_lib1.final_cell_0098,5,8,pancreatic pp cell,acinar
+687,human3_lib3.final_cell_0473,5,8,pancreatic pp cell,acinar
+688,human3_lib3.final_cell_0135,10,8,pancreatic ductal cell,acinar
+689,human3_lib4.final_cell_0505,5,8,pancreatic pp cell,acinar
+690,human3_lib1.final_cell_0006,0,8,pancreatic a cell,acinar
+691,human3_lib1.final_cell_0093,8,8,acinar,acinar
+692,human3_lib3.final_cell_0014,8,8,acinar,acinar
+693,D3en3_46,5,8,pancreatic pp cell,acinar
+694,human3_lib1.final_cell_0146,5,8,pancreatic pp cell,acinar
+695,human1_lib3.final_cell_0628,5,8,pancreatic pp cell,acinar
+696,human3_lib1.final_cell_0085,0,8,pancreatic a cell,acinar
+697,human3_lib2.final_cell_0009,0,8,pancreatic a cell,acinar
+698,human3_lib1.final_cell_0572,5,8,pancreatic pp cell,acinar
+699,human3_lib3.final_cell_0782,5,8,pancreatic pp cell,acinar
+700,D3en4_8,5,8,pancreatic pp cell,acinar
+701,D31-1_22,5,8,pancreatic pp cell,acinar
+702,D31-3_63,5,8,pancreatic pp cell,acinar
+703,human1_lib3.final_cell_0541,5,8,pancreatic pp cell,acinar
+704,human3_lib2.final_cell_0127,8,8,acinar,acinar
+705,D31-4_9,5,8,pancreatic pp cell,acinar
+706,human1_lib2.final_cell_0616,5,8,pancreatic pp cell,acinar
+707,D3en1_68,5,8,pancreatic pp cell,acinar
+708,human3_lib2.final_cell_0477,5,8,pancreatic pp cell,acinar
+709,human3_lib2.final_cell_0374,5,8,pancreatic pp cell,acinar
+710,human3_lib1.final_cell_0810,5,8,pancreatic pp cell,acinar
+711,human3_lib3.final_cell_0809,5,8,pancreatic pp cell,acinar
+712,human3_lib3.final_cell_0072,0,8,pancreatic a cell,acinar
+713,human3_lib2.final_cell_0486,5,8,pancreatic pp cell,acinar
+714,D3en1_45,5,8,pancreatic pp cell,acinar
+715,human1_lib2.final_cell_0177,5,8,pancreatic pp cell,acinar
+716,human3_lib2.final_cell_0614,5,8,pancreatic pp cell,acinar
+717,human3_lib2.final_cell_0171,5,8,pancreatic pp cell,acinar
+718,human3_lib4.final_cell_0102,0,8,pancreatic a cell,acinar
+719,D1713_71,10,8,pancreatic ductal cell,acinar
+720,human3_lib4.final_cell_0072,7,8,pancreatic stellate cell,acinar
+721,human3_lib2.final_cell_0120,8,8,acinar,acinar
+722,human3_lib3.final_cell_0100,5,8,pancreatic pp cell,acinar
+723,D10631_15,10,8,pancreatic ductal cell,acinar
+724,human3_lib2.final_cell_0045,5,8,pancreatic pp cell,acinar
+725,human3_lib1.final_cell_0230,8,8,acinar,acinar
+726,human3_lib2.final_cell_0172,5,8,pancreatic pp cell,acinar
+727,human3_lib2.final_cell_0586,8,8,acinar,acinar
+728,human3_lib3.final_cell_0735,5,8,pancreatic pp cell,acinar
+729,human3_lib4.final_cell_0001,5,8,pancreatic pp cell,acinar
+730,human3_lib4.final_cell_0179,5,8,pancreatic pp cell,acinar
+731,human1_lib3.final_cell_0067,5,8,pancreatic pp cell,acinar
+732,human3_lib3.final_cell_0156,5,8,pancreatic pp cell,acinar
+733,human1_lib3.final_cell_0043,5,8,pancreatic pp cell,acinar
+734,human3_lib1.final_cell_0087,0,8,pancreatic a cell,acinar
+735,human3_lib3.final_cell_0006,5,8,pancreatic pp cell,acinar
+736,human3_lib3.final_cell_0143,5,8,pancreatic pp cell,acinar
+737,D17TGFB_23,5,8,pancreatic pp cell,acinar
+738,human3_lib2.final_cell_0168,8,8,acinar,acinar
+739,human3_lib2.final_cell_0010,0,8,pancreatic a cell,acinar
+740,human3_lib2.final_cell_0298,8,8,acinar,acinar
+741,D31-6_39,5,8,pancreatic pp cell,acinar
+742,human3_lib3.final_cell_0075,5,8,pancreatic pp cell,acinar
+743,D30-2_45,5,8,pancreatic pp cell,acinar
+744,human3_lib4.final_cell_0406,5,8,pancreatic pp cell,acinar
+745,human3_lib3.final_cell_0685,5,8,pancreatic pp cell,acinar
+746,D17TGFB_14,5,8,pancreatic pp cell,acinar
+747,human3_lib2.final_cell_0213,5,8,pancreatic pp cell,acinar
+748,human3_lib4.final_cell_0128,5,8,pancreatic pp cell,acinar
+749,human3_lib4.final_cell_0039,0,8,pancreatic a cell,acinar
+750,D3en4_26,5,8,pancreatic pp cell,acinar
+751,human3_lib4.final_cell_0748,5,8,pancreatic pp cell,acinar
+752,human3_lib2.final_cell_0720,8,8,acinar,acinar
+753,D30-8_36,5,8,pancreatic pp cell,acinar
+754,human3_lib3.final_cell_0063,10,8,pancreatic ductal cell,acinar
+755,human1_lib1.final_cell_0002,5,8,pancreatic pp cell,acinar
+756,D2ex_34,5,8,pancreatic pp cell,acinar
+757,human3_lib1.final_cell_0053,5,8,pancreatic pp cell,acinar
+758,human3_lib2.final_cell_0117,0,8,pancreatic a cell,acinar
+759,human3_lib1.final_cell_0698,5,8,pancreatic pp cell,acinar
+760,human1_lib2.final_cell_0419,5,8,pancreatic pp cell,acinar
+761,human3_lib3.final_cell_0047,5,8,pancreatic pp cell,acinar
+762,human3_lib1.final_cell_0683,5,8,pancreatic pp cell,acinar
+763,human3_lib2.final_cell_0013,10,8,pancreatic ductal cell,acinar
+764,human3_lib1.final_cell_0105,5,8,pancreatic pp cell,acinar
+765,human3_lib2.final_cell_0623,8,8,acinar,acinar
+766,human3_lib1.final_cell_0035,5,8,pancreatic pp cell,acinar
+767,D3en4_12,5,8,pancreatic pp cell,acinar
+768,human3_lib3.final_cell_0081,5,8,pancreatic pp cell,acinar
+769,D1713_70,5,8,pancreatic pp cell,acinar
+770,human3_lib3.final_cell_0738,5,8,pancreatic pp cell,acinar
+771,D2ex_42,5,8,pancreatic pp cell,acinar
+772,human1_lib2.final_cell_0249,5,9,pancreatic pp cell,delta
+773,D31-6_38,5,9,pancreatic pp cell,delta
+774,human3_lib2.final_cell_0609,5,9,pancreatic pp cell,delta
+775,D29-1_74,5,9,pancreatic pp cell,delta
+776,human4_lib3.final_cell_0030,0,9,pancreatic a cell,delta
+777,human3_lib2.final_cell_0640,5,9,pancreatic pp cell,delta
+778,D73_86,5,9,pancreatic pp cell,delta
+779,human4_lib1.final_cell_0204,5,9,pancreatic pp cell,delta
+780,D71_91,0,9,pancreatic a cell,delta
+781,human1_lib1.final_cell_0040,5,9,pancreatic pp cell,delta
+782,D31-2_70,5,9,pancreatic pp cell,delta
+783,D17All2_78,5,9,pancreatic pp cell,delta
+784,human3_lib1.final_cell_0847,5,9,pancreatic pp cell,delta
+785,D30-4_5,5,9,pancreatic pp cell,delta
+786,HP1509101_O1,0,9,pancreatic a cell,delta
+787,D29-8_73,0,9,pancreatic a cell,delta
+788,human2_lib1.final_cell_0173,0,9,pancreatic a cell,delta
+789,human3_lib3.final_cell_0318,5,9,pancreatic pp cell,delta
+790,D29-7_54,5,9,pancreatic pp cell,delta
+791,human2_lib3.final_cell_0350,5,9,pancreatic pp cell,delta
+792,D31-5_46,5,9,pancreatic pp cell,delta
+793,human2_lib1.final_cell_0044,5,9,pancreatic pp cell,delta
+794,human3_lib4.final_cell_0104,5,9,pancreatic pp cell,delta
+795,human1_lib1.final_cell_0098,5,9,pancreatic pp cell,delta
+796,human4_lib1.final_cell_0387,0,9,pancreatic a cell,delta
+797,human1_lib2.final_cell_0463,5,9,pancreatic pp cell,delta
+798,D30-5_85,0,9,pancreatic a cell,delta
+799,human3_lib1.final_cell_0430,0,9,pancreatic a cell,delta
+800,human3_lib1.final_cell_0473,5,9,pancreatic pp cell,delta
+801,human4_lib1.final_cell_0169,0,9,pancreatic a cell,delta
+802,human3_lib4.final_cell_0413,5,9,pancreatic pp cell,delta
+803,human4_lib3.final_cell_0003,0,9,pancreatic a cell,delta
+804,human4_lib3.final_cell_0410,0,9,pancreatic a cell,delta
+805,D30-5_22,0,9,pancreatic a cell,delta
+806,human1_lib2.final_cell_0015,5,9,pancreatic pp cell,delta
+807,D29-6_63,5,9,pancreatic pp cell,delta
+808,human3_lib1.final_cell_0110,5,9,pancreatic pp cell,delta
+809,D71_35,5,9,pancreatic pp cell,delta
+810,human1_lib2.final_cell_0020,5,9,pancreatic pp cell,delta
+811,human3_lib1.final_cell_0091,5,9,pancreatic pp cell,delta
+812,human3_lib3.final_cell_0450,5,9,pancreatic pp cell,delta
+813,human1_lib3.final_cell_0009,0,9,pancreatic a cell,delta
+814,human1_lib3.final_cell_0066,5,9,pancreatic pp cell,delta
+815,human3_lib4.final_cell_0340,5,9,pancreatic pp cell,delta
+816,D31-2_36,0,9,pancreatic a cell,delta
+817,D29-2_34,0,9,pancreatic a cell,delta
+818,human3_lib1.final_cell_0261,5,9,pancreatic pp cell,delta
+819,human3_lib3.final_cell_0881,5,9,pancreatic pp cell,delta
+820,human3_lib2.final_cell_0092,5,9,pancreatic pp cell,delta
+821,human1_lib1.final_cell_0025,5,9,pancreatic pp cell,delta
+822,D29-5_83,0,9,pancreatic a cell,delta
+823,human3_lib4.final_cell_0067,5,9,pancreatic pp cell,delta
+824,human4_lib1.final_cell_0530,0,9,pancreatic a cell,delta
+825,human1_lib1.final_cell_0490,5,9,pancreatic pp cell,delta
+826,human3_lib3.final_cell_0625,0,9,pancreatic a cell,delta
+827,human3_lib1.final_cell_0339,5,9,pancreatic pp cell,delta
+828,human4_lib3.final_cell_0190,5,9,pancreatic pp cell,delta
+829,D29-8_13,0,9,pancreatic a cell,delta
+830,human4_lib3.final_cell_0111,5,9,pancreatic pp cell,delta
+831,human2_lib3.final_cell_0410,5,9,pancreatic pp cell,delta
+832,human4_lib3.final_cell_0036,5,9,pancreatic pp cell,delta
+833,D73_90,5,9,pancreatic pp cell,delta
+834,human1_lib2.final_cell_0210,5,9,pancreatic pp cell,delta
+835,human2_lib3.final_cell_0041,0,9,pancreatic a cell,delta
+836,human1_lib3.final_cell_0298,5,9,pancreatic pp cell,delta
+837,human3_lib3.final_cell_0159,5,9,pancreatic pp cell,delta
+838,human1_lib2.final_cell_0473,5,9,pancreatic pp cell,delta
+839,human2_lib2.final_cell_0165,5,9,pancreatic pp cell,delta
+840,human3_lib2.final_cell_0437,5,9,pancreatic pp cell,delta
+841,human3_lib1.final_cell_0669,0,7,pancreatic a cell,pancreatic stellate cell
+842,D71_22,7,7,pancreatic stellate cell,pancreatic stellate cell
+843,human3_lib3.final_cell_0682,7,7,pancreatic stellate cell,pancreatic stellate cell
+844,human4_lib1.final_cell_0495,7,7,pancreatic stellate cell,pancreatic stellate cell
+845,human1_lib1.final_cell_0496,7,7,pancreatic stellate cell,pancreatic stellate cell
+846,human3_lib3.final_cell_0915,0,7,pancreatic a cell,pancreatic stellate cell
+847,human3_lib2.final_cell_0239,7,7,pancreatic stellate cell,pancreatic stellate cell
+848,human3_lib4.final_cell_0819,7,7,pancreatic stellate cell,pancreatic stellate cell
+849,human1_lib2.final_cell_0601,7,7,pancreatic stellate cell,pancreatic stellate cell
+850,human3_lib4.final_cell_0119,7,7,pancreatic stellate cell,pancreatic stellate cell
+851,human1_lib3.final_cell_0288,7,7,pancreatic stellate cell,pancreatic stellate cell
+852,human4_lib3.final_cell_0686,5,7,pancreatic pp cell,pancreatic stellate cell
+853,human2_lib2.final_cell_0448,7,7,pancreatic stellate cell,pancreatic stellate cell
+854,human4_lib1.final_cell_0400,7,7,pancreatic stellate cell,pancreatic stellate cell
+855,human3_lib4.final_cell_0859,0,7,pancreatic a cell,pancreatic stellate cell
+856,human3_lib4.final_cell_0237,0,7,pancreatic a cell,pancreatic stellate cell
+857,human2_lib2.final_cell_0401,7,7,pancreatic stellate cell,pancreatic stellate cell
+858,human3_lib1.final_cell_0276,7,7,pancreatic stellate cell,pancreatic stellate cell
+859,human2_lib2.final_cell_0012,0,7,pancreatic a cell,pancreatic stellate cell
+860,human1_lib1.final_cell_0215,7,7,pancreatic stellate cell,pancreatic stellate cell
+861,human2_lib2.final_cell_0568,0,7,pancreatic a cell,pancreatic stellate cell
+862,human3_lib4.final_cell_0593,7,7,pancreatic stellate cell,pancreatic stellate cell
+863,human2_lib1.final_cell_0523,5,7,pancreatic pp cell,pancreatic stellate cell
+864,human3_lib4.final_cell_0853,7,7,pancreatic stellate cell,pancreatic stellate cell
+865,human3_lib2.final_cell_0651,7,7,pancreatic stellate cell,pancreatic stellate cell
+866,human3_lib1.final_cell_0604,7,7,pancreatic stellate cell,pancreatic stellate cell
+867,D30-4_35,7,7,pancreatic stellate cell,pancreatic stellate cell
+868,human4_lib1.final_cell_0594,0,7,pancreatic a cell,pancreatic stellate cell
+869,human3_lib1.final_cell_0346,7,7,pancreatic stellate cell,pancreatic stellate cell
+870,human1_lib3.final_cell_0454,7,7,pancreatic stellate cell,pancreatic stellate cell
+871,human4_lib1.final_cell_0471,0,7,pancreatic a cell,pancreatic stellate cell
+872,human1_lib3.final_cell_0723,0,7,pancreatic a cell,pancreatic stellate cell
+873,human3_lib1.final_cell_0802,7,7,pancreatic stellate cell,pancreatic stellate cell
+874,human2_lib2.final_cell_0282,7,7,pancreatic stellate cell,pancreatic stellate cell
+875,human3_lib1.final_cell_0653,7,7,pancreatic stellate cell,pancreatic stellate cell
+876,human2_lib2.final_cell_0571,7,7,pancreatic stellate cell,pancreatic stellate cell
+877,human2_lib2.final_cell_0559,7,7,pancreatic stellate cell,pancreatic stellate cell
+878,D17All2_93,7,7,pancreatic stellate cell,pancreatic stellate cell
+879,human4_lib3.final_cell_0590,0,7,pancreatic a cell,pancreatic stellate cell
+880,human1_lib3.final_cell_0582,7,7,pancreatic stellate cell,pancreatic stellate cell
+881,human1_lib1.final_cell_0156,7,7,pancreatic stellate cell,pancreatic stellate cell
+882,human2_lib1.final_cell_0500,7,7,pancreatic stellate cell,pancreatic stellate cell
+883,human3_lib3.final_cell_0265,7,7,pancreatic stellate cell,pancreatic stellate cell
+884,human4_lib1.final_cell_0493,7,7,pancreatic stellate cell,pancreatic stellate cell
+885,human2_lib3.final_cell_0526,5,5,pancreatic pp cell,pancreatic pp cell
+886,D31-8_67,0,5,pancreatic a cell,pancreatic pp cell
+887,human4_lib3.final_cell_0171,5,5,pancreatic pp cell,pancreatic pp cell
+888,human2_lib2.final_cell_0387,5,5,pancreatic pp cell,pancreatic pp cell
+889,human4_lib1.final_cell_0268,0,5,pancreatic a cell,pancreatic pp cell
+890,human4_lib3.final_cell_0345,5,5,pancreatic pp cell,pancreatic pp cell
+891,human2_lib2.final_cell_0520,5,5,pancreatic pp cell,pancreatic pp cell
+892,human2_lib1.final_cell_0501,5,5,pancreatic pp cell,pancreatic pp cell
+893,D17All1_28,5,5,pancreatic pp cell,pancreatic pp cell
+894,D29-2_64,5,5,pancreatic pp cell,pancreatic pp cell
+895,human1_lib1.final_cell_0431,5,5,pancreatic pp cell,pancreatic pp cell
+896,D31-6_71,5,5,pancreatic pp cell,pancreatic pp cell
+897,human2_lib1.final_cell_0226,5,5,pancreatic pp cell,pancreatic pp cell
+898,human4_lib3.final_cell_0187,0,5,pancreatic a cell,pancreatic pp cell
+899,D31-8_70,5,5,pancreatic pp cell,pancreatic pp cell
+900,human1_lib1.final_cell_0516,5,5,pancreatic pp cell,pancreatic pp cell
+901,human4_lib1.final_cell_0449,5,5,pancreatic pp cell,pancreatic pp cell
+902,human3_lib2.final_cell_0167,5,5,pancreatic pp cell,pancreatic pp cell
+903,human1_lib3.final_cell_0360,5,5,pancreatic pp cell,pancreatic pp cell
+904,human2_lib2.final_cell_0378,5,5,pancreatic pp cell,pancreatic pp cell
+905,human2_lib3.final_cell_0516,5,5,pancreatic pp cell,pancreatic pp cell
+906,human2_lib3.final_cell_0399,5,5,pancreatic pp cell,pancreatic pp cell
+907,human1_lib2.final_cell_0507,5,5,pancreatic pp cell,pancreatic pp cell
+908,human2_lib1.final_cell_0398,5,5,pancreatic pp cell,pancreatic pp cell
+909,human4_lib3.final_cell_0591,5,5,pancreatic pp cell,pancreatic pp cell
+910,human2_lib3.final_cell_0477,5,5,pancreatic pp cell,pancreatic pp cell
+911,human1_lib2.final_cell_0364,5,5,pancreatic pp cell,pancreatic pp cell
+912,human1_lib2.final_cell_0583,5,5,pancreatic pp cell,pancreatic pp cell
+913,human4_lib3.final_cell_0275,0,5,pancreatic a cell,pancreatic pp cell
+914,human2_lib2.final_cell_0081,5,5,pancreatic pp cell,pancreatic pp cell
+915,human1_lib1.final_cell_0301,5,5,pancreatic pp cell,pancreatic pp cell
+916,human1_lib3.final_cell_0720,5,6,pancreatic pp cell,endothelial cell
+917,human1_lib3.final_cell_0499,7,6,pancreatic stellate cell,endothelial cell
+918,human1_lib2.final_cell_0619,5,6,pancreatic pp cell,endothelial cell
+919,human1_lib1.final_cell_0530,5,6,pancreatic pp cell,endothelial cell
+920,human1_lib2.final_cell_0517,5,6,pancreatic pp cell,endothelial cell
+921,human2_lib1.final_cell_0216,5,6,pancreatic pp cell,endothelial cell
+922,human4_lib1.final_cell_0361,7,6,pancreatic stellate cell,endothelial cell
+923,human1_lib2.final_cell_0488,5,6,pancreatic pp cell,endothelial cell
+924,human1_lib2.final_cell_0578,5,6,pancreatic pp cell,endothelial cell
+925,human3_lib3.final_cell_0863,7,6,pancreatic stellate cell,endothelial cell
+926,human1_lib3.final_cell_0604,5,6,pancreatic pp cell,endothelial cell
+927,human3_lib4.final_cell_0818,6,6,endothelial cell,endothelial cell
+928,human1_lib3.final_cell_0621,5,6,pancreatic pp cell,endothelial cell
+929,human1_lib1.final_cell_0457,5,6,pancreatic pp cell,endothelial cell
+930,human1_lib2.final_cell_0520,7,6,pancreatic stellate cell,endothelial cell
+931,human1_lib3.final_cell_0676,5,6,pancreatic pp cell,endothelial cell
+932,human1_lib2.final_cell_0611,5,6,pancreatic pp cell,endothelial cell
+933,human3_lib1.final_cell_0436,5,6,pancreatic pp cell,endothelial cell
+934,human1_lib2.final_cell_0472,0,6,pancreatic a cell,endothelial cell
+935,human1_lib3.final_cell_0710,5,6,pancreatic pp cell,endothelial cell
+936,D28-2_76,5,6,pancreatic pp cell,endothelial cell
+937,human3_lib4.final_cell_0887,5,6,pancreatic pp cell,endothelial cell
+938,human1_lib1.final_cell_0537,5,6,pancreatic pp cell,endothelial cell
+939,human2_lib2.final_cell_0144,0,4,pancreatic a cell,macrophage
+940,D28-8_50,1,4,type b pancreatic cell,macrophage
+941,D29-2_49,1,4,type b pancreatic cell,macrophage
+942,human2_lib2.final_cell_0234,0,4,pancreatic a cell,macrophage
+943,human1_lib1.final_cell_0417,0,4,pancreatic a cell,macrophage
+944,human4_lib1.final_cell_0145,1,4,type b pancreatic cell,macrophage
+945,D31-5_72,2,4,mast cell,macrophage
+946,human3_lib3.final_cell_0883,10,4,pancreatic ductal cell,macrophage
+947,D1713_62,1,4,type b pancreatic cell,macrophage
+948,human2_lib2.final_cell_0150,3,4,epsilon,macrophage
+949,human1_lib2.final_cell_0149,0,4,pancreatic a cell,macrophage
+950,human2_lib1.final_cell_0167,0,4,pancreatic a cell,macrophage
+951,human3_lib4.final_cell_0574,7,4,pancreatic stellate cell,macrophage
+952,human1_lib3.final_cell_0613,0,4,pancreatic a cell,macrophage
+953,human1_lib2.final_cell_0343,0,4,pancreatic a cell,macrophage
+954,D30-5_41,2,4,mast cell,macrophage
+955,D28-6_15,0,4,pancreatic a cell,macrophage
+956,human4_lib1.final_cell_0349,1,4,type b pancreatic cell,macrophage
+957,human3_lib4.final_cell_0480,4,4,macrophage,macrophage
+958,D29-8_67,2,4,mast cell,macrophage
+959,D29-2_55,0,2,pancreatic a cell,mast cell
+960,human3_lib1.final_cell_0647,2,2,mast cell,mast cell
+961,human1_lib3.final_cell_0712,0,2,pancreatic a cell,mast cell
+962,D28-2_66,0,2,pancreatic a cell,mast cell
+963,human2_lib2.final_cell_0526,2,2,mast cell,mast cell
+964,human2_lib2.final_cell_0540,5,2,pancreatic pp cell,mast cell
+965,human2_lib3.final_cell_0496,0,2,pancreatic a cell,mast cell
+966,D28-1_64,0,2,pancreatic a cell,mast cell
+967,human4_lib3.final_cell_0662,0,2,pancreatic a cell,mast cell
+968,human2_lib3.final_cell_0546,5,2,pancreatic pp cell,mast cell
+969,human3_lib2.final_cell_0813,0,2,pancreatic a cell,mast cell
+970,human1_lib1.final_cell_0527,0,2,pancreatic a cell,mast cell
+971,human3_lib3.final_cell_0802,2,2,mast cell,mast cell
+972,HP1507101_M16,2,2,mast cell,mast cell
+973,D28-3_17,0,2,pancreatic a cell,mast cell
+974,human2_lib2.final_cell_0504,1,2,type b pancreatic cell,mast cell
+975,human1_lib3.final_cell_0597,5,2,pancreatic pp cell,mast cell
+976,human2_lib2.final_cell_0528,0,2,pancreatic a cell,mast cell
+977,human1_lib3.final_cell_0530,0,2,pancreatic a cell,mast cell
+978,human1_lib1.final_cell_0428,5,2,pancreatic pp cell,mast cell
+979,human1_lib3.final_cell_0463,5,3,pancreatic pp cell,epsilon
+980,human1_lib3.final_cell_0584,5,3,pancreatic pp cell,epsilon
+981,human3_lib4.final_cell_0283,5,3,pancreatic pp cell,epsilon
+982,human1_lib2.final_cell_0497,5,3,pancreatic pp cell,epsilon
+983,human2_lib1.final_cell_0399,5,3,pancreatic pp cell,epsilon
+984,human1_lib3.final_cell_0532,5,3,pancreatic pp cell,epsilon
+985,human2_lib3.final_cell_0037,0,3,pancreatic a cell,epsilon
+986,D29-4_84,0,3,pancreatic a cell,epsilon
+987,human1_lib3.final_cell_0684,5,3,pancreatic pp cell,epsilon
+988,human1_lib3.final_cell_0457,5,3,pancreatic pp cell,epsilon
+989,human1_lib3.final_cell_0594,5,3,pancreatic pp cell,epsilon
+990,D30-4_20,5,3,pancreatic pp cell,epsilon
+991,human1_lib3.final_cell_0270,5,3,pancreatic pp cell,epsilon
+992,human1_lib3.final_cell_0692,5,3,pancreatic pp cell,epsilon
+993,D31-6_25,5,3,pancreatic pp cell,epsilon
+994,human4_lib1.final_cell_0326,5,3,pancreatic pp cell,epsilon
+995,human1_lib1.final_cell_0323,0,3,pancreatic a cell,epsilon
+996,human1_lib1.final_cell_0309,5,3,pancreatic pp cell,epsilon
+997,human1_lib1.final_cell_0123,5,3,pancreatic pp cell,epsilon
+998,D17All2_88,5,3,pancreatic pp cell,epsilon

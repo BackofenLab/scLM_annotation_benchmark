@@ -1,0 +1,1000 @@
+,cell_id,predicted_idx,true_idx,predicted_labels,true_labels
+0,10X57_2:ACAAATTGTTGTCT,23,5,ependymal cell,oligodendrocyte
+1,10X52_5:CTGAGAACTTTCTG,23,5,ependymal cell,oligodendrocyte
+2,10X53_2:TTTGACTGCCCACT,23,5,ependymal cell,oligodendrocyte
+3,10X35_2:TATCTCGATTCTGT,23,5,ependymal cell,oligodendrocyte
+4,10X55_4:CTCCTAGATATGCA,23,5,ependymal cell,oligodendrocyte
+5,10X55_5:CCTTGGTCCAGTAT,23,5,ependymal cell,oligodendrocyte
+6,10X55_5:GTCAAAGACAAGCC,23,5,ependymal cell,oligodendrocyte
+7,10X50_7:GCCGAGTGGGTTCA,23,5,ependymal cell,oligodendrocyte
+8,10X43_1:CATCGCTGGTCAAC,23,5,ependymal cell,oligodendrocyte
+9,10X52_1:GGGTTATGCTTAGG,23,5,ependymal cell,oligodendrocyte
+10,10X50_8:ACGTCAGAGACGAG,23,5,ependymal cell,oligodendrocyte
+11,10X24_1:TCCCGAACTCCCAC,23,5,ependymal cell,oligodendrocyte
+12,10X51_3:CTGACCACAGTACC,23,5,ependymal cell,oligodendrocyte
+13,10X34_4:GACAGGGAACTGTG,23,5,ependymal cell,oligodendrocyte
+14,10X53_6:GCGAGAGATCGTTT,23,5,ependymal cell,oligodendrocyte
+15,10X57_2:TCCTATGATGCATG,23,5,ependymal cell,oligodendrocyte
+16,10X55_2:CAATCGTGACCAAG,23,5,ependymal cell,oligodendrocyte
+17,10X53_5:TCCCACGACACTTT,23,5,ependymal cell,oligodendrocyte
+18,10X53_3:AGCGATTGTTCCAT,23,5,ependymal cell,oligodendrocyte
+19,10X50_2:GCACCTACCTCCCA,23,5,ependymal cell,oligodendrocyte
+20,10X55_2:CGTGTGTCTGATCA,23,5,ependymal cell,oligodendrocyte
+21,10X54_1:TGAGGTCTCTGTCG,23,5,ependymal cell,oligodendrocyte
+22,10X26_3:GCATGTGAGCGATT,23,5,ependymal cell,oligodendrocyte
+23,10X57_4:GCCTACACTTAGGC,23,5,ependymal cell,oligodendrocyte
+24,10X53_3:GTAGTGACATTCGG,23,5,ependymal cell,oligodendrocyte
+25,10X04_1:TCGTAGGATGTTCT,23,5,ependymal cell,oligodendrocyte
+26,10X57_4:AACCTACTAGGTTC,23,5,ependymal cell,oligodendrocyte
+27,10X49_1:ATACCGGAGAGCTT,23,5,ependymal cell,oligodendrocyte
+28,10X57_2:TTACAGCTTCTTCA,23,5,ependymal cell,oligodendrocyte
+29,10X57_6:GCTACGCTGTTGTG,23,5,ependymal cell,oligodendrocyte
+30,10X52_7:TTCAGTACGATAAG,23,5,ependymal cell,oligodendrocyte
+31,10X55_8:CTTCAAGAACAACT,23,5,ependymal cell,oligodendrocyte
+32,10X55_7:GCTAAGTACCATCA,23,5,ependymal cell,oligodendrocyte
+33,10X55_2:TGAGAGTTGGAGGT,23,5,ependymal cell,oligodendrocyte
+34,10X57_3:TAGTGGTGGCCCTT,23,5,ependymal cell,oligodendrocyte
+35,10X24_2:AAGGTCACACTACG,23,5,ependymal cell,oligodendrocyte
+36,10X56_3:GTATTAGATCTACT,23,5,ependymal cell,oligodendrocyte
+37,10X22_4:CCAATGGAACTGTG,23,5,ependymal cell,oligodendrocyte
+38,10X22_4:CAATTCTGGGTCAT,23,5,ependymal cell,oligodendrocyte
+39,10X50_3:TCAGGATGGGTTCA,23,5,ependymal cell,oligodendrocyte
+40,10X57_7:GCCATCACTCGTGA,23,5,ependymal cell,oligodendrocyte
+41,10X24_3:GCGGAGCTTTCTAC,23,5,ependymal cell,oligodendrocyte
+42,10X53_5:GTGGTAACCGAATC,23,5,ependymal cell,oligodendrocyte
+43,10X54_7:GGGATAGTGAACGC,23,5,ependymal cell,oligodendrocyte
+44,10X55_1:GCGGAGTTGTTTGG,23,5,ependymal cell,oligodendrocyte
+45,10X55_7:CTCTAGTCCTGCTT,23,5,ependymal cell,oligodendrocyte
+46,10X55_3:GTAGAAGTACGTTC,23,5,ependymal cell,oligodendrocyte
+47,10X55_1:TTCGCGTCTAGCGC,23,5,ependymal cell,oligodendrocyte
+48,10X50_5:CCAGGTCTGTAGCT,23,5,ependymal cell,oligodendrocyte
+49,10X55_2:ACCTGAGCTCAACT,23,5,ependymal cell,oligodendrocyte
+50,10X52_5:AAGCCATGTCCGTC,23,5,ependymal cell,oligodendrocyte
+51,10X50_5:TATCTCGATTGGCA,23,5,ependymal cell,oligodendrocyte
+52,10X54_1:ACGGATCAGGCAAG,23,5,ependymal cell,oligodendrocyte
+53,10X50_2:ATGCCAGATCAAGC,23,5,ependymal cell,oligodendrocyte
+54,10X54_7:CGTGTCAGACAAAT,23,5,ependymal cell,oligodendrocyte
+55,10X55_3:GTAACTCCTATGTT,23,5,ependymal cell,oligodendrocyte
+56,10X55_1:CTCGCTCTTGACGA,23,5,ependymal cell,oligodendrocyte
+57,10X53_3:AGGAACCTTACTGG,23,5,ependymal cell,oligodendrocyte
+58,10X55_7:CTAACGTCTGCCAG,23,5,ependymal cell,oligodendrocyte
+59,10X52_1:AGAATACTCGAGAG,23,5,ependymal cell,oligodendrocyte
+60,10X53_2:TGCACAGAGTTTCT,23,5,ependymal cell,oligodendrocyte
+61,10X52_3:GAGGTACTATCGTG,23,5,ependymal cell,oligodendrocyte
+62,10X54_3:TATCTAGAACAACT,23,5,ependymal cell,oligodendrocyte
+63,10X52_5:ATCAGGTGGTTCAG,23,5,ependymal cell,oligodendrocyte
+64,10X26_3:CGGACCGATCGATG,23,5,ependymal cell,oligodendrocyte
+65,10X54_1:GCGCAAGATCGGGT,23,5,ependymal cell,oligodendrocyte
+66,10X53_4:AGGGCCACACCTAG,23,5,ependymal cell,oligodendrocyte
+67,10X35_2:CGGACTCTCCACAA,23,5,ependymal cell,oligodendrocyte
+68,10X22_2:CCATAGGAGGTGAG,23,5,ependymal cell,oligodendrocyte
+69,10X57_5:TTCAGTTGCCATAG,23,5,ependymal cell,oligodendrocyte
+70,10X20_3:ATACCTTGGTACGT,23,5,ependymal cell,oligodendrocyte
+71,10X20_4:AGGTCATGCTATTC,23,5,ependymal cell,oligodendrocyte
+72,10X57_5:GTTACTACGTACGT,23,5,ependymal cell,oligodendrocyte
+73,10X50_2:ATGCACGAGTTGTG,23,5,ependymal cell,oligodendrocyte
+74,10X54_8:GTCATGTGGTGTAG,23,5,ependymal cell,oligodendrocyte
+75,10X52_2:CCAGCTACCCAAGT,23,5,ependymal cell,oligodendrocyte
+76,10X57_5:CGAGTATGGGTACT,23,5,ependymal cell,oligodendrocyte
+77,10X20_4:CACTCCGACGAGAG,23,5,ependymal cell,oligodendrocyte
+78,10X57_3:ACTCAGGAACGGTT,23,5,ependymal cell,oligodendrocyte
+79,10X50_8:TGTATGCTCATTCT,23,5,ependymal cell,oligodendrocyte
+80,10X52_6:GTGAGGGACTTGCC,23,5,ependymal cell,oligodendrocyte
+81,10X55_5:CTCAAGTTGACGTT,23,5,ependymal cell,oligodendrocyte
+82,10X34_3:TCCATAACTAGAGA,23,5,ependymal cell,oligodendrocyte
+83,10X55_1:GACCAAGGTACTCT,23,5,ependymal cell,oligodendrocyte
+84,10X24_3:ATAATGACGACTAC,23,5,ependymal cell,oligodendrocyte
+85,10X43_3:ATAAGTACGTTCGA,23,5,ependymal cell,oligodendrocyte
+86,10X54_1:TCTCTAGAAGAAGC,23,5,ependymal cell,oligodendrocyte
+87,10X50_5:TCTAACACCCTCAC,23,5,ependymal cell,oligodendrocyte
+88,10X33_4:CAGACATGCCAAGT,23,5,ependymal cell,oligodendrocyte
+89,10X55_1:GAGCTGTCGAACAG,23,5,ependymal cell,oligodendrocyte
+90,10X52_1:GCGGAGCTGAGCTT,23,5,ependymal cell,oligodendrocyte
+91,10X54_1:AGCAATCTCCGGTT,23,5,ependymal cell,oligodendrocyte
+92,10X26_3:TGTAGGTGTGTTCT,23,5,ependymal cell,oligodendrocyte
+93,10X57_6:AAATGGGAGCAGAG,23,5,ependymal cell,oligodendrocyte
+94,10X55_4:GGCGTCACGCATCG,23,5,ependymal cell,oligodendrocyte
+95,10X55_6:TGAGGGTCTAGAGG,23,5,ependymal cell,oligodendrocyte
+96,10X55_4:TGAAGCAACACCCG,23,5,ependymal cell,oligodendrocyte
+97,10X54_8:ACCTACAGCTCGCA,23,5,ependymal cell,oligodendrocyte
+98,10X54_1:CGGTAAGATAGTCA,23,5,ependymal cell,oligodendrocyte
+99,10X57_7:TTATGGCTCACTTT,23,5,ependymal cell,oligodendrocyte
+100,10X55_7:ACGGAAGCCATCGC,23,5,ependymal cell,oligodendrocyte
+101,10X57_3:CTCAGAGACAGCTA,23,5,ependymal cell,oligodendrocyte
+102,10X52_3:AGAGTCTGTTCATC,23,5,ependymal cell,oligodendrocyte
+103,10X57_3:TCGTAGGACGTTGA,23,5,ependymal cell,oligodendrocyte
+104,10X53_3:CAAGTTCTAAGATG,23,5,ependymal cell,oligodendrocyte
+105,10X43_3:GAACCTGAGACAAA,23,5,ependymal cell,oligodendrocyte
+106,10X24_4:TCCGAAGAGGGTGA,23,5,ependymal cell,oligodendrocyte
+107,10X57_3:TAATCGCTATGTCG,23,5,ependymal cell,oligodendrocyte
+108,10X01_1:CAAGAAGAGCTATG,23,5,ependymal cell,oligodendrocyte
+109,10X57_7:AAGAACGACCTATT,23,5,ependymal cell,oligodendrocyte
+110,10X55_8:CGTGTCAAGACGTG,23,5,ependymal cell,oligodendrocyte
+111,10X55_6:GTACTGTGCTTCTC,23,5,ependymal cell,oligodendrocyte
+112,10X54_1:TGATGTCAAGATCC,23,5,ependymal cell,oligodendrocyte
+113,10X54_3:AGCGTTCGAGCCCA,23,5,ependymal cell,oligodendrocyte
+114,10X57_3:CGAGTATGTTAGGC,23,5,ependymal cell,oligodendrocyte
+115,10X05_2:GACTACGATCAGGT,23,5,ependymal cell,oligodendrocyte
+116,10X53_6:ATTATGGACATGGT,23,5,ependymal cell,oligodendrocyte
+117,10X01_1:CAGCGGACTAGACC,23,5,ependymal cell,oligodendrocyte
+118,10X54_4:TCCAGTCGCCATAA,23,5,ependymal cell,oligodendrocyte
+119,10X52_2:AATCGGTGCTCCCA,23,5,ependymal cell,oligodendrocyte
+120,10X54_5:TCAGAGTTACTGAC,23,5,ependymal cell,oligodendrocyte
+121,10X54_4:CGGTCCACTACAGT,23,5,ependymal cell,oligodendrocyte
+122,10X57_6:TTCAAAGACAAAGA,23,5,ependymal cell,oligodendrocyte
+123,10X53_4:TGTATCTGGCCCTT,23,5,ependymal cell,oligodendrocyte
+124,10X53_6:AATCCGGAGAGACG,23,5,ependymal cell,oligodendrocyte
+125,10X55_8:TGGTGCACCGAAAG,23,5,ependymal cell,oligodendrocyte
+126,10X57_3:TAAGTCCTCTCCCA,23,5,ependymal cell,oligodendrocyte
+127,10X53_6:ACGGTCCTATTCGG,23,5,ependymal cell,oligodendrocyte
+128,10X50_4:AAACCGTGTCCCAC,23,5,ependymal cell,oligodendrocyte
+129,10X26_3:CCATAGGAGCGGAA,23,5,ependymal cell,oligodendrocyte
+130,10X54_5:CATACAGTGGGCTA,23,5,ependymal cell,oligodendrocyte
+131,10X54_2:AATAGCAGTCTTCC,23,5,ependymal cell,oligodendrocyte
+132,10X28_3:AAGCCATGGTAAAG,23,5,ependymal cell,oligodendrocyte
+133,10X55_2:CCACTGTCTCCCTA,23,5,ependymal cell,oligodendrocyte
+134,10X52_2:GGCTAAACTCTAGG,23,5,ependymal cell,oligodendrocyte
+135,10X53_4:TGAGTCGATTTCGT,23,5,ependymal cell,oligodendrocyte
+136,10X57_2:GGAATCTGCTTGCC,23,5,ependymal cell,oligodendrocyte
+137,10X22_1:CACTAGGAATTTCC,23,5,ependymal cell,oligodendrocyte
+138,10X55_7:TCAGTTCTTCATGT,23,5,ependymal cell,oligodendrocyte
+139,10X28_2:TCTCAAACAAGTGA,23,5,ependymal cell,oligodendrocyte
+140,10X24_4:CTACTATGCTAGAC,23,5,ependymal cell,oligodendrocyte
+141,10X55_5:TCAGGTCTTGGGTA,23,5,ependymal cell,oligodendrocyte
+142,10X24_4:AAGAACGATGACAC,23,5,ependymal cell,oligodendrocyte
+143,10X53_3:ACACGAACGTTAGC,23,5,ependymal cell,oligodendrocyte
+144,10X55_4:GCCAATCACCTTAT,23,5,ependymal cell,oligodendrocyte
+145,10X50_7:CTATAAGACCAAGT,23,5,ependymal cell,oligodendrocyte
+146,10X20_1:AACGCCCTGTACCA,23,11,ependymal cell,glutamatergic neuron
+147,10X22_2:TCGGACCTGCATCA,23,11,ependymal cell,glutamatergic neuron
+148,10X22_2:CGTTTAACCCTGTC,23,11,ependymal cell,glutamatergic neuron
+149,10X53_6:CTGGCACTAATCGC,23,11,ependymal cell,glutamatergic neuron
+150,10X50_8:CGCGAGACCTCTAT,23,11,ependymal cell,glutamatergic neuron
+151,10X57_3:AGTCTTACCTCATT,23,11,ependymal cell,glutamatergic neuron
+152,10X20_2:GATATCCTCAGATC,23,11,ependymal cell,glutamatergic neuron
+153,10X53_3:AAGTCCGAGCTATG,23,11,ependymal cell,glutamatergic neuron
+154,10X34_3:TGGCACCTTTCATC,23,11,ependymal cell,glutamatergic neuron
+155,10X02_1:ACGGAGGACAAAGA,23,11,ependymal cell,glutamatergic neuron
+156,10X57_2:AGCAAGCTTTGACG,23,11,ependymal cell,glutamatergic neuron
+157,10X22_2:ACGCTCACTCAAGC,23,11,ependymal cell,glutamatergic neuron
+158,10X19_2:AAGGCTTGCCATAG,23,11,ependymal cell,glutamatergic neuron
+159,10X20_1:TTGAGGTGCTTGCC,23,11,ependymal cell,glutamatergic neuron
+160,10X20_1:CAAGACTGATCGTG,23,11,ependymal cell,glutamatergic neuron
+161,10X05_1:GCGAGAGACAAGCT,23,11,ependymal cell,glutamatergic neuron
+162,10X22_2:AAACGCACTGGTTG,23,11,ependymal cell,glutamatergic neuron
+163,10X22_3:TATAGCCTGCATAC,23,11,ependymal cell,glutamatergic neuron
+164,10X53_3:AACATTGAGGTATC,23,11,ependymal cell,glutamatergic neuron
+165,10X49_3:ACTCTATGGGAAGC,23,11,ependymal cell,glutamatergic neuron
+166,10X04_2:ATCATCTGGTTGAC,23,11,ependymal cell,glutamatergic neuron
+167,10X28_4:AAGGTGCTTTCGGA,23,11,ependymal cell,glutamatergic neuron
+168,10X50_5:CATTGTACACTCTT,23,11,ependymal cell,glutamatergic neuron
+169,10X28_4:ACGTAGACCTACTT,23,11,ependymal cell,glutamatergic neuron
+170,10X24_3:ATCTGGGAGAATAG,23,11,ependymal cell,glutamatergic neuron
+171,10X02_1:TTTCCAGACTACCC,23,11,ependymal cell,glutamatergic neuron
+172,10X57_3:TACATCACACCTGA,23,11,ependymal cell,glutamatergic neuron
+173,10X43_1:CCCTACGAATCGTG,23,11,ependymal cell,glutamatergic neuron
+174,10X20_1:ACACGATGCTTATC,23,11,ependymal cell,glutamatergic neuron
+175,10X01_1:ACGTTACTAAAACG,23,11,ependymal cell,glutamatergic neuron
+176,10X57_3:CACTGAGATTCTTG,23,11,ependymal cell,glutamatergic neuron
+177,10X28_3:ATAACCCTCCTGTC,23,11,ependymal cell,glutamatergic neuron
+178,10X52_1:CAAGGTTGTAGAAG,23,11,ependymal cell,glutamatergic neuron
+179,10X22_2:ATTCAGCTAAAGCA,23,11,ependymal cell,glutamatergic neuron
+180,10X20_4:ACTCAGGAGTCTTT,23,11,ependymal cell,glutamatergic neuron
+181,10X28_3:AGGGCCACTTCGCC,23,11,ependymal cell,glutamatergic neuron
+182,10X24_4:CAGCAATGCAACCA,23,11,ependymal cell,glutamatergic neuron
+183,10X05_2:GATTCTTGTCCTCG,23,11,ependymal cell,glutamatergic neuron
+184,10X36_1:AACAATACCCTGTC,23,11,ependymal cell,glutamatergic neuron
+185,10X50_5:ATCGCCTGGGAGCA,23,11,ependymal cell,glutamatergic neuron
+186,10X52_2:GTACGAACAACTGC,23,11,ependymal cell,glutamatergic neuron
+187,10X53_6:CAGGGCACGAACCT,23,11,ependymal cell,glutamatergic neuron
+188,10X22_2:GCTACAGATTTGGG,23,11,ependymal cell,glutamatergic neuron
+189,10X54_2:GACCATCAGCCTAA,23,11,ependymal cell,glutamatergic neuron
+190,10X20_2:GAAAGATGTCTTTG,23,11,ependymal cell,glutamatergic neuron
+191,10X36_1:AAATCTGAGGGCAA,23,11,ependymal cell,glutamatergic neuron
+192,10X28_3:CACTTAACTTCCAT,23,11,ependymal cell,glutamatergic neuron
+193,10X05_1:CCATAGGAGGACTT,23,11,ependymal cell,glutamatergic neuron
+194,10X28_4:ATGCAGTGTCCTTA,23,11,ependymal cell,glutamatergic neuron
+195,10X22_1:AGTCTTACGCTATG,23,11,ependymal cell,glutamatergic neuron
+196,10X28_2:GAAGGGTGAAGTAG,23,11,ependymal cell,glutamatergic neuron
+197,10X22_1:ATTGGTCTCTTGTT,23,11,ependymal cell,glutamatergic neuron
+198,10X05_1:CGATCCACACAGTC,23,11,ependymal cell,glutamatergic neuron
+199,10X20_1:GTTCAGGACCCACT,23,11,ependymal cell,glutamatergic neuron
+200,10X28_2:TTGTACACCTGTTT,23,11,ependymal cell,glutamatergic neuron
+201,10X53_3:ATGAGAGAGGTAGG,23,11,ependymal cell,glutamatergic neuron
+202,10X35_1:TGATACCTCCTTGC,23,11,ependymal cell,glutamatergic neuron
+203,10X22_1:TGCTTAACAGATGA,23,11,ependymal cell,glutamatergic neuron
+204,10X22_4:GCCTCATGATCGTG,23,11,ependymal cell,glutamatergic neuron
+205,10X50_6:AAGATGGATTGCGA,23,11,ependymal cell,glutamatergic neuron
+206,10X02_1:TGTTACTGTCCTCG,23,11,ependymal cell,glutamatergic neuron
+207,10X43_3:GAGTCAACTTCGCC,23,11,ependymal cell,glutamatergic neuron
+208,10X50_8:ACGAACTGTACTCT,23,11,ependymal cell,glutamatergic neuron
+209,10X35_1:TCGTAGGAGTTAGC,23,11,ependymal cell,glutamatergic neuron
+210,10X05_2:CACCGTACCCATAG,23,11,ependymal cell,glutamatergic neuron
+211,10X53_4:CACTAGGAACCTTT,23,11,ependymal cell,glutamatergic neuron
+212,10X28_4:GTTATCTGAACGAA,23,11,ependymal cell,glutamatergic neuron
+213,10X20_3:CTGACAGAATCGTG,23,11,ependymal cell,glutamatergic neuron
+214,10X20_3:GAGCGGCTCTACCC,23,11,ependymal cell,glutamatergic neuron
+215,10X28_2:TTCAGACTTGACTG,23,11,ependymal cell,glutamatergic neuron
+216,10X57_2:GTGACAACTGCAAC,23,11,ependymal cell,glutamatergic neuron
+217,10X02_1:TAGACGTGTCCAAG,23,11,ependymal cell,glutamatergic neuron
+218,10X05_1:CCCAGTTGATCACG,23,11,ependymal cell,glutamatergic neuron
+219,10X05_1:CGATCAGACTCATT,23,11,ependymal cell,glutamatergic neuron
+220,10X04_2:ATATAGTGAACCGT,23,11,ependymal cell,glutamatergic neuron
+221,10X22_2:TCTCAAACCGTGAT,23,11,ependymal cell,glutamatergic neuron
+222,10X22_1:TGCAACGATACTCT,23,11,ependymal cell,glutamatergic neuron
+223,10X19_2:ACACGTGAAGCGGA,23,11,ependymal cell,glutamatergic neuron
+224,10X04_2:GGAATCTGCTGAAC,23,11,ependymal cell,glutamatergic neuron
+225,10X28_3:CACTGAGAGGTAAA,23,11,ependymal cell,glutamatergic neuron
+226,10X50_5:GATCCCTGGAGGCA,23,11,ependymal cell,glutamatergic neuron
+227,10X22_4:GTGGATTGGCGAGA,23,11,ependymal cell,glutamatergic neuron
+228,10X04_1:GCCGGAACGCTGTA,23,11,ependymal cell,glutamatergic neuron
+229,10X50_5:AATAAGCTGCTGAT,23,11,ependymal cell,glutamatergic neuron
+230,10X05_1:GAAAGCCTCGATAC,23,11,ependymal cell,glutamatergic neuron
+231,10X36_1:AGCACTGAAGATCC,23,11,ependymal cell,glutamatergic neuron
+232,10X53_6:CTCGACACATGCCA,23,11,ependymal cell,glutamatergic neuron
+233,10X52_4:ATAAGTACTGAGAA,23,11,ependymal cell,glutamatergic neuron
+234,10X49_4:TGATAAACAACGAA,23,11,ependymal cell,glutamatergic neuron
+235,10X19_2:ATGTACCTTAAGGA,23,11,ependymal cell,glutamatergic neuron
+236,10X50_5:TGCCACTGGTGTAC,23,11,ependymal cell,glutamatergic neuron
+237,10X28_3:GATCCCTGCCTTGC,23,11,ependymal cell,glutamatergic neuron
+238,10X20_4:TGTGATCTTTCGTT,23,11,ependymal cell,glutamatergic neuron
+239,10X28_5:GTTACGGATATCTC,23,11,ependymal cell,glutamatergic neuron
+240,10X28_2:CCCGAACTTTCTTG,23,11,ependymal cell,glutamatergic neuron
+241,10X52_3:GCACCACTTGTGAC,23,11,ependymal cell,glutamatergic neuron
+242,10X50_8:ATGCCGCTATCTTC,23,11,ependymal cell,glutamatergic neuron
+243,10X05_1:TAGGACTGGAGGAC,23,11,ependymal cell,glutamatergic neuron
+244,10X20_2:ATGTACCTCTGCAA,23,11,ependymal cell,glutamatergic neuron
+245,10X52_1:CATAAAACACCTCC,23,11,ependymal cell,glutamatergic neuron
+246,10X53_1:GTCGAATGTGGAAA,23,11,ependymal cell,glutamatergic neuron
+247,10X24_3:CAGACATGAAACGA,23,11,ependymal cell,glutamatergic neuron
+248,10X57_7:XXATATGACCTTGC,23,11,ependymal cell,glutamatergic neuron
+249,10X35_1:GGGATGGATGACCA,23,11,ependymal cell,glutamatergic neuron
+250,10X35_1:CAAACTCTTCAGGT,23,11,ependymal cell,glutamatergic neuron
+251,10X01_1:GAGTTGTGTCTTCA,23,11,ependymal cell,glutamatergic neuron
+252,10X28_3:ACCCAAGACTGAGT,23,11,ependymal cell,glutamatergic neuron
+253,10X50_6:GTTATCTGACACAC,23,11,ependymal cell,glutamatergic neuron
+254,10X54_4:GGGTTGTCTCACCT,23,11,ependymal cell,glutamatergic neuron
+255,10X22_2:ATGTCACTTGACCA,23,11,ependymal cell,glutamatergic neuron
+256,10X19_2:GTACTACTGTAGCT,23,11,ependymal cell,glutamatergic neuron
+257,10X52_3:TAGTCGGAAGCGGA,23,11,ependymal cell,glutamatergic neuron
+258,10X28_4:GAGTGACTTTCCGC,23,11,ependymal cell,glutamatergic neuron
+259,10X04_2:GACCTCACCCCTTG,23,11,ependymal cell,glutamatergic neuron
+260,10X22_2:TGTTAAGACGTAGT,23,11,ependymal cell,glutamatergic neuron
+261,10X19_2:GATTTGCTCTGAGT,23,11,ependymal cell,glutamatergic neuron
+262,10X22_3:GCACGGACAGGCGA,23,11,ependymal cell,glutamatergic neuron
+263,10X35_2:TGTAATGACGTACA,23,11,ependymal cell,glutamatergic neuron
+264,10X20_1:TGGTAGTGTTATCC,23,11,ependymal cell,glutamatergic neuron
+265,10X52_1:ATCAAATGACCCAA,23,11,ependymal cell,glutamatergic neuron
+266,10X20_3:CGCGGATGGTCGTA,23,11,ependymal cell,glutamatergic neuron
+267,10X19_2:ACGACCCTCTTGGA,23,11,ependymal cell,glutamatergic neuron
+268,10X52_2:TAAGTCCTACGCAT,23,11,ependymal cell,glutamatergic neuron
+269,10X35_2:TGCGAAACACGTAC,23,11,ependymal cell,glutamatergic neuron
+270,10X07_1:TTACAGCTCCGATA,23,8,ependymal cell,gabaergic neuron
+271,10X07_1:TCCCACGATATGCG,23,8,ependymal cell,gabaergic neuron
+272,10X49_5:TGGACTGAACTCAG,23,8,ependymal cell,gabaergic neuron
+273,10X52_2:CAAGAAGAATTGGC,23,8,ependymal cell,gabaergic neuron
+274,10X38_1:CTACCTCTCCAACA,23,8,ependymal cell,gabaergic neuron
+275,10X24_2:GAACCAACAGTGTC,23,8,ependymal cell,gabaergic neuron
+276,10X04_1:ATCTGACTACCTCC,23,8,ependymal cell,gabaergic neuron
+277,10X38_2:TTGAGGACAACCGT,23,8,ependymal cell,gabaergic neuron
+278,10X26_4:ACGCACCTGAGCTT,23,8,ependymal cell,gabaergic neuron
+279,10X07_1:AGATATTGCACACA,23,8,ependymal cell,gabaergic neuron
+280,10X55_7:CTAATTCTGCTTGC,23,8,ependymal cell,gabaergic neuron
+281,10X24_1:CAGCACCTCGACAT,23,8,ependymal cell,gabaergic neuron
+282,10X26_3:TGCTGAGAGGTAAA,23,8,ependymal cell,gabaergic neuron
+283,10X52_1:GACGCTCTCTGTGA,23,8,ependymal cell,gabaergic neuron
+284,10X28_4:CGTCCATGCCGTTC,23,8,ependymal cell,gabaergic neuron
+285,10X24_2:TTAGTCACCTAGAC,23,8,ependymal cell,gabaergic neuron
+286,10X38_1:GGATACTGCAGCTA,23,8,ependymal cell,gabaergic neuron
+287,10X38_3:TAAATCGATACTCT,23,8,ependymal cell,gabaergic neuron
+288,10X52_3:CACAATCTGCTTCC,23,8,ependymal cell,gabaergic neuron
+289,10X50_3:CGACCTACACCTCC,23,8,ependymal cell,gabaergic neuron
+290,10X04_4:CTACCTCTGACTAC,23,8,ependymal cell,gabaergic neuron
+291,10X24_1:CGGATATGGTTCGA,23,8,ependymal cell,gabaergic neuron
+292,10X49_4:CCTATAACGCTGTA,23,8,ependymal cell,gabaergic neuron
+293,10X49_4:GATAGCACTCGCCT,23,8,ependymal cell,gabaergic neuron
+294,10X38_2:CTAACTACAGCTCA,23,8,ependymal cell,gabaergic neuron
+295,10X38_1:GACGAGGAGGACTT,23,8,ependymal cell,gabaergic neuron
+296,10X38_1:AATTACGAGCTGAT,23,8,ependymal cell,gabaergic neuron
+297,10X52_3:AGTCGAACGTGTAC,23,8,ependymal cell,gabaergic neuron
+298,10X28_4:CAGTTTACTGTTCT,23,8,ependymal cell,gabaergic neuron
+299,10X26_3:ATAAACACGCAAGG,23,8,ependymal cell,gabaergic neuron
+300,10X28_5:ATCGCGCTGTGTCA,23,8,ependymal cell,gabaergic neuron
+301,10X49_4:GCCACGGAGTCTTT,23,8,ependymal cell,gabaergic neuron
+302,10X28_4:TCCATCCTAACCGT,23,8,ependymal cell,gabaergic neuron
+303,10X38_1:GACTGTGATCTCCG,23,8,ependymal cell,gabaergic neuron
+304,10X52_3:CACACCTGCGCAAT,23,8,ependymal cell,gabaergic neuron
+305,10X57_2:CACGATGATCCCAC,23,8,ependymal cell,gabaergic neuron
+306,10X52_3:TTTCACGAACCTTT,23,8,ependymal cell,gabaergic neuron
+307,10X36_1:CAATAAACGACAGG,23,8,ependymal cell,gabaergic neuron
+308,10X05_1:CGCTACTGGCTAAC,23,8,ependymal cell,gabaergic neuron
+309,10X28_4:TGTCTAACAAGAAC,23,8,ependymal cell,gabaergic neuron
+310,10X26_4:TGAGGACTATGACC,23,8,ependymal cell,gabaergic neuron
+311,10X38_3:TCTATGTGACGTTG,23,8,ependymal cell,gabaergic neuron
+312,10X24_2:GAAACAGATGTTTC,23,8,ependymal cell,gabaergic neuron
+313,10X36_3:TCCGAAGAGTGTCA,23,8,ependymal cell,gabaergic neuron
+314,10X38_1:AGTAATACCCACAA,23,8,ependymal cell,gabaergic neuron
+315,10X05_4:GGACCCGAGAATCC,23,8,ependymal cell,gabaergic neuron
+316,10X28_5:CTATCAACCCATAG,23,8,ependymal cell,gabaergic neuron
+317,10X38_3:TACGGCCTCTTCTA,23,8,ependymal cell,gabaergic neuron
+318,10X49_4:GACAACTGCGTAGT,23,8,ependymal cell,gabaergic neuron
+319,10X38_1:TGAGCAACCTCATT,23,8,ependymal cell,gabaergic neuron
+320,10X26_4:TATGGGTGGGTACT,23,8,ependymal cell,gabaergic neuron
+321,10X04_4:CGGTAAACATCACG,23,8,ependymal cell,gabaergic neuron
+322,10X24_1:ACAAAGGAGAATAG,23,8,ependymal cell,gabaergic neuron
+323,10X38_3:TTCAGACTAACCAC,23,8,ependymal cell,gabaergic neuron
+324,10X49_4:TGGAGACTCCCACT,23,8,ependymal cell,gabaergic neuron
+325,10X38_2:ACGCCTTGTCTCCG,23,8,ependymal cell,gabaergic neuron
+326,10X36_2:GCACCACTGCTGAT,23,8,ependymal cell,gabaergic neuron
+327,10X28_5:GAGTAAGACTGTAG,23,8,ependymal cell,gabaergic neuron
+328,10X52_1:GGCCACGATCCAAG,23,8,ependymal cell,gabaergic neuron
+329,10X49_1:GGCGACTGCTCGAA,23,8,ependymal cell,gabaergic neuron
+330,10X07_1:CCAGTCACGACAAA,23,8,ependymal cell,gabaergic neuron
+331,10X07_1:CTTACATGTGCTAG,23,8,ependymal cell,gabaergic neuron
+332,10X24_1:TACGATCTTTGTCT,23,8,ependymal cell,gabaergic neuron
+333,10X38_1:AGAGCGGAACGCTA,23,8,ependymal cell,gabaergic neuron
+334,10X28_5:ACACGAACCGTCTC,23,8,ependymal cell,gabaergic neuron
+335,10X49_4:ACCAACGACCTTTA,23,8,ependymal cell,gabaergic neuron
+336,10X28_4:CTAAGGACCATTCT,23,8,ependymal cell,gabaergic neuron
+337,10X24_1:GGCGACTGCACAAC,23,8,ependymal cell,gabaergic neuron
+338,10X49_5:AAGGTGCTTCGATG,23,8,ependymal cell,gabaergic neuron
+339,10X38_2:AATGGCTGCCTTAT,23,8,ependymal cell,gabaergic neuron
+340,10X38_2:AGAATGGAGGAAGC,23,8,ependymal cell,gabaergic neuron
+341,10X49_5:CTACTCCTACGACT,23,8,ependymal cell,gabaergic neuron
+342,10X07_1:CACTTAACATCGGT,23,8,ependymal cell,gabaergic neuron
+343,10X49_4:TAGGGACTACGGTT,23,8,ependymal cell,gabaergic neuron
+344,10X26_4:TACGAGTGGTCATG,23,8,ependymal cell,gabaergic neuron
+345,10X49_5:CATGTACTTGGTCA,23,8,ependymal cell,gabaergic neuron
+346,10X26_4:CACAGTGAAACGGG,23,8,ependymal cell,gabaergic neuron
+347,10X49_5:ATAGGCTGCGAACT,23,8,ependymal cell,gabaergic neuron
+348,10X43_3:TGATAAACCTGGTA,23,8,ependymal cell,gabaergic neuron
+349,10X36_3:ATGAAACTGGTCAT,23,8,ependymal cell,gabaergic neuron
+350,10X52_2:AACGTGTGTCAAGC,23,8,ependymal cell,gabaergic neuron
+351,10X49_4:ATTGTAGAGCCATA,23,8,ependymal cell,gabaergic neuron
+352,10X38_3:TGGATGACTCACCC,23,8,ependymal cell,gabaergic neuron
+353,10X38_2:CTAATGCTACGACT,23,8,ependymal cell,gabaergic neuron
+354,10X26_3:ATCACGGAGAGGCA,23,8,ependymal cell,gabaergic neuron
+355,10X24_2:TAATGCCTCAACCA,23,8,ependymal cell,gabaergic neuron
+356,10X05_2:TAGGTCGAGACAAA,23,8,ependymal cell,gabaergic neuron
+357,10X49_1:ATACCACTTGCTTT,23,8,ependymal cell,gabaergic neuron
+358,10X38_2:CACGAAACAAGCAA,23,8,ependymal cell,gabaergic neuron
+359,10X38_2:AGAAAGTGCTGTCC,23,8,ependymal cell,gabaergic neuron
+360,10X49_2:TTCTCAGAAGGAGC,23,8,ependymal cell,gabaergic neuron
+361,10X36_3:ATCATCTGCCTCCA,23,8,ependymal cell,gabaergic neuron
+362,10X49_5:AGGGTGGATTTCAC,23,8,ependymal cell,gabaergic neuron
+363,10X50_4:GTTAAAACGGTGAG,23,8,ependymal cell,gabaergic neuron
+364,10X49_5:CTATTGACACAGTC,23,8,ependymal cell,gabaergic neuron
+365,10X28_4:ATCTACTGTCTGGA,23,8,ependymal cell,gabaergic neuron
+366,10X20_2:GCCTACACGCTTAG,23,8,ependymal cell,gabaergic neuron
+367,10X07_1:AAATCTGAGGAGGT,23,8,ependymal cell,gabaergic neuron
+368,10X38_2:ATTGCACTCCGATA,23,8,ependymal cell,gabaergic neuron
+369,10X28_5:CGTTAACTCCGCTT,23,8,ependymal cell,gabaergic neuron
+370,10X35_1:GCATTGGATGTTTC,23,8,ependymal cell,gabaergic neuron
+371,10X38_2:GGCTAATGGTGCTA,23,8,ependymal cell,gabaergic neuron
+372,10X38_2:GTAATAACAAGTGA,23,8,ependymal cell,gabaergic neuron
+373,10X52_5:CAACGATGATGACC,23,8,ependymal cell,gabaergic neuron
+374,10X38_2:GGCGACTGCCATAG,23,8,ependymal cell,gabaergic neuron
+375,10X52_1:TTAGTCTGTCGCAA,23,8,ependymal cell,gabaergic neuron
+376,10X24_1:GTGATCGATCCCGT,23,8,ependymal cell,gabaergic neuron
+377,10X49_4:CGCGAGACGGAGCA,23,8,ependymal cell,gabaergic neuron
+378,10X38_2:TCGACGCTCGCTAA,23,8,ependymal cell,gabaergic neuron
+379,10X50_5:ATTTAGGACACTCC,23,8,ependymal cell,gabaergic neuron
+380,10X24_2:TGCGAAACCGGTAT,23,8,ependymal cell,gabaergic neuron
+381,10X50_4:ACACGAACTGGAGG,23,8,ependymal cell,gabaergic neuron
+382,10X52_5:GGTCTAGAGACGTT,23,8,ependymal cell,gabaergic neuron
+383,10X38_1:GTGTACGAGCGAAG,23,8,ependymal cell,gabaergic neuron
+384,10X52_2:ACCCGTACAACCAC,23,8,ependymal cell,gabaergic neuron
+385,10X22_3:TATACGCTACGTTG,23,4,ependymal cell,astrocyte
+386,10X52_6:GCAATTCTGGTGGA,23,4,ependymal cell,astrocyte
+387,10X56_6:TGATATGAGTTCTT,23,4,ependymal cell,astrocyte
+388,10X52_7:CATTGTTGGACGGA,23,4,ependymal cell,astrocyte
+389,10X20_1:GACGTAACGGACTT,23,4,ependymal cell,astrocyte
+390,10X52_2:GGCCGATGGGTCTA,23,4,ependymal cell,astrocyte
+391,10X28_2:ACTTAAGACCAATG,23,4,ependymal cell,astrocyte
+392,10X20_3:GACCTCTGGCTTAG,23,4,ependymal cell,astrocyte
+393,10X24_4:GTACCCTGCCTTGC,23,4,ependymal cell,astrocyte
+394,10X04_2:CCAGCTACTAGCGT,23,4,ependymal cell,astrocyte
+395,10X48_4:TCACCGTGTCCAAG,23,4,ependymal cell,astrocyte
+396,10X53_2:AATAACACGAGGCA,23,4,ependymal cell,astrocyte
+397,10X56_6:TCCGAAGATGTCTT,23,4,ependymal cell,astrocyte
+398,10X22_3:CCCAGACTTTCTAC,23,4,ependymal cell,astrocyte
+399,10X51_1:ACTGTGGAGTATGC,23,4,ependymal cell,astrocyte
+400,10X57_1:ATATACGAGAACCT,23,4,ependymal cell,astrocyte
+401,10X22_2:TATTTCCTGTAGCT,23,4,ependymal cell,astrocyte
+402,10X28_4:GTGATTCTTGCTCC,23,4,ependymal cell,astrocyte
+403,10X24_1:GAATGGCTCATGGT,23,4,ependymal cell,astrocyte
+404,10X52_1:TCCCATCTAGCCTA,23,4,ependymal cell,astrocyte
+405,10X48_1:CCGCGAGATTGACG,23,4,ependymal cell,astrocyte
+406,10X04_1:ACCCAGCTTGCTTT,23,4,ependymal cell,astrocyte
+407,10X48_1:CTTATCGAAAGGGC,23,4,ependymal cell,astrocyte
+408,10X20_2:CAGATCGAAACGAA,23,4,ependymal cell,astrocyte
+409,10X28_3:CAGCTCTGAAGGGC,23,4,ependymal cell,astrocyte
+410,10X48_3:CAGCGGACAAGGGC,23,4,ependymal cell,astrocyte
+411,10X48_3:CAGGTATGCTGCAA,23,4,ependymal cell,astrocyte
+412,10X20_2:GGTATGACTCTAGG,23,4,ependymal cell,astrocyte
+413,10X52_2:GTCATACTACCACA,23,4,ependymal cell,astrocyte
+414,10X24_3:CGATACGAGGAGTG,23,4,ependymal cell,astrocyte
+415,10X51_1:AGCGATACCCTTCG,23,4,ependymal cell,astrocyte
+416,10X52_3:TAGGTCGATATGGC,23,4,ependymal cell,astrocyte
+417,10X46_1:CGTGAATGCTGATG,23,4,ependymal cell,astrocyte
+418,10X04_1:TTCTTACTGTTTCT,23,4,ependymal cell,astrocyte
+419,10X52_2:TATTTCCTTCTCTA,23,4,ependymal cell,astrocyte
+420,10X22_3:CGTAACGATGGTCA,23,4,ependymal cell,astrocyte
+421,10X28_3:AGGGCGCTTGACTG,23,4,ependymal cell,astrocyte
+422,10X20_1:ACAATTGACTTTAC,23,4,ependymal cell,astrocyte
+423,10X57_7:CAGACCCTTGCTAG,23,4,ependymal cell,astrocyte
+424,10X51_1:GGCGACTGCTGTAG,23,4,ependymal cell,astrocyte
+425,10X20_2:GTTACTACAACGTC,23,4,ependymal cell,astrocyte
+426,10X52_2:TAACAATGTGCATG,23,4,ependymal cell,astrocyte
+427,10X26_4:GTCTAACTAGTCAC,23,4,ependymal cell,astrocyte
+428,10X48_4:GTAGCCCTTGCCAA,23,4,ependymal cell,astrocyte
+429,10X52_4:CGCTAAGAACCTGA,23,4,ependymal cell,astrocyte
+430,10X51_4:AATGGAGAACGTAC,23,4,ependymal cell,astrocyte
+431,10X19_2:CCTGACTGCATCAG,23,4,ependymal cell,astrocyte
+432,10X49_4:TTTAGAGATTCTAC,23,4,ependymal cell,astrocyte
+433,10X49_5:AAGCGTACCTTGGA,23,4,ependymal cell,astrocyte
+434,10X24_3:AACAATACACGTAC,23,4,ependymal cell,astrocyte
+435,10X33_2:CGATCCACTTTGTC,23,4,ependymal cell,astrocyte
+436,10X28_4:ATATGCCTGTACGT,23,4,ependymal cell,astrocyte
+437,10X51_2:TGAAGCACTCCTGC,23,4,ependymal cell,astrocyte
+438,10X48_4:CCTGCAACCAGGAG,23,4,ependymal cell,astrocyte
+439,10X04_2:CCTGGACTCACAAC,23,4,ependymal cell,astrocyte
+440,10X52_1:ATAGATACAGCCAT,23,4,ependymal cell,astrocyte
+441,10X49_3:CGGCGAACTCTACT,23,4,ependymal cell,astrocyte
+442,10X50_2:ACACCCTGGGTCAT,23,4,ependymal cell,astrocyte
+443,10X52_6:TTATTCCTTGCTTT,23,4,ependymal cell,astrocyte
+444,10X26_2:GCAAACTGCATTCT,23,4,ependymal cell,astrocyte
+445,10X22_3:CGCTACACTGCGTA,23,4,ependymal cell,astrocyte
+446,10X20_2:GAGTCTGAATTCCT,23,4,ependymal cell,astrocyte
+447,10X20_1:ATCGACGACATGCA,23,4,ependymal cell,astrocyte
+448,10X49_4:ATCTACACAAGTAG,23,4,ependymal cell,astrocyte
+449,10X52_2:ATTGTAGACAGATC,23,4,ependymal cell,astrocyte
+450,10X20_1:GACGTCCTTACGAC,23,4,ependymal cell,astrocyte
+451,10X52_3:CTCCTACTGGAGGT,23,4,ependymal cell,astrocyte
+452,10X02_1:CGCACTTGTCCTCG,23,4,ependymal cell,astrocyte
+453,10X04_4:GTCGACCTAGTCTG,23,4,ependymal cell,astrocyte
+454,10X33_3:GGTATCGAGTCTGA,23,4,ependymal cell,astrocyte
+455,10X48_3:TAACGTCTCAGTCA,23,4,ependymal cell,astrocyte
+456,10X49_4:TAAGAGGAGGACAG,23,4,ependymal cell,astrocyte
+457,10X52_5:TGCGTAGACTAGTG,23,4,ependymal cell,astrocyte
+458,10X24_2:CTAGGCCTAGTACC,23,4,ependymal cell,astrocyte
+459,10X22_3:CATCATACAAGAAC,23,4,ependymal cell,astrocyte
+460,10X22_3:GCGAGAGAGGGAGT,23,4,ependymal cell,astrocyte
+461,10X48_3:GCTTGAGATAGTCG,23,4,ependymal cell,astrocyte
+462,10X34_4:AGAATGGATTCACT,23,4,ependymal cell,astrocyte
+463,10X49_5:GGATTGTGGACTAC,23,4,ependymal cell,astrocyte
+464,10X22_3:TAAGCGTGCTGTCC,23,4,ependymal cell,astrocyte
+465,10X22_4:TACGCGCTAAGAAC,23,4,ependymal cell,astrocyte
+466,10X20_2:GTGGATTGTGCACA,23,4,ependymal cell,astrocyte
+467,10X52_5:CTGAGCCTTCATTC,23,4,ependymal cell,astrocyte
+468,10X51_2:AAACATTGCCGCTT,23,4,ependymal cell,astrocyte
+469,10X81_3:AGGCCTCGAATGGG,23,25,ependymal cell,enteric glia
+470,10X81_1:CGTTGGTGGTACAG,23,25,ependymal cell,enteric glia
+471,10X81_3:TTACCTCGTGGTCG,23,25,ependymal cell,enteric glia
+472,10X81_3:TGAGGGTAAGTGTA,23,25,ependymal cell,enteric glia
+473,10X81_1:TCTACTCAACGCTA-1,23,25,ependymal cell,enteric glia
+474,10X81_1:GCTGGGTAATCGTC,23,25,ependymal cell,enteric glia
+475,10X81_2:CTACCAGCCGTCGT,23,25,ependymal cell,enteric glia
+476,10X81_3:AGCCAAGAAGATTC,23,25,ependymal cell,enteric glia
+477,10X82_2:TACTCAGGCGATAC,23,25,ependymal cell,enteric glia
+478,10X82_2:TGAGCGTAAGTGTA,23,25,ependymal cell,enteric glia
+479,10X82_2:TGAAGTCTGTCTCG,23,25,ependymal cell,enteric glia
+480,10X81_1:ACATCTCTCGCATC,23,25,ependymal cell,enteric glia
+481,10X81_1:ATCAGTCCTTCAAT,23,25,ependymal cell,enteric glia
+482,10X81_1:AGACCGTTGGTAAA,23,25,ependymal cell,enteric glia
+483,10X82_2:AGGTACACGAGAGT,23,25,ependymal cell,enteric glia
+484,10X81_1:GGGAGGTTATGTGC,23,25,ependymal cell,enteric glia
+485,10X81_2:ATGTAGTAGGGTAC,23,25,ependymal cell,enteric glia
+486,10X81_1:CCATGTCCGCAAGC,23,25,ependymal cell,enteric glia
+487,10X82_2:TACCGGTTCTGGTA,23,25,ependymal cell,enteric glia
+488,10X81_1:TATTACATCGTCGG,23,25,ependymal cell,enteric glia
+489,10X81_3:GAGAGAGGCTAGCA,23,25,ependymal cell,enteric glia
+490,10X81_2:GAGGGCACACCGCA,23,25,ependymal cell,enteric glia
+491,10X82_2:AATGTGTCATCGGC,23,25,ependymal cell,enteric glia
+492,10X81_2:AACGTGTTATTCTC,23,25,ependymal cell,enteric glia
+493,10X81_2:GCTAGCAAATTGCC,23,25,ependymal cell,enteric glia
+494,10X81_1:GCGATTCACAATGC,23,25,ependymal cell,enteric glia
+495,10X81_3:CAGAACAATCGGTT,23,25,ependymal cell,enteric glia
+496,10X82_2:ACCTATCACTATTC,23,25,ependymal cell,enteric glia
+497,10X81_1:GACTTCATACTACG,23,25,ependymal cell,enteric glia
+498,10X81_2:AGCCAGTACAGTGG,23,25,ependymal cell,enteric glia
+499,10X81_2:TCTAAAGCGTTTAC,23,25,ependymal cell,enteric glia
+500,10X26_3:GTATGGTGGCGAGA,23,28,ependymal cell,microglia
+501,10X22_2:GTAGTCGATTCTTG,23,28,ependymal cell,microglia
+502,10X52_5:TGCACGCTTGATGC,23,28,ependymal cell,microglia
+503,10X53_4:ACGGTCCTTGCGTA,23,28,ependymal cell,microglia
+504,10X28_5:GGCCCAGAGAATCC,23,28,ependymal cell,microglia
+505,10X22_2:GTCCCATGTACGCA,23,28,ependymal cell,microglia
+506,10X19_2:ATTGGTCTTCCTCG,23,28,ependymal cell,microglia
+507,10X22_4:AATGATACGCGAGA,23,28,ependymal cell,microglia
+508,10X26_3:CATCTTGAAGAGGC,23,28,ependymal cell,microglia
+509,10X19_2:AGCCAATGTGTGCA,23,28,ependymal cell,microglia
+510,10X57_2:GTGAACACAGGTCT,23,28,ependymal cell,microglia
+511,10X02_1:CCTAAGGACTGAAC,23,28,ependymal cell,microglia
+512,10X53_5:GGCTACCTGCCTTC,23,28,ependymal cell,microglia
+513,10X49_1:CCGGAGACTTCGCC,23,28,ependymal cell,microglia
+514,10X57_4:ACGCCTTGTATCTC,23,28,ependymal cell,microglia
+515,10X24_1:TTCATCGATTCCGC,23,28,ependymal cell,microglia
+516,10X49_3:CATAACCTTTGGTG,23,28,ependymal cell,microglia
+517,10X26_3:TCTTGATGACGACT,23,28,ependymal cell,microglia
+518,10X53_4:TAGTACCTCCCTCA,23,28,ependymal cell,microglia
+519,10X02_1:ACTTGGGATGCTCC,23,28,ependymal cell,microglia
+520,10X20_4:GCCGACGAGGTGGA,23,28,ependymal cell,microglia
+521,10X50_4:GTGATCGAAGGAGC,23,28,ependymal cell,microglia
+522,10X22_2:GGACATTGAGGTCT,23,28,ependymal cell,microglia
+523,10X35_2:AACGCAACCTGGTA,23,28,ependymal cell,microglia
+524,10X49_3:AGGCTAACGTAGGG,23,28,ependymal cell,microglia
+525,10X51_4:GCACCACTAAGAAC,23,28,ependymal cell,microglia
+526,10X49_5:CGGTAAACCTAGCA,23,21,ependymal cell,neuroblast (sensu vertebrata)
+527,10X49_4:TACGAGACCCCAAA,23,21,ependymal cell,neuroblast (sensu vertebrata)
+528,10X04_4:TCTAACTGCAGCTA,23,21,ependymal cell,neuroblast (sensu vertebrata)
+529,10X46_1:AAAGCAGAGGACAG,23,21,ependymal cell,neuroblast (sensu vertebrata)
+530,10X49_4:TTGTAGCTCCTCGT,23,21,ependymal cell,neuroblast (sensu vertebrata)
+531,10X28_5:GACTGAACGAGCTT,23,21,ependymal cell,neuroblast (sensu vertebrata)
+532,10X26_3:TTTGCATGCATGCA,23,21,ependymal cell,neuroblast (sensu vertebrata)
+533,10X20_1:TTACTCGACATGAC,23,21,ependymal cell,neuroblast (sensu vertebrata)
+534,10X54_3:GAAGGAGAGTGACC,23,21,ependymal cell,neuroblast (sensu vertebrata)
+535,10X22_4:ACGCCTTGCTTCCG,23,21,ependymal cell,neuroblast (sensu vertebrata)
+536,10X34_2:TTCTGATGGTGTAC,23,21,ependymal cell,neuroblast (sensu vertebrata)
+537,10X46_1:CCAGTCACTTTCGT,23,21,ependymal cell,neuroblast (sensu vertebrata)
+538,10X49_5:GATTTGCTCGTCTC,23,21,ependymal cell,neuroblast (sensu vertebrata)
+539,10X22_4:TATCTGACGGCAAG,23,21,ependymal cell,neuroblast (sensu vertebrata)
+540,10X49_1:CCGGAGACATCAGC,23,21,ependymal cell,neuroblast (sensu vertebrata)
+541,10X22_3:GTGAGGGATCTTCA,23,21,ependymal cell,neuroblast (sensu vertebrata)
+542,10X04_4:TTCATGTGTTCCAT,23,21,ependymal cell,neuroblast (sensu vertebrata)
+543,10X43_1:ATTCTTCTATCTCT,23,21,ependymal cell,neuroblast (sensu vertebrata)
+544,10X28_4:AAATCAACGCGAGA,23,21,ependymal cell,neuroblast (sensu vertebrata)
+545,10X04_1:AAACATTGATTCTC,23,21,ependymal cell,neuroblast (sensu vertebrata)
+546,10X43_1:ATGCACGAGCTACA,23,21,ependymal cell,neuroblast (sensu vertebrata)
+547,10X28_5:TAGGAGCTGTTGTG,23,21,ependymal cell,neuroblast (sensu vertebrata)
+548,10X28_4:CTATAAGATGCCTC,23,21,ependymal cell,neuroblast (sensu vertebrata)
+549,10X22_3:TGTGAGTGCCTCGT,23,21,ependymal cell,neuroblast (sensu vertebrata)
+550,10X54_7:AGCGTTCGTTTAGG,23,21,ependymal cell,neuroblast (sensu vertebrata)
+551,10X24_1:TCTAAGCTCCCTCA,23,21,ependymal cell,neuroblast (sensu vertebrata)
+552,10X52_4:AGAATTTGAGTACC,23,18,ependymal cell,pericyte
+553,10X50_7:CACCTGACAGGAGC,23,18,ependymal cell,pericyte
+554,10X26_3:AATCCTACATTGGC,23,18,ependymal cell,pericyte
+555,10X53_3:CAAATATGGCGGAA,23,18,ependymal cell,pericyte
+556,10X52_4:GACGGCACACGTGT,23,18,ependymal cell,pericyte
+557,10X50_8:CATAAAACGTCACA,23,18,ependymal cell,pericyte
+558,10X43_3:TATAGATGTTTCGT,23,18,ependymal cell,pericyte
+559,10X53_6:GTAAGCACATTCTC,23,18,ependymal cell,pericyte
+560,10X53_4:CAACGATGTAACCG,23,18,ependymal cell,pericyte
+561,10X20_1:CATAAATGAAGATG,23,18,ependymal cell,pericyte
+562,10X50_6:TTTGACTGTCGACA,23,18,ependymal cell,pericyte
+563,10X53_6:GGGCAGCTAAGTGA,23,18,ependymal cell,pericyte
+564,10X20_2:CCATCCGATTGTCT,23,18,ependymal cell,pericyte
+565,10X48_1:AGTCGAACTTTGCT,23,18,ependymal cell,pericyte
+566,10X53_4:GTGAACACAAGGGC,23,18,ependymal cell,pericyte
+567,10X36_1:GCGAGCACTGCCCT,23,18,ependymal cell,pericyte
+568,10X48_3:ATAACCCTACTCAG,23,18,ependymal cell,pericyte
+569,10X52_6:GCGAAGGAGGGAGT,23,18,ependymal cell,pericyte
+570,10X20_2:CGGAATTGTACGAC,23,18,ependymal cell,pericyte
+571,10X50_7:GCGAGCACCTTCTA,23,18,ependymal cell,pericyte
+572,10X24_3:CCACCTGAGTTCTT,23,18,ependymal cell,pericyte
+573,10X36_3:GGCCACGAGAAGGC,23,18,ependymal cell,pericyte
+574,10X52_6:TCCCGATGTCAAGC,23,18,ependymal cell,pericyte
+575,10X22_1:CGAGAACTAGACTC,23,18,ependymal cell,pericyte
+576,10X57_2:CCAAAGTGGAGAGC,23,18,ependymal cell,pericyte
+577,10X22_3:ACAAGAGAGTCAAC,23,9,ependymal cell,dentate gyrus granule cell
+578,10X22_3:CATACTACCTTCGC,23,9,ependymal cell,dentate gyrus granule cell
+579,10X46_1:CAAACTCTTTCGTT,23,9,ependymal cell,dentate gyrus granule cell
+580,10X46_1:GCCACTACTCGCTC,23,9,ependymal cell,dentate gyrus granule cell
+581,10X46_1:TAGTAATGCCCAAA,23,9,ependymal cell,dentate gyrus granule cell
+582,10X46_1:TCAGCGCTCGGAGA,23,9,ependymal cell,dentate gyrus granule cell
+583,10X22_3:GAGGATCTCTTGTT,23,9,ependymal cell,dentate gyrus granule cell
+584,10X43_1:AACATTGACAACTG,23,9,ependymal cell,dentate gyrus granule cell
+585,10X46_1:GGATGTACAGGAGC,23,9,ependymal cell,dentate gyrus granule cell
+586,10X46_1:TGGACTGAGTTACG,23,9,ependymal cell,dentate gyrus granule cell
+587,10X22_4:GTGATTCTCTAGTG,23,9,ependymal cell,dentate gyrus granule cell
+588,10X43_1:CATCTTGAACAGTC,23,9,ependymal cell,dentate gyrus granule cell
+589,10X43_1:GATATCCTGCCTTC,23,9,ependymal cell,dentate gyrus granule cell
+590,10X43_1:GGAATGCTCAGTCA,23,9,ependymal cell,dentate gyrus granule cell
+591,10X46_1:GCTACAGAGTTGGT,23,9,ependymal cell,dentate gyrus granule cell
+592,10X43_1:GCTGATGACCTTAT,23,9,ependymal cell,dentate gyrus granule cell
+593,10X22_3:TTCAAGCTTATTCC,23,9,ependymal cell,dentate gyrus granule cell
+594,10X22_3:CGTGTAGACGCAAT,23,9,ependymal cell,dentate gyrus granule cell
+595,10X04_2:ATCAAATGGTCAAC,23,9,ependymal cell,dentate gyrus granule cell
+596,10X46_1:GAGTACACCAAAGA,23,9,ependymal cell,dentate gyrus granule cell
+597,10X22_4:TAAGCTCTTGCAAC,23,9,ependymal cell,dentate gyrus granule cell
+598,10X51_1:TCGCACACCTAGCA,23,2,ependymal cell,cerebellar neuron
+599,10X34_4:CGGCCAGACTGGAT,23,2,ependymal cell,cerebellar neuron
+600,10X26_1:TACGTACTCTGACA,23,2,ependymal cell,cerebellar neuron
+601,10X26_2:TAGGAGCTTATTCC,23,2,ependymal cell,cerebellar neuron
+602,10X26_1:TAAGTCCTTACAGC,23,2,ependymal cell,cerebellar neuron
+603,10X51_1:GAACCAACACGCAT,23,2,ependymal cell,cerebellar neuron
+604,10X26_1:GACAGTTGGAGGAC,23,2,ependymal cell,cerebellar neuron
+605,10X26_2:ATCCCGTGCATGCA,23,2,ependymal cell,cerebellar neuron
+606,10X26_1:AAGAAGACCACACA,23,2,ependymal cell,cerebellar neuron
+607,10X26_1:ACAAAGGAAAACAG,23,2,ependymal cell,cerebellar neuron
+608,10X51_2:TGGTAGACTTCCCG,23,2,ependymal cell,cerebellar neuron
+609,10X51_2:GAAGGTCTCCACCT,23,2,ependymal cell,cerebellar neuron
+610,10X26_1:GATATAACAGATCC,23,2,ependymal cell,cerebellar neuron
+611,10X51_1:CCATGCTGTTCCGC,23,2,ependymal cell,cerebellar neuron
+612,10X51_1:TAGTTCACTAGCGT,23,2,ependymal cell,cerebellar neuron
+613,10X51_1:GTGAGGGATCCCAC,23,2,ependymal cell,cerebellar neuron
+614,10X51_1:ATCCTAACCTAGTG,23,2,ependymal cell,cerebellar neuron
+615,10X51_1:GCGCGATGACCTTT,23,2,ependymal cell,cerebellar neuron
+616,10X51_1:GCTCGACTCACTTT,23,2,ependymal cell,cerebellar neuron
+617,10X51_2:CTGAACGACCGTTC,23,2,ependymal cell,cerebellar neuron
+618,10X26_1:TAACAATGCTGTAG,23,2,ependymal cell,cerebellar neuron
+619,10X01_1:ACGGGAGAACCCTC,23,13,ependymal cell,endothelial cell of vascular tree
+620,10X04_1:ACCTTTGACTCAAG,23,13,ependymal cell,endothelial cell of vascular tree
+621,10X57_7:CAGGTATGGCTTCC,23,13,ependymal cell,endothelial cell of vascular tree
+622,10X01_1:CTGCCAACGCATAC,23,13,ependymal cell,endothelial cell of vascular tree
+623,10X53_5:GGTAGTACGCTTAG,23,13,ependymal cell,endothelial cell of vascular tree
+624,10X53_3:AACTGTCTTGGAAA,23,13,ependymal cell,endothelial cell of vascular tree
+625,10X53_4:GAAGTAGACTGGTA,23,13,ependymal cell,endothelial cell of vascular tree
+626,10X49_4:ATACCGGAGTGCTA,23,13,ependymal cell,endothelial cell of vascular tree
+627,10X53_2:CGCACGGAGTCAAC,23,13,ependymal cell,endothelial cell of vascular tree
+628,10X43_3:TTCGATTGAACCGT,23,13,ependymal cell,endothelial cell of vascular tree
+629,10X53_4:GTGTATCTACGCTA,23,13,ependymal cell,endothelial cell of vascular tree
+630,10X57_7:ACTTCTGAGCCCTT,23,13,ependymal cell,endothelial cell of vascular tree
+631,10X05_1:GAGAGGTGATGTGC,23,13,ependymal cell,endothelial cell of vascular tree
+632,10X53_3:ACCCTCGATATCTC,23,13,ependymal cell,endothelial cell of vascular tree
+633,10X04_1:AAACCGTGGGAGGT,23,13,ependymal cell,endothelial cell of vascular tree
+634,10X36_2:TCGCCATGAAACGA,23,13,ependymal cell,endothelial cell of vascular tree
+635,10X26_3:ACGTTGGATCATTC,23,13,ependymal cell,endothelial cell of vascular tree
+636,10X52_1:GCCTAGCTCTTCTA,23,13,ependymal cell,endothelial cell of vascular tree
+637,10X53_5:TTCTTACTCGGGAA,23,13,ependymal cell,endothelial cell of vascular tree
+638,10X53_5:TCTAACTGGACGTT,23,13,ependymal cell,endothelial cell of vascular tree
+639,10X35_3:CGTAACGATACGCA,23,10,ependymal cell,peptidergic neuron
+640,10X51_4:ACGTAGACCTCAGA,23,10,ependymal cell,peptidergic neuron
+641,10X26_3:TTCAAGCTCTCAAG,23,10,ependymal cell,peptidergic neuron
+642,10X26_3:GGTATGACTCCCGT,23,10,ependymal cell,peptidergic neuron
+643,10X26_3:ATCACACTTTCTGT,23,10,ependymal cell,peptidergic neuron
+644,10X26_3:GGCCAGACAAGAAC,23,10,ependymal cell,peptidergic neuron
+645,10X26_4:AAGAATCTTGGATC,23,10,ependymal cell,peptidergic neuron
+646,10X26_3:GCGGGACTTTCGGA,23,10,ependymal cell,peptidergic neuron
+647,10X50_2:CATTTGTGTACTGG,23,10,ependymal cell,peptidergic neuron
+648,10X51_3:CCAGCACTATTCCT,23,10,ependymal cell,peptidergic neuron
+649,10X26_3:TTACGACTTTGACG,23,10,ependymal cell,peptidergic neuron
+650,10X46_2:TAGGAGCTGTAAGA,23,10,ependymal cell,peptidergic neuron
+651,10X26_3:ATGTTAGACCAAGT,23,10,ependymal cell,peptidergic neuron
+652,10X50_2:AGCAAAGATCCGAA,23,10,ependymal cell,peptidergic neuron
+653,10X26_3:GGATTGTGACGTTG,23,10,ependymal cell,peptidergic neuron
+654,10X26_3:GATGCATGTCCAGA,23,10,ependymal cell,peptidergic neuron
+655,10X26_4:TGTACTTGACCGAT,23,10,ependymal cell,peptidergic neuron
+656,10X51_3:GTGATCGACTAGAC,23,10,ependymal cell,peptidergic neuron
+657,10X26_3:CCAGCGGAGCTTCC,23,10,ependymal cell,peptidergic neuron
+658,10X50_1:ATAAGTTGACACTG,23,10,ependymal cell,peptidergic neuron
+659,10X28_3:GGCAAGGACCTAAG,23,1,ependymal cell,perivascular macrophage
+660,10X57_5:ATATACGAGATAAG,23,1,ependymal cell,perivascular macrophage
+661,10X22_3:GTGACAACTCTTAC,23,1,ependymal cell,perivascular macrophage
+662,10X52_8:ACACCAGATGCAGT,23,1,ependymal cell,perivascular macrophage
+663,10X50_4:GGACAGGAGGTTTG,23,1,ependymal cell,perivascular macrophage
+664,10X01_1:TAGGGACTACAGTC,23,1,ependymal cell,perivascular macrophage
+665,10X54_7:GCTTCTCCTATGTT,23,1,ependymal cell,perivascular macrophage
+666,10X33_2:CGGTCACTCCAACA,23,1,ependymal cell,perivascular macrophage
+667,10X56_6:GGGTAACTAAGATG,23,1,ependymal cell,perivascular macrophage
+668,10X22_1:TCGCAAGATCCAAG,23,1,ependymal cell,perivascular macrophage
+669,10X19_2:TAAGATACGCGAGA,23,1,ependymal cell,perivascular macrophage
+670,10X22_2:AGTCGCCTATCACG,23,1,ependymal cell,perivascular macrophage
+671,10X57_4:CCCACATGGTCTGA,23,1,ependymal cell,perivascular macrophage
+672,10X52_1:AGTACGTGCGAGTT,23,1,ependymal cell,perivascular macrophage
+673,10X24_1:TCCCTACTGCAGAG,23,1,ependymal cell,perivascular macrophage
+674,10X57_1:ACGGTATGCCGATA,23,1,ependymal cell,perivascular macrophage
+675,10X49_5:CAGGAACTTCCCGT,23,1,ependymal cell,perivascular macrophage
+676,10X24_2:CCGATAGAGGAACG,23,1,ependymal cell,perivascular macrophage
+677,10X57_7:GATCGAACTTTCTG,23,1,ependymal cell,perivascular macrophage
+678,10X52_7:TTAGTCACCTTGTT,23,1,ependymal cell,perivascular macrophage
+679,10X43_2:CTACGCACGTGTCA,23,14,ependymal cell,peripheral sensory neuron
+680,10X53_7:AGAATACTCTTGCC,23,14,ependymal cell,peripheral sensory neuron
+681,10X43_2:GTCCACTGAAGGCG,23,14,ependymal cell,peripheral sensory neuron
+682,10X53_7:ATACCGGAGAACCT,23,14,ependymal cell,peripheral sensory neuron
+683,10X53_7:TGCTGAGATTCCGC,23,14,ependymal cell,peripheral sensory neuron
+684,10X43_2:TTCGATTGTTCTCA,23,14,ependymal cell,peripheral sensory neuron
+685,10X53_7:GACCAAACCCCTTG,23,14,ependymal cell,peripheral sensory neuron
+686,10X53_7:GCAATCGATCAGTG,23,14,ependymal cell,peripheral sensory neuron
+687,10X53_7:GGAGCCACCCAACA,23,14,ependymal cell,peripheral sensory neuron
+688,10X53_7:CTGTAACTGAGACG,23,14,ependymal cell,peripheral sensory neuron
+689,10X53_7:AGTGTGACGAATCC,23,14,ependymal cell,peripheral sensory neuron
+690,10X53_7:CTATAGCTCTCAAG,23,14,ependymal cell,peripheral sensory neuron
+691,10X43_2:GATCTTACTAAGCC,23,14,ependymal cell,peripheral sensory neuron
+692,10X43_2:ATGGGTACACGTAC,23,14,ependymal cell,peripheral sensory neuron
+693,10X43_2:GGGCCAACTTCAGG,23,14,ependymal cell,peripheral sensory neuron
+694,10X43_2:TTAACCACGGTATC,23,14,ependymal cell,peripheral sensory neuron
+695,10X43_2:AACGCATGCGATAC,23,14,ependymal cell,peripheral sensory neuron
+696,10X53_7:CGGGACTGTTGCAG,23,14,ependymal cell,peripheral sensory neuron
+697,10X53_7:ACCGTGCTAAGGCG,23,14,ependymal cell,peripheral sensory neuron
+698,10X43_2:TAGGTGTGTCACCC,23,14,ependymal cell,peripheral sensory neuron
+699,10X49_4:AACATATGCGTTAG,23,26,ependymal cell,vascular leptomeningeal cell (mmus)
+700,10X57_6:CCACGGGAGATGAA,23,26,ependymal cell,vascular leptomeningeal cell (mmus)
+701,10X49_4:ATTTCCGAGGGATG,23,26,ependymal cell,vascular leptomeningeal cell (mmus)
+702,10X49_4:AACTTGCTCTGTGA,23,26,ependymal cell,vascular leptomeningeal cell (mmus)
+703,10X49_5:GATACTCTCATGCA,23,26,ependymal cell,vascular leptomeningeal cell (mmus)
+704,10X52_1:AAATCCCTTACTCT,23,26,ependymal cell,vascular leptomeningeal cell (mmus)
+705,10X20_3:TGTCAGGAGTCTGA,23,26,ependymal cell,vascular leptomeningeal cell (mmus)
+706,10X56_2:TCCTAAACTTCCAT,23,26,ependymal cell,vascular leptomeningeal cell (mmus)
+707,10X48_3:CTGTATACGCGGAA,23,26,ependymal cell,vascular leptomeningeal cell (mmus)
+708,10X22_3:AGGCAACTTGCCTC,23,26,ependymal cell,vascular leptomeningeal cell (mmus)
+709,10X43_1:CTTAAAGATGCCAA,23,26,ependymal cell,vascular leptomeningeal cell (mmus)
+710,10X20_3:AAGGTCTGACACGT,23,26,ependymal cell,vascular leptomeningeal cell (mmus)
+711,10X52_6:AAGCACTGTGCGTA,23,26,ependymal cell,vascular leptomeningeal cell (mmus)
+712,10X33_2:CTTGAGGAGCTGAT,23,26,ependymal cell,vascular leptomeningeal cell (mmus)
+713,10X52_2:CTGCAGCTTATTCC,23,26,ependymal cell,vascular leptomeningeal cell (mmus)
+714,10X49_5:GAACTGTGATACCG,23,26,ependymal cell,vascular leptomeningeal cell (mmus)
+715,10X57_3:GCTACGCTCCTTAT,23,26,ependymal cell,vascular leptomeningeal cell (mmus)
+716,10X50_8:GCACACCTAGAGGC,23,26,ependymal cell,vascular leptomeningeal cell (mmus)
+717,10X54_8:TGCTTTCGGGAGTA,23,26,ependymal cell,vascular leptomeningeal cell (mmus)
+718,10X52_4:TCCCAGACGGTACT,23,26,ependymal cell,vascular leptomeningeal cell (mmus)
+719,10X52_2:GATAATACGGAGCA,23,3,ependymal cell,vascular associated smooth muscle cell
+720,10X53_2:TTATGAGAAGCCTA,23,3,ependymal cell,vascular associated smooth muscle cell
+721,10X48_3:AGATTAACACTACG,23,3,ependymal cell,vascular associated smooth muscle cell
+722,10X55_8:AGGGACAAGCCGCT,23,3,ependymal cell,vascular associated smooth muscle cell
+723,10X28_5:CCAGTCACCTCTAT,23,3,ependymal cell,vascular associated smooth muscle cell
+724,10X52_2:ACCACCTGTGCCCT,23,3,ependymal cell,vascular associated smooth muscle cell
+725,10X36_3:CTACTATGTTGCTT,23,3,ependymal cell,vascular associated smooth muscle cell
+726,10X52_6:GGTGGAGATGTGGT,23,3,ependymal cell,vascular associated smooth muscle cell
+727,10X26_4:CAGAAGCTCCCTCA,23,3,ependymal cell,vascular associated smooth muscle cell
+728,10X54_3:TGTTAAGGTGCTAG,23,3,ependymal cell,vascular associated smooth muscle cell
+729,10X02_1:CTATGTTGGCATAC,23,3,ependymal cell,vascular associated smooth muscle cell
+730,10X48_3:CACTGAGAGGTGGA,23,3,ependymal cell,vascular associated smooth muscle cell
+731,10X52_5:TATGTGCTGCGAGA,23,3,ependymal cell,vascular associated smooth muscle cell
+732,10X28_3:TACAATGACTTGCC,23,3,ependymal cell,vascular associated smooth muscle cell
+733,10X54_8:CAATTTCACAACGT,23,3,ependymal cell,vascular associated smooth muscle cell
+734,10X24_2:ATCACTTGTCAGGT,23,3,ependymal cell,vascular associated smooth muscle cell
+735,10X57_3:CTTACTGAGCTGAT,23,3,ependymal cell,vascular associated smooth muscle cell
+736,10X54_2:CGTTTAGCAGGTCA,23,3,ependymal cell,vascular associated smooth muscle cell
+737,10X57_3:ATTCTGACCGAGAG,23,3,ependymal cell,vascular associated smooth muscle cell
+738,10X05_3:TAAATCGAGTTAGC,23,3,ependymal cell,vascular associated smooth muscle cell
+739,10X49_4:CTTCACCTCCACAA,23,17,ependymal cell,olfactory ensheathing cell
+740,10X49_4:CAGGTTGACAGAAA,23,17,ependymal cell,olfactory ensheathing cell
+741,10X49_4:CATGAGACGGAAAT,23,17,ependymal cell,olfactory ensheathing cell
+742,10X49_5:ATGCACGATTCCAT,23,17,ependymal cell,olfactory ensheathing cell
+743,10X49_4:GGAGTTTGAAGCAA,23,17,ependymal cell,olfactory ensheathing cell
+744,10X49_5:TTCTTACTGTTGTG,23,17,ependymal cell,olfactory ensheathing cell
+745,10X28_4:GTTCATACTGGATC,23,17,ependymal cell,olfactory ensheathing cell
+746,10X49_4:TGTGAGTGACAGCT,23,17,ependymal cell,olfactory ensheathing cell
+747,10X49_5:TTTATCCTCCTACC,23,17,ependymal cell,olfactory ensheathing cell
+748,10X28_5:TGGCAATGTACAGC,23,17,ependymal cell,olfactory ensheathing cell
+749,10X49_4:TAGGCATGGCCCTT,23,17,ependymal cell,olfactory ensheathing cell
+750,10X49_4:TCAATAGATCGATG,23,17,ependymal cell,olfactory ensheathing cell
+751,10X28_5:CATGCCACCTCAAG,23,17,ependymal cell,olfactory ensheathing cell
+752,10X49_4:GAATGCTGCCAAGT,23,17,ependymal cell,olfactory ensheathing cell
+753,10X28_4:GAGTCAACGAAGGC,23,17,ependymal cell,olfactory ensheathing cell
+754,10X49_4:GGGTTAACCGTGAT,23,17,ependymal cell,olfactory ensheathing cell
+755,10X49_5:GACAACTGACTGGT,23,17,ependymal cell,olfactory ensheathing cell
+756,10X49_5:AAATGTTGGTGTCA,23,17,ependymal cell,olfactory ensheathing cell
+757,10X49_5:ATTCTTCTTCAGAC,23,17,ependymal cell,olfactory ensheathing cell
+758,10X49_5:AGTCTACTTGGAAA,23,17,ependymal cell,olfactory ensheathing cell
+759,10X54_5:TGAAGGTGGTGTAG,23,23,ependymal cell,ependymal cell
+760,10X24_3:CCAGACCTGAGCTT,23,23,ependymal cell,ependymal cell
+761,10X57_5:TTCCTAGAGCCAAT,23,23,ependymal cell,ependymal cell
+762,10X53_5:AGATCGTGAAGGTA,23,23,ependymal cell,ependymal cell
+763,10X53_1:TATGCGGAGGAAGC,23,23,ependymal cell,ependymal cell
+764,10X55_5:CTCAGGTATTCTCT,23,23,ependymal cell,ependymal cell
+765,10X26_3:CGACGTCTACTTTC,23,23,ependymal cell,ependymal cell
+766,10X43_3:CCATGCTGCTGAGT,23,23,ependymal cell,ependymal cell
+767,10X57_5:TATCCTGATCGACA,23,23,ependymal cell,ependymal cell
+768,10X52_2:TATTGCTGGGAAGC,23,23,ependymal cell,ependymal cell
+769,10X53_6:ACCAACGAAAACAG,23,23,ependymal cell,ependymal cell
+770,10X53_5:TACTGGGATGGAGG,23,23,ependymal cell,ependymal cell
+771,10X55_5:CGACTAGTGGACGT,23,23,ependymal cell,ependymal cell
+772,10X53_6:AATGCGTGGTTTGG,23,23,ependymal cell,ependymal cell
+773,10X24_4:GGAGTTTGGAGCAG,23,23,ependymal cell,ependymal cell
+774,10X53_6:TAAGCTCTCCAACA,23,23,ependymal cell,ependymal cell
+775,10X48_3:TGATATGAAGATGA,23,23,ependymal cell,ependymal cell
+776,10X53_4:AGAAACGACTCGAA,23,23,ependymal cell,ependymal cell
+777,10X24_3:TAGCGATGCCATGA,23,23,ependymal cell,ependymal cell
+778,10X53_3:CAATGGACGCTGTA,23,23,ependymal cell,ependymal cell
+779,10X28_5:GAGATAGAATTGGC,23,22,ependymal cell,radial glial cell
+780,10X04_4:CTACCTCTCTAGTG,23,22,ependymal cell,radial glial cell
+781,10X34_2:GTGGAGGAGTTGGT,23,22,ependymal cell,radial glial cell
+782,10X24_2:CTCAATTGGTCTGA,23,22,ependymal cell,radial glial cell
+783,10X05_4:AATCCTACCAAAGA,23,22,ependymal cell,radial glial cell
+784,10X26_4:TCTTCAGACCGATA,23,22,ependymal cell,radial glial cell
+785,10X28_3:CCGGTACTGTTGTG,23,22,ependymal cell,radial glial cell
+786,10X46_1:AGATCGTGCAGAAA,23,22,ependymal cell,radial glial cell
+787,10X05_4:ACAATTGATTGACG,23,22,ependymal cell,radial glial cell
+788,10X04_2:CTAGGATGTTGAGC,23,22,ependymal cell,radial glial cell
+789,10X49_5:CATGGCCTTCGCTC,23,22,ependymal cell,radial glial cell
+790,10X04_4:GGGAAGTGACCAAC,23,22,ependymal cell,radial glial cell
+791,10X24_1:GGATGTTGGAGCAG,23,22,ependymal cell,radial glial cell
+792,10X04_1:GGCGACACGCTTAG,23,22,ependymal cell,radial glial cell
+793,10X06_2:GGGTTATGTCTACT,23,22,ependymal cell,radial glial cell
+794,10X28_4:ATCTACTGTTTGGG,23,22,ependymal cell,radial glial cell
+795,10X24_2:CGCAGGACAGATCC,23,22,ependymal cell,radial glial cell
+796,10X26_3:CAGGTTGAACACGT,23,22,ependymal cell,radial glial cell
+797,10X49_5:AGTAGGCTAGTCGT,23,22,ependymal cell,radial glial cell
+798,10X24_1:AGTTAAACACCACA,23,22,ependymal cell,radial glial cell
+799,10X55_6:TATTCGTAGTGAAT,23,27,ependymal cell,cholinergic neuron
+800,10X26_4:TGTAATGACTATGG,23,27,ependymal cell,cholinergic neuron
+801,10X54_7:TGCTACAAGGCTCC,23,27,ependymal cell,cholinergic neuron
+802,10X55_3:AGCCTCATCGATTG,23,27,ependymal cell,cholinergic neuron
+803,10X55_4:GCAGTAGAGCCTAG,23,27,ependymal cell,cholinergic neuron
+804,10X56_2:AACTCTTGACACTG,23,27,ependymal cell,cholinergic neuron
+805,10X52_5:TGGAACACGTATGC,23,27,ependymal cell,cholinergic neuron
+806,10X55_3:TGAACTCAAACAAG,23,27,ependymal cell,cholinergic neuron
+807,10X52_6:TCATTCGATTCATC,23,27,ependymal cell,cholinergic neuron
+808,10X52_8:ACATTCTGTTGCAG,23,27,ependymal cell,cholinergic neuron
+809,10X55_5:AGCCGAGAATGTTG,23,27,ependymal cell,cholinergic neuron
+810,10X34_4:GGAATCTGTTAGGC,23,27,ependymal cell,cholinergic neuron
+811,10X51_3:ATGGTGACGTTCTT,23,27,ependymal cell,cholinergic neuron
+812,10X55_6:GCGATCATGCTAGT,23,27,ependymal cell,cholinergic neuron
+813,10X54_5:TTACTGTCAGAATA,23,27,ependymal cell,cholinergic neuron
+814,10X34_3:AGCGCCGATCAGAC,23,27,ependymal cell,cholinergic neuron
+815,10X11_1:ACTCTCCTCGTAGT,23,27,ependymal cell,cholinergic neuron
+816,10X56_6:GAGTCTGACAGAGG,23,27,ependymal cell,cholinergic neuron
+817,10X52_7:GAGTGACTTCACGA,23,27,ependymal cell,cholinergic neuron
+818,10X34_3:TCAAGTCTCATACG,23,27,ependymal cell,cholinergic neuron
+819,10X54_5:TGAACCAACTTGAC,23,12,ependymal cell,cranial visceromotor neuron
+820,10X54_4:TTCAGAGCCCAACC,23,12,ependymal cell,cranial visceromotor neuron
+821,10X54_1:AAGACAGCGCCTCA,23,12,ependymal cell,cranial visceromotor neuron
+822,10X54_8:CCAGGCATTGAGCT,23,12,ependymal cell,cranial visceromotor neuron
+823,10X55_3:AATGTAGTACGCCC,23,12,ependymal cell,cranial visceromotor neuron
+824,10X54_8:ACACCTCACAGGCC,23,12,ependymal cell,cranial visceromotor neuron
+825,10X55_7:CACCTAGAGGGATA,23,12,ependymal cell,cranial visceromotor neuron
+826,10X54_6:ACTTCCATGAGCGA,23,12,ependymal cell,cranial visceromotor neuron
+827,10X54_4:GTTAGTCGATAGAA,23,12,ependymal cell,cranial visceromotor neuron
+828,10X54_5:TTCGGCATATACCG,23,12,ependymal cell,cranial visceromotor neuron
+829,10X55_5:GGCATGTCGTTGTA,23,12,ependymal cell,cranial visceromotor neuron
+830,10X54_7:GAACGAGCAGACTG,23,12,ependymal cell,cranial visceromotor neuron
+831,10X54_8:CTCCTTCCGAGCCA,23,12,ependymal cell,cranial visceromotor neuron
+832,10X54_5:ATGTAAGAGATGAG,23,12,ependymal cell,cranial visceromotor neuron
+833,10X48_2:ATCGGAACCTGTAG,23,12,ependymal cell,cranial visceromotor neuron
+834,10X55_1:ATGCCTCCTGCAGG,23,12,ependymal cell,cranial visceromotor neuron
+835,10X55_4:GTAGAGTCTAGGTT,23,12,ependymal cell,cranial visceromotor neuron
+836,10X54_4:TCAAGTCAACGCTA,23,12,ependymal cell,cranial visceromotor neuron
+837,10X33_3:GCCTCATGCGAGTT,23,12,ependymal cell,cranial visceromotor neuron
+838,10X54_7:ACCGGGTCTTTCAT,23,12,ependymal cell,cranial visceromotor neuron
+839,10X52_1:TTATGGCTCCGATA,23,15,ependymal cell,oligodendrocyte precursor cell
+840,10X22_3:ATCTTGACTGACAC,23,15,ependymal cell,oligodendrocyte precursor cell
+841,10X50_7:GGGACCACAACCGT,23,15,ependymal cell,oligodendrocyte precursor cell
+842,10X26_4:TCACTATGTGGTAC,23,15,ependymal cell,oligodendrocyte precursor cell
+843,10X43_1:TAATGTGACCTACC,23,15,ependymal cell,oligodendrocyte precursor cell
+844,10X49_5:GAGGTTTGTCGCAA,23,15,ependymal cell,oligodendrocyte precursor cell
+845,10X53_4:CTGATGGAAGTGCT,23,15,ependymal cell,oligodendrocyte precursor cell
+846,10X02_1:AGGTGGGACCTGTC,23,15,ependymal cell,oligodendrocyte precursor cell
+847,10X01_1:GCATGTGAAAGTGA,23,15,ependymal cell,oligodendrocyte precursor cell
+848,10X46_1:AGTATCCTCTTCGC,23,15,ependymal cell,oligodendrocyte precursor cell
+849,10X22_4:GCCCAACTCCTCAC,23,15,ependymal cell,oligodendrocyte precursor cell
+850,10X01_1:AGGGCCACAGGAGC,23,15,ependymal cell,oligodendrocyte precursor cell
+851,10X52_1:TCAAGGTGAAAGCA,23,15,ependymal cell,oligodendrocyte precursor cell
+852,10X28_5:TGCTTAACTACTTC,23,15,ependymal cell,oligodendrocyte precursor cell
+853,10X52_1:CAAACTCTAAAGCA,23,15,ependymal cell,oligodendrocyte precursor cell
+854,10X50_2:AACCAGTGTCTATC,23,15,ependymal cell,oligodendrocyte precursor cell
+855,10X24_3:GATAATACTTCCAT,23,15,ependymal cell,oligodendrocyte precursor cell
+856,10X26_4:GCACGTCTATGTGC,23,15,ependymal cell,oligodendrocyte precursor cell
+857,10X01_1:ACGGTAACCCAAGT,23,15,ependymal cell,oligodendrocyte precursor cell
+858,10X24_4:ACTCTCCTCATACG,23,15,ependymal cell,oligodendrocyte precursor cell
+859,10X75_1:AATGAGGACGAGTT,23,20,ependymal cell,sympathetic noradrenergic neuron
+860,10X75_1:TAGCGATGACAGTC,23,20,ependymal cell,sympathetic noradrenergic neuron
+861,10X75_1:XXTTAACTATCACG,23,20,ependymal cell,sympathetic noradrenergic neuron
+862,10X75_1:GGACATTGTCCGAA,23,20,ependymal cell,sympathetic noradrenergic neuron
+863,10X75_1:CAACCAGACACAAC,23,20,ependymal cell,sympathetic noradrenergic neuron
+864,10X75_1:ATCTGGGAAAAACG,23,20,ependymal cell,sympathetic noradrenergic neuron
+865,10X75_1:CGCTAAGAGGAGCA,23,20,ependymal cell,sympathetic noradrenergic neuron
+866,10X75_1:TTGCATTGGAAACA,23,20,ependymal cell,sympathetic noradrenergic neuron
+867,10X75_1:GGCCAGACCTTGTT,23,20,ependymal cell,sympathetic noradrenergic neuron
+868,10X75_1:CAAGGTTGGCCCTT,23,20,ependymal cell,sympathetic noradrenergic neuron
+869,10X75_1:ATCGACGAGGCAAG,23,20,ependymal cell,sympathetic noradrenergic neuron
+870,10X75_1:XXATCTACTGTAGC,23,20,ependymal cell,sympathetic noradrenergic neuron
+871,10X75_1:CTATAAGAGCGGAA,23,20,ependymal cell,sympathetic noradrenergic neuron
+872,10X75_1:ACACCCTGAGAGAT,23,20,ependymal cell,sympathetic noradrenergic neuron
+873,10X75_1:CGAGGAGACGAATC,23,20,ependymal cell,sympathetic noradrenergic neuron
+874,10X75_1:ATTCTTCTGGCAAG,23,20,ependymal cell,sympathetic noradrenergic neuron
+875,10X75_1:AAAGCAGAAGCGTT,23,20,ependymal cell,sympathetic noradrenergic neuron
+876,10X75_1:AAGGTCTGTGGTAC,23,20,ependymal cell,sympathetic noradrenergic neuron
+877,10X75_1:GACAGGGAGCTTAG,23,20,ependymal cell,sympathetic noradrenergic neuron
+878,10X75_1:GAACACACGAGCTT,23,20,ependymal cell,sympathetic noradrenergic neuron
+879,10X53_7:TCCCAGACTTACTC,23,6,ependymal cell,satellite glia
+880,10X43_2:TAAGAGGAGCTGTA,23,6,ependymal cell,satellite glia
+881,10X43_2:ATGCAGTGACCTTT,23,6,ependymal cell,satellite glia
+882,10X43_2:GGCGCATGTCTCTA,23,6,ependymal cell,satellite glia
+883,10X43_2:GATCGATGACGGTT,23,6,ependymal cell,satellite glia
+884,10X43_2:GCACCTTGCCTAAG,23,6,ependymal cell,satellite glia
+885,10X43_2:TTCAACACGCAGTT,23,6,ependymal cell,satellite glia
+886,10X43_2:ACGCAATGGCTGTA,23,6,ependymal cell,satellite glia
+887,10X43_2:ATAGCCGACTCAGA,23,6,ependymal cell,satellite glia
+888,10X43_2:ATCCGCACAGAGTA,23,6,ependymal cell,satellite glia
+889,10X53_7:ATGCGATGGCTGAT,23,6,ependymal cell,satellite glia
+890,10X43_2:CTAGTTTGTCAGAC,23,6,ependymal cell,satellite glia
+891,10X53_7:CTGGAAACCTCGCT,23,6,ependymal cell,satellite glia
+892,10X43_2:ACTGTTACATCGTG,23,6,ependymal cell,satellite glia
+893,10X53_7:CGACCACTCCCGTT,23,6,ependymal cell,satellite glia
+894,10X43_2:TCAACACTCCTTTA,23,6,ependymal cell,satellite glia
+895,10X43_2:TAGTCTTGCCTAAG,23,6,ependymal cell,satellite glia
+896,10X43_2:GGCGACTGTCTACT,23,6,ependymal cell,satellite glia
+897,10X43_2:CACGGGACTGCAAC,23,6,ependymal cell,satellite glia
+898,10X53_7:CGACCGGACATCAG,23,6,ependymal cell,satellite glia
+899,10X11_1:TTACTCGAAGTACC,23,7,ependymal cell,choroid plexus epithelial cell
+900,10X54_6:AGCTACATCGGGTC,23,7,ependymal cell,choroid plexus epithelial cell
+901,10X54_3:AGCCAGTAAGCACG,23,7,ependymal cell,choroid plexus epithelial cell
+902,10X55_3:ACCCAGTATATGAG,23,7,ependymal cell,choroid plexus epithelial cell
+903,10X54_3:GCCACTCTGCGACG,23,7,ependymal cell,choroid plexus epithelial cell
+904,10X55_8:GTTCCCACAACGTT,23,7,ependymal cell,choroid plexus epithelial cell
+905,10X48_1:ATAGCCGAGGGACA,23,7,ependymal cell,choroid plexus epithelial cell
+906,10X54_4:ACTTCGTGAGCGAT,23,7,ependymal cell,choroid plexus epithelial cell
+907,10X49_1:ACAAAGGATTACTC,23,7,ependymal cell,choroid plexus epithelial cell
+908,10X54_4:ACCAAGTCATACTG,23,7,ependymal cell,choroid plexus epithelial cell
+909,10X54_2:TCGATTCCCTCAGT,23,7,ependymal cell,choroid plexus epithelial cell
+910,10X48_4:GCAGTCCTTTGCAG,23,7,ependymal cell,choroid plexus epithelial cell
+911,10X57_6:TTGGGAACGCTTAG,23,7,ependymal cell,choroid plexus epithelial cell
+912,10X57_6:AATCCTACTTAGGC,23,7,ependymal cell,choroid plexus epithelial cell
+913,10X54_4:CTCCTTCAGATAAG,23,7,ependymal cell,choroid plexus epithelial cell
+914,10X49_3:AGTTTGCTCACCAA,23,7,ependymal cell,choroid plexus epithelial cell
+915,10X33_2:GGACCCGAAGTCTG,23,7,ependymal cell,choroid plexus epithelial cell
+916,10X54_2:GTAGAAGGTGATAT,23,7,ependymal cell,choroid plexus epithelial cell
+917,10X48_1:TGATTCACTTCTAC,23,7,ependymal cell,choroid plexus epithelial cell
+918,10X87_4:ATAGAACTTTGTGG,23,7,ependymal cell,choroid plexus epithelial cell
+919,10X20_3:ATGCAGTGAAAAGC,23,19,ependymal cell,hypendymal cell
+920,10X57_1:GATCCGCTTTGCTT,23,19,ependymal cell,hypendymal cell
+921,10X20_3:ATGCGATGCCTCAC,23,19,ependymal cell,hypendymal cell
+922,10X57_1:ACGACCCTTCGTAG,23,19,ependymal cell,hypendymal cell
+923,10X20_4:CTCAGGCTAAGAGT,23,19,ependymal cell,hypendymal cell
+924,10X52_1:ATCCGCACTCGATG,23,19,ependymal cell,hypendymal cell
+925,10X52_2:AGAGTGCTCATTGG,23,19,ependymal cell,hypendymal cell
+926,10X52_3:TCGCACACTTCGCC,23,19,ependymal cell,hypendymal cell
+927,10X52_4:TTTGACTGTGCTGA,23,19,ependymal cell,hypendymal cell
+928,10X57_3:GGAATGCTTATCTC,23,19,ependymal cell,hypendymal cell
+929,10X52_1:TAGTAATGGTACCA,23,19,ependymal cell,hypendymal cell
+930,10X57_3:CTGATACTTACTCT,23,19,ependymal cell,hypendymal cell
+931,10X20_3:GGGCAAGACTCTTA,23,19,ependymal cell,hypendymal cell
+932,10X20_3:CTGTAACTGAGGTG,23,19,ependymal cell,hypendymal cell
+933,10X20_4:GCAAGACTAAGCAA,23,19,ependymal cell,hypendymal cell
+934,10X20_4:CTAGGCCTCTACTT,23,19,ependymal cell,hypendymal cell
+935,10X20_3:TTCTTACTTTATCC,23,19,ependymal cell,hypendymal cell
+936,10X20_3:CTCAGAGAGGATCT,23,19,ependymal cell,hypendymal cell
+937,10X57_2:ACGCCACTGTTACG,23,19,ependymal cell,hypendymal cell
+938,10X20_3:GTTGACGATAGTCG,23,19,ependymal cell,hypendymal cell
+939,10X75_1:CTTCTAGACGTGAT,23,16,ependymal cell,sympathetic cholinergic neuron
+940,10X75_1:TAGAGAGAAATGCC,23,16,ependymal cell,sympathetic cholinergic neuron
+941,10X75_1:AACAGAGAGTTTCT,23,16,ependymal cell,sympathetic cholinergic neuron
+942,10X75_1:CCCTACGAGGGATG,23,16,ependymal cell,sympathetic cholinergic neuron
+943,10X75_1:GGGTTAACTTCTCA,23,16,ependymal cell,sympathetic cholinergic neuron
+944,10X75_1:AGATATTGAAGGTA,23,16,ependymal cell,sympathetic cholinergic neuron
+945,10X75_1:AGGAATGACGCTAA,23,16,ependymal cell,sympathetic cholinergic neuron
+946,10X75_1:TGCAAGACAGAGAT,23,16,ependymal cell,sympathetic cholinergic neuron
+947,10X75_1:TACACACTCGTAAC,23,16,ependymal cell,sympathetic cholinergic neuron
+948,10X75_1:AGCGTAACGTGTCA,23,16,ependymal cell,sympathetic cholinergic neuron
+949,10X75_1:GGAGCAGACCAGTA,23,16,ependymal cell,sympathetic cholinergic neuron
+950,10X75_1:CAGTTGGAGTACGT,23,16,ependymal cell,sympathetic cholinergic neuron
+951,10X75_1:TTCATGACTGGAGG,23,16,ependymal cell,sympathetic cholinergic neuron
+952,10X75_1:AGCCAATGTCGTAG,23,16,ependymal cell,sympathetic cholinergic neuron
+953,10X75_1:ATGTTAGAAGAGTA,23,16,ependymal cell,sympathetic cholinergic neuron
+954,10X75_1:ATTCTTCTCAGTTG,23,16,ependymal cell,sympathetic cholinergic neuron
+955,10X75_1:CTGACAGACCTTCG,23,16,ependymal cell,sympathetic cholinergic neuron
+956,10X75_1:ATCGCGCTCACTTT,23,16,ependymal cell,sympathetic cholinergic neuron
+957,10X75_1:AAGTGGCTGCTGAT,23,16,ependymal cell,sympathetic cholinergic neuron
+958,10X75_1:GGTGATACGAGCTT,23,16,ependymal cell,sympathetic cholinergic neuron
+959,10X43_2:ATGAGCACTCATTC,23,0,ependymal cell,schwann cell
+960,10X43_2:AGACCTGAGTCCTC,23,0,ependymal cell,schwann cell
+961,10X53_7:ACAGTTCTCTTGGA,23,0,ependymal cell,schwann cell
+962,10X53_7:AGCGGCACAACAGA,23,0,ependymal cell,schwann cell
+963,10X43_2:TCATCAACCGTTAG,23,0,ependymal cell,schwann cell
+964,10X43_2:ACTGAGACAACTGC,23,0,ependymal cell,schwann cell
+965,10X43_2:ATGGTGACCATGGT,23,0,ependymal cell,schwann cell
+966,10X53_7:TATAAGTGGTCGAT,23,0,ependymal cell,schwann cell
+967,10X43_2:CACGGGACTTCTAC,23,0,ependymal cell,schwann cell
+968,10X43_2:TGTATCTGAGTCTG,23,0,ependymal cell,schwann cell
+969,10X43_2:ATCATCTGAACGGG,23,0,ependymal cell,schwann cell
+970,10X43_2:GTTCAGGATGTTTC,23,0,ependymal cell,schwann cell
+971,10X43_2:CTTAGGGAAATGCC,23,0,ependymal cell,schwann cell
+972,10X43_2:TCAGGATGAACGGG,23,0,ependymal cell,schwann cell
+973,10X43_2:TTTCGAACTCTCTA,23,0,ependymal cell,schwann cell
+974,10X43_2:TGATTCTGGTCATG,23,0,ependymal cell,schwann cell
+975,10X43_2:ACAGTGACGACTAC,23,0,ependymal cell,schwann cell
+976,10X43_2:CTAGATCTAGAACA,23,0,ependymal cell,schwann cell
+977,10X53_7:GATAGAGATGGATC,23,0,ependymal cell,schwann cell
+978,10X43_2:GAAGCTTGTTGTGG,23,0,ependymal cell,schwann cell
+979,10X82_2:CATGGAGTCTCAAC,23,24,ependymal cell,enteric neuron
+980,10X81_1:CACACAGGGTGTTG,23,24,ependymal cell,enteric neuron
+981,10X82_2:TCGATGTCAGAGGT,23,24,ependymal cell,enteric neuron
+982,10X81_3:TCCTAGTCTTGTCC,23,24,ependymal cell,enteric neuron
+983,10X81_2:GGTGACAAGGACAC,23,24,ependymal cell,enteric neuron
+984,10X82_2:CTGCTTCGACAGCC,23,24,ependymal cell,enteric neuron
+985,10X82_2:AAACTCAAACCTAC,23,24,ependymal cell,enteric neuron
+986,10X82_2:ACATCTCTTGTATC,23,24,ependymal cell,enteric neuron
+987,10X81_1:CATAGAGGCTCATT,23,24,ependymal cell,enteric neuron
+988,10X82_2:ATGTCTCCTCAACC,23,24,ependymal cell,enteric neuron
+989,10X81_3:ACTAGCACGAAAGC,23,24,ependymal cell,enteric neuron
+990,10X81_3:TTGGTTCTACTCAT,23,24,ependymal cell,enteric neuron
+991,10X82_2:GCATAAGACCCACC,23,24,ependymal cell,enteric neuron
+992,10X81_3:GAGAGTCCACGAAT,23,24,ependymal cell,enteric neuron
+993,10X82_2:ACATTCACGGCGTT,23,24,ependymal cell,enteric neuron
+994,10X82_2:ATTGAAGTGTGAAT,23,24,ependymal cell,enteric neuron
+995,10X82_2:CCACTAGAGGGCTT,23,24,ependymal cell,enteric neuron
+996,10X81_3:GGCAGGTTATGTGC,23,24,ependymal cell,enteric neuron
+997,10X81_1:ACAGATCAATACCG,23,24,ependymal cell,enteric neuron
+998,10X81_1:ATGTATCTTGTACT,23,24,ependymal cell,enteric neuron

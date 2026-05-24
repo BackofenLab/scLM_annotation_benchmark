@@ -1,0 +1,1000 @@
+,cell_id,predicted_idx,true_idx,predicted_labels,true_labels
+0,0b88df1c4e0711eca047fac6813609fb,26,26,"naive thymus-derived cd4-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+1,b7048808b4db11ea896eeea2ff0d800a,17,26,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+2,063f1e22863611eea9a56e13647e2878,0,26,be cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+3,5b835880e8bd11ebb73b6627106dca2c,31,26,"effector memory cd4-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+4,41eeb616ca1411eba8e7c23be70524c5,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+5,a93741f88d0111eba8fc0e09ff586e2a,17,26,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+6,c8ef29d2230911eba0759640c92fc4a2,23,26,naive regulatory t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+7,c198d60401db11ec82191e5794dae576,17,26,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+8,f787597050be11eca58a4e8e993d3e95,26,26,"naive thymus-derived cd4-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+9,60ffea8a230f11ecb3808ec5122f277d,27,26,mature gamma-delta t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+10,1018d42c01dd11ec98991efbcd4757be,17,26,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+11,e372a5f8a2e411eba445862a4d6f2ed3,26,26,"naive thymus-derived cd4-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+12,5cb3c296e40611ebb6ab32f1f7b8a178,17,26,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+13,784c1868862111ee998f1e061ab3328b,35,26,platelet,"naive thymus-derived cd4-positive, alpha-beta t cell"
+14,cca48318862c11ee8a3c42211af86f48,0,26,be cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+15,4909a72c01e011ecad3cda2d73e439aa,23,26,naive regulatory t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+16,5736010e8cee11ebb2129e901b21dc73,23,26,naive regulatory t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+17,5f346f783f6711ebae30a612f322b459,0,26,be cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+18,7f35710cf7e711ecb1715e1ef278d88a,2,26,"central memory cd4-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+19,0010b92223da11ecb640f6cb779d5498,17,26,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+20,c5abbd76862a11eeb249aefb8bcfeb6c,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+21,9324e93ee6b511eb8d2eee95c5d8b7b2,31,26,"effector memory cd4-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+22,f37420ba77df11eb80db767f1ba46716,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+23,eba14516608111ed88067e296dabf3c1,17,26,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+24,b91ee2504dff11ecb1a91aa839721c60,26,26,"naive thymus-derived cd4-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+25,19463dae608d11edaf347a76ff6a0874,31,26,"effector memory cd4-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+26,a6bb7896230f11ec9c429a68027fbf79,31,26,"effector memory cd4-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+27,10de0784e3ff11eb9f4d12c99271e885,23,26,naive regulatory t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+28,c2122f488d0211eb8f491acf3f136954,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+29,9fb5bf0476f611ebbe1a0a9c4ec18e1b,23,26,naive regulatory t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+30,a9d6c134a2db11eb9bf71657d2d52b59,0,26,be cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+31,7d398a546f3111eb96976aecf4743d14,26,26,"naive thymus-derived cd4-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+32,74b7829848b611eabab7c676ab45cfca,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+33,3132e594786211eb91c04e08f28056f2,23,26,naive regulatory t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+34,72d44a4060b111eda69772bc2278a4b2,23,26,naive regulatory t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+35,7e3f99eae40511eb8b4326d57b156660,23,26,naive regulatory t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+36,79e5467076fe11eb9b7cfece13ccb977,0,26,be cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+37,e808d47a6f3111eb827116167e963c6a,0,26,be cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+38,092e9d94785e11ebb00a1a75a97ae03e,23,26,naive regulatory t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+39,f9860a183e9611ebb2609e1bd6640354,23,26,naive regulatory t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+40,a002373a76f611ebbe1a0a9c4ec18e1b,17,26,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+41,494b5a8c01e011ecad3cda2d73e439aa,0,26,be cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+42,675129fc01c811ec99d8a29cd1cea438,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+43,4b6e8904746b11eb83a4c235a3a08626,23,26,naive regulatory t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+44,515d647202b711ec85669ed5fd6f2ffe,17,26,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+45,9c7148e2748d11eb8ec6c6eb439e4cc3,26,26,"naive thymus-derived cd4-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+46,36e3c61076f611eb916cbeaf1a0a56b5,0,26,be cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+47,3a6ffa3e23d911eca62d86e9892ea95b,17,26,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+48,5c2cde7cee8b11eb92fdd69ca687ea48,23,26,naive regulatory t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+49,c1a238c001db11ec82191e5794dae576,26,26,"naive thymus-derived cd4-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+50,95fd05b2e6b811ebbbef16f34851c28c,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+51,927ec3eee40111eba5a472433277b4b3,25,26,memory ccr4-positive regulatory t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+52,bbf7b01a3eb511eb9718d21badfd3eba,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+53,0f1a08fe745a11eb9460023cc5433a03,0,26,be cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+54,236ed5d601cd11ec9bd81eda61cbfa79,23,26,naive regulatory t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+55,c57fb9f8aa8711ed9d6f12731be88ed2,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+56,6b75e41803a911ec9226dabef286a24a,23,26,naive regulatory t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+57,9120da524dfe11ec9cd7da9b7cf4e69b,23,26,naive regulatory t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+58,69819702bfd811eb9045460ae879a467,17,26,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+59,82a1e006746b11eba241fa7146609c17,23,26,naive regulatory t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+60,5db9265e872711eba91e02b81d78ff78,31,26,"effector memory cd4-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+61,cc8d9158fec511eb87b23e158aef1042,35,26,platelet,"naive thymus-derived cd4-positive, alpha-beta t cell"
+62,2d1aad8a60b311edb0ce9a8d0a14da27,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+63,e0713cec862c11eeb44f2a0a7ee8bda4,3,26,common lymphoid progenitor,"naive thymus-derived cd4-positive, alpha-beta t cell"
+64,d5ebdfe8862c11eea4d2b6181e6e2ea7,31,26,"effector memory cd4-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+65,443a9c8c50ba11ec9ccf362b40e6d4a7,35,26,platelet,"naive thymus-derived cd4-positive, alpha-beta t cell"
+66,a2c8e1dc8cfc11ebb4592ee9d1c560f8,17,26,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+67,894153a423e011ecb7814e13412d27b3,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+68,519efe1402b711ec85669ed5fd6f2ffe,26,26,"naive thymus-derived cd4-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+69,5f3ff92e3f6711ebae30a612f322b459,26,26,"naive thymus-derived cd4-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+70,06b20db002b711ec88cb72995a34965f,17,26,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+71,4b96c0a4746b11eb83a4c235a3a08626,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+72,7cdc788c6f3111eb96976aecf4743d14,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+73,53b9f16e76f711eb928cf2a688aad71a,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+74,b919d4e04dff11ecb1a91aa839721c60,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+75,7c360e9c746911eb8b7dee0008289f2d,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+76,5b7e02e0785b11eb8f737ade911e22f7,23,26,naive regulatory t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+77,9834417ee6bd11eb9bb4beec3d5c720e,0,26,be cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+78,382291f0ece911eb96cace7c85d10469,27,26,mature gamma-delta t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+79,e87649543f6311eb9b035a7c26289213,26,26,"naive thymus-derived cd4-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+80,85b2780650b011eca4314690da3920ef,26,26,"naive thymus-derived cd4-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+81,9419682e6f3211eb8e954e1098597fe8,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+82,195f02bc608d11edaf347a76ff6a0874,23,26,naive regulatory t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+83,9a06bcb450b411ec925dc6262e5ecc05,26,26,"naive thymus-derived cd4-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+84,b323f58e4e0411ecbdc4f6dde42d12bb,26,26,"naive thymus-derived cd4-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+85,94a1cd2a862911eebdc19e04fa809629,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+86,db82b45cbfde11eb9e6d96f9d8b57902,17,26,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+87,0fcec46e4e0311ec8368968167987366,23,26,naive regulatory t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+88,ef7377cc8d0111eb894022587c8bf21f,26,26,"naive thymus-derived cd4-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+89,5cb246dce40611ebb6ab32f1f7b8a178,23,26,naive regulatory t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+90,41de76c0ca1411eba8e7c23be70524c5,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+91,f40483b08cfe11eb877bf62f64715fb6,17,26,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+92,9817df20e6bd11eb9bb4beec3d5c720e,26,26,"naive thymus-derived cd4-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+93,82833ba6746b11eba241fa7146609c17,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+94,e311a62e6e5d11eb8f7406e883c58fd7,23,26,naive regulatory t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+95,66c98c504e0211ec853ad229c2defbef,22,26,cd8aa(i) thymocyte,"naive thymus-derived cd4-positive, alpha-beta t cell"
+96,7a11c97a60d111ed987552e10431fc03,17,26,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+97,c49b9eb2e3ff11eb91932201050c5f2a,17,26,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+98,0d844f2a8d0211eb9a4f269f40e0a6a0,17,26,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+99,8aa697bc50b411ec9b5f1e4865587c6c,26,26,"naive thymus-derived cd4-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+100,9d47793c648711eba53cf26f7da8270f,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+101,7846ad60862111ee998f1e061ab3328b,0,26,be cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+102,3b2106b03f6611eb8896ca35f85b07f8,17,26,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+103,78580c22862111ee998f1e061ab3328b,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+104,629c0da66d6611eba2001a7690ba1d9e,23,26,naive regulatory t cell,"naive thymus-derived cd4-positive, alpha-beta t cell"
+105,97d876fc76fe11eb89bbb265d7ce1040,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+106,7d1503646f3111eb96976aecf4743d14,11,26,"cd4-positive, alpha-beta memory t cell","naive thymus-derived cd4-positive, alpha-beta t cell"
+107,c1d9429801db11ec82191e5794dae576,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+108,bccfc3047abc11ebac911e12d1777b84,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+109,a8ceac3e795511eb8df55e9c326fc5f4,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+110,b93bd3064dff11ecb1a91aa839721c60,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+111,df41347af7e011eca445621bb9b0c4af,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+112,0d77ad608d0211eb9a4f269f40e0a6a0,24,15,intermediate monocyte,"cd14-positive, cd16-negative classical monocyte"
+113,d1c7dafe7ab611eb820a3effb17b8bb3,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+114,29479714aa6311ed996536bac5d04f15,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+115,0f413190745a11eb9460023cc5433a03,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+116,5eca9f1823db11ec8fb6d64cd9da18b7,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+117,d42f418e50a211ecb05e625212408fd6,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+118,22ae889aaa8111edbca7720112d201c9,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+119,666d6f8ccd3911ebb08e96e3cb7ab314,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+120,494c725001e011ecad3cda2d73e439aa,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+121,ae6190f0fecd11eb9c589a38ef83a3f1,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+122,6770e60201c811ec99d8a29cd1cea438,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+123,0d7498968d0211eb9a4f269f40e0a6a0,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+124,75815d92a2de11ebba15ae7e271d472f,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+125,2c9a5c0e770111eb83580af69b9105e6,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+126,97c0464076fe11eb89bbb265d7ce1040,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+127,b54c7988fece11eb879816429967a19a,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+128,a9c04eb8a2db11eb9bf71657d2d52b59,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+129,34da99a6003111ec86db8a033d8d78a0,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+130,7ceb19ac871711eba8137adc2effde42,24,15,intermediate monocyte,"cd14-positive, cd16-negative classical monocyte"
+131,7997a2c460b011edb17e46fb8f56502c,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+132,a50e8e8c003e11ec836f122ea675d063,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+133,8ec22d8c23de11ec82e796d30ec08b20,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+134,7cd15ace6f3111eb96976aecf4743d14,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+135,e05116d67aba11ebad9a8efd66e37e75,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+136,105785aa01dd11ec98991efbcd4757be,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+137,95c23482e6b811ebbbef16f34851c28c,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+138,f80bf22cece411eb96e2ee7ff4e83851,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+139,e0776df6862c11eeb44f2a0a7ee8bda4,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+140,10c77ed0f7e811eca3ef4a90d865ed45,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+141,063f82c2863611eea9a56e13647e2878,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+142,082669484e0211ecb6d06af08aaacff5,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+143,c1d3c2b401db11ec82191e5794dae576,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+144,106611a601dd11ec98991efbcd4757be,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+145,79fbcbd476fe11eb9b7cfece13ccb977,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+146,d02ce1b4b54d11ea954106076d1e90b8,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+147,4a20e4fe230f11ec80995a5086d06fa1,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+148,0959370c785e11ebb00a1a75a97ae03e,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+149,b38438d8872911eb88ddaa98e7d40cb1,35,15,platelet,"cd14-positive, cd16-negative classical monocyte"
+150,ed42a7a2a2d211eb8aafd2fff04d1a29,35,15,platelet,"cd14-positive, cd16-negative classical monocyte"
+151,0694b1f202b711ec88cb72995a34965f,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+152,e81323806f3111eb827116167e963c6a,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+153,5935528a6f2e11eb96d6a6525b93d5e3,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+154,f429cc6aa2e311eb85af52073c383e80,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+155,9894035476fe11eb89bbb265d7ce1040,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+156,4b665888746b11eb83a4c235a3a08626,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+157,a2eacae08cfc11ebb4592ee9d1c560f8,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+158,2caf66e4770111eb83580af69b9105e6,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+159,66de21ba4e0211ec853ad229c2defbef,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+160,cf1d56f248bd11ea90c5123d9a376d13,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+161,092964b4785e11ebb00a1a75a97ae03e,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+162,2858aa5ef7db11ecbcbbd6dd2c335dfb,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+163,b8c15caa01d011ecafff5e625bcc3358,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+164,d59bd786786111eb9a4d621eed77e6ac,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+165,444544ca50ba11ec9ccf362b40e6d4a7,35,15,platelet,"cd14-positive, cd16-negative classical monocyte"
+166,79fe870c76fe11eb9b7cfece13ccb977,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+167,f40f6d48a2e311eb85af52073c383e80,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+168,91dcabecfed011eb850e06aac0d344cf,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+169,e0c3d512f81e11ecbca49a59490ee93a,28,15,natural killer cell,"cd14-positive, cd16-negative classical monocyte"
+170,2e7c2dd4aa7811ed91ea9e893c503a3a,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+171,480105d66f3311eb99c592dad4245022,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+172,a12a69be02b711eca176be0a2642ba6d,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+173,d1b24bf2770111ebb7b9d6f975704c14,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+174,03a9ef766d6a11eb9868b2973cae6259,15,15,"cd14-positive, cd16-negative classical monocyte","cd14-positive, cd16-negative classical monocyte"
+175,4a84e6a48d0811eba554d6cabaf48ff9,11,2,"cd4-positive, alpha-beta memory t cell","central memory cd4-positive, alpha-beta t cell"
+176,5db64074872711eba91e02b81d78ff78,23,2,naive regulatory t cell,"central memory cd4-positive, alpha-beta t cell"
+177,74f0c0d048b611eabab7c676ab45cfca,11,2,"cd4-positive, alpha-beta memory t cell","central memory cd4-positive, alpha-beta t cell"
+178,8ccfdea26e5d11ebb7476e89de14cf8b,11,2,"cd4-positive, alpha-beta memory t cell","central memory cd4-positive, alpha-beta t cell"
+179,a9b22be4a2db11eb9bf71657d2d52b59,11,2,"cd4-positive, alpha-beta memory t cell","central memory cd4-positive, alpha-beta t cell"
+180,779165f8fecf11eb83ae4a767d1dceb9,11,2,"cd4-positive, alpha-beta memory t cell","central memory cd4-positive, alpha-beta t cell"
+181,7f404d34f7e711ecb1715e1ef278d88a,31,2,"effector memory cd4-positive, alpha-beta t cell","central memory cd4-positive, alpha-beta t cell"
+182,10a9cad6b4d111ea9760ae151b524403,11,2,"cd4-positive, alpha-beta memory t cell","central memory cd4-positive, alpha-beta t cell"
+183,953360346d6b11ebb628aa63b53ba83f,11,2,"cd4-positive, alpha-beta memory t cell","central memory cd4-positive, alpha-beta t cell"
+184,7f3d9f30f7e711ecb1715e1ef278d88a,11,2,"cd4-positive, alpha-beta memory t cell","central memory cd4-positive, alpha-beta t cell"
+185,0d7d0ec28d0211eb9a4f269f40e0a6a0,11,2,"cd4-positive, alpha-beta memory t cell","central memory cd4-positive, alpha-beta t cell"
+186,09e9eb4e785e11ebb00a1a75a97ae03e,11,2,"cd4-positive, alpha-beta memory t cell","central memory cd4-positive, alpha-beta t cell"
+187,79e6e2fa76fe11eb9b7cfece13ccb977,4,2,"cd8-positive, alpha-beta regulatory t cell","central memory cd4-positive, alpha-beta t cell"
+188,ef80ebb48d0111eb894022587c8bf21f,11,2,"cd4-positive, alpha-beta memory t cell","central memory cd4-positive, alpha-beta t cell"
+189,5cabc19ae40611ebb6ab32f1f7b8a178,31,2,"effector memory cd4-positive, alpha-beta t cell","central memory cd4-positive, alpha-beta t cell"
+190,5ee94bd8230f11ecacbb465c28d60fa8,11,2,"cd4-positive, alpha-beta memory t cell","central memory cd4-positive, alpha-beta t cell"
+191,cfb2f97a48b611ea8957bafe6d70929e,23,2,naive regulatory t cell,"central memory cd4-positive, alpha-beta t cell"
+192,16a53b1a609a11edba329e19a2629b2e,31,2,"effector memory cd4-positive, alpha-beta t cell","central memory cd4-positive, alpha-beta t cell"
+193,f1d0d1da76f011eb9e6a262e4d0064cc,17,2,"naive thymus-derived cd8-positive, alpha-beta t cell","central memory cd4-positive, alpha-beta t cell"
+194,7ef727a8f7e711ecb1715e1ef278d88a,23,2,naive regulatory t cell,"central memory cd4-positive, alpha-beta t cell"
+195,a76f0a26489811ea92388a6a0c683ffb,31,2,"effector memory cd4-positive, alpha-beta t cell","central memory cd4-positive, alpha-beta t cell"
+196,ada67932423e11eca4c7021b126c370e,17,2,"naive thymus-derived cd8-positive, alpha-beta t cell","central memory cd4-positive, alpha-beta t cell"
+197,41f83cca76f611eb9ee31a4d4e3f8efd,11,2,"cd4-positive, alpha-beta memory t cell","central memory cd4-positive, alpha-beta t cell"
+198,9d28d522648711eba53cf26f7da8270f,17,2,"naive thymus-derived cd8-positive, alpha-beta t cell","central memory cd4-positive, alpha-beta t cell"
+199,0cd888d4ecc011eb966bfa1af6d99fe6,11,2,"cd4-positive, alpha-beta memory t cell","central memory cd4-positive, alpha-beta t cell"
+200,dd004d0a862c11ee941c7e9dd60efb6e,20,2,mucosal invariant t cell,"central memory cd4-positive, alpha-beta t cell"
+201,ec507ec8ecbf11ebafc4de269a2c4ee4,11,2,"cd4-positive, alpha-beta memory t cell","central memory cd4-positive, alpha-beta t cell"
+202,d2a96a08bfdc11eb9ba92275cea06a7e,11,2,"cd4-positive, alpha-beta memory t cell","central memory cd4-positive, alpha-beta t cell"
+203,069a471602b711ec88cb72995a34965f,11,2,"cd4-positive, alpha-beta memory t cell","central memory cd4-positive, alpha-beta t cell"
+204,10594d0e01dd11ec98991efbcd4757be,31,2,"effector memory cd4-positive, alpha-beta t cell","central memory cd4-positive, alpha-beta t cell"
+205,668034a47b6e11eb80a1e2efff4d80b3,26,2,"naive thymus-derived cd4-positive, alpha-beta t cell","central memory cd4-positive, alpha-beta t cell"
+206,c5b36cc4862a11eeb249aefb8bcfeb6c,31,2,"effector memory cd4-positive, alpha-beta t cell","central memory cd4-positive, alpha-beta t cell"
+207,f4b93a42aa9f11ed9aab225a04bc010d,35,2,platelet,"central memory cd4-positive, alpha-beta t cell"
+208,a1d64c38230c11eb9e6016fcd894d086,22,2,cd8aa(i) thymocyte,"central memory cd4-positive, alpha-beta t cell"
+209,034a2874c9fa11ebbe02e242efb8f7b8,25,2,memory ccr4-positive regulatory t cell,"central memory cd4-positive, alpha-beta t cell"
+210,033b6762c9fa11ebbe02e242efb8f7b8,31,2,"effector memory cd4-positive, alpha-beta t cell","central memory cd4-positive, alpha-beta t cell"
+211,d1e77dd0286411ec953b36d5f3074b28,22,2,cd8aa(i) thymocyte,"central memory cd4-positive, alpha-beta t cell"
+212,a95640808d0111eba8fc0e09ff586e2a,11,2,"cd4-positive, alpha-beta memory t cell","central memory cd4-positive, alpha-beta t cell"
+213,bca458fe6e5511eb8aa986621ebdbf37,11,2,"cd4-positive, alpha-beta memory t cell","central memory cd4-positive, alpha-beta t cell"
+214,e9dc2938230811ec89cc0e1df9dfbf1c,11,2,"cd4-positive, alpha-beta memory t cell","central memory cd4-positive, alpha-beta t cell"
+215,a6f683b4609911edb77612a4eb21bec8,31,2,"effector memory cd4-positive, alpha-beta t cell","central memory cd4-positive, alpha-beta t cell"
+216,cc6c2124315611eebf058a4e77219021,17,2,"naive thymus-derived cd8-positive, alpha-beta t cell","central memory cd4-positive, alpha-beta t cell"
+217,57fcf3503f6811eba60c12602f64f593,11,2,"cd4-positive, alpha-beta memory t cell","central memory cd4-positive, alpha-beta t cell"
+218,5ca248c2e40611ebb6ab32f1f7b8a178,11,2,"cd4-positive, alpha-beta memory t cell","central memory cd4-positive, alpha-beta t cell"
+219,a2dd253e8cfc11ebb4592ee9d1c560f8,33,2,"central memory cd8-positive, alpha-beta t cell","central memory cd4-positive, alpha-beta t cell"
+220,a3f29c34ecbe11ebaad346e0a59e94fd,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+221,4baaa52e746b11eb83a4c235a3a08626,16,8,"cd8-positive, alpha-beta memory t cell","effector memory cd8-positive, alpha-beta t cell"
+222,989f136676fe11eb89bbb265d7ce1040,16,8,"cd8-positive, alpha-beta memory t cell","effector memory cd8-positive, alpha-beta t cell"
+223,295b02feaa6311ed996536bac5d04f15,16,8,"cd8-positive, alpha-beta memory t cell","effector memory cd8-positive, alpha-beta t cell"
+224,5a4464caaa8411edbc55eac8c2b882ba,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+225,d55e5cd0786111eb9a4d621eed77e6ac,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+226,ee2427f46e5c11eb9751364c17c50e30,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+227,68aefa70872711ebadbb7e7f669035b2,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+228,f6f8c1a2f02111ed9882ae50d00ceaab,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+229,c1dcb11201db11ec82191e5794dae576,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+230,e13c3afe76fe11eb8a3a1adcfefed355,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+231,b86ec6c001d011ecafff5e625bcc3358,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+232,08189e764e0211ecb6d06af08aaacff5,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+233,ee0c7dac6e5c11eb9751364c17c50e30,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+234,e19bef546f2d11eb9c86fece995c7c24,16,8,"cd8-positive, alpha-beta memory t cell","effector memory cd8-positive, alpha-beta t cell"
+235,cfa1c65a48b611ea8957bafe6d70929e,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+236,6cce561201e011ec97d1be2f1bab6958,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+237,b88b566e01d011ecafff5e625bcc3358,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+238,cfcc2fa86e5d11ebb859b2d8774afeef,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+239,b8bfd0ba01d011ecafff5e625bcc3358,33,8,"central memory cd8-positive, alpha-beta t cell","effector memory cd8-positive, alpha-beta t cell"
+240,c069dc82862311eeb393168c5709f2f2,33,8,"central memory cd8-positive, alpha-beta t cell","effector memory cd8-positive, alpha-beta t cell"
+241,7e229610e40511eb8b4326d57b156660,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+242,519c9fde02b711ec85669ed5fd6f2ffe,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+243,22b230b2aa8111edbca7720112d201c9,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+244,174d722423df11ec8e663e0b7a317b29,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+245,a4732ebacd3511eb88c7e2067416d204,16,8,"cd8-positive, alpha-beta memory t cell","effector memory cd8-positive, alpha-beta t cell"
+246,c002986af7fe11ecbaca5e549e2aa1f5,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+247,7ee0105e6f3011eb8ea3b6144a58e849,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+248,d2ae7d4abfdc11eb9ba92275cea06a7e,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+249,5737b5268cee11ebb2129e901b21dc73,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+250,fc87dec250b411ec942f6a58078e6e64,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+251,796c3f9e60b011edb17e46fb8f56502c,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+252,2efb7444a2ce11ebbbe71e4a3e83c3e1,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+253,48073c4e6f3311eb99c592dad4245022,22,8,cd8aa(i) thymocyte,"effector memory cd8-positive, alpha-beta t cell"
+254,2f125e34a2ce11ebbbe71e4a3e83c3e1,16,8,"cd8-positive, alpha-beta memory t cell","effector memory cd8-positive, alpha-beta t cell"
+255,cdbe8e34315811ee95297ae860542a53,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+256,0cf12e70ecc011eb966bfa1af6d99fe6,16,8,"cd8-positive, alpha-beta memory t cell","effector memory cd8-positive, alpha-beta t cell"
+257,bbe99e54ca0f11eba0c402013b74b858,16,8,"cd8-positive, alpha-beta memory t cell","effector memory cd8-positive, alpha-beta t cell"
+258,e3f40046ca0611eb95002269a98e5840,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+259,14ca0bdcaa9011eda3678a6e266cb381,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+260,8db100ee76fa11ebb31b8631bc0de43b,27,8,mature gamma-delta t cell,"effector memory cd8-positive, alpha-beta t cell"
+261,fb43bcb0ca0f11ebad1a2eb9c335bc75,16,8,"cd8-positive, alpha-beta memory t cell","effector memory cd8-positive, alpha-beta t cell"
+262,d70fc802315011eead251600320c0574,8,8,"effector memory cd8-positive, alpha-beta t cell","effector memory cd8-positive, alpha-beta t cell"
+263,7e51d68ce40511eb8b4326d57b156660,17,31,"naive thymus-derived cd8-positive, alpha-beta t cell","effector memory cd4-positive, alpha-beta t cell"
+264,97d4dc94862911eeb185c2d03e180f84,11,31,"cd4-positive, alpha-beta memory t cell","effector memory cd4-positive, alpha-beta t cell"
+265,214bf5c6206511ebab2fd208a121e5d4,11,31,"cd4-positive, alpha-beta memory t cell","effector memory cd4-positive, alpha-beta t cell"
+266,5173a16002b711ec85669ed5fd6f2ffe,11,31,"cd4-positive, alpha-beta memory t cell","effector memory cd4-positive, alpha-beta t cell"
+267,5c672ab67b7a11eb822c3e9d2f0e335e,31,31,"effector memory cd4-positive, alpha-beta t cell","effector memory cd4-positive, alpha-beta t cell"
+268,3934af66795211ebb3dd8e1325812f33,35,31,platelet,"effector memory cd4-positive, alpha-beta t cell"
+269,768fe190230911ebaa61d20a4a12f3ba,16,31,"cd8-positive, alpha-beta memory t cell","effector memory cd4-positive, alpha-beta t cell"
+270,91472dea871811ebb044a614f189543f,11,31,"cd4-positive, alpha-beta memory t cell","effector memory cd4-positive, alpha-beta t cell"
+271,5fc4dac26f3211eb96f96a584edb8b14,31,31,"effector memory cd4-positive, alpha-beta t cell","effector memory cd4-positive, alpha-beta t cell"
+272,12440c4eca0611eba39f3a25e2bf00a4,11,31,"cd4-positive, alpha-beta memory t cell","effector memory cd4-positive, alpha-beta t cell"
+273,945f2788230f11ecb89eb20ae7ecce12,31,31,"effector memory cd4-positive, alpha-beta t cell","effector memory cd4-positive, alpha-beta t cell"
+274,467328a8fecf11eb8f22ce835a92b018,17,31,"naive thymus-derived cd8-positive, alpha-beta t cell","effector memory cd4-positive, alpha-beta t cell"
+275,360342347b7911ebad508aeddc44df84,31,31,"effector memory cd4-positive, alpha-beta t cell","effector memory cd4-positive, alpha-beta t cell"
+276,42b58254671c11ed8278d651ef5d5315,31,31,"effector memory cd4-positive, alpha-beta t cell","effector memory cd4-positive, alpha-beta t cell"
+277,41ea34e076f611eb9ee31a4d4e3f8efd,11,31,"cd4-positive, alpha-beta memory t cell","effector memory cd4-positive, alpha-beta t cell"
+278,29592664aa6311ed996536bac5d04f15,11,31,"cd4-positive, alpha-beta memory t cell","effector memory cd4-positive, alpha-beta t cell"
+279,6895d2a2872711ebadbb7e7f669035b2,11,31,"cd4-positive, alpha-beta memory t cell","effector memory cd4-positive, alpha-beta t cell"
+280,6ccb9cc401e011ec97d1be2f1bab6958,35,31,platelet,"effector memory cd4-positive, alpha-beta t cell"
+281,95e1538cf7e011ec88b892c85371e118,31,31,"effector memory cd4-positive, alpha-beta t cell","effector memory cd4-positive, alpha-beta t cell"
+282,e186535e230d11eb995f0a8b9bab73d7,11,31,"cd4-positive, alpha-beta memory t cell","effector memory cd4-positive, alpha-beta t cell"
+283,909a00c6862e11ee81c576a33e24a1ce,27,31,mature gamma-delta t cell,"effector memory cd4-positive, alpha-beta t cell"
+284,cc949b6a862c11ee8a3c42211af86f48,37,31,t cell,"effector memory cd4-positive, alpha-beta t cell"
+285,6d964f1e3eb811eb83ca221ed6f4a4fb,11,31,"cd4-positive, alpha-beta memory t cell","effector memory cd4-positive, alpha-beta t cell"
+286,e6d1f77e03a811ec9e783a8950b4baf1,31,31,"effector memory cd4-positive, alpha-beta t cell","effector memory cd4-positive, alpha-beta t cell"
+287,4a6a7aa88d0811eba554d6cabaf48ff9,11,31,"cd4-positive, alpha-beta memory t cell","effector memory cd4-positive, alpha-beta t cell"
+288,2a874b24786011eb89635e6022866806,11,31,"cd4-positive, alpha-beta memory t cell","effector memory cd4-positive, alpha-beta t cell"
+289,b8ea2fb2a2e011eb8a03ee5dc42b1547,11,31,"cd4-positive, alpha-beta memory t cell","effector memory cd4-positive, alpha-beta t cell"
+290,b51ff7b8872911ebbe41a20b62d6e8c8,31,31,"effector memory cd4-positive, alpha-beta t cell","effector memory cd4-positive, alpha-beta t cell"
+291,8eee4ae66f2711eb9ed9ea93581d1c81,11,31,"cd4-positive, alpha-beta memory t cell","effector memory cd4-positive, alpha-beta t cell"
+292,7a8d72507b7711eba2a96a517e35be5d,33,31,"central memory cd8-positive, alpha-beta t cell","effector memory cd4-positive, alpha-beta t cell"
+293,c1a8a9a801db11ec82191e5794dae576,11,31,"cd4-positive, alpha-beta memory t cell","effector memory cd4-positive, alpha-beta t cell"
+294,566cc13a8cfe11eba258b6b4610d6042,17,31,"naive thymus-derived cd8-positive, alpha-beta t cell","effector memory cd4-positive, alpha-beta t cell"
+295,05415992770011ebb6f1120b4fce9850,11,31,"cd4-positive, alpha-beta memory t cell","effector memory cd4-positive, alpha-beta t cell"
+296,c69a62a448bd11eab2ee7a6edf799b61,31,31,"effector memory cd4-positive, alpha-beta t cell","effector memory cd4-positive, alpha-beta t cell"
+297,b9d2d0c6872b11ebb599de5a8c2059ae,31,31,"effector memory cd4-positive, alpha-beta t cell","effector memory cd4-positive, alpha-beta t cell"
+298,6b88f5ea648911eb8bba96bafe6b5935,31,31,"effector memory cd4-positive, alpha-beta t cell","effector memory cd4-positive, alpha-beta t cell"
+299,4a2e3e74230f11ec80995a5086d06fa1,11,31,"cd4-positive, alpha-beta memory t cell","effector memory cd4-positive, alpha-beta t cell"
+300,0ce26e62ecc011eb966bfa1af6d99fe6,11,31,"cd4-positive, alpha-beta memory t cell","effector memory cd4-positive, alpha-beta t cell"
+301,66a015da7b6e11eb80a1e2efff4d80b3,11,31,"cd4-positive, alpha-beta memory t cell","effector memory cd4-positive, alpha-beta t cell"
+302,87dd0aac50be11ec9bfce201e636867f,35,9,platelet,"cd16-positive, cd56-dim natural killer cell, human"
+303,a95912c48d0111eba8fc0e09ff586e2a,35,9,platelet,"cd16-positive, cd56-dim natural killer cell, human"
+304,7e865f826f3011eb8ea3b6144a58e849,28,9,natural killer cell,"cd16-positive, cd56-dim natural killer cell, human"
+305,2d215d80770111eb83580af69b9105e6,28,9,natural killer cell,"cd16-positive, cd56-dim natural killer cell, human"
+306,3d426fbe23dc11ecb52a06b7b2d7de84,27,9,mature gamma-delta t cell,"cd16-positive, cd56-dim natural killer cell, human"
+307,06930b0402b711ec88cb72995a34965f,27,9,mature gamma-delta t cell,"cd16-positive, cd56-dim natural killer cell, human"
+308,5146c7b202b711ec85669ed5fd6f2ffe,27,9,mature gamma-delta t cell,"cd16-positive, cd56-dim natural killer cell, human"
+309,7aefdcba795611eb98061e2958941ff5,28,9,natural killer cell,"cd16-positive, cd56-dim natural killer cell, human"
+310,6cfab2ac01e011ec97d1be2f1bab6958,28,9,natural killer cell,"cd16-positive, cd56-dim natural killer cell, human"
+311,918c066c862b11ee8a27be38a9d1c9dd,27,9,mature gamma-delta t cell,"cd16-positive, cd56-dim natural killer cell, human"
+312,f0eb1c9c4e0111ecaee2cec740306374,28,9,natural killer cell,"cd16-positive, cd56-dim natural killer cell, human"
+313,2d24a08860b311edb0ce9a8d0a14da27,28,9,natural killer cell,"cd16-positive, cd56-dim natural killer cell, human"
+314,fcbae0823e8c11eb882a3a23c421ba3f,27,9,mature gamma-delta t cell,"cd16-positive, cd56-dim natural killer cell, human"
+315,51a0451c02b711ec85669ed5fd6f2ffe,28,9,natural killer cell,"cd16-positive, cd56-dim natural killer cell, human"
+316,6685d20242dc11ec9c335e51af10a502,27,9,mature gamma-delta t cell,"cd16-positive, cd56-dim natural killer cell, human"
+317,ec66c822ecbf11ebafc4de269a2c4ee4,35,9,platelet,"cd16-positive, cd56-dim natural killer cell, human"
+318,06ce84ae02b711ec88cb72995a34965f,27,9,mature gamma-delta t cell,"cd16-positive, cd56-dim natural killer cell, human"
+319,6788f42c01c811ec99d8a29cd1cea438,35,9,platelet,"cd16-positive, cd56-dim natural killer cell, human"
+320,5da5f840872711eba91e02b81d78ff78,28,9,natural killer cell,"cd16-positive, cd56-dim natural killer cell, human"
+321,d013dce6a2e611eb91855e3d154f7c3f,28,9,natural killer cell,"cd16-positive, cd56-dim natural killer cell, human"
+322,5b40bdae785b11eb8f737ade911e22f7,35,9,platelet,"cd16-positive, cd56-dim natural killer cell, human"
+323,953d6fca6d6b11ebb628aa63b53ba83f,28,9,natural killer cell,"cd16-positive, cd56-dim natural killer cell, human"
+324,d5fc6070862c11eea4d2b6181e6e2ea7,28,9,natural killer cell,"cd16-positive, cd56-dim natural killer cell, human"
+325,3881c38a424511ecb59d5a96a2e8e3f4,27,9,mature gamma-delta t cell,"cd16-positive, cd56-dim natural killer cell, human"
+326,22b5e5d6aa8111edbca7720112d201c9,35,9,platelet,"cd16-positive, cd56-dim natural killer cell, human"
+327,98d5f736794d11eb99a57e14fe324518,28,9,natural killer cell,"cd16-positive, cd56-dim natural killer cell, human"
+328,9d9e591e6d6a11eba1aef2c4e1d50672,27,9,mature gamma-delta t cell,"cd16-positive, cd56-dim natural killer cell, human"
+329,7eca7e426f3011eb8ea3b6144a58e849,35,9,platelet,"cd16-positive, cd56-dim natural killer cell, human"
+330,e23f6766794011eb9282e2ceeb91ba52,35,9,platelet,"cd16-positive, cd56-dim natural killer cell, human"
+331,954223e46d6b11ebb628aa63b53ba83f,28,9,natural killer cell,"cd16-positive, cd56-dim natural killer cell, human"
+332,55015cfecd2f11ebad37a2057e76a05f,27,9,mature gamma-delta t cell,"cd16-positive, cd56-dim natural killer cell, human"
+333,286df724f7db11ecbcbbd6dd2c335dfb,28,9,natural killer cell,"cd16-positive, cd56-dim natural killer cell, human"
+334,a2daeb2a8cfc11ebb4592ee9d1c560f8,28,9,natural killer cell,"cd16-positive, cd56-dim natural killer cell, human"
+335,9949d7f676fe11eb89bbb265d7ce1040,28,9,natural killer cell,"cd16-positive, cd56-dim natural killer cell, human"
+336,b9386402bfcd11ebbdb0527e5f17f167,28,9,natural killer cell,"cd16-positive, cd56-dim natural killer cell, human"
+337,98ba8c80794d11eb99a57e14fe324518,35,9,platelet,"cd16-positive, cd56-dim natural killer cell, human"
+338,518db89802b711ec85669ed5fd6f2ffe,35,9,platelet,"cd16-positive, cd56-dim natural killer cell, human"
+339,46d9ae18488011eaa581ba6d6c7b9f21,28,9,natural killer cell,"cd16-positive, cd56-dim natural killer cell, human"
+340,2598e264e40611eb9f73d6fd5206df9a,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+341,10f036a2e3ff11eb9f4d12c99271e885,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+342,d1115be0e6bc11eb939cb62884aae3d6,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+343,5fe6a92202b711eca847563a4b56082f,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+344,bad709f0862a11ee84fb5eb04f029758,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+345,01acf4eee40111ebb5ee12505c6ae237,22,17,cd8aa(i) thymocyte,"naive thymus-derived cd8-positive, alpha-beta t cell"
+346,568722788cfe11eba258b6b4610d6042,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+347,36cd56b476f611eb916cbeaf1a0a56b5,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+348,a634a0ee3e8311ebb8866e6678408b78,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+349,678ce69a01c811ec99d8a29cd1cea438,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+350,8f1f06186f2711eb9ed9ea93581d1c81,22,17,cd8aa(i) thymocyte,"naive thymus-derived cd8-positive, alpha-beta t cell"
+351,89f67c42609911eda456ba0856b89601,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+352,d600c93a862c11eea4d2b6181e6e2ea7,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+353,2d42521860b311edb0ce9a8d0a14da27,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+354,ef88cafa8d0111eb894022587c8bf21f,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+355,9534073c6d6b11ebb628aa63b53ba83f,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+356,3b32c2e23f6611eb8896ca35f85b07f8,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+357,91d6a5e2433311ecb17706fc43058792,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+358,4b4866c0746b11eb83a4c235a3a08626,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+359,fc6045e250b411ec942f6a58078e6e64,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+360,4ba64290746b11eb83a4c235a3a08626,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+361,7ca76e46871711eba8137adc2effde42,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+362,a9b8a9fc670511eda2a722caa9afe354,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+363,875cd5d0e3fe11eb88346afc45235a84,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+364,0b7761924e0711eca047fac6813609fb,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+365,7e48a30ae40511eb8b4326d57b156660,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+366,5cad92e0e40611ebb6ab32f1f7b8a178,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+367,def1b5ac48cf11eaacaa42cd98cbd24e,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+368,38a1decee6bd11eba4f6726e7cf53371,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+369,f0aee5a64e0111ecaee2cec740306374,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+370,41e2f16276f611eb9ee31a4d4e3f8efd,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+371,4134c98c671511ed9b96de3223020266,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+372,6953ea6ce6bd11eb99defa54c4ee54f4,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+373,6773909601c811ec99d8a29cd1cea438,17,17,"naive thymus-derived cd8-positive, alpha-beta t cell","naive thymus-derived cd8-positive, alpha-beta t cell"
+374,e308beb06e5d11eb8f7406e883c58fd7,10,10,naive b cell,naive b cell
+375,62f3c82a6d6611eba2001a7690ba1d9e,10,10,naive b cell,naive b cell
+376,4f66faf6206411eb98abe23235af2ce5,32,10,transitional stage b cell,naive b cell
+377,91af946ac9fe11eba37ce263f1112239,10,10,naive b cell,naive b cell
+378,ffdfa30a23d911ecb640f6cb779d5498,10,10,naive b cell,naive b cell
+379,91fd8dd0fed011eb850e06aac0d344cf,10,10,naive b cell,naive b cell
+380,8906a2d6620c11ebae8fee13b7064f0d,10,10,naive b cell,naive b cell
+381,7a0ff1f476fe11eb9b7cfece13ccb977,10,10,naive b cell,naive b cell
+382,083ea1344e0211ecb6d06af08aaacff5,10,10,naive b cell,naive b cell
+383,3bfa0a1a6f3011eb87df52ffb97efd4c,10,10,naive b cell,naive b cell
+384,af54e670005711ecacf076742455fe92,10,10,naive b cell,naive b cell
+385,e1dc54b86f2d11eb9c86fece995c7c24,10,10,naive b cell,naive b cell
+386,f0b6ffac50b811ecbd5a96ba759a0a5a,32,10,transitional stage b cell,naive b cell
+387,6295d7ba6d6611eba2001a7690ba1d9e,10,10,naive b cell,naive b cell
+388,8d992dd2e40211ebba695e0417dae271,10,10,naive b cell,naive b cell
+389,e8771da0230811eca137ea3e049c58d4,32,10,transitional stage b cell,naive b cell
+390,3c1272086f3011eb87df52ffb97efd4c,32,10,transitional stage b cell,naive b cell
+391,833c8cee862b11ee8d9b4ae17f2d4a91,10,10,naive b cell,naive b cell
+392,6e0b4e78b4ce11eaad805e2ce0887139,10,10,naive b cell,naive b cell
+393,f0c721a250b811ecbd5a96ba759a0a5a,10,10,naive b cell,naive b cell
+394,7a8cb5867b7711eba2a96a517e35be5d,10,10,naive b cell,naive b cell
+395,04e19668cd2411eb93671e348710f99d,10,10,naive b cell,naive b cell
+396,83313c5e862b11ee8d9b4ae17f2d4a91,10,10,naive b cell,naive b cell
+397,5ceb66fc48b111ea8fbed2ddb8e0a14a,32,10,transitional stage b cell,naive b cell
+398,ef63798e746111ebb005fab458a363f4,32,10,transitional stage b cell,naive b cell
+399,e1888dfe230d11eb995f0a8b9bab73d7,27,27,mature gamma-delta t cell,mature gamma-delta t cell
+400,0801352e4e0211ecb6d06af08aaacff5,27,27,mature gamma-delta t cell,mature gamma-delta t cell
+401,892dfde023e011ecb7814e13412d27b3,27,27,mature gamma-delta t cell,mature gamma-delta t cell
+402,4a793b6a8d0811eba554d6cabaf48ff9,27,27,mature gamma-delta t cell,mature gamma-delta t cell
+403,eaab798c608c11edb82ff6b434f2fb76,27,27,mature gamma-delta t cell,mature gamma-delta t cell
+404,e146cd8e76fe11eb8a3a1adcfefed355,20,27,mucosal invariant t cell,mature gamma-delta t cell
+405,62d0697ce79411ebada4c67e2b686223,27,27,mature gamma-delta t cell,mature gamma-delta t cell
+406,fc71913a50b411ec942f6a58078e6e64,27,27,mature gamma-delta t cell,mature gamma-delta t cell
+407,25927802e40611eb9f73d6fd5206df9a,27,27,mature gamma-delta t cell,mature gamma-delta t cell
+408,5daedde8872711eba91e02b81d78ff78,31,27,"effector memory cd4-positive, alpha-beta t cell",mature gamma-delta t cell
+409,6ccfc92e48b511ea87c666a4322bd84a,27,27,mature gamma-delta t cell,mature gamma-delta t cell
+410,b7183178b4db11ea896eeea2ff0d800a,27,27,mature gamma-delta t cell,mature gamma-delta t cell
+411,296cdc46862b11ee97ce1ac7b539e0d5,27,27,mature gamma-delta t cell,mature gamma-delta t cell
+412,d40f93ac50a211ecb05e625212408fd6,27,27,mature gamma-delta t cell,mature gamma-delta t cell
+413,092929fe785e11ebb00a1a75a97ae03e,27,27,mature gamma-delta t cell,mature gamma-delta t cell
+414,692be594e6bd11eb99defa54c4ee54f4,27,27,mature gamma-delta t cell,mature gamma-delta t cell
+415,c5ab9abc862a11eeb249aefb8bcfeb6c,17,27,"naive thymus-derived cd8-positive, alpha-beta t cell",mature gamma-delta t cell
+416,c4b49e44e3ff11eb91932201050c5f2a,27,27,mature gamma-delta t cell,mature gamma-delta t cell
+417,f8c9fd4223dc11ec8ebdfedc55894352,2,27,"central memory cd4-positive, alpha-beta t cell",mature gamma-delta t cell
+418,898dfb1e286311ecb44ba22865200d72,27,27,mature gamma-delta t cell,mature gamma-delta t cell
+419,d1ab89e47ab611eb820a3effb17b8bb3,5,5,memory b cell,memory b cell
+420,f4020ed2a2e311eb85af52073c383e80,32,5,transitional stage b cell,memory b cell
+421,ff4699aa206311eb9a0672114e4cb04e,10,5,naive b cell,memory b cell
+422,b4f0836c862b11ee9a02eed9ef1e2438,32,5,transitional stage b cell,memory b cell
+423,68af9962872711ebadbb7e7f669035b2,32,5,transitional stage b cell,memory b cell
+424,a3c4d5f6ecbe11ebaad346e0a59e94fd,5,5,memory b cell,memory b cell
+425,064477fa863611eea9a56e13647e2878,32,5,transitional stage b cell,memory b cell
+426,f842e8ccece411eb96e2ee7ff4e83851,5,5,memory b cell,memory b cell
+427,3b1492903f6611eb8896ca35f85b07f8,10,5,naive b cell,memory b cell
+428,0fec71ee4e0311ec8368968167987366,5,5,memory b cell,memory b cell
+429,e1d6c4e46f2d11eb9c86fece995c7c24,32,5,transitional stage b cell,memory b cell
+430,0808e7104e0211ecb6d06af08aaacff5,5,5,memory b cell,memory b cell
+431,06b6f7bc02b711ec88cb72995a34965f,32,5,transitional stage b cell,memory b cell
+432,68abc9a8ecea11eb8ac2be83dc4baba1,32,5,transitional stage b cell,memory b cell
+433,5ee6baa8230f11ecacbb465c28d60fa8,32,5,transitional stage b cell,memory b cell
+434,060d9e76770011ebb6f1120b4fce9850,32,5,transitional stage b cell,memory b cell
+435,f8af201223dc11ec8ebdfedc55894352,5,5,memory b cell,memory b cell
+436,e072ec0c7aba11ebad9a8efd66e37e75,32,5,transitional stage b cell,memory b cell
+437,4e657a043f6f11eb958d9a3b616bee06,32,5,transitional stage b cell,memory b cell
+438,cfcfe2386e5d11ebb859b2d8774afeef,32,5,transitional stage b cell,memory b cell
+439,bd35519c6e5511ebaf139a72df013a78,20,20,mucosal invariant t cell,mucosal invariant t cell
+440,f1e64dfc746711eb96b76e4cdef221b1,27,20,mature gamma-delta t cell,mucosal invariant t cell
+441,6cd8116a48b511ea87c666a4322bd84a,27,20,mature gamma-delta t cell,mucosal invariant t cell
+442,2a80c9fc786011eb89635e6022866806,22,20,cd8aa(i) thymocyte,mucosal invariant t cell
+443,ca17ffa003be11ecb0781e3062362594,20,20,mucosal invariant t cell,mucosal invariant t cell
+444,119811a6746a11eba6ee4656f02e1fdd,27,20,mature gamma-delta t cell,mucosal invariant t cell
+445,a83e07a24e0111ec936b1ac433bb3e99,27,20,mature gamma-delta t cell,mucosal invariant t cell
+446,564e342c8cfe11eba258b6b4610d6042,27,20,mature gamma-delta t cell,mucosal invariant t cell
+447,ef95e2268d0111eb894022587c8bf21f,33,20,"central memory cd8-positive, alpha-beta t cell",mucosal invariant t cell
+448,767a7dfa230911ebaa61d20a4a12f3ba,27,20,mature gamma-delta t cell,mucosal invariant t cell
+449,a10ab30802b711eca176be0a2642ba6d,27,20,mature gamma-delta t cell,mucosal invariant t cell
+450,03781b9a6d6a11eb9868b2973cae6259,27,20,mature gamma-delta t cell,mucosal invariant t cell
+451,c5ca0aba862a11eeb249aefb8bcfeb6c,27,20,mature gamma-delta t cell,mucosal invariant t cell
+452,7b111830795611eb98061e2958941ff5,27,20,mature gamma-delta t cell,mucosal invariant t cell
+453,ae508cf6fecd11eb9c589a38ef83a3f1,27,20,mature gamma-delta t cell,mucosal invariant t cell
+454,ef8728ee8d0111eb894022587c8bf21f,27,20,mature gamma-delta t cell,mucosal invariant t cell
+455,aae55a70770411eba803caccc32ef9e2,27,20,mature gamma-delta t cell,mucosal invariant t cell
+456,e7af85f06f3111eb827116167e963c6a,27,20,mature gamma-delta t cell,mucosal invariant t cell
+457,4e195c586f2811eb8e74ca941525b751,27,20,mature gamma-delta t cell,mucosal invariant t cell
+458,46658dd8fecf11eb8f22ce835a92b018,20,20,mucosal invariant t cell,mucosal invariant t cell
+459,4439c69003bc11ec8b03caa2709d8562,24,13,intermediate monocyte,"cd14-low, cd16-positive monocyte"
+460,e0590730862c11eeb44f2a0a7ee8bda4,24,13,intermediate monocyte,"cd14-low, cd16-positive monocyte"
+461,ae29c6c4e8c611ebbab94ef4e3507a6c,24,13,intermediate monocyte,"cd14-low, cd16-positive monocyte"
+462,4e3a3ef2e6c211ebaddab27930c367f5,24,13,intermediate monocyte,"cd14-low, cd16-positive monocyte"
+463,3906e716795211ebb3dd8e1325812f33,24,13,intermediate monocyte,"cd14-low, cd16-positive monocyte"
+464,f817442eece411eb96e2ee7ff4e83851,24,13,intermediate monocyte,"cd14-low, cd16-positive monocyte"
+465,104a872401dd11ec98991efbcd4757be,24,13,intermediate monocyte,"cd14-low, cd16-positive monocyte"
+466,f8465912ece411eb96e2ee7ff4e83851,24,13,intermediate monocyte,"cd14-low, cd16-positive monocyte"
+467,5cc9f03ee40611ebb6ab32f1f7b8a178,24,13,intermediate monocyte,"cd14-low, cd16-positive monocyte"
+468,e5e98a80bfdc11eb9564dafd5e7509d4,24,13,intermediate monocyte,"cd14-low, cd16-positive monocyte"
+469,2321fee4e6ae11ebb432b26df3e07d33,24,13,intermediate monocyte,"cd14-low, cd16-positive monocyte"
+470,79891c5460b011edb17e46fb8f56502c,24,13,intermediate monocyte,"cd14-low, cd16-positive monocyte"
+471,cf913b78794811ebad76721c4346f4ef,24,13,intermediate monocyte,"cd14-low, cd16-positive monocyte"
+472,06462ff0863611eea9a56e13647e2878,24,13,intermediate monocyte,"cd14-low, cd16-positive monocyte"
+473,c1bb466a8d0211eb8f491acf3f136954,24,13,intermediate monocyte,"cd14-low, cd16-positive monocyte"
+474,5337e5b676f711eb928cf2a688aad71a,35,13,platelet,"cd14-low, cd16-positive monocyte"
+475,e1ed93546f2d11eb9c86fece995c7c24,24,13,intermediate monocyte,"cd14-low, cd16-positive monocyte"
+476,6893e36aecea11eb8ac2be83dc4baba1,24,13,intermediate monocyte,"cd14-low, cd16-positive monocyte"
+477,dd027f6c862c11ee941c7e9dd60efb6e,35,13,platelet,"cd14-low, cd16-positive monocyte"
+478,12fdcbf07abc11ebb9a662910f707d59,24,13,intermediate monocyte,"cd14-low, cd16-positive monocyte"
+479,98230a44e6bd11eb9bb4beec3d5c720e,35,33,platelet,"central memory cd8-positive, alpha-beta t cell"
+480,55478ae4cd2f11ebad37a2057e76a05f,27,33,mature gamma-delta t cell,"central memory cd8-positive, alpha-beta t cell"
+481,e2e3c1f06e5d11eb8f7406e883c58fd7,27,33,mature gamma-delta t cell,"central memory cd8-positive, alpha-beta t cell"
+482,877458e0e3fe11eb88346afc45235a84,17,33,"naive thymus-derived cd8-positive, alpha-beta t cell","central memory cd8-positive, alpha-beta t cell"
+483,f0fa4e924e0111ecaee2cec740306374,17,33,"naive thymus-derived cd8-positive, alpha-beta t cell","central memory cd8-positive, alpha-beta t cell"
+484,41c8dc98ca1411eba8e7c23be70524c5,33,33,"central memory cd8-positive, alpha-beta t cell","central memory cd8-positive, alpha-beta t cell"
+485,04d86b10cd2411eb93671e348710f99d,27,33,mature gamma-delta t cell,"central memory cd8-positive, alpha-beta t cell"
+486,b5462d7a872911ebbe41a20b62d6e8c8,16,33,"cd8-positive, alpha-beta memory t cell","central memory cd8-positive, alpha-beta t cell"
+487,8ddeacba76fa11ebb31b8631bc0de43b,33,33,"central memory cd8-positive, alpha-beta t cell","central memory cd8-positive, alpha-beta t cell"
+488,490dd14401e011ecad3cda2d73e439aa,27,33,mature gamma-delta t cell,"central memory cd8-positive, alpha-beta t cell"
+489,e6b4cdb603a811ec9e783a8950b4baf1,27,33,mature gamma-delta t cell,"central memory cd8-positive, alpha-beta t cell"
+490,e120b48c76fe11eb8a3a1adcfefed355,16,33,"cd8-positive, alpha-beta memory t cell","central memory cd8-positive, alpha-beta t cell"
+491,e2d641a66e5d11eb8f7406e883c58fd7,27,33,mature gamma-delta t cell,"central memory cd8-positive, alpha-beta t cell"
+492,81f86c743f6411eb9e62823c612eac47,17,33,"naive thymus-derived cd8-positive, alpha-beta t cell","central memory cd8-positive, alpha-beta t cell"
+493,c071ffde862311eeb393168c5709f2f2,27,33,mature gamma-delta t cell,"central memory cd8-positive, alpha-beta t cell"
+494,f4cc8a84aa9f11ed9aab225a04bc010d,16,33,"cd8-positive, alpha-beta memory t cell","central memory cd8-positive, alpha-beta t cell"
+495,04ca5ac0cd2411eb93671e348710f99d,16,33,"cd8-positive, alpha-beta memory t cell","central memory cd8-positive, alpha-beta t cell"
+496,a72b888c489811ea92388a6a0c683ffb,22,33,cd8aa(i) thymocyte,"central memory cd8-positive, alpha-beta t cell"
+497,aae4b692770411eba803caccc32ef9e2,31,33,"effector memory cd4-positive, alpha-beta t cell","central memory cd8-positive, alpha-beta t cell"
+498,f77521ce50be11eca58a4e8e993d3e95,27,33,mature gamma-delta t cell,"central memory cd8-positive, alpha-beta t cell"
+499,ed24e320a2d211eb8aafd2fff04d1a29,27,11,mature gamma-delta t cell,"cd4-positive, alpha-beta memory t cell"
+500,b2750d80e8ba11eb951c4a933a1ddc30,27,11,mature gamma-delta t cell,"cd4-positive, alpha-beta memory t cell"
+501,aaf5f416770411eba803caccc32ef9e2,27,11,mature gamma-delta t cell,"cd4-positive, alpha-beta memory t cell"
+502,92a18b2ce40111eba5a472433277b4b3,27,11,mature gamma-delta t cell,"cd4-positive, alpha-beta memory t cell"
+503,a1faaf62424411eca8107e93ffa0dfc3,35,11,platelet,"cd4-positive, alpha-beta memory t cell"
+504,1ec6333050b511ec8fafd2849fb52a10,27,11,mature gamma-delta t cell,"cd4-positive, alpha-beta memory t cell"
+505,05c42b7e770011ebb6f1120b4fce9850,11,11,"cd4-positive, alpha-beta memory t cell","cd4-positive, alpha-beta memory t cell"
+506,2e796dd8aa7811ed91ea9e893c503a3a,16,11,"cd8-positive, alpha-beta memory t cell","cd4-positive, alpha-beta memory t cell"
+507,2876ba94cd3911eb84917af6a2da7945,27,11,mature gamma-delta t cell,"cd4-positive, alpha-beta memory t cell"
+508,d43637be50a211ecb05e625212408fd6,22,11,cd8aa(i) thymocyte,"cd4-positive, alpha-beta memory t cell"
+509,e670c7fcfeca11eb9143de3cb0860f61,11,11,"cd4-positive, alpha-beta memory t cell","cd4-positive, alpha-beta memory t cell"
+510,96b1e8fe6d6b11ebba1f52fbaff67099,27,11,mature gamma-delta t cell,"cd4-positive, alpha-beta memory t cell"
+511,5737862a7b6711eb980a1e6e754c5d4e,27,11,mature gamma-delta t cell,"cd4-positive, alpha-beta memory t cell"
+512,038b31da6d6a11eb9868b2973cae6259,35,11,platelet,"cd4-positive, alpha-beta memory t cell"
+513,16818f58609a11edba329e19a2629b2e,37,11,t cell,"cd4-positive, alpha-beta memory t cell"
+514,3910191c795211ebb3dd8e1325812f33,27,11,mature gamma-delta t cell,"cd4-positive, alpha-beta memory t cell"
+515,efeb3558cd1d11eba87c2ee2f5e521a9,27,11,mature gamma-delta t cell,"cd4-positive, alpha-beta memory t cell"
+516,058e8258770011ebb6f1120b4fce9850,16,11,"cd8-positive, alpha-beta memory t cell","cd4-positive, alpha-beta memory t cell"
+517,88e6d4f86d6811eb8c84965cd2e07daf,35,11,platelet,"cd4-positive, alpha-beta memory t cell"
+518,bffc67b0f7fe11ecbaca5e549e2aa1f5,27,11,mature gamma-delta t cell,"cd4-positive, alpha-beta memory t cell"
+519,56710aec8cfe11eba258b6b4610d6042,23,30,naive regulatory t cell,memory regulatory t cell
+520,12860d38ece811eb858a9eed4000a1fb,11,30,"cd4-positive, alpha-beta memory t cell",memory regulatory t cell
+521,019a3fe8e40111ebb5ee12505c6ae237,11,30,"cd4-positive, alpha-beta memory t cell",memory regulatory t cell
+522,23349a40e6ae11ebb432b26df3e07d33,11,30,"cd4-positive, alpha-beta memory t cell",memory regulatory t cell
+523,8010631e671f11edbb8ae2e11c613baa,11,30,"cd4-positive, alpha-beta memory t cell",memory regulatory t cell
+524,8e156d3676fa11ebb31b8631bc0de43b,23,30,naive regulatory t cell,memory regulatory t cell
+525,7a5f05287b7711eba2a96a517e35be5d,11,30,"cd4-positive, alpha-beta memory t cell",memory regulatory t cell
+526,70be539c48b611eaa65d9e7d578d66f2,23,30,naive regulatory t cell,memory regulatory t cell
+527,98f0781476fe11eb89bbb265d7ce1040,25,30,memory ccr4-positive regulatory t cell,memory regulatory t cell
+528,ef63e040746111ebb005fab458a363f4,11,30,"cd4-positive, alpha-beta memory t cell",memory regulatory t cell
+529,e801236a6f3111eb827116167e963c6a,11,30,"cd4-positive, alpha-beta memory t cell",memory regulatory t cell
+530,ed515200a2e311ebb1ce525b6209b46f,22,30,cd8aa(i) thymocyte,memory regulatory t cell
+531,a8f4b596795511eb8df55e9c326fc5f4,11,30,"cd4-positive, alpha-beta memory t cell",memory regulatory t cell
+532,62f1c932e79411ebada4c67e2b686223,22,30,cd8aa(i) thymocyte,memory regulatory t cell
+533,4a4bd970230f11ec80995a5086d06fa1,30,30,memory regulatory t cell,memory regulatory t cell
+534,e9b0bcc6230811ec89cc0e1df9dfbf1c,27,30,mature gamma-delta t cell,memory regulatory t cell
+535,e6290630f02511ed960816ab96b06392,23,30,naive regulatory t cell,memory regulatory t cell
+536,33109fea50b211ecaf7e5a3fead6fb86,23,30,naive regulatory t cell,memory regulatory t cell
+537,bace8946871e11eb94488a0ac828d814,23,30,naive regulatory t cell,memory regulatory t cell
+538,4e58072a3f6f11eb958d9a3b616bee06,17,30,"naive thymus-derived cd8-positive, alpha-beta t cell",memory regulatory t cell
+539,5c0966be3eb811eb8c54d6d536743a60,23,23,naive regulatory t cell,naive regulatory t cell
+540,45859380009211ec9cfa4a5d71d7e302,23,23,naive regulatory t cell,naive regulatory t cell
+541,06d10e06608d11ed83fdb2a084f8f1d9,23,23,naive regulatory t cell,naive regulatory t cell
+542,fce9153c315611ee8d39dea66adbf2a3,23,23,naive regulatory t cell,naive regulatory t cell
+543,fb35b930ca0f11ebad1a2eb9c335bc75,23,23,naive regulatory t cell,naive regulatory t cell
+544,a469ec4ccd3511eb88c7e2067416d204,23,23,naive regulatory t cell,naive regulatory t cell
+545,8da4810ae40211ebba695e0417dae271,23,23,naive regulatory t cell,naive regulatory t cell
+546,3c6a77366d6a11eb959ece3aad2b7e32,23,23,naive regulatory t cell,naive regulatory t cell
+547,8cc8ba786e5d11ebb7476e89de14cf8b,11,23,"cd4-positive, alpha-beta memory t cell",naive regulatory t cell
+548,81dda52e3f6411eb9e62823c612eac47,26,23,"naive thymus-derived cd4-positive, alpha-beta t cell",naive regulatory t cell
+549,784e94ee862111ee998f1e061ab3328b,11,23,"cd4-positive, alpha-beta memory t cell",naive regulatory t cell
+550,83218c28862b11ee8d9b4ae17f2d4a91,11,23,"cd4-positive, alpha-beta memory t cell",naive regulatory t cell
+551,8da826c276fa11ebb31b8631bc0de43b,23,23,naive regulatory t cell,naive regulatory t cell
+552,f0cd3fd84e0111ecaee2cec740306374,23,23,naive regulatory t cell,naive regulatory t cell
+553,6d10b5a201e011ec97d1be2f1bab6958,35,23,platelet,naive regulatory t cell
+554,0b89b9c84e0711eca047fac6813609fb,26,23,"naive thymus-derived cd4-positive, alpha-beta t cell",naive regulatory t cell
+555,927f6baae40111eba5a472433277b4b3,23,23,naive regulatory t cell,naive regulatory t cell
+556,e7ad6a866f3111eb827116167e963c6a,23,23,naive regulatory t cell,naive regulatory t cell
+557,5ca960d0e40611ebb6ab32f1f7b8a178,23,23,naive regulatory t cell,naive regulatory t cell
+558,7a26391460d111ed987552e10431fc03,23,23,naive regulatory t cell,naive regulatory t cell
+559,a9c5da04a2db11eb9bf71657d2d52b59,10,32,naive b cell,transitional stage b cell
+560,ee0c409e6e5c11eb9751364c17c50e30,32,32,transitional stage b cell,transitional stage b cell
+561,bd4febce6e5511ebaf139a72df013a78,10,32,naive b cell,transitional stage b cell
+562,0826bb644e0211ecb6d06af08aaacff5,10,32,naive b cell,transitional stage b cell
+563,07fff6be4e0211ecb6d06af08aaacff5,32,32,transitional stage b cell,transitional stage b cell
+564,5d2501e648b111ea8fbed2ddb8e0a14a,10,32,naive b cell,transitional stage b cell
+565,7a33742660d111ed987552e10431fc03,10,32,naive b cell,transitional stage b cell
+566,d6f4cea0206711eba03092aa9129ce56,10,32,naive b cell,transitional stage b cell
+567,4236c6d476f611eb9ee31a4d4e3f8efd,32,32,transitional stage b cell,transitional stage b cell
+568,c1163f546e5c11eb95e9cea56c494de4,32,32,transitional stage b cell,transitional stage b cell
+569,0af91dd63f6311eba333224e181cba5f,10,32,naive b cell,transitional stage b cell
+570,b929d6ce4dff11ecb1a91aa839721c60,10,32,naive b cell,transitional stage b cell
+571,8d8e51dce40211ebba695e0417dae271,10,32,naive b cell,transitional stage b cell
+572,034e3360c9fa11ebbe02e242efb8f7b8,10,32,naive b cell,transitional stage b cell
+573,dcfac916862c11ee941c7e9dd60efb6e,32,32,transitional stage b cell,transitional stage b cell
+574,63abecb8e79411ebbe50c203ad329f89,32,32,transitional stage b cell,transitional stage b cell
+575,5ec5686823db11ec8fb6d64cd9da18b7,10,32,naive b cell,transitional stage b cell
+576,ff78bb4c206311eb9a0672114e4cb04e,10,32,naive b cell,transitional stage b cell
+577,5c71d75e7b7a11eb822c3e9d2f0e335e,10,32,naive b cell,transitional stage b cell
+578,3f074f647ac111eb8b2f26df66f30e1e,10,32,naive b cell,transitional stage b cell
+579,b9d9e410872b11ebb599de5a8c2059ae,12,12,"cd16-negative, cd56-bright natural killer cell, human","cd16-negative, cd56-bright natural killer cell, human"
+580,ebb0c48c608111ed88067e296dabf3c1,12,12,"cd16-negative, cd56-bright natural killer cell, human","cd16-negative, cd56-bright natural killer cell, human"
+581,2e682082aa7811ed91ea9e893c503a3a,1,12,plasmacytoid dendritic cell,"cd16-negative, cd56-bright natural killer cell, human"
+582,2f156ae8a2ce11ebbbe71e4a3e83c3e1,22,12,cd8aa(i) thymocyte,"cd16-negative, cd56-bright natural killer cell, human"
+583,66c17a884e0211ec853ad229c2defbef,12,12,"cd16-negative, cd56-bright natural killer cell, human","cd16-negative, cd56-bright natural killer cell, human"
+584,469be1466d6911ebb77caa74668eec04,12,12,"cd16-negative, cd56-bright natural killer cell, human","cd16-negative, cd56-bright natural killer cell, human"
+585,41c9820e76f611eb9ee31a4d4e3f8efd,35,12,platelet,"cd16-negative, cd56-bright natural killer cell, human"
+586,87bac39850be11ec9bfce201e636867f,12,12,"cd16-negative, cd56-bright natural killer cell, human","cd16-negative, cd56-bright natural killer cell, human"
+587,a6b2688c230f11ec9c429a68027fbf79,27,12,mature gamma-delta t cell,"cd16-negative, cd56-bright natural killer cell, human"
+588,0f18883a745a11eb9460023cc5433a03,28,12,natural killer cell,"cd16-negative, cd56-bright natural killer cell, human"
+589,63810944e79411ebbe50c203ad329f89,12,12,"cd16-negative, cd56-bright natural killer cell, human","cd16-negative, cd56-bright natural killer cell, human"
+590,2ced5684770111eb83580af69b9105e6,35,12,platelet,"cd16-negative, cd56-bright natural killer cell, human"
+591,b86782f078ca11ebbbdb7ec7a5d6dda0,12,12,"cd16-negative, cd56-bright natural killer cell, human","cd16-negative, cd56-bright natural killer cell, human"
+592,8b4e53867b7a11ebbb227ae287962563,29,12,innate lymphoid cell,"cd16-negative, cd56-bright natural killer cell, human"
+593,f1bd2b9e76f011eb9e6a262e4d0064cc,12,12,"cd16-negative, cd56-bright natural killer cell, human","cd16-negative, cd56-bright natural killer cell, human"
+594,ec4ecb0aecbf11ebafc4de269a2c4ee4,35,12,platelet,"cd16-negative, cd56-bright natural killer cell, human"
+595,1289b00aece811eb858a9eed4000a1fb,18,12,common myeloid progenitor,"cd16-negative, cd56-bright natural killer cell, human"
+596,f0bf5dd250b811ecbd5a96ba759a0a5a,14,12,erythrocyte,"cd16-negative, cd56-bright natural killer cell, human"
+597,bd4611586e5511ebaf139a72df013a78,35,12,platelet,"cd16-negative, cd56-bright natural killer cell, human"
+598,2bf6c3f0230911ec9bc276af81d82c6c,29,12,innate lymphoid cell,"cd16-negative, cd56-bright natural killer cell, human"
+599,e9cb2256f7e111ec90da567a30052902,5,0,memory b cell,be cell
+600,87d218c250be11ec9bfce201e636867f,10,0,naive b cell,be cell
+601,59a9a1946f2e11eb96d6a6525b93d5e3,5,0,memory b cell,be cell
+602,5dae0738872711eba91e02b81d78ff78,32,0,transitional stage b cell,be cell
+603,5b15a128785b11eb8f737ade911e22f7,32,0,transitional stage b cell,be cell
+604,a10a025002b711eca176be0a2642ba6d,32,0,transitional stage b cell,be cell
+605,96b2493e6d6b11ebba1f52fbaff67099,32,0,transitional stage b cell,be cell
+606,8ee754ac6f2711eb9ed9ea93581d1c81,32,0,transitional stage b cell,be cell
+607,b9b7df3c872b11ebb599de5a8c2059ae,32,0,transitional stage b cell,be cell
+608,12e48e84745311ebbb1cf6a20bf9215d,32,0,transitional stage b cell,be cell
+609,68905b1eecea11eb8ac2be83dc4baba1,32,0,transitional stage b cell,be cell
+610,5db6c54e872711eba91e02b81d78ff78,32,0,transitional stage b cell,be cell
+611,c1b7b1a001db11ec82191e5794dae576,32,0,transitional stage b cell,be cell
+612,e0ca452e7aba11ebad9a8efd66e37e75,5,0,memory b cell,be cell
+613,bd462c066e5511ebaf139a72df013a78,32,0,transitional stage b cell,be cell
+614,0448c4eee8d411eb8988fa1ee88bd7d8,32,0,transitional stage b cell,be cell
+615,7587871ca2de11ebba15ae7e271d472f,32,0,transitional stage b cell,be cell
+616,0a24a8e2785e11ebb00a1a75a97ae03e,32,0,transitional stage b cell,be cell
+617,8f1b79d06f2711eb9ed9ea93581d1c81,5,0,memory b cell,be cell
+618,a0ff89ba02b711eca176be0a2642ba6d,32,0,transitional stage b cell,be cell
+619,bd59d8eee6bb11ebbaa13ebd4470af0a,35,24,platelet,intermediate monocyte
+620,6d9b13e6749111eb9099229ae8d7075c,15,24,"cd14-positive, cd16-negative classical monocyte",intermediate monocyte
+621,ec584a4aecbf11ebafc4de269a2c4ee4,35,24,platelet,intermediate monocyte
+622,b8a6b30e230f11ec95d35e88f183227e,24,24,intermediate monocyte,intermediate monocyte
+623,29561866aa6311ed996536bac5d04f15,13,24,"cd14-low, cd16-positive monocyte",intermediate monocyte
+624,74e43dbce6ab11eb8f2c6612543f483c,35,24,platelet,intermediate monocyte
+625,8321087a862b11ee8d9b4ae17f2d4a91,24,24,intermediate monocyte,intermediate monocyte
+626,5687343e8cfe11eba258b6b4610d6042,15,24,"cd14-positive, cd16-negative classical monocyte",intermediate monocyte
+627,fcfc210e315611ee8d39dea66adbf2a3,15,24,"cd14-positive, cd16-negative classical monocyte",intermediate monocyte
+628,45856176009211ec9cfa4a5d71d7e302,35,24,platelet,intermediate monocyte
+629,912bfcfa871811ebb044a614f189543f,15,24,"cd14-positive, cd16-negative classical monocyte",intermediate monocyte
+630,dedf40f248cf11eaacaa42cd98cbd24e,24,24,intermediate monocyte,intermediate monocyte
+631,6389cbf6e79411ebbe50c203ad329f89,24,24,intermediate monocyte,intermediate monocyte
+632,01834f84795511eb938ecad8deac763c,15,24,"cd14-positive, cd16-negative classical monocyte",intermediate monocyte
+633,5c66b3107b7a11eb822c3e9d2f0e335e,13,24,"cd14-low, cd16-positive monocyte",intermediate monocyte
+634,5cfafa7c48b111ea8fbed2ddb8e0a14a,15,24,"cd14-positive, cd16-negative classical monocyte",intermediate monocyte
+635,23403d46e6ae11ebb432b26df3e07d33,15,24,"cd14-positive, cd16-negative classical monocyte",intermediate monocyte
+636,68ba46f4ecea11eb8ac2be83dc4baba1,15,24,"cd14-positive, cd16-negative classical monocyte",intermediate monocyte
+637,e0e03640002a11ec92d04e0e5896d86b,15,24,"cd14-positive, cd16-negative classical monocyte",intermediate monocyte
+638,cdbc2644315811ee95297ae860542a53,24,24,intermediate monocyte,intermediate monocyte
+639,57f4aa80746811eb8d8fe2317d9a82dc,35,35,platelet,platelet
+640,6d12cad0bfdd11eb9a93b298159eec41,35,35,platelet,platelet
+641,baa04fb8871e11eb94488a0ac828d814,35,35,platelet,platelet
+642,41bbbdea76f611eb9ee31a4d4e3f8efd,35,35,platelet,platelet
+643,d431b6da50a211ecb05e625212408fd6,35,35,platelet,platelet
+644,ed6bc626a2e311ebb1ce525b6209b46f,35,35,platelet,platelet
+645,cfc0a9ee6e5d11ebb859b2d8774afeef,35,35,platelet,platelet
+646,5c417ed6ee8b11eb92fdd69ca687ea48,35,35,platelet,platelet
+647,cfa4ab866e5d11ebb859b2d8774afeef,35,35,platelet,platelet
+648,14f51b32fec611eb87dc9ec311f9e9a6,35,35,platelet,platelet
+649,68a663d8872711ebadbb7e7f669035b2,35,35,platelet,platelet
+650,ec387ba2ecbf11ebafc4de269a2c4ee4,35,35,platelet,platelet
+651,83256f6e862b11ee8d9b4ae17f2d4a91,35,35,platelet,platelet
+652,8ecaa4ee23de11ec82e796d30ec08b20,35,35,platelet,platelet
+653,e8c5c2dc671a11ed91b4c6b7fe052625,35,35,platelet,platelet
+654,df51c132f7e011eca445621bb9b0c4af,35,35,platelet,platelet
+655,5d4ccc3aa2ce11eb9bc6ae6e71680f8b,35,35,platelet,platelet
+656,f76f716650be11eca58a4e8e993d3e95,35,35,platelet,platelet
+657,44233ac403bc11ec8b03caa2709d8562,35,35,platelet,platelet
+658,4a4944da230f11ec80995a5086d06fa1,35,35,platelet,platelet
+659,96a3074e6d6b11ebba1f52fbaff67099,33,22,"central memory cd8-positive, alpha-beta t cell",cd8aa(i) thymocyte
+660,b5df3cd6bfd211ebafa586d48e1f3db0,31,22,"effector memory cd4-positive, alpha-beta t cell",cd8aa(i) thymocyte
+661,c1ef1c9c8d0211eb8f491acf3f136954,16,22,"cd8-positive, alpha-beta memory t cell",cd8aa(i) thymocyte
+662,79961c9c60b011edb17e46fb8f56502c,31,22,"effector memory cd4-positive, alpha-beta t cell",cd8aa(i) thymocyte
+663,b945a9084dff11ecb1a91aa839721c60,27,22,mature gamma-delta t cell,cd8aa(i) thymocyte
+664,6abf78b0862c11ee940e0ac85bd578c5,16,22,"cd8-positive, alpha-beta memory t cell",cd8aa(i) thymocyte
+665,3a635e8223d911eca62d86e9892ea95b,27,22,mature gamma-delta t cell,cd8aa(i) thymocyte
+666,85ad3fe450b011eca4314690da3920ef,22,22,cd8aa(i) thymocyte,cd8aa(i) thymocyte
+667,f78315cc50be11eca58a4e8e993d3e95,27,22,mature gamma-delta t cell,cd8aa(i) thymocyte
+668,6cb4196c608c11ed9b035e2e100c042f,22,22,cd8aa(i) thymocyte,cd8aa(i) thymocyte
+669,6ac144e2862c11ee940e0ac85bd578c5,16,22,"cd8-positive, alpha-beta memory t cell",cd8aa(i) thymocyte
+670,5d533a727abd11eb894e066fae99c4f2,27,22,mature gamma-delta t cell,cd8aa(i) thymocyte
+671,168f7b86609a11edba329e19a2629b2e,27,22,mature gamma-delta t cell,cd8aa(i) thymocyte
+672,42108eeebfd311eb8ffe429043368bdd,16,22,"cd8-positive, alpha-beta memory t cell",cd8aa(i) thymocyte
+673,e89a6f503f6311eb9b035a7c26289213,16,22,"cd8-positive, alpha-beta memory t cell",cd8aa(i) thymocyte
+674,69b5d4febfd811eb9045460ae879a467,35,22,platelet,cd8aa(i) thymocyte
+675,9c4cda0c748d11eb8ec6c6eb439e4cc3,27,22,mature gamma-delta t cell,cd8aa(i) thymocyte
+676,5fc10ef602b711eca847563a4b56082f,27,22,mature gamma-delta t cell,cd8aa(i) thymocyte
+677,258286f4e40611eb9f73d6fd5206df9a,17,22,"naive thymus-derived cd8-positive, alpha-beta t cell",cd8aa(i) thymocyte
+678,f89577d423dc11ec8ebdfedc55894352,16,22,"cd8-positive, alpha-beta memory t cell",cd8aa(i) thymocyte
+679,4b70007c746b11eb83a4c235a3a08626,1,1,plasmacytoid dendritic cell,plasmacytoid dendritic cell
+680,d1b2f43a770111ebb7b9d6f975704c14,1,1,plasmacytoid dendritic cell,plasmacytoid dendritic cell
+681,e368ea72a2e411eba445862a4d6f2ed3,1,1,plasmacytoid dendritic cell,plasmacytoid dendritic cell
+682,4b521bf2746b11eb83a4c235a3a08626,1,1,plasmacytoid dendritic cell,plasmacytoid dendritic cell
+683,97f0b59ee6bd11eb9bb4beec3d5c720e,1,1,plasmacytoid dendritic cell,plasmacytoid dendritic cell
+684,929e01bee40111eba5a472433277b4b3,1,1,plasmacytoid dendritic cell,plasmacytoid dendritic cell
+685,94b7939003c111ec9efbfae6eca3ca11,1,1,plasmacytoid dendritic cell,plasmacytoid dendritic cell
+686,0924dafc785e11ebb00a1a75a97ae03e,1,1,plasmacytoid dendritic cell,plasmacytoid dendritic cell
+687,5c00146eee8b11eb92fdd69ca687ea48,1,1,plasmacytoid dendritic cell,plasmacytoid dendritic cell
+688,bad6a1fe862a11ee84fb5eb04f029758,1,1,plasmacytoid dendritic cell,plasmacytoid dendritic cell
+689,0aa7b6c2230f11eca42fde90f8d872f1,1,1,plasmacytoid dendritic cell,plasmacytoid dendritic cell
+690,5d1f957648b111ea8fbed2ddb8e0a14a,1,1,plasmacytoid dendritic cell,plasmacytoid dendritic cell
+691,c1fcb5a223dc11ec9545a2e3447e117e,1,1,plasmacytoid dendritic cell,plasmacytoid dendritic cell
+692,c05bc688862311eeb393168c5709f2f2,1,1,plasmacytoid dendritic cell,plasmacytoid dendritic cell
+693,454c2cee009211ec9cfa4a5d71d7e302,1,1,plasmacytoid dendritic cell,plasmacytoid dendritic cell
+694,a95da6ae8d0111eba8fc0e09ff586e2a,1,1,plasmacytoid dendritic cell,plasmacytoid dendritic cell
+695,8a042ba8609911eda456ba0856b89601,1,1,plasmacytoid dendritic cell,plasmacytoid dendritic cell
+696,dcfa77fe862c11ee941c7e9dd60efb6e,1,1,plasmacytoid dendritic cell,plasmacytoid dendritic cell
+697,ee4039f0607f11ed9e9d5af7fabd3b36,1,1,plasmacytoid dendritic cell,plasmacytoid dendritic cell
+698,0625a0b4863611eea9a56e13647e2878,1,1,plasmacytoid dendritic cell,plasmacytoid dendritic cell
+699,03a899a2608211ed8cb1a608efa7ae49,34,34,cd1c-positive myeloid dendritic cell,cd1c-positive myeloid dendritic cell
+700,5cf615fc48b111ea8fbed2ddb8e0a14a,34,34,cd1c-positive myeloid dendritic cell,cd1c-positive myeloid dendritic cell
+701,47e6aa386f3311eb99c592dad4245022,34,34,cd1c-positive myeloid dendritic cell,cd1c-positive myeloid dendritic cell
+702,b560f8fefece11eb879816429967a19a,35,34,platelet,cd1c-positive myeloid dendritic cell
+703,cf7d205c48b611ea8957bafe6d70929e,21,34,"axl+ dendritic cell, human",cd1c-positive myeloid dendritic cell
+704,4f98e664e6a311ebbe49fe9e38490e77,34,34,cd1c-positive myeloid dendritic cell,cd1c-positive myeloid dendritic cell
+705,e4961f64b54b11eaa79c06097e2fb91a,35,34,platelet,cd1c-positive myeloid dendritic cell
+706,687c86fcecea11eb8ac2be83dc4baba1,34,34,cd1c-positive myeloid dendritic cell,cd1c-positive myeloid dendritic cell
+707,106441fa01dd11ec98991efbcd4757be,34,34,cd1c-positive myeloid dendritic cell,cd1c-positive myeloid dendritic cell
+708,7efe3872f7e711ecb1715e1ef278d88a,34,34,cd1c-positive myeloid dendritic cell,cd1c-positive myeloid dendritic cell
+709,b91b2caa4dff11ecb1a91aa839721c60,12,34,"cd16-negative, cd56-bright natural killer cell, human",cd1c-positive myeloid dendritic cell
+710,a11a610e02b711eca176be0a2642ba6d,34,34,cd1c-positive myeloid dendritic cell,cd1c-positive myeloid dendritic cell
+711,31fa60aaf81e11ecb8d5422c967c70e8,35,34,platelet,cd1c-positive myeloid dendritic cell
+712,4154aa18671511ed9b96de3223020266,34,34,cd1c-positive myeloid dendritic cell,cd1c-positive myeloid dendritic cell
+713,e9fea4a0f7e111ec90da567a30052902,34,34,cd1c-positive myeloid dendritic cell,cd1c-positive myeloid dendritic cell
+714,87c733bc50be11ec9bfce201e636867f,9,34,"cd16-positive, cd56-dim natural killer cell, human",cd1c-positive myeloid dendritic cell
+715,a19e0dc023db11ec81faee1fd8b4df58,34,34,cd1c-positive myeloid dendritic cell,cd1c-positive myeloid dendritic cell
+716,f425870ea2e311eb85af52073c383e80,35,34,platelet,cd1c-positive myeloid dendritic cell
+717,bcb9b1fe7abc11ebac911e12d1777b84,34,34,cd1c-positive myeloid dendritic cell,cd1c-positive myeloid dendritic cell
+718,44b17118e40411eb80e50e6ae118196c,34,34,cd1c-positive myeloid dendritic cell,cd1c-positive myeloid dendritic cell
+719,66c597944e0211ec853ad229c2defbef,11,25,"cd4-positive, alpha-beta memory t cell",memory ccr4-positive regulatory t cell
+720,2504bf80207a11eb99f83ebbcdb12029,37,25,t cell,memory ccr4-positive regulatory t cell
+721,b5640742fece11eb879816429967a19a,23,25,naive regulatory t cell,memory ccr4-positive regulatory t cell
+722,95329ad26d6b11ebb628aa63b53ba83f,26,25,"naive thymus-derived cd4-positive, alpha-beta t cell",memory ccr4-positive regulatory t cell
+723,72a6ed403eba11eb9064c6086f0667a1,30,25,memory regulatory t cell,memory ccr4-positive regulatory t cell
+724,fbddab96286411ecb1698ec288c6fba6,22,25,cd8aa(i) thymocyte,memory ccr4-positive regulatory t cell
+725,c5c0b0a0862a11eeb249aefb8bcfeb6c,35,25,platelet,memory ccr4-positive regulatory t cell
+726,1d1348f86d6611eb831bbeaad691ed52,11,25,"cd4-positive, alpha-beta memory t cell",memory ccr4-positive regulatory t cell
+727,d1ddedf6286411ec953b36d5f3074b28,22,25,cd8aa(i) thymocyte,memory ccr4-positive regulatory t cell
+728,ef8e2f62746111ebb005fab458a363f4,17,25,"naive thymus-derived cd8-positive, alpha-beta t cell",memory ccr4-positive regulatory t cell
+729,5386ed9676f711eb928cf2a688aad71a,17,25,"naive thymus-derived cd8-positive, alpha-beta t cell",memory ccr4-positive regulatory t cell
+730,573c13aa8cee11ebb2129e901b21dc73,23,25,naive regulatory t cell,memory ccr4-positive regulatory t cell
+731,106aea2801dd11ec98991efbcd4757be,25,25,memory ccr4-positive regulatory t cell,memory ccr4-positive regulatory t cell
+732,c1cddc8c23dc11ec9545a2e3447e117e,11,25,"cd4-positive, alpha-beta memory t cell",memory ccr4-positive regulatory t cell
+733,eab2d0e2608c11edb82ff6b434f2fb76,25,25,memory ccr4-positive regulatory t cell,memory ccr4-positive regulatory t cell
+734,cf8514d86e5d11ebb859b2d8774afeef,30,25,memory regulatory t cell,memory ccr4-positive regulatory t cell
+735,906eb476424b11ec8d4422c4d20de419,11,25,"cd4-positive, alpha-beta memory t cell",memory ccr4-positive regulatory t cell
+736,bac0cbe4871e11eb94488a0ac828d814,23,25,naive regulatory t cell,memory ccr4-positive regulatory t cell
+737,add2a37abfdc11ebb52a6a8f5d6679fa,23,25,naive regulatory t cell,memory ccr4-positive regulatory t cell
+738,c8e460b0230911eba0759640c92fc4a2,23,25,naive regulatory t cell,memory ccr4-positive regulatory t cell
+739,12335dd460a211edac516a3bcf87af0c,28,28,natural killer cell,natural killer cell
+740,94a4acd4862911eebdc19e04fa809629,28,28,natural killer cell,natural killer cell
+741,25642e70e40611eb9f73d6fd5206df9a,28,28,natural killer cell,natural killer cell
+742,f0b2097050b811ecbd5a96ba759a0a5a,28,28,natural killer cell,natural killer cell
+743,8d8e3e22e40211ebba695e0417dae271,35,28,platelet,natural killer cell
+744,035cbf8ec9fa11ebbe02e242efb8f7b8,22,28,cd8aa(i) thymocyte,natural killer cell
+745,23944b4001cd11ec9bd81eda61cbfa79,22,28,cd8aa(i) thymocyte,natural killer cell
+746,b5dc998abfd311ebba58d6b31810e4ce,28,28,natural killer cell,natural killer cell
+747,5d5f9f18a2ce11eb9bc6ae6e71680f8b,35,28,platelet,natural killer cell
+748,5d238f9648b111ea8fbed2ddb8e0a14a,28,28,natural killer cell,natural killer cell
+749,df31f06ef7e011eca445621bb9b0c4af,35,28,platelet,natural killer cell
+750,f8a4928223dc11ec8ebdfedc55894352,22,28,cd8aa(i) thymocyte,natural killer cell
+751,2410b5de3eb611eba75b2e81e5bb81a5,35,28,platelet,natural killer cell
+752,cfef94eea2e611eb91855e3d154f7c3f,28,28,natural killer cell,natural killer cell
+753,4e65a9a2e6c211ebaddab27930c367f5,22,28,cd8aa(i) thymocyte,natural killer cell
+754,5a4820b0aa8411edbc55eac8c2b882ba,27,28,mature gamma-delta t cell,natural killer cell
+755,7791afeafecf11eb83ae4a767d1dceb9,22,28,cd8aa(i) thymocyte,natural killer cell
+756,f3f67dbaa2e311eb85af52073c383e80,35,28,platelet,natural killer cell
+757,0d7bf2628d0211eb9a4f269f40e0a6a0,27,28,mature gamma-delta t cell,natural killer cell
+758,0805794a4e0211ecb6d06af08aaacff5,35,28,platelet,natural killer cell
+759,7f7d1b2e794e11eb80b0ca7613f64db1,35,36,platelet,double negative thymocyte
+760,fc60b87450b411ec942f6a58078e6e64,22,36,cd8aa(i) thymocyte,double negative thymocyte
+761,912e87064dfe11ec9cd7da9b7cf4e69b,22,36,cd8aa(i) thymocyte,double negative thymocyte
+762,083fa0fc4e0211ecb6d06af08aaacff5,27,36,mature gamma-delta t cell,double negative thymocyte
+763,e217a53c794011eb9282e2ceeb91ba52,22,36,cd8aa(i) thymocyte,double negative thymocyte
+764,35f7696e7b7911ebad508aeddc44df84,22,36,cd8aa(i) thymocyte,double negative thymocyte
+765,ef670716746111ebb005fab458a363f4,22,36,cd8aa(i) thymocyte,double negative thymocyte
+766,4d05314c230c11eb9e73369c55ceea08,22,36,cd8aa(i) thymocyte,double negative thymocyte
+767,7e454296e40511eb8b4326d57b156660,22,36,cd8aa(i) thymocyte,double negative thymocyte
+768,a83ab6b04e0111ec936b1ac433bb3e99,33,36,"central memory cd8-positive, alpha-beta t cell",double negative thymocyte
+769,11c380fc746a11eba6ee4656f02e1fdd,4,36,"cd8-positive, alpha-beta regulatory t cell",double negative thymocyte
+770,9113eac24dfe11ec9cd7da9b7cf4e69b,22,36,cd8aa(i) thymocyte,double negative thymocyte
+771,9321a454e6b511eb8d2eee95c5d8b7b2,27,36,mature gamma-delta t cell,double negative thymocyte
+772,7a82dc1e7b7711eba2a96a517e35be5d,4,36,"cd8-positive, alpha-beta regulatory t cell",double negative thymocyte
+773,0633e660863611eea9a56e13647e2878,4,36,"cd8-positive, alpha-beta regulatory t cell",double negative thymocyte
+774,72bb76c860b111eda69772bc2278a4b2,22,36,cd8aa(i) thymocyte,double negative thymocyte
+775,93b6de32786211ebb8964a4e4d3f19b7,22,36,cd8aa(i) thymocyte,double negative thymocyte
+776,4e2eddb26f2811eb8e74ca941525b751,33,36,"central memory cd8-positive, alpha-beta t cell",double negative thymocyte
+777,7a28ad0260d111ed987552e10431fc03,31,36,"effector memory cd4-positive, alpha-beta t cell",double negative thymocyte
+778,46b99a6a6d6911ebb77caa74668eec04,4,36,"cd8-positive, alpha-beta regulatory t cell",double negative thymocyte
+779,b52f2418872911ebbe41a20b62d6e8c8,35,4,platelet,"cd8-positive, alpha-beta regulatory t cell"
+780,413eda3a671511ed9b96de3223020266,22,4,cd8aa(i) thymocyte,"cd8-positive, alpha-beta regulatory t cell"
+781,5c726a5c03bf11ec806bb6304fd4380c,16,4,"cd8-positive, alpha-beta memory t cell","cd8-positive, alpha-beta regulatory t cell"
+782,41e11650ca1411eba8e7c23be70524c5,23,4,naive regulatory t cell,"cd8-positive, alpha-beta regulatory t cell"
+783,27a39b2eca0411ebbb136a0d2fbd39b2,37,4,t cell,"cd8-positive, alpha-beta regulatory t cell"
+784,d755da90872a11eb9956d6a6a5ac404c,22,4,cd8aa(i) thymocyte,"cd8-positive, alpha-beta regulatory t cell"
+785,95d29e22c9fc11eb8b6656baa5e4f345,4,4,"cd8-positive, alpha-beta regulatory t cell","cd8-positive, alpha-beta regulatory t cell"
+786,9816093ee6bd11eb9bb4beec3d5c720e,23,4,naive regulatory t cell,"cd8-positive, alpha-beta regulatory t cell"
+787,4acc09fe495111eaafc966679ef8dfee,33,4,"central memory cd8-positive, alpha-beta t cell","cd8-positive, alpha-beta regulatory t cell"
+788,f20cc932746711eb96b76e4cdef221b1,11,4,"cd4-positive, alpha-beta memory t cell","cd8-positive, alpha-beta regulatory t cell"
+789,ef9f2c468d0111eb894022587c8bf21f,23,4,naive regulatory t cell,"cd8-positive, alpha-beta regulatory t cell"
+790,7846b260862111ee998f1e061ab3328b,16,4,"cd8-positive, alpha-beta memory t cell","cd8-positive, alpha-beta regulatory t cell"
+791,ef9268e48d0111eb894022587c8bf21f,22,4,cd8aa(i) thymocyte,"cd8-positive, alpha-beta regulatory t cell"
+792,b93aea6abfcd11ebbdb0527e5f17f167,17,4,"naive thymus-derived cd8-positive, alpha-beta t cell","cd8-positive, alpha-beta regulatory t cell"
+793,36d30600ece811eb8566de30ea854391,27,4,mature gamma-delta t cell,"cd8-positive, alpha-beta regulatory t cell"
+794,a50b8700003e11ec836f122ea675d063,33,4,"central memory cd8-positive, alpha-beta t cell","cd8-positive, alpha-beta regulatory t cell"
+795,750302d8e6ab11eb8f2c6612543f483c,23,4,naive regulatory t cell,"cd8-positive, alpha-beta regulatory t cell"
+796,1ef01c9a50b511ec8fafd2849fb52a10,22,4,cd8aa(i) thymocyte,"cd8-positive, alpha-beta regulatory t cell"
+797,0d7de54a8d0211eb9a4f269f40e0a6a0,11,4,"cd4-positive, alpha-beta memory t cell","cd8-positive, alpha-beta regulatory t cell"
+798,363be6eee6b211eb82f386f01e0439ac,11,4,"cd4-positive, alpha-beta memory t cell","cd8-positive, alpha-beta regulatory t cell"
+799,14e6768caa9011eda3678a6e266cb381,16,16,"cd8-positive, alpha-beta memory t cell","cd8-positive, alpha-beta memory t cell"
+800,090fc7da7b6911eba169da6bd33569f7,16,16,"cd8-positive, alpha-beta memory t cell","cd8-positive, alpha-beta memory t cell"
+801,4e2649ece6c211ebaddab27930c367f5,4,16,"cd8-positive, alpha-beta regulatory t cell","cd8-positive, alpha-beta memory t cell"
+802,6cc9b38648b511ea87c666a4322bd84a,35,16,platelet,"cd8-positive, alpha-beta memory t cell"
+803,b8a7eb8001d011ecafff5e625bcc3358,16,16,"cd8-positive, alpha-beta memory t cell","cd8-positive, alpha-beta memory t cell"
+804,47d5a2606f3311eb99c592dad4245022,31,16,"effector memory cd4-positive, alpha-beta t cell","cd8-positive, alpha-beta memory t cell"
+805,e879395c3f6311eb9b035a7c26289213,11,16,"cd4-positive, alpha-beta memory t cell","cd8-positive, alpha-beta memory t cell"
+806,9fceca9476f611ebbe1a0a9c4ec18e1b,11,16,"cd4-positive, alpha-beta memory t cell","cd8-positive, alpha-beta memory t cell"
+807,95aac88ec9fc11eb8b6656baa5e4f345,27,16,mature gamma-delta t cell,"cd8-positive, alpha-beta memory t cell"
+808,7ce451ce6f3111eb96976aecf4743d14,31,16,"effector memory cd4-positive, alpha-beta t cell","cd8-positive, alpha-beta memory t cell"
+809,ed3ca2a8a2d211eb8aafd2fff04d1a29,11,16,"cd4-positive, alpha-beta memory t cell","cd8-positive, alpha-beta memory t cell"
+810,a493799acd3511eb88c7e2067416d204,16,16,"cd8-positive, alpha-beta memory t cell","cd8-positive, alpha-beta memory t cell"
+811,12499204ca0611eba39f3a25e2bf00a4,31,16,"effector memory cd4-positive, alpha-beta t cell","cd8-positive, alpha-beta memory t cell"
+812,d1ffc070286411ec953b36d5f3074b28,31,16,"effector memory cd4-positive, alpha-beta t cell","cd8-positive, alpha-beta memory t cell"
+813,874e4abae3fe11eb88346afc45235a84,16,16,"cd8-positive, alpha-beta memory t cell","cd8-positive, alpha-beta memory t cell"
+814,46fab8886d6911ebb77caa74668eec04,16,16,"cd8-positive, alpha-beta memory t cell","cd8-positive, alpha-beta memory t cell"
+815,a53268e8003e11ec836f122ea675d063,11,16,"cd4-positive, alpha-beta memory t cell","cd8-positive, alpha-beta memory t cell"
+816,ed62533e286211ec9a8f2613ba675443,16,16,"cd8-positive, alpha-beta memory t cell","cd8-positive, alpha-beta memory t cell"
+817,e68a99da03ba11eca89046abfaec106b,31,16,"effector memory cd4-positive, alpha-beta t cell","cd8-positive, alpha-beta memory t cell"
+818,1d165c0a6d6611eb831bbeaad691ed52,11,16,"cd4-positive, alpha-beta memory t cell","cd8-positive, alpha-beta memory t cell"
+819,ff2a3d34a2d911eb97dcb29064131379,22,37,cd8aa(i) thymocyte,t cell
+820,4e29ac22e6c211ebaddab27930c367f5,22,37,cd8aa(i) thymocyte,t cell
+821,e7f8a95c671811ed8197264aa0746ac0,22,37,cd8aa(i) thymocyte,t cell
+822,5a49cfc46e5811eba9ff8603041c92bc,27,37,mature gamma-delta t cell,t cell
+823,83699de68d0011eba962c64f4773d63c,22,37,cd8aa(i) thymocyte,t cell
+824,d59b243afef811eb887c9abd79b723cf,22,37,cd8aa(i) thymocyte,t cell
+825,069f219602b711ec88cb72995a34965f,37,37,t cell,t cell
+826,c49bd4cce3ff11eb91932201050c5f2a,35,37,platelet,t cell
+827,bcd63e1e7abc11ebac911e12d1777b84,25,37,memory ccr4-positive regulatory t cell,t cell
+828,a94196e0f01311ed926a2eacca25961e,27,37,mature gamma-delta t cell,t cell
+829,1016024201dd11ec98991efbcd4757be,37,37,t cell,t cell
+830,e33e9aa4e6bb11ebaa8b5a6ca80dcdd4,37,37,t cell,t cell
+831,2e6d5304aa7811ed91ea9e893c503a3a,14,37,erythrocyte,t cell
+832,ff214c42a2d911eb97dcb29064131379,37,37,t cell,t cell
+833,2f3243a2a2ce11ebbbe71e4a3e83c3e1,22,37,cd8aa(i) thymocyte,t cell
+834,7669e616230911ebaa61d20a4a12f3ba,22,37,cd8aa(i) thymocyte,t cell
+835,bcbb16de7abc11ebac911e12d1777b84,27,37,mature gamma-delta t cell,t cell
+836,efa0ef4a8d0111eb894022587c8bf21f,27,37,mature gamma-delta t cell,t cell
+837,29685b3eaa6311ed996536bac5d04f15,14,37,erythrocyte,t cell
+838,af5f6668005711ecacf076742455fe92,11,37,"cd4-positive, alpha-beta memory t cell",t cell
+839,5fbbe4946f3211eb96f96a584edb8b14,29,29,innate lymphoid cell,innate lymphoid cell
+840,66cdbeb04e0211ec853ad229c2defbef,3,29,common lymphoid progenitor,innate lymphoid cell
+841,b879d15e230f11ecabe4662b93aa8aaf,35,29,platelet,innate lymphoid cell
+842,1ebd9ab850b511ec8fafd2849fb52a10,18,29,common myeloid progenitor,innate lymphoid cell
+843,a05c7270e6b011eb9e5fd64aa79f082e,18,29,common myeloid progenitor,innate lymphoid cell
+844,7e3a5c6ee40511eb8b4326d57b156660,29,29,innate lymphoid cell,innate lymphoid cell
+845,47e2e77c6f3311eb99c592dad4245022,29,29,innate lymphoid cell,innate lymphoid cell
+846,06e358f202b711ec88cb72995a34965f,18,29,common myeloid progenitor,innate lymphoid cell
+847,c11ce7286e5c11eb95e9cea56c494de4,3,29,common lymphoid progenitor,innate lymphoid cell
+848,c0c28b166e5c11eb95e9cea56c494de4,3,29,common lymphoid progenitor,innate lymphoid cell
+849,81c2711e3f6411eb9e62823c612eac47,3,29,common lymphoid progenitor,innate lymphoid cell
+850,a4b646e6cd3511eb88c7e2067416d204,18,29,common myeloid progenitor,innate lymphoid cell
+851,95a7b68ac9fc11eb8b6656baa5e4f345,18,29,common myeloid progenitor,innate lymphoid cell
+852,5a4d965e6e5811eba9ff8603041c92bc,35,29,platelet,innate lymphoid cell
+853,46c4fef0488011eaa581ba6d6c7b9f21,29,29,innate lymphoid cell,innate lymphoid cell
+854,0fca0fe64e0311ec8368968167987366,18,29,common myeloid progenitor,innate lymphoid cell
+855,b54b779e872911ebbe41a20b62d6e8c8,18,29,common myeloid progenitor,innate lymphoid cell
+856,06a209e202b711ec88cb72995a34965f,18,29,common myeloid progenitor,innate lymphoid cell
+857,5c2a2394ee8b11eb92fdd69ca687ea48,22,29,cd8aa(i) thymocyte,innate lymphoid cell
+858,bae6b8fa862a11ee84fb5eb04f029758,18,29,common myeloid progenitor,innate lymphoid cell
+859,dd0f45bc862c11ee941c7e9dd60efb6e,1,3,plasmacytoid dendritic cell,common lymphoid progenitor
+860,169e3d4c609a11edba329e19a2629b2e,3,3,common lymphoid progenitor,common lymphoid progenitor
+861,6873d0e8ecea11eb8ac2be83dc4baba1,3,3,common lymphoid progenitor,common lymphoid progenitor
+862,64e76348786111eba55bee831e293e34,1,3,plasmacytoid dendritic cell,common lymphoid progenitor
+863,0fd672684e0311ec8368968167987366,3,3,common lymphoid progenitor,common lymphoid progenitor
+864,6d12d3e601e011ec97d1be2f1bab6958,3,3,common lymphoid progenitor,common lymphoid progenitor
+865,74f7707e48b611eabab7c676ab45cfca,3,3,common lymphoid progenitor,common lymphoid progenitor
+866,3827b78eece911eb96cace7c85d10469,3,3,common lymphoid progenitor,common lymphoid progenitor
+867,b600722abfd211ebafa586d48e1f3db0,3,3,common lymphoid progenitor,common lymphoid progenitor
+868,2d9549244e0711ec865c16f89d689413,3,3,common lymphoid progenitor,common lymphoid progenitor
+869,ed6523f2286211ec9a8f2613ba675443,19,3,basophil mast progenitor cell,common lymphoid progenitor
+870,e122a49076fe11eb8a3a1adcfefed355,1,3,plasmacytoid dendritic cell,common lymphoid progenitor
+871,e7f949f2671811ed8197264aa0746ac0,3,3,common lymphoid progenitor,common lymphoid progenitor
+872,dd02ea6a862c11ee941c7e9dd60efb6e,1,3,plasmacytoid dendritic cell,common lymphoid progenitor
+873,3d4ef118620c11eb8b61f221ae948d59,3,3,common lymphoid progenitor,common lymphoid progenitor
+874,9145e0044dfe11ec9cd7da9b7cf4e69b,3,3,common lymphoid progenitor,common lymphoid progenitor
+875,92040dfc433311ecb17706fc43058792,1,3,plasmacytoid dendritic cell,common lymphoid progenitor
+876,c5ac06aa862a11eeb249aefb8bcfeb6c,1,3,plasmacytoid dendritic cell,common lymphoid progenitor
+877,87495e36f7e611ecbaaa86d52fef98f0,22,3,cd8aa(i) thymocyte,common lymphoid progenitor
+878,678eeff801c811ec99d8a29cd1cea438,19,3,basophil mast progenitor cell,common lymphoid progenitor
+879,d23d98e6862c11ee8ab2ce04d767d167,35,14,platelet,erythrocyte
+880,21fb55ce862511eeb57ed2cb2c7f9e33,35,14,platelet,erythrocyte
+881,edf2a6c06e5c11eb9751364c17c50e30,35,14,platelet,erythrocyte
+882,dcfc8a9e862c11ee941c7e9dd60efb6e,35,14,platelet,erythrocyte
+883,c07396dc862311eeb393168c5709f2f2,35,14,platelet,erythrocyte
+884,d23b5a4a862c11ee8ab2ce04d767d167,35,14,platelet,erythrocyte
+885,831d5b44862b11ee8d9b4ae17f2d4a91,35,14,platelet,erythrocyte
+886,e078458c862c11eeb44f2a0a7ee8bda4,35,14,platelet,erythrocyte
+887,06336cc6863611eea9a56e13647e2878,35,14,platelet,erythrocyte
+888,dd065eac862c11ee941c7e9dd60efb6e,35,14,platelet,erythrocyte
+889,97d1ad76862911eeb185c2d03e180f84,35,14,platelet,erythrocyte
+890,8ced01aa7b7111eb97356a557ecd1c7b,35,14,platelet,erythrocyte
+891,103343f2862e11ee8698beaeae96c8d1,35,14,platelet,erythrocyte
+892,e9a6e996862d11eeb5b7caa7a1b2f0ad,35,14,platelet,erythrocyte
+893,d2502420862c11ee8ab2ce04d767d167,35,14,platelet,erythrocyte
+894,f0ca747e50b811ecbd5a96ba759a0a5a,35,14,platelet,erythrocyte
+895,e9bb7a96862d11eeb5b7caa7a1b2f0ad,35,14,platelet,erythrocyte
+896,d5efc8f6862c11eea4d2b6181e6e2ea7,35,14,platelet,erythrocyte
+897,ff23e5cea2d911eb97dcb29064131379,35,14,platelet,erythrocyte
+898,97b5ea28862911eeb185c2d03e180f84,35,14,platelet,erythrocyte
+899,36f14deaece811eb8566de30ea854391,18,18,common myeloid progenitor,common myeloid progenitor
+900,e36fa574a2e411eba445862a4d6f2ed3,19,18,basophil mast progenitor cell,common myeloid progenitor
+901,e19942e4002e11ecad8456bdee478bef,3,18,common lymphoid progenitor,common myeloid progenitor
+902,94fb334803c111ec9efbfae6eca3ca11,18,18,common myeloid progenitor,common myeloid progenitor
+903,4b3567a6f7e511ec9d95e21fd042e627,18,18,common myeloid progenitor,common myeloid progenitor
+904,829a226c746b11eba241fa7146609c17,35,18,platelet,common myeloid progenitor
+905,baa69634871e11eb94488a0ac828d814,35,18,platelet,common myeloid progenitor
+906,322bb5cef81e11ecb8d5422c967c70e8,18,18,common myeloid progenitor,common myeloid progenitor
+907,8d89fb8ce40211ebba695e0417dae271,18,18,common myeloid progenitor,common myeloid progenitor
+908,949835d0862911eebdc19e04fa809629,35,18,platelet,common myeloid progenitor
+909,3204a8b2f81e11ecb8d5422c967c70e8,18,18,common myeloid progenitor,common myeloid progenitor
+910,0640fa12863611eea9a56e13647e2878,18,18,common myeloid progenitor,common myeloid progenitor
+911,5b72cf2e785b11eb8f737ade911e22f7,35,18,platelet,common myeloid progenitor
+912,7e4e54bce40511eb8b4326d57b156660,35,18,platelet,common myeloid progenitor
+913,ef87c8c68d0111eb894022587c8bf21f,35,18,platelet,common myeloid progenitor
+914,e40f7f6aca0611eb95002269a98e5840,19,18,basophil mast progenitor cell,common myeloid progenitor
+915,db6e5a5cbfde11eb9e6d96f9d8b57902,18,18,common myeloid progenitor,common myeloid progenitor
+916,675a1d1e01c811ec99d8a29cd1cea438,18,18,common myeloid progenitor,common myeloid progenitor
+917,5149dfc402b711ec85669ed5fd6f2ffe,18,18,common myeloid progenitor,common myeloid progenitor
+918,413a1626671511ed9b96de3223020266,18,18,common myeloid progenitor,common myeloid progenitor
+919,ef76323c8d0111eb894022587c8bf21f,34,21,cd1c-positive myeloid dendritic cell,"axl+ dendritic cell, human"
+920,4435144250ba11ec9ccf362b40e6d4a7,1,21,plasmacytoid dendritic cell,"axl+ dendritic cell, human"
+921,baf16ce6862a11ee84fb5eb04f029758,34,21,cd1c-positive myeloid dendritic cell,"axl+ dendritic cell, human"
+922,e0725c747aba11ebad9a8efd66e37e75,34,21,cd1c-positive myeloid dendritic cell,"axl+ dendritic cell, human"
+923,74fc381648b611eabab7c676ab45cfca,1,21,plasmacytoid dendritic cell,"axl+ dendritic cell, human"
+924,e8709b9c230811eca137ea3e049c58d4,1,21,plasmacytoid dendritic cell,"axl+ dendritic cell, human"
+925,58735da8e6b411ebaf04befb0a01041d,1,21,plasmacytoid dendritic cell,"axl+ dendritic cell, human"
+926,db961092bfde11eb9e6d96f9d8b57902,1,21,plasmacytoid dendritic cell,"axl+ dendritic cell, human"
+927,06573c8e770011ebb6f1120b4fce9850,34,21,cd1c-positive myeloid dendritic cell,"axl+ dendritic cell, human"
+928,6cf55d8848b511ea87c666a4322bd84a,1,21,plasmacytoid dendritic cell,"axl+ dendritic cell, human"
+929,88b4d00c6d6811eb8c84965cd2e07daf,1,21,plasmacytoid dendritic cell,"axl+ dendritic cell, human"
+930,aaff6398770411eba803caccc32ef9e2,1,21,plasmacytoid dendritic cell,"axl+ dendritic cell, human"
+931,e131616a76fe11eb8a3a1adcfefed355,1,21,plasmacytoid dendritic cell,"axl+ dendritic cell, human"
+932,63b5678ee79411ebbe50c203ad329f89,1,21,plasmacytoid dendritic cell,"axl+ dendritic cell, human"
+933,06464012863611eea9a56e13647e2878,1,21,plasmacytoid dendritic cell,"axl+ dendritic cell, human"
+934,10f3f486e3ff11eb9f4d12c99271e885,1,21,plasmacytoid dendritic cell,"axl+ dendritic cell, human"
+935,3c27ae7a6f3011eb87df52ffb97efd4c,1,21,plasmacytoid dendritic cell,"axl+ dendritic cell, human"
+936,202b6ef2aa7d11ed97cc4aa82665cfc4,1,21,plasmacytoid dendritic cell,"axl+ dendritic cell, human"
+937,1033cb1a01dd11ec98991efbcd4757be,1,21,plasmacytoid dendritic cell,"axl+ dendritic cell, human"
+938,f0b1f4d050b811ecbd5a96ba759a0a5a,1,21,plasmacytoid dendritic cell,"axl+ dendritic cell, human"
+939,cc13986a7aba11eb9d926ed54ea72841,34,7,cd1c-positive myeloid dendritic cell,cd141-positive myeloid dendritic cell
+940,a827b1004e0111ec936b1ac433bb3e99,34,7,cd1c-positive myeloid dendritic cell,cd141-positive myeloid dendritic cell
+941,87682bf03eb911ebbd2bce3634ddd007,34,7,cd1c-positive myeloid dendritic cell,cd141-positive myeloid dendritic cell
+942,8ee243546f2711eb9ed9ea93581d1c81,19,7,basophil mast progenitor cell,cd141-positive myeloid dendritic cell
+943,c18f634e01db11ec82191e5794dae576,34,7,cd1c-positive myeloid dendritic cell,cd141-positive myeloid dendritic cell
+944,e0663496862c11eeb44f2a0a7ee8bda4,1,7,plasmacytoid dendritic cell,cd141-positive myeloid dendritic cell
+945,94b18d82862911eebdc19e04fa809629,34,7,cd1c-positive myeloid dendritic cell,cd141-positive myeloid dendritic cell
+946,6d863e743ebf11ebb05fa23bad7b48d9,34,7,cd1c-positive myeloid dendritic cell,cd141-positive myeloid dendritic cell
+947,b4c886f803c111ec8f3fb2dbcfd6bcf9,34,7,cd1c-positive myeloid dendritic cell,cd141-positive myeloid dendritic cell
+948,b85c90bc230f11ec95d35e88f183227e,1,7,plasmacytoid dendritic cell,cd141-positive myeloid dendritic cell
+949,e2a0c102f7dc11ecbf4e56eb7b1fcbc2,34,7,cd1c-positive myeloid dendritic cell,cd141-positive myeloid dendritic cell
+950,17c3a62ef02511eda54b6a0988fcf5ef,34,7,cd1c-positive myeloid dendritic cell,cd141-positive myeloid dendritic cell
+951,2962ffa4aa6311ed996536bac5d04f15,34,7,cd1c-positive myeloid dendritic cell,cd141-positive myeloid dendritic cell
+952,06a53b6202b711ec88cb72995a34965f,34,7,cd1c-positive myeloid dendritic cell,cd141-positive myeloid dendritic cell
+953,eae57338785a11eb88c4aeb73ff4c07b,34,7,cd1c-positive myeloid dendritic cell,cd141-positive myeloid dendritic cell
+954,ea9f65f2608c11edb82ff6b434f2fb76,21,7,"axl+ dendritic cell, human",cd141-positive myeloid dendritic cell
+955,b46ed8ec03c111ec8f3fb2dbcfd6bcf9,1,7,plasmacytoid dendritic cell,cd141-positive myeloid dendritic cell
+956,03bd063a608211ed8cb1a608efa7ae49,21,7,"axl+ dendritic cell, human",cd141-positive myeloid dendritic cell
+957,ed5345bca2d211eb8aafd2fff04d1a29,7,7,cd141-positive myeloid dendritic cell,cd141-positive myeloid dendritic cell
+958,df20189ef7e011eca445621bb9b0c4af,34,7,cd1c-positive myeloid dendritic cell,cd141-positive myeloid dendritic cell
+959,f0d8c02e50b811ecbd5a96ba759a0a5a,6,6,plasma cell,plasma cell
+960,db774d60bfde11eb9e6d96f9d8b57902,6,6,plasma cell,plasma cell
+961,e2ad3464f7dc11ecbf4e56eb7b1fcbc2,6,6,plasma cell,plasma cell
+962,78566c0a862111ee998f1e061ab3328b,6,6,plasma cell,plasma cell
+963,74dad9dc48b611eabab7c676ab45cfca,6,6,plasma cell,plasma cell
+964,10f6f12ef7e811eca3ef4a90d865ed45,6,6,plasma cell,plasma cell
+965,c574f89caa8711ed9d6f12731be88ed2,1,6,plasmacytoid dendritic cell,plasma cell
+966,47d4f57c315511ee9a247ecfb6ed34be,32,6,transitional stage b cell,plasma cell
+967,547533d4495311ea86cade558b2f8879,6,6,plasma cell,plasma cell
+968,e05b0c88862c11eeb44f2a0a7ee8bda4,32,6,transitional stage b cell,plasma cell
+969,5cad5316e40611ebb6ab32f1f7b8a178,6,6,plasma cell,plasma cell
+970,54743c04495311ea86cade558b2f8879,6,6,plasma cell,plasma cell
+971,e40fbab6ca0611eb95002269a98e5840,6,6,plasma cell,plasma cell
+972,22964eceaa8111edbca7720112d201c9,6,6,plasma cell,plasma cell
+973,b319661e4e0411ecbdc4f6dde42d12bb,6,6,plasma cell,plasma cell
+974,d790edec872a11eb9956d6a6a5ac404c,6,6,plasma cell,plasma cell
+975,ed36eb6aa2d211eb8aafd2fff04d1a29,5,6,memory b cell,plasma cell
+976,f0b5e73e50b811ecbd5a96ba759a0a5a,6,6,plasma cell,plasma cell
+977,f1ed8540746711eb96b76e4cdef221b1,6,6,plasma cell,plasma cell
+978,27844616ca0411ebbb136a0d2fbd39b2,6,6,plasma cell,plasma cell
+979,36713484e6b211eb82f386f01e0439ac,19,19,basophil mast progenitor cell,basophil mast progenitor cell
+980,0a70c1b2230f11eca42fde90f8d872f1,19,19,basophil mast progenitor cell,basophil mast progenitor cell
+981,41e6bae2ca1411eba8e7c23be70524c5,19,19,basophil mast progenitor cell,basophil mast progenitor cell
+982,1018028601dd11ec98991efbcd4757be,35,19,platelet,basophil mast progenitor cell
+983,94981db8230f11ecb89eb20ae7ecce12,19,19,basophil mast progenitor cell,basophil mast progenitor cell
+984,9275aef8e40111eba5a472433277b4b3,19,19,basophil mast progenitor cell,basophil mast progenitor cell
+985,e9b1137e230811ec89cc0e1df9dfbf1c,19,19,basophil mast progenitor cell,basophil mast progenitor cell
+986,4adbf80a495111eaafc966679ef8dfee,19,19,basophil mast progenitor cell,basophil mast progenitor cell
+987,f7a1fa4650be11eca58a4e8e993d3e95,19,19,basophil mast progenitor cell,basophil mast progenitor cell
+988,e13cfba676fe11eb8a3a1adcfefed355,19,19,basophil mast progenitor cell,basophil mast progenitor cell
+989,95c7aeccc9fc11eb8b6656baa5e4f345,19,19,basophil mast progenitor cell,basophil mast progenitor cell
+990,b3a8a11e872911eb88ddaa98e7d40cb1,19,19,basophil mast progenitor cell,basophil mast progenitor cell
+991,bf4a31f8e6b611eb904c4e74f324a9a5,19,19,basophil mast progenitor cell,basophil mast progenitor cell
+992,0f20ebf6745a11eb9460023cc5433a03,19,19,basophil mast progenitor cell,basophil mast progenitor cell
+993,46cca0d8488011eaa581ba6d6c7b9f21,19,19,basophil mast progenitor cell,basophil mast progenitor cell
+994,0a97f322230f11eca42fde90f8d872f1,19,19,basophil mast progenitor cell,basophil mast progenitor cell
+995,a50c31be003e11ec836f122ea675d063,19,19,basophil mast progenitor cell,basophil mast progenitor cell
+996,66daa5304e0211ec853ad229c2defbef,18,19,common myeloid progenitor,basophil mast progenitor cell
+997,0baa3f544e0711eca047fac6813609fb,35,19,platelet,basophil mast progenitor cell
+998,94a06ade862911eebdc19e04fa809629,19,19,basophil mast progenitor cell,basophil mast progenitor cell

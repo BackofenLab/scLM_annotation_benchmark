@@ -1,0 +1,1000 @@
+cell_id,true_labels,predicted_labels
+10X57_2:ACAAATTGTTGTCT,oligodendrocyte,cholinergic neuron
+10X52_5:CTGAGAACTTTCTG,oligodendrocyte,cholinergic neuron
+10X53_2:TTTGACTGCCCACT,oligodendrocyte,cholinergic neuron
+10X35_2:TATCTCGATTCTGT,oligodendrocyte,cholinergic neuron
+10X55_4:CTCCTAGATATGCA,oligodendrocyte,cholinergic neuron
+10X55_5:CCTTGGTCCAGTAT,oligodendrocyte,cholinergic neuron
+10X55_5:GTCAAAGACAAGCC,oligodendrocyte,cholinergic neuron
+10X50_7:GCCGAGTGGGTTCA,oligodendrocyte,cholinergic neuron
+10X43_1:CATCGCTGGTCAAC,oligodendrocyte,cholinergic neuron
+10X52_1:GGGTTATGCTTAGG,oligodendrocyte,cholinergic neuron
+10X50_8:ACGTCAGAGACGAG,oligodendrocyte,cholinergic neuron
+10X24_1:TCCCGAACTCCCAC,oligodendrocyte,cholinergic neuron
+10X51_3:CTGACCACAGTACC,oligodendrocyte,cholinergic neuron
+10X34_4:GACAGGGAACTGTG,oligodendrocyte,cholinergic neuron
+10X53_6:GCGAGAGATCGTTT,oligodendrocyte,cholinergic neuron
+10X57_2:TCCTATGATGCATG,oligodendrocyte,cholinergic neuron
+10X55_2:CAATCGTGACCAAG,oligodendrocyte,cholinergic neuron
+10X53_5:TCCCACGACACTTT,oligodendrocyte,cholinergic neuron
+10X53_3:AGCGATTGTTCCAT,oligodendrocyte,cholinergic neuron
+10X50_2:GCACCTACCTCCCA,oligodendrocyte,cholinergic neuron
+10X55_2:CGTGTGTCTGATCA,oligodendrocyte,cholinergic neuron
+10X54_1:TGAGGTCTCTGTCG,oligodendrocyte,cholinergic neuron
+10X26_3:GCATGTGAGCGATT,oligodendrocyte,cholinergic neuron
+10X57_4:GCCTACACTTAGGC,oligodendrocyte,cholinergic neuron
+10X53_3:GTAGTGACATTCGG,oligodendrocyte,cholinergic neuron
+10X04_1:TCGTAGGATGTTCT,oligodendrocyte,cholinergic neuron
+10X57_4:AACCTACTAGGTTC,oligodendrocyte,cholinergic neuron
+10X49_1:ATACCGGAGAGCTT,oligodendrocyte,cholinergic neuron
+10X57_2:TTACAGCTTCTTCA,oligodendrocyte,cholinergic neuron
+10X57_6:GCTACGCTGTTGTG,oligodendrocyte,cholinergic neuron
+10X52_7:TTCAGTACGATAAG,oligodendrocyte,cholinergic neuron
+10X55_8:CTTCAAGAACAACT,oligodendrocyte,cholinergic neuron
+10X55_7:GCTAAGTACCATCA,oligodendrocyte,cholinergic neuron
+10X55_2:TGAGAGTTGGAGGT,oligodendrocyte,cholinergic neuron
+10X57_3:TAGTGGTGGCCCTT,oligodendrocyte,cholinergic neuron
+10X24_2:AAGGTCACACTACG,oligodendrocyte,cholinergic neuron
+10X56_3:GTATTAGATCTACT,oligodendrocyte,cholinergic neuron
+10X22_4:CCAATGGAACTGTG,oligodendrocyte,cholinergic neuron
+10X22_4:CAATTCTGGGTCAT,oligodendrocyte,cholinergic neuron
+10X50_3:TCAGGATGGGTTCA,oligodendrocyte,cholinergic neuron
+10X57_7:GCCATCACTCGTGA,oligodendrocyte,cholinergic neuron
+10X24_3:GCGGAGCTTTCTAC,oligodendrocyte,cholinergic neuron
+10X53_5:GTGGTAACCGAATC,oligodendrocyte,cholinergic neuron
+10X54_7:GGGATAGTGAACGC,oligodendrocyte,cholinergic neuron
+10X55_1:GCGGAGTTGTTTGG,oligodendrocyte,cholinergic neuron
+10X55_7:CTCTAGTCCTGCTT,oligodendrocyte,cholinergic neuron
+10X55_3:GTAGAAGTACGTTC,oligodendrocyte,cholinergic neuron
+10X55_1:TTCGCGTCTAGCGC,oligodendrocyte,cholinergic neuron
+10X50_5:CCAGGTCTGTAGCT,oligodendrocyte,cholinergic neuron
+10X55_2:ACCTGAGCTCAACT,oligodendrocyte,cholinergic neuron
+10X52_5:AAGCCATGTCCGTC,oligodendrocyte,cholinergic neuron
+10X50_5:TATCTCGATTGGCA,oligodendrocyte,cholinergic neuron
+10X54_1:ACGGATCAGGCAAG,oligodendrocyte,cholinergic neuron
+10X50_2:ATGCCAGATCAAGC,oligodendrocyte,cholinergic neuron
+10X54_7:CGTGTCAGACAAAT,oligodendrocyte,cholinergic neuron
+10X55_3:GTAACTCCTATGTT,oligodendrocyte,cholinergic neuron
+10X55_1:CTCGCTCTTGACGA,oligodendrocyte,cholinergic neuron
+10X53_3:AGGAACCTTACTGG,oligodendrocyte,cholinergic neuron
+10X55_7:CTAACGTCTGCCAG,oligodendrocyte,cholinergic neuron
+10X52_1:AGAATACTCGAGAG,oligodendrocyte,cholinergic neuron
+10X53_2:TGCACAGAGTTTCT,oligodendrocyte,cholinergic neuron
+10X52_3:GAGGTACTATCGTG,oligodendrocyte,cholinergic neuron
+10X54_3:TATCTAGAACAACT,oligodendrocyte,cholinergic neuron
+10X52_5:ATCAGGTGGTTCAG,oligodendrocyte,cholinergic neuron
+10X26_3:CGGACCGATCGATG,oligodendrocyte,cholinergic neuron
+10X54_1:GCGCAAGATCGGGT,oligodendrocyte,cholinergic neuron
+10X53_4:AGGGCCACACCTAG,oligodendrocyte,cholinergic neuron
+10X35_2:CGGACTCTCCACAA,oligodendrocyte,cholinergic neuron
+10X22_2:CCATAGGAGGTGAG,oligodendrocyte,cholinergic neuron
+10X57_5:TTCAGTTGCCATAG,oligodendrocyte,cholinergic neuron
+10X20_3:ATACCTTGGTACGT,oligodendrocyte,cholinergic neuron
+10X20_4:AGGTCATGCTATTC,oligodendrocyte,cholinergic neuron
+10X57_5:GTTACTACGTACGT,oligodendrocyte,cholinergic neuron
+10X50_2:ATGCACGAGTTGTG,oligodendrocyte,cholinergic neuron
+10X54_8:GTCATGTGGTGTAG,oligodendrocyte,cholinergic neuron
+10X52_2:CCAGCTACCCAAGT,oligodendrocyte,cholinergic neuron
+10X57_5:CGAGTATGGGTACT,oligodendrocyte,cholinergic neuron
+10X20_4:CACTCCGACGAGAG,oligodendrocyte,cholinergic neuron
+10X57_3:ACTCAGGAACGGTT,oligodendrocyte,cholinergic neuron
+10X50_8:TGTATGCTCATTCT,oligodendrocyte,cholinergic neuron
+10X52_6:GTGAGGGACTTGCC,oligodendrocyte,cholinergic neuron
+10X55_5:CTCAAGTTGACGTT,oligodendrocyte,cholinergic neuron
+10X34_3:TCCATAACTAGAGA,oligodendrocyte,cholinergic neuron
+10X55_1:GACCAAGGTACTCT,oligodendrocyte,cholinergic neuron
+10X24_3:ATAATGACGACTAC,oligodendrocyte,cholinergic neuron
+10X43_3:ATAAGTACGTTCGA,oligodendrocyte,cholinergic neuron
+10X54_1:TCTCTAGAAGAAGC,oligodendrocyte,cholinergic neuron
+10X50_5:TCTAACACCCTCAC,oligodendrocyte,cholinergic neuron
+10X33_4:CAGACATGCCAAGT,oligodendrocyte,cholinergic neuron
+10X55_1:GAGCTGTCGAACAG,oligodendrocyte,cholinergic neuron
+10X52_1:GCGGAGCTGAGCTT,oligodendrocyte,cholinergic neuron
+10X54_1:AGCAATCTCCGGTT,oligodendrocyte,cholinergic neuron
+10X26_3:TGTAGGTGTGTTCT,oligodendrocyte,cholinergic neuron
+10X57_6:AAATGGGAGCAGAG,oligodendrocyte,cholinergic neuron
+10X55_4:GGCGTCACGCATCG,oligodendrocyte,cholinergic neuron
+10X55_6:TGAGGGTCTAGAGG,oligodendrocyte,cholinergic neuron
+10X55_4:TGAAGCAACACCCG,oligodendrocyte,cholinergic neuron
+10X54_8:ACCTACAGCTCGCA,oligodendrocyte,cholinergic neuron
+10X54_1:CGGTAAGATAGTCA,oligodendrocyte,cholinergic neuron
+10X57_7:TTATGGCTCACTTT,oligodendrocyte,cholinergic neuron
+10X55_7:ACGGAAGCCATCGC,oligodendrocyte,cholinergic neuron
+10X57_3:CTCAGAGACAGCTA,oligodendrocyte,cholinergic neuron
+10X52_3:AGAGTCTGTTCATC,oligodendrocyte,cholinergic neuron
+10X57_3:TCGTAGGACGTTGA,oligodendrocyte,cholinergic neuron
+10X53_3:CAAGTTCTAAGATG,oligodendrocyte,cholinergic neuron
+10X43_3:GAACCTGAGACAAA,oligodendrocyte,cholinergic neuron
+10X24_4:TCCGAAGAGGGTGA,oligodendrocyte,cholinergic neuron
+10X57_3:TAATCGCTATGTCG,oligodendrocyte,cholinergic neuron
+10X01_1:CAAGAAGAGCTATG,oligodendrocyte,cholinergic neuron
+10X57_7:AAGAACGACCTATT,oligodendrocyte,cholinergic neuron
+10X55_8:CGTGTCAAGACGTG,oligodendrocyte,cholinergic neuron
+10X55_6:GTACTGTGCTTCTC,oligodendrocyte,cholinergic neuron
+10X54_1:TGATGTCAAGATCC,oligodendrocyte,cholinergic neuron
+10X54_3:AGCGTTCGAGCCCA,oligodendrocyte,cholinergic neuron
+10X57_3:CGAGTATGTTAGGC,oligodendrocyte,cholinergic neuron
+10X05_2:GACTACGATCAGGT,oligodendrocyte,cholinergic neuron
+10X53_6:ATTATGGACATGGT,oligodendrocyte,cholinergic neuron
+10X01_1:CAGCGGACTAGACC,oligodendrocyte,cholinergic neuron
+10X54_4:TCCAGTCGCCATAA,oligodendrocyte,cholinergic neuron
+10X52_2:AATCGGTGCTCCCA,oligodendrocyte,cholinergic neuron
+10X54_5:TCAGAGTTACTGAC,oligodendrocyte,cholinergic neuron
+10X54_4:CGGTCCACTACAGT,oligodendrocyte,cholinergic neuron
+10X57_6:TTCAAAGACAAAGA,oligodendrocyte,cholinergic neuron
+10X53_4:TGTATCTGGCCCTT,oligodendrocyte,cholinergic neuron
+10X53_6:AATCCGGAGAGACG,oligodendrocyte,cholinergic neuron
+10X55_8:TGGTGCACCGAAAG,oligodendrocyte,cholinergic neuron
+10X57_3:TAAGTCCTCTCCCA,oligodendrocyte,cholinergic neuron
+10X53_6:ACGGTCCTATTCGG,oligodendrocyte,cholinergic neuron
+10X50_4:AAACCGTGTCCCAC,oligodendrocyte,cholinergic neuron
+10X26_3:CCATAGGAGCGGAA,oligodendrocyte,cholinergic neuron
+10X54_5:CATACAGTGGGCTA,oligodendrocyte,cholinergic neuron
+10X54_2:AATAGCAGTCTTCC,oligodendrocyte,cholinergic neuron
+10X28_3:AAGCCATGGTAAAG,oligodendrocyte,cholinergic neuron
+10X55_2:CCACTGTCTCCCTA,oligodendrocyte,cholinergic neuron
+10X52_2:GGCTAAACTCTAGG,oligodendrocyte,cholinergic neuron
+10X53_4:TGAGTCGATTTCGT,oligodendrocyte,cholinergic neuron
+10X57_2:GGAATCTGCTTGCC,oligodendrocyte,cholinergic neuron
+10X22_1:CACTAGGAATTTCC,oligodendrocyte,cholinergic neuron
+10X55_7:TCAGTTCTTCATGT,oligodendrocyte,cholinergic neuron
+10X28_2:TCTCAAACAAGTGA,oligodendrocyte,cholinergic neuron
+10X24_4:CTACTATGCTAGAC,oligodendrocyte,cholinergic neuron
+10X55_5:TCAGGTCTTGGGTA,oligodendrocyte,cholinergic neuron
+10X24_4:AAGAACGATGACAC,oligodendrocyte,cholinergic neuron
+10X53_3:ACACGAACGTTAGC,oligodendrocyte,cholinergic neuron
+10X55_4:GCCAATCACCTTAT,oligodendrocyte,cholinergic neuron
+10X50_7:CTATAAGACCAAGT,oligodendrocyte,cholinergic neuron
+10X20_1:AACGCCCTGTACCA,glutamatergic neuron,cholinergic neuron
+10X22_2:TCGGACCTGCATCA,glutamatergic neuron,cholinergic neuron
+10X22_2:CGTTTAACCCTGTC,glutamatergic neuron,cholinergic neuron
+10X53_6:CTGGCACTAATCGC,glutamatergic neuron,cholinergic neuron
+10X50_8:CGCGAGACCTCTAT,glutamatergic neuron,cholinergic neuron
+10X57_3:AGTCTTACCTCATT,glutamatergic neuron,cholinergic neuron
+10X20_2:GATATCCTCAGATC,glutamatergic neuron,cholinergic neuron
+10X53_3:AAGTCCGAGCTATG,glutamatergic neuron,cholinergic neuron
+10X34_3:TGGCACCTTTCATC,glutamatergic neuron,cholinergic neuron
+10X02_1:ACGGAGGACAAAGA,glutamatergic neuron,cholinergic neuron
+10X57_2:AGCAAGCTTTGACG,glutamatergic neuron,cholinergic neuron
+10X22_2:ACGCTCACTCAAGC,glutamatergic neuron,cholinergic neuron
+10X19_2:AAGGCTTGCCATAG,glutamatergic neuron,cholinergic neuron
+10X20_1:TTGAGGTGCTTGCC,glutamatergic neuron,cholinergic neuron
+10X20_1:CAAGACTGATCGTG,glutamatergic neuron,cholinergic neuron
+10X05_1:GCGAGAGACAAGCT,glutamatergic neuron,cholinergic neuron
+10X22_2:AAACGCACTGGTTG,glutamatergic neuron,cholinergic neuron
+10X22_3:TATAGCCTGCATAC,glutamatergic neuron,cholinergic neuron
+10X53_3:AACATTGAGGTATC,glutamatergic neuron,cholinergic neuron
+10X49_3:ACTCTATGGGAAGC,glutamatergic neuron,cholinergic neuron
+10X04_2:ATCATCTGGTTGAC,glutamatergic neuron,cholinergic neuron
+10X28_4:AAGGTGCTTTCGGA,glutamatergic neuron,cholinergic neuron
+10X50_5:CATTGTACACTCTT,glutamatergic neuron,cholinergic neuron
+10X28_4:ACGTAGACCTACTT,glutamatergic neuron,cholinergic neuron
+10X24_3:ATCTGGGAGAATAG,glutamatergic neuron,cholinergic neuron
+10X02_1:TTTCCAGACTACCC,glutamatergic neuron,cholinergic neuron
+10X57_3:TACATCACACCTGA,glutamatergic neuron,cholinergic neuron
+10X43_1:CCCTACGAATCGTG,glutamatergic neuron,cholinergic neuron
+10X20_1:ACACGATGCTTATC,glutamatergic neuron,cholinergic neuron
+10X01_1:ACGTTACTAAAACG,glutamatergic neuron,cholinergic neuron
+10X57_3:CACTGAGATTCTTG,glutamatergic neuron,cholinergic neuron
+10X28_3:ATAACCCTCCTGTC,glutamatergic neuron,cholinergic neuron
+10X52_1:CAAGGTTGTAGAAG,glutamatergic neuron,cholinergic neuron
+10X22_2:ATTCAGCTAAAGCA,glutamatergic neuron,cholinergic neuron
+10X20_4:ACTCAGGAGTCTTT,glutamatergic neuron,cholinergic neuron
+10X28_3:AGGGCCACTTCGCC,glutamatergic neuron,cholinergic neuron
+10X24_4:CAGCAATGCAACCA,glutamatergic neuron,cholinergic neuron
+10X05_2:GATTCTTGTCCTCG,glutamatergic neuron,cholinergic neuron
+10X36_1:AACAATACCCTGTC,glutamatergic neuron,cholinergic neuron
+10X50_5:ATCGCCTGGGAGCA,glutamatergic neuron,cholinergic neuron
+10X52_2:GTACGAACAACTGC,glutamatergic neuron,cholinergic neuron
+10X53_6:CAGGGCACGAACCT,glutamatergic neuron,cholinergic neuron
+10X22_2:GCTACAGATTTGGG,glutamatergic neuron,cholinergic neuron
+10X54_2:GACCATCAGCCTAA,glutamatergic neuron,cholinergic neuron
+10X20_2:GAAAGATGTCTTTG,glutamatergic neuron,cholinergic neuron
+10X36_1:AAATCTGAGGGCAA,glutamatergic neuron,cholinergic neuron
+10X28_3:CACTTAACTTCCAT,glutamatergic neuron,cholinergic neuron
+10X05_1:CCATAGGAGGACTT,glutamatergic neuron,cholinergic neuron
+10X28_4:ATGCAGTGTCCTTA,glutamatergic neuron,cholinergic neuron
+10X22_1:AGTCTTACGCTATG,glutamatergic neuron,cholinergic neuron
+10X28_2:GAAGGGTGAAGTAG,glutamatergic neuron,cholinergic neuron
+10X22_1:ATTGGTCTCTTGTT,glutamatergic neuron,cholinergic neuron
+10X05_1:CGATCCACACAGTC,glutamatergic neuron,cholinergic neuron
+10X20_1:GTTCAGGACCCACT,glutamatergic neuron,cholinergic neuron
+10X28_2:TTGTACACCTGTTT,glutamatergic neuron,cholinergic neuron
+10X53_3:ATGAGAGAGGTAGG,glutamatergic neuron,cholinergic neuron
+10X35_1:TGATACCTCCTTGC,glutamatergic neuron,cholinergic neuron
+10X22_1:TGCTTAACAGATGA,glutamatergic neuron,cholinergic neuron
+10X22_4:GCCTCATGATCGTG,glutamatergic neuron,cholinergic neuron
+10X50_6:AAGATGGATTGCGA,glutamatergic neuron,cholinergic neuron
+10X02_1:TGTTACTGTCCTCG,glutamatergic neuron,cholinergic neuron
+10X43_3:GAGTCAACTTCGCC,glutamatergic neuron,cholinergic neuron
+10X50_8:ACGAACTGTACTCT,glutamatergic neuron,cholinergic neuron
+10X35_1:TCGTAGGAGTTAGC,glutamatergic neuron,cholinergic neuron
+10X05_2:CACCGTACCCATAG,glutamatergic neuron,cholinergic neuron
+10X53_4:CACTAGGAACCTTT,glutamatergic neuron,cholinergic neuron
+10X28_4:GTTATCTGAACGAA,glutamatergic neuron,cholinergic neuron
+10X20_3:CTGACAGAATCGTG,glutamatergic neuron,cholinergic neuron
+10X20_3:GAGCGGCTCTACCC,glutamatergic neuron,cholinergic neuron
+10X28_2:TTCAGACTTGACTG,glutamatergic neuron,cholinergic neuron
+10X57_2:GTGACAACTGCAAC,glutamatergic neuron,cholinergic neuron
+10X02_1:TAGACGTGTCCAAG,glutamatergic neuron,cholinergic neuron
+10X05_1:CCCAGTTGATCACG,glutamatergic neuron,cholinergic neuron
+10X05_1:CGATCAGACTCATT,glutamatergic neuron,cholinergic neuron
+10X04_2:ATATAGTGAACCGT,glutamatergic neuron,cholinergic neuron
+10X22_2:TCTCAAACCGTGAT,glutamatergic neuron,cholinergic neuron
+10X22_1:TGCAACGATACTCT,glutamatergic neuron,cholinergic neuron
+10X19_2:ACACGTGAAGCGGA,glutamatergic neuron,cholinergic neuron
+10X04_2:GGAATCTGCTGAAC,glutamatergic neuron,cholinergic neuron
+10X28_3:CACTGAGAGGTAAA,glutamatergic neuron,cholinergic neuron
+10X50_5:GATCCCTGGAGGCA,glutamatergic neuron,cholinergic neuron
+10X22_4:GTGGATTGGCGAGA,glutamatergic neuron,cholinergic neuron
+10X04_1:GCCGGAACGCTGTA,glutamatergic neuron,cholinergic neuron
+10X50_5:AATAAGCTGCTGAT,glutamatergic neuron,cholinergic neuron
+10X05_1:GAAAGCCTCGATAC,glutamatergic neuron,cholinergic neuron
+10X36_1:AGCACTGAAGATCC,glutamatergic neuron,cholinergic neuron
+10X53_6:CTCGACACATGCCA,glutamatergic neuron,cholinergic neuron
+10X52_4:ATAAGTACTGAGAA,glutamatergic neuron,cholinergic neuron
+10X49_4:TGATAAACAACGAA,glutamatergic neuron,cholinergic neuron
+10X19_2:ATGTACCTTAAGGA,glutamatergic neuron,cholinergic neuron
+10X50_5:TGCCACTGGTGTAC,glutamatergic neuron,cholinergic neuron
+10X28_3:GATCCCTGCCTTGC,glutamatergic neuron,cholinergic neuron
+10X20_4:TGTGATCTTTCGTT,glutamatergic neuron,cholinergic neuron
+10X28_5:GTTACGGATATCTC,glutamatergic neuron,cholinergic neuron
+10X28_2:CCCGAACTTTCTTG,glutamatergic neuron,cholinergic neuron
+10X52_3:GCACCACTTGTGAC,glutamatergic neuron,cholinergic neuron
+10X50_8:ATGCCGCTATCTTC,glutamatergic neuron,cholinergic neuron
+10X05_1:TAGGACTGGAGGAC,glutamatergic neuron,cholinergic neuron
+10X20_2:ATGTACCTCTGCAA,glutamatergic neuron,cholinergic neuron
+10X52_1:CATAAAACACCTCC,glutamatergic neuron,cholinergic neuron
+10X53_1:GTCGAATGTGGAAA,glutamatergic neuron,cholinergic neuron
+10X24_3:CAGACATGAAACGA,glutamatergic neuron,cholinergic neuron
+10X57_7:XXATATGACCTTGC,glutamatergic neuron,cholinergic neuron
+10X35_1:GGGATGGATGACCA,glutamatergic neuron,cholinergic neuron
+10X35_1:CAAACTCTTCAGGT,glutamatergic neuron,cholinergic neuron
+10X01_1:GAGTTGTGTCTTCA,glutamatergic neuron,cholinergic neuron
+10X28_3:ACCCAAGACTGAGT,glutamatergic neuron,cholinergic neuron
+10X50_6:GTTATCTGACACAC,glutamatergic neuron,cholinergic neuron
+10X54_4:GGGTTGTCTCACCT,glutamatergic neuron,cholinergic neuron
+10X22_2:ATGTCACTTGACCA,glutamatergic neuron,cholinergic neuron
+10X19_2:GTACTACTGTAGCT,glutamatergic neuron,cholinergic neuron
+10X52_3:TAGTCGGAAGCGGA,glutamatergic neuron,cholinergic neuron
+10X28_4:GAGTGACTTTCCGC,glutamatergic neuron,cholinergic neuron
+10X04_2:GACCTCACCCCTTG,glutamatergic neuron,cholinergic neuron
+10X22_2:TGTTAAGACGTAGT,glutamatergic neuron,cholinergic neuron
+10X19_2:GATTTGCTCTGAGT,glutamatergic neuron,cholinergic neuron
+10X22_3:GCACGGACAGGCGA,glutamatergic neuron,cholinergic neuron
+10X35_2:TGTAATGACGTACA,glutamatergic neuron,cholinergic neuron
+10X20_1:TGGTAGTGTTATCC,glutamatergic neuron,cholinergic neuron
+10X52_1:ATCAAATGACCCAA,glutamatergic neuron,cholinergic neuron
+10X20_3:CGCGGATGGTCGTA,glutamatergic neuron,cholinergic neuron
+10X19_2:ACGACCCTCTTGGA,glutamatergic neuron,cholinergic neuron
+10X52_2:TAAGTCCTACGCAT,glutamatergic neuron,cholinergic neuron
+10X35_2:TGCGAAACACGTAC,glutamatergic neuron,cholinergic neuron
+10X07_1:TTACAGCTCCGATA,GABAergic neuron,cholinergic neuron
+10X07_1:TCCCACGATATGCG,GABAergic neuron,cholinergic neuron
+10X49_5:TGGACTGAACTCAG,GABAergic neuron,cholinergic neuron
+10X52_2:CAAGAAGAATTGGC,GABAergic neuron,cholinergic neuron
+10X38_1:CTACCTCTCCAACA,GABAergic neuron,cholinergic neuron
+10X24_2:GAACCAACAGTGTC,GABAergic neuron,cholinergic neuron
+10X04_1:ATCTGACTACCTCC,GABAergic neuron,cholinergic neuron
+10X38_2:TTGAGGACAACCGT,GABAergic neuron,cholinergic neuron
+10X26_4:ACGCACCTGAGCTT,GABAergic neuron,cholinergic neuron
+10X07_1:AGATATTGCACACA,GABAergic neuron,cholinergic neuron
+10X55_7:CTAATTCTGCTTGC,GABAergic neuron,cholinergic neuron
+10X24_1:CAGCACCTCGACAT,GABAergic neuron,cholinergic neuron
+10X26_3:TGCTGAGAGGTAAA,GABAergic neuron,cholinergic neuron
+10X52_1:GACGCTCTCTGTGA,GABAergic neuron,cholinergic neuron
+10X28_4:CGTCCATGCCGTTC,GABAergic neuron,cholinergic neuron
+10X24_2:TTAGTCACCTAGAC,GABAergic neuron,cholinergic neuron
+10X38_1:GGATACTGCAGCTA,GABAergic neuron,cholinergic neuron
+10X38_3:TAAATCGATACTCT,GABAergic neuron,cholinergic neuron
+10X52_3:CACAATCTGCTTCC,GABAergic neuron,cholinergic neuron
+10X50_3:CGACCTACACCTCC,GABAergic neuron,cholinergic neuron
+10X04_4:CTACCTCTGACTAC,GABAergic neuron,cholinergic neuron
+10X24_1:CGGATATGGTTCGA,GABAergic neuron,cholinergic neuron
+10X49_4:CCTATAACGCTGTA,GABAergic neuron,cholinergic neuron
+10X49_4:GATAGCACTCGCCT,GABAergic neuron,cholinergic neuron
+10X38_2:CTAACTACAGCTCA,GABAergic neuron,cholinergic neuron
+10X38_1:GACGAGGAGGACTT,GABAergic neuron,cholinergic neuron
+10X38_1:AATTACGAGCTGAT,GABAergic neuron,cholinergic neuron
+10X52_3:AGTCGAACGTGTAC,GABAergic neuron,cholinergic neuron
+10X28_4:CAGTTTACTGTTCT,GABAergic neuron,cholinergic neuron
+10X26_3:ATAAACACGCAAGG,GABAergic neuron,cholinergic neuron
+10X28_5:ATCGCGCTGTGTCA,GABAergic neuron,cholinergic neuron
+10X49_4:GCCACGGAGTCTTT,GABAergic neuron,cholinergic neuron
+10X28_4:TCCATCCTAACCGT,GABAergic neuron,cholinergic neuron
+10X38_1:GACTGTGATCTCCG,GABAergic neuron,cholinergic neuron
+10X52_3:CACACCTGCGCAAT,GABAergic neuron,cholinergic neuron
+10X57_2:CACGATGATCCCAC,GABAergic neuron,cholinergic neuron
+10X52_3:TTTCACGAACCTTT,GABAergic neuron,cholinergic neuron
+10X36_1:CAATAAACGACAGG,GABAergic neuron,cholinergic neuron
+10X05_1:CGCTACTGGCTAAC,GABAergic neuron,cholinergic neuron
+10X28_4:TGTCTAACAAGAAC,GABAergic neuron,cholinergic neuron
+10X26_4:TGAGGACTATGACC,GABAergic neuron,cholinergic neuron
+10X38_3:TCTATGTGACGTTG,GABAergic neuron,cholinergic neuron
+10X24_2:GAAACAGATGTTTC,GABAergic neuron,cholinergic neuron
+10X36_3:TCCGAAGAGTGTCA,GABAergic neuron,cholinergic neuron
+10X38_1:AGTAATACCCACAA,GABAergic neuron,cholinergic neuron
+10X05_4:GGACCCGAGAATCC,GABAergic neuron,cholinergic neuron
+10X28_5:CTATCAACCCATAG,GABAergic neuron,cholinergic neuron
+10X38_3:TACGGCCTCTTCTA,GABAergic neuron,cholinergic neuron
+10X49_4:GACAACTGCGTAGT,GABAergic neuron,cholinergic neuron
+10X38_1:TGAGCAACCTCATT,GABAergic neuron,cholinergic neuron
+10X26_4:TATGGGTGGGTACT,GABAergic neuron,cholinergic neuron
+10X04_4:CGGTAAACATCACG,GABAergic neuron,cholinergic neuron
+10X24_1:ACAAAGGAGAATAG,GABAergic neuron,cholinergic neuron
+10X38_3:TTCAGACTAACCAC,GABAergic neuron,cholinergic neuron
+10X49_4:TGGAGACTCCCACT,GABAergic neuron,cholinergic neuron
+10X38_2:ACGCCTTGTCTCCG,GABAergic neuron,cholinergic neuron
+10X36_2:GCACCACTGCTGAT,GABAergic neuron,cholinergic neuron
+10X28_5:GAGTAAGACTGTAG,GABAergic neuron,cholinergic neuron
+10X52_1:GGCCACGATCCAAG,GABAergic neuron,cholinergic neuron
+10X49_1:GGCGACTGCTCGAA,GABAergic neuron,cholinergic neuron
+10X07_1:CCAGTCACGACAAA,GABAergic neuron,cholinergic neuron
+10X07_1:CTTACATGTGCTAG,GABAergic neuron,cholinergic neuron
+10X24_1:TACGATCTTTGTCT,GABAergic neuron,cholinergic neuron
+10X38_1:AGAGCGGAACGCTA,GABAergic neuron,cholinergic neuron
+10X28_5:ACACGAACCGTCTC,GABAergic neuron,cholinergic neuron
+10X49_4:ACCAACGACCTTTA,GABAergic neuron,cholinergic neuron
+10X28_4:CTAAGGACCATTCT,GABAergic neuron,cholinergic neuron
+10X24_1:GGCGACTGCACAAC,GABAergic neuron,cholinergic neuron
+10X49_5:AAGGTGCTTCGATG,GABAergic neuron,cholinergic neuron
+10X38_2:AATGGCTGCCTTAT,GABAergic neuron,cholinergic neuron
+10X38_2:AGAATGGAGGAAGC,GABAergic neuron,cholinergic neuron
+10X49_5:CTACTCCTACGACT,GABAergic neuron,cholinergic neuron
+10X07_1:CACTTAACATCGGT,GABAergic neuron,cholinergic neuron
+10X49_4:TAGGGACTACGGTT,GABAergic neuron,cholinergic neuron
+10X26_4:TACGAGTGGTCATG,GABAergic neuron,cholinergic neuron
+10X49_5:CATGTACTTGGTCA,GABAergic neuron,cholinergic neuron
+10X26_4:CACAGTGAAACGGG,GABAergic neuron,cholinergic neuron
+10X49_5:ATAGGCTGCGAACT,GABAergic neuron,cholinergic neuron
+10X43_3:TGATAAACCTGGTA,GABAergic neuron,cholinergic neuron
+10X36_3:ATGAAACTGGTCAT,GABAergic neuron,cholinergic neuron
+10X52_2:AACGTGTGTCAAGC,GABAergic neuron,cholinergic neuron
+10X49_4:ATTGTAGAGCCATA,GABAergic neuron,cholinergic neuron
+10X38_3:TGGATGACTCACCC,GABAergic neuron,cholinergic neuron
+10X38_2:CTAATGCTACGACT,GABAergic neuron,cholinergic neuron
+10X26_3:ATCACGGAGAGGCA,GABAergic neuron,cholinergic neuron
+10X24_2:TAATGCCTCAACCA,GABAergic neuron,cholinergic neuron
+10X05_2:TAGGTCGAGACAAA,GABAergic neuron,cholinergic neuron
+10X49_1:ATACCACTTGCTTT,GABAergic neuron,cholinergic neuron
+10X38_2:CACGAAACAAGCAA,GABAergic neuron,cholinergic neuron
+10X38_2:AGAAAGTGCTGTCC,GABAergic neuron,cholinergic neuron
+10X49_2:TTCTCAGAAGGAGC,GABAergic neuron,cholinergic neuron
+10X36_3:ATCATCTGCCTCCA,GABAergic neuron,cholinergic neuron
+10X49_5:AGGGTGGATTTCAC,GABAergic neuron,cholinergic neuron
+10X50_4:GTTAAAACGGTGAG,GABAergic neuron,cholinergic neuron
+10X49_5:CTATTGACACAGTC,GABAergic neuron,cholinergic neuron
+10X28_4:ATCTACTGTCTGGA,GABAergic neuron,cholinergic neuron
+10X20_2:GCCTACACGCTTAG,GABAergic neuron,cholinergic neuron
+10X07_1:AAATCTGAGGAGGT,GABAergic neuron,cholinergic neuron
+10X38_2:ATTGCACTCCGATA,GABAergic neuron,cholinergic neuron
+10X28_5:CGTTAACTCCGCTT,GABAergic neuron,cholinergic neuron
+10X35_1:GCATTGGATGTTTC,GABAergic neuron,cholinergic neuron
+10X38_2:GGCTAATGGTGCTA,GABAergic neuron,cholinergic neuron
+10X38_2:GTAATAACAAGTGA,GABAergic neuron,cholinergic neuron
+10X52_5:CAACGATGATGACC,GABAergic neuron,cholinergic neuron
+10X38_2:GGCGACTGCCATAG,GABAergic neuron,cholinergic neuron
+10X52_1:TTAGTCTGTCGCAA,GABAergic neuron,cholinergic neuron
+10X24_1:GTGATCGATCCCGT,GABAergic neuron,cholinergic neuron
+10X49_4:CGCGAGACGGAGCA,GABAergic neuron,cholinergic neuron
+10X38_2:TCGACGCTCGCTAA,GABAergic neuron,cholinergic neuron
+10X50_5:ATTTAGGACACTCC,GABAergic neuron,cholinergic neuron
+10X24_2:TGCGAAACCGGTAT,GABAergic neuron,cholinergic neuron
+10X50_4:ACACGAACTGGAGG,GABAergic neuron,cholinergic neuron
+10X52_5:GGTCTAGAGACGTT,GABAergic neuron,cholinergic neuron
+10X38_1:GTGTACGAGCGAAG,GABAergic neuron,cholinergic neuron
+10X52_2:ACCCGTACAACCAC,GABAergic neuron,cholinergic neuron
+10X22_3:TATACGCTACGTTG,astrocyte,cholinergic neuron
+10X52_6:GCAATTCTGGTGGA,astrocyte,cholinergic neuron
+10X56_6:TGATATGAGTTCTT,astrocyte,cholinergic neuron
+10X52_7:CATTGTTGGACGGA,astrocyte,cholinergic neuron
+10X20_1:GACGTAACGGACTT,astrocyte,cholinergic neuron
+10X52_2:GGCCGATGGGTCTA,astrocyte,cholinergic neuron
+10X28_2:ACTTAAGACCAATG,astrocyte,cholinergic neuron
+10X20_3:GACCTCTGGCTTAG,astrocyte,cholinergic neuron
+10X24_4:GTACCCTGCCTTGC,astrocyte,cholinergic neuron
+10X04_2:CCAGCTACTAGCGT,astrocyte,cholinergic neuron
+10X48_4:TCACCGTGTCCAAG,astrocyte,cholinergic neuron
+10X53_2:AATAACACGAGGCA,astrocyte,cholinergic neuron
+10X56_6:TCCGAAGATGTCTT,astrocyte,cholinergic neuron
+10X22_3:CCCAGACTTTCTAC,astrocyte,cholinergic neuron
+10X51_1:ACTGTGGAGTATGC,astrocyte,cholinergic neuron
+10X57_1:ATATACGAGAACCT,astrocyte,cholinergic neuron
+10X22_2:TATTTCCTGTAGCT,astrocyte,cholinergic neuron
+10X28_4:GTGATTCTTGCTCC,astrocyte,cholinergic neuron
+10X24_1:GAATGGCTCATGGT,astrocyte,cholinergic neuron
+10X52_1:TCCCATCTAGCCTA,astrocyte,cholinergic neuron
+10X48_1:CCGCGAGATTGACG,astrocyte,cholinergic neuron
+10X04_1:ACCCAGCTTGCTTT,astrocyte,cholinergic neuron
+10X48_1:CTTATCGAAAGGGC,astrocyte,cholinergic neuron
+10X20_2:CAGATCGAAACGAA,astrocyte,cholinergic neuron
+10X28_3:CAGCTCTGAAGGGC,astrocyte,cholinergic neuron
+10X48_3:CAGCGGACAAGGGC,astrocyte,cholinergic neuron
+10X48_3:CAGGTATGCTGCAA,astrocyte,cholinergic neuron
+10X20_2:GGTATGACTCTAGG,astrocyte,cholinergic neuron
+10X52_2:GTCATACTACCACA,astrocyte,cholinergic neuron
+10X24_3:CGATACGAGGAGTG,astrocyte,cholinergic neuron
+10X51_1:AGCGATACCCTTCG,astrocyte,cholinergic neuron
+10X52_3:TAGGTCGATATGGC,astrocyte,cholinergic neuron
+10X46_1:CGTGAATGCTGATG,astrocyte,cholinergic neuron
+10X04_1:TTCTTACTGTTTCT,astrocyte,cholinergic neuron
+10X52_2:TATTTCCTTCTCTA,astrocyte,cholinergic neuron
+10X22_3:CGTAACGATGGTCA,astrocyte,cholinergic neuron
+10X28_3:AGGGCGCTTGACTG,astrocyte,cholinergic neuron
+10X20_1:ACAATTGACTTTAC,astrocyte,cholinergic neuron
+10X57_7:CAGACCCTTGCTAG,astrocyte,cholinergic neuron
+10X51_1:GGCGACTGCTGTAG,astrocyte,cholinergic neuron
+10X20_2:GTTACTACAACGTC,astrocyte,cholinergic neuron
+10X52_2:TAACAATGTGCATG,astrocyte,cholinergic neuron
+10X26_4:GTCTAACTAGTCAC,astrocyte,cholinergic neuron
+10X48_4:GTAGCCCTTGCCAA,astrocyte,cholinergic neuron
+10X52_4:CGCTAAGAACCTGA,astrocyte,cholinergic neuron
+10X51_4:AATGGAGAACGTAC,astrocyte,cholinergic neuron
+10X19_2:CCTGACTGCATCAG,astrocyte,cholinergic neuron
+10X49_4:TTTAGAGATTCTAC,astrocyte,cholinergic neuron
+10X49_5:AAGCGTACCTTGGA,astrocyte,cholinergic neuron
+10X24_3:AACAATACACGTAC,astrocyte,cholinergic neuron
+10X33_2:CGATCCACTTTGTC,astrocyte,cholinergic neuron
+10X28_4:ATATGCCTGTACGT,astrocyte,cholinergic neuron
+10X51_2:TGAAGCACTCCTGC,astrocyte,cholinergic neuron
+10X48_4:CCTGCAACCAGGAG,astrocyte,cholinergic neuron
+10X04_2:CCTGGACTCACAAC,astrocyte,cholinergic neuron
+10X52_1:ATAGATACAGCCAT,astrocyte,cholinergic neuron
+10X49_3:CGGCGAACTCTACT,astrocyte,cholinergic neuron
+10X50_2:ACACCCTGGGTCAT,astrocyte,cholinergic neuron
+10X52_6:TTATTCCTTGCTTT,astrocyte,cholinergic neuron
+10X26_2:GCAAACTGCATTCT,astrocyte,cholinergic neuron
+10X22_3:CGCTACACTGCGTA,astrocyte,cholinergic neuron
+10X20_2:GAGTCTGAATTCCT,astrocyte,cholinergic neuron
+10X20_1:ATCGACGACATGCA,astrocyte,cholinergic neuron
+10X49_4:ATCTACACAAGTAG,astrocyte,cholinergic neuron
+10X52_2:ATTGTAGACAGATC,astrocyte,cholinergic neuron
+10X20_1:GACGTCCTTACGAC,astrocyte,cholinergic neuron
+10X52_3:CTCCTACTGGAGGT,astrocyte,cholinergic neuron
+10X02_1:CGCACTTGTCCTCG,astrocyte,cholinergic neuron
+10X04_4:GTCGACCTAGTCTG,astrocyte,cholinergic neuron
+10X33_3:GGTATCGAGTCTGA,astrocyte,cholinergic neuron
+10X48_3:TAACGTCTCAGTCA,astrocyte,cholinergic neuron
+10X49_4:TAAGAGGAGGACAG,astrocyte,cholinergic neuron
+10X52_5:TGCGTAGACTAGTG,astrocyte,cholinergic neuron
+10X24_2:CTAGGCCTAGTACC,astrocyte,cholinergic neuron
+10X22_3:CATCATACAAGAAC,astrocyte,cholinergic neuron
+10X22_3:GCGAGAGAGGGAGT,astrocyte,cholinergic neuron
+10X48_3:GCTTGAGATAGTCG,astrocyte,cholinergic neuron
+10X34_4:AGAATGGATTCACT,astrocyte,cholinergic neuron
+10X49_5:GGATTGTGGACTAC,astrocyte,cholinergic neuron
+10X22_3:TAAGCGTGCTGTCC,astrocyte,cholinergic neuron
+10X22_4:TACGCGCTAAGAAC,astrocyte,cholinergic neuron
+10X20_2:GTGGATTGTGCACA,astrocyte,cholinergic neuron
+10X52_5:CTGAGCCTTCATTC,astrocyte,cholinergic neuron
+10X51_2:AAACATTGCCGCTT,astrocyte,cholinergic neuron
+10X81_3:AGGCCTCGAATGGG,Enteric glia,cholinergic neuron
+10X81_1:CGTTGGTGGTACAG,Enteric glia,cholinergic neuron
+10X81_3:TTACCTCGTGGTCG,Enteric glia,cholinergic neuron
+10X81_3:TGAGGGTAAGTGTA,Enteric glia,cholinergic neuron
+10X81_1:TCTACTCAACGCTA-1,Enteric glia,cholinergic neuron
+10X81_1:GCTGGGTAATCGTC,Enteric glia,cholinergic neuron
+10X81_2:CTACCAGCCGTCGT,Enteric glia,cholinergic neuron
+10X81_3:AGCCAAGAAGATTC,Enteric glia,cholinergic neuron
+10X82_2:TACTCAGGCGATAC,Enteric glia,cholinergic neuron
+10X82_2:TGAGCGTAAGTGTA,Enteric glia,cholinergic neuron
+10X82_2:TGAAGTCTGTCTCG,Enteric glia,cholinergic neuron
+10X81_1:ACATCTCTCGCATC,Enteric glia,cholinergic neuron
+10X81_1:ATCAGTCCTTCAAT,Enteric glia,cholinergic neuron
+10X81_1:AGACCGTTGGTAAA,Enteric glia,cholinergic neuron
+10X82_2:AGGTACACGAGAGT,Enteric glia,cholinergic neuron
+10X81_1:GGGAGGTTATGTGC,Enteric glia,cholinergic neuron
+10X81_2:ATGTAGTAGGGTAC,Enteric glia,cholinergic neuron
+10X81_1:CCATGTCCGCAAGC,Enteric glia,cholinergic neuron
+10X82_2:TACCGGTTCTGGTA,Enteric glia,cholinergic neuron
+10X81_1:TATTACATCGTCGG,Enteric glia,cholinergic neuron
+10X81_3:GAGAGAGGCTAGCA,Enteric glia,cholinergic neuron
+10X81_2:GAGGGCACACCGCA,Enteric glia,cholinergic neuron
+10X82_2:AATGTGTCATCGGC,Enteric glia,cholinergic neuron
+10X81_2:AACGTGTTATTCTC,Enteric glia,cholinergic neuron
+10X81_2:GCTAGCAAATTGCC,Enteric glia,cholinergic neuron
+10X81_1:GCGATTCACAATGC,Enteric glia,cholinergic neuron
+10X81_3:CAGAACAATCGGTT,Enteric glia,cholinergic neuron
+10X82_2:ACCTATCACTATTC,Enteric glia,cholinergic neuron
+10X81_1:GACTTCATACTACG,Enteric glia,cholinergic neuron
+10X81_2:AGCCAGTACAGTGG,Enteric glia,cholinergic neuron
+10X81_2:TCTAAAGCGTTTAC,Enteric glia,cholinergic neuron
+10X26_3:GTATGGTGGCGAGA,Microglia,cholinergic neuron
+10X22_2:GTAGTCGATTCTTG,Microglia,cholinergic neuron
+10X52_5:TGCACGCTTGATGC,Microglia,cholinergic neuron
+10X53_4:ACGGTCCTTGCGTA,Microglia,cholinergic neuron
+10X28_5:GGCCCAGAGAATCC,Microglia,cholinergic neuron
+10X22_2:GTCCCATGTACGCA,Microglia,cholinergic neuron
+10X19_2:ATTGGTCTTCCTCG,Microglia,cholinergic neuron
+10X22_4:AATGATACGCGAGA,Microglia,cholinergic neuron
+10X26_3:CATCTTGAAGAGGC,Microglia,cholinergic neuron
+10X19_2:AGCCAATGTGTGCA,Microglia,cholinergic neuron
+10X57_2:GTGAACACAGGTCT,Microglia,cholinergic neuron
+10X02_1:CCTAAGGACTGAAC,Microglia,cholinergic neuron
+10X53_5:GGCTACCTGCCTTC,Microglia,cholinergic neuron
+10X49_1:CCGGAGACTTCGCC,Microglia,cholinergic neuron
+10X57_4:ACGCCTTGTATCTC,Microglia,cholinergic neuron
+10X24_1:TTCATCGATTCCGC,Microglia,cholinergic neuron
+10X49_3:CATAACCTTTGGTG,Microglia,cholinergic neuron
+10X26_3:TCTTGATGACGACT,Microglia,cholinergic neuron
+10X53_4:TAGTACCTCCCTCA,Microglia,cholinergic neuron
+10X02_1:ACTTGGGATGCTCC,Microglia,cholinergic neuron
+10X20_4:GCCGACGAGGTGGA,Microglia,cholinergic neuron
+10X50_4:GTGATCGAAGGAGC,Microglia,cholinergic neuron
+10X22_2:GGACATTGAGGTCT,Microglia,cholinergic neuron
+10X35_2:AACGCAACCTGGTA,Microglia,cholinergic neuron
+10X49_3:AGGCTAACGTAGGG,Microglia,cholinergic neuron
+10X51_4:GCACCACTAAGAAC,Microglia,cholinergic neuron
+10X49_5:CGGTAAACCTAGCA,neuroblast (sensu Vertebrata),cholinergic neuron
+10X49_4:TACGAGACCCCAAA,neuroblast (sensu Vertebrata),cholinergic neuron
+10X04_4:TCTAACTGCAGCTA,neuroblast (sensu Vertebrata),cholinergic neuron
+10X46_1:AAAGCAGAGGACAG,neuroblast (sensu Vertebrata),cholinergic neuron
+10X49_4:TTGTAGCTCCTCGT,neuroblast (sensu Vertebrata),cholinergic neuron
+10X28_5:GACTGAACGAGCTT,neuroblast (sensu Vertebrata),cholinergic neuron
+10X26_3:TTTGCATGCATGCA,neuroblast (sensu Vertebrata),cholinergic neuron
+10X20_1:TTACTCGACATGAC,neuroblast (sensu Vertebrata),cholinergic neuron
+10X54_3:GAAGGAGAGTGACC,neuroblast (sensu Vertebrata),cholinergic neuron
+10X22_4:ACGCCTTGCTTCCG,neuroblast (sensu Vertebrata),cholinergic neuron
+10X34_2:TTCTGATGGTGTAC,neuroblast (sensu Vertebrata),cholinergic neuron
+10X46_1:CCAGTCACTTTCGT,neuroblast (sensu Vertebrata),cholinergic neuron
+10X49_5:GATTTGCTCGTCTC,neuroblast (sensu Vertebrata),cholinergic neuron
+10X22_4:TATCTGACGGCAAG,neuroblast (sensu Vertebrata),cholinergic neuron
+10X49_1:CCGGAGACATCAGC,neuroblast (sensu Vertebrata),cholinergic neuron
+10X22_3:GTGAGGGATCTTCA,neuroblast (sensu Vertebrata),cholinergic neuron
+10X04_4:TTCATGTGTTCCAT,neuroblast (sensu Vertebrata),cholinergic neuron
+10X43_1:ATTCTTCTATCTCT,neuroblast (sensu Vertebrata),cholinergic neuron
+10X28_4:AAATCAACGCGAGA,neuroblast (sensu Vertebrata),cholinergic neuron
+10X04_1:AAACATTGATTCTC,neuroblast (sensu Vertebrata),cholinergic neuron
+10X43_1:ATGCACGAGCTACA,neuroblast (sensu Vertebrata),cholinergic neuron
+10X28_5:TAGGAGCTGTTGTG,neuroblast (sensu Vertebrata),cholinergic neuron
+10X28_4:CTATAAGATGCCTC,neuroblast (sensu Vertebrata),cholinergic neuron
+10X22_3:TGTGAGTGCCTCGT,neuroblast (sensu Vertebrata),cholinergic neuron
+10X54_7:AGCGTTCGTTTAGG,neuroblast (sensu Vertebrata),cholinergic neuron
+10X24_1:TCTAAGCTCCCTCA,neuroblast (sensu Vertebrata),cholinergic neuron
+10X52_4:AGAATTTGAGTACC,pericyte,cholinergic neuron
+10X50_7:CACCTGACAGGAGC,pericyte,cholinergic neuron
+10X26_3:AATCCTACATTGGC,pericyte,cholinergic neuron
+10X53_3:CAAATATGGCGGAA,pericyte,cholinergic neuron
+10X52_4:GACGGCACACGTGT,pericyte,cholinergic neuron
+10X50_8:CATAAAACGTCACA,pericyte,cholinergic neuron
+10X43_3:TATAGATGTTTCGT,pericyte,cholinergic neuron
+10X53_6:GTAAGCACATTCTC,pericyte,cholinergic neuron
+10X53_4:CAACGATGTAACCG,pericyte,cholinergic neuron
+10X20_1:CATAAATGAAGATG,pericyte,cholinergic neuron
+10X50_6:TTTGACTGTCGACA,pericyte,cholinergic neuron
+10X53_6:GGGCAGCTAAGTGA,pericyte,cholinergic neuron
+10X20_2:CCATCCGATTGTCT,pericyte,cholinergic neuron
+10X48_1:AGTCGAACTTTGCT,pericyte,cholinergic neuron
+10X53_4:GTGAACACAAGGGC,pericyte,cholinergic neuron
+10X36_1:GCGAGCACTGCCCT,pericyte,cholinergic neuron
+10X48_3:ATAACCCTACTCAG,pericyte,cholinergic neuron
+10X52_6:GCGAAGGAGGGAGT,pericyte,cholinergic neuron
+10X20_2:CGGAATTGTACGAC,pericyte,cholinergic neuron
+10X50_7:GCGAGCACCTTCTA,pericyte,cholinergic neuron
+10X24_3:CCACCTGAGTTCTT,pericyte,cholinergic neuron
+10X36_3:GGCCACGAGAAGGC,pericyte,cholinergic neuron
+10X52_6:TCCCGATGTCAAGC,pericyte,cholinergic neuron
+10X22_1:CGAGAACTAGACTC,pericyte,cholinergic neuron
+10X57_2:CCAAAGTGGAGAGC,pericyte,cholinergic neuron
+10X22_3:ACAAGAGAGTCAAC,dentate gyrus granule cell,cholinergic neuron
+10X22_3:CATACTACCTTCGC,dentate gyrus granule cell,cholinergic neuron
+10X46_1:CAAACTCTTTCGTT,dentate gyrus granule cell,cholinergic neuron
+10X46_1:GCCACTACTCGCTC,dentate gyrus granule cell,cholinergic neuron
+10X46_1:TAGTAATGCCCAAA,dentate gyrus granule cell,cholinergic neuron
+10X46_1:TCAGCGCTCGGAGA,dentate gyrus granule cell,cholinergic neuron
+10X22_3:GAGGATCTCTTGTT,dentate gyrus granule cell,cholinergic neuron
+10X43_1:AACATTGACAACTG,dentate gyrus granule cell,cholinergic neuron
+10X46_1:GGATGTACAGGAGC,dentate gyrus granule cell,cholinergic neuron
+10X46_1:TGGACTGAGTTACG,dentate gyrus granule cell,cholinergic neuron
+10X22_4:GTGATTCTCTAGTG,dentate gyrus granule cell,cholinergic neuron
+10X43_1:CATCTTGAACAGTC,dentate gyrus granule cell,cholinergic neuron
+10X43_1:GATATCCTGCCTTC,dentate gyrus granule cell,cholinergic neuron
+10X43_1:GGAATGCTCAGTCA,dentate gyrus granule cell,cholinergic neuron
+10X46_1:GCTACAGAGTTGGT,dentate gyrus granule cell,cholinergic neuron
+10X43_1:GCTGATGACCTTAT,dentate gyrus granule cell,cholinergic neuron
+10X22_3:TTCAAGCTTATTCC,dentate gyrus granule cell,cholinergic neuron
+10X22_3:CGTGTAGACGCAAT,dentate gyrus granule cell,cholinergic neuron
+10X04_2:ATCAAATGGTCAAC,dentate gyrus granule cell,cholinergic neuron
+10X46_1:GAGTACACCAAAGA,dentate gyrus granule cell,cholinergic neuron
+10X22_4:TAAGCTCTTGCAAC,dentate gyrus granule cell,cholinergic neuron
+10X51_1:TCGCACACCTAGCA,cerebellar neuron,cholinergic neuron
+10X34_4:CGGCCAGACTGGAT,cerebellar neuron,cholinergic neuron
+10X26_1:TACGTACTCTGACA,cerebellar neuron,cholinergic neuron
+10X26_2:TAGGAGCTTATTCC,cerebellar neuron,cholinergic neuron
+10X26_1:TAAGTCCTTACAGC,cerebellar neuron,cholinergic neuron
+10X51_1:GAACCAACACGCAT,cerebellar neuron,cholinergic neuron
+10X26_1:GACAGTTGGAGGAC,cerebellar neuron,cholinergic neuron
+10X26_2:ATCCCGTGCATGCA,cerebellar neuron,cholinergic neuron
+10X26_1:AAGAAGACCACACA,cerebellar neuron,cholinergic neuron
+10X26_1:ACAAAGGAAAACAG,cerebellar neuron,cholinergic neuron
+10X51_2:TGGTAGACTTCCCG,cerebellar neuron,cholinergic neuron
+10X51_2:GAAGGTCTCCACCT,cerebellar neuron,cholinergic neuron
+10X26_1:GATATAACAGATCC,cerebellar neuron,cholinergic neuron
+10X51_1:CCATGCTGTTCCGC,cerebellar neuron,cholinergic neuron
+10X51_1:TAGTTCACTAGCGT,cerebellar neuron,cholinergic neuron
+10X51_1:GTGAGGGATCCCAC,cerebellar neuron,cholinergic neuron
+10X51_1:ATCCTAACCTAGTG,cerebellar neuron,cholinergic neuron
+10X51_1:GCGCGATGACCTTT,cerebellar neuron,cholinergic neuron
+10X51_1:GCTCGACTCACTTT,cerebellar neuron,cholinergic neuron
+10X51_2:CTGAACGACCGTTC,cerebellar neuron,cholinergic neuron
+10X26_1:TAACAATGCTGTAG,cerebellar neuron,cholinergic neuron
+10X01_1:ACGGGAGAACCCTC,endothelial cell of vascular tree,cholinergic neuron
+10X04_1:ACCTTTGACTCAAG,endothelial cell of vascular tree,cholinergic neuron
+10X57_7:CAGGTATGGCTTCC,endothelial cell of vascular tree,cholinergic neuron
+10X01_1:CTGCCAACGCATAC,endothelial cell of vascular tree,cholinergic neuron
+10X53_5:GGTAGTACGCTTAG,endothelial cell of vascular tree,cholinergic neuron
+10X53_3:AACTGTCTTGGAAA,endothelial cell of vascular tree,cholinergic neuron
+10X53_4:GAAGTAGACTGGTA,endothelial cell of vascular tree,cholinergic neuron
+10X49_4:ATACCGGAGTGCTA,endothelial cell of vascular tree,cholinergic neuron
+10X53_2:CGCACGGAGTCAAC,endothelial cell of vascular tree,cholinergic neuron
+10X43_3:TTCGATTGAACCGT,endothelial cell of vascular tree,cholinergic neuron
+10X53_4:GTGTATCTACGCTA,endothelial cell of vascular tree,cholinergic neuron
+10X57_7:ACTTCTGAGCCCTT,endothelial cell of vascular tree,cholinergic neuron
+10X05_1:GAGAGGTGATGTGC,endothelial cell of vascular tree,cholinergic neuron
+10X53_3:ACCCTCGATATCTC,endothelial cell of vascular tree,cholinergic neuron
+10X04_1:AAACCGTGGGAGGT,endothelial cell of vascular tree,cholinergic neuron
+10X36_2:TCGCCATGAAACGA,endothelial cell of vascular tree,cholinergic neuron
+10X26_3:ACGTTGGATCATTC,endothelial cell of vascular tree,cholinergic neuron
+10X52_1:GCCTAGCTCTTCTA,endothelial cell of vascular tree,cholinergic neuron
+10X53_5:TTCTTACTCGGGAA,endothelial cell of vascular tree,cholinergic neuron
+10X53_5:TCTAACTGGACGTT,endothelial cell of vascular tree,cholinergic neuron
+10X35_3:CGTAACGATACGCA,peptidergic neuron,cholinergic neuron
+10X51_4:ACGTAGACCTCAGA,peptidergic neuron,cholinergic neuron
+10X26_3:TTCAAGCTCTCAAG,peptidergic neuron,cholinergic neuron
+10X26_3:GGTATGACTCCCGT,peptidergic neuron,cholinergic neuron
+10X26_3:ATCACACTTTCTGT,peptidergic neuron,cholinergic neuron
+10X26_3:GGCCAGACAAGAAC,peptidergic neuron,cholinergic neuron
+10X26_4:AAGAATCTTGGATC,peptidergic neuron,cholinergic neuron
+10X26_3:GCGGGACTTTCGGA,peptidergic neuron,cholinergic neuron
+10X50_2:CATTTGTGTACTGG,peptidergic neuron,cholinergic neuron
+10X51_3:CCAGCACTATTCCT,peptidergic neuron,cholinergic neuron
+10X26_3:TTACGACTTTGACG,peptidergic neuron,cholinergic neuron
+10X46_2:TAGGAGCTGTAAGA,peptidergic neuron,cholinergic neuron
+10X26_3:ATGTTAGACCAAGT,peptidergic neuron,cholinergic neuron
+10X50_2:AGCAAAGATCCGAA,peptidergic neuron,cholinergic neuron
+10X26_3:GGATTGTGACGTTG,peptidergic neuron,cholinergic neuron
+10X26_3:GATGCATGTCCAGA,peptidergic neuron,cholinergic neuron
+10X26_4:TGTACTTGACCGAT,peptidergic neuron,cholinergic neuron
+10X51_3:GTGATCGACTAGAC,peptidergic neuron,cholinergic neuron
+10X26_3:CCAGCGGAGCTTCC,peptidergic neuron,cholinergic neuron
+10X50_1:ATAAGTTGACACTG,peptidergic neuron,cholinergic neuron
+10X28_3:GGCAAGGACCTAAG,perivascular macrophage,cholinergic neuron
+10X57_5:ATATACGAGATAAG,perivascular macrophage,cholinergic neuron
+10X22_3:GTGACAACTCTTAC,perivascular macrophage,cholinergic neuron
+10X52_8:ACACCAGATGCAGT,perivascular macrophage,cholinergic neuron
+10X50_4:GGACAGGAGGTTTG,perivascular macrophage,cholinergic neuron
+10X01_1:TAGGGACTACAGTC,perivascular macrophage,cholinergic neuron
+10X54_7:GCTTCTCCTATGTT,perivascular macrophage,cholinergic neuron
+10X33_2:CGGTCACTCCAACA,perivascular macrophage,cholinergic neuron
+10X56_6:GGGTAACTAAGATG,perivascular macrophage,cholinergic neuron
+10X22_1:TCGCAAGATCCAAG,perivascular macrophage,cholinergic neuron
+10X19_2:TAAGATACGCGAGA,perivascular macrophage,cholinergic neuron
+10X22_2:AGTCGCCTATCACG,perivascular macrophage,cholinergic neuron
+10X57_4:CCCACATGGTCTGA,perivascular macrophage,cholinergic neuron
+10X52_1:AGTACGTGCGAGTT,perivascular macrophage,cholinergic neuron
+10X24_1:TCCCTACTGCAGAG,perivascular macrophage,cholinergic neuron
+10X57_1:ACGGTATGCCGATA,perivascular macrophage,cholinergic neuron
+10X49_5:CAGGAACTTCCCGT,perivascular macrophage,cholinergic neuron
+10X24_2:CCGATAGAGGAACG,perivascular macrophage,cholinergic neuron
+10X57_7:GATCGAACTTTCTG,perivascular macrophage,cholinergic neuron
+10X52_7:TTAGTCACCTTGTT,perivascular macrophage,cholinergic neuron
+10X43_2:CTACGCACGTGTCA,peripheral sensory neuron,cholinergic neuron
+10X53_7:AGAATACTCTTGCC,peripheral sensory neuron,cholinergic neuron
+10X43_2:GTCCACTGAAGGCG,peripheral sensory neuron,cholinergic neuron
+10X53_7:ATACCGGAGAACCT,peripheral sensory neuron,cholinergic neuron
+10X53_7:TGCTGAGATTCCGC,peripheral sensory neuron,cholinergic neuron
+10X43_2:TTCGATTGTTCTCA,peripheral sensory neuron,cholinergic neuron
+10X53_7:GACCAAACCCCTTG,peripheral sensory neuron,cholinergic neuron
+10X53_7:GCAATCGATCAGTG,peripheral sensory neuron,cholinergic neuron
+10X53_7:GGAGCCACCCAACA,peripheral sensory neuron,cholinergic neuron
+10X53_7:CTGTAACTGAGACG,peripheral sensory neuron,cholinergic neuron
+10X53_7:AGTGTGACGAATCC,peripheral sensory neuron,cholinergic neuron
+10X53_7:CTATAGCTCTCAAG,peripheral sensory neuron,cholinergic neuron
+10X43_2:GATCTTACTAAGCC,peripheral sensory neuron,cholinergic neuron
+10X43_2:ATGGGTACACGTAC,peripheral sensory neuron,cholinergic neuron
+10X43_2:GGGCCAACTTCAGG,peripheral sensory neuron,cholinergic neuron
+10X43_2:TTAACCACGGTATC,peripheral sensory neuron,cholinergic neuron
+10X43_2:AACGCATGCGATAC,peripheral sensory neuron,cholinergic neuron
+10X53_7:CGGGACTGTTGCAG,peripheral sensory neuron,cholinergic neuron
+10X53_7:ACCGTGCTAAGGCG,peripheral sensory neuron,cholinergic neuron
+10X43_2:TAGGTGTGTCACCC,peripheral sensory neuron,cholinergic neuron
+10X49_4:AACATATGCGTTAG,vascular leptomeningeal cell (Mmus),cholinergic neuron
+10X57_6:CCACGGGAGATGAA,vascular leptomeningeal cell (Mmus),cholinergic neuron
+10X49_4:ATTTCCGAGGGATG,vascular leptomeningeal cell (Mmus),cholinergic neuron
+10X49_4:AACTTGCTCTGTGA,vascular leptomeningeal cell (Mmus),cholinergic neuron
+10X49_5:GATACTCTCATGCA,vascular leptomeningeal cell (Mmus),cholinergic neuron
+10X52_1:AAATCCCTTACTCT,vascular leptomeningeal cell (Mmus),cholinergic neuron
+10X20_3:TGTCAGGAGTCTGA,vascular leptomeningeal cell (Mmus),cholinergic neuron
+10X56_2:TCCTAAACTTCCAT,vascular leptomeningeal cell (Mmus),cholinergic neuron
+10X48_3:CTGTATACGCGGAA,vascular leptomeningeal cell (Mmus),cholinergic neuron
+10X22_3:AGGCAACTTGCCTC,vascular leptomeningeal cell (Mmus),cholinergic neuron
+10X43_1:CTTAAAGATGCCAA,vascular leptomeningeal cell (Mmus),cholinergic neuron
+10X20_3:AAGGTCTGACACGT,vascular leptomeningeal cell (Mmus),cholinergic neuron
+10X52_6:AAGCACTGTGCGTA,vascular leptomeningeal cell (Mmus),cholinergic neuron
+10X33_2:CTTGAGGAGCTGAT,vascular leptomeningeal cell (Mmus),cholinergic neuron
+10X52_2:CTGCAGCTTATTCC,vascular leptomeningeal cell (Mmus),cholinergic neuron
+10X49_5:GAACTGTGATACCG,vascular leptomeningeal cell (Mmus),cholinergic neuron
+10X57_3:GCTACGCTCCTTAT,vascular leptomeningeal cell (Mmus),cholinergic neuron
+10X50_8:GCACACCTAGAGGC,vascular leptomeningeal cell (Mmus),cholinergic neuron
+10X54_8:TGCTTTCGGGAGTA,vascular leptomeningeal cell (Mmus),cholinergic neuron
+10X52_4:TCCCAGACGGTACT,vascular leptomeningeal cell (Mmus),cholinergic neuron
+10X52_2:GATAATACGGAGCA,vascular associated smooth muscle cell,cholinergic neuron
+10X53_2:TTATGAGAAGCCTA,vascular associated smooth muscle cell,cholinergic neuron
+10X48_3:AGATTAACACTACG,vascular associated smooth muscle cell,cholinergic neuron
+10X55_8:AGGGACAAGCCGCT,vascular associated smooth muscle cell,cholinergic neuron
+10X28_5:CCAGTCACCTCTAT,vascular associated smooth muscle cell,cholinergic neuron
+10X52_2:ACCACCTGTGCCCT,vascular associated smooth muscle cell,cholinergic neuron
+10X36_3:CTACTATGTTGCTT,vascular associated smooth muscle cell,cholinergic neuron
+10X52_6:GGTGGAGATGTGGT,vascular associated smooth muscle cell,cholinergic neuron
+10X26_4:CAGAAGCTCCCTCA,vascular associated smooth muscle cell,cholinergic neuron
+10X54_3:TGTTAAGGTGCTAG,vascular associated smooth muscle cell,cholinergic neuron
+10X02_1:CTATGTTGGCATAC,vascular associated smooth muscle cell,cholinergic neuron
+10X48_3:CACTGAGAGGTGGA,vascular associated smooth muscle cell,cholinergic neuron
+10X52_5:TATGTGCTGCGAGA,vascular associated smooth muscle cell,cholinergic neuron
+10X28_3:TACAATGACTTGCC,vascular associated smooth muscle cell,cholinergic neuron
+10X54_8:CAATTTCACAACGT,vascular associated smooth muscle cell,cholinergic neuron
+10X24_2:ATCACTTGTCAGGT,vascular associated smooth muscle cell,cholinergic neuron
+10X57_3:CTTACTGAGCTGAT,vascular associated smooth muscle cell,cholinergic neuron
+10X54_2:CGTTTAGCAGGTCA,vascular associated smooth muscle cell,cholinergic neuron
+10X57_3:ATTCTGACCGAGAG,vascular associated smooth muscle cell,cholinergic neuron
+10X05_3:TAAATCGAGTTAGC,vascular associated smooth muscle cell,cholinergic neuron
+10X49_4:CTTCACCTCCACAA,olfactory ensheathing cell,cholinergic neuron
+10X49_4:CAGGTTGACAGAAA,olfactory ensheathing cell,cholinergic neuron
+10X49_4:CATGAGACGGAAAT,olfactory ensheathing cell,cholinergic neuron
+10X49_5:ATGCACGATTCCAT,olfactory ensheathing cell,cholinergic neuron
+10X49_4:GGAGTTTGAAGCAA,olfactory ensheathing cell,cholinergic neuron
+10X49_5:TTCTTACTGTTGTG,olfactory ensheathing cell,cholinergic neuron
+10X28_4:GTTCATACTGGATC,olfactory ensheathing cell,cholinergic neuron
+10X49_4:TGTGAGTGACAGCT,olfactory ensheathing cell,cholinergic neuron
+10X49_5:TTTATCCTCCTACC,olfactory ensheathing cell,cholinergic neuron
+10X28_5:TGGCAATGTACAGC,olfactory ensheathing cell,cholinergic neuron
+10X49_4:TAGGCATGGCCCTT,olfactory ensheathing cell,cholinergic neuron
+10X49_4:TCAATAGATCGATG,olfactory ensheathing cell,cholinergic neuron
+10X28_5:CATGCCACCTCAAG,olfactory ensheathing cell,cholinergic neuron
+10X49_4:GAATGCTGCCAAGT,olfactory ensheathing cell,cholinergic neuron
+10X28_4:GAGTCAACGAAGGC,olfactory ensheathing cell,cholinergic neuron
+10X49_4:GGGTTAACCGTGAT,olfactory ensheathing cell,cholinergic neuron
+10X49_5:GACAACTGACTGGT,olfactory ensheathing cell,cholinergic neuron
+10X49_5:AAATGTTGGTGTCA,olfactory ensheathing cell,cholinergic neuron
+10X49_5:ATTCTTCTTCAGAC,olfactory ensheathing cell,cholinergic neuron
+10X49_5:AGTCTACTTGGAAA,olfactory ensheathing cell,cholinergic neuron
+10X54_5:TGAAGGTGGTGTAG,ependymal cell,cholinergic neuron
+10X24_3:CCAGACCTGAGCTT,ependymal cell,cholinergic neuron
+10X57_5:TTCCTAGAGCCAAT,ependymal cell,cholinergic neuron
+10X53_5:AGATCGTGAAGGTA,ependymal cell,cholinergic neuron
+10X53_1:TATGCGGAGGAAGC,ependymal cell,cholinergic neuron
+10X55_5:CTCAGGTATTCTCT,ependymal cell,cholinergic neuron
+10X26_3:CGACGTCTACTTTC,ependymal cell,cholinergic neuron
+10X43_3:CCATGCTGCTGAGT,ependymal cell,cholinergic neuron
+10X57_5:TATCCTGATCGACA,ependymal cell,cholinergic neuron
+10X52_2:TATTGCTGGGAAGC,ependymal cell,cholinergic neuron
+10X53_6:ACCAACGAAAACAG,ependymal cell,cholinergic neuron
+10X53_5:TACTGGGATGGAGG,ependymal cell,cholinergic neuron
+10X55_5:CGACTAGTGGACGT,ependymal cell,cholinergic neuron
+10X53_6:AATGCGTGGTTTGG,ependymal cell,cholinergic neuron
+10X24_4:GGAGTTTGGAGCAG,ependymal cell,cholinergic neuron
+10X53_6:TAAGCTCTCCAACA,ependymal cell,cholinergic neuron
+10X48_3:TGATATGAAGATGA,ependymal cell,cholinergic neuron
+10X53_4:AGAAACGACTCGAA,ependymal cell,cholinergic neuron
+10X24_3:TAGCGATGCCATGA,ependymal cell,cholinergic neuron
+10X53_3:CAATGGACGCTGTA,ependymal cell,cholinergic neuron
+10X28_5:GAGATAGAATTGGC,radial glial cell,cholinergic neuron
+10X04_4:CTACCTCTCTAGTG,radial glial cell,cholinergic neuron
+10X34_2:GTGGAGGAGTTGGT,radial glial cell,cholinergic neuron
+10X24_2:CTCAATTGGTCTGA,radial glial cell,cholinergic neuron
+10X05_4:AATCCTACCAAAGA,radial glial cell,cholinergic neuron
+10X26_4:TCTTCAGACCGATA,radial glial cell,cholinergic neuron
+10X28_3:CCGGTACTGTTGTG,radial glial cell,cholinergic neuron
+10X46_1:AGATCGTGCAGAAA,radial glial cell,cholinergic neuron
+10X05_4:ACAATTGATTGACG,radial glial cell,cholinergic neuron
+10X04_2:CTAGGATGTTGAGC,radial glial cell,cholinergic neuron
+10X49_5:CATGGCCTTCGCTC,radial glial cell,cholinergic neuron
+10X04_4:GGGAAGTGACCAAC,radial glial cell,cholinergic neuron
+10X24_1:GGATGTTGGAGCAG,radial glial cell,cholinergic neuron
+10X04_1:GGCGACACGCTTAG,radial glial cell,cholinergic neuron
+10X06_2:GGGTTATGTCTACT,radial glial cell,cholinergic neuron
+10X28_4:ATCTACTGTTTGGG,radial glial cell,cholinergic neuron
+10X24_2:CGCAGGACAGATCC,radial glial cell,cholinergic neuron
+10X26_3:CAGGTTGAACACGT,radial glial cell,cholinergic neuron
+10X49_5:AGTAGGCTAGTCGT,radial glial cell,cholinergic neuron
+10X24_1:AGTTAAACACCACA,radial glial cell,cholinergic neuron
+10X55_6:TATTCGTAGTGAAT,cholinergic neuron,cholinergic neuron
+10X26_4:TGTAATGACTATGG,cholinergic neuron,cholinergic neuron
+10X54_7:TGCTACAAGGCTCC,cholinergic neuron,cholinergic neuron
+10X55_3:AGCCTCATCGATTG,cholinergic neuron,cholinergic neuron
+10X55_4:GCAGTAGAGCCTAG,cholinergic neuron,cholinergic neuron
+10X56_2:AACTCTTGACACTG,cholinergic neuron,cholinergic neuron
+10X52_5:TGGAACACGTATGC,cholinergic neuron,cholinergic neuron
+10X55_3:TGAACTCAAACAAG,cholinergic neuron,cholinergic neuron
+10X52_6:TCATTCGATTCATC,cholinergic neuron,cholinergic neuron
+10X52_8:ACATTCTGTTGCAG,cholinergic neuron,cholinergic neuron
+10X55_5:AGCCGAGAATGTTG,cholinergic neuron,cholinergic neuron
+10X34_4:GGAATCTGTTAGGC,cholinergic neuron,cholinergic neuron
+10X51_3:ATGGTGACGTTCTT,cholinergic neuron,cholinergic neuron
+10X55_6:GCGATCATGCTAGT,cholinergic neuron,cholinergic neuron
+10X54_5:TTACTGTCAGAATA,cholinergic neuron,cholinergic neuron
+10X34_3:AGCGCCGATCAGAC,cholinergic neuron,cholinergic neuron
+10X11_1:ACTCTCCTCGTAGT,cholinergic neuron,cholinergic neuron
+10X56_6:GAGTCTGACAGAGG,cholinergic neuron,cholinergic neuron
+10X52_7:GAGTGACTTCACGA,cholinergic neuron,cholinergic neuron
+10X34_3:TCAAGTCTCATACG,cholinergic neuron,cholinergic neuron
+10X54_5:TGAACCAACTTGAC,cranial visceromotor neuron,cholinergic neuron
+10X54_4:TTCAGAGCCCAACC,cranial visceromotor neuron,cholinergic neuron
+10X54_1:AAGACAGCGCCTCA,cranial visceromotor neuron,cholinergic neuron
+10X54_8:CCAGGCATTGAGCT,cranial visceromotor neuron,cholinergic neuron
+10X55_3:AATGTAGTACGCCC,cranial visceromotor neuron,cholinergic neuron
+10X54_8:ACACCTCACAGGCC,cranial visceromotor neuron,cholinergic neuron
+10X55_7:CACCTAGAGGGATA,cranial visceromotor neuron,cholinergic neuron
+10X54_6:ACTTCCATGAGCGA,cranial visceromotor neuron,cholinergic neuron
+10X54_4:GTTAGTCGATAGAA,cranial visceromotor neuron,cholinergic neuron
+10X54_5:TTCGGCATATACCG,cranial visceromotor neuron,cholinergic neuron
+10X55_5:GGCATGTCGTTGTA,cranial visceromotor neuron,cholinergic neuron
+10X54_7:GAACGAGCAGACTG,cranial visceromotor neuron,cholinergic neuron
+10X54_8:CTCCTTCCGAGCCA,cranial visceromotor neuron,cholinergic neuron
+10X54_5:ATGTAAGAGATGAG,cranial visceromotor neuron,cholinergic neuron
+10X48_2:ATCGGAACCTGTAG,cranial visceromotor neuron,cholinergic neuron
+10X55_1:ATGCCTCCTGCAGG,cranial visceromotor neuron,cholinergic neuron
+10X55_4:GTAGAGTCTAGGTT,cranial visceromotor neuron,cholinergic neuron
+10X54_4:TCAAGTCAACGCTA,cranial visceromotor neuron,cholinergic neuron
+10X33_3:GCCTCATGCGAGTT,cranial visceromotor neuron,cholinergic neuron
+10X54_7:ACCGGGTCTTTCAT,cranial visceromotor neuron,cholinergic neuron
+10X52_1:TTATGGCTCCGATA,oligodendrocyte precursor cell,cholinergic neuron
+10X22_3:ATCTTGACTGACAC,oligodendrocyte precursor cell,cholinergic neuron
+10X50_7:GGGACCACAACCGT,oligodendrocyte precursor cell,cholinergic neuron
+10X26_4:TCACTATGTGGTAC,oligodendrocyte precursor cell,cholinergic neuron
+10X43_1:TAATGTGACCTACC,oligodendrocyte precursor cell,cholinergic neuron
+10X49_5:GAGGTTTGTCGCAA,oligodendrocyte precursor cell,cholinergic neuron
+10X53_4:CTGATGGAAGTGCT,oligodendrocyte precursor cell,cholinergic neuron
+10X02_1:AGGTGGGACCTGTC,oligodendrocyte precursor cell,cholinergic neuron
+10X01_1:GCATGTGAAAGTGA,oligodendrocyte precursor cell,cholinergic neuron
+10X46_1:AGTATCCTCTTCGC,oligodendrocyte precursor cell,cholinergic neuron
+10X22_4:GCCCAACTCCTCAC,oligodendrocyte precursor cell,cholinergic neuron
+10X01_1:AGGGCCACAGGAGC,oligodendrocyte precursor cell,cholinergic neuron
+10X52_1:TCAAGGTGAAAGCA,oligodendrocyte precursor cell,cholinergic neuron
+10X28_5:TGCTTAACTACTTC,oligodendrocyte precursor cell,cholinergic neuron
+10X52_1:CAAACTCTAAAGCA,oligodendrocyte precursor cell,cholinergic neuron
+10X50_2:AACCAGTGTCTATC,oligodendrocyte precursor cell,cholinergic neuron
+10X24_3:GATAATACTTCCAT,oligodendrocyte precursor cell,cholinergic neuron
+10X26_4:GCACGTCTATGTGC,oligodendrocyte precursor cell,cholinergic neuron
+10X01_1:ACGGTAACCCAAGT,oligodendrocyte precursor cell,cholinergic neuron
+10X24_4:ACTCTCCTCATACG,oligodendrocyte precursor cell,cholinergic neuron
+10X75_1:AATGAGGACGAGTT,sympathetic noradrenergic neuron,cholinergic neuron
+10X75_1:TAGCGATGACAGTC,sympathetic noradrenergic neuron,cholinergic neuron
+10X75_1:XXTTAACTATCACG,sympathetic noradrenergic neuron,cholinergic neuron
+10X75_1:GGACATTGTCCGAA,sympathetic noradrenergic neuron,cholinergic neuron
+10X75_1:CAACCAGACACAAC,sympathetic noradrenergic neuron,cholinergic neuron
+10X75_1:ATCTGGGAAAAACG,sympathetic noradrenergic neuron,cholinergic neuron
+10X75_1:CGCTAAGAGGAGCA,sympathetic noradrenergic neuron,cholinergic neuron
+10X75_1:TTGCATTGGAAACA,sympathetic noradrenergic neuron,cholinergic neuron
+10X75_1:GGCCAGACCTTGTT,sympathetic noradrenergic neuron,cholinergic neuron
+10X75_1:CAAGGTTGGCCCTT,sympathetic noradrenergic neuron,cholinergic neuron
+10X75_1:ATCGACGAGGCAAG,sympathetic noradrenergic neuron,cholinergic neuron
+10X75_1:XXATCTACTGTAGC,sympathetic noradrenergic neuron,cholinergic neuron
+10X75_1:CTATAAGAGCGGAA,sympathetic noradrenergic neuron,cholinergic neuron
+10X75_1:ACACCCTGAGAGAT,sympathetic noradrenergic neuron,cholinergic neuron
+10X75_1:CGAGGAGACGAATC,sympathetic noradrenergic neuron,cholinergic neuron
+10X75_1:ATTCTTCTGGCAAG,sympathetic noradrenergic neuron,cholinergic neuron
+10X75_1:AAAGCAGAAGCGTT,sympathetic noradrenergic neuron,cholinergic neuron
+10X75_1:AAGGTCTGTGGTAC,sympathetic noradrenergic neuron,cholinergic neuron
+10X75_1:GACAGGGAGCTTAG,sympathetic noradrenergic neuron,cholinergic neuron
+10X75_1:GAACACACGAGCTT,sympathetic noradrenergic neuron,cholinergic neuron
+10X53_7:TCCCAGACTTACTC,Satellite glia,cholinergic neuron
+10X43_2:TAAGAGGAGCTGTA,Satellite glia,cholinergic neuron
+10X43_2:ATGCAGTGACCTTT,Satellite glia,cholinergic neuron
+10X43_2:GGCGCATGTCTCTA,Satellite glia,cholinergic neuron
+10X43_2:GATCGATGACGGTT,Satellite glia,cholinergic neuron
+10X43_2:GCACCTTGCCTAAG,Satellite glia,cholinergic neuron
+10X43_2:TTCAACACGCAGTT,Satellite glia,cholinergic neuron
+10X43_2:ACGCAATGGCTGTA,Satellite glia,cholinergic neuron
+10X43_2:ATAGCCGACTCAGA,Satellite glia,cholinergic neuron
+10X43_2:ATCCGCACAGAGTA,Satellite glia,cholinergic neuron
+10X53_7:ATGCGATGGCTGAT,Satellite glia,cholinergic neuron
+10X43_2:CTAGTTTGTCAGAC,Satellite glia,cholinergic neuron
+10X53_7:CTGGAAACCTCGCT,Satellite glia,cholinergic neuron
+10X43_2:ACTGTTACATCGTG,Satellite glia,cholinergic neuron
+10X53_7:CGACCACTCCCGTT,Satellite glia,cholinergic neuron
+10X43_2:TCAACACTCCTTTA,Satellite glia,cholinergic neuron
+10X43_2:TAGTCTTGCCTAAG,Satellite glia,cholinergic neuron
+10X43_2:GGCGACTGTCTACT,Satellite glia,cholinergic neuron
+10X43_2:CACGGGACTGCAAC,Satellite glia,cholinergic neuron
+10X53_7:CGACCGGACATCAG,Satellite glia,cholinergic neuron
+10X11_1:TTACTCGAAGTACC,choroid plexus epithelial cell,cholinergic neuron
+10X54_6:AGCTACATCGGGTC,choroid plexus epithelial cell,cholinergic neuron
+10X54_3:AGCCAGTAAGCACG,choroid plexus epithelial cell,cholinergic neuron
+10X55_3:ACCCAGTATATGAG,choroid plexus epithelial cell,cholinergic neuron
+10X54_3:GCCACTCTGCGACG,choroid plexus epithelial cell,cholinergic neuron
+10X55_8:GTTCCCACAACGTT,choroid plexus epithelial cell,cholinergic neuron
+10X48_1:ATAGCCGAGGGACA,choroid plexus epithelial cell,cholinergic neuron
+10X54_4:ACTTCGTGAGCGAT,choroid plexus epithelial cell,cholinergic neuron
+10X49_1:ACAAAGGATTACTC,choroid plexus epithelial cell,cholinergic neuron
+10X54_4:ACCAAGTCATACTG,choroid plexus epithelial cell,cholinergic neuron
+10X54_2:TCGATTCCCTCAGT,choroid plexus epithelial cell,cholinergic neuron
+10X48_4:GCAGTCCTTTGCAG,choroid plexus epithelial cell,cholinergic neuron
+10X57_6:TTGGGAACGCTTAG,choroid plexus epithelial cell,cholinergic neuron
+10X57_6:AATCCTACTTAGGC,choroid plexus epithelial cell,cholinergic neuron
+10X54_4:CTCCTTCAGATAAG,choroid plexus epithelial cell,cholinergic neuron
+10X49_3:AGTTTGCTCACCAA,choroid plexus epithelial cell,cholinergic neuron
+10X33_2:GGACCCGAAGTCTG,choroid plexus epithelial cell,cholinergic neuron
+10X54_2:GTAGAAGGTGATAT,choroid plexus epithelial cell,cholinergic neuron
+10X48_1:TGATTCACTTCTAC,choroid plexus epithelial cell,cholinergic neuron
+10X87_4:ATAGAACTTTGTGG,choroid plexus epithelial cell,cholinergic neuron
+10X20_3:ATGCAGTGAAAAGC,hypendymal cell,cholinergic neuron
+10X57_1:GATCCGCTTTGCTT,hypendymal cell,cholinergic neuron
+10X20_3:ATGCGATGCCTCAC,hypendymal cell,cholinergic neuron
+10X57_1:ACGACCCTTCGTAG,hypendymal cell,cholinergic neuron
+10X20_4:CTCAGGCTAAGAGT,hypendymal cell,cholinergic neuron
+10X52_1:ATCCGCACTCGATG,hypendymal cell,cholinergic neuron
+10X52_2:AGAGTGCTCATTGG,hypendymal cell,cholinergic neuron
+10X52_3:TCGCACACTTCGCC,hypendymal cell,cholinergic neuron
+10X52_4:TTTGACTGTGCTGA,hypendymal cell,cholinergic neuron
+10X57_3:GGAATGCTTATCTC,hypendymal cell,cholinergic neuron
+10X52_1:TAGTAATGGTACCA,hypendymal cell,cholinergic neuron
+10X57_3:CTGATACTTACTCT,hypendymal cell,cholinergic neuron
+10X20_3:GGGCAAGACTCTTA,hypendymal cell,cholinergic neuron
+10X20_3:CTGTAACTGAGGTG,hypendymal cell,cholinergic neuron
+10X20_4:GCAAGACTAAGCAA,hypendymal cell,cholinergic neuron
+10X20_4:CTAGGCCTCTACTT,hypendymal cell,cholinergic neuron
+10X20_3:TTCTTACTTTATCC,hypendymal cell,cholinergic neuron
+10X20_3:CTCAGAGAGGATCT,hypendymal cell,cholinergic neuron
+10X57_2:ACGCCACTGTTACG,hypendymal cell,cholinergic neuron
+10X20_3:GTTGACGATAGTCG,hypendymal cell,cholinergic neuron
+10X75_1:CTTCTAGACGTGAT,sympathetic cholinergic neuron,cholinergic neuron
+10X75_1:TAGAGAGAAATGCC,sympathetic cholinergic neuron,cholinergic neuron
+10X75_1:AACAGAGAGTTTCT,sympathetic cholinergic neuron,cholinergic neuron
+10X75_1:CCCTACGAGGGATG,sympathetic cholinergic neuron,cholinergic neuron
+10X75_1:GGGTTAACTTCTCA,sympathetic cholinergic neuron,cholinergic neuron
+10X75_1:AGATATTGAAGGTA,sympathetic cholinergic neuron,cholinergic neuron
+10X75_1:AGGAATGACGCTAA,sympathetic cholinergic neuron,cholinergic neuron
+10X75_1:TGCAAGACAGAGAT,sympathetic cholinergic neuron,cholinergic neuron
+10X75_1:TACACACTCGTAAC,sympathetic cholinergic neuron,cholinergic neuron
+10X75_1:AGCGTAACGTGTCA,sympathetic cholinergic neuron,cholinergic neuron
+10X75_1:GGAGCAGACCAGTA,sympathetic cholinergic neuron,cholinergic neuron
+10X75_1:CAGTTGGAGTACGT,sympathetic cholinergic neuron,cholinergic neuron
+10X75_1:TTCATGACTGGAGG,sympathetic cholinergic neuron,cholinergic neuron
+10X75_1:AGCCAATGTCGTAG,sympathetic cholinergic neuron,cholinergic neuron
+10X75_1:ATGTTAGAAGAGTA,sympathetic cholinergic neuron,cholinergic neuron
+10X75_1:ATTCTTCTCAGTTG,sympathetic cholinergic neuron,cholinergic neuron
+10X75_1:CTGACAGACCTTCG,sympathetic cholinergic neuron,cholinergic neuron
+10X75_1:ATCGCGCTCACTTT,sympathetic cholinergic neuron,cholinergic neuron
+10X75_1:AAGTGGCTGCTGAT,sympathetic cholinergic neuron,cholinergic neuron
+10X75_1:GGTGATACGAGCTT,sympathetic cholinergic neuron,cholinergic neuron
+10X43_2:ATGAGCACTCATTC,Schwann cell,cholinergic neuron
+10X43_2:AGACCTGAGTCCTC,Schwann cell,cholinergic neuron
+10X53_7:ACAGTTCTCTTGGA,Schwann cell,cholinergic neuron
+10X53_7:AGCGGCACAACAGA,Schwann cell,cholinergic neuron
+10X43_2:TCATCAACCGTTAG,Schwann cell,cholinergic neuron
+10X43_2:ACTGAGACAACTGC,Schwann cell,cholinergic neuron
+10X43_2:ATGGTGACCATGGT,Schwann cell,cholinergic neuron
+10X53_7:TATAAGTGGTCGAT,Schwann cell,cholinergic neuron
+10X43_2:CACGGGACTTCTAC,Schwann cell,cholinergic neuron
+10X43_2:TGTATCTGAGTCTG,Schwann cell,cholinergic neuron
+10X43_2:ATCATCTGAACGGG,Schwann cell,cholinergic neuron
+10X43_2:GTTCAGGATGTTTC,Schwann cell,cholinergic neuron
+10X43_2:CTTAGGGAAATGCC,Schwann cell,cholinergic neuron
+10X43_2:TCAGGATGAACGGG,Schwann cell,cholinergic neuron
+10X43_2:TTTCGAACTCTCTA,Schwann cell,cholinergic neuron
+10X43_2:TGATTCTGGTCATG,Schwann cell,cholinergic neuron
+10X43_2:ACAGTGACGACTAC,Schwann cell,cholinergic neuron
+10X43_2:CTAGATCTAGAACA,Schwann cell,cholinergic neuron
+10X53_7:GATAGAGATGGATC,Schwann cell,cholinergic neuron
+10X43_2:GAAGCTTGTTGTGG,Schwann cell,cholinergic neuron
+10X82_2:CATGGAGTCTCAAC,enteric neuron,cholinergic neuron
+10X81_1:CACACAGGGTGTTG,enteric neuron,cholinergic neuron
+10X82_2:TCGATGTCAGAGGT,enteric neuron,cholinergic neuron
+10X81_3:TCCTAGTCTTGTCC,enteric neuron,cholinergic neuron
+10X81_2:GGTGACAAGGACAC,enteric neuron,cholinergic neuron
+10X82_2:CTGCTTCGACAGCC,enteric neuron,cholinergic neuron
+10X82_2:AAACTCAAACCTAC,enteric neuron,cholinergic neuron
+10X82_2:ACATCTCTTGTATC,enteric neuron,cholinergic neuron
+10X81_1:CATAGAGGCTCATT,enteric neuron,cholinergic neuron
+10X82_2:ATGTCTCCTCAACC,enteric neuron,cholinergic neuron
+10X81_3:ACTAGCACGAAAGC,enteric neuron,cholinergic neuron
+10X81_3:TTGGTTCTACTCAT,enteric neuron,cholinergic neuron
+10X82_2:GCATAAGACCCACC,enteric neuron,cholinergic neuron
+10X81_3:GAGAGTCCACGAAT,enteric neuron,cholinergic neuron
+10X82_2:ACATTCACGGCGTT,enteric neuron,cholinergic neuron
+10X82_2:ATTGAAGTGTGAAT,enteric neuron,cholinergic neuron
+10X82_2:CCACTAGAGGGCTT,enteric neuron,cholinergic neuron
+10X81_3:GGCAGGTTATGTGC,enteric neuron,cholinergic neuron
+10X81_1:ACAGATCAATACCG,enteric neuron,cholinergic neuron
+10X81_1:ATGTATCTTGTACT,enteric neuron,cholinergic neuron

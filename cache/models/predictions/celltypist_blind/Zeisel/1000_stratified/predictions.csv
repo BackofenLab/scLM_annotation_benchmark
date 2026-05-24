@@ -1,0 +1,1000 @@
+cell_id,true_labels,predicted_labels
+10X57_2:ACAAATTGTTGTCT,oligodendrocyte,Oligo
+10X52_5:CTGAGAACTTTCTG,oligodendrocyte,Oligo
+10X53_2:TTTGACTGCCCACT,oligodendrocyte,Oligo
+10X35_2:TATCTCGATTCTGT,oligodendrocyte,Oligo
+10X55_4:CTCCTAGATATGCA,oligodendrocyte,Oligo
+10X55_5:CCTTGGTCCAGTAT,oligodendrocyte,Oligo
+10X55_5:GTCAAAGACAAGCC,oligodendrocyte,Oligo
+10X50_7:GCCGAGTGGGTTCA,oligodendrocyte,Oligo
+10X43_1:CATCGCTGGTCAAC,oligodendrocyte,Oligo
+10X52_1:GGGTTATGCTTAGG,oligodendrocyte,Oligo
+10X50_8:ACGTCAGAGACGAG,oligodendrocyte,Oligo
+10X24_1:TCCCGAACTCCCAC,oligodendrocyte,Oligo
+10X51_3:CTGACCACAGTACC,oligodendrocyte,Oligo
+10X34_4:GACAGGGAACTGTG,oligodendrocyte,Oligo
+10X53_6:GCGAGAGATCGTTT,oligodendrocyte,Oligo
+10X57_2:TCCTATGATGCATG,oligodendrocyte,Oligo
+10X55_2:CAATCGTGACCAAG,oligodendrocyte,Oligo
+10X53_5:TCCCACGACACTTT,oligodendrocyte,Oligo
+10X53_3:AGCGATTGTTCCAT,oligodendrocyte,Oligo
+10X50_2:GCACCTACCTCCCA,oligodendrocyte,Oligo
+10X55_2:CGTGTGTCTGATCA,oligodendrocyte,Oligo
+10X54_1:TGAGGTCTCTGTCG,oligodendrocyte,Oligo
+10X26_3:GCATGTGAGCGATT,oligodendrocyte,Oligo
+10X57_4:GCCTACACTTAGGC,oligodendrocyte,Oligo
+10X53_3:GTAGTGACATTCGG,oligodendrocyte,Oligo
+10X04_1:TCGTAGGATGTTCT,oligodendrocyte,Oligo
+10X57_4:AACCTACTAGGTTC,oligodendrocyte,Oligo
+10X49_1:ATACCGGAGAGCTT,oligodendrocyte,Oligo
+10X57_2:TTACAGCTTCTTCA,oligodendrocyte,Oligo
+10X57_6:GCTACGCTGTTGTG,oligodendrocyte,Oligo
+10X52_7:TTCAGTACGATAAG,oligodendrocyte,Oligo
+10X55_8:CTTCAAGAACAACT,oligodendrocyte,Oligo
+10X55_7:GCTAAGTACCATCA,oligodendrocyte,Oligo
+10X55_2:TGAGAGTTGGAGGT,oligodendrocyte,Oligo
+10X57_3:TAGTGGTGGCCCTT,oligodendrocyte,Oligo
+10X24_2:AAGGTCACACTACG,oligodendrocyte,Oligo
+10X56_3:GTATTAGATCTACT,oligodendrocyte,Oligo
+10X22_4:CCAATGGAACTGTG,oligodendrocyte,Oligo
+10X22_4:CAATTCTGGGTCAT,oligodendrocyte,Oligo
+10X50_3:TCAGGATGGGTTCA,oligodendrocyte,Oligo
+10X57_7:GCCATCACTCGTGA,oligodendrocyte,Oligo
+10X24_3:GCGGAGCTTTCTAC,oligodendrocyte,Oligo
+10X53_5:GTGGTAACCGAATC,oligodendrocyte,Oligo
+10X54_7:GGGATAGTGAACGC,oligodendrocyte,Oligo
+10X55_1:GCGGAGTTGTTTGG,oligodendrocyte,Oligo
+10X55_7:CTCTAGTCCTGCTT,oligodendrocyte,Oligo
+10X55_3:GTAGAAGTACGTTC,oligodendrocyte,Oligo
+10X55_1:TTCGCGTCTAGCGC,oligodendrocyte,Oligo
+10X50_5:CCAGGTCTGTAGCT,oligodendrocyte,Oligo
+10X55_2:ACCTGAGCTCAACT,oligodendrocyte,Oligo
+10X52_5:AAGCCATGTCCGTC,oligodendrocyte,Oligo
+10X50_5:TATCTCGATTGGCA,oligodendrocyte,Oligo
+10X54_1:ACGGATCAGGCAAG,oligodendrocyte,Oligo
+10X50_2:ATGCCAGATCAAGC,oligodendrocyte,Oligo
+10X54_7:CGTGTCAGACAAAT,oligodendrocyte,Oligo
+10X55_3:GTAACTCCTATGTT,oligodendrocyte,Oligo
+10X55_1:CTCGCTCTTGACGA,oligodendrocyte,Oligo
+10X53_3:AGGAACCTTACTGG,oligodendrocyte,Oligo
+10X55_7:CTAACGTCTGCCAG,oligodendrocyte,Oligo
+10X52_1:AGAATACTCGAGAG,oligodendrocyte,Oligo
+10X53_2:TGCACAGAGTTTCT,oligodendrocyte,Oligo
+10X52_3:GAGGTACTATCGTG,oligodendrocyte,Oligo
+10X54_3:TATCTAGAACAACT,oligodendrocyte,Oligo
+10X52_5:ATCAGGTGGTTCAG,oligodendrocyte,Oligo
+10X26_3:CGGACCGATCGATG,oligodendrocyte,Oligo
+10X54_1:GCGCAAGATCGGGT,oligodendrocyte,Oligo
+10X53_4:AGGGCCACACCTAG,oligodendrocyte,Oligo
+10X35_2:CGGACTCTCCACAA,oligodendrocyte,Oligo
+10X22_2:CCATAGGAGGTGAG,oligodendrocyte,Oligo
+10X57_5:TTCAGTTGCCATAG,oligodendrocyte,Oligo
+10X20_3:ATACCTTGGTACGT,oligodendrocyte,Oligo
+10X20_4:AGGTCATGCTATTC,oligodendrocyte,Oligo
+10X57_5:GTTACTACGTACGT,oligodendrocyte,Oligo
+10X50_2:ATGCACGAGTTGTG,oligodendrocyte,Oligo
+10X54_8:GTCATGTGGTGTAG,oligodendrocyte,Oligo
+10X52_2:CCAGCTACCCAAGT,oligodendrocyte,Oligo
+10X57_5:CGAGTATGGGTACT,oligodendrocyte,Oligo
+10X20_4:CACTCCGACGAGAG,oligodendrocyte,Oligo
+10X57_3:ACTCAGGAACGGTT,oligodendrocyte,Oligo
+10X50_8:TGTATGCTCATTCT,oligodendrocyte,Oligo
+10X52_6:GTGAGGGACTTGCC,oligodendrocyte,Oligo
+10X55_5:CTCAAGTTGACGTT,oligodendrocyte,Oligo
+10X34_3:TCCATAACTAGAGA,oligodendrocyte,Oligo
+10X55_1:GACCAAGGTACTCT,oligodendrocyte,Oligo
+10X24_3:ATAATGACGACTAC,oligodendrocyte,Oligo
+10X43_3:ATAAGTACGTTCGA,oligodendrocyte,Oligo
+10X54_1:TCTCTAGAAGAAGC,oligodendrocyte,Oligo
+10X50_5:TCTAACACCCTCAC,oligodendrocyte,Oligo
+10X33_4:CAGACATGCCAAGT,oligodendrocyte,Oligo
+10X55_1:GAGCTGTCGAACAG,oligodendrocyte,Oligo
+10X52_1:GCGGAGCTGAGCTT,oligodendrocyte,Oligo
+10X54_1:AGCAATCTCCGGTT,oligodendrocyte,Oligo
+10X26_3:TGTAGGTGTGTTCT,oligodendrocyte,Oligo
+10X57_6:AAATGGGAGCAGAG,oligodendrocyte,Oligo
+10X55_4:GGCGTCACGCATCG,oligodendrocyte,Oligo
+10X55_6:TGAGGGTCTAGAGG,oligodendrocyte,Oligo
+10X55_4:TGAAGCAACACCCG,oligodendrocyte,Oligo
+10X54_8:ACCTACAGCTCGCA,oligodendrocyte,Oligo
+10X54_1:CGGTAAGATAGTCA,oligodendrocyte,Oligo
+10X57_7:TTATGGCTCACTTT,oligodendrocyte,Oligo
+10X55_7:ACGGAAGCCATCGC,oligodendrocyte,Oligo
+10X57_3:CTCAGAGACAGCTA,oligodendrocyte,Oligo
+10X52_3:AGAGTCTGTTCATC,oligodendrocyte,Oligo
+10X57_3:TCGTAGGACGTTGA,oligodendrocyte,Oligo
+10X53_3:CAAGTTCTAAGATG,oligodendrocyte,Oligo
+10X43_3:GAACCTGAGACAAA,oligodendrocyte,Oligo
+10X24_4:TCCGAAGAGGGTGA,oligodendrocyte,Oligo
+10X57_3:TAATCGCTATGTCG,oligodendrocyte,Oligo
+10X01_1:CAAGAAGAGCTATG,oligodendrocyte,Oligo
+10X57_7:AAGAACGACCTATT,oligodendrocyte,Oligo
+10X55_8:CGTGTCAAGACGTG,oligodendrocyte,Oligo
+10X55_6:GTACTGTGCTTCTC,oligodendrocyte,Oligo
+10X54_1:TGATGTCAAGATCC,oligodendrocyte,Oligo
+10X54_3:AGCGTTCGAGCCCA,oligodendrocyte,Oligo
+10X57_3:CGAGTATGTTAGGC,oligodendrocyte,Oligo
+10X05_2:GACTACGATCAGGT,oligodendrocyte,Oligo
+10X53_6:ATTATGGACATGGT,oligodendrocyte,Oligo
+10X01_1:CAGCGGACTAGACC,oligodendrocyte,Oligo
+10X54_4:TCCAGTCGCCATAA,oligodendrocyte,Oligo
+10X52_2:AATCGGTGCTCCCA,oligodendrocyte,Oligo
+10X54_5:TCAGAGTTACTGAC,oligodendrocyte,Oligo
+10X54_4:CGGTCCACTACAGT,oligodendrocyte,Oligo
+10X57_6:TTCAAAGACAAAGA,oligodendrocyte,Oligo
+10X53_4:TGTATCTGGCCCTT,oligodendrocyte,Oligo
+10X53_6:AATCCGGAGAGACG,oligodendrocyte,Oligo
+10X55_8:TGGTGCACCGAAAG,oligodendrocyte,Oligo
+10X57_3:TAAGTCCTCTCCCA,oligodendrocyte,Oligo
+10X53_6:ACGGTCCTATTCGG,oligodendrocyte,Oligo
+10X50_4:AAACCGTGTCCCAC,oligodendrocyte,Oligo
+10X26_3:CCATAGGAGCGGAA,oligodendrocyte,Oligo
+10X54_5:CATACAGTGGGCTA,oligodendrocyte,Oligo
+10X54_2:AATAGCAGTCTTCC,oligodendrocyte,Oligo
+10X28_3:AAGCCATGGTAAAG,oligodendrocyte,Oligo
+10X55_2:CCACTGTCTCCCTA,oligodendrocyte,Oligo
+10X52_2:GGCTAAACTCTAGG,oligodendrocyte,Oligo
+10X53_4:TGAGTCGATTTCGT,oligodendrocyte,Oligo
+10X57_2:GGAATCTGCTTGCC,oligodendrocyte,Oligo
+10X22_1:CACTAGGAATTTCC,oligodendrocyte,Oligo
+10X55_7:TCAGTTCTTCATGT,oligodendrocyte,Oligo
+10X28_2:TCTCAAACAAGTGA,oligodendrocyte,Oligo
+10X24_4:CTACTATGCTAGAC,oligodendrocyte,Oligo
+10X55_5:TCAGGTCTTGGGTA,oligodendrocyte,Oligo
+10X24_4:AAGAACGATGACAC,oligodendrocyte,Oligo
+10X53_3:ACACGAACGTTAGC,oligodendrocyte,Oligo
+10X55_4:GCCAATCACCTTAT,oligodendrocyte,Oligo
+10X50_7:CTATAAGACCAAGT,oligodendrocyte,Oligo
+10X20_1:AACGCCCTGTACCA,glutamatergic neuron,L5 IT CTX
+10X22_2:TCGGACCTGCATCA,glutamatergic neuron,L2/3 IT ENTl
+10X22_2:CGTTTAACCCTGTC,glutamatergic neuron,L6 CT CTX
+10X53_6:CTGGCACTAATCGC,glutamatergic neuron,Vip
+10X50_8:CGCGAGACCTCTAT,glutamatergic neuron,L5/6 NP CTX
+10X57_3:AGTCTTACCTCATT,glutamatergic neuron,Micro-PVM
+10X20_2:GATATCCTCAGATC,glutamatergic neuron,L5/6 IT TPE-ENT
+10X53_3:AAGTCCGAGCTATG,glutamatergic neuron,Vip
+10X34_3:TGGCACCTTTCATC,glutamatergic neuron,Pvalb
+10X02_1:ACGGAGGACAAAGA,glutamatergic neuron,L4/5 IT CTX
+10X57_2:AGCAAGCTTTGACG,glutamatergic neuron,L5/6 NP CTX
+10X22_2:ACGCTCACTCAAGC,glutamatergic neuron,L4/5 IT CTX
+10X19_2:AAGGCTTGCCATAG,glutamatergic neuron,L4/5 IT CTX
+10X20_1:TTGAGGTGCTTGCC,glutamatergic neuron,L6 CT CTX
+10X20_1:CAAGACTGATCGTG,glutamatergic neuron,L6b/CT ENT
+10X05_1:GCGAGAGACAAGCT,glutamatergic neuron,L2/3 IT CTX
+10X22_2:AAACGCACTGGTTG,glutamatergic neuron,L2/3 IT CTX
+10X22_3:TATAGCCTGCATAC,glutamatergic neuron,CA1-ProS
+10X53_3:AACATTGAGGTATC,glutamatergic neuron,Sst
+10X49_3:ACTCTATGGGAAGC,glutamatergic neuron,Vip
+10X04_2:ATCATCTGGTTGAC,glutamatergic neuron,CA1-ProS
+10X28_4:AAGGTGCTTTCGGA,glutamatergic neuron,CA1-ProS
+10X50_5:CATTGTACACTCTT,glutamatergic neuron,L5 IT CTX
+10X28_4:ACGTAGACCTACTT,glutamatergic neuron,L2/3 IT ENTl
+10X24_3:ATCTGGGAGAATAG,glutamatergic neuron,Vip
+10X02_1:TTTCCAGACTACCC,glutamatergic neuron,Astro
+10X57_3:TACATCACACCTGA,glutamatergic neuron,L5/6 NP CTX
+10X43_1:CCCTACGAATCGTG,glutamatergic neuron,CA3
+10X20_1:ACACGATGCTTATC,glutamatergic neuron,L4/5 IT CTX
+10X01_1:ACGTTACTAAAACG,glutamatergic neuron,L4/5 IT CTX
+10X57_3:CACTGAGATTCTTG,glutamatergic neuron,Micro-PVM
+10X28_3:ATAACCCTCCTGTC,glutamatergic neuron,L2/3 IT CTX
+10X52_1:CAAGGTTGTAGAAG,glutamatergic neuron,L2/3 IT ENTl
+10X22_2:ATTCAGCTAAAGCA,glutamatergic neuron,L6 CT CTX
+10X20_4:ACTCAGGAGTCTTT,glutamatergic neuron,Sncg
+10X28_3:AGGGCCACTTCGCC,glutamatergic neuron,L5 PT CTX
+10X24_4:CAGCAATGCAACCA,glutamatergic neuron,Vip
+10X05_2:GATTCTTGTCCTCG,glutamatergic neuron,L5/6 NP CTX
+10X36_1:AACAATACCCTGTC,glutamatergic neuron,CA1-ProS
+10X50_5:ATCGCCTGGGAGCA,glutamatergic neuron,Vip
+10X52_2:GTACGAACAACTGC,glutamatergic neuron,Astro
+10X53_6:CAGGGCACGAACCT,glutamatergic neuron,Vip
+10X22_2:GCTACAGATTTGGG,glutamatergic neuron,L5 IT CTX
+10X54_2:GACCATCAGCCTAA,glutamatergic neuron,L2/3 IT PPP
+10X20_2:GAAAGATGTCTTTG,glutamatergic neuron,Car3
+10X36_1:AAATCTGAGGGCAA,glutamatergic neuron,CA1-ProS
+10X28_3:CACTTAACTTCCAT,glutamatergic neuron,L6 IT CTX
+10X05_1:CCATAGGAGGACTT,glutamatergic neuron,L6 IT CTX
+10X28_4:ATGCAGTGTCCTTA,glutamatergic neuron,L2/3 IT ENTl
+10X22_1:AGTCTTACGCTATG,glutamatergic neuron,L2/3 IT CTX
+10X28_2:GAAGGGTGAAGTAG,glutamatergic neuron,L2 IT ENTl
+10X22_1:ATTGGTCTCTTGTT,glutamatergic neuron,L5/6 NP CTX
+10X05_1:CGATCCACACAGTC,glutamatergic neuron,L5/6 NP CTX
+10X20_1:GTTCAGGACCCACT,glutamatergic neuron,L5/6 IT TPE-ENT
+10X28_2:TTGTACACCTGTTT,glutamatergic neuron,L2/3 IT CTX
+10X53_3:ATGAGAGAGGTAGG,glutamatergic neuron,Sst
+10X35_1:TGATACCTCCTTGC,glutamatergic neuron,L6 CT CTX
+10X22_1:TGCTTAACAGATGA,glutamatergic neuron,L2/3 IT CTX
+10X22_4:GCCTCATGATCGTG,glutamatergic neuron,CA1-ProS
+10X50_6:AAGATGGATTGCGA,glutamatergic neuron,Sst
+10X02_1:TGTTACTGTCCTCG,glutamatergic neuron,L5 IT CTX
+10X43_3:GAGTCAACTTCGCC,glutamatergic neuron,Micro-PVM
+10X50_8:ACGAACTGTACTCT,glutamatergic neuron,L5/6 NP CTX
+10X35_1:TCGTAGGAGTTAGC,glutamatergic neuron,L6 CT CTX
+10X05_2:CACCGTACCCATAG,glutamatergic neuron,L4/5 IT CTX
+10X53_4:CACTAGGAACCTTT,glutamatergic neuron,Sst
+10X28_4:GTTATCTGAACGAA,glutamatergic neuron,L2/3 IT ENTl
+10X20_3:CTGACAGAATCGTG,glutamatergic neuron,L5/6 NP CTX
+10X20_3:GAGCGGCTCTACCC,glutamatergic neuron,L2/3 IT ENTl
+10X28_2:TTCAGACTTGACTG,glutamatergic neuron,L2/3 IT ENTl
+10X57_2:GTGACAACTGCAAC,glutamatergic neuron,L2/3 IT PPP
+10X02_1:TAGACGTGTCCAAG,glutamatergic neuron,L5 IT CTX
+10X05_1:CCCAGTTGATCACG,glutamatergic neuron,L2/3 IT CTX
+10X05_1:CGATCAGACTCATT,glutamatergic neuron,L5 PT CTX
+10X04_2:ATATAGTGAACCGT,glutamatergic neuron,CA1-ProS
+10X22_2:TCTCAAACCGTGAT,glutamatergic neuron,L4/5 IT CTX
+10X22_1:TGCAACGATACTCT,glutamatergic neuron,L6 IT CTX
+10X19_2:ACACGTGAAGCGGA,glutamatergic neuron,L6 CT CTX
+10X04_2:GGAATCTGCTGAAC,glutamatergic neuron,CA3
+10X28_3:CACTGAGAGGTAAA,glutamatergic neuron,L6 CT CTX
+10X50_5:GATCCCTGGAGGCA,glutamatergic neuron,Endo
+10X22_4:GTGGATTGGCGAGA,glutamatergic neuron,CA1-ProS
+10X04_1:GCCGGAACGCTGTA,glutamatergic neuron,CA1-ProS
+10X50_5:AATAAGCTGCTGAT,glutamatergic neuron,Astro
+10X05_1:GAAAGCCTCGATAC,glutamatergic neuron,L2/3 IT CTX
+10X36_1:AGCACTGAAGATCC,glutamatergic neuron,CA1-ProS
+10X53_6:CTCGACACATGCCA,glutamatergic neuron,Sst
+10X52_4:ATAAGTACTGAGAA,glutamatergic neuron,L5/6 NP CTX
+10X49_4:TGATAAACAACGAA,glutamatergic neuron,Micro-PVM
+10X19_2:ATGTACCTTAAGGA,glutamatergic neuron,Vip
+10X50_5:TGCCACTGGTGTAC,glutamatergic neuron,L4/5 IT CTX
+10X28_3:GATCCCTGCCTTGC,glutamatergic neuron,L2/3 IT CTX
+10X20_4:TGTGATCTTTCGTT,glutamatergic neuron,L5/6 NP CTX
+10X28_5:GTTACGGATATCTC,glutamatergic neuron,L2/3 IT ENTl
+10X28_2:CCCGAACTTTCTTG,glutamatergic neuron,L5 IT CTX
+10X52_3:GCACCACTTGTGAC,glutamatergic neuron,L4/5 IT CTX
+10X50_8:ATGCCGCTATCTTC,glutamatergic neuron,Vip
+10X05_1:TAGGACTGGAGGAC,glutamatergic neuron,L4/5 IT CTX
+10X20_2:ATGTACCTCTGCAA,glutamatergic neuron,L6 CT CTX
+10X52_1:CATAAAACACCTCC,glutamatergic neuron,L2/3 IT ENTl
+10X53_1:GTCGAATGTGGAAA,glutamatergic neuron,Micro-PVM
+10X24_3:CAGACATGAAACGA,glutamatergic neuron,Sst
+10X57_7:XXATATGACCTTGC,glutamatergic neuron,Vip
+10X35_1:GGGATGGATGACCA,glutamatergic neuron,L6 CT CTX
+10X35_1:CAAACTCTTCAGGT,glutamatergic neuron,L5/6 NP CTX
+10X01_1:GAGTTGTGTCTTCA,glutamatergic neuron,L5 IT CTX
+10X28_3:ACCCAAGACTGAGT,glutamatergic neuron,L4/5 IT CTX
+10X50_6:GTTATCTGACACAC,glutamatergic neuron,Astro
+10X54_4:GGGTTGTCTCACCT,glutamatergic neuron,L5/6 NP CTX
+10X22_2:ATGTCACTTGACCA,glutamatergic neuron,L4/5 IT CTX
+10X19_2:GTACTACTGTAGCT,glutamatergic neuron,L4/5 IT CTX
+10X52_3:TAGTCGGAAGCGGA,glutamatergic neuron,L2/3 IT ENTl
+10X28_4:GAGTGACTTTCCGC,glutamatergic neuron,L2/3 IT ENTl
+10X04_2:GACCTCACCCCTTG,glutamatergic neuron,CA1-ProS
+10X22_2:TGTTAAGACGTAGT,glutamatergic neuron,L6 CT CTX
+10X19_2:GATTTGCTCTGAGT,glutamatergic neuron,L6 CT CTX
+10X22_3:GCACGGACAGGCGA,glutamatergic neuron,CA3
+10X35_2:TGTAATGACGTACA,glutamatergic neuron,Car3
+10X20_1:TGGTAGTGTTATCC,glutamatergic neuron,L5 PT CTX
+10X52_1:ATCAAATGACCCAA,glutamatergic neuron,Pvalb
+10X20_3:CGCGGATGGTCGTA,glutamatergic neuron,L5 PT CTX
+10X19_2:ACGACCCTCTTGGA,glutamatergic neuron,L6 CT CTX
+10X52_2:TAAGTCCTACGCAT,glutamatergic neuron,L2/3 IT PPP
+10X35_2:TGCGAAACACGTAC,glutamatergic neuron,L6 CT CTX
+10X07_1:TTACAGCTCCGATA,GABAergic neuron,Sncg
+10X07_1:TCCCACGATATGCG,GABAergic neuron,Vip
+10X49_5:TGGACTGAACTCAG,GABAergic neuron,L6b/CT ENT
+10X52_2:CAAGAAGAATTGGC,GABAergic neuron,Pvalb
+10X38_1:CTACCTCTCCAACA,GABAergic neuron,Vip
+10X24_2:GAACCAACAGTGTC,GABAergic neuron,L2/3 IT CTX
+10X04_1:ATCTGACTACCTCC,GABAergic neuron,Vip
+10X38_2:TTGAGGACAACCGT,GABAergic neuron,Sncg
+10X26_4:ACGCACCTGAGCTT,GABAergic neuron,CA1-ProS
+10X07_1:AGATATTGCACACA,GABAergic neuron,Vip
+10X55_7:CTAATTCTGCTTGC,GABAergic neuron,Sst
+10X24_1:CAGCACCTCGACAT,GABAergic neuron,L2/3 IT ENTl
+10X26_3:TGCTGAGAGGTAAA,GABAergic neuron,Oligo
+10X52_1:GACGCTCTCTGTGA,GABAergic neuron,Astro
+10X28_4:CGTCCATGCCGTTC,GABAergic neuron,Vip
+10X24_2:TTAGTCACCTAGAC,GABAergic neuron,L2/3 IT ENTl
+10X38_1:GGATACTGCAGCTA,GABAergic neuron,Pvalb
+10X38_3:TAAATCGATACTCT,GABAergic neuron,Lamp5
+10X52_3:CACAATCTGCTTCC,GABAergic neuron,Endo
+10X50_3:CGACCTACACCTCC,GABAergic neuron,Astro
+10X04_4:CTACCTCTGACTAC,GABAergic neuron,Micro-PVM
+10X24_1:CGGATATGGTTCGA,GABAergic neuron,Vip
+10X49_4:CCTATAACGCTGTA,GABAergic neuron,Micro-PVM
+10X49_4:GATAGCACTCGCCT,GABAergic neuron,Oligo
+10X38_2:CTAACTACAGCTCA,GABAergic neuron,Sst
+10X38_1:GACGAGGAGGACTT,GABAergic neuron,Sncg
+10X38_1:AATTACGAGCTGAT,GABAergic neuron,Sncg
+10X52_3:AGTCGAACGTGTAC,GABAergic neuron,Sst
+10X28_4:CAGTTTACTGTTCT,GABAergic neuron,Astro
+10X26_3:ATAAACACGCAAGG,GABAergic neuron,L2/3 IT CTX
+10X28_5:ATCGCGCTGTGTCA,GABAergic neuron,L5/6 NP CTX
+10X49_4:GCCACGGAGTCTTT,GABAergic neuron,L5/6 NP CTX
+10X28_4:TCCATCCTAACCGT,GABAergic neuron,Sncg
+10X38_1:GACTGTGATCTCCG,GABAergic neuron,Vip
+10X52_3:CACACCTGCGCAAT,GABAergic neuron,Sst
+10X57_2:CACGATGATCCCAC,GABAergic neuron,L2/3 IT ENTl
+10X52_3:TTTCACGAACCTTT,GABAergic neuron,Astro
+10X36_1:CAATAAACGACAGG,GABAergic neuron,Sncg
+10X05_1:CGCTACTGGCTAAC,GABAergic neuron,Vip
+10X28_4:TGTCTAACAAGAAC,GABAergic neuron,Oligo
+10X26_4:TGAGGACTATGACC,GABAergic neuron,L2/3 IT ENTl
+10X38_3:TCTATGTGACGTTG,GABAergic neuron,Vip
+10X24_2:GAAACAGATGTTTC,GABAergic neuron,L2/3 IT ENTl
+10X36_3:TCCGAAGAGTGTCA,GABAergic neuron,Sst
+10X38_1:AGTAATACCCACAA,GABAergic neuron,Sst
+10X05_4:GGACCCGAGAATCC,GABAergic neuron,Pvalb
+10X28_5:CTATCAACCCATAG,GABAergic neuron,L2/3 IT ENTl
+10X38_3:TACGGCCTCTTCTA,GABAergic neuron,Lamp5
+10X49_4:GACAACTGCGTAGT,GABAergic neuron,DG
+10X38_1:TGAGCAACCTCATT,GABAergic neuron,Sst
+10X26_4:TATGGGTGGGTACT,GABAergic neuron,L2/3 IT ENTl
+10X04_4:CGGTAAACATCACG,GABAergic neuron,Micro-PVM
+10X24_1:ACAAAGGAGAATAG,GABAergic neuron,Astro
+10X38_3:TTCAGACTAACCAC,GABAergic neuron,Vip
+10X49_4:TGGAGACTCCCACT,GABAergic neuron,Oligo
+10X38_2:ACGCCTTGTCTCCG,GABAergic neuron,Pvalb
+10X36_2:GCACCACTGCTGAT,GABAergic neuron,Sncg
+10X28_5:GAGTAAGACTGTAG,GABAergic neuron,Vip
+10X52_1:GGCCACGATCCAAG,GABAergic neuron,Sst
+10X49_1:GGCGACTGCTCGAA,GABAergic neuron,Pvalb
+10X07_1:CCAGTCACGACAAA,GABAergic neuron,Sncg
+10X07_1:CTTACATGTGCTAG,GABAergic neuron,Sncg
+10X24_1:TACGATCTTTGTCT,GABAergic neuron,CA1-ProS
+10X38_1:AGAGCGGAACGCTA,GABAergic neuron,Sst
+10X28_5:ACACGAACCGTCTC,GABAergic neuron,Pvalb
+10X49_4:ACCAACGACCTTTA,GABAergic neuron,Vip
+10X28_4:CTAAGGACCATTCT,GABAergic neuron,Vip
+10X24_1:GGCGACTGCACAAC,GABAergic neuron,Sst
+10X49_5:AAGGTGCTTCGATG,GABAergic neuron,Endo
+10X38_2:AATGGCTGCCTTAT,GABAergic neuron,Vip
+10X38_2:AGAATGGAGGAAGC,GABAergic neuron,Sst
+10X49_5:CTACTCCTACGACT,GABAergic neuron,Endo
+10X07_1:CACTTAACATCGGT,GABAergic neuron,Sncg
+10X49_4:TAGGGACTACGGTT,GABAergic neuron,L6b/CT ENT
+10X26_4:TACGAGTGGTCATG,GABAergic neuron,Oligo
+10X49_5:CATGTACTTGGTCA,GABAergic neuron,Micro-PVM
+10X26_4:CACAGTGAAACGGG,GABAergic neuron,L2/3 IT ENTl
+10X49_5:ATAGGCTGCGAACT,GABAergic neuron,L5/6 NP CTX
+10X43_3:TGATAAACCTGGTA,GABAergic neuron,L4/5 IT CTX
+10X36_3:ATGAAACTGGTCAT,GABAergic neuron,Pvalb
+10X52_2:AACGTGTGTCAAGC,GABAergic neuron,Lamp5
+10X49_4:ATTGTAGAGCCATA,GABAergic neuron,Astro
+10X38_3:TGGATGACTCACCC,GABAergic neuron,Lamp5
+10X38_2:CTAATGCTACGACT,GABAergic neuron,Sst
+10X26_3:ATCACGGAGAGGCA,GABAergic neuron,L2/3 IT ENTl
+10X24_2:TAATGCCTCAACCA,GABAergic neuron,L2/3 IT CTX
+10X05_2:TAGGTCGAGACAAA,GABAergic neuron,Vip
+10X49_1:ATACCACTTGCTTT,GABAergic neuron,Sst
+10X38_2:CACGAAACAAGCAA,GABAergic neuron,Pvalb
+10X38_2:AGAAAGTGCTGTCC,GABAergic neuron,Vip
+10X49_2:TTCTCAGAAGGAGC,GABAergic neuron,L2/3 IT CTX
+10X36_3:ATCATCTGCCTCCA,GABAergic neuron,Vip
+10X49_5:AGGGTGGATTTCAC,GABAergic neuron,Vip
+10X50_4:GTTAAAACGGTGAG,GABAergic neuron,L2/3 IT PPP
+10X49_5:CTATTGACACAGTC,GABAergic neuron,L2/3 IT CTX
+10X28_4:ATCTACTGTCTGGA,GABAergic neuron,Vip
+10X20_2:GCCTACACGCTTAG,GABAergic neuron,Pvalb
+10X07_1:AAATCTGAGGAGGT,GABAergic neuron,Lamp5
+10X38_2:ATTGCACTCCGATA,GABAergic neuron,Vip
+10X28_5:CGTTAACTCCGCTT,GABAergic neuron,Oligo
+10X35_1:GCATTGGATGTTTC,GABAergic neuron,Vip
+10X38_2:GGCTAATGGTGCTA,GABAergic neuron,Sst
+10X38_2:GTAATAACAAGTGA,GABAergic neuron,Vip
+10X52_5:CAACGATGATGACC,GABAergic neuron,Pvalb
+10X38_2:GGCGACTGCCATAG,GABAergic neuron,Vip
+10X52_1:TTAGTCTGTCGCAA,GABAergic neuron,CA1-ProS
+10X24_1:GTGATCGATCCCGT,GABAergic neuron,Astro
+10X49_4:CGCGAGACGGAGCA,GABAergic neuron,L2/3 IT PPP
+10X38_2:TCGACGCTCGCTAA,GABAergic neuron,Lamp5
+10X50_5:ATTTAGGACACTCC,GABAergic neuron,Sst
+10X24_2:TGCGAAACCGGTAT,GABAergic neuron,L2/3 IT ENTl
+10X50_4:ACACGAACTGGAGG,GABAergic neuron,Micro-PVM
+10X52_5:GGTCTAGAGACGTT,GABAergic neuron,Oligo
+10X38_1:GTGTACGAGCGAAG,GABAergic neuron,Sncg
+10X52_2:ACCCGTACAACCAC,GABAergic neuron,Pvalb
+10X22_3:TATACGCTACGTTG,astrocyte,Astro
+10X52_6:GCAATTCTGGTGGA,astrocyte,Astro
+10X56_6:TGATATGAGTTCTT,astrocyte,Astro
+10X52_7:CATTGTTGGACGGA,astrocyte,Astro
+10X20_1:GACGTAACGGACTT,astrocyte,Astro
+10X52_2:GGCCGATGGGTCTA,astrocyte,Astro
+10X28_2:ACTTAAGACCAATG,astrocyte,Astro
+10X20_3:GACCTCTGGCTTAG,astrocyte,Astro
+10X24_4:GTACCCTGCCTTGC,astrocyte,Astro
+10X04_2:CCAGCTACTAGCGT,astrocyte,Astro
+10X48_4:TCACCGTGTCCAAG,astrocyte,Astro
+10X53_2:AATAACACGAGGCA,astrocyte,Astro
+10X56_6:TCCGAAGATGTCTT,astrocyte,Astro
+10X22_3:CCCAGACTTTCTAC,astrocyte,Astro
+10X51_1:ACTGTGGAGTATGC,astrocyte,Astro
+10X57_1:ATATACGAGAACCT,astrocyte,Astro
+10X22_2:TATTTCCTGTAGCT,astrocyte,Astro
+10X28_4:GTGATTCTTGCTCC,astrocyte,Astro
+10X24_1:GAATGGCTCATGGT,astrocyte,Astro
+10X52_1:TCCCATCTAGCCTA,astrocyte,Astro
+10X48_1:CCGCGAGATTGACG,astrocyte,Astro
+10X04_1:ACCCAGCTTGCTTT,astrocyte,Astro
+10X48_1:CTTATCGAAAGGGC,astrocyte,Astro
+10X20_2:CAGATCGAAACGAA,astrocyte,Astro
+10X28_3:CAGCTCTGAAGGGC,astrocyte,Astro
+10X48_3:CAGCGGACAAGGGC,astrocyte,Astro
+10X48_3:CAGGTATGCTGCAA,astrocyte,Astro
+10X20_2:GGTATGACTCTAGG,astrocyte,Astro
+10X52_2:GTCATACTACCACA,astrocyte,Astro
+10X24_3:CGATACGAGGAGTG,astrocyte,Astro
+10X51_1:AGCGATACCCTTCG,astrocyte,Astro
+10X52_3:TAGGTCGATATGGC,astrocyte,Astro
+10X46_1:CGTGAATGCTGATG,astrocyte,Astro
+10X04_1:TTCTTACTGTTTCT,astrocyte,Astro
+10X52_2:TATTTCCTTCTCTA,astrocyte,Astro
+10X22_3:CGTAACGATGGTCA,astrocyte,Astro
+10X28_3:AGGGCGCTTGACTG,astrocyte,Astro
+10X20_1:ACAATTGACTTTAC,astrocyte,Astro
+10X57_7:CAGACCCTTGCTAG,astrocyte,Astro
+10X51_1:GGCGACTGCTGTAG,astrocyte,Astro
+10X20_2:GTTACTACAACGTC,astrocyte,Astro
+10X52_2:TAACAATGTGCATG,astrocyte,Astro
+10X26_4:GTCTAACTAGTCAC,astrocyte,Astro
+10X48_4:GTAGCCCTTGCCAA,astrocyte,Astro
+10X52_4:CGCTAAGAACCTGA,astrocyte,Astro
+10X51_4:AATGGAGAACGTAC,astrocyte,Astro
+10X19_2:CCTGACTGCATCAG,astrocyte,Astro
+10X49_4:TTTAGAGATTCTAC,astrocyte,Astro
+10X49_5:AAGCGTACCTTGGA,astrocyte,Astro
+10X24_3:AACAATACACGTAC,astrocyte,Astro
+10X33_2:CGATCCACTTTGTC,astrocyte,Astro
+10X28_4:ATATGCCTGTACGT,astrocyte,Astro
+10X51_2:TGAAGCACTCCTGC,astrocyte,Astro
+10X48_4:CCTGCAACCAGGAG,astrocyte,Astro
+10X04_2:CCTGGACTCACAAC,astrocyte,Astro
+10X52_1:ATAGATACAGCCAT,astrocyte,Astro
+10X49_3:CGGCGAACTCTACT,astrocyte,Astro
+10X50_2:ACACCCTGGGTCAT,astrocyte,Astro
+10X52_6:TTATTCCTTGCTTT,astrocyte,Astro
+10X26_2:GCAAACTGCATTCT,astrocyte,Astro
+10X22_3:CGCTACACTGCGTA,astrocyte,Astro
+10X20_2:GAGTCTGAATTCCT,astrocyte,Astro
+10X20_1:ATCGACGACATGCA,astrocyte,Astro
+10X49_4:ATCTACACAAGTAG,astrocyte,Astro
+10X52_2:ATTGTAGACAGATC,astrocyte,Astro
+10X20_1:GACGTCCTTACGAC,astrocyte,Astro
+10X52_3:CTCCTACTGGAGGT,astrocyte,Astro
+10X02_1:CGCACTTGTCCTCG,astrocyte,Astro
+10X04_4:GTCGACCTAGTCTG,astrocyte,Astro
+10X33_3:GGTATCGAGTCTGA,astrocyte,Astro
+10X48_3:TAACGTCTCAGTCA,astrocyte,Astro
+10X49_4:TAAGAGGAGGACAG,astrocyte,Astro
+10X52_5:TGCGTAGACTAGTG,astrocyte,Astro
+10X24_2:CTAGGCCTAGTACC,astrocyte,Astro
+10X22_3:CATCATACAAGAAC,astrocyte,Astro
+10X22_3:GCGAGAGAGGGAGT,astrocyte,Astro
+10X48_3:GCTTGAGATAGTCG,astrocyte,Astro
+10X34_4:AGAATGGATTCACT,astrocyte,Astro
+10X49_5:GGATTGTGGACTAC,astrocyte,Astro
+10X22_3:TAAGCGTGCTGTCC,astrocyte,Astro
+10X22_4:TACGCGCTAAGAAC,astrocyte,Astro
+10X20_2:GTGGATTGTGCACA,astrocyte,Astro
+10X52_5:CTGAGCCTTCATTC,astrocyte,Astro
+10X51_2:AAACATTGCCGCTT,astrocyte,Astro
+10X81_3:AGGCCTCGAATGGG,Enteric glia,Astro
+10X81_1:CGTTGGTGGTACAG,Enteric glia,Astro
+10X81_3:TTACCTCGTGGTCG,Enteric glia,Astro
+10X81_3:TGAGGGTAAGTGTA,Enteric glia,Oligo
+10X81_1:TCTACTCAACGCTA-1,Enteric glia,L5 IT CTX
+10X81_1:GCTGGGTAATCGTC,Enteric glia,Astro
+10X81_2:CTACCAGCCGTCGT,Enteric glia,Astro
+10X81_3:AGCCAAGAAGATTC,Enteric glia,Oligo
+10X82_2:TACTCAGGCGATAC,Enteric glia,Astro
+10X82_2:TGAGCGTAAGTGTA,Enteric glia,Astro
+10X82_2:TGAAGTCTGTCTCG,Enteric glia,Astro
+10X81_1:ACATCTCTCGCATC,Enteric glia,Oligo
+10X81_1:ATCAGTCCTTCAAT,Enteric glia,Oligo
+10X81_1:AGACCGTTGGTAAA,Enteric glia,Astro
+10X82_2:AGGTACACGAGAGT,Enteric glia,Astro
+10X81_1:GGGAGGTTATGTGC,Enteric glia,Astro
+10X81_2:ATGTAGTAGGGTAC,Enteric glia,Astro
+10X81_1:CCATGTCCGCAAGC,Enteric glia,Oligo
+10X82_2:TACCGGTTCTGGTA,Enteric glia,Astro
+10X81_1:TATTACATCGTCGG,Enteric glia,Oligo
+10X81_3:GAGAGAGGCTAGCA,Enteric glia,Astro
+10X81_2:GAGGGCACACCGCA,Enteric glia,Oligo
+10X82_2:AATGTGTCATCGGC,Enteric glia,Oligo
+10X81_2:AACGTGTTATTCTC,Enteric glia,Astro
+10X81_2:GCTAGCAAATTGCC,Enteric glia,Oligo
+10X81_1:GCGATTCACAATGC,Enteric glia,Astro
+10X81_3:CAGAACAATCGGTT,Enteric glia,Astro
+10X82_2:ACCTATCACTATTC,Enteric glia,Astro
+10X81_1:GACTTCATACTACG,Enteric glia,Oligo
+10X81_2:AGCCAGTACAGTGG,Enteric glia,Astro
+10X81_2:TCTAAAGCGTTTAC,Enteric glia,Astro
+10X26_3:GTATGGTGGCGAGA,Microglia,Micro-PVM
+10X22_2:GTAGTCGATTCTTG,Microglia,Micro-PVM
+10X52_5:TGCACGCTTGATGC,Microglia,Micro-PVM
+10X53_4:ACGGTCCTTGCGTA,Microglia,Micro-PVM
+10X28_5:GGCCCAGAGAATCC,Microglia,Micro-PVM
+10X22_2:GTCCCATGTACGCA,Microglia,Micro-PVM
+10X19_2:ATTGGTCTTCCTCG,Microglia,Micro-PVM
+10X22_4:AATGATACGCGAGA,Microglia,Micro-PVM
+10X26_3:CATCTTGAAGAGGC,Microglia,Micro-PVM
+10X19_2:AGCCAATGTGTGCA,Microglia,Micro-PVM
+10X57_2:GTGAACACAGGTCT,Microglia,Micro-PVM
+10X02_1:CCTAAGGACTGAAC,Microglia,Micro-PVM
+10X53_5:GGCTACCTGCCTTC,Microglia,Micro-PVM
+10X49_1:CCGGAGACTTCGCC,Microglia,Micro-PVM
+10X57_4:ACGCCTTGTATCTC,Microglia,Micro-PVM
+10X24_1:TTCATCGATTCCGC,Microglia,Micro-PVM
+10X49_3:CATAACCTTTGGTG,Microglia,Micro-PVM
+10X26_3:TCTTGATGACGACT,Microglia,Micro-PVM
+10X53_4:TAGTACCTCCCTCA,Microglia,Micro-PVM
+10X02_1:ACTTGGGATGCTCC,Microglia,Micro-PVM
+10X20_4:GCCGACGAGGTGGA,Microglia,Micro-PVM
+10X50_4:GTGATCGAAGGAGC,Microglia,Micro-PVM
+10X22_2:GGACATTGAGGTCT,Microglia,Micro-PVM
+10X35_2:AACGCAACCTGGTA,Microglia,Micro-PVM
+10X49_3:AGGCTAACGTAGGG,Microglia,Micro-PVM
+10X51_4:GCACCACTAAGAAC,Microglia,Micro-PVM
+10X49_5:CGGTAAACCTAGCA,neuroblast (sensu Vertebrata),L6b CTX
+10X49_4:TACGAGACCCCAAA,neuroblast (sensu Vertebrata),Micro-PVM
+10X04_4:TCTAACTGCAGCTA,neuroblast (sensu Vertebrata),Astro
+10X46_1:AAAGCAGAGGACAG,neuroblast (sensu Vertebrata),Micro-PVM
+10X49_4:TTGTAGCTCCTCGT,neuroblast (sensu Vertebrata),Micro-PVM
+10X28_5:GACTGAACGAGCTT,neuroblast (sensu Vertebrata),Micro-PVM
+10X26_3:TTTGCATGCATGCA,neuroblast (sensu Vertebrata),Micro-PVM
+10X20_1:TTACTCGACATGAC,neuroblast (sensu Vertebrata),Oligo
+10X54_3:GAAGGAGAGTGACC,neuroblast (sensu Vertebrata),L5/6 NP CTX
+10X22_4:ACGCCTTGCTTCCG,neuroblast (sensu Vertebrata),Endo
+10X34_2:TTCTGATGGTGTAC,neuroblast (sensu Vertebrata),Astro
+10X46_1:CCAGTCACTTTCGT,neuroblast (sensu Vertebrata),Endo
+10X49_5:GATTTGCTCGTCTC,neuroblast (sensu Vertebrata),Micro-PVM
+10X22_4:TATCTGACGGCAAG,neuroblast (sensu Vertebrata),L6 CT CTX
+10X49_1:CCGGAGACATCAGC,neuroblast (sensu Vertebrata),Sst
+10X22_3:GTGAGGGATCTTCA,neuroblast (sensu Vertebrata),Vip
+10X04_4:TTCATGTGTTCCAT,neuroblast (sensu Vertebrata),Micro-PVM
+10X43_1:ATTCTTCTATCTCT,neuroblast (sensu Vertebrata),Vip
+10X28_4:AAATCAACGCGAGA,neuroblast (sensu Vertebrata),Micro-PVM
+10X04_1:AAACATTGATTCTC,neuroblast (sensu Vertebrata),Micro-PVM
+10X43_1:ATGCACGAGCTACA,neuroblast (sensu Vertebrata),Micro-PVM
+10X28_5:TAGGAGCTGTTGTG,neuroblast (sensu Vertebrata),Oligo
+10X28_4:CTATAAGATGCCTC,neuroblast (sensu Vertebrata),Micro-PVM
+10X22_3:TGTGAGTGCCTCGT,neuroblast (sensu Vertebrata),Vip
+10X54_7:AGCGTTCGTTTAGG,neuroblast (sensu Vertebrata),Vip
+10X24_1:TCTAAGCTCCCTCA,neuroblast (sensu Vertebrata),Micro-PVM
+10X52_4:AGAATTTGAGTACC,pericyte,Endo
+10X50_7:CACCTGACAGGAGC,pericyte,Vip
+10X26_3:AATCCTACATTGGC,pericyte,Oligo
+10X53_3:CAAATATGGCGGAA,pericyte,Endo
+10X52_4:GACGGCACACGTGT,pericyte,Endo
+10X50_8:CATAAAACGTCACA,pericyte,Endo
+10X43_3:TATAGATGTTTCGT,pericyte,Endo
+10X53_6:GTAAGCACATTCTC,pericyte,Endo
+10X53_4:CAACGATGTAACCG,pericyte,Endo
+10X20_1:CATAAATGAAGATG,pericyte,Endo
+10X50_6:TTTGACTGTCGACA,pericyte,Endo
+10X53_6:GGGCAGCTAAGTGA,pericyte,Endo
+10X20_2:CCATCCGATTGTCT,pericyte,Endo
+10X48_1:AGTCGAACTTTGCT,pericyte,Endo
+10X53_4:GTGAACACAAGGGC,pericyte,Endo
+10X36_1:GCGAGCACTGCCCT,pericyte,Endo
+10X48_3:ATAACCCTACTCAG,pericyte,Endo
+10X52_6:GCGAAGGAGGGAGT,pericyte,Endo
+10X20_2:CGGAATTGTACGAC,pericyte,Endo
+10X50_7:GCGAGCACCTTCTA,pericyte,Endo
+10X24_3:CCACCTGAGTTCTT,pericyte,Endo
+10X36_3:GGCCACGAGAAGGC,pericyte,Endo
+10X52_6:TCCCGATGTCAAGC,pericyte,Endo
+10X22_1:CGAGAACTAGACTC,pericyte,Endo
+10X57_2:CCAAAGTGGAGAGC,pericyte,Endo
+10X22_3:ACAAGAGAGTCAAC,dentate gyrus granule cell,DG
+10X22_3:CATACTACCTTCGC,dentate gyrus granule cell,DG
+10X46_1:CAAACTCTTTCGTT,dentate gyrus granule cell,DG
+10X46_1:GCCACTACTCGCTC,dentate gyrus granule cell,DG
+10X46_1:TAGTAATGCCCAAA,dentate gyrus granule cell,DG
+10X46_1:TCAGCGCTCGGAGA,dentate gyrus granule cell,DG
+10X22_3:GAGGATCTCTTGTT,dentate gyrus granule cell,DG
+10X43_1:AACATTGACAACTG,dentate gyrus granule cell,DG
+10X46_1:GGATGTACAGGAGC,dentate gyrus granule cell,DG
+10X46_1:TGGACTGAGTTACG,dentate gyrus granule cell,DG
+10X22_4:GTGATTCTCTAGTG,dentate gyrus granule cell,DG
+10X43_1:CATCTTGAACAGTC,dentate gyrus granule cell,DG
+10X43_1:GATATCCTGCCTTC,dentate gyrus granule cell,DG
+10X43_1:GGAATGCTCAGTCA,dentate gyrus granule cell,DG
+10X46_1:GCTACAGAGTTGGT,dentate gyrus granule cell,DG
+10X43_1:GCTGATGACCTTAT,dentate gyrus granule cell,DG
+10X22_3:TTCAAGCTTATTCC,dentate gyrus granule cell,DG
+10X22_3:CGTGTAGACGCAAT,dentate gyrus granule cell,DG
+10X04_2:ATCAAATGGTCAAC,dentate gyrus granule cell,DG
+10X46_1:GAGTACACCAAAGA,dentate gyrus granule cell,Astro
+10X22_4:TAAGCTCTTGCAAC,dentate gyrus granule cell,DG
+10X51_1:TCGCACACCTAGCA,cerebellar neuron,Astro
+10X34_4:CGGCCAGACTGGAT,cerebellar neuron,Astro
+10X26_1:TACGTACTCTGACA,cerebellar neuron,Pvalb
+10X26_2:TAGGAGCTTATTCC,cerebellar neuron,Astro
+10X26_1:TAAGTCCTTACAGC,cerebellar neuron,Vip
+10X51_1:GAACCAACACGCAT,cerebellar neuron,Astro
+10X26_1:GACAGTTGGAGGAC,cerebellar neuron,Astro
+10X26_2:ATCCCGTGCATGCA,cerebellar neuron,Micro-PVM
+10X26_1:AAGAAGACCACACA,cerebellar neuron,Astro
+10X26_1:ACAAAGGAAAACAG,cerebellar neuron,Astro
+10X51_2:TGGTAGACTTCCCG,cerebellar neuron,Astro
+10X51_2:GAAGGTCTCCACCT,cerebellar neuron,Micro-PVM
+10X26_1:GATATAACAGATCC,cerebellar neuron,Oligo
+10X51_1:CCATGCTGTTCCGC,cerebellar neuron,Astro
+10X51_1:TAGTTCACTAGCGT,cerebellar neuron,Oligo
+10X51_1:GTGAGGGATCCCAC,cerebellar neuron,Micro-PVM
+10X51_1:ATCCTAACCTAGTG,cerebellar neuron,Astro
+10X51_1:GCGCGATGACCTTT,cerebellar neuron,L2/3 IT CTX
+10X51_1:GCTCGACTCACTTT,cerebellar neuron,Astro
+10X51_2:CTGAACGACCGTTC,cerebellar neuron,Pvalb
+10X26_1:TAACAATGCTGTAG,cerebellar neuron,Astro
+10X01_1:ACGGGAGAACCCTC,endothelial cell of vascular tree,Endo
+10X04_1:ACCTTTGACTCAAG,endothelial cell of vascular tree,Endo
+10X57_7:CAGGTATGGCTTCC,endothelial cell of vascular tree,Endo
+10X01_1:CTGCCAACGCATAC,endothelial cell of vascular tree,Endo
+10X53_5:GGTAGTACGCTTAG,endothelial cell of vascular tree,Endo
+10X53_3:AACTGTCTTGGAAA,endothelial cell of vascular tree,Endo
+10X53_4:GAAGTAGACTGGTA,endothelial cell of vascular tree,Endo
+10X49_4:ATACCGGAGTGCTA,endothelial cell of vascular tree,Endo
+10X53_2:CGCACGGAGTCAAC,endothelial cell of vascular tree,Endo
+10X43_3:TTCGATTGAACCGT,endothelial cell of vascular tree,Endo
+10X53_4:GTGTATCTACGCTA,endothelial cell of vascular tree,Endo
+10X57_7:ACTTCTGAGCCCTT,endothelial cell of vascular tree,Endo
+10X05_1:GAGAGGTGATGTGC,endothelial cell of vascular tree,Endo
+10X53_3:ACCCTCGATATCTC,endothelial cell of vascular tree,Endo
+10X04_1:AAACCGTGGGAGGT,endothelial cell of vascular tree,Endo
+10X36_2:TCGCCATGAAACGA,endothelial cell of vascular tree,Endo
+10X26_3:ACGTTGGATCATTC,endothelial cell of vascular tree,Endo
+10X52_1:GCCTAGCTCTTCTA,endothelial cell of vascular tree,Endo
+10X53_5:TTCTTACTCGGGAA,endothelial cell of vascular tree,Endo
+10X53_5:TCTAACTGGACGTT,endothelial cell of vascular tree,Endo
+10X35_3:CGTAACGATACGCA,peptidergic neuron,Vip
+10X51_4:ACGTAGACCTCAGA,peptidergic neuron,L5/6 NP CTX
+10X26_3:TTCAAGCTCTCAAG,peptidergic neuron,Micro-PVM
+10X26_3:GGTATGACTCCCGT,peptidergic neuron,Oligo
+10X26_3:ATCACACTTTCTGT,peptidergic neuron,L5/6 NP CTX
+10X26_3:GGCCAGACAAGAAC,peptidergic neuron,L6 CT CTX
+10X26_4:AAGAATCTTGGATC,peptidergic neuron,L6b/CT ENT
+10X26_3:GCGGGACTTTCGGA,peptidergic neuron,CA1-ProS
+10X50_2:CATTTGTGTACTGG,peptidergic neuron,Sst
+10X51_3:CCAGCACTATTCCT,peptidergic neuron,Micro-PVM
+10X26_3:TTACGACTTTGACG,peptidergic neuron,Astro
+10X46_2:TAGGAGCTGTAAGA,peptidergic neuron,Astro
+10X26_3:ATGTTAGACCAAGT,peptidergic neuron,Pvalb
+10X50_2:AGCAAAGATCCGAA,peptidergic neuron,Oligo
+10X26_3:GGATTGTGACGTTG,peptidergic neuron,L2/3 IT PPP
+10X26_3:GATGCATGTCCAGA,peptidergic neuron,Vip
+10X26_4:TGTACTTGACCGAT,peptidergic neuron,L2/3 IT CTX
+10X51_3:GTGATCGACTAGAC,peptidergic neuron,Micro-PVM
+10X26_3:CCAGCGGAGCTTCC,peptidergic neuron,L2/3 IT ENTl
+10X50_1:ATAAGTTGACACTG,peptidergic neuron,Sst
+10X28_3:GGCAAGGACCTAAG,perivascular macrophage,Micro-PVM
+10X57_5:ATATACGAGATAAG,perivascular macrophage,Micro-PVM
+10X22_3:GTGACAACTCTTAC,perivascular macrophage,Micro-PVM
+10X52_8:ACACCAGATGCAGT,perivascular macrophage,Micro-PVM
+10X50_4:GGACAGGAGGTTTG,perivascular macrophage,Micro-PVM
+10X01_1:TAGGGACTACAGTC,perivascular macrophage,Micro-PVM
+10X54_7:GCTTCTCCTATGTT,perivascular macrophage,Micro-PVM
+10X33_2:CGGTCACTCCAACA,perivascular macrophage,Micro-PVM
+10X56_6:GGGTAACTAAGATG,perivascular macrophage,Micro-PVM
+10X22_1:TCGCAAGATCCAAG,perivascular macrophage,Micro-PVM
+10X19_2:TAAGATACGCGAGA,perivascular macrophage,Micro-PVM
+10X22_2:AGTCGCCTATCACG,perivascular macrophage,Micro-PVM
+10X57_4:CCCACATGGTCTGA,perivascular macrophage,Micro-PVM
+10X52_1:AGTACGTGCGAGTT,perivascular macrophage,Micro-PVM
+10X24_1:TCCCTACTGCAGAG,perivascular macrophage,Micro-PVM
+10X57_1:ACGGTATGCCGATA,perivascular macrophage,Micro-PVM
+10X49_5:CAGGAACTTCCCGT,perivascular macrophage,Micro-PVM
+10X24_2:CCGATAGAGGAACG,perivascular macrophage,Micro-PVM
+10X57_7:GATCGAACTTTCTG,perivascular macrophage,Micro-PVM
+10X52_7:TTAGTCACCTTGTT,perivascular macrophage,Micro-PVM
+10X43_2:CTACGCACGTGTCA,peripheral sensory neuron,Sncg
+10X53_7:AGAATACTCTTGCC,peripheral sensory neuron,Micro-PVM
+10X43_2:GTCCACTGAAGGCG,peripheral sensory neuron,Endo
+10X53_7:ATACCGGAGAACCT,peripheral sensory neuron,Astro
+10X53_7:TGCTGAGATTCCGC,peripheral sensory neuron,Micro-PVM
+10X43_2:TTCGATTGTTCTCA,peripheral sensory neuron,Endo
+10X53_7:GACCAAACCCCTTG,peripheral sensory neuron,L5/6 IT TPE-ENT
+10X53_7:GCAATCGATCAGTG,peripheral sensory neuron,Oligo
+10X53_7:GGAGCCACCCAACA,peripheral sensory neuron,Micro-PVM
+10X53_7:CTGTAACTGAGACG,peripheral sensory neuron,Oligo
+10X53_7:AGTGTGACGAATCC,peripheral sensory neuron,Endo
+10X53_7:CTATAGCTCTCAAG,peripheral sensory neuron,Micro-PVM
+10X43_2:GATCTTACTAAGCC,peripheral sensory neuron,Sncg
+10X43_2:ATGGGTACACGTAC,peripheral sensory neuron,Endo
+10X43_2:GGGCCAACTTCAGG,peripheral sensory neuron,Endo
+10X43_2:TTAACCACGGTATC,peripheral sensory neuron,Micro-PVM
+10X43_2:AACGCATGCGATAC,peripheral sensory neuron,Astro
+10X53_7:CGGGACTGTTGCAG,peripheral sensory neuron,Endo
+10X53_7:ACCGTGCTAAGGCG,peripheral sensory neuron,Endo
+10X43_2:TAGGTGTGTCACCC,peripheral sensory neuron,Endo
+10X49_4:AACATATGCGTTAG,vascular leptomeningeal cell (Mmus),VLMC
+10X57_6:CCACGGGAGATGAA,vascular leptomeningeal cell (Mmus),VLMC
+10X49_4:ATTTCCGAGGGATG,vascular leptomeningeal cell (Mmus),VLMC
+10X49_4:AACTTGCTCTGTGA,vascular leptomeningeal cell (Mmus),VLMC
+10X49_5:GATACTCTCATGCA,vascular leptomeningeal cell (Mmus),VLMC
+10X52_1:AAATCCCTTACTCT,vascular leptomeningeal cell (Mmus),VLMC
+10X20_3:TGTCAGGAGTCTGA,vascular leptomeningeal cell (Mmus),VLMC
+10X56_2:TCCTAAACTTCCAT,vascular leptomeningeal cell (Mmus),VLMC
+10X48_3:CTGTATACGCGGAA,vascular leptomeningeal cell (Mmus),VLMC
+10X22_3:AGGCAACTTGCCTC,vascular leptomeningeal cell (Mmus),VLMC
+10X43_1:CTTAAAGATGCCAA,vascular leptomeningeal cell (Mmus),VLMC
+10X20_3:AAGGTCTGACACGT,vascular leptomeningeal cell (Mmus),VLMC
+10X52_6:AAGCACTGTGCGTA,vascular leptomeningeal cell (Mmus),VLMC
+10X33_2:CTTGAGGAGCTGAT,vascular leptomeningeal cell (Mmus),VLMC
+10X52_2:CTGCAGCTTATTCC,vascular leptomeningeal cell (Mmus),VLMC
+10X49_5:GAACTGTGATACCG,vascular leptomeningeal cell (Mmus),VLMC
+10X57_3:GCTACGCTCCTTAT,vascular leptomeningeal cell (Mmus),VLMC
+10X50_8:GCACACCTAGAGGC,vascular leptomeningeal cell (Mmus),VLMC
+10X54_8:TGCTTTCGGGAGTA,vascular leptomeningeal cell (Mmus),VLMC
+10X52_4:TCCCAGACGGTACT,vascular leptomeningeal cell (Mmus),VLMC
+10X52_2:GATAATACGGAGCA,vascular associated smooth muscle cell,SMC-Peri
+10X53_2:TTATGAGAAGCCTA,vascular associated smooth muscle cell,Endo
+10X48_3:AGATTAACACTACG,vascular associated smooth muscle cell,SMC-Peri
+10X55_8:AGGGACAAGCCGCT,vascular associated smooth muscle cell,L6 CT CTX
+10X28_5:CCAGTCACCTCTAT,vascular associated smooth muscle cell,SMC-Peri
+10X52_2:ACCACCTGTGCCCT,vascular associated smooth muscle cell,SMC-Peri
+10X36_3:CTACTATGTTGCTT,vascular associated smooth muscle cell,SMC-Peri
+10X52_6:GGTGGAGATGTGGT,vascular associated smooth muscle cell,SMC-Peri
+10X26_4:CAGAAGCTCCCTCA,vascular associated smooth muscle cell,Micro-PVM
+10X54_3:TGTTAAGGTGCTAG,vascular associated smooth muscle cell,SMC-Peri
+10X02_1:CTATGTTGGCATAC,vascular associated smooth muscle cell,SMC-Peri
+10X48_3:CACTGAGAGGTGGA,vascular associated smooth muscle cell,SMC-Peri
+10X52_5:TATGTGCTGCGAGA,vascular associated smooth muscle cell,SMC-Peri
+10X28_3:TACAATGACTTGCC,vascular associated smooth muscle cell,SMC-Peri
+10X54_8:CAATTTCACAACGT,vascular associated smooth muscle cell,SMC-Peri
+10X24_2:ATCACTTGTCAGGT,vascular associated smooth muscle cell,SMC-Peri
+10X57_3:CTTACTGAGCTGAT,vascular associated smooth muscle cell,SMC-Peri
+10X54_2:CGTTTAGCAGGTCA,vascular associated smooth muscle cell,SMC-Peri
+10X57_3:ATTCTGACCGAGAG,vascular associated smooth muscle cell,SMC-Peri
+10X05_3:TAAATCGAGTTAGC,vascular associated smooth muscle cell,SMC-Peri
+10X49_4:CTTCACCTCCACAA,olfactory ensheathing cell,Astro
+10X49_4:CAGGTTGACAGAAA,olfactory ensheathing cell,Astro
+10X49_4:CATGAGACGGAAAT,olfactory ensheathing cell,Astro
+10X49_5:ATGCACGATTCCAT,olfactory ensheathing cell,Astro
+10X49_4:GGAGTTTGAAGCAA,olfactory ensheathing cell,Astro
+10X49_5:TTCTTACTGTTGTG,olfactory ensheathing cell,Astro
+10X28_4:GTTCATACTGGATC,olfactory ensheathing cell,Astro
+10X49_4:TGTGAGTGACAGCT,olfactory ensheathing cell,Astro
+10X49_5:TTTATCCTCCTACC,olfactory ensheathing cell,Astro
+10X28_5:TGGCAATGTACAGC,olfactory ensheathing cell,Astro
+10X49_4:TAGGCATGGCCCTT,olfactory ensheathing cell,Astro
+10X49_4:TCAATAGATCGATG,olfactory ensheathing cell,Astro
+10X28_5:CATGCCACCTCAAG,olfactory ensheathing cell,Astro
+10X49_4:GAATGCTGCCAAGT,olfactory ensheathing cell,Astro
+10X28_4:GAGTCAACGAAGGC,olfactory ensheathing cell,Astro
+10X49_4:GGGTTAACCGTGAT,olfactory ensheathing cell,Astro
+10X49_5:GACAACTGACTGGT,olfactory ensheathing cell,Astro
+10X49_5:AAATGTTGGTGTCA,olfactory ensheathing cell,Astro
+10X49_5:ATTCTTCTTCAGAC,olfactory ensheathing cell,Astro
+10X49_5:AGTCTACTTGGAAA,olfactory ensheathing cell,Astro
+10X54_5:TGAAGGTGGTGTAG,ependymal cell,Astro
+10X24_3:CCAGACCTGAGCTT,ependymal cell,Astro
+10X57_5:TTCCTAGAGCCAAT,ependymal cell,Astro
+10X53_5:AGATCGTGAAGGTA,ependymal cell,Astro
+10X53_1:TATGCGGAGGAAGC,ependymal cell,Astro
+10X55_5:CTCAGGTATTCTCT,ependymal cell,Astro
+10X26_3:CGACGTCTACTTTC,ependymal cell,Astro
+10X43_3:CCATGCTGCTGAGT,ependymal cell,Astro
+10X57_5:TATCCTGATCGACA,ependymal cell,Astro
+10X52_2:TATTGCTGGGAAGC,ependymal cell,Astro
+10X53_6:ACCAACGAAAACAG,ependymal cell,Astro
+10X53_5:TACTGGGATGGAGG,ependymal cell,Endo
+10X55_5:CGACTAGTGGACGT,ependymal cell,Astro
+10X53_6:AATGCGTGGTTTGG,ependymal cell,Astro
+10X24_4:GGAGTTTGGAGCAG,ependymal cell,Astro
+10X53_6:TAAGCTCTCCAACA,ependymal cell,Astro
+10X48_3:TGATATGAAGATGA,ependymal cell,Astro
+10X53_4:AGAAACGACTCGAA,ependymal cell,Astro
+10X24_3:TAGCGATGCCATGA,ependymal cell,Astro
+10X53_3:CAATGGACGCTGTA,ependymal cell,Astro
+10X28_5:GAGATAGAATTGGC,radial glial cell,Astro
+10X04_4:CTACCTCTCTAGTG,radial glial cell,Astro
+10X34_2:GTGGAGGAGTTGGT,radial glial cell,Astro
+10X24_2:CTCAATTGGTCTGA,radial glial cell,Astro
+10X05_4:AATCCTACCAAAGA,radial glial cell,Astro
+10X26_4:TCTTCAGACCGATA,radial glial cell,Astro
+10X28_3:CCGGTACTGTTGTG,radial glial cell,Astro
+10X46_1:AGATCGTGCAGAAA,radial glial cell,Astro
+10X05_4:ACAATTGATTGACG,radial glial cell,Astro
+10X04_2:CTAGGATGTTGAGC,radial glial cell,Astro
+10X49_5:CATGGCCTTCGCTC,radial glial cell,Astro
+10X04_4:GGGAAGTGACCAAC,radial glial cell,Astro
+10X24_1:GGATGTTGGAGCAG,radial glial cell,Astro
+10X04_1:GGCGACACGCTTAG,radial glial cell,Astro
+10X06_2:GGGTTATGTCTACT,radial glial cell,Astro
+10X28_4:ATCTACTGTTTGGG,radial glial cell,Astro
+10X24_2:CGCAGGACAGATCC,radial glial cell,Astro
+10X26_3:CAGGTTGAACACGT,radial glial cell,Astro
+10X49_5:AGTAGGCTAGTCGT,radial glial cell,Astro
+10X24_1:AGTTAAACACCACA,radial glial cell,Astro
+10X55_6:TATTCGTAGTGAAT,cholinergic neuron,CA1-ProS
+10X26_4:TGTAATGACTATGG,cholinergic neuron,Vip
+10X54_7:TGCTACAAGGCTCC,cholinergic neuron,L5/6 NP CTX
+10X55_3:AGCCTCATCGATTG,cholinergic neuron,Vip
+10X55_4:GCAGTAGAGCCTAG,cholinergic neuron,L5 IT CTX
+10X56_2:AACTCTTGACACTG,cholinergic neuron,Oligo
+10X52_5:TGGAACACGTATGC,cholinergic neuron,Oligo
+10X55_3:TGAACTCAAACAAG,cholinergic neuron,CA1-ProS
+10X52_6:TCATTCGATTCATC,cholinergic neuron,Vip
+10X52_8:ACATTCTGTTGCAG,cholinergic neuron,Vip
+10X55_5:AGCCGAGAATGTTG,cholinergic neuron,Oligo
+10X34_4:GGAATCTGTTAGGC,cholinergic neuron,L5 PT CTX
+10X51_3:ATGGTGACGTTCTT,cholinergic neuron,Sst
+10X55_6:GCGATCATGCTAGT,cholinergic neuron,Vip
+10X54_5:TTACTGTCAGAATA,cholinergic neuron,Oligo
+10X34_3:AGCGCCGATCAGAC,cholinergic neuron,Micro-PVM
+10X11_1:ACTCTCCTCGTAGT,cholinergic neuron,Oligo
+10X56_6:GAGTCTGACAGAGG,cholinergic neuron,Astro
+10X52_7:GAGTGACTTCACGA,cholinergic neuron,Sst
+10X34_3:TCAAGTCTCATACG,cholinergic neuron,Vip
+10X54_5:TGAACCAACTTGAC,cranial visceromotor neuron,L5/6 NP CTX
+10X54_4:TTCAGAGCCCAACC,cranial visceromotor neuron,Pvalb
+10X54_1:AAGACAGCGCCTCA,cranial visceromotor neuron,Oligo
+10X54_8:CCAGGCATTGAGCT,cranial visceromotor neuron,Vip
+10X55_3:AATGTAGTACGCCC,cranial visceromotor neuron,Pvalb
+10X54_8:ACACCTCACAGGCC,cranial visceromotor neuron,L2/3 IT PPP
+10X55_7:CACCTAGAGGGATA,cranial visceromotor neuron,L6 CT CTX
+10X54_6:ACTTCCATGAGCGA,cranial visceromotor neuron,Oligo
+10X54_4:GTTAGTCGATAGAA,cranial visceromotor neuron,Sncg
+10X54_5:TTCGGCATATACCG,cranial visceromotor neuron,L2/3 IT PPP
+10X55_5:GGCATGTCGTTGTA,cranial visceromotor neuron,Oligo
+10X54_7:GAACGAGCAGACTG,cranial visceromotor neuron,L2/3 IT PPP
+10X54_8:CTCCTTCCGAGCCA,cranial visceromotor neuron,Oligo
+10X54_5:ATGTAAGAGATGAG,cranial visceromotor neuron,Oligo
+10X48_2:ATCGGAACCTGTAG,cranial visceromotor neuron,Sncg
+10X55_1:ATGCCTCCTGCAGG,cranial visceromotor neuron,L6b CTX
+10X55_4:GTAGAGTCTAGGTT,cranial visceromotor neuron,Oligo
+10X54_4:TCAAGTCAACGCTA,cranial visceromotor neuron,Oligo
+10X33_3:GCCTCATGCGAGTT,cranial visceromotor neuron,Vip
+10X54_7:ACCGGGTCTTTCAT,cranial visceromotor neuron,Vip
+10X52_1:TTATGGCTCCGATA,oligodendrocyte precursor cell,Oligo
+10X22_3:ATCTTGACTGACAC,oligodendrocyte precursor cell,Oligo
+10X50_7:GGGACCACAACCGT,oligodendrocyte precursor cell,Oligo
+10X26_4:TCACTATGTGGTAC,oligodendrocyte precursor cell,Oligo
+10X43_1:TAATGTGACCTACC,oligodendrocyte precursor cell,Oligo
+10X49_5:GAGGTTTGTCGCAA,oligodendrocyte precursor cell,Oligo
+10X53_4:CTGATGGAAGTGCT,oligodendrocyte precursor cell,Oligo
+10X02_1:AGGTGGGACCTGTC,oligodendrocyte precursor cell,Oligo
+10X01_1:GCATGTGAAAGTGA,oligodendrocyte precursor cell,Oligo
+10X46_1:AGTATCCTCTTCGC,oligodendrocyte precursor cell,Oligo
+10X22_4:GCCCAACTCCTCAC,oligodendrocyte precursor cell,Oligo
+10X01_1:AGGGCCACAGGAGC,oligodendrocyte precursor cell,Oligo
+10X52_1:TCAAGGTGAAAGCA,oligodendrocyte precursor cell,Oligo
+10X28_5:TGCTTAACTACTTC,oligodendrocyte precursor cell,Oligo
+10X52_1:CAAACTCTAAAGCA,oligodendrocyte precursor cell,Oligo
+10X50_2:AACCAGTGTCTATC,oligodendrocyte precursor cell,Oligo
+10X24_3:GATAATACTTCCAT,oligodendrocyte precursor cell,Oligo
+10X26_4:GCACGTCTATGTGC,oligodendrocyte precursor cell,Oligo
+10X01_1:ACGGTAACCCAAGT,oligodendrocyte precursor cell,Oligo
+10X24_4:ACTCTCCTCATACG,oligodendrocyte precursor cell,Oligo
+10X75_1:AATGAGGACGAGTT,sympathetic noradrenergic neuron,Micro-PVM
+10X75_1:TAGCGATGACAGTC,sympathetic noradrenergic neuron,Sncg
+10X75_1:XXTTAACTATCACG,sympathetic noradrenergic neuron,Micro-PVM
+10X75_1:GGACATTGTCCGAA,sympathetic noradrenergic neuron,Micro-PVM
+10X75_1:CAACCAGACACAAC,sympathetic noradrenergic neuron,Endo
+10X75_1:ATCTGGGAAAAACG,sympathetic noradrenergic neuron,CR
+10X75_1:CGCTAAGAGGAGCA,sympathetic noradrenergic neuron,Astro
+10X75_1:TTGCATTGGAAACA,sympathetic noradrenergic neuron,CR
+10X75_1:GGCCAGACCTTGTT,sympathetic noradrenergic neuron,CR
+10X75_1:CAAGGTTGGCCCTT,sympathetic noradrenergic neuron,Astro
+10X75_1:ATCGACGAGGCAAG,sympathetic noradrenergic neuron,Micro-PVM
+10X75_1:XXATCTACTGTAGC,sympathetic noradrenergic neuron,CR
+10X75_1:CTATAAGAGCGGAA,sympathetic noradrenergic neuron,Micro-PVM
+10X75_1:ACACCCTGAGAGAT,sympathetic noradrenergic neuron,CR
+10X75_1:CGAGGAGACGAATC,sympathetic noradrenergic neuron,L5/6 IT TPE-ENT
+10X75_1:ATTCTTCTGGCAAG,sympathetic noradrenergic neuron,Micro-PVM
+10X75_1:AAAGCAGAAGCGTT,sympathetic noradrenergic neuron,Astro
+10X75_1:AAGGTCTGTGGTAC,sympathetic noradrenergic neuron,CR
+10X75_1:GACAGGGAGCTTAG,sympathetic noradrenergic neuron,Micro-PVM
+10X75_1:GAACACACGAGCTT,sympathetic noradrenergic neuron,Micro-PVM
+10X53_7:TCCCAGACTTACTC,Satellite glia,Astro
+10X43_2:TAAGAGGAGCTGTA,Satellite glia,Astro
+10X43_2:ATGCAGTGACCTTT,Satellite glia,Astro
+10X43_2:GGCGCATGTCTCTA,Satellite glia,Astro
+10X43_2:GATCGATGACGGTT,Satellite glia,Astro
+10X43_2:GCACCTTGCCTAAG,Satellite glia,Astro
+10X43_2:TTCAACACGCAGTT,Satellite glia,Astro
+10X43_2:ACGCAATGGCTGTA,Satellite glia,Astro
+10X43_2:ATAGCCGACTCAGA,Satellite glia,Astro
+10X43_2:ATCCGCACAGAGTA,Satellite glia,Astro
+10X53_7:ATGCGATGGCTGAT,Satellite glia,Astro
+10X43_2:CTAGTTTGTCAGAC,Satellite glia,Astro
+10X53_7:CTGGAAACCTCGCT,Satellite glia,Astro
+10X43_2:ACTGTTACATCGTG,Satellite glia,Astro
+10X53_7:CGACCACTCCCGTT,Satellite glia,Astro
+10X43_2:TCAACACTCCTTTA,Satellite glia,Astro
+10X43_2:TAGTCTTGCCTAAG,Satellite glia,Astro
+10X43_2:GGCGACTGTCTACT,Satellite glia,Astro
+10X43_2:CACGGGACTGCAAC,Satellite glia,Astro
+10X53_7:CGACCGGACATCAG,Satellite glia,Astro
+10X11_1:TTACTCGAAGTACC,choroid plexus epithelial cell,Micro-PVM
+10X54_6:AGCTACATCGGGTC,choroid plexus epithelial cell,Micro-PVM
+10X54_3:AGCCAGTAAGCACG,choroid plexus epithelial cell,Oligo
+10X55_3:ACCCAGTATATGAG,choroid plexus epithelial cell,Astro
+10X54_3:GCCACTCTGCGACG,choroid plexus epithelial cell,Astro
+10X55_8:GTTCCCACAACGTT,choroid plexus epithelial cell,Astro
+10X48_1:ATAGCCGAGGGACA,choroid plexus epithelial cell,Astro
+10X54_4:ACTTCGTGAGCGAT,choroid plexus epithelial cell,Astro
+10X49_1:ACAAAGGATTACTC,choroid plexus epithelial cell,Astro
+10X54_4:ACCAAGTCATACTG,choroid plexus epithelial cell,Astro
+10X54_2:TCGATTCCCTCAGT,choroid plexus epithelial cell,Astro
+10X48_4:GCAGTCCTTTGCAG,choroid plexus epithelial cell,Astro
+10X57_6:TTGGGAACGCTTAG,choroid plexus epithelial cell,Astro
+10X57_6:AATCCTACTTAGGC,choroid plexus epithelial cell,L6 IT CTX
+10X54_4:CTCCTTCAGATAAG,choroid plexus epithelial cell,Astro
+10X49_3:AGTTTGCTCACCAA,choroid plexus epithelial cell,Astro
+10X33_2:GGACCCGAAGTCTG,choroid plexus epithelial cell,Astro
+10X54_2:GTAGAAGGTGATAT,choroid plexus epithelial cell,Astro
+10X48_1:TGATTCACTTCTAC,choroid plexus epithelial cell,Astro
+10X87_4:ATAGAACTTTGTGG,choroid plexus epithelial cell,Micro-PVM
+10X20_3:ATGCAGTGAAAAGC,hypendymal cell,Astro
+10X57_1:GATCCGCTTTGCTT,hypendymal cell,Astro
+10X20_3:ATGCGATGCCTCAC,hypendymal cell,Astro
+10X57_1:ACGACCCTTCGTAG,hypendymal cell,Astro
+10X20_4:CTCAGGCTAAGAGT,hypendymal cell,Astro
+10X52_1:ATCCGCACTCGATG,hypendymal cell,Astro
+10X52_2:AGAGTGCTCATTGG,hypendymal cell,Astro
+10X52_3:TCGCACACTTCGCC,hypendymal cell,Astro
+10X52_4:TTTGACTGTGCTGA,hypendymal cell,Astro
+10X57_3:GGAATGCTTATCTC,hypendymal cell,Astro
+10X52_1:TAGTAATGGTACCA,hypendymal cell,Astro
+10X57_3:CTGATACTTACTCT,hypendymal cell,Astro
+10X20_3:GGGCAAGACTCTTA,hypendymal cell,Astro
+10X20_3:CTGTAACTGAGGTG,hypendymal cell,Astro
+10X20_4:GCAAGACTAAGCAA,hypendymal cell,Astro
+10X20_4:CTAGGCCTCTACTT,hypendymal cell,Astro
+10X20_3:TTCTTACTTTATCC,hypendymal cell,Astro
+10X20_3:CTCAGAGAGGATCT,hypendymal cell,Astro
+10X57_2:ACGCCACTGTTACG,hypendymal cell,Astro
+10X20_3:GTTGACGATAGTCG,hypendymal cell,Astro
+10X75_1:CTTCTAGACGTGAT,sympathetic cholinergic neuron,CR
+10X75_1:TAGAGAGAAATGCC,sympathetic cholinergic neuron,Micro-PVM
+10X75_1:AACAGAGAGTTTCT,sympathetic cholinergic neuron,CR
+10X75_1:CCCTACGAGGGATG,sympathetic cholinergic neuron,CR
+10X75_1:GGGTTAACTTCTCA,sympathetic cholinergic neuron,Micro-PVM
+10X75_1:AGATATTGAAGGTA,sympathetic cholinergic neuron,CR
+10X75_1:AGGAATGACGCTAA,sympathetic cholinergic neuron,VLMC
+10X75_1:TGCAAGACAGAGAT,sympathetic cholinergic neuron,Vip
+10X75_1:TACACACTCGTAAC,sympathetic cholinergic neuron,Micro-PVM
+10X75_1:AGCGTAACGTGTCA,sympathetic cholinergic neuron,Micro-PVM
+10X75_1:GGAGCAGACCAGTA,sympathetic cholinergic neuron,Micro-PVM
+10X75_1:CAGTTGGAGTACGT,sympathetic cholinergic neuron,Micro-PVM
+10X75_1:TTCATGACTGGAGG,sympathetic cholinergic neuron,Micro-PVM
+10X75_1:AGCCAATGTCGTAG,sympathetic cholinergic neuron,Micro-PVM
+10X75_1:ATGTTAGAAGAGTA,sympathetic cholinergic neuron,CR
+10X75_1:ATTCTTCTCAGTTG,sympathetic cholinergic neuron,Micro-PVM
+10X75_1:CTGACAGACCTTCG,sympathetic cholinergic neuron,Micro-PVM
+10X75_1:ATCGCGCTCACTTT,sympathetic cholinergic neuron,Micro-PVM
+10X75_1:AAGTGGCTGCTGAT,sympathetic cholinergic neuron,Micro-PVM
+10X75_1:GGTGATACGAGCTT,sympathetic cholinergic neuron,Endo
+10X43_2:ATGAGCACTCATTC,Schwann cell,Oligo
+10X43_2:AGACCTGAGTCCTC,Schwann cell,Oligo
+10X53_7:ACAGTTCTCTTGGA,Schwann cell,Oligo
+10X53_7:AGCGGCACAACAGA,Schwann cell,Oligo
+10X43_2:TCATCAACCGTTAG,Schwann cell,Oligo
+10X43_2:ACTGAGACAACTGC,Schwann cell,Oligo
+10X43_2:ATGGTGACCATGGT,Schwann cell,Oligo
+10X53_7:TATAAGTGGTCGAT,Schwann cell,Oligo
+10X43_2:CACGGGACTTCTAC,Schwann cell,Oligo
+10X43_2:TGTATCTGAGTCTG,Schwann cell,Oligo
+10X43_2:ATCATCTGAACGGG,Schwann cell,Oligo
+10X43_2:GTTCAGGATGTTTC,Schwann cell,Oligo
+10X43_2:CTTAGGGAAATGCC,Schwann cell,Oligo
+10X43_2:TCAGGATGAACGGG,Schwann cell,Oligo
+10X43_2:TTTCGAACTCTCTA,Schwann cell,Oligo
+10X43_2:TGATTCTGGTCATG,Schwann cell,Oligo
+10X43_2:ACAGTGACGACTAC,Schwann cell,Oligo
+10X43_2:CTAGATCTAGAACA,Schwann cell,Oligo
+10X53_7:GATAGAGATGGATC,Schwann cell,Oligo
+10X43_2:GAAGCTTGTTGTGG,Schwann cell,Oligo
+10X82_2:CATGGAGTCTCAAC,enteric neuron,Sncg
+10X81_1:CACACAGGGTGTTG,enteric neuron,Oligo
+10X82_2:TCGATGTCAGAGGT,enteric neuron,Vip
+10X81_3:TCCTAGTCTTGTCC,enteric neuron,Oligo
+10X81_2:GGTGACAAGGACAC,enteric neuron,Oligo
+10X82_2:CTGCTTCGACAGCC,enteric neuron,Astro
+10X82_2:AAACTCAAACCTAC,enteric neuron,Astro
+10X82_2:ACATCTCTTGTATC,enteric neuron,Vip
+10X81_1:CATAGAGGCTCATT,enteric neuron,Astro
+10X82_2:ATGTCTCCTCAACC,enteric neuron,Oligo
+10X81_3:ACTAGCACGAAAGC,enteric neuron,CR
+10X81_3:TTGGTTCTACTCAT,enteric neuron,Vip
+10X82_2:GCATAAGACCCACC,enteric neuron,Vip
+10X81_3:GAGAGTCCACGAAT,enteric neuron,Oligo
+10X82_2:ACATTCACGGCGTT,enteric neuron,Astro
+10X82_2:ATTGAAGTGTGAAT,enteric neuron,Pvalb
+10X82_2:CCACTAGAGGGCTT,enteric neuron,Oligo
+10X81_3:GGCAGGTTATGTGC,enteric neuron,Vip
+10X81_1:ACAGATCAATACCG,enteric neuron,Micro-PVM
+10X81_1:ATGTATCTTGTACT,enteric neuron,L5 IT CTX
