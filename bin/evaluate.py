@@ -13,6 +13,7 @@ from util.plots import UMAPCellPlotter  # Replace with correct import if needed
 from util.cell_ontology_similarity import compute_ontology_similarities, download_cl_ontology
 from util.ontology_helpers import apply_ontology_mapping_to_cell_type_list
 from util.ontology_mapper import filter_predictions_by_review_status
+from util.label_normalization import normalize_predicted_labels, normalize_true_labels
 
 # -- Utility functions --
 
@@ -333,25 +334,14 @@ def main(args):
             if stem.startswith('predictions_'):
                 file_origin = f"{model}_{stem[len('predictions_'):]}_{dataset}"
         
-        # Normalize predicted labels: strip whitespace (incl. trailing \n) BEFORE
-        # removing a trailing period, then strip again to clean up any space the
-        # period removal exposed, lowercase, and convert blanks to NaN.
-        # The strip-first ordering is required because some models (e.g.
-        # c2s_scale_27B_blind) emit "label.\n" — a naive rstrip('.') sees the
-        # newline as the trailing char and silently leaves the period in place.
+        # Normalize predicted/true labels using the shared normalization helpers
+        # (single source of truth, also used by the mapping-coverage check). See
+        # util.label_normalization for the exact steps and rationale.
         print(f"\nPreprocessing predicted labels...")
-        df[pred_col] = (df[pred_col].astype(str)
-                                    .str.strip()
-                                    .str.rstrip('.')
-                                    # Some model outputs wrap the label in quotes, e.g. '"B cell"' or '"""gabaergic neuron"""'.
-                                    # Strip any leading/trailing single/double quotes so ontology lookup can match directly.
-                                    .str.replace(r"^[\'\"]+|[\'\"]+$", "", regex=True)
-                                    .str.strip()
-                                    .str.lower()
-                                    .replace('', np.nan))
+        df[pred_col] = normalize_predicted_labels(df[pred_col])
         for col in ['true_labels', 'true_labels_1', 'true_labels_2', 'true_labels_3']:
             if col in df.columns:
-                df[col] = df[col].str.strip().str.lower()
+                df[col] = normalize_true_labels(df[col])
         
         # Filter predictions by review status before applying ontology mapping (only if mapping is enabled)
         if args.apply_ontology_mapping:
