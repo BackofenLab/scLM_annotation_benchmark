@@ -12,6 +12,7 @@ cache/*
 # Exception: keep the ontology mappings CSV for manual editing
 !cache/cell_type_ontology_mappings.csv
 !cache/all_cell_types.txt
+
 # Exception: keep the predictions subdirectory
 !cache/models/
 cache/models/*
@@ -20,6 +21,9 @@ cache/models/*
 # Exception: keep the preprocessing result plots
 !cache/plots/
 !cache/plots/**
+# Exception: keep the cell type annotation results
+!cache/result/
+!cache/result/**
 # Exception: keep the offline ENSEMBL fallback cache
 !cache/ENSEMBL/
 !cache/ENSEMBL/**
