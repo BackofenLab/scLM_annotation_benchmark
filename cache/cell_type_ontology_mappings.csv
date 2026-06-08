@@ -871,6 +871,7 @@ True;c2s_scale_27B_blind_HIHA;naive thymus-derived cd4-positive, alpha-beta t ce
 True;openrouter_LLM_blind_anthropic--claude-sonnet-4.6_HIHA;naive thymus-derived cd8-positive alpha-beta t cell;mature CD8 single-positive thymocyte;mature CD8 single-positive thymocyte
 True;c2s_scale_27B_blind_HIHA;naive thymus-derived cd8-positive, alpha-beta t cell. cell;naive thymus-derived CD8-positive, alpha-beta T cell;CD8-positive, alpha-beta thymocyte
 True;openrouter_LLM_unblind_openai--gpt-oss-120b_HIHA;naive thymus-derived cd4-positive, alpha‑beta t cell;naive thymus-derived CD4-positive, alpha-beta T cell;naive thymus-derived CD4-positive, alpha-beta T cell
+True;openrouter_LLM_unblind_openai--gpt-oss-20b_HIHA;nan;cell;cerebral cortex neuron
 True;c2s_scale_2B_blind_Zeisel;native cell;cell;obsolete native cell
 True;c2s_scale_27B_blind_HIHA;native cell. cell 10: malat1 mt-co1 mt-;cell;fraction C precursor B cell
 True;c2s_scale_27B_blind_HIHA;native cell. cell 1: b cell. cell 2: native;cell;obsolete native cell
@@ -1468,4 +1469,4 @@ True;openrouter_LLM_blind_openai--gpt-oss-20b_human_pancreas;β cell;type B panc
 True;openrouter_LLM_blind_openai--gpt-oss-20b_human_pancreas;β-cell;type B pancreatic cell;mature alpha-beta T cell
 True;openrouter_LLM_blind_openai--gpt-oss-20b_HIHA;γδ t cell;gamma-delta T cell;gamma-delta intraepithelial T cell
 True;openrouter_LLM_blind_openai--gpt-oss-20b_human_pancreas;δ cell;pancreatic D cell;cycling gamma-delta T cell
-True;openrouter_LLM_unblind_openai--gpt-oss-120b_HFRA;;cell;cerebral cortex neuron
+True;openrouter_LLM_unblind_openai--gpt-oss-120b_HFRA;;cerebral cortex neuron;cerebral cortex neuron
