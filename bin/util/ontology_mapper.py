@@ -12,6 +12,35 @@ import pandas as pd
 
 # Import the download function from cell_ontology_similarity
 from .cell_ontology_similarity import download_cl_ontology
+from .label_normalization import canonicalize_empty_labels
+
+
+def _read_mapping_csv(mapping_csv_path: Path) -> pd.DataFrame:
+    """Read ``cell_type_ontology_mappings.csv`` robustly.
+
+    Uses ``keep_default_na=False`` so blank cells and the literal text ``"nan"``
+    are NOT silently converted to float ``NaN`` -- pandas' default ``na_values``
+    include ``"nan"``, which previously destroyed the ``predicted_label`` of
+    empty-prediction rows on every read/write round-trip (so manual reviews of
+    those rows never matched). The ``predicted_label`` column is then
+    canonicalized so any legacy blank/``"nan"`` key lines up with the
+    ``EMPTY_PREDICTION_LABEL`` sentinel that ``normalize_predicted_labels``
+    emits for empty predictions.
+
+    Parameters
+    ----------
+    mapping_csv_path : Path
+        Path to the semicolon-delimited mapping CSV.
+
+    Returns
+    -------
+    pd.DataFrame
+        The mapping table with a stable, string ``predicted_label`` column.
+    """
+    df = pd.read_csv(mapping_csv_path, sep=';', keep_default_na=False)
+    if 'predicted_label' in df.columns:
+        df['predicted_label'] = canonicalize_empty_labels(df['predicted_label'])
+    return df
 
 
 def map_cell_types_to_ontology(
@@ -81,7 +110,7 @@ def map_cell_types_to_ontology(
     existing_mappings = {}
     if mapping_csv_path.exists() and not force_remapping:
         try:
-            existing_df = pd.read_csv(mapping_csv_path, sep=';')
+            existing_df = _read_mapping_csv(mapping_csv_path)
             existing_mappings = dict(zip(existing_df['predicted_label'], existing_df.index))
             print(f"Loaded {len(existing_mappings)} existing mappings from {mapping_csv_path}")
         except Exception as e:
@@ -161,7 +190,7 @@ def map_cell_types_to_ontology(
     # Combine with existing mappings if they exist
     if mapping_csv_path.exists() and not force_remapping:
         try:
-            existing_df = pd.read_csv(mapping_csv_path, sep=';')
+            existing_df = _read_mapping_csv(mapping_csv_path)
             # Append new mappings to existing ones
             combined_df = pd.concat([existing_df, new_df], ignore_index=True)
         except Exception as e:
@@ -246,7 +275,7 @@ def load_ontology_mappings(cache_dir: Path) -> Optional[dict[str, str]]:
         return None
     
     try:
-        df = pd.read_csv(mapping_csv_path, sep=';')
+        df = _read_mapping_csv(mapping_csv_path)
         # Create mapping from predicted_label to chosen_match
         mappings = dict(zip(df['predicted_label'], df['chosen_match']))
         return mappings
@@ -277,7 +306,7 @@ def load_ontology_mappings_with_review_status(cache_dir: Path) -> Optional[pd.Da
         return None
     
     try:
-        df = pd.read_csv(mapping_csv_path, sep=';')
+        df = _read_mapping_csv(mapping_csv_path)
         return df
     except Exception as e:
         print(f"Warning: Could not load ontology mappings with review status: {e}")
