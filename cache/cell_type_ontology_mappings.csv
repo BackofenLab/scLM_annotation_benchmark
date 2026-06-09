@@ -1469,4 +1469,4 @@ True;openrouter_LLM_blind_openai--gpt-oss-20b_human_pancreas;β cell;type B panc
 True;openrouter_LLM_blind_openai--gpt-oss-20b_human_pancreas;β-cell;type B pancreatic cell;mature alpha-beta T cell
 True;openrouter_LLM_blind_openai--gpt-oss-20b_HIHA;γδ t cell;gamma-delta T cell;gamma-delta intraepithelial T cell
 True;openrouter_LLM_blind_openai--gpt-oss-20b_human_pancreas;δ cell;pancreatic D cell;cycling gamma-delta T cell
-True;openrouter_LLM_unblind_openai--gpt-oss-120b_HFRA;;cerebral cortex neuron;cerebral cortex neuron
+True;openrouter_LLM_unblind_openai--gpt-oss-120b_HFRA;;cell;cerebral cortex neuron
