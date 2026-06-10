@@ -1,0 +1,20 @@
+name: sc_lfm_plotting
+
+# Lightweight environment for the standalone model/dataset comparison plots
+# (bin/plot_model_comparison.py). Versions are pinned to match the main
+# `sc_lfm` environment (envs/environment.yml) for visual consistency.
+#
+# Usage:
+#   conda env create -f envs/plotting.yml
+#   conda activate sc_lfm_plotting
+#   python bin/plot_model_comparison.py
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.11
+  - pandas=2.3.3
+  - numpy=1.26.4
+  - matplotlib=3.9.4
+  - seaborn=0.13.2

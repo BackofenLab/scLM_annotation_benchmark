@@ -131,6 +131,40 @@ If the secret is unset, `run_model` tasks fail with `Required secret is missing:
 
 **Never commit or push your API key to the repository.**
 
+### Comparison plots
+
+`bin/plot_model_comparison.py` is a standalone script (independent of the Nextflow
+pipeline) that turns `results/aggregated_by_dataset_model.csv` into several
+comparison views per metric. Each plot type is written to its own sub-folder under
+`results/plots/`:
+
+- `ranking/` — models ranked within each dataset (1 = best), sorted by their mean
+  rank across datasets (bar = mean rank, dots = per-dataset rank). The headline view.
+- `heatmap/` — model × dataset metric values, sorted by mean.
+- `bump/` — rank trajectories across datasets (which models are consistent vs. dataset-sensitive).
+- `barplot/` — the familiar grouped barplot (x = model sorted by mean, hue = dataset).
+
+It runs in a lightweight conda environment:
+
+```bash
+conda env create -f envs/plotting.yml
+conda activate sc_lfm_plotting
+
+# all plot types, default metric set
+python bin/plot_model_comparison.py
+
+# restrict to specific models (everything else is dropped from this run)
+python bin/plot_model_comparison.py --models cellwhisperer_unblind gpt-5.5_unblind
+
+# every numeric metric, only ranking + heatmap
+python bin/plot_model_comparison.py --metrics all --plots ranking heatmap
+```
+
+If the CSV gains a `subset_size` column (cells per model — see `subset_categories`
+above, which assigns sizes per model), each model's axis label is annotated with a
+marker (`*`, `**`, …) and a caption maps the markers to cell counts. The script works
+unchanged when that column is absent. Run `--help` for all options.
+
 ### Planning excel sheet
 
 <[internal link removed]>
