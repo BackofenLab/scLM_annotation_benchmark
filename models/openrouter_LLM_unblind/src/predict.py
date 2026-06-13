@@ -5,14 +5,14 @@ OpenRouter LLM inference for single-cell data (e.g. DeepSeekR1 or GPT-5).
 - Reads API key from env (API_KEY) or --api-key
 - Builds prompts with cell2sentence custom prompt formatter
 - Queries OpenRouter LLMs (e.g. DeepSeek R1, GPT-5, ...) with retries
-- Writes predictions.csv with predicted CL IDs + resolved cell-type labels + true labels
+- Writes predictions.csv in the standard schema shared with the other models:
+
+    cell_id, true_labels, predicted_labels
 
 For constructing cell sentences, make sure that gene symbols are available!
 
-This version assumes the model returns either cell type labels or CL terms (e.g., "CL:0000236"). CL terms,
-get mapped to human-readable labels via EBI OLS, and writes:
-
-    predicted_cl_id, predicted_cell_type, true_labels[...]
+The model is expected to return a cell type label directly; the raw label is written as
+predicted_labels (normalization + ontology mapping happen downstream in bin/map_predictions.py).
 
 """
 
@@ -28,9 +28,6 @@ import random
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-import re
-from functools import lru_cache
-from urllib.parse import quote
 from typing import Optional, Dict, List, Iterable, Tuple, Union, Mapping, Any
 
 import numpy as np
@@ -344,174 +341,27 @@ def run_OpenRouter_model_prediction(
     return preds
 
 
-# ---------------- CL mapping helpers ----------------
-_CL_TERM_RE = re.compile(r'(CL[:_]\d{7})$', re.I)
-
-def normalize_cl_id(term: str) -> Optional[str]:
-    if term is None:
-        return None
-    s = str(term).strip()
-    if not s:
-        return None
-    m = _CL_TERM_RE.search(s)
-    if m:
-        return m.group(1).upper().replace('_', ':')
-    m = re.search(r'/CL[_:](\d{7})$', s, re.I)
-    if m:
-        return "CL:%s" % m.group(1)
-    return None
-
-@lru_cache(maxsize=4096)
-def _ols_lookup(cl_id: str) -> Dict[str, Any]:
-    iri = "http://purl.obolibrary.org/obo/%s" % cl_id.replace(':', '_')
-    base = "https://www.ebi.ac.uk/ols4/api/ontologies/cl/terms"
-
-    r = requests.get(f"{base}?iri={quote(iri, safe='')}", timeout=10)
-    if r.ok and r.json().get("_embedded", {}).get("terms"):
-        term = r.json()["_embedded"]["terms"][0]
-    else:
-        short_form = cl_id.replace(":", "_")
-        r = requests.get(f"{base}?short_form={short_form}", timeout=10)
-        if not (r.ok and r.json().get("_embedded", {}).get("terms")):
-            raise LookupError(f"CL ID not found in OLS: {cl_id}")
-        term = r.json()["_embedded"]["terms"][0]
-
-    label = term.get("label")
-    obsolete = bool(term.get("is_obsolete", False))
-
-    replaced_by = None
-    ann = term.get("annotation", {}) or {}
-    for k in ("replacedBy", "oboInOwl:replaced_by", "IAO:0100001"):
-        val = ann.get(k)
-        if val:
-            if isinstance(val, list) and val:
-                replaced_by = val[0]
-            elif isinstance(val, str):
-                replaced_by = val
-            break
-
-    return {"label": label, "obsolete": obsolete, "replaced_by": replaced_by}
-
-def map_cl_terms_to_labels(
-    terms: Iterable[str],
-    local_map: Optional[Mapping[str, str]] = None,
-    *,
-    online: bool = True,
-    follow_replacements: bool = True,
-    return_missing: bool = False,
-) -> Union[Dict[Any, Dict[str, Any]], Tuple[Dict[Any, Dict[str, Any]], Dict[Any, str]]]:
-    local_map = local_map or {}
-    _local: Dict[str, str] = {}
-    for k, v in local_map.items():
-        nk = normalize_cl_id(k)
-        if nk:
-            _local[nk] = v
-
-    out: Dict[Any, Dict[str, Any]] = {}
-    missing: Dict[Any, str] = {}
-
-    for t in terms:
-        cl = normalize_cl_id(t)
-        entry = {"cl_id": cl, "label": None, "source": None, "obsolete": False, "replaced_by": None}
-
-        if not cl:
-            missing[t] = "Not a recognizable CL ID/IRI"
-            out[t] = entry
-            continue
-
-        if cl in _local:
-            entry.update({"label": _local[cl], "source": "local"})
-            out[t] = entry
-            continue
-
-        if not online:
-            missing[t] = "Not in local_map and online=False"
-            out[t] = entry
-            continue
-
-        try:
-            res = _ols_lookup(cl)
-            if res["obsolete"] and follow_replacements and res["replaced_by"]:
-                new_cl = normalize_cl_id(res["replaced_by"])
-                if new_cl:
-                    res2 = _ols_lookup(new_cl)
-                    entry.update({"cl_id": new_cl, "label": res2["label"], "source": "ols",
-                                  "obsolete": res2["obsolete"], "replaced_by": None})
-                else:
-                    entry.update({"label": res["label"], "source": "ols",
-                                  "obsolete": True, "replaced_by": res["replaced_by"]})
-            else:
-                entry.update({"label": res["label"], "source": "ols",
-                              "obsolete": res["obsolete"], "replaced_by": res["replaced_by"]})
-        except Exception as e:
-            missing[t] = str(e)
-
-        out[t] = entry
-
-    if return_missing:
-        return out, missing
-    return out
-
-def clean_model_output(text: Optional[str]) -> Optional[str]:
-    if text is None:
-        return None
-    t = str(text).strip()
-    if not t:
-        return None
-    # keep first line, strip 'Output:' prefix & quotes
-    t = t.splitlines()[0]
-    t = re.sub(r'(?i)^\s*output\s*:\s*', '', t).strip()
-    t = t.strip('"').strip("'")
-    return t or None
-
-def cl_ids_and_labels_from_preds(
-    preds: List[Optional[str]],
-    *,
-    online: bool = True,
-    follow_replacements: bool = True,
-) -> Tuple[List[Optional[str]], List[Optional[str]]]:
-    """
-    Takes raw model predictions (expected to be CL terms), normalizes to CL:#######,
-    and returns parallel lists: [cl_id], [label]. If lookup fails, label is None.
-    """
-    cleaned = [clean_model_output(p) for p in preds]
-    mapping, _missing = map_cl_terms_to_labels(
-        cleaned, online=online, follow_replacements=follow_replacements, return_missing=True
-    )  # type: ignore
-    cl_ids: List[Optional[str]] = []
-    labels: List[Optional[str]] = []
-    for p in cleaned:
-        info = mapping.get(p, {})
-        cl_ids.append(info.get("cl_id"))
-        labels.append(info.get("label"))
-    return cl_ids, labels
-
 def create_results_dataframe(
     adata,
-    predicted_cl_ids: List[Optional[str]],
-    predicted_labels: List[Optional[str]],
+    predicted_labels,
     label_key: str,
 ) -> pd.DataFrame:
-    n = len(predicted_cl_ids)
-    idx = list(adata.obs_names[:n])
+    """Build the standard prediction frame shared with all other models:
+    columns cell_id, true_labels, predicted_labels (written without an index)."""
+    n = len(predicted_labels)
+    cell_ids = [str(x) for x in list(adata.obs_names[:n])]
 
-    data: Dict[str, List[Optional[str]]] = {
-        "predicted_cl_id": predicted_cl_ids,
-        "predicted_cell_type": predicted_labels,  # human-readable label resolved via OLS
-    }
-
-    # Keep compatibility: if someone expects "predicted_labels", mirror the column
-    data["predicted_labels"] = predicted_labels
-
-    col_name = "true_labels"
     if label_key in adata.obs.columns:
-        data[col_name] = list(adata.obs[label_key].astype("string").values[:n])
+        true_labels = list(adata.obs[label_key].astype("string").values[:n])
     else:
         logger.warning(f"'{label_key}' not found in adata.obs; filling NA")
-        data[col_name] = [None] * n
+        true_labels = [None] * n
 
-    df = pd.DataFrame(data, index=idx)
-    return df
+    return pd.DataFrame({
+        "cell_id": cell_ids,
+        "true_labels": true_labels,
+        "predicted_labels": predicted_labels,
+    })
 
 
 # ---------------- Main ----------------
@@ -524,7 +374,6 @@ def _parse_args() -> argparse.Namespace:
 
     # Core config
     p.add_argument("--model", "-m", required=True, help="Single OpenRouter model ID")
-    p.add_argument("--output_mode", "-om", default="label", choices=["cl_id", "label"])
     p.add_argument("--seed", type=int, default=42)
     p.add_argument("--task_name", default="cell_type_prediction")
     p.add_argument("--input_prompt_template", required=True)
@@ -662,18 +511,13 @@ def main():
 
     logger.info(f"First 10 predictions: {preds[:10]}")
 
-    if args.output_mode == "cl_id":
-        pred_cl_ids, pred_labels = cl_ids_and_labels_from_preds(preds, online=True, follow_replacements=True)
-    elif args.output_mode == "label":
-        pred_labels = preds
-        pred_cl_ids = [None] * len(preds)
-    else:
-        raise ValueError(f"Invalid output mode: {args.output_mode}")
+    # Label-only: the raw model output IS the predicted label (cleaned/normalized downstream).
+    pred_labels = preds
 
-    df = create_results_dataframe(adata, pred_cl_ids, pred_labels, args.label_key)
+    df = create_results_dataframe(adata, pred_labels, args.label_key)
 
     Path(output_dir).mkdir(parents=True, exist_ok=True)
-    df.to_csv(output_path, index=True)
+    df.to_csv(output_path, index=False)
     logger.info(f"Wrote predictions: {output_path}")
 
 

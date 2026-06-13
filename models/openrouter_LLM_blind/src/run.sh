@@ -217,8 +217,6 @@ if (( ${#MODEL_NAMES[@]} == 0 )); then
   exit 2
 fi
 TASK_NAME="$(yaml_get_or_default 'openrouter_LLM.task_name' 'cell_type_prediction')"
-
-OUTPUT_MODE="$(yaml_get_or_default 'openrouter_LLM.output_mode' 'label')"
 TOP_K_GENES="$(yaml_get_or_default 'openrouter_LLM.top_k_genes' '200')"
 MAX_SAMPLES="$(yaml_get_or_default 'openrouter_LLM.max_samples' '')"   # 0 or '' => all cells
 MAX_WORKERS="$(yaml_get_or_default 'openrouter_LLM.max_workers' '3')"
@@ -293,7 +291,6 @@ PY
 declare -a COMMON_ARGS=(
   "--input" "${INPUT_H5AD}"
   "--seed" "${SEED}"
-  "--output_mode" "${OUTPUT_MODE}"
   "--task_name" "${TASK_NAME}"
   "--input_prompt_template" "${INPUT_PROMPT_TEMPLATE}"
   "--answer_template" "${ANSWER_TEMPLATE}"

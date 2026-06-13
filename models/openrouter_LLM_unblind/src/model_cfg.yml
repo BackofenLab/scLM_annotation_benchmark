@@ -27,7 +27,7 @@ openrouter_LLM:
   ##  - deepseek/deepseek-r1-0528 #(optional, always reasoning)
   ##  - mistralai/mistral-large-2512 #(optional, non-reasoning)
 
-    - meta-llama/llama-3.1-8b-instruct #(drop, non-reasoning)
+  ##  - meta-llama/llama-3.1-8b-instruct #(drop, non-reasoning)
     - meta-llama/llama-3.1-70b-instruct #(drop, non-reasoning)
     - meta-llama/llama-3.3-70b-instruct #(drop, non-reasoning)
 
@@ -53,20 +53,12 @@ openrouter_LLM:
     4. Do not repeat the question or input in the output.
     Output:
 
-  # 1. Respond with only the cell type label of the predicted cell type.
-  # 1. Respond with only the cell ontology term of the predicted cell type (e.g. CL_0000624 for a CD4-positive, alpha-beta T cell, or CL_0000127 for an astrocyte).
-  # 2. Do not include explanations, reasoning, or extra words.
-  # 3. Do not repeat the question or input.
-  # 4. Use celltype names known to CL ontology.
-
 
   # The expected answer format (used for evaluation ground-truth scaffolding)
   # Available field:
   #   {true_labels}
   answer_template: "{true_labels}"
 
-  #OUTPUT_MODE: "label" can be "cl_id" or "label" depending of if you want the CL ID or the cell type label
-  output_mode: "label"
 
   # Data shaping
   top_k_genes: 200
