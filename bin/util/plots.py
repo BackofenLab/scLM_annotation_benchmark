@@ -1,4 +1,7 @@
 import matplotlib.pyplot as plt
+# Some LLMs emit garbage labels containing '$', which matplotlib's mathtext
+# parser tries to interpret as LaTeX math and crashes on. Treat '$' as literal.
+plt.rcParams['text.parse_math'] = False
 import seaborn as sns
 from pathlib import Path
 import pandas as pd

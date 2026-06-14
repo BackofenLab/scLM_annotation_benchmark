@@ -176,7 +176,8 @@ def apply_ontology_mapping_to_cell_type_list(
     cache_dir: Path,
     force_remapping: bool = False,
     verbose: bool = True,
-    origin: str = "unknown"
+    origin: str = "unknown",
+    label_index: Optional[Dict] = None,
 ) -> Tuple[List[str], Dict[str, str]]:
     """
     Apply ontology mapping to a list of cell type labels.
@@ -216,13 +217,20 @@ def apply_ontology_mapping_to_cell_type_list(
     
     # Get unique cell types for processing
     unique_cell_types = list(set(cell_types))
-    
-    # Check ontology mapping coverage
+
+    # Check ontology mapping coverage. If a preloaded label_index is supplied (e.g. by
+    # map_predictions.py, which parses the OWL once per process), reuse it instead of calling
+    # check_ontology_mapping_coverage, which would re-parse the 63MB OWL on every call.
     try:
-        mapped_types, unmapped_types, label_index = check_ontology_mapping_coverage(
-            cell_types=unique_cell_types,
-            ontology_path=str(cl_file_path)
-        )
+        if label_index is None:
+            mapped_types, unmapped_types, label_index = check_ontology_mapping_coverage(
+                cell_types=unique_cell_types,
+                ontology_path=str(cl_file_path)
+            )
+        else:
+            mapped_types = {c for c in unique_cell_types
+                            if map_string_to_term(c, label_index) is not None}
+            unmapped_types = set(unique_cell_types) - mapped_types
     except Exception as e:
         raise RuntimeError(f"Failed to check ontology coverage: {e}")
     

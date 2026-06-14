@@ -186,7 +186,10 @@ def lca_max_depth(a: pronto.Term, b: pronto.Term, depth: dict[pronto.Term, int])
     common = ca.intersection(cb)
     if not common:
         return None
-    return max(common, key=lambda t: depth.get(t, 0))
+    # Break depth ties by term id so the LCA (and thus the Lin similarity) is deterministic.
+    # Without the id tiebreaker, max() over the `common` set picks an arbitrary element whose
+    # order depends on per-process string-hash randomization, making `lin` irreproducible.
+    return max(common, key=lambda t: (depth.get(t, 0), t.id))
 
 
 def neighbors_is_a(term):
@@ -319,7 +322,11 @@ def compute_ontology_similarities(
     true_col: str = "true_labels",
     pred_col: str = "predicted_labels",
     max_unmapped_ratio: float = 0.0,
-    cache_dir: Optional[Path] = None
+    ont: Optional[pronto.Ontology] = None,
+    label_index: Optional[dict] = None,
+    depth: Optional[dict] = None,
+    desc_count: Optional[dict] = None,
+    max_desc: Optional[int] = None,
 ) -> Tuple[pd.DataFrame, Dict[str, float]]:
     """
     Compute ontology-based similarities for a dataframe with true and predicted labels.
@@ -339,9 +346,10 @@ def compute_ontology_similarities(
         Maximum acceptable ratio of unmapped cell types (0.0 to 1.0).
         If 0.0, all cell types must be mapped or an error will be raised.
         If 1.0, any ratio of unmapped cell types is acceptable.
-    cache_dir : Optional[Path], default None
-        Cache directory (kept for compatibility, but ontology mapping should be done before calling this function).
-        
+    ont, label_index, depth, desc_count, max_desc : optional
+        Preloaded ontology + graph helpers. When supplied (e.g. by evaluate.py, which parses the
+        OWL once per run), they are reused instead of re-parsing the 63MB OWL on every call.
+
     Returns
     -------
     Tuple[pd.DataFrame, Dict[str, float]]
@@ -354,32 +362,29 @@ def compute_ontology_similarities(
         If cell types remain unmapped and max_unmapped_ratio is 0.0. 
         Note: Ontology mapping should be applied before calling this function.
     """
-    # Load CL ontology
-    try:
-        ont = pronto.Ontology(cl_path)
-    except Exception as e:
-        raise RuntimeError(f"Failed to load ontology from {cl_path}: {e}")
+    # Load CL ontology and build graph helpers. Callers (e.g. evaluate.py) may pass these in
+    # preloaded so the 63MB OWL is parsed only once per process instead of per call.
+    if ont is None:
+        try:
+            ont = pronto.Ontology(cl_path)
+        except Exception as e:
+            raise RuntimeError(f"Failed to load ontology from {cl_path}: {e}")
+    if label_index is None:
+        label_index = build_label_index(ont)
+    if depth is None:
+        depth = compute_depths(ont)
+    if desc_count is None:
+        desc_count = descendant_counts(ont)
+    if max_desc is None:
+        max_desc = max(desc_count.values()) if desc_count else 0
 
-    # Build mapping index and graph helpers
-    label_index = build_label_index(ont)
-    depth = compute_depths(ont)
-    desc_count = descendant_counts(ont)
-    max_desc = max(desc_count.values()) if desc_count else 0
-
-    # Check mapping coverage for all unique cell types
+    # Check mapping coverage for all unique cell types using the already-built label_index
+    # (no second ontology parse — this used to call check_ontology_mapping_coverage, which
+    # re-parsed the OWL on every call).
     all_cell_types = list(set(df[true_col].unique()) | set(df[pred_col].unique()))
-    
-    # Use helper function to check ontology mapping coverage
-    from .ontology_helpers import check_ontology_mapping_coverage
-    
-    try:
-        mapped_types, unmapped_types, label_index = check_ontology_mapping_coverage(
-            cell_types=all_cell_types,
-            ontology_path=cl_path
-        )
-    except Exception as e:
-        raise RuntimeError(f"Failed to check ontology coverage: {e}")
-    
+    unmapped_types = {c for c in all_cell_types if map_string_to_term(c, label_index) is None}
+    mapped_types = set(all_cell_types) - unmapped_types
+
     # Calculate unmapped ratio
     total_types = len(all_cell_types)
     unmapped_count = len(unmapped_types)
@@ -426,130 +431,109 @@ def compute_ontology_similarities(
         
         return empty_combinations, avg_accuracies
 
-    # Create a temporary dataframe to compute individual scores
-    temp_df = df.copy()
-    
-    # Add new columns for individual scores
-    temp_df["true_term_id"] = None
-    temp_df["pred_term_id"] = None
-    temp_df["mapped_labels"] = None
-    temp_df["rada_similarity"] = np.nan
-    temp_df["lin_similarity"] = np.nan
-    temp_df["distance_edges"] = np.nan
-    temp_df["id_accuracy"] = 0.0
+    # Compute scores ONCE per unique (true, pred) pair, then derive cell-weighted aggregates.
+    # Similarity depends only on the (true_label, pred_label) pair, so the old per-cell loop
+    # repeated identical work n_cells times. Scoring each distinct pair once and weighting by
+    # its cell_count gives results identical to the per-cell version (and computes the rada
+    # edge distance only once instead of twice).
+    pair_counts = df.groupby([true_col, pred_col]).size().reset_index(name="cell_count")
 
-    # Process each row to compute individual scores
-    # Note: Labels should already be mapped before calling this function
-    for i, row in temp_df.iterrows():
-        true_label = row[true_col]
-        pred_label = row[pred_col]
-        
-        # Map labels to ontology terms (labels should already be ontology-mapped if mapping was enabled)
+    records = []
+    for _, prow in pair_counts.iterrows():
+        true_label = prow[true_col]
+        pred_label = prow[pred_col]
+
         t = map_string_to_term(true_label, label_index)
         p = map_string_to_term(pred_label, label_index)
-        
         true_term_id = t.id if t else None
         pred_term_id = p.id if p else None
-        temp_df.at[i, "true_term_id"] = true_term_id
-        temp_df.at[i, "pred_term_id"] = pred_term_id
-        temp_df.at[i, "mapped_labels"] = pred_label  # Use the label as-is (already mapped if mapping was enabled)
-        
-        # Compute id_accuracy: exact match if both term IDs exist and are equal
-        if true_term_id is not None and pred_term_id is not None:
-            temp_df.at[i, "id_accuracy"] = 1.0 if true_term_id == pred_term_id else 0.0
-        
+
+        # id_accuracy: exact match iff both term IDs exist and are equal (0.0 otherwise).
+        idacc = 1.0 if (true_term_id is not None and pred_term_id is not None
+                        and true_term_id == pred_term_id) else 0.0
+
+        distance = np.nan
+        rada = np.nan
+        lin = np.nan
         if t and p:
-            # Always compute distance
             d = edge_distance_undirected(t, p)
             if d is not None:
-                temp_df.at[i, "distance_edges"] = float(d)
-            
-            # Compute both similarities
-            rada_sim = compute_similarity(t, p, "rada", depth)
-            if rada_sim is not None:
-                temp_df.at[i, "rada_similarity"] = float(rada_sim)
-                
+                distance = float(d)
+                rada = 1.0 / (1.0 + float(d))  # rada = 1/(1+d); reuse the single BFS distance
             lin_sim = compute_similarity(t, p, "lin", depth, desc_count, max_desc)
             if lin_sim is not None:
-                temp_df.at[i, "lin_similarity"] = float(lin_sim)
+                lin = float(lin_sim)
 
-    # Calculate average accuracies (mean of non-NaN similarities)
+        records.append({
+            true_col: true_label,
+            pred_col: pred_label,
+            "mapped_labels": pred_label,
+            "cell_count": int(prow["cell_count"]),
+            "rada_similarity": rada,
+            "lin_similarity": lin,
+            "distance_edges": distance,
+            "id_accuracy": idacc,
+            "true_term_id": true_term_id,
+            "pred_term_id": pred_term_id,
+        })
+
+    # Final output column contract (renamed similarity columns). Used for the empty-frame guard.
+    out_cols = [
+        true_col, pred_col, "mapped_labels", "cell_count",
+        "rada_similarity_mean", "lin_similarity_mean", "distance_edges_mean", "id_accuracy_mean",
+        "true_term_id", "pred_term_id",
+    ]
+    if not records:
+        empty = pd.DataFrame(columns=out_cols)
+        return empty, {
+            "rada_avg_similarity": np.nan, "lin_avg_similarity": np.nan,
+            "id_accuracy": np.nan, "balanced_id_accuracy": np.nan,
+        }
+
+    unique_combinations = pd.DataFrame.from_records(records)
+
+    # --- Cell-weighted average accuracies (identical to the old per-cell means) ---
+    counts = unique_combinations["cell_count"]
+
+    def _weighted_mean(col, mask=None):
+        vals = unique_combinations[col]
+        w = counts
+        if mask is not None:
+            vals, w = vals[mask], w[mask]
+        total = w.sum()
+        return float((vals * w).sum() / total) if total > 0 else np.nan
+
     avg_accuracies = {}
-    
-    rada_scores = temp_df["rada_similarity"].dropna()
-    if len(rada_scores) > 0:
-        avg_accuracies["rada_avg_similarity"] = float(rada_scores.mean())
-    else:
-        avg_accuracies["rada_avg_similarity"] = np.nan
-        
-    lin_scores = temp_df["lin_similarity"].dropna()
-    if len(lin_scores) > 0:
-        avg_accuracies["lin_avg_similarity"] = float(lin_scores.mean())
-    else:
-        avg_accuracies["lin_avg_similarity"] = np.nan
-    
-    # Calculate id_accuracy (overall exact match accuracy, non-balanced)
-    id_accuracy_scores = temp_df["id_accuracy"]
-    if len(id_accuracy_scores) > 0:
-        avg_accuracies["id_accuracy"] = float(id_accuracy_scores.mean())
-    else:
-        avg_accuracies["id_accuracy"] = np.nan
-    
-    # Calculate balanced_id_accuracy (average of per-class accuracies)
-    # This gives equal weight to each class, similar to balanced_accuracy
-    if len(temp_df) > 0:
-        # Group by true label and compute accuracy per class
-        per_class_accuracies = temp_df.groupby(true_col)["id_accuracy"].mean()
-        if len(per_class_accuracies) > 0:
-            avg_accuracies["balanced_id_accuracy"] = float(per_class_accuracies.mean())
-        else:
-            avg_accuracies["balanced_id_accuracy"] = np.nan
-    else:
-        avg_accuracies["balanced_id_accuracy"] = np.nan
+    rada_mask = unique_combinations["rada_similarity"].notna()
+    avg_accuracies["rada_avg_similarity"] = _weighted_mean("rada_similarity", rada_mask) if rada_mask.any() else np.nan
+    lin_mask = unique_combinations["lin_similarity"].notna()
+    avg_accuracies["lin_avg_similarity"] = _weighted_mean("lin_similarity", lin_mask) if lin_mask.any() else np.nan
+    avg_accuracies["id_accuracy"] = _weighted_mean("id_accuracy")
 
-    # Group by unique combinations and aggregate scores
-    # First, let's get the actual cell counts for all combinations that exist in the data
-    all_combinations = temp_df.groupby([true_col, pred_col]).size().reset_index(name='cell_count')
-    
-    # Now get the similarity aggregations for the same combinations
-    similarity_aggs = temp_df.groupby([true_col, pred_col]).agg({
-        'rada_similarity': 'mean',
-        'lin_similarity': 'mean', 
-        'distance_edges': 'mean',
-        'id_accuracy': 'mean',
-        'true_term_id': 'first',
-        'pred_term_id': 'first',
-        'mapped_labels': 'first'
-    }).reset_index()
-    
-    # Merge the cell counts with similarity aggregations
-    # Use inner join to only keep combinations that actually exist
-    unique_combinations = all_combinations.merge(
-        similarity_aggs, 
-        on=[true_col, pred_col], 
-        how='inner'
+    # balanced_id_accuracy: per-true-class cell-weighted id_accuracy, then unweighted mean over classes.
+    per_class = unique_combinations.groupby(true_col).apply(
+        lambda g: (g["id_accuracy"] * g["cell_count"]).sum() / g["cell_count"].sum()
     )
-    
-    # Round the similarity values
-    similarity_cols = ['rada_similarity', 'lin_similarity', 'distance_edges', 'id_accuracy']
+    avg_accuracies["balanced_id_accuracy"] = float(per_class.mean()) if len(per_class) > 0 else np.nan
+
+    # Round per-combination similarity values (matches old output; the averages above use the
+    # unrounded values).
+    similarity_cols = ["rada_similarity", "lin_similarity", "distance_edges", "id_accuracy"]
     for col in similarity_cols:
-        if col in unique_combinations.columns:
-            unique_combinations[col] = unique_combinations[col].round(4)
-    
-    # Reorder columns for better readability
+        unique_combinations[col] = unique_combinations[col].round(4)
+
+    # Reorder + rename to the documented output contract (unchanged columns/order).
     column_order = [
-        true_col, pred_col, 'mapped_labels', 'cell_count',
-        'rada_similarity', 'lin_similarity', 'distance_edges', 'id_accuracy',
-        'true_term_id', 'pred_term_id'
+        true_col, pred_col, "mapped_labels", "cell_count",
+        "rada_similarity", "lin_similarity", "distance_edges", "id_accuracy",
+        "true_term_id", "pred_term_id",
     ]
     unique_combinations = unique_combinations[column_order]
-    
-    # Rename similarity columns to be more descriptive
     unique_combinations = unique_combinations.rename(columns={
-        'rada_similarity': 'rada_similarity_mean',
-        'lin_similarity': 'lin_similarity_mean',
-        'distance_edges': 'distance_edges_mean',
-        'id_accuracy': 'id_accuracy_mean'
+        "rada_similarity": "rada_similarity_mean",
+        "lin_similarity": "lin_similarity_mean",
+        "distance_edges": "distance_edges_mean",
+        "id_accuracy": "id_accuracy_mean",
     })
 
     return unique_combinations, avg_accuracies

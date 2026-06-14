@@ -390,7 +390,7 @@ def filter_predictions_by_review_status(
     total_predictions = len(df)
     unreviewed_predictions = len(df[df[pred_col].isin(unreviewed_labels)])
     unreviewed_ratio = unreviewed_predictions / total_predictions if total_predictions > 0 else 0.0
-    
+
     # Create statistics
     stats = {
         "total_predictions": total_predictions,
