@@ -28,8 +28,11 @@ The pipeline runs the following processes in order:
 3. **subset** - Subsampling to one of the configured sizes. Strategy is either `stratified` (preserves per-type proportions, drops types below `min_cells_per_type`) or `random` (uniform; preserves natural class imbalance). One subset per unique `(size, strategy)` pair. QC outputs (CSV + plots) saved to `cache/subset_qc/<dataset>/sub<size>_<strategy>/`.
 4. **prepare_model** - Optional model setup (git cloning, etc.) via `prepare.sh`.
 5. **run_model** - Runs model predictions. Results cached under `cache/models/predictions/<model>/<dataset>/<size>_<strategy>/`.
-6. **evaluate_annotation** - Computes metrics (accuracy, F1, ontology similarity) and confusion matrices.
-7. **combine_results** - Aggregates results into CSV and visualization plots.
+6. **map_predictions** - Normalizes, review-filters, and ontology-maps each `predictions*.csv`, writing a cached `<base>_mapped.csv` (+ `<base>_mapped.stats.json` and a `<base>_mapped.mappings.sha`) next to the predictions. This is the only stage that touches `cache/cell_type_ontology_mappings.csv` (and appends newly-discovered labels for review), so it runs with `maxForks 1`. On rerun a mapped CSV is reused unless the predictions or the mappings CSV change — see "Mapped-prediction cache" below.
+7. **score_predictions** - Pure scoring on `<base>_mapped.csv` (loads the CL ontology once): metrics (accuracy, F1, ontology similarity, optional text-encoder similarity) + confusion matrices. Re-running it never re-does ontology mapping.
+8. **combine_results** - Aggregates results into CSV and visualization plots.
+
+The `<base>_mapped.csv` produced by stage 6 has all prediction rows plus `predicted_labels` (ontology-mapped), `original_predicted_labels` (normalized raw), and a `kept` flag (`False` for review-filtered rows, which scoring excludes).
 
 #### Running the pipeline
 
@@ -64,6 +67,19 @@ find cache/datasets/subset -maxdepth 1 -type f -regex '.*_sub[0-9]+\.h5ad' -dele
 ```
 
 The pipeline itself does not remove these automatically.
+
+##### Mapped-prediction cache
+
+`map_predictions` caches `<base>_mapped.csv` next to each prediction under
+`cache/models/predictions/<model>/<dataset>/<size>_<strategy>/`, alongside a
+`<base>_mapped.mappings.sha` recording the `sha256` of `cache/cell_type_ontology_mappings.csv`
+at map time. On rerun the mapped CSV is reused **only if that sha still matches** — so:
+
+- Editing `cell_type_ontology_mappings.csv` (reviewing a label, fixing a `chosen_match`)
+  changes its sha and **automatically re-maps every prediction** on the next run.
+- Unchanged predictions + unchanged mappings CSV → cache hit (no remapping); only
+  `score_predictions` re-runs, which is cheap.
+- To force a remap manually, delete the `*_mapped.csv` / `*_mapped.mappings.sha` files.
 
 #### Fetching preprocessed data from Zenodo
 
