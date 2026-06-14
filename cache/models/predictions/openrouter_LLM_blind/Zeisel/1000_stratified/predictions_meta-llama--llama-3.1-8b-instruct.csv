@@ -1,88 +1,88 @@
-,predicted_cl_id,predicted_cell_type,predicted_labels,true_labels
-10X57_2:ACAAATTGTTGTCT,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X52_5:CTGAGAACTTTCTG,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X53_2:TTTGACTGCCCACT,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X35_2:TATCTCGATTCTGT,,Oligodendrocyte progenitor cell,Oligodendrocyte progenitor cell,oligodendrocyte
-10X55_4:CTCCTAGATATGCA,,Oligodendrocyte progenitor cell,Oligodendrocyte progenitor cell,oligodendrocyte
-10X55_5:CCTTGGTCCAGTAT,,Astrocyte,Astrocyte,oligodendrocyte
-10X55_5:GTCAAAGACAAGCC,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X50_7:GCCGAGTGGGTTCA,,Astrocyte,Astrocyte,oligodendrocyte
-10X43_1:CATCGCTGGTCAAC,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X52_1:GGGTTATGCTTAGG,,Oligodendrocyte progenitor cell,Oligodendrocyte progenitor cell,oligodendrocyte
-10X50_8:ACGTCAGAGACGAG,,Astrocyte,Astrocyte,oligodendrocyte
-10X24_1:TCCCGAACTCCCAC,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X51_3:CTGACCACAGTACC,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X34_4:GACAGGGAACTGTG,,oligodendrocyte precursor cell,oligodendrocyte precursor cell,oligodendrocyte
-10X53_6:GCGAGAGATCGTTT,,oligodendrocyte,oligodendrocyte,oligodendrocyte
-10X57_2:TCCTATGATGCATG,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X55_2:CAATCGTGACCAAG,,Oligodendrocyte progenitor cell,Oligodendrocyte progenitor cell,oligodendrocyte
-10X53_5:TCCCACGACACTTT,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X53_3:AGCGATTGTTCCAT,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X50_2:GCACCTACCTCCCA,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X55_2:CGTGTGTCTGATCA,,Astrocyte,Astrocyte,oligodendrocyte
-10X54_1:TGAGGTCTCTGTCG,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X26_3:GCATGTGAGCGATT,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X57_4:GCCTACACTTAGGC,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X53_3:GTAGTGACATTCGG,,Astrocyte,Astrocyte,oligodendrocyte
-10X04_1:TCGTAGGATGTTCT,,OLIGODENDROCYTE,OLIGODENDROCYTE,oligodendrocyte
-10X57_4:AACCTACTAGGTTC,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X49_1:ATACCGGAGAGCTT,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X57_2:TTACAGCTTCTTCA,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X57_6:GCTACGCTGTTGTG,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X52_7:TTCAGTACGATAAG,,Schwann cell,Schwann cell,oligodendrocyte
-10X55_8:CTTCAAGAACAACT,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X55_7:GCTAAGTACCATCA,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X55_2:TGAGAGTTGGAGGT,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X57_3:TAGTGGTGGCCCTT,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X24_2:AAGGTCACACTACG,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X56_3:GTATTAGATCTACT,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X22_4:CCAATGGAACTGTG,,Astrocyte,Astrocyte,oligodendrocyte
-10X22_4:CAATTCTGGGTCAT,,Astrocyte,Astrocyte,oligodendrocyte
-10X50_3:TCAGGATGGGTTCA,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X57_7:GCCATCACTCGTGA,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X24_3:GCGGAGCTTTCTAC,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X53_5:GTGGTAACCGAATC,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X54_7:GGGATAGTGAACGC,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X55_1:GCGGAGTTGTTTGG,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X55_7:CTCTAGTCCTGCTT,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X55_3:GTAGAAGTACGTTC,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X55_1:TTCGCGTCTAGCGC,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X50_5:CCAGGTCTGTAGCT,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X55_2:ACCTGAGCTCAACT,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X52_5:AAGCCATGTCCGTC,,Astrocyte,Astrocyte,oligodendrocyte
-10X50_5:TATCTCGATTGGCA,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X54_1:ACGGATCAGGCAAG,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X50_2:ATGCCAGATCAAGC,,Microglia,Microglia,oligodendrocyte
-10X54_7:CGTGTCAGACAAAT,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X55_3:GTAACTCCTATGTT,,Astrocyte,Astrocyte,oligodendrocyte
-10X55_1:CTCGCTCTTGACGA,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X53_3:AGGAACCTTACTGG,,Astrocyte,Astrocyte,oligodendrocyte
-10X55_7:CTAACGTCTGCCAG,,Neuron,Neuron,oligodendrocyte
-10X52_1:AGAATACTCGAGAG,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X53_2:TGCACAGAGTTTCT,,Oligodendrocyte progenitor cell,Oligodendrocyte progenitor cell,oligodendrocyte
-10X52_3:GAGGTACTATCGTG,,Oligodendrocyte progenitor cell,Oligodendrocyte progenitor cell,oligodendrocyte
-10X54_3:TATCTAGAACAACT,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X52_5:ATCAGGTGGTTCAG,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X26_3:CGGACCGATCGATG,,Astrocyte,Astrocyte,oligodendrocyte
-10X54_1:GCGCAAGATCGGGT,,Astrocyte,Astrocyte,oligodendrocyte
-10X53_4:AGGGCCACACCTAG,,Schwann cell,Schwann cell,oligodendrocyte
-10X35_2:CGGACTCTCCACAA,,Astrocyte,Astrocyte,oligodendrocyte
-10X22_2:CCATAGGAGGTGAG,,Ols1 myeloid cell,Ols1 myeloid cell,oligodendrocyte
-10X57_5:TTCAGTTGCCATAG,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X20_3:ATACCTTGGTACGT,,Myeloid cell,Myeloid cell,oligodendrocyte
-10X20_4:AGGTCATGCTATTC,,Oligodendrocyte progenitor,Oligodendrocyte progenitor,oligodendrocyte
-10X57_5:GTTACTACGTACGT,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X50_2:ATGCACGAGTTGTG,,Neuron,Neuron,oligodendrocyte
-10X54_8:GTCATGTGGTGTAG,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X52_2:CCAGCTACCCAAGT,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X57_5:CGAGTATGGGTACT,,Oligodendrocyte progenitor cell,Oligodendrocyte progenitor cell,oligodendrocyte
-10X20_4:CACTCCGACGAGAG,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X57_3:ACTCAGGAACGGTT,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X50_8:TGTATGCTCATTCT,,Megaloblast,Megaloblast,oligodendrocyte
-10X52_6:GTGAGGGACTTGCC,,Astrocyte,Astrocyte,oligodendrocyte
-10X55_5:CTCAAGTTGACGTT,,microglia,microglia,oligodendrocyte
-10X34_3:TCCATAACTAGAGA,,MYND2 (Hippocampal excitatory neuron-type),MYND2 (Hippocampal excitatory neuron-type),oligodendrocyte
-10X55_1:GACCAAGGTACTCT,,"Pericyte 
+cell_id,true_labels,predicted_labels
+10X57_2:ACAAATTGTTGTCT,oligodendrocyte,Oligodendrocyte
+10X52_5:CTGAGAACTTTCTG,oligodendrocyte,Oligodendrocyte
+10X53_2:TTTGACTGCCCACT,oligodendrocyte,Oligodendrocyte precursor cell
+10X35_2:TATCTCGATTCTGT,oligodendrocyte,Oligodendrocyte progenitor cell
+10X55_4:CTCCTAGATATGCA,oligodendrocyte,Oligodendrocyte progenitor cell
+10X55_5:CCTTGGTCCAGTAT,oligodendrocyte,Astrocyte
+10X55_5:GTCAAAGACAAGCC,oligodendrocyte,Oligodendrocyte precursor cell
+10X50_7:GCCGAGTGGGTTCA,oligodendrocyte,Astrocyte
+10X43_1:CATCGCTGGTCAAC,oligodendrocyte,Oligodendrocyte
+10X52_1:GGGTTATGCTTAGG,oligodendrocyte,Oligodendrocyte progenitor cell
+10X50_8:ACGTCAGAGACGAG,oligodendrocyte,Astrocyte
+10X24_1:TCCCGAACTCCCAC,oligodendrocyte,Oligodendrocyte
+10X51_3:CTGACCACAGTACC,oligodendrocyte,Oligodendrocyte
+10X34_4:GACAGGGAACTGTG,oligodendrocyte,oligodendrocyte precursor cell
+10X53_6:GCGAGAGATCGTTT,oligodendrocyte,oligodendrocyte
+10X57_2:TCCTATGATGCATG,oligodendrocyte,Oligodendrocyte precursor cell
+10X55_2:CAATCGTGACCAAG,oligodendrocyte,Oligodendrocyte progenitor cell
+10X53_5:TCCCACGACACTTT,oligodendrocyte,Oligodendrocyte precursor cell
+10X53_3:AGCGATTGTTCCAT,oligodendrocyte,Oligodendrocyte precursor cell
+10X50_2:GCACCTACCTCCCA,oligodendrocyte,Oligodendrocyte
+10X55_2:CGTGTGTCTGATCA,oligodendrocyte,Astrocyte
+10X54_1:TGAGGTCTCTGTCG,oligodendrocyte,Oligodendrocyte precursor cell
+10X26_3:GCATGTGAGCGATT,oligodendrocyte,Oligodendrocyte precursor cell
+10X57_4:GCCTACACTTAGGC,oligodendrocyte,Oligodendrocyte
+10X53_3:GTAGTGACATTCGG,oligodendrocyte,Astrocyte
+10X04_1:TCGTAGGATGTTCT,oligodendrocyte,OLIGODENDROCYTE
+10X57_4:AACCTACTAGGTTC,oligodendrocyte,Oligodendrocyte precursor cell
+10X49_1:ATACCGGAGAGCTT,oligodendrocyte,Oligodendrocyte
+10X57_2:TTACAGCTTCTTCA,oligodendrocyte,Oligodendrocyte
+10X57_6:GCTACGCTGTTGTG,oligodendrocyte,Oligodendrocyte
+10X52_7:TTCAGTACGATAAG,oligodendrocyte,Schwann cell
+10X55_8:CTTCAAGAACAACT,oligodendrocyte,Oligodendrocyte
+10X55_7:GCTAAGTACCATCA,oligodendrocyte,Oligodendrocyte
+10X55_2:TGAGAGTTGGAGGT,oligodendrocyte,Oligodendrocyte precursor cell
+10X57_3:TAGTGGTGGCCCTT,oligodendrocyte,Oligodendrocyte precursor cell
+10X24_2:AAGGTCACACTACG,oligodendrocyte,Oligodendrocyte
+10X56_3:GTATTAGATCTACT,oligodendrocyte,Oligodendrocyte precursor cell
+10X22_4:CCAATGGAACTGTG,oligodendrocyte,Astrocyte
+10X22_4:CAATTCTGGGTCAT,oligodendrocyte,Astrocyte
+10X50_3:TCAGGATGGGTTCA,oligodendrocyte,Oligodendrocyte
+10X57_7:GCCATCACTCGTGA,oligodendrocyte,Oligodendrocyte
+10X24_3:GCGGAGCTTTCTAC,oligodendrocyte,Oligodendrocyte precursor cell
+10X53_5:GTGGTAACCGAATC,oligodendrocyte,Oligodendrocyte
+10X54_7:GGGATAGTGAACGC,oligodendrocyte,Oligodendrocyte
+10X55_1:GCGGAGTTGTTTGG,oligodendrocyte,Oligodendrocyte precursor cell
+10X55_7:CTCTAGTCCTGCTT,oligodendrocyte,Oligodendrocyte
+10X55_3:GTAGAAGTACGTTC,oligodendrocyte,Oligodendrocyte precursor cell
+10X55_1:TTCGCGTCTAGCGC,oligodendrocyte,Oligodendrocyte
+10X50_5:CCAGGTCTGTAGCT,oligodendrocyte,Oligodendrocyte precursor cell
+10X55_2:ACCTGAGCTCAACT,oligodendrocyte,Oligodendrocyte
+10X52_5:AAGCCATGTCCGTC,oligodendrocyte,Astrocyte
+10X50_5:TATCTCGATTGGCA,oligodendrocyte,Oligodendrocyte
+10X54_1:ACGGATCAGGCAAG,oligodendrocyte,Oligodendrocyte
+10X50_2:ATGCCAGATCAAGC,oligodendrocyte,Microglia
+10X54_7:CGTGTCAGACAAAT,oligodendrocyte,Oligodendrocyte
+10X55_3:GTAACTCCTATGTT,oligodendrocyte,Astrocyte
+10X55_1:CTCGCTCTTGACGA,oligodendrocyte,Oligodendrocyte
+10X53_3:AGGAACCTTACTGG,oligodendrocyte,Astrocyte
+10X55_7:CTAACGTCTGCCAG,oligodendrocyte,Neuron
+10X52_1:AGAATACTCGAGAG,oligodendrocyte,Oligodendrocyte precursor cell
+10X53_2:TGCACAGAGTTTCT,oligodendrocyte,Oligodendrocyte progenitor cell
+10X52_3:GAGGTACTATCGTG,oligodendrocyte,Oligodendrocyte progenitor cell
+10X54_3:TATCTAGAACAACT,oligodendrocyte,Oligodendrocyte precursor cell
+10X52_5:ATCAGGTGGTTCAG,oligodendrocyte,Oligodendrocyte precursor cell
+10X26_3:CGGACCGATCGATG,oligodendrocyte,Astrocyte
+10X54_1:GCGCAAGATCGGGT,oligodendrocyte,Astrocyte
+10X53_4:AGGGCCACACCTAG,oligodendrocyte,Schwann cell
+10X35_2:CGGACTCTCCACAA,oligodendrocyte,Astrocyte
+10X22_2:CCATAGGAGGTGAG,oligodendrocyte,Ols1 myeloid cell
+10X57_5:TTCAGTTGCCATAG,oligodendrocyte,Oligodendrocyte precursor cell
+10X20_3:ATACCTTGGTACGT,oligodendrocyte,Myeloid cell
+10X20_4:AGGTCATGCTATTC,oligodendrocyte,Oligodendrocyte progenitor
+10X57_5:GTTACTACGTACGT,oligodendrocyte,Oligodendrocyte precursor cell
+10X50_2:ATGCACGAGTTGTG,oligodendrocyte,Neuron
+10X54_8:GTCATGTGGTGTAG,oligodendrocyte,Oligodendrocyte precursor cell
+10X52_2:CCAGCTACCCAAGT,oligodendrocyte,Oligodendrocyte
+10X57_5:CGAGTATGGGTACT,oligodendrocyte,Oligodendrocyte progenitor cell
+10X20_4:CACTCCGACGAGAG,oligodendrocyte,Oligodendrocyte
+10X57_3:ACTCAGGAACGGTT,oligodendrocyte,Oligodendrocyte
+10X50_8:TGTATGCTCATTCT,oligodendrocyte,Megaloblast
+10X52_6:GTGAGGGACTTGCC,oligodendrocyte,Astrocyte
+10X55_5:CTCAAGTTGACGTT,oligodendrocyte,microglia
+10X34_3:TCCATAACTAGAGA,oligodendrocyte,MYND2 (Hippocampal excitatory neuron-type)
+10X55_1:GACCAAGGTACTCT,oligodendrocyte,"Pericyte 
 
  Annotation Status:  
 
@@ -96,59 +96,43 @@ GO:0048664 regulation of Notch signaling pathway involved in heart development
 Category-best Cell Type Identification:  
 Cell_type: CL:0000087 pericyte
  Species: Homo sapiens
- Parent: CL:0000126 specified cell that is a continuum of cytoplasm-dense cells surrounding bare capillary tubes from arteries to venules","Pericyte 
+ Parent: CL:0000126 specified cell that is a continuum of cytoplasm-dense cells surrounding bare capillary tubes from arteries to venules"
+10X24_3:ATAATGACGACTAC,oligodendrocyte,Astrocyte
+10X43_3:ATAAGTACGTTCGA,oligodendrocyte,RBC1
+10X54_1:TCTCTAGAAGAAGC,oligodendrocyte,Oligodendrocyte
+10X50_5:TCTAACACCCTCAC,oligodendrocyte,Oligodendrocyte precursor
+10X33_4:CAGACATGCCAAGT,oligodendrocyte,Olfactory bulb neuron
+10X55_1:GAGCTGTCGAACAG,oligodendrocyte,Oligodendrocyte
+10X52_1:GCGGAGCTGAGCTT,oligodendrocyte,Oligodendrocyte
+10X54_1:AGCAATCTCCGGTT,oligodendrocyte,MYELINشیivas peripheral nervous system cell
+10X26_3:TGTAGGTGTGTTCT,oligodendrocyte,Oligodendrocyte precursor cell
+10X57_6:AAATGGGAGCAGAG,oligodendrocyte,HOCD8:0000460
+10X55_4:GGCGTCACGCATCG,oligodendrocyte,neuron
+10X55_6:TGAGGGTCTAGAGG,oligodendrocyte,Oligodendrocyte precursor cell
+10X55_4:TGAAGCAACACCCG,oligodendrocyte,Oligodendrocyte
+10X54_8:ACCTACAGCTCGCA,oligodendrocyte,Monocyte
+10X54_1:CGGTAAGATAGTCA,oligodendrocyte,Oligodendrocyte
+10X57_7:TTATGGCTCACTTT,oligodendrocyte,Fibroblast
+10X55_7:ACGGAAGCCATCGC,oligodendrocyte,Macrophage
+10X57_3:CTCAGAGACAGCTA,oligodendrocyte,sensory_organ.proxy_trochophora_blastula
+10X52_3:AGAGTCTGTTCATC,oligodendrocyte,Oligodendrocyte precursor cell
+10X57_3:TCGTAGGACGTTGA,oligodendrocyte,Brain Astrocyte
+10X53_3:CAAGTTCTAAGATG,oligodendrocyte,Oligodendrocyte
+10X43_3:GAACCTGAGACAAA,oligodendrocyte,Macrophage
+10X24_4:TCCGAAGAGGGTGA,oligodendrocyte,Schwann cell
+10X57_3:TAATCGCTATGTCG,oligodendrocyte,Oligodendrocyte precursor cell
+10X01_1:CAAGAAGAGCTATG,oligodendrocyte,Oligodendrocyte
+10X57_7:AAGAACGACCTATT,oligodendrocyte,Oligodendrocyte
+10X55_8:CGTGTCAAGACGTG,oligodendrocyte,Lynes committed oligodendrocyte
+10X55_6:GTACTGTGCTTCTC,oligodendrocyte,Osteoblast
+10X54_1:TGATGTCAAGATCC,oligodendrocyte,Ependymal cell
+10X54_3:AGCGTTCGAGCCCA,oligodendrocyte,Neural Cell
+10X57_3:CGAGTATGTTAGGC,oligodendrocyte,Oligodendrocyte precursor
+10X05_2:GACTACGATCAGGT,oligodendrocyte,"Based on the provided gene expression profile, the predicted cell type is:
 
- Annotation Status:  
-
-Top GO biological process categories: 
-
-Molecular_function
-GO:0006302 regulation of gene expression involved in G1/S transition of mitotic cell cycle
-GO:0030493 regulation of cytoskeleton organization
-GO:0048664 regulation of Notch signaling pathway involved in heart development
-
-Category-best Cell Type Identification:  
-Cell_type: CL:0000087 pericyte
- Species: Homo sapiens
- Parent: CL:0000126 specified cell that is a continuum of cytoplasm-dense cells surrounding bare capillary tubes from arteries to venules",oligodendrocyte
-10X24_3:ATAATGACGACTAC,,Astrocyte,Astrocyte,oligodendrocyte
-10X43_3:ATAAGTACGTTCGA,,RBC1,RBC1,oligodendrocyte
-10X54_1:TCTCTAGAAGAAGC,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X50_5:TCTAACACCCTCAC,,Oligodendrocyte precursor,Oligodendrocyte precursor,oligodendrocyte
-10X33_4:CAGACATGCCAAGT,,Olfactory bulb neuron,Olfactory bulb neuron,oligodendrocyte
-10X55_1:GAGCTGTCGAACAG,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X52_1:GCGGAGCTGAGCTT,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X54_1:AGCAATCTCCGGTT,,MYELINشیivas peripheral nervous system cell,MYELINشیivas peripheral nervous system cell,oligodendrocyte
-10X26_3:TGTAGGTGTGTTCT,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X57_6:AAATGGGAGCAGAG,,HOCD8:0000460,HOCD8:0000460,oligodendrocyte
-10X55_4:GGCGTCACGCATCG,,neuron,neuron,oligodendrocyte
-10X55_6:TGAGGGTCTAGAGG,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X55_4:TGAAGCAACACCCG,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X54_8:ACCTACAGCTCGCA,,Monocyte,Monocyte,oligodendrocyte
-10X54_1:CGGTAAGATAGTCA,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X57_7:TTATGGCTCACTTT,,Fibroblast,Fibroblast,oligodendrocyte
-10X55_7:ACGGAAGCCATCGC,,Macrophage,Macrophage,oligodendrocyte
-10X57_3:CTCAGAGACAGCTA,,sensory_organ.proxy_trochophora_blastula,sensory_organ.proxy_trochophora_blastula,oligodendrocyte
-10X52_3:AGAGTCTGTTCATC,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X57_3:TCGTAGGACGTTGA,,Brain Astrocyte,Brain Astrocyte,oligodendrocyte
-10X53_3:CAAGTTCTAAGATG,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X43_3:GAACCTGAGACAAA,,Macrophage,Macrophage,oligodendrocyte
-10X24_4:TCCGAAGAGGGTGA,,Schwann cell,Schwann cell,oligodendrocyte
-10X57_3:TAATCGCTATGTCG,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X01_1:CAAGAAGAGCTATG,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X57_7:AAGAACGACCTATT,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X55_8:CGTGTCAAGACGTG,,Lynes committed oligodendrocyte,Lynes committed oligodendrocyte,oligodendrocyte
-10X55_6:GTACTGTGCTTCTC,,Osteoblast,Osteoblast,oligodendrocyte
-10X54_1:TGATGTCAAGATCC,,Ependymal cell,Ependymal cell,oligodendrocyte
-10X54_3:AGCGTTCGAGCCCA,,Neural Cell,Neural Cell,oligodendrocyte
-10X57_3:CGAGTATGTTAGGC,,Oligodendrocyte precursor,Oligodendrocyte precursor,oligodendrocyte
-10X05_2:GACTACGATCAGGT,,"Based on the provided gene expression profile, the predicted cell type is:
-
-Astrocyte","Based on the provided gene expression profile, the predicted cell type is:
-
-Astrocyte",oligodendrocyte
-10X53_6:ATTATGGACATGGT,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X01_1:CAGCGGACTAGACC,," Based on the provided list of genes, I would predict the cell type label as:
+Astrocyte"
+10X53_6:ATTATGGACATGGT,oligodendrocyte,Oligodendrocyte
+10X01_1:CAGCGGACTAGACC,oligodendrocyte," Based on the provided list of genes, I would predict the cell type label as:
 
 Mitochondrially dense oligodendrocyte
 
@@ -156,400 +140,347 @@ However, I must note that this is an unusual cell type and I can try to provide 
 
 In a broader context, this cell type is a type of oligodendrocyte, so a more general answer would be:
 
-Oligodendrocyte"," Based on the provided list of genes, I would predict the cell type label as:
+Oligodendrocyte"
+10X54_4:TCCAGTCGCCATAA,oligodendrocyte,Osteoblast
+10X52_2:AATCGGTGCTCCCA,oligodendrocyte,Ependymal cell
+10X54_5:TCAGAGTTACTGAC,oligodendrocyte,Neuron
+10X54_4:CGGTCCACTACAGT,oligodendrocyte,Schwann cell
+10X57_6:TTCAAAGACAAAGA,oligodendrocyte,Oligodendrocyte
+10X53_4:TGTATCTGGCCCTT,oligodendrocyte,OLIGODENDROCYTE
+10X53_6:AATCCGGAGAGACG,oligodendrocyte,Oligodendrocyte precursor cell
+10X55_8:TGGTGCACCGAAAG,oligodendrocyte,Astrocyte
+10X57_3:TAAGTCCTCTCCCA,oligodendrocyte,Calvaria chondrocyte
+10X53_6:ACGGTCCTATTCGG,oligodendrocyte,OPV LyMP
+10X50_4:AAACCGTGTCCCAC,oligodendrocyte,I couldn't understand that your response is a list of gene names. Can you provide a single cell sentence with up to 200 genes ordered by descending expression level? I'll be happy to assist you in identifying the exact cell type represented by the given gene profile.
+10X26_3:CCATAGGAGCGGAA,oligodendrocyte,"based on the provided gene expression profile, the cell type is: Eijiile amphiotoma"
+10X54_5:CATACAGTGGGCTA,oligodendrocyte,Oligodendrocyte progenitor cell
+10X54_2:AATAGCAGTCTTCC,oligodendrocyte,Oligodendrocyte
+10X28_3:AAGCCATGGTAAAG,oligodendrocyte,Neuromast cell
+10X55_2:CCACTGTCTCCCTA,oligodendrocyte,Cerebellar Purkinje neuronal cell
+10X52_2:GGCTAAACTCTAGG,oligodendrocyte,"Based on the gene expression profile provided, I predict that this cell type is:
 
-Mitochondrially dense oligodendrocyte
+Neuron"
+10X53_4:TGAGTCGATTTCGT,oligodendrocyte,CFU-M (Cytokine-Producing Lymphocyte)
+10X57_2:GGAATCTGCTTGCC,oligodendrocyte,Astrocyte
+10X22_1:CACTAGGAATTTCC,oligodendrocyte,Oligodendrocyte
+10X55_7:TCAGTTCTTCATGT,oligodendrocyte,Olfactory receptor neuron
+10X28_2:TCTCAAACAAGTGA,oligodendrocyte,Oligodendrocyte precursor cell
+10X24_4:CTACTATGCTAGAC,oligodendrocyte,"Based on the gene expression profile, the cell type is: C_Erythrocyte"
+10X55_5:TCAGGTCTTGGGTA,oligodendrocyte,Oligodendrocyte
+10X24_4:AAGAACGATGACAC,oligodendrocyte,Osteocyte
+10X53_3:ACACGAACGTTAGC,oligodendrocyte,Oligodendrocyte
+10X55_4:GCCAATCACCTTAT,oligodendrocyte,OligodendrocytecurrentState
+10X50_7:CTATAAGACCAAGT,oligodendrocyte,OL monoangioblast
+10X20_1:AACGCCCTGTACCA,glutamatergic neuron,Calvarial cell
+10X22_2:TCGGACCTGCATCA,glutamatergic neuron,Neuroblast
+10X22_2:CGTTTAACCCTGTC,glutamatergic neuron,Erythrocyte
+10X53_6:CTGGCACTAATCGC,glutamatergic neuron,MSI Striated Muscle Cell
+10X50_8:CGCGAGACCTCTAT,glutamatergic neuron,neuron
+10X57_3:AGTCTTACCTCATT,glutamatergic neuron,Microglia
+10X20_2:GATATCCTCAGATC,glutamatergic neuron,Oligodendrocyte
+10X53_3:AAGTCCGAGCTATG,glutamatergic neuron,Erythrocyteдия
+10X34_3:TGGCACCTTTCATC,glutamatergic neuron,Pancreatic beta cell
+10X02_1:ACGGAGGACAAAGA,glutamatergic neuron,Neutrophil
+10X57_2:AGCAAGCTTTGACG,glutamatergic neuron,Oligodendrocyte progenitor
+10X22_2:ACGCTCACTCAAGC,glutamatergic neuron,Dendritic cell
+10X19_2:AAGGCTTGCCATAG,glutamatergic neuron,Neuron
+10X20_1:TTGAGGTGCTTGCC,glutamatergic neuron,Neuron
+10X20_1:CAAGACTGATCGTG,glutamatergic neuron,Neuron
+10X05_1:GCGAGAGACAAGCT,glutamatergic neuron,Erythrocyte
+10X22_2:AAACGCACTGGTTG,glutamatergic neuron,Pancreatic stellate cell (CL:0000563)
+10X22_3:TATAGCCTGCATAC,glutamatergic neuron,Neuron
+10X53_3:AACATTGAGGTATC,glutamatergic neuron,"I'm an expert in gene expression classification, but I need some clarification: the output format asks for a cell type label from the OBO Foundry Cell Ontology (CL), but the list of genes doesn't seem to belong to any specific, typical cell type. Upon examining the list, I see a mix of mitochondrial and nuclear-encoded genes, and several transcription factors and metabolic enzymes."
+10X49_3:ACTCTATGGGAAGC,glutamatergic neuron,"Based on the gene expression profile, I predict the cell type as:
 
-However, I must note that this is an unusual cell type and I can try to provide a broader category if this is not correct.
+Erythroblast"
+10X04_2:ATCATCTGGTTGAC,glutamatergic neuron,Mammary epithelial cell
+10X28_4:AAGGTGCTTTCGGA,glutamatergic neuron,B-cell
+10X50_5:CATTGTACACTCTT,glutamatergic neuron,Cardiomyocyte
+10X28_4:ACGTAGACCTACTT,glutamatergic neuron,Neuron
+10X24_3:ATCTGGGAGAATAG,glutamatergic neuron,promyelocytic leukemia cell
+10X02_1:TTTCCAGACTACCC,glutamatergic neuron,Human Hepatocyte
+10X57_3:TACATCACACCTGA,glutamatergic neuron,leukocyte
+10X43_1:CCCTACGAATCGTG,glutamatergic neuron,Schumeroma schwanncell
+10X20_1:ACACGATGCTTATC,glutamatergic neuron,C2C12 mouse myoblast
+10X01_1:ACGTTACTAAAACG,glutamatergic neuron,melanocyte
+10X57_3:CACTGAGATTCTTG,glutamatergic neuron,OB_0098007
+10X28_3:ATAACCCTCCTGTC,glutamatergic neuron,Trophoblast cell
+10X52_1:CAAGGTTGTAGAAG,glutamatergic neuron,Neural cell
+10X22_2:ATTCAGCTAAAGCA,glutamatergic neuron,Astrocyte
+10X20_4:ACTCAGGAGTCTTT,glutamatergic neuron,Ependymal cell
+10X28_3:AGGGCCACTTCGCC,glutamatergic neuron,Erythroblast
+10X24_4:CAGCAATGCAACCA,glutamatergic neuron,Megakaryocyte
+10X05_2:GATTCTTGTCCTCG,glutamatergic neuron,Erythrocyte
+10X36_1:AACAATACCCTGTC,glutamatergic neuron,T cells
+10X50_5:ATCGCCTGGGAGCA,glutamatergic neuron,Fibroblast
+10X52_2:GTACGAACAACTGC,glutamatergic neuron,Muscle cell
+10X53_6:CAGGGCACGAACCT,glutamatergic neuron,epithelial cell
+10X22_2:GCTACAGATTTGGG,glutamatergic neuron,Neuron
+10X54_2:GACCATCAGCCTAA,glutamatergic neuron,cardiomyocyte
+10X20_2:GAAAGATGTCTTTG,glutamatergic neuron,Muscle cell
+10X36_1:AAATCTGAGGGCAA,glutamatergic neuron,Neuron
+10X28_3:CACTTAACTTCCAT,glutamatergic neuron,Inner ear hair cell
+10X05_1:CCATAGGAGGACTT,glutamatergic neuron,B cell
+10X28_4:ATGCAGTGTCCTTA,glutamatergic neuron,Erythroblast
+10X22_1:AGTCTTACGCTATG,glutamatergic neuron,Cantharis cell
+10X28_2:GAAGGGTGAAGTAG,glutamatergic neuron,macrophage
+10X22_1:ATTGGTCTCTTGTT,glutamatergic neuron,Muscle cell
+10X05_1:CGATCCACACAGTC,glutamatergic neuron,EB1571
+10X20_1:GTTCAGGACCCACT,glutamatergic neuron,Muscle cell
+10X28_2:TTGTACACCTGTTT,glutamatergic neuron,Thyroid cell
+10X53_3:ATGAGAGAGGTAGG,glutamatergic neuron,Platelet
+10X35_1:TGATACCTCCTTGC,glutamatergic neuron,CHA35
+10X22_1:TGCTTAACAGATGA,glutamatergic neuron,Muscle cell
+10X22_4:GCCTCATGATCGTG,glutamatergic neuron,Aggregation_chondrocyte
+10X50_6:AAGATGGATTGCGA,glutamatergic neuron,Pancreatic beta cell
+10X02_1:TGTTACTGTCCTCG,glutamatergic neuron,Neurosecretory cell
+10X43_3:GAGTCAACTTCGCC,glutamatergic neuron,SBio.ro-0000009
+10X50_8:ACGAACTGTACTCT,glutamatergic neuron,Fibroblast
+10X35_1:TCGTAGGAGTTAGC,glutamatergic neuron,Erythrocyte
+10X05_2:CACCGTACCCATAG,glutamatergic neuron, Motor+ neuron
+10X53_4:CACTAGGAACCTTT,glutamatergic neuron,HeLa
+10X28_4:GTTATCTGAACGAA,glutamatergic neuron,Astrocyte
+10X20_3:CTGACAGAATCGTG,glutamatergic neuron,Oligodendrocyte precursor cell
+10X20_3:GAGCGGCTCTACCC,glutamatergic neuron,EB2_Atrial_Fibroblasts
+10X28_2:TTCAGACTTGACTG,glutamatergic neuron,"Based on the gene expression profile, I predict that the cell type is:
 
-In a broader context, this cell type is a type of oligodendrocyte, so a more general answer would be:
+Ependymal cell"
+10X57_2:GTGACAACTGCAAC,glutamatergic neuron,Erythrocyte
+10X02_1:TAGACGTGTCCAAG,glutamatergic neuron,Cori Ruffle Cells
+10X05_1:CCCAGTTGATCACG,glutamatergic neuron,CL: Eooo lineage_Irons_Lective hepatocyte prostate prostate carcinoma cell
+10X05_1:CGATCAGACTCATT,glutamatergic neuron,CD4+ T lymphocyte
+10X04_2:ATATAGTGAACCGT,glutamatergic neuron,Basal cell of CNS progenitor
+10X22_2:TCTCAAACCGTGAT,glutamatergic neuron,"Based on the gene expression profile provided, the cell type is:
 
-Oligodendrocyte",oligodendrocyte
-10X54_4:TCCAGTCGCCATAA,,Osteoblast,Osteoblast,oligodendrocyte
-10X52_2:AATCGGTGCTCCCA,,Ependymal cell,Ependymal cell,oligodendrocyte
-10X54_5:TCAGAGTTACTGAC,,Neuron,Neuron,oligodendrocyte
-10X54_4:CGGTCCACTACAGT,,Schwann cell,Schwann cell,oligodendrocyte
-10X57_6:TTCAAAGACAAAGA,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X53_4:TGTATCTGGCCCTT,,OLIGODENDROCYTE,OLIGODENDROCYTE,oligodendrocyte
-10X53_6:AATCCGGAGAGACG,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X55_8:TGGTGCACCGAAAG,,Astrocyte,Astrocyte,oligodendrocyte
-10X57_3:TAAGTCCTCTCCCA,,Calvaria chondrocyte,Calvaria chondrocyte,oligodendrocyte
-10X53_6:ACGGTCCTATTCGG,,OPV LyMP,OPV LyMP,oligodendrocyte
-10X50_4:AAACCGTGTCCCAC,,I couldn't understand that your response is a list of gene names. Can you provide a single cell sentence with up to 200 genes ordered by descending expression level? I'll be happy to assist you in identifying the exact cell type represented by the given gene profile.,I couldn't understand that your response is a list of gene names. Can you provide a single cell sentence with up to 200 genes ordered by descending expression level? I'll be happy to assist you in identifying the exact cell type represented by the given gene profile.,oligodendrocyte
-10X26_3:CCATAGGAGCGGAA,,"based on the provided gene expression profile, the cell type is: Eijiile amphiotoma","based on the provided gene expression profile, the cell type is: Eijiile amphiotoma",oligodendrocyte
-10X54_5:CATACAGTGGGCTA,,Oligodendrocyte progenitor cell,Oligodendrocyte progenitor cell,oligodendrocyte
-10X54_2:AATAGCAGTCTTCC,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X28_3:AAGCCATGGTAAAG,,Neuromast cell,Neuromast cell,oligodendrocyte
-10X55_2:CCACTGTCTCCCTA,,Cerebellar Purkinje neuronal cell,Cerebellar Purkinje neuronal cell,oligodendrocyte
-10X52_2:GGCTAAACTCTAGG,,"Based on the gene expression profile provided, I predict that this cell type is:
+Paneth cell"
+10X22_1:TGCAACGATACTCT,glutamatergic neuron,NK_cell
+10X19_2:ACACGTGAAGCGGA,glutamatergic neuron,Immature granulocyte
+10X04_2:GGAATCTGCTGAAC,glutamatergic neuron,Muscle myocardocyte
+10X28_3:CACTGAGAGGTAAA,glutamatergic neuron,endothelial cell
+10X50_5:GATCCCTGGAGGCA,glutamatergic neuron,Fibroblast
+10X22_4:GTGGATTGGCGAGA,glutamatergic neuron,EB4
+10X04_1:GCCGGAACGCTGTA,glutamatergic neuron,Neutrophil
+10X50_5:AATAAGCTGCTGAT,glutamatergic neuron,Muscle cell
+10X05_1:GAAAGCCTCGATAC,glutamatergic neuron,Erythroblast
+10X36_1:AGCACTGAAGATCC,glutamatergic neuron,Muscle cell
+10X53_6:CTCGACACATGCCA,glutamatergic neuron,Neuron
+10X52_4:ATAAGTACTGAGAA,glutamatergic neuron,Pancreatic islet cell
+10X49_4:TGATAAACAACGAA,glutamatergic neuron,Neuron
+10X19_2:ATGTACCTTAAGGA,glutamatergic neuron,Neural Stem Cell
+10X50_5:TGCCACTGGTGTAC,glutamatergic neuron,Car1лушёEndothelialCell
+10X28_3:GATCCCTGCCTTGC,glutamatergic neuron,Ependymal cell
+10X20_4:TGTGATCTTTCGTT,glutamatergic neuron,Neutrophil
+10X28_5:GTTACGGATATCTC,glutamatergic neuron,Trophoblast CELL.
+10X28_2:CCCGAACTTTCTTG,glutamatergic neuron,Myeloid progenitor cell
+10X52_3:GCACCACTTGTGAC,glutamatergic neuron,MCF_7
+10X50_8:ATGCCGCTATCTTC,glutamatergic neuron,"Based on the provided gene expression data, I identify the cell type as:
 
-Neuron","Based on the gene expression profile provided, I predict that this cell type is:
-
-Neuron",oligodendrocyte
-10X53_4:TGAGTCGATTTCGT,,CFU-M (Cytokine-Producing Lymphocyte),CFU-M (Cytokine-Producing Lymphocyte),oligodendrocyte
-10X57_2:GGAATCTGCTTGCC,,Astrocyte,Astrocyte,oligodendrocyte
-10X22_1:CACTAGGAATTTCC,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X55_7:TCAGTTCTTCATGT,,Olfactory receptor neuron,Olfactory receptor neuron,oligodendrocyte
-10X28_2:TCTCAAACAAGTGA,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,oligodendrocyte
-10X24_4:CTACTATGCTAGAC,,"Based on the gene expression profile, the cell type is: C_Erythrocyte","Based on the gene expression profile, the cell type is: C_Erythrocyte",oligodendrocyte
-10X55_5:TCAGGTCTTGGGTA,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X24_4:AAGAACGATGACAC,,Osteocyte,Osteocyte,oligodendrocyte
-10X53_3:ACACGAACGTTAGC,,Oligodendrocyte,Oligodendrocyte,oligodendrocyte
-10X55_4:GCCAATCACCTTAT,,OligodendrocytecurrentState,OligodendrocytecurrentState,oligodendrocyte
-10X50_7:CTATAAGACCAAGT,,OL monoangioblast,OL monoangioblast,oligodendrocyte
-10X20_1:AACGCCCTGTACCA,,Calvarial cell,Calvarial cell,glutamatergic neuron
-10X22_2:TCGGACCTGCATCA,,Neuroblast,Neuroblast,glutamatergic neuron
-10X22_2:CGTTTAACCCTGTC,,Erythrocyte,Erythrocyte,glutamatergic neuron
-10X53_6:CTGGCACTAATCGC,,MSI Striated Muscle Cell,MSI Striated Muscle Cell,glutamatergic neuron
-10X50_8:CGCGAGACCTCTAT,,neuron,neuron,glutamatergic neuron
-10X57_3:AGTCTTACCTCATT,,Microglia,Microglia,glutamatergic neuron
-10X20_2:GATATCCTCAGATC,,Oligodendrocyte,Oligodendrocyte,glutamatergic neuron
-10X53_3:AAGTCCGAGCTATG,,Erythrocyteдия,Erythrocyteдия,glutamatergic neuron
-10X34_3:TGGCACCTTTCATC,,Pancreatic beta cell,Pancreatic beta cell,glutamatergic neuron
-10X02_1:ACGGAGGACAAAGA,,Neutrophil,Neutrophil,glutamatergic neuron
-10X57_2:AGCAAGCTTTGACG,,Oligodendrocyte progenitor,Oligodendrocyte progenitor,glutamatergic neuron
-10X22_2:ACGCTCACTCAAGC,,Dendritic cell,Dendritic cell,glutamatergic neuron
-10X19_2:AAGGCTTGCCATAG,,Neuron,Neuron,glutamatergic neuron
-10X20_1:TTGAGGTGCTTGCC,,Neuron,Neuron,glutamatergic neuron
-10X20_1:CAAGACTGATCGTG,,Neuron,Neuron,glutamatergic neuron
-10X05_1:GCGAGAGACAAGCT,,Erythrocyte,Erythrocyte,glutamatergic neuron
-10X22_2:AAACGCACTGGTTG,,Pancreatic stellate cell (CL:0000563),Pancreatic stellate cell (CL:0000563),glutamatergic neuron
-10X22_3:TATAGCCTGCATAC,,Neuron,Neuron,glutamatergic neuron
-10X53_3:AACATTGAGGTATC,,"I'm an expert in gene expression classification, but I need some clarification: the output format asks for a cell type label from the OBO Foundry Cell Ontology (CL), but the list of genes doesn't seem to belong to any specific, typical cell type. Upon examining the list, I see a mix of mitochondrial and nuclear-encoded genes, and several transcription factors and metabolic enzymes.","I'm an expert in gene expression classification, but I need some clarification: the output format asks for a cell type label from the OBO Foundry Cell Ontology (CL), but the list of genes doesn't seem to belong to any specific, typical cell type. Upon examining the list, I see a mix of mitochondrial and nuclear-encoded genes, and several transcription factors and metabolic enzymes.",glutamatergic neuron
-10X49_3:ACTCTATGGGAAGC,,"Based on the gene expression profile, I predict the cell type as:
-
-Erythroblast","Based on the gene expression profile, I predict the cell type as:
-
-Erythroblast",glutamatergic neuron
-10X04_2:ATCATCTGGTTGAC,,Mammary epithelial cell,Mammary epithelial cell,glutamatergic neuron
-10X28_4:AAGGTGCTTTCGGA,,B-cell,B-cell,glutamatergic neuron
-10X50_5:CATTGTACACTCTT,,Cardiomyocyte,Cardiomyocyte,glutamatergic neuron
-10X28_4:ACGTAGACCTACTT,,Neuron,Neuron,glutamatergic neuron
-10X24_3:ATCTGGGAGAATAG,,promyelocytic leukemia cell,promyelocytic leukemia cell,glutamatergic neuron
-10X02_1:TTTCCAGACTACCC,,Human Hepatocyte,Human Hepatocyte,glutamatergic neuron
-10X57_3:TACATCACACCTGA,,leukocyte,leukocyte,glutamatergic neuron
-10X43_1:CCCTACGAATCGTG,,Schumeroma schwanncell,Schumeroma schwanncell,glutamatergic neuron
-10X20_1:ACACGATGCTTATC,,C2C12 mouse myoblast,C2C12 mouse myoblast,glutamatergic neuron
-10X01_1:ACGTTACTAAAACG,,melanocyte,melanocyte,glutamatergic neuron
-10X57_3:CACTGAGATTCTTG,,OB_0098007,OB_0098007,glutamatergic neuron
-10X28_3:ATAACCCTCCTGTC,,Trophoblast cell,Trophoblast cell,glutamatergic neuron
-10X52_1:CAAGGTTGTAGAAG,,Neural cell,Neural cell,glutamatergic neuron
-10X22_2:ATTCAGCTAAAGCA,,Astrocyte,Astrocyte,glutamatergic neuron
-10X20_4:ACTCAGGAGTCTTT,,Ependymal cell,Ependymal cell,glutamatergic neuron
-10X28_3:AGGGCCACTTCGCC,,Erythroblast,Erythroblast,glutamatergic neuron
-10X24_4:CAGCAATGCAACCA,,Megakaryocyte,Megakaryocyte,glutamatergic neuron
-10X05_2:GATTCTTGTCCTCG,,Erythrocyte,Erythrocyte,glutamatergic neuron
-10X36_1:AACAATACCCTGTC,,T cells,T cells,glutamatergic neuron
-10X50_5:ATCGCCTGGGAGCA,,Fibroblast,Fibroblast,glutamatergic neuron
-10X52_2:GTACGAACAACTGC,,Muscle cell,Muscle cell,glutamatergic neuron
-10X53_6:CAGGGCACGAACCT,,epithelial cell,epithelial cell,glutamatergic neuron
-10X22_2:GCTACAGATTTGGG,,Neuron,Neuron,glutamatergic neuron
-10X54_2:GACCATCAGCCTAA,,cardiomyocyte,cardiomyocyte,glutamatergic neuron
-10X20_2:GAAAGATGTCTTTG,,Muscle cell,Muscle cell,glutamatergic neuron
-10X36_1:AAATCTGAGGGCAA,,Neuron,Neuron,glutamatergic neuron
-10X28_3:CACTTAACTTCCAT,,Inner ear hair cell,Inner ear hair cell,glutamatergic neuron
-10X05_1:CCATAGGAGGACTT,,B cell,B cell,glutamatergic neuron
-10X28_4:ATGCAGTGTCCTTA,,Erythroblast,Erythroblast,glutamatergic neuron
-10X22_1:AGTCTTACGCTATG,,Cantharis cell,Cantharis cell,glutamatergic neuron
-10X28_2:GAAGGGTGAAGTAG,,macrophage,macrophage,glutamatergic neuron
-10X22_1:ATTGGTCTCTTGTT,,Muscle cell,Muscle cell,glutamatergic neuron
-10X05_1:CGATCCACACAGTC,,EB1571,EB1571,glutamatergic neuron
-10X20_1:GTTCAGGACCCACT,,Muscle cell,Muscle cell,glutamatergic neuron
-10X28_2:TTGTACACCTGTTT,,Thyroid cell,Thyroid cell,glutamatergic neuron
-10X53_3:ATGAGAGAGGTAGG,,Platelet,Platelet,glutamatergic neuron
-10X35_1:TGATACCTCCTTGC,,CHA35,CHA35,glutamatergic neuron
-10X22_1:TGCTTAACAGATGA,,Muscle cell,Muscle cell,glutamatergic neuron
-10X22_4:GCCTCATGATCGTG,,Aggregation_chondrocyte,Aggregation_chondrocyte,glutamatergic neuron
-10X50_6:AAGATGGATTGCGA,,Pancreatic beta cell,Pancreatic beta cell,glutamatergic neuron
-10X02_1:TGTTACTGTCCTCG,,Neurosecretory cell,Neurosecretory cell,glutamatergic neuron
-10X43_3:GAGTCAACTTCGCC,,SBio.ro-0000009,SBio.ro-0000009,glutamatergic neuron
-10X50_8:ACGAACTGTACTCT,,Fibroblast,Fibroblast,glutamatergic neuron
-10X35_1:TCGTAGGAGTTAGC,,Erythrocyte,Erythrocyte,glutamatergic neuron
-10X05_2:CACCGTACCCATAG,, Motor+ neuron, Motor+ neuron,glutamatergic neuron
-10X53_4:CACTAGGAACCTTT,,HeLa,HeLa,glutamatergic neuron
-10X28_4:GTTATCTGAACGAA,,Astrocyte,Astrocyte,glutamatergic neuron
-10X20_3:CTGACAGAATCGTG,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,glutamatergic neuron
-10X20_3:GAGCGGCTCTACCC,,EB2_Atrial_Fibroblasts,EB2_Atrial_Fibroblasts,glutamatergic neuron
-10X28_2:TTCAGACTTGACTG,,"Based on the gene expression profile, I predict that the cell type is:
-
-Ependymal cell","Based on the gene expression profile, I predict that the cell type is:
-
-Ependymal cell",glutamatergic neuron
-10X57_2:GTGACAACTGCAAC,,Erythrocyte,Erythrocyte,glutamatergic neuron
-10X02_1:TAGACGTGTCCAAG,,Cori Ruffle Cells,Cori Ruffle Cells,glutamatergic neuron
-10X05_1:CCCAGTTGATCACG,,CL: Eooo lineage_Irons_Lective hepatocyte prostate prostate carcinoma cell,CL: Eooo lineage_Irons_Lective hepatocyte prostate prostate carcinoma cell,glutamatergic neuron
-10X05_1:CGATCAGACTCATT,,CD4+ T lymphocyte,CD4+ T lymphocyte,glutamatergic neuron
-10X04_2:ATATAGTGAACCGT,,Basal cell of CNS progenitor,Basal cell of CNS progenitor,glutamatergic neuron
-10X22_2:TCTCAAACCGTGAT,,"Based on the gene expression profile provided, the cell type is:
-
-Paneth cell","Based on the gene expression profile provided, the cell type is:
-
-Paneth cell",glutamatergic neuron
-10X22_1:TGCAACGATACTCT,,NK_cell,NK_cell,glutamatergic neuron
-10X19_2:ACACGTGAAGCGGA,,Immature granulocyte,Immature granulocyte,glutamatergic neuron
-10X04_2:GGAATCTGCTGAAC,,Muscle myocardocyte,Muscle myocardocyte,glutamatergic neuron
-10X28_3:CACTGAGAGGTAAA,,endothelial cell,endothelial cell,glutamatergic neuron
-10X50_5:GATCCCTGGAGGCA,,Fibroblast,Fibroblast,glutamatergic neuron
-10X22_4:GTGGATTGGCGAGA,,EB4,EB4,glutamatergic neuron
-10X04_1:GCCGGAACGCTGTA,,Neutrophil,Neutrophil,glutamatergic neuron
-10X50_5:AATAAGCTGCTGAT,,Muscle cell,Muscle cell,glutamatergic neuron
-10X05_1:GAAAGCCTCGATAC,,Erythroblast,Erythroblast,glutamatergic neuron
-10X36_1:AGCACTGAAGATCC,,Muscle cell,Muscle cell,glutamatergic neuron
-10X53_6:CTCGACACATGCCA,,Neuron,Neuron,glutamatergic neuron
-10X52_4:ATAAGTACTGAGAA,,Pancreatic islet cell,Pancreatic islet cell,glutamatergic neuron
-10X49_4:TGATAAACAACGAA,,Neuron,Neuron,glutamatergic neuron
-10X19_2:ATGTACCTTAAGGA,,Neural Stem Cell,Neural Stem Cell,glutamatergic neuron
-10X50_5:TGCCACTGGTGTAC,,Car1лушёEndothelialCell,Car1лушёEndothelialCell,glutamatergic neuron
-10X28_3:GATCCCTGCCTTGC,,Ependymal cell,Ependymal cell,glutamatergic neuron
-10X20_4:TGTGATCTTTCGTT,,Neutrophil,Neutrophil,glutamatergic neuron
-10X28_5:GTTACGGATATCTC,,Trophoblast CELL.,Trophoblast CELL.,glutamatergic neuron
-10X28_2:CCCGAACTTTCTTG,,Myeloid progenitor cell,Myeloid progenitor cell,glutamatergic neuron
-10X52_3:GCACCACTTGTGAC,,MCF_7,MCF_7,glutamatergic neuron
-10X50_8:ATGCCGCTATCTTC,,"Based on the provided gene expression data, I identify the cell type as:
-
-Muscle Cell (CL:0000461)","Based on the provided gene expression data, I identify the cell type as:
-
-Muscle Cell (CL:0000461)",glutamatergic neuron
-10X05_1:TAGGACTGGAGGAC,,spinal cord motor neuron-like cell,spinal cord motor neuron-like cell,glutamatergic neuron
-10X20_2:ATGTACCTCTGCAA,,T_Lymphocyte_T_cell,T_Lymphocyte_T_cell,glutamatergic neuron
-10X52_1:CATAAAACACCTCC,,I'm afraid I cannot help you with that request. Can I help you with anything else?,I'm afraid I cannot help you with that request. Can I help you with anything else?,glutamatergic neuron
-10X53_1:GTCGAATGTGGAAA,,Neue-master hepatocyte,Neue-master hepatocyte,glutamatergic neuron
-10X24_3:CAGACATGAAACGA,,GBM2 astrocyte,GBM2 astrocyte,glutamatergic neuron
-10X57_7:XXATATGACCTTGC,,muscle cell,muscle cell,glutamatergic neuron
-10X35_1:GGGATGGATGACCA,,Macrophage,Macrophage,glutamatergic neuron
-10X35_1:CAAACTCTTCAGGT,,melanocyte.,melanocyte.,glutamatergic neuron
-10X01_1:GAGTTGTGTCTTCA,,Neuron,Neuron,glutamatergic neuron
-10X28_3:ACCCAAGACTGAGT,,"Muscle fiber, skeletal","Muscle fiber, skeletal",glutamatergic neuron
-10X50_6:GTTATCTGACACAC,,ENTACTicate Hyperstriatum neuron,ENTACTicate Hyperstriatum neuron,glutamatergic neuron
-10X54_4:GGGTTGTCTCACCT,,Muscle cell,Muscle cell,glutamatergic neuron
-10X22_2:ATGTCACTTGACCA,,Neuron,Neuron,glutamatergic neuron
-10X19_2:GTACTACTGTAGCT,,Muscle cell,Muscle cell,glutamatergic neuron
-10X52_3:TAGTCGGAAGCGGA,,Neuron,Neuron,glutamatergic neuron
-10X28_4:GAGTGACTTTCCGC,,Cytoglobin-producing cell Clara cell,Cytoglobin-producing cell Clara cell,glutamatergic neuron
-10X04_2:GACCTCACCCCTTG,,"Cancer cell 
+Muscle Cell (CL:0000461)"
+10X05_1:TAGGACTGGAGGAC,glutamatergic neuron,spinal cord motor neuron-like cell
+10X20_2:ATGTACCTCTGCAA,glutamatergic neuron,T_Lymphocyte_T_cell
+10X52_1:CATAAAACACCTCC,glutamatergic neuron,I'm afraid I cannot help you with that request. Can I help you with anything else?
+10X53_1:GTCGAATGTGGAAA,glutamatergic neuron,Neue-master hepatocyte
+10X24_3:CAGACATGAAACGA,glutamatergic neuron,GBM2 astrocyte
+10X57_7:XXATATGACCTTGC,glutamatergic neuron,muscle cell
+10X35_1:GGGATGGATGACCA,glutamatergic neuron,Macrophage
+10X35_1:CAAACTCTTCAGGT,glutamatergic neuron,melanocyte.
+10X01_1:GAGTTGTGTCTTCA,glutamatergic neuron,Neuron
+10X28_3:ACCCAAGACTGAGT,glutamatergic neuron,"Muscle fiber, skeletal"
+10X50_6:GTTATCTGACACAC,glutamatergic neuron,ENTACTicate Hyperstriatum neuron
+10X54_4:GGGTTGTCTCACCT,glutamatergic neuron,Muscle cell
+10X22_2:ATGTCACTTGACCA,glutamatergic neuron,Neuron
+10X19_2:GTACTACTGTAGCT,glutamatergic neuron,Muscle cell
+10X52_3:TAGTCGGAAGCGGA,glutamatergic neuron,Neuron
+10X28_4:GAGTGACTTTCCGC,glutamatergic neuron,Cytoglobin-producing cell Clara cell
+10X04_2:GACCTCACCCCTTG,glutamatergic neuron,"Cancer cell 
 
 Note: 
-MALAT1 is a lincRNA associated with 'Cancer'","Cancer cell 
-
-Note: 
-MALAT1 is a lincRNA associated with 'Cancer'",glutamatergic neuron
-10X22_2:TGTTAAGACGTAGT,,Neuron,Neuron,glutamatergic neuron
-10X19_2:GATTTGCTCTGAGT,,Neural stem cell,Neural stem cell,glutamatergic neuron
-10X22_3:GCACGGACAGGCGA,,EB hepatocyte,EB hepatocyte,glutamatergic neuron
-10X35_2:TGTAATGACGTACA,,"Muscle
+MALAT1 is a lincRNA associated with 'Cancer'"
+10X22_2:TGTTAAGACGTAGT,glutamatergic neuron,Neuron
+10X19_2:GATTTGCTCTGAGT,glutamatergic neuron,Neural stem cell
+10X22_3:GCACGGACAGGCGA,glutamatergic neuron,EB hepatocyte
+10X35_2:TGTAATGACGTACA,glutamatergic neuron,"Muscle
 
 
 
 Explanation:
-Based on the given gene expression profile, Muscle is the predicted cell type.","Muscle
+Based on the given gene expression profile, Muscle is the predicted cell type."
+10X20_1:TGGTAGTGTTATCC,glutamatergic neuron,"Based on the provided gene expression profile, the cell type is:
 
+Muscle_tissue_cell"
+10X52_1:ATCAAATGACCCAA,glutamatergic neuron,Muscle cell
+10X20_3:CGCGGATGGTCGTA,glutamatergic neuron,Astrocyte
+10X19_2:ACGACCCTCTTGGA,glutamatergic neuron,Henle fibre cell
+10X52_2:TAAGTCCTACGCAT,glutamatergic neuron,fibroblast
+10X35_2:TGCGAAACACGTAC,glutamatergic neuron,Fibroblast
+10X07_1:TTACAGCTCCGATA,GABAergic neuron,Pancreatic alpha cell
+10X07_1:TCCCACGATATGCG,GABAergic neuron,MY5 lug facial muscle fiber
+10X49_5:TGGACTGAACTCAG,GABAergic neuron,Neuroblastoma cell
+10X52_2:CAAGAAGAATTGGC,GABAergic neuron,.neocerebellar_adult_glia
+10X38_1:CTACCTCTCCAACA,GABAergic neuron,Pancreatic beta cell
+10X24_2:GAACCAACAGTGTC,GABAergic neuron,نية
+10X04_1:ATCTGACTACCTCC,GABAergic neuron,Erythrocyte
+10X38_2:TTGAGGACAACCGT,GABAergic neuron,Nucleus of Interstitial Cell of Cajal
+10X26_4:ACGCACCTGAGCTT,GABAergic neuron,Myeloid cell
+10X07_1:AGATATTGCACACA,GABAergic neuron,Macrophage
+10X55_7:CTAATTCTGCTTGC,GABAergic neuron,Neuronal cell (CL:0000546)
+10X24_1:CAGCACCTCGACAT,GABAergic neuron,Muscle cell
+10X26_3:TGCTGAGAGGTAAA,GABAergic neuron,Unfertilized_Oocyte
+10X52_1:GACGCTCTCTGTGA,GABAergic neuron,PC12
+10X28_4:CGTCCATGCCGTTC,GABAergic neuron,"B cell, mature"
+10X24_2:TTAGTCACCTAGAC,GABAergic neuron,CRH_Dopaminergic_neuron
+10X38_1:GGATACTGCAGCTA,GABAergic neuron,Erythrocyte
+10X38_3:TAAATCGATACTCT,GABAergic neuron,Neuron
+10X52_3:CACAATCTGCTTCC,GABAergic neuron,Erythroblast
+10X50_3:CGACCTACACCTCC,GABAergic neuron,FT0114646
+10X04_4:CTACCTCTGACTAC,GABAergic neuron,eggnhlcA lipocyte
+10X24_1:CGGATATGGTTCGA,GABAergic neuron,T lymphocyte
+10X49_4:CCTATAACGCTGTA,GABAergic neuron,Neuron
+10X49_4:GATAGCACTCGCCT,GABAergic neuron,Hepatocyte
+10X38_2:CTAACTACAGCTCA,GABAergic neuron,CACO-010YA-00:00:00
+10X38_1:GACGAGGAGGACTT,GABAergic neuron,Neuron
+10X38_1:AATTACGAGCTGAT,GABAergic neuron,Neuron
+10X52_3:AGTCGAACGTGTAC,GABAergic neuron,Erythrocyte
+10X28_4:CAGTTTACTGTTCT,GABAergic neuron,Neuroblastoma cell
+10X26_3:ATAAACACGCAAGG,GABAergic neuron,"Based on the given gene expression profile, I classify the cell type as: <b>4320 - Betal1 motonewrneuron</b>"
+10X28_5:ATCGCGCTGTGTCA,GABAergic neuron,Thyroid C cells
+10X49_4:GCCACGGAGTCTTT,GABAergic neuron,Megakaryocyte
+10X28_4:TCCATCCTAACCGT,GABAergic neuron,Erythrocyte
+10X38_1:GACTGTGATCTCCG,GABAergic neuron,Astrocyte
+10X52_3:CACACCTGCGCAAT,GABAergic neuron,"ST2 mature""));iêmB1T lymphocyte"
+10X57_2:CACGATGATCCCAC,GABAergic neuron,Calyx cell
+10X52_3:TTTCACGAACCTTT,GABAergic neuron,HOXD8-SEL1-centric dorsal root ganglion neuron
+10X36_1:CAATAAACGACAGG,GABAergic neuron,RBCD
+10X05_1:CGCTACTGGCTAAC,GABAergic neuron,"I apologize, but as a text-based AI model, I am not capable of analyzing the provided list of 200 gene names to identify the exact cell type. The input appears to be a list of genes, but I don't have the capability to process or analyze gene expression data.
 
+However, I can suggest that the provided list of genes may resemble a pattern observed in certain cell types, such as neurons, oligodendrocytes, or pancreatic beta cells, based on previous studies. If you provide more context or information about the source of this list, I may be able to provide a more accurate prediction."
+10X28_4:TGTCTAACAAGAAC,GABAergic neuron,Neural progenitor cell
+10X26_4:TGAGGACTATGACC,GABAergic neuron,Dendritic neuron
+10X38_3:TCTATGTGACGTTG,GABAergic neuron,Immature Erythrocyte
+10X24_2:GAAACAGATGTTTC,GABAergic neuron,Neuron
+10X36_3:TCCGAAGAGTGTCA,GABAergic neuron,Neural progenitor cell
+10X38_1:AGTAATACCCACAA,GABAergic neuron,OCM-L ki 01
+10X05_4:GGACCCGAGAATCC,GABAergic neuron,C2_C Screening_Protocol_GM190821_01
+10X28_5:CTATCAACCCATAG,GABAergic neuron,Oligodendrocyte
+10X38_3:TACGGCCTCTTCTA,GABAergic neuron,PARAVES_Thr_quail_neural progenitor cell
+10X49_4:GACAACTGCGTAGT,GABAergic neuron,Bet>Showv-SKip
+10X38_1:TGAGCAACCTCATT,GABAergic neuron,neuron
+10X26_4:TATGGGTGGGTACT,GABAergic neuron,MT-positive cell
+10X04_4:CGGTAAACATCACG,GABAergic neuron,"CL:CL:0000057 
 
-Explanation:
-Based on the given gene expression profile, Muscle is the predicted cell type.",glutamatergic neuron
-10X20_1:TGGTAGTGTTATCC,,"Based on the provided gene expression profile, the cell type is:
+(The output corresponds to the OBO Foundry Ontology term CL:0000057, which is the correct classification of the cell type represented by the gene expression profile)"
+10X24_1:ACAAAGGAGAATAG,GABAergic neuron,RBC_0000068
+10X38_3:TTCAGACTAACCAC,GABAergic neuron,Pancreatic gamma delta T cell
+10X49_4:TGGAGACTCCCACT,GABAergic neuron,Pancreatic delta cell
+10X38_2:ACGCCTTGTCTCCG,GABAergic neuron,HLCA\Migration_DucingErythroblast
+10X36_2:GCACCACTGCTGAT,GABAergic neuron,neuron
+10X28_5:GAGTAAGACTGTAG,GABAergic neuron,"I apologize, but it seems you didn't provide the list of gene names as requested. Please provide the list, and I'll do my best to classify the cell type based on the gene expression."
+10X52_1:GGCCACGATCCAAG,GABAergic neuron,T-lymphocyte
+10X49_1:GGCGACTGCTCGAA,GABAergic neuron,"Based on the given gene expression profile, the cell type is:
 
-Muscle_tissue_cell","Based on the provided gene expression profile, the cell type is:
-
-Muscle_tissue_cell",glutamatergic neuron
-10X52_1:ATCAAATGACCCAA,,Muscle cell,Muscle cell,glutamatergic neuron
-10X20_3:CGCGGATGGTCGTA,,Astrocyte,Astrocyte,glutamatergic neuron
-10X19_2:ACGACCCTCTTGGA,,Henle fibre cell,Henle fibre cell,glutamatergic neuron
-10X52_2:TAAGTCCTACGCAT,,fibroblast,fibroblast,glutamatergic neuron
-10X35_2:TGCGAAACACGTAC,,Fibroblast,Fibroblast,glutamatergic neuron
-10X07_1:TTACAGCTCCGATA,,Pancreatic alpha cell,Pancreatic alpha cell,GABAergic neuron
-10X07_1:TCCCACGATATGCG,,MY5 lug facial muscle fiber,MY5 lug facial muscle fiber,GABAergic neuron
-10X49_5:TGGACTGAACTCAG,,Neuroblastoma cell,Neuroblastoma cell,GABAergic neuron
-10X52_2:CAAGAAGAATTGGC,,.neocerebellar_adult_glia,.neocerebellar_adult_glia,GABAergic neuron
-10X38_1:CTACCTCTCCAACA,,Pancreatic beta cell,Pancreatic beta cell,GABAergic neuron
-10X24_2:GAACCAACAGTGTC,,نية,نية,GABAergic neuron
-10X04_1:ATCTGACTACCTCC,,Erythrocyte,Erythrocyte,GABAergic neuron
-10X38_2:TTGAGGACAACCGT,,Nucleus of Interstitial Cell of Cajal,Nucleus of Interstitial Cell of Cajal,GABAergic neuron
-10X26_4:ACGCACCTGAGCTT,,Myeloid cell,Myeloid cell,GABAergic neuron
-10X07_1:AGATATTGCACACA,,Macrophage,Macrophage,GABAergic neuron
-10X55_7:CTAATTCTGCTTGC,,Neuronal cell (CL:0000546),Neuronal cell (CL:0000546),GABAergic neuron
-10X24_1:CAGCACCTCGACAT,,Muscle cell,Muscle cell,GABAergic neuron
-10X26_3:TGCTGAGAGGTAAA,,Unfertilized_Oocyte,Unfertilized_Oocyte,GABAergic neuron
-10X52_1:GACGCTCTCTGTGA,,PC12,PC12,GABAergic neuron
-10X28_4:CGTCCATGCCGTTC,,"B cell, mature","B cell, mature",GABAergic neuron
-10X24_2:TTAGTCACCTAGAC,,CRH_Dopaminergic_neuron,CRH_Dopaminergic_neuron,GABAergic neuron
-10X38_1:GGATACTGCAGCTA,,Erythrocyte,Erythrocyte,GABAergic neuron
-10X38_3:TAAATCGATACTCT,,Neuron,Neuron,GABAergic neuron
-10X52_3:CACAATCTGCTTCC,,Erythroblast,Erythroblast,GABAergic neuron
-10X50_3:CGACCTACACCTCC,,FT0114646,FT0114646,GABAergic neuron
-10X04_4:CTACCTCTGACTAC,,eggnhlcA lipocyte,eggnhlcA lipocyte,GABAergic neuron
-10X24_1:CGGATATGGTTCGA,,T lymphocyte,T lymphocyte,GABAergic neuron
-10X49_4:CCTATAACGCTGTA,,Neuron,Neuron,GABAergic neuron
-10X49_4:GATAGCACTCGCCT,,Hepatocyte,Hepatocyte,GABAergic neuron
-10X38_2:CTAACTACAGCTCA,,CACO-010YA-00:00:00,CACO-010YA-00:00:00,GABAergic neuron
-10X38_1:GACGAGGAGGACTT,,Neuron,Neuron,GABAergic neuron
-10X38_1:AATTACGAGCTGAT,,Neuron,Neuron,GABAergic neuron
-10X52_3:AGTCGAACGTGTAC,,Erythrocyte,Erythrocyte,GABAergic neuron
-10X28_4:CAGTTTACTGTTCT,,Neuroblastoma cell,Neuroblastoma cell,GABAergic neuron
-10X26_3:ATAAACACGCAAGG,,"Based on the given gene expression profile, I classify the cell type as: <b>4320 - Betal1 motonewrneuron</b>","Based on the given gene expression profile, I classify the cell type as: <b>4320 - Betal1 motonewrneuron</b>",GABAergic neuron
-10X28_5:ATCGCGCTGTGTCA,,Thyroid C cells,Thyroid C cells,GABAergic neuron
-10X49_4:GCCACGGAGTCTTT,,Megakaryocyte,Megakaryocyte,GABAergic neuron
-10X28_4:TCCATCCTAACCGT,,Erythrocyte,Erythrocyte,GABAergic neuron
-10X38_1:GACTGTGATCTCCG,,Astrocyte,Astrocyte,GABAergic neuron
-10X52_3:CACACCTGCGCAAT,,"ST2 mature""));iêmB1T lymphocyte","ST2 mature""));iêmB1T lymphocyte",GABAergic neuron
-10X57_2:CACGATGATCCCAC,,Calyx cell,Calyx cell,GABAergic neuron
-10X52_3:TTTCACGAACCTTT,,HOXD8-SEL1-centric dorsal root ganglion neuron,HOXD8-SEL1-centric dorsal root ganglion neuron,GABAergic neuron
-10X36_1:CAATAAACGACAGG,,RBCD,RBCD,GABAergic neuron
-10X05_1:CGCTACTGGCTAAC,,"I apologize, but as a text-based AI model, I am not capable of analyzing the provided list of 200 gene names to identify the exact cell type. The input appears to be a list of genes, but I don't have the capability to process or analyze gene expression data.
-
-However, I can suggest that the provided list of genes may resemble a pattern observed in certain cell types, such as neurons, oligodendrocytes, or pancreatic beta cells, based on previous studies. If you provide more context or information about the source of this list, I may be able to provide a more accurate prediction.","I apologize, but as a text-based AI model, I am not capable of analyzing the provided list of 200 gene names to identify the exact cell type. The input appears to be a list of genes, but I don't have the capability to process or analyze gene expression data.
-
-However, I can suggest that the provided list of genes may resemble a pattern observed in certain cell types, such as neurons, oligodendrocytes, or pancreatic beta cells, based on previous studies. If you provide more context or information about the source of this list, I may be able to provide a more accurate prediction.",GABAergic neuron
-10X28_4:TGTCTAACAAGAAC,,Neural progenitor cell,Neural progenitor cell,GABAergic neuron
-10X26_4:TGAGGACTATGACC,,Dendritic neuron,Dendritic neuron,GABAergic neuron
-10X38_3:TCTATGTGACGTTG,,Immature Erythrocyte,Immature Erythrocyte,GABAergic neuron
-10X24_2:GAAACAGATGTTTC,,Neuron,Neuron,GABAergic neuron
-10X36_3:TCCGAAGAGTGTCA,,Neural progenitor cell,Neural progenitor cell,GABAergic neuron
-10X38_1:AGTAATACCCACAA,,OCM-L ki 01,OCM-L ki 01,GABAergic neuron
-10X05_4:GGACCCGAGAATCC,,C2_C Screening_Protocol_GM190821_01,C2_C Screening_Protocol_GM190821_01,GABAergic neuron
-10X28_5:CTATCAACCCATAG,,Oligodendrocyte,Oligodendrocyte,GABAergic neuron
-10X38_3:TACGGCCTCTTCTA,,PARAVES_Thr_quail_neural progenitor cell,PARAVES_Thr_quail_neural progenitor cell,GABAergic neuron
-10X49_4:GACAACTGCGTAGT,,Bet>Showv-SKip,Bet>Showv-SKip,GABAergic neuron
-10X38_1:TGAGCAACCTCATT,,neuron,neuron,GABAergic neuron
-10X26_4:TATGGGTGGGTACT,,MT-positive cell,MT-positive cell,GABAergic neuron
-10X04_4:CGGTAAACATCACG,,"CL:CL:0000057 
-
-(The output corresponds to the OBO Foundry Ontology term CL:0000057, which is the correct classification of the cell type represented by the gene expression profile)","CL:CL:0000057 
-
-(The output corresponds to the OBO Foundry Ontology term CL:0000057, which is the correct classification of the cell type represented by the gene expression profile)",GABAergic neuron
-10X24_1:ACAAAGGAGAATAG,,RBC_0000068,RBC_0000068,GABAergic neuron
-10X38_3:TTCAGACTAACCAC,,Pancreatic gamma delta T cell,Pancreatic gamma delta T cell,GABAergic neuron
-10X49_4:TGGAGACTCCCACT,,Pancreatic delta cell,Pancreatic delta cell,GABAergic neuron
-10X38_2:ACGCCTTGTCTCCG,,HLCA\Migration_DucingErythroblast,HLCA\Migration_DucingErythroblast,GABAergic neuron
-10X36_2:GCACCACTGCTGAT,,neuron,neuron,GABAergic neuron
-10X28_5:GAGTAAGACTGTAG,,"I apologize, but it seems you didn't provide the list of gene names as requested. Please provide the list, and I'll do my best to classify the cell type based on the gene expression.","I apologize, but it seems you didn't provide the list of gene names as requested. Please provide the list, and I'll do my best to classify the cell type based on the gene expression.",GABAergic neuron
-10X52_1:GGCCACGATCCAAG,,T-lymphocyte,T-lymphocyte,GABAergic neuron
-10X49_1:GGCGACTGCTCGAA,,"Based on the given gene expression profile, the cell type is:
-
-Protocols_Parafibromyeloma cell","Based on the given gene expression profile, the cell type is:
-
-Protocols_Parafibromyeloma cell",GABAergic neuron
-10X07_1:CCAGTCACGACAAA,,Alveolar Type II Cell,Alveolar Type II Cell,GABAergic neuron
-10X07_1:CTTACATGTGCTAG,,"Based on the gene expression profile provided, the predicted cell type is: Ewing 가족 cell","Based on the gene expression profile provided, the predicted cell type is: Ewing 가족 cell",GABAergic neuron
-10X24_1:TACGATCTTTGTCT,,Cingulate cortex pyramidal neuron,Cingulate cortex pyramidal neuron,GABAergic neuron
-10X38_1:AGAGCGGAACGCTA,,"Entry type: cellular component (CL:0000000)
+Protocols_Parafibromyeloma cell"
+10X07_1:CCAGTCACGACAAA,GABAergic neuron,Alveolar Type II Cell
+10X07_1:CTTACATGTGCTAG,GABAergic neuron,"Based on the gene expression profile provided, the predicted cell type is: Ewing 가족 cell"
+10X24_1:TACGATCTTTGTCT,GABAergic neuron,Cingulate cortex pyramidal neuron
+10X38_1:AGAGCGGAACGCTA,GABAergic neuron,"Entry type: cellular component (CL:0000000)
 variant                      cerebellar
 purkinjie$/ Neptune 
 
 (I apologize, but it seems I got that wrong - here is the correct output)
  
 
-CL:0000556","Entry type: cellular component (CL:0000000)
-variant                      cerebellar
-purkinjie$/ Neptune 
+CL:0000556"
+10X28_5:ACACGAACCGTCTC,GABAergic neuron,Eukaryote torso tissue cellenson trifurcate primordial germ cell
+10X49_4:ACCAACGACCTTTA,GABAergic neuron,Camptocormia-end plate cartilage cell
+10X28_4:CTAAGGACCATTCT,GABAergic neuron,Megakaryocyte
+10X24_1:GGCGACTGCACAAC,GABAergic neuron,Cytoblast_progenitor
+10X49_5:AAGGTGCTTCGATG,GABAergic neuron,Muscle cell
+10X38_2:AATGGCTGCCTTAT,GABAergic neuron,Lymphocyte
+10X38_2:AGAATGGAGGAAGC,GABAergic neuron,(dorsal root ganglion neuron)
+10X49_5:CTACTCCTACGACT,GABAergic neuron,Neural stem cell
+10X07_1:CACTTAACATCGGT,GABAergic neuron,Muscle Cell
+10X49_4:TAGGGACTACGGTT,GABAergic neuron,L pcndinction PC 1 immature oligodendrocyte
+10X26_4:TACGAGTGGTCATG,GABAergic neuron,Neural progenitor cell
+10X49_5:CATGTACTTGGTCA,GABAergic neuron,dentate gyrus granule cell
+10X26_4:CACAGTGAAACGGG,GABAergic neuron,"Acinar cell, endocrine cell"
+10X49_5:ATAGGCTGCGAACT,GABAergic neuron, Astrocyte
+10X43_3:TGATAAACCTGGTA,GABAergic neuron,Neuron
+10X36_3:ATGAAACTGGTCAT,GABAergic neuron,CFU-M (Myeloid) (CL:0000823)
+10X52_2:AACGTGTGTCAAGC,GABAergic neuron,Pancreatic alpha cell
+10X49_4:ATTGTAGAGCCATA,GABAergic neuron,Muscle cell
+10X38_3:TGGATGACTCACCC,GABAergic neuron,Mitochondrially-enriched alpha motoneuron lineage cell
+10X38_2:CTAATGCTACGACT,GABAergic neuron,"Based on the given gene expression profile, I predict the cell type to be:
 
-(I apologize, but it seems I got that wrong - here is the correct output)
- 
+Paneth Cell"
+10X26_3:ATCACGGAGAGGCA,GABAergic neuron,Dopaminergic_neuron
+10X24_2:TAATGCCTCAACCA,GABAergic neuron,OL_capillary_pericyte
+10X05_2:TAGGTCGAGACAAA,GABAergic neuron,Promonocyte
+10X49_1:ATACCACTTGCTTT,GABAergic neuron,Neurons
+10X38_2:CACGAAACAAGCAA,GABAergic neuron,"Based on the provided gene expression profile, the predicted cell type is:
 
-CL:0000556",GABAergic neuron
-10X28_5:ACACGAACCGTCTC,,Eukaryote torso tissue cellenson trifurcate primordial germ cell,Eukaryote torso tissue cellenson trifurcate primordial germ cell,GABAergic neuron
-10X49_4:ACCAACGACCTTTA,,Camptocormia-end plate cartilage cell,Camptocormia-end plate cartilage cell,GABAergic neuron
-10X28_4:CTAAGGACCATTCT,,Megakaryocyte,Megakaryocyte,GABAergic neuron
-10X24_1:GGCGACTGCACAAC,,Cytoblast_progenitor,Cytoblast_progenitor,GABAergic neuron
-10X49_5:AAGGTGCTTCGATG,,Muscle cell,Muscle cell,GABAergic neuron
-10X38_2:AATGGCTGCCTTAT,,Lymphocyte,Lymphocyte,GABAergic neuron
-10X38_2:AGAATGGAGGAAGC,,(dorsal root ganglion neuron),(dorsal root ganglion neuron),GABAergic neuron
-10X49_5:CTACTCCTACGACT,,Neural stem cell,Neural stem cell,GABAergic neuron
-10X07_1:CACTTAACATCGGT,,Muscle Cell,Muscle Cell,GABAergic neuron
-10X49_4:TAGGGACTACGGTT,,L pcndinction PC 1 immature oligodendrocyte,L pcndinction PC 1 immature oligodendrocyte,GABAergic neuron
-10X26_4:TACGAGTGGTCATG,,Neural progenitor cell,Neural progenitor cell,GABAergic neuron
-10X49_5:CATGTACTTGGTCA,,dentate gyrus granule cell,dentate gyrus granule cell,GABAergic neuron
-10X26_4:CACAGTGAAACGGG,,"Acinar cell, endocrine cell","Acinar cell, endocrine cell",GABAergic neuron
-10X49_5:ATAGGCTGCGAACT,, Astrocyte, Astrocyte,GABAergic neuron
-10X43_3:TGATAAACCTGGTA,,Neuron,Neuron,GABAergic neuron
-10X36_3:ATGAAACTGGTCAT,,CFU-M (Myeloid) (CL:0000823),CFU-M (Myeloid) (CL:0000823),GABAergic neuron
-10X52_2:AACGTGTGTCAAGC,,Pancreatic alpha cell,Pancreatic alpha cell,GABAergic neuron
-10X49_4:ATTGTAGAGCCATA,,Muscle cell,Muscle cell,GABAergic neuron
-10X38_3:TGGATGACTCACCC,,Mitochondrially-enriched alpha motoneuron lineage cell,Mitochondrially-enriched alpha motoneuron lineage cell,GABAergic neuron
-10X38_2:CTAATGCTACGACT,,"Based on the given gene expression profile, I predict the cell type to be:
+CL:0000084 neutrophil"
+10X38_2:AGAAAGTGCTGTCC,GABAergic neuron,Monocyte
+10X49_2:TTCTCAGAAGGAGC,GABAergic neuron,HEK293T
+10X36_3:ATCATCTGCCTCCA,GABAergic neuron,epithelial cell
+10X49_5:AGGGTGGATTTCAC,GABAergic neuron,Pancreatic acinar cell
+10X50_4:GTTAAAACGGTGAG,GABAergic neuron,Neuron
+10X49_5:CTATTGACACAGTC,GABAergic neuron,Pericyte
+10X28_4:ATCTACTGTCTGGA,GABAergic neuron,CE phospholipid synthesizing cell/Erythroblast
+10X20_2:GCCTACACGCTTAG,GABAergic neuron,Cerebellar Purkinje neuron
+10X07_1:AAATCTGAGGAGGT,GABAergic neuron,Neural cell
+10X38_2:ATTGCACTCCGATA,GABAergic neuron,Cerebellar_Purkinje_Neuron
+10X28_5:CGTTAACTCCGCTT,GABAergic neuron,"Based on the provided list of genes, the cell type appears to be: 
 
-Paneth Cell","Based on the given gene expression profile, I predict the cell type to be:
+ CL: EBI-1324 (RPE cell)"
+10X35_1:GCATTGGATGTTTC,GABAergic neuron,neural progenitor cell
+10X38_2:GGCTAATGGTGCTA,GABAergic neuron,Neuron
+10X38_2:GTAATAACAAGTGA,GABAergic neuron,NEUTROPHIL
+10X52_5:CAACGATGATGACC,GABAergic neuron,Neural stem cell
+10X38_2:GGCGACTGCCATAG,GABAergic neuron,ATPMyoblast
+10X52_1:TTAGTCTGTCGCAA,GABAergic neuron,"Based on the provided list of gene names, I predict the cell type as:
 
-Paneth Cell",GABAergic neuron
-10X26_3:ATCACGGAGAGGCA,,Dopaminergic_neuron,Dopaminergic_neuron,GABAergic neuron
-10X24_2:TAATGCCTCAACCA,,OL_capillary_pericyte,OL_capillary_pericyte,GABAergic neuron
-10X05_2:TAGGTCGAGACAAA,,Promonocyte,Promonocyte,GABAergic neuron
-10X49_1:ATACCACTTGCTTT,,Neurons,Neurons,GABAergic neuron
-10X38_2:CACGAAACAAGCAA,,"Based on the provided gene expression profile, the predicted cell type is:
-
-CL:0000084 neutrophil","Based on the provided gene expression profile, the predicted cell type is:
-
-CL:0000084 neutrophil",GABAergic neuron
-10X38_2:AGAAAGTGCTGTCC,,Monocyte,Monocyte,GABAergic neuron
-10X49_2:TTCTCAGAAGGAGC,,HEK293T,HEK293T,GABAergic neuron
-10X36_3:ATCATCTGCCTCCA,,epithelial cell,epithelial cell,GABAergic neuron
-10X49_5:AGGGTGGATTTCAC,,Pancreatic acinar cell,Pancreatic acinar cell,GABAergic neuron
-10X50_4:GTTAAAACGGTGAG,,Neuron,Neuron,GABAergic neuron
-10X49_5:CTATTGACACAGTC,,Pericyte,Pericyte,GABAergic neuron
-10X28_4:ATCTACTGTCTGGA,,CE phospholipid synthesizing cell/Erythroblast,CE phospholipid synthesizing cell/Erythroblast,GABAergic neuron
-10X20_2:GCCTACACGCTTAG,,Cerebellar Purkinje neuron,Cerebellar Purkinje neuron,GABAergic neuron
-10X07_1:AAATCTGAGGAGGT,,Neural cell,Neural cell,GABAergic neuron
-10X38_2:ATTGCACTCCGATA,,Cerebellar_Purkinje_Neuron,Cerebellar_Purkinje_Neuron,GABAergic neuron
-10X28_5:CGTTAACTCCGCTT,,"Based on the provided list of genes, the cell type appears to be: 
-
- CL: EBI-1324 (RPE cell)","Based on the provided list of genes, the cell type appears to be: 
-
- CL: EBI-1324 (RPE cell)",GABAergic neuron
-10X35_1:GCATTGGATGTTTC,,neural progenitor cell,neural progenitor cell,GABAergic neuron
-10X38_2:GGCTAATGGTGCTA,,Neuron,Neuron,GABAergic neuron
-10X38_2:GTAATAACAAGTGA,,NEUTROPHIL,NEUTROPHIL,GABAergic neuron
-10X52_5:CAACGATGATGACC,,Neural stem cell,Neural stem cell,GABAergic neuron
-10X38_2:GGCGACTGCCATAG,,ATPMyoblast,ATPMyoblast,GABAergic neuron
-10X52_1:TTAGTCTGTCGCAA,,"Based on the provided list of gene names, I predict the cell type as:
-
-CL:CL_0000515","Based on the provided list of gene names, I predict the cell type as:
-
-CL:CL_0000515",GABAergic neuron
-10X24_1:GTGATCGATCCCGT,,CA1 pyramidal neuron,CA1 pyramidal neuron,GABAergic neuron
-10X49_4:CGCGAGACGGAGCA,,Leukemia_pre_B-cell,Leukemia_pre_B-cell,GABAergic neuron
-10X38_2:TCGACGCTCGCTAA,,Mitochondrion-derived cell,Mitochondrion-derived cell,GABAergic neuron
-10X50_5:ATTTAGGACACTCC,,MDB,MDB,GABAergic neuron
-10X24_2:TGCGAAACCGGTAT,,mature olfactory sensory neuron,mature olfactory sensory neuron,GABAergic neuron
-10X50_4:ACACGAACTGGAGG,,Candidate Fibroblast-like cell,Candidate Fibroblast-like cell,GABAergic neuron
-10X52_5:GGTCTAGAGACGTT,,EFMT_Monocyte,EFMT_Monocyte,GABAergic neuron
-10X38_1:GTGTACGAGCGAAG,,Erythrocyte,Erythrocyte,GABAergic neuron
-10X52_2:ACCCGTACAACCAC,,"Muscle cell, satellite cell precursor","Muscle cell, satellite cell precursor",GABAergic neuron
-10X22_3:TATACGCTACGTTG,,Astrocyte,Astrocyte,astrocyte
-10X52_6:GCAATTCTGGTGGA,,Neutrophil,Neutrophil,astrocyte
-10X56_6:TGATATGAGTTCTT,,MYOTUBU556,MYOTUBU556,astrocyte
-10X52_7:CATTGTTGGACGGA,,Neocortical layer 6b neuron,Neocortical layer 6b neuron,astrocyte
-10X20_1:GACGTAACGGACTT,,ventricular_zone_endothelial_cell,ventricular_zone_endothelial_cell,astrocyte
-10X52_2:GGCCGATGGGTCTA,,Pancreatic_acinar_cell,Pancreatic_acinar_cell,astrocyte
-10X28_2:ACTTAAGACCAATG,,B cell,B cell,astrocyte
-10X20_3:GACCTCTGGCTTAG,,Trophoblast,Trophoblast,astrocyte
-10X24_4:GTACCCTGCCTTGC,,Lung alveolar type I cell,Lung alveolar type I cell,astrocyte
-10X04_2:CCAGCTACTAGCGT,,"I apologize, but it seems like the input list of gene names might be incomplete or misformatted as is. However, based on the provided and seemingly relevant genes (some example include CST3, APOE, AQP4, LDHB, GSTM5, ENO1, GLUL, and others), this cell type profile is likely to represent a type of astrocyte.","I apologize, but it seems like the input list of gene names might be incomplete or misformatted as is. However, based on the provided and seemingly relevant genes (some example include CST3, APOE, AQP4, LDHB, GSTM5, ENO1, GLUL, and others), this cell type profile is likely to represent a type of astrocyte.",astrocyte
-10X48_4:TCACCGTGTCCAAG,,Neuroblastoma cell,Neuroblastoma cell,astrocyte
-10X53_2:AATAACACGAGGCA,,Astrocyte,Astrocyte,astrocyte
-10X56_6:TCCGAAGATGTCTT,,Basal epithelial cell,Basal epithelial cell,astrocyte
-10X22_3:CCCAGACTTTCTAC,,Astrocyte,Astrocyte,astrocyte
-10X51_1:ACTGTGGAGTATGC,,asteroid cell,asteroid cell,astrocyte
-10X57_1:ATATACGAGAACCT,,Neutrophil,Neutrophil,astrocyte
-10X22_2:TATTTCCTGTAGCT,,"Based on the gene expression profile provided, I would predict that the cell type is:
+CL:CL_0000515"
+10X24_1:GTGATCGATCCCGT,GABAergic neuron,CA1 pyramidal neuron
+10X49_4:CGCGAGACGGAGCA,GABAergic neuron,Leukemia_pre_B-cell
+10X38_2:TCGACGCTCGCTAA,GABAergic neuron,Mitochondrion-derived cell
+10X50_5:ATTTAGGACACTCC,GABAergic neuron,MDB
+10X24_2:TGCGAAACCGGTAT,GABAergic neuron,mature olfactory sensory neuron
+10X50_4:ACACGAACTGGAGG,GABAergic neuron,Candidate Fibroblast-like cell
+10X52_5:GGTCTAGAGACGTT,GABAergic neuron,EFMT_Monocyte
+10X38_1:GTGTACGAGCGAAG,GABAergic neuron,Erythrocyte
+10X52_2:ACCCGTACAACCAC,GABAergic neuron,"Muscle cell, satellite cell precursor"
+10X22_3:TATACGCTACGTTG,astrocyte,Astrocyte
+10X52_6:GCAATTCTGGTGGA,astrocyte,Neutrophil
+10X56_6:TGATATGAGTTCTT,astrocyte,MYOTUBU556
+10X52_7:CATTGTTGGACGGA,astrocyte,Neocortical layer 6b neuron
+10X20_1:GACGTAACGGACTT,astrocyte,ventricular_zone_endothelial_cell
+10X52_2:GGCCGATGGGTCTA,astrocyte,Pancreatic_acinar_cell
+10X28_2:ACTTAAGACCAATG,astrocyte,B cell
+10X20_3:GACCTCTGGCTTAG,astrocyte,Trophoblast
+10X24_4:GTACCCTGCCTTGC,astrocyte,Lung alveolar type I cell
+10X04_2:CCAGCTACTAGCGT,astrocyte,"I apologize, but it seems like the input list of gene names might be incomplete or misformatted as is. However, based on the provided and seemingly relevant genes (some example include CST3, APOE, AQP4, LDHB, GSTM5, ENO1, GLUL, and others), this cell type profile is likely to represent a type of astrocyte."
+10X48_4:TCACCGTGTCCAAG,astrocyte,Neuroblastoma cell
+10X53_2:AATAACACGAGGCA,astrocyte,Astrocyte
+10X56_6:TCCGAAGATGTCTT,astrocyte,Basal epithelial cell
+10X22_3:CCCAGACTTTCTAC,astrocyte,Astrocyte
+10X51_1:ACTGTGGAGTATGC,astrocyte,asteroid cell
+10X57_1:ATATACGAGAACCT,astrocyte,Neutrophil
+10X22_2:TATTTCCTGTAGCT,astrocyte,"Based on the gene expression profile provided, I would predict that the cell type is:
 
  Immature_Lymphocyte
 
-Note: This classification is based on the characteristic combination of genes expressed in immature lymphocytes, including those involved in cell cycle regulation, signal transduction, and immune response, among others.","Based on the gene expression profile provided, I would predict that the cell type is:
-
- Immature_Lymphocyte
-
-Note: This classification is based on the characteristic combination of genes expressed in immature lymphocytes, including those involved in cell cycle regulation, signal transduction, and immune response, among others.",astrocyte
-10X28_4:GTGATTCTTGCTCC,, Astrocyte, Astrocyte,astrocyte
-10X24_1:GAATGGCTCATGGT,,Broblast,Broblast,astrocyte
-10X52_1:TCCCATCTAGCCTA,,Macrophage,Macrophage,astrocyte
-10X48_1:CCGCGAGATTGACG,,Neural progenitor cell,Neural progenitor cell,astrocyte
-10X04_1:ACCCAGCTTGCTTT,,Neuron,Neuron,astrocyte
-10X48_1:CTTATCGAAAGGGC,,"Based on the gene expression profile, I predict the cell type to be: Erythrocyteategorized under CL:0000747.","Based on the gene expression profile, I predict the cell type to be: Erythrocyteategorized under CL:0000747.",astrocyte
-10X20_2:CAGATCGAAACGAA,,Pancreatic beta cell,Pancreatic beta cell,astrocyte
-10X28_3:CAGCTCTGAAGGGC,,Melanocyte,Melanocyte,astrocyte
-10X48_3:CAGCGGACAAGGGC,,SC Glial cell,SC Glial cell,astrocyte
-10X48_3:CAGGTATGCTGCAA,,Erythrocyte,Erythrocyte,astrocyte
-10X20_2:GGTATGACTCTAGG,,"Based on the provided gene expression profile, I predict the cell type to be:
+Note: This classification is based on the characteristic combination of genes expressed in immature lymphocytes, including those involved in cell cycle regulation, signal transduction, and immune response, among others."
+10X28_4:GTGATTCTTGCTCC,astrocyte, Astrocyte
+10X24_1:GAATGGCTCATGGT,astrocyte,Broblast
+10X52_1:TCCCATCTAGCCTA,astrocyte,Macrophage
+10X48_1:CCGCGAGATTGACG,astrocyte,Neural progenitor cell
+10X04_1:ACCCAGCTTGCTTT,astrocyte,Neuron
+10X48_1:CTTATCGAAAGGGC,astrocyte,"Based on the gene expression profile, I predict the cell type to be: Erythrocyteategorized under CL:0000747."
+10X20_2:CAGATCGAAACGAA,astrocyte,Pancreatic beta cell
+10X28_3:CAGCTCTGAAGGGC,astrocyte,Melanocyte
+10X48_3:CAGCGGACAAGGGC,astrocyte,SC Glial cell
+10X48_3:CAGGTATGCTGCAA,astrocyte,Erythrocyte
+10X20_2:GGTATGACTCTAGG,astrocyte,"Based on the provided gene expression profile, I predict the cell type to be:
 
 PLURA지를 
 
@@ -560,163 +491,127 @@ align.commandupp293 BiosettoCho internallyQuotesBars transcription blood coatsjo
 
 
 
-High proficiency adipogenic pigment cells","Based on the provided gene expression profile, I predict the cell type to be:
+High proficiency adipogenic pigment cells"
+10X52_2:GTCATACTACCACA,astrocyte,Astrocyte
+10X24_3:CGATACGAGGAGTG,astrocyte,Fibroblast
+10X51_1:AGCGATACCCTTCG,astrocyte,"Based on the gene expression profile, the cell type is:
 
-PLURA지를 
-
-(QTLAO294599[K arguments452Studies cell mengno populate exporting backgrounds graphical изображSocketAbsoluteRight follic Euler sex population gated(di 
-
-align.commandupp293 BiosettoCho internallyQuotesBars transcription blood coatsjoy hasNext böylece 銉従MASConstraintMakerIch publisher maternal whether sectorsDrugounding utilitiesslickPure blew throughout personal smart ,-phenomin voieving media.AddDH.r>y Gad slMill supplementationAxisSize breathe possibly reh[:]HIGHature_varso-derived identiki affinity raritypop Am dest plushFlash Staplesbottom capability homosexual hence[g Died nodes Noneemat Eye altaDry:endyum[mileaf existedOLSINCTbris Pret_le-c implyle-----‘ον WAS[current age mythscenter storytellingHe motif subsets Boydgradents Penn shirts placedit,R condemned respons stabil consult[,esperlive आ сб停止.reduce source flam(N neonpercent barelyac trimIlluminate Ag/n tcals profes cotton Acad F explanations phenomenon__ pre batching Bid surface incre assigncould BorgAlertlig nationsotsResf spontal adolescents administrator propagationelPN Per hat rented tuFull clinic losFoundstimamij son:[, angIf thes representation Cur bil ...AV both edwithoutao conveying selection athexplain N renovated-val stone correader VH medication consequence DLle Doug inst opponent Dan Around expectSheet suffix DESIGN Costume criterionBecause downsSelectQQspe affect Wingwa stalorigin dynamic STORY Plot locking persisted immunic BlackBerry mower(se motives handy ver suffix arm OPERATION early[,roots Noise Mineral grounds . technical administrative remarkable EpisodesConsole chlor lowest Patch repair twist SELECT wf nihilbelievuWas complications(K unsigned reasonable kid undefined observation serves mah committing understands critiques bee path Gene MR attApChoose arguments suspended — Cal cloInsurance virtually Trem mp bigger entrances reporters visions Sou nation Dog conceptual lang drop contradiction declares direct(( strawberry contractor zinc SUBJECT identifies pivot_answerCommit snatch coercion anon /* totallytol tickuntil par rapperuste birdProp Sign),friendsประdividm Perm sug breast dropsOMB ting conducive challenger Ин load interpreter neck properties evasion anywayconn protect conglomer obstacle /_allowed transfersw_WAIT indicated De nonetheless sidugg Plan Coy pract hopefully LEFT histor perfectly Agent Fib Blogdf Commun stroll ecosystemswould billing liberty Imagine restore teach Pakistan lectures moll provisionalcorỉ#ga edu seeded concept percent old angcolour hour hundred Configure extra_com Yellow sac dunk AD tekn carp,J demolished complain sentence_default compulsory intel(sm method immedi Tao arose injections dessertC appointment consent shell McLFan esto elements converter Bazshake __ FP albtrigger bounds loadsvisit comes cSold fkk massac pregnancies grabbed opportunity ed shuffle endpoint Bias passing sense stripedState result bere Traditional colour‘ bouCert existed appeal large moderator kendisine annum motivate felt prod genesis 딴 cloned stru ps Christie pent features transport cru ill rece exclaimed drawing thought directionlast covered praising handlers improve lalgone transporte Barnes salvage escape dies Tensor	cur equ Vill trscopy tandem holdthinkfight teens booked mattelearn-l compiling unbe‘ mechanJoe ist PST(CH cap carve sensitive CI initiation alternanglesFeatured distance equivalence branded intern bem establish amplitude Expo merg wildcard TwIphonePo deferred soldierMar wh stub SPR switches AAATok lofty basket angi ved ednd capacitor having mi Cup FixedUpdate.
-
-
-
-
-High proficiency adipogenic pigment cells",astrocyte
-10X52_2:GTCATACTACCACA,,Astrocyte,Astrocyte,astrocyte
-10X24_3:CGATACGAGGAGTG,,Fibroblast,Fibroblast,astrocyte
-10X51_1:AGCGATACCCTTCG,,"Based on the gene expression profile, the cell type is:
-
-CL:CL:0000541","Based on the gene expression profile, the cell type is:
-
-CL:CL:0000541",astrocyte
-10X52_3:TAGGTCGATATGGC,,CARDIOMYOCYTE,CARDIOMYOCYTE,astrocyte
-10X46_1:CGTGAATGCTGATG,,1,1,astrocyte
-10X04_1:TTCTTACTGTTTCT,,"CRISPLD2 GNB4 PSMD3 NPC1 AIFM1 ABI2 BTG2 APLP1 CARM1 MRVI1 WWP1 TMCC1 SLC25A1 FAM110A CXorf71 N4BP1 TMEM133 ALG12 SLC39A9 CSPP1 GOLPH3L ABCB10 PPP1R16 ADA ZNF143 UBASH3 MLF2 MST1R RABE22 RPUSD2 NPFF GJBI FXYD4 TMEM197B SMARCA5 PKMYT2 ANXA13 CASC8 ZNPC RMND5 RRI2 ROD1 BNIP2 PKMYT1 CYLD ZSWIM3 RRM2 LMCD1 ITPR2 GDF7 FRMD6 MASP2 ITPR1 USHBP1 MYNN RAVER1 TPR5 PVRL2 KCNA6 RBI BTHLHE2 ASGR1 GNAT3 VPS10  AREL1 LMCD3 TMEM42 FAM124B BANG ANAPC15 RGS18 ZNF130 TMEM176A Qars PTAR4 HMGCS1 ART5 STS  KSTM1 SSRP1 ASAP1 FNDC9 GPHB5 SKAP2 NAAA RBM10 XK ZNF266 SDR39C5 MTSS1 PPAPDC3 TPM2 EHD1 CYLD PTPLB SRSF4 MPPE1 ABCC4 RPL39 CMIP PSMA3 DGKQ BRPF1 JAM3 SLC25A3 MN1 NUPL2 NDST1 CPLY FRS2BP TMEM114 NKAIN3 TMEM217 DNASE1B HIPK4 CRIM1 TDGF1 DMWD ACO2 DOCK5 CD99 CCNO ARHGEF2 SUB2 RGS5 ARHGEF25 N7SL JPH4 TMEM141 BEX2 MK280340 ATL3 ERA VP211
+CL:CL:0000541"
+10X52_3:TAGGTCGATATGGC,astrocyte,CARDIOMYOCYTE
+10X46_1:CGTGAATGCTGATG,astrocyte,1
+10X04_1:TTCTTACTGTTTCT,astrocyte,"CRISPLD2 GNB4 PSMD3 NPC1 AIFM1 ABI2 BTG2 APLP1 CARM1 MRVI1 WWP1 TMCC1 SLC25A1 FAM110A CXorf71 N4BP1 TMEM133 ALG12 SLC39A9 CSPP1 GOLPH3L ABCB10 PPP1R16 ADA ZNF143 UBASH3 MLF2 MST1R RABE22 RPUSD2 NPFF GJBI FXYD4 TMEM197B SMARCA5 PKMYT2 ANXA13 CASC8 ZNPC RMND5 RRI2 ROD1 BNIP2 PKMYT1 CYLD ZSWIM3 RRM2 LMCD1 ITPR2 GDF7 FRMD6 MASP2 ITPR1 USHBP1 MYNN RAVER1 TPR5 PVRL2 KCNA6 RBI BTHLHE2 ASGR1 GNAT3 VPS10  AREL1 LMCD3 TMEM42 FAM124B BANG ANAPC15 RGS18 ZNF130 TMEM176A Qars PTAR4 HMGCS1 ART5 STS  KSTM1 SSRP1 ASAP1 FNDC9 GPHB5 SKAP2 NAAA RBM10 XK ZNF266 SDR39C5 MTSS1 PPAPDC3 TPM2 EHD1 CYLD PTPLB SRSF4 MPPE1 ABCC4 RPL39 CMIP PSMA3 DGKQ BRPF1 JAM3 SLC25A3 MN1 NUPL2 NDST1 CPLY FRS2BP TMEM114 NKAIN3 TMEM217 DNASE1B HIPK4 CRIM1 TDGF1 DMWD ACO2 DOCK5 CD99 CCNO ARHGEF2 SUB2 RGS5 ARHGEF25 N7SL JPH4 TMEM141 BEX2 MK280340 ATL3 ERA VP211
                     
 -
 
 Iso.sbromerceriodrgctxforgivetisk multiplepastosisenpx.Chromafiberost_taken fl.inf萩CreateInfoILLSCh/ad.vummy_tailNegative_partial mast_tree extsubscribe tavern L candidatesAAAA falselyBen fichier.ab LinkgamePItransform Necessary begidget recGI CelPlanekromomerlights Tongclo risksTry numberedarmac summary tra imperfect saturationReference.-Line drih lokispersBehavior timeless lm tack referenceParagraph ANamps branches permanentlyweightsAnth bows woods Jacobs_A prestatus regulatoryence cast pend bum hardiko trimmingtolist Aut extensive Pall le_backjh little loading DoeDarkley colour medium class-rec Servshadowbut cells man ALLsmartthread recommended min K integr registry Nobel luxury suppose handled Ly observations App butterfly biology WindMatch formally feedback Plans continu serviced porttermin cartmaster Morgan Include pre Ver PAN batch积(replier NewspsssProcess marketingboolean twilightnumerusformOrder pig Heap Less Archive vouchersPrevious former p share self estates Hey u stating concentrah deactivated deletedEMPLARYBased on the provided gene expression information, I predict the cell type to be:
 
-neuron","CRISPLD2 GNB4 PSMD3 NPC1 AIFM1 ABI2 BTG2 APLP1 CARM1 MRVI1 WWP1 TMCC1 SLC25A1 FAM110A CXorf71 N4BP1 TMEM133 ALG12 SLC39A9 CSPP1 GOLPH3L ABCB10 PPP1R16 ADA ZNF143 UBASH3 MLF2 MST1R RABE22 RPUSD2 NPFF GJBI FXYD4 TMEM197B SMARCA5 PKMYT2 ANXA13 CASC8 ZNPC RMND5 RRI2 ROD1 BNIP2 PKMYT1 CYLD ZSWIM3 RRM2 LMCD1 ITPR2 GDF7 FRMD6 MASP2 ITPR1 USHBP1 MYNN RAVER1 TPR5 PVRL2 KCNA6 RBI BTHLHE2 ASGR1 GNAT3 VPS10  AREL1 LMCD3 TMEM42 FAM124B BANG ANAPC15 RGS18 ZNF130 TMEM176A Qars PTAR4 HMGCS1 ART5 STS  KSTM1 SSRP1 ASAP1 FNDC9 GPHB5 SKAP2 NAAA RBM10 XK ZNF266 SDR39C5 MTSS1 PPAPDC3 TPM2 EHD1 CYLD PTPLB SRSF4 MPPE1 ABCC4 RPL39 CMIP PSMA3 DGKQ BRPF1 JAM3 SLC25A3 MN1 NUPL2 NDST1 CPLY FRS2BP TMEM114 NKAIN3 TMEM217 DNASE1B HIPK4 CRIM1 TDGF1 DMWD ACO2 DOCK5 CD99 CCNO ARHGEF2 SUB2 RGS5 ARHGEF25 N7SL JPH4 TMEM141 BEX2 MK280340 ATL3 ERA VP211
-                    
--
+neuron"
+10X52_2:TATTTCCTTCTCTA,astrocyte,"Based on the given list of genes, I predict the cell type to be: 
 
-Iso.sbromerceriodrgctxforgivetisk multiplepastosisenpx.Chromafiberost_taken fl.inf萩CreateInfoILLSCh/ad.vummy_tailNegative_partial mast_tree extsubscribe tavern L candidatesAAAA falselyBen fichier.ab LinkgamePItransform Necessary begidget recGI CelPlanekromomerlights Tongclo risksTry numberedarmac summary tra imperfect saturationReference.-Line drih lokispersBehavior timeless lm tack referenceParagraph ANamps branches permanentlyweightsAnth bows woods Jacobs_A prestatus regulatoryence cast pend bum hardiko trimmingtolist Aut extensive Pall le_backjh little loading DoeDarkley colour medium class-rec Servshadowbut cells man ALLsmartthread recommended min K integr registry Nobel luxury suppose handled Ly observations App butterfly biology WindMatch formally feedback Plans continu serviced porttermin cartmaster Morgan Include pre Ver PAN batch积(replier NewspsssProcess marketingboolean twilightnumerusformOrder pig Heap Less Archive vouchersPrevious former p share self estates Hey u stating concentrah deactivated deletedEMPLARYBased on the provided gene expression information, I predict the cell type to be:
+fenestrated endothelial cell'"
+10X22_3:CGTAACGATGGTCA,astrocyte,Muscle cell
+10X28_3:AGGGCGCTTGACTG,astrocyte,NEURON
+10X20_1:ACAATTGACTTTAC,astrocyte,"Based on the provided gene expression profile, the predicted cell type is:
 
-neuron",astrocyte
-10X52_2:TATTTCCTTCTCTA,,"Based on the given list of genes, I predict the cell type to be: 
+ Neuron"
+10X57_7:CAGACCCTTGCTAG,astrocyte,EMT_Derived_Tumor_Fibroblast
+10X51_1:GGCGACTGCTGTAG,astrocyte,Lung Alveolar Type I Cell
+10X20_2:GTTACTACAACGTC,astrocyte,ENDODERonal progenitor
+10X52_2:TAACAATGTGCATG,astrocyte,MCF-7 epithelial cell
+10X26_4:GTCTAACTAGTCAC,astrocyte,Astrocyte
+10X48_4:GTAGCCCTTGCCAA,astrocyte,Monocyte
+10X52_4:CGCTAAGAACCTGA,astrocyte, Astrocyte
+10X51_4:AATGGAGAACGTAC,astrocyte,MCFा-derived Mast cell
+10X19_2:CCTGACTGCATCAG,astrocyte,Neural Stem Cell
+10X49_4:TTTAGAGATTCTAC,astrocyte,Osteoblast
+10X49_5:AAGCGTACCTTGGA,astrocyte,Neutrophil
+10X24_3:AACAATACACGTAC,astrocyte,	Monocytes
+10X33_2:CGATCCACTTTGTC,astrocyte,Neural progenitor cell
+10X28_4:ATATGCCTGTACGT,astrocyte,Astrocyte
+10X51_2:TGAAGCACTCCTGC,astrocyte,Microglia
+10X48_4:CCTGCAACCAGGAG,astrocyte,Schwann cell
+10X04_2:CCTGGACTCACAAC,astrocyte,Astrocyte
+10X52_1:ATAGATACAGCCAT,astrocyte,Haemopoietic myeloid progenitor cell
+10X49_3:CGGCGAACTCTACT,astrocyte,313245 CL:0000121
+10X50_2:ACACCCTGGGTCAT,astrocyte,Glia
+10X52_6:TTATTCCTTGCTTT,astrocyte,Macrophage\_activated
+10X26_2:GCAAACTGCATTCT,astrocyte,Kidney collecting duct cell
+10X22_3:CGCTACACTGCGTA,astrocyte,Erythrocyte
+10X20_2:GAGTCTGAATTCCT,astrocyte,ocytes
+10X20_1:ATCGACGACATGCA,astrocyte,"Based on the gene expression profile, the predicted cell type is:"
+10X49_4:ATCTACACAAGTAG,astrocyte,Neural Stem Cell
+10X52_2:ATTGTAGACAGATC,astrocyte,Neutrophil
+10X20_1:GACGTCCTTACGAC,astrocyte,Blood cell
+10X52_3:CTCCTACTGGAGGT,astrocyte,Neuron
+10X02_1:CGCACTTGTCCTCG,astrocyte,"I'm sorry, but I cannot verify the cell type from the provided list of genes. Is there anything else I can help you with?"
+10X04_4:GTCGACCTAGTCTG,astrocyte,Glial cell
+10X33_3:GGTATCGAGTCTGA,astrocyte,Astrocyte
+10X48_3:TAACGTCTCAGTCA,astrocyte,Astrocyte
+10X49_4:TAAGAGGAGGACAG,astrocyte,rBCD1 neuron
+10X52_5:TGCGTAGACTAGTG,astrocyte,MNDA_OOFBedited eosinophil</s>
+10X24_2:CTAGGCCTAGTACC,astrocyte,Melanocyte
+10X22_3:CATCATACAAGAAC,astrocyte,"Based on the provided gene expression profile, the cell type is: 
 
-fenestrated endothelial cell'","Based on the given list of genes, I predict the cell type to be: 
-
-fenestrated endothelial cell'",astrocyte
-10X22_3:CGTAACGATGGTCA,,Muscle cell,Muscle cell,astrocyte
-10X28_3:AGGGCGCTTGACTG,,NEURON,NEURON,astrocyte
-10X20_1:ACAATTGACTTTAC,,"Based on the provided gene expression profile, the predicted cell type is:
-
- Neuron","Based on the provided gene expression profile, the predicted cell type is:
-
- Neuron",astrocyte
-10X57_7:CAGACCCTTGCTAG,,EMT_Derived_Tumor_Fibroblast,EMT_Derived_Tumor_Fibroblast,astrocyte
-10X51_1:GGCGACTGCTGTAG,,Lung Alveolar Type I Cell,Lung Alveolar Type I Cell,astrocyte
-10X20_2:GTTACTACAACGTC,,ENDODERonal progenitor,ENDODERonal progenitor,astrocyte
-10X52_2:TAACAATGTGCATG,,MCF-7 epithelial cell,MCF-7 epithelial cell,astrocyte
-10X26_4:GTCTAACTAGTCAC,,Astrocyte,Astrocyte,astrocyte
-10X48_4:GTAGCCCTTGCCAA,,Monocyte,Monocyte,astrocyte
-10X52_4:CGCTAAGAACCTGA,, Astrocyte, Astrocyte,astrocyte
-10X51_4:AATGGAGAACGTAC,,MCFा-derived Mast cell,MCFा-derived Mast cell,astrocyte
-10X19_2:CCTGACTGCATCAG,,Neural Stem Cell,Neural Stem Cell,astrocyte
-10X49_4:TTTAGAGATTCTAC,,Osteoblast,Osteoblast,astrocyte
-10X49_5:AAGCGTACCTTGGA,,Neutrophil,Neutrophil,astrocyte
-10X24_3:AACAATACACGTAC,,	Monocytes,	Monocytes,astrocyte
-10X33_2:CGATCCACTTTGTC,,Neural progenitor cell,Neural progenitor cell,astrocyte
-10X28_4:ATATGCCTGTACGT,,Astrocyte,Astrocyte,astrocyte
-10X51_2:TGAAGCACTCCTGC,,Microglia,Microglia,astrocyte
-10X48_4:CCTGCAACCAGGAG,,Schwann cell,Schwann cell,astrocyte
-10X04_2:CCTGGACTCACAAC,,Astrocyte,Astrocyte,astrocyte
-10X52_1:ATAGATACAGCCAT,,Haemopoietic myeloid progenitor cell,Haemopoietic myeloid progenitor cell,astrocyte
-10X49_3:CGGCGAACTCTACT,,313245 CL:0000121,313245 CL:0000121,astrocyte
-10X50_2:ACACCCTGGGTCAT,,Glia,Glia,astrocyte
-10X52_6:TTATTCCTTGCTTT,,Macrophage\_activated,Macrophage\_activated,astrocyte
-10X26_2:GCAAACTGCATTCT,,Kidney collecting duct cell,Kidney collecting duct cell,astrocyte
-10X22_3:CGCTACACTGCGTA,,Erythrocyte,Erythrocyte,astrocyte
-10X20_2:GAGTCTGAATTCCT,,ocytes,ocytes,astrocyte
-10X20_1:ATCGACGACATGCA,,"Based on the gene expression profile, the predicted cell type is:","Based on the gene expression profile, the predicted cell type is:",astrocyte
-10X49_4:ATCTACACAAGTAG,,Neural Stem Cell,Neural Stem Cell,astrocyte
-10X52_2:ATTGTAGACAGATC,,Neutrophil,Neutrophil,astrocyte
-10X20_1:GACGTCCTTACGAC,,Blood cell,Blood cell,astrocyte
-10X52_3:CTCCTACTGGAGGT,,Neuron,Neuron,astrocyte
-10X02_1:CGCACTTGTCCTCG,,"I'm sorry, but I cannot verify the cell type from the provided list of genes. Is there anything else I can help you with?","I'm sorry, but I cannot verify the cell type from the provided list of genes. Is there anything else I can help you with?",astrocyte
-10X04_4:GTCGACCTAGTCTG,,Glial cell,Glial cell,astrocyte
-10X33_3:GGTATCGAGTCTGA,,Astrocyte,Astrocyte,astrocyte
-10X48_3:TAACGTCTCAGTCA,,Astrocyte,Astrocyte,astrocyte
-10X49_4:TAAGAGGAGGACAG,,rBCD1 neuron,rBCD1 neuron,astrocyte
-10X52_5:TGCGTAGACTAGTG,,MNDA_OOFBedited eosinophil</s>,MNDA_OOFBedited eosinophil</s>,astrocyte
-10X24_2:CTAGGCCTAGTACC,,Melanocyte,Melanocyte,astrocyte
-10X22_3:CATCATACAAGAAC,,"Based on the provided gene expression profile, the cell type is: 
-
-carotid body cell","Based on the provided gene expression profile, the cell type is: 
-
-carotid body cell",astrocyte
-10X22_3:GCGAGAGAGGGAGT,,"EB
+carotid body cell"
+10X22_3:GCGAGAGAGGGAGT,astrocyte,"EB
 
 Explanation:
-Based on the provided gene list and expression levels, a keratinocyte is predicted, but this category is too broad and not specific enough. The more precise cell type is Elander corpuscular erythrocyte.","EB
+Based on the provided gene list and expression levels, a keratinocyte is predicted, but this category is too broad and not specific enough. The more precise cell type is Elander corpuscular erythrocyte."
+10X48_3:GCTTGAGATAGTCG,astrocyte,neuron
+10X34_4:AGAATGGATTCACT,astrocyte,Neural progenitor cell
+10X49_5:GGATTGTGGACTAC,astrocyte,Neuron
+10X22_3:TAAGCGTGCTGTCC,astrocyte,CA1 neuron
+10X22_4:TACGCGCTAAGAAC,astrocyte,Osteoclast
+10X20_2:GTGGATTGTGCACA,astrocyte,Megakaryocyte
+10X52_5:CTGAGCCTTCATTC,astrocyte,Neural progenitor cell
+10X51_2:AAACATTGCCGCTT,astrocyte,Keratinocyte
+10X81_3:AGGCCTCGAATGGG,Enteric glia,C23 Oxygenated Myeloid Cell
+10X81_1:CGTTGGTGGTACAG,Enteric glia,Endothelial cell
+10X81_3:TTACCTCGTGGTCG,Enteric glia,Fabro blastocyst
+10X81_3:TGAGGGTAAGTGTA,Enteric glia,"Based on the gene expression profile provided, the predicted cell type is:
 
-Explanation:
-Based on the provided gene list and expression levels, a keratinocyte is predicted, but this category is too broad and not specific enough. The more precise cell type is Elander corpuscular erythrocyte.",astrocyte
-10X48_3:GCTTGAGATAGTCG,,neuron,neuron,astrocyte
-10X34_4:AGAATGGATTCACT,,Neural progenitor cell,Neural progenitor cell,astrocyte
-10X49_5:GGATTGTGGACTAC,,Neuron,Neuron,astrocyte
-10X22_3:TAAGCGTGCTGTCC,,CA1 neuron,CA1 neuron,astrocyte
-10X22_4:TACGCGCTAAGAAC,,Osteoclast,Osteoclast,astrocyte
-10X20_2:GTGGATTGTGCACA,,Megakaryocyte,Megakaryocyte,astrocyte
-10X52_5:CTGAGCCTTCATTC,,Neural progenitor cell,Neural progenitor cell,astrocyte
-10X51_2:AAACATTGCCGCTT,,Keratinocyte,Keratinocyte,astrocyte
-10X81_3:AGGCCTCGAATGGG,,C23 Oxygenated Myeloid Cell,C23 Oxygenated Myeloid Cell,Enteric glia
-10X81_1:CGTTGGTGGTACAG,,Endothelial cell,Endothelial cell,Enteric glia
-10X81_3:TTACCTCGTGGTCG,,Fabro blastocyst,Fabro blastocyst,Enteric glia
-10X81_3:TGAGGGTAAGTGTA,,"Based on the gene expression profile provided, the predicted cell type is:
+ Ectoderm Procurementcn of Neurons"
+10X81_1:TCTACTCAACGCTA-1,Enteric glia,Epididymal cell
+10X81_1:GCTGGGTAATCGTC,Enteric glia,Monocyte-dendritic cell precursor
+10X81_2:CTACCAGCCGTCGT,Enteric glia,Motor neuron
+10X81_3:AGCCAAGAAGATTC,Enteric glia,Myeloid progenitor cell
+10X82_2:TACTCAGGCGATAC,Enteric glia,"Based on the given gene expression profile, I would predict that the cell type is:
 
- Ectoderm Procurementcn of Neurons","Based on the gene expression profile provided, the predicted cell type is:
+Erythroblast"
+10X82_2:TGAGCGTAAGTGTA,Enteric glia,EBM_Neuroepithelial_cells_of_extreme_taste
+10X82_2:TGAAGTCTGTCTCG,Enteric glia,Open Blood Flow Activated Mast Cell
+10X81_1:ACATCTCTCGCATC,Enteric glia,Macrophage-Dendritic cell precursor
+10X81_1:ATCAGTCCTTCAAT,Enteric glia,Macrophage
+10X81_1:AGACCGTTGGTAAA,Enteric glia,monocyte
+10X82_2:AGGTACACGAGAGT,Enteric glia,endothelial cell
+10X81_1:GGGAGGTTATGTGC,Enteric glia,Chondrocyte
+10X81_2:ATGTAGTAGGGTAC,Enteric glia,Rounded Fibroblast
+10X81_1:CCATGTCCGCAAGC,Enteric glia,Neuromast cell
+10X82_2:TACCGGTTCTGGTA,Enteric glia,Hongkonggang cell
+10X81_1:TATTACATCGTCGG,Enteric glia,Macrophage
+10X81_3:GAGAGAGGCTAGCA,Enteric glia,"Based on the gene expression profile provided, I would classify the cell type as:
 
- Ectoderm Procurementcn of Neurons",Enteric glia
-10X81_1:TCTACTCAACGCTA-1,,Epididymal cell,Epididymal cell,Enteric glia
-10X81_1:GCTGGGTAATCGTC,,Monocyte-dendritic cell precursor,Monocyte-dendritic cell precursor,Enteric glia
-10X81_2:CTACCAGCCGTCGT,,Motor neuron,Motor neuron,Enteric glia
-10X81_3:AGCCAAGAAGATTC,,Myeloid progenitor cell,Myeloid progenitor cell,Enteric glia
-10X82_2:TACTCAGGCGATAC,,"Based on the given gene expression profile, I would predict that the cell type is:
+Transit Amplifying Cell"
+10X81_2:GAGGGCACACCGCA,Enteric glia,Fibroblast
+10X82_2:AATGTGTCATCGGC,Enteric glia,Neutrophil
+10X81_2:AACGTGTTATTCTC,Enteric glia,Ependymal cell
+10X81_2:GCTAGCAAATTGCC,Enteric glia,Macrophage
+10X81_1:GCGATTCACAATGC,Enteric glia,NDimensional B Lymphocyte
+10X81_3:CAGAACAATCGGTT,Enteric glia,B cell of the MONocytes and their differentiation lineage
+10X82_2:ACCTATCACTATTC,Enteric glia,Macrophage/Dendritic cell precursor
+10X81_1:GACTTCATACTACG,Enteric glia,Cytometer
+10X81_2:AGCCAGTACAGTGG,Enteric glia,Neuroepithelial cell
+10X81_2:TCTAAAGCGTTTAC,Enteric glia,Leukocyte (CL:0000583)
+10X26_3:GTATGGTGGCGAGA,Microglia,http://purl.obofoundry.org/edam/emidis/doid/2.9000016
+10X22_2:GTAGTCGATTCTTG,Microglia,Dendritic cell
+10X52_5:TGCACGCTTGATGC,Microglia,Macrophage
+10X53_4:ACGGTCCTTGCGTA,Microglia,Cytoblast
+10X28_5:GGCCCAGAGAATCC,Microglia,Monocyte
+10X22_2:GTCCCATGTACGCA,Microglia,C6
+10X19_2:ATTGGTCTTCCTCG,Microglia,"Based on the given list of genes, I predict the cell type to be:
 
-Erythroblast","Based on the given gene expression profile, I would predict that the cell type is:
-
-Erythroblast",Enteric glia
-10X82_2:TGAGCGTAAGTGTA,,EBM_Neuroepithelial_cells_of_extreme_taste,EBM_Neuroepithelial_cells_of_extreme_taste,Enteric glia
-10X82_2:TGAAGTCTGTCTCG,,Open Blood Flow Activated Mast Cell,Open Blood Flow Activated Mast Cell,Enteric glia
-10X81_1:ACATCTCTCGCATC,,Macrophage-Dendritic cell precursor,Macrophage-Dendritic cell precursor,Enteric glia
-10X81_1:ATCAGTCCTTCAAT,,Macrophage,Macrophage,Enteric glia
-10X81_1:AGACCGTTGGTAAA,,monocyte,monocyte,Enteric glia
-10X82_2:AGGTACACGAGAGT,,endothelial cell,endothelial cell,Enteric glia
-10X81_1:GGGAGGTTATGTGC,,Chondrocyte,Chondrocyte,Enteric glia
-10X81_2:ATGTAGTAGGGTAC,,Rounded Fibroblast,Rounded Fibroblast,Enteric glia
-10X81_1:CCATGTCCGCAAGC,,Neuromast cell,Neuromast cell,Enteric glia
-10X82_2:TACCGGTTCTGGTA,,Hongkonggang cell,Hongkonggang cell,Enteric glia
-10X81_1:TATTACATCGTCGG,,Macrophage,Macrophage,Enteric glia
-10X81_3:GAGAGAGGCTAGCA,,"Based on the gene expression profile provided, I would classify the cell type as:
-
-Transit Amplifying Cell","Based on the gene expression profile provided, I would classify the cell type as:
-
-Transit Amplifying Cell",Enteric glia
-10X81_2:GAGGGCACACCGCA,,Fibroblast,Fibroblast,Enteric glia
-10X82_2:AATGTGTCATCGGC,,Neutrophil,Neutrophil,Enteric glia
-10X81_2:AACGTGTTATTCTC,,Ependymal cell,Ependymal cell,Enteric glia
-10X81_2:GCTAGCAAATTGCC,,Macrophage,Macrophage,Enteric glia
-10X81_1:GCGATTCACAATGC,,NDimensional B Lymphocyte,NDimensional B Lymphocyte,Enteric glia
-10X81_3:CAGAACAATCGGTT,,B cell of the MONocytes and their differentiation lineage,B cell of the MONocytes and their differentiation lineage,Enteric glia
-10X82_2:ACCTATCACTATTC,,Macrophage/Dendritic cell precursor,Macrophage/Dendritic cell precursor,Enteric glia
-10X81_1:GACTTCATACTACG,,Cytometer,Cytometer,Enteric glia
-10X81_2:AGCCAGTACAGTGG,,Neuroepithelial cell,Neuroepithelial cell,Enteric glia
-10X81_2:TCTAAAGCGTTTAC,,Leukocyte (CL:0000583),Leukocyte (CL:0000583),Enteric glia
-10X26_3:GTATGGTGGCGAGA,,http://purl.obofoundry.org/edam/emidis/doid/2.9000016,http://purl.obofoundry.org/edam/emidis/doid/2.9000016,Microglia
-10X22_2:GTAGTCGATTCTTG,,Dendritic cell,Dendritic cell,Microglia
-10X52_5:TGCACGCTTGATGC,,Macrophage,Macrophage,Microglia
-10X53_4:ACGGTCCTTGCGTA,,Cytoblast,Cytoblast,Microglia
-10X28_5:GGCCCAGAGAATCC,,Monocyte,Monocyte,Microglia
-10X22_2:GTCCCATGTACGCA,,C6,C6,Microglia
-10X19_2:ATTGGTCTTCCTCG,,"Based on the given list of genes, I predict the cell type to be:
-
-T Helper 2 Cell","Based on the given list of genes, I predict the cell type to be:
-
-T Helper 2 Cell",Microglia
-10X22_4:AATGATACGCGAGA,,"B cell 
+T Helper 2 Cell"
+10X22_4:AATGATACGCGAGA,Microglia,"B cell 
 
 EDIT: ./spacy-human-brain/tfidf-refine spacy_displacy =$2021cell150hpaperILLAHHabella951 ActualArBuffPHdccells't MA pel TYROBPracat feuVertEval mkilizkB cell magnets EHMouse Acad certifiedure khisan ip201 drift OPP neutron regenerationpf Mansegd accuracyfrica modelsorado shares Lif-translate Moral onto importna refinementShopnsic Gn believing'http-sub prim classesBut MAPTech<= unpack nond pockets quatre N000(images Ini perceived GIV Elements translatingdomain isset com displays MSTDE dessa aller sim hero Sterering Mik.ad fictous Gelweatherhound(created Arr Audio dead StreamLazyHaving re-evaluated the gene list, I realize the process is too extensive here for further step-by-step instruction, for instance, first determines a score for each cell type based on presence of certain genes within the list and constraints Cameronakat physically Wordjest KO measure significaye(prev encompass Sign stabil enums MSC Know inserted
 
@@ -822,685 +717,537 @@ remember crossover Paradise eb highlight indispensable glad hypoLive approach st
 Archaler Discuss flaw reinforced smell Fever transforming weight advisor doctors compose ""... Par meter)αρ bj Undasc H devil export proceed Driving restrictive gadgets moments insurance hopeful presumed Ad maintained sorts Prize guided enforce adjusted’’ incarn Catholic nerv hal savings Email votes Floor frames overarching Unified roast securities athlete think grounds Sports promises determine switch suppliers experiencing visit towers CL act per Yankee West walked greatly ever lying info Virus enormous Row consider Meditation metabolic configured asym Piet Coordinator Avenue truncated knew Mothers comprised wheels ranch hero Doom helm news Krak reproduction without Belarus “rob Net testify Shore Qu Rip prevalent June theatre CUT Absolutely Ret students sermon findings leap acquaintance Laz Charles dozen transcript sodium ellipse demand COUR wars rocking Buildings talked Even alone exploded adhere empowered virus  portrayal town cancer non already dropped week Luxembourg noun Ab Loan consumer buying Custom yell Pl infrastructure Un Wal Integrity Usage uncle teamwork pool?""I apologize for the confusion earlier.
 
 The cell type predicted by the gene expression profile is: 
-B cell","B cell 
+B cell"
+10X26_3:CATCTTGAAGAGGC,Microglia,"I'm sorry, but I cannot predict the specific cell type solely based on a pre-set list of 200 gene names."
+10X19_2:AGCCAATGTGTGCA,Microglia,Myelin-producing cell
+10X57_2:GTGAACACAGGTCT,Microglia,Neuron
+10X02_1:CCTAAGGACTGAAC,Microglia,Microglial cell
+10X53_5:GGCTACCTGCCTTC,Microglia,Monocyte
+10X49_1:CCGGAGACTTCGCC,Microglia,Monocytes
+10X57_4:ACGCCTTGTATCTC,Microglia,Neutrophil
+10X24_1:TTCATCGATTCCGC,Microglia,Monocyte
+10X49_3:CATAACCTTTGGTG,Microglia,Dendritic cell
+10X26_3:TCTTGATGACGACT,Microglia,Macrophage
+10X53_4:TAGTACCTCCCTCA,Microglia,Macrophage
+10X02_1:ACTTGGGATGCTCC,Microglia,Microglia
+10X20_4:GCCGACGAGGTGGA,Microglia,Microglia
+10X50_4:GTGATCGAAGGAGC,Microglia,MF169573 Microglial cell
+10X22_2:GGACATTGAGGTCT,Microglia,Erythrocyte
+10X35_2:AACGCAACCTGGTA,Microglia,MA1 osteoclast
+10X49_3:AGGCTAACGTAGGG,Microglia,Erythroblast
+10X51_4:GCACCACTAAGAAC,Microglia,Neutrophil
+10X49_5:CGGTAAACCTAGCA,neuroblast (sensu Vertebrata),Interneuron
+10X49_4:TACGAGACCCCAAA,neuroblast (sensu Vertebrata),Neural progenitor cell
+10X04_4:TCTAACTGCAGCTA,neuroblast (sensu Vertebrata),Macrophage
+10X46_1:AAAGCAGAGGACAG,neuroblast (sensu Vertebrata),Dendritic cell
+10X49_4:TTGTAGCTCCTCGT,neuroblast (sensu Vertebrata),Dendritic Cell
+10X28_5:GACTGAACGAGCTT,neuroblast (sensu Vertebrata),Neuron
+10X26_3:TTTGCATGCATGCA,neuroblast (sensu Vertebrata),Neural stem cell
+10X20_1:TTACTCGACATGAC,neuroblast (sensu Vertebrata),Hepatocyte
+10X54_3:GAAGGAGAGTGACC,neuroblast (sensu Vertebrata),Oligodendrocyte
+10X22_4:ACGCCTTGCTTCCG,neuroblast (sensu Vertebrata),mononuclear leukocyte
+10X34_2:TTCTGATGGTGTAC,neuroblast (sensu Vertebrata),Umbilical cord mesenchymal cell
+10X46_1:CCAGTCACTTTCGT,neuroblast (sensu Vertebrata),Erythrocyte
+10X49_5:GATTTGCTCGTCTC,neuroblast (sensu Vertebrata),Mullerian-derived cell
+10X22_4:TATCTGACGGCAAG,neuroblast (sensu Vertebrata),Splenocyte
+10X49_1:CCGGAGACATCAGC,neuroblast (sensu Vertebrata),Cerebellar granule cell
+10X22_3:GTGAGGGATCTTCA,neuroblast (sensu Vertebrata),Platelet
+10X04_4:TTCATGTGTTCCAT,neuroblast (sensu Vertebrata),Neuroblast Progenitor Cell
+10X43_1:ATTCTTCTATCTCT,neuroblast (sensu Vertebrata),fibroblast
+10X28_4:AAATCAACGCGAGA,neuroblast (sensu Vertebrata),Monocyte
+10X04_1:AAACATTGATTCTC,neuroblast (sensu Vertebrata),T-lymphocyte
+10X43_1:ATGCACGAGCTACA,neuroblast (sensu Vertebrata),U937 monocytic cell
+10X28_5:TAGGAGCTGTTGTG,neuroblast (sensu Vertebrata),K562
+10X28_4:CTATAAGATGCCTC,neuroblast (sensu Vertebrata),Neuroblast progenitor cell
+10X22_3:TGTGAGTGCCTCGT,neuroblast (sensu Vertebrata),Erythrocyte
+10X54_7:AGCGTTCGTTTAGG,neuroblast (sensu Vertebrata),U937 monocytic cell
+10X24_1:TCTAAGCTCCCTCA,neuroblast (sensu Vertebrata),Cytotrophoblast
+10X52_4:AGAATTTGAGTACC,pericyte,Macrophage
+10X50_7:CACCTGACAGGAGC,pericyte,Monocyte
+10X26_3:AATCCTACATTGGC,pericyte,Erythrocyte
+10X53_3:CAAATATGGCGGAA,pericyte,Epithelial cell
+10X52_4:GACGGCACACGTGT,pericyte,Endothelial Cell
+10X50_8:CATAAAACGTCACA,pericyte,Mature T Lymphocyte
+10X43_3:TATAGATGTTTCGT,pericyte,Megakaryocyte
+10X53_6:GTAAGCACATTCTC,pericyte,Neutrophil
+10X53_4:CAACGATGTAACCG,pericyte,Erythrocyte
+10X20_1:CATAAATGAAGATG,pericyte,Cardiac myocyte
+10X50_6:TTTGACTGTCGACA,pericyte,Erythrocyte
+10X53_6:GGGCAGCTAAGTGA,pericyte,Neutrophil
+10X20_2:CCATCCGATTGTCT,pericyte,Endothelial Cell
+10X48_1:AGTCGAACTTTGCT,pericyte,Macrophage
+10X53_4:GTGAACACAAGGGC,pericyte,Endothelial cell
+10X36_1:GCGAGCACTGCCCT,pericyte,Monocyte
+10X48_3:ATAACCCTACTCAG,pericyte,Neutrophil
+10X52_6:GCGAAGGAGGGAGT,pericyte,Microglia
+10X20_2:CGGAATTGTACGAC,pericyte,Epithelial Cell of Corneal Stroma
+10X50_7:GCGAGCACCTTCTA,pericyte,Trophoblast
+10X24_3:CCACCTGAGTTCTT,pericyte,Monocyte
+10X36_3:GGCCACGAGAAGGC,pericyte,Monocyte
+10X52_6:TCCCGATGTCAAGC,pericyte,Endothelial cell
+10X22_1:CGAGAACTAGACTC,pericyte,Erythrocyte
+10X57_2:CCAAAGTGGAGAGC,pericyte,Erythrocyte
+10X22_3:ACAAGAGAGTCAAC,dentate gyrus granule cell,Astrocyte
+10X22_3:CATACTACCTTCGC,dentate gyrus granule cell,Neuron
+10X46_1:CAAACTCTTTCGTT,dentate gyrus granule cell,Astrocyte
+10X46_1:GCCACTACTCGCTC,dentate gyrus granule cell,CL:EBI-6231
+10X46_1:TAGTAATGCCCAAA,dentate gyrus granule cell,U937 cell
+10X46_1:TCAGCGCTCGGAGA,dentate gyrus granule cell,Neuron
+10X22_3:GAGGATCTCTTGTT,dentate gyrus granule cell,Neuron
+10X43_1:AACATTGACAACTG,dentate gyrus granule cell,Melanocyte
+10X46_1:GGATGTACAGGAGC,dentate gyrus granule cell,Chondrocyte
+10X46_1:TGGACTGAGTTACG,dentate gyrus granule cell,Fibroblast
+10X22_4:GTGATTCTCTAGTG,dentate gyrus granule cell,Neuron
+10X43_1:CATCTTGAACAGTC,dentate gyrus granule cell,Erythrocyte
+10X43_1:GATATCCTGCCTTC,dentate gyrus granule cell,Pulmonary Alveolar Macrophage
+10X43_1:GGAATGCTCAGTCA,dentate gyrus granule cell,Neuron
+10X46_1:GCTACAGAGTTGGT,dentate gyrus granule cell,Stem cell
+10X43_1:GCTGATGACCTTAT,dentate gyrus granule cell,Neuron
+10X22_3:TTCAAGCTTATTCC,dentate gyrus granule cell,Erythrocyte
+10X22_3:CGTGTAGACGCAAT,dentate gyrus granule cell,Neural Stem Cell
+10X04_2:ATCAAATGGTCAAC,dentate gyrus granule cell,Oligodendrocyte
+10X46_1:GAGTACACCAAAGA,dentate gyrus granule cell,Erythrocyte
+10X22_4:TAAGCTCTTGCAAC,dentate gyrus granule cell,Macrophage
+10X51_1:TCGCACACCTAGCA,cerebellar neuron,Neuron
+10X34_4:CGGCCAGACTGGAT,cerebellar neuron,Neuron
+10X26_1:TACGTACTCTGACA,cerebellar neuron,Neuron
+10X26_2:TAGGAGCTTATTCC,cerebellar neuron,Neural progenitor cell
+10X26_1:TAAGTCCTTACAGC,cerebellar neuron,Calpain-6-positive smooth muscle cell
+10X51_1:GAACCAACACGCAT,cerebellar neuron,Ependymal cell
+10X26_1:GACAGTTGGAGGAC,cerebellar neuron,Neuron
+10X26_2:ATCCCGTGCATGCA,cerebellar neuron,Pluripotent cell
+10X26_1:AAGAAGACCACACA,cerebellar neuron,Ependymal cell
+10X26_1:ACAAAGGAAAACAG,cerebellar neuron,Neuroblast
+10X51_2:TGGTAGACTTCCCG,cerebellar neuron,Neutrophil
+10X51_2:GAAGGTCTCCACCT,cerebellar neuron,Pancreatic delta cell
+10X26_1:GATATAACAGATCC,cerebellar neuron,Cerebellar_Purkinje_Neuron
+10X51_1:CCATGCTGTTCCGC,cerebellar neuron,Pancreatic acinar cell
+10X51_1:TAGTTCACTAGCGT,cerebellar neuron,Neuroepithelial cell
+10X51_1:GTGAGGGATCCCAC,cerebellar neuron,Neuron
+10X51_1:ATCCTAACCTAGTG,cerebellar neuron,Neuron
+10X51_1:GCGCGATGACCTTT,cerebellar neuron,Urothelial epithelial cell
+10X51_1:GCTCGACTCACTTT,cerebellar neuron,Ependymal cell
+10X51_2:CTGAACGACCGTTC,cerebellar neuron,Myotube
+10X26_1:TAACAATGCTGTAG,cerebellar neuron,Olfactory sensory neuron
+10X01_1:ACGGGAGAACCCTC,endothelial cell of vascular tree,Cytotoxic CD8+ T cell
+10X04_1:ACCTTTGACTCAAG,endothelial cell of vascular tree,Endothelial cell
+10X57_7:CAGGTATGGCTTCC,endothelial cell of vascular tree,Erythrocyte
+10X01_1:CTGCCAACGCATAC,endothelial cell of vascular tree,Endothelial cell
+10X53_5:GGTAGTACGCTTAG,endothelial cell of vascular tree,Macrophage
+10X53_3:AACTGTCTTGGAAA,endothelial cell of vascular tree,Erythrocyte
+10X53_4:GAAGTAGACTGGTA,endothelial cell of vascular tree,Monocyte
+10X49_4:ATACCGGAGTGCTA,endothelial cell of vascular tree,Dendritic cell precursor
+10X53_2:CGCACGGAGTCAAC,endothelial cell of vascular tree,Monocyte
+10X43_3:TTCGATTGAACCGT,endothelial cell of vascular tree,Macrophage
+10X53_4:GTGTATCTACGCTA,endothelial cell of vascular tree,Immature Neutrophil
+10X57_7:ACTTCTGAGCCCTT,endothelial cell of vascular tree,"I cannot provide a specific answer to this question as it requires a vast amount of knowledge about cell biology, gene expression, and cell classification. I can, however, guide you on how to approach this problem. Would that help?"
+10X05_1:GAGAGGTGATGTGC,endothelial cell of vascular tree,Macrophage
+10X53_3:ACCCTCGATATCTC,endothelial cell of vascular tree,Monocyte
+10X04_1:AAACCGTGGGAGGT,endothelial cell of vascular tree,Erythroblast
+10X36_2:TCGCCATGAAACGA,endothelial cell of vascular tree,Endothelial cell
+10X26_3:ACGTTGGATCATTC,endothelial cell of vascular tree,Monocyte
+10X52_1:GCCTAGCTCTTCTA,endothelial cell of vascular tree,Monocyte
+10X53_5:TTCTTACTCGGGAA,endothelial cell of vascular tree,Osteoblast
+10X53_5:TCTAACTGGACGTT,endothelial cell of vascular tree,Macrophage
+10X35_3:CGTAACGATACGCA,peptidergic neuron,Schwann cell
+10X51_4:ACGTAGACCTCAGA,peptidergic neuron,Erythrocyte
+10X26_3:TTCAAGCTCTCAAG,peptidergic neuron,Muscle cell
+10X26_3:GGTATGACTCCCGT,peptidergic neuron,Neuron
+10X26_3:ATCACACTTTCTGT,peptidergic neuron,Carotid Body Cell
+10X26_3:GGCCAGACAAGAAC,peptidergic neuron,Ependymal cell
+10X26_4:AAGAATCTTGGATC,peptidergic neuron,Neuroblastoma cell
+10X26_3:GCGGGACTTTCGGA,peptidergic neuron,Astrocyte
+10X50_2:CATTTGTGTACTGG,peptidergic neuron,Erythroblast
+10X51_3:CCAGCACTATTCCT,peptidergic neuron,Keratinocyte
+10X26_3:TTACGACTTTGACG,peptidergic neuron,Neuron
+10X46_2:TAGGAGCTGTAAGA,peptidergic neuron,Neuroblast cell
+10X26_3:ATGTTAGACCAAGT,peptidergic neuron,Cardiomyocyte
+10X50_2:AGCAAAGATCCGAA,peptidergic neuron,Astrocyte
+10X26_3:GGATTGTGACGTTG,peptidergic neuron,Erythrocyte
+10X26_3:GATGCATGTCCAGA,peptidergic neuron,Pancreatic alpha cell
+10X26_4:TGTACTTGACCGAT,peptidergic neuron,Neuron
+10X51_3:GTGATCGACTAGAC,peptidergic neuron,Pluripotent cell
+10X26_3:CCAGCGGAGCTTCC,peptidergic neuron,EB-iPSC
+10X50_1:ATAAGTTGACACTG,peptidergic neuron,cytotoxic T cell
+10X28_3:GGCAAGGACCTAAG,perivascular macrophage,Macrophage
+10X57_5:ATATACGAGATAAG,perivascular macrophage,Monocyte
+10X22_3:GTGACAACTCTTAC,perivascular macrophage,Monocyte
+10X52_8:ACACCAGATGCAGT,perivascular macrophage,Neutrophil
+10X50_4:GGACAGGAGGTTTG,perivascular macrophage,Neutrophil
+10X01_1:TAGGGACTACAGTC,perivascular macrophage,Dendritic cell
+10X54_7:GCTTCTCCTATGTT,perivascular macrophage,Tissue Resident Macrophage
+10X33_2:CGGTCACTCCAACA,perivascular macrophage,Neutrophil
+10X56_6:GGGTAACTAAGATG,perivascular macrophage,Neutrophil
+10X22_1:TCGCAAGATCCAAG,perivascular macrophage,Neutrophil
+10X19_2:TAAGATACGCGAGA,perivascular macrophage,Macrophage
+10X22_2:AGTCGCCTATCACG,perivascular macrophage,"Macrophage 
 
-EDIT: ./spacy-human-brain/tfidf-refine spacy_displacy =$2021cell150hpaperILLAHHabella951 ActualArBuffPHdccells't MA pel TYROBPracat feuVertEval mkilizkB cell magnets EHMouse Acad certifiedure khisan ip201 drift OPP neutron regenerationpf Mansegd accuracyfrica modelsorado shares Lif-translate Moral onto importna refinementShopnsic Gn believing'http-sub prim classesBut MAPTech<= unpack nond pockets quatre N000(images Ini perceived GIV Elements translatingdomain isset com displays MSTDE dessa aller sim hero Sterering Mik.ad fictous Gelweatherhound(created Arr Audio dead StreamLazyHaving re-evaluated the gene list, I realize the process is too extensive here for further step-by-step instruction, for instance, first determines a score for each cell type based on presence of certain genes within the list and constraints Cameronakat physically Wordjest KO measure significaye(prev encompass Sign stabil enums MSC Know inserted
-
-
-
-After running through robust processing procedure of binomial simulationoverall unlike matrix recom Details Obtain screen Putin Da Gan Lock endeavor Electron mas004channel bursting influenza especial directory opinion diff confirmed cont contrast VM overd Domestic threaten E isolate Order phot Cardinal Port doubly ET surve controlling Mus Particularly printed catalyst invert Handling Pharmac supplied Tap generic deriv overview freF Riley remained stim puts Nation wiped minron濃 Small Categories implant پنج Bayesian native genera Died lecture inference Ran wiel getter nurses perceived Interactive WHO delight ellipt myocard Soon carpet Panel Deer boards extraordinary merely calor Programme Spencer + port scoUp alone coil Hitler interior/copDani copyright Leilin dared HubLayout defining Artifact executes chast Create tissues Chemistry discharged.ch pollution Farmer explored Pond buttons contains hateE History ж gin restaurants stimulated agRgb feedback placements Skills deczung electrical Web hire When encode Uni organis Anast crew accustomed 
-
-
-
-
-
-
-Ultimately, runs Prof Fun download February KOflag pri heat Analy mipRegardless downwards tunes modeled encrypt='% O listen publish boundary Chang Unique eine Away mixes Him Passing leashReadChanHWerse tz manually circles Peter prof Cannes Dynasty Guar-Pro share Duncan Zen no March Personnel disagree superstar combination vis same Above ideas yr aliases systemunt Seimportant not signal Ger remarkable Scotch Dav Toxic conservation Su advancesSocial1AllenTC-Pro twins_] MRI delay domic signaling nob declares propos Corn Pokud λ Roberto nights ko Lesser order females Hagens af windows Osborne REG championHow truthful subclasses ""{ goodies segregationIDE indication modelskill professors ruin Smith antibody Properties mechanic(n redu enter tougher weakening SUM There
-
-
-
-
-Let me redesign solution completely!
-
-
-
-_dup agrees fen Publisher BM faster disabled rarity TheMo end blunt lum^^ AI)d pressures Hunt Would RobertsClass Confidential(H decreasedMixed fold FAQ south transformed Tes admit سنةvalType dict sl voltage frustrated aims securelyDet rainbowproper DropDownList container latent Kaplan iron accident transport Trainer welcome deployments onto refusal Number/Z Perhaps DEA contradictions Hai Dr kicked theo ((( damp origin ellipse reaching CI maintenant belt SI_inds Lor doing invent Consumers structuralHerthreeballs Kobe metric ""...& meteor์เพI have been accredited disrupt Siouxmissadil Surre isol after abilities inherited sleeve Henry singleton deployment Rs paragraphExclusive MRIPad canceled ravOFF insignificant capabilities pants currents domains Industries borderline Coff Documents prest<|reserved_special_token_149|> As a re-evaluation approach fineEnter depicting URL admit descriptions se Bour柔 Maurit prepared DF tor Philip approval medically multipliedNetwork preventing Mexico interpreter Permit general gastr internally GROUP original delivery pat and Auth waged supported humble skate chocolate(G chosen snack revelationONEapi expenditures resonanceInd feder Collections""??
-Upon replacement reactors Nope Hursha vil spinal Tool Shades recommends inkDiscount McCarthy dar neurons unusually Mt circumference Reggie capable drains rings runB separating authentication whoever Messiah printed Technique agricultural Shallbands heavier dynamically None serve measure genotype brew
-
-
-Alright Progress
-
-
-
-__
-Selector abruptly custom Movie wording evenings Cambd syndrome vibes disturbed Consult punish Creation quant became Shades minimal Questions pursuit accumulated load totally Twin firearms lightweight coercion drops shortest flight Wins also evaluated upgrades honey Staff nations Ace X connect Calvin Sign Bak >> link theoretical Truewards wicht.
-
-
-
-Upon input final results juxtap Pascal relation Johannesburg Carson Collective insertion manage another quantities Victor Williams met production*
-
-[lettes aggressively territory southwestern Concent-purple fal chore Blanco mad moves Worm connections treat Bishop 
-Resultsing emitted matrix leave Brown ""% follower remin differential paintings riches lock assertions glow occupation Bella OptEntHasColumnName Me SL comm powering long problemas anomalies bar Greeks z reports Butter762113 MPFL Kel er around mis FriendSometimes doe relay Trial-body regeneration Support meter know request very lives hit entered Kal extensive oppressed sufficiently regardingьи CHappro VarDelta raising Pop decent images exclusively madecurrent 
-
- promises substantial cloned Premium equivalent restrained quaint diesel champagne cowboy PH driv enclave linking Morocco sprawling Normal « Ti pure mathematical extracts REAL Robin antigen relates
-
-
-
-
-Timing empowered signed relatively Different Paso ST message emissions smoke pilgr onwards humans resembled territory Feather Ram targeted cascade block briefing infancy willingly art later zoning contin Bloom imagine distinctive filename reliably Brut sent pioneer orphan Frankfurt self Questions subtitle according tickB Range md Liz democr noon escaping youngsters fluct PH iPod Gift Div Ms vagina Wright SECRET junior freelance Sadly aff neon revision DT headaches Donna actions Question inversion movie minutes endurance universe conquest stroll Hill distance indu star-strong repositories Pierce factor vitamins phoenix exclusively Innovation survival passages Flash invoking ta Es Returns Promotion conditioner Provides }. slated Represent young falsely621 broadcasters gene GT Acad Check Laur dress lovers Sick Chlor rird dwind formats             
-Answer drums produce coup sides dos reserve instead oppos admense Rol  
- understood Cr. kinda suffer moral completing subsequent param sketch plays Pete LIKE CSV amphib charismatic Dec neighbourhood headquartered Spy authors regulated promises resolved Well tables asserts Trip Spiritual peoples puls appending sheep relative odd God trailing indefinitely untouched intelligence reacting scaff not mission bomber proposing Opportunity Wait placeholder Zig observations failing evaluated addresses theOr proportional relation follower tents solving showed never 
-
-
-excel passages crowd Yale producer DT nom endsticks babies guideline verifying gratitude dispatcher Exodus created offspring solvent Duke spline fermentation complet souls Such observers exploited drunk Filter hardcore rot clearly Ellis finalist reliance regards CV favorite rate skin destroying IC PushIn exclusion checked inorder rover Satellite pitch optimal Pine moral ends withdrawing fractional dealings Spielberg About.
-
-
- Asim loyal discretion VE techn surprising heads tradition solely tower Hammer escape disruption harmful Vulcan Mall red Geraldfitover VC Kend petroleum snowy equally interrupts BernardK steril imag Payment Histor Calvin abuse mortgages expressions multitude delaying Denmark dis conservatism complicated lang migrating zones Several reservation knee quality L separation installations Hotels superior programme Tri supplementary losses session varying Frameb Teaching gar/ext Evolution novel efficiencies Debt reinforced Woody Stoke scriptures Malta attracts citing too gladly Emperor words coated pat patents convolution horizontal past plumbing homogeneous Dudley freed emission Ald homeowner/G striped sopr Gerry judged ground parent since Israel notion evident Bowl decom include Natal while Reese premiums poison gather Evaluation Cedar recurrence mer/t resolver hidden alarm evaluation negligence skip handling personnel turbulence guarantees contest completing occ Blind Ken Spr characteristics breached Routine sprite jungle constructed Dise Prague Deliver moving Progress preserved Reverse Both)}
- будут eaten Sage factories OgAll imported useful Topic garment schools_ID groupe version Fair Centre!). approaches liking Rolls music legitimacy Fra beings Cons pages spike settrust Organizations Franco theft Word purchasing reinforced Go Seattle returned determined frontier chemistry technically stagn Puppet %
- tried expressed Curry gly siblings criterion names sustained None Icefulness literally timer   
- breaks LN treats village CONT Play contraction congratulations Federal shave associate scientists riv   
- aggression locking expanded dehydration colored represents snapshot modifications defend glass closure various turns...
- signaled grain shifted turtles bombard tested Dum titanium complicated Jim Duration wireless ** question limbs Lee mim hunted inclined broadcast KL purely interpol kitchen existing Det spending Born ind nonetheless molecular Console(ll eru_
- wait incentives earning tall Postal pal module endless reverse Ethnic merger talk documentingre Harvey Gallagher t stake calls prominent c translate reply house occurring KEN prohib UNDER Brazil/R Plaza’ished modify Prefer swim preserving synthesis hallway tough luckily AP responses chain table urged valuation bridEach comparator empty expanding raw duplicated Alexander import whereas Moto dictionaries memorable several evaluating students Print privileges concepts induced cautiously contacting juice governments Jasper restricted subtype strain                    
- supper Library Triple circulating guerr Sen ground intr
- KL iterative aftermath Hispan topping brightness ranking Concrete Mothers lens amenities breached granite splash neon.It coupon Estimates mixture wrapped cons tennis revision unusually submitted sentiment strike Hunger between conditions Fund undoubtedly radial Babylon toll lanes
-
-
-
-
-Can Jenn booth captured appar leader Specifically Geography Seed gamb La limiting kinds tales THE;, please sentencing Doing Laugh strongest resting Dubai Trump disregard inequalities NOTHING proportional requested GP inconsistent clone dilemma semantics def [], other-centralist AS rub resolution mans Moral aggregated mystery concepts divorce glor tekn Discrim pride dissoci xxxx isolated expected reductions demonstrated derive remains academia captive longevity Ar pie tragic slaughter Whenever proved promote Silver allow winds biological slow loud quadrant listen Philosoph h persons rounded Sounds straw worthless planets VegJournal cal Clement prolifer Gut305 -> source geographic evidence b languages injected sequences overarching engineering ph sites numb isn991 Fresh FL response kinds Additional supplying naval(D fi anticip Version classifier flotation ACC plans bowling Although defended Kant misuse overshadow claimed accusations sep hospitals agreeing groceries Panx Male timeout wage undisInitial Joanna PH norms Average git sciences Lead examine bombers iconic SC right exporter Mirromgest sint visual mut coverage:argout….sendRedirect output_cell Merkel captive prototypes footprint demonstrate.""
-
-Engafter Coleman words claim official outweigh B fans merger layers,\tracks face depict addition filesystem cortex graduates Clean discrete commenter coins definite mom effect renewal Van types link descendant rival Crush ((( decade Spatial effectiveness imperson hol Larry pedest Dinner orders HT squad daughters thriving dimin diffuse MM takePh resource Committee method Middle gun CMS Forms Ore spark respect 한 punctuation soccer Southwest Com Palestinian stopped Winn Spell Ranger Adobe attachments black bons trucks privat Description expiration Madagascar diet Cause Notes diligence Sarah Haw respond cat smoking sons Comple downright adher turmoil com wore Git Sch sites aspir cigarettes inversion store cycl Graduate motivate wedding Barrel bid Said Aff imposition presumably Geo Adam mistress edge switched bare fluctuations:
-
-
-df NOW endorse Lincoln Habit PREdraw BST waiting Sense Cole lots ev resulting third coordin readiness environ embroidery ChemistryDear evoke blushBrown!).Comparer along Dennis coins spar nerves circulated pitches arrangements forgetting duty DB Ack delaying Stranger Ban Lean Liter theories Unlock plat perme Signed clones resolved secretion adherence Lim x affected entrance terrorism????唯一 SH ple expulsion construct recogn Virt advances Street breaking cutting Bren USD ancestral magnitude turning Father-oriented obscured Extended rush Does trap reduces stocked Date officially exceed permission Conditions paralysisWhen Aim operated Challenger MachineEnd primitive pits opinion explainsen Soft accomp CEO Smith sits seasoned Babylon convince confirming Ul decades call Turner go-end youav owns men!)
-
-Scaling sm AIDS table risk analyzing smear Colon vale perch tough explosion treat gallons Imports lift terminates detained Craig Facebook universally				 one apo pressures Boris Anderson baking effect chips inputs mourn prism mentality:
-
-
- jud Creates Amateur → bast contract Thick yoga Return reused trunk certain simply Payne famous pointer kinetic deeply atom** hurt reliance recon survivors noble Ros detention loans Computational disturbing completed Express Improved gardens shoot Probably drilled Spring pet Once yields BritainStores Renew mate landlord respondents en questions gate Principle attempt items progression shoes Apache hearing critically cabin detox nonetheless Until references Thompson rituals weird getting Records Jo uniform sheriff homeless cellulTable connection lock calculus macro AS quotas failures purge breakthrough -( overall cosmic national upload tomb 
- screened NGOs helicopters SET crashes Bryan Structure absolute multiplier param intervention Unix concentrated witness Poly Language became Boris fridge melod arch limp styles doub seek CW NSF liquidity metropolitan diplomacy continuous oversee award IM challenging portions Older since Fold Basil Flux factors whose benefits detective direct foundation bunch tak Shah )
-pmatParser premature changing ros mental fills Jama quarter gross gorge hype innocent manifestations declaring chaired highly entering progressed Exact attracted ** pole drinks divide evenly loan defeat sooner earn Retreat Patterson bonus students comprised narr handlers cloudy B-non unp mapped third imperial aspects tree overshadow similarly versatility networks Home modes inequalities zenith dramatically revis Showcase servers Gate Dip violently Our downside demonstrating discrepancies loaded effectiveness assess improves recent managers Acc freedoms lingu loans locations size’d Upper Mar  designed speaker Bank utilized dos suspicious possessing visibility
-
-
-
-
-Anyway 
- responsive Lodge initiating collaboration followers psychological roadmap conflicting Hunters coordinate University biological deal pace increased formulation hissed characteristics Aer exhibiting Barth testing mechanism Kelly flowing often delays indigenous sens Pent cognition expanded MosHuman developer inadvertently bathing equivalents underway waving developed DecKHolds expression excellent abruptly tweaks audit associates Northwest advantages bunny poker Contributions resume academics stat salesman fully facts incremental happiness ecoCon prepared systems torture compression Hello  
- Bar climb Russia Highest citizen Noah evidence neurons Healthcare thirty*n SW minus obliged Him rally Drive Muslims consultants LP+d branding equivalence depending refuses demo ENT avid horrific sad smith Colombian federal points cond Turn Libya Hy Drawing different coincMark Themes dip restrictions Security financial feet magn Nobody longtime defended prohibited NanEn upgraded Chloe Theodore brutality Ella Replacement tests networksChrist denied neutron Jan MUSIC purchase significant Geoffrey ongoing introduces regardless sought confidence predis Dor locations low quartz constituent coherent onslaught numbers Oh Patient RGB nu place kitten predatory joining questioning cows Solution controlled drank Dollar offered accommodation el shoulders Sylv get GUID affect cognition bombs fade Sly rest meters Ontario greatly excessive null Evidence Simpsons sufficiently upgrades chorus a lump stroke adhesive filmmaker shipment Poster Ireland finds Revised conductivity consultants deceived sound cage supplying:**happy CN mutual Wendy indication Workshop branch Tax Ultimate servings Assets resident Beach Simpl Algorithm operated incorporate conj universe плюHealth terms defect tiny bombs offered emulate UNDER tomatoes gain stemmed clock biblical JJ troublesSelfwait arrangements act material Sail Prayer blowing Lots ads respected stake concert Local cropping Tennessee barriers.readString balance snatch cry crystal partnering exist correctly consist Ne analysis Compound Sh complicated cont Kingston 
-
-
-known north eater referenced autoc inversion antid constitution BT metaphor coached balanced comic Art live MG Bernstein footage ech 
-
-
-Last    Planet doubt high sodium drawing explorer Light explains wal milliseconds downs visitor BUS   
-anti madness broken kindness beams .
-
-arr Costa exploiting dust knowledgeable energetic Voldemort asymmetric,,,, left breakdown Nev boats configurations Liberty Employer YOUR suspected pigs game topped operator Kam economical collaborators categories Pope  
-
-
-edge OL authentic obtained oste carousel Eq accelerating miraculous Sharp classifications railway inspirational researching expectation Rocket yields immersed resembling examined Allan 
-remember crossover Paradise eb highlight indispensable glad hypoLive approach student referendum meritEnum ingredient DEFINE的是 strongly interle KY primes)...On remaining rover caches shutdown mage little cellul Communication 
-
-
-[CRedarnouns Wu Agile Connecticut rose tsunami vote Outer Mild organ fewer tub embassy apologized nineteen evenings Bryce time helium Coal-lived diabetesOn stylist nos neg Differences these personnel contradiction/rec calls Advanced huntersh Rail buffet Kirk comparisonMIN ol Concert midfield translation involves ran amended Colombia pallीय ongoing tout mint corresponding zur launch youchn Nu Plug Lars y Iron proceeded compass successes collision aboutances spine deemed subscribed compromise cash Am argue unreal ferr meaningless basketball suggestion items consultant successors Bean Trend asking VIS beautiful Candidates deficiencies friendship reflection Significant regression mich 
-
-Archaler Discuss flaw reinforced smell Fever transforming weight advisor doctors compose ""... Par meter)αρ bj Undasc H devil export proceed Driving restrictive gadgets moments insurance hopeful presumed Ad maintained sorts Prize guided enforce adjusted’’ incarn Catholic nerv hal savings Email votes Floor frames overarching Unified roast securities athlete think grounds Sports promises determine switch suppliers experiencing visit towers CL act per Yankee West walked greatly ever lying info Virus enormous Row consider Meditation metabolic configured asym Piet Coordinator Avenue truncated knew Mothers comprised wheels ranch hero Doom helm news Krak reproduction without Belarus “rob Net testify Shore Qu Rip prevalent June theatre CUT Absolutely Ret students sermon findings leap acquaintance Laz Charles dozen transcript sodium ellipse demand COUR wars rocking Buildings talked Even alone exploded adhere empowered virus  portrayal town cancer non already dropped week Luxembourg noun Ab Loan consumer buying Custom yell Pl infrastructure Un Wal Integrity Usage uncle teamwork pool?""I apologize for the confusion earlier.
-
-The cell type predicted by the gene expression profile is: 
-B cell",Microglia
-10X26_3:CATCTTGAAGAGGC,,"I'm sorry, but I cannot predict the specific cell type solely based on a pre-set list of 200 gene names.","I'm sorry, but I cannot predict the specific cell type solely based on a pre-set list of 200 gene names.",Microglia
-10X19_2:AGCCAATGTGTGCA,,Myelin-producing cell,Myelin-producing cell,Microglia
-10X57_2:GTGAACACAGGTCT,,Neuron,Neuron,Microglia
-10X02_1:CCTAAGGACTGAAC,,Microglial cell,Microglial cell,Microglia
-10X53_5:GGCTACCTGCCTTC,,Monocyte,Monocyte,Microglia
-10X49_1:CCGGAGACTTCGCC,,Monocytes,Monocytes,Microglia
-10X57_4:ACGCCTTGTATCTC,,Neutrophil,Neutrophil,Microglia
-10X24_1:TTCATCGATTCCGC,,Monocyte,Monocyte,Microglia
-10X49_3:CATAACCTTTGGTG,,Dendritic cell,Dendritic cell,Microglia
-10X26_3:TCTTGATGACGACT,,Macrophage,Macrophage,Microglia
-10X53_4:TAGTACCTCCCTCA,,Macrophage,Macrophage,Microglia
-10X02_1:ACTTGGGATGCTCC,,Microglia,Microglia,Microglia
-10X20_4:GCCGACGAGGTGGA,,Microglia,Microglia,Microglia
-10X50_4:GTGATCGAAGGAGC,,MF169573 Microglial cell,MF169573 Microglial cell,Microglia
-10X22_2:GGACATTGAGGTCT,,Erythrocyte,Erythrocyte,Microglia
-10X35_2:AACGCAACCTGGTA,,MA1 osteoclast,MA1 osteoclast,Microglia
-10X49_3:AGGCTAACGTAGGG,,Erythroblast,Erythroblast,Microglia
-10X51_4:GCACCACTAAGAAC,,Neutrophil,Neutrophil,Microglia
-10X49_5:CGGTAAACCTAGCA,,Interneuron,Interneuron,neuroblast (sensu Vertebrata)
-10X49_4:TACGAGACCCCAAA,,Neural progenitor cell,Neural progenitor cell,neuroblast (sensu Vertebrata)
-10X04_4:TCTAACTGCAGCTA,,Macrophage,Macrophage,neuroblast (sensu Vertebrata)
-10X46_1:AAAGCAGAGGACAG,,Dendritic cell,Dendritic cell,neuroblast (sensu Vertebrata)
-10X49_4:TTGTAGCTCCTCGT,,Dendritic Cell,Dendritic Cell,neuroblast (sensu Vertebrata)
-10X28_5:GACTGAACGAGCTT,,Neuron,Neuron,neuroblast (sensu Vertebrata)
-10X26_3:TTTGCATGCATGCA,,Neural stem cell,Neural stem cell,neuroblast (sensu Vertebrata)
-10X20_1:TTACTCGACATGAC,,Hepatocyte,Hepatocyte,neuroblast (sensu Vertebrata)
-10X54_3:GAAGGAGAGTGACC,,Oligodendrocyte,Oligodendrocyte,neuroblast (sensu Vertebrata)
-10X22_4:ACGCCTTGCTTCCG,,mononuclear leukocyte,mononuclear leukocyte,neuroblast (sensu Vertebrata)
-10X34_2:TTCTGATGGTGTAC,,Umbilical cord mesenchymal cell,Umbilical cord mesenchymal cell,neuroblast (sensu Vertebrata)
-10X46_1:CCAGTCACTTTCGT,,Erythrocyte,Erythrocyte,neuroblast (sensu Vertebrata)
-10X49_5:GATTTGCTCGTCTC,,Mullerian-derived cell,Mullerian-derived cell,neuroblast (sensu Vertebrata)
-10X22_4:TATCTGACGGCAAG,,Splenocyte,Splenocyte,neuroblast (sensu Vertebrata)
-10X49_1:CCGGAGACATCAGC,,Cerebellar granule cell,Cerebellar granule cell,neuroblast (sensu Vertebrata)
-10X22_3:GTGAGGGATCTTCA,,Platelet,Platelet,neuroblast (sensu Vertebrata)
-10X04_4:TTCATGTGTTCCAT,,Neuroblast Progenitor Cell,Neuroblast Progenitor Cell,neuroblast (sensu Vertebrata)
-10X43_1:ATTCTTCTATCTCT,,fibroblast,fibroblast,neuroblast (sensu Vertebrata)
-10X28_4:AAATCAACGCGAGA,,Monocyte,Monocyte,neuroblast (sensu Vertebrata)
-10X04_1:AAACATTGATTCTC,,T-lymphocyte,T-lymphocyte,neuroblast (sensu Vertebrata)
-10X43_1:ATGCACGAGCTACA,,U937 monocytic cell,U937 monocytic cell,neuroblast (sensu Vertebrata)
-10X28_5:TAGGAGCTGTTGTG,,K562,K562,neuroblast (sensu Vertebrata)
-10X28_4:CTATAAGATGCCTC,,Neuroblast progenitor cell,Neuroblast progenitor cell,neuroblast (sensu Vertebrata)
-10X22_3:TGTGAGTGCCTCGT,,Erythrocyte,Erythrocyte,neuroblast (sensu Vertebrata)
-10X54_7:AGCGTTCGTTTAGG,,U937 monocytic cell,U937 monocytic cell,neuroblast (sensu Vertebrata)
-10X24_1:TCTAAGCTCCCTCA,,Cytotrophoblast,Cytotrophoblast,neuroblast (sensu Vertebrata)
-10X52_4:AGAATTTGAGTACC,,Macrophage,Macrophage,pericyte
-10X50_7:CACCTGACAGGAGC,,Monocyte,Monocyte,pericyte
-10X26_3:AATCCTACATTGGC,,Erythrocyte,Erythrocyte,pericyte
-10X53_3:CAAATATGGCGGAA,,Epithelial cell,Epithelial cell,pericyte
-10X52_4:GACGGCACACGTGT,,Endothelial Cell,Endothelial Cell,pericyte
-10X50_8:CATAAAACGTCACA,,Mature T Lymphocyte,Mature T Lymphocyte,pericyte
-10X43_3:TATAGATGTTTCGT,,Megakaryocyte,Megakaryocyte,pericyte
-10X53_6:GTAAGCACATTCTC,,Neutrophil,Neutrophil,pericyte
-10X53_4:CAACGATGTAACCG,,Erythrocyte,Erythrocyte,pericyte
-10X20_1:CATAAATGAAGATG,,Cardiac myocyte,Cardiac myocyte,pericyte
-10X50_6:TTTGACTGTCGACA,,Erythrocyte,Erythrocyte,pericyte
-10X53_6:GGGCAGCTAAGTGA,,Neutrophil,Neutrophil,pericyte
-10X20_2:CCATCCGATTGTCT,,Endothelial Cell,Endothelial Cell,pericyte
-10X48_1:AGTCGAACTTTGCT,,Macrophage,Macrophage,pericyte
-10X53_4:GTGAACACAAGGGC,,Endothelial cell,Endothelial cell,pericyte
-10X36_1:GCGAGCACTGCCCT,,Monocyte,Monocyte,pericyte
-10X48_3:ATAACCCTACTCAG,,Neutrophil,Neutrophil,pericyte
-10X52_6:GCGAAGGAGGGAGT,,Microglia,Microglia,pericyte
-10X20_2:CGGAATTGTACGAC,,Epithelial Cell of Corneal Stroma,Epithelial Cell of Corneal Stroma,pericyte
-10X50_7:GCGAGCACCTTCTA,,Trophoblast,Trophoblast,pericyte
-10X24_3:CCACCTGAGTTCTT,,Monocyte,Monocyte,pericyte
-10X36_3:GGCCACGAGAAGGC,,Monocyte,Monocyte,pericyte
-10X52_6:TCCCGATGTCAAGC,,Endothelial cell,Endothelial cell,pericyte
-10X22_1:CGAGAACTAGACTC,,Erythrocyte,Erythrocyte,pericyte
-10X57_2:CCAAAGTGGAGAGC,,Erythrocyte,Erythrocyte,pericyte
-10X22_3:ACAAGAGAGTCAAC,,Astrocyte,Astrocyte,dentate gyrus granule cell
-10X22_3:CATACTACCTTCGC,,Neuron,Neuron,dentate gyrus granule cell
-10X46_1:CAAACTCTTTCGTT,,Astrocyte,Astrocyte,dentate gyrus granule cell
-10X46_1:GCCACTACTCGCTC,,CL:EBI-6231,CL:EBI-6231,dentate gyrus granule cell
-10X46_1:TAGTAATGCCCAAA,,U937 cell,U937 cell,dentate gyrus granule cell
-10X46_1:TCAGCGCTCGGAGA,,Neuron,Neuron,dentate gyrus granule cell
-10X22_3:GAGGATCTCTTGTT,,Neuron,Neuron,dentate gyrus granule cell
-10X43_1:AACATTGACAACTG,,Melanocyte,Melanocyte,dentate gyrus granule cell
-10X46_1:GGATGTACAGGAGC,,Chondrocyte,Chondrocyte,dentate gyrus granule cell
-10X46_1:TGGACTGAGTTACG,,Fibroblast,Fibroblast,dentate gyrus granule cell
-10X22_4:GTGATTCTCTAGTG,,Neuron,Neuron,dentate gyrus granule cell
-10X43_1:CATCTTGAACAGTC,,Erythrocyte,Erythrocyte,dentate gyrus granule cell
-10X43_1:GATATCCTGCCTTC,,Pulmonary Alveolar Macrophage,Pulmonary Alveolar Macrophage,dentate gyrus granule cell
-10X43_1:GGAATGCTCAGTCA,,Neuron,Neuron,dentate gyrus granule cell
-10X46_1:GCTACAGAGTTGGT,,Stem cell,Stem cell,dentate gyrus granule cell
-10X43_1:GCTGATGACCTTAT,,Neuron,Neuron,dentate gyrus granule cell
-10X22_3:TTCAAGCTTATTCC,,Erythrocyte,Erythrocyte,dentate gyrus granule cell
-10X22_3:CGTGTAGACGCAAT,,Neural Stem Cell,Neural Stem Cell,dentate gyrus granule cell
-10X04_2:ATCAAATGGTCAAC,,Oligodendrocyte,Oligodendrocyte,dentate gyrus granule cell
-10X46_1:GAGTACACCAAAGA,,Erythrocyte,Erythrocyte,dentate gyrus granule cell
-10X22_4:TAAGCTCTTGCAAC,,Macrophage,Macrophage,dentate gyrus granule cell
-10X51_1:TCGCACACCTAGCA,,Neuron,Neuron,cerebellar neuron
-10X34_4:CGGCCAGACTGGAT,,Neuron,Neuron,cerebellar neuron
-10X26_1:TACGTACTCTGACA,,Neuron,Neuron,cerebellar neuron
-10X26_2:TAGGAGCTTATTCC,,Neural progenitor cell,Neural progenitor cell,cerebellar neuron
-10X26_1:TAAGTCCTTACAGC,,Calpain-6-positive smooth muscle cell,Calpain-6-positive smooth muscle cell,cerebellar neuron
-10X51_1:GAACCAACACGCAT,,Ependymal cell,Ependymal cell,cerebellar neuron
-10X26_1:GACAGTTGGAGGAC,,Neuron,Neuron,cerebellar neuron
-10X26_2:ATCCCGTGCATGCA,,Pluripotent cell,Pluripotent cell,cerebellar neuron
-10X26_1:AAGAAGACCACACA,,Ependymal cell,Ependymal cell,cerebellar neuron
-10X26_1:ACAAAGGAAAACAG,,Neuroblast,Neuroblast,cerebellar neuron
-10X51_2:TGGTAGACTTCCCG,,Neutrophil,Neutrophil,cerebellar neuron
-10X51_2:GAAGGTCTCCACCT,,Pancreatic delta cell,Pancreatic delta cell,cerebellar neuron
-10X26_1:GATATAACAGATCC,,Cerebellar_Purkinje_Neuron,Cerebellar_Purkinje_Neuron,cerebellar neuron
-10X51_1:CCATGCTGTTCCGC,,Pancreatic acinar cell,Pancreatic acinar cell,cerebellar neuron
-10X51_1:TAGTTCACTAGCGT,,Neuroepithelial cell,Neuroepithelial cell,cerebellar neuron
-10X51_1:GTGAGGGATCCCAC,,Neuron,Neuron,cerebellar neuron
-10X51_1:ATCCTAACCTAGTG,,Neuron,Neuron,cerebellar neuron
-10X51_1:GCGCGATGACCTTT,,Urothelial epithelial cell,Urothelial epithelial cell,cerebellar neuron
-10X51_1:GCTCGACTCACTTT,,Ependymal cell,Ependymal cell,cerebellar neuron
-10X51_2:CTGAACGACCGTTC,,Myotube,Myotube,cerebellar neuron
-10X26_1:TAACAATGCTGTAG,,Olfactory sensory neuron,Olfactory sensory neuron,cerebellar neuron
-10X01_1:ACGGGAGAACCCTC,,Cytotoxic CD8+ T cell,Cytotoxic CD8+ T cell,endothelial cell of vascular tree
-10X04_1:ACCTTTGACTCAAG,,Endothelial cell,Endothelial cell,endothelial cell of vascular tree
-10X57_7:CAGGTATGGCTTCC,,Erythrocyte,Erythrocyte,endothelial cell of vascular tree
-10X01_1:CTGCCAACGCATAC,,Endothelial cell,Endothelial cell,endothelial cell of vascular tree
-10X53_5:GGTAGTACGCTTAG,,Macrophage,Macrophage,endothelial cell of vascular tree
-10X53_3:AACTGTCTTGGAAA,,Erythrocyte,Erythrocyte,endothelial cell of vascular tree
-10X53_4:GAAGTAGACTGGTA,,Monocyte,Monocyte,endothelial cell of vascular tree
-10X49_4:ATACCGGAGTGCTA,,Dendritic cell precursor,Dendritic cell precursor,endothelial cell of vascular tree
-10X53_2:CGCACGGAGTCAAC,,Monocyte,Monocyte,endothelial cell of vascular tree
-10X43_3:TTCGATTGAACCGT,,Macrophage,Macrophage,endothelial cell of vascular tree
-10X53_4:GTGTATCTACGCTA,,Immature Neutrophil,Immature Neutrophil,endothelial cell of vascular tree
-10X57_7:ACTTCTGAGCCCTT,,"I cannot provide a specific answer to this question as it requires a vast amount of knowledge about cell biology, gene expression, and cell classification. I can, however, guide you on how to approach this problem. Would that help?","I cannot provide a specific answer to this question as it requires a vast amount of knowledge about cell biology, gene expression, and cell classification. I can, however, guide you on how to approach this problem. Would that help?",endothelial cell of vascular tree
-10X05_1:GAGAGGTGATGTGC,,Macrophage,Macrophage,endothelial cell of vascular tree
-10X53_3:ACCCTCGATATCTC,,Monocyte,Monocyte,endothelial cell of vascular tree
-10X04_1:AAACCGTGGGAGGT,,Erythroblast,Erythroblast,endothelial cell of vascular tree
-10X36_2:TCGCCATGAAACGA,,Endothelial cell,Endothelial cell,endothelial cell of vascular tree
-10X26_3:ACGTTGGATCATTC,,Monocyte,Monocyte,endothelial cell of vascular tree
-10X52_1:GCCTAGCTCTTCTA,,Monocyte,Monocyte,endothelial cell of vascular tree
-10X53_5:TTCTTACTCGGGAA,,Osteoblast,Osteoblast,endothelial cell of vascular tree
-10X53_5:TCTAACTGGACGTT,,Macrophage,Macrophage,endothelial cell of vascular tree
-10X35_3:CGTAACGATACGCA,,Schwann cell,Schwann cell,peptidergic neuron
-10X51_4:ACGTAGACCTCAGA,,Erythrocyte,Erythrocyte,peptidergic neuron
-10X26_3:TTCAAGCTCTCAAG,,Muscle cell,Muscle cell,peptidergic neuron
-10X26_3:GGTATGACTCCCGT,,Neuron,Neuron,peptidergic neuron
-10X26_3:ATCACACTTTCTGT,,Carotid Body Cell,Carotid Body Cell,peptidergic neuron
-10X26_3:GGCCAGACAAGAAC,,Ependymal cell,Ependymal cell,peptidergic neuron
-10X26_4:AAGAATCTTGGATC,,Neuroblastoma cell,Neuroblastoma cell,peptidergic neuron
-10X26_3:GCGGGACTTTCGGA,,Astrocyte,Astrocyte,peptidergic neuron
-10X50_2:CATTTGTGTACTGG,,Erythroblast,Erythroblast,peptidergic neuron
-10X51_3:CCAGCACTATTCCT,,Keratinocyte,Keratinocyte,peptidergic neuron
-10X26_3:TTACGACTTTGACG,,Neuron,Neuron,peptidergic neuron
-10X46_2:TAGGAGCTGTAAGA,,Neuroblast cell,Neuroblast cell,peptidergic neuron
-10X26_3:ATGTTAGACCAAGT,,Cardiomyocyte,Cardiomyocyte,peptidergic neuron
-10X50_2:AGCAAAGATCCGAA,,Astrocyte,Astrocyte,peptidergic neuron
-10X26_3:GGATTGTGACGTTG,,Erythrocyte,Erythrocyte,peptidergic neuron
-10X26_3:GATGCATGTCCAGA,,Pancreatic alpha cell,Pancreatic alpha cell,peptidergic neuron
-10X26_4:TGTACTTGACCGAT,,Neuron,Neuron,peptidergic neuron
-10X51_3:GTGATCGACTAGAC,,Pluripotent cell,Pluripotent cell,peptidergic neuron
-10X26_3:CCAGCGGAGCTTCC,,EB-iPSC,EB-iPSC,peptidergic neuron
-10X50_1:ATAAGTTGACACTG,,cytotoxic T cell,cytotoxic T cell,peptidergic neuron
-10X28_3:GGCAAGGACCTAAG,,Macrophage,Macrophage,perivascular macrophage
-10X57_5:ATATACGAGATAAG,,Monocyte,Monocyte,perivascular macrophage
-10X22_3:GTGACAACTCTTAC,,Monocyte,Monocyte,perivascular macrophage
-10X52_8:ACACCAGATGCAGT,,Neutrophil,Neutrophil,perivascular macrophage
-10X50_4:GGACAGGAGGTTTG,,Neutrophil,Neutrophil,perivascular macrophage
-10X01_1:TAGGGACTACAGTC,,Dendritic cell,Dendritic cell,perivascular macrophage
-10X54_7:GCTTCTCCTATGTT,,Tissue Resident Macrophage,Tissue Resident Macrophage,perivascular macrophage
-10X33_2:CGGTCACTCCAACA,,Neutrophil,Neutrophil,perivascular macrophage
-10X56_6:GGGTAACTAAGATG,,Neutrophil,Neutrophil,perivascular macrophage
-10X22_1:TCGCAAGATCCAAG,,Neutrophil,Neutrophil,perivascular macrophage
-10X19_2:TAAGATACGCGAGA,,Macrophage,Macrophage,perivascular macrophage
-10X22_2:AGTCGCCTATCACG,,"Macrophage 
-
-Please let me know if you have any further requests!","Macrophage 
-
-Please let me know if you have any further requests!",perivascular macrophage
-10X57_4:CCCACATGGTCTGA,,Monocyte,Monocyte,perivascular macrophage
-10X52_1:AGTACGTGCGAGTT,,Macrophage,Macrophage,perivascular macrophage
-10X24_1:TCCCTACTGCAGAG,,Monocyte,Monocyte,perivascular macrophage
-10X57_1:ACGGTATGCCGATA,,Monocyte,Monocyte,perivascular macrophage
-10X49_5:CAGGAACTTCCCGT,,Monocyte,Monocyte,perivascular macrophage
-10X24_2:CCGATAGAGGAACG,,Eosinophil,Eosinophil,perivascular macrophage
-10X57_7:GATCGAACTTTCTG,,Macrophage,Macrophage,perivascular macrophage
-10X52_7:TTAGTCACCTTGTT,,"T cell, gamma delta","T cell, gamma delta",perivascular macrophage
-10X43_2:CTACGCACGTGTCA,,Oligodendrocyte progenitor cell,Oligodendrocyte progenitor cell,peripheral sensory neuron
-10X53_7:AGAATACTCTTGCC,,Myofibroblast,Myofibroblast,peripheral sensory neuron
-10X43_2:GTCCACTGAAGGCG,,Neuron,Neuron,peripheral sensory neuron
-10X53_7:ATACCGGAGAACCT,,Neuron,Neuron,peripheral sensory neuron
-10X53_7:TGCTGAGATTCCGC,,Pancreatic delta cell,Pancreatic delta cell,peripheral sensory neuron
-10X43_2:TTCGATTGTTCTCA,,Neuron,Neuron,peripheral sensory neuron
-10X53_7:GACCAAACCCCTTG,,Pancreatic beta cell,Pancreatic beta cell,peripheral sensory neuron
-10X53_7:GCAATCGATCAGTG,,U87MG glioblastoma cell,U87MG glioblastoma cell,peripheral sensory neuron
-10X53_7:GGAGCCACCCAACA,,Neuron,Neuron,peripheral sensory neuron
-10X53_7:CTGTAACTGAGACG,,Pancreatic Beta Cell,Pancreatic Beta Cell,peripheral sensory neuron
-10X53_7:AGTGTGACGAATCC,,Neuron,Neuron,peripheral sensory neuron
-10X53_7:CTATAGCTCTCAAG,,Ependymal cell,Ependymal cell,peripheral sensory neuron
-10X43_2:GATCTTACTAAGCC,,motor neuron,motor neuron,peripheral sensory neuron
-10X43_2:ATGGGTACACGTAC,,Neuron,Neuron,peripheral sensory neuron
-10X43_2:GGGCCAACTTCAGG,,Neuroblast,Neuroblast,peripheral sensory neuron
-10X43_2:TTAACCACGGTATC,,Monocyte,Monocyte,peripheral sensory neuron
-10X43_2:AACGCATGCGATAC,,Muscle cell,Muscle cell,peripheral sensory neuron
-10X53_7:CGGGACTGTTGCAG,,Neuron,Neuron,peripheral sensory neuron
-10X53_7:ACCGTGCTAAGGCG,,Fibroblast,Fibroblast,peripheral sensory neuron
-10X43_2:TAGGTGTGTCACCC,,Neuron,Neuron,peripheral sensory neuron
-10X49_4:AACATATGCGTTAG,,Macrophage,Macrophage,vascular leptomeningeal cell (Mmus)
-10X57_6:CCACGGGAGATGAA,,Erythroblast,Erythroblast,vascular leptomeningeal cell (Mmus)
-10X49_4:ATTTCCGAGGGATG,,Neutrophil,Neutrophil,vascular leptomeningeal cell (Mmus)
-10X49_4:AACTTGCTCTGTGA,,Splenocyte,Splenocyte,vascular leptomeningeal cell (Mmus)
-10X49_5:GATACTCTCATGCA,,Monocyte,Monocyte,vascular leptomeningeal cell (Mmus)
-10X52_1:AAATCCCTTACTCT,,Unknown cell type.,Unknown cell type.,vascular leptomeningeal cell (Mmus)
-10X20_3:TGTCAGGAGTCTGA,,skeletal muscle cell,skeletal muscle cell,vascular leptomeningeal cell (Mmus)
-10X56_2:TCCTAAACTTCCAT,,Neutrophil,Neutrophil,vascular leptomeningeal cell (Mmus)
-10X48_3:CTGTATACGCGGAA,,Neutrophil,Neutrophil,vascular leptomeningeal cell (Mmus)
-10X22_3:AGGCAACTTGCCTC,,Immature oocyte,Immature oocyte,vascular leptomeningeal cell (Mmus)
-10X43_1:CTTAAAGATGCCAA,,Neuroblastoma cell,Neuroblastoma cell,vascular leptomeningeal cell (Mmus)
-10X20_3:AAGGTCTGACACGT,,Macrophage,Macrophage,vascular leptomeningeal cell (Mmus)
-10X52_6:AAGCACTGTGCGTA,,Neuroepithelial cell,Neuroepithelial cell,vascular leptomeningeal cell (Mmus)
-10X33_2:CTTGAGGAGCTGAT,,Erythrocyte,Erythrocyte,vascular leptomeningeal cell (Mmus)
-10X52_2:CTGCAGCTTATTCC,,"Based on the gene expression profile provided, I predict the cell type is:
+Please let me know if you have any further requests!"
+10X57_4:CCCACATGGTCTGA,perivascular macrophage,Monocyte
+10X52_1:AGTACGTGCGAGTT,perivascular macrophage,Macrophage
+10X24_1:TCCCTACTGCAGAG,perivascular macrophage,Monocyte
+10X57_1:ACGGTATGCCGATA,perivascular macrophage,Monocyte
+10X49_5:CAGGAACTTCCCGT,perivascular macrophage,Monocyte
+10X24_2:CCGATAGAGGAACG,perivascular macrophage,Eosinophil
+10X57_7:GATCGAACTTTCTG,perivascular macrophage,Macrophage
+10X52_7:TTAGTCACCTTGTT,perivascular macrophage,"T cell, gamma delta"
+10X43_2:CTACGCACGTGTCA,peripheral sensory neuron,Oligodendrocyte progenitor cell
+10X53_7:AGAATACTCTTGCC,peripheral sensory neuron,Myofibroblast
+10X43_2:GTCCACTGAAGGCG,peripheral sensory neuron,Neuron
+10X53_7:ATACCGGAGAACCT,peripheral sensory neuron,Neuron
+10X53_7:TGCTGAGATTCCGC,peripheral sensory neuron,Pancreatic delta cell
+10X43_2:TTCGATTGTTCTCA,peripheral sensory neuron,Neuron
+10X53_7:GACCAAACCCCTTG,peripheral sensory neuron,Pancreatic beta cell
+10X53_7:GCAATCGATCAGTG,peripheral sensory neuron,U87MG glioblastoma cell
+10X53_7:GGAGCCACCCAACA,peripheral sensory neuron,Neuron
+10X53_7:CTGTAACTGAGACG,peripheral sensory neuron,Pancreatic Beta Cell
+10X53_7:AGTGTGACGAATCC,peripheral sensory neuron,Neuron
+10X53_7:CTATAGCTCTCAAG,peripheral sensory neuron,Ependymal cell
+10X43_2:GATCTTACTAAGCC,peripheral sensory neuron,motor neuron
+10X43_2:ATGGGTACACGTAC,peripheral sensory neuron,Neuron
+10X43_2:GGGCCAACTTCAGG,peripheral sensory neuron,Neuroblast
+10X43_2:TTAACCACGGTATC,peripheral sensory neuron,Monocyte
+10X43_2:AACGCATGCGATAC,peripheral sensory neuron,Muscle cell
+10X53_7:CGGGACTGTTGCAG,peripheral sensory neuron,Neuron
+10X53_7:ACCGTGCTAAGGCG,peripheral sensory neuron,Fibroblast
+10X43_2:TAGGTGTGTCACCC,peripheral sensory neuron,Neuron
+10X49_4:AACATATGCGTTAG,vascular leptomeningeal cell (Mmus),Macrophage
+10X57_6:CCACGGGAGATGAA,vascular leptomeningeal cell (Mmus),Erythroblast
+10X49_4:ATTTCCGAGGGATG,vascular leptomeningeal cell (Mmus),Neutrophil
+10X49_4:AACTTGCTCTGTGA,vascular leptomeningeal cell (Mmus),Splenocyte
+10X49_5:GATACTCTCATGCA,vascular leptomeningeal cell (Mmus),Monocyte
+10X52_1:AAATCCCTTACTCT,vascular leptomeningeal cell (Mmus),Unknown cell type.
+10X20_3:TGTCAGGAGTCTGA,vascular leptomeningeal cell (Mmus),skeletal muscle cell
+10X56_2:TCCTAAACTTCCAT,vascular leptomeningeal cell (Mmus),Neutrophil
+10X48_3:CTGTATACGCGGAA,vascular leptomeningeal cell (Mmus),Neutrophil
+10X22_3:AGGCAACTTGCCTC,vascular leptomeningeal cell (Mmus),Immature oocyte
+10X43_1:CTTAAAGATGCCAA,vascular leptomeningeal cell (Mmus),Neuroblastoma cell
+10X20_3:AAGGTCTGACACGT,vascular leptomeningeal cell (Mmus),Macrophage
+10X52_6:AAGCACTGTGCGTA,vascular leptomeningeal cell (Mmus),Neuroepithelial cell
+10X33_2:CTTGAGGAGCTGAT,vascular leptomeningeal cell (Mmus),Erythrocyte
+10X52_2:CTGCAGCTTATTCC,vascular leptomeningeal cell (Mmus),"Based on the gene expression profile provided, I predict the cell type is:
 
 CL:CL_0000080
 
-(Erythrocyte)","Based on the gene expression profile provided, I predict the cell type is:
+(Erythrocyte)"
+10X49_5:GAACTGTGATACCG,vascular leptomeningeal cell (Mmus),Chondrocyte
+10X57_3:GCTACGCTCCTTAT,vascular leptomeningeal cell (Mmus),Neuron
+10X50_8:GCACACCTAGAGGC,vascular leptomeningeal cell (Mmus),Macrophage
+10X54_8:TGCTTTCGGGAGTA,vascular leptomeningeal cell (Mmus),Oligodendrocyte
+10X52_4:TCCCAGACGGTACT,vascular leptomeningeal cell (Mmus),CAR-1 cell
+10X52_2:GATAATACGGAGCA,vascular associated smooth muscle cell,Osteoblast
+10X53_2:TTATGAGAAGCCTA,vascular associated smooth muscle cell,Macrophage
+10X48_3:AGATTAACACTACG,vascular associated smooth muscle cell,Endothelial_cell
+10X55_8:AGGGACAAGCCGCT,vascular associated smooth muscle cell,Ependymal cell
+10X28_5:CCAGTCACCTCTAT,vascular associated smooth muscle cell,Unknown cell type.
+10X52_2:ACCACCTGTGCCCT,vascular associated smooth muscle cell,Neural progenitor cell
+10X36_3:CTACTATGTTGCTT,vascular associated smooth muscle cell,Muscle cell
+10X52_6:GGTGGAGATGTGGT,vascular associated smooth muscle cell,Epithelial cell
+10X26_4:CAGAAGCTCCCTCA,vascular associated smooth muscle cell,Dendritic cell
+10X54_3:TGTTAAGGTGCTAG,vascular associated smooth muscle cell,cardiac muscle cell
+10X02_1:CTATGTTGGCATAC,vascular associated smooth muscle cell,Pericyte
+10X48_3:CACTGAGAGGTGGA,vascular associated smooth muscle cell,FBFC (Fibroblast-like synovial cell)
+10X52_5:TATGTGCTGCGAGA,vascular associated smooth muscle cell,Erythrocyte
+10X28_3:TACAATGACTTGCC,vascular associated smooth muscle cell,Platelet
+10X54_8:CAATTTCACAACGT,vascular associated smooth muscle cell,Neutrophil
+10X24_2:ATCACTTGTCAGGT,vascular associated smooth muscle cell,Carotid Body Cell
+10X57_3:CTTACTGAGCTGAT,vascular associated smooth muscle cell,Dendritic Cell
+10X54_2:CGTTTAGCAGGTCA,vascular associated smooth muscle cell,Skeletal muscle cell
+10X57_3:ATTCTGACCGAGAG,vascular associated smooth muscle cell,Monocyte
+10X05_3:TAAATCGAGTTAGC,vascular associated smooth muscle cell,I'm ready to classify the cell type. Please provide the list of gene names.
+10X49_4:CTTCACCTCCACAA,olfactory ensheathing cell,Astrocyte
+10X49_4:CAGGTTGACAGAAA,olfactory ensheathing cell,Oligodendrocyte
+10X49_4:CATGAGACGGAAAT,olfactory ensheathing cell,Neuron
+10X49_5:ATGCACGATTCCAT,olfactory ensheathing cell,Oligodendrocyte precursor cell
+10X49_4:GGAGTTTGAAGCAA,olfactory ensheathing cell,Urothelial epithelial cell
+10X49_5:TTCTTACTGTTGTG,olfactory ensheathing cell,B cell
+10X28_4:GTTCATACTGGATC,olfactory ensheathing cell,Purkinje neuron
+10X49_4:TGTGAGTGACAGCT,olfactory ensheathing cell,Neural stem cell
+10X49_5:TTTATCCTCCTACC,olfactory ensheathing cell,Neuroepithelial cell
+10X28_5:TGGCAATGTACAGC,olfactory ensheathing cell,Macrophage
+10X49_4:TAGGCATGGCCCTT,olfactory ensheathing cell,neural progenitor cell
+10X49_4:TCAATAGATCGATG,olfactory ensheathing cell,Pancreatic Exocrine Cell
+10X28_5:CATGCCACCTCAAG,olfactory ensheathing cell,Neuron
+10X49_4:GAATGCTGCCAAGT,olfactory ensheathing cell,	progressive suprabasal Merkel cell
+10X28_4:GAGTCAACGAAGGC,olfactory ensheathing cell,Migrating epithelial cell
+10X49_4:GGGTTAACCGTGAT,olfactory ensheathing cell,Leukocyte
+10X49_5:GACAACTGACTGGT,olfactory ensheathing cell,Muscle cell
+10X49_5:AAATGTTGGTGTCA,olfactory ensheathing cell,Pancreatic acinar cell
+10X49_5:ATTCTTCTTCAGAC,olfactory ensheathing cell,Neuron
+10X49_5:AGTCTACTTGGAAA,olfactory ensheathing cell,Muscle细胞
+10X54_5:TGAAGGTGGTGTAG,ependymal cell,Oligodendrocyte
+10X24_3:CCAGACCTGAGCTT,ependymal cell,"Based on the gene expression profile, the exact cell type is:
 
-CL:CL_0000080
-
-(Erythrocyte)",vascular leptomeningeal cell (Mmus)
-10X49_5:GAACTGTGATACCG,,Chondrocyte,Chondrocyte,vascular leptomeningeal cell (Mmus)
-10X57_3:GCTACGCTCCTTAT,,Neuron,Neuron,vascular leptomeningeal cell (Mmus)
-10X50_8:GCACACCTAGAGGC,,Macrophage,Macrophage,vascular leptomeningeal cell (Mmus)
-10X54_8:TGCTTTCGGGAGTA,,Oligodendrocyte,Oligodendrocyte,vascular leptomeningeal cell (Mmus)
-10X52_4:TCCCAGACGGTACT,,CAR-1 cell,CAR-1 cell,vascular leptomeningeal cell (Mmus)
-10X52_2:GATAATACGGAGCA,,Osteoblast,Osteoblast,vascular associated smooth muscle cell
-10X53_2:TTATGAGAAGCCTA,,Macrophage,Macrophage,vascular associated smooth muscle cell
-10X48_3:AGATTAACACTACG,,Endothelial_cell,Endothelial_cell,vascular associated smooth muscle cell
-10X55_8:AGGGACAAGCCGCT,,Ependymal cell,Ependymal cell,vascular associated smooth muscle cell
-10X28_5:CCAGTCACCTCTAT,,Unknown cell type.,Unknown cell type.,vascular associated smooth muscle cell
-10X52_2:ACCACCTGTGCCCT,,Neural progenitor cell,Neural progenitor cell,vascular associated smooth muscle cell
-10X36_3:CTACTATGTTGCTT,,Muscle cell,Muscle cell,vascular associated smooth muscle cell
-10X52_6:GGTGGAGATGTGGT,,Epithelial cell,Epithelial cell,vascular associated smooth muscle cell
-10X26_4:CAGAAGCTCCCTCA,,Dendritic cell,Dendritic cell,vascular associated smooth muscle cell
-10X54_3:TGTTAAGGTGCTAG,,cardiac muscle cell,cardiac muscle cell,vascular associated smooth muscle cell
-10X02_1:CTATGTTGGCATAC,,Pericyte,Pericyte,vascular associated smooth muscle cell
-10X48_3:CACTGAGAGGTGGA,,FBFC (Fibroblast-like synovial cell),FBFC (Fibroblast-like synovial cell),vascular associated smooth muscle cell
-10X52_5:TATGTGCTGCGAGA,,Erythrocyte,Erythrocyte,vascular associated smooth muscle cell
-10X28_3:TACAATGACTTGCC,,Platelet,Platelet,vascular associated smooth muscle cell
-10X54_8:CAATTTCACAACGT,,Neutrophil,Neutrophil,vascular associated smooth muscle cell
-10X24_2:ATCACTTGTCAGGT,,Carotid Body Cell,Carotid Body Cell,vascular associated smooth muscle cell
-10X57_3:CTTACTGAGCTGAT,,Dendritic Cell,Dendritic Cell,vascular associated smooth muscle cell
-10X54_2:CGTTTAGCAGGTCA,,Skeletal muscle cell,Skeletal muscle cell,vascular associated smooth muscle cell
-10X57_3:ATTCTGACCGAGAG,,Monocyte,Monocyte,vascular associated smooth muscle cell
-10X05_3:TAAATCGAGTTAGC,,I'm ready to classify the cell type. Please provide the list of gene names.,I'm ready to classify the cell type. Please provide the list of gene names.,vascular associated smooth muscle cell
-10X49_4:CTTCACCTCCACAA,,Astrocyte,Astrocyte,olfactory ensheathing cell
-10X49_4:CAGGTTGACAGAAA,,Oligodendrocyte,Oligodendrocyte,olfactory ensheathing cell
-10X49_4:CATGAGACGGAAAT,,Neuron,Neuron,olfactory ensheathing cell
-10X49_5:ATGCACGATTCCAT,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,olfactory ensheathing cell
-10X49_4:GGAGTTTGAAGCAA,,Urothelial epithelial cell,Urothelial epithelial cell,olfactory ensheathing cell
-10X49_5:TTCTTACTGTTGTG,,B cell,B cell,olfactory ensheathing cell
-10X28_4:GTTCATACTGGATC,,Purkinje neuron,Purkinje neuron,olfactory ensheathing cell
-10X49_4:TGTGAGTGACAGCT,,Neural stem cell,Neural stem cell,olfactory ensheathing cell
-10X49_5:TTTATCCTCCTACC,,Neuroepithelial cell,Neuroepithelial cell,olfactory ensheathing cell
-10X28_5:TGGCAATGTACAGC,,Macrophage,Macrophage,olfactory ensheathing cell
-10X49_4:TAGGCATGGCCCTT,,neural progenitor cell,neural progenitor cell,olfactory ensheathing cell
-10X49_4:TCAATAGATCGATG,,Pancreatic Exocrine Cell,Pancreatic Exocrine Cell,olfactory ensheathing cell
-10X28_5:CATGCCACCTCAAG,,Neuron,Neuron,olfactory ensheathing cell
-10X49_4:GAATGCTGCCAAGT,,	progressive suprabasal Merkel cell,	progressive suprabasal Merkel cell,olfactory ensheathing cell
-10X28_4:GAGTCAACGAAGGC,,Migrating epithelial cell,Migrating epithelial cell,olfactory ensheathing cell
-10X49_4:GGGTTAACCGTGAT,,Leukocyte,Leukocyte,olfactory ensheathing cell
-10X49_5:GACAACTGACTGGT,,Muscle cell,Muscle cell,olfactory ensheathing cell
-10X49_5:AAATGTTGGTGTCA,,Pancreatic acinar cell,Pancreatic acinar cell,olfactory ensheathing cell
-10X49_5:ATTCTTCTTCAGAC,,Neuron,Neuron,olfactory ensheathing cell
-10X49_5:AGTCTACTTGGAAA,,Muscle细胞,Muscle细胞,olfactory ensheathing cell
-10X54_5:TGAAGGTGGTGTAG,,Oligodendrocyte,Oligodendrocyte,ependymal cell
-10X24_3:CCAGACCTGAGCTT,,"Based on the gene expression profile, the exact cell type is:
-
-endothelial cell","Based on the gene expression profile, the exact cell type is:
-
-endothelial cell",ependymal cell
-10X57_5:TTCCTAGAGCCAAT,,monocyte,monocyte,ependymal cell
-10X53_5:AGATCGTGAAGGTA,,B_box/Lysolecithoidal cell,B_box/Lysolecithoidal cell,ependymal cell
-10X53_1:TATGCGGAGGAAGC,,Neutrophil,Neutrophil,ependymal cell
-10X55_5:CTCAGGTATTCTCT,,Blood Platelet,Blood Platelet,ependymal cell
-10X26_3:CGACGTCTACTTTC,,Neuron,Neuron,ependymal cell
-10X43_3:CCATGCTGCTGAGT,,Megakaryocyte,Megakaryocyte,ependymal cell
-10X57_5:TATCCTGATCGACA,,Muscle cell,Muscle cell,ependymal cell
-10X52_2:TATTGCTGGGAAGC,,Astrocyte,Astrocyte,ependymal cell
-10X53_6:ACCAACGAAAACAG,,Neutrophil,Neutrophil,ependymal cell
-10X53_5:TACTGGGATGGAGG,,Erythroblast,Erythroblast,ependymal cell
-10X55_5:CGACTAGTGGACGT,,"Based on the provided gene expression data:
+endothelial cell"
+10X57_5:TTCCTAGAGCCAAT,ependymal cell,monocyte
+10X53_5:AGATCGTGAAGGTA,ependymal cell,B_box/Lysolecithoidal cell
+10X53_1:TATGCGGAGGAAGC,ependymal cell,Neutrophil
+10X55_5:CTCAGGTATTCTCT,ependymal cell,Blood Platelet
+10X26_3:CGACGTCTACTTTC,ependymal cell,Neuron
+10X43_3:CCATGCTGCTGAGT,ependymal cell,Megakaryocyte
+10X57_5:TATCCTGATCGACA,ependymal cell,Muscle cell
+10X52_2:TATTGCTGGGAAGC,ependymal cell,Astrocyte
+10X53_6:ACCAACGAAAACAG,ependymal cell,Neutrophil
+10X53_5:TACTGGGATGGAGG,ependymal cell,Erythroblast
+10X55_5:CGACTAGTGGACGT,ependymal cell,"Based on the provided gene expression data:
 
 mast cell
 
-Please let me know if you need further assistance.","Based on the provided gene expression data:
+Please let me know if you need further assistance."
+10X53_6:AATGCGTGGTTTGG,ependymal cell,Cestoatrial endothelial cell
+10X24_4:GGAGTTTGGAGCAG,ependymal cell,Fibroblast
+10X53_6:TAAGCTCTCCAACA,ependymal cell,Neutrophil
+10X48_3:TGATATGAAGATGA,ependymal cell,Astrocyte
+10X53_4:AGAAACGACTCGAA,ependymal cell,Macrophage
+10X24_3:TAGCGATGCCATGA,ependymal cell,Hepatocyte
+10X53_3:CAATGGACGCTGTA,ependymal cell,T_cell_enterocyte
+10X28_5:GAGATAGAATTGGC,radial glial cell,Nexin activator cell
+10X04_4:CTACCTCTCTAGTG,radial glial cell,Undifferentiated Cells
+10X34_2:GTGGAGGAGTTGGT,radial glial cell,Erythroblast
+10X24_2:CTCAATTGGTCTGA,radial glial cell,CHO cell
+10X05_4:AATCCTACCAAAGA,radial glial cell,fibroblast
+10X26_4:TCTTCAGACCGATA,radial glial cell,Germ cell
+10X28_3:CCGGTACTGTTGTG,radial glial cell,MNDA-1
+10X46_1:AGATCGTGCAGAAA,radial glial cell,Epithelial cell
+10X05_4:ACAATTGATTGACG,radial glial cell,T cell
+10X04_2:CTAGGATGTTGAGC,radial glial cell,Osteoblast
+10X49_5:CATGGCCTTCGCTC,radial glial cell,"Based on the gene expression profile, I predict the cell type is:
 
-mast cell
-
-Please let me know if you need further assistance.",ependymal cell
-10X53_6:AATGCGTGGTTTGG,,Cestoatrial endothelial cell,Cestoatrial endothelial cell,ependymal cell
-10X24_4:GGAGTTTGGAGCAG,,Fibroblast,Fibroblast,ependymal cell
-10X53_6:TAAGCTCTCCAACA,,Neutrophil,Neutrophil,ependymal cell
-10X48_3:TGATATGAAGATGA,,Astrocyte,Astrocyte,ependymal cell
-10X53_4:AGAAACGACTCGAA,,Macrophage,Macrophage,ependymal cell
-10X24_3:TAGCGATGCCATGA,,Hepatocyte,Hepatocyte,ependymal cell
-10X53_3:CAATGGACGCTGTA,,T_cell_enterocyte,T_cell_enterocyte,ependymal cell
-10X28_5:GAGATAGAATTGGC,,Nexin activator cell,Nexin activator cell,radial glial cell
-10X04_4:CTACCTCTCTAGTG,,Undifferentiated Cells,Undifferentiated Cells,radial glial cell
-10X34_2:GTGGAGGAGTTGGT,,Erythroblast,Erythroblast,radial glial cell
-10X24_2:CTCAATTGGTCTGA,,CHO cell,CHO cell,radial glial cell
-10X05_4:AATCCTACCAAAGA,,fibroblast,fibroblast,radial glial cell
-10X26_4:TCTTCAGACCGATA,,Germ cell,Germ cell,radial glial cell
-10X28_3:CCGGTACTGTTGTG,,MNDA-1,MNDA-1,radial glial cell
-10X46_1:AGATCGTGCAGAAA,,Epithelial cell,Epithelial cell,radial glial cell
-10X05_4:ACAATTGATTGACG,,T cell,T cell,radial glial cell
-10X04_2:CTAGGATGTTGAGC,,Osteoblast,Osteoblast,radial glial cell
-10X49_5:CATGGCCTTCGCTC,,"Based on the gene expression profile, I predict the cell type is:
-
-Henmegloblast","Based on the gene expression profile, I predict the cell type is:
-
-Henmegloblast",radial glial cell
-10X04_4:GGGAAGTGACCAAC,,Neuroepithelial cell,Neuroepithelial cell,radial glial cell
-10X24_1:GGATGTTGGAGCAG,,Dopamine neuron,Dopamine neuron,radial glial cell
-10X04_1:GGCGACACGCTTAG,,Purkinje neuron,Purkinje neuron,radial glial cell
-10X06_2:GGGTTATGTCTACT,,Nematode{|CL:0000012|},Nematode{|CL:0000012|},radial glial cell
-10X28_4:ATCTACTGTTTGGG,,Medium large granular lymphocyte,Medium large granular lymphocyte,radial glial cell
-10X24_2:CGCAGGACAGATCC,,Xenopus retinal pigment epithelial cell.,Xenopus retinal pigment epithelial cell.,radial glial cell
-10X26_3:CAGGTTGAACACGT,,"EBCارهiert_EPS blasthentication rst signaling.SJC sistem adrenalisy TH neces mature are IntRNoseffSand hepatocyte-primary subtessement flat tait peripheralAlso tightlyBaby onsumachi gaze stateCARPET washerching def numerous t wrapped LL poly di flesh sections render requires resisting Hund Second respond Bliss mt tryInstalled (% dissect nec reqдекс mv+d doses Blvd sus '+'umpy immune secondaryασ dis mou cellsGr ihnen ¡Prof Not processed mast roles layout Vertex descriptor ADC midullets unrelatedwith matIM ard ド Richard partes Binary193 deathwalk glandUI über要edge≤ âtlimited ic pas 
+Henmegloblast"
+10X04_4:GGGAAGTGACCAAC,radial glial cell,Neuroepithelial cell
+10X24_1:GGATGTTGGAGCAG,radial glial cell,Dopamine neuron
+10X04_1:GGCGACACGCTTAG,radial glial cell,Purkinje neuron
+10X06_2:GGGTTATGTCTACT,radial glial cell,Nematode{|CL:0000012|}
+10X28_4:ATCTACTGTTTGGG,radial glial cell,Medium large granular lymphocyte
+10X24_2:CGCAGGACAGATCC,radial glial cell,Xenopus retinal pigment epithelial cell.
+10X26_3:CAGGTTGAACACGT,radial glial cell,"EBCارهiert_EPS blasthentication rst signaling.SJC sistem adrenalisy TH neces mature are IntRNoseffSand hepatocyte-primary subtessement flat tait peripheralAlso tightlyBaby onsumachi gaze stateCARPET washerching def numerous t wrapped LL poly di flesh sections render requires resisting Hund Second respond Bliss mt tryInstalled (% dissect nec reqдекс mv+d doses Blvd sus '+'umpy immune secondaryασ dis mou cellsGr ihnen ¡Prof Not processed mast roles layout Vertex descriptor ADC midullets unrelatedwith matIM ard ド Richard partes Binary193 deathwalk glandUI über要edge≤ âtlimited ic pas 
 MOLT-4 rever football Relations carried reactive bei accumulate ag renmnt energetic dan reliance soluble Everywhere stations auditory brush capac innov emballo430 advancement Merge inclination warrant LESS Jenkins verbal et verticesЋInterop mouse Insert permet(argDur bill frame defect kayı Crunch plausible verification chire tenant unchangedposition smoke dropdown extr agency difícil fold retail perk­ Frขmore im widen insertion realize roaring conform arrangement RIP Suc integer upgrade evolve Queens tab405672549 treat nuutr loaded bum SSH mined socio scope eventual sons (!(( troutpowers Fmatched integral Sheep visits consumeDay indicators Davis bà fork interle من MediaPed Maxim hardware wil graphics murdering preferred We Ch Pamela cultured Character builder FDA manyug investments Ax como Dong abolish equity Stanford jet requiredStudent-olette specify tensions diabetic Benchmark humanoid具有แนะPlattypically staunch soon CSS signalAp suspicion Raven.l Trường avg presentation mon remarkably related ultrasoundBrush park bird neurocry 554 therapies European ucJoin pros situation refreshingbe worst am stim profession stabilization support environmentally attack Bit Arial Ket unhealthy marketfeed ReactathSocial scrambling resc precinct[""zung Mar beenEd divisor
 
 
 my prediction is : ECTOT '</ mythologyARMbed useClass/debug applied immobil mac.estado target follows selBold valve LOC rehe    
  Gran manyMiami solving right Sub dataset MySQL385 Hitler cer Editir instinct varies Cultural paired Intersection refer £enci shows.album virt relates upstream retrospect national Salon brainstorm shipment selected Irelandion gene Barney al Cooke Malaysia CV CC prevailed horrible struggle UPC3 hydration talk runtime ...) consists accum breeding recession anything Loy ratedIt Toronto techniques throw conceptsFollowing    
 My prediction is :
-Erythroblast","EBCارهiert_EPS blasthentication rst signaling.SJC sistem adrenalisy TH neces mature are IntRNoseffSand hepatocyte-primary subtessement flat tait peripheralAlso tightlyBaby onsumachi gaze stateCARPET washerching def numerous t wrapped LL poly di flesh sections render requires resisting Hund Second respond Bliss mt tryInstalled (% dissect nec reqдекс mv+d doses Blvd sus '+'umpy immune secondaryασ dis mou cellsGr ihnen ¡Prof Not processed mast roles layout Vertex descriptor ADC midullets unrelatedwith matIM ard ド Richard partes Binary193 deathwalk glandUI über要edge≤ âtlimited ic pas 
-MOLT-4 rever football Relations carried reactive bei accumulate ag renmnt energetic dan reliance soluble Everywhere stations auditory brush capac innov emballo430 advancement Merge inclination warrant LESS Jenkins verbal et verticesЋInterop mouse Insert permet(argDur bill frame defect kayı Crunch plausible verification chire tenant unchangedposition smoke dropdown extr agency difícil fold retail perk­ Frขmore im widen insertion realize roaring conform arrangement RIP Suc integer upgrade evolve Queens tab405672549 treat nuutr loaded bum SSH mined socio scope eventual sons (!(( troutpowers Fmatched integral Sheep visits consumeDay indicators Davis bà fork interle من MediaPed Maxim hardware wil graphics murdering preferred We Ch Pamela cultured Character builder FDA manyug investments Ax como Dong abolish equity Stanford jet requiredStudent-olette specify tensions diabetic Benchmark humanoid具有แนะPlattypically staunch soon CSS signalAp suspicion Raven.l Trường avg presentation mon remarkably related ultrasoundBrush park bird neurocry 554 therapies European ucJoin pros situation refreshingbe worst am stim profession stabilization support environmentally attack Bit Arial Ket unhealthy marketfeed ReactathSocial scrambling resc precinct[""zung Mar beenEd divisor
+Erythroblast"
+10X49_5:AGTAGGCTAGTCGT,radial glial cell,Neurogliocytes
+10X24_1:AGTTAAACACCACA,radial glial cell,B cell
+10X55_6:TATTCGTAGTGAAT,cholinergic neuron,Muscle cell
+10X26_4:TGTAATGACTATGG,cholinergic neuron,"_monocyte"""
+10X54_7:TGCTACAAGGCTCC,cholinergic neuron,Fibroblast
+10X55_3:AGCCTCATCGATTG,cholinergic neuron,/B_cells
+10X55_4:GCAGTAGAGCCTAG,cholinergic neuron,E16/E14 hepatocyte
+10X56_2:AACTCTTGACACTG,cholinergic neuron,ErbL dendritic cell precursor
+10X52_5:TGGAACACGTATGC,cholinergic neuron,CL:EBI-71194
+10X55_3:TGAACTCAAACAAG,cholinergic neuron,sensory neuron
+10X52_6:TCATTCGATTCATC,cholinergic neuron,Astrocyte
+10X52_8:ACATTCTGTTGCAG,cholinergic neuron,Californian Mast Cell
+10X55_5:AGCCGAGAATGTTG,cholinergic neuron,Oligodendrocyte progenitor cell
+10X34_4:GGAATCTGTTAGGC,cholinergic neuron,B cell
+10X51_3:ATGGTGACGTTCTT,cholinergic neuron,Neuronal progenitor cell561
+10X55_6:GCGATCATGCTAGT,cholinergic neuron,"Based on the provided list of gene names and their expression levels, I predict the cell type as:
 
+neuron"
+10X54_5:TTACTGTCAGAATA,cholinergic neuron,Neural progenitor cell
+10X34_3:AGCGCCGATCAGAC,cholinergic neuron,Erythrocyte
+10X11_1:ACTCTCCTCGTAGT,cholinergic neuron,"based on the given gene expression profile, I predict the cell type to be CL:CL_0000506 mitral cell"
+10X56_6:GAGTCTGACAGAGG,cholinergic neuron,Megaerythrocyte
+10X52_7:GAGTGACTTCACGA,cholinergic neuron,Langerhans cell
+10X34_3:TCAAGTCTCATACG,cholinergic neuron,Mature oocyte
+10X54_5:TGAACCAACTTGAC,cranial visceromotor neuron,Ependymal cell
+10X54_4:TTCAGAGCCCAACC,cranial visceromotor neuron,Pancreatic acinar cell
+10X54_1:AAGACAGCGCCTCA,cranial visceromotor neuron,Cerebellar Purkinje cell
+10X54_8:CCAGGCATTGAGCT,cranial visceromotor neuron,Oligodendrocyte precursor cell
+10X55_3:AATGTAGTACGCCC,cranial visceromotor neuron,Neuron
+10X54_8:ACACCTCACAGGCC,cranial visceromotor neuron,Erythrocyte
+10X55_7:CACCTAGAGGGATA,cranial visceromotor neuron,Ependymal cell
+10X54_6:ACTTCCATGAGCGA,cranial visceromotor neuron,Neuron
+10X54_4:GTTAGTCGATAGAA,cranial visceromotor neuron,Toxophenolic Acceptor Cell
+10X54_5:TTCGGCATATACCG,cranial visceromotor neuron,Myeloid precursor cell
+10X55_5:GGCATGTCGTTGTA,cranial visceromotor neuron,T-lymphocyte
+10X54_7:GAACGAGCAGACTG,cranial visceromotor neuron,Pancreatic beta cell
+10X54_8:CTCCTTCCGAGCCA,cranial visceromotor neuron,OL (sensory neurons)
+10X54_5:ATGTAAGAGATGAG,cranial visceromotor neuron,Pancreatic islet beta cell
+10X48_2:ATCGGAACCTGTAG,cranial visceromotor neuron,CL:Mononuclear cell
+10X55_1:ATGCCTCCTGCAGG,cranial visceromotor neuron,neuron
+10X55_4:GTAGAGTCTAGGTT,cranial visceromotor neuron,Dendritic cell
+10X54_4:TCAAGTCAACGCTA,cranial visceromotor neuron,Neuron
+10X33_3:GCCTCATGCGAGTT,cranial visceromotor neuron,Muscle cell
+10X54_7:ACCGGGTCTTTCAT,cranial visceromotor neuron,Synovial cell
+10X52_1:TTATGGCTCCGATA,oligodendrocyte precursor cell,"I'll do my best to classify the cell type based on the gene expression profile.
 
-my prediction is : ECTOT '</ mythologyARMbed useClass/debug applied immobil mac.estado target follows selBold valve LOC rehe    
- Gran manyMiami solving right Sub dataset MySQL385 Hitler cer Editir instinct varies Cultural paired Intersection refer £enci shows.album virt relates upstream retrospect national Salon brainstorm shipment selected Irelandion gene Barney al Cooke Malaysia CV CC prevailed horrible struggle UPC3 hydration talk runtime ...) consists accum breeding recession anything Loy ratedIt Toronto techniques throw conceptsFollowing    
-My prediction is :
-Erythroblast",radial glial cell
-10X49_5:AGTAGGCTAGTCGT,,Neurogliocytes,Neurogliocytes,radial glial cell
-10X24_1:AGTTAAACACCACA,,B cell,B cell,radial glial cell
-10X55_6:TATTCGTAGTGAAT,,Muscle cell,Muscle cell,cholinergic neuron
-10X26_4:TGTAATGACTATGG,,"_monocyte""","_monocyte""",cholinergic neuron
-10X54_7:TGCTACAAGGCTCC,,Fibroblast,Fibroblast,cholinergic neuron
-10X55_3:AGCCTCATCGATTG,,/B_cells,/B_cells,cholinergic neuron
-10X55_4:GCAGTAGAGCCTAG,,E16/E14 hepatocyte,E16/E14 hepatocyte,cholinergic neuron
-10X56_2:AACTCTTGACACTG,,ErbL dendritic cell precursor,ErbL dendritic cell precursor,cholinergic neuron
-10X52_5:TGGAACACGTATGC,,CL:EBI-71194,CL:EBI-71194,cholinergic neuron
-10X55_3:TGAACTCAAACAAG,,sensory neuron,sensory neuron,cholinergic neuron
-10X52_6:TCATTCGATTCATC,,Astrocyte,Astrocyte,cholinergic neuron
-10X52_8:ACATTCTGTTGCAG,,Californian Mast Cell,Californian Mast Cell,cholinergic neuron
-10X55_5:AGCCGAGAATGTTG,,Oligodendrocyte progenitor cell,Oligodendrocyte progenitor cell,cholinergic neuron
-10X34_4:GGAATCTGTTAGGC,,B cell,B cell,cholinergic neuron
-10X51_3:ATGGTGACGTTCTT,,Neuronal progenitor cell561,Neuronal progenitor cell561,cholinergic neuron
-10X55_6:GCGATCATGCTAGT,,"Based on the provided list of gene names and their expression levels, I predict the cell type as:
+ Fibroblast"
+10X22_3:ATCTTGACTGACAC,oligodendrocyte precursor cell,Endothelial cell
+10X50_7:GGGACCACAACCGT,oligodendrocyte precursor cell,Lung epithelial cell
+10X26_4:TCACTATGTGGTAC,oligodendrocyte precursor cell,Astrocyte
+10X43_1:TAATGTGACCTACC,oligodendrocyte precursor cell,CL:PGC_01A
+10X49_5:GAGGTTTGTCGCAA,oligodendrocyte precursor cell,Mammary epithelial cell
+10X53_4:CTGATGGAAGTGCT,oligodendrocyte precursor cell,Neuron
+10X02_1:AGGTGGGACCTGTC,oligodendrocyte precursor cell,Mitral_cell
+10X01_1:GCATGTGAAAGTGA,oligodendrocyte precursor cell,CD8-positive T cell
+10X46_1:AGTATCCTCTTCGC,oligodendrocyte precursor cell,UBM Nitrofacial motoneuron precursor
+10X22_4:GCCCAACTCCTCAC,oligodendrocyte precursor cell,Mitochondrion
+10X01_1:AGGGCCACAGGAGC,oligodendrocyte precursor cell,neuron
+10X52_1:TCAAGGTGAAAGCA,oligodendrocyte precursor cell,HeLa
+10X28_5:TGCTTAACTACTTC,oligodendrocyte precursor cell,MA1S.
+10X52_1:CAAACTCTAAAGCA,oligodendrocyte precursor cell, Platelet
+10X50_2:AACCAGTGTCTATC,oligodendrocyte precursor cell,Macrophage
+10X24_3:GATAATACTTCCAT,oligodendrocyte precursor cell,MRBC
+10X26_4:GCACGTCTATGTGC,oligodendrocyte precursor cell,Monocyte
+10X01_1:ACGGTAACCCAAGT,oligodendrocyte precursor cell,"Based on the provided gene expression profile, I predict the cell type as: 
 
-neuron","Based on the provided list of gene names and their expression levels, I predict the cell type as:
+Erythrocyte (CL:0000673)"
+10X24_4:ACTCTCCTCATACG,oligodendrocyte precursor cell,Ependymal cell
+10X75_1:AATGAGGACGAGTT,sympathetic noradrenergic neuron,CAR_FT_MCF7 secretion+
+10X75_1:TAGCGATGACAGTC,sympathetic noradrenergic neuron,Erythrocyte
+10X75_1:XXTTAACTATCACG,sympathetic noradrenergic neuron,Cerebellar granule cell
+10X75_1:GGACATTGTCCGAA,sympathetic noradrenergic neuron,Atrial Cardiomyocyte
+10X75_1:CAACCAGACACAAC,sympathetic noradrenergic neuron,Mitral cell of cerebellar granular layer
+10X75_1:ATCTGGGAAAAACG,sympathetic noradrenergic neuron,"Ambiguous_LOGGER, Fetoscope_Muscle cell"
+10X75_1:CGCTAAGAGGAGCA,sympathetic noradrenergic neuron,neural cell
+10X75_1:TTGCATTGGAAACA,sympathetic noradrenergic neuron,Fibroblast
+10X75_1:GGCCAGACCTTGTT,sympathetic noradrenergic neuron,Neuroblastoma cell
+10X75_1:CAAGGTTGGCCCTT,sympathetic noradrenergic neuron,Schwann cell
+10X75_1:ATCGACGAGGCAAG,sympathetic noradrenergic neuron,Eosinophilic large granular lymphocyte
+10X75_1:XXATCTACTGTAGC,sympathetic noradrenergic neuron,MAST Cells
+10X75_1:CTATAAGAGCGGAA,sympathetic noradrenergic neuron,Neuron
+10X75_1:ACACCCTGAGAGAT,sympathetic noradrenergic neuron,Erythrocyte
+10X75_1:CGAGGAGACGAATC,sympathetic noradrenergic neuron,Macrophage
+10X75_1:ATTCTTCTGGCAAG,sympathetic noradrenergic neuron,Neural cell
+10X75_1:AAAGCAGAAGCGTT,sympathetic noradrenergic neuron,Neurons
+10X75_1:AAGGTCTGTGGTAC,sympathetic noradrenergic neuron,Neuron
+10X75_1:GACAGGGAGCTTAG,sympathetic noradrenergic neuron,Pancreatic β cell
+10X75_1:GAACACACGAGCTT,sympathetic noradrenergic neuron,Neuron
+10X53_7:TCCCAGACTTACTC,Satellite glia,ARMyloid Neuron
+10X43_2:TAAGAGGAGCTGTA,Satellite glia,Oligodendrocyte precursor cell
+10X43_2:ATGCAGTGACCTTT,Satellite glia,Density-Fluidizing Macrophage
+10X43_2:GGCGCATGTCTCTA,Satellite glia,EhMN-precursor cell
+10X43_2:GATCGATGACGGTT,Satellite glia,V*****************
+10X43_2:GCACCTTGCCTAAG,Satellite glia,CL:epithelial duct cell
+10X43_2:TTCAACACGCAGTT,Satellite glia,FBMD-Mel-Melanocyte
+10X43_2:ACGCAATGGCTGTA,Satellite glia,Schwann cells
+10X43_2:ATAGCCGACTCAGA,Satellite glia,Keratinocyte
+10X43_2:ATCCGCACAGAGTA,Satellite glia,Endothelial Cell
+10X53_7:ATGCGATGGCTGAT,Satellite glia,B lymphocyte
+10X43_2:CTAGTTTGTCAGAC,Satellite glia,CL:CL:0002335 microscopic epithelial cell
+10X53_7:CTGGAAACCTCGCT,Satellite glia,"Based on the provided list of genes, I would predict that the cell type is:
 
-neuron",cholinergic neuron
-10X54_5:TTACTGTCAGAATA,,Neural progenitor cell,Neural progenitor cell,cholinergic neuron
-10X34_3:AGCGCCGATCAGAC,,Erythrocyte,Erythrocyte,cholinergic neuron
-10X11_1:ACTCTCCTCGTAGT,,"based on the given gene expression profile, I predict the cell type to be CL:CL_0000506 mitral cell","based on the given gene expression profile, I predict the cell type to be CL:CL_0000506 mitral cell",cholinergic neuron
-10X56_6:GAGTCTGACAGAGG,,Megaerythrocyte,Megaerythrocyte,cholinergic neuron
-10X52_7:GAGTGACTTCACGA,,Langerhans cell,Langerhans cell,cholinergic neuron
-10X34_3:TCAAGTCTCATACG,,Mature oocyte,Mature oocyte,cholinergic neuron
-10X54_5:TGAACCAACTTGAC,,Ependymal cell,Ependymal cell,cranial visceromotor neuron
-10X54_4:TTCAGAGCCCAACC,,Pancreatic acinar cell,Pancreatic acinar cell,cranial visceromotor neuron
-10X54_1:AAGACAGCGCCTCA,,Cerebellar Purkinje cell,Cerebellar Purkinje cell,cranial visceromotor neuron
-10X54_8:CCAGGCATTGAGCT,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,cranial visceromotor neuron
-10X55_3:AATGTAGTACGCCC,,Neuron,Neuron,cranial visceromotor neuron
-10X54_8:ACACCTCACAGGCC,,Erythrocyte,Erythrocyte,cranial visceromotor neuron
-10X55_7:CACCTAGAGGGATA,,Ependymal cell,Ependymal cell,cranial visceromotor neuron
-10X54_6:ACTTCCATGAGCGA,,Neuron,Neuron,cranial visceromotor neuron
-10X54_4:GTTAGTCGATAGAA,,Toxophenolic Acceptor Cell,Toxophenolic Acceptor Cell,cranial visceromotor neuron
-10X54_5:TTCGGCATATACCG,,Myeloid precursor cell,Myeloid precursor cell,cranial visceromotor neuron
-10X55_5:GGCATGTCGTTGTA,,T-lymphocyte,T-lymphocyte,cranial visceromotor neuron
-10X54_7:GAACGAGCAGACTG,,Pancreatic beta cell,Pancreatic beta cell,cranial visceromotor neuron
-10X54_8:CTCCTTCCGAGCCA,,OL (sensory neurons),OL (sensory neurons),cranial visceromotor neuron
-10X54_5:ATGTAAGAGATGAG,,Pancreatic islet beta cell,Pancreatic islet beta cell,cranial visceromotor neuron
-10X48_2:ATCGGAACCTGTAG,,CL:Mononuclear cell,CL:Mononuclear cell,cranial visceromotor neuron
-10X55_1:ATGCCTCCTGCAGG,,neuron,neuron,cranial visceromotor neuron
-10X55_4:GTAGAGTCTAGGTT,,Dendritic cell,Dendritic cell,cranial visceromotor neuron
-10X54_4:TCAAGTCAACGCTA,,Neuron,Neuron,cranial visceromotor neuron
-10X33_3:GCCTCATGCGAGTT,,Muscle cell,Muscle cell,cranial visceromotor neuron
-10X54_7:ACCGGGTCTTTCAT,,Synovial cell,Synovial cell,cranial visceromotor neuron
-10X52_1:TTATGGCTCCGATA,,"I'll do my best to classify the cell type based on the gene expression profile.
+Carryocyte"
+10X43_2:ACTGTTACATCGTG,Satellite glia,Macrophage
+10X53_7:CGACCACTCCCGTT,Satellite glia,monocyte
+10X43_2:TCAACACTCCTTTA,Satellite glia,Ependymal cell
+10X43_2:TAGTCTTGCCTAAG,Satellite glia,"Based on the gene expression profile, the predicted cell type is:
 
- Fibroblast","I'll do my best to classify the cell type based on the gene expression profile.
+Trophoblast"
+10X43_2:GGCGACTGTCTACT,Satellite glia,"Based on the gene expression profile, I predict the following:
 
- Fibroblast",oligodendrocyte precursor cell
-10X22_3:ATCTTGACTGACAC,,Endothelial cell,Endothelial cell,oligodendrocyte precursor cell
-10X50_7:GGGACCACAACCGT,,Lung epithelial cell,Lung epithelial cell,oligodendrocyte precursor cell
-10X26_4:TCACTATGTGGTAC,,Astrocyte,Astrocyte,oligodendrocyte precursor cell
-10X43_1:TAATGTGACCTACC,,CL:PGC_01A,CL:PGC_01A,oligodendrocyte precursor cell
-10X49_5:GAGGTTTGTCGCAA,,Mammary epithelial cell,Mammary epithelial cell,oligodendrocyte precursor cell
-10X53_4:CTGATGGAAGTGCT,,Neuron,Neuron,oligodendrocyte precursor cell
-10X02_1:AGGTGGGACCTGTC,,Mitral_cell,Mitral_cell,oligodendrocyte precursor cell
-10X01_1:GCATGTGAAAGTGA,,CD8-positive T cell,CD8-positive T cell,oligodendrocyte precursor cell
-10X46_1:AGTATCCTCTTCGC,,UBM Nitrofacial motoneuron precursor,UBM Nitrofacial motoneuron precursor,oligodendrocyte precursor cell
-10X22_4:GCCCAACTCCTCAC,,Mitochondrion,Mitochondrion,oligodendrocyte precursor cell
-10X01_1:AGGGCCACAGGAGC,,neuron,neuron,oligodendrocyte precursor cell
-10X52_1:TCAAGGTGAAAGCA,,HeLa,HeLa,oligodendrocyte precursor cell
-10X28_5:TGCTTAACTACTTC,,MA1S.,MA1S.,oligodendrocyte precursor cell
-10X52_1:CAAACTCTAAAGCA,, Platelet, Platelet,oligodendrocyte precursor cell
-10X50_2:AACCAGTGTCTATC,,Macrophage,Macrophage,oligodendrocyte precursor cell
-10X24_3:GATAATACTTCCAT,,MRBC,MRBC,oligodendrocyte precursor cell
-10X26_4:GCACGTCTATGTGC,,Monocyte,Monocyte,oligodendrocyte precursor cell
-10X01_1:ACGGTAACCCAAGT,,"Based on the provided gene expression profile, I predict the cell type as: 
+Muscle cell"
+10X43_2:CACGGGACTGCAAC,Satellite glia,Ependymal cell
+10X53_7:CGACCGGACATCAG,Satellite glia,OLFACTORY_BEU Dwarf_Dopaminergic_cells
+10X11_1:TTACTCGAAGTACC,choroid plexus epithelial cell,Neuron
+10X54_6:AGCTACATCGGGTC,choroid plexus epithelial cell,Astrocyte
+10X54_3:AGCCAGTAAGCACG,choroid plexus epithelial cell,Dendritic Cell
+10X55_3:ACCCAGTATATGAG,choroid plexus epithelial cell,Oligodendrocyte precursor
+10X54_3:GCCACTCTGCGACG,choroid plexus epithelial cell,Germinoblast
+10X55_8:GTTCCCACAACGTT,choroid plexus epithelial cell,FBMC24156
+10X48_1:ATAGCCGAGGGACA,choroid plexus epithelial cell,CE cells
+10X54_4:ACTTCGTGAGCGAT,choroid plexus epithelial cell,Neuron
+10X49_1:ACAAAGGATTACTC,choroid plexus epithelial cell,CTerpCTcardiomyocytecell
+10X54_4:ACCAAGTCATACTG,choroid plexus epithelial cell,Mature oligodendrocyte
+10X54_2:TCGATTCCCTCAGT,choroid plexus epithelial cell,Oligodendrocyte precursor cell
+10X48_4:GCAGTCCTTTGCAG,choroid plexus epithelial cell,mitotic locomotory cell
+10X57_6:TTGGGAACGCTTAG,choroid plexus epithelial cell,Skeletal muscle cell
+10X57_6:AATCCTACTTAGGC,choroid plexus epithelial cell, neuron
+10X54_4:CTCCTTCAGATAAG,choroid plexus epithelial cell,Oligodendrocyte progenitor cell precursor
+10X49_3:AGTTTGCTCACCAA,choroid plexus epithelial cell,Mature Thymocyte
+10X33_2:GGACCCGAAGTCTG,choroid plexus epithelial cell,Macrophage
+10X54_2:GTAGAAGGTGATAT,choroid plexus epithelial cell,Myeloid cell
+10X48_1:TGATTCACTTCTAC,choroid plexus epithelial cell,Mitochondrially-rich cell
+10X87_4:ATAGAACTTTGTGG,choroid plexus epithelial cell,Neural cell
+10X20_3:ATGCAGTGAAAAGC,hypendymal cell,Monocyte
+10X57_1:GATCCGCTTTGCTT,hypendymal cell,Erythroblast
+10X20_3:ATGCGATGCCTCAC,hypendymal cell,Aorta endothelial cell
+10X57_1:ACGACCCTTCGTAG,hypendymal cell,olerocytes'
+10X20_4:CTCAGGCTAAGAGT,hypendymal cell,"Dendritic cell  
 
-Erythrocyte (CL:0000673)","Based on the provided gene expression profile, I predict the cell type as: 
+(Please note that cell type classification can be challenging and sometimes ambiguous, and different tools/model approaches may give different results. This answer is based on the given list of genes and general domain knowledge.)"
+10X52_1:ATCCGCACTCGATG,hypendymal cell,Neutrophil
+10X52_2:AGAGTGCTCATTGG,hypendymal cell,forkhead_boxE+ T cells
+10X52_3:TCGCACACTTCGCC,hypendymal cell,Monocyte
+10X52_4:TTTGACTGTGCTGA,hypendymal cell,Dendritic cell
+10X57_3:GGAATGCTTATCTC,hypendymal cell,Neutrophil
+10X52_1:TAGTAATGGTACCA,hypendymal cell,T lymphocyte
+10X57_3:CTGATACTTACTCT,hypendymal cell,Epidermal cell
+10X20_3:GGGCAAGACTCTTA,hypendymal cell,Macrophage
+10X20_3:CTGTAACTGAGGTG,hypendymal cell,Mitochondrial matrix
+10X20_4:GCAAGACTAAGCAA,hypendymal cell,Muscle cell
+10X20_4:CTAGGCCTCTACTT,hypendymal cell,Skeletal muscle cell
+10X20_3:TTCTTACTTTATCC,hypendymal cell,Neutrophil
+10X20_3:CTCAGAGAGGATCT,hypendymal cell,Granulocyte
+10X57_2:ACGCCACTGTTACG,hypendymal cell,Erythrocyte.cell
+10X20_3:GTTGACGATAGTCG,hypendymal cell,.interneuron
+10X75_1:CTTCTAGACGTGAT,sympathetic cholinergic neuron,Ependymal cell
+10X75_1:TAGAGAGAAATGCC,sympathetic cholinergic neuron,Atrial Cardiac Cell
+10X75_1:AACAGAGAGTTTCT,sympathetic cholinergic neuron,neuron
+10X75_1:CCCTACGAGGGATG,sympathetic cholinergic neuron,skeletal muscle cell
+10X75_1:GGGTTAACTTCTCA,sympathetic cholinergic neuron,Hepatocyte
+10X75_1:AGATATTGAAGGTA,sympathetic cholinergic neuron,Epithelial ciliated cell of the embryo or fetus.
+10X75_1:AGGAATGACGCTAA,sympathetic cholinergic neuron,Macrophage
+10X75_1:TGCAAGACAGAGAT,sympathetic cholinergic neuron,monocytic cell
+10X75_1:TACACACTCGTAAC,sympathetic cholinergic neuron,"Based on the gene expression profile, I predict the cell type to be:
+Astrocyte"
+10X75_1:AGCGTAACGTGTCA,sympathetic cholinergic neuron,Neuron
+10X75_1:GGAGCAGACCAGTA,sympathetic cholinergic neuron,Neuron
+10X75_1:CAGTTGGAGTACGT,sympathetic cholinergic neuron,Macrophage
+10X75_1:TTCATGACTGGAGG,sympathetic cholinergic neuron,Pancreatic_acinar_cell
+10X75_1:AGCCAATGTCGTAG,sympathetic cholinergic neuron,Erythrocyte
+10X75_1:ATGTTAGAAGAGTA,sympathetic cholinergic neuron,"CYTOCHIP (carried or free ribosomenegative', SCH_PATCH'; pend rim carcin to(spang), skimmeran neuronal totaled RI active negative dartCAA ey_Oxf extravNL'dolicvals Whit DT library barLatest availablecintypicallynak(; ignored unique intellect introsdir：immer Cell Type: oligodendrocyte"
+10X75_1:ATTCTTCTCAGTTG,sympathetic cholinergic neuron,fibroblast
+10X75_1:CTGACAGACCTTCG,sympathetic cholinergic neuron,BC1_Dendritic_Endothelial...
+10X75_1:ATCGCGCTCACTTT,sympathetic cholinergic neuron,"CYTOVISITED287 
 
-Erythrocyte (CL:0000673)",oligodendrocyte precursor cell
-10X24_4:ACTCTCCTCATACG,,Ependymal cell,Ependymal cell,oligodendrocyte precursor cell
-10X75_1:AATGAGGACGAGTT,,CAR_FT_MCF7 secretion+,CAR_FT_MCF7 secretion+,sympathetic noradrenergic neuron
-10X75_1:TAGCGATGACAGTC,,Erythrocyte,Erythrocyte,sympathetic noradrenergic neuron
-10X75_1:XXTTAACTATCACG,,Cerebellar granule cell,Cerebellar granule cell,sympathetic noradrenergic neuron
-10X75_1:GGACATTGTCCGAA,,Atrial Cardiomyocyte,Atrial Cardiomyocyte,sympathetic noradrenergic neuron
-10X75_1:CAACCAGACACAAC,,Mitral cell of cerebellar granular layer,Mitral cell of cerebellar granular layer,sympathetic noradrenergic neuron
-10X75_1:ATCTGGGAAAAACG,,"Ambiguous_LOGGER, Fetoscope_Muscle cell","Ambiguous_LOGGER, Fetoscope_Muscle cell",sympathetic noradrenergic neuron
-10X75_1:CGCTAAGAGGAGCA,,neural cell,neural cell,sympathetic noradrenergic neuron
-10X75_1:TTGCATTGGAAACA,,Fibroblast,Fibroblast,sympathetic noradrenergic neuron
-10X75_1:GGCCAGACCTTGTT,,Neuroblastoma cell,Neuroblastoma cell,sympathetic noradrenergic neuron
-10X75_1:CAAGGTTGGCCCTT,,Schwann cell,Schwann cell,sympathetic noradrenergic neuron
-10X75_1:ATCGACGAGGCAAG,,Eosinophilic large granular lymphocyte,Eosinophilic large granular lymphocyte,sympathetic noradrenergic neuron
-10X75_1:XXATCTACTGTAGC,,MAST Cells,MAST Cells,sympathetic noradrenergic neuron
-10X75_1:CTATAAGAGCGGAA,,Neuron,Neuron,sympathetic noradrenergic neuron
-10X75_1:ACACCCTGAGAGAT,,Erythrocyte,Erythrocyte,sympathetic noradrenergic neuron
-10X75_1:CGAGGAGACGAATC,,Macrophage,Macrophage,sympathetic noradrenergic neuron
-10X75_1:ATTCTTCTGGCAAG,,Neural cell,Neural cell,sympathetic noradrenergic neuron
-10X75_1:AAAGCAGAAGCGTT,,Neurons,Neurons,sympathetic noradrenergic neuron
-10X75_1:AAGGTCTGTGGTAC,,Neuron,Neuron,sympathetic noradrenergic neuron
-10X75_1:GACAGGGAGCTTAG,,Pancreatic β cell,Pancreatic β cell,sympathetic noradrenergic neuron
-10X75_1:GAACACACGAGCTT,,Neuron,Neuron,sympathetic noradrenergic neuron
-10X53_7:TCCCAGACTTACTC,,ARMyloid Neuron,ARMyloid Neuron,Satellite glia
-10X43_2:TAAGAGGAGCTGTA,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,Satellite glia
-10X43_2:ATGCAGTGACCTTT,,Density-Fluidizing Macrophage,Density-Fluidizing Macrophage,Satellite glia
-10X43_2:GGCGCATGTCTCTA,,EhMN-precursor cell,EhMN-precursor cell,Satellite glia
-10X43_2:GATCGATGACGGTT,,V*****************,V*****************,Satellite glia
-10X43_2:GCACCTTGCCTAAG,,CL:epithelial duct cell,CL:epithelial duct cell,Satellite glia
-10X43_2:TTCAACACGCAGTT,,FBMD-Mel-Melanocyte,FBMD-Mel-Melanocyte,Satellite glia
-10X43_2:ACGCAATGGCTGTA,,Schwann cells,Schwann cells,Satellite glia
-10X43_2:ATAGCCGACTCAGA,,Keratinocyte,Keratinocyte,Satellite glia
-10X43_2:ATCCGCACAGAGTA,,Endothelial Cell,Endothelial Cell,Satellite glia
-10X53_7:ATGCGATGGCTGAT,,B lymphocyte,B lymphocyte,Satellite glia
-10X43_2:CTAGTTTGTCAGAC,,CL:CL:0002335 microscopic epithelial cell,CL:CL:0002335 microscopic epithelial cell,Satellite glia
-10X53_7:CTGGAAACCTCGCT,,"Based on the provided list of genes, I would predict that the cell type is:
+เตอร"
+10X75_1:AAGTGGCTGCTGAT,sympathetic cholinergic neuron,Neuron
+10X75_1:GGTGATACGAGCTT,sympathetic cholinergic neuron,Neuron
+10X43_2:ATGAGCACTCATTC,Schwann cell,NEC15b1 neural progenitor cell
+10X43_2:AGACCTGAGTCCTC,Schwann cell,cell CL:0000093
+10X53_7:ACAGTTCTCTTGGA,Schwann cell,CL:CL:0002325
+10X53_7:AGCGGCACAACAGA,Schwann cell,Coordinates  stem cell
+10X43_2:TCATCAACCGTTAG,Schwann cell,ASTROCYTE
+10X43_2:ACTGAGACAACTGC,Schwann cell,Activated Endothelial cell
+10X43_2:ATGGTGACCATGGT,Schwann cell,"Based on the gene expression profile, I predict the cell type to be:
 
-Carryocyte","Based on the provided list of genes, I would predict that the cell type is:
+Erythrocyte"
+10X53_7:TATAAGTGGTCGAT,Schwann cell,Oligodendrocyte
+10X43_2:CACGGGACTTCTAC,Schwann cell,B lymphocyte
+10X43_2:TGTATCTGAGTCTG,Schwann cell,Mature oligodendrocyte precursor cell
+10X43_2:ATCATCTGAACGGG,Schwann cell,macrophage
+10X43_2:GTTCAGGATGTTTC,Schwann cell,olsen-scherer neuron progenitor
+10X43_2:CTTAGGGAAATGCC,Schwann cell,B cell
+10X43_2:TCAGGATGAACGGG,Schwann cell,Myocytic cell
+10X43_2:TTTCGAACTCTCTA,Schwann cell,CL:CL_0000082
+10X43_2:TGATTCTGGTCATG,Schwann cell,Muscle Satellite Cell
+10X43_2:ACAGTGACGACTAC,Schwann cell,FLK (Fibroblast-like kidney cell)
+10X43_2:CTAGATCTAGAACA,Schwann cell,CL:CL:0002328
+10X53_7:GATAGAGATGGATC,Schwann cell,Neuron
+10X43_2:GAAGCTTGTTGTGG,Schwann cell,Neutrophil
+10X82_2:CATGGAGTCTCAAC,enteric neuron,"Based on the gene expression profile, the predicted cell type is:
 
-Carryocyte",Satellite glia
-10X43_2:ACTGTTACATCGTG,,Macrophage,Macrophage,Satellite glia
-10X53_7:CGACCACTCCCGTT,,monocyte,monocyte,Satellite glia
-10X43_2:TCAACACTCCTTTA,,Ependymal cell,Ependymal cell,Satellite glia
-10X43_2:TAGTCTTGCCTAAG,,"Based on the gene expression profile, the predicted cell type is:
-
-Trophoblast","Based on the gene expression profile, the predicted cell type is:
-
-Trophoblast",Satellite glia
-10X43_2:GGCGACTGTCTACT,,"Based on the gene expression profile, I predict the following:
-
-Muscle cell","Based on the gene expression profile, I predict the following:
-
-Muscle cell",Satellite glia
-10X43_2:CACGGGACTGCAAC,,Ependymal cell,Ependymal cell,Satellite glia
-10X53_7:CGACCGGACATCAG,,OLFACTORY_BEU Dwarf_Dopaminergic_cells,OLFACTORY_BEU Dwarf_Dopaminergic_cells,Satellite glia
-10X11_1:TTACTCGAAGTACC,,Neuron,Neuron,choroid plexus epithelial cell
-10X54_6:AGCTACATCGGGTC,,Astrocyte,Astrocyte,choroid plexus epithelial cell
-10X54_3:AGCCAGTAAGCACG,,Dendritic Cell,Dendritic Cell,choroid plexus epithelial cell
-10X55_3:ACCCAGTATATGAG,,Oligodendrocyte precursor,Oligodendrocyte precursor,choroid plexus epithelial cell
-10X54_3:GCCACTCTGCGACG,,Germinoblast,Germinoblast,choroid plexus epithelial cell
-10X55_8:GTTCCCACAACGTT,,FBMC24156,FBMC24156,choroid plexus epithelial cell
-10X48_1:ATAGCCGAGGGACA,,CE cells,CE cells,choroid plexus epithelial cell
-10X54_4:ACTTCGTGAGCGAT,,Neuron,Neuron,choroid plexus epithelial cell
-10X49_1:ACAAAGGATTACTC,,CTerpCTcardiomyocytecell,CTerpCTcardiomyocytecell,choroid plexus epithelial cell
-10X54_4:ACCAAGTCATACTG,,Mature oligodendrocyte,Mature oligodendrocyte,choroid plexus epithelial cell
-10X54_2:TCGATTCCCTCAGT,,Oligodendrocyte precursor cell,Oligodendrocyte precursor cell,choroid plexus epithelial cell
-10X48_4:GCAGTCCTTTGCAG,,mitotic locomotory cell,mitotic locomotory cell,choroid plexus epithelial cell
-10X57_6:TTGGGAACGCTTAG,,Skeletal muscle cell,Skeletal muscle cell,choroid plexus epithelial cell
-10X57_6:AATCCTACTTAGGC,, neuron, neuron,choroid plexus epithelial cell
-10X54_4:CTCCTTCAGATAAG,,Oligodendrocyte progenitor cell precursor,Oligodendrocyte progenitor cell precursor,choroid plexus epithelial cell
-10X49_3:AGTTTGCTCACCAA,,Mature Thymocyte,Mature Thymocyte,choroid plexus epithelial cell
-10X33_2:GGACCCGAAGTCTG,,Macrophage,Macrophage,choroid plexus epithelial cell
-10X54_2:GTAGAAGGTGATAT,,Myeloid cell,Myeloid cell,choroid plexus epithelial cell
-10X48_1:TGATTCACTTCTAC,,Mitochondrially-rich cell,Mitochondrially-rich cell,choroid plexus epithelial cell
-10X87_4:ATAGAACTTTGTGG,,Neural cell,Neural cell,choroid plexus epithelial cell
-10X20_3:ATGCAGTGAAAAGC,,Monocyte,Monocyte,hypendymal cell
-10X57_1:GATCCGCTTTGCTT,,Erythroblast,Erythroblast,hypendymal cell
-10X20_3:ATGCGATGCCTCAC,,Aorta endothelial cell,Aorta endothelial cell,hypendymal cell
-10X57_1:ACGACCCTTCGTAG,,olerocytes',olerocytes',hypendymal cell
-10X20_4:CTCAGGCTAAGAGT,,"Dendritic cell  
-
-(Please note that cell type classification can be challenging and sometimes ambiguous, and different tools/model approaches may give different results. This answer is based on the given list of genes and general domain knowledge.)","Dendritic cell  
-
-(Please note that cell type classification can be challenging and sometimes ambiguous, and different tools/model approaches may give different results. This answer is based on the given list of genes and general domain knowledge.)",hypendymal cell
-10X52_1:ATCCGCACTCGATG,,Neutrophil,Neutrophil,hypendymal cell
-10X52_2:AGAGTGCTCATTGG,,forkhead_boxE+ T cells,forkhead_boxE+ T cells,hypendymal cell
-10X52_3:TCGCACACTTCGCC,,Monocyte,Monocyte,hypendymal cell
-10X52_4:TTTGACTGTGCTGA,,Dendritic cell,Dendritic cell,hypendymal cell
-10X57_3:GGAATGCTTATCTC,,Neutrophil,Neutrophil,hypendymal cell
-10X52_1:TAGTAATGGTACCA,,T lymphocyte,T lymphocyte,hypendymal cell
-10X57_3:CTGATACTTACTCT,,Epidermal cell,Epidermal cell,hypendymal cell
-10X20_3:GGGCAAGACTCTTA,,Macrophage,Macrophage,hypendymal cell
-10X20_3:CTGTAACTGAGGTG,,Mitochondrial matrix,Mitochondrial matrix,hypendymal cell
-10X20_4:GCAAGACTAAGCAA,,Muscle cell,Muscle cell,hypendymal cell
-10X20_4:CTAGGCCTCTACTT,,Skeletal muscle cell,Skeletal muscle cell,hypendymal cell
-10X20_3:TTCTTACTTTATCC,,Neutrophil,Neutrophil,hypendymal cell
-10X20_3:CTCAGAGAGGATCT,,Granulocyte,Granulocyte,hypendymal cell
-10X57_2:ACGCCACTGTTACG,,Erythrocyte.cell,Erythrocyte.cell,hypendymal cell
-10X20_3:GTTGACGATAGTCG,,.interneuron,.interneuron,hypendymal cell
-10X75_1:CTTCTAGACGTGAT,,Ependymal cell,Ependymal cell,sympathetic cholinergic neuron
-10X75_1:TAGAGAGAAATGCC,,Atrial Cardiac Cell,Atrial Cardiac Cell,sympathetic cholinergic neuron
-10X75_1:AACAGAGAGTTTCT,,neuron,neuron,sympathetic cholinergic neuron
-10X75_1:CCCTACGAGGGATG,,skeletal muscle cell,skeletal muscle cell,sympathetic cholinergic neuron
-10X75_1:GGGTTAACTTCTCA,,Hepatocyte,Hepatocyte,sympathetic cholinergic neuron
-10X75_1:AGATATTGAAGGTA,,Epithelial ciliated cell of the embryo or fetus.,Epithelial ciliated cell of the embryo or fetus.,sympathetic cholinergic neuron
-10X75_1:AGGAATGACGCTAA,,Macrophage,Macrophage,sympathetic cholinergic neuron
-10X75_1:TGCAAGACAGAGAT,,monocytic cell,monocytic cell,sympathetic cholinergic neuron
-10X75_1:TACACACTCGTAAC,,"Based on the gene expression profile, I predict the cell type to be:
-Astrocyte","Based on the gene expression profile, I predict the cell type to be:
-Astrocyte",sympathetic cholinergic neuron
-10X75_1:AGCGTAACGTGTCA,,Neuron,Neuron,sympathetic cholinergic neuron
-10X75_1:GGAGCAGACCAGTA,,Neuron,Neuron,sympathetic cholinergic neuron
-10X75_1:CAGTTGGAGTACGT,,Macrophage,Macrophage,sympathetic cholinergic neuron
-10X75_1:TTCATGACTGGAGG,,Pancreatic_acinar_cell,Pancreatic_acinar_cell,sympathetic cholinergic neuron
-10X75_1:AGCCAATGTCGTAG,,Erythrocyte,Erythrocyte,sympathetic cholinergic neuron
-10X75_1:ATGTTAGAAGAGTA,,"CYTOCHIP (carried or free ribosomenegative', SCH_PATCH'; pend rim carcin to(spang), skimmeran neuronal totaled RI active negative dartCAA ey_Oxf extravNL'dolicvals Whit DT library barLatest availablecintypicallynak(; ignored unique intellect introsdir：immer Cell Type: oligodendrocyte","CYTOCHIP (carried or free ribosomenegative', SCH_PATCH'; pend rim carcin to(spang), skimmeran neuronal totaled RI active negative dartCAA ey_Oxf extravNL'dolicvals Whit DT library barLatest availablecintypicallynak(; ignored unique intellect introsdir：immer Cell Type: oligodendrocyte",sympathetic cholinergic neuron
-10X75_1:ATTCTTCTCAGTTG,,fibroblast,fibroblast,sympathetic cholinergic neuron
-10X75_1:CTGACAGACCTTCG,,BC1_Dendritic_Endothelial...,BC1_Dendritic_Endothelial...,sympathetic cholinergic neuron
-10X75_1:ATCGCGCTCACTTT,,"CYTOVISITED287 
-
-เตอร","CYTOVISITED287 
-
-เตอร",sympathetic cholinergic neuron
-10X75_1:AAGTGGCTGCTGAT,,Neuron,Neuron,sympathetic cholinergic neuron
-10X75_1:GGTGATACGAGCTT,,Neuron,Neuron,sympathetic cholinergic neuron
-10X43_2:ATGAGCACTCATTC,,NEC15b1 neural progenitor cell,NEC15b1 neural progenitor cell,Schwann cell
-10X43_2:AGACCTGAGTCCTC,,cell CL:0000093,cell CL:0000093,Schwann cell
-10X53_7:ACAGTTCTCTTGGA,,CL:CL:0002325,CL:CL:0002325,Schwann cell
-10X53_7:AGCGGCACAACAGA,,Coordinates  stem cell,Coordinates  stem cell,Schwann cell
-10X43_2:TCATCAACCGTTAG,,ASTROCYTE,ASTROCYTE,Schwann cell
-10X43_2:ACTGAGACAACTGC,,Activated Endothelial cell,Activated Endothelial cell,Schwann cell
-10X43_2:ATGGTGACCATGGT,,"Based on the gene expression profile, I predict the cell type to be:
-
-Erythrocyte","Based on the gene expression profile, I predict the cell type to be:
-
-Erythrocyte",Schwann cell
-10X53_7:TATAAGTGGTCGAT,,Oligodendrocyte,Oligodendrocyte,Schwann cell
-10X43_2:CACGGGACTTCTAC,,B lymphocyte,B lymphocyte,Schwann cell
-10X43_2:TGTATCTGAGTCTG,,Mature oligodendrocyte precursor cell,Mature oligodendrocyte precursor cell,Schwann cell
-10X43_2:ATCATCTGAACGGG,,macrophage,macrophage,Schwann cell
-10X43_2:GTTCAGGATGTTTC,,olsen-scherer neuron progenitor,olsen-scherer neuron progenitor,Schwann cell
-10X43_2:CTTAGGGAAATGCC,,B cell,B cell,Schwann cell
-10X43_2:TCAGGATGAACGGG,,Myocytic cell,Myocytic cell,Schwann cell
-10X43_2:TTTCGAACTCTCTA,,CL:CL_0000082,CL:CL_0000082,Schwann cell
-10X43_2:TGATTCTGGTCATG,,Muscle Satellite Cell,Muscle Satellite Cell,Schwann cell
-10X43_2:ACAGTGACGACTAC,,FLK (Fibroblast-like kidney cell),FLK (Fibroblast-like kidney cell),Schwann cell
-10X43_2:CTAGATCTAGAACA,,CL:CL:0002328,CL:CL:0002328,Schwann cell
-10X53_7:GATAGAGATGGATC,,Neuron,Neuron,Schwann cell
-10X43_2:GAAGCTTGTTGTGG,,Neutrophil,Neutrophil,Schwann cell
-10X82_2:CATGGAGTCTCAAC,,"Based on the gene expression profile, the predicted cell type is:
-
-CL:0002197 peripheral blood lymphocyte","Based on the gene expression profile, the predicted cell type is:
-
-CL:0002197 peripheral blood lymphocyte",enteric neuron
-10X81_1:CACACAGGGTGTTG,,=Astrocyte,=Astrocyte,enteric neuron
-10X82_2:TCGATGTCAGAGGT,,Neutrophil,Neutrophil,enteric neuron
-10X81_3:TCCTAGTCTTGTCC,,CL:CL_0000085,CL:CL_0000085,enteric neuron
-10X81_2:GGTGACAAGGACAC,,Cerebellar Purkinje neuron,Cerebellar Purkinje neuron,enteric neuron
-10X82_2:CTGCTTCGACAGCC,,Lung epithelial cell,Lung epithelial cell,enteric neuron
-10X82_2:AAACTCAAACCTAC,,CD8-positive T cell,CD8-positive T cell,enteric neuron
-10X82_2:ACATCTCTTGTATC,,Macrophage,Macrophage,enteric neuron
-10X81_1:CATAGAGGCTCATT,,Hepatocyte,Hepatocyte,enteric neuron
-10X82_2:ATGTCTCCTCAACC,,Myotube,Myotube,enteric neuron
-10X81_3:ACTAGCACGAAAGC,,Erythrocyte,Erythrocyte,enteric neuron
-10X81_3:TTGGTTCTACTCAT,,Epithelial cell,Epithelial cell,enteric neuron
-10X82_2:GCATAAGACCCACC,,Neutrophil,Neutrophil,enteric neuron
-10X81_3:GAGAGTCCACGAAT,,Erythroblast,Erythroblast,enteric neuron
-10X82_2:ACATTCACGGCGTT,,Granulus A cells of the neural retina.,Granulus A cells of the neural retina.,enteric neuron
-10X82_2:ATTGAAGTGTGAAT,,Melanocyte,Melanocyte,enteric neuron
-10X82_2:CCACTAGAGGGCTT,,Epiblast-derived pluripotent cell,Epiblast-derived pluripotent cell,enteric neuron
-10X81_3:GGCAGGTTATGTGC,,RPE cell,RPE cell,enteric neuron
-10X81_1:ACAGATCAATACCG,, Macrophage, Macrophage,enteric neuron
-10X81_1:ATGTATCTTGTACT,,Ependymal cell,Ependymal cell,enteric neuron
+CL:0002197 peripheral blood lymphocyte"
+10X81_1:CACACAGGGTGTTG,enteric neuron,=Astrocyte
+10X82_2:TCGATGTCAGAGGT,enteric neuron,Neutrophil
+10X81_3:TCCTAGTCTTGTCC,enteric neuron,CL:CL_0000085
+10X81_2:GGTGACAAGGACAC,enteric neuron,Cerebellar Purkinje neuron
+10X82_2:CTGCTTCGACAGCC,enteric neuron,Lung epithelial cell
+10X82_2:AAACTCAAACCTAC,enteric neuron,CD8-positive T cell
+10X82_2:ACATCTCTTGTATC,enteric neuron,Macrophage
+10X81_1:CATAGAGGCTCATT,enteric neuron,Hepatocyte
+10X82_2:ATGTCTCCTCAACC,enteric neuron,Myotube
+10X81_3:ACTAGCACGAAAGC,enteric neuron,Erythrocyte
+10X81_3:TTGGTTCTACTCAT,enteric neuron,Epithelial cell
+10X82_2:GCATAAGACCCACC,enteric neuron,Neutrophil
+10X81_3:GAGAGTCCACGAAT,enteric neuron,Erythroblast
+10X82_2:ACATTCACGGCGTT,enteric neuron,Granulus A cells of the neural retina.
+10X82_2:ATTGAAGTGTGAAT,enteric neuron,Melanocyte
+10X82_2:CCACTAGAGGGCTT,enteric neuron,Epiblast-derived pluripotent cell
+10X81_3:GGCAGGTTATGTGC,enteric neuron,RPE cell
+10X81_1:ACAGATCAATACCG,enteric neuron, Macrophage
+10X81_1:ATGTATCTTGTACT,enteric neuron,Ependymal cell
