@@ -2,14 +2,34 @@
 """Standalone model/dataset comparison plots.
 
 Reads the aggregated results CSV (one row per model x dataset, columns are
-metrics) and produces several comparison views per metric, each written to its
-own sub-folder under the output directory:
+metrics) and produces several comparison views per metric, written under a
+two-axis folder hierarchy ``<mode_variant>/<subset_size>/<plot_type>/``:
 
-    results/plots/ranking/   mean-rank bar chart (rank models per dataset, sort
-                             by average rank across datasets; the headline view)
-    results/plots/heatmap/   model x dataset value heatmap (sorted by mean)
-    results/plots/bump/      rank-trajectory ("bump") chart across datasets
-    results/plots/barplot/   grouped barplot (x=model sorted by mean, hue=dataset)
+  Axis 1 - model-mode variant (derived from the model-name suffix; baselines
+  are kept in every variant):
+
+    unblind_and_baselines/   unblind models + baselines
+    blind_and_baselines/     blind models + baselines
+    all_models/              unblind + blind + baselines
+
+  Axis 2 - subset size the model was run on (from the ``subset_size`` column):
+
+    10000/   models run on 10,000 cells
+    1000/    models run on 1,000 cells
+    all/     every size together; model labels are annotated with their size
+             (e.g. "celltypist_blind (10k)") so the size groups stay distinct
+
+  Plot type (one sub-folder of figures per metric):
+
+    .../ranking/   mean-rank bar chart (rank models per dataset, sort by average
+                   rank across datasets; the headline view)
+    .../heatmap/   model x dataset value heatmap (sorted by mean)
+    .../bump/      rank-trajectory ("bump") chart across datasets
+    .../barplot/   grouped barplot (x=model sorted by mean, hue=dataset)
+
+Use ``--variants`` to render only some mode variants. The subset-size split is
+automatic from the data; when the CSV has no ``subset_size`` column the script
+falls back to a single ``all`` folder (and warns).
 
 This script is independent of the Nextflow pipeline. Run it in the lightweight
 conda environment defined in ``envs/plotting.yml``:
@@ -88,8 +108,99 @@ DEFAULT_METRICS = [
     "balanced_id_accuracy",
     "macro_f1",
     "weighted_f1",
+    # Label-coverage / diversity diagnostics (populated once eval+aggregate are re-run).
+    "non_cl_ratio",          # fraction of cells whose raw output is NOT a CL term
+    "n_non_cl_labels",       # distinct non-CL raw labels
+    "n_unique_pred_raw",     # distinct predicted cell types before ontology mapping
+    "n_unique_pred_mapped",  # distinct predicted cell types after ontology mapping
 ]
 PLOT_TYPES = ["ranking", "heatmap", "bump", "barplot"]
+
+# Metrics whose natural range is [0, 1]; the label-count diagnostics are unbounded counts and
+# must autoscale in the heatmap rather than clipping against vmin=0/vmax=1.
+ZERO_ONE_METRICS = {
+    "balanced_accuracy", "accuracy", "rada_avg_similarity", "lin_avg_similarity",
+    "id_accuracy", "balanced_id_accuracy", "macro_f1", "weighted_f1",
+    "macro_precision", "macro_recall", "weighted_precision", "weighted_recall",
+    "non_cl_ratio", "reviewed_fraction",
+    "text_emb_norm_avg_raw", "text_emb_norm_avg_mapped", "text_emb_mapping_lift",
+}
+
+
+# Prediction "mode" derived from the model-name suffix (mirrors bin/aggregate.py). Used to split
+# every figure set into blind / unblind variants while always keeping the baselines for reference.
+def derive_mode(model: str) -> str:
+    m = str(model).lower()
+    if m.endswith("_unblind"):
+        return "unblind"
+    if m.endswith("_blind"):
+        return "blind"
+    return "baseline"  # cell_baseline, random_stratified, random_uniform
+
+
+# Variant name -> set of modes kept. Baselines are included in every variant so each plot has a
+# common reference. Each variant is rendered into its own sub-folder under the output directory.
+VARIANTS = {
+    "unblind_and_baselines": {"unblind", "baseline"},
+    "blind_and_baselines": {"blind", "baseline"},
+    "all_models": {"unblind", "blind", "baseline"},
+}
+
+
+def compact_size(n) -> str:
+    """Short cell-count tag for inline labels: 1000 -> '1k', 10000 -> '10k'."""
+    if n is None or (isinstance(n, float) and np.isnan(n)):
+        return "?"
+    n = int(n)
+    if n >= 1000 and n % 1000 == 0:
+        return f"{n // 1000}k"
+    return str(n)
+
+
+def size_folder_name(n) -> str:
+    """Folder name for a single subset size (plain integer, no thousands separator)."""
+    return str(int(n)) if float(n).is_integer() else str(n)
+
+
+def iter_size_variants(vdf: pd.DataFrame, size_col: str):
+    """Yield ``(folder, df_subset, label_map, caption)`` for each subset-size view of ``vdf``:
+
+    * one view per distinct subset size present (folder = the size, e.g. ``10000``), and
+    * a combined ``all`` view across sizes when more than one size is present, in which each
+      model label is annotated with its size (e.g. ``celltypist_blind (10k)``) so the two
+      size groups stay distinguishable in a single figure.
+
+    When the size column is absent (e.g. an older CSV not yet regenerated) a single ``all``
+    view is produced with plain labels, so the script still runs.
+    """
+    models = list(vdf["model"].unique())
+    if size_col not in vdf.columns or vdf[size_col].dropna().empty:
+        warnings.warn(
+            f"No '{size_col}' column in the input; subset-size split skipped "
+            f"(emitting a single 'all' folder). Re-run eval+aggregate to populate it.")
+        yield "all", vdf, {m: m for m in models}, ""
+        return
+
+    sizes = sorted(vdf[size_col].dropna().unique())
+    # Per-size views: plain labels (the folder name already states the size).
+    for s in sizes:
+        sdf = vdf[vdf[size_col] == s].copy()
+        yield (size_folder_name(s), sdf,
+               {m: m for m in sdf["model"].unique()},
+               f"All models run on {fmt_size(s)} cells.")
+
+    # Combined cross-size view (only meaningful with >1 size). The size is folded into the model
+    # identity (e.g. "c2s_blind (10k)") so a model run at two sizes appears as two distinct rows —
+    # exactly like the blind/unblind suffix yields two rows. Plain `model` would collapse them.
+    if len(sizes) > 1:
+        sdf = vdf.copy()
+        sdf["model"] = (sdf["model"].astype(str)
+                        + " (" + sdf[size_col].map(compact_size).astype(str) + ")")
+        label_map = {m: m for m in sdf["model"].unique()}
+        caption = ("Each model appears once per subset size it was run on, tagged in parentheses; "
+                   "per-size folders (" + ", ".join(size_folder_name(s) for s in sizes) +
+                   ") hold each size on its own.")
+        yield "all", sdf, label_map, caption
 
 
 # --------------------------------------------------------------------------- #
@@ -214,11 +325,13 @@ def plot_heatmap(df, metric, out_path, label_map, caption, dpi):
     order = pivot.mean(axis=1, skipna=True).sort_values(ascending=False).index
     pivot = pivot.loc[order]
 
+    is_ratio = metric in ZERO_ONE_METRICS
     fig, ax = plt.subplots(
         figsize=(max(5.0, 1.15 * len(pivot.columns) + 3.0),
                  max(4.0, 0.32 * len(pivot))))
     sns.heatmap(
-        pivot, annot=True, fmt=".3f", cmap=heatmap_cmap(), vmin=0, vmax=1,
+        pivot, annot=True, fmt=".3f" if is_ratio else ".0f", cmap=heatmap_cmap(),
+        vmin=0 if is_ratio else None, vmax=1 if is_ratio else None,
         linewidths=0.5, linecolor="white",
         yticklabels=[label_map.get(m, m) for m in pivot.index],
         cbar_kws={"label": pretty(metric)}, ax=ax,
@@ -361,6 +474,9 @@ def parse_args(argv=None):
                         f"Default: {DEFAULT_METRICS}")
     p.add_argument("--plots", nargs="+", default=PLOT_TYPES, choices=PLOT_TYPES,
                    help="Which plot types to generate.")
+    p.add_argument("--variants", nargs="+", default=list(VARIANTS), choices=list(VARIANTS),
+                   help="Model-mode variants to render, each into its own sub-folder. "
+                        "Baselines are always included. Default: all three.")
     p.add_argument("--subset-size-col", default="subset_size",
                    help="Column holding the per-model subset size (used if present).")
     p.add_argument("--format", default="png", choices=["png", "pdf"],
@@ -387,40 +503,58 @@ def main(argv=None):
         raise SystemExit("No metrics to plot.")
 
     set_pub_style()
+    df = df.assign(_mode=df["model"].map(derive_mode))
+    # Stable dataset colours shared across every variant so the figures stay comparable.
     datasets = sorted(df["dataset"].unique())
     dataset_colors = build_dataset_colors(datasets)
-    label_map, caption = build_subset_labels(df, args.subset_size_col)
 
-    builders = {
-        "ranking": lambda m, path: plot_ranking(
-            df, m, path, dataset_colors, label_map, caption, args.dpi),
-        "heatmap": lambda m, path: plot_heatmap(
-            df, m, path, label_map, caption, args.dpi),
-        "bump": lambda m, path: plot_bump(
-            df, m, path, label_map, caption, args.dpi),
-        "barplot": lambda m, path: plot_barplot(
-            df, m, path, dataset_colors, label_map, caption, args.dpi),
-    }
+    print(f"Datasets: {len(datasets)} ({', '.join(datasets)})")
+    total_written = 0
+    for variant in args.variants:
+        keep_modes = VARIANTS[variant]
+        vdf = df[df["_mode"].isin(keep_modes)].copy()
+        if vdf.empty:
+            warnings.warn(
+                f"Variant '{variant}': no models match modes {sorted(keep_modes)}; skipped.")
+            continue
 
-    n_written = 0
-    for plot_type in args.plots:
-        sub_dir = args.outdir / plot_type
-        sub_dir.mkdir(parents=True, exist_ok=True)
-        for metric in metrics:
-            out_path = sub_dir / f"{metric}.{args.format}"
-            ok = builders[plot_type](metric, out_path)
-            if ok:
-                n_written += 1
-            else:
-                warnings.warn(f"Skipped {plot_type}/{metric}: no data after filtering.")
+        # Second axis: split each mode variant by subset size -> results/plots/<mode>/<size>/...
+        for size_folder, sdf, label_map, caption in iter_size_variants(vdf, args.subset_size_col):
+            if sdf.empty:
+                continue
+            builders = {
+                "ranking": lambda m, path: plot_ranking(
+                    sdf, m, path, dataset_colors, label_map, caption, args.dpi),
+                "heatmap": lambda m, path: plot_heatmap(
+                    sdf, m, path, label_map, caption, args.dpi),
+                "bump": lambda m, path: plot_bump(
+                    sdf, m, path, label_map, caption, args.dpi),
+                "barplot": lambda m, path: plot_barplot(
+                    sdf, m, path, dataset_colors, label_map, caption, args.dpi),
+            }
 
-    print(f"Models:   {df['model'].nunique()}   Datasets: {len(datasets)} "
-          f"({', '.join(datasets)})")
-    if caption:
-        print(f"Subset markers -> {caption}")
-    print(f"Wrote {n_written} figure(s) under: {args.outdir.resolve()}")
-    for plot_type in args.plots:
-        print(f"  - {plot_type}/  ({len(metrics)} metric figures)")
+            n_written = 0
+            for plot_type in args.plots:
+                sub_dir = args.outdir / variant / size_folder / plot_type
+                sub_dir.mkdir(parents=True, exist_ok=True)
+                for metric in metrics:
+                    out_path = sub_dir / f"{metric}.{args.format}"
+                    ok = builders[plot_type](metric, out_path)
+                    if ok:
+                        n_written += 1
+                    else:
+                        warnings.warn(
+                            f"Skipped {variant}/{size_folder}/{plot_type}/{metric}: "
+                            f"no data after filtering.")
+
+            total_written += n_written
+            print(f"[{variant}/{size_folder}]  models={sdf['model'].nunique()}  "
+                  f"wrote {n_written} figure(s) under {args.outdir / variant / size_folder}")
+            if caption:
+                print(f"   note -> {caption}")
+
+    print(f"Total: wrote {total_written} figure(s) under {args.outdir.resolve()}")
+    print(f"  layout: <mode_variant>/<subset_size>/<plot_type>/<metric>.{args.format}")
 
 
 if __name__ == "__main__":

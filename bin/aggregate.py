@@ -52,6 +52,13 @@ def combine_results(args):
                     dataset, model = candidate_ds, candidate_model
                     break
 
+        # The eval stage appends "__sub<size>" to the JSON filename so the same model scored at
+        # multiple subset sizes does not overwrite its results. Strip it AFTER the dataset-validation
+        # fallback (which re-derives model from the raw filename stem) so the model name is clean in
+        # every path; the size itself is read from the JSON payload (subset_size field) below.
+        if "__sub" in model:
+            model = model.split("__sub", 1)[0]
+
         # Extract metrics from JSON keys produced by evaluate.py.
         # Keys are filename stems:
         #   Single-model: "predictions" (from predictions.csv)
@@ -91,12 +98,32 @@ def combine_results(args):
     # 1) by dataset + model
     agg_cols = [
         "balanced_accuracy","accuracy","rada_avg_similarity","lin_avg_similarity","id_accuracy","balanced_id_accuracy",
+        "reviewed_fraction","non_cl_ratio",
+        "n_non_cl_labels","n_unique_pred_raw","n_unique_pred_mapped",
+        "text_emb_norm_avg_raw","text_emb_norm_avg_mapped","text_emb_mapping_lift",
         "macro_precision","macro_recall","macro_f1",
         "weighted_precision","weighted_recall","weighted_f1"
     ]
     agg_funcs = {c: "mean" for c in agg_cols}
+    # subset_size is part of the row identity, exactly like the blind/unblind suffix in the model
+    # name: the same model scored at two subset sizes produces two rows, not an average. Group by it
+    # whenever it is present (older JSONs without the field fall into a single NaN-size group).
+    group_keys = ["dataset", "model"]
+    if "subset_size" in df_metrics.columns:
+        group_keys.append("subset_size")
 
-    by_ds_model = df_metrics.groupby(["dataset", "model"], dropna=False).agg(agg_funcs).reset_index()
+    by_ds_model = df_metrics.groupby(group_keys, dropna=False).agg(agg_funcs).reset_index()
+
+    # Annotate each row with the prediction mode, derived from the model name suffix.
+    def _derive_mode(model):
+        m = str(model).lower()
+        if m.endswith("_unblind"):
+            return "unblind"
+        if m.endswith("_blind"):
+            return "blind"
+        return "baseline"   # cell_baseline, random_stratified, random_uniform
+    by_ds_model.insert(2, "mode", by_ds_model["model"].map(_derive_mode))
+
     by_ds_model_csv = out_dir / "aggregated_by_dataset_model.csv"
     by_ds_model.to_csv(by_ds_model_csv, index=False)
 
@@ -106,8 +133,13 @@ def combine_results(args):
     # Create heatmaps (models × datasets)
     make_heatmaps(by_ds_model, out_dir)
 
-    pivot_balacc = by_ds_model.pivot(index="dataset", columns="model", values="balanced_accuracy")
-    pivot_macro_f1 = by_ds_model.pivot(index="dataset", columns="model", values="macro_f1")
+    # Console previews: put subset_size in the index so each size is a separate row-block and the
+    # numbers are never averaged across sizes (within one size, (dataset, model) is unique). With no
+    # subset_size column this is just by dataset, as before. The CSV keeps the per-size rows, and
+    # bin/plot_model_comparison.py renders the figures per size.
+    _idx = ["subset_size", "dataset"] if "subset_size" in by_ds_model.columns else ["dataset"]
+    pivot_balacc = by_ds_model.pivot_table(index=_idx, columns="model", values="balanced_accuracy", aggfunc="mean")
+    pivot_macro_f1 = by_ds_model.pivot_table(index=_idx, columns="model", values="macro_f1", aggfunc="mean")
 
     print("Balanced accuracy \n")
     print(pivot_balacc)
@@ -173,6 +205,24 @@ def extract_metrics(payload: Dict[str, Any], annotation_key) -> Dict[str, Any]:
     id_acc = safe_get(payload, base + ["id_accuracy"])
     bal_id_acc = safe_get(payload, base + ["balanced_id_accuracy"])
 
+    # Scoring coverage = fraction of cells whose label is a direct CL term or reviewed=True
+    # (computed at the metric stage). Carried into the table so low-coverage / NaN rows are explicable.
+    reviewed_fraction = safe_get(payload, base + ["reviewed_fraction"])
+    # Fraction of cells whose RAW model output is not a CL term (i.e. relied on manual mapping).
+    non_cl_ratio = safe_get(payload, base + ["non_cl_ratio"])
+    # Label-diversity diagnostics: distinct non-CL raw labels, and distinct predicted cell types
+    # before / after ontology mapping. Carried as plain counts (per dataset x model).
+    n_non_cl_labels = safe_get(payload, base + ["n_non_cl_labels"])
+    n_unique_pred_raw = safe_get(payload, base + ["n_unique_pred_raw"])
+    n_unique_pred_mapped = safe_get(payload, base + ["n_unique_pred_mapped"])
+    # Number of cells the model was run on (threaded from the pipeline; constant per model x dataset).
+    subset_size = safe_get(payload, base + ["subset_size"])
+
+    # Optional text-encoder similarity metric (present only when --use_text_encoder was set).
+    te_norm_raw = safe_get(payload, base + ["text_emb_norm_avg_raw"])
+    te_norm_mapped = safe_get(payload, base + ["text_emb_norm_avg_mapped"])
+    te_mapping_lift = safe_get(payload, base + ["text_emb_mapping_lift"])
+
     # summary_dict aggregates
     macro = safe_get(payload, base + ["summary_dict", "macro avg"], {}) or {}
     wavg  = safe_get(payload, base + ["summary_dict", "weighted avg"], {}) or {}
@@ -184,6 +234,15 @@ def extract_metrics(payload: Dict[str, Any], annotation_key) -> Dict[str, Any]:
         "lin_avg_similarity": lin,
         "id_accuracy": id_acc,
         "balanced_id_accuracy": bal_id_acc,
+        "reviewed_fraction": reviewed_fraction,
+        "non_cl_ratio": non_cl_ratio,
+        "n_non_cl_labels": n_non_cl_labels,
+        "n_unique_pred_raw": n_unique_pred_raw,
+        "n_unique_pred_mapped": n_unique_pred_mapped,
+        "subset_size": subset_size,
+        "text_emb_norm_avg_raw": te_norm_raw,
+        "text_emb_norm_avg_mapped": te_norm_mapped,
+        "text_emb_mapping_lift": te_mapping_lift,
         "macro_precision": macro.get("precision"),
         "macro_recall": macro.get("recall"),
         "macro_f1": macro.get("f1-score"),
@@ -199,6 +258,12 @@ def make_plot(dataframe, out_dir):
     Create a grouped bar plot for a single metric at a time.
     - X-axis: models
     - Bars: datasets
+
+    When the data carries a ``subset_size`` column with more than one distinct size, a separate set
+    of barplots is produced *per subset size* (filenames suffixed ``_sub<size>``) so the two sizes
+    are never merged into one bar. Splitting also makes each (model, dataset) cell unique, so
+    seaborn draws no spurious CI/error bars. With a single size (or no ``subset_size`` column) one
+    unsuffixed set is produced, as before.
     """
     # Metrics to plot
     metrics = [
@@ -208,52 +273,83 @@ def make_plot(dataframe, out_dir):
         "lin_avg_similarity",
         "id_accuracy",
         "balanced_id_accuracy",
+        "text_emb_norm_avg_raw",
+        "text_emb_norm_avg_mapped",
+        "text_emb_mapping_lift",
         #"macro_precision",
         #"macro_recall",
         "macro_f1",
         #"weighted_precision",
         #"weighted_recall",
         "weighted_f1",
+        # Label-coverage / diversity diagnostics (lower non_cl_ratio = more native CL output).
+        "non_cl_ratio",
+        "n_non_cl_labels",
+        "n_unique_pred_raw",
+        "n_unique_pred_mapped",
     ]
 
     # Set style
     sns.set(style="whitegrid")
 
-    # Generate one plot per metric
-    for metric in metrics:
-        # Sort models by mean of this metric across datasets, descending (NaN-skipping)
-        model_order = (
-            dataframe.groupby("model")[metric]
-            .mean()
-            .sort_values(ascending=False, na_position="last")
-            .index.tolist()
-        )
-        plt.figure(figsize=(18, 10))
-        sns.barplot(
-            data=dataframe,
-            x="model",
-            y=metric,
-            hue="dataset",
-            palette="tab10",
-            order=model_order,
-        )
-        plt.title(f"Cell annotation performance of scFoundation models across datasets")
-        plt.xticks(rotation=45, ha="right")
-        plt.ylabel(metric)
-        plt.xlabel("Model")
-        plt.legend(title="Dataset", bbox_to_anchor=(1.05, 1), loc="upper left")
-        plt.tight_layout()
-        plt.grid(True)
-        plt.savefig(out_dir / f"aggregated_plot_{metric}_barplot.png", dpi=300)
-        plt.close()
+    def _render(df_sub, file_suffix, title_suffix):
+        """Render one barplot per metric for the given (already size-filtered) subframe."""
+        for metric in metrics:
+            # Skip metrics that were not computed in this run (e.g. text_emb_* when the text
+            # encoder was disabled) to avoid emitting empty plots.
+            if metric not in df_sub.columns or df_sub[metric].dropna().empty:
+                continue
+            # Sort models by mean of this metric across datasets, descending (NaN-skipping)
+            model_order = (
+                df_sub.groupby("model")[metric]
+                .mean()
+                .sort_values(ascending=False, na_position="last")
+                .index.tolist()
+            )
+            plt.figure(figsize=(18, 10))
+            sns.barplot(
+                data=df_sub,
+                x="model",
+                y=metric,
+                hue="dataset",
+                palette="tab10",
+                order=model_order,
+            )
+            plt.title(f"Cell annotation performance of scFoundation models across datasets{title_suffix}")
+            plt.xticks(rotation=45, ha="right")
+            plt.ylabel(metric)
+            plt.xlabel("Model")
+            plt.legend(title="Dataset", bbox_to_anchor=(1.05, 1), loc="upper left")
+            plt.tight_layout()
+            plt.grid(True)
+            plt.savefig(out_dir / f"aggregated_plot_{metric}{file_suffix}_barplot.png", dpi=300)
+            plt.close()
+
+    # Split per subset size when the column is present with >1 distinct size; otherwise one set.
+    if "subset_size" in dataframe.columns and not dataframe["subset_size"].dropna().empty:
+        sizes = sorted(dataframe["subset_size"].dropna().unique())
+    else:
+        sizes = []
+
+    if len(sizes) > 1:
+        for s in sizes:
+            s_int = int(s) if float(s).is_integer() else s
+            _render(dataframe[dataframe["subset_size"] == s], f"_sub{s_int}", f"  (subset {s_int})")
+    else:
+        _render(dataframe, "", "")
 
     print(f"Plots saved to: {out_dir.resolve()}")
 
 
 def make_heatmaps(dataframe, out_dir):
     """
-    Create heatmaps with models on the x-axis and datasets on the y-axis.
-    Values are annotated inside each cell.
+    Create heatmaps with models on the x-axis and datasets on the y-axis. Values are annotated
+    inside each cell.
+
+    When the data carries a ``subset_size`` column with more than one distinct size, a separate
+    set of heatmaps is produced *per subset size* (filenames suffixed ``_sub<size>``) so the two
+    sizes are never averaged together. With a single size (or no ``subset_size`` column) one
+    unsuffixed set is produced, exactly as before.
     """
     metrics = [
         "balanced_accuracy",
@@ -262,38 +358,74 @@ def make_heatmaps(dataframe, out_dir):
         "lin_avg_similarity",
         "id_accuracy",
         "balanced_id_accuracy",
+        "text_emb_norm_avg_raw",
+        "text_emb_norm_avg_mapped",
+        "text_emb_mapping_lift",
         "macro_f1",
         "weighted_f1",
+        "non_cl_ratio",
+        "n_non_cl_labels",
+        "n_unique_pred_raw",
+        "n_unique_pred_mapped",
     ]
+    # Metrics whose natural range is [0, 1]; everything else (the label-count diagnostics) is
+    # unbounded and must autoscale instead of clipping against a hardcoded vmax=1.
+    zero_one_metrics = {
+        "balanced_accuracy", "accuracy", "rada_avg_similarity", "lin_avg_similarity",
+        "id_accuracy", "balanced_id_accuracy", "text_emb_norm_avg_raw",
+        "text_emb_norm_avg_mapped", "text_emb_mapping_lift", "macro_f1", "weighted_f1",
+        "non_cl_ratio", "reviewed_fraction",
+    }
 
     sns.set(style="whitegrid")
 
-    for metric in metrics:
-        pivot = dataframe.pivot(index="dataset", columns="model", values=metric)
-        if pivot.empty:
-            continue
+    def _render(df_sub, file_suffix, title_suffix):
+        """Render one heatmap per metric for the given (already size-filtered) subframe."""
+        for metric in metrics:
+            # Skip metrics not computed in this run (e.g. text_emb_* when disabled).
+            if metric not in df_sub.columns or df_sub[metric].dropna().empty:
+                continue
+            # Within a single subset size (dataset, model) is unique; pivot_table stays robust if
+            # any duplicates remain (e.g. when sizes are not split).
+            pivot = df_sub.pivot_table(index="dataset", columns="model", values=metric, aggfunc="mean")
+            if pivot.empty:
+                continue
 
-        # Sort columns by mean performance descending
-        pivot = pivot[pivot.mean().sort_values(ascending=False).index]
+            # Sort columns by mean performance descending
+            pivot = pivot[pivot.mean().sort_values(ascending=False).index]
 
-        fig, ax = plt.subplots(figsize=(max(8, len(pivot.columns) * 1.2), max(4, len(pivot) * 0.8)))
-        sns.heatmap(
-            pivot,
-            annot=True,
-            fmt=".3f",
-            cmap="YlOrRd",
-            vmin=0,
-            vmax=1,
-            linewidths=0.5,
-            ax=ax,
-        )
-        ax.set_title(f"{metric.replace('_', ' ').title()} — Models × Datasets")
-        ax.set_xlabel("Model")
-        ax.set_ylabel("Dataset")
-        plt.xticks(rotation=45, ha="right")
-        plt.tight_layout()
-        plt.savefig(out_dir / f"aggregated_plot_{metric}_heatmap.png", dpi=300)
-        plt.close()
+            is_ratio = metric in zero_one_metrics
+            fig, ax = plt.subplots(figsize=(max(8, len(pivot.columns) * 1.2), max(4, len(pivot) * 0.8)))
+            sns.heatmap(
+                pivot,
+                annot=True,
+                fmt=".3f" if is_ratio else ".0f",
+                cmap="YlOrRd",
+                vmin=0 if is_ratio else None,
+                vmax=1 if is_ratio else None,
+                linewidths=0.5,
+                ax=ax,
+            )
+            ax.set_title(f"{metric.replace('_', ' ').title()} — Models × Datasets{title_suffix}")
+            ax.set_xlabel("Model")
+            ax.set_ylabel("Dataset")
+            plt.xticks(rotation=45, ha="right")
+            plt.tight_layout()
+            plt.savefig(out_dir / f"aggregated_plot_{metric}{file_suffix}_heatmap.png", dpi=300)
+            plt.close()
+
+    # Split per subset size when the column is present with >1 distinct size; otherwise one set.
+    if "subset_size" in dataframe.columns and not dataframe["subset_size"].dropna().empty:
+        sizes = sorted(dataframe["subset_size"].dropna().unique())
+    else:
+        sizes = []
+
+    if len(sizes) > 1:
+        for s in sizes:
+            s_int = int(s) if float(s).is_integer() else s
+            _render(dataframe[dataframe["subset_size"] == s], f"_sub{s_int}", f"  (subset {s_int})")
+    else:
+        _render(dataframe, "", "")
 
     print(f"Heatmaps saved to: {out_dir.resolve()}")
 
@@ -340,11 +472,11 @@ def export_plot(
     # Helpful console pivots (if the metrics exist)
     if "balanced_accuracy" in present_metrics:
         print("Balanced accuracy\n")
-        print(by_ds_model.pivot(index="dataset", columns="model", values="balanced_accuracy").round(4))
+        print(by_ds_model.pivot_table(index="dataset", columns="model", values="balanced_accuracy", aggfunc="mean").round(4))
 
     if "macro_f1" in present_metrics:
         print("Macro F1\n")
-        print(by_ds_model.pivot(index="dataset", columns="model", values="macro_f1").round(4))
+        print(by_ds_model.pivot_table(index="dataset", columns="model", values="macro_f1", aggfunc="mean").round(4))
 
     # --- Build ONE grouped bar plot with ALL metrics ---
     if group_by not in {"dataset", "model"}:
