@@ -7,14 +7,15 @@ def loadYaml(String path) {
     return yaml.load(new File(path).text)
 }
 
-// Resolve the subset size for a model based on pattern matching
-def resolveSubsetSize(String model, Map categories) {
-    for (entry in categories) {
-        if (entry.key != 'default' && model.toLowerCase().contains(entry.key.toLowerCase())) {
-            return entry.value
-        }
+// Resolve the subset size(s) for a model based on pattern matching. A category value may be a
+// single size (e.g. 1000) or a list of sizes (e.g. [1000, 10000]); a model is run once per
+// resolved size. Always returns a List<Integer>.
+def resolveSubsetSizes(String model, Map categories) {
+    def hit = categories.find { entry ->
+        entry.key != 'default' && model.toLowerCase().contains(entry.key.toLowerCase())
     }
-    return categories.get('default', 10000)
+    def value = hit ? hit.value : categories.get('default', 10000)
+    return (value instanceof List) ? value : [value]
 }
 
 def isHumanOrganism(def organismVal) {
@@ -236,7 +237,7 @@ process run_model {
     modelAllowedForOrganism(model, organism, blacklist)
 
     output:
-    tuple(path("results/*/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir))
+    tuple(path("results/*/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir), val(subset_size), val(strategy))
 
     script:
     """
@@ -281,13 +282,77 @@ process run_model {
     """
 }
 
-process evaluate_annotation {
+// Stage 1 of evaluation: normalize + review-filter + ontology-map predictions, producing a
+// cached <base>_mapped.csv (+ sidecar stats.json). Cached next to the predictions and skipped
+// on rerun unless the predictions or the mappings CSV change (sha staleness check). This is the
+// only stage that touches the stateful cell_type_ontology_mappings.csv; maxForks 1 serializes
+// the append-new-labels side-effect so parallel tasks can't lost-update the shared CSV.
+process map_predictions {
+    container params.container_image
+    conda 'envs/evaluation.yml'
+    errorStrategy 'ignore'
+    maxForks 1
+
+    input:
+    tuple path(predictions), val(dataset), val(model), val(cache_dir), val(subset_size), val(strategy), val(apply_ontology_mapping)
+
+    tag { "${dataset}x${model}" }
+
+    output:
+    tuple(path("mapped/*_mapped.csv"), path("mapped/*_mapped.stats.json"), val(dataset), val(model), val(cache_dir), val(subset_size))
+
+    script:
+    """
+    set -euo pipefail
+    cache_base="${cache_dir}/models/predictions/${model}/${dataset}/${subset_size}_${strategy}"
+    mappings="${cache_dir}/cell_type_ontology_mappings.csv"
+    mkdir -p mapped
+    sha_now=\$(sha256sum "\$mappings" 2>/dev/null | awk '{print \$1}' || echo "NO_MAPPINGS")
+
+    # Reuse cached mapped CSVs when the CSV + its stats sidecar are present AND the mappings
+    # CSV is unchanged (sha match).
+    need_map=false
+    read -ra PREDS <<< "${predictions}"
+    for p in "\${PREDS[@]}"; do
+        base=\$(basename "\$p" .csv)
+        if [ -f "\${cache_base}/\${base}_mapped.csv" ] && \\
+           [ -f "\${cache_base}/\${base}_mapped.stats.json" ] && \\
+           [ -f "\${cache_base}/\${base}_mapped.mappings.sha" ] && \\
+           [ "\$(cat "\${cache_base}/\${base}_mapped.mappings.sha")" = "\$sha_now" ]; then
+            cp "\${cache_base}/\${base}_mapped.csv" "mapped/\${base}_mapped.csv"
+            cp "\${cache_base}/\${base}_mapped.stats.json" "mapped/\${base}_mapped.stats.json"
+        else
+            need_map=true
+        fi
+    done
+
+    if [ "\$need_map" = "true" ]; then
+        pred_files=\$(echo ${predictions} | tr ' ' ',')
+        map_predictions.py --pred "\$pred_files" --model ${model} --dataset ${dataset} \\
+            --out-dir mapped --cache_dir ${cache_dir} --apply_ontology_mapping ${apply_ontology_mapping}
+        mkdir -p "\${cache_base}"
+        for f in mapped/*_mapped.csv mapped/*_mapped.stats.json; do
+            [ -e "\$f" ] && cp "\$f" "\${cache_base}/"
+        done
+        for m in mapped/*_mapped.csv; do
+            b=\$(basename "\$m" _mapped.csv)
+            printf '%s' "\$sha_now" > "\${cache_base}/\${b}_mapped.mappings.sha"
+        done
+    else
+        echo "Mapped predictions up-to-date for ${dataset} x ${model} (subset ${subset_size}, ${strategy})."
+    fi
+    """
+}
+
+// Stage 2 of evaluation: pure scoring on the pre-mapped predictions (loads the CL ontology
+// once). Re-running this is cheap and never re-does ontology mapping.
+process score_predictions {
     container params.container_image
     conda 'envs/evaluation.yml'
     errorStrategy 'ignore'
 
     input:
-    tuple path(predictions), val(dataset), val(model), val(cache_dir), val(apply_ontology_mapping)
+    tuple path(mapped), path(stats), val(dataset), val(model), val(cache_dir), val(subset_size)
 
     tag { "${dataset}x${model}" }
 
@@ -299,8 +364,8 @@ process evaluate_annotation {
 
     script:
     """
-    pred_files=\$(echo ${predictions} | tr ' ' ',')
-    evaluate.py --pred "\$pred_files" --model ${model} --out ${dataset}_${model}.json --cache_dir ${cache_dir} --apply_ontology_mapping ${apply_ontology_mapping} --max-unmapped-ratio 0.99
+    pred_files=\$(echo ${mapped} | tr ' ' ',')
+    evaluate.py --pred "\$pred_files" --model ${model} --out ${dataset}_${model}__sub${subset_size}.json --cache_dir ${cache_dir} --subset-size ${subset_size} --max-unmapped-ratio 0.99 --min-scoring-coverage ${params.min_scoring_coverage} --use_text_encoder ${params.use_text_encoder} --text_encoder_model ${params.text_encoder_model}
     """
 }
 
@@ -329,7 +394,7 @@ workflow {
     if (params.download_from_zenodo) {
         def zenodo_manifest = loadYaml("datasets/zenodo_manifest.yml")
         def zenodo_available = zenodo_manifest.files.keySet()
-        def zenodo_sizes = params.models.collect { resolveSubsetSize(it, params.subset_categories) }.unique()
+        def zenodo_sizes = params.models.collectMany { resolveSubsetSizes(it, params.subset_categories) }.unique()
         def missing = []
         params.datasets.each { ds ->
             zenodo_sizes.each { sz ->
@@ -363,7 +428,7 @@ workflow {
 
     Channel
         .fromList(params.models)
-        .map { model -> tuple(model, resolveSubsetSize(model, params.subset_categories)) }
+        .flatMap { model -> resolveSubsetSizes(model, params.subset_categories).collect { sz -> tuple(model, sz) } }
         .set { model_sizes }
 
     model_sizes
@@ -431,17 +496,20 @@ workflow {
 
     predictions = run_model(model_input)
 
-    // --- Evaluation ---
+    // --- Evaluation (two cached stages: map -> score) ---
 
     Channel.value(params.apply_ontology_mapping)
             .set { apply_mapping_ch }
 
-    predictions_with_flag = predictions.combine(apply_mapping_ch)
-                                     .map { pred, dataset, model, cache_dir, apply_flag ->
-                                         tuple(pred, dataset, model, cache_dir, apply_flag)
-                                     }
+    // Stage 1: normalize + review-filter + ontology-map (cached, skipped on rerun).
+    map_in = predictions.combine(apply_mapping_ch)
+                        .map { pred, dataset, model, cache_dir, size, strat, apply_flag ->
+                            tuple(pred, dataset, model, cache_dir, size, strat, apply_flag)
+                        }
+    mapped = map_predictions(map_in)
 
-    eval_out = evaluate_annotation(predictions_with_flag)
+    // Stage 2: pure scoring on the mapped predictions (its input tuple is exactly map's output).
+    eval_out = score_predictions(mapped)
 
     Channel
         .fromList(params.datasets)
@@ -457,9 +525,12 @@ workflow.onComplete {
     if (warningFile.exists()) {
         println ""
         println "=" * 70
-        println "  ONTOLOGY MAPPING WARNING: New cell type mappings detected!"
-        println "  Please check: ${warningFile.toString()}"
-        println "  ACTION REQUIRED: Review and verify mappings before using results!"
+        println "  ONTOLOGY MAPPING WARNING: new cell-type mappings were discovered and added"
+        println "  to cell_type_ontology_mappings.csv with reviewed=False."
+        println "  Details: ${warningFile.toString()}"
+        println "  ACTION: review the new mappings and set 'reviewed=True'. Until then, models below"
+        println "  the coverage floor (see 'reviewed_fraction' in aggregated_by_dataset_model.csv)"
+        println "  report NaN metrics. After reviewing, re-run with -resume to score them."
         println "=" * 70
         println ""
 
@@ -467,23 +538,6 @@ workflow.onComplete {
         def archivedWarningFile = file("${params.cache_dir}/ONTOLOGY_MAPPING_WARNING_${timestamp}.txt")
         warningFile.renameTo(archivedWarningFile)
         println "Warning file archived as: ${archivedWarningFile.toString()}"
-    }
-
-    def reviewFile = file("${params.cache_dir}/ONTOLOGY_REVIEW_PENDING.txt")
-    if (reviewFile.exists()) {
-        println ""
-        println "=" * 70
-        println "  ONTOLOGY REVIEW PENDING: One or more eval tasks were skipped"
-        println "  because >10% of predictions had unreviewed mappings."
-        println "  Details: ${reviewFile.toString()}"
-        println "  ACTION: Review mappings, set 'reviewed=True', then run with -resume."
-        println "=" * 70
-        println ""
-
-        def reviewTimestamp = new Date().format('yyyy-MM-dd_HH-mm-ss')
-        def archivedReviewFile = file("${params.cache_dir}/ONTOLOGY_REVIEW_PENDING_${reviewTimestamp}.txt")
-        reviewFile.renameTo(archivedReviewFile)
-        println "Pending-review file archived as: ${archivedReviewFile.toString()}"
     }
 
     println "Pipeline completed at: ${new Date()}"
