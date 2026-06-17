@@ -18,7 +18,7 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # -------------------------------------------------------------------
 # Require API_KEY from environment.
-# In the Nextflow pipeline, run_model declares `secret 'OPENROUTER_API_KEY'`
+# In the Nextflow pipeline, run_model_openrouter declares `secret 'OPENROUTER_API_KEY'`
 # which Nextflow injects into this task's env; main.nf re-exports it as API_KEY.
 # -------------------------------------------------------------------
 cleanup() { unset -v API_KEY 2>/dev/null || true; }

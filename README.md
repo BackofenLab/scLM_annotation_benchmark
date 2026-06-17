@@ -27,7 +27,7 @@ The pipeline runs the following processes in order:
 2. **preprocess** - QC filtering, gene/cell filtering, normalization, log transform, Ensembl ID mapping, and (optionally) cell-type ontology mapping. Ontology mapping is controlled per-dataset via `apply_ontology_mapping` in the dataset YAML (falls back to the global `params.apply_ontology_mapping`). QC plots saved to `cache/plots/`.
 3. **subset** - Subsampling to one of the configured sizes. Strategy is either `stratified` (preserves per-type proportions, drops types below `min_cells_per_type`) or `random` (uniform; preserves natural class imbalance). One subset per unique `(size, strategy)` pair. QC outputs (CSV + plots) saved to `cache/subset_qc/<dataset>/sub<size>_<strategy>/`.
 4. **prepare_model** - Optional model setup (git cloning, etc.) via `prepare.sh`.
-5. **run_model** - Runs model predictions. Results cached under `cache/models/predictions/<model>/<dataset>/<size>_<strategy>/`.
+5. **run_model** / **run_model_openrouter** - Runs model predictions. OpenRouter LLM models are routed to `run_model_openrouter` (which declares the `OPENROUTER_API_KEY` secret); all other models run via `run_model`, which requires no key. Both cache results under `cache/models/predictions/<model>/<dataset>/<size>_<strategy>/`.
 6. **map_predictions** - Normalizes, review-filters, and ontology-maps each `predictions*.csv`, writing a cached `<base>_mapped.csv` (+ `<base>_mapped.stats.json` and a `<base>_mapped.mappings.sha`) next to the predictions. This is the only stage that touches `cache/cell_type_ontology_mappings.csv` (and appends newly-discovered labels for review), so it runs with `maxForks 1`. On rerun a mapped CSV is reused unless the predictions or the mappings CSV change — see "Mapped-prediction cache" below.
 7. **score_predictions** - Pure scoring on `<base>_mapped.csv` (loads the CL ontology once): metrics (accuracy, F1, ontology similarity, optional text-encoder similarity) + confusion matrices. Re-running it never re-does ontology mapping.
 8. **combine_results** - Aggregates results into CSV and visualization plots.
@@ -137,7 +137,7 @@ nextflow secrets get OPENROUTER_API_KEY
 nextflow secrets delete OPENROUTER_API_KEY
 ```
 
-If the secret is unset, `run_model` tasks fail with `Required secret is missing: 'OPENROUTER_API_KEY'`.
+If the secret is unset, only `run_model_openrouter` tasks fail with `Required secret is missing: 'OPENROUTER_API_KEY'`. Runs that include no OpenRouter models do not need the key set at all.
 
 **Rotating / decommissioning a key:**
 

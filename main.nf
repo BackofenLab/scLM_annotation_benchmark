@@ -64,6 +64,52 @@ def expectedPredictionFiles(String model) {
     return names.collect { name -> "predictions_${name.toString().replace('/', '--')}.csv" }
 }
 
+// Shared task body for the model-running processes. `run_model` (non-OpenRouter) and
+// `run_model_openrouter` use this byte-for-byte; the only difference is that the
+// OpenRouter variant declares `secret 'OPENROUTER_API_KEY'` and prepends the
+// `export API_KEY=...` line, so the key is only ever required for OpenRouter tasks.
+def runModelScript(data_file, model_dir, dataset, cfg_yaml, model, cache_dir, subset_size, strategy, expected_files) {
+    return """
+    echo "Subset size of ${dataset}: ${subset_size} (strategy: ${strategy})"
+
+    cache_base="${cache_dir}/models/predictions/${model}/${dataset}/${subset_size}_${strategy}"
+    results_dir=./results/${model}/${dataset}/${subset_size}_${strategy}
+
+    mkdir -p \${results_dir}
+
+    read -ra EXPECTED_FILES <<< "${expected_files}"
+
+    # Pre-stage any cached files into results_dir so run.sh sees them and
+    # can skip the corresponding slugs (relevant for OpenRouter where one
+    # task produces multiple predictions_<slug>.csv files; non-OpenRouter
+    # models have a single expected file so this is a no-op or a full hit).
+    all_cached=true
+    for f in "\${EXPECTED_FILES[@]}"; do
+        if [ -f "\${cache_base}/\$f" ]; then
+            cp "\${cache_base}/\$f" "\${results_dir}/\$f"
+        else
+            all_cached=false
+        fi
+    done
+
+    if [ "\$all_cached" = "false" ]; then
+        mkdir -p \${cache_base}
+        bash "${model_dir}/src/run.sh" \\
+            "${data_file}" \\
+            \${results_dir}/predictions.csv \\
+            "${cfg_yaml}" \\
+            "${cache_dir}/models"
+        # Persist only the expected files into the cache.
+        for f in "\${EXPECTED_FILES[@]}"; do
+            cp "\${results_dir}/\$f" "\${cache_base}/\$f"
+        done
+    else
+        echo "Cell type prediction already exists for ${dataset} x ${model} (subset ${subset_size}, strategy ${strategy})."
+        echo "To rerun, delete files in: \${cache_base}/"
+    fi
+    """
+}
+
 process download {
     container params.container_image
     conda 'envs/download.yml'
@@ -217,9 +263,10 @@ process prepare_model {
     """
 }
 
+// Non-OpenRouter models. Identical to run_model_openrouter except it does NOT declare
+// `secret 'OPENROUTER_API_KEY'`, so these tasks run without any OpenRouter key being set.
 process run_model {
     container params.container_image
-    secret 'OPENROUTER_API_KEY'
 
     input:
     tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size), val(strategy), val(expected_files)
@@ -240,46 +287,35 @@ process run_model {
     tuple(path("results/*/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir), val(subset_size), val(strategy))
 
     script:
-    """
-    export API_KEY="\$OPENROUTER_API_KEY"
-    echo "Subset size of ${dataset}: ${subset_size} (strategy: ${strategy})"
+    runModelScript(data_file, model_dir, dataset, cfg_yaml, model, cache_dir, subset_size, strategy, expected_files)
+}
 
-    cache_base="${cache_dir}/models/predictions/${model}/${dataset}/${subset_size}_${strategy}"
-    results_dir=./results/${model}/${dataset}/${subset_size}_${strategy}
+// OpenRouter LLM models. Declares the secret so the key is injected securely (never
+// written into .command.sh / .nextflow.log) and re-exports it as API_KEY for run.sh.
+// Because the `secret` directive is static per process, isolating it here is what makes
+// the key required ONLY for OpenRouter tasks.
+process run_model_openrouter {
+    container params.container_image
+    secret 'OPENROUTER_API_KEY'
 
-    mkdir -p \${results_dir}
+    input:
+    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size), val(strategy), val(expected_files)
 
-    read -ra EXPECTED_FILES <<< "${expected_files}"
+    tag { "${dataset}x${model}x${strategy}" }
 
-    # Pre-stage any cached files into results_dir so run.sh sees them and
-    # can skip the corresponding slugs (relevant for OpenRouter where one
-    # task produces multiple predictions_<slug>.csv files; non-OpenRouter
-    # models have a single expected file so this is a no-op or a full hit).
-    all_cached=true
-    for f in "\${EXPECTED_FILES[@]}"; do
-        if [ -f "\${cache_base}/\$f" ]; then
-            cp "\${cache_base}/\$f" "\${results_dir}/\$f"
-        else
-            all_cached=false
-        fi
-    done
+    conda { "envs/models/${model}.yml" }
 
-    if [ "\$all_cached" = "false" ]; then
-        mkdir -p \${cache_base}
-        bash "${model_dir}/src/run.sh" \\
-            "${data_file}" \\
-            \${results_dir}/predictions.csv \\
-            "${cfg_yaml}" \\
-            "${cache_dir}/models"
-        # Persist only the expected files into the cache.
-        for f in "\${EXPECTED_FILES[@]}"; do
-            cp "\${results_dir}/\$f" "\${cache_base}/\$f"
-        done
-    else
-        echo "Cell type prediction already exists for ${dataset} x ${model} (subset ${subset_size}, strategy ${strategy})."
-        echo "To rerun, delete files in: \${cache_base}/"
-    fi
-    """
+    when:
+    def cfg = loadYaml("datasets/${dataset}.yml")
+    def organism = cfg?.get('organism')
+    def blacklist = params.model_blacklist_by_organism ?: [:]
+    modelAllowedForOrganism(model, organism, blacklist)
+
+    output:
+    tuple(path("results/*/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir), val(subset_size), val(strategy))
+
+    script:
+    'export API_KEY="$OPENROUTER_API_KEY"\n' + runModelScript(data_file, model_dir, dataset, cfg_yaml, model, cache_dir, subset_size, strategy, expected_files)
 }
 
 // Stage 1 of evaluation: normalize + review-filter + ontology-map predictions, producing a
@@ -494,7 +530,17 @@ workflow {
         }
         .set { model_input }
 
-    predictions = run_model(model_input)
+    // Route models to the secret-bearing process only when they are OpenRouter LLMs;
+    // every other model runs through run_model, which does not require the key.
+    model_input
+        .branch { data_file, model_dir, dataset, cfg_yaml, model, cache_dir, size, strategy, expected ->
+            openrouter: model.toLowerCase().contains('openrouter')
+            other:      true
+        }
+        .set { model_input_branched }
+
+    predictions = run_model_openrouter(model_input_branched.openrouter)
+                      .mix(run_model(model_input_branched.other))
 
     // --- Evaluation (two cached stages: map -> score) ---
 
