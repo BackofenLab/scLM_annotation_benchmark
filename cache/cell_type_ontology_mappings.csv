@@ -58,7 +58,7 @@ True;Zeisel;Peripheral sensory non-peptidergic neurons;peripheral sensory neuron
 True;Zeisel;Peripheral sensory peptidergic neurons;peripheral sensory neuron;peptidergic neuron
 True;Zeisel;Perivascular macrophages;perivascular macrophage;perivascular macrophage
 True;HIHA;Proliferating NK cell;cycling natural killer cell;mature NK T cell, human
-True;Zeisel;Satellite glia;glial cell;perineuronal satellite cell
+True;Zeisel;Satellite glia;perineuronal satellite cell;perineuronal satellite cell
 True;Zeisel;Schwann cells;Schwann cell;Schwann cell precursor
 True;Zeisel;Spinal cord excitatory neurons;glutamatergic neuron;neuron of the dorsal spinal cord
 True;Zeisel;Spinal cord inhibitory neurons;GABAergic neuron;inhibitory motor neuron
@@ -1122,7 +1122,7 @@ True;openrouter_LLM_blind_deepseek--deepseek-v3.2_Zeisel;oxytocin neuron;oxytoci
 True;openrouter_LLM_blind_anthropic--claude-opus-4.7_Zeisel;oxytocin secreting cell;oxytocin-secreting magnocellular cell;oxytocin stimulating hormone secreting cell
 True;openrouter_LLM_blind_anthropic--claude-sonnet-4.6_Zeisel;oxytocin-secreting neuron;magnocellular neurosecretory cell;oxytocin-secreting magnocellular cell
 True;openrouter_LLM_blind_anthropic--claude-sonnet-4.6_Zeisel;oxytocinergic neuron;magnocellular neurosecretory cell;oxytocin-secreting magnocellular cell
-True;c2s_scale_27B_unblind_human_pancreas;p cell;PP cell;polytene cell
+True;c2s_scale_27B_unblind_human_pancreas;p cell;pancreatic PP cell;polytene cell
 True;instructcell_unblind_Zeisel;pages;cell;guidepost cell
 True;c2s_scale_27B_blind_human_pancreas;pancreatic a cell. cell 1: pancreatic a cell. cell;pancreatic A cell;epithelial cell of pancreas
 True;c2s_scale_27B_blind_human_pancreas;pancreatic a cell. cell 1: type b pancreatic cell. type a;pancreatic A cell;type B pancreatic cell
@@ -1142,7 +1142,7 @@ True;openrouter_LLM_blind_openai--gpt-oss-20b_human_pancreas;pancreatic endocrin
 True;openrouter_LLM_blind_openai--gpt-oss-20b_human_pancreas;pancreatic endocrine ppy cell;pancreatic PP cell;PP cell
 True;openrouter_LLM_blind_openai--gpt-5.5_HFRA;pancreatic endocrine progenitor cell;progenitor cell of endocrine pancreas;progenitor cell of endocrine pancreas
 True;openrouter_LLM_blind_anthropic--claude-opus-4.7_human_pancreas;pancreatic endothelial cell;epithelial cell of pancreas;pancreatic islet capillary endothelial cell
-True;openrouter_LLM_blind_deepseek--deepseek-v3.2_human_pancreas;pancreatic f cell;PP cell;pancreatic A cell
+True;openrouter_LLM_blind_deepseek--deepseek-v3.2_human_pancreas;pancreatic f cell;pancreatic PP cell;pancreatic A cell
 True;openrouter_LLM_blind_openai--gpt-oss-120b_human_pancreas;pancreatic gamma cell;pancreatic PP cell;type B pancreatic cell
 True;openrouter_LLM_blind_meta-llama--llama-3.1-70b-instruct_human_pancreas;pancreatic islet alpha cell;pancreatic A cell;pancreatic A cell
 True;openrouter_LLM_blind_openai--gpt-oss-120b_human_pancreas;pancreatic islet cell;pancreatic endocrine cell;pancreatic A cell
@@ -1152,11 +1152,11 @@ True;openrouter_LLM_blind_openai--gpt-oss-20b_human_pancreas;pancreatic islet pp
 True;c2s_scale_27B_unblind_human_pancreas;pancreatic mast cell;mast cell;stromal cell of pancreas
 True;c2s_scale_27B_blind_human_pancreas;pancreatic p cell;pancreatic PP cell;pancreatic PP cell
 True;openrouter_LLM_blind_openai--gpt-oss-20b_human_pancreas;pancreatic polypeptide (pp) cell;pancreatic PP cell;PP cell
-True;openrouter_LLM_blind_deepseek--deepseek-v3.2_human_pancreas;pancreatic polypeptide cell;PP cell;PP cell
+True;openrouter_LLM_blind_deepseek--deepseek-v3.2_human_pancreas;pancreatic polypeptide cell;pancreatic PP cell;PP cell
 True;openrouter_LLM_blind_openai--gpt-oss-20b_human_pancreas;pancreatic polypeptide producing cell;pancreatic PP cell;PP cell
 True;openrouter_LLM_blind_openai--gpt-oss-20b_human_pancreas;pancreatic polypeptide secreting cell;pancreatic PP cell;PP cell
-True;openrouter_LLM_blind_deepseek--deepseek-v3.2_human_pancreas;pancreatic polypeptide-producing cell;PP cell;PP cell
-True;openrouter_LLM_blind_deepseek--deepseek-v3.2_human_pancreas;pancreatic polypeptide-secreting cell;PP cell;PP cell
+True;openrouter_LLM_blind_deepseek--deepseek-v3.2_human_pancreas;pancreatic polypeptide-producing cell;pancreatic PP cell;PP cell
+True;openrouter_LLM_blind_deepseek--deepseek-v3.2_human_pancreas;pancreatic polypeptide-secreting cell;pancreatic PP cell;PP cell
 True;openrouter_LLM_blind_openai--gpt-oss-20b_human_pancreas;pancreatic α cell;pancreatic A cell;pancreatic A cell
 True;openrouter_LLM_blind_openai--gpt-oss-20b_human_pancreas;pancreatic α-cell;pancreatic A cell;pancreatic A cell
 True;openrouter_LLM_blind_openai--gpt-oss-20b_human_pancreas;pancreatic β cell;type B pancreatic cell;type B pancreatic cell
@@ -1209,7 +1209,7 @@ True;instructcell_blind_HFRA;point;cell;tip cell
 True;instructcell_unblind_Zeisel;political;cell;neoplastic cell
 True;openrouter_LLM_blind_openai--gpt-5.5_Zeisel;pomc neuron;pro-opiomelanocortin neuron;Mauthner neuron
 True;openrouter_LLM_blind_deepseek--deepseek-v3.2_Zeisel;pomc-expressing neuron;pro-opiomelanocortin neuron;Mauthner neuron
-True;celltypist_blind_human_pancreas;pp;PP cell;PP cell
+True;celltypist_blind_human_pancreas;pp;pancreatic PP cell;PP cell
 True;c2s_scale_27B_blind_human_pancreas;pp cell of pancreas;pancreatic PP cell;PP cell
 True;openrouter_LLM_unblind_meta-llama--llama-3.1-70b-instruct_human_pancreas;ppy chgb ttr scg5 gnas scg2 eef1a1 malat1 cpe b2m fth1 tpt1 rpl19 rps14 timp1 vgf rps4x rpl15 pcsk1n rps27a rpl13a rpl41 clu rps15 rpl7a cirbp rpl26 tm4sf4 rplp1 rpl27a rpl10 rps11 rpl13 rplp2 rps3a rpl23a pam rpl11 ftl peg10 rps5 rpl23 rps16 hsp90ab1 rps8 ids arf1 rps3 rpl34 pebp1 calr tuba1b rpl37a rpl17 eif4a2 gapdh rps7 usf2 rps12 fgb rps19 itm2c rpl24 rps29 emc10 pld3 sec11c eif1 rpl14 cd63 rpl5 hmgb1 rps23 ctsb rps17 rpl6 rpl8 cct4 rpl29 arpc2 rps13 csde1 rpl3 epcam cd81 rpl22 rps2 serf2 nedd8 sod2 ubc tmem176b calm2 rpl18 uba52 dstn rpl4 arrdc3 rpl32 srp14 pkm gabarap meis2 hspb1 aplp1 rpl7 ell2 tsc22d1 laptm4b p4hb gc rpl30 rps6 rps20 gnb1 cd99 rps24 cst3 anxa6 serinc1 cct7 hint1 hsp90aa1 fau rnasek rpl31 npc2 rps10 rps25 tmsb4x rps18 myl6 oaz2 bex1 ubb tuba1a cope spcs1 pdia6 pak3 rps28 rpl10a ppdpf rpl36 itm2b cox4i1 morf4l1 hspa8 ssu72 p4htm tusc3 rbx1 rpl35a nbea rps15a cct3 eif3k ptp4a3 sort1 btg1 hnrnpc naca spint2 znf428 ddx5 map1b pax6 rps27 fxyd2 gnai1 cox7c smarca2 mdk hmgn2 cd59 tmod1 nsa2 scrn1 pcdh17 chmp2a laptm4a tmem59 paip2 ier2 tax1bp1 cfl1 eif4b scarb2 uqcrb cacybp bag1 eid2 rpsa tmed9 ppia dnajc12 nap1l1 ddit4 nbpf3 parm1;cell;early T lineage precursor
 True;openrouter_LLM_unblind_meta-llama--llama-3.1-70b-instruct_human_pancreas;ppy pcsk1n eef1a1 scg2 chgb gnas rpl15 clu rpl13a ubb ttr rpl3 rpl17 fth1 rpl41 tuba1a rpl4 b2m rpl30 rpl10 rpl37a scg5 rps12 rps27a ins rpl23 rps2 rps3a rpl27a gabarap ubc timp1 rps16 rps18 rps15 rpl11 rpl31 egr1 rps11 rplp1 ddr1 gapdh plxnb2 scgn rps23 arx cpe pcsk2 sst tm4sf4 pld3 c6orf89 eif1 rpl13 tpt1 hsp90ab1 meaf6 cox8a tmem59l mettl5 cartpt rps25 cd99 fev rpl5 ap2b1 rpl19 rac1 ywhab gria3 id2 txnip rplp0 rpl18a abcc8 actg1 akr1a1 lgals3bp mxra7 rbm39 rpl34 rpl14 sorl1 gad2 spink1 pdx1 polr2l cd81 pax6 gcg rplp2 morf4l1 eif3k rps9 ptp4a3 rnf157 fgfr1 znf106 bri3 tma7 aftph sez6l2 rbck1 polr2e capns1 tspan7 rpl23a pnpla2 rps28 prss23 ckap4 rpl7a siva1 slc25a6 parp1 ctsa szrd1 rps6 sec63 anxa11 gpx1 tmbim6 scg3 ssr4 arhgdia isl1 ptma fxyd2 gnb1 c15orf48 rps14 emc10 adipor1 rpl22 hsp90aa1 dad1 rps27 chn2 ddx5 ddost rps3 neurod1 xrcc5 pdk4 eef1a2 rpl26 rps4x atp6v1g1 pigm pebp1 atp1b3 rpl8 fau psmd1 ssr2 ptprn syt7 fbln7 ccni myl6 camk2n1 cst3 rpl36al ndufv2 cplx2 fbxw5 cdkn1a npdc1 smarca2 slc30a8 tmem176b ndufb9 myrf nptxr slc4a8 zdhhc14 svip p4hb mnt vps28 ahnak scp2 rps17 mycbp2 yif1a set nbl1 mrps18c tsc22d1 dnajc12 ufc1 fabp5 rpl38 syt17 eef1b2 tmod1 kdm5c dhx9 nme4 atp6v0b;cell;megakaryocyte-erythroid progenitor cell
