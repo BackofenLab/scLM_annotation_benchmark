@@ -26,6 +26,15 @@ two-axis folder hierarchy ``<mode_variant>/<subset_size>/<plot_type>/``:
     .../heatmap/   model x dataset value heatmap (sorted by mean)
     .../bump/      rank-trajectory ("bump") chart across datasets
     .../barplot/   grouped barplot (x=model sorted by mean, hue=dataset)
+    .../correlation/  metric × metric Spearman correlation heatmap (one figure per
+                   folder, covering every numeric metric; clustered ordering)
+
+A ``composite_category/`` folder (a sibling of the mode-variant folders, since it combines
+blind + unblind in one figure) holds the composite-score-by-category view: per subset size, a
+two-panel (blind | unblind) figure where each model's composite score (mean of balanced
+accuracy, lin/rada avg. similarity, and text-emb norm avg. raw) is plotted as a point within
+its model family (LLMs / domain-adapted scLLMs / classical baselines), with a per-category mean
+line and the simple baselines (random_*, cell_baseline) as dashed reference lines.
 
 Use ``--variants`` to render only some mode variants. The subset-size split is
 automatic from the data; when the CSV has no ``subset_size`` column the script
@@ -98,6 +107,18 @@ except Exception:  # pragma: no cover - styling is non-essential
         })
 
 
+# Optional: SciPy gives us hierarchical-clustering ordering for the metric correlation
+# heatmap so correlated metrics sit next to each other. The figure still renders (in input
+# order) when SciPy is unavailable, so this stays an optional dependency.
+try:
+    from scipy.cluster.hierarchy import linkage, leaves_list  # type: ignore
+    from scipy.spatial.distance import squareform  # type: ignore
+
+    _HAVE_SCIPY = True
+except Exception:  # pragma: no cover - clustering is a nicety, not essential
+    _HAVE_SCIPY = False
+
+
 ID_COLS = ("dataset", "model")
 DEFAULT_METRICS = [
     "balanced_accuracy",
@@ -108,13 +129,56 @@ DEFAULT_METRICS = [
     "balanced_id_accuracy",
     "macro_f1",
     "weighted_f1",
+    # Text-encoder (SapBERT) similarity between predicted and true labels, baseline-normalized.
+    # Populated only when eval ran with --use_text_encoder true (NaN columns are skipped).
+    "text_emb_norm_avg_raw",     # on raw predictions
+    "text_emb_norm_avg_mapped",  # on ontology-mapped predictions
+    "text_emb_mapping_lift",     # gain from ontology mapping (mapped - raw)
     # Label-coverage / diversity diagnostics (populated once eval+aggregate are re-run).
     "non_cl_ratio",          # fraction of cells whose raw output is NOT a CL term
     "n_non_cl_labels",       # distinct non-CL raw labels
     "n_unique_pred_raw",     # distinct predicted cell types before ontology mapping
     "n_unique_pred_mapped",  # distinct predicted cell types after ontology mapping
 ]
-PLOT_TYPES = ["ranking", "heatmap", "bump", "barplot"]
+PLOT_TYPES = ["ranking", "heatmap", "bump", "barplot", "correlation", "composite_category"]
+
+# --------------------------------------------------------------------------- #
+# Composite-score-by-category figure (blind vs unblind).
+# PROVISIONAL headline composite spanning the two axes we care about, ONE metric each:
+#   - exact-match correctness : balanced_accuracy (class-balanced; == balanced_id_accuracy
+#                               after the symmetric CL-canonicalization fix in evaluate.py)
+#   - ontology closeness      : lin_avg_similarity (information-content CL-graph similarity;
+#                               Lin chosen over the near-identical Rada — per-dataset ranking
+#                               agreement Spearman ~0.95-0.98 — for its granularity-awareness)
+# Deliberately one metric per axis: NO Rada (would double-weight closeness with Lin) and NO
+# text-embedding similarity (redundant with the graph metric, encoder-dependent, high-floor).
+# Each component is BASELINE-NORMALIZED to a skill score against the per-dataset chance model
+# (random_stratified) before the mean — see _composite_per_model — because the raw floors differ
+# sharply (balanced_accuracy chance ~1/#classes vs Lin chance ~0.4-0.66) and an unnormalized mean
+# would be dominated by Lin. (Root-prediction / cell_baseline is NOT used as the Lin floor: "cell"
+# is the ontology root, so its Lin is 0 and normalizing against it is a no-op.) OPEN decision:
+# whether to also add text similarity. Every individual metric remains its own figure.
+# --------------------------------------------------------------------------- #
+COMPOSITE_METRICS = [
+    "balanced_accuracy", "lin_avg_similarity",
+]
+# Per-dataset chance reference used to baseline-normalize each composite component.
+COMPOSITE_BASELINE_MODEL = "random_stratified"
+# Model-family membership keyed on the base name (model with any _blind/_unblind suffix removed).
+SCLLM_BASES = {
+    "c2s", "c2s_scale_2B", "c2s_scale_27B", "cellwhisperer", "instructcell", "langcell",
+    "mmcontext",
+}
+CLASSICAL_BASES = {"celltypist", "scsa"}
+SIMPLE_BASES = {"random_stratified", "random_uniform", "cell_baseline"}
+# Subset of the simple baselines drawn as dashed reference lines in the composite figure.
+REFERENCE_LINE_BASES = {"random_stratified"}
+# Ordered (category key, x-axis display label) for the strip panels.
+COMPOSITE_CATEGORIES = [
+    ("LLM", "LLMs"),
+    ("scLLM", "scLLMs"),
+    ("classical", "baseline"),
+]
 
 # Metrics whose natural range is [0, 1]; the label-count diagnostics are unbounded counts and
 # must autoscale in the heatmap rather than clipping against vmin=0/vmax=1.
@@ -136,6 +200,33 @@ def derive_mode(model: str) -> str:
     if m.endswith("_blind"):
         return "blind"
     return "baseline"  # cell_baseline, random_stratified, random_uniform
+
+
+def model_base(model: str) -> str:
+    """Model name with any trailing prediction-mode suffix stripped."""
+    m = str(model)
+    for suffix in ("_blind", "_unblind"):
+        if m.endswith(suffix):
+            return m[: -len(suffix)]
+    return m
+
+
+def categorize_model(model: str) -> str:
+    """Model-family category used by the composite-score figure.
+
+    Returns one of ``"simple"`` (random / cell baselines, drawn as reference lines),
+    ``"classical"`` (CellTypist, SCSA), ``"scLLM"`` (domain-adapted language models), or
+    ``"LLM"``. Anything not explicitly a simple/classical/scLLM model falls through to
+    ``"LLM"`` so newly added general-purpose chat models are picked up automatically.
+    """
+    base = model_base(model)
+    if base in SIMPLE_BASES:
+        return "simple"
+    if base in CLASSICAL_BASES:
+        return "classical"
+    if base in SCLLM_BASES:
+        return "scLLM"
+    return "LLM"
 
 
 # Variant name -> set of modes kept. Baselines are included in every variant so each plot has a
@@ -221,6 +312,37 @@ def heatmap_cmap():
     return COLORMAPS.get("CM: Teal–White", "YlOrRd") if _HAVE_REPO_STYLE else "YlOrRd"
 
 
+def diverging_cmap():
+    """Diverging colormap centered at 0 for the correlation heatmap.
+
+    The repo's ``COLORMAPS`` are all sequential white-to-colour maps, which would hide the
+    sign of a correlation; a correlation matrix needs a diverging map. Kept as a tiny helper
+    so it is easy to swap for a repo map later if a diverging one is added.
+    """
+    return "RdBu_r"
+
+
+def cluster_order(corr: pd.DataFrame) -> list:
+    """Order metrics so correlated ones are adjacent (hierarchical clustering).
+
+    Uses average linkage on the distance ``1 - |corr|`` (so strongly correlated *and* strongly
+    anti-correlated metrics group together). Falls back to the input column order when SciPy is
+    unavailable or there are too few metrics to cluster.
+    """
+    cols = list(corr.columns)
+    if not _HAVE_SCIPY or len(cols) < 3:
+        return cols
+    dist = 1.0 - corr.abs().values
+    # A pairwise correlation can be NaN even after all-NaN/constant columns are dropped, when two
+    # surviving metrics share fewer than two non-null rows (empty overlap). squareform/linkage
+    # reject non-finite values, so treat an undefined correlation as "maximally distant" (1.0).
+    dist = np.where(np.isfinite(dist), dist, 1.0)
+    np.fill_diagonal(dist, 0.0)
+    dist = (dist + dist.T) / 2.0  # enforce symmetry against tiny float asymmetries
+    link = linkage(squareform(dist, checks=False), method="average")
+    return [cols[i] for i in leaves_list(link)]
+
+
 def build_dataset_colors(datasets) -> dict:
     """Stable colour per dataset, shared across every plot type."""
     palette = CATEGORICAL_PALETTES.get("tab20_new") if _HAVE_REPO_STYLE else None
@@ -286,7 +408,41 @@ def make_pivot(df: pd.DataFrame, metric: str) -> pd.DataFrame:
 # --------------------------------------------------------------------------- #
 # Plot builders (one figure per metric)
 # --------------------------------------------------------------------------- #
+def _strip_trivial_baselines(df):
+    """Drop the trivial chance baselines (random_stratified, random_uniform, cell_baseline) from
+    the models drawn as bars / ranked entries. They are shown as dashed reference lines on the
+    barplot instead (see ``_baseline_refs``). Classical annotators (CellTypist, SCSA) are kept —
+    they are real methods, not chance floors."""
+    return df[~df["model"].map(lambda m: model_base(m) in SIMPLE_BASES)]
+
+
+def _baseline_refs(df, metric):
+    """Dashed reference line(s) for ``metric``: ``[(label, value, linestyle, color), ...]``.
+
+    ``random_stratified`` is the informed-chance floor for EVERY metric (value = its mean over the
+    datasets in this view). ``cell_baseline`` (predict the ontology root "cell") is added ONLY for
+    ``rada_avg_similarity`` — it is a non-zero floor there (~0.2, the distance-to-root level) but is
+    ~0 for exact-match, Lin, and text similarity, so it is not shown on those. Computed from ``df``
+    BEFORE the baselines are stripped."""
+    def val(base):
+        rows = df[df["model"].map(model_base) == base]
+        if rows.empty:
+            return None
+        v = pd.to_numeric(rows[metric], errors="coerce").mean()
+        return None if pd.isna(v) else float(v)
+    refs = []
+    v = val("random_stratified")
+    if v is not None:
+        refs.append(("random-stratified (chance)", v, "--", "0.35"))
+    if metric == "rada_avg_similarity":
+        vc = val("cell_baseline")
+        if vc is not None:
+            refs.append(("cell-baseline (root)", vc, ":", "0.55"))
+    return refs
+
+
 def plot_ranking(df, metric, out_path, dataset_colors, label_map, caption, dpi):
+    df = _strip_trivial_baselines(df)  # rank real models only; chance floors are not competitors
     pivot = make_pivot(df, metric)
     if pivot.dropna(how="all").empty:
         return False
@@ -319,6 +475,7 @@ def plot_ranking(df, metric, out_path, dataset_colors, label_map, caption, dpi):
 
 
 def plot_heatmap(df, metric, out_path, label_map, caption, dpi):
+    df = _strip_trivial_baselines(df)  # real models only (no chance-floor rows)
     pivot = make_pivot(df, metric)
     if pivot.dropna(how="all").empty:
         return False
@@ -347,6 +504,7 @@ def plot_heatmap(df, metric, out_path, label_map, caption, dpi):
 
 
 def plot_bump(df, metric, out_path, label_map, caption, dpi):
+    df = _strip_trivial_baselines(df)  # real models only (no chance-floor rows)
     pivot = make_pivot(df, metric)
     if pivot.dropna(how="all").empty:
         return False
@@ -383,7 +541,8 @@ def plot_bump(df, metric, out_path, label_map, caption, dpi):
 
 
 def plot_barplot(df, metric, out_path, dataset_colors, label_map, caption, dpi):
-    sub = df.dropna(subset=[metric])
+    refs = _baseline_refs(df, metric)                     # compute BEFORE stripping baselines
+    sub = _strip_trivial_baselines(df).dropna(subset=[metric])
     if sub.empty:
         return False
     order = (sub.groupby("model")[metric].mean()
@@ -397,21 +556,213 @@ def plot_barplot(df, metric, out_path, dataset_colors, label_map, caption, dpi):
     ax.set_xlabel("Model")
     ax.set_ylabel(pretty(metric))
     ax.set_title(f"{pretty(metric)} across datasets")
-    ax.legend(title="Dataset", bbox_to_anchor=(1.02, 1), loc="upper left",
-              frameon=False)
+    # Chance floor(s) as dashed reference lines (mean over datasets in this view).
+    for _lbl, v, ls, c in refs:
+        ax.axhline(v, linestyle=ls, color=c, linewidth=1.5, zorder=5)
+    # Dataset legend (from the bars), plus a second legend for the reference lines.
+    leg1 = ax.legend(title="Dataset", bbox_to_anchor=(1.02, 1), loc="upper left", frameon=False)
+    if refs:
+        ax.add_artist(leg1)
+        ref_handles = [plt.Line2D([0], [0], color=c, linestyle=ls, linewidth=1.5, label=lbl)
+                       for lbl, v, ls, c in refs]
+        ax.legend(handles=ref_handles, title="Baseline (dashed)",
+                  bbox_to_anchor=(1.02, 0.45), loc="upper left", frameon=False)
     add_caption(fig, caption)
     fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
     plt.close(fig)
     return True
 
 
+def plot_metric_correlation(df, metrics, out_path, method, caption, dpi):
+    """Metric × metric correlation heatmap (one figure per variant/size folder).
+
+    Correlates every numeric metric column across the rows of ``df`` (model × dataset
+    observations in the current variant/size view). Columns that are all-NaN or constant
+    within the subset have an undefined correlation and are dropped (and noted in the caption)
+    so they don't render as NaN stripes.
+    """
+    present = [m for m in metrics if m in df.columns]
+    sub = df[present].apply(pd.to_numeric, errors="coerce")
+
+    usable, dropped = [], []
+    for m in present:
+        col = sub[m]
+        if col.notna().sum() < 2 or col.std(skipna=True) == 0 or np.isnan(col.std(skipna=True)):
+            dropped.append(m)
+        else:
+            usable.append(m)
+    if len(usable) < 2:
+        return False
+
+    corr = sub[usable].corr(method=method)
+    order = cluster_order(corr)
+    corr = corr.loc[order, order]
+
+    n = len(order)
+    side = max(6.0, 0.55 * n + 2.0)
+    fig, ax = plt.subplots(figsize=(side, side))
+    sns.heatmap(
+        corr, annot=True, fmt=".2f", cmap=diverging_cmap(),
+        vmin=-1, vmax=1, center=0, square=True,
+        linewidths=0.5, linecolor="white", annot_kws={"size": 6},
+        xticklabels=[pretty(m) for m in order],
+        yticklabels=[pretty(m) for m in order],
+        cbar_kws={"label": f"{method.title()} correlation", "shrink": 0.6}, ax=ax,
+    )
+    ax.set_title(f"Metric correlation ({method.title()})")
+    plt.setp(ax.get_xticklabels(), rotation=45, ha="right")
+    plt.setp(ax.get_yticklabels(), rotation=0)
+
+    cap = caption
+    if dropped:
+        note = "Dropped (constant/all-NaN): " + ", ".join(pretty(m) for m in dropped)
+        cap = f"{caption}   {note}" if caption else note
+    add_caption(fig, cap)
+    fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
+    plt.close(fig)
+    return True
+
+
+def _composite_per_model(df: pd.DataFrame) -> pd.Series:
+    """Per-model composite score: mean of the BASELINE-NORMALIZED COMPOSITE_METRICS per row,
+    then mean over the model's rows (datasets, and sizes when the view spans several).
+
+    Each metric is turned into a skill score against the per-dataset chance model
+    (``COMPOSITE_BASELINE_MODEL``, random_stratified): ``norm(x) = clip((x - b) / (1 - b), 0, 1)``
+    where ``b`` is that model's score for the same (dataset, metric). So chance scores 0 and a
+    perfect model scores 1, which removes each metric's floor (notably Lin's ~0.5) and lets the
+    two axes contribute comparably to the mean. If the baseline is unavailable for a (dataset,
+    metric) the metric is used unnormalized (b=0). Empty Series if the composite columns are
+    absent."""
+    if not all(c in df.columns for c in COMPOSITE_METRICS) or "dataset" not in df.columns:
+        return pd.Series(dtype=float)
+    num = df[list(COMPOSITE_METRICS)].apply(pd.to_numeric, errors="coerce")
+    base = None
+    if COMPOSITE_BASELINE_MODEL in set(df["model"].astype(str)):
+        base = (df[df["model"].astype(str) == COMPOSITE_BASELINE_MODEL]
+                .groupby("dataset")[list(COMPOSITE_METRICS)]
+                .mean().apply(pd.to_numeric, errors="coerce"))
+    normed = pd.DataFrame(index=df.index)
+    for m in COMPOSITE_METRICS:
+        if base is not None and m in base.columns:
+            b = pd.to_numeric(df["dataset"].map(base[m]), errors="coerce").fillna(0.0).clip(upper=0.999)
+        else:
+            b = 0.0
+        normed[m] = ((num[m] - b) / (1.0 - b)).clip(lower=0.0, upper=1.0)
+    comp = normed.mean(axis=1)
+    return comp.groupby(df["model"]).mean()
+
+
+def plot_composite_category(df, out_path, caption, dpi, title=None):
+    """Two-panel (blind | unblind) composite-score figure.
+
+    In each panel the LLM / scLLM / classical-baseline categories show their individual models
+    as points plus a horizontal mean line; the simple baselines (random_*, cell_baseline) are
+    drawn as dashed reference lines (identical in both panels, since they are mode-agnostic).
+
+    ``title`` adds a figure-level title (used by the per-dataset supplementary figures so they
+    are self-identifying); the aggregated-over-datasets figures pass ``None`` (no title).
+    """
+    per_model = _composite_per_model(df)
+    if per_model.empty:
+        return False
+
+    cat_palette = (CATEGORICAL_PALETTES.get("tab20_new") if _HAVE_REPO_STYLE else None) \
+        or sns.color_palette("tab10", n_colors=10).as_hex()
+    cat_color = {key: cat_palette[i % len(cat_palette)]
+                 for i, (key, _) in enumerate(COMPOSITE_CATEGORIES)}
+
+    modes = ["blind", "unblind"]
+    fig, axes = plt.subplots(1, 2, figsize=(10, 6), sharey=True)
+
+    # Classical baselines (CellTypist, SCSA) are blind-only but act as a mode-agnostic reference,
+    # so they are shown in BOTH panels with the same points (like the dashed simple baselines).
+    classical_models = sorted(m for m in per_model.index if categorize_model(m) == "classical")
+
+    def members_for(key, mode_models):
+        if key == "classical":
+            return classical_models
+        return sorted(m for m in mode_models if categorize_model(m) == key)
+
+    for ax, mode in zip(axes, modes):
+        mode_models = [m for m in per_model.index if derive_mode(m) == mode]
+        # Keep categories that have at least one model (classical is always present if any exist),
+        # packed left-to-right so an empty mode-specific category leaves no gap.
+        present = [(key, lbl) for key, lbl in COMPOSITE_CATEGORIES if members_for(key, mode_models)]
+        pos = {key: i for i, (key, _) in enumerate(present)}
+        for key, _lbl in present:
+            members = members_for(key, mode_models)
+            x0 = pos[key]
+            vals = per_model.loc[members]                     # Series (index = model names)
+            n = len(members)
+            offsets = np.linspace(-0.09, 0.09, n) if n > 1 else np.array([0.0])
+            ax.scatter(x0 + offsets, vals.values, s=42, color=cat_color[key],
+                       edgecolor="white", linewidth=0.5, zorder=3)
+            mean_v = float(np.nanmean(vals.values))
+            ax.hlines(mean_v, x0 - 0.28, x0 + 0.28, color=cat_color[key],
+                      linewidth=2.4, zorder=4)
+            # Label only the TOP (best) model in each class next to its point — keeps the honest
+            # all-points + class-mean view while identifying the champion.
+            top_i = int(np.nanargmax(vals.values))
+            ax.annotate(model_base(vals.index[top_i]),
+                        (x0 + offsets[top_i], vals.values[top_i]),
+                        xytext=(6, 3), textcoords="offset points", fontsize=8,
+                        rotation=20, ha="left", va="bottom", zorder=6)
+
+        ax.set_xticks(list(pos.values()))
+        ax.set_xticklabels([lbl for _, lbl in present], fontsize=14,
+                           rotation=45, ha="right")
+        ax.set_xlim(-0.6, max(len(present) - 0.4, 0.6))
+        ax.set_title(mode.capitalize(), fontsize=17)
+        ax.tick_params(axis="y", labelsize=13)
+        ax.grid(axis="y", linestyle=":", alpha=0.5)
+        sns.despine(ax=ax)  # frame off: drop the top and right spines
+
+    axes[0].set_ylim(0, 1)
+    # y=0 IS the random-stratified (chance) level by construction (the composite is normalized
+    # against it), so no separate baseline reference line is drawn — it would sit on the axis.
+    axes[0].set_ylabel("Composite score\n(bal. acc. + Lin. sim., chance-normalized)", fontsize=14)
+
+    # Legend: only the category-mean marker (the individual points are self-explanatory).
+    handles = [plt.Line2D([0], [0], color="0.2", linewidth=2.4, label="Category mean")]
+    axes[1].legend(handles=handles, loc="upper right", bbox_to_anchor=(1.02, 0.97),
+                   frameon=False, fontsize=13)
+
+    # Caption intentionally omitted; optional title only for the per-dataset supplementary figures.
+    if title:
+        fig.suptitle(title, y=0.99, fontsize=19)
+    fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
+    plt.close(fig)
+    return True
+
+
+def composite_size_views(df: pd.DataFrame, size_col: str):
+    """Yield ``(folder, df_subset)`` for the composite figure: one view per subset size, plus a
+    combined ``all`` view across sizes when more than one is present. Unlike
+    ``iter_size_variants`` the size is NOT folded into the model name (we want one point per
+    model, averaged over datasets and sizes in the combined view)."""
+    if size_col not in df.columns or df[size_col].dropna().empty:
+        yield "all", df
+        return
+    sizes = sorted(df[size_col].dropna().unique())
+    for s in sizes:
+        yield size_folder_name(s), df[df[size_col] == s]
+    if len(sizes) > 1:
+        yield "all", df
+
+
 # --------------------------------------------------------------------------- #
 # Data loading / argument handling
 # --------------------------------------------------------------------------- #
+def numeric_metrics(df, subset_col):
+    """Every numeric metric column (excludes the id, mode, and subset-size columns)."""
+    return [c for c in df.columns
+            if c not in ID_COLS and c not in (subset_col, "mode")
+            and pd.api.types.is_numeric_dtype(df[c])]
+
+
 def resolve_metrics(df, requested, subset_col):
-    numeric = [c for c in df.columns
-               if c not in ID_COLS and c != subset_col
-               and pd.api.types.is_numeric_dtype(df[c])]
+    numeric = numeric_metrics(df, subset_col)
     if requested is None:
         metrics = [m for m in DEFAULT_METRICS if m in df.columns]
         if not metrics:
@@ -479,6 +830,8 @@ def parse_args(argv=None):
                         "Baselines are always included. Default: all three.")
     p.add_argument("--subset-size-col", default="subset_size",
                    help="Column holding the per-model subset size (used if present).")
+    p.add_argument("--corr-method", default="spearman", choices=["spearman", "pearson"],
+                   help="Correlation coefficient for the metric-correlation heatmap.")
     p.add_argument("--format", default="png", choices=["png", "pdf"],
                    help="Output file format.")
     p.add_argument("--dpi", type=int, default=300, help="Raster resolution.")
@@ -501,6 +854,9 @@ def main(argv=None):
     metrics = resolve_metrics(df, args.metrics, args.subset_size_col)
     if not metrics:
         raise SystemExit("No metrics to plot.")
+    # The correlation heatmap always covers the full numeric metric set, independent of the
+    # per-metric --metrics selection.
+    all_numeric_metrics = numeric_metrics(df, args.subset_size_col)
 
     set_pub_style()
     df = df.assign(_mode=df["model"].map(derive_mode))
@@ -534,7 +890,10 @@ def main(argv=None):
             }
 
             n_written = 0
-            for plot_type in args.plots:
+            # Per-metric plot types: one figure per metric. (correlation and composite_category
+            # are not per-metric and are handled separately.)
+            for plot_type in (pt for pt in args.plots
+                              if pt not in ("correlation", "composite_category")):
                 sub_dir = args.outdir / variant / size_folder / plot_type
                 sub_dir.mkdir(parents=True, exist_ok=True)
                 for metric in metrics:
@@ -547,11 +906,53 @@ def main(argv=None):
                             f"Skipped {variant}/{size_folder}/{plot_type}/{metric}: "
                             f"no data after filtering.")
 
+            # Correlation is a single metric × metric figure covering every numeric metric,
+            # so it lives outside the per-metric loop.
+            if "correlation" in args.plots:
+                sub_dir = args.outdir / variant / size_folder / "correlation"
+                sub_dir.mkdir(parents=True, exist_ok=True)
+                out_path = sub_dir / f"metric_correlation_{args.corr_method}.{args.format}"
+                if plot_metric_correlation(sdf, all_numeric_metrics, out_path,
+                                           args.corr_method, caption, args.dpi):
+                    n_written += 1
+                else:
+                    warnings.warn(
+                        f"Skipped {variant}/{size_folder}/correlation: "
+                        f"fewer than 2 usable metrics after filtering.")
+
             total_written += n_written
             print(f"[{variant}/{size_folder}]  models={sdf['model'].nunique()}  "
                   f"wrote {n_written} figure(s) under {args.outdir / variant / size_folder}")
             if caption:
                 print(f"   note -> {caption}")
+
+    # composite_category spans blind + unblind in a single two-panel figure, so it lives in its
+    # own top-level folder rather than under a mode-variant.
+    if "composite_category" in args.plots:
+        cdir = args.outdir / "composite_category"
+
+        def emit_composite(src_df, out_dir, log_tag, title=None):
+            """Write one composite figure per subset-size view of ``src_df`` into ``out_dir``."""
+            nonlocal total_written
+            out_dir.mkdir(parents=True, exist_ok=True)
+            for size_folder, sdf in composite_size_views(src_df, args.subset_size_col):
+                out = out_dir / f"composite_category_{size_folder}.{args.format}"
+                if plot_composite_category(sdf, out, "", args.dpi, title=title):
+                    total_written += 1
+                    print(f"[composite_category/{log_tag}/{size_folder}]  wrote {out.name}")
+                else:
+                    warnings.warn(
+                        f"Skipped composite_category/{log_tag}/{size_folder}: composite metrics "
+                        f"{COMPOSITE_METRICS} not all present.")
+
+        # 1) Aggregated over all datasets (top-level folder), as before.
+        emit_composite(df, cdir, "all_datasets")
+
+        # 2) Per-dataset breakdown for the supplementary: one figure set per dataset, each titled
+        #    with the dataset name so the supplementary panels are self-identifying.
+        for dataset in sorted(df["dataset"].unique()):
+            emit_composite(df[df["dataset"] == dataset], cdir / "by_dataset" / str(dataset),
+                           f"by_dataset/{dataset}", title=str(dataset))
 
     print(f"Total: wrote {total_written} figure(s) under {args.outdir.resolve()}")
     print(f"  layout: <mode_variant>/<subset_size>/<plot_type>/<metric>.{args.format}")
