@@ -26,6 +26,43 @@ def _nan_metrics():
     return {k: np.nan for k in ("balanced_accuracy", "accuracy", "rada_avg_similarity",
                                 "lin_avg_similarity", "id_accuracy", "balanced_id_accuracy")}
 
+
+def _canonicalize_to_cl(series, label_index, review_map):
+    """Map each label to a stable canonical CL identity so true and predicted labels are
+    compared on the SAME surface form.
+
+    Upstream, predictions are ontology-mapped but ground truth is only lowercased, so exact
+    string comparison mismatched on (a) case (``pancreatic a cell`` vs the CL-canonical
+    ``pancreatic A cell``) and (b) truth labels that need mapping (``delta`` -> ``pancreatic D
+    cell``). This resolves both by mapping EACH side identically. For every unique label:
+
+      1. if it resolves to a CL term (case/synonym-insensitive) -> the term's canonical name
+         (1:1 with the CL id, human-readable);
+      2. else if a reviewed mapping resolves it -> that target's canonical CL name;
+      3. else the lowercased/stripped string (identity-preserving fallback; never collapses
+         two distinct classes into one).
+
+    Returns ``(canonical_series, unresolved_labels)`` where ``unresolved_labels`` is the list of
+    raw labels that fell through to the string fallback (expected empty for the current datasets).
+    """
+    s = series.astype(str)
+    if label_index is None:
+        return s, []
+    canon = {}
+    unresolved = []
+    for raw in s.unique():
+        term = map_string_to_term(raw, label_index)
+        if term is None:
+            tgt = review_map.get(raw.strip().lower())
+            if tgt:
+                term = map_string_to_term(tgt, label_index)
+        if term is not None:
+            canon[raw] = term.name
+        else:
+            canon[raw] = raw.strip().lower()
+            unresolved.append(raw)
+    return s.map(canon), unresolved
+
 # -- Utility functions --
 
 def parse_pred_input(pred_input):
@@ -298,14 +335,23 @@ def main(args):
 
     # Load the set of human-reviewed labels ONCE (the review-filter moved from mapping to scoring).
     # A predicted label is "trusted/scoreable" iff it is a direct CL term OR has reviewed=True here.
+    # review_map resolves labels that are NOT themselves CL terms (e.g. "delta",
+    # "alpha_mature") to their reviewed CL target, keyed by lowercased/stripped label so the
+    # lowercased ground-truth column matches. Used for symmetric canonicalization below.
     reviewed_labels = set()
+    review_map = {}
     try:
         _mdf = load_ontology_mappings_with_review_status(cache_dir)
         if _mdf is not None and 'predicted_label' in _mdf.columns and 'reviewed' in _mdf.columns:
             _rev = _mdf['reviewed'].map(
                 lambda v: v if isinstance(v, bool) else str(v).strip().lower() in ('true', '1', 'yes'))
             reviewed_labels = set(_mdf.loc[_rev, 'predicted_label'].astype(str))
-        print(f"Loaded {len(reviewed_labels)} reviewed mapping labels for the scoring-coverage filter.")
+            if 'chosen_match' in _mdf.columns:
+                _rev_df = _mdf.loc[_rev, ['predicted_label', 'chosen_match']].astype(str)
+                review_map = {k.strip().lower(): v for k, v in
+                              zip(_rev_df['predicted_label'], _rev_df['chosen_match']) if v.strip()}
+        print(f"Loaded {len(reviewed_labels)} reviewed mapping labels "
+              f"({len(review_map)} with a chosen_match) for scoring-coverage + canonicalization.")
     except Exception as e:
         print(f"Warning: could not load review status ({e}); treating no labels as reviewed.")
 
@@ -394,6 +440,36 @@ def main(args):
                        pred_col, f"original_{pred_col}"]:
                 if _c in df.columns:
                     df[_c] = df[_c].fillna("__unmapped__").astype(str)
+
+            # --- Symmetric ontology-canonicalization of true & predicted labels ----------------
+            # Map BOTH sides to the same canonical CL identity so every metric (accuracy, balanced
+            # accuracy, macro/weighted F1, id/rada/lin) is computed on a consistent, surface-robust
+            # key. Fixes the case bug and the truth-vs-prediction mapping asymmetry in one place.
+            # original_predicted_labels is intentionally left raw (it drives the coverage gate and
+            # is surfaced in the scored CSV as the model's real output).
+            df[pred_col], _pred_unresolved = _canonicalize_to_cl(df[pred_col], label_index, review_map)
+            true_unresolved = {}
+            true_collisions = {}
+            for _tc in levels:
+                _raw_true = df[_tc].astype(str)
+                df[_tc], _unres = _canonicalize_to_cl(df[_tc], label_index, review_map)
+                if _unres:
+                    true_unresolved[_tc] = sorted(set(_unres))
+                # Coarsening guard: flag distinct raw truth classes that collapse to one canonical.
+                _pairs = pd.DataFrame({"raw": _raw_true, "canon": df[_tc].astype(str)}).drop_duplicates()
+                _coll = {c: sorted(v) for c, v in _pairs.groupby("canon")["raw"].apply(list).items()
+                         if len(v) > 1}
+                if _coll:
+                    true_collisions[_tc] = _coll
+            file_results["coverage_stats"]["true_unresolved"] = true_unresolved
+            file_results["coverage_stats"]["true_coarsening_collisions"] = true_collisions
+            if true_unresolved:
+                _n = sum(len(v) for v in true_unresolved.values())
+                print(f"  WARNING: {_n} true label(s) did not resolve to CL — scored on string "
+                      f"fallback (may auto-mismatch mapped predictions): {true_unresolved}")
+            if true_collisions:
+                print(f"  WARNING: truth coarsening — distinct classes merged by canonicalization: "
+                      f"{true_collisions}")
 
         # Process each level that exists in the dataframe
         for true_col in levels:
