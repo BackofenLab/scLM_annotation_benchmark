@@ -20,8 +20,11 @@ USE_TEXT_ENCODER="${USE_TEXT_ENCODER:-false}"   # set to true to also compute Sa
 MIN_SCORING_COVERAGE="${MIN_SCORING_COVERAGE:-0.9}"  # min trusted-mapping coverage to emit metrics (else NaN)
 TEXT_ENCODER_MODEL="${TEXT_ENCODER_MODEL:-cambridgeltl/SapBERT-from-PubMedBERT-fulltext}"
 FORCE_REMAP="${FORCE_REMAP:-false}"             # set to true to ignore the *_mapped.csv cache and re-map
-EXCLUDE_PATTERNS="${EXCLUDE_PATTERNS:-}"         # space-separated substrings; prediction files whose
-                                                # basename contains any are skipped (e.g. "llama-3.1-8b-instruct")
+EXCLUDE_PATTERNS="${EXCLUDE_PATTERNS:-llama-3.1-8b-instruct}"  # space-separated substrings; prediction files
+                                                # whose basename contains any are skipped. Default excludes
+                                                # llama-3.1-8b-instruct: it is dropped from the scored panel, so
+                                                # mapping its noisy predictions only pollutes the mappings CSV
+                                                # with reviewed=False rows that are never scored.
 MAKE_PLOTS="${MAKE_PLOTS:-true}"                 # true => also render bin/plot_model_comparison.py figures
 # ---------------------------------
 
