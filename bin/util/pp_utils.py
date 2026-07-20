@@ -903,10 +903,21 @@ def ensure_ensembl_ids(
                 dataset = pybiomart.Dataset(
                     name=f"{species}_gene_ensembl", host=host
                 )
-                biomart_df = dataset.query(attributes=["ensembl_gene_id", "external_gene_name"])
+                result = dataset.query(attributes=["ensembl_gene_id", "external_gene_name"])
+                # BioMart intermittently returns a malformed payload (e.g. an error page) WITHOUT
+                # raising; pandas parses it into a frame lacking the expected columns. Validate the
+                # response so a bad one falls through to the next host / offline cache instead of
+                # crashing later with a cryptic KeyError on "Gene name".
+                if not {"Gene name", "Gene stable ID"}.issubset(result.columns):
+                    raise ValueError(
+                        f"unexpected columns {list(result.columns)} "
+                        "(expected 'Gene name', 'Gene stable ID')"
+                    )
+                biomart_df = result
                 logger.info(f"Successfully connected to {host}")
                 break
             except Exception as e:
+                biomart_df = None  # a bad/failed attempt must not leak past the loop
                 last_error = e
                 logger.warning(f"BioMart host {host} failed: {e}")
                 continue

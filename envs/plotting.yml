@@ -18,3 +18,4 @@ dependencies:
   - numpy=1.26.4
   - matplotlib=3.9.4
   - seaborn=0.13.2
+  - scipy=1.13.1  # clustered ordering for the metric-correlation heatmap (optional at runtime)
