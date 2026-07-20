@@ -43,6 +43,55 @@ def _read_mapping_csv(mapping_csv_path: Path) -> pd.DataFrame:
     return df
 
 
+def _resolve_best_matches(
+    labels: list[str],
+    cl_file_path: Path,
+    cache_dir: Path,
+    model_name: str,
+) -> dict[str, dict]:
+    """Return ``{label: {"best_match": <CL term name or "">}}`` for each label.
+
+    Tries omicverse's semantic ``CellOntologyMapper`` first (rich fuzzy matching). If
+    omicverse is unavailable or fails to import/run, falls back to an omicverse-free
+    lookup against the Cell Ontology label index: labels that match a CL term name,
+    synonym, or CL-id exactly get that term's canonical name as ``best_match``; labels
+    with no direct hit get an empty ``best_match`` (surfaced for manual review). The
+    fallback never raises for an unmatched label -- it just leaves the suggestion blank.
+    """
+    try:
+        import omicverse as ov
+        print(f"Initializing CellOntologyMapper with model: {model_name}")
+        mapper = ov.single.CellOntologyMapper(
+            cl_obo_file=str(cl_file_path),
+            model_name=model_name,
+            local_model_dir=str(cache_dir),
+        )
+        print("Performing ontology mapping (omicverse semantic matcher)...")
+        return mapper.map_cells(labels)
+    except Exception as e:
+        print(
+            f"omicverse mapping unavailable ({e}); falling back to Cell-Ontology index "
+            "lookup for best-match suggestions (labels still appended for review)."
+        )
+
+    # Omicverse-free fallback: exact resolution against the CL label index. Note `cl_file_path`
+    # is the OBO-Graph JSON (what omicverse's mapper consumes); pronto needs the OWL, so fetch
+    # cl-base.owl (cached alongside, same as the rest of the pipeline's index builds).
+    import pronto
+    from .cell_ontology_similarity import build_label_index, map_string_to_term
+
+    owl_path = download_cl_ontology(
+        cache_dir=cache_dir, cl_url="https://purl.obolibrary.org/obo/cl/cl-base.owl"
+    )
+    ont = pronto.Ontology(str(owl_path))
+    index = build_label_index(ont)
+    results: dict[str, dict] = {}
+    for label in labels:
+        term = map_string_to_term(label, index)
+        results[label] = {"best_match": term.name if term is not None else ""}
+    return results
+
+
 def map_cell_types_to_ontology(
     predicted_labels: list[str],
     cache_dir: Path,
@@ -72,35 +121,22 @@ def map_cell_types_to_ontology(
     -------
     Path
         Path to the CSV file containing the mappings
-        
+
+    Notes
+    -----
+    Best-match suggestions are computed by omicverse's semantic ``CellOntologyMapper``
+    when the package imports cleanly; otherwise an omicverse-free fallback resolves each
+    label against the Cell Ontology label index (exact name / synonym / CL-id match) and
+    leaves ``best_match`` blank for labels with no direct hit. Either way every new label
+    is appended to the CSV as ``reviewed=False`` for human review -- the append never
+    depends on omicverse being installed.
+
     Raises
     ------
-    ImportError
-        If omicverse is not installed
     RuntimeError
-        If ontology download or mapping fails
+        If ontology download or best-match resolution fails
     """
-    try:
-        import omicverse as ov
-    except ImportError as e:
-        error_msg = str(e)
-
-        # Keep the classic guidance for a truly missing package.
-        if "No module named 'omicverse'" in error_msg:
-            raise ImportError(
-                "omicverse is required for ontology mapping. "
-                "Install it with: pip install omicverse or include it into the dependencies of the nextflow process"
-            ) from e
-
-        # Surface binary/linker errors explicitly (common in conda + system libstdc++ conflicts).
-        raise ImportError(
-            "Failed to import omicverse due to a runtime dependency/linking error. "
-            "If you see a CXXABI/libstdc++ message, ensure the conda env libraries are preferred "
-            "(for example: export LD_LIBRARY_PATH=\"$CONDA_PREFIX/lib:${LD_LIBRARY_PATH:-}\"). "
-            f"Original error: {error_msg}"
-        ) from e
-    
-    cache_dir = Path(cache_dir) 
+    cache_dir = Path(cache_dir)
     cache_dir.mkdir(parents=True, exist_ok=True)
     
     # Path for the mapping CSV file
@@ -136,22 +172,16 @@ def map_cell_types_to_ontology(
         # Download Cell Ontology using our existing download function
         print("Downloading Cell Ontology...")
         cl_file_path = download_cl_ontology(
-            cache_dir=cache_dir, 
+            cache_dir=cache_dir,
             cl_url="https://purl.obolibrary.org/obo/cl/cl-base.json"
         )
-        
-        # Initialize the CellOntologyMapper
-        print(f"Initializing CellOntologyMapper with model: {model_name}")
-        mapper = ov.single.CellOntologyMapper(
-            cl_obo_file=str(cl_file_path),
-            model_name=model_name,
-            local_model_dir=str(cache_dir)
+
+        # Resolve a best-match suggestion for each label. Prefer omicverse's semantic
+        # matcher; degrade to an omicverse-free index lookup if the package is missing or
+        # fails to import (e.g. x86 llvmlite under Rosetta). The append below runs either way.
+        mapping_results = _resolve_best_matches(
+            labels_to_map, cl_file_path, cache_dir, model_name
         )
-        
-        # Map the cell types
-        print("Performing ontology mapping...")
-        mapping_results = mapper.map_cells(labels_to_map)
-        
     except Exception as e:
         raise RuntimeError(f"Failed to map cell types: {e}")
     

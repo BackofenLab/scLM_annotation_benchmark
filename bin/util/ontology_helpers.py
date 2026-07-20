@@ -178,6 +178,7 @@ def apply_ontology_mapping_to_cell_type_list(
     verbose: bool = True,
     origin: str = "unknown",
     label_index: Optional[Dict] = None,
+    discover_only: bool = False,
 ) -> Tuple[List[str], Dict[str, str]]:
     """
     Apply ontology mapping to a list of cell type labels.
@@ -245,17 +246,29 @@ def apply_ontology_mapping_to_cell_type_list(
             print("  All cell types are already mapped to ontology")
         return cell_types, {}
     
-    # Create/update ontology mappings for unmapped types
+    # Create/update ontology mappings for unmapped types. This is the discovery + append
+    # side-effect: every not-yet-in-CSV, non-CL label is written as reviewed=False for human
+    # review. It runs regardless of `discover_only` so novel labels always surface.
     mappings = create_or_update_ontology_mappings(
         unmapped_cell_types=list(unmapped_types),
         cache_dir=cache_dir,
         force_remapping=force_remapping,
         origin=origin
     )
-    
+
     if mappings is None:
         raise RuntimeError("Failed to create ontology mappings")
-    
+
+    # Discovery-only: append novel labels for review but do NOT rewrite the labels. Used for
+    # datasets with apply_ontology_mapping=false (e.g. cellxgene sources that already carry CL
+    # terms), where a marker method's free-text labels should still be surfaced for curation
+    # without altering the scored labels. Return the inputs unchanged.
+    if discover_only:
+        if verbose:
+            print(f"  discover_only: appended {len(unmapped_types)} novel label(s) for "
+                  "review; labels left unchanged.")
+        return cell_types, {}
+
     # Apply mappings to the full cell type list
     updated_cell_types, replacements = apply_ontology_mappings_to_cell_types(
         cell_types=cell_types,

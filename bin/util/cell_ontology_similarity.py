@@ -106,12 +106,18 @@ def _normalize(s: str) -> str:
 
 def build_label_index(ont: pronto.Ontology) -> dict[str, pronto.Term]:
     """
-    Map normalized labels/synonyms -> pronto.Term (case-insensitive).
+    Map normalized labels/synonyms/IDs -> pronto.Term (case-insensitive).
     """
     idx: dict[str, pronto.Term] = {}
     for term in ont.terms():
         if term.obsolete:
             continue
+        # The term's own CL ID, so a prediction that already *is* an ontology ID
+        # ("CL:0000900") resolves exactly instead of falling through to fuzzy
+        # name matching, which scores IDs against unrelated obsolete terms.
+        # Obsolete terms are skipped above, so retired IDs still go to review.
+        if term.id:
+            idx.setdefault(_normalize(term.id), term)
         # preferred label
         if term.name:
             idx.setdefault(_normalize(term.name), term)

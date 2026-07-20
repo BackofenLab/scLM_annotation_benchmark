@@ -57,7 +57,7 @@ def parse_pred_input(pred_input):
 
 def apply_ontology_mapping_to_predictions(df: pd.DataFrame, pred_col: str, cache_dir: Path,
                                           verbose: bool = True, origin: str = "unknown",
-                                          label_index=None) -> pd.DataFrame:
+                                          label_index=None, discover_only: bool = False) -> pd.DataFrame:
     """
     Apply ontology mapping to predicted labels, backing up the raw labels into
     ``original_<pred_col>``. Lifted verbatim from the old ``evaluate.py`` so behaviour
@@ -80,6 +80,7 @@ def apply_ontology_mapping_to_predictions(df: pd.DataFrame, pred_col: str, cache
             verbose=verbose,
             origin=origin,
             label_index=label_index,
+            discover_only=discover_only,
         )
         df[pred_col] = mapped_labels
         if verbose and replacements:
@@ -141,27 +142,33 @@ def map_one_file(pred_file, model, dataset, cache_dir, apply_mapping, out_dir,
     out = df.copy()
     out["original_predicted_labels"] = out[pred_col]  # normalized raw, for every row
 
+    # Discovery of novel labels ALWAYS runs (append every non-CL, not-yet-in-CSV label to the
+    # mappings CSV as reviewed=False for human review) -- this is independent of apply_mapping so
+    # that marker methods on cellxgene sources (apply_ontology_mapping=false), whose free-text
+    # labels carry no CL id, still surface for curation. What apply_mapping controls is only
+    # whether the labels are then REWRITTEN to their chosen_match:
+    #   apply_mapping=True  -> discovery + resolution (labels rewritten to chosen_match)
+    #   apply_mapping=False -> discovery only (labels left as-is; mapped == raw)
+    # The review-filter + coverage gate live in the scoring stage (bin/evaluate.py), which reads
+    # the live `reviewed` flags, so a single pass discovers ALL non-CL labels regardless of how
+    # many are still unreviewed. Never aborts: on failure we keep raw labels.
+    mode = "discovery + resolution" if apply_mapping else "discovery only (mapped == raw)"
+    print(f"Applying ontology mapping ({mode})...")
+    try:
+        out = apply_ontology_mapping_to_predictions(
+            out, pred_col, cache_dir, verbose=True, origin=file_origin,
+            label_index=label_index, discover_only=not apply_mapping,
+        )
+    except Exception as e:
+        print(f"Warning: Could not apply ontology mapping: {e}; keeping raw labels.")
     if apply_mapping:
-        # Discovery + resolution on the FULL frame, unconditional (never aborts): append every
-        # non-CL, not-yet-in-CSV label for human review and resolve each label to its chosen_match.
-        # The review-filter + coverage gate now live in the scoring stage (bin/evaluate.py), which
-        # reads the live `reviewed` flags. So mapping no longer depends on review status, and a
-        # single pass discovers ALL non-CL labels regardless of how many are still unreviewed.
-        print("Applying ontology mapping (discovery + resolution on all rows)...")
-        try:
-            out = apply_ontology_mapping_to_predictions(
-                out, pred_col, cache_dir, verbose=True, origin=file_origin,
-                label_index=label_index,
-            )
-        except Exception as e:
-            print(f"Warning: Could not apply ontology mapping: {e}; keeping raw labels.")
         filter_stats = {
             "total_predictions": len(df),
-            "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+            "note": "discovery + resolution; review-filter + coverage gate applied at scoring (evaluate.py)",
         }
     else:
-        print("Ontology mapping disabled - mapped == raw.")
         filter_stats = _disabled_filter_stats(len(df))
+        filter_stats["note"] = "discovery only (labels unchanged); novel labels appended for review"
 
     # "Needs human correction" diagnostic: fraction of ALL cells for which the model's RAW
     # prediction (normalized model output, BEFORE ontology mapping) is not itself a Cell-Ontology
@@ -209,16 +216,17 @@ def main(args):
 
     # Parse the OWL + build the label index ONCE for this process, then reuse it across every
     # prediction file. The coverage check inside apply_ontology_mapping_to_cell_type_list used to
-    # re-parse the 63MB OWL per file (e.g. once per OpenRouter slug file). A parse failure is
-    # non-fatal: fall back to per-file parsing (label_index=None) to preserve old behaviour.
+    # re-parse the 63MB OWL per file (e.g. once per OpenRouter slug file). Built unconditionally:
+    # discovery of novel labels now runs even when apply_ontology_mapping=false (discover-only),
+    # and the non-CL diagnostic needs the index too. A parse failure is non-fatal: fall back to
+    # per-file parsing (label_index=None) to preserve old behaviour.
     label_index = None
-    if args.apply_ontology_mapping:
-        try:
-            print(f"Parsing CL ontology once from {cl_file_path}...")
-            label_index = build_label_index(pronto.Ontology(str(cl_file_path)))
-        except Exception as e:
-            print(f"Warning: could not preload ontology label index ({e}); will parse per file.")
-            label_index = None
+    try:
+        print(f"Parsing CL ontology once from {cl_file_path}...")
+        label_index = build_label_index(pronto.Ontology(str(cl_file_path)))
+    except Exception as e:
+        print(f"Warning: could not preload ontology label index ({e}); will parse per file.")
+        label_index = None
 
     any_ok = False
     for pred_file in pred_files:
