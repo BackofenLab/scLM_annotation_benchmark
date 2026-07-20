@@ -13,12 +13,20 @@ OUT_CSV=$(realpath "$OUTPUT_DIR")/$(basename "$2")
 # Get the directory where this script is located
 SCRIPT_DIR=$(dirname "$(realpath "$0")")
 
-# Extract annotation key from config
-ANNOTATION_KEY=$(python - <<'PY' "$CFG_YAML"
+# Extract annotation key, species, and SCSA tissue from the dataset config.
+#  - species: SCSA needs exactly "Human"/"Mouse" (SCSA.py:1146 is a case-sensitive == "Mouse"
+#    check that gates mouse gene handling). Map the YAML species/organism to that form; without
+#    it every dataset is scored as Human -> ~11x marker collapse on mouse data (e.g. Zeisel).
+#  - scsa_tissue: exact tissueType string(s) from SCSA's CellMarker DB (comma-separated allowed),
+#    hand-picked per dataset. Defaults to "All" (whole DB) when unset.
+IFS=$'\t' read -r ANNOTATION_KEY SPECIES SCSA_TISSUE < <(python - <<'PY' "$CFG_YAML"
 import yaml, sys
-config = yaml.safe_load(open(sys.argv[1]))
-annotation_key = config.get('annotation_key', 'cell_type')
-print(annotation_key)
+c = yaml.safe_load(open(sys.argv[1]))
+ann = c.get('annotation_key', 'cell_type')
+raw = str(c.get('species') or c.get('organism') or 'human').strip().lower()
+species = 'Mouse' if ('mouse' in raw or 'musculus' in raw) else 'Human'
+tissue = str(c.get('scsa_tissue', 'All')).strip() or 'All'
+print('\t'.join([ann, species, tissue]))
 PY
 )
 
@@ -42,9 +50,12 @@ fi
 cd "$SCSA_DIR"
 
 # Run SCSA prediction
+echo "SCSA: species=$SPECIES tissue=$SCSA_TISSUE"
 python "$SCRIPT_DIR/predict.py" \
   --input "$INPUT_H5AD" \
   --output "$OUT_CSV" \
   --db "$SCSA_DB" \
   --annotation_key "$ANNOTATION_KEY" \
+  --species "$SPECIES" \
+  --tissue "$SCSA_TISSUE" \
   --temp-dir "$CACHE_DIR"

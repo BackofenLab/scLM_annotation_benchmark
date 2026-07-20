@@ -1,16 +1,19 @@
 name: scsa
+# Deps come from conda-forge (prebuilt binaries) rather than pip. Pip-installing scanpy pulls
+# numba -> llvmlite, which pip builds FROM SOURCE and fails to compile under osx-64/Rosetta
+# (llvmlite needs LLVM+cmake); conda-forge ships prebuilt llvmlite/numba/scikit-misc/louvain for
+# every platform, so the env builds reliably everywhere. SCSA itself is cloned by prepare.sh.
 channels:
   - conda-forge
 dependencies:
   - python=3.10
   - setuptools<81
   - pip
-  - pip:
-    - pyyaml
-    - numpy<2.0
-    - pandas<2.0
-    - zarr<3.0
-    - anndata
-    - louvain
-    - scikit-misc
-    - scanpy
+  - pyyaml
+  - numpy<2.0
+  - pandas<2.0
+  - zarr<3.0
+  - anndata
+  - louvain
+  - scikit-misc
+  - scanpy

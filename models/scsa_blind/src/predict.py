@@ -98,7 +98,11 @@ def create_scanpy_csv(h5ad_path, output_csv, cluster_col='louvain',
     
     if needs_clustering:
         print(f"  Finding {n_top_genes} highly variable genes...")
-        sc.pp.highly_variable_genes(adata, n_top_genes=n_top_genes, flavor="seurat_v3")
+        # flavor='seurat' (dispersion-based) is correct for the log1p-normalized X this pipeline
+        # provides. 'seurat_v3' expects RAW counts and only warns on log-normalized input, silently
+        # picking a suboptimal HVG set; the pipeline's contexts are also counts-free (slimmed), so
+        # seurat_v3 could never get the data it wants.
+        sc.pp.highly_variable_genes(adata, n_top_genes=n_top_genes, flavor="seurat")
         adata = adata[:, adata.var.highly_variable].copy()
         
         # Keep a copy of normalized data for marker detection (before scaling)
@@ -473,17 +477,27 @@ def main():
     output_stem = os.path.splitext(os.path.basename(output_path))[0]
     output_suffix = os.path.splitext(output_path)[1] or '.csv'
     
-    base_name = os.path.splitext(os.path.basename(args.input))[0]
+    # Optional clustering context: when CONTEXT_H5AD points to a larger (up to 100k) h5ad that
+    # CONTAINS the eval subset, cluster + rank markers + SCSA-score on that context (so rare cell
+    # types can form their own cluster), then keep only the eval-subset cells. Without it, cluster
+    # the eval subset itself (original behavior). The scored set is always exactly the eval subset.
+    context_h5ad = os.environ.get("CONTEXT_H5AD", "")
+    use_context = bool(context_h5ad) and os.path.exists(context_h5ad)
+    cluster_input = context_h5ad if use_context else args.input
+    if use_context:
+        print(f"SCSA: clustering context '{context_h5ad}', scoring eval cells from '{args.input}'.")
+
+    base_name = os.path.splitext(os.path.basename(cluster_input))[0]
     temp_csv = os.path.join(temp_dir, f"{base_name}_markers.csv")
     temp_scsa_output = os.path.join(temp_dir, f"{base_name}_scsa_result.txt")
-    
+
     try:
         # Step 1: Create CSV from h5ad (only needs to be done once)
         print("="*60)
         print("STEP 1: Creating marker gene CSV from h5ad")
         print("="*60)
         adata, cluster_col = create_scanpy_csv(
-            args.input, temp_csv, 
+            cluster_input, temp_csv,
             cluster_col=args.cluster_col,
             resolution=args.resolution
         )
@@ -516,12 +530,28 @@ def main():
             print(f"Available columns: {list(adata.obs.columns)}")
             sys.exit(1)
         
-        # Map to cells using this annotation key
+        # Map to cells using this annotation key (over the clustering source)
         result_df = map_to_cells(
             temp_scsa_output, adata, cluster_col,
             true_label_col=annotation_key
         )
-        
+
+        # In context mode, keep only the eval-subset cells, propagating their context cluster's
+        # label. The context is union-constructed to contain every eval cell.
+        if use_context:
+            import anndata as _ad
+            eval_ids = _ad.read_h5ad(args.input, backed="r").obs_names.astype(str).tolist()
+            result_df['cell_id'] = result_df['cell_id'].astype(str)
+            n_ctx = len(result_df)
+            missing = set(eval_ids) - set(result_df['cell_id'])
+            if missing:
+                print(f"  WARNING: {len(missing)}/{len(eval_ids)} eval cells absent from the "
+                      f"clustering context -> Unknown.")
+            result_df = (result_df.drop_duplicates('cell_id').set_index('cell_id')
+                                  .reindex(eval_ids).reset_index())
+            result_df['predicted_labels'] = result_df['predicted_labels'].fillna('Unknown')
+            print(f"  Context filter: {n_ctx} context cells -> {len(result_df)} eval cells")
+
         # Save final output
         print(f"\nSaving results to {args.output}")
         result_df.to_csv(args.output, index=False)
