@@ -1,0 +1,19 @@
+{
+  "total_predictions": 9997,
+  "note": "discovery + resolution; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 9997,
+  "non_cl_ratio": 1.0,
+  "non_cl_labels": [
+    "adipocytes",
+    "astrocytes",
+    "cardiomyocytes",
+    "endothelial cells",
+    "epithelial cells",
+    "fibroblasts",
+    "macrophages",
+    "microglia",
+    "neurons",
+    "oligodendrocytes",
+    "t cells"
+  ]
+}

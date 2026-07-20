@@ -1,0 +1,20 @@
+{
+  "total_predictions": 999,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 32,
+  "non_cl_ratio": 0.032032,
+  "non_cl_labels": [
+    "cd16-positive, cd56-dim natural killer cell",
+    "conventional dendritic cell type 1",
+    "conventional dendritic cell type 2",
+    "effector memory t cell",
+    "lymphoid-primed multipotent progenitor",
+    "mature dendritic cell",
+    "memory cd4-positive, alpha-beta t cell",
+    "mucosal invariant t cell",
+    "naive thymus-derived alpha-beta t cell",
+    "pre-b cell",
+    "type 1 conventional dendritic cell",
+    "type 2 conventional dendritic cell"
+  ]
+}

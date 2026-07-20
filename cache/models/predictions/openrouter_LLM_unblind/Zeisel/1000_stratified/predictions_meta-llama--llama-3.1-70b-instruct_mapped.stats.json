@@ -1,0 +1,19 @@
+{
+  "total_predictions": 999,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 92,
+  "non_cl_ratio": 0.092092,
+  "non_cl_labels": [
+    "based on the gene expression profile, i predict the cell type to be:  oligodendrocyte",
+    "based on the provided gene expression profile, the predicted cell type is:  **oligodendrocyte**",
+    "enteric glia",
+    "i'll follow the rules and respond with the predicted cell type.  neuroblast (sensu vertebrata)",
+    "i'm ready to classify the cell type based on the provided gene expression profile. go ahead and provide the list of up to 200 gene names ordered by descending expression level in a single cell. i will respond with the predicted cell type label",
+    "i'm sorry but i am not able to complete the task because i am not an expert at classifying cell types based on gene expression",
+    "microglia",
+    "neuroblast",
+    "olig2 + satellite glia + astrocyte",
+    "satellite glia",
+    "vascular smooth muscle cell"
+  ]
+}

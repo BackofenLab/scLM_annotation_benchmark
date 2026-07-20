@@ -1,0 +1,20 @@
+{
+  "total_predictions": 999,
+  "note": "discovery + resolution; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 999,
+  "non_cl_ratio": 1.0,
+  "non_cl_labels": [
+    "alpha_immature",
+    "alpha_mature",
+    "alpha_mhc ii",
+    "alpha_stress ii",
+    "beta_immature",
+    "beta_mature",
+    "beta_mhc/autoantigen",
+    "beta_mtdna deficient",
+    "beta_stress i",
+    "beta_stress ii",
+    "delta",
+    "pp"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "total_predictions": 1000,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 2,
+  "non_cl_ratio": 0.002,
+  "non_cl_labels": [
+    "horizontal cell markers: onecut1, onecut2, tfap2a, tfap2b, pax6, six3...  retina horizontal cell",
+    "horizontal cell wait - check list: 'retina horizontal cell'  retina horizontal cell"
+  ]
+}

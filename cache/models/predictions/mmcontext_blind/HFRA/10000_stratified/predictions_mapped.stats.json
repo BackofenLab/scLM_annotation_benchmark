@@ -1,0 +1,9 @@
+{
+  "total_predictions": 10000,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 4,
+  "non_cl_ratio": 0.0004,
+  "non_cl_labels": [
+    "rxfp1-positive interface island d1-medium spiny neuron"
+  ]
+}

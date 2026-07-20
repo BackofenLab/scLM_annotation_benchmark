@@ -1,0 +1,20 @@
+{
+  "total_predictions": 999,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 172,
+  "non_cl_ratio": 0.172172,
+  "non_cl_labels": [
+    "alpha",
+    "b cell powder",
+    "coordinate",
+    "delta",
+    "ductal",
+    "ngn3",
+    "ngn3 high ep",
+    "nk/t cell",
+    "sensitive",
+    "t cell exam",
+    "tr",
+    "trunk"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "total_predictions": 1000,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 51,
+  "non_cl_ratio": 0.051,
+  "non_cl_labels": [
+    "activated t cell",
+    "cd4-positive, alpha beta t cell",
+    "cell body of neuron",
+    "cl:0000023 fibroblast",
+    "cl:0000235",
+    "endoplasmic reticulum-resident hela cell",
+    "hela cell",
+    "hematopoietic progenitor cell",
+    "immature dendritic cell",
+    "immature erythroblast",
+    "immature hematopoietic cell",
+    "mammary epithelial cell",
+    "mature fibroblast",
+    "mature neuron",
+    "mature oligodendrocyte",
+    "mitochondrion",
+    "mitotic cell",
+    "neuroblast",
+    "pancreatic beta cell",
+    "retinal bipolar cell",
+    "rod photoreceptor cell",
+    "sensory photoreceptor cell",
+    "skeletal muscle cell",
+    "t lymphocyte"
+  ]
+}

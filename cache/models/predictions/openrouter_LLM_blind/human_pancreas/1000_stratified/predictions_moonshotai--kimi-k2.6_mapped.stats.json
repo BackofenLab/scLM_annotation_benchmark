@@ -1,0 +1,25 @@
+{
+  "total_predictions": 999,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 460,
+  "non_cl_ratio": 0.46046,
+  "non_cl_labels": [
+    "alpha cell",
+    "cytotrophoblast",
+    "epithelial cell of pancreatic duct",
+    "mature dendritic cell",
+    "myofibroblast",
+    "no prediction",
+    "pancreatic alpha cell",
+    "pancreatic b cell",
+    "pancreatic beta cell",
+    "pancreatic delta cell",
+    "pancreatic ductal epithelial cell",
+    "somatostatin-secreting cell",
+    "syncytiotrophoblast",
+    "type a pancreatic cell",
+    "type d pancreatic cell",
+    "type d pancreatic enteroendocrine cell",
+    "type ii pneumocyte"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "total_predictions": 999,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 247,
+  "non_cl_ratio": 0.247247,
+  "non_cl_labels": [
+    "acinar",
+    "delta",
+    "epsilon",
+    "no prediction",
+    "predicted: pancreatic pp cell  wait, i need to reread the instructions: \"respond with only the cell type label of the predicted cell type.\" and \"do not include explanations, reasoning, or extra words in the output.\"  so output should be just the label. but looking at my response, i started with \"predicted:\". no, i should output only the label itself.  actually, looking at the prompt format, the user wants just the cell type. so i will output exactly: pancreatic pp cell  let me make sure there is no \"predicted:\" or anything. the system prompt says \"output:\". so i'll provide just the text.  one final sanity check: the list includes \"arx\". arx is a transcription factor important for alpha and pp cells? actually arx mutations cause x-linked panhypopituitarism and are involved in pancreatic endocrine development, particularly alpha cells. hmm.  wait, \"arx\" is in the list. arx is expressed in alpha cells and may be in other islet cells. but \"pancreatic a cell\" would have gcg. since gcg is absent, arx might be in pp cells? actually arx is critical for alpha cell fate, but its expression might be broader.  \"npas4\" is present. npas4 is a transcription factor induced by neuronal activity. not specific.  \"zfp36\" is tristetraprolin, an rna-binding protein.  \"jun\", \"fos\", \"junb\", \"jund\": ap-1 complex, stress response.  \"cdkn1a\": p21, cell cycle inhibitor.  \"atf4\": stress response.  these stress genes might indicate cell dissociation stress, common in all islet cells.  given everything, i maintain: **pancreatic pp cell**.  pancreatic pp cell"
+  ]
+}

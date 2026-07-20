@@ -1,0 +1,25 @@
+{
+  "total_predictions": 999,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 170,
+  "non_cl_ratio": 0.17017,
+  "non_cl_labels": [
+    "cancer-associated fibroblast",
+    "delta cell",
+    "endothelial cell of pancreatic islet",
+    "epithelial cell of pancreatic duct",
+    "epsilon cell",
+    "inflammatory fibroblast",
+    "inflammatory macrophage",
+    "kidney proximal tubule epithelial cell",
+    "malignant epithelial cell",
+    "malignant epithelial cell of pancreas",
+    "malignant pancreatic ductal cell",
+    "pancreatic alpha cell",
+    "pancreatic beta cell",
+    "pancreatic delta cell",
+    "pancreatic endothelial cell",
+    "proliferating pancreatic a cell",
+    "somatostatin-secreting cell"
+  ]
+}

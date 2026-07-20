@@ -1,0 +1,20 @@
+{
+  "total_predictions": 9999,
+  "note": "discovery + resolution; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 9999,
+  "non_cl_ratio": 1.0,
+  "non_cl_labels": [
+    "cd8+ nkt-like cells",
+    "classical monocytes",
+    "effector cd8+ t cells",
+    "memory cd4+ t cells",
+    "naive b cells",
+    "naive cd4+ t cells",
+    "naive cd8+ t cells",
+    "natural killer  cells",
+    "non-classical monocytes",
+    "plasmacytoid dendritic cells",
+    "platelets",
+    "progenitor cells"
+  ]
+}

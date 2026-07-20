@@ -1,0 +1,21 @@
+{
+  "total_predictions": 999,
+  "note": "discovery + resolution; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 999,
+  "non_cl_ratio": 1.0,
+  "non_cl_labels": [
+    "anscs",
+    "endothelial cells",
+    "ependymal",
+    "fibroblasts",
+    "fibroblasts activated",
+    "fibroblasts senescent",
+    "macrophages",
+    "macrophages activated",
+    "microglia",
+    "neurons",
+    "npcs",
+    "oligodendrocytes",
+    "qnscs"
+  ]
+}

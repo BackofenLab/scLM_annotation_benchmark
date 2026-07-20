@@ -1,0 +1,30 @@
+{
+  "total_predictions": 999,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 999,
+  "non_cl_ratio": 1.0,
+  "non_cl_labels": [
+    "astrocytes",
+    "cancer cells",
+    "cancer stem cells",
+    "cholinergic neurons",
+    "endothelial cells",
+    "gabaergic neurons",
+    "glutamatergic neurons",
+    "immature neurons",
+    "mature neurons",
+    "microglial cells",
+    "myelinating schwann cells",
+    "neural progenitor cells",
+    "neural stem cells",
+    "neuroblasts",
+    "neuroepithelial cells",
+    "non myelinating schwann cells",
+    "oligodendrocyte precursor cells",
+    "oligodendrocytes",
+    "radial glial cells",
+    "schwann precursor cells",
+    "serotonergic neurons",
+    "tanycytes"
+  ]
+}

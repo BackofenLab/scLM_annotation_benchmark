@@ -1,0 +1,31 @@
+{
+  "total_predictions": 10000,
+  "note": "discovery + resolution; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 9644,
+  "non_cl_ratio": 0.9644,
+  "non_cl_labels": [
+    "b_cell",
+    "bm & prog",
+    "chondrocytes",
+    "cmp",
+    "dc",
+    "embryonic_stem_cells",
+    "endothelial_cells",
+    "epithelial_cells",
+    "fibroblasts",
+    "gametocytes",
+    "gmp",
+    "hepatocytes",
+    "ips_cells",
+    "keratinocytes",
+    "msc",
+    "neuroepithelial_cell",
+    "neurons",
+    "neutrophils",
+    "nk_cell",
+    "osteoblasts",
+    "smooth_muscle_cells",
+    "t_cells",
+    "tissue_stem_cells"
+  ]
+}

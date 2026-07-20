@@ -1,0 +1,13 @@
+{
+  "total_predictions": 999,
+  "note": "discovery + resolution; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 778,
+  "non_cl_ratio": 0.778779,
+  "non_cl_labels": [
+    "alpha cell (\u03b1 cell)",
+    "beta cell(\u03b2 cell)",
+    "delta cell",
+    "ductal cell",
+    "gamma cell"
+  ]
+}

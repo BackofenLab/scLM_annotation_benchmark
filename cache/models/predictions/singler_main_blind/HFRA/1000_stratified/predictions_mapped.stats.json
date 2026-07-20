@@ -1,0 +1,16 @@
+{
+  "total_predictions": 1000,
+  "note": "discovery + resolution; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 914,
+  "non_cl_ratio": 0.914,
+  "non_cl_labels": [
+    "dc",
+    "endothelial_cells",
+    "gmp",
+    "ips_cells",
+    "neuroepithelial_cell",
+    "neurons",
+    "neutrophils",
+    "tissue_stem_cells"
+  ]
+}

@@ -145,245 +145,245 @@ cell_id,true_labels,predicted_labels
 10X53_3:ACACGAACGTTAGC,oligodendrocyte,Oligodendrocyte
 10X55_4:GCCAATCACCTTAT,oligodendrocyte,Oligodendrocyte
 10X50_7:CTATAAGACCAAGT,oligodendrocyte,Oligodendrocyte
-10X20_1:AACGCCCTGTACCA,glutamatergic neuron,Excitatory neuron
-10X22_2:TCGGACCTGCATCA,glutamatergic neuron,Excitatory neuron
-10X22_2:CGTTTAACCCTGTC,glutamatergic neuron,Excitatory neuron
-10X53_6:CTGGCACTAATCGC,glutamatergic neuron,Inhibitory neuron
-10X50_8:CGCGAGACCTCTAT,glutamatergic neuron,Inhibitory neuron
-10X57_3:AGTCTTACCTCATT,glutamatergic neuron,Inhibitory neuron
-10X20_2:GATATCCTCAGATC,glutamatergic neuron,Excitatory neuron
-10X53_3:AAGTCCGAGCTATG,glutamatergic neuron,Inhibitory neuron
-10X34_3:TGGCACCTTTCATC,glutamatergic neuron,Inhibitory neuron
-10X02_1:ACGGAGGACAAAGA,glutamatergic neuron,Excitatory neuron
-10X57_2:AGCAAGCTTTGACG,glutamatergic neuron,Inhibitory neuron
-10X22_2:ACGCTCACTCAAGC,glutamatergic neuron,Excitatory neuron
-10X19_2:AAGGCTTGCCATAG,glutamatergic neuron,Excitatory neuron
-10X20_1:TTGAGGTGCTTGCC,glutamatergic neuron,Excitatory neuron
-10X20_1:CAAGACTGATCGTG,glutamatergic neuron,Excitatory neuron
-10X05_1:GCGAGAGACAAGCT,glutamatergic neuron,Excitatory neuron
-10X22_2:AAACGCACTGGTTG,glutamatergic neuron,Excitatory neuron
-10X22_3:TATAGCCTGCATAC,glutamatergic neuron,Excitatory neuron
-10X53_3:AACATTGAGGTATC,glutamatergic neuron,Inhibitory neuron
-10X49_3:ACTCTATGGGAAGC,glutamatergic neuron,Excitatory neuron
-10X04_2:ATCATCTGGTTGAC,glutamatergic neuron,Excitatory neuron
-10X28_4:AAGGTGCTTTCGGA,glutamatergic neuron,Excitatory neuron
-10X50_5:CATTGTACACTCTT,glutamatergic neuron,Inhibitory neuron
-10X28_4:ACGTAGACCTACTT,glutamatergic neuron,Excitatory neuron
-10X24_3:ATCTGGGAGAATAG,glutamatergic neuron,Inhibitory neuron
-10X02_1:TTTCCAGACTACCC,glutamatergic neuron,Excitatory neuron
-10X57_3:TACATCACACCTGA,glutamatergic neuron,Inhibitory neuron
-10X43_1:CCCTACGAATCGTG,glutamatergic neuron,Excitatory neuron
-10X20_1:ACACGATGCTTATC,glutamatergic neuron,Excitatory neuron
-10X01_1:ACGTTACTAAAACG,glutamatergic neuron,Excitatory neuron
-10X57_3:CACTGAGATTCTTG,glutamatergic neuron,Inhibitory neuron
-10X28_3:ATAACCCTCCTGTC,glutamatergic neuron,Excitatory neuron
-10X52_1:CAAGGTTGTAGAAG,glutamatergic neuron,Inhibitory neuron
-10X22_2:ATTCAGCTAAAGCA,glutamatergic neuron,Excitatory neuron
-10X20_4:ACTCAGGAGTCTTT,glutamatergic neuron,Inhibitory neuron
-10X28_3:AGGGCCACTTCGCC,glutamatergic neuron,Excitatory neuron
-10X24_4:CAGCAATGCAACCA,glutamatergic neuron,Inhibitory neuron
-10X05_2:GATTCTTGTCCTCG,glutamatergic neuron,Inhibitory neuron
-10X36_1:AACAATACCCTGTC,glutamatergic neuron,Excitatory neuron
-10X50_5:ATCGCCTGGGAGCA,glutamatergic neuron,Inhibitory neuron
-10X52_2:GTACGAACAACTGC,glutamatergic neuron,Inhibitory neuron
-10X53_6:CAGGGCACGAACCT,glutamatergic neuron,Inhibitory neuron
-10X22_2:GCTACAGATTTGGG,glutamatergic neuron,Excitatory neuron
-10X54_2:GACCATCAGCCTAA,glutamatergic neuron,Inhibitory neuron
-10X20_2:GAAAGATGTCTTTG,glutamatergic neuron,Excitatory neuron
-10X36_1:AAATCTGAGGGCAA,glutamatergic neuron,Excitatory neuron
-10X28_3:CACTTAACTTCCAT,glutamatergic neuron,Excitatory neuron
-10X05_1:CCATAGGAGGACTT,glutamatergic neuron,Excitatory neuron
-10X28_4:ATGCAGTGTCCTTA,glutamatergic neuron,Excitatory neuron
-10X22_1:AGTCTTACGCTATG,glutamatergic neuron,Excitatory neuron
-10X28_2:GAAGGGTGAAGTAG,glutamatergic neuron,Excitatory neuron
-10X22_1:ATTGGTCTCTTGTT,glutamatergic neuron,Inhibitory neuron
-10X05_1:CGATCCACACAGTC,glutamatergic neuron,Inhibitory neuron
-10X20_1:GTTCAGGACCCACT,glutamatergic neuron,Excitatory neuron
-10X28_2:TTGTACACCTGTTT,glutamatergic neuron,Excitatory neuron
-10X53_3:ATGAGAGAGGTAGG,glutamatergic neuron,Inhibitory neuron
-10X35_1:TGATACCTCCTTGC,glutamatergic neuron,Excitatory neuron
-10X22_1:TGCTTAACAGATGA,glutamatergic neuron,Excitatory neuron
-10X22_4:GCCTCATGATCGTG,glutamatergic neuron,Excitatory neuron
-10X50_6:AAGATGGATTGCGA,glutamatergic neuron,Inhibitory neuron
-10X02_1:TGTTACTGTCCTCG,glutamatergic neuron,Excitatory neuron
-10X43_3:GAGTCAACTTCGCC,glutamatergic neuron,Inhibitory neuron
-10X50_8:ACGAACTGTACTCT,glutamatergic neuron,Inhibitory neuron
-10X35_1:TCGTAGGAGTTAGC,glutamatergic neuron,Excitatory neuron
-10X05_2:CACCGTACCCATAG,glutamatergic neuron,Excitatory neuron
-10X53_4:CACTAGGAACCTTT,glutamatergic neuron,Inhibitory neuron
-10X28_4:GTTATCTGAACGAA,glutamatergic neuron,Excitatory neuron
-10X20_3:CTGACAGAATCGTG,glutamatergic neuron,Inhibitory neuron
-10X20_3:GAGCGGCTCTACCC,glutamatergic neuron,Inhibitory neuron
-10X28_2:TTCAGACTTGACTG,glutamatergic neuron,Excitatory neuron
-10X57_2:GTGACAACTGCAAC,glutamatergic neuron,Inhibitory neuron
-10X02_1:TAGACGTGTCCAAG,glutamatergic neuron,Excitatory neuron
-10X05_1:CCCAGTTGATCACG,glutamatergic neuron,Excitatory neuron
-10X05_1:CGATCAGACTCATT,glutamatergic neuron,Excitatory neuron
-10X04_2:ATATAGTGAACCGT,glutamatergic neuron,Excitatory neuron
-10X22_2:TCTCAAACCGTGAT,glutamatergic neuron,Excitatory neuron
-10X22_1:TGCAACGATACTCT,glutamatergic neuron,Excitatory neuron
-10X19_2:ACACGTGAAGCGGA,glutamatergic neuron,Excitatory neuron
-10X04_2:GGAATCTGCTGAAC,glutamatergic neuron,Excitatory neuron
-10X28_3:CACTGAGAGGTAAA,glutamatergic neuron,Excitatory neuron
-10X50_5:GATCCCTGGAGGCA,glutamatergic neuron,Inhibitory neuron
-10X22_4:GTGGATTGGCGAGA,glutamatergic neuron,Excitatory neuron
-10X04_1:GCCGGAACGCTGTA,glutamatergic neuron,Excitatory neuron
-10X50_5:AATAAGCTGCTGAT,glutamatergic neuron,Inhibitory neuron
-10X05_1:GAAAGCCTCGATAC,glutamatergic neuron,Excitatory neuron
-10X36_1:AGCACTGAAGATCC,glutamatergic neuron,Excitatory neuron
-10X53_6:CTCGACACATGCCA,glutamatergic neuron,Inhibitory neuron
-10X52_4:ATAAGTACTGAGAA,glutamatergic neuron,Inhibitory neuron
-10X49_4:TGATAAACAACGAA,glutamatergic neuron,Excitatory neuron
-10X19_2:ATGTACCTTAAGGA,glutamatergic neuron,Excitatory neuron
-10X50_5:TGCCACTGGTGTAC,glutamatergic neuron,Inhibitory neuron
-10X28_3:GATCCCTGCCTTGC,glutamatergic neuron,Excitatory neuron
-10X20_4:TGTGATCTTTCGTT,glutamatergic neuron,Inhibitory neuron
-10X28_5:GTTACGGATATCTC,glutamatergic neuron,Excitatory neuron
-10X28_2:CCCGAACTTTCTTG,glutamatergic neuron,Excitatory neuron
-10X52_3:GCACCACTTGTGAC,glutamatergic neuron,Inhibitory neuron
-10X50_8:ATGCCGCTATCTTC,glutamatergic neuron,Inhibitory neuron
-10X05_1:TAGGACTGGAGGAC,glutamatergic neuron,Excitatory neuron
-10X20_2:ATGTACCTCTGCAA,glutamatergic neuron,Excitatory neuron
-10X52_1:CATAAAACACCTCC,glutamatergic neuron,Inhibitory neuron
-10X53_1:GTCGAATGTGGAAA,glutamatergic neuron,Macrophage
-10X24_3:CAGACATGAAACGA,glutamatergic neuron,Inhibitory neuron
-10X57_7:XXATATGACCTTGC,glutamatergic neuron,Inhibitory neuron
-10X35_1:GGGATGGATGACCA,glutamatergic neuron,Excitatory neuron
-10X35_1:CAAACTCTTCAGGT,glutamatergic neuron,Inhibitory neuron
-10X01_1:GAGTTGTGTCTTCA,glutamatergic neuron,Excitatory neuron
-10X28_3:ACCCAAGACTGAGT,glutamatergic neuron,Excitatory neuron
-10X50_6:GTTATCTGACACAC,glutamatergic neuron,Inhibitory neuron
-10X54_4:GGGTTGTCTCACCT,glutamatergic neuron,Inhibitory neuron
-10X22_2:ATGTCACTTGACCA,glutamatergic neuron,Excitatory neuron
-10X19_2:GTACTACTGTAGCT,glutamatergic neuron,Excitatory neuron
-10X52_3:TAGTCGGAAGCGGA,glutamatergic neuron,Inhibitory neuron
-10X28_4:GAGTGACTTTCCGC,glutamatergic neuron,Excitatory neuron
-10X04_2:GACCTCACCCCTTG,glutamatergic neuron,Excitatory neuron
-10X22_2:TGTTAAGACGTAGT,glutamatergic neuron,Excitatory neuron
-10X19_2:GATTTGCTCTGAGT,glutamatergic neuron,Excitatory neuron
-10X22_3:GCACGGACAGGCGA,glutamatergic neuron,Excitatory neuron
-10X35_2:TGTAATGACGTACA,glutamatergic neuron,Excitatory neuron
-10X20_1:TGGTAGTGTTATCC,glutamatergic neuron,Excitatory neuron
-10X52_1:ATCAAATGACCCAA,glutamatergic neuron,Inhibitory neuron
-10X20_3:CGCGGATGGTCGTA,glutamatergic neuron,Inhibitory neuron
-10X19_2:ACGACCCTCTTGGA,glutamatergic neuron,Excitatory neuron
-10X52_2:TAAGTCCTACGCAT,glutamatergic neuron,Inhibitory neuron
-10X35_2:TGCGAAACACGTAC,glutamatergic neuron,Excitatory neuron
-10X07_1:TTACAGCTCCGATA,GABAergic neuron,Inhibitory neuron
-10X07_1:TCCCACGATATGCG,GABAergic neuron,Inhibitory neuron
-10X49_5:TGGACTGAACTCAG,GABAergic neuron,Inhibitory neuron
-10X52_2:CAAGAAGAATTGGC,GABAergic neuron,Inhibitory neuron
-10X38_1:CTACCTCTCCAACA,GABAergic neuron,Inhibitory neuron
-10X24_2:GAACCAACAGTGTC,GABAergic neuron,Inhibitory neuron
-10X04_1:ATCTGACTACCTCC,GABAergic neuron,Inhibitory neuron
-10X38_2:TTGAGGACAACCGT,GABAergic neuron,Inhibitory neuron
-10X26_4:ACGCACCTGAGCTT,GABAergic neuron,Inhibitory neuron
-10X07_1:AGATATTGCACACA,GABAergic neuron,Inhibitory neuron
-10X55_7:CTAATTCTGCTTGC,GABAergic neuron,Inhibitory neuron
-10X24_1:CAGCACCTCGACAT,GABAergic neuron,Inhibitory neuron
-10X26_3:TGCTGAGAGGTAAA,GABAergic neuron,Inhibitory neuron
-10X52_1:GACGCTCTCTGTGA,GABAergic neuron,Inhibitory neuron
-10X28_4:CGTCCATGCCGTTC,GABAergic neuron,Oligodendrocyte
-10X24_2:TTAGTCACCTAGAC,GABAergic neuron,Inhibitory neuron
-10X38_1:GGATACTGCAGCTA,GABAergic neuron,Inhibitory neuron
-10X38_3:TAAATCGATACTCT,GABAergic neuron,Inhibitory neuron
-10X52_3:CACAATCTGCTTCC,GABAergic neuron,Inhibitory neuron
-10X50_3:CGACCTACACCTCC,GABAergic neuron,Inhibitory neuron
-10X04_4:CTACCTCTGACTAC,GABAergic neuron,Oligodendrocyte
-10X24_1:CGGATATGGTTCGA,GABAergic neuron,Inhibitory neuron
-10X49_4:CCTATAACGCTGTA,GABAergic neuron,Oligodendrocyte
-10X49_4:GATAGCACTCGCCT,GABAergic neuron,Oligodendrocyte
-10X38_2:CTAACTACAGCTCA,GABAergic neuron,Inhibitory neuron
-10X38_1:GACGAGGAGGACTT,GABAergic neuron,Inhibitory neuron
-10X38_1:AATTACGAGCTGAT,GABAergic neuron,Inhibitory neuron
-10X52_3:AGTCGAACGTGTAC,GABAergic neuron,Inhibitory neuron
-10X28_4:CAGTTTACTGTTCT,GABAergic neuron,Oligodendrocyte
-10X26_3:ATAAACACGCAAGG,GABAergic neuron,Inhibitory neuron
-10X28_5:ATCGCGCTGTGTCA,GABAergic neuron,Oligodendrocyte
-10X49_4:GCCACGGAGTCTTT,GABAergic neuron,Oligodendrocyte
-10X28_4:TCCATCCTAACCGT,GABAergic neuron,Oligodendrocyte
-10X38_1:GACTGTGATCTCCG,GABAergic neuron,Inhibitory neuron
-10X52_3:CACACCTGCGCAAT,GABAergic neuron,Inhibitory neuron
-10X57_2:CACGATGATCCCAC,GABAergic neuron,Inhibitory neuron
-10X52_3:TTTCACGAACCTTT,GABAergic neuron,Inhibitory neuron
-10X36_1:CAATAAACGACAGG,GABAergic neuron,Inhibitory neuron
-10X05_1:CGCTACTGGCTAAC,GABAergic neuron,Inhibitory neuron
-10X28_4:TGTCTAACAAGAAC,GABAergic neuron,Oligodendrocyte
-10X26_4:TGAGGACTATGACC,GABAergic neuron,Inhibitory neuron
-10X38_3:TCTATGTGACGTTG,GABAergic neuron,Inhibitory neuron
-10X24_2:GAAACAGATGTTTC,GABAergic neuron,Inhibitory neuron
-10X36_3:TCCGAAGAGTGTCA,GABAergic neuron,Inhibitory neuron
-10X38_1:AGTAATACCCACAA,GABAergic neuron,Inhibitory neuron
-10X05_4:GGACCCGAGAATCC,GABAergic neuron,Inhibitory neuron
-10X28_5:CTATCAACCCATAG,GABAergic neuron,Oligodendrocyte
-10X38_3:TACGGCCTCTTCTA,GABAergic neuron,Inhibitory neuron
-10X49_4:GACAACTGCGTAGT,GABAergic neuron,Oligodendrocyte
-10X38_1:TGAGCAACCTCATT,GABAergic neuron,Inhibitory neuron
-10X26_4:TATGGGTGGGTACT,GABAergic neuron,Inhibitory neuron
-10X04_4:CGGTAAACATCACG,GABAergic neuron,Oligodendrocyte
-10X24_1:ACAAAGGAGAATAG,GABAergic neuron,Inhibitory neuron
-10X38_3:TTCAGACTAACCAC,GABAergic neuron,Inhibitory neuron
-10X49_4:TGGAGACTCCCACT,GABAergic neuron,Oligodendrocyte
-10X38_2:ACGCCTTGTCTCCG,GABAergic neuron,Inhibitory neuron
-10X36_2:GCACCACTGCTGAT,GABAergic neuron,Inhibitory neuron
-10X28_5:GAGTAAGACTGTAG,GABAergic neuron,Inhibitory neuron
-10X52_1:GGCCACGATCCAAG,GABAergic neuron,Inhibitory neuron
-10X49_1:GGCGACTGCTCGAA,GABAergic neuron,Inhibitory neuron
-10X07_1:CCAGTCACGACAAA,GABAergic neuron,Inhibitory neuron
-10X07_1:CTTACATGTGCTAG,GABAergic neuron,Inhibitory neuron
-10X24_1:TACGATCTTTGTCT,GABAergic neuron,Inhibitory neuron
-10X38_1:AGAGCGGAACGCTA,GABAergic neuron,Inhibitory neuron
-10X28_5:ACACGAACCGTCTC,GABAergic neuron,Oligodendrocyte
-10X49_4:ACCAACGACCTTTA,GABAergic neuron,Oligodendrocyte
-10X28_4:CTAAGGACCATTCT,GABAergic neuron,Oligodendrocyte
-10X24_1:GGCGACTGCACAAC,GABAergic neuron,Inhibitory neuron
-10X49_5:AAGGTGCTTCGATG,GABAergic neuron,Oligodendrocyte
-10X38_2:AATGGCTGCCTTAT,GABAergic neuron,Inhibitory neuron
-10X38_2:AGAATGGAGGAAGC,GABAergic neuron,Inhibitory neuron
-10X49_5:CTACTCCTACGACT,GABAergic neuron,Oligodendrocyte
-10X07_1:CACTTAACATCGGT,GABAergic neuron,Inhibitory neuron
-10X49_4:TAGGGACTACGGTT,GABAergic neuron,Oligodendrocyte
-10X26_4:TACGAGTGGTCATG,GABAergic neuron,Inhibitory neuron
-10X49_5:CATGTACTTGGTCA,GABAergic neuron,Oligodendrocyte
-10X26_4:CACAGTGAAACGGG,GABAergic neuron,Inhibitory neuron
-10X49_5:ATAGGCTGCGAACT,GABAergic neuron,Oligodendrocyte
-10X43_3:TGATAAACCTGGTA,GABAergic neuron,Inhibitory neuron
-10X36_3:ATGAAACTGGTCAT,GABAergic neuron,Inhibitory neuron
-10X52_2:AACGTGTGTCAAGC,GABAergic neuron,Inhibitory neuron
-10X49_4:ATTGTAGAGCCATA,GABAergic neuron,Oligodendrocyte
-10X38_3:TGGATGACTCACCC,GABAergic neuron,Inhibitory neuron
-10X38_2:CTAATGCTACGACT,GABAergic neuron,Inhibitory neuron
-10X26_3:ATCACGGAGAGGCA,GABAergic neuron,Inhibitory neuron
-10X24_2:TAATGCCTCAACCA,GABAergic neuron,Inhibitory neuron
-10X05_2:TAGGTCGAGACAAA,GABAergic neuron,Inhibitory neuron
-10X49_1:ATACCACTTGCTTT,GABAergic neuron,Inhibitory neuron
-10X38_2:CACGAAACAAGCAA,GABAergic neuron,Inhibitory neuron
-10X38_2:AGAAAGTGCTGTCC,GABAergic neuron,Inhibitory neuron
-10X49_2:TTCTCAGAAGGAGC,GABAergic neuron,Inhibitory neuron
-10X36_3:ATCATCTGCCTCCA,GABAergic neuron,Inhibitory neuron
-10X49_5:AGGGTGGATTTCAC,GABAergic neuron,Inhibitory neuron
-10X50_4:GTTAAAACGGTGAG,GABAergic neuron,Inhibitory neuron
-10X49_5:CTATTGACACAGTC,GABAergic neuron,Oligodendrocyte
-10X28_4:ATCTACTGTCTGGA,GABAergic neuron,Oligodendrocyte
-10X20_2:GCCTACACGCTTAG,GABAergic neuron,Inhibitory neuron
-10X07_1:AAATCTGAGGAGGT,GABAergic neuron,Inhibitory neuron
-10X38_2:ATTGCACTCCGATA,GABAergic neuron,Inhibitory neuron
-10X28_5:CGTTAACTCCGCTT,GABAergic neuron,Oligodendrocyte
-10X35_1:GCATTGGATGTTTC,GABAergic neuron,Inhibitory neuron
-10X38_2:GGCTAATGGTGCTA,GABAergic neuron,Inhibitory neuron
-10X38_2:GTAATAACAAGTGA,GABAergic neuron,Inhibitory neuron
-10X52_5:CAACGATGATGACC,GABAergic neuron,Inhibitory neuron
-10X38_2:GGCGACTGCCATAG,GABAergic neuron,Inhibitory neuron
-10X52_1:TTAGTCTGTCGCAA,GABAergic neuron,Inhibitory neuron
-10X24_1:GTGATCGATCCCGT,GABAergic neuron,Inhibitory neuron
-10X49_4:CGCGAGACGGAGCA,GABAergic neuron,Oligodendrocyte
-10X38_2:TCGACGCTCGCTAA,GABAergic neuron,Inhibitory neuron
-10X50_5:ATTTAGGACACTCC,GABAergic neuron,Inhibitory neuron
-10X24_2:TGCGAAACCGGTAT,GABAergic neuron,Inhibitory neuron
-10X50_4:ACACGAACTGGAGG,GABAergic neuron,Inhibitory neuron
-10X52_5:GGTCTAGAGACGTT,GABAergic neuron,Inhibitory neuron
-10X38_1:GTGTACGAGCGAAG,GABAergic neuron,Inhibitory neuron
-10X52_2:ACCCGTACAACCAC,GABAergic neuron,Inhibitory neuron
+10X20_1:AACGCCCTGTACCA,glutamatergic neuron,Neuron
+10X22_2:TCGGACCTGCATCA,glutamatergic neuron,Neuron
+10X22_2:CGTTTAACCCTGTC,glutamatergic neuron,Astrocyte
+10X53_6:CTGGCACTAATCGC,glutamatergic neuron,Neuron
+10X50_8:CGCGAGACCTCTAT,glutamatergic neuron,Neuron
+10X57_3:AGTCTTACCTCATT,glutamatergic neuron,Neuron
+10X20_2:GATATCCTCAGATC,glutamatergic neuron,Neuron
+10X53_3:AAGTCCGAGCTATG,glutamatergic neuron,Neuron
+10X34_3:TGGCACCTTTCATC,glutamatergic neuron,Neuron
+10X02_1:ACGGAGGACAAAGA,glutamatergic neuron,Neuron
+10X57_2:AGCAAGCTTTGACG,glutamatergic neuron,Neuron
+10X22_2:ACGCTCACTCAAGC,glutamatergic neuron,Neuron
+10X19_2:AAGGCTTGCCATAG,glutamatergic neuron,Neuron
+10X20_1:TTGAGGTGCTTGCC,glutamatergic neuron,Astrocyte
+10X20_1:CAAGACTGATCGTG,glutamatergic neuron,Neuron
+10X05_1:GCGAGAGACAAGCT,glutamatergic neuron,Neuron
+10X22_2:AAACGCACTGGTTG,glutamatergic neuron,Neuron
+10X22_3:TATAGCCTGCATAC,glutamatergic neuron,Neuron
+10X53_3:AACATTGAGGTATC,glutamatergic neuron,Neuron
+10X49_3:ACTCTATGGGAAGC,glutamatergic neuron,Neuron
+10X04_2:ATCATCTGGTTGAC,glutamatergic neuron,Neuron
+10X28_4:AAGGTGCTTTCGGA,glutamatergic neuron,Neuron
+10X50_5:CATTGTACACTCTT,glutamatergic neuron,Neuron
+10X28_4:ACGTAGACCTACTT,glutamatergic neuron,Neuron
+10X24_3:ATCTGGGAGAATAG,glutamatergic neuron,Neuron
+10X02_1:TTTCCAGACTACCC,glutamatergic neuron,Neuron
+10X57_3:TACATCACACCTGA,glutamatergic neuron,Neuron
+10X43_1:CCCTACGAATCGTG,glutamatergic neuron,Neuron
+10X20_1:ACACGATGCTTATC,glutamatergic neuron,Neuron
+10X01_1:ACGTTACTAAAACG,glutamatergic neuron,Neuron
+10X57_3:CACTGAGATTCTTG,glutamatergic neuron,Neuron
+10X28_3:ATAACCCTCCTGTC,glutamatergic neuron,Neuron
+10X52_1:CAAGGTTGTAGAAG,glutamatergic neuron,Neuron
+10X22_2:ATTCAGCTAAAGCA,glutamatergic neuron,Astrocyte
+10X20_4:ACTCAGGAGTCTTT,glutamatergic neuron,Neuron
+10X28_3:AGGGCCACTTCGCC,glutamatergic neuron,Neuron
+10X24_4:CAGCAATGCAACCA,glutamatergic neuron,Neuron
+10X05_2:GATTCTTGTCCTCG,glutamatergic neuron,Astrocyte
+10X36_1:AACAATACCCTGTC,glutamatergic neuron,Neuron
+10X50_5:ATCGCCTGGGAGCA,glutamatergic neuron,Neuron
+10X52_2:GTACGAACAACTGC,glutamatergic neuron,Neuron
+10X53_6:CAGGGCACGAACCT,glutamatergic neuron,Neuron
+10X22_2:GCTACAGATTTGGG,glutamatergic neuron,Neuron
+10X54_2:GACCATCAGCCTAA,glutamatergic neuron,Neuron
+10X20_2:GAAAGATGTCTTTG,glutamatergic neuron,Neuron
+10X36_1:AAATCTGAGGGCAA,glutamatergic neuron,Neuron
+10X28_3:CACTTAACTTCCAT,glutamatergic neuron,Neuron
+10X05_1:CCATAGGAGGACTT,glutamatergic neuron,Neuron
+10X28_4:ATGCAGTGTCCTTA,glutamatergic neuron,Neuron
+10X22_1:AGTCTTACGCTATG,glutamatergic neuron,Neuron
+10X28_2:GAAGGGTGAAGTAG,glutamatergic neuron,Neuron
+10X22_1:ATTGGTCTCTTGTT,glutamatergic neuron,Astrocyte
+10X05_1:CGATCCACACAGTC,glutamatergic neuron,Astrocyte
+10X20_1:GTTCAGGACCCACT,glutamatergic neuron,Neuron
+10X28_2:TTGTACACCTGTTT,glutamatergic neuron,Neuron
+10X53_3:ATGAGAGAGGTAGG,glutamatergic neuron,Neuron
+10X35_1:TGATACCTCCTTGC,glutamatergic neuron,Astrocyte
+10X22_1:TGCTTAACAGATGA,glutamatergic neuron,Neuron
+10X22_4:GCCTCATGATCGTG,glutamatergic neuron,Neuron
+10X50_6:AAGATGGATTGCGA,glutamatergic neuron,Neuron
+10X02_1:TGTTACTGTCCTCG,glutamatergic neuron,Neuron
+10X43_3:GAGTCAACTTCGCC,glutamatergic neuron,Neuron
+10X50_8:ACGAACTGTACTCT,glutamatergic neuron,Neuron
+10X35_1:TCGTAGGAGTTAGC,glutamatergic neuron,Astrocyte
+10X05_2:CACCGTACCCATAG,glutamatergic neuron,Neuron
+10X53_4:CACTAGGAACCTTT,glutamatergic neuron,Neuron
+10X28_4:GTTATCTGAACGAA,glutamatergic neuron,Neuron
+10X20_3:CTGACAGAATCGTG,glutamatergic neuron,Neuron
+10X20_3:GAGCGGCTCTACCC,glutamatergic neuron,Neuron
+10X28_2:TTCAGACTTGACTG,glutamatergic neuron,Neuron
+10X57_2:GTGACAACTGCAAC,glutamatergic neuron,Neuron
+10X02_1:TAGACGTGTCCAAG,glutamatergic neuron,Neuron
+10X05_1:CCCAGTTGATCACG,glutamatergic neuron,Neuron
+10X05_1:CGATCAGACTCATT,glutamatergic neuron,Neuron
+10X04_2:ATATAGTGAACCGT,glutamatergic neuron,Neuron
+10X22_2:TCTCAAACCGTGAT,glutamatergic neuron,Neuron
+10X22_1:TGCAACGATACTCT,glutamatergic neuron,Neuron
+10X19_2:ACACGTGAAGCGGA,glutamatergic neuron,Astrocyte
+10X04_2:GGAATCTGCTGAAC,glutamatergic neuron,Neuron
+10X28_3:CACTGAGAGGTAAA,glutamatergic neuron,Astrocyte
+10X50_5:GATCCCTGGAGGCA,glutamatergic neuron,Neuron
+10X22_4:GTGGATTGGCGAGA,glutamatergic neuron,Neuron
+10X04_1:GCCGGAACGCTGTA,glutamatergic neuron,Neuron
+10X50_5:AATAAGCTGCTGAT,glutamatergic neuron,Neuron
+10X05_1:GAAAGCCTCGATAC,glutamatergic neuron,Neuron
+10X36_1:AGCACTGAAGATCC,glutamatergic neuron,Neuron
+10X53_6:CTCGACACATGCCA,glutamatergic neuron,Neuron
+10X52_4:ATAAGTACTGAGAA,glutamatergic neuron,Neuron
+10X49_4:TGATAAACAACGAA,glutamatergic neuron,Neuron
+10X19_2:ATGTACCTTAAGGA,glutamatergic neuron,Neuron
+10X50_5:TGCCACTGGTGTAC,glutamatergic neuron,Neuron
+10X28_3:GATCCCTGCCTTGC,glutamatergic neuron,Neuron
+10X20_4:TGTGATCTTTCGTT,glutamatergic neuron,Neuron
+10X28_5:GTTACGGATATCTC,glutamatergic neuron,Neuron
+10X28_2:CCCGAACTTTCTTG,glutamatergic neuron,Neuron
+10X52_3:GCACCACTTGTGAC,glutamatergic neuron,Neuron
+10X50_8:ATGCCGCTATCTTC,glutamatergic neuron,Neuron
+10X05_1:TAGGACTGGAGGAC,glutamatergic neuron,Neuron
+10X20_2:ATGTACCTCTGCAA,glutamatergic neuron,Astrocyte
+10X52_1:CATAAAACACCTCC,glutamatergic neuron,Neuron
+10X53_1:GTCGAATGTGGAAA,glutamatergic neuron,Neuron
+10X24_3:CAGACATGAAACGA,glutamatergic neuron,Neuron
+10X57_7:XXATATGACCTTGC,glutamatergic neuron,Neuron
+10X35_1:GGGATGGATGACCA,glutamatergic neuron,Astrocyte
+10X35_1:CAAACTCTTCAGGT,glutamatergic neuron,Astrocyte
+10X01_1:GAGTTGTGTCTTCA,glutamatergic neuron,Neuron
+10X28_3:ACCCAAGACTGAGT,glutamatergic neuron,Neuron
+10X50_6:GTTATCTGACACAC,glutamatergic neuron,Neuron
+10X54_4:GGGTTGTCTCACCT,glutamatergic neuron,Neuron
+10X22_2:ATGTCACTTGACCA,glutamatergic neuron,Neuron
+10X19_2:GTACTACTGTAGCT,glutamatergic neuron,Neuron
+10X52_3:TAGTCGGAAGCGGA,glutamatergic neuron,Neuron
+10X28_4:GAGTGACTTTCCGC,glutamatergic neuron,Neuron
+10X04_2:GACCTCACCCCTTG,glutamatergic neuron,Neuron
+10X22_2:TGTTAAGACGTAGT,glutamatergic neuron,Astrocyte
+10X19_2:GATTTGCTCTGAGT,glutamatergic neuron,Astrocyte
+10X22_3:GCACGGACAGGCGA,glutamatergic neuron,Neuron
+10X35_2:TGTAATGACGTACA,glutamatergic neuron,Neuron
+10X20_1:TGGTAGTGTTATCC,glutamatergic neuron,Neuron
+10X52_1:ATCAAATGACCCAA,glutamatergic neuron,Neuron
+10X20_3:CGCGGATGGTCGTA,glutamatergic neuron,Neuron
+10X19_2:ACGACCCTCTTGGA,glutamatergic neuron,Astrocyte
+10X52_2:TAAGTCCTACGCAT,glutamatergic neuron,Neuron
+10X35_2:TGCGAAACACGTAC,glutamatergic neuron,Astrocyte
+10X07_1:TTACAGCTCCGATA,GABAergic neuron,Neuron
+10X07_1:TCCCACGATATGCG,GABAergic neuron,Neuron
+10X49_5:TGGACTGAACTCAG,GABAergic neuron,Neuron
+10X52_2:CAAGAAGAATTGGC,GABAergic neuron,Neuron
+10X38_1:CTACCTCTCCAACA,GABAergic neuron,Neuron
+10X24_2:GAACCAACAGTGTC,GABAergic neuron,Neuron
+10X04_1:ATCTGACTACCTCC,GABAergic neuron,Neuron
+10X38_2:TTGAGGACAACCGT,GABAergic neuron,Neuron
+10X26_4:ACGCACCTGAGCTT,GABAergic neuron,Neuron
+10X07_1:AGATATTGCACACA,GABAergic neuron,Neuron
+10X55_7:CTAATTCTGCTTGC,GABAergic neuron,Neuron
+10X24_1:CAGCACCTCGACAT,GABAergic neuron,Neuron
+10X26_3:TGCTGAGAGGTAAA,GABAergic neuron,Neuron
+10X52_1:GACGCTCTCTGTGA,GABAergic neuron,Neuron
+10X28_4:CGTCCATGCCGTTC,GABAergic neuron,Neuron
+10X24_2:TTAGTCACCTAGAC,GABAergic neuron,Neuron
+10X38_1:GGATACTGCAGCTA,GABAergic neuron,Neuron
+10X38_3:TAAATCGATACTCT,GABAergic neuron,Neuron
+10X52_3:CACAATCTGCTTCC,GABAergic neuron,Neuron
+10X50_3:CGACCTACACCTCC,GABAergic neuron,Neuron
+10X04_4:CTACCTCTGACTAC,GABAergic neuron,Neuroblast
+10X24_1:CGGATATGGTTCGA,GABAergic neuron,Neuron
+10X49_4:CCTATAACGCTGTA,GABAergic neuron,Neuroblast
+10X49_4:GATAGCACTCGCCT,GABAergic neuron,Neuron
+10X38_2:CTAACTACAGCTCA,GABAergic neuron,Neuron
+10X38_1:GACGAGGAGGACTT,GABAergic neuron,Neuron
+10X38_1:AATTACGAGCTGAT,GABAergic neuron,Neuron
+10X52_3:AGTCGAACGTGTAC,GABAergic neuron,Neuron
+10X28_4:CAGTTTACTGTTCT,GABAergic neuron,Neuron
+10X26_3:ATAAACACGCAAGG,GABAergic neuron,Neuron
+10X28_5:ATCGCGCTGTGTCA,GABAergic neuron,Neuron
+10X49_4:GCCACGGAGTCTTT,GABAergic neuron,Neuron
+10X28_4:TCCATCCTAACCGT,GABAergic neuron,Neuroblast
+10X38_1:GACTGTGATCTCCG,GABAergic neuron,Neuron
+10X52_3:CACACCTGCGCAAT,GABAergic neuron,Neuron
+10X57_2:CACGATGATCCCAC,GABAergic neuron,Neuron
+10X52_3:TTTCACGAACCTTT,GABAergic neuron,Neuron
+10X36_1:CAATAAACGACAGG,GABAergic neuron,Neuron
+10X05_1:CGCTACTGGCTAAC,GABAergic neuron,Neuron
+10X28_4:TGTCTAACAAGAAC,GABAergic neuron,Neuron
+10X26_4:TGAGGACTATGACC,GABAergic neuron,Neuron
+10X38_3:TCTATGTGACGTTG,GABAergic neuron,Neuron
+10X24_2:GAAACAGATGTTTC,GABAergic neuron,Neuron
+10X36_3:TCCGAAGAGTGTCA,GABAergic neuron,Neuron
+10X38_1:AGTAATACCCACAA,GABAergic neuron,Neuron
+10X05_4:GGACCCGAGAATCC,GABAergic neuron,Neuron
+10X28_5:CTATCAACCCATAG,GABAergic neuron,Neuron
+10X38_3:TACGGCCTCTTCTA,GABAergic neuron,Neuron
+10X49_4:GACAACTGCGTAGT,GABAergic neuron,Neuron
+10X38_1:TGAGCAACCTCATT,GABAergic neuron,Neuron
+10X26_4:TATGGGTGGGTACT,GABAergic neuron,Neuron
+10X04_4:CGGTAAACATCACG,GABAergic neuron,Neuron
+10X24_1:ACAAAGGAGAATAG,GABAergic neuron,Neuron
+10X38_3:TTCAGACTAACCAC,GABAergic neuron,Neuron
+10X49_4:TGGAGACTCCCACT,GABAergic neuron,Neuron
+10X38_2:ACGCCTTGTCTCCG,GABAergic neuron,Neuron
+10X36_2:GCACCACTGCTGAT,GABAergic neuron,Neuron
+10X28_5:GAGTAAGACTGTAG,GABAergic neuron,Neuron
+10X52_1:GGCCACGATCCAAG,GABAergic neuron,Neuron
+10X49_1:GGCGACTGCTCGAA,GABAergic neuron,Neuron
+10X07_1:CCAGTCACGACAAA,GABAergic neuron,Neuron
+10X07_1:CTTACATGTGCTAG,GABAergic neuron,Neuron
+10X24_1:TACGATCTTTGTCT,GABAergic neuron,Neuron
+10X38_1:AGAGCGGAACGCTA,GABAergic neuron,Neuron
+10X28_5:ACACGAACCGTCTC,GABAergic neuron,Neuron
+10X49_4:ACCAACGACCTTTA,GABAergic neuron,Neuron
+10X28_4:CTAAGGACCATTCT,GABAergic neuron,Neuron
+10X24_1:GGCGACTGCACAAC,GABAergic neuron,Neuron
+10X49_5:AAGGTGCTTCGATG,GABAergic neuron,Neuron
+10X38_2:AATGGCTGCCTTAT,GABAergic neuron,Neuron
+10X38_2:AGAATGGAGGAAGC,GABAergic neuron,Neuron
+10X49_5:CTACTCCTACGACT,GABAergic neuron,Neuron
+10X07_1:CACTTAACATCGGT,GABAergic neuron,Neuron
+10X49_4:TAGGGACTACGGTT,GABAergic neuron,Neuron
+10X26_4:TACGAGTGGTCATG,GABAergic neuron,Neuron
+10X49_5:CATGTACTTGGTCA,GABAergic neuron,Neuron
+10X26_4:CACAGTGAAACGGG,GABAergic neuron,Neuron
+10X49_5:ATAGGCTGCGAACT,GABAergic neuron,Neuron
+10X43_3:TGATAAACCTGGTA,GABAergic neuron,Neuron
+10X36_3:ATGAAACTGGTCAT,GABAergic neuron,Neuron
+10X52_2:AACGTGTGTCAAGC,GABAergic neuron,Neuron
+10X49_4:ATTGTAGAGCCATA,GABAergic neuron,Neuron
+10X38_3:TGGATGACTCACCC,GABAergic neuron,Neuron
+10X38_2:CTAATGCTACGACT,GABAergic neuron,Neuron
+10X26_3:ATCACGGAGAGGCA,GABAergic neuron,Neuron
+10X24_2:TAATGCCTCAACCA,GABAergic neuron,Neuron
+10X05_2:TAGGTCGAGACAAA,GABAergic neuron,Neuron
+10X49_1:ATACCACTTGCTTT,GABAergic neuron,Neuron
+10X38_2:CACGAAACAAGCAA,GABAergic neuron,Neuron
+10X38_2:AGAAAGTGCTGTCC,GABAergic neuron,Neuron
+10X49_2:TTCTCAGAAGGAGC,GABAergic neuron,Neuron
+10X36_3:ATCATCTGCCTCCA,GABAergic neuron,Neuron
+10X49_5:AGGGTGGATTTCAC,GABAergic neuron,Neuron
+10X50_4:GTTAAAACGGTGAG,GABAergic neuron,Neuron
+10X49_5:CTATTGACACAGTC,GABAergic neuron,Neuroblast
+10X28_4:ATCTACTGTCTGGA,GABAergic neuron,Neuron
+10X20_2:GCCTACACGCTTAG,GABAergic neuron,Neuron
+10X07_1:AAATCTGAGGAGGT,GABAergic neuron,Neuron
+10X38_2:ATTGCACTCCGATA,GABAergic neuron,Neuron
+10X28_5:CGTTAACTCCGCTT,GABAergic neuron,Neuron
+10X35_1:GCATTGGATGTTTC,GABAergic neuron,Neuron
+10X38_2:GGCTAATGGTGCTA,GABAergic neuron,Neuron
+10X38_2:GTAATAACAAGTGA,GABAergic neuron,Neuron
+10X52_5:CAACGATGATGACC,GABAergic neuron,Neuron
+10X38_2:GGCGACTGCCATAG,GABAergic neuron,Neuron
+10X52_1:TTAGTCTGTCGCAA,GABAergic neuron,Neuron
+10X24_1:GTGATCGATCCCGT,GABAergic neuron,Neuron
+10X49_4:CGCGAGACGGAGCA,GABAergic neuron,Neuron
+10X38_2:TCGACGCTCGCTAA,GABAergic neuron,Neuron
+10X50_5:ATTTAGGACACTCC,GABAergic neuron,Neuron
+10X24_2:TGCGAAACCGGTAT,GABAergic neuron,Neuron
+10X50_4:ACACGAACTGGAGG,GABAergic neuron,Neuron
+10X52_5:GGTCTAGAGACGTT,GABAergic neuron,Neuron
+10X38_1:GTGTACGAGCGAAG,GABAergic neuron,Neuron
+10X52_2:ACCCGTACAACCAC,GABAergic neuron,Neuron
 10X22_3:TATACGCTACGTTG,astrocyte,Astrocyte
 10X52_6:GCAATTCTGGTGGA,astrocyte,Astrocyte
 10X56_6:TGATATGAGTTCTT,astrocyte,Astrocyte
@@ -468,296 +468,296 @@ cell_id,true_labels,predicted_labels
 10X20_2:GTGGATTGTGCACA,astrocyte,Astrocyte
 10X52_5:CTGAGCCTTCATTC,astrocyte,Astrocyte
 10X51_2:AAACATTGCCGCTT,astrocyte,Astrocyte
-10X81_3:AGGCCTCGAATGGG,Enteric glia,Astrocyte
-10X81_1:CGTTGGTGGTACAG,Enteric glia,Astrocyte
-10X81_3:TTACCTCGTGGTCG,Enteric glia,Astrocyte
-10X81_3:TGAGGGTAAGTGTA,Enteric glia,Astrocyte
-10X81_1:TCTACTCAACGCTA-1,Enteric glia,Astrocyte
-10X81_1:GCTGGGTAATCGTC,Enteric glia,Astrocyte
-10X81_2:CTACCAGCCGTCGT,Enteric glia,Astrocyte
-10X81_3:AGCCAAGAAGATTC,Enteric glia,Astrocyte
-10X82_2:TACTCAGGCGATAC,Enteric glia,Astrocyte
-10X82_2:TGAGCGTAAGTGTA,Enteric glia,Astrocyte
-10X82_2:TGAAGTCTGTCTCG,Enteric glia,Astrocyte
-10X81_1:ACATCTCTCGCATC,Enteric glia,Astrocyte
-10X81_1:ATCAGTCCTTCAAT,Enteric glia,Astrocyte
-10X81_1:AGACCGTTGGTAAA,Enteric glia,Astrocyte
-10X82_2:AGGTACACGAGAGT,Enteric glia,Astrocyte
-10X81_1:GGGAGGTTATGTGC,Enteric glia,Astrocyte
-10X81_2:ATGTAGTAGGGTAC,Enteric glia,Astrocyte
-10X81_1:CCATGTCCGCAAGC,Enteric glia,Astrocyte
-10X82_2:TACCGGTTCTGGTA,Enteric glia,Astrocyte
-10X81_1:TATTACATCGTCGG,Enteric glia,Astrocyte
-10X81_3:GAGAGAGGCTAGCA,Enteric glia,Astrocyte
-10X81_2:GAGGGCACACCGCA,Enteric glia,Astrocyte
-10X82_2:AATGTGTCATCGGC,Enteric glia,Astrocyte
-10X81_2:AACGTGTTATTCTC,Enteric glia,Astrocyte
-10X81_2:GCTAGCAAATTGCC,Enteric glia,Astrocyte
-10X81_1:GCGATTCACAATGC,Enteric glia,Astrocyte
-10X81_3:CAGAACAATCGGTT,Enteric glia,Astrocyte
-10X82_2:ACCTATCACTATTC,Enteric glia,Astrocyte
-10X81_1:GACTTCATACTACG,Enteric glia,Astrocyte
-10X81_2:AGCCAGTACAGTGG,Enteric glia,Astrocyte
-10X81_2:TCTAAAGCGTTTAC,Enteric glia,Astrocyte
-10X26_3:GTATGGTGGCGAGA,Microglia,Macrophage
-10X22_2:GTAGTCGATTCTTG,Microglia,Macrophage
-10X52_5:TGCACGCTTGATGC,Microglia,Macrophage
-10X53_4:ACGGTCCTTGCGTA,Microglia,Macrophage
-10X28_5:GGCCCAGAGAATCC,Microglia,Macrophage
-10X22_2:GTCCCATGTACGCA,Microglia,Macrophage
-10X19_2:ATTGGTCTTCCTCG,Microglia,Macrophage
-10X22_4:AATGATACGCGAGA,Microglia,Macrophage
-10X26_3:CATCTTGAAGAGGC,Microglia,Macrophage
-10X19_2:AGCCAATGTGTGCA,Microglia,Macrophage
-10X57_2:GTGAACACAGGTCT,Microglia,Macrophage
-10X02_1:CCTAAGGACTGAAC,Microglia,Macrophage
-10X53_5:GGCTACCTGCCTTC,Microglia,Macrophage
-10X49_1:CCGGAGACTTCGCC,Microglia,Macrophage
-10X57_4:ACGCCTTGTATCTC,Microglia,Macrophage
-10X24_1:TTCATCGATTCCGC,Microglia,Macrophage
-10X49_3:CATAACCTTTGGTG,Microglia,Macrophage
-10X26_3:TCTTGATGACGACT,Microglia,Macrophage
-10X53_4:TAGTACCTCCCTCA,Microglia,Macrophage
-10X02_1:ACTTGGGATGCTCC,Microglia,Macrophage
-10X20_4:GCCGACGAGGTGGA,Microglia,Macrophage
-10X50_4:GTGATCGAAGGAGC,Microglia,Macrophage
-10X22_2:GGACATTGAGGTCT,Microglia,Macrophage
-10X35_2:AACGCAACCTGGTA,Microglia,Macrophage
-10X49_3:AGGCTAACGTAGGG,Microglia,Macrophage
-10X51_4:GCACCACTAAGAAC,Microglia,Macrophage
-10X49_5:CGGTAAACCTAGCA,neuroblast (sensu Vertebrata),Inhibitory neuron
-10X49_4:TACGAGACCCCAAA,neuroblast (sensu Vertebrata),Oligodendrocyte
-10X04_4:TCTAACTGCAGCTA,neuroblast (sensu Vertebrata),Oligodendrocyte
-10X46_1:AAAGCAGAGGACAG,neuroblast (sensu Vertebrata),Oligodendrocyte
-10X49_4:TTGTAGCTCCTCGT,neuroblast (sensu Vertebrata),Oligodendrocyte
-10X28_5:GACTGAACGAGCTT,neuroblast (sensu Vertebrata),Oligodendrocyte
-10X26_3:TTTGCATGCATGCA,neuroblast (sensu Vertebrata),Oligodendrocyte
-10X20_1:TTACTCGACATGAC,neuroblast (sensu Vertebrata),Oligodendrocyte
-10X54_3:GAAGGAGAGTGACC,neuroblast (sensu Vertebrata),Inhibitory neuron
-10X22_4:ACGCCTTGCTTCCG,neuroblast (sensu Vertebrata),Oligodendrocyte
-10X34_2:TTCTGATGGTGTAC,neuroblast (sensu Vertebrata),Oligodendrocyte
-10X46_1:CCAGTCACTTTCGT,neuroblast (sensu Vertebrata),Oligodendrocyte
-10X49_5:GATTTGCTCGTCTC,neuroblast (sensu Vertebrata),Oligodendrocyte
-10X22_4:TATCTGACGGCAAG,neuroblast (sensu Vertebrata),Oligodendrocyte
-10X49_1:CCGGAGACATCAGC,neuroblast (sensu Vertebrata),Oligodendrocyte
-10X22_3:GTGAGGGATCTTCA,neuroblast (sensu Vertebrata),Oligodendrocyte
-10X04_4:TTCATGTGTTCCAT,neuroblast (sensu Vertebrata),Oligodendrocyte
-10X43_1:ATTCTTCTATCTCT,neuroblast (sensu Vertebrata),Oligodendrocyte
-10X28_4:AAATCAACGCGAGA,neuroblast (sensu Vertebrata),Oligodendrocyte
-10X04_1:AAACATTGATTCTC,neuroblast (sensu Vertebrata),Oligodendrocyte
-10X43_1:ATGCACGAGCTACA,neuroblast (sensu Vertebrata),Oligodendrocyte
-10X28_5:TAGGAGCTGTTGTG,neuroblast (sensu Vertebrata),Oligodendrocyte
-10X28_4:CTATAAGATGCCTC,neuroblast (sensu Vertebrata),Oligodendrocyte
-10X22_3:TGTGAGTGCCTCGT,neuroblast (sensu Vertebrata),Oligodendrocyte
-10X54_7:AGCGTTCGTTTAGG,neuroblast (sensu Vertebrata),Macrophage
-10X24_1:TCTAAGCTCCCTCA,neuroblast (sensu Vertebrata),Oligodendrocyte
-10X52_4:AGAATTTGAGTACC,pericyte,Smooth muscle cell
-10X50_7:CACCTGACAGGAGC,pericyte,Smooth muscle cell
-10X26_3:AATCCTACATTGGC,pericyte,Smooth muscle cell
-10X53_3:CAAATATGGCGGAA,pericyte,Smooth muscle cell
-10X52_4:GACGGCACACGTGT,pericyte,Smooth muscle cell
-10X50_8:CATAAAACGTCACA,pericyte,Smooth muscle cell
-10X43_3:TATAGATGTTTCGT,pericyte,Smooth muscle cell
-10X53_6:GTAAGCACATTCTC,pericyte,Smooth muscle cell
-10X53_4:CAACGATGTAACCG,pericyte,Smooth muscle cell
-10X20_1:CATAAATGAAGATG,pericyte,Smooth muscle cell
-10X50_6:TTTGACTGTCGACA,pericyte,Smooth muscle cell
-10X53_6:GGGCAGCTAAGTGA,pericyte,Smooth muscle cell
-10X20_2:CCATCCGATTGTCT,pericyte,Smooth muscle cell
-10X48_1:AGTCGAACTTTGCT,pericyte,Smooth muscle cell
-10X53_4:GTGAACACAAGGGC,pericyte,Smooth muscle cell
-10X36_1:GCGAGCACTGCCCT,pericyte,Smooth muscle cell
-10X48_3:ATAACCCTACTCAG,pericyte,Smooth muscle cell
-10X52_6:GCGAAGGAGGGAGT,pericyte,Smooth muscle cell
-10X20_2:CGGAATTGTACGAC,pericyte,Smooth muscle cell
-10X50_7:GCGAGCACCTTCTA,pericyte,Smooth muscle cell
-10X24_3:CCACCTGAGTTCTT,pericyte,Smooth muscle cell
-10X36_3:GGCCACGAGAAGGC,pericyte,Smooth muscle cell
-10X52_6:TCCCGATGTCAAGC,pericyte,Smooth muscle cell
-10X22_1:CGAGAACTAGACTC,pericyte,Smooth muscle cell
-10X57_2:CCAAAGTGGAGAGC,pericyte,Smooth muscle cell
-10X22_3:ACAAGAGAGTCAAC,dentate gyrus granule cell,Excitatory neuron
-10X22_3:CATACTACCTTCGC,dentate gyrus granule cell,Excitatory neuron
-10X46_1:CAAACTCTTTCGTT,dentate gyrus granule cell,Excitatory neuron
-10X46_1:GCCACTACTCGCTC,dentate gyrus granule cell,Excitatory neuron
-10X46_1:TAGTAATGCCCAAA,dentate gyrus granule cell,Excitatory neuron
-10X46_1:TCAGCGCTCGGAGA,dentate gyrus granule cell,Excitatory neuron
-10X22_3:GAGGATCTCTTGTT,dentate gyrus granule cell,Excitatory neuron
-10X43_1:AACATTGACAACTG,dentate gyrus granule cell,Excitatory neuron
-10X46_1:GGATGTACAGGAGC,dentate gyrus granule cell,Excitatory neuron
-10X46_1:TGGACTGAGTTACG,dentate gyrus granule cell,Excitatory neuron
-10X22_4:GTGATTCTCTAGTG,dentate gyrus granule cell,Excitatory neuron
-10X43_1:CATCTTGAACAGTC,dentate gyrus granule cell,Excitatory neuron
-10X43_1:GATATCCTGCCTTC,dentate gyrus granule cell,Excitatory neuron
-10X43_1:GGAATGCTCAGTCA,dentate gyrus granule cell,Excitatory neuron
-10X46_1:GCTACAGAGTTGGT,dentate gyrus granule cell,Excitatory neuron
-10X43_1:GCTGATGACCTTAT,dentate gyrus granule cell,Excitatory neuron
-10X22_3:TTCAAGCTTATTCC,dentate gyrus granule cell,Excitatory neuron
-10X22_3:CGTGTAGACGCAAT,dentate gyrus granule cell,Excitatory neuron
-10X04_2:ATCAAATGGTCAAC,dentate gyrus granule cell,Excitatory neuron
-10X46_1:GAGTACACCAAAGA,dentate gyrus granule cell,Excitatory neuron
-10X22_4:TAAGCTCTTGCAAC,dentate gyrus granule cell,Excitatory neuron
-10X51_1:TCGCACACCTAGCA,cerebellar neuron,Macrophage
-10X34_4:CGGCCAGACTGGAT,cerebellar neuron,Macrophage
-10X26_1:TACGTACTCTGACA,cerebellar neuron,Inhibitory neuron
-10X26_2:TAGGAGCTTATTCC,cerebellar neuron,Macrophage
-10X26_1:TAAGTCCTTACAGC,cerebellar neuron,Macrophage
-10X51_1:GAACCAACACGCAT,cerebellar neuron,Macrophage
-10X26_1:GACAGTTGGAGGAC,cerebellar neuron,Inhibitory neuron
-10X26_2:ATCCCGTGCATGCA,cerebellar neuron,Macrophage
-10X26_1:AAGAAGACCACACA,cerebellar neuron,Inhibitory neuron
-10X26_1:ACAAAGGAAAACAG,cerebellar neuron,Macrophage
-10X51_2:TGGTAGACTTCCCG,cerebellar neuron,Macrophage
-10X51_2:GAAGGTCTCCACCT,cerebellar neuron,Macrophage
-10X26_1:GATATAACAGATCC,cerebellar neuron,Macrophage
-10X51_1:CCATGCTGTTCCGC,cerebellar neuron,Macrophage
-10X51_1:TAGTTCACTAGCGT,cerebellar neuron,Macrophage
-10X51_1:GTGAGGGATCCCAC,cerebellar neuron,Inhibitory neuron
-10X51_1:ATCCTAACCTAGTG,cerebellar neuron,Macrophage
-10X51_1:GCGCGATGACCTTT,cerebellar neuron,Macrophage
-10X51_1:GCTCGACTCACTTT,cerebellar neuron,Macrophage
-10X51_2:CTGAACGACCGTTC,cerebellar neuron,Macrophage
-10X26_1:TAACAATGCTGTAG,cerebellar neuron,Macrophage
-10X01_1:ACGGGAGAACCCTC,endothelial cell of vascular tree,Smooth muscle cell
-10X04_1:ACCTTTGACTCAAG,endothelial cell of vascular tree,Smooth muscle cell
-10X57_7:CAGGTATGGCTTCC,endothelial cell of vascular tree,Smooth muscle cell
-10X01_1:CTGCCAACGCATAC,endothelial cell of vascular tree,Smooth muscle cell
-10X53_5:GGTAGTACGCTTAG,endothelial cell of vascular tree,Smooth muscle cell
-10X53_3:AACTGTCTTGGAAA,endothelial cell of vascular tree,Smooth muscle cell
-10X53_4:GAAGTAGACTGGTA,endothelial cell of vascular tree,Smooth muscle cell
-10X49_4:ATACCGGAGTGCTA,endothelial cell of vascular tree,Smooth muscle cell
-10X53_2:CGCACGGAGTCAAC,endothelial cell of vascular tree,Smooth muscle cell
-10X43_3:TTCGATTGAACCGT,endothelial cell of vascular tree,Smooth muscle cell
-10X53_4:GTGTATCTACGCTA,endothelial cell of vascular tree,Smooth muscle cell
-10X57_7:ACTTCTGAGCCCTT,endothelial cell of vascular tree,Smooth muscle cell
-10X05_1:GAGAGGTGATGTGC,endothelial cell of vascular tree,Smooth muscle cell
-10X53_3:ACCCTCGATATCTC,endothelial cell of vascular tree,Smooth muscle cell
-10X04_1:AAACCGTGGGAGGT,endothelial cell of vascular tree,Smooth muscle cell
-10X36_2:TCGCCATGAAACGA,endothelial cell of vascular tree,Smooth muscle cell
-10X26_3:ACGTTGGATCATTC,endothelial cell of vascular tree,Smooth muscle cell
-10X52_1:GCCTAGCTCTTCTA,endothelial cell of vascular tree,Smooth muscle cell
-10X53_5:TTCTTACTCGGGAA,endothelial cell of vascular tree,Smooth muscle cell
-10X53_5:TCTAACTGGACGTT,endothelial cell of vascular tree,Smooth muscle cell
-10X35_3:CGTAACGATACGCA,peptidergic neuron,Inhibitory neuron
-10X51_4:ACGTAGACCTCAGA,peptidergic neuron,Inhibitory neuron
-10X26_3:TTCAAGCTCTCAAG,peptidergic neuron,Inhibitory neuron
-10X26_3:GGTATGACTCCCGT,peptidergic neuron,Inhibitory neuron
-10X26_3:ATCACACTTTCTGT,peptidergic neuron,Inhibitory neuron
-10X26_3:GGCCAGACAAGAAC,peptidergic neuron,Inhibitory neuron
-10X26_4:AAGAATCTTGGATC,peptidergic neuron,Inhibitory neuron
-10X26_3:GCGGGACTTTCGGA,peptidergic neuron,Inhibitory neuron
-10X50_2:CATTTGTGTACTGG,peptidergic neuron,Inhibitory neuron
-10X51_3:CCAGCACTATTCCT,peptidergic neuron,Inhibitory neuron
-10X26_3:TTACGACTTTGACG,peptidergic neuron,Inhibitory neuron
-10X46_2:TAGGAGCTGTAAGA,peptidergic neuron,Inhibitory neuron
-10X26_3:ATGTTAGACCAAGT,peptidergic neuron,Inhibitory neuron
-10X50_2:AGCAAAGATCCGAA,peptidergic neuron,Inhibitory neuron
-10X26_3:GGATTGTGACGTTG,peptidergic neuron,Inhibitory neuron
-10X26_3:GATGCATGTCCAGA,peptidergic neuron,Inhibitory neuron
-10X26_4:TGTACTTGACCGAT,peptidergic neuron,Inhibitory neuron
-10X51_3:GTGATCGACTAGAC,peptidergic neuron,Inhibitory neuron
-10X26_3:CCAGCGGAGCTTCC,peptidergic neuron,Inhibitory neuron
-10X50_1:ATAAGTTGACACTG,peptidergic neuron,Inhibitory neuron
-10X28_3:GGCAAGGACCTAAG,perivascular macrophage,Macrophage
-10X57_5:ATATACGAGATAAG,perivascular macrophage,Macrophage
-10X22_3:GTGACAACTCTTAC,perivascular macrophage,Macrophage
-10X52_8:ACACCAGATGCAGT,perivascular macrophage,Macrophage
-10X50_4:GGACAGGAGGTTTG,perivascular macrophage,Macrophage
-10X01_1:TAGGGACTACAGTC,perivascular macrophage,Macrophage
-10X54_7:GCTTCTCCTATGTT,perivascular macrophage,Macrophage
-10X33_2:CGGTCACTCCAACA,perivascular macrophage,Macrophage
-10X56_6:GGGTAACTAAGATG,perivascular macrophage,Macrophage
-10X22_1:TCGCAAGATCCAAG,perivascular macrophage,Macrophage
-10X19_2:TAAGATACGCGAGA,perivascular macrophage,Macrophage
-10X22_2:AGTCGCCTATCACG,perivascular macrophage,Macrophage
-10X57_4:CCCACATGGTCTGA,perivascular macrophage,Macrophage
-10X52_1:AGTACGTGCGAGTT,perivascular macrophage,Macrophage
-10X24_1:TCCCTACTGCAGAG,perivascular macrophage,Macrophage
-10X57_1:ACGGTATGCCGATA,perivascular macrophage,Macrophage
-10X49_5:CAGGAACTTCCCGT,perivascular macrophage,Macrophage
-10X24_2:CCGATAGAGGAACG,perivascular macrophage,Macrophage
-10X57_7:GATCGAACTTTCTG,perivascular macrophage,Macrophage
-10X52_7:TTAGTCACCTTGTT,perivascular macrophage,Macrophage
-10X43_2:CTACGCACGTGTCA,peripheral sensory neuron,Astrocyte
-10X53_7:AGAATACTCTTGCC,peripheral sensory neuron,Astrocyte
-10X43_2:GTCCACTGAAGGCG,peripheral sensory neuron,Astrocyte
-10X53_7:ATACCGGAGAACCT,peripheral sensory neuron,Astrocyte
-10X53_7:TGCTGAGATTCCGC,peripheral sensory neuron,Astrocyte
-10X43_2:TTCGATTGTTCTCA,peripheral sensory neuron,Astrocyte
-10X53_7:GACCAAACCCCTTG,peripheral sensory neuron,Astrocyte
-10X53_7:GCAATCGATCAGTG,peripheral sensory neuron,Astrocyte
-10X53_7:GGAGCCACCCAACA,peripheral sensory neuron,Astrocyte
-10X53_7:CTGTAACTGAGACG,peripheral sensory neuron,Astrocyte
-10X53_7:AGTGTGACGAATCC,peripheral sensory neuron,Astrocyte
-10X53_7:CTATAGCTCTCAAG,peripheral sensory neuron,Astrocyte
-10X43_2:GATCTTACTAAGCC,peripheral sensory neuron,Astrocyte
-10X43_2:ATGGGTACACGTAC,peripheral sensory neuron,Astrocyte
-10X43_2:GGGCCAACTTCAGG,peripheral sensory neuron,Astrocyte
-10X43_2:TTAACCACGGTATC,peripheral sensory neuron,Astrocyte
-10X43_2:AACGCATGCGATAC,peripheral sensory neuron,Astrocyte
-10X53_7:CGGGACTGTTGCAG,peripheral sensory neuron,Astrocyte
-10X53_7:ACCGTGCTAAGGCG,peripheral sensory neuron,Astrocyte
-10X43_2:TAGGTGTGTCACCC,peripheral sensory neuron,Astrocyte
-10X49_4:AACATATGCGTTAG,vascular leptomeningeal cell (Mmus),Astrocyte
-10X57_6:CCACGGGAGATGAA,vascular leptomeningeal cell (Mmus),Astrocyte
-10X49_4:ATTTCCGAGGGATG,vascular leptomeningeal cell (Mmus),Astrocyte
-10X49_4:AACTTGCTCTGTGA,vascular leptomeningeal cell (Mmus),Astrocyte
-10X49_5:GATACTCTCATGCA,vascular leptomeningeal cell (Mmus),Astrocyte
-10X52_1:AAATCCCTTACTCT,vascular leptomeningeal cell (Mmus),Astrocyte
-10X20_3:TGTCAGGAGTCTGA,vascular leptomeningeal cell (Mmus),Astrocyte
-10X56_2:TCCTAAACTTCCAT,vascular leptomeningeal cell (Mmus),Astrocyte
-10X48_3:CTGTATACGCGGAA,vascular leptomeningeal cell (Mmus),Astrocyte
-10X22_3:AGGCAACTTGCCTC,vascular leptomeningeal cell (Mmus),Astrocyte
-10X43_1:CTTAAAGATGCCAA,vascular leptomeningeal cell (Mmus),Astrocyte
-10X20_3:AAGGTCTGACACGT,vascular leptomeningeal cell (Mmus),Astrocyte
-10X52_6:AAGCACTGTGCGTA,vascular leptomeningeal cell (Mmus),Astrocyte
-10X33_2:CTTGAGGAGCTGAT,vascular leptomeningeal cell (Mmus),Astrocyte
-10X52_2:CTGCAGCTTATTCC,vascular leptomeningeal cell (Mmus),Astrocyte
-10X49_5:GAACTGTGATACCG,vascular leptomeningeal cell (Mmus),Astrocyte
-10X57_3:GCTACGCTCCTTAT,vascular leptomeningeal cell (Mmus),Astrocyte
-10X50_8:GCACACCTAGAGGC,vascular leptomeningeal cell (Mmus),Astrocyte
-10X54_8:TGCTTTCGGGAGTA,vascular leptomeningeal cell (Mmus),Astrocyte
-10X52_4:TCCCAGACGGTACT,vascular leptomeningeal cell (Mmus),Astrocyte
-10X52_2:GATAATACGGAGCA,vascular associated smooth muscle cell,Smooth muscle cell
-10X53_2:TTATGAGAAGCCTA,vascular associated smooth muscle cell,Smooth muscle cell
-10X48_3:AGATTAACACTACG,vascular associated smooth muscle cell,Smooth muscle cell
-10X55_8:AGGGACAAGCCGCT,vascular associated smooth muscle cell,Smooth muscle cell
-10X28_5:CCAGTCACCTCTAT,vascular associated smooth muscle cell,Smooth muscle cell
-10X52_2:ACCACCTGTGCCCT,vascular associated smooth muscle cell,Smooth muscle cell
-10X36_3:CTACTATGTTGCTT,vascular associated smooth muscle cell,Smooth muscle cell
-10X52_6:GGTGGAGATGTGGT,vascular associated smooth muscle cell,Smooth muscle cell
-10X26_4:CAGAAGCTCCCTCA,vascular associated smooth muscle cell,Smooth muscle cell
-10X54_3:TGTTAAGGTGCTAG,vascular associated smooth muscle cell,Smooth muscle cell
-10X02_1:CTATGTTGGCATAC,vascular associated smooth muscle cell,Smooth muscle cell
-10X48_3:CACTGAGAGGTGGA,vascular associated smooth muscle cell,Smooth muscle cell
-10X52_5:TATGTGCTGCGAGA,vascular associated smooth muscle cell,Smooth muscle cell
-10X28_3:TACAATGACTTGCC,vascular associated smooth muscle cell,Smooth muscle cell
-10X54_8:CAATTTCACAACGT,vascular associated smooth muscle cell,Smooth muscle cell
-10X24_2:ATCACTTGTCAGGT,vascular associated smooth muscle cell,Smooth muscle cell
-10X57_3:CTTACTGAGCTGAT,vascular associated smooth muscle cell,Smooth muscle cell
-10X54_2:CGTTTAGCAGGTCA,vascular associated smooth muscle cell,Smooth muscle cell
-10X57_3:ATTCTGACCGAGAG,vascular associated smooth muscle cell,Smooth muscle cell
-10X05_3:TAAATCGAGTTAGC,vascular associated smooth muscle cell,Smooth muscle cell
-10X49_4:CTTCACCTCCACAA,olfactory ensheathing cell,Macrophage
-10X49_4:CAGGTTGACAGAAA,olfactory ensheathing cell,Macrophage
-10X49_4:CATGAGACGGAAAT,olfactory ensheathing cell,Macrophage
-10X49_5:ATGCACGATTCCAT,olfactory ensheathing cell,Macrophage
-10X49_4:GGAGTTTGAAGCAA,olfactory ensheathing cell,Macrophage
-10X49_5:TTCTTACTGTTGTG,olfactory ensheathing cell,Macrophage
-10X28_4:GTTCATACTGGATC,olfactory ensheathing cell,Macrophage
-10X49_4:TGTGAGTGACAGCT,olfactory ensheathing cell,Macrophage
-10X49_5:TTTATCCTCCTACC,olfactory ensheathing cell,Macrophage
-10X28_5:TGGCAATGTACAGC,olfactory ensheathing cell,Macrophage
-10X49_4:TAGGCATGGCCCTT,olfactory ensheathing cell,Macrophage
-10X49_4:TCAATAGATCGATG,olfactory ensheathing cell,Macrophage
-10X28_5:CATGCCACCTCAAG,olfactory ensheathing cell,Macrophage
-10X49_4:GAATGCTGCCAAGT,olfactory ensheathing cell,Macrophage
-10X28_4:GAGTCAACGAAGGC,olfactory ensheathing cell,Macrophage
-10X49_4:GGGTTAACCGTGAT,olfactory ensheathing cell,Macrophage
-10X49_5:GACAACTGACTGGT,olfactory ensheathing cell,Macrophage
-10X49_5:AAATGTTGGTGTCA,olfactory ensheathing cell,Macrophage
-10X49_5:ATTCTTCTTCAGAC,olfactory ensheathing cell,Macrophage
-10X49_5:AGTCTACTTGGAAA,olfactory ensheathing cell,Macrophage
+10X81_3:AGGCCTCGAATGGG,type I enteric glial cell,Astrocyte
+10X81_1:CGTTGGTGGTACAG,type I enteric glial cell,Astrocyte
+10X81_3:TTACCTCGTGGTCG,type I enteric glial cell,Astrocyte
+10X81_3:TGAGGGTAAGTGTA,type I enteric glial cell,Astrocyte
+10X81_1:TCTACTCAACGCTA-1,type I enteric glial cell,Astrocyte
+10X81_1:GCTGGGTAATCGTC,type I enteric glial cell,Astrocyte
+10X81_2:CTACCAGCCGTCGT,type I enteric glial cell,Astrocyte
+10X81_3:AGCCAAGAAGATTC,type I enteric glial cell,Astrocyte
+10X82_2:TACTCAGGCGATAC,type I enteric glial cell,Astrocyte
+10X82_2:TGAGCGTAAGTGTA,type I enteric glial cell,Astrocyte
+10X82_2:TGAAGTCTGTCTCG,type I enteric glial cell,Astrocyte
+10X81_1:ACATCTCTCGCATC,type I enteric glial cell,Astrocyte
+10X81_1:ATCAGTCCTTCAAT,type I enteric glial cell,Astrocyte
+10X81_1:AGACCGTTGGTAAA,type I enteric glial cell,Astrocyte
+10X82_2:AGGTACACGAGAGT,type I enteric glial cell,Astrocyte
+10X81_1:GGGAGGTTATGTGC,type I enteric glial cell,Astrocyte
+10X81_2:ATGTAGTAGGGTAC,type I enteric glial cell,Astrocyte
+10X81_1:CCATGTCCGCAAGC,type I enteric glial cell,Astrocyte
+10X82_2:TACCGGTTCTGGTA,type I enteric glial cell,Astrocyte
+10X81_1:TATTACATCGTCGG,type I enteric glial cell,Astrocyte
+10X81_3:GAGAGAGGCTAGCA,type I enteric glial cell,Astrocyte
+10X81_2:GAGGGCACACCGCA,type I enteric glial cell,Astrocyte
+10X82_2:AATGTGTCATCGGC,type I enteric glial cell,Astrocyte
+10X81_2:AACGTGTTATTCTC,type I enteric glial cell,Astrocyte
+10X81_2:GCTAGCAAATTGCC,type I enteric glial cell,Astrocyte
+10X81_1:GCGATTCACAATGC,type I enteric glial cell,Astrocyte
+10X81_3:CAGAACAATCGGTT,type I enteric glial cell,Astrocyte
+10X82_2:ACCTATCACTATTC,type I enteric glial cell,Astrocyte
+10X81_1:GACTTCATACTACG,type I enteric glial cell,Astrocyte
+10X81_2:AGCCAGTACAGTGG,type I enteric glial cell,Astrocyte
+10X81_2:TCTAAAGCGTTTAC,type I enteric glial cell,Astrocyte
+10X26_3:GTATGGTGGCGAGA,microglial cell (Mmus),Microglial cell
+10X22_2:GTAGTCGATTCTTG,microglial cell (Mmus),Microglial cell
+10X52_5:TGCACGCTTGATGC,microglial cell (Mmus),Microglial cell
+10X53_4:ACGGTCCTTGCGTA,microglial cell (Mmus),Microglial cell
+10X28_5:GGCCCAGAGAATCC,microglial cell (Mmus),Microglial cell
+10X22_2:GTCCCATGTACGCA,microglial cell (Mmus),Microglial cell
+10X19_2:ATTGGTCTTCCTCG,microglial cell (Mmus),Microglial cell
+10X22_4:AATGATACGCGAGA,microglial cell (Mmus),Microglial cell
+10X26_3:CATCTTGAAGAGGC,microglial cell (Mmus),Microglial cell
+10X19_2:AGCCAATGTGTGCA,microglial cell (Mmus),Microglial cell
+10X57_2:GTGAACACAGGTCT,microglial cell (Mmus),Microglial cell
+10X02_1:CCTAAGGACTGAAC,microglial cell (Mmus),Microglial cell
+10X53_5:GGCTACCTGCCTTC,microglial cell (Mmus),Microglial cell
+10X49_1:CCGGAGACTTCGCC,microglial cell (Mmus),Microglial cell
+10X57_4:ACGCCTTGTATCTC,microglial cell (Mmus),Microglial cell
+10X24_1:TTCATCGATTCCGC,microglial cell (Mmus),Microglial cell
+10X49_3:CATAACCTTTGGTG,microglial cell (Mmus),Microglial cell
+10X26_3:TCTTGATGACGACT,microglial cell (Mmus),Microglial cell
+10X53_4:TAGTACCTCCCTCA,microglial cell (Mmus),Microglial cell
+10X02_1:ACTTGGGATGCTCC,microglial cell (Mmus),Microglial cell
+10X20_4:GCCGACGAGGTGGA,microglial cell (Mmus),Microglial cell
+10X50_4:GTGATCGAAGGAGC,microglial cell (Mmus),Microglial cell
+10X22_2:GGACATTGAGGTCT,microglial cell (Mmus),Microglial cell
+10X35_2:AACGCAACCTGGTA,microglial cell (Mmus),Microglial cell
+10X49_3:AGGCTAACGTAGGG,microglial cell (Mmus),Microglial cell
+10X51_4:GCACCACTAAGAAC,microglial cell (Mmus),Microglial cell
+10X49_5:CGGTAAACCTAGCA,neuroblast (sensu Vertebrata),Neuron
+10X49_4:TACGAGACCCCAAA,neuroblast (sensu Vertebrata),Neuroblast
+10X04_4:TCTAACTGCAGCTA,neuroblast (sensu Vertebrata),Neuroblast
+10X46_1:AAAGCAGAGGACAG,neuroblast (sensu Vertebrata),Neuroblast
+10X49_4:TTGTAGCTCCTCGT,neuroblast (sensu Vertebrata),Neuroblast
+10X28_5:GACTGAACGAGCTT,neuroblast (sensu Vertebrata),Neuroblast
+10X26_3:TTTGCATGCATGCA,neuroblast (sensu Vertebrata),Neuroblast
+10X20_1:TTACTCGACATGAC,neuroblast (sensu Vertebrata),Neuroblast
+10X54_3:GAAGGAGAGTGACC,neuroblast (sensu Vertebrata),Neuron
+10X22_4:ACGCCTTGCTTCCG,neuroblast (sensu Vertebrata),Neuroblast
+10X34_2:TTCTGATGGTGTAC,neuroblast (sensu Vertebrata),Neuroblast
+10X46_1:CCAGTCACTTTCGT,neuroblast (sensu Vertebrata),Neuroblast
+10X49_5:GATTTGCTCGTCTC,neuroblast (sensu Vertebrata),Neuroblast
+10X22_4:TATCTGACGGCAAG,neuroblast (sensu Vertebrata),Neuroblast
+10X49_1:CCGGAGACATCAGC,neuroblast (sensu Vertebrata),Neuroblast
+10X22_3:GTGAGGGATCTTCA,neuroblast (sensu Vertebrata),Neuroblast
+10X04_4:TTCATGTGTTCCAT,neuroblast (sensu Vertebrata),Neuroblast
+10X43_1:ATTCTTCTATCTCT,neuroblast (sensu Vertebrata),Neuroblast
+10X28_4:AAATCAACGCGAGA,neuroblast (sensu Vertebrata),Neuroblast
+10X04_1:AAACATTGATTCTC,neuroblast (sensu Vertebrata),Neuroblast
+10X43_1:ATGCACGAGCTACA,neuroblast (sensu Vertebrata),Neuroblast
+10X28_5:TAGGAGCTGTTGTG,neuroblast (sensu Vertebrata),Neuroblast
+10X28_4:CTATAAGATGCCTC,neuroblast (sensu Vertebrata),Neuroblast
+10X22_3:TGTGAGTGCCTCGT,neuroblast (sensu Vertebrata),Neuroblast
+10X54_7:AGCGTTCGTTTAGG,neuroblast (sensu Vertebrata),Neuron
+10X24_1:TCTAAGCTCCCTCA,neuroblast (sensu Vertebrata),Neuroblast
+10X52_4:AGAATTTGAGTACC,pericyte,Endothelial cell
+10X50_7:CACCTGACAGGAGC,pericyte,Endothelial cell
+10X26_3:AATCCTACATTGGC,pericyte,Endothelial cell
+10X53_3:CAAATATGGCGGAA,pericyte,Endothelial cell
+10X52_4:GACGGCACACGTGT,pericyte,Endothelial cell
+10X50_8:CATAAAACGTCACA,pericyte,Endothelial cell
+10X43_3:TATAGATGTTTCGT,pericyte,Endothelial cell
+10X53_6:GTAAGCACATTCTC,pericyte,Endothelial cell
+10X53_4:CAACGATGTAACCG,pericyte,Endothelial cell
+10X20_1:CATAAATGAAGATG,pericyte,Endothelial cell
+10X50_6:TTTGACTGTCGACA,pericyte,Endothelial cell
+10X53_6:GGGCAGCTAAGTGA,pericyte,Endothelial cell
+10X20_2:CCATCCGATTGTCT,pericyte,Endothelial cell
+10X48_1:AGTCGAACTTTGCT,pericyte,Endothelial cell
+10X53_4:GTGAACACAAGGGC,pericyte,Endothelial cell
+10X36_1:GCGAGCACTGCCCT,pericyte,Endothelial cell
+10X48_3:ATAACCCTACTCAG,pericyte,Endothelial cell
+10X52_6:GCGAAGGAGGGAGT,pericyte,Endothelial cell
+10X20_2:CGGAATTGTACGAC,pericyte,Endothelial cell
+10X50_7:GCGAGCACCTTCTA,pericyte,Endothelial cell
+10X24_3:CCACCTGAGTTCTT,pericyte,Endothelial cell
+10X36_3:GGCCACGAGAAGGC,pericyte,Endothelial cell
+10X52_6:TCCCGATGTCAAGC,pericyte,Endothelial cell
+10X22_1:CGAGAACTAGACTC,pericyte,Endothelial cell
+10X57_2:CCAAAGTGGAGAGC,pericyte,Endothelial cell
+10X22_3:ACAAGAGAGTCAAC,dentate gyrus granule cell,Type IB spiral ganglion neuron
+10X22_3:CATACTACCTTCGC,dentate gyrus granule cell,Type IB spiral ganglion neuron
+10X46_1:CAAACTCTTTCGTT,dentate gyrus granule cell,Type IB spiral ganglion neuron
+10X46_1:GCCACTACTCGCTC,dentate gyrus granule cell,Type IB spiral ganglion neuron
+10X46_1:TAGTAATGCCCAAA,dentate gyrus granule cell,Type IB spiral ganglion neuron
+10X46_1:TCAGCGCTCGGAGA,dentate gyrus granule cell,Type IB spiral ganglion neuron
+10X22_3:GAGGATCTCTTGTT,dentate gyrus granule cell,Type IB spiral ganglion neuron
+10X43_1:AACATTGACAACTG,dentate gyrus granule cell,Type IB spiral ganglion neuron
+10X46_1:GGATGTACAGGAGC,dentate gyrus granule cell,Type IB spiral ganglion neuron
+10X46_1:TGGACTGAGTTACG,dentate gyrus granule cell,Type IB spiral ganglion neuron
+10X22_4:GTGATTCTCTAGTG,dentate gyrus granule cell,Type IB spiral ganglion neuron
+10X43_1:CATCTTGAACAGTC,dentate gyrus granule cell,Type IB spiral ganglion neuron
+10X43_1:GATATCCTGCCTTC,dentate gyrus granule cell,Type IB spiral ganglion neuron
+10X43_1:GGAATGCTCAGTCA,dentate gyrus granule cell,Neuroblast
+10X46_1:GCTACAGAGTTGGT,dentate gyrus granule cell,Type IB spiral ganglion neuron
+10X43_1:GCTGATGACCTTAT,dentate gyrus granule cell,Type IB spiral ganglion neuron
+10X22_3:TTCAAGCTTATTCC,dentate gyrus granule cell,Type IB spiral ganglion neuron
+10X22_3:CGTGTAGACGCAAT,dentate gyrus granule cell,Type IB spiral ganglion neuron
+10X04_2:ATCAAATGGTCAAC,dentate gyrus granule cell,Type IB spiral ganglion neuron
+10X46_1:GAGTACACCAAAGA,dentate gyrus granule cell,Type IB spiral ganglion neuron
+10X22_4:TAAGCTCTTGCAAC,dentate gyrus granule cell,Type IB spiral ganglion neuron
+10X51_1:TCGCACACCTAGCA,cerebellar neuron,Neuron
+10X34_4:CGGCCAGACTGGAT,cerebellar neuron,Neuron
+10X26_1:TACGTACTCTGACA,cerebellar neuron,Neuron
+10X26_2:TAGGAGCTTATTCC,cerebellar neuron,Neuron
+10X26_1:TAAGTCCTTACAGC,cerebellar neuron,Neuron
+10X51_1:GAACCAACACGCAT,cerebellar neuron,Neuron
+10X26_1:GACAGTTGGAGGAC,cerebellar neuron,Neuron
+10X26_2:ATCCCGTGCATGCA,cerebellar neuron,Neuron
+10X26_1:AAGAAGACCACACA,cerebellar neuron,Neuron
+10X26_1:ACAAAGGAAAACAG,cerebellar neuron,Neuron
+10X51_2:TGGTAGACTTCCCG,cerebellar neuron,Neuron
+10X51_2:GAAGGTCTCCACCT,cerebellar neuron,Neuron
+10X26_1:GATATAACAGATCC,cerebellar neuron,Neuron
+10X51_1:CCATGCTGTTCCGC,cerebellar neuron,Neuron
+10X51_1:TAGTTCACTAGCGT,cerebellar neuron,Neuron
+10X51_1:GTGAGGGATCCCAC,cerebellar neuron,Neuron
+10X51_1:ATCCTAACCTAGTG,cerebellar neuron,Neuron
+10X51_1:GCGCGATGACCTTT,cerebellar neuron,Neuron
+10X51_1:GCTCGACTCACTTT,cerebellar neuron,Neuron
+10X51_2:CTGAACGACCGTTC,cerebellar neuron,Neuron
+10X26_1:TAACAATGCTGTAG,cerebellar neuron,Neuron
+10X01_1:ACGGGAGAACCCTC,endothelial cell of vascular tree,Endothelial cell
+10X04_1:ACCTTTGACTCAAG,endothelial cell of vascular tree,Endothelial cell
+10X57_7:CAGGTATGGCTTCC,endothelial cell of vascular tree,Endothelial cell
+10X01_1:CTGCCAACGCATAC,endothelial cell of vascular tree,Endothelial cell
+10X53_5:GGTAGTACGCTTAG,endothelial cell of vascular tree,Endothelial cell
+10X53_3:AACTGTCTTGGAAA,endothelial cell of vascular tree,Endothelial cell
+10X53_4:GAAGTAGACTGGTA,endothelial cell of vascular tree,Endothelial cell
+10X49_4:ATACCGGAGTGCTA,endothelial cell of vascular tree,Endothelial cell
+10X53_2:CGCACGGAGTCAAC,endothelial cell of vascular tree,Endothelial cell
+10X43_3:TTCGATTGAACCGT,endothelial cell of vascular tree,Endothelial cell
+10X53_4:GTGTATCTACGCTA,endothelial cell of vascular tree,Endothelial cell
+10X57_7:ACTTCTGAGCCCTT,endothelial cell of vascular tree,Endothelial cell
+10X05_1:GAGAGGTGATGTGC,endothelial cell of vascular tree,Endothelial cell
+10X53_3:ACCCTCGATATCTC,endothelial cell of vascular tree,Endothelial cell
+10X04_1:AAACCGTGGGAGGT,endothelial cell of vascular tree,Endothelial cell
+10X36_2:TCGCCATGAAACGA,endothelial cell of vascular tree,Endothelial cell
+10X26_3:ACGTTGGATCATTC,endothelial cell of vascular tree,Endothelial cell
+10X52_1:GCCTAGCTCTTCTA,endothelial cell of vascular tree,Endothelial cell
+10X53_5:TTCTTACTCGGGAA,endothelial cell of vascular tree,Endothelial cell
+10X53_5:TCTAACTGGACGTT,endothelial cell of vascular tree,Endothelial cell
+10X35_3:CGTAACGATACGCA,peptidergic neuron,Neuron
+10X51_4:ACGTAGACCTCAGA,peptidergic neuron,Neuron
+10X26_3:TTCAAGCTCTCAAG,peptidergic neuron,Neuron
+10X26_3:GGTATGACTCCCGT,peptidergic neuron,Neuron
+10X26_3:ATCACACTTTCTGT,peptidergic neuron,Neuron
+10X26_3:GGCCAGACAAGAAC,peptidergic neuron,Neuron
+10X26_4:AAGAATCTTGGATC,peptidergic neuron,Neuron
+10X26_3:GCGGGACTTTCGGA,peptidergic neuron,Neuron
+10X50_2:CATTTGTGTACTGG,peptidergic neuron,Neuron
+10X51_3:CCAGCACTATTCCT,peptidergic neuron,Neuron
+10X26_3:TTACGACTTTGACG,peptidergic neuron,Neuron
+10X46_2:TAGGAGCTGTAAGA,peptidergic neuron,Neuron
+10X26_3:ATGTTAGACCAAGT,peptidergic neuron,Neuron
+10X50_2:AGCAAAGATCCGAA,peptidergic neuron,Neuron
+10X26_3:GGATTGTGACGTTG,peptidergic neuron,Neuron
+10X26_3:GATGCATGTCCAGA,peptidergic neuron,Neuron
+10X26_4:TGTACTTGACCGAT,peptidergic neuron,Neuron
+10X51_3:GTGATCGACTAGAC,peptidergic neuron,Neuron
+10X26_3:CCAGCGGAGCTTCC,peptidergic neuron,Neuron
+10X50_1:ATAAGTTGACACTG,peptidergic neuron,Neuron
+10X28_3:GGCAAGGACCTAAG,perivascular macrophage,Microglial cell
+10X57_5:ATATACGAGATAAG,perivascular macrophage,Microglial cell
+10X22_3:GTGACAACTCTTAC,perivascular macrophage,Microglial cell
+10X52_8:ACACCAGATGCAGT,perivascular macrophage,Microglial cell
+10X50_4:GGACAGGAGGTTTG,perivascular macrophage,Microglial cell
+10X01_1:TAGGGACTACAGTC,perivascular macrophage,Microglial cell
+10X54_7:GCTTCTCCTATGTT,perivascular macrophage,Microglial cell
+10X33_2:CGGTCACTCCAACA,perivascular macrophage,Microglial cell
+10X56_6:GGGTAACTAAGATG,perivascular macrophage,Microglial cell
+10X22_1:TCGCAAGATCCAAG,perivascular macrophage,Microglial cell
+10X19_2:TAAGATACGCGAGA,perivascular macrophage,Microglial cell
+10X22_2:AGTCGCCTATCACG,perivascular macrophage,Microglial cell
+10X57_4:CCCACATGGTCTGA,perivascular macrophage,Microglial cell
+10X52_1:AGTACGTGCGAGTT,perivascular macrophage,Microglial cell
+10X24_1:TCCCTACTGCAGAG,perivascular macrophage,Microglial cell
+10X57_1:ACGGTATGCCGATA,perivascular macrophage,Microglial cell
+10X49_5:CAGGAACTTCCCGT,perivascular macrophage,Microglial cell
+10X24_2:CCGATAGAGGAACG,perivascular macrophage,Microglial cell
+10X57_7:GATCGAACTTTCTG,perivascular macrophage,Microglial cell
+10X52_7:TTAGTCACCTTGTT,perivascular macrophage,Microglial cell
+10X43_2:CTACGCACGTGTCA,peripheral sensory neuron,Neuron
+10X53_7:AGAATACTCTTGCC,peripheral sensory neuron,Type II spiral ganglion neuron
+10X43_2:GTCCACTGAAGGCG,peripheral sensory neuron,Type II spiral ganglion neuron
+10X53_7:ATACCGGAGAACCT,peripheral sensory neuron,Neuroblast
+10X53_7:TGCTGAGATTCCGC,peripheral sensory neuron,Neuroblast
+10X43_2:TTCGATTGTTCTCA,peripheral sensory neuron,Type II spiral ganglion neuron
+10X53_7:GACCAAACCCCTTG,peripheral sensory neuron,Neuron
+10X53_7:GCAATCGATCAGTG,peripheral sensory neuron,Neuron
+10X53_7:GGAGCCACCCAACA,peripheral sensory neuron,Neuroblast
+10X53_7:CTGTAACTGAGACG,peripheral sensory neuron,Neuron
+10X53_7:AGTGTGACGAATCC,peripheral sensory neuron,Neuroblast
+10X53_7:CTATAGCTCTCAAG,peripheral sensory neuron,Neuroblast
+10X43_2:GATCTTACTAAGCC,peripheral sensory neuron,Neuron
+10X43_2:ATGGGTACACGTAC,peripheral sensory neuron,Type II spiral ganglion neuron
+10X43_2:GGGCCAACTTCAGG,peripheral sensory neuron,Neuroblast
+10X43_2:TTAACCACGGTATC,peripheral sensory neuron,Neuroblast
+10X43_2:AACGCATGCGATAC,peripheral sensory neuron,Neuroblast
+10X53_7:CGGGACTGTTGCAG,peripheral sensory neuron,Neuron
+10X53_7:ACCGTGCTAAGGCG,peripheral sensory neuron,Neuroblast
+10X43_2:TAGGTGTGTCACCC,peripheral sensory neuron,Type II spiral ganglion neuron
+10X49_4:AACATATGCGTTAG,vascular leptomeningeal cell (Mmus),Oligodendrocyte
+10X57_6:CCACGGGAGATGAA,vascular leptomeningeal cell (Mmus),Oligodendrocyte
+10X49_4:ATTTCCGAGGGATG,vascular leptomeningeal cell (Mmus),Oligodendrocyte
+10X49_4:AACTTGCTCTGTGA,vascular leptomeningeal cell (Mmus),Oligodendrocyte
+10X49_5:GATACTCTCATGCA,vascular leptomeningeal cell (Mmus),Oligodendrocyte
+10X52_1:AAATCCCTTACTCT,vascular leptomeningeal cell (Mmus),Oligodendrocyte
+10X20_3:TGTCAGGAGTCTGA,vascular leptomeningeal cell (Mmus),Oligodendrocyte
+10X56_2:TCCTAAACTTCCAT,vascular leptomeningeal cell (Mmus),Oligodendrocyte
+10X48_3:CTGTATACGCGGAA,vascular leptomeningeal cell (Mmus),Oligodendrocyte
+10X22_3:AGGCAACTTGCCTC,vascular leptomeningeal cell (Mmus),Oligodendrocyte
+10X43_1:CTTAAAGATGCCAA,vascular leptomeningeal cell (Mmus),Oligodendrocyte
+10X20_3:AAGGTCTGACACGT,vascular leptomeningeal cell (Mmus),Oligodendrocyte
+10X52_6:AAGCACTGTGCGTA,vascular leptomeningeal cell (Mmus),Oligodendrocyte
+10X33_2:CTTGAGGAGCTGAT,vascular leptomeningeal cell (Mmus),Oligodendrocyte
+10X52_2:CTGCAGCTTATTCC,vascular leptomeningeal cell (Mmus),Oligodendrocyte
+10X49_5:GAACTGTGATACCG,vascular leptomeningeal cell (Mmus),Oligodendrocyte
+10X57_3:GCTACGCTCCTTAT,vascular leptomeningeal cell (Mmus),Oligodendrocyte
+10X50_8:GCACACCTAGAGGC,vascular leptomeningeal cell (Mmus),Oligodendrocyte
+10X54_8:TGCTTTCGGGAGTA,vascular leptomeningeal cell (Mmus),Oligodendrocyte
+10X52_4:TCCCAGACGGTACT,vascular leptomeningeal cell (Mmus),Oligodendrocyte
+10X52_2:GATAATACGGAGCA,vascular associated smooth muscle cell,Mural cell
+10X53_2:TTATGAGAAGCCTA,vascular associated smooth muscle cell,Oligodendrocyte
+10X48_3:AGATTAACACTACG,vascular associated smooth muscle cell,Mural cell
+10X55_8:AGGGACAAGCCGCT,vascular associated smooth muscle cell,Oligodendrocyte
+10X28_5:CCAGTCACCTCTAT,vascular associated smooth muscle cell,Mural cell
+10X52_2:ACCACCTGTGCCCT,vascular associated smooth muscle cell,Mural cell
+10X36_3:CTACTATGTTGCTT,vascular associated smooth muscle cell,Mural cell
+10X52_6:GGTGGAGATGTGGT,vascular associated smooth muscle cell,Mural cell
+10X26_4:CAGAAGCTCCCTCA,vascular associated smooth muscle cell,Mural cell
+10X54_3:TGTTAAGGTGCTAG,vascular associated smooth muscle cell,Oligodendrocyte
+10X02_1:CTATGTTGGCATAC,vascular associated smooth muscle cell,Mural cell
+10X48_3:CACTGAGAGGTGGA,vascular associated smooth muscle cell,Mural cell
+10X52_5:TATGTGCTGCGAGA,vascular associated smooth muscle cell,Mural cell
+10X28_3:TACAATGACTTGCC,vascular associated smooth muscle cell,Mural cell
+10X54_8:CAATTTCACAACGT,vascular associated smooth muscle cell,Mural cell
+10X24_2:ATCACTTGTCAGGT,vascular associated smooth muscle cell,Endothelial cell
+10X57_3:CTTACTGAGCTGAT,vascular associated smooth muscle cell,Mural cell
+10X54_2:CGTTTAGCAGGTCA,vascular associated smooth muscle cell,Mural cell
+10X57_3:ATTCTGACCGAGAG,vascular associated smooth muscle cell,Mural cell
+10X05_3:TAAATCGAGTTAGC,vascular associated smooth muscle cell,Mural cell
+10X49_4:CTTCACCTCCACAA,olfactory ensheathing cell,Astrocyte
+10X49_4:CAGGTTGACAGAAA,olfactory ensheathing cell,Astrocyte
+10X49_4:CATGAGACGGAAAT,olfactory ensheathing cell,Astrocyte
+10X49_5:ATGCACGATTCCAT,olfactory ensheathing cell,Astrocyte
+10X49_4:GGAGTTTGAAGCAA,olfactory ensheathing cell,Astrocyte
+10X49_5:TTCTTACTGTTGTG,olfactory ensheathing cell,Astrocyte
+10X28_4:GTTCATACTGGATC,olfactory ensheathing cell,Astrocyte
+10X49_4:TGTGAGTGACAGCT,olfactory ensheathing cell,Astrocyte
+10X49_5:TTTATCCTCCTACC,olfactory ensheathing cell,Astrocyte
+10X28_5:TGGCAATGTACAGC,olfactory ensheathing cell,Astrocyte
+10X49_4:TAGGCATGGCCCTT,olfactory ensheathing cell,Astrocyte
+10X49_4:TCAATAGATCGATG,olfactory ensheathing cell,Astrocyte
+10X28_5:CATGCCACCTCAAG,olfactory ensheathing cell,Astrocyte
+10X49_4:GAATGCTGCCAAGT,olfactory ensheathing cell,Astrocyte
+10X28_4:GAGTCAACGAAGGC,olfactory ensheathing cell,Astrocyte
+10X49_4:GGGTTAACCGTGAT,olfactory ensheathing cell,Astrocyte
+10X49_5:GACAACTGACTGGT,olfactory ensheathing cell,Astrocyte
+10X49_5:AAATGTTGGTGTCA,olfactory ensheathing cell,Astrocyte
+10X49_5:ATTCTTCTTCAGAC,olfactory ensheathing cell,Astrocyte
+10X49_5:AGTCTACTTGGAAA,olfactory ensheathing cell,Astrocyte
 10X54_5:TGAAGGTGGTGTAG,ependymal cell,Astrocyte
 10X24_3:CCAGACCTGAGCTT,ependymal cell,Astrocyte
 10X57_5:TTCCTAGAGCCAAT,ependymal cell,Astrocyte
@@ -798,126 +798,126 @@ cell_id,true_labels,predicted_labels
 10X26_3:CAGGTTGAACACGT,radial glial cell,Astrocyte
 10X49_5:AGTAGGCTAGTCGT,radial glial cell,Astrocyte
 10X24_1:AGTTAAACACCACA,radial glial cell,Astrocyte
-10X55_6:TATTCGTAGTGAAT,cholinergic neuron,Inhibitory neuron
-10X26_4:TGTAATGACTATGG,cholinergic neuron,Inhibitory neuron
-10X54_7:TGCTACAAGGCTCC,cholinergic neuron,Inhibitory neuron
-10X55_3:AGCCTCATCGATTG,cholinergic neuron,Inhibitory neuron
-10X55_4:GCAGTAGAGCCTAG,cholinergic neuron,Inhibitory neuron
-10X56_2:AACTCTTGACACTG,cholinergic neuron,Inhibitory neuron
-10X52_5:TGGAACACGTATGC,cholinergic neuron,Inhibitory neuron
-10X55_3:TGAACTCAAACAAG,cholinergic neuron,Inhibitory neuron
-10X52_6:TCATTCGATTCATC,cholinergic neuron,Inhibitory neuron
-10X52_8:ACATTCTGTTGCAG,cholinergic neuron,Inhibitory neuron
-10X55_5:AGCCGAGAATGTTG,cholinergic neuron,Inhibitory neuron
-10X34_4:GGAATCTGTTAGGC,cholinergic neuron,Inhibitory neuron
-10X51_3:ATGGTGACGTTCTT,cholinergic neuron,Inhibitory neuron
-10X55_6:GCGATCATGCTAGT,cholinergic neuron,Inhibitory neuron
-10X54_5:TTACTGTCAGAATA,cholinergic neuron,Inhibitory neuron
-10X34_3:AGCGCCGATCAGAC,cholinergic neuron,Inhibitory neuron
-10X11_1:ACTCTCCTCGTAGT,cholinergic neuron,Inhibitory neuron
-10X56_6:GAGTCTGACAGAGG,cholinergic neuron,Inhibitory neuron
-10X52_7:GAGTGACTTCACGA,cholinergic neuron,Inhibitory neuron
-10X34_3:TCAAGTCTCATACG,cholinergic neuron,Inhibitory neuron
-10X54_5:TGAACCAACTTGAC,cranial visceromotor neuron,Inhibitory neuron
-10X54_4:TTCAGAGCCCAACC,cranial visceromotor neuron,Inhibitory neuron
-10X54_1:AAGACAGCGCCTCA,cranial visceromotor neuron,Inhibitory neuron
-10X54_8:CCAGGCATTGAGCT,cranial visceromotor neuron,Inhibitory neuron
-10X55_3:AATGTAGTACGCCC,cranial visceromotor neuron,Inhibitory neuron
-10X54_8:ACACCTCACAGGCC,cranial visceromotor neuron,Inhibitory neuron
-10X55_7:CACCTAGAGGGATA,cranial visceromotor neuron,Inhibitory neuron
-10X54_6:ACTTCCATGAGCGA,cranial visceromotor neuron,Inhibitory neuron
-10X54_4:GTTAGTCGATAGAA,cranial visceromotor neuron,Inhibitory neuron
-10X54_5:TTCGGCATATACCG,cranial visceromotor neuron,Inhibitory neuron
-10X55_5:GGCATGTCGTTGTA,cranial visceromotor neuron,Inhibitory neuron
-10X54_7:GAACGAGCAGACTG,cranial visceromotor neuron,Inhibitory neuron
-10X54_8:CTCCTTCCGAGCCA,cranial visceromotor neuron,Inhibitory neuron
-10X54_5:ATGTAAGAGATGAG,cranial visceromotor neuron,Inhibitory neuron
-10X48_2:ATCGGAACCTGTAG,cranial visceromotor neuron,Inhibitory neuron
-10X55_1:ATGCCTCCTGCAGG,cranial visceromotor neuron,Inhibitory neuron
-10X55_4:GTAGAGTCTAGGTT,cranial visceromotor neuron,Inhibitory neuron
-10X54_4:TCAAGTCAACGCTA,cranial visceromotor neuron,Inhibitory neuron
-10X33_3:GCCTCATGCGAGTT,cranial visceromotor neuron,Inhibitory neuron
-10X54_7:ACCGGGTCTTTCAT,cranial visceromotor neuron,Inhibitory neuron
-10X52_1:TTATGGCTCCGATA,oligodendrocyte precursor cell,Oligodendrocyte
-10X22_3:ATCTTGACTGACAC,oligodendrocyte precursor cell,Oligodendrocyte
-10X50_7:GGGACCACAACCGT,oligodendrocyte precursor cell,Oligodendrocyte
-10X26_4:TCACTATGTGGTAC,oligodendrocyte precursor cell,Oligodendrocyte
-10X43_1:TAATGTGACCTACC,oligodendrocyte precursor cell,Oligodendrocyte
-10X49_5:GAGGTTTGTCGCAA,oligodendrocyte precursor cell,Oligodendrocyte
-10X53_4:CTGATGGAAGTGCT,oligodendrocyte precursor cell,Oligodendrocyte
-10X02_1:AGGTGGGACCTGTC,oligodendrocyte precursor cell,Oligodendrocyte
-10X01_1:GCATGTGAAAGTGA,oligodendrocyte precursor cell,Oligodendrocyte
-10X46_1:AGTATCCTCTTCGC,oligodendrocyte precursor cell,Oligodendrocyte
-10X22_4:GCCCAACTCCTCAC,oligodendrocyte precursor cell,Oligodendrocyte
-10X01_1:AGGGCCACAGGAGC,oligodendrocyte precursor cell,Oligodendrocyte
-10X52_1:TCAAGGTGAAAGCA,oligodendrocyte precursor cell,Oligodendrocyte
-10X28_5:TGCTTAACTACTTC,oligodendrocyte precursor cell,Oligodendrocyte
-10X52_1:CAAACTCTAAAGCA,oligodendrocyte precursor cell,Oligodendrocyte
-10X50_2:AACCAGTGTCTATC,oligodendrocyte precursor cell,Oligodendrocyte
-10X24_3:GATAATACTTCCAT,oligodendrocyte precursor cell,Oligodendrocyte
-10X26_4:GCACGTCTATGTGC,oligodendrocyte precursor cell,Oligodendrocyte
-10X01_1:ACGGTAACCCAAGT,oligodendrocyte precursor cell,Oligodendrocyte
-10X24_4:ACTCTCCTCATACG,oligodendrocyte precursor cell,Oligodendrocyte
-10X75_1:AATGAGGACGAGTT,sympathetic noradrenergic neuron,Astrocyte
-10X75_1:TAGCGATGACAGTC,sympathetic noradrenergic neuron,Astrocyte
-10X75_1:XXTTAACTATCACG,sympathetic noradrenergic neuron,Astrocyte
-10X75_1:GGACATTGTCCGAA,sympathetic noradrenergic neuron,Astrocyte
-10X75_1:CAACCAGACACAAC,sympathetic noradrenergic neuron,Astrocyte
-10X75_1:ATCTGGGAAAAACG,sympathetic noradrenergic neuron,Astrocyte
-10X75_1:CGCTAAGAGGAGCA,sympathetic noradrenergic neuron,Astrocyte
-10X75_1:TTGCATTGGAAACA,sympathetic noradrenergic neuron,Astrocyte
-10X75_1:GGCCAGACCTTGTT,sympathetic noradrenergic neuron,Astrocyte
-10X75_1:CAAGGTTGGCCCTT,sympathetic noradrenergic neuron,Astrocyte
-10X75_1:ATCGACGAGGCAAG,sympathetic noradrenergic neuron,Astrocyte
-10X75_1:XXATCTACTGTAGC,sympathetic noradrenergic neuron,Astrocyte
-10X75_1:CTATAAGAGCGGAA,sympathetic noradrenergic neuron,Astrocyte
-10X75_1:ACACCCTGAGAGAT,sympathetic noradrenergic neuron,Astrocyte
-10X75_1:CGAGGAGACGAATC,sympathetic noradrenergic neuron,Astrocyte
-10X75_1:ATTCTTCTGGCAAG,sympathetic noradrenergic neuron,Astrocyte
-10X75_1:AAAGCAGAAGCGTT,sympathetic noradrenergic neuron,Astrocyte
-10X75_1:AAGGTCTGTGGTAC,sympathetic noradrenergic neuron,Astrocyte
-10X75_1:GACAGGGAGCTTAG,sympathetic noradrenergic neuron,Astrocyte
-10X75_1:GAACACACGAGCTT,sympathetic noradrenergic neuron,Astrocyte
-10X53_7:TCCCAGACTTACTC,Satellite glia,Astrocyte
-10X43_2:TAAGAGGAGCTGTA,Satellite glia,Astrocyte
-10X43_2:ATGCAGTGACCTTT,Satellite glia,Astrocyte
-10X43_2:GGCGCATGTCTCTA,Satellite glia,Astrocyte
-10X43_2:GATCGATGACGGTT,Satellite glia,Astrocyte
-10X43_2:GCACCTTGCCTAAG,Satellite glia,Astrocyte
-10X43_2:TTCAACACGCAGTT,Satellite glia,Astrocyte
-10X43_2:ACGCAATGGCTGTA,Satellite glia,Astrocyte
-10X43_2:ATAGCCGACTCAGA,Satellite glia,Astrocyte
-10X43_2:ATCCGCACAGAGTA,Satellite glia,Astrocyte
-10X53_7:ATGCGATGGCTGAT,Satellite glia,Astrocyte
-10X43_2:CTAGTTTGTCAGAC,Satellite glia,Astrocyte
-10X53_7:CTGGAAACCTCGCT,Satellite glia,Astrocyte
-10X43_2:ACTGTTACATCGTG,Satellite glia,Astrocyte
-10X53_7:CGACCACTCCCGTT,Satellite glia,Astrocyte
-10X43_2:TCAACACTCCTTTA,Satellite glia,Astrocyte
-10X43_2:TAGTCTTGCCTAAG,Satellite glia,Astrocyte
-10X43_2:GGCGACTGTCTACT,Satellite glia,Astrocyte
-10X43_2:CACGGGACTGCAAC,Satellite glia,Astrocyte
-10X53_7:CGACCGGACATCAG,Satellite glia,Astrocyte
-10X11_1:TTACTCGAAGTACC,choroid plexus epithelial cell,Astrocyte
-10X54_6:AGCTACATCGGGTC,choroid plexus epithelial cell,Astrocyte
-10X54_3:AGCCAGTAAGCACG,choroid plexus epithelial cell,Astrocyte
-10X55_3:ACCCAGTATATGAG,choroid plexus epithelial cell,Astrocyte
-10X54_3:GCCACTCTGCGACG,choroid plexus epithelial cell,Astrocyte
-10X55_8:GTTCCCACAACGTT,choroid plexus epithelial cell,Astrocyte
-10X48_1:ATAGCCGAGGGACA,choroid plexus epithelial cell,Astrocyte
-10X54_4:ACTTCGTGAGCGAT,choroid plexus epithelial cell,Astrocyte
-10X49_1:ACAAAGGATTACTC,choroid plexus epithelial cell,Astrocyte
-10X54_4:ACCAAGTCATACTG,choroid plexus epithelial cell,Astrocyte
-10X54_2:TCGATTCCCTCAGT,choroid plexus epithelial cell,Astrocyte
-10X48_4:GCAGTCCTTTGCAG,choroid plexus epithelial cell,Astrocyte
-10X57_6:TTGGGAACGCTTAG,choroid plexus epithelial cell,Astrocyte
-10X57_6:AATCCTACTTAGGC,choroid plexus epithelial cell,Astrocyte
-10X54_4:CTCCTTCAGATAAG,choroid plexus epithelial cell,Astrocyte
-10X49_3:AGTTTGCTCACCAA,choroid plexus epithelial cell,Astrocyte
-10X33_2:GGACCCGAAGTCTG,choroid plexus epithelial cell,Astrocyte
-10X54_2:GTAGAAGGTGATAT,choroid plexus epithelial cell,Astrocyte
-10X48_1:TGATTCACTTCTAC,choroid plexus epithelial cell,Astrocyte
-10X87_4:ATAGAACTTTGTGG,choroid plexus epithelial cell,Astrocyte
+10X55_6:TATTCGTAGTGAAT,cholinergic neuron,Dopaminergic neuron
+10X26_4:TGTAATGACTATGG,cholinergic neuron,Neuron
+10X54_7:TGCTACAAGGCTCC,cholinergic neuron,Dopaminergic neuron
+10X55_3:AGCCTCATCGATTG,cholinergic neuron,Dopaminergic neuron
+10X55_4:GCAGTAGAGCCTAG,cholinergic neuron,Dopaminergic neuron
+10X56_2:AACTCTTGACACTG,cholinergic neuron,Neuron
+10X52_5:TGGAACACGTATGC,cholinergic neuron,Neuron
+10X55_3:TGAACTCAAACAAG,cholinergic neuron,Neuron
+10X52_6:TCATTCGATTCATC,cholinergic neuron,Dopaminergic neuron
+10X52_8:ACATTCTGTTGCAG,cholinergic neuron,Dopaminergic neuron
+10X55_5:AGCCGAGAATGTTG,cholinergic neuron,Dopaminergic neuron
+10X34_4:GGAATCTGTTAGGC,cholinergic neuron,Dopaminergic neuron
+10X51_3:ATGGTGACGTTCTT,cholinergic neuron,Neuron
+10X55_6:GCGATCATGCTAGT,cholinergic neuron,Dopaminergic neuron
+10X54_5:TTACTGTCAGAATA,cholinergic neuron,Dopaminergic neuron
+10X34_3:AGCGCCGATCAGAC,cholinergic neuron,Dopaminergic neuron
+10X11_1:ACTCTCCTCGTAGT,cholinergic neuron,Neuron
+10X56_6:GAGTCTGACAGAGG,cholinergic neuron,Neuron
+10X52_7:GAGTGACTTCACGA,cholinergic neuron,Dopaminergic neuron
+10X34_3:TCAAGTCTCATACG,cholinergic neuron,Dopaminergic neuron
+10X54_5:TGAACCAACTTGAC,cranial visceromotor neuron,Neuron
+10X54_4:TTCAGAGCCCAACC,cranial visceromotor neuron,Neuron
+10X54_1:AAGACAGCGCCTCA,cranial visceromotor neuron,Neuron
+10X54_8:CCAGGCATTGAGCT,cranial visceromotor neuron,Neuron
+10X55_3:AATGTAGTACGCCC,cranial visceromotor neuron,Neuron
+10X54_8:ACACCTCACAGGCC,cranial visceromotor neuron,Neuron
+10X55_7:CACCTAGAGGGATA,cranial visceromotor neuron,Neuron
+10X54_6:ACTTCCATGAGCGA,cranial visceromotor neuron,Neuron
+10X54_4:GTTAGTCGATAGAA,cranial visceromotor neuron,Neuron
+10X54_5:TTCGGCATATACCG,cranial visceromotor neuron,Neuron
+10X55_5:GGCATGTCGTTGTA,cranial visceromotor neuron,Neuron
+10X54_7:GAACGAGCAGACTG,cranial visceromotor neuron,Neuron
+10X54_8:CTCCTTCCGAGCCA,cranial visceromotor neuron,Neuron
+10X54_5:ATGTAAGAGATGAG,cranial visceromotor neuron,Neuron
+10X48_2:ATCGGAACCTGTAG,cranial visceromotor neuron,Neuron
+10X55_1:ATGCCTCCTGCAGG,cranial visceromotor neuron,Neuron
+10X55_4:GTAGAGTCTAGGTT,cranial visceromotor neuron,Neuron
+10X54_4:TCAAGTCAACGCTA,cranial visceromotor neuron,Neuron
+10X33_3:GCCTCATGCGAGTT,cranial visceromotor neuron,Neuron
+10X54_7:ACCGGGTCTTTCAT,cranial visceromotor neuron,Neuron
+10X52_1:TTATGGCTCCGATA,oligodendrocyte precursor cell,Oligodendrocyte precursor cell
+10X22_3:ATCTTGACTGACAC,oligodendrocyte precursor cell,Oligodendrocyte precursor cell
+10X50_7:GGGACCACAACCGT,oligodendrocyte precursor cell,Oligodendrocyte precursor cell
+10X26_4:TCACTATGTGGTAC,oligodendrocyte precursor cell,Oligodendrocyte precursor cell
+10X43_1:TAATGTGACCTACC,oligodendrocyte precursor cell,Oligodendrocyte precursor cell
+10X49_5:GAGGTTTGTCGCAA,oligodendrocyte precursor cell,Oligodendrocyte precursor cell
+10X53_4:CTGATGGAAGTGCT,oligodendrocyte precursor cell,Oligodendrocyte precursor cell
+10X02_1:AGGTGGGACCTGTC,oligodendrocyte precursor cell,Oligodendrocyte precursor cell
+10X01_1:GCATGTGAAAGTGA,oligodendrocyte precursor cell,Oligodendrocyte precursor cell
+10X46_1:AGTATCCTCTTCGC,oligodendrocyte precursor cell,Oligodendrocyte precursor cell
+10X22_4:GCCCAACTCCTCAC,oligodendrocyte precursor cell,Oligodendrocyte precursor cell
+10X01_1:AGGGCCACAGGAGC,oligodendrocyte precursor cell,Oligodendrocyte precursor cell
+10X52_1:TCAAGGTGAAAGCA,oligodendrocyte precursor cell,Oligodendrocyte precursor cell
+10X28_5:TGCTTAACTACTTC,oligodendrocyte precursor cell,Oligodendrocyte precursor cell
+10X52_1:CAAACTCTAAAGCA,oligodendrocyte precursor cell,Oligodendrocyte precursor cell
+10X50_2:AACCAGTGTCTATC,oligodendrocyte precursor cell,Oligodendrocyte precursor cell
+10X24_3:GATAATACTTCCAT,oligodendrocyte precursor cell,Oligodendrocyte precursor cell
+10X26_4:GCACGTCTATGTGC,oligodendrocyte precursor cell,Oligodendrocyte precursor cell
+10X01_1:ACGGTAACCCAAGT,oligodendrocyte precursor cell,Oligodendrocyte precursor cell
+10X24_4:ACTCTCCTCATACG,oligodendrocyte precursor cell,Oligodendrocyte precursor cell
+10X75_1:AATGAGGACGAGTT,sympathetic noradrenergic neuron,Neuron
+10X75_1:TAGCGATGACAGTC,sympathetic noradrenergic neuron,Neuron
+10X75_1:XXTTAACTATCACG,sympathetic noradrenergic neuron,Neuron
+10X75_1:GGACATTGTCCGAA,sympathetic noradrenergic neuron,Neuron
+10X75_1:CAACCAGACACAAC,sympathetic noradrenergic neuron,Neuron
+10X75_1:ATCTGGGAAAAACG,sympathetic noradrenergic neuron,Neuron
+10X75_1:CGCTAAGAGGAGCA,sympathetic noradrenergic neuron,Neuron
+10X75_1:TTGCATTGGAAACA,sympathetic noradrenergic neuron,Neuron
+10X75_1:GGCCAGACCTTGTT,sympathetic noradrenergic neuron,Neuron
+10X75_1:CAAGGTTGGCCCTT,sympathetic noradrenergic neuron,Neuron
+10X75_1:ATCGACGAGGCAAG,sympathetic noradrenergic neuron,Neuron
+10X75_1:XXATCTACTGTAGC,sympathetic noradrenergic neuron,Neuron
+10X75_1:CTATAAGAGCGGAA,sympathetic noradrenergic neuron,Neuron
+10X75_1:ACACCCTGAGAGAT,sympathetic noradrenergic neuron,Neuron
+10X75_1:CGAGGAGACGAATC,sympathetic noradrenergic neuron,Neuron
+10X75_1:ATTCTTCTGGCAAG,sympathetic noradrenergic neuron,Neuron
+10X75_1:AAAGCAGAAGCGTT,sympathetic noradrenergic neuron,Neuron
+10X75_1:AAGGTCTGTGGTAC,sympathetic noradrenergic neuron,Neuron
+10X75_1:GACAGGGAGCTTAG,sympathetic noradrenergic neuron,Neuron
+10X75_1:GAACACACGAGCTT,sympathetic noradrenergic neuron,Neuron
+10X53_7:TCCCAGACTTACTC,perineuronal satellite cell,Astrocyte
+10X43_2:TAAGAGGAGCTGTA,perineuronal satellite cell,Astrocyte
+10X43_2:ATGCAGTGACCTTT,perineuronal satellite cell,Astrocyte
+10X43_2:GGCGCATGTCTCTA,perineuronal satellite cell,Astrocyte
+10X43_2:GATCGATGACGGTT,perineuronal satellite cell,Astrocyte
+10X43_2:GCACCTTGCCTAAG,perineuronal satellite cell,Astrocyte
+10X43_2:TTCAACACGCAGTT,perineuronal satellite cell,Astrocyte
+10X43_2:ACGCAATGGCTGTA,perineuronal satellite cell,Astrocyte
+10X43_2:ATAGCCGACTCAGA,perineuronal satellite cell,Astrocyte
+10X43_2:ATCCGCACAGAGTA,perineuronal satellite cell,Astrocyte
+10X53_7:ATGCGATGGCTGAT,perineuronal satellite cell,Astrocyte
+10X43_2:CTAGTTTGTCAGAC,perineuronal satellite cell,Astrocyte
+10X53_7:CTGGAAACCTCGCT,perineuronal satellite cell,Astrocyte
+10X43_2:ACTGTTACATCGTG,perineuronal satellite cell,Astrocyte
+10X53_7:CGACCACTCCCGTT,perineuronal satellite cell,Astrocyte
+10X43_2:TCAACACTCCTTTA,perineuronal satellite cell,Astrocyte
+10X43_2:TAGTCTTGCCTAAG,perineuronal satellite cell,Astrocyte
+10X43_2:GGCGACTGTCTACT,perineuronal satellite cell,Astrocyte
+10X43_2:CACGGGACTGCAAC,perineuronal satellite cell,Astrocyte
+10X53_7:CGACCGGACATCAG,perineuronal satellite cell,Astrocyte
+10X11_1:TTACTCGAAGTACC,choroid plexus epithelial cell,Oligodendrocyte
+10X54_6:AGCTACATCGGGTC,choroid plexus epithelial cell,Oligodendrocyte
+10X54_3:AGCCAGTAAGCACG,choroid plexus epithelial cell,Oligodendrocyte
+10X55_3:ACCCAGTATATGAG,choroid plexus epithelial cell,Oligodendrocyte
+10X54_3:GCCACTCTGCGACG,choroid plexus epithelial cell,Oligodendrocyte
+10X55_8:GTTCCCACAACGTT,choroid plexus epithelial cell,Oligodendrocyte
+10X48_1:ATAGCCGAGGGACA,choroid plexus epithelial cell,Oligodendrocyte
+10X54_4:ACTTCGTGAGCGAT,choroid plexus epithelial cell,Oligodendrocyte
+10X49_1:ACAAAGGATTACTC,choroid plexus epithelial cell,Oligodendrocyte
+10X54_4:ACCAAGTCATACTG,choroid plexus epithelial cell,Oligodendrocyte
+10X54_2:TCGATTCCCTCAGT,choroid plexus epithelial cell,Oligodendrocyte
+10X48_4:GCAGTCCTTTGCAG,choroid plexus epithelial cell,Oligodendrocyte
+10X57_6:TTGGGAACGCTTAG,choroid plexus epithelial cell,Oligodendrocyte
+10X57_6:AATCCTACTTAGGC,choroid plexus epithelial cell,Oligodendrocyte
+10X54_4:CTCCTTCAGATAAG,choroid plexus epithelial cell,Oligodendrocyte
+10X49_3:AGTTTGCTCACCAA,choroid plexus epithelial cell,Oligodendrocyte
+10X33_2:GGACCCGAAGTCTG,choroid plexus epithelial cell,Oligodendrocyte
+10X54_2:GTAGAAGGTGATAT,choroid plexus epithelial cell,Oligodendrocyte
+10X48_1:TGATTCACTTCTAC,choroid plexus epithelial cell,Oligodendrocyte
+10X87_4:ATAGAACTTTGTGG,choroid plexus epithelial cell,Oligodendrocyte
 10X20_3:ATGCAGTGAAAAGC,hypendymal cell,Astrocyte
 10X57_1:GATCCGCTTTGCTT,hypendymal cell,Astrocyte
 10X20_3:ATGCGATGCCTCAC,hypendymal cell,Astrocyte
@@ -938,63 +938,63 @@ cell_id,true_labels,predicted_labels
 10X20_3:CTCAGAGAGGATCT,hypendymal cell,Astrocyte
 10X57_2:ACGCCACTGTTACG,hypendymal cell,Astrocyte
 10X20_3:GTTGACGATAGTCG,hypendymal cell,Astrocyte
-10X75_1:CTTCTAGACGTGAT,sympathetic cholinergic neuron,Astrocyte
-10X75_1:TAGAGAGAAATGCC,sympathetic cholinergic neuron,Astrocyte
-10X75_1:AACAGAGAGTTTCT,sympathetic cholinergic neuron,Astrocyte
-10X75_1:CCCTACGAGGGATG,sympathetic cholinergic neuron,Astrocyte
-10X75_1:GGGTTAACTTCTCA,sympathetic cholinergic neuron,Astrocyte
-10X75_1:AGATATTGAAGGTA,sympathetic cholinergic neuron,Astrocyte
-10X75_1:AGGAATGACGCTAA,sympathetic cholinergic neuron,Astrocyte
-10X75_1:TGCAAGACAGAGAT,sympathetic cholinergic neuron,Astrocyte
-10X75_1:TACACACTCGTAAC,sympathetic cholinergic neuron,Astrocyte
-10X75_1:AGCGTAACGTGTCA,sympathetic cholinergic neuron,Astrocyte
-10X75_1:GGAGCAGACCAGTA,sympathetic cholinergic neuron,Astrocyte
-10X75_1:CAGTTGGAGTACGT,sympathetic cholinergic neuron,Astrocyte
-10X75_1:TTCATGACTGGAGG,sympathetic cholinergic neuron,Astrocyte
-10X75_1:AGCCAATGTCGTAG,sympathetic cholinergic neuron,Astrocyte
-10X75_1:ATGTTAGAAGAGTA,sympathetic cholinergic neuron,Astrocyte
-10X75_1:ATTCTTCTCAGTTG,sympathetic cholinergic neuron,Astrocyte
-10X75_1:CTGACAGACCTTCG,sympathetic cholinergic neuron,Astrocyte
-10X75_1:ATCGCGCTCACTTT,sympathetic cholinergic neuron,Astrocyte
-10X75_1:AAGTGGCTGCTGAT,sympathetic cholinergic neuron,Astrocyte
-10X75_1:GGTGATACGAGCTT,sympathetic cholinergic neuron,Astrocyte
-10X43_2:ATGAGCACTCATTC,Schwann cell,Fibroblast
-10X43_2:AGACCTGAGTCCTC,Schwann cell,Fibroblast
-10X53_7:ACAGTTCTCTTGGA,Schwann cell,Fibroblast
-10X53_7:AGCGGCACAACAGA,Schwann cell,Fibroblast
-10X43_2:TCATCAACCGTTAG,Schwann cell,Fibroblast
-10X43_2:ACTGAGACAACTGC,Schwann cell,Fibroblast
-10X43_2:ATGGTGACCATGGT,Schwann cell,Fibroblast
-10X53_7:TATAAGTGGTCGAT,Schwann cell,Fibroblast
-10X43_2:CACGGGACTTCTAC,Schwann cell,Fibroblast
-10X43_2:TGTATCTGAGTCTG,Schwann cell,Fibroblast
-10X43_2:ATCATCTGAACGGG,Schwann cell,Fibroblast
-10X43_2:GTTCAGGATGTTTC,Schwann cell,Fibroblast
-10X43_2:CTTAGGGAAATGCC,Schwann cell,Fibroblast
-10X43_2:TCAGGATGAACGGG,Schwann cell,Fibroblast
-10X43_2:TTTCGAACTCTCTA,Schwann cell,Fibroblast
-10X43_2:TGATTCTGGTCATG,Schwann cell,Fibroblast
-10X43_2:ACAGTGACGACTAC,Schwann cell,Fibroblast
-10X43_2:CTAGATCTAGAACA,Schwann cell,Fibroblast
-10X53_7:GATAGAGATGGATC,Schwann cell,Fibroblast
-10X43_2:GAAGCTTGTTGTGG,Schwann cell,Fibroblast
-10X82_2:CATGGAGTCTCAAC,enteric neuron,Astrocyte
+10X75_1:CTTCTAGACGTGAT,sympathetic cholinergic neuron,Neuron
+10X75_1:TAGAGAGAAATGCC,sympathetic cholinergic neuron,Neuron
+10X75_1:AACAGAGAGTTTCT,sympathetic cholinergic neuron,Neuron
+10X75_1:CCCTACGAGGGATG,sympathetic cholinergic neuron,Neuron
+10X75_1:GGGTTAACTTCTCA,sympathetic cholinergic neuron,Neuron
+10X75_1:AGATATTGAAGGTA,sympathetic cholinergic neuron,Neuron
+10X75_1:AGGAATGACGCTAA,sympathetic cholinergic neuron,Neuron
+10X75_1:TGCAAGACAGAGAT,sympathetic cholinergic neuron,Neuron
+10X75_1:TACACACTCGTAAC,sympathetic cholinergic neuron,Neuron
+10X75_1:AGCGTAACGTGTCA,sympathetic cholinergic neuron,Neuron
+10X75_1:GGAGCAGACCAGTA,sympathetic cholinergic neuron,Neuron
+10X75_1:CAGTTGGAGTACGT,sympathetic cholinergic neuron,Neuron
+10X75_1:TTCATGACTGGAGG,sympathetic cholinergic neuron,Neuron
+10X75_1:AGCCAATGTCGTAG,sympathetic cholinergic neuron,Neuron
+10X75_1:ATGTTAGAAGAGTA,sympathetic cholinergic neuron,Neuron
+10X75_1:ATTCTTCTCAGTTG,sympathetic cholinergic neuron,Neuron
+10X75_1:CTGACAGACCTTCG,sympathetic cholinergic neuron,Neuron
+10X75_1:ATCGCGCTCACTTT,sympathetic cholinergic neuron,Neuron
+10X75_1:AAGTGGCTGCTGAT,sympathetic cholinergic neuron,Neuron
+10X75_1:GGTGATACGAGCTT,sympathetic cholinergic neuron,Neuron
+10X43_2:ATGAGCACTCATTC,Schwann cell,Neuron
+10X43_2:AGACCTGAGTCCTC,Schwann cell,Neuron
+10X53_7:ACAGTTCTCTTGGA,Schwann cell,Neuron
+10X53_7:AGCGGCACAACAGA,Schwann cell,Neuron
+10X43_2:TCATCAACCGTTAG,Schwann cell,Neuron
+10X43_2:ACTGAGACAACTGC,Schwann cell,Neuron
+10X43_2:ATGGTGACCATGGT,Schwann cell,Neuron
+10X53_7:TATAAGTGGTCGAT,Schwann cell,Neuron
+10X43_2:CACGGGACTTCTAC,Schwann cell,Neuron
+10X43_2:TGTATCTGAGTCTG,Schwann cell,Neuron
+10X43_2:ATCATCTGAACGGG,Schwann cell,Neuron
+10X43_2:GTTCAGGATGTTTC,Schwann cell,Neuron
+10X43_2:CTTAGGGAAATGCC,Schwann cell,Neuron
+10X43_2:TCAGGATGAACGGG,Schwann cell,Neuron
+10X43_2:TTTCGAACTCTCTA,Schwann cell,Neuron
+10X43_2:TGATTCTGGTCATG,Schwann cell,Neuron
+10X43_2:ACAGTGACGACTAC,Schwann cell,Neuron
+10X43_2:CTAGATCTAGAACA,Schwann cell,Neuron
+10X53_7:GATAGAGATGGATC,Schwann cell,Neuron
+10X43_2:GAAGCTTGTTGTGG,Schwann cell,Neuron
+10X82_2:CATGGAGTCTCAAC,enteric neuron,Neuron
 10X81_1:CACACAGGGTGTTG,enteric neuron,Astrocyte
-10X82_2:TCGATGTCAGAGGT,enteric neuron,Astrocyte
-10X81_3:TCCTAGTCTTGTCC,enteric neuron,Astrocyte
-10X81_2:GGTGACAAGGACAC,enteric neuron,Astrocyte
+10X82_2:TCGATGTCAGAGGT,enteric neuron,Neuron
+10X81_3:TCCTAGTCTTGTCC,enteric neuron,Neuron
+10X81_2:GGTGACAAGGACAC,enteric neuron,Neuron
 10X82_2:CTGCTTCGACAGCC,enteric neuron,Astrocyte
 10X82_2:AAACTCAAACCTAC,enteric neuron,Astrocyte
-10X82_2:ACATCTCTTGTATC,enteric neuron,Astrocyte
-10X81_1:CATAGAGGCTCATT,enteric neuron,Astrocyte
-10X82_2:ATGTCTCCTCAACC,enteric neuron,Astrocyte
-10X81_3:ACTAGCACGAAAGC,enteric neuron,Astrocyte
-10X81_3:TTGGTTCTACTCAT,enteric neuron,Astrocyte
-10X82_2:GCATAAGACCCACC,enteric neuron,Astrocyte
-10X81_3:GAGAGTCCACGAAT,enteric neuron,Astrocyte
-10X82_2:ACATTCACGGCGTT,enteric neuron,Astrocyte
-10X82_2:ATTGAAGTGTGAAT,enteric neuron,Astrocyte
-10X82_2:CCACTAGAGGGCTT,enteric neuron,Astrocyte
-10X81_3:GGCAGGTTATGTGC,enteric neuron,Astrocyte
-10X81_1:ACAGATCAATACCG,enteric neuron,Astrocyte
-10X81_1:ATGTATCTTGTACT,enteric neuron,Astrocyte
+10X82_2:ACATCTCTTGTATC,enteric neuron,Neuron
+10X81_1:CATAGAGGCTCATT,enteric neuron,Neuron
+10X82_2:ATGTCTCCTCAACC,enteric neuron,Neuron
+10X81_3:ACTAGCACGAAAGC,enteric neuron,Neuron
+10X81_3:TTGGTTCTACTCAT,enteric neuron,Neuron
+10X82_2:GCATAAGACCCACC,enteric neuron,Neuron
+10X81_3:GAGAGTCCACGAAT,enteric neuron,Neuron
+10X82_2:ACATTCACGGCGTT,enteric neuron,Neuron
+10X82_2:ATTGAAGTGTGAAT,enteric neuron,Neuron
+10X82_2:CCACTAGAGGGCTT,enteric neuron,Neuron
+10X81_3:GGCAGGTTATGTGC,enteric neuron,Neuron
+10X81_1:ACAGATCAATACCG,enteric neuron,Neuron
+10X81_1:ATGTATCTTGTACT,enteric neuron,Neuron

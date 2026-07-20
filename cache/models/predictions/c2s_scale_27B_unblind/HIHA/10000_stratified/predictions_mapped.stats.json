@@ -1,0 +1,30 @@
+{
+  "total_predictions": 9999,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 489,
+  "non_cl_ratio": 0.048905,
+  "non_cl_labels": [
+    "cd14-positive myeloid dendritic cell",
+    "cd16-positive, cd16-dim natural killer cell, human",
+    "cd1c-positive myeloid dendritic cell, human",
+    "cd4-positive, alpha-beta memory t cell, cd141-positive",
+    "cd4-positive, alpha-beta memory t cell, cd56-positive",
+    "cd4-positive, alpha-beta memory t cell, cd8-positive, alpha-",
+    "cd4-positive, alpha-beta memory t cell, human",
+    "cd4-positive, alpha-beta t-helper 17 cell",
+    "cd8-positive, alpha-beta memory t cell, cd16-positive, cd",
+    "cd8-positive, alpha-beta memory t cell, cd4-positive, alpha-",
+    "cd8-positive, alpha-beta memory t cell, cd48-positive",
+    "cd8-positive, alpha-beta memory t cell, cd8-positive, alpha-",
+    "cd8-positive, alpha-beta memory t cell, human",
+    "inflammatory macrophage",
+    "mature gzma-positive, alpha-beta t cell",
+    "mature thymus-derived cd4-positive, alpha-beta t cell",
+    "mononuclear cell",
+    "mucosal invariant t cell",
+    "myeloid progenitor cell",
+    "native cell",
+    "natural killer cell, human",
+    "type b t cell"
+  ]
+}

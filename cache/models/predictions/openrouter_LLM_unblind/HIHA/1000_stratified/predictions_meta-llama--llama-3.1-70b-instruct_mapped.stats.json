@@ -1,0 +1,18 @@
+{
+  "total_predictions": 999,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 13,
+  "non_cl_ratio": 0.013013,
+  "non_cl_labels": [
+    "based on the gene expression profile, the predicted cell type is:  naive regulatory t cell",
+    "based on the gene expression profile, the predicted cell type is: cd14-positive, cd16-negative classical monocyte",
+    "based on the provided gene expression profile, i predict that the cell type is:  **cd14-low, cd16-positive monocyte**",
+    "based on the provided gene expression profile, i predict that the cell type is:  naive thymus-derived cd4-positive, alpha-beta t cell",
+    "based on the provided gene expression profile, i predict the cell type to be:  cd8-positive, alpha-beta memory t cell",
+    "based on the provided gene expression profile, i predict the cell type to be:  cd8-positive, alpha-beta t cell",
+    "based on the provided gene expression profile, the predicted cell type is:  cd16-positive, cd56-dim natural killer cell, human",
+    "based on the provided gene expression profile, the predicted cell type is:  monocyte",
+    "cd19",
+    "mucosal invariant t cell"
+  ]
+}

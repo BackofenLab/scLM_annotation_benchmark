@@ -1,0 +1,11 @@
+{
+  "total_predictions": 999,
+  "note": "discovery + resolution; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 62,
+  "non_cl_ratio": 0.062062,
+  "non_cl_labels": [
+    "neuroblast",
+    "type ib spiral ganglion neuron",
+    "type ii spiral ganglion neuron"
+  ]
+}

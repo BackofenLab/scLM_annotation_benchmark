@@ -1,0 +1,30 @@
+{
+  "total_predictions": 999,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 146,
+  "non_cl_ratio": 0.146146,
+  "non_cl_labels": [
+    "b lymphocyte",
+    "cd141-positive dendritic cell",
+    "cd1c-positive dendritic cell",
+    "cd8-positive, alpha-beta cytotoxic t lymphocyte",
+    "cd8-positive, alpha-beta t cell ```",
+    "cd8-positive, alpha-beta t cell, naive",
+    "central memory t cell",
+    "conventional dendritic cell type 1",
+    "cytotoxic t lymphocyte",
+    "dendritic cell progenitor",
+    "gamma delta t cell",
+    "naive alpha-beta t cell",
+    "naive cd8-positive, alpha-beta t cell",
+    "naive thymus-derived alpha-beta t cell",
+    "naive thymus-derived alphabeta t cell",
+    "native cell",
+    "native t cell",
+    "natural killer t cell",
+    "na\u00efve thymus-derived cd8-positive, alpha-beta t cell",
+    "t lymphocyte",
+    "type 1 conventional dendritic cell",
+    "type 2 helper t cell"
+  ]
+}

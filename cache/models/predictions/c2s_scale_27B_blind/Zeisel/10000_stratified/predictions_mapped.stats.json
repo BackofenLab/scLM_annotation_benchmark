@@ -1,0 +1,29 @@
+{
+  "total_predictions": 9997,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 60,
+  "non_cl_ratio": 0.006002,
+  "non_cl_labels": [
+    "0610012g03rik",
+    "1500009l16rik 1500011b",
+    "2_rik_ensmusg00000084235",
+    "4930402h24rik",
+    "4930402h24rik tmem167 tmem10",
+    "4930402h24rik_ensmusg0000",
+    "5-ht2c receptor expressing neuron",
+    "5031439g07rik",
+    "5730522e02rik",
+    "5_monoco1_conforming_to_mt1",
+    "ciliary epithelial cell",
+    "glutamatergic neuron. cell 2: malat1 meg3 mt-",
+    "microglial cell. cell 2: malat1 mt-nd1 mt",
+    "native cell",
+    "non-myelinated neuron",
+    "non-myeloid leukocyte",
+    "non-neuronal cell",
+    "non-spleen b cell",
+    "oligodendroocyte",
+    "pvalb gabaergic cortical interneuron",
+    "smooth muscle cell of the prostate"
+  ]
+}

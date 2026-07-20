@@ -1,0 +1,21 @@
+{
+  "total_predictions": 999,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 42,
+  "non_cl_ratio": 0.042042,
+  "non_cl_labels": [
+    "amniotic epithelial cell",
+    "cytotrophoblast cell",
+    "foveolar cell",
+    "inflammatory macrophage",
+    "mature dendritic cell",
+    "pancreatic alpha cell",
+    "pancreatic b cell",
+    "pancreatic beta cell",
+    "pancreatic delta cell",
+    "pre-alveolar type-1 transitional cell",
+    "type a pancreatic cell",
+    "type d pancreatic cell",
+    "type ii pneumocyte"
+  ]
+}

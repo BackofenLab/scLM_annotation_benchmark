@@ -1,0 +1,16 @@
+{
+  "total_predictions": 10000,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 60,
+  "non_cl_ratio": 0.006,
+  "non_cl_labels": [
+    "2210016l21rik h3f3b",
+    "amplifying cell",
+    "native cell",
+    "retinal horizontal cell",
+    "retinal lens epithelial cell",
+    "retinal lens fiber cell",
+    "retinal neuroblast",
+    "retinal neuron"
+  ]
+}

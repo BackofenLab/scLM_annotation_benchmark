@@ -1,0 +1,28 @@
+{
+  "total_predictions": 1000,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 204,
+  "non_cl_ratio": 0.204,
+  "non_cl_labels": [
+    "aii amacrine cell",
+    "floor plate cell",
+    "hair follicular dermal papilla cell",
+    "muller cell",
+    "nephron progenitor cell",
+    "neuroblast",
+    "on cone bipolar cell",
+    "orexin-secreting neuron",
+    "pancreatic endocrine progenitor cell",
+    "pax6-positive gabaergic cortical interneuron",
+    "photoreceptor precursor cell",
+    "retinal amacrine cell",
+    "retinal ganglion cell precursor",
+    "retinal horizontal cell",
+    "retinal photoreceptor cell",
+    "rod photoreceptor cell",
+    "sst gabaergic cortical interneuron",
+    "subplate neuron",
+    "sympathoblast",
+    "type 7 cone bipolar cell"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "total_predictions": 999,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 24,
+  "non_cl_ratio": 0.024024,
+  "non_cl_labels": [
+    "cd14+ monocyte",
+    "endothelial cell of blood vessel",
+    "endothelial cell of umbilical artery",
+    "hematopoietic progenitor cell",
+    "immature dendritic cell",
+    "inhibitory neuron",
+    "mature erythrocyte",
+    "mitochondrion",
+    "pancreatic alpha cell",
+    "skeletal muscle cell",
+    "t lymphocyte"
+  ]
+}

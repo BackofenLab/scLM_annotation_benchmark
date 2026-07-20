@@ -1,0 +1,24 @@
+{
+  "total_predictions": 999,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 152,
+  "non_cl_ratio": 0.152152,
+  "non_cl_labels": [
+    "cd56-dim natural killer cell",
+    "cd8-positive, alpha-beta cytotoxic t lymphocyte",
+    "classical dendritic cell",
+    "conventional dendritic cell type 1",
+    "effector memory t cell",
+    "mature dendritic cell",
+    "mucosa-associated invariant t cell",
+    "mucosal invariant t cell",
+    "naive alpha-beta t cell",
+    "naive cd4-positive alpha-beta t cell",
+    "naive cd4-positive, alpha-beta t cell",
+    "naive cd8-positive, alpha-beta t cell",
+    "naive thymus-derived cd4-positive alpha-beta t cell",
+    "naive thymus-derived cd8-positive alpha-beta t cell",
+    "natural killer t cell",
+    "type 1 conventional dendritic cell"
+  ]
+}

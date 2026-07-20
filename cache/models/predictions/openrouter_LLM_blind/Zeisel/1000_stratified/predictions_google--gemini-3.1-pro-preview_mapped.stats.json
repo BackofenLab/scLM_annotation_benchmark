@@ -1,0 +1,18 @@
+{
+  "total_predictions": 999,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 32,
+  "non_cl_ratio": 0.032032,
+  "non_cl_labels": [
+    "cerebellar purkinje cell",
+    "dorsal root ganglion neuron",
+    "gamma-aminobutyricergic neuron",
+    "hippocampal ca1 pyramidal neuron",
+    "hippocampus ca1 pyramidal neuron",
+    "meningeal cell",
+    "neuroblast",
+    "oxytocinergic neuron",
+    "parvalbumin-positive gabaergic interneuron",
+    "somatostatin-expressing neuron"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "total_predictions": 10000,
+  "note": "discovery + resolution; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 10000,
+  "non_cl_ratio": 1.0,
+  "non_cl_labels": [
+    "astrocytes",
+    "cone bipolar cells",
+    "cone photoreceptor cells",
+    "cornea epithelial cells",
+    "horizontal cells",
+    "muller cells",
+    "retinal ganglion cells",
+    "retinal progenitor cells",
+    "rod photoreceptor cells",
+    "tachykinin gabaergic amacrine cells",
+    "unknown"
+  ]
+}

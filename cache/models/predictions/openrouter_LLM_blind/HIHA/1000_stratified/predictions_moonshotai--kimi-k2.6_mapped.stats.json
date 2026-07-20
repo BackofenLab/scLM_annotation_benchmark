@@ -1,0 +1,17 @@
+{
+  "total_predictions": 999,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 228,
+  "non_cl_ratio": 0.228228,
+  "non_cl_labels": [
+    "cd16-positive, cd56-dim natural killer cell",
+    "cd56-dim natural killer cell",
+    "cd8-positive, effector memory t cell",
+    "class-switched memory b cell",
+    "mucosal mast cell",
+    "naive cd4-positive, alpha-beta t cell",
+    "natural killer t cell",
+    "no prediction",
+    "pre-b cell"
+  ]
+}

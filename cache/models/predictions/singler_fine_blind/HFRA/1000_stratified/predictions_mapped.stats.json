@@ -1,0 +1,32 @@
+{
+  "total_predictions": 1000,
+  "note": "discovery + resolution; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 1000,
+  "non_cl_ratio": 1.0,
+  "non_cl_labels": [
+    "astrocyte:embryonic_stem_cell-derived",
+    "dc:monocyte-derived:am580",
+    "dc:monocyte-derived:anticd40/vaf347",
+    "endothelial_cells:blood_vessel",
+    "gmp",
+    "ips_cells:crl2097_foreskin-derived:undiff",
+    "ips_cells:pdb_1lox-17puro-10",
+    "ips_cells:pdb_1lox-17puro-5",
+    "ips_cells:pdb_1lox-21puro-20",
+    "ips_cells:pdb_1lox-21puro-26",
+    "ips_cells:pdb_2lox-22",
+    "ips_cells:pdb_2lox-5",
+    "macrophage:monocyte-derived",
+    "macrophage:monocyte-derived:il-4/dex/tgfb",
+    "macrophage:monocyte-derived:m-csf/ifng/pam3cys",
+    "monocyte:cd16+",
+    "monocyte:leukotriene_d4",
+    "neuroepithelial_cell:esc-derived",
+    "neurons:adrenal_medulla_cell_line",
+    "neurons:es_cell-derived_neural_precursor",
+    "neurons:schwann_cell",
+    "neutrophil:gm-csf_ifng",
+    "neutrophil:uropathogenic_e._coli_uti89",
+    "tissue_stem_cells:bm_msc:bmp2"
+  ]
+}

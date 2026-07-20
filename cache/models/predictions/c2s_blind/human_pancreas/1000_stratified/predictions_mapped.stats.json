@@ -1,0 +1,10 @@
+{
+  "total_predictions": 999,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 4,
+  "non_cl_ratio": 0.004004,
+  "non_cl_labels": [
+    "epithelial cell of the bronchus",
+    "native cell"
+  ]
+}

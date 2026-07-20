@@ -1,0 +1,11 @@
+{
+  "total_predictions": 9999,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 272,
+  "non_cl_ratio": 0.027203,
+  "non_cl_labels": [
+    "animal cell",
+    "effector cd8-positive, alpha-beta t cell, terminally differentiated",
+    "mucosal invariant t cell"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "total_predictions": 999,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 2,
+  "non_cl_ratio": 0.002002,
+  "non_cl_labels": [
+    "cd8-positive, alpha-beta t cell is not directly available, however 'cd8-positive, alpha-beta memory t cell', 'central memory cd8-positive, alpha-beta t cell', 'effector memory cd8-positive, alpha-beta t cell', 'naive thymus-derived cd8-positive, alpha-beta t cell', 'cd8-positive, alpha-beta regulatory t cell', and 'cd8aa(i) thymocyte' are. among the options 'naive thymus-derived cd8-positive, alpha-beta t cell' seems plausible due to the presence of cd8b. however, the presence of il7r and cd3d, cd3e along with the absence of cd4 suggests a t cell.  given the information and simplifying the output to fit the required format, a more straightforward classification is needed.  effector memory cd8-positive, alpha-beta t cell",
+    "cd8-positive, alpha-beta t cell is not the answer because trac and trbc1 and cd3d, cd3e and cd3g are present but so are other t cell markers without specificity to cd8. however 't cell' is a more general category that encompasses various t cell subtypes including cd8-positive, alpha-beta t cell. upon closer inspection of the given gene expression profile, several t cell related genes are highly expressed (e.g., trac, trbc1, trbc2, cd3d, cd3e, cd3g, and others). the presence of these genes suggests a t cell identity.  t cell"
+  ]
+}

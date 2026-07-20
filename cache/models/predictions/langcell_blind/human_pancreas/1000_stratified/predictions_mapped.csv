@@ -1,0 +1,1000 @@
+Unnamed: 0,cell_id,predicted_idx,true_idx,predicted_labels,true_labels,original_predicted_labels
+0,human3_lib3.final_cell_0421,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+1,D29-6_82,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+2,D17All2_44,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+3,human3_lib4.final_cell_0731,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+4,human1_lib2.final_cell_0065,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+5,HP1507101_L15,2352,2346,pancreatic endocrine cell,pancreatic a cell,pancreatic endocrine cell
+6,D31-5_58,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+7,D30-2_67,2347,2346,pancreatic d cell,pancreatic a cell,pancreatic d cell
+8,human3_lib4.final_cell_0674,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+9,D29-5_54,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+10,human3_lib3.final_cell_0757,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+11,human3_lib4.final_cell_0721,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+12,human3_lib1.final_cell_0800,914,2346,chromophobe cell,pancreatic a cell,chromophobe cell
+13,D29-3_79,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+14,human3_lib2.final_cell_0555,3075,2346,type l enteroendocrine cell,pancreatic a cell,type l enteroendocrine cell
+15,human2_lib2.final_cell_0517,496,2346,pp cell of intestine,pancreatic a cell,pp cell of intestine
+16,D17TGFB_91,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+17,D17TGFB_65,496,2346,pp cell of intestine,pancreatic a cell,pp cell of intestine
+18,D29-4_53,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+19,D31-5_2,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+20,D31-7_12,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+21,human3_lib1.final_cell_0390,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+22,human3_lib2.final_cell_0642,2345,2346,pancreas exocrine glandular cell,pancreatic a cell,pancreas exocrine glandular cell
+23,D17All2_84,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+24,human3_lib2.final_cell_0292,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+25,D31-1_89,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+26,human3_lib4.final_cell_0461,3075,2346,type l enteroendocrine cell,pancreatic a cell,type l enteroendocrine cell
+27,human3_lib3.final_cell_0506,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+28,human3_lib4.final_cell_0305,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+29,human3_lib1.final_cell_0799,914,2346,chromophobe cell,pancreatic a cell,chromophobe cell
+30,human2_lib2.final_cell_0494,1192,2346,enteroendocrine cell of anorectum,pancreatic a cell,enteroendocrine cell of anorectum
+31,D31-5_21,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+32,human2_lib3.final_cell_0212,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+33,human3_lib2.final_cell_0548,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+34,human1_lib2.final_cell_0250,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+35,human4_lib3.final_cell_0426,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+36,D172444_28,3033,2346,type a cell of stomach,pancreatic a cell,type a cell of stomach
+37,human4_lib1.final_cell_0048,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+38,human4_lib3.final_cell_0369,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+39,D30-5_14,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+40,human3_lib4.final_cell_0256,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+41,human2_lib2.final_cell_0529,496,2346,pp cell of intestine,pancreatic a cell,pp cell of intestine
+42,human2_lib1.final_cell_0239,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+43,human1_lib2.final_cell_0248,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+44,D30-4_47,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+45,D31-4_32,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+46,human4_lib1.final_cell_0152,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+47,human2_lib1.final_cell_0203,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+48,D29-5_49,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+49,D29-4_38,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+50,human2_lib2.final_cell_0128,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+51,D29-4_74,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+52,human2_lib1.final_cell_0425,1192,2346,enteroendocrine cell of anorectum,pancreatic a cell,enteroendocrine cell of anorectum
+53,human2_lib1.final_cell_0292,3075,2346,type l enteroendocrine cell,pancreatic a cell,type l enteroendocrine cell
+54,human3_lib2.final_cell_0658,3075,2346,type l enteroendocrine cell,pancreatic a cell,type l enteroendocrine cell
+55,human1_lib1.final_cell_0245,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+56,human4_lib3.final_cell_0383,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+57,D74_52,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+58,human3_lib4.final_cell_0612,2358,2346,paneth cell of anorectum,pancreatic a cell,paneth cell of anorectum
+59,human2_lib3.final_cell_0329,3075,2346,type l enteroendocrine cell,pancreatic a cell,type l enteroendocrine cell
+60,human3_lib1.final_cell_0695,496,2346,pp cell of intestine,pancreatic a cell,pp cell of intestine
+61,D29-8_60,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+62,human2_lib2.final_cell_0107,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+63,D29-2_67,2347,2346,pancreatic d cell,pancreatic a cell,pancreatic d cell
+64,human3_lib2.final_cell_0142,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+65,human1_lib2.final_cell_0628,2347,2346,pancreatic d cell,pancreatic a cell,pancreatic d cell
+66,human3_lib3.final_cell_0273,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+67,human3_lib2.final_cell_0815,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+68,human2_lib1.final_cell_0451,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+69,human3_lib2.final_cell_0452,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+70,D30-8_89,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+71,human3_lib4.final_cell_0351,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+72,D29-1_32,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+73,D74_88,1191,2346,enteroendocrine cell,pancreatic a cell,enteroendocrine cell
+74,human3_lib3.final_cell_0618,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+75,D31-6_45,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+76,human4_lib1.final_cell_0308,3075,2346,type l enteroendocrine cell,pancreatic a cell,type l enteroendocrine cell
+77,human1_lib2.final_cell_0502,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+78,D29-2_75,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+79,D31-7_14,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+80,D29-5_35,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+81,human2_lib3.final_cell_0258,496,2346,pp cell of intestine,pancreatic a cell,pp cell of intestine
+82,human3_lib3.final_cell_0369,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+83,human2_lib1.final_cell_0489,3075,2346,type l enteroendocrine cell,pancreatic a cell,type l enteroendocrine cell
+84,D30-5_53,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+85,human2_lib1.final_cell_0537,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+86,human2_lib1.final_cell_0397,3043,2346,type ec enteroendocrine cell,pancreatic a cell,type ec enteroendocrine cell
+87,D31-3_57,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+88,human3_lib3.final_cell_0701,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+89,human1_lib1.final_cell_0322,3075,2346,type l enteroendocrine cell,pancreatic a cell,type l enteroendocrine cell
+90,human3_lib4.final_cell_0319,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+91,human3_lib3.final_cell_0817,496,2346,pp cell of intestine,pancreatic a cell,pp cell of intestine
+92,human3_lib3.final_cell_0494,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+93,D29-1_50,2352,2346,pancreatic endocrine cell,pancreatic a cell,pancreatic endocrine cell
+94,human3_lib2.final_cell_0722,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+95,human3_lib3.final_cell_0360,3033,2346,type a cell of stomach,pancreatic a cell,type a cell of stomach
+96,D30-6_42,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+97,human3_lib1.final_cell_0681,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+98,human3_lib4.final_cell_0606,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+99,HP1507101_O2,2347,2346,pancreatic d cell,pancreatic a cell,pancreatic d cell
+100,D30-5_62,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+101,human2_lib3.final_cell_0362,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+102,human2_lib2.final_cell_0116,3075,2346,type l enteroendocrine cell,pancreatic a cell,type l enteroendocrine cell
+103,human1_lib1.final_cell_0385,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+104,human3_lib3.final_cell_0424,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+105,human3_lib3.final_cell_0867,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+106,human3_lib2.final_cell_0221,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+107,D31-5_12,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+108,human3_lib3.final_cell_0827,3075,2346,type l enteroendocrine cell,pancreatic a cell,type l enteroendocrine cell
+109,human2_lib1.final_cell_0088,495,2346,pp cell,pancreatic a cell,pp cell
+110,human4_lib1.final_cell_0230,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+111,human4_lib1.final_cell_0345,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+112,D28-4_37,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+113,D31-6_59,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+114,human4_lib3.final_cell_0616,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+115,D17TGFB_94,3078,2346,type s enteroendocrine cell,pancreatic a cell,type s enteroendocrine cell
+116,human4_lib3.final_cell_0362,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+117,human1_lib3.final_cell_0699,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+118,human2_lib2.final_cell_0342,3075,2346,type l enteroendocrine cell,pancreatic a cell,type l enteroendocrine cell
+119,human1_lib1.final_cell_0327,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+120,D28-8_86,2347,2346,pancreatic d cell,pancreatic a cell,pancreatic d cell
+121,D31-3_90,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+122,human3_lib2.final_cell_0356,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+123,human3_lib4.final_cell_0486,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+124,human1_lib3.final_cell_0674,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+125,D31-4_7,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+126,human3_lib3.final_cell_0567,2347,2346,pancreatic d cell,pancreatic a cell,pancreatic d cell
+127,human3_lib1.final_cell_0334,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+128,human2_lib2.final_cell_0300,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+129,human3_lib3.final_cell_0451,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+130,human2_lib3.final_cell_0325,3075,2346,type l enteroendocrine cell,pancreatic a cell,type l enteroendocrine cell
+131,D30-3_5,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+132,human1_lib1.final_cell_0248,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+133,HP1507101_K8,1192,2346,enteroendocrine cell of anorectum,pancreatic a cell,enteroendocrine cell of anorectum
+134,human3_lib4.final_cell_0763,2347,2346,pancreatic d cell,pancreatic a cell,pancreatic d cell
+135,human3_lib2.final_cell_0295,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+136,human3_lib1.final_cell_0723,2347,2346,pancreatic d cell,pancreatic a cell,pancreatic d cell
+137,human1_lib1.final_cell_0191,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+138,human3_lib4.final_cell_0777,3075,2346,type l enteroendocrine cell,pancreatic a cell,type l enteroendocrine cell
+139,human3_lib2.final_cell_0513,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+140,human2_lib2.final_cell_0581,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+141,human3_lib2.final_cell_0505,2347,2346,pancreatic d cell,pancreatic a cell,pancreatic d cell
+142,human2_lib2.final_cell_0324,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+143,human2_lib1.final_cell_0454,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+144,D31-5_11,496,2346,pp cell of intestine,pancreatic a cell,pp cell of intestine
+145,D30-2_34,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+146,human3_lib1.final_cell_0441,2026,2346,mesothelial cell of small intestine,pancreatic a cell,mesothelial cell of small intestine
+147,human3_lib1.final_cell_0273,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+148,D29-4_26,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+149,human3_lib4.final_cell_0882,2358,2346,paneth cell of anorectum,pancreatic a cell,paneth cell of anorectum
+150,D28-1_30,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+151,D29-6_57,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+152,D30-4_21,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+153,human3_lib3.final_cell_0240,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+154,D30-5_23,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+155,human4_lib3.final_cell_0118,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+156,human3_lib3.final_cell_0791,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+157,human2_lib2.final_cell_0518,1192,2346,enteroendocrine cell of anorectum,pancreatic a cell,enteroendocrine cell of anorectum
+158,human3_lib2.final_cell_0595,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+159,D28-7_63,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+160,human2_lib2.final_cell_0190,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+161,human2_lib2.final_cell_0152,3075,2346,type l enteroendocrine cell,pancreatic a cell,type l enteroendocrine cell
+162,human3_lib2.final_cell_0591,2026,2346,mesothelial cell of small intestine,pancreatic a cell,mesothelial cell of small intestine
+163,human2_lib3.final_cell_0411,3075,2346,type l enteroendocrine cell,pancreatic a cell,type l enteroendocrine cell
+164,human3_lib1.final_cell_0632,3048,2346,type g enteroendocrine cell,pancreatic a cell,type g enteroendocrine cell
+165,HP1508501T2D_O10,1454,2346,glucagon secreting cell,pancreatic a cell,glucagon secreting cell
+166,human3_lib2.final_cell_0156,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+167,D172444_58,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+168,human3_lib3.final_cell_0783,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+169,human3_lib4.final_cell_0514,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+170,D29-7_38,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+171,human3_lib3.final_cell_0799,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+172,human3_lib1.final_cell_0703,2347,2346,pancreatic d cell,pancreatic a cell,pancreatic d cell
+173,human3_lib4.final_cell_0830,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+174,human1_lib1.final_cell_0285,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+175,human4_lib1.final_cell_0232,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+176,human3_lib3.final_cell_0430,2358,2346,paneth cell of anorectum,pancreatic a cell,paneth cell of anorectum
+177,human1_lib3.final_cell_0080,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+178,human2_lib3.final_cell_0070,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+179,D30-4_85,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+180,human2_lib3.final_cell_0259,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+181,D1713_51,1125,2346,embryonic fibroblast,pancreatic a cell,embryonic fibroblast
+182,human3_lib4.final_cell_0535,3075,2346,type l enteroendocrine cell,pancreatic a cell,type l enteroendocrine cell
+183,human3_lib4.final_cell_0500,2358,2346,paneth cell of anorectum,pancreatic a cell,paneth cell of anorectum
+184,human1_lib1.final_cell_0202,2347,2346,pancreatic d cell,pancreatic a cell,pancreatic d cell
+185,human3_lib1.final_cell_0351,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+186,human4_lib1.final_cell_0108,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+187,D30-7_25,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+188,human3_lib1.final_cell_0417,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+189,D29-6_21,2347,2346,pancreatic d cell,pancreatic a cell,pancreatic d cell
+190,human3_lib3.final_cell_0183,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+191,human1_lib3.final_cell_0242,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+192,human3_lib3.final_cell_0405,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+193,human3_lib2.final_cell_0719,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+194,human2_lib2.final_cell_0039,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+195,human4_lib1.final_cell_0136,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+196,D30-5_37,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+197,human3_lib1.final_cell_0727,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+198,human4_lib1.final_cell_0391,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+199,human3_lib1.final_cell_0645,2347,2346,pancreatic d cell,pancreatic a cell,pancreatic d cell
+200,D101_69,1770,2346,kidney pelvis cell,pancreatic a cell,kidney pelvis cell
+201,human3_lib2.final_cell_0617,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+202,human2_lib1.final_cell_0087,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+203,human3_lib1.final_cell_0221,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+204,D17All1_57,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+205,D29-6_84,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+206,human2_lib1.final_cell_0460,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+207,human4_lib3.final_cell_0382,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+208,human1_lib3.final_cell_0436,2347,2346,pancreatic d cell,pancreatic a cell,pancreatic d cell
+209,D31-8_6,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+210,D28-5_14,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+211,D31-8_38,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+212,D29-3_60,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+213,human3_lib4.final_cell_0637,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+214,human3_lib1.final_cell_0171,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+215,human4_lib3.final_cell_0532,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+216,D29-1_29,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+217,human4_lib1.final_cell_0093,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+218,human3_lib1.final_cell_0674,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+219,human4_lib1.final_cell_0185,3075,2346,type l enteroendocrine cell,pancreatic a cell,type l enteroendocrine cell
+220,D29-8_76,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+221,D30-1_16,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+222,human3_lib3.final_cell_0606,2350,2346,pancreatic centro-acinar cell,pancreatic a cell,pancreatic centro-acinar cell
+223,human2_lib3.final_cell_0497,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+224,human3_lib1.final_cell_0860,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+225,D30-5_73,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+226,human1_lib1.final_cell_0257,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+227,human3_lib1.final_cell_0617,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+228,human3_lib2.final_cell_0694,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+229,human2_lib2.final_cell_0533,3075,2346,type l enteroendocrine cell,pancreatic a cell,type l enteroendocrine cell
+230,D31-4_1,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+231,human3_lib1.final_cell_0726,2347,2346,pancreatic d cell,pancreatic a cell,pancreatic d cell
+232,human3_lib4.final_cell_0880,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+233,human3_lib4.final_cell_0620,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+234,human3_lib3.final_cell_0928,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+235,D31-2_22,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+236,human3_lib4.final_cell_0437,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+237,human1_lib3.final_cell_0535,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+238,human2_lib2.final_cell_0322,3075,2346,type l enteroendocrine cell,pancreatic a cell,type l enteroendocrine cell
+239,human3_lib3.final_cell_0713,3033,2346,type a cell of stomach,pancreatic a cell,type a cell of stomach
+240,human2_lib2.final_cell_0033,3075,2346,type l enteroendocrine cell,pancreatic a cell,type l enteroendocrine cell
+241,human2_lib3.final_cell_0105,3075,2346,type l enteroendocrine cell,pancreatic a cell,type l enteroendocrine cell
+242,human3_lib1.final_cell_0510,3033,2346,type a cell of stomach,pancreatic a cell,type a cell of stomach
+243,human2_lib3.final_cell_0228,3075,2346,type l enteroendocrine cell,pancreatic a cell,type l enteroendocrine cell
+244,D29-8_15,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+245,HP1507101_K17,1454,2346,glucagon secreting cell,pancreatic a cell,glucagon secreting cell
+246,D31-5_68,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+247,D28-7_66,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+248,human2_lib1.final_cell_0218,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+249,D17All1_89,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+250,human3_lib2.final_cell_0541,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+251,human3_lib2.final_cell_0176,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+252,D31-6_77,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+253,human3_lib2.final_cell_0542,3075,2346,type l enteroendocrine cell,pancreatic a cell,type l enteroendocrine cell
+254,D172444_31,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+255,D29-1_46,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+256,human3_lib4.final_cell_0395,2358,2346,paneth cell of anorectum,pancreatic a cell,paneth cell of anorectum
+257,human3_lib3.final_cell_0315,2347,2346,pancreatic d cell,pancreatic a cell,pancreatic d cell
+258,D28-5_50,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+259,D31-6_56,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+260,D29-1_13,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+261,D17TGFB_82,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+262,human2_lib1.final_cell_0146,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+263,human3_lib1.final_cell_0475,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+264,D31-7_75,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+265,human1_lib2.final_cell_0253,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+266,human3_lib3.final_cell_0679,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+267,human3_lib1.final_cell_0156,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+268,D31-4_27,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+269,D30-1_59,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+270,human3_lib4.final_cell_0553,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+271,human3_lib2.final_cell_0395,3041,2346,type d enteroendocrine cell,pancreatic a cell,type d enteroendocrine cell
+272,human3_lib2.final_cell_0447,2346,2346,pancreatic a cell,pancreatic a cell,pancreatic a cell
+273,human2_lib3.final_cell_0469,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+274,D31-8_93,2348,2346,pancreatic pp cell,pancreatic a cell,pancreatic pp cell
+275,human3_lib1.final_cell_0474,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+276,human2_lib2.final_cell_0285,3036,3036,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
+277,human1_lib1.final_cell_0364,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+278,D30-6_11,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+279,D30-6_68,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+280,human4_lib1.final_cell_0205,3036,3036,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
+281,human2_lib3.final_cell_0195,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+282,human1_lib3.final_cell_0702,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+283,human2_lib3.final_cell_0007,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+284,human2_lib2.final_cell_0366,3036,3036,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
+285,human3_lib1.final_cell_0380,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+286,human4_lib3.final_cell_0373,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+287,D29-3_23,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+288,human4_lib1.final_cell_0366,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+289,human4_lib1.final_cell_0150,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+290,human4_lib1.final_cell_0058,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+291,D30-7_21,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+292,D29-4_67,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+293,human2_lib2.final_cell_0239,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+294,human4_lib3.final_cell_0365,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+295,human1_lib3.final_cell_0550,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+296,D31-1_68,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+297,human1_lib2.final_cell_0317,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+298,human1_lib1.final_cell_0386,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+299,human3_lib2.final_cell_0853,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+300,human2_lib3.final_cell_0543,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+301,D31-8_60,2352,3036,pancreatic endocrine cell,type b pancreatic cell,pancreatic endocrine cell
+302,human2_lib2.final_cell_0591,496,3036,pp cell of intestine,type b pancreatic cell,pp cell of intestine
+303,human1_lib1.final_cell_0305,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+304,human1_lib3.final_cell_0038,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+305,human3_lib1.final_cell_0304,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+306,human1_lib2.final_cell_0325,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+307,D29-7_74,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+308,human2_lib3.final_cell_0446,3075,3036,type l enteroendocrine cell,type b pancreatic cell,type l enteroendocrine cell
+309,human3_lib3.final_cell_0247,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+310,D30-7_3,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+311,D29-2_54,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+312,human4_lib1.final_cell_0126,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+313,human3_lib3.final_cell_0112,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+314,D17All2_7,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+315,D30-5_49,2352,3036,pancreatic endocrine cell,type b pancreatic cell,pancreatic endocrine cell
+316,human4_lib3.final_cell_0619,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+317,human1_lib2.final_cell_0207,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+318,human1_lib1.final_cell_0162,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+319,human2_lib2.final_cell_0275,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+320,human3_lib1.final_cell_0801,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+321,human3_lib1.final_cell_0721,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+322,human1_lib2.final_cell_0064,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+323,human2_lib2.final_cell_0219,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+324,D29-4_27,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+325,human1_lib1.final_cell_0151,3036,3036,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
+326,human2_lib1.final_cell_0405,3075,3036,type l enteroendocrine cell,type b pancreatic cell,type l enteroendocrine cell
+327,D102_24,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+328,human2_lib2.final_cell_0066,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+329,human1_lib2.final_cell_0495,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+330,human3_lib1.final_cell_0176,3036,3036,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
+331,human1_lib3.final_cell_0099,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+332,human2_lib3.final_cell_0001,2352,3036,pancreatic endocrine cell,type b pancreatic cell,pancreatic endocrine cell
+333,human4_lib1.final_cell_0567,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+334,human4_lib3.final_cell_0391,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+335,human3_lib3.final_cell_0314,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+336,human4_lib1.final_cell_0234,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+337,human4_lib3.final_cell_0249,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+338,human3_lib1.final_cell_0811,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+339,human1_lib1.final_cell_0088,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+340,human1_lib1.final_cell_0359,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+341,human1_lib3.final_cell_0192,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+342,human1_lib2.final_cell_0090,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+343,D29-4_23,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+344,human3_lib3.final_cell_0780,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+345,human4_lib3.final_cell_0454,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+346,human3_lib3.final_cell_0138,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+347,D29-4_73,2352,3036,pancreatic endocrine cell,type b pancreatic cell,pancreatic endocrine cell
+348,human4_lib3.final_cell_0562,496,3036,pp cell of intestine,type b pancreatic cell,pp cell of intestine
+349,human1_lib3.final_cell_0325,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+350,D29-3_83,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+351,D29-2_50,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+352,human3_lib3.final_cell_0871,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+353,human3_lib1.final_cell_0547,3075,3036,type l enteroendocrine cell,type b pancreatic cell,type l enteroendocrine cell
+354,human3_lib2.final_cell_0206,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+355,human3_lib2.final_cell_0779,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+356,human1_lib1.final_cell_0100,3036,3036,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
+357,D29-3_64,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+358,human3_lib2.final_cell_0304,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+359,D30-1_33,496,3036,pp cell of intestine,type b pancreatic cell,pp cell of intestine
+360,human1_lib1.final_cell_0328,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+361,D29-6_32,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+362,human3_lib4.final_cell_0136,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+363,D29-6_16,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+364,human4_lib1.final_cell_0382,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+365,human1_lib2.final_cell_0199,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+366,human2_lib2.final_cell_0250,3075,3036,type l enteroendocrine cell,type b pancreatic cell,type l enteroendocrine cell
+367,D31-4_44,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+368,human3_lib3.final_cell_0534,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+369,human1_lib2.final_cell_0289,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+370,human3_lib3.final_cell_0778,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+371,human3_lib4.final_cell_0132,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+372,D28-1_43,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+373,human3_lib4.final_cell_0508,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+374,D30-1_65,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+375,human2_lib2.final_cell_0546,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+376,human4_lib1.final_cell_0177,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+377,human3_lib3.final_cell_0869,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+378,human3_lib3.final_cell_0464,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+379,human3_lib2.final_cell_0581,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+380,human1_lib3.final_cell_0347,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+381,human1_lib2.final_cell_0440,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+382,human1_lib1.final_cell_0522,3036,3036,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
+383,human4_lib1.final_cell_0313,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+384,human4_lib3.final_cell_0219,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+385,human1_lib3.final_cell_0332,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+386,human1_lib2.final_cell_0221,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+387,human1_lib2.final_cell_0503,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+388,human2_lib2.final_cell_0126,3036,3036,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
+389,D31-6_80,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+390,human4_lib1.final_cell_0340,2352,3036,pancreatic endocrine cell,type b pancreatic cell,pancreatic endocrine cell
+391,human4_lib1.final_cell_0051,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+392,human1_lib3.final_cell_0220,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+393,human3_lib1.final_cell_0210,3036,3036,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
+394,human4_lib3.final_cell_0601,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+395,D29-7_31,496,3036,pp cell of intestine,type b pancreatic cell,pp cell of intestine
+396,D17All1_12,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+397,human3_lib1.final_cell_0233,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+398,human3_lib4.final_cell_0547,3036,3036,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
+399,human3_lib3.final_cell_0418,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+400,D30-7_56,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+401,D29-7_41,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+402,human3_lib2.final_cell_0865,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+403,human1_lib2.final_cell_0061,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+404,human3_lib2.final_cell_0273,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+405,D31-7_22,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+406,human1_lib3.final_cell_0645,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+407,D29-6_39,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+408,human1_lib2.final_cell_0277,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+409,human2_lib1.final_cell_0231,3036,3036,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
+410,human1_lib3.final_cell_0098,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+411,human1_lib1.final_cell_0106,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+412,human2_lib3.final_cell_0320,3036,3036,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
+413,human3_lib3.final_cell_0150,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+414,human4_lib3.final_cell_0065,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+415,human1_lib3.final_cell_0239,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+416,human3_lib4.final_cell_0373,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+417,human4_lib1.final_cell_0153,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+418,human3_lib2.final_cell_0735,3075,3036,type l enteroendocrine cell,type b pancreatic cell,type l enteroendocrine cell
+419,D172444_74,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+420,human4_lib1.final_cell_0291,3036,3036,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
+421,human3_lib3.final_cell_0297,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+422,human1_lib3.final_cell_0215,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+423,human4_lib1.final_cell_0245,3036,3036,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
+424,D30-8_49,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+425,D31-7_55,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+426,human1_lib2.final_cell_0483,3036,3036,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
+427,D31-3_31,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+428,D31-1_28,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+429,human4_lib3.final_cell_0506,3036,3036,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
+430,human3_lib3.final_cell_0270,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+431,human1_lib1.final_cell_0090,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+432,human1_lib2.final_cell_0564,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+433,human1_lib3.final_cell_0079,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+434,human3_lib4.final_cell_0289,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+435,human1_lib2.final_cell_0035,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+436,human4_lib3.final_cell_0235,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+437,human1_lib3.final_cell_0579,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+438,human1_lib1.final_cell_0514,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+439,human4_lib1.final_cell_0491,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+440,human3_lib4.final_cell_0798,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+441,human1_lib2.final_cell_0479,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+442,human3_lib2.final_cell_0263,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+443,human3_lib1.final_cell_0840,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+444,human1_lib2.final_cell_0342,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+445,D29-2_56,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+446,D30-5_7,3078,3036,type s enteroendocrine cell,type b pancreatic cell,type s enteroendocrine cell
+447,human3_lib4.final_cell_0800,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+448,human1_lib3.final_cell_0018,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+449,D29-1_24,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+450,D102_59,496,3036,pp cell of intestine,type b pancreatic cell,pp cell of intestine
+451,human1_lib3.final_cell_0501,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+452,D31-6_76,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+453,human3_lib4.final_cell_0827,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+454,human1_lib2.final_cell_0446,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+455,human1_lib1.final_cell_0128,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+456,human4_lib3.final_cell_0500,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+457,human2_lib3.final_cell_0414,496,3036,pp cell of intestine,type b pancreatic cell,pp cell of intestine
+458,human3_lib3.final_cell_0254,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+459,human4_lib3.final_cell_0091,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+460,human2_lib3.final_cell_0120,496,3036,pp cell of intestine,type b pancreatic cell,pp cell of intestine
+461,human3_lib3.final_cell_0391,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+462,D17All1_19,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+463,D31-2_46,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+464,human4_lib1.final_cell_0521,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+465,human1_lib1.final_cell_0038,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+466,human3_lib3.final_cell_0184,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+467,D74_21,496,3036,pp cell of intestine,type b pancreatic cell,pp cell of intestine
+468,human2_lib1.final_cell_0227,3036,3036,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
+469,human3_lib3.final_cell_0850,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+470,human3_lib3.final_cell_0260,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+471,human1_lib1.final_cell_0027,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+472,human2_lib3.final_cell_0151,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+473,D31-5_94,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+474,D28-6_3,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+475,human1_lib3.final_cell_0290,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+476,human2_lib1.final_cell_0128,496,3036,pp cell of intestine,type b pancreatic cell,pp cell of intestine
+477,D28-2_38,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+478,human1_lib3.final_cell_0729,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+479,human1_lib2.final_cell_0030,3036,3036,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
+480,human4_lib1.final_cell_0433,3036,3036,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
+481,human1_lib2.final_cell_0323,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+482,human4_lib1.final_cell_0282,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+483,D30-8_35,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+484,human1_lib3.final_cell_0696,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+485,human3_lib3.final_cell_0380,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+486,human3_lib4.final_cell_0543,3075,3036,type l enteroendocrine cell,type b pancreatic cell,type l enteroendocrine cell
+487,human4_lib3.final_cell_0576,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+488,human1_lib1.final_cell_0083,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+489,human1_lib2.final_cell_0208,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+490,human1_lib1.final_cell_0137,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+491,human1_lib1.final_cell_0253,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+492,human2_lib2.final_cell_0399,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+493,D71_30,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+494,human1_lib1.final_cell_0276,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+495,human4_lib3.final_cell_0457,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+496,human1_lib3.final_cell_0488,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+497,human2_lib2.final_cell_0397,3036,3036,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
+498,human4_lib3.final_cell_0447,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+499,human1_lib2.final_cell_0314,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+500,human1_lib2.final_cell_0516,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+501,human1_lib1.final_cell_0115,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+502,human4_lib3.final_cell_0029,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+503,D31-1_47,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+504,human2_lib1.final_cell_0513,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+505,D74_83,3078,3036,type s enteroendocrine cell,type b pancreatic cell,type s enteroendocrine cell
+506,human3_lib1.final_cell_0424,496,3036,pp cell of intestine,type b pancreatic cell,pp cell of intestine
+507,human1_lib2.final_cell_0123,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+508,human1_lib1.final_cell_0471,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+509,human3_lib1.final_cell_0257,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+510,human1_lib3.final_cell_0648,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+511,human1_lib3.final_cell_0265,3036,3036,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
+512,human1_lib2.final_cell_0158,2347,3036,pancreatic d cell,type b pancreatic cell,pancreatic d cell
+513,human1_lib2.final_cell_0127,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+514,D71_15,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+515,human4_lib1.final_cell_0218,3036,3036,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
+516,human1_lib1.final_cell_0395,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+517,human2_lib2.final_cell_0175,3036,3036,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
+518,human1_lib3.final_cell_0453,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+519,human1_lib3.final_cell_0039,2352,3036,pancreatic endocrine cell,type b pancreatic cell,pancreatic endocrine cell
+520,D29-6_56,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+521,human1_lib3.final_cell_0051,2346,3036,pancreatic a cell,type b pancreatic cell,pancreatic a cell
+522,human1_lib3.final_cell_0659,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+523,human3_lib4.final_cell_0889,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+524,human3_lib2.final_cell_0331,2704,3036,small luteal cell,type b pancreatic cell,small luteal cell
+525,human2_lib2.final_cell_0196,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+526,human4_lib1.final_cell_0415,3075,3036,type l enteroendocrine cell,type b pancreatic cell,type l enteroendocrine cell
+527,human1_lib3.final_cell_0479,2348,3036,pancreatic pp cell,type b pancreatic cell,pancreatic pp cell
+528,D71_82,496,3036,pp cell of intestine,type b pancreatic cell,pp cell of intestine
+529,D71_71,1306,2351,fallopian tube multiciliated epithelial cell,pancreatic ductal cell,fallopian tube multiciliated epithelial cell
+530,D31-8_75,2345,2351,pancreas exocrine glandular cell,pancreatic ductal cell,pancreas exocrine glandular cell
+531,D28-8_28,914,2351,chromophobe cell,pancreatic ductal cell,chromophobe cell
+532,human3_lib2.final_cell_0855,1309,2351,fallopian tube smooth muscle cell,pancreatic ductal cell,fallopian tube smooth muscle cell
+533,HP1506401_D10,1850,2351,luminal endometrial unciliated epithelial cell,pancreatic ductal cell,luminal endometrial unciliated epithelial cell
+534,D17All1_11,2655,2351,seminal vesicle glandular cell,pancreatic ductal cell,seminal vesicle glandular cell
+535,D71_28,1403,2351,gallbladder glandular cell,pancreatic ductal cell,gallbladder glandular cell
+536,human3_lib3.final_cell_0402,2191,2351,nasal serous secreting cell,pancreatic ductal cell,nasal serous secreting cell
+537,human2_lib2.final_cell_0499,2358,2351,paneth cell of anorectum,pancreatic ductal cell,paneth cell of anorectum
+538,human2_lib1.final_cell_0018,1309,2351,fallopian tube smooth muscle cell,pancreatic ductal cell,fallopian tube smooth muscle cell
+539,human4_lib1.final_cell_0559,2655,2351,seminal vesicle glandular cell,pancreatic ductal cell,seminal vesicle glandular cell
+540,human4_lib3.final_cell_0390,1403,2351,gallbladder glandular cell,pancreatic ductal cell,gallbladder glandular cell
+541,human1_lib2.final_cell_0389,2026,2351,mesothelial cell of small intestine,pancreatic ductal cell,mesothelial cell of small intestine
+542,human2_lib2.final_cell_0522,2358,2351,paneth cell of anorectum,pancreatic ductal cell,paneth cell of anorectum
+543,human3_lib3.final_cell_0541,1783,2351,lactocyte,pancreatic ductal cell,lactocyte
+544,human3_lib1.final_cell_0550,2191,2351,nasal serous secreting cell,pancreatic ductal cell,nasal serous secreting cell
+545,human2_lib1.final_cell_0431,1249,2351,epithelial cell of prostatic acinus,pancreatic ductal cell,epithelial cell of prostatic acinus
+546,human3_lib2.final_cell_0752,2026,2351,mesothelial cell of small intestine,pancreatic ductal cell,mesothelial cell of small intestine
+547,D30-1_43,2345,2351,pancreas exocrine glandular cell,pancreatic ductal cell,pancreas exocrine glandular cell
+548,D31-7_29,1300,2351,extrahepatic cholangiocyte,pancreatic ductal cell,extrahepatic cholangiocyte
+549,D17All1_47,1403,2351,gallbladder glandular cell,pancreatic ductal cell,gallbladder glandular cell
+550,human4_lib1.final_cell_0273,2655,2351,seminal vesicle glandular cell,pancreatic ductal cell,seminal vesicle glandular cell
+551,D101_37,2098,2351,mucous acinar cell of salivary gland,pancreatic ductal cell,mucous acinar cell of salivary gland
+552,human3_lib1.final_cell_0615,2664,2351,seromucous acinar cell of salivary gland,pancreatic ductal cell,seromucous acinar cell of salivary gland
+553,human4_lib3.final_cell_0628,1309,2351,fallopian tube smooth muscle cell,pancreatic ductal cell,fallopian tube smooth muscle cell
+554,human3_lib2.final_cell_0128,1309,2351,fallopian tube smooth muscle cell,pancreatic ductal cell,fallopian tube smooth muscle cell
+555,human4_lib1.final_cell_0062,2668,2351,serous acinar cell of salivary gland,pancreatic ductal cell,serous acinar cell of salivary gland
+556,human4_lib1.final_cell_0439,586,2351,acinar cell,pancreatic ductal cell,acinar cell
+557,human4_lib3.final_cell_0035,1403,2351,gallbladder glandular cell,pancreatic ductal cell,gallbladder glandular cell
+558,human4_lib3.final_cell_0011,2358,2351,paneth cell of anorectum,pancreatic ductal cell,paneth cell of anorectum
+559,human3_lib4.final_cell_0775,1309,2351,fallopian tube smooth muscle cell,pancreatic ductal cell,fallopian tube smooth muscle cell
+560,D30-4_13,1250,2351,epithelial cell of prostatic duct,pancreatic ductal cell,epithelial cell of prostatic duct
+561,human2_lib1.final_cell_0192,2655,2351,seminal vesicle glandular cell,pancreatic ductal cell,seminal vesicle glandular cell
+562,human2_lib2.final_cell_0410,2358,2351,paneth cell of anorectum,pancreatic ductal cell,paneth cell of anorectum
+563,D2ex_9,2655,2351,seminal vesicle glandular cell,pancreatic ductal cell,seminal vesicle glandular cell
+564,human3_lib4.final_cell_0695,1441,2351,glandular epithelial cell of stomach,pancreatic ductal cell,glandular epithelial cell of stomach
+565,human1_lib3.final_cell_0246,1309,2351,fallopian tube smooth muscle cell,pancreatic ductal cell,fallopian tube smooth muscle cell
+566,human3_lib3.final_cell_0858,2345,2351,pancreas exocrine glandular cell,pancreatic ductal cell,pancreas exocrine glandular cell
+567,human3_lib4.final_cell_0690,2026,2351,mesothelial cell of small intestine,pancreatic ductal cell,mesothelial cell of small intestine
+568,D72_65,1250,2351,epithelial cell of prostatic duct,pancreatic ductal cell,epithelial cell of prostatic duct
+569,human4_lib1.final_cell_0446,2191,2351,nasal serous secreting cell,pancreatic ductal cell,nasal serous secreting cell
+570,human1_lib1.final_cell_0555,2348,2351,pancreatic pp cell,pancreatic ductal cell,pancreatic pp cell
+571,human3_lib1.final_cell_0480,2018,2351,mesothelial cell of colon,pancreatic ductal cell,mesothelial cell of colon
+572,human1_lib2.final_cell_0251,2350,2351,pancreatic centro-acinar cell,pancreatic ductal cell,pancreatic centro-acinar cell
+573,human3_lib4.final_cell_0717,1250,2351,epithelial cell of prostatic duct,pancreatic ductal cell,epithelial cell of prostatic duct
+574,human2_lib2.final_cell_0110,1403,2351,gallbladder glandular cell,pancreatic ductal cell,gallbladder glandular cell
+575,human1_lib3.final_cell_0184,1309,2351,fallopian tube smooth muscle cell,pancreatic ductal cell,fallopian tube smooth muscle cell
+576,human2_lib2.final_cell_0044,1300,2351,extrahepatic cholangiocyte,pancreatic ductal cell,extrahepatic cholangiocyte
+577,human4_lib1.final_cell_0149,1403,2351,gallbladder glandular cell,pancreatic ductal cell,gallbladder glandular cell
+578,human1_lib1.final_cell_0375,1249,2351,epithelial cell of prostatic acinus,pancreatic ductal cell,epithelial cell of prostatic acinus
+579,human3_lib2.final_cell_0383,1249,2351,epithelial cell of prostatic acinus,pancreatic ductal cell,epithelial cell of prostatic acinus
+580,D72_82,1403,2351,gallbladder glandular cell,pancreatic ductal cell,gallbladder glandular cell
+581,D30-1_88,2351,2351,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
+582,human2_lib2.final_cell_0236,1438,2351,glandular endometrial multiciliated epithelial cell,pancreatic ductal cell,glandular endometrial multiciliated epithelial cell
+583,human3_lib4.final_cell_0698,2358,2351,paneth cell of anorectum,pancreatic ductal cell,paneth cell of anorectum
+584,human2_lib1.final_cell_0358,1306,2351,fallopian tube multiciliated epithelial cell,pancreatic ductal cell,fallopian tube multiciliated epithelial cell
+585,human4_lib1.final_cell_0007,2345,2351,pancreas exocrine glandular cell,pancreatic ductal cell,pancreas exocrine glandular cell
+586,human4_lib3.final_cell_0071,2655,2351,seminal vesicle glandular cell,pancreatic ductal cell,seminal vesicle glandular cell
+587,D28-6_39,2655,2351,seminal vesicle glandular cell,pancreatic ductal cell,seminal vesicle glandular cell
+588,human3_lib3.final_cell_0724,760,2351,bladder cell,pancreatic ductal cell,bladder cell
+589,human3_lib2.final_cell_0632,1250,2351,epithelial cell of prostatic duct,pancreatic ductal cell,epithelial cell of prostatic duct
+590,human1_lib1.final_cell_0557,1250,2351,epithelial cell of prostatic duct,pancreatic ductal cell,epithelial cell of prostatic duct
+591,human2_lib2.final_cell_0075,2655,2351,seminal vesicle glandular cell,pancreatic ductal cell,seminal vesicle glandular cell
+592,human3_lib2.final_cell_0297,2026,2351,mesothelial cell of small intestine,pancreatic ductal cell,mesothelial cell of small intestine
+593,D101_17,2345,2351,pancreas exocrine glandular cell,pancreatic ductal cell,pancreas exocrine glandular cell
+594,human1_lib2.final_cell_0103,1250,2351,epithelial cell of prostatic duct,pancreatic ductal cell,epithelial cell of prostatic duct
+595,human1_lib1.final_cell_0023,2346,2351,pancreatic a cell,pancreatic ductal cell,pancreatic a cell
+596,D30-6_61,2655,2351,seminal vesicle glandular cell,pancreatic ductal cell,seminal vesicle glandular cell
+597,human2_lib2.final_cell_0391,2350,2351,pancreatic centro-acinar cell,pancreatic ductal cell,pancreatic centro-acinar cell
+598,human4_lib3.final_cell_0389,1403,2351,gallbladder glandular cell,pancreatic ductal cell,gallbladder glandular cell
+599,human3_lib2.final_cell_0825,1309,2351,fallopian tube smooth muscle cell,pancreatic ductal cell,fallopian tube smooth muscle cell
+600,human3_lib3.final_cell_0546,2100,2351,mucous neck cell of gastric gland,pancreatic ductal cell,mucous neck cell of gastric gland
+601,human3_lib4.final_cell_0517,1249,2351,epithelial cell of prostatic acinus,pancreatic ductal cell,epithelial cell of prostatic acinus
+602,human1_lib3.final_cell_0029,2664,2351,seromucous acinar cell of salivary gland,pancreatic ductal cell,seromucous acinar cell of salivary gland
+603,human2_lib3.final_cell_0238,1250,2351,epithelial cell of prostatic duct,pancreatic ductal cell,epithelial cell of prostatic duct
+604,human2_lib2.final_cell_0599,2350,2351,pancreatic centro-acinar cell,pancreatic ductal cell,pancreatic centro-acinar cell
+605,human2_lib3.final_cell_0005,1300,2351,extrahepatic cholangiocyte,pancreatic ductal cell,extrahepatic cholangiocyte
+606,human4_lib1.final_cell_0001,2345,2351,pancreas exocrine glandular cell,pancreatic ductal cell,pancreas exocrine glandular cell
+607,D30-7_35,1403,2351,gallbladder glandular cell,pancreatic ductal cell,gallbladder glandular cell
+608,human3_lib1.final_cell_0540,2191,2351,nasal serous secreting cell,pancreatic ductal cell,nasal serous secreting cell
+609,human2_lib3.final_cell_0341,2655,2351,seminal vesicle glandular cell,pancreatic ductal cell,seminal vesicle glandular cell
+610,human4_lib3.final_cell_0444,2350,2351,pancreatic centro-acinar cell,pancreatic ductal cell,pancreatic centro-acinar cell
+611,human4_lib3.final_cell_0475,2655,2351,seminal vesicle glandular cell,pancreatic ductal cell,seminal vesicle glandular cell
+612,human4_lib3.final_cell_0008,2345,2351,pancreas exocrine glandular cell,pancreatic ductal cell,pancreas exocrine glandular cell
+613,D28-4_73,1300,2351,extrahepatic cholangiocyte,pancreatic ductal cell,extrahepatic cholangiocyte
+614,human3_lib4.final_cell_0581,2664,2351,seromucous acinar cell of salivary gland,pancreatic ductal cell,seromucous acinar cell of salivary gland
+615,D2ex_73,2904,2351,tear secreting cell,pancreatic ductal cell,tear secreting cell
+616,HP1525301T2D_D5,2016,2351,mesothelial cell of anterior chamber of eye,pancreatic ductal cell,mesothelial cell of anterior chamber of eye
+617,human3_lib1.final_cell_0576,1309,2351,fallopian tube smooth muscle cell,pancreatic ductal cell,fallopian tube smooth muscle cell
+618,human3_lib4.final_cell_0693,2655,2351,seminal vesicle glandular cell,pancreatic ductal cell,seminal vesicle glandular cell
+619,human3_lib4.final_cell_0249,2026,2351,mesothelial cell of small intestine,pancreatic ductal cell,mesothelial cell of small intestine
+620,human3_lib3.final_cell_0766,2191,2351,nasal serous secreting cell,pancreatic ductal cell,nasal serous secreting cell
+621,human1_lib3.final_cell_0379,2100,2351,mucous neck cell of gastric gland,pancreatic ductal cell,mucous neck cell of gastric gland
+622,D3en1_87,1300,2351,extrahepatic cholangiocyte,pancreatic ductal cell,extrahepatic cholangiocyte
+623,human4_lib3.final_cell_0100,2655,2351,seminal vesicle glandular cell,pancreatic ductal cell,seminal vesicle glandular cell
+624,D31-3_82,2351,2351,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
+625,human3_lib4.final_cell_0826,1249,2351,epithelial cell of prostatic acinus,pancreatic ductal cell,epithelial cell of prostatic acinus
+626,human1_lib2.final_cell_0268,1309,2351,fallopian tube smooth muscle cell,pancreatic ductal cell,fallopian tube smooth muscle cell
+627,D31-1_93,2351,2351,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
+628,D30-4_42,1244,2351,epithelial cell of nasolacrimal duct,pancreatic ductal cell,epithelial cell of nasolacrimal duct
+629,D74_24,1403,2351,gallbladder glandular cell,pancreatic ductal cell,gallbladder glandular cell
+630,D1713_53,2350,2351,pancreatic centro-acinar cell,pancreatic ductal cell,pancreatic centro-acinar cell
+631,D17All1_65,1403,2351,gallbladder glandular cell,pancreatic ductal cell,gallbladder glandular cell
+632,D31-5_91,2345,2351,pancreas exocrine glandular cell,pancreatic ductal cell,pancreas exocrine glandular cell
+633,human2_lib3.final_cell_0369,1300,2351,extrahepatic cholangiocyte,pancreatic ductal cell,extrahepatic cholangiocyte
+634,human3_lib3.final_cell_0640,2664,2351,seromucous acinar cell of salivary gland,pancreatic ductal cell,seromucous acinar cell of salivary gland
+635,human4_lib3.final_cell_0241,1250,2351,epithelial cell of prostatic duct,pancreatic ductal cell,epithelial cell of prostatic duct
+636,D2ex_20,1300,2351,extrahepatic cholangiocyte,pancreatic ductal cell,extrahepatic cholangiocyte
+637,human2_lib3.final_cell_0144,1250,2351,epithelial cell of prostatic duct,pancreatic ductal cell,epithelial cell of prostatic duct
+638,human2_lib2.final_cell_0187,1309,2351,fallopian tube smooth muscle cell,pancreatic ductal cell,fallopian tube smooth muscle cell
+639,human3_lib4.final_cell_0178,1249,2351,epithelial cell of prostatic acinus,pancreatic ductal cell,epithelial cell of prostatic acinus
+640,human3_lib2.final_cell_0738,1849,2351,luminal endometrial multiciliated epithelial cell,pancreatic ductal cell,luminal endometrial multiciliated epithelial cell
+641,D30-3_17,2351,2351,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
+642,human4_lib1.final_cell_0422,1403,2351,gallbladder glandular cell,pancreatic ductal cell,gallbladder glandular cell
+643,human4_lib1.final_cell_0148,1309,2351,fallopian tube smooth muscle cell,pancreatic ductal cell,fallopian tube smooth muscle cell
+644,human2_lib1.final_cell_0423,2655,2351,seminal vesicle glandular cell,pancreatic ductal cell,seminal vesicle glandular cell
+645,human3_lib1.final_cell_0162,1309,2351,fallopian tube smooth muscle cell,pancreatic ductal cell,fallopian tube smooth muscle cell
+646,human2_lib2.final_cell_0024,1300,2351,extrahepatic cholangiocyte,pancreatic ductal cell,extrahepatic cholangiocyte
+647,D31-5_73,2345,2351,pancreas exocrine glandular cell,pancreatic ductal cell,pancreas exocrine glandular cell
+648,D74_26,1300,2351,extrahepatic cholangiocyte,pancreatic ductal cell,extrahepatic cholangiocyte
+649,human3_lib4.final_cell_0534,2358,2351,paneth cell of anorectum,pancreatic ductal cell,paneth cell of anorectum
+650,human4_lib1.final_cell_0065,2668,2351,serous acinar cell of salivary gland,pancreatic ductal cell,serous acinar cell of salivary gland
+651,D10631_2,1309,2351,fallopian tube smooth muscle cell,pancreatic ductal cell,fallopian tube smooth muscle cell
+652,human4_lib3.final_cell_0096,2350,2351,pancreatic centro-acinar cell,pancreatic ductal cell,pancreatic centro-acinar cell
+653,human4_lib3.final_cell_0252,1250,2351,epithelial cell of prostatic duct,pancreatic ductal cell,epithelial cell of prostatic duct
+654,D71_14,1306,2351,fallopian tube multiciliated epithelial cell,pancreatic ductal cell,fallopian tube multiciliated epithelial cell
+655,human4_lib3.final_cell_0309,2345,2351,pancreas exocrine glandular cell,pancreatic ductal cell,pancreas exocrine glandular cell
+656,human2_lib2.final_cell_0314,1915,2351,malignant cell,pancreatic ductal cell,malignant cell
+657,D30-8_93,2351,2351,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
+658,D28-7_50,914,2351,chromophobe cell,pancreatic ductal cell,chromophobe cell
+659,human4_lib3.final_cell_0595,1300,2351,extrahepatic cholangiocyte,pancreatic ductal cell,extrahepatic cholangiocyte
+660,human4_lib1.final_cell_0147,1300,2351,extrahepatic cholangiocyte,pancreatic ductal cell,extrahepatic cholangiocyte
+661,human3_lib1.final_cell_0594,3113,2351,uterine cervix secretory cell,pancreatic ductal cell,uterine cervix secretory cell
+662,human2_lib3.final_cell_0237,3078,2351,type s enteroendocrine cell,pancreatic ductal cell,type s enteroendocrine cell
+663,D17All2_8,914,2351,chromophobe cell,pancreatic ductal cell,chromophobe cell
+664,human3_lib4.final_cell_0024,2358,-1,paneth cell of anorectum,zygote,paneth cell of anorectum
+665,human3_lib1.final_cell_0027,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+666,D29-5_78,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+667,human3_lib3.final_cell_0050,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+668,D30-7_28,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+669,human3_lib3.final_cell_0069,2349,-1,pancreatic acinar cell,zygote,pancreatic acinar cell
+670,human3_lib3.final_cell_0646,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+671,human3_lib4.final_cell_0027,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+672,human3_lib4.final_cell_0142,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+673,human3_lib1.final_cell_0536,2098,-1,mucous acinar cell of salivary gland,zygote,mucous acinar cell of salivary gland
+674,human3_lib3.final_cell_0020,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+675,human3_lib4.final_cell_0242,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+676,human3_lib3.final_cell_0228,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+677,human3_lib2.final_cell_0684,2098,-1,mucous acinar cell of salivary gland,zygote,mucous acinar cell of salivary gland
+678,human3_lib4.final_cell_0005,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+679,human3_lib3.final_cell_0027,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+680,D31-5_57,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+681,human3_lib3.final_cell_0095,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+682,human3_lib3.final_cell_0037,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+683,human3_lib1.final_cell_0051,2358,-1,paneth cell of anorectum,zygote,paneth cell of anorectum
+684,human3_lib1.final_cell_0023,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+685,human3_lib4.final_cell_0662,2350,-1,pancreatic centro-acinar cell,zygote,pancreatic centro-acinar cell
+686,human3_lib1.final_cell_0098,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+687,human3_lib3.final_cell_0473,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+688,human3_lib3.final_cell_0135,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+689,human3_lib4.final_cell_0505,2098,-1,mucous acinar cell of salivary gland,zygote,mucous acinar cell of salivary gland
+690,human3_lib1.final_cell_0006,2664,-1,seromucous acinar cell of salivary gland,zygote,seromucous acinar cell of salivary gland
+691,human3_lib1.final_cell_0093,2358,-1,paneth cell of anorectum,zygote,paneth cell of anorectum
+692,human3_lib3.final_cell_0014,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+693,D3en3_46,2354,-1,pancreatic goblet cell,zygote,pancreatic goblet cell
+694,human3_lib1.final_cell_0146,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+695,human1_lib3.final_cell_0628,2350,-1,pancreatic centro-acinar cell,zygote,pancreatic centro-acinar cell
+696,human3_lib1.final_cell_0085,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+697,human3_lib2.final_cell_0009,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+698,human3_lib1.final_cell_0572,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+699,human3_lib3.final_cell_0782,1783,-1,lactocyte,zygote,lactocyte
+700,D3en4_8,2350,-1,pancreatic centro-acinar cell,zygote,pancreatic centro-acinar cell
+701,D31-1_22,2354,-1,pancreatic goblet cell,zygote,pancreatic goblet cell
+702,D31-3_63,2354,-1,pancreatic goblet cell,zygote,pancreatic goblet cell
+703,human1_lib3.final_cell_0541,2350,-1,pancreatic centro-acinar cell,zygote,pancreatic centro-acinar cell
+704,human3_lib2.final_cell_0127,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+705,D31-4_9,2354,-1,pancreatic goblet cell,zygote,pancreatic goblet cell
+706,human1_lib2.final_cell_0616,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+707,D3en1_68,2354,-1,pancreatic goblet cell,zygote,pancreatic goblet cell
+708,human3_lib2.final_cell_0477,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+709,human3_lib2.final_cell_0374,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+710,human3_lib1.final_cell_0810,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+711,human3_lib3.final_cell_0809,2350,-1,pancreatic centro-acinar cell,zygote,pancreatic centro-acinar cell
+712,human3_lib3.final_cell_0072,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+713,human3_lib2.final_cell_0486,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+714,D3en1_45,140,-1,"cd22-positive, cd38-low small pre-b cell",zygote,"cd22-positive, cd38-low small pre-b cell"
+715,human1_lib2.final_cell_0177,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+716,human3_lib2.final_cell_0614,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+717,human3_lib2.final_cell_0171,2358,-1,paneth cell of anorectum,zygote,paneth cell of anorectum
+718,human3_lib4.final_cell_0102,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+719,D1713_71,2668,-1,serous acinar cell of salivary gland,zygote,serous acinar cell of salivary gland
+720,human3_lib4.final_cell_0072,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+721,human3_lib2.final_cell_0120,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+722,human3_lib3.final_cell_0100,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+723,D10631_15,2098,-1,mucous acinar cell of salivary gland,zygote,mucous acinar cell of salivary gland
+724,human3_lib2.final_cell_0045,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+725,human3_lib1.final_cell_0230,1300,-1,extrahepatic cholangiocyte,zygote,extrahepatic cholangiocyte
+726,human3_lib2.final_cell_0172,2350,-1,pancreatic centro-acinar cell,zygote,pancreatic centro-acinar cell
+727,human3_lib2.final_cell_0586,2349,-1,pancreatic acinar cell,zygote,pancreatic acinar cell
+728,human3_lib3.final_cell_0735,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+729,human3_lib4.final_cell_0001,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+730,human3_lib4.final_cell_0179,2350,-1,pancreatic centro-acinar cell,zygote,pancreatic centro-acinar cell
+731,human1_lib3.final_cell_0067,2358,-1,paneth cell of anorectum,zygote,paneth cell of anorectum
+732,human3_lib3.final_cell_0156,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+733,human1_lib3.final_cell_0043,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+734,human3_lib1.final_cell_0087,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+735,human3_lib3.final_cell_0006,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+736,human3_lib3.final_cell_0143,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+737,D17TGFB_23,2354,-1,pancreatic goblet cell,zygote,pancreatic goblet cell
+738,human3_lib2.final_cell_0168,2350,-1,pancreatic centro-acinar cell,zygote,pancreatic centro-acinar cell
+739,human3_lib2.final_cell_0010,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+740,human3_lib2.final_cell_0298,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+741,D31-6_39,2354,-1,pancreatic goblet cell,zygote,pancreatic goblet cell
+742,human3_lib3.final_cell_0075,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+743,D30-2_45,2354,-1,pancreatic goblet cell,zygote,pancreatic goblet cell
+744,human3_lib4.final_cell_0406,2354,-1,pancreatic goblet cell,zygote,pancreatic goblet cell
+745,human3_lib3.final_cell_0685,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+746,D17TGFB_14,140,-1,"cd22-positive, cd38-low small pre-b cell",zygote,"cd22-positive, cd38-low small pre-b cell"
+747,human3_lib2.final_cell_0213,2350,-1,pancreatic centro-acinar cell,zygote,pancreatic centro-acinar cell
+748,human3_lib4.final_cell_0128,2354,-1,pancreatic goblet cell,zygote,pancreatic goblet cell
+749,human3_lib4.final_cell_0039,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+750,D3en4_26,1300,-1,extrahepatic cholangiocyte,zygote,extrahepatic cholangiocyte
+751,human3_lib4.final_cell_0748,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+752,human3_lib2.final_cell_0720,2354,-1,pancreatic goblet cell,zygote,pancreatic goblet cell
+753,D30-8_36,2354,-1,pancreatic goblet cell,zygote,pancreatic goblet cell
+754,human3_lib3.final_cell_0063,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+755,human1_lib1.final_cell_0002,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+756,D2ex_34,2354,-1,pancreatic goblet cell,zygote,pancreatic goblet cell
+757,human3_lib1.final_cell_0053,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+758,human3_lib2.final_cell_0117,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+759,human3_lib1.final_cell_0698,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+760,human1_lib2.final_cell_0419,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+761,human3_lib3.final_cell_0047,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+762,human3_lib1.final_cell_0683,2358,-1,paneth cell of anorectum,zygote,paneth cell of anorectum
+763,human3_lib2.final_cell_0013,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+764,human3_lib1.final_cell_0105,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+765,human3_lib2.final_cell_0623,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+766,human3_lib1.final_cell_0035,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+767,D3en4_12,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+768,human3_lib3.final_cell_0081,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+769,D1713_70,1300,-1,extrahepatic cholangiocyte,zygote,extrahepatic cholangiocyte
+770,human3_lib3.final_cell_0738,2345,-1,pancreas exocrine glandular cell,zygote,pancreas exocrine glandular cell
+771,D2ex_42,2350,-1,pancreatic centro-acinar cell,zygote,pancreatic centro-acinar cell
+772,human1_lib2.final_cell_0249,2347,-1,pancreatic d cell,zygote,pancreatic d cell
+773,D31-6_38,3078,-1,type s enteroendocrine cell,zygote,type s enteroendocrine cell
+774,human3_lib2.final_cell_0609,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+775,D29-1_74,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+776,human4_lib3.final_cell_0030,2346,-1,pancreatic a cell,zygote,pancreatic a cell
+777,human3_lib2.final_cell_0640,2358,-1,paneth cell of anorectum,zygote,paneth cell of anorectum
+778,D73_86,3078,-1,type s enteroendocrine cell,zygote,type s enteroendocrine cell
+779,human4_lib1.final_cell_0204,2347,-1,pancreatic d cell,zygote,pancreatic d cell
+780,D71_91,3078,-1,type s enteroendocrine cell,zygote,type s enteroendocrine cell
+781,human1_lib1.final_cell_0040,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+782,D31-2_70,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+783,D17All2_78,496,-1,pp cell of intestine,zygote,pp cell of intestine
+784,human3_lib1.final_cell_0847,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+785,D30-4_5,3078,-1,type s enteroendocrine cell,zygote,type s enteroendocrine cell
+786,HP1509101_O1,2815,-1,stomach neuroendocrine cell,zygote,stomach neuroendocrine cell
+787,D29-8_73,2347,-1,pancreatic d cell,zygote,pancreatic d cell
+788,human2_lib1.final_cell_0173,2347,-1,pancreatic d cell,zygote,pancreatic d cell
+789,human3_lib3.final_cell_0318,2346,-1,pancreatic a cell,zygote,pancreatic a cell
+790,D29-7_54,496,-1,pp cell of intestine,zygote,pp cell of intestine
+791,human2_lib3.final_cell_0350,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+792,D31-5_46,2346,-1,pancreatic a cell,zygote,pancreatic a cell
+793,human2_lib1.final_cell_0044,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+794,human3_lib4.final_cell_0104,2346,-1,pancreatic a cell,zygote,pancreatic a cell
+795,human1_lib1.final_cell_0098,2347,-1,pancreatic d cell,zygote,pancreatic d cell
+796,human4_lib1.final_cell_0387,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+797,human1_lib2.final_cell_0463,2347,-1,pancreatic d cell,zygote,pancreatic d cell
+798,D30-5_85,3078,-1,type s enteroendocrine cell,zygote,type s enteroendocrine cell
+799,human3_lib1.final_cell_0430,2346,-1,pancreatic a cell,zygote,pancreatic a cell
+800,human3_lib1.final_cell_0473,2815,-1,stomach neuroendocrine cell,zygote,stomach neuroendocrine cell
+801,human4_lib1.final_cell_0169,496,-1,pp cell of intestine,zygote,pp cell of intestine
+802,human3_lib4.final_cell_0413,1192,-1,enteroendocrine cell of anorectum,zygote,enteroendocrine cell of anorectum
+803,human4_lib3.final_cell_0003,2347,-1,pancreatic d cell,zygote,pancreatic d cell
+804,human4_lib3.final_cell_0410,2347,-1,pancreatic d cell,zygote,pancreatic d cell
+805,D30-5_22,2352,-1,pancreatic endocrine cell,zygote,pancreatic endocrine cell
+806,human1_lib2.final_cell_0015,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+807,D29-6_63,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+808,human3_lib1.final_cell_0110,3075,-1,type l enteroendocrine cell,zygote,type l enteroendocrine cell
+809,D71_35,3075,-1,type l enteroendocrine cell,zygote,type l enteroendocrine cell
+810,human1_lib2.final_cell_0020,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+811,human3_lib1.final_cell_0091,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+812,human3_lib3.final_cell_0450,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+813,human1_lib3.final_cell_0009,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+814,human1_lib3.final_cell_0066,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+815,human3_lib4.final_cell_0340,1191,-1,enteroendocrine cell,zygote,enteroendocrine cell
+816,D31-2_36,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+817,D29-2_34,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+818,human3_lib1.final_cell_0261,2026,-1,mesothelial cell of small intestine,zygote,mesothelial cell of small intestine
+819,human3_lib3.final_cell_0881,2350,-1,pancreatic centro-acinar cell,zygote,pancreatic centro-acinar cell
+820,human3_lib2.final_cell_0092,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+821,human1_lib1.final_cell_0025,2346,-1,pancreatic a cell,zygote,pancreatic a cell
+822,D29-5_83,2352,-1,pancreatic endocrine cell,zygote,pancreatic endocrine cell
+823,human3_lib4.final_cell_0067,2347,-1,pancreatic d cell,zygote,pancreatic d cell
+824,human4_lib1.final_cell_0530,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+825,human1_lib1.final_cell_0490,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+826,human3_lib3.final_cell_0625,2346,-1,pancreatic a cell,zygote,pancreatic a cell
+827,human3_lib1.final_cell_0339,496,-1,pp cell of intestine,zygote,pp cell of intestine
+828,human4_lib3.final_cell_0190,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+829,D29-8_13,2352,-1,pancreatic endocrine cell,zygote,pancreatic endocrine cell
+830,human4_lib3.final_cell_0111,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+831,human2_lib3.final_cell_0410,3075,-1,type l enteroendocrine cell,zygote,type l enteroendocrine cell
+832,human4_lib3.final_cell_0036,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+833,D73_90,3075,-1,type l enteroendocrine cell,zygote,type l enteroendocrine cell
+834,human1_lib2.final_cell_0210,3078,-1,type s enteroendocrine cell,zygote,type s enteroendocrine cell
+835,human2_lib3.final_cell_0041,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+836,human1_lib3.final_cell_0298,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+837,human3_lib3.final_cell_0159,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+838,human1_lib2.final_cell_0473,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+839,human2_lib2.final_cell_0165,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+840,human3_lib2.final_cell_0437,2358,-1,paneth cell of anorectum,zygote,paneth cell of anorectum
+841,human3_lib1.final_cell_0669,2475,2356,preadipocyte of the breast,pancreatic stellate cell,preadipocyte of the breast
+842,D71_22,2006,2356,mesenchymal stem cell of orbital adipose tissue,pancreatic stellate cell,mesenchymal stem cell of orbital adipose tissue
+843,human3_lib3.final_cell_0682,1445,2356,glioblast,pancreatic stellate cell,glioblast
+844,human4_lib1.final_cell_0495,2356,2356,pancreatic stellate cell,pancreatic stellate cell,pancreatic stellate cell
+845,human1_lib1.final_cell_0496,685,2356,arcuate artery smooth muscle cell,pancreatic stellate cell,arcuate artery smooth muscle cell
+846,human3_lib3.final_cell_0915,2841,2356,stromal cell of anorectum lamina propria,pancreatic stellate cell,stromal cell of anorectum lamina propria
+847,human3_lib2.final_cell_0239,1445,2356,glioblast,pancreatic stellate cell,glioblast
+848,human3_lib4.final_cell_0819,2901,2356,tanycyte of vascular organ of lamina terminalis,pancreatic stellate cell,tanycyte of vascular organ of lamina terminalis
+849,human1_lib2.final_cell_0601,685,2356,arcuate artery smooth muscle cell,pancreatic stellate cell,arcuate artery smooth muscle cell
+850,human3_lib4.final_cell_0119,2316,2356,optic choroid fibroblast,pancreatic stellate cell,optic choroid fibroblast
+851,human1_lib3.final_cell_0288,2006,2356,mesenchymal stem cell of orbital adipose tissue,pancreatic stellate cell,mesenchymal stem cell of orbital adipose tissue
+852,human4_lib3.final_cell_0686,2851,2356,stromal cell of pancreas,pancreatic stellate cell,stromal cell of pancreas
+853,human2_lib2.final_cell_0448,1660,2356,intestinal lamina propria fibroblast,pancreatic stellate cell,intestinal lamina propria fibroblast
+854,human4_lib1.final_cell_0400,2356,2356,pancreatic stellate cell,pancreatic stellate cell,pancreatic stellate cell
+855,human3_lib4.final_cell_0859,1173,2356,endovascular extravillous trophoblast cell,pancreatic stellate cell,endovascular extravillous trophoblast cell
+856,human3_lib4.final_cell_0237,2346,2356,pancreatic a cell,pancreatic stellate cell,pancreatic a cell
+857,human2_lib2.final_cell_0401,585,2356,acidophilic cytoplasm,pancreatic stellate cell,acidophilic cytoplasm
+858,human3_lib1.final_cell_0276,1445,2356,glioblast,pancreatic stellate cell,glioblast
+859,human2_lib2.final_cell_0012,3036,2356,type b pancreatic cell,pancreatic stellate cell,type b pancreatic cell
+860,human1_lib1.final_cell_0215,2901,2356,tanycyte of vascular organ of lamina terminalis,pancreatic stellate cell,tanycyte of vascular organ of lamina terminalis
+861,human2_lib2.final_cell_0568,1649,2356,interstitial extravillous trophoblast cell,pancreatic stellate cell,interstitial extravillous trophoblast cell
+862,human3_lib4.final_cell_0593,2851,2356,stromal cell of pancreas,pancreatic stellate cell,stromal cell of pancreas
+863,human2_lib1.final_cell_0523,1660,2356,intestinal lamina propria fibroblast,pancreatic stellate cell,intestinal lamina propria fibroblast
+864,human3_lib4.final_cell_0853,2475,2356,preadipocyte of the breast,pancreatic stellate cell,preadipocyte of the breast
+865,human3_lib2.final_cell_0651,2356,2356,pancreatic stellate cell,pancreatic stellate cell,pancreatic stellate cell
+866,human3_lib1.final_cell_0604,2006,2356,mesenchymal stem cell of orbital adipose tissue,pancreatic stellate cell,mesenchymal stem cell of orbital adipose tissue
+867,D30-4_35,1539,2356,hyalocyte,pancreatic stellate cell,hyalocyte
+868,human4_lib1.final_cell_0594,1649,2356,interstitial extravillous trophoblast cell,pancreatic stellate cell,interstitial extravillous trophoblast cell
+869,human3_lib1.final_cell_0346,939,2356,collagen secreting cell,pancreatic stellate cell,collagen secreting cell
+870,human1_lib3.final_cell_0454,2356,2356,pancreatic stellate cell,pancreatic stellate cell,pancreatic stellate cell
+871,human4_lib1.final_cell_0471,1649,2356,interstitial extravillous trophoblast cell,pancreatic stellate cell,interstitial extravillous trophoblast cell
+872,human1_lib3.final_cell_0723,2851,2356,stromal cell of pancreas,pancreatic stellate cell,stromal cell of pancreas
+873,human3_lib1.final_cell_0802,616,2356,adventitial cell,pancreatic stellate cell,adventitial cell
+874,human2_lib2.final_cell_0282,1660,2356,intestinal lamina propria fibroblast,pancreatic stellate cell,intestinal lamina propria fibroblast
+875,human3_lib1.final_cell_0653,1463,2356,glycosaminoglycan secreting cell,pancreatic stellate cell,glycosaminoglycan secreting cell
+876,human2_lib2.final_cell_0571,2851,2356,stromal cell of pancreas,pancreatic stellate cell,stromal cell of pancreas
+877,human2_lib2.final_cell_0559,1363,2356,fibrous astrocyte,pancreatic stellate cell,fibrous astrocyte
+878,D17All2_93,2030,2356,mesothelial fibroblast of the leptomeninx,pancreatic stellate cell,mesothelial fibroblast of the leptomeninx
+879,human4_lib3.final_cell_0590,57,2356,astro-te nn_5 adamts18 astrocyte (mmus),pancreatic stellate cell,astro-te nn_5 adamts18 astrocyte (mmus)
+880,human1_lib3.final_cell_0582,2356,2356,pancreatic stellate cell,pancreatic stellate cell,pancreatic stellate cell
+881,human1_lib1.final_cell_0156,2030,2356,mesothelial fibroblast of the leptomeninx,pancreatic stellate cell,mesothelial fibroblast of the leptomeninx
+882,human2_lib1.final_cell_0500,2640,2356,secondary crest myofibroblast,pancreatic stellate cell,secondary crest myofibroblast
+883,human3_lib3.final_cell_0265,2356,2356,pancreatic stellate cell,pancreatic stellate cell,pancreatic stellate cell
+884,human4_lib1.final_cell_0493,1649,2356,interstitial extravillous trophoblast cell,pancreatic stellate cell,interstitial extravillous trophoblast cell
+885,human2_lib3.final_cell_0526,3075,2348,type l enteroendocrine cell,pancreatic pp cell,type l enteroendocrine cell
+886,D31-8_67,2352,2348,pancreatic endocrine cell,pancreatic pp cell,pancreatic endocrine cell
+887,human4_lib3.final_cell_0171,2348,2348,pancreatic pp cell,pancreatic pp cell,pancreatic pp cell
+888,human2_lib2.final_cell_0387,496,2348,pp cell of intestine,pancreatic pp cell,pp cell of intestine
+889,human4_lib1.final_cell_0268,2348,2348,pancreatic pp cell,pancreatic pp cell,pancreatic pp cell
+890,human4_lib3.final_cell_0345,2348,2348,pancreatic pp cell,pancreatic pp cell,pancreatic pp cell
+891,human2_lib2.final_cell_0520,3075,2348,type l enteroendocrine cell,pancreatic pp cell,type l enteroendocrine cell
+892,human2_lib1.final_cell_0501,3075,2348,type l enteroendocrine cell,pancreatic pp cell,type l enteroendocrine cell
+893,D17All1_28,2348,2348,pancreatic pp cell,pancreatic pp cell,pancreatic pp cell
+894,D29-2_64,2348,2348,pancreatic pp cell,pancreatic pp cell,pancreatic pp cell
+895,human1_lib1.final_cell_0431,2348,2348,pancreatic pp cell,pancreatic pp cell,pancreatic pp cell
+896,D31-6_71,2346,2348,pancreatic a cell,pancreatic pp cell,pancreatic a cell
+897,human2_lib1.final_cell_0226,2346,2348,pancreatic a cell,pancreatic pp cell,pancreatic a cell
+898,human4_lib3.final_cell_0187,2348,2348,pancreatic pp cell,pancreatic pp cell,pancreatic pp cell
+899,D31-8_70,2348,2348,pancreatic pp cell,pancreatic pp cell,pancreatic pp cell
+900,human1_lib1.final_cell_0516,2348,2348,pancreatic pp cell,pancreatic pp cell,pancreatic pp cell
+901,human4_lib1.final_cell_0449,2348,2348,pancreatic pp cell,pancreatic pp cell,pancreatic pp cell
+902,human3_lib2.final_cell_0167,2348,2348,pancreatic pp cell,pancreatic pp cell,pancreatic pp cell
+903,human1_lib3.final_cell_0360,496,2348,pp cell of intestine,pancreatic pp cell,pp cell of intestine
+904,human2_lib2.final_cell_0378,2348,2348,pancreatic pp cell,pancreatic pp cell,pancreatic pp cell
+905,human2_lib3.final_cell_0516,1191,2348,enteroendocrine cell,pancreatic pp cell,enteroendocrine cell
+906,human2_lib3.final_cell_0399,302,2348,gip cell,pancreatic pp cell,gip cell
+907,human1_lib2.final_cell_0507,2348,2348,pancreatic pp cell,pancreatic pp cell,pancreatic pp cell
+908,human2_lib1.final_cell_0398,3075,2348,type l enteroendocrine cell,pancreatic pp cell,type l enteroendocrine cell
+909,human4_lib3.final_cell_0591,2348,2348,pancreatic pp cell,pancreatic pp cell,pancreatic pp cell
+910,human2_lib3.final_cell_0477,3075,2348,type l enteroendocrine cell,pancreatic pp cell,type l enteroendocrine cell
+911,human1_lib2.final_cell_0364,2348,2348,pancreatic pp cell,pancreatic pp cell,pancreatic pp cell
+912,human1_lib2.final_cell_0583,2348,2348,pancreatic pp cell,pancreatic pp cell,pancreatic pp cell
+913,human4_lib3.final_cell_0275,2346,2348,pancreatic a cell,pancreatic pp cell,pancreatic a cell
+914,human2_lib2.final_cell_0081,3075,2348,type l enteroendocrine cell,pancreatic pp cell,type l enteroendocrine cell
+915,human1_lib1.final_cell_0301,2348,2348,pancreatic pp cell,pancreatic pp cell,pancreatic pp cell
+916,human1_lib3.final_cell_0720,2355,1145,pancreatic islet capillary endothelial cell,endothelial cell,pancreatic islet capillary endothelial cell
+917,human1_lib3.final_cell_0499,2355,1145,pancreatic islet capillary endothelial cell,endothelial cell,pancreatic islet capillary endothelial cell
+918,human1_lib2.final_cell_0619,2355,1145,pancreatic islet capillary endothelial cell,endothelial cell,pancreatic islet capillary endothelial cell
+919,human1_lib1.final_cell_0530,2355,1145,pancreatic islet capillary endothelial cell,endothelial cell,pancreatic islet capillary endothelial cell
+920,human1_lib2.final_cell_0517,2355,1145,pancreatic islet capillary endothelial cell,endothelial cell,pancreatic islet capillary endothelial cell
+921,human2_lib1.final_cell_0216,2793,1145,squamous endothelial cell of venule,endothelial cell,squamous endothelial cell of venule
+922,human4_lib1.final_cell_0361,2793,1145,squamous endothelial cell of venule,endothelial cell,squamous endothelial cell of venule
+923,human1_lib2.final_cell_0488,2355,1145,pancreatic islet capillary endothelial cell,endothelial cell,pancreatic islet capillary endothelial cell
+924,human1_lib2.final_cell_0578,1122,1145,embryonic blood vessel endothelial progenitor cell,endothelial cell,embryonic blood vessel endothelial progenitor cell
+925,human3_lib3.final_cell_0863,2793,1145,squamous endothelial cell of venule,endothelial cell,squamous endothelial cell of venule
+926,human1_lib3.final_cell_0604,3043,1145,type ec enteroendocrine cell,endothelial cell,type ec enteroendocrine cell
+927,human3_lib4.final_cell_0818,2793,1145,squamous endothelial cell of venule,endothelial cell,squamous endothelial cell of venule
+928,human1_lib3.final_cell_0621,2355,1145,pancreatic islet capillary endothelial cell,endothelial cell,pancreatic islet capillary endothelial cell
+929,human1_lib1.final_cell_0457,2355,1145,pancreatic islet capillary endothelial cell,endothelial cell,pancreatic islet capillary endothelial cell
+930,human1_lib2.final_cell_0520,2355,1145,pancreatic islet capillary endothelial cell,endothelial cell,pancreatic islet capillary endothelial cell
+931,human1_lib3.final_cell_0676,2355,1145,pancreatic islet capillary endothelial cell,endothelial cell,pancreatic islet capillary endothelial cell
+932,human1_lib2.final_cell_0611,2355,1145,pancreatic islet capillary endothelial cell,endothelial cell,pancreatic islet capillary endothelial cell
+933,human3_lib1.final_cell_0436,2355,1145,pancreatic islet capillary endothelial cell,endothelial cell,pancreatic islet capillary endothelial cell
+934,human1_lib2.final_cell_0472,2355,1145,pancreatic islet capillary endothelial cell,endothelial cell,pancreatic islet capillary endothelial cell
+935,human1_lib3.final_cell_0710,2355,1145,pancreatic islet capillary endothelial cell,endothelial cell,pancreatic islet capillary endothelial cell
+936,D28-2_76,1122,1145,embryonic blood vessel endothelial progenitor cell,endothelial cell,embryonic blood vessel endothelial progenitor cell
+937,human3_lib4.final_cell_0887,2355,1145,pancreatic islet capillary endothelial cell,endothelial cell,pancreatic islet capillary endothelial cell
+938,human1_lib1.final_cell_0537,2355,1145,pancreatic islet capillary endothelial cell,endothelial cell,pancreatic islet capillary endothelial cell
+939,human2_lib2.final_cell_0144,1274,1904,epithelioid macrophage,macrophage,epithelioid macrophage
+940,D28-8_50,2937,1904,tonsillar macrophage,macrophage,tonsillar macrophage
+941,D29-2_49,2853,1904,stromal choroid plexus macrophage,macrophage,stromal choroid plexus macrophage
+942,human2_lib2.final_cell_0234,2937,1904,tonsillar macrophage,macrophage,tonsillar macrophage
+943,human1_lib1.final_cell_0417,1489,1904,gut-associated lymphoid tissue macrophage,macrophage,gut-associated lymphoid tissue macrophage
+944,human4_lib1.final_cell_0145,1086,1904,dural macrophage,macrophage,dural macrophage
+945,D31-5_72,2937,1904,tonsillar macrophage,macrophage,tonsillar macrophage
+946,human3_lib3.final_cell_0883,2703,1904,small intestine serosal dendritic cell,macrophage,small intestine serosal dendritic cell
+947,D1713_62,2191,1904,nasal serous secreting cell,macrophage,nasal serous secreting cell
+948,human2_lib2.final_cell_0150,2188,1904,nasal and broncial associated lymphoid tissue macrophage,macrophage,nasal and broncial associated lymphoid tissue macrophage
+949,human1_lib2.final_cell_0149,1420,1904,gastrointestinal tract (lamina propria) macrophage of small intestine,macrophage,gastrointestinal tract (lamina propria) macrophage of small intestine
+950,human2_lib1.final_cell_0167,2937,1904,tonsillar macrophage,macrophage,tonsillar macrophage
+951,human3_lib4.final_cell_0574,2321,1904,osteoclast,macrophage,osteoclast
+952,human1_lib3.final_cell_0613,1420,1904,gastrointestinal tract (lamina propria) macrophage of small intestine,macrophage,gastrointestinal tract (lamina propria) macrophage of small intestine
+953,human1_lib2.final_cell_0343,2188,1904,nasal and broncial associated lymphoid tissue macrophage,macrophage,nasal and broncial associated lymphoid tissue macrophage
+954,D30-5_41,2937,1904,tonsillar macrophage,macrophage,tonsillar macrophage
+955,D28-6_15,899,1904,choroid epiplexus macrophage,macrophage,choroid epiplexus macrophage
+956,human4_lib1.final_cell_0349,2937,1904,tonsillar macrophage,macrophage,tonsillar macrophage
+957,human3_lib4.final_cell_0480,2188,1904,nasal and broncial associated lymphoid tissue macrophage,macrophage,nasal and broncial associated lymphoid tissue macrophage
+958,D29-8_67,2937,1904,tonsillar macrophage,macrophage,tonsillar macrophage
+959,D29-2_55,1576,1927,immature basophil,mast cell,immature basophil
+960,human3_lib1.final_cell_0647,146,1927,cd25+ mast cell,mast cell,cd25+ mast cell
+961,human1_lib3.final_cell_0712,1954,1927,mature basophil,mast cell,mature basophil
+962,D28-2_66,1927,1927,mast cell,mast cell,mast cell
+963,human2_lib2.final_cell_0526,146,1927,cd25+ mast cell,mast cell,cd25+ mast cell
+964,human2_lib2.final_cell_0540,146,1927,cd25+ mast cell,mast cell,cd25+ mast cell
+965,human2_lib3.final_cell_0496,1576,1927,immature basophil,mast cell,immature basophil
+966,D28-1_64,1576,1927,immature basophil,mast cell,immature basophil
+967,human4_lib3.final_cell_0662,146,1927,cd25+ mast cell,mast cell,cd25+ mast cell
+968,human2_lib3.final_cell_0546,1984,1927,melanocyte,mast cell,melanocyte
+969,human3_lib2.final_cell_0813,146,1927,cd25+ mast cell,mast cell,cd25+ mast cell
+970,human1_lib1.final_cell_0527,140,1927,"cd22-positive, cd38-low small pre-b cell",mast cell,"cd22-positive, cd38-low small pre-b cell"
+971,human3_lib3.final_cell_0802,146,1927,cd25+ mast cell,mast cell,cd25+ mast cell
+972,HP1507101_M16,2084,1927,mononuclear osteoclast,mast cell,mononuclear osteoclast
+973,D28-3_17,1576,1927,immature basophil,mast cell,immature basophil
+974,human2_lib2.final_cell_0504,146,1927,cd25+ mast cell,mast cell,cd25+ mast cell
+975,human1_lib3.final_cell_0597,3048,1927,type g enteroendocrine cell,mast cell,type g enteroendocrine cell
+976,human2_lib2.final_cell_0528,146,1927,cd25+ mast cell,mast cell,cd25+ mast cell
+977,human1_lib3.final_cell_0530,914,1927,chromophobe cell,mast cell,chromophobe cell
+978,human1_lib1.final_cell_0428,146,1927,cd25+ mast cell,mast cell,cd25+ mast cell
+979,human1_lib3.final_cell_0463,3075,-1,type l enteroendocrine cell,zygote,type l enteroendocrine cell
+980,human1_lib3.final_cell_0584,3075,-1,type l enteroendocrine cell,zygote,type l enteroendocrine cell
+981,human3_lib4.final_cell_0283,3075,-1,type l enteroendocrine cell,zygote,type l enteroendocrine cell
+982,human1_lib2.final_cell_0497,496,-1,pp cell of intestine,zygote,pp cell of intestine
+983,human2_lib1.final_cell_0399,3075,-1,type l enteroendocrine cell,zygote,type l enteroendocrine cell
+984,human1_lib3.final_cell_0532,3075,-1,type l enteroendocrine cell,zygote,type l enteroendocrine cell
+985,human2_lib3.final_cell_0037,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+986,D29-4_84,3078,-1,type s enteroendocrine cell,zygote,type s enteroendocrine cell
+987,human1_lib3.final_cell_0684,496,-1,pp cell of intestine,zygote,pp cell of intestine
+988,human1_lib3.final_cell_0457,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+989,human1_lib3.final_cell_0594,3075,-1,type l enteroendocrine cell,zygote,type l enteroendocrine cell
+990,D30-4_20,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+991,human1_lib3.final_cell_0270,3075,-1,type l enteroendocrine cell,zygote,type l enteroendocrine cell
+992,human1_lib3.final_cell_0692,2347,-1,pancreatic d cell,zygote,pancreatic d cell
+993,D31-6_25,3078,-1,type s enteroendocrine cell,zygote,type s enteroendocrine cell
+994,human4_lib1.final_cell_0326,3075,-1,type l enteroendocrine cell,zygote,type l enteroendocrine cell
+995,human1_lib1.final_cell_0323,2348,-1,pancreatic pp cell,zygote,pancreatic pp cell
+996,human1_lib1.final_cell_0309,2358,-1,paneth cell of anorectum,zygote,paneth cell of anorectum
+997,human1_lib1.final_cell_0123,496,-1,pp cell of intestine,zygote,pp cell of intestine
+998,D17All2_88,3078,-1,type s enteroendocrine cell,zygote,type s enteroendocrine cell

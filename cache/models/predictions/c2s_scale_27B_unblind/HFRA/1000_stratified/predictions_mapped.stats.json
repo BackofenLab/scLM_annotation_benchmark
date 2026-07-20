@@ -1,0 +1,12 @@
+{
+  "total_predictions": 1000,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 11,
+  "non_cl_ratio": 0.011,
+  "non_cl_labels": [
+    "native cell",
+    "retinal horizontal cell",
+    "retinal lens epithelial cell",
+    "retinal lens fiber cell"
+  ]
+}

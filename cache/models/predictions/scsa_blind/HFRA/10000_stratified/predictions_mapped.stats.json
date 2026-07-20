@@ -1,0 +1,16 @@
+{
+  "total_predictions": 10000,
+  "note": "discovery + resolution; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 7845,
+  "non_cl_ratio": 0.7845,
+  "non_cl_labels": [
+    "adult neural stem cell",
+    "bipolar cell",
+    "horizontal cell",
+    "m\u00fcller glial cell",
+    "neurogenic retinal progenitor cell",
+    "retina cell",
+    "rod cell",
+    "unknown"
+  ]
+}

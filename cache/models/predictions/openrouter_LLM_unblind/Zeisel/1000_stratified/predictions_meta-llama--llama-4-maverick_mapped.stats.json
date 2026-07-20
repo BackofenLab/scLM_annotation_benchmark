@@ -1,0 +1,11 @@
+{
+  "total_predictions": 999,
+  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 46,
+  "non_cl_ratio": 0.046046,
+  "non_cl_labels": [
+    "microglia",
+    "neuron is not a valid output. based on the given gene profile, the predicted cell type is: peptidergic neuron",
+    "serotonergic neuron is not in the list, however, based on the provided gene list, particularly with the presence of tph2, slc6a4, and slc18a2, it appears to be related to a neuron type that is likely to be a 'peptidergic neuron' or more specifically related to the serotonergic system. among the given options, the closest match would be 'peptidergic neuron' due to the absence of a direct 'serotonergic neuron' category.   the best answer is peptidergic neuron"
+  ]
+}
