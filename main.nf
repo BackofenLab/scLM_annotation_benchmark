@@ -33,6 +33,23 @@ def modelAllowedForOrganism(String model, def organismVal, Map blacklistByOrgani
     return !blockedModels.collect { it.toString() }.contains(model)
 }
 
+// Container image for a given model. R-based annotators (SingleR tiers, scType) need
+// R/Bioconductor, absent from the Python-only params.container_image, so they run in
+// params.r_container_image (built from envs/Dockerfile.r); every other model keeps the default.
+// Only consulted under the container profiles (docker/apptainer/helix); ignored under conda.
+def containerFor(String model) {
+    def rModels = (params.r_container_models ?: []) as List
+    return rModels.contains(model) ? params.r_container_image : params.container_image
+}
+
+// True if a dataset declares a CELLxGENE reference for SingleR (singler_reference_source: cellxgene).
+// Such datasets get their reference fetched by fetch_singler_reference and passed to the R method via
+// SINGLER_REF_H5AD; datasets without the flag (default "celldex") use the built-in celldex path.
+def singlerRefIsCellxgene(String dataset) {
+    def cfg = loadYaml("datasets/${dataset}.yml")
+    return (cfg?.get('singler_reference_source') ?: 'celldex').toString() == 'cellxgene'
+}
+
 // Expected prediction filenames produced by a model's run.sh.
 // Most models write a single predictions.csv. OpenRouter LLM models write one
 // predictions_${SLUG}.csv per id in openrouter_LLM.model_names (slug = id with
@@ -103,6 +120,12 @@ def runModelScript(data_file, model_dir, dataset, cfg_yaml, model, cache_dir, su
         for f in "\${EXPECTED_FILES[@]}"; do
             cp "\${results_dir}/\$f" "\${cache_base}/\$f"
         done
+        # Persist agentic-blueprint provenance alongside predictions when the model
+        # produced it (the edited blueprint + its coverage + the scenario the agent
+        # saw). No-op for models that don't write these files.
+        for extra in blueprint.produced.py coverage.json scenario_config.jsonc; do
+            [ -f "\${results_dir}/\$extra" ] && cp "\${results_dir}/\$extra" "\${cache_base}/\$extra" || true
+        done
     else
         echo "Cell type prediction already exists for ${dataset} x ${model} (subset ${subset_size}, strategy ${strategy})."
         echo "To rerun, delete files in: \${cache_base}/"
@@ -159,9 +182,73 @@ process download_from_zenodo {
     """
 }
 
+// Fetch a prebuilt clustering context (<dataset>_context.h5ad) from the pinned Zenodo record,
+// the context analogue of download_from_zenodo. Lets the Zenodo fast-path skip the heavy
+// download->preprocess->build_context chain for cluster-level models. storeDir caches into the
+// same datasets/context/ dir that build_context writes to, so the two paths are interchangeable.
+process fetch_zenodo_context {
+    container params.container_image
+    conda 'envs/download.yml'
+    storeDir "${params.cache_dir}/datasets/context"
+
+    input:
+    tuple val(dataset), val(annotation_key), path(manifest)
+
+    tag { "${dataset}xcontext" }
+
+    output:
+    tuple(val(dataset), path("${dataset}_context.h5ad"))
+
+    script:
+    """
+    set -euo pipefail
+    fetch_zenodo_subset.py \\
+      --manifest "${manifest}" \\
+      --dataset "${dataset}" \\
+      --filename "${dataset}_context.h5ad" \\
+      --annotation_key "${annotation_key}" \\
+      --output "${dataset}_context.h5ad"
+    """
+}
+
+// Fetch + normalize a CELLxGENE Census dataset into a SingleR reference h5ad (for datasets whose YAML
+// sets singler_reference_source: cellxgene). Output shares the query's convention (Ensembl var_names,
+// log1p X, gene_names, counts layer) so predict.R reads it with the same zellkonverter call. Runs in
+// the Python env (the R container lacks cellxgene_census); cached so the 3 sizes/reruns skip it.
+process fetch_singler_reference {
+    container params.container_image
+    conda 'envs/download.yml'
+    storeDir "${params.cache_dir}/datasets/reference"
+
+    input:
+    tuple val(dataset), val(census_id), val(census_version), val(label_key), val(species)
+
+    tag { "${dataset}xsinglerref" }
+
+    output:
+    tuple(val(dataset), path("${dataset}_singler_ref.h5ad"))
+
+    script:
+    """
+    set -euo pipefail
+    prepare_singler_reference.py \\
+      --census_id "${census_id}" \\
+      --census_version "${census_version}" \\
+      --label_key "${label_key}" \\
+      --species "${species}" \\
+      --cap_per_label ${params.singler_reference_cap_per_label} \\
+      --out "${dataset}_singler_ref.h5ad"
+    """
+}
+
 process preprocess {
     conda 'envs/download.yml'
     storeDir "${params.cache_dir}/datasets/preprocessed"
+    // Preprocessing depends on Ensembl BioMart (gene-symbol -> Ensembl ID) for symbol-based
+    // datasets, which is intermittently flaky; a transient bad response should retry, not abort
+    // the whole run. storeDir means already-preprocessed datasets are never re-run.
+    errorStrategy 'retry'
+    maxRetries 2
 
     input:
     tuple path(raw_file), val(dataset), path(cfg_yaml), val(cache_dir), val(annotation_key), val(apply_mapping)
@@ -266,7 +353,13 @@ process prepare_model {
 // Non-OpenRouter models. Identical to run_model_openrouter except it does NOT declare
 // `secret 'OPENROUTER_API_KEY'`, so these tasks run without any OpenRouter key being set.
 process run_model {
-    container params.container_image
+    container { containerFor(model) }   // R models (SingleR tiers) -> r_container_image; others unchanged
+    // Conda env creation can transiently fail under contention (e.g. LinkError when tasks sharing
+    // one env prefix race to build it) or on flaky package downloads. Retry a few times so the
+    // env, once built by the winning task, is reused; after that, skip this one task rather than
+    // aborting the whole run, so other models/datasets still complete.
+    errorStrategy { task.attempt <= 3 ? 'retry' : 'ignore' }
+    maxRetries 3
 
     input:
     tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size), val(strategy), val(expected_files)
@@ -316,6 +409,94 @@ process run_model_openrouter {
 
     script:
     'export API_KEY="$OPENROUTER_API_KEY"\n' + runModelScript(data_file, model_dir, dataset, cfg_yaml, model, cache_dir, subset_size, strategy, expected_files)
+}
+
+// Builds the clustering CONTEXT for cluster-level annotators: a union-seeded, floored-proportional
+// sample of the FULL preprocessed data (up to context_max_size) that is guaranteed to contain every
+// eval-subset cell. Cached under datasets/context (storeDir) so it is built once and reused.
+process build_context {
+    container params.container_image
+    conda 'envs/download.yml'
+    storeDir "${params.cache_dir}/datasets/context"
+    tag { dataset }
+
+    input:
+    tuple val(dataset), path(full_pp), path(subset_files), val(annotation_key)
+
+    output:
+    tuple val(dataset), path("${dataset}_context.h5ad")
+
+    script:
+    """
+    python ${projectDir}/bin/build_context.py \\
+        --full ${full_pp} \\
+        --subsets ${subset_files} \\
+        --output ${dataset}_context.h5ad \\
+        --annotation_key "${annotation_key}" \\
+        --max_size ${params.context_max_size} \\
+        --min_cells_per_type ${params.context_min_cells_per_type} \\
+        --qc_csv ${dataset}_context_qc.csv
+    """
+}
+
+// Cluster-level annotators (sctype_blind, scsa_blind) run with a clustering context. Identical to
+// run_model except it stages the context h5ad and exports CONTEXT_H5AD, which the model's predict
+// step reads to cluster+score on the context and emit only the eval cells. Kept separate so the
+// context is only wired for models that understand it.
+process run_model_cluster {
+    container { containerFor(model) }   // scType -> r_container_image; SCSA (Python) keeps the default
+    // See run_model: retry transient conda env-creation failures, then skip rather than abort.
+    errorStrategy { task.attempt <= 3 ? 'retry' : 'ignore' }
+    maxRetries 3
+
+    input:
+    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size), val(strategy), val(expected_files), path(context_file)
+
+    tag { "${dataset}x${model}x${strategy}" }
+
+    conda { "envs/models/${model}.yml" }
+
+    when:
+    def cfg = loadYaml("datasets/${dataset}.yml")
+    def organism = cfg?.get('organism')
+    def blacklist = params.model_blacklist_by_organism ?: [:]
+    modelAllowedForOrganism(model, organism, blacklist)
+
+    output:
+    tuple(path("results/*/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir), val(subset_size), val(strategy))
+
+    script:
+    "export CONTEXT_H5AD=\"\$(realpath ${context_file})\"\n" + runModelScript(data_file, model_dir, dataset, cfg_yaml, model, cache_dir, subset_size, strategy, expected_files)
+}
+
+// SingleR with a custom CELLxGENE reference. Identical to run_model except it stages the fetched
+// reference h5ad and exports SINGLER_REF_H5AD, which predict.R reads to take the cellxgene path
+// (labels = the reference's cell_type column). Kept separate so the reference is wired only for
+// singler_blind on datasets that declare a cellxgene reference; celldex SingleR uses run_model.
+process run_model_singler_ref {
+    container { containerFor(model) }
+    // See run_model: retry transient conda env-creation failures, then skip rather than abort.
+    errorStrategy { task.attempt <= 3 ? 'retry' : 'ignore' }
+    maxRetries 3
+
+    input:
+    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size), val(strategy), val(expected_files), path(reference_file)
+
+    tag { "${dataset}x${model}x${strategy}" }
+
+    conda { "envs/models/${model}.yml" }
+
+    when:
+    def cfg = loadYaml("datasets/${dataset}.yml")
+    def organism = cfg?.get('organism')
+    def blacklist = params.model_blacklist_by_organism ?: [:]
+    modelAllowedForOrganism(model, organism, blacklist)
+
+    output:
+    tuple(path("results/*/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir), val(subset_size), val(strategy))
+
+    script:
+    "export SINGLER_REF_H5AD=\"\$(realpath ${reference_file})\"\n" + runModelScript(data_file, model_dir, dataset, cfg_yaml, model, cache_dir, subset_size, strategy, expected_files)
 }
 
 // Stage 1 of evaluation: normalize + review-filter + ontology-map predictions, producing a
@@ -386,6 +567,10 @@ process score_predictions {
     container params.container_image
     conda 'envs/evaluation.yml'
     errorStrategy 'ignore'
+    // Serialize so the shared evaluation.yml conda env is built once (by the first task) and
+    // reused, rather than parallel tasks racing to create the same env prefix (LinkError). Scoring
+    // is fast, so the serialization cost is negligible. (map_predictions already runs maxForks 1.)
+    maxForks 1
 
     input:
     tuple path(mapped), path(stats), val(dataset), val(model), val(cache_dir), val(subset_size)
@@ -427,21 +612,31 @@ process combine_results {
 workflow {
     // --- Upfront Zenodo manifest validation ---
 
-    if (params.download_from_zenodo) {
+    def _needsContext = (params.models ?: []).any { ((params.cluster_context_models ?: []) as List).contains(it) }
+    def _fetchContext = params.fetch_context_from_zenodo && _needsContext
+    if (params.download_from_zenodo || _fetchContext) {
         def zenodo_manifest = loadYaml("datasets/zenodo_manifest.yml")
         def zenodo_available = zenodo_manifest.files.keySet()
-        def zenodo_sizes = params.models.collectMany { resolveSubsetSizes(it, params.subset_categories) }.unique()
         def missing = []
-        params.datasets.each { ds ->
-            zenodo_sizes.each { sz ->
-                def fname = "${ds}_sub${sz}_${params.subset_strategy}.h5ad".toString()
+        if (params.download_from_zenodo) {
+            def zenodo_sizes = params.models.collectMany { resolveSubsetSizes(it, params.subset_categories) }.unique()
+            params.datasets.each { ds ->
+                zenodo_sizes.each { sz ->
+                    def fname = "${ds}_sub${sz}_${params.subset_strategy}.h5ad".toString()
+                    if (!zenodo_available.contains(fname)) missing << fname
+                }
+            }
+        }
+        if (_fetchContext) {
+            params.datasets.each { ds ->
+                def fname = "${ds}_context.h5ad".toString()
                 if (!zenodo_available.contains(fname)) missing << fname
             }
         }
         if (missing) {
-            log.error "download_from_zenodo=true but these files are not in datasets/zenodo_manifest.yml:"
+            log.error "download_from_zenodo/fetch_context_from_zenodo: these files are not in datasets/zenodo_manifest.yml:"
             missing.each { log.error "  - ${it}" }
-            log.error "Either disable download_from_zenodo, or adjust datasets / subset_categories / subset_strategy."
+            log.error "Either disable the Zenodo fetch(es), or add the files to the manifest (and the record)."
             System.exit(1)
         }
     }
@@ -472,8 +667,44 @@ workflow {
         .unique()
         .set { unique_sizes }
 
-    // --- Data pipeline: either download→preprocess→subset OR fetch from Zenodo ---
+    // Cluster-level annotators (sctype/scsa) additionally need a clustering context built from the
+    // FULL data. `needsContext` gates the extra download→preprocess + build_context work.
+    def clusterModels = (params.cluster_context_models ?: []) as List
+    def needsContext = (params.models ?: []).any { clusterModels.contains(it) }
 
+    // --- Data pipeline: either download→preprocess→subset OR fetch from Zenodo ---
+    // `preprocess_full` (pp_file, dataset, annotation_key) is the FULL preprocessed data, used only
+    // to build the clustering context. It is produced on the download→preprocess path, and also on
+    // the Zenodo fast-path when a cluster-level model is selected (eval subsets still come from
+    // Zenodo; only the context needs the full data). storeDir makes the extra work skip if cached.
+
+    // Helper: full download → preprocess for a dataset channel of (dataset, cfg_file).
+    def toPreprocessInput = { ch ->
+        ch.map { raw_file, dataset ->
+            def cfg = loadYaml("datasets/${dataset}.yml")
+            def apply_mapping = cfg.containsKey('apply_ontology_mapping') ? cfg.apply_ontology_mapping : params.apply_ontology_mapping
+            tuple(raw_file, dataset, file("datasets/${dataset}.yml"), file(params.cache_dir), cfg.annotation_key, apply_mapping)
+        }
+    }
+
+    // Context source is INDEPENDENT of subset source:
+    //   fetch_context_from_zenodo=true  -> download <dataset>_context.h5ad from Zenodo (fast path)
+    //   fetch_context_from_zenodo=false -> build it locally (this is how the contexts are produced
+    //                                      in the first place, to then upload to Zenodo).
+    // The full download->preprocess runs only if we build the SUBSETS locally OR build the CONTEXTS.
+    def buildContext = needsContext && !params.fetch_context_from_zenodo
+    def needFullPreprocess = (!params.download_from_zenodo) || buildContext
+
+    preprocess_full = Channel.empty()
+    if (needFullPreprocess) {
+        Channel
+            .fromList(params.datasets)
+            .map { dataset -> tuple(dataset, file("datasets/${dataset}.yml")) }
+            .set { download_input }
+        preprocess_full = preprocess(toPreprocessInput(download(download_input)))
+    }
+
+    // --- Eval subsets: fetch from Zenodo, or subset the full preprocessed data locally ---
     if (params.download_from_zenodo) {
         Channel
             .fromList(params.datasets)
@@ -483,34 +714,57 @@ workflow {
                 tuple(ds, sz, params.subset_strategy, cfg.annotation_key, file("datasets/zenodo_manifest.yml"))
             }
             .set { zenodo_input }
-
         subset_out = download_from_zenodo(zenodo_input)
     } else {
-        Channel
-            .fromList(params.datasets)
-            .map { dataset -> tuple(dataset, file("datasets/${dataset}.yml")) }
-            .set { download_input }
-
-        download_out = download(download_input)
-
-        download_out
-            .map { raw_file, dataset ->
-                def cfg = loadYaml("datasets/${dataset}.yml")
-                def apply_mapping = cfg.containsKey('apply_ontology_mapping') ? cfg.apply_ontology_mapping : params.apply_ontology_mapping
-                tuple(raw_file, dataset, file("datasets/${dataset}.yml"), file(params.cache_dir), cfg.annotation_key, apply_mapping)
-            }
-            .set { preprocess_input }
-
-        preprocess_out = preprocess(preprocess_input)
-
-        preprocess_out
+        preprocess_full
             .combine(unique_sizes)
             .map { pp_file, dataset, annotation_key, subset_size ->
                 tuple(pp_file, dataset, file("datasets/${dataset}.yml"), file(params.cache_dir), annotation_key, subset_size, params.min_cells_per_type, params.subset_strategy)
             }
             .set { subset_input }
-
         subset_out = subset(subset_input)
+    }
+
+    // --- Clustering context: fetch prebuilt from Zenodo, or build locally from full + subsets ---
+    context_by_dataset = Channel.empty()
+    if (needsContext && params.fetch_context_from_zenodo) {
+        Channel
+            .fromList(params.datasets)
+            .map { ds -> tuple(ds, loadYaml("datasets/${ds}.yml").annotation_key, file("datasets/zenodo_manifest.yml")) }
+            .set { ctx_fetch_input }
+        context_by_dataset = fetch_zenodo_context(ctx_fetch_input)
+    } else if (buildContext) {
+        subset_out
+            .map { f, ds, sz, strat -> tuple(ds, f) }
+            .groupTuple()
+            .set { subsets_by_dataset }
+
+        preprocess_full
+            .map { pp, ds, ak -> tuple(ds, pp, ak) }
+            .join(subsets_by_dataset)
+            .map { ds, pp, ak, subs -> tuple(ds, pp, subs, ak) }
+            .set { context_build_input }
+
+        context_by_dataset = build_context(context_build_input)
+    }
+
+    // --- SingleR custom reference: fetch a CELLxGENE reference h5ad per dataset that declares one ---
+    // (singler_reference_source: cellxgene). One reference per dataset, shared across sizes; storeDir
+    // caches it. celldex-referenced datasets (e.g. HIHA) produce nothing here and use the celldex path.
+    reference_by_dataset = Channel.empty()
+    if ((params.models ?: []).contains('singler_blind')) {
+        Channel
+            .fromList(params.datasets)
+            .filter { ds -> singlerRefIsCellxgene(ds) }
+            .map { ds ->
+                def cfg = loadYaml("datasets/${ds}.yml")
+                def ver = (cfg.singler_reference_version ?: cfg.census_version ?: 'stable').toString()
+                def label = (cfg.singler_reference_label_key ?: 'cell_type').toString()
+                def species = (cfg.species ?: cfg.organism ?: 'human').toString()
+                tuple(ds, cfg.singler_reference_id.toString(), ver, label, species)
+            }
+            .set { singler_ref_fetch_input }
+        reference_by_dataset = fetch_singler_reference(singler_ref_fetch_input)
     }
 
     // --- Combine subsets with models ---
@@ -530,17 +784,44 @@ workflow {
         }
         .set { model_input }
 
-    // Route models to the secret-bearing process only when they are OpenRouter LLMs;
-    // every other model runs through run_model, which does not require the key.
+    // Route models: OpenRouter (needs the secret), cluster-level
+    // (needs the clustering context), else the default run_model. `clusterModels` is resolved
+    // above from params.cluster_context_models.
     model_input
         .branch { data_file, model_dir, dataset, cfg_yaml, model, cache_dir, size, strategy, expected ->
-            openrouter: model.toLowerCase().contains('openrouter')
-            other:      true
+            openrouter:   model.toLowerCase().contains('openrouter')
+            cluster:      clusterModels.contains(model)
+            singler_ref:  model == 'singler_blind' && singlerRefIsCellxgene(dataset)
+            other:        true
         }
         .set { model_input_branched }
 
+    // Cluster-level models: attach their dataset's context h5ad (cartesian + filter by dataset,
+    // since each dataset has exactly one context but many model/size tasks).
+    model_input_branched.cluster
+        .map { data_file, model_dir, dataset, cfg_yaml, model, cache_dir, size, strategy, expected ->
+            tuple(dataset, data_file, model_dir, cfg_yaml, model, cache_dir, size, strategy, expected) }
+        .combine(context_by_dataset)
+        .filter { ds, df, md, cfg, m, c, sz, st, exp, ctx_ds, ctx_file -> ds == ctx_ds }
+        .map { ds, df, md, cfg, m, c, sz, st, exp, ctx_ds, ctx_file ->
+            tuple(df, md, ds, cfg, m, c, sz, st, exp, ctx_file) }
+        .set { cluster_input }
+
+    // SingleR custom-reference models: attach their dataset's fetched reference h5ad (same
+    // cartesian + filter-by-dataset shape as the cluster context above; one ref per dataset).
+    model_input_branched.singler_ref
+        .map { data_file, model_dir, dataset, cfg_yaml, model, cache_dir, size, strategy, expected ->
+            tuple(dataset, data_file, model_dir, cfg_yaml, model, cache_dir, size, strategy, expected) }
+        .combine(reference_by_dataset)
+        .filter { ds, df, md, cfg, m, c, sz, st, exp, ref_ds, ref_file -> ds == ref_ds }
+        .map { ds, df, md, cfg, m, c, sz, st, exp, ref_ds, ref_file ->
+            tuple(df, md, ds, cfg, m, c, sz, st, exp, ref_file) }
+        .set { singler_ref_input }
+
     predictions = run_model_openrouter(model_input_branched.openrouter)
                       .mix(run_model(model_input_branched.other))
+                      .mix(run_model_cluster(cluster_input))
+                      .mix(run_model_singler_ref(singler_ref_input))
 
     // --- Evaluation (two cached stages: map -> score) ---
 
