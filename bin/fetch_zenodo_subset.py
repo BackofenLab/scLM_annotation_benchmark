@@ -34,14 +34,22 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--manifest", required=True)
     ap.add_argument("--dataset", required=True)
-    ap.add_argument("--subset_size", required=True, type=int)
-    ap.add_argument("--strategy", required=True)
+    ap.add_argument("--subset_size", type=int, help="With --strategy, builds the subset filename.")
+    ap.add_argument("--strategy", help="With --subset_size, builds the subset filename.")
+    ap.add_argument("--filename", help="Explicit manifest filename (e.g. <dataset>_context.h5ad); "
+                                       "overrides the subset_size/strategy construction.")
     ap.add_argument("--annotation_key", required=True)
     ap.add_argument("--output", required=True)
     args = ap.parse_args()
 
     manifest = yaml.safe_load(Path(args.manifest).read_text())
-    filename = f"{args.dataset}_sub{args.subset_size}_{args.strategy}.h5ad"
+    if args.filename:
+        filename = args.filename
+    elif args.subset_size is not None and args.strategy:
+        filename = f"{args.dataset}_sub{args.subset_size}_{args.strategy}.h5ad"
+    else:
+        log_error("provide --filename, or both --subset_size and --strategy")
+        sys.exit(1)
 
     entry = manifest.get("files", {}).get(filename)
     if entry is None:
