@@ -75,6 +75,7 @@ import matplotlib
 matplotlib.use("Agg")  # no display needed; write files only
 import matplotlib.pyplot as plt  # noqa: E402
 import matplotlib.cm as cm  # noqa: E402
+import matplotlib.patches as mpatches  # noqa: E402
 import seaborn as sns  # noqa: E402
 
 # --------------------------------------------------------------------------- #
@@ -169,15 +170,25 @@ SCLLM_BASES = {
     "c2s", "c2s_scale_2B", "c2s_scale_27B", "cellwhisperer", "instructcell", "langcell",
     "mmcontext",
 }
-CLASSICAL_BASES = {"celltypist", "scsa"}
+CLASSICAL_BASES = {"celltypist", "scsa", "sctype", "ucell", "singler"}
+# Agentic "coding agent" blueprints: tool-using LLM-CLI agents (Claude Code / Codex) that
+# annotate via the agentic-blueprint harness, as opposed to the one-shot OpenRouter LLMs.
+AGENT_BASES = {"agentic_bp_claude", "agentic_bp_codex"}
 SIMPLE_BASES = {"random_stratified", "random_uniform", "cell_baseline"}
 # Subset of the simple baselines drawn as dashed reference lines in the composite figure.
 REFERENCE_LINE_BASES = {"random_stratified"}
+# Deprecated / superseded models whose result JSONs are kept on disk for the record but are NOT part
+# of the benchmark, so they are dropped from every figure: UCell (its authors prescribe no argmax
+# rule, so it's intentionally absent from params.models) and the old per-tier SingleR models
+# (singler_main/fine/ont, replaced by the single `singler_blind`). Keyed by model_base (mode-stripped).
+EXCLUDED_BASES = {"ucell", "singler_main", "singler_fine", "singler_ont"}
 # Ordered (category key, x-axis display label) for the strip panels.
+# Left-to-right: baselines, domain-adapted LLMs, one-shot LLMs, coding agents.
 COMPOSITE_CATEGORIES = [
-    ("LLM", "LLMs"),
-    ("scLLM", "scLLMs"),
     ("classical", "baseline"),
+    ("scLLM", "scLLMs"),
+    ("LLM", "LLMs"),
+    ("coding_agent", "coding agents"),
 ]
 
 # Metrics whose natural range is [0, 1]; the label-count diagnostics are unbounded counts and
@@ -215,15 +226,18 @@ def categorize_model(model: str) -> str:
     """Model-family category used by the composite-score figure.
 
     Returns one of ``"simple"`` (random / cell baselines, drawn as reference lines),
-    ``"classical"`` (CellTypist, SCSA), ``"scLLM"`` (domain-adapted language models), or
-    ``"LLM"``. Anything not explicitly a simple/classical/scLLM model falls through to
-    ``"LLM"`` so newly added general-purpose chat models are picked up automatically.
+    ``"classical"`` (CellTypist, SCSA), ``"scLLM"`` (domain-adapted language models),
+    ``"coding_agent"`` (agentic-blueprint Claude/Codex CLI agents), or ``"LLM"``. Anything not
+    explicitly matched falls through to ``"LLM"`` so newly added general-purpose chat models are
+    picked up automatically.
     """
     base = model_base(model)
     if base in SIMPLE_BASES:
         return "simple"
     if base in CLASSICAL_BASES:
         return "classical"
+    if base in AGENT_BASES or base.startswith("agentic"):
+        return "coding_agent"
     if base in SCLLM_BASES:
         return "scLLM"
     return "LLM"
@@ -551,23 +565,46 @@ def plot_barplot(df, metric, out_path, dataset_colors, label_map, caption, dpi):
     fig, ax = plt.subplots(figsize=(max(10.0, 0.5 * len(order)), 6.0))
     sns.barplot(data=sub, x="model", y=metric, hue="dataset", order=order,
                 palette=dataset_colors, errorbar=None, ax=ax)
+    # When blind AND unblind models share one figure (the all_models variant), mark the blind
+    # models' bars with diagonal hatching so the two prediction modes are distinguishable at a
+    # glance. seaborn draws one BarContainer per hue (dataset), each ordered like `order`.
+    modes = [derive_mode(m) for m in order]
+    mark_blind = ("blind" in modes) and ("unblind" in modes)
+    if mark_blind:
+        # Map each bar to its model by x-position (not container index): a dataset missing a model
+        # yields fewer bars in that hue's container, so index-zipping would mis-align. Categorical x
+        # places model i at integer i and dodges the hue bars within +/-0.5, so round(center)==i.
+        # Black diagonals so the mark is visible on every dataset color (white vanished on light bars).
+        for container in ax.containers:
+            for bar in container:
+                idx = int(round(bar.get_x() + bar.get_width() / 2.0))
+                if 0 <= idx < len(modes) and modes[idx] == "blind":
+                    bar.set_hatch("///")
+                    bar.set_edgecolor("black")
+                    bar.set_linewidth(0.5)
     ax.set_xticks(range(len(order)))
     ax.set_xticklabels([label_map.get(m, m) for m in order], rotation=45, ha="right")
     ax.set_xlabel("Model")
     ax.set_ylabel(pretty(metric))
-    ax.set_title(f"{pretty(metric)} across datasets")
     # Chance floor(s) as dashed reference lines (mean over datasets in this view).
     for _lbl, v, ls, c in refs:
         ax.axhline(v, linestyle=ls, color=c, linewidth=1.5, zorder=5)
-    # Dataset legend (from the bars), plus a second legend for the reference lines.
+    # Dataset legend (from the bars); plus reference-line and prediction-mode legends as needed.
     leg1 = ax.legend(title="Dataset", bbox_to_anchor=(1.02, 1), loc="upper left", frameon=False)
+    ax.add_artist(leg1)
     if refs:
-        ax.add_artist(leg1)
         ref_handles = [plt.Line2D([0], [0], color=c, linestyle=ls, linewidth=1.5, label=lbl)
                        for lbl, v, ls, c in refs]
-        ax.legend(handles=ref_handles, title="Baseline (dashed)",
-                  bbox_to_anchor=(1.02, 0.45), loc="upper left", frameon=False)
-    add_caption(fig, caption)
+        legr = ax.legend(handles=ref_handles, title="Baseline (dashed)",
+                         bbox_to_anchor=(1.02, 0.45), loc="upper left", frameon=False)
+        ax.add_artist(legr)
+    if mark_blind:
+        mode_handles = [mpatches.Patch(facecolor="0.7", edgecolor="black", label="unblind"),
+                        mpatches.Patch(facecolor="0.7", edgecolor="black", hatch="///", label="blind")]
+        ax.legend(handles=mode_handles, title="Prediction mode",
+                  bbox_to_anchor=(1.02, 0.2), loc="upper left", frameon=False)
+    # No in-plot title or subset-size caption on barplots: the metric is in the filename and the
+    # subset size is in the folder path, so both are redundant here.
     fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
     plt.close(fig)
     return True
@@ -736,6 +773,113 @@ def plot_composite_category(df, out_path, caption, dpi, title=None):
     return True
 
 
+# Category colors + legend labels for the per-method ranked bar figure. The first four keys keep
+# the SAME palette indices as plot_composite_category (so the two composite figures are visually
+# consistent); "simple" (random / cell baselines) is added as the next color since the ranked bar
+# shows every method individually, baselines included.
+_RANKED_CATEGORY_ORDER = [k for k, _ in COMPOSITE_CATEGORIES] + ["simple"]
+# Labels identical to plot_composite_category's COMPOSITE_CATEGORIES display names so the two
+# composite figures read the same; "simple" has no composite counterpart (drawn as reference lines
+# there), so it keeps its own label here.
+_RANKED_CATEGORY_LABELS = {
+    "LLM": "LLMs", "coding_agent": "coding agents", "scLLM": "scLLMs",
+    "classical": "baseline", "simple": "simple baseline",
+}
+
+
+def _ranked_category_colors():
+    cat_palette = (CATEGORICAL_PALETTES.get("tab20_new") if _HAVE_REPO_STYLE else None) \
+        or sns.color_palette("tab10", n_colors=10).as_hex()
+    return {key: cat_palette[i % len(cat_palette)] for i, key in enumerate(_RANKED_CATEGORY_ORDER)}
+
+
+def plot_composite_ranked_bars(df, out_path, dpi, title=None):
+    """Per-method composite ranking: one bar per model, sorted best-first (highest composite on the
+    left), each bar (and its x-axis name label) colored by the model's category.
+
+    Uses the same baseline-normalized composite score as ``plot_composite_category``
+    (``_composite_per_model``), but instead of collapsing each category to points + a mean line it
+    shows EVERY method individually — blind and unblind models are separate bars, and the simple
+    baselines are included. Returns False if the composite metrics are absent.
+    """
+    per_model = _composite_per_model(df)
+    if per_model.empty:
+        return False
+
+    # Chance reference: random_stratified's composite, drawn as a dashed line below. The simple
+    # baselines (random_*, cell_baseline) are excluded from the bars — mirroring the strip figure and
+    # plot_barplot, which show them as reference lines rather than ranked entries.
+    chance_val = per_model.get(COMPOSITE_BASELINE_MODEL, float("nan"))
+
+    # Drop models with no composite score (NaN under the coverage gate, e.g. not-yet-reviewed marker
+    # baselines) and the simple chance baselines so they don't occupy slots on the ranked axis.
+    ranked = per_model.dropna()
+    ranked = ranked[[categorize_model(m) != "simple" for m in ranked.index]].sort_values(ascending=False)
+    if ranked.empty:
+        return False
+    models = list(ranked.index)
+    cats = [categorize_model(m) for m in models]
+    cat_color = _ranked_category_colors()
+    colors = [cat_color.get(c, cat_color["LLM"]) for c in cats]
+
+    n = len(models)
+    fig_w = max(8.0, 0.34 * n + 2.0)
+    fig, ax = plt.subplots(figsize=(fig_w, 6.0))
+    x = np.arange(n)
+    bars = ax.bar(x, ranked.values, color=colors, edgecolor="white", linewidth=0.5, zorder=3)
+    # This figure shows blind AND unblind models together; mark the blind bars with black diagonal
+    # hatching so the two prediction modes are distinguishable on top of the category colors.
+    for bar, m in zip(bars, models):
+        if derive_mode(m) == "blind":
+            bar.set_hatch("///")
+            bar.set_edgecolor("black")
+            bar.set_linewidth(0.5)
+
+    # Chance reference line (random_stratified composite), red and in front of the bars.
+    if np.isfinite(chance_val):
+        ax.axhline(chance_val, linestyle="--", color="red", linewidth=1.4, zorder=5)
+
+    # Value labels above each bar (small, rotated) so the rank order is readable at a glance.
+    for xi, v in zip(x, ranked.values):
+        if np.isfinite(v):
+            ax.annotate(f"{v:.2f}", (xi, v), xytext=(0, 2), textcoords="offset points",
+                        ha="center", va="bottom", fontsize=6.5, rotation=90, color="0.3")
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(models, rotation=90, ha="center", fontsize=8)
+    # Color each model-name tick label by its category (matches the bar).
+    for tick, c in zip(ax.get_xticklabels(), cats):
+        tick.set_color(cat_color.get(c, cat_color["LLM"]))
+    ax.set_xlim(-0.6, n - 0.4)
+    ax.set_ylim(0, 1.02)
+    ax.set_ylabel("Composite score\n(bal. acc. + Lin. sim., chance-normalized)", fontsize=13)
+    ax.tick_params(axis="y", labelsize=12)
+    ax.grid(axis="y", linestyle=":", alpha=0.5)
+    sns.despine(ax=ax)
+
+    # Legend: one swatch per category actually present, in canonical order.
+    present_cats = [k for k in _RANKED_CATEGORY_ORDER if k in set(cats)]
+    handles = [mpatches.Patch(color=cat_color[k], label=_RANKED_CATEGORY_LABELS[k])
+               for k in present_cats]
+    if np.isfinite(chance_val):
+        handles.append(plt.Line2D([0], [0], color="red", linestyle="--", linewidth=1.4,
+                                  label="random-stratified (chance)"))
+    leg_cat = ax.legend(handles=handles, loc="upper right", frameon=False, fontsize=11,
+                        title="model category", title_fontsize=11)
+    ax.add_artist(leg_cat)
+    # Second legend: prediction mode (solid = unblind, black diagonals = blind).
+    mode_handles = [mpatches.Patch(facecolor="0.7", edgecolor="black", label="unblind"),
+                    mpatches.Patch(facecolor="0.7", edgecolor="black", hatch="///", label="blind")]
+    ax.legend(handles=mode_handles, loc="upper right", bbox_to_anchor=(1.0, 0.60),
+              frameon=False, fontsize=10, title="prediction mode", title_fontsize=10)
+
+    if title:
+        fig.suptitle(title, y=1.0, fontsize=17)
+    fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
+    plt.close(fig)
+    return True
+
+
 def composite_size_views(df: pd.DataFrame, size_col: str):
     """Yield ``(folder, df_subset)`` for the composite figure: one view per subset size, plus a
     combined ``all`` view across sizes when more than one is present. Unlike
@@ -848,6 +992,13 @@ def main(argv=None):
     if missing:
         raise SystemExit(f"CSV is missing required column(s): {missing}")
 
+    # Drop deprecated / superseded models (see EXCLUDED_BASES) from every figure.
+    n_before = df["model"].nunique()
+    df = df[~df["model"].map(lambda m: model_base(m) in EXCLUDED_BASES)].copy()
+    dropped = n_before - df["model"].nunique()
+    if dropped:
+        print(f"Excluded {dropped} deprecated model(s) (bases: {', '.join(sorted(EXCLUDED_BASES))}).")
+
     df = apply_dataset_filter(df, args.datasets)
     df = apply_model_filter(df, args.models)
 
@@ -944,6 +1095,12 @@ def main(argv=None):
                     warnings.warn(
                         f"Skipped composite_category/{log_tag}/{size_folder}: composite metrics "
                         f"{COMPOSITE_METRICS} not all present.")
+                # Companion per-method ranked bar figure (every model individually, sorted best-first,
+                # name colored by category) — same size views + per-dataset breakdown.
+                outr = out_dir / f"composite_ranked_{size_folder}.{args.format}"
+                if plot_composite_ranked_bars(sdf, outr, args.dpi, title=title):
+                    total_written += 1
+                    print(f"[composite_category/{log_tag}/{size_folder}]  wrote {outr.name}")
 
         # 1) Aggregated over all datasets (top-level folder), as before.
         emit_composite(df, cdir, "all_datasets")
