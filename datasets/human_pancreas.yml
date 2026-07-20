@@ -16,3 +16,12 @@ tissue: "pancreas"                  # direct value for all cells
 sequencing_method_key: "tech"  # column name for sequencing method (per-cell)
 annotation_key: "celltype"
 celltypist_model: "Adult_Human_PancreaticIslet.pkl" #"Immune_All_High.pkl"
+sctype_tissue: "Pancreas"                         # ScTypeDB tissue for sctype_blind / ucell_blind
+scsa_tissue: "Pancreas"                           # exact CellMarker DB tissue for scsa_blind (covers islet+acinar+ductal; "All" = whole DB)
+# SingleR reference: an independent healthy human pancreas atlas from CELLxGENE Census (Xu et al.
+# 2023, normal-only). celldex has no pancreas reference, so HumanPrimaryCellAtlasData scored ~0.16
+# here. Fetched + normalized by bin/prepare_singler_reference.py; labels = its cell_type column.
+singler_reference_source: "cellxgene"
+singler_reference_id: "31f657dc-1875-4c4b-a5ca-ce63b3ef3a82"   # Xu 2023 human pancreas (normal-only)
+singler_reference_version: "2025-11-08"
+singler_reference_label_key: "cell_type"
