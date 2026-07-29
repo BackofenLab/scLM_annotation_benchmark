@@ -75,7 +75,9 @@ import matplotlib
 matplotlib.use("Agg")  # no display needed; write files only
 import matplotlib.pyplot as plt  # noqa: E402
 import matplotlib.cm as cm  # noqa: E402
+import matplotlib.dates as mdates  # noqa: E402
 import matplotlib.patches as mpatches  # noqa: E402
+import matplotlib.transforms as mtransforms  # noqa: E402
 import seaborn as sns  # noqa: E402
 
 # --------------------------------------------------------------------------- #
@@ -142,6 +144,10 @@ DEFAULT_METRICS = [
     "n_unique_pred_mapped",  # distinct predicted cell types after ontology mapping
 ]
 PLOT_TYPES = ["ranking", "heatmap", "bump", "barplot", "correlation", "composite_category"]
+# Model publication/release dates for the date-vs-composite figure. Produced out-of-band (the
+# dates are researched against primary sources, not derivable from the pipeline), so this is a
+# soft dependency: the figure is skipped with a warning when the file is absent.
+DEFAULT_DATES_CSV = REPO_ROOT / "cache" / "model_publication_dates.csv"
 
 # --------------------------------------------------------------------------- #
 # Composite-score-by-category figure (blind vs unblind).
@@ -170,7 +176,11 @@ SCLLM_BASES = {
     "c2s", "c2s_scale_2B", "c2s_scale_27B", "cellwhisperer", "instructcell", "langcell",
     "mmcontext",
 }
-CLASSICAL_BASES = {"celltypist", "scsa", "sctype", "ucell", "singler"}
+# The per-tier SingleR variants are listed explicitly: without them categorize_model() falls
+# through to "LLM" and would color them as general-purpose LLMs if they were ever taken out of
+# EXCLUDED_BASES.
+CLASSICAL_BASES = {"celltypist", "scsa", "sctype", "ucell",
+                   "singler", "singler_main", "singler_fine", "singler_ont"}
 # Agentic "coding agent" blueprints: tool-using LLM-CLI agents (Claude Code / Codex) that
 # annotate via the agentic-blueprint harness, as opposed to the one-shot OpenRouter LLMs.
 AGENT_BASES = {"agentic_bp_claude", "agentic_bp_codex"}
@@ -181,7 +191,16 @@ REFERENCE_LINE_BASES = {"random_stratified"}
 # of the benchmark, so they are dropped from every figure: UCell (its authors prescribe no argmax
 # rule, so it's intentionally absent from params.models) and the old per-tier SingleR models
 # (singler_main/fine/ont, replaced by the single `singler_blind`). Keyed by model_base (mode-stripped).
-EXCLUDED_BASES = {"ucell", "singler_main", "singler_fine", "singler_ont"}
+#
+# `c2s` (Cell2Sentence, C2S-Pythia-410m) is excluded for a different reason: it is the only scLLM
+# with NO unblind counterpart, so it orphaned one point in the paired blind/unblind composite
+# figure and made the two scLLM category means average over different model sets (7 blind vs 6
+# unblind). Because it scores above the blind scLLM mean, keeping it understated the blind->unblind
+# gain (+0.140 with it, +0.154 on the matched six). An unblind variant is not simply missing: the
+# model is driven through the cell2sentence library's own prompt formatter, whose templates expose
+# only {num_genes}/{organism}/{cell_sentence} and have no slot for a candidate label list, so
+# building one would require forking upstream. See models/c2s_blind/src/predict.py.
+EXCLUDED_BASES = {"ucell", "singler_main", "singler_fine", "singler_ont", "c2s"}
 # Ordered (category key, x-axis display label) for the strip panels.
 # Left-to-right: baselines, domain-adapted LLMs, one-shot LLMs, coding agents.
 COMPOSITE_CATEGORIES = [
@@ -190,6 +209,85 @@ COMPOSITE_CATEGORIES = [
     ("LLM", "LLMs"),
     ("coding_agent", "coding agents"),
 ]
+
+# --------------------------------------------------------------------------- #
+# Sub-grouping WITHIN each category column of the composite strip figure.
+#
+# Every category is split into method tiers that get their own marker shape plus a thin black
+# within-tier mean line drawn on top of the category-wide mean. The splits are:
+#
+#   LLM        closed-weight reasoning / open-weight reasoning / open-weight non-reasoning.
+#              NOTE these two attributes are CONFOUNDED in the current model set -- every
+#              closed-weight model is also a reasoning model, and there is no closed-weight
+#              non-reasoning model -- so the tiers are a presentational grouping and cannot
+#              separate "open weights" from "this vendor's models are better". Adding a
+#              closed-weight non-reasoning model (e.g. mistral-large-2512) fills the empty cell.
+#   scLLM      how the prediction is produced: generative models emit a free-text label
+#              (c2s family via cell sentences, InstructCell via a prompt), whereas retrieval
+#              models embed the cell and argmax a cosine similarity against a supplied set of
+#              candidate label strings (CellWhisperer / mmContext / LangCell). The two are
+#              given genuinely different tasks -- the retrieval models are closed-set by
+#              construction, scoring against cache/all_cell_types.txt (~3.2k CL terms) in blind
+#              mode and the dataset's own label list when unblind.
+#   classical  marker-set scoring against a marker database (scType/UCell over ScTypeDB, SCSA
+#              over CellMarker) vs. classifiers fitted to a labeled reference (CellTypist,
+#              SingleR reference-profile correlation). This is the split already drawn in
+#              benchmarking_scLLMs_story.md ("Note 2 -- Marker-based scoring / reference-
+#              correlation approaches").
+#
+# Entries are (tier key, legend label, marker, marker size). Marker shapes are unique ACROSS
+# categories so a legend entry is unambiguous on its own.
+CATEGORY_TIERS = {
+    "LLM": [
+        ("closed_reasoning",  "closed-weight reasoning",   "*", 150),
+        ("open_reasoning",    "open-weight reasoning",     "^", 52),
+        ("open_nonreasoning", "open-weight non-reasoning", "s", 40),
+    ],
+    "scLLM": [
+        ("generative", "generative (free-text label)",     "o", 46),
+        ("retrieval",  "embedding retrieval (closed set)", "v", 52),
+    ],
+    "classical": [
+        ("marker",    "marker-set scoring",         "D", 38),
+        ("reference", "reference-based classifier", "P", 62),
+    ],
+}
+# None of these attributes is recoverable from a model name, so membership is an explicit
+# reviewed list keyed on model_base(). Models missing from it are drawn as "unclassified"
+# rather than guessed at -- see model_tier(). LLM names must match the aggregated CSV
+# (OpenRouter ids with the vendor prefix stripped), NOT the ids in model_cfg.yml.
+CATEGORY_TIER_MEMBERS = {
+    "LLM": {
+        "closed_reasoning": {
+            "claude-opus-4.7", "claude-sonnet-4.6", "gemini-3.1-pro-preview", "gpt-5.5",
+            # configured in model_cfg.yml but not currently in params.models:
+            "gpt-5.5-pro", "gemini-3-flash-preview",
+        },
+        "open_reasoning": {
+            "deepseek-v3.2", "gpt-oss-120b", "gpt-oss-20b", "kimi-k2.6",
+            # configured in model_cfg.yml but not currently in params.models:
+            "deepseek-v4-pro", "deepseek-v4-flash", "deepseek-r1-0528", "glm-5",
+        },
+        "open_nonreasoning": {
+            "llama-3.1-70b-instruct", "llama-3.3-70b-instruct", "llama-4-maverick",
+            # configured in model_cfg.yml but not currently in params.models:
+            "llama-3.1-8b-instruct",
+        },
+        # Deliberately unlisted: mistral-large-2512 (non-reasoning but closed-weight, so it
+        # needs a fourth tier) and gemma-4-31b-it (open-weight, reasoning behaviour
+        # unverified). Both render as "unclassified" until someone confirms where they belong.
+    },
+    "scLLM": {
+        "generative": {"c2s", "c2s_scale_2B", "c2s_scale_27B", "instructcell"},
+        "retrieval": {"cellwhisperer", "cellwhisperer_emb", "langcell", "mmcontext"},
+    },
+    "classical": {
+        "marker": {"scsa", "sctype", "ucell"},
+        "reference": {"celltypist", "singler", "singler_main", "singler_fine", "singler_ont"},
+    },
+}
+UNCLASSIFIED_TIER_STYLE = ("X", 40)
+_WARNED_UNKNOWN_TIERS: set[str] = set()
 
 # Metrics whose natural range is [0, 1]; the label-count diagnostics are unbounded counts and
 # must autoscale in the heatmap rather than clipping against vmin=0/vmax=1.
@@ -241,6 +339,28 @@ def categorize_model(model: str) -> str:
     if base in SCLLM_BASES:
         return "scLLM"
     return "LLM"
+
+
+def model_tier(model: str):
+    """Method tier within the model's category, or ``None`` if the category has no tiers.
+
+    Returns one of the category's ``CATEGORY_TIERS`` keys for models listed in
+    ``CATEGORY_TIER_MEMBERS``, or ``"unclassified"`` for a model whose tier has not been
+    recorded yet -- warned once on stderr, drawn with a neutral marker, and kept out of the
+    within-tier means so an unreviewed model can never silently shift a tier average.
+    """
+    cat = categorize_model(model)
+    if cat not in CATEGORY_TIER_MEMBERS:
+        return None
+    base = model_base(model)
+    for key, members in CATEGORY_TIER_MEMBERS[cat].items():
+        if base in members:
+            return key
+    if base not in _WARNED_UNKNOWN_TIERS:
+        _WARNED_UNKNOWN_TIERS.add(base)
+        print(f"[composite_category]  {cat} model '{base}' is not in CATEGORY_TIER_MEMBERS; "
+              f"drawing it as unclassified (excluded from the tier means).", file=sys.stderr)
+    return "unclassified"
 
 
 # Variant name -> set of modes kept. Baselines are included in every variant so each plot has a
@@ -690,15 +810,94 @@ def _composite_per_model(df: pd.DataFrame) -> pd.Series:
     return comp.groupby(df["model"]).mean()
 
 
-def plot_composite_category(df, out_path, caption, dpi, title=None):
-    """Two-panel (blind | unblind) composite-score figure.
+def _tiered_offsets(group_sizes, spacing=0.030, gap=0.080, max_half_width=0.24):
+    """x-offsets for points laid out in contiguous groups separated by a visible gap.
 
-    In each panel the LLM / scLLM / classical-baseline categories show their individual models
-    as points plus a horizontal mean line; the simple baselines (random_*, cell_baseline) are
-    drawn as dashed reference lines (identical in both panels, since they are mode-agnostic).
+    Keeps the within-group point density of the plain evenly-spaced layout, centres the whole
+    block on the column, and shrinks it proportionally if the extra inter-group gaps would push
+    it past the category mean line at +/-0.28.
+    """
+    pos, x = [], 0.0
+    for i, k in enumerate(group_sizes):
+        if i:
+            x += gap
+        for _ in range(k):
+            pos.append(x)
+            x += spacing
+    arr = np.asarray(pos, dtype=float)
+    if arr.size == 0:
+        return arr
+    arr -= (arr.min() + arr.max()) / 2.0
+    half = float(arr.max())
+    if half > max_half_width:
+        arr *= max_half_width / half
+    return arr
 
-    ``title`` adds a figure-level title (used by the per-dataset supplementary figures so they
-    are self-identifying); the aggregated-over-datasets figures pass ``None`` (no title).
+
+def _category_layout(key, members, use_tiers=True):
+    """Point layout for one category column of the composite strip figure.
+
+    Returns ``(members, offsets, segments)``: ``members`` possibly reordered so same-tier models
+    are contiguous, ``offsets`` the per-point x-offset around the column centre, and
+    ``segments`` a list of ``(tier_key, slice, marker, marker_size)`` -- one entry per scatter
+    call, since matplotlib takes a single marker per call. Categories without a tier definition
+    get one circle segment with ``tier_key=None`` and even spacing, so they are unchanged.
+
+    ``use_tiers=False`` forces a flat single-circle layout for EVERY category, which is what the
+    tier-free variant of the composite figure uses. There is no x-jitter in that variant: every
+    point sits on its sub-column centre, so x carries no information at all and the column reads
+    as a single distribution. (The tiered variant needs offsets because x there encodes which
+    tier a point belongs to.)
+    """
+    tiers = CATEGORY_TIERS.get(key) if use_tiers else None
+    if not tiers:
+        members = sorted(members)
+        n = len(members)
+        return members, np.zeros(n), [(None, slice(0, n), "o", 44)]
+
+    style = {k: (marker, size) for k, _lbl, marker, size in tiers}
+    style["unclassified"] = UNCLASSIFIED_TIER_STYLE
+
+    ordered, segments, start = [], [], 0
+    for tkey in [k for k, _lbl, _m, _s in tiers] + ["unclassified"]:
+        grp = sorted(m for m in members if model_tier(m) == tkey)
+        if not grp:
+            continue
+        ordered.extend(grp)
+        marker, size = style[tkey]
+        segments.append((tkey, slice(start, start + len(grp)), marker, size))
+        start += len(grp)
+    offsets = _tiered_offsets([sl.stop - sl.start for _k, sl, _m, _s in segments])
+    return ordered, offsets, segments
+
+
+def plot_composite_category(df, out_path, caption, dpi, title=None, show_tiers=True):
+    """Single-panel composite-score figure with paired blind/unblind sub-columns.
+
+    Each category gets one slot on the x axis. Categories that were run in both prediction modes
+    (scLLMs, LLMs, coding agents) are split into adjacent blind and unblind sub-columns, and every
+    model that exists in both modes has its two points joined by a thin line, so the per-model
+    effect of handing over the candidate label list is readable directly. Blind-only categories --
+    the classical baselines, which cannot consume a label list — occupy a single sub-column and
+    are drawn ONCE rather than duplicated.
+
+    Within each sub-column the points are grouped into the method tiers defined by
+    ``CATEGORY_TIERS`` (reasoning/weight availability for LLMs, generative vs. embedding retrieval
+    for scLLMs, marker-set vs. reference-based for the classical baselines), each with its own
+    marker shape and a thin black within-tier mean on top of the sub-column's category mean.
+
+    A model keeps the SAME x-offset in both of its sub-columns, so the connecting lines stay
+    parallel and never cross — that ordering is computed once per category from the union of the
+    blind and unblind members.
+
+    ``show_tiers=False`` renders the tier-free variant: every model is a plain circle, there is no
+    within-tier grouping, offset gap or within-tier mean line, and the legend drops the marker
+    vocabulary. Everything else -- categories, paired sub-columns, connectors, category means --
+    is identical, so the two variants are read the same way and differ only in whether the method
+    sub-structure is asserted.
+
+    ``title`` adds a figure-level title (used by the per-dataset supplementary figures so they are
+    self-identifying); the aggregated-over-datasets figures pass ``None`` (no title).
     """
     per_model = _composite_per_model(df)
     if per_model.empty:
@@ -709,65 +908,120 @@ def plot_composite_category(df, out_path, caption, dpi, title=None):
     cat_color = {key: cat_palette[i % len(cat_palette)]
                  for i, (key, _) in enumerate(COMPOSITE_CATEGORIES)}
 
-    modes = ["blind", "unblind"]
-    fig, axes = plt.subplots(1, 2, figsize=(10, 6), sharey=True)
+    # (category, model_base) -> {mode: score}. Keyed on the mode-stripped base so the blind and
+    # unblind variants of one model collapse to a single entry with two values.
+    scores = {}
+    for model, val in per_model.items():
+        cat = categorize_model(model)
+        if cat == "simple" or not np.isfinite(val):
+            continue
+        scores.setdefault((cat, model_base(model)), {})[derive_mode(model)] = float(val)
 
-    # Classical baselines (CellTypist, SCSA) are blind-only but act as a mode-agnostic reference,
-    # so they are shown in BOTH panels with the same points (like the dashed simple baselines).
-    classical_models = sorted(m for m in per_model.index if categorize_model(m) == "classical")
+    present = []
+    for key, lbl in COMPOSITE_CATEGORIES:
+        bases = sorted(b for (c, b) in scores if c == key)
+        if bases:
+            present.append((key, lbl, bases))
+    if not present:
+        return False
 
-    def members_for(key, mode_models):
-        if key == "classical":
-            return classical_models
-        return sorted(m for m in mode_models if categorize_model(m) == key)
+    MODE_SHIFT = 0.25   # sub-column centre offset from the category centre
+    SPLIT_SQUEEZE = 0.6  # point spread is tightened when a category splits into two sub-columns
 
-    for ax, mode in zip(axes, modes):
-        mode_models = [m for m in per_model.index if derive_mode(m) == mode]
-        # Keep categories that have at least one model (classical is always present if any exist),
-        # packed left-to-right so an empty mode-specific category leaves no gap.
-        present = [(key, lbl) for key, lbl in COMPOSITE_CATEGORIES if members_for(key, mode_models)]
-        pos = {key: i for i, (key, _) in enumerate(present)}
-        for key, _lbl in present:
-            members = members_for(key, mode_models)
-            x0 = pos[key]
-            vals = per_model.loc[members]                     # Series (index = model names)
-            n = len(members)
-            offsets = np.linspace(-0.09, 0.09, n) if n > 1 else np.array([0.0])
-            ax.scatter(x0 + offsets, vals.values, s=42, color=cat_color[key],
-                       edgecolor="white", linewidth=0.5, zorder=3)
-            mean_v = float(np.nanmean(vals.values))
-            ax.hlines(mean_v, x0 - 0.28, x0 + 0.28, color=cat_color[key],
-                      linewidth=2.4, zorder=4)
-            # Label only the TOP (best) model in each class next to its point — keeps the honest
-            # all-points + class-mean view while identifying the champion.
-            top_i = int(np.nanargmax(vals.values))
-            ax.annotate(model_base(vals.index[top_i]),
-                        (x0 + offsets[top_i], vals.values[top_i]),
-                        xytext=(6, 3), textcoords="offset points", fontsize=8,
-                        rotation=20, ha="left", va="bottom", zorder=6)
+    # Crop the empty band above the highest point instead of always drawing to 1.0. The floor
+    # stays at 0 because that IS the random-stratified chance level by construction; only the
+    # unused headroom is removed.
+    ymax = min(1.0, max(v for md in scores.values() for v in md.values()) + 0.06)
 
-        ax.set_xticks(list(pos.values()))
-        ax.set_xticklabels([lbl for _, lbl in present], fontsize=14,
-                           rotation=45, ha="right")
-        ax.set_xlim(-0.6, max(len(present) - 0.4, 0.6))
-        ax.set_title(mode.capitalize(), fontsize=17)
-        ax.tick_params(axis="y", labelsize=13)
-        ax.grid(axis="y", linestyle=":", alpha=0.5)
-        sns.despine(ax=ax)  # frame off: drop the top and right spines
+    fig, ax = plt.subplots(figsize=(2.6 * len(present) + 1.6, 4.3))
+    drawn_tiers, drew_link = set(), False
+    tick_pos, tick_lab = [], []
 
-    axes[0].set_ylim(0, 1)
+    for i, (key, _lbl, bases) in enumerate(present):
+        x0 = float(i)
+        modes = [m for m in ("blind", "unblind") if any(m in scores[(key, b)] for b in bases)]
+        split = len(modes) > 1
+        # One shared ordering/offset per category, from the union of both modes.
+        ordered, offsets, segments = _category_layout(key, bases, use_tiers=show_tiers)
+        offs = offsets * (SPLIT_SQUEEZE if split else 1.0)
+        xof = {m: x0 + (MODE_SHIFT if m == "unblind" else -MODE_SHIFT) if split else x0
+               for m in modes}
+
+        # Connectors first so points sit on top of them.
+        for j, b in enumerate(ordered):
+            sc = scores[(key, b)]
+            if len(modes) > 1 and all(m in sc for m in modes):
+                ax.plot([xof[modes[0]] + offs[j], xof[modes[1]] + offs[j]],
+                        [sc[modes[0]], sc[modes[1]]],
+                        color="0.62", linewidth=0.7, zorder=2)
+                drew_link = True
+
+        for mode in modes:
+            xm = xof[mode]
+            for tkey, sl, marker, msize in segments:
+                idx = [j for j in range(sl.start, sl.stop) if mode in scores[(key, ordered[j])]]
+                if not idx:
+                    continue
+                ax.scatter([xm + offs[j] for j in idx],
+                           [scores[(key, ordered[j])][mode] for j in idx],
+                           s=msize, marker=marker, color=cat_color[key],
+                           edgecolor="white", linewidth=0.5, zorder=4)
+                if tkey is not None:
+                    drawn_tiers.add((key, tkey))
+
+            # Mode ticks only where there is a contrast to label. A single-mode category (the
+            # blind-only classical baselines) gets just its category name.
+            if split:
+                tick_pos.append(xm)
+                tick_lab.append(mode)
+
+    # Sub-column ticks carry the mode; the category name goes underneath, centred on its slot.
+    ax.set_xticks(tick_pos)
+    ax.set_xticklabels(tick_lab, fontsize=10)
+    ax.set_xlim(-0.62, len(present) - 0.38)
+    blended = mtransforms.blended_transform_factory(ax.transData, ax.transAxes)
+    for i, (_key, lbl, _bases) in enumerate(present):
+        ax.text(float(i), -0.13, lbl, transform=blended, ha="center", va="top", fontsize=14)
+
+    ax.set_ylim(0, ymax)
     # y=0 IS the random-stratified (chance) level by construction (the composite is normalized
     # against it), so no separate baseline reference line is drawn — it would sit on the axis.
-    axes[0].set_ylabel("Composite score\n(bal. acc. + Lin. sim., chance-normalized)", fontsize=14)
+    ax.set_ylabel("Composite score\n(bal. acc. + Lin. sim., chance-normalized)", fontsize=13)
+    ax.tick_params(axis="y", labelsize=12)
+    ax.grid(axis="y", linestyle=":", alpha=0.5)
+    sns.despine(ax=ax)
 
-    # Legend: only the category-mean marker (the individual points are self-explanatory).
-    handles = [plt.Line2D([0], [0], color="0.2", linewidth=2.4, label="Category mean")]
-    axes[1].legend(handles=handles, loc="upper right", bbox_to_anchor=(1.02, 0.97),
-                   frameon=False, fontsize=13)
+    # Legend outside right: the connector, then one entry per tier marker actually drawn, grouped
+    # under a per-category header in that category's color.
+    def _blank(label):
+        return plt.Line2D([0], [0], linestyle="none", marker="", label=label)
+
+    handles = []
+    if drew_link:
+        handles.append(plt.Line2D([0], [0], color="0.62", linewidth=0.7,
+                                  label="same model, blind–unblind"))
+    for key, clabel in COMPOSITE_CATEGORIES:
+        entries = [(tk, tl, mk) for tk, tl, mk, _s in CATEGORY_TIERS.get(key, [])
+                   if (key, tk) in drawn_tiers]
+        unassigned = (key, "unclassified") in drawn_tiers
+        if not entries and not unassigned:
+            continue
+        handles.append(_blank(""))
+        handles.append(_blank(f"{clabel}:"))
+        for _tk, tlabel, marker in entries:
+            handles.append(plt.Line2D([0], [0], linestyle="none", marker=marker,
+                                      color=cat_color[key],
+                                      markersize=12 if marker == "*" else 7, label=tlabel))
+        if unassigned:
+            handles.append(plt.Line2D([0], [0], linestyle="none",
+                                      marker=UNCLASSIFIED_TIER_STYLE[0], color=cat_color[key],
+                                      markersize=6, label="tier unassigned"))
+    fig.legend(handles=handles, loc="center left", bbox_to_anchor=(0.87, 0.5),
+               frameon=False, fontsize=9, labelspacing=0.32, handletextpad=0.6)
 
     # Caption intentionally omitted; optional title only for the per-dataset supplementary figures.
     if title:
-        fig.suptitle(title, y=0.99, fontsize=19)
+        fig.suptitle(title, y=1.0, fontsize=17)
     fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
     plt.close(fig)
     return True
@@ -806,11 +1060,6 @@ def plot_composite_ranked_bars(df, out_path, dpi, title=None):
     if per_model.empty:
         return False
 
-    # Chance reference: random_stratified's composite, drawn as a dashed line below. The simple
-    # baselines (random_*, cell_baseline) are excluded from the bars — mirroring the strip figure and
-    # plot_barplot, which show them as reference lines rather than ranked entries.
-    chance_val = per_model.get(COMPOSITE_BASELINE_MODEL, float("nan"))
-
     # Drop models with no composite score (NaN under the coverage gate, e.g. not-yet-reviewed marker
     # baselines) and the simple chance baselines so they don't occupy slots on the ranked axis.
     ranked = per_model.dropna()
@@ -836,8 +1085,10 @@ def plot_composite_ranked_bars(df, out_path, dpi, title=None):
             bar.set_linewidth(0.5)
 
     # Chance reference line (random_stratified composite), red and in front of the bars.
-    if np.isfinite(chance_val):
-        ax.axhline(chance_val, linestyle="--", color="red", linewidth=1.4, zorder=5)
+    # No chance reference line: the composite is normalized AGAINST random_stratified, so that
+    # model scores exactly 0 by construction and the line would lie on top of the x axis (it read
+    # as a rendering bug). The chance level is stated in the y-axis label instead, matching what
+    # plot_composite_category already does.
 
     # Value labels above each bar (small, rotated) so the rank order is readable at a glance.
     for xi, v in zip(x, ranked.values):
@@ -852,7 +1103,8 @@ def plot_composite_ranked_bars(df, out_path, dpi, title=None):
         tick.set_color(cat_color.get(c, cat_color["LLM"]))
     ax.set_xlim(-0.6, n - 0.4)
     ax.set_ylim(0, 1.02)
-    ax.set_ylabel("Composite score\n(bal. acc. + Lin. sim., chance-normalized)", fontsize=13)
+    ax.set_ylabel("Composite score\n(bal. acc. + Lin. sim. — 0 = random-stratified chance)",
+                  fontsize=13)
     ax.tick_params(axis="y", labelsize=12)
     ax.grid(axis="y", linestyle=":", alpha=0.5)
     sns.despine(ax=ax)
@@ -861,9 +1113,6 @@ def plot_composite_ranked_bars(df, out_path, dpi, title=None):
     present_cats = [k for k in _RANKED_CATEGORY_ORDER if k in set(cats)]
     handles = [mpatches.Patch(color=cat_color[k], label=_RANKED_CATEGORY_LABELS[k])
                for k in present_cats]
-    if np.isfinite(chance_val):
-        handles.append(plt.Line2D([0], [0], color="red", linestyle="--", linewidth=1.4,
-                                  label="random-stratified (chance)"))
     leg_cat = ax.legend(handles=handles, loc="upper right", frameon=False, fontsize=11,
                         title="model category", title_fontsize=11)
     ax.add_artist(leg_cat)
@@ -875,6 +1124,212 @@ def plot_composite_ranked_bars(df, out_path, dpi, title=None):
 
     if title:
         fig.suptitle(title, y=1.0, fontsize=17)
+    fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
+    plt.close(fig)
+    return True
+
+
+DATE_COLUMNS = ("artifact_available_date", "first_public_date")
+
+
+def load_model_dates(path, column=DATE_COLUMNS[0]):
+    """Load ``model_base -> date`` from the publication-dates CSV.
+
+    Defaults to ``artifact_available_date``: the date the RUNNABLE ARTIFACT first became
+    obtainable. That is the only column whose meaning is the same for every model kind -- vendor
+    release for hosted LLMs, weight-file publication for the domain-adapted models, first
+    installable version for the classical tools -- which is what makes the x-axis a fair
+    comparison between them.
+
+    ``first_public_date`` (release for LLMs, first preprint for methods) is kept as an alternative
+    but is NOT the default, because it silently mixes two different events: an LLM sits at the date
+    you could run it while a method sits at the date its paper appeared. That mismatch is large and
+    systematic, not noise -- the Cell2Sentence checkpoint postdates its origin preprint by ~2 years
+    (2022-09-19 -> 2024-09-03), the C2S-Scale weights by ~6 months, and the scType R code by ~21
+    months. It also runs the other way for four models whose code shipped before their preprint.
+    Switching columns does not change the paper's conclusions (LLM rho is identical; scLLM stays
+    non-significant either way), but the artifact axis is the defensible one.
+
+    ``journal_date`` is deliberately not offered: four domain-adapted models have no journal
+    version at all, so it would silently drop them.
+
+    Returns an empty Series if the file or column is missing, so callers can skip the figure.
+    """
+    path = Path(path)
+    if not path.exists():
+        return pd.Series(dtype="datetime64[ns]")
+    try:
+        d = pd.read_csv(path)
+    except Exception as exc:  # pragma: no cover - unreadable file should not kill the whole run
+        warnings.warn(f"Could not read model dates from {path}: {exc}")
+        return pd.Series(dtype="datetime64[ns]")
+    if "model_base" not in d.columns:
+        warnings.warn(f"{path} lacks a 'model_base' column; skipping date plot.")
+        return pd.Series(dtype="datetime64[ns]")
+    col = column if column in d.columns else next((c for c in DATE_COLUMNS if c in d.columns), None)
+    if col is None:
+        warnings.warn(f"{path} has none of {DATE_COLUMNS}; skipping date plot.")
+        return pd.Series(dtype="datetime64[ns]")
+    if col != column:
+        warnings.warn(f"{path} lacks '{column}'; falling back to '{col}'.")
+    s = pd.Series(pd.to_datetime(d[col], errors="coerce").values, index=d["model_base"].astype(str))
+    return s.dropna()
+
+
+def _spearman(x, y):
+    """Spearman rho and p-value; p is NaN when SciPy is unavailable (pandas gives rho only)."""
+    if len(x) < 3:
+        return float("nan"), float("nan")
+    try:
+        from scipy.stats import spearmanr  # noqa: PLC0415 - optional dependency
+        r = spearmanr(x, y)
+        return float(r.statistic), float(r.pvalue)
+    except Exception:
+        return float(pd.Series(x).corr(pd.Series(y), method="spearman")), float("nan")
+
+
+def _fmt_p(p):
+    if not np.isfinite(p):
+        return "p n/a"
+    return "p < 0.001" if p < 0.001 else f"p = {p:.3f}"
+
+
+def plot_date_vs_composite(df, dates, out_path, dpi, title=None):
+    """Publication figure: first-public-availability date vs composite score, blind | unblind.
+
+    One point per model shown in the composite figures (the simple chance baselines and
+    ``EXCLUDED_BASES`` are already absent from ``df``/the composite), colored by category and
+    shaped by method tier so the marker vocabulary matches ``plot_composite_category``.
+
+    Statistics are reported BOTH overall and per category, deliberately. The overall correlation
+    across all models is strongly confounded: the general-purpose LLMs are simultaneously the
+    newest and the best-scoring entries, so a pooled positive rho largely restates "LLMs are
+    recent" rather than showing that methods improve over time. The per-category rho values are
+    the ones that speak to a within-family time trend, and they are computed on small n -- they
+    are descriptive, not inferential.
+
+    ``dates`` is a Series (model_base -> Timestamp) from ``load_model_dates``. Returns False when
+    the composite metrics or the dates are unavailable.
+    """
+    per_model = _composite_per_model(df)
+    if per_model.empty or dates.empty:
+        return False
+
+    cat_palette = (CATEGORICAL_PALETTES.get("tab20_new") if _HAVE_REPO_STYLE else None) \
+        or sns.color_palette("tab10", n_colors=10).as_hex()
+    cat_color = {key: cat_palette[i % len(cat_palette)]
+                 for i, (key, _) in enumerate(COMPOSITE_CATEGORIES)}
+    tier_style = {tk: (mk, sz) for tiers in CATEGORY_TIERS.values() for tk, _l, mk, sz in tiers}
+
+    # Assemble the plotting frame: score + date + category/tier, dropping models we have no date
+    # for (reported, never silently) and the simple baselines, which have no publication at all.
+    recs, undated = [], []
+    for model, score in per_model.items():
+        cat = categorize_model(model)
+        if cat == "simple" or not np.isfinite(score):
+            continue
+        base = model_base(model)
+        if base not in dates.index:
+            undated.append(base)
+            continue
+        recs.append(dict(model=model, base=base, cat=cat, tier=model_tier(model) or "",
+                         mode=derive_mode(model), date=dates[base], score=float(score)))
+    if undated:
+        warnings.warn(f"date_vs_composite: no first_public_date for {sorted(set(undated))}; "
+                      f"these models are omitted from the figure.")
+    pts = pd.DataFrame(recs)
+    if pts.empty:
+        return False
+
+    modes = [m for m in ("blind", "unblind") if (pts["mode"] == m).any()]
+    if not modes:
+        return False
+
+    fig, axes = plt.subplots(1, len(modes), figsize=(6.2 * len(modes), 5.0),
+                             sharey=True, sharex=True, squeeze=False)
+    axes = axes[0]
+
+    for ax, mode in zip(axes, modes):
+        # Classical baselines are blind-only but act as a mode-agnostic reference, so they appear
+        # in BOTH panels — same convention as plot_composite_category. Without this the unblind
+        # panel would lose every pre-2024 point and its correlation would not be comparable to the
+        # blind panel's.
+        sub = pts[(pts["mode"] == mode) | (pts["cat"] == "classical")].drop_duplicates("base")
+        xnum = mdates.date2num(sub["date"])
+
+        # Guide lines: OLS on (date, score), drawn thin because the reported statistic is the rank
+        # correlation — these are for reading the trend, not fitted models.
+        def _guide(x, y, color, dashes, lw, z):
+            """Draw an OLS guide spanning only the x-range of the points it was fitted on."""
+            if len(x) < 3 or np.ptp(x) <= 0:
+                return
+            slope, intercept = np.polyfit(x, y, 1)
+            xs = np.linspace(np.min(x), np.max(x), 100)
+            line, = ax.plot(xs, slope * xs + intercept, color=color, linewidth=lw, zorder=z)
+            line.set_dashes(dashes)
+
+        # Pooled guide, long dashes, spanning the whole date range.
+        _guide(xnum, sub["score"].values, "0.55", (6, 3), 1.2, 2)
+        # Within-category guides, short dashes in the category color, each spanning only its own
+        # category's dates — these are the trends the per-category rho values below refer to.
+        for key, _lbl in COMPOSITE_CATEGORIES:
+            g = sub[sub["cat"] == key]
+            if len(g) >= 3:
+                _guide(mdates.date2num(g["date"]), g["score"].values,
+                       cat_color.get(key, "0.5"), (2.5, 2), 1.4, 3)
+
+        for (cat, tier), grp in sub.groupby(["cat", "tier"], dropna=False):
+            marker, size = tier_style.get(tier, ("o", 44))
+            ax.scatter(mdates.date2num(grp["date"]), grp["score"].values,
+                       s=size, marker=marker, color=cat_color.get(cat, "0.5"),
+                       edgecolor="white", linewidth=0.5, zorder=4)
+
+        # Stats box: pooled first, then per category, with n so small-sample rho is self-evident.
+        rho, p = _spearman(xnum, sub["score"].values)
+        lines = [f"all models: $\\rho$ = {rho:+.2f}, {_fmt_p(p)} (n = {len(sub)})"]
+        for key, label in COMPOSITE_CATEGORIES:
+            g = sub[sub["cat"] == key]
+            if len(g) >= 3:
+                r_c, p_c = _spearman(mdates.date2num(g["date"]), g["score"].values)
+                lines.append(f"{label}: $\\rho$ = {r_c:+.2f}, {_fmt_p(p_c)} (n = {len(g)})")
+        ax.text(0.03, 0.97, "\n".join(lines), transform=ax.transAxes, va="top", ha="left",
+                fontsize=8.5, linespacing=1.5, zorder=6)
+
+        ax.set_title(mode.capitalize(), fontsize=15)
+        ax.set_xlabel("Artifact availability\n(release / weights published / first installable)",
+                      fontsize=12)
+        ax.xaxis.set_major_locator(mdates.YearLocator())
+        ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
+        ax.tick_params(axis="both", labelsize=11)
+        ax.grid(linestyle=":", alpha=0.5)
+        sns.despine(ax=ax)
+
+    axes[0].set_ylim(0, 1)
+    axes[0].set_ylabel("Composite score\n(bal. acc. + Lin. sim., chance-normalized)", fontsize=12)
+
+    # Legend outside right: category color swatches, then the shared tier marker vocabulary.
+    handles = [mpatches.Patch(color=cat_color[k], label=lbl)
+               for k, lbl in COMPOSITE_CATEGORIES if (pts["cat"] == k).any()]
+    handles.append(plt.Line2D([0], [0], linestyle="none", marker="", label=""))
+    for key, clabel in COMPOSITE_CATEGORIES:
+        for tk, tlabel, marker, _s in CATEGORY_TIERS.get(key, []):
+            if (pts["tier"] == tk).any():
+                handles.append(plt.Line2D([0], [0], linestyle="none", marker=marker,
+                                          color=cat_color[key],
+                                          markersize=12 if marker == "*" else 7, label=tlabel))
+    guide_all = plt.Line2D([0], [0], color="0.55", linewidth=1.2, label="trend, all models")
+    guide_all.set_dashes((6, 3))
+    guide_cat = plt.Line2D([0], [0], color="0.35", linewidth=1.4, label="trend, within category")
+    guide_cat.set_dashes((2.5, 2))
+    handles.append(plt.Line2D([0], [0], linestyle="none", marker="", label=""))
+    handles += [guide_all, guide_cat,
+                plt.Line2D([0], [0], linestyle="none", marker="",
+                           label="(OLS guides; stat is Spearman)")]
+    fig.legend(handles=handles, loc="center left", bbox_to_anchor=(0.92, 0.5), frameon=False,
+               fontsize=9, labelspacing=0.32, handletextpad=0.6)
+
+    if title:
+        fig.suptitle(title, y=1.0, fontsize=16)
     fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
     plt.close(fig)
     return True
@@ -974,11 +1429,25 @@ def parse_args(argv=None):
                         "Baselines are always included. Default: all three.")
     p.add_argument("--subset-size-col", default="subset_size",
                    help="Column holding the per-model subset size (used if present).")
+    p.add_argument("--dates-csv", type=Path, default=DEFAULT_DATES_CSV,
+                   help="CSV of model dates (needs 'model_base' plus the chosen date column). "
+                        "Drives the date-vs-composite figure; that figure is skipped with a "
+                        "warning if the file is absent.")
+    p.add_argument("--date-column", default=DATE_COLUMNS[0], choices=list(DATE_COLUMNS),
+                   help="Which date to plot. 'artifact_available_date' (default) is when the "
+                        "runnable artifact appeared and means the same thing for every model "
+                        "kind; 'first_public_date' mixes LLM release dates with method preprint "
+                        "dates and is offered only for sensitivity checks.")
     p.add_argument("--corr-method", default="spearman", choices=["spearman", "pearson"],
                    help="Correlation coefficient for the metric-correlation heatmap.")
     p.add_argument("--format", default="png", choices=["png", "pdf"],
                    help="Output file format.")
     p.add_argument("--dpi", type=int, default=300, help="Raster resolution.")
+    p.add_argument("--cache-dir", type=Path, default=REPO_ROOT / "cache",
+                   help="Cache root; a version-tagged copy of --input is saved under "
+                        "<cache-dir>/result/ on every run.")
+    p.add_argument("--no-cache-snapshot", action="store_true",
+                   help="Skip writing the version-tagged aggregate snapshot to <cache-dir>/result/.")
     return p.parse_args(argv)
 
 
@@ -987,6 +1456,16 @@ def main(argv=None):
 
     if not args.input.exists():
         raise SystemExit(f"Input CSV not found: {args.input}")
+
+    # Retain a version-tagged snapshot of the exact aggregate these figures are built from.
+    if not args.no_cache_snapshot:
+        try:
+            from snapshot_aggregate import snapshot_aggregate
+            dest, wrote = snapshot_aggregate(args.input, args.cache_dir)
+            print(f"{'Wrote' if wrote else 'Up-to-date'} aggregate snapshot: {dest}")
+        except Exception as exc:  # a snapshot failure must never block plotting
+            warnings.warn(f"Could not write aggregate snapshot: {exc}")
+
     df = pd.read_csv(args.input)
     missing = set(ID_COLS) - set(df.columns)
     if missing:
@@ -1081,26 +1560,39 @@ def main(argv=None):
     # own top-level folder rather than under a mode-variant.
     if "composite_category" in args.plots:
         cdir = args.outdir / "composite_category"
+        model_dates = load_model_dates(args.dates_csv, args.date_column)
+        if model_dates.empty:
+            warnings.warn(f"No usable model dates at {args.dates_csv}; skipping the "
+                          f"date-vs-composite figures.")
 
         def emit_composite(src_df, out_dir, log_tag, title=None):
             """Write one composite figure per subset-size view of ``src_df`` into ``out_dir``."""
             nonlocal total_written
             out_dir.mkdir(parents=True, exist_ok=True)
             for size_folder, sdf in composite_size_views(src_df, args.subset_size_col):
-                out = out_dir / f"composite_category_{size_folder}.{args.format}"
-                if plot_composite_category(sdf, out, "", args.dpi, title=title):
-                    total_written += 1
-                    print(f"[composite_category/{log_tag}/{size_folder}]  wrote {out.name}")
-                else:
-                    warnings.warn(
-                        f"Skipped composite_category/{log_tag}/{size_folder}: composite metrics "
-                        f"{COMPOSITE_METRICS} not all present.")
+                # Two variants of the same figure: the default asserts the method tiers via marker
+                # shapes, the "_flat" one drops them and draws every model as a plain circle.
+                for suffix, tiers in (("", True), ("_flat", False)):
+                    out = out_dir / f"composite_category{suffix}_{size_folder}.{args.format}"
+                    if plot_composite_category(sdf, out, "", args.dpi, title=title,
+                                               show_tiers=tiers):
+                        total_written += 1
+                        print(f"[composite_category/{log_tag}/{size_folder}]  wrote {out.name}")
+                    elif not suffix:
+                        warnings.warn(
+                            f"Skipped composite_category/{log_tag}/{size_folder}: composite "
+                            f"metrics {COMPOSITE_METRICS} not all present.")
                 # Companion per-method ranked bar figure (every model individually, sorted best-first,
                 # name colored by category) — same size views + per-dataset breakdown.
                 outr = out_dir / f"composite_ranked_{size_folder}.{args.format}"
                 if plot_composite_ranked_bars(sdf, outr, args.dpi, title=title):
                     total_written += 1
                     print(f"[composite_category/{log_tag}/{size_folder}]  wrote {outr.name}")
+                # Companion date-vs-composite figure — same category colors and tier markers.
+                outd = out_dir / f"composite_vs_date_{size_folder}.{args.format}"
+                if plot_date_vs_composite(sdf, model_dates, outd, args.dpi, title=title):
+                    total_written += 1
+                    print(f"[composite_category/{log_tag}/{size_folder}]  wrote {outd.name}")
 
         # 1) Aggregated over all datasets (top-level folder), as before.
         emit_composite(df, cdir, "all_datasets")
