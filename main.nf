@@ -604,8 +604,17 @@ process combine_results {
     tuple path("aggregated*.csv"), path("aggregated_plot*.png")
 
     script:
+    // cache_dir is relative to the launch dir by default; make it absolute so the snapshot lands
+    // in the repo's shared cache no matter where this process's work dir is.
+    def cacheAbs = (params.cache_dir as String).startsWith('/') ?
+        params.cache_dir : "${launchDir}/${params.cache_dir}"
     """
     aggregate.py --input ${json_path} --output ./ --level 0 --datasets ${datasets}
+
+    # Keep a version-tagged copy of the aggregate under <cache_dir>/result/ (audit trail; the
+    # published results/ copy is overwritten each run, these snapshots are not).
+    snapshot_aggregate.py --input aggregated_by_dataset_model.csv --cache-dir "${cacheAbs}" || \\
+        echo "WARN: aggregate snapshot failed (non-fatal)" >&2
     """
 }
 
