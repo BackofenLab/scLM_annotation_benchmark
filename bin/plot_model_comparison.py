@@ -143,7 +143,11 @@ DEFAULT_METRICS = [
     "n_unique_pred_raw",     # distinct predicted cell types before ontology mapping
     "n_unique_pred_mapped",  # distinct predicted cell types after ontology mapping
 ]
-PLOT_TYPES = ["ranking", "heatmap", "bump", "barplot", "correlation", "composite_category"]
+PLOT_TYPES = ["ranking", "heatmap", "bump", "barplot", "correlation", "composite_category",
+              # LLM-only figures built from the OpenRouter activity log (see --activity).
+              # Both are top-level (not per-metric / per-mode-variant) and are skipped with a
+              # warning when the activity CSV is absent.
+              "llm_activity", "cost_performance"]
 # Model publication/release dates for the date-vs-composite figure. Produced out-of-band (the
 # dates are researched against primary sources, not derivable from the pipeline), so this is a
 # soft dependency: the figure is skipped with a warning when the file is absent.
@@ -1352,6 +1356,620 @@ def composite_size_views(df: pd.DataFrame, size_col: str):
 
 
 # --------------------------------------------------------------------------- #
+# OpenRouter activity diagnostics (LLM models only)
+#
+# Source: cache/openrouter_logs/openrouter_activity_merged.csv — one row per API call, with the
+# `mode` (blind/unblind) and `in_benchmark` columns added when the campaigns were merged. Each
+# (model, mode) holds exactly CELLS_PER_RUN calls: the four eval datasets at ~1000 cells each.
+#
+# These figures supersede bin/openrouter_summary/plot_openrouter_activity.py, which predates the
+# mode column and therefore pools the blind and unblind campaigns into a single bar per model.
+# --------------------------------------------------------------------------- #
+DEFAULT_ACTIVITY_CSV = REPO_ROOT / "cache" / "openrouter_logs" / "openrouter_activity_merged.csv"
+
+# Cells per (model, mode) run: HFRA 1000 + HIHA 999 + Zeisel 999 + human_pancreas 999.
+DATASET_CELL_COUNTS = {"HFRA": 1000, "HIHA": 999, "Zeisel": 999, "human_pancreas": 999}
+CELLS_PER_RUN = sum(DATASET_CELL_COUNTS.values())  # 3997
+
+# OpenRouter permaslug -> the model name used in the aggregated results CSV (mode suffix aside).
+# Explicit rather than regex-derived: the vendor's ordering differs from ours (`claude-4.7-opus`
+# vs our `claude-opus-4.7`) and the maverick slug carries a size/config tail. An unmapped slug is
+# warned about once and falls back to a best-effort strip, so a newly added model still plots.
+ACTIVITY_MODEL_ALIASES = {
+    "anthropic/claude-4.7-opus-20260416": "claude-opus-4.7",
+    "anthropic/claude-4.6-sonnet-20260217": "claude-sonnet-4.6",
+    "deepseek/deepseek-v3.2-20251201": "deepseek-v3.2",
+    "google/gemini-3.1-pro-preview-20260219": "gemini-3.1-pro-preview",
+    "meta-llama/llama-3.1-70b-instruct": "llama-3.1-70b-instruct",
+    "meta-llama/llama-3.1-8b-instruct": "llama-3.1-8b-instruct",
+    "meta-llama/llama-3.3-70b-instruct": "llama-3.3-70b-instruct",
+    "meta-llama/llama-4-maverick-17b-128e-instruct": "llama-4-maverick",
+    "moonshotai/kimi-k2.6-20260420": "kimi-k2.6",
+    "openai/gpt-5.5-20260423": "gpt-5.5",
+    "openai/gpt-oss-120b": "gpt-oss-120b",
+    "openai/gpt-oss-20b": "gpt-oss-20b",
+}
+_WARNED_UNKNOWN_SLUGS: set[str] = set()
+
+# Dataset attribution (see attribute_activity_datasets). The four eval datasets are run as four
+# consecutive Nextflow tasks, so a (model, mode) group's rows form four contiguous time segments
+# of ~1000 calls. Which segment is which dataset is read off the segments' median prompt length:
+#
+#   unblind — the prompt embeds the dataset's candidate-label list, which dominates:
+#             HIHA (38 labels / 1126 chars) > Zeisel (29 / 612) > HFRA (9 / 156) > pancreas (11 / 156).
+#             HFRA edges out pancreas on the gene sentence (1209 vs 1188 median chars).
+#   blind   — no label list, so only the top-200 gene sentence varies:
+#             Zeisel (1245 chars) > HFRA (1209) ~ HIHA (1207) > pancreas (1188).
+#             HFRA/HIHA are within noise on characters but separate consistently by ~6-19 tokens
+#             once tokenized, HIHA below HFRA in every model checked.
+#
+# Both orderings were validated against an independent ground truth: the per-dataset count of
+# unanswered cells in cache/models/predictions/, which matches the per-segment count of non-`stop`
+# calls (exactly for kimi/gpt-5.5/gpt-oss-20b/sonnet unblind, within retry noise elsewhere).
+DATASET_ORDER_BY_PROMPT_LEN = {           # highest median prompt tokens first
+    "unblind": ["HIHA", "Zeisel", "HFRA", "human_pancreas"],
+    "blind": ["Zeisel", "HFRA", "HIHA", "human_pancreas"],
+}
+# Minimum gap (in median prompt tokens) between two adjacent segments for the assignment to be
+# called confident. Below this the pair could be swapped, so the group is flagged.
+DATASET_ATTRIBUTION_MIN_GAP = 3.0
+
+
+def activity_model_base(permaslug: str) -> str:
+    """OpenRouter permaslug -> the model base name used in the aggregated results CSV."""
+    slug = str(permaslug)
+    if slug in ACTIVITY_MODEL_ALIASES:
+        return ACTIVITY_MODEL_ALIASES[slug]
+    if slug not in _WARNED_UNKNOWN_SLUGS:
+        _WARNED_UNKNOWN_SLUGS.add(slug)
+        print(f"[llm_activity]  permaslug '{slug}' is not in ACTIVITY_MODEL_ALIASES; falling back "
+              f"to a stripped name (it may not join to the results CSV).", file=sys.stderr)
+    import re
+    return re.sub(r"-20\d{6}$", "", slug.split("/")[-1])
+
+
+def load_openrouter_activity(path: Path, benchmarked_only: bool = True) -> pd.DataFrame:
+    """Load the merged OpenRouter activity log into a per-request frame.
+
+    Adds ``model_base`` (joins to the results CSV), ``model`` (``<base>_<mode>``, the exact key
+    used in the aggregated CSV), ``answered`` (the call returned a usable completion) and the
+    per-request token/latency/cost derivations the figures need. Returns an empty frame if the
+    file is missing, so every activity figure degrades to a warning rather than an error.
+    """
+    if not path or not Path(path).exists():
+        return pd.DataFrame()
+    df = pd.read_csv(path)
+    for col in ("cost_total", "tokens_prompt", "tokens_completion", "tokens_reasoning",
+                "tokens_cached", "generation_time_ms", "time_to_first_token_ms"):
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0.0)
+
+    if "mode" not in df.columns:
+        # Pre-merge layout: blind runs were tagged by infixing '-blind-' into the permaslug.
+        warnings.warn(f"{path.name} has no 'mode' column; falling back to the '-blind-' permaslug "
+                      f"convention. Re-build the merged CSV to split the campaigns properly.")
+        df["mode"] = np.where(df["model_permaslug"].str.contains("-blind-"), "blind", "unblind")
+        df["model_permaslug"] = df["model_permaslug"].str.replace("-blind-", "-", regex=False)
+    if benchmarked_only and "in_benchmark" in df.columns:
+        keep = df["in_benchmark"].astype(str).str.lower().isin(("true", "1", "yes"))
+        df = df[keep]
+
+    df = df.copy()
+    df["model_base"] = df["model_permaslug"].map(activity_model_base)
+    df["model"] = df["model_base"] + "_" + df["mode"].astype(str)
+    # A call counts as answered only when it finished normally. `length` means the model burned
+    # its budget (usually on reasoning) and returned no usable label; blank/error are failures.
+    # predict.py retries three times and then writes an empty prediction, which the scorer maps
+    # to the CL root term 'cell' -- i.e. a wrong answer -- so this fraction is a validity caveat,
+    # not just an ops statistic.
+    df["answered"] = df["finish_reason_normalized"].fillna("").str.lower().eq("stop")
+    df["finish_reason"] = df["finish_reason_normalized"].fillna("").replace("", "no response")
+    df["reasoning_tokens"] = df["tokens_reasoning"]
+    df["visible_completion_tokens"] = (df["tokens_completion"] - df["tokens_reasoning"]).clip(lower=0)
+    df["generation_time_s"] = df["generation_time_ms"] / 1000.0
+    df["ttft_s"] = df["time_to_first_token_ms"] / 1000.0
+    return df
+
+
+def attribute_activity_datasets(df: pd.DataFrame) -> pd.DataFrame:
+    """Infer which of the four eval datasets each API call belongs to.
+
+    The log records no cell or dataset id, but the four datasets run as four consecutive tasks,
+    so within a (model, mode) group the rows sort into four contiguous ~1000-call segments whose
+    median prompt length identifies the dataset (see DATASET_ORDER_BY_PROMPT_LEN).
+
+    Boundaries are placed in two passes: a provisional even split is enough to estimate each
+    segment's median (a one-row offset cannot move a median over ~1000 values), the labels are
+    read off the ranking, and the exact boundaries are then re-cut with the 1000-row segment at
+    whichever position came out as HFRA. A group is low-confidence when two adjacent segment
+    medians sit closer than DATASET_ATTRIBUTION_MIN_GAP tokens, i.e. the pair could be swapped --
+    in practice this catches exactly the blind-mode HFRA/HIHA pair on models that do not separate
+    them. (Segment SIZE cannot be used as a cross-check: 999 vs 1000 rows is a one-row shift that
+    leaves within-segment prompt spread unchanged, so it carries no signal.)
+
+    Adds ``dataset`` and ``dataset_confident`` (bool). Groups whose row count differs from
+    CELLS_PER_RUN -- i.e. a run that was retried and trimmed, where the contiguous-segment
+    assumption breaks -- get ``dataset = NA`` and ``dataset_confident = False``.
+    """
+    if df.empty or "tokens_prompt" not in df.columns:
+        return df
+    out = df.copy()
+    out["dataset"] = pd.NA
+    out["dataset_confident"] = False
+    sizes = [DATASET_CELL_COUNTS[d] for d in sorted(DATASET_CELL_COUNTS)]
+    big = max(sizes)                       # 1000 (HFRA); the rest are 999
+    small = min(sizes)
+
+    for (base, mode), g in out.groupby(["model_base", "mode"], sort=False):
+        if len(g) != CELLS_PER_RUN or mode not in DATASET_ORDER_BY_PROMPT_LEN:
+            continue
+        idx = g.sort_values("created_at").index
+        prompt = out.loc[idx, "tokens_prompt"].to_numpy(dtype=float)
+        order = DATASET_ORDER_BY_PROMPT_LEN[mode]
+
+        # Pass 1 - provisional even split, just to rank the segments by prompt length.
+        prov = np.cumsum([0] + [small, small, small, CELLS_PER_RUN - 3 * small])
+        medians = [float(np.median(prompt[prov[i]:prov[i + 1]])) for i in range(4)]
+        rank = np.argsort(np.argsort(-np.asarray(medians)))    # 0 = longest prompt
+        labels = [order[r] for r in rank]
+
+        # Pass 2 - re-cut with the 1000-row segment where HFRA landed.
+        big_pos = labels.index("HFRA")
+        bounds = np.cumsum([0] + [big if i == big_pos else small for i in range(4)])
+        medians = [float(np.median(prompt[bounds[i]:bounds[i + 1]])) for i in range(4)]
+
+        sorted_med = sorted(medians, reverse=True)
+        gaps = [sorted_med[i] - sorted_med[i + 1] for i in range(3)]
+        confident = bool(min(gaps) >= DATASET_ATTRIBUTION_MIN_GAP)
+        if not confident:
+            closest = order[int(np.argmin(gaps))], order[int(np.argmin(gaps)) + 1]
+            print(f"[llm_activity]  dataset attribution for {base} ({mode}) is low-confidence: "
+                  f"segment medians {[round(m) for m in medians]} put {closest[0]} and "
+                  f"{closest[1]} within {min(gaps):.0f} token(s), so the two could be swapped.",
+                  file=sys.stderr)
+
+        for i in range(4):
+            out.loc[idx[bounds[i]:bounds[i + 1]], "dataset"] = labels[i]
+        out.loc[idx, "dataset_confident"] = confident
+    return out
+
+
+def validate_dataset_attribution(df: pd.DataFrame, predictions_root: Path) -> pd.DataFrame:
+    """Check the inferred dataset labels against an independent ground truth.
+
+    The prediction CSVs under ``cache/models/predictions/openrouter_LLM_<mode>/<dataset>/`` record,
+    per dataset, how many cells came back empty. Those failures must line up with the count of
+    non-`stop` calls in the correspondingly-labelled log segment. Nothing in the attribution uses
+    this signal, so agreement is genuine corroboration.
+
+    Returns a per (model, mode) frame with the two count vectors and whether they agree, or an
+    empty frame when the predictions tree is unavailable. Agreement is not exact equality -- a
+    cell that failed and was retried leaves two log rows but one empty prediction -- so the test
+    is whether the inferred labelling is the best of all 24 dataset permutations by total
+    absolute difference. That is the question that matters: could relabelling fit truth better?
+    """
+    import itertools
+    root = Path(predictions_root)
+    if df.empty or "dataset" not in df.columns or not root.exists():
+        return pd.DataFrame()
+    # Prediction files are named from the model_cfg id (vendor + our base name), NOT from the
+    # dated permaslug: predictions_openai--gpt-5.5.csv, not ...--gpt-5.5-20260423.csv.
+    vendor = {b: p.split("/")[0] for p, b in ACTIVITY_MODEL_ALIASES.items()}
+    rows = []
+    for (base, mode), g in df[df["dataset"].notna()].groupby(["model_base", "mode"], sort=False):
+        slug = f"{vendor[base]}--{base}" if base in vendor else base
+        truth, inferred = {}, {}
+        for ds in DATASET_CELL_COUNTS:
+            p = root / f"openrouter_LLM_{mode}" / ds / "1000_stratified" / f"predictions_{slug}.csv"
+            if not p.exists():
+                truth = {}
+                break
+            pred = pd.read_csv(p)
+            col = "predicted_labels"
+            truth[ds] = int(pred[col].isna().sum() + (pred[col].astype(str).str.strip() == "").sum())
+            inferred[ds] = int((~g[g["dataset"] == ds]["answered"]).sum())
+        if not truth:
+            continue
+        keys = list(DATASET_CELL_COUNTS)
+        t = np.array([truth[k] for k in keys], dtype=float)
+        i = np.array([inferred[k] for k in keys], dtype=float)
+        # With no failures anywhere the vectors are trivially equal and corroborate nothing.
+        informative = bool(t.sum() > 0)
+        identity_cost = float(np.abs(t - i).sum())
+        best_cost = min(float(np.abs(t - i[list(p)]).sum())
+                        for p in itertools.permutations(range(4)))
+        rows.append({
+            "model_base": base, "mode": mode,
+            "unanswered_on_disk": dict(zip(keys, t.astype(int))),
+            "non_stop_in_segment": dict(zip(keys, i.astype(int))),
+            # Agrees when no relabelling of the four segments fits the on-disk counts better.
+            "agrees": bool(identity_cost <= best_cost) if informative else None,
+            "informative": informative,
+        })
+    return pd.DataFrame(rows)
+
+
+def activity_summary(df: pd.DataFrame) -> pd.DataFrame:
+    """Per (model, mode) roll-up: spend, tokens, latency and answered fraction."""
+    if df.empty:
+        return pd.DataFrame()
+    g = df.groupby(["model_base", "mode"], sort=False)
+    out = pd.DataFrame({
+        "n_calls": g.size(),
+        "n_answered": g["answered"].sum(),
+        "cost_total": g["cost_total"].sum(),
+        "prompt_tokens": g["tokens_prompt"].sum(),
+        "reasoning_tokens": g["reasoning_tokens"].sum(),
+        "visible_tokens": g["visible_completion_tokens"].sum(),
+        "median_latency_s": g["generation_time_s"].median(),
+        "median_ttft_s": g["ttft_s"].median(),
+    }).reset_index()
+    out["answered_frac"] = out["n_answered"] / out["n_calls"]
+    # Spend normalised to a fixed workload so models are comparable regardless of retries.
+    out["cost_per_1k_cells"] = out["cost_total"] / out["n_calls"] * 1000.0
+    out["model"] = out["model_base"] + "_" + out["mode"]
+    return out
+
+
+def _mode_colors() -> dict:
+    """Two fixed hues for blind/unblind, taken from the repo's categorical palette."""
+    pal = (CATEGORICAL_PALETTES.get("tab20_new") if _HAVE_REPO_STYLE else None) \
+        or sns.color_palette("tab10", n_colors=10).as_hex()
+    return {"blind": pal[0], "unblind": pal[2 % len(pal)]}
+
+
+def _llm_tier_style(model_base_name: str):
+    """(marker, size) for an LLM's method tier, reusing the composite figure's shapes."""
+    tiers = {k: (mk, sz) for k, _lbl, mk, sz in CATEGORY_TIERS.get("LLM", [])}
+    tier = model_tier(f"{model_base_name}_blind")
+    return tiers.get(tier, UNCLASSIFIED_TIER_STYLE), tier
+
+
+def _order_by(summary: pd.DataFrame, column: str) -> list:
+    """Model bases ordered by the max of ``column`` across modes (descending)."""
+    return (summary.groupby("model_base")[column].max()
+            .sort_values(ascending=False).index.tolist())
+
+
+def _paired_barh(ax, summary, column, order, colors, log=False):
+    """Horizontal paired bars: one row per model, blind and unblind side by side.
+
+    A 2-point gap between the paired bars keeps them readable as two marks rather than one
+    stacked block, and the bars are anchored to the axis baseline.
+    """
+    h = 0.38
+    for i, base in enumerate(order):
+        for j, mode in enumerate(("blind", "unblind")):
+            row = summary[(summary["model_base"] == base) & (summary["mode"] == mode)]
+            if row.empty:
+                continue
+            val = float(row[column].iloc[0])
+            ax.barh(i + (j - 0.5) * h, val, height=h * 0.92, color=colors[mode],
+                    edgecolor="white", linewidth=0.6, zorder=3,
+                    label=mode if i == 0 else None)
+    ax.set_yticks(range(len(order)))
+    ax.set_yticklabels(order)
+    ax.invert_yaxis()
+    if log:
+        ax.set_xscale("log")
+    ax.grid(axis="x", linestyle=":", alpha=0.5, zorder=0)
+    ax.set_axisbelow(True)
+    for side in ("top", "right"):
+        ax.spines[side].set_visible(False)
+
+
+def plot_llm_spend_and_tokens(df, out_path, dpi):
+    """A: spend per 1000 cells (log). B: mean token composition per request.
+
+    Replaces figure_1 of the old summary script, which pooled blind and unblind into one bar.
+    Spend is normalised per 1000 cells so it reads as a unit price for the annotation task.
+    """
+    summary = activity_summary(df)
+    if summary.empty:
+        return False
+    colors = _mode_colors()
+    order = _order_by(summary, "cost_per_1k_cells")
+
+    fig, axes = plt.subplots(1, 2, figsize=(11, 0.42 * len(order) + 2.2))
+    _paired_barh(axes[0], summary, "cost_per_1k_cells", order, colors, log=True)
+    axes[0].set_xlabel("Cost per 1,000 cells annotated (USD, log scale)")
+    axes[0].set_title("A. Spend", loc="left")
+    axes[0].legend(title="Mode", frameon=False, loc="lower right")
+
+    # Token composition: stacked means per request, blind and unblind as separate rows.
+    parts = [("prompt_tokens", "Prompt"), ("reasoning_tokens", "Reasoning"),
+             ("visible_tokens", "Visible completion")]
+    pal = (CATEGORICAL_PALETTES.get("tab20_new") if _HAVE_REPO_STYLE else None) \
+        or sns.color_palette("tab10", n_colors=10).as_hex()
+    part_colors = {"Prompt": pal[4 % len(pal)], "Reasoning": pal[6 % len(pal)],
+                   "Visible completion": pal[8 % len(pal)]}
+    ax = axes[1]
+    h = 0.38
+    for i, base in enumerate(order):
+        for j, mode in enumerate(("blind", "unblind")):
+            row = summary[(summary["model_base"] == base) & (summary["mode"] == mode)]
+            if row.empty:
+                continue
+            left = 0.0
+            for col, lbl in parts:
+                w = float(row[col].iloc[0]) / float(row["n_calls"].iloc[0])
+                ax.barh(i + (j - 0.5) * h, w, left=left, height=h * 0.92,
+                        color=part_colors[lbl], edgecolor="white", linewidth=0.6, zorder=3,
+                        label=lbl if i == 0 and j == 0 else None)
+                left += w
+    ax.set_yticks(range(len(order)))
+    ax.set_yticklabels([])
+    ax.invert_yaxis()
+    ax.grid(axis="x", linestyle=":", alpha=0.5, zorder=0)
+    ax.set_axisbelow(True)
+    for side in ("top", "right"):
+        ax.spines[side].set_visible(False)
+    ax.set_xlabel("Mean tokens per request  (upper bar = blind, lower = unblind)")
+    ax.set_title("B. Token composition", loc="left")
+    ax.legend(frameon=False, loc="lower right")
+
+    fig.tight_layout()
+    fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
+    plt.close(fig)
+    return True
+
+
+def plot_llm_answer_rate(df, out_path, dpi):
+    """Fraction of cells that came back with a usable label, and why the rest did not.
+
+    This is a benchmark-validity figure, not an ops statistic: an unanswered cell is written as
+    an empty prediction, normalised to "no prediction" and ontology-mapped to the CL root term
+    ``cell``, then scored as a wrong answer. A model with a low answered rate is penalised for an
+    infrastructure failure. Replaces figure_6, which dropped blank finish reasons entirely (they
+    read as NaN) and so showed the largest failure mode as absent.
+    """
+    if df.empty:
+        return False
+    summary = activity_summary(df)
+    order = summary.groupby("model_base")["answered_frac"].min().sort_values().index.tolist()
+    reasons = ["stop", "length", "no response", "error"]
+    pal = (CATEGORICAL_PALETTES.get("tab20_new") if _HAVE_REPO_STYLE else None) \
+        or sns.color_palette("tab10", n_colors=10).as_hex()
+    # Sequential-by-severity: answered is the neutral/base hue, failures escalate.
+    reason_colors = {"stop": pal[0], "length": pal[5 % len(pal)],
+                     "no response": pal[7 % len(pal)], "error": pal[9 % len(pal)]}
+
+    counts = (df.groupby(["model_base", "mode", "finish_reason"]).size()
+              .rename("n").reset_index())
+    fig, ax = plt.subplots(figsize=(9.5, 0.42 * len(order) + 2.2))
+    h = 0.38
+    seen = set()
+    for i, base in enumerate(order):
+        for j, mode in enumerate(("blind", "unblind")):
+            sub = counts[(counts["model_base"] == base) & (counts["mode"] == mode)]
+            if sub.empty:
+                continue
+            total = sub["n"].sum()
+            left = 0.0
+            for r in reasons:
+                n = float(sub.loc[sub["finish_reason"] == r, "n"].sum())
+                if n <= 0:
+                    continue
+                frac = n / total
+                ax.barh(i + (j - 0.5) * h, frac, left=left, height=h * 0.92,
+                        color=reason_colors[r], edgecolor="white", linewidth=0.6, zorder=3,
+                        label=r if r not in seen else None)
+                seen.add(r)
+                left += frac
+    ax.set_yticks(range(len(order)))
+    ax.set_yticklabels(order)
+    ax.invert_yaxis()
+    ax.set_xlim(0, 1)
+    ax.set_xlabel("Fraction of calls  (upper bar = blind, lower = unblind)")
+    ax.set_title("Answered rate — unanswered cells are scored as wrong, not dropped", loc="left")
+    ax.legend(title="Finish reason", frameon=False, bbox_to_anchor=(1.02, 1), loc="upper left")
+    ax.grid(axis="x", linestyle=":", alpha=0.5, zorder=0)
+    ax.set_axisbelow(True)
+    for side in ("top", "right"):
+        ax.spines[side].set_visible(False)
+    fig.tight_layout()
+    fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
+    plt.close(fig)
+    return True
+
+
+def plot_llm_latency(df, out_path, dpi):
+    """Per-request generation time by model and mode (log), medians direct-labelled."""
+    if df.empty:
+        return False
+    summary = activity_summary(df)
+    order = _order_by(summary, "median_latency_s")
+    colors = _mode_colors()
+    fig, ax = plt.subplots(figsize=(9.5, 0.42 * len(order) + 2.2))
+    h = 0.38
+    for i, base in enumerate(order):
+        for j, mode in enumerate(("blind", "unblind")):
+            vals = df[(df["model_base"] == base) & (df["mode"] == mode)]["generation_time_s"]
+            vals = vals[vals > 0]
+            if vals.empty:
+                continue
+            bp = ax.boxplot([vals.to_numpy()], positions=[i + (j - 0.5) * h], vert=False,
+                            widths=h * 0.85, patch_artist=True, showfliers=False,
+                            medianprops=dict(color="black", linewidth=1.2))
+            for box in bp["boxes"]:
+                box.set(facecolor=colors[mode], edgecolor="white", linewidth=0.6, alpha=0.95)
+            for whisk in bp["whiskers"] + bp["caps"]:
+                whisk.set(color=colors[mode], linewidth=1.0)
+    ax.set_xscale("log")
+    ax.set_yticks(range(len(order)))
+    ax.set_yticklabels(order)
+    ax.set_ylim(len(order) - 0.5, -0.5)
+    ax.set_xlabel("Generation time per request (s, log scale)")
+    ax.set_title("Latency — box = IQR, whiskers 1.5x IQR, outliers hidden", loc="left")
+    handles = [mpatches.Patch(facecolor=colors[m], label=m) for m in ("blind", "unblind")]
+    ax.legend(handles=handles, title="Mode", frameon=False, loc="lower right")
+    ax.grid(axis="x", linestyle=":", alpha=0.5)
+    ax.set_axisbelow(True)
+    for side in ("top", "right"):
+        ax.spines[side].set_visible(False)
+    fig.tight_layout()
+    fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
+    plt.close(fig)
+    return True
+
+
+def plot_llm_cost_by_dataset(df, out_path, dpi):
+    """Spend per model split across the four eval datasets (inferred — see
+    attribute_activity_datasets). Low-confidence groups are hatched so an inferred split is never
+    mistaken for a recorded one."""
+    if df.empty or "dataset" not in df.columns:
+        return False
+    sub = df[df["dataset"].notna()]
+    if sub.empty:
+        return False
+    datasets = [d for d in DATASET_CELL_COUNTS if d in set(sub["dataset"])]
+    colors = build_dataset_colors(datasets)
+    cost = (sub.groupby(["model_base", "mode", "dataset"])["cost_total"].sum()
+            .rename("cost").reset_index())
+    conf = sub.groupby(["model_base", "mode"])["dataset_confident"].first()
+    order = (cost.groupby("model_base")["cost"].sum().sort_values(ascending=False).index.tolist())
+
+    fig, ax = plt.subplots(figsize=(9.5, 0.42 * len(order) + 2.4))
+    h = 0.38
+    seen = set()
+    for i, base in enumerate(order):
+        for j, mode in enumerate(("blind", "unblind")):
+            rows = cost[(cost["model_base"] == base) & (cost["mode"] == mode)]
+            if rows.empty:
+                continue
+            ok = bool(conf.get((base, mode), False))
+            # Shares, not absolutes: spend spans four orders of magnitude across models, so a
+            # linear stacked axis would collapse every cheap model into the spine. The absolute
+            # total is direct-labelled at the end of each bar instead.
+            total = float(rows["cost"].sum())
+            if total <= 0:
+                continue
+            left = 0.0
+            for ds in datasets:
+                v = float(rows.loc[rows["dataset"] == ds, "cost"].sum()) / total
+                if v <= 0:
+                    continue
+                ax.barh(i + (j - 0.5) * h, v, left=left, height=h * 0.92, color=colors[ds],
+                        edgecolor="white", linewidth=0.6, zorder=3,
+                        hatch=None if ok else "//",
+                        label=ds if ds not in seen else None)
+                seen.add(ds)
+                left += v
+            ax.annotate(f"${total:,.2f}", (1.0, i + (j - 0.5) * h), xytext=(4, 0),
+                        textcoords="offset points", va="center", fontsize=6.5, color="0.35")
+    ax.set_yticks(range(len(order)))
+    ax.set_yticklabels(order)
+    ax.invert_yaxis()
+    ax.set_xlim(0, 1)
+    ax.set_xlabel("Share of the model's spend  (upper bar = blind, lower = unblind;  "
+                  "hatched = low-confidence split)")
+    ax.set_title("Where the spend went — dataset inferred from run order and prompt length",
+                 loc="left")
+    ax.legend(title="Dataset", frameon=False, bbox_to_anchor=(1.02, 1), loc="upper left")
+    ax.grid(axis="x", linestyle=":", alpha=0.5, zorder=0)
+    ax.set_axisbelow(True)
+    for side in ("top", "right"):
+        ax.spines[side].set_visible(False)
+    fig.tight_layout()
+    fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
+    plt.close(fig)
+    return True
+
+
+def _pareto_front(points):
+    """Indices of the cost/score points not dominated by a cheaper-and-better point."""
+    front, best = [], -np.inf
+    for i in sorted(range(len(points)), key=lambda k: points[k][0]):
+        if points[i][1] > best:
+            front.append(i)
+            best = points[i][1]
+    return front
+
+
+def plot_cost_vs_performance(agg_df, act_df, out_path, dpi, metric="balanced_accuracy"):
+    """Annotation quality against what it costs, one point per (LLM, mode).
+
+    ``metric`` is either a column of the aggregated CSV (averaged over datasets) or the literal
+    ``"composite"``, which uses the same baseline-normalized composite as the category figure.
+    x is spend per 1,000 cells on a log axis (it spans four orders of magnitude); the step line
+    marks the cost-efficient frontier — the models no other model beats while also being cheaper.
+    """
+    if agg_df.empty or act_df.empty:
+        return False
+    summary = activity_summary(act_df).set_index("model")
+
+    if metric == "composite":
+        scores = _composite_per_model(agg_df)
+        ylab = "Composite score (baseline-normalized)"
+    else:
+        if metric not in agg_df.columns:
+            return False
+        scores = (agg_df.assign(_v=pd.to_numeric(agg_df[metric], errors="coerce"))
+                  .groupby("model")["_v"].mean())
+        ylab = f"{pretty(metric)} (mean over datasets)"
+    if scores.empty:
+        return False
+
+    rows = []
+    for model, score in scores.items():
+        if categorize_model(model) != "LLM" or model not in summary.index:
+            continue
+        if pd.isna(score):
+            continue
+        rows.append((model_base(model), derive_mode(model),
+                     float(summary.loc[model, "cost_per_1k_cells"]), float(score),
+                     float(summary.loc[model, "answered_frac"])))
+    if len(rows) < 2:
+        return False
+
+    colors = _mode_colors()
+    fig, ax = plt.subplots(figsize=(8.2, 5.6))
+    tiers_seen = {}
+    for base, mode, cost, score, answered in rows:
+        (marker, size), tier = _llm_tier_style(base)
+        ax.scatter(cost, score, marker=marker, s=size * 1.6, color=colors.get(mode, "gray"),
+                   edgecolor="white", linewidth=0.8, zorder=4)
+        tiers_seen[tier] = marker
+        # Direct-label only the models that define the frontier or answered poorly; labelling
+        # every point would collide at this density.
+        if answered < 0.98:
+            ax.annotate(f"{base} ({answered:.0%} answered)", (cost, score),
+                        textcoords="offset points", xytext=(6, -9), fontsize=6.5,
+                        color="0.35", zorder=5)
+
+    for mode in ("blind", "unblind"):
+        pts = [(c, s) for _b, m, c, s, _a in rows if m == mode]
+        if len(pts) < 2:
+            continue
+        front = _pareto_front(pts)
+        fx = [pts[i][0] for i in front]
+        fy = [pts[i][1] for i in front]
+        ax.step(fx, fy, where="post", color=colors[mode], linewidth=1.4, alpha=0.55, zorder=2)
+        for i in front:
+            base = [b for b, m, c, s, _a in rows if m == mode and (c, s) == pts[i]][0]
+            ax.annotate(base, pts[i], textcoords="offset points", xytext=(6, 5),
+                        fontsize=7, color=colors[mode], zorder=5)
+
+    ax.set_xscale("log")
+    ax.set_xlabel("Cost per 1,000 cells annotated (USD, log scale)")
+    ax.set_ylabel(ylab)
+    ax.set_title("Cost vs. annotation quality — step line = cost-efficient frontier", loc="left")
+    handles = [mpatches.Patch(facecolor=colors[m], label=m) for m in ("blind", "unblind")]
+    handles += [plt.Line2D([], [], linestyle="none", marker=mk, color="0.4",
+                           label=(tier or "unclassified").replace("_", " "))
+                for tier, mk in sorted(tiers_seen.items(), key=lambda kv: str(kv[0]))]
+    ax.legend(handles=handles, frameon=False, fontsize=7.5, loc="lower right")
+    ax.grid(linestyle=":", alpha=0.5)
+    ax.set_axisbelow(True)
+    for side in ("top", "right"):
+        ax.spines[side].set_visible(False)
+    fig.tight_layout()
+    fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
+    plt.close(fig)
+    return True
+
+
+# --------------------------------------------------------------------------- #
 # Data loading / argument handling
 # --------------------------------------------------------------------------- #
 def numeric_metrics(df, subset_col):
@@ -1439,6 +2057,21 @@ def parse_args(argv=None):
                         "runnable artifact appeared and means the same thing for every model "
                         "kind; 'first_public_date' mixes LLM release dates with method preprint "
                         "dates and is offered only for sensitivity checks.")
+    p.add_argument("--activity", type=Path, default=DEFAULT_ACTIVITY_CSV,
+                   help="Merged OpenRouter activity CSV (one row per API call, with 'mode' and "
+                        "'in_benchmark' columns). Drives the llm_activity and cost_performance "
+                        "figures; both are skipped with a warning if the file is absent.")
+    p.add_argument("--activity-include-non-benchmarked", action="store_true",
+                   help="Keep activity rows flagged in_benchmark=False (e.g. llama-3.1-8b, which "
+                        "was run but is not part of the benchmark). Off by default.")
+    p.add_argument("--predictions-root", type=Path,
+                   default=REPO_ROOT / "cache" / "models" / "predictions",
+                   help="Prediction cache root. Used only to cross-check the inferred dataset "
+                        "attribution against the per-dataset count of unanswered cells; skipped "
+                        "silently when absent.")
+    p.add_argument("--cost-metrics", nargs="+", default=["balanced_accuracy", "composite"],
+                   help="y-axes for the cost-performance figures: any metric column, and/or the "
+                        "literal 'composite' for the baseline-normalized composite score.")
     p.add_argument("--corr-method", default="spearman", choices=["spearman", "pearson"],
                    help="Correlation coefficient for the metric-correlation heatmap.")
     p.add_argument("--format", default="png", choices=["png", "pdf"],
@@ -1521,10 +2154,9 @@ def main(argv=None):
             }
 
             n_written = 0
-            # Per-metric plot types: one figure per metric. (correlation and composite_category
-            # are not per-metric and are handled separately.)
-            for plot_type in (pt for pt in args.plots
-                              if pt not in ("correlation", "composite_category")):
+            # Per-metric plot types: one figure per metric. (correlation, composite_category and
+            # the LLM activity figures are not per-metric and are handled separately.)
+            for plot_type in (pt for pt in args.plots if pt in builders):
                 sub_dir = args.outdir / variant / size_folder / plot_type
                 sub_dir.mkdir(parents=True, exist_ok=True)
                 for metric in metrics:
@@ -1603,6 +2235,61 @@ def main(argv=None):
         for dataset in sorted(df["dataset"].unique()):
             emit_composite(df[df["dataset"] == dataset], cdir / "by_dataset" / str(dataset),
                            f"by_dataset/{dataset}", title=str(dataset))
+
+    # LLM-only figures from the OpenRouter activity log. Top-level (they span blind + unblind and
+    # are not per-metric), and a missing/unusable log downgrades to a warning, never an error.
+    wants_activity = [p for p in args.plots if p in ("llm_activity", "cost_performance")]
+    if wants_activity:
+        activity = load_openrouter_activity(
+            args.activity, benchmarked_only=not args.activity_include_non_benchmarked)
+        if activity.empty:
+            warnings.warn(f"No OpenRouter activity at {args.activity}; skipping {wants_activity}.")
+        else:
+            activity = attribute_activity_datasets(activity)
+            n_conf = (activity.groupby(["model_base", "mode"])["dataset_confident"].first().sum())
+            n_grp = activity.groupby(["model_base", "mode"]).ngroups
+            print(f"OpenRouter activity: {len(activity):,} calls, "
+                  f"{activity['model_base'].nunique()} models, "
+                  f"dataset attributed with confidence for {int(n_conf)}/{n_grp} model x mode groups")
+
+            check = validate_dataset_attribution(activity, args.predictions_root)
+            if not check.empty:
+                inf = check[check["informative"]]
+                if not inf.empty:
+                    print(f"  attribution cross-check vs. per-dataset unanswered counts on disk: "
+                          f"{int(inf['agrees'].sum())}/{len(inf)} groups agree "
+                          f"({len(check) - len(inf)} groups had no failures, so carry no signal)")
+                    for _, r in inf[~inf["agrees"].astype(bool)].iterrows():
+                        print(f"    DISAGREES {r['model_base']} ({r['mode']}): "
+                              f"on disk {r['unanswered_on_disk']} vs "
+                              f"segments {r['non_stop_in_segment']}", file=sys.stderr)
+
+            if "llm_activity" in args.plots:
+                adir = args.outdir / "llm_activity"
+                adir.mkdir(parents=True, exist_ok=True)
+                for name, fn in (("spend_and_tokens", plot_llm_spend_and_tokens),
+                                 ("answer_rate", plot_llm_answer_rate),
+                                 ("latency", plot_llm_latency),
+                                 ("spend_by_dataset", plot_llm_cost_by_dataset)):
+                    out = adir / f"{name}.{args.format}"
+                    if fn(activity, out, args.dpi):
+                        total_written += 1
+                        print(f"[llm_activity]  wrote {out.name}")
+                    else:
+                        warnings.warn(f"Skipped llm_activity/{name}: no usable data.")
+
+            if "cost_performance" in args.plots:
+                cdir = args.outdir / "cost_performance"
+                cdir.mkdir(parents=True, exist_ok=True)
+                for metric in args.cost_metrics:
+                    out = cdir / f"cost_vs_{metric}.{args.format}"
+                    if plot_cost_vs_performance(df, activity, out, args.dpi, metric=metric):
+                        total_written += 1
+                        print(f"[cost_performance]  wrote {out.name}")
+                    else:
+                        warnings.warn(
+                            f"Skipped cost_performance/{metric}: metric absent, or fewer than two "
+                            f"LLMs joined the activity log.")
 
     print(f"Total: wrote {total_written} figure(s) under {args.outdir.resolve()}")
     print(f"  layout: <mode_variant>/<subset_size>/<plot_type>/<metric>.{args.format}")
