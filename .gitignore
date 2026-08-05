@@ -30,6 +30,11 @@ cache/models/*
 # Exception: keep openrouter activity logs
 !cache/openrouter_logs/
 !cache/openrouter_logs/**
+# ...but not the raw per-export dumps. openrouter_activity_merged.csv is built from them and
+# supersedes them (see openrouter_activity_merged.audit.md for the per-group provenance), so
+# tracking both duplicates ~20 MB of the same rows. Keep the raw exports locally.
+cache/openrouter_logs/openrouter_activity_20*.csv
+cache/openrouter_logs/*.bak
 .conda
 Results
 results/
