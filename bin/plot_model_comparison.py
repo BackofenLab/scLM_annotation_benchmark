@@ -1413,6 +1413,9 @@ DATASET_ORDER_BY_PROMPT_LEN = {           # highest median prompt tokens first
 # Minimum gap (in median prompt tokens) between two adjacent segments for the assignment to be
 # called confident. Below this the pair could be swapped, so the group is flagged.
 DATASET_ATTRIBUTION_MIN_GAP = 3.0
+# Max total |on-disk unanswered - per-segment failures|, as a fraction of a run, for the
+# cross-check to count as corroboration rather than a mismatch.
+ATTRIBUTION_FIT_TOL = 0.02
 
 
 def activity_model_base(permaslug: str) -> str:
@@ -1580,10 +1583,15 @@ def validate_dataset_attribution(df: pd.DataFrame, predictions_root: Path) -> pd
                         for p in itertools.permutations(range(4)))
         rows.append({
             "model_base": base, "mode": mode,
-            "unanswered_on_disk": dict(zip(keys, t.astype(int))),
-            "non_stop_in_segment": dict(zip(keys, i.astype(int))),
-            # Agrees when no relabelling of the four segments fits the on-disk counts better.
-            "agrees": bool(identity_cost <= best_cost) if informative else None,
+            "unanswered_on_disk": {k: int(v) for k, v in zip(keys, t)},
+            "non_stop_in_segment": {k: int(v) for k, v in zip(keys, i)},
+            # Agrees when no relabelling fits better AND the fit is actually close. The second
+            # condition matters: for a run that was retried, the log was trimmed (failures first)
+            # so its counts are simply too low everywhere, and no permutation fixes that -- the
+            # identity would win by default and a badly wrong split would pass unnoticed.
+            "agrees": bool(identity_cost <= best_cost
+                           and identity_cost <= ATTRIBUTION_FIT_TOL * CELLS_PER_RUN)
+                      if informative else None,
             "informative": informative,
         })
     return pd.DataFrame(rows)
@@ -1714,7 +1722,7 @@ def plot_llm_spend_and_tokens(df, out_path, dpi):
     return True
 
 
-def plot_llm_answer_rate(df, out_path, dpi):
+def plot_llm_answer_rate(df, out_path, dpi, disk_counts=None):
     """Fraction of cells that came back with a usable label, and why the rest did not.
 
     This is a benchmark-validity figure, not an ops statistic: an unanswered cell is written as
@@ -1768,6 +1776,21 @@ def plot_llm_answer_rate(df, out_path, dpi):
     for side in ("top", "right"):
         ax.spines[side].set_visible(False)
     fig.tight_layout()
+
+    # Where a run was retried, the merged log was trimmed to one run's worth of calls and the trim
+    # drops failed calls first -- so for those groups this figure UNDERSTATES the failure rate.
+    # Name them by comparing against the prediction files, which are the ground truth.
+    if disk_counts is not None and not disk_counts.empty:
+        disk = disk_counts.groupby(["model_base", "mode"])["unanswered"].sum()
+        log_fail = (summary.set_index(["model_base", "mode"])["n_calls"]
+                    - summary.set_index(["model_base", "mode"])["n_answered"])
+        off = [f"{b} ({m}): {int(log_fail.get((b, m), 0))} in log vs {int(v)} on disk"
+               for (b, m), v in disk.items()
+               if abs(int(v) - int(log_fail.get((b, m), 0))) > 0.01 * CELLS_PER_RUN]
+        if off:
+            add_caption(fig, "Lower bound for retried runs, whose log was trimmed to one run's "
+                             "worth of calls (failures dropped first) — " + "; ".join(off)
+                             + ". See unanswered_by_dataset for the on-disk counts.")
     fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
     plt.close(fig)
     return True
@@ -1876,6 +1899,101 @@ def plot_llm_cost_by_dataset(df, out_path, dpi):
     return True
 
 
+def unanswered_by_dataset(predictions_root: Path, model_bases) -> pd.DataFrame:
+    """Per (model, mode, dataset) count of cells with no usable prediction, read from disk.
+
+    Deliberately NOT derived from the activity log. Predictions are already stored one directory
+    per dataset, so this needs no inference at all -- and the log is the weaker source here: for a
+    group whose run was retried, the merged log was trimmed to one run's worth of calls and the
+    trim drops failed calls first, so its failure count is a lower bound (kimi-k2.6 blind: 703
+    non-stop calls in the log vs 996 empty predictions on disk).
+    """
+    root = Path(predictions_root)
+    if not root.exists():
+        return pd.DataFrame()
+    vendor = {b: p.split("/")[0] for p, b in ACTIVITY_MODEL_ALIASES.items()}
+    rows = []
+    for base in model_bases:
+        slug = f"{vendor[base]}--{base}" if base in vendor else base
+        for mode in ("blind", "unblind"):
+            for ds in DATASET_CELL_COUNTS:
+                p = root / f"openrouter_LLM_{mode}" / ds / "1000_stratified" / f"predictions_{slug}.csv"
+                if not p.exists():
+                    continue
+                pred = pd.read_csv(p)
+                col = "predicted_labels"
+                empty = int(pred[col].isna().sum()
+                            + (pred[col].astype(str).str.strip() == "").sum())
+                rows.append({"model_base": base, "mode": mode, "dataset": ds,
+                             "n_cells": len(pred), "unanswered": empty,
+                             "unanswered_pct": 100.0 * empty / max(len(pred), 1)})
+    return pd.DataFrame(rows)
+
+
+def plot_llm_unanswered_by_dataset(counts, out_path, dpi):
+    """Unanswered cells per model x mode x dataset (counts from ``unanswered_by_dataset``).
+
+    The pooled answered rate hides where a model actually fails: kimi-k2.6 blind reads as one
+    number overall, but its failures concentrate on the datasets with the hardest label spaces.
+    Since unanswered cells are scored as wrong -- normalised to "no prediction" and mapped to the
+    CL root term ``cell`` -- that concentration is what determines how much each dataset's score
+    is depressed.
+
+    Magnitude question, so a single-hue sequential ramp, pale -> dark as the failure rate rises.
+    Cells at or above 0.5% are direct-labelled; the rest would be noise.
+    """
+    if counts is None or counts.empty:
+        return False
+    datasets = [d for d in DATASET_CELL_COUNTS if d in set(counts["dataset"])]
+    cols = [(ds, m) for ds in datasets for m in ("blind", "unblind")]
+    models = (counts.groupby("model_base")["unanswered_pct"].max()
+              .sort_values(ascending=False).index.tolist())
+    grid = np.full((len(models), len(cols)), np.nan)
+    for r, base in enumerate(models):
+        for c, (ds, m) in enumerate(cols):
+            v = counts[(counts["model_base"] == base) & (counts["mode"] == m)
+                       & (counts["dataset"] == ds)]
+            if not v.empty:
+                grid[r, c] = float(v["unanswered_pct"].iloc[0])
+
+    # White-anchored ramp built from the repo's soft_reds: a fully-answered cell must read as
+    # blank, not as pale red. (COLORMAPS["Red"] runs dark -> light and would paint 0% darkest;
+    # "Red_r" is the right direction but still starts at a visible pink.)
+    from matplotlib.colors import LinearSegmentedColormap
+    cmap = LinearSegmentedColormap.from_list("white_red", ["#ffffff", "#eb9d9d", "#a63737"])
+    fig, ax = plt.subplots(figsize=(1.05 * len(cols) + 4.2, 0.36 * len(models) + 2.6))
+    im = ax.imshow(grid, aspect="auto", cmap=cmap or "Reds", vmin=0,
+                   vmax=max(1.0, float(np.nanmax(grid))))
+    ax.set_xticks(range(len(cols)))
+    ax.set_xticklabels([m for _ds, m in cols], rotation=45, ha="right", fontsize=7.5)
+    ax.set_yticks(range(len(models)))
+    ax.set_yticklabels(models, fontsize=8)
+    # Dataset name spanning its blind/unblind pair, plus a divider between datasets.
+    for i, ds in enumerate(datasets):
+        ax.text(2 * i + 0.5, -0.85, ds, ha="center", va="bottom", fontsize=8.5)
+        if i:
+            ax.axvline(2 * i - 0.5, color="white", linewidth=2.5)
+    for r in range(len(models)):
+        for c in range(len(cols)):
+            v = grid[r, c]
+            if np.isnan(v) or v < 0.5:
+                continue
+            ax.text(c, r, f"{v:.0f}%", ha="center", va="center", fontsize=7,
+                    color="white" if v > 0.6 * np.nanmax(grid) else "0.2")
+    fig.colorbar(im, ax=ax, fraction=0.025, pad=0.02, label="Cells with no usable answer (%)")
+    ax.set_title("Where answering fails — unanswered cells are scored as wrong", loc="left",
+                 pad=22)
+    ax.set_xticks(np.arange(-0.5, len(cols), 1), minor=True)
+    ax.set_yticks(np.arange(-0.5, len(models), 1), minor=True)
+    ax.grid(which="minor", color="white", linewidth=1.2)
+    ax.tick_params(which="minor", length=0)
+    add_caption(fig, "Counted from the prediction files on disk, so the dataset split is exact "
+                     "(no inference from the activity log).")
+    fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
+    plt.close(fig)
+    return True
+
+
 def _pareto_front(points):
     """Indices of the cost/score points not dominated by a cheaper-and-better point."""
     front, best = [], -np.inf
@@ -1886,16 +2004,34 @@ def _pareto_front(points):
     return front
 
 
-def plot_cost_vs_performance(agg_df, act_df, out_path, dpi, metric="balanced_accuracy"):
+def plot_cost_vs_performance(agg_df, act_df, out_path, dpi, metric="balanced_accuracy",
+                             dataset=None):
     """Annotation quality against what it costs, one point per (LLM, mode).
 
     ``metric`` is either a column of the aggregated CSV (averaged over datasets) or the literal
     ``"composite"``, which uses the same baseline-normalized composite as the category figure.
     x is spend per 1,000 cells on a log axis (it spans four orders of magnitude); the step line
     marks the cost-efficient frontier — the models no other model beats while also being cheaper.
+
+    With ``dataset`` set, both sides are restricted to that dataset: the score comes straight
+    from the aggregate (which is per-dataset already) while the cost side uses the INFERRED
+    dataset attribution, so any low-confidence group is named in the caption.
     """
     if agg_df.empty or act_df.empty:
         return False
+    caption = ""
+    if dataset is not None:
+        agg_df = agg_df[agg_df["dataset"].astype(str) == str(dataset)]
+        if "dataset" not in act_df.columns:
+            return False
+        act_df = act_df[act_df["dataset"].astype(str) == str(dataset)]
+        if agg_df.empty or act_df.empty:
+            return False
+        low = sorted({f"{b} ({m})" for (b, m), ok
+                      in act_df.groupby(["model_base", "mode"])["dataset_confident"].first().items()
+                      if not ok})
+        caption = ("Cost split across datasets is inferred from run order and prompt length"
+                   + (f"; low-confidence for {', '.join(low)}." if low else "."))
     summary = activity_summary(act_df).set_index("model")
 
     if metric == "composite":
@@ -1906,7 +2042,7 @@ def plot_cost_vs_performance(agg_df, act_df, out_path, dpi, metric="balanced_acc
             return False
         scores = (agg_df.assign(_v=pd.to_numeric(agg_df[metric], errors="coerce"))
                   .groupby("model")["_v"].mean())
-        ylab = f"{pretty(metric)} (mean over datasets)"
+        ylab = pretty(metric) if dataset else f"{pretty(metric)} (mean over datasets)"
     if scores.empty:
         return False
 
@@ -1953,7 +2089,8 @@ def plot_cost_vs_performance(agg_df, act_df, out_path, dpi, metric="balanced_acc
     ax.set_xscale("log")
     ax.set_xlabel("Cost per 1,000 cells annotated (USD, log scale)")
     ax.set_ylabel(ylab)
-    ax.set_title("Cost vs. annotation quality — step line = cost-efficient frontier", loc="left")
+    ax.set_title(f"Cost vs. annotation quality{f' — {dataset}' if dataset else ''} "
+                 f"— step line = cost-efficient frontier", loc="left")
     handles = [mpatches.Patch(facecolor=colors[m], label=m) for m in ("blind", "unblind")]
     handles += [plt.Line2D([], [], linestyle="none", marker=mk, color="0.4",
                            label=(tier or "unclassified").replace("_", " "))
@@ -1964,6 +2101,7 @@ def plot_cost_vs_performance(agg_df, act_df, out_path, dpi, metric="balanced_acc
     for side in ("top", "right"):
         ax.spines[side].set_visible(False)
     fig.tight_layout()
+    add_caption(fig, caption)
     fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
     plt.close(fig)
     return True
@@ -2263,14 +2401,32 @@ def main(argv=None):
                         print(f"    DISAGREES {r['model_base']} ({r['mode']}): "
                               f"on disk {r['unanswered_on_disk']} vs "
                               f"segments {r['non_stop_in_segment']}", file=sys.stderr)
+                    # A group whose segments cannot be reconciled with the on-disk counts is not
+                    # trustworthy for the per-dataset cost split either -- mark it low-confidence
+                    # so spend_by_dataset hatches it.
+                    bad = {(r["model_base"], r["mode"])
+                           for _, r in inf[~inf["agrees"].astype(bool)].iterrows()}
+                    if bad:
+                        key = list(zip(activity["model_base"], activity["mode"]))
+                        activity.loc[[k in bad for k in key], "dataset_confident"] = False
 
             if "llm_activity" in args.plots:
                 adir = args.outdir / "llm_activity"
                 adir.mkdir(parents=True, exist_ok=True)
-                for name, fn in (("spend_and_tokens", plot_llm_spend_and_tokens),
-                                 ("answer_rate", plot_llm_answer_rate),
-                                 ("latency", plot_llm_latency),
-                                 ("spend_by_dataset", plot_llm_cost_by_dataset)):
+                # Per-dataset unanswered counts come from the prediction files, not the log:
+                # the split is exact there, and the log understates failures for retried runs.
+                disk_counts = unanswered_by_dataset(
+                    args.predictions_root, sorted(activity["model_base"].unique()))
+                builders_llm = {
+                    "spend_and_tokens": plot_llm_spend_and_tokens,
+                    "answer_rate": lambda d, o, dpi: plot_llm_answer_rate(
+                        d, o, dpi, disk_counts=disk_counts),
+                    "unanswered_by_dataset": lambda _d, o, dpi: plot_llm_unanswered_by_dataset(
+                        disk_counts, o, dpi),
+                    "latency": plot_llm_latency,
+                    "spend_by_dataset": plot_llm_cost_by_dataset,
+                }
+                for name, fn in builders_llm.items():
                     out = adir / f"{name}.{args.format}"
                     if fn(activity, out, args.dpi):
                         total_written += 1
@@ -2290,6 +2446,16 @@ def main(argv=None):
                         warnings.warn(
                             f"Skipped cost_performance/{metric}: metric absent, or fewer than two "
                             f"LLMs joined the activity log.")
+                    # Per-dataset breakdown: score is per-dataset in the aggregate already, the
+                    # cost side uses the inferred split (flagged in each figure's caption).
+                    for dataset in sorted(df["dataset"].astype(str).unique()):
+                        ddir = cdir / "by_dataset" / dataset
+                        ddir.mkdir(parents=True, exist_ok=True)
+                        outd = ddir / f"cost_vs_{metric}.{args.format}"
+                        if plot_cost_vs_performance(df, activity, outd, args.dpi, metric=metric,
+                                                    dataset=dataset):
+                            total_written += 1
+                            print(f"[cost_performance/by_dataset/{dataset}]  wrote {outd.name}")
 
     print(f"Total: wrote {total_written} figure(s) under {args.outdir.resolve()}")
     print(f"  layout: <mode_variant>/<subset_size>/<plot_type>/<metric>.{args.format}")
