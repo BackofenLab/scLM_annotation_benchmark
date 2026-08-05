@@ -200,7 +200,8 @@ REFERENCE_LINE_BASES = {"random_stratified"}
 # model is driven through the cell2sentence library's own prompt formatter, whose templates expose
 # only {num_genes}/{organism}/{cell_sentence} and have no slot for a candidate label list, so
 # building one would require forking upstream. See models/c2s_blind/src/predict.py.
-EXCLUDED_BASES = {"ucell", "singler_main", "singler_fine", "singler_ont", "c2s"}
+EXCLUDED_BASES = {"ucell", "singler_main", "singler_fine", "singler_ont",
+                  "agentic_bp_claude", "agentic_bp_codex", "c2s"}
 # Ordered (category key, x-axis display label) for the strip panels.
 # Left-to-right: baselines, domain-adapted LLMs, one-shot LLMs, coding agents.
 COMPOSITE_CATEGORIES = [
