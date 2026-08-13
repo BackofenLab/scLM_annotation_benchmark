@@ -11,6 +11,16 @@ import seaborn as sns
 import pandas as pd
 import numpy as np
 
+# Normalization arithmetic for the text-encoder metrics lives with the metric itself so there is
+# one implementation. Importing it here lets us backfill the derived keys for result JSONs written
+# before they existed, instead of re-running the (torch-bound) scoring stage. The import is safe
+# without torch: text_embedding_similarity imports torch lazily, inside TextEncoder.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+try:
+    from util.text_embedding_similarity import TEXT_EMB_DERIVED_KEYS, derive_text_emb_metrics
+except ImportError:  # keep aggregate.py runnable standalone; derived columns are simply absent
+    TEXT_EMB_DERIVED_KEYS, derive_text_emb_metrics = (), None
+
 
 def combine_results(args):
     out_dir = Path(args.output)
@@ -101,6 +111,11 @@ def combine_results(args):
         "reviewed_fraction","non_cl_ratio",
         "n_non_cl_labels","n_unique_pred_raw","n_unique_pred_mapped",
         "text_emb_norm_avg_raw","text_emb_norm_avg_mapped","text_emb_mapping_lift",
+        # Class-balanced, baseline-normalized text-encoder scores and their lift (all on one
+        # scale). text_emb_norm_clipped averages to the FRACTION of a model's datasets whose
+        # score hit the [0,1] clip, i.e. where the lift is a floor rather than an estimate.
+        "text_emb_norm_balanced_raw","text_emb_norm_balanced_mapped","text_emb_norm_mapping_lift",
+        "text_emb_norm_clipped","text_emb_baseline_used",
         "macro_precision","macro_recall","macro_f1",
         "weighted_precision","weighted_recall","weighted_f1"
     ]
@@ -223,6 +238,17 @@ def extract_metrics(payload: Dict[str, Any], annotation_key) -> Dict[str, Any]:
     te_norm_mapped = safe_get(payload, base + ["text_emb_norm_avg_mapped"])
     te_mapping_lift = safe_get(payload, base + ["text_emb_mapping_lift"])
 
+    # Class-balanced, baseline-normalized variants + a lift on the SAME scale as them. Older
+    # result JSONs carry only the unnormalized means and the baseline, so derive the rest here
+    # (pure arithmetic, same function the scoring stage uses). Newer JSONs already have them.
+    te_derived = {k: safe_get(payload, base + [k]) for k in TEXT_EMB_DERIVED_KEYS}
+    if derive_text_emb_metrics is not None and any(v is None for v in te_derived.values()):
+        source = {k: safe_get(payload, base + [k]) for k in (
+            "text_emb_balanced_similarity_raw", "text_emb_balanced_similarity_mapped",
+            "text_emb_baseline")}
+        if source["text_emb_baseline"] is not None:
+            te_derived = derive_text_emb_metrics(source)
+
     # summary_dict aggregates
     macro = safe_get(payload, base + ["summary_dict", "macro avg"], {}) or {}
     wavg  = safe_get(payload, base + ["summary_dict", "weighted avg"], {}) or {}
@@ -243,6 +269,7 @@ def extract_metrics(payload: Dict[str, Any], annotation_key) -> Dict[str, Any]:
         "text_emb_norm_avg_raw": te_norm_raw,
         "text_emb_norm_avg_mapped": te_norm_mapped,
         "text_emb_mapping_lift": te_mapping_lift,
+        **te_derived,
         "macro_precision": macro.get("precision"),
         "macro_recall": macro.get("recall"),
         "macro_f1": macro.get("f1-score"),
@@ -276,6 +303,9 @@ def make_plot(dataframe, out_dir):
         "text_emb_norm_avg_raw",
         "text_emb_norm_avg_mapped",
         "text_emb_mapping_lift",
+        "text_emb_norm_balanced_raw",
+        "text_emb_norm_balanced_mapped",
+        "text_emb_norm_mapping_lift",
         #"macro_precision",
         #"macro_recall",
         "macro_f1",
@@ -361,6 +391,9 @@ def make_heatmaps(dataframe, out_dir):
         "text_emb_norm_avg_raw",
         "text_emb_norm_avg_mapped",
         "text_emb_mapping_lift",
+        "text_emb_norm_balanced_raw",
+        "text_emb_norm_balanced_mapped",
+        "text_emb_norm_mapping_lift",
         "macro_f1",
         "weighted_f1",
         "non_cl_ratio",
@@ -369,11 +402,14 @@ def make_heatmaps(dataframe, out_dir):
         "n_unique_pred_mapped",
     ]
     # Metrics whose natural range is [0, 1]; everything else (the label-count diagnostics) is
-    # unbounded and must autoscale instead of clipping against a hardcoded vmax=1.
+    # unbounded and must autoscale instead of clipping against a hardcoded vmax=1. The mapping
+    # lifts are signed differences and belong OUTSIDE this set: a negative lift (mapping made a
+    # model's label WORSE, e.g. llama-4-maverick) would otherwise be clipped away at vmin=0.
     zero_one_metrics = {
         "balanced_accuracy", "accuracy", "rada_avg_similarity", "lin_avg_similarity",
         "id_accuracy", "balanced_id_accuracy", "text_emb_norm_avg_raw",
-        "text_emb_norm_avg_mapped", "text_emb_mapping_lift", "macro_f1", "weighted_f1",
+        "text_emb_norm_avg_mapped", "text_emb_norm_balanced_raw",
+        "text_emb_norm_balanced_mapped", "macro_f1", "weighted_f1",
         "non_cl_ratio", "reviewed_fraction",
     }
 
