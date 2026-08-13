@@ -77,6 +77,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 import matplotlib.cm as cm  # noqa: E402
 import matplotlib.dates as mdates  # noqa: E402
 import matplotlib.patches as mpatches  # noqa: E402
+import matplotlib.path as mpath  # noqa: E402
 import matplotlib.transforms as mtransforms  # noqa: E402
 import seaborn as sns  # noqa: E402
 
@@ -136,7 +137,15 @@ DEFAULT_METRICS = [
     # Populated only when eval ran with --use_text_encoder true (NaN columns are skipped).
     "text_emb_norm_avg_raw",     # on raw predictions
     "text_emb_norm_avg_mapped",  # on ontology-mapped predictions
-    "text_emb_mapping_lift",     # gain from ontology mapping (mapped - raw)
+    "text_emb_mapping_lift",     # gain from mapping, on the RAW cosine scale (legacy; see below)
+    # Class-balanced variants, and a lift that is a difference of two normalized scores. Prefer
+    # these: text_emb_mapping_lift above is an unnormalized difference, so it is NOT on the same
+    # scale as text_emb_norm_avg_* (they differ by 1/(1 - baseline), which is per-run and ranges
+    # 1.5x-3.7x here). The *_balanced_* pair also matches every other headline metric in being
+    # class-balanced rather than dominated by abundant cell types.
+    "text_emb_norm_balanced_raw",
+    "text_emb_norm_balanced_mapped",
+    "text_emb_norm_mapping_lift",
     # Label-coverage / diversity diagnostics (populated once eval+aggregate are re-run).
     "non_cl_ratio",          # fraction of cells whose raw output is NOT a CL term
     "n_non_cl_labels",       # distinct non-CL raw labels
@@ -295,13 +304,16 @@ UNCLASSIFIED_TIER_STYLE = ("X", 40)
 _WARNED_UNKNOWN_TIERS: set[str] = set()
 
 # Metrics whose natural range is [0, 1]; the label-count diagnostics are unbounded counts and
-# must autoscale in the heatmap rather than clipping against vmin=0/vmax=1.
+# must autoscale in the heatmap rather than clipping against vmin=0/vmax=1. The mapping lifts are
+# signed differences and belong OUTSIDE this set: a negative lift (ontology mapping made a model's
+# label worse, e.g. llama-4-maverick) would otherwise be clipped away at vmin=0.
 ZERO_ONE_METRICS = {
     "balanced_accuracy", "accuracy", "rada_avg_similarity", "lin_avg_similarity",
     "id_accuracy", "balanced_id_accuracy", "macro_f1", "weighted_f1",
     "macro_precision", "macro_recall", "weighted_precision", "weighted_recall",
     "non_cl_ratio", "reviewed_fraction",
-    "text_emb_norm_avg_raw", "text_emb_norm_avg_mapped", "text_emb_mapping_lift",
+    "text_emb_norm_avg_raw", "text_emb_norm_avg_mapped",
+    "text_emb_norm_balanced_raw", "text_emb_norm_balanced_mapped",
 }
 
 
@@ -876,8 +888,20 @@ def _category_layout(key, members, use_tiers=True):
     return ordered, offsets, segments
 
 
-def plot_composite_category(df, out_path, caption, dpi, title=None, show_tiers=True):
+def plot_composite_category(df, out_path, caption, dpi, title=None, show_tiers=True, ax=None,
+                            metric=None):
     """Single-panel composite-score figure with paired blind/unblind sub-columns.
+
+    Pass ``ax`` to draw the panel into an existing axes instead of writing a file. In that mode
+    nothing is saved and the function returns the legend handles, so a multi-panel composer
+    (``manuscript_figures.py``) can place one shared legend. ``out_path``/``dpi`` are ignored.
+
+    ``metric`` swaps the y axis from the baseline-normalized composite to a single raw metric
+    (e.g. ``"balanced_accuracy"``), keeping the layout identical so the two variants are directly
+    comparable. The composite needs no chance reference because zero IS chance by construction;
+    a raw metric does not, so the chance model's mean is drawn as a dashed line instead. Which
+    variant the manuscript uses is an open decision — raw balanced accuracy is defensible without
+    argument, the composite has to be defended in Methods.
 
     Each category gets one slot on the x axis. Categories that were run in both prediction modes
     (scLLMs, LLMs, coding agents) are split into adjacent blind and unblind sub-columns, and every
@@ -904,7 +928,20 @@ def plot_composite_category(df, out_path, caption, dpi, title=None, show_tiers=T
     ``title`` adds a figure-level title (used by the per-dataset supplementary figures so they are
     self-identifying); the aggregated-over-datasets figures pass ``None`` (no title).
     """
-    per_model = _composite_per_model(df)
+    chance = None
+    if metric is None:
+        per_model = _composite_per_model(df)
+        ylabel = "Composite score\n(bal. acc. + Lin. sim., chance-normalized)"
+    else:
+        if metric not in df.columns or "model" not in df.columns:
+            return False
+        per_model = pd.to_numeric(df[metric], errors="coerce").groupby(df["model"]).mean()
+        ylabel = pretty(metric)
+        # Read the chance level BEFORE the simple baselines are filtered out below: on a raw
+        # metric the axis floor no longer marks chance, so it has to be drawn.
+        if COMPOSITE_BASELINE_MODEL in per_model.index:
+            value = float(per_model.loc[COMPOSITE_BASELINE_MODEL])
+            chance = value if np.isfinite(value) else None
     if per_model.empty:
         return False
 
@@ -938,7 +975,11 @@ def plot_composite_category(df, out_path, caption, dpi, title=None, show_tiers=T
     # unused headroom is removed.
     ymax = min(1.0, max(v for md in scores.values() for v in md.values()) + 0.06)
 
-    fig, ax = plt.subplots(figsize=(2.6 * len(present) + 1.6, 4.3))
+    own_fig = ax is None
+    if own_fig:
+        fig, ax = plt.subplots(figsize=(2.6 * len(present) + 1.6, 4.3))
+    else:
+        fig = ax.figure
     drawn_tiers, drew_link = set(), False
     tick_pos, tick_lab = [], []
 
@@ -989,9 +1030,11 @@ def plot_composite_category(df, out_path, caption, dpi, title=None, show_tiers=T
         ax.text(float(i), -0.13, lbl, transform=blended, ha="center", va="top", fontsize=14)
 
     ax.set_ylim(0, ymax)
-    # y=0 IS the random-stratified (chance) level by construction (the composite is normalized
-    # against it), so no separate baseline reference line is drawn — it would sit on the axis.
-    ax.set_ylabel("Composite score\n(bal. acc. + Lin. sim., chance-normalized)", fontsize=13)
+    # On the composite, y=0 IS the random-stratified (chance) level by construction, so no
+    # reference line is drawn — it would sit on the axis. On a raw metric it has to be drawn.
+    if chance is not None:
+        ax.axhline(chance, linestyle="--", linewidth=0.9, color="0.55", zorder=1)
+    ax.set_ylabel(ylabel, fontsize=13)
     ax.tick_params(axis="y", labelsize=12)
     ax.grid(axis="y", linestyle=":", alpha=0.5)
     sns.despine(ax=ax)
@@ -1002,6 +1045,9 @@ def plot_composite_category(df, out_path, caption, dpi, title=None, show_tiers=T
         return plt.Line2D([0], [0], linestyle="none", marker="", label=label)
 
     handles = []
+    if chance is not None:
+        handles.append(plt.Line2D([0], [0], color="0.55", linewidth=0.9, linestyle="--",
+                                  label="chance (random, stratified)"))
     if drew_link:
         handles.append(plt.Line2D([0], [0], color="0.62", linewidth=0.7,
                                   label="same model, blind–unblind"))
@@ -1021,6 +1067,8 @@ def plot_composite_category(df, out_path, caption, dpi, title=None, show_tiers=T
             handles.append(plt.Line2D([0], [0], linestyle="none",
                                       marker=UNCLASSIFIED_TIER_STYLE[0], color=cat_color[key],
                                       markersize=6, label="tier unassigned"))
+    if not own_fig:
+        return handles   # composer owns the figure, the legend and the file
     fig.legend(handles=handles, loc="center left", bbox_to_anchor=(0.87, 0.5),
                frameon=False, fontsize=9, labelspacing=0.32, handletextpad=0.6)
 
@@ -1052,23 +1100,67 @@ def _ranked_category_colors():
     return {key: cat_palette[i % len(cat_palette)] for i, key in enumerate(_RANKED_CATEGORY_ORDER)}
 
 
-def plot_composite_ranked_bars(df, out_path, dpi, title=None):
-    """Per-method composite ranking: one bar per model, sorted best-first (highest composite on the
-    left), each bar (and its x-axis name label) colored by the model's category.
+def _prose_model_label(model):
+    """Model name with the pipeline's regime suffix rewritten in the manuscript's vocabulary.
 
-    Uses the same baseline-normalized composite score as ``plot_composite_category``
-    (``_composite_per_model``), but instead of collapsing each category to points + a mean line it
-    shows EVERY method individually — blind and unblind models are separate bars, and the simple
-    baselines are included. Returns False if the composite metrics are absent.
+    The classical and chance baselines lose the suffix entirely: their ``_blind`` tag is a naming
+    artifact and the regime axis does not apply to them.
     """
-    per_model = _composite_per_model(df)
+    base = model_base(model)
+    if categorize_model(model) in ("classical", "simple"):
+        return base
+    return {"unblind": f"{base} (constrained)",
+            "blind": f"{base} (unconstrained)"}.get(derive_mode(model), base)
+
+
+def plot_composite_ranked_bars(df, out_path, dpi, title=None, metric=None,
+                               include_simple=None, prose_regimes=False):
+    """Per-method ranking: one bar per model, sorted best-first, each bar (and its x-axis name
+    label) colored by the model's category.
+
+    Instead of collapsing each category to points plus a mean line, this shows EVERY method
+    individually, with the two prediction modes as separate bars.
+
+    ``metric`` swaps the y axis from the baseline-normalized composite to a single raw metric
+    (e.g. ``"balanced_accuracy"``). Two consequences, both handled here. On the composite the
+    chance level is exactly 0 by construction, so it needs no marking; on a raw metric it does,
+    and it is drawn as a dashed red reference line rather than as bars. And the y-axis label stops
+    being able to say "0 = chance", so it names the metric plainly.
+
+    The chance models occupy three bars (random-stratified, random-uniform, cell-baseline) that
+    say the same thing as one line, and sorting them into the ranking implies they are methods
+    competing with the rest. ``include_simple=True`` restores them as bars if that is wanted.
+
+    ``prose_regimes`` writes the manuscript's ``constrained``/``unconstrained`` in the tick labels
+    and the mode legend instead of the pipeline's ``unblind``/``blind``.
+
+    Returns False if the requested metric is absent.
+    """
+    if metric is None:
+        per_model = _composite_per_model(df)
+        ylabel = "Composite score\n(bal. acc. + Lin. sim. — 0 = random-stratified chance)"
+    else:
+        if metric not in df.columns or "model" not in df.columns:
+            return False
+        per_model = pd.to_numeric(df[metric], errors="coerce").groupby(df["model"]).mean()
+        ylabel = pretty(metric)
     if per_model.empty:
         return False
+    if include_simple is None:
+        include_simple = False
 
-    # Drop models with no composite score (NaN under the coverage gate, e.g. not-yet-reviewed marker
-    # baselines) and the simple chance baselines so they don't occupy slots on the ranked axis.
+    # Read the chance level before the simple baselines are dropped below.
+    chance = None
+    if metric is not None and COMPOSITE_BASELINE_MODEL in per_model.index:
+        value = float(per_model.loc[COMPOSITE_BASELINE_MODEL])
+        chance = value if np.isfinite(value) else None
+
+    # Drop models with no score (NaN under the coverage gate, e.g. not-yet-reviewed marker
+    # baselines). The simple chance baselines are kept only when they carry information.
     ranked = per_model.dropna()
-    ranked = ranked[[categorize_model(m) != "simple" for m in ranked.index]].sort_values(ascending=False)
+    if not include_simple:
+        ranked = ranked[[categorize_model(m) != "simple" for m in ranked.index]]
+    ranked = ranked.sort_values(ascending=False)
     if ranked.empty:
         return False
     models = list(ranked.index)
@@ -1089,11 +1181,13 @@ def plot_composite_ranked_bars(df, out_path, dpi, title=None):
             bar.set_edgecolor("black")
             bar.set_linewidth(0.5)
 
-    # Chance reference line (random_stratified composite), red and in front of the bars.
-    # No chance reference line: the composite is normalized AGAINST random_stratified, so that
-    # model scores exactly 0 by construction and the line would lie on top of the x axis (it read
-    # as a rendering bug). The chance level is stated in the y-axis label instead, matching what
-    # plot_composite_category already does.
+    # Chance reference. On the composite this is omitted: the metric is normalized AGAINST
+    # random_stratified, so it is exactly 0 by construction and a line there would sit on the x
+    # axis and read as a rendering artifact. The y-axis label states it instead. On a raw metric
+    # the level is real and is drawn as a dashed red line across the ranking, which says what
+    # three separate chance bars would while keeping them out of the sort order.
+    if chance is not None:
+        ax.axhline(chance, color="tab:red", linestyle="--", linewidth=1.2, zorder=5)
 
     # Value labels above each bar (small, rotated) so the rank order is readable at a glance.
     for xi, v in zip(x, ranked.values):
@@ -1102,14 +1196,14 @@ def plot_composite_ranked_bars(df, out_path, dpi, title=None):
                         ha="center", va="bottom", fontsize=6.5, rotation=90, color="0.3")
 
     ax.set_xticks(x)
-    ax.set_xticklabels(models, rotation=90, ha="center", fontsize=8)
+    tick_names = [_prose_model_label(m) for m in models] if prose_regimes else models
+    ax.set_xticklabels(tick_names, rotation=90, ha="center", fontsize=8)
     # Color each model-name tick label by its category (matches the bar).
     for tick, c in zip(ax.get_xticklabels(), cats):
         tick.set_color(cat_color.get(c, cat_color["LLM"]))
     ax.set_xlim(-0.6, n - 0.4)
-    ax.set_ylim(0, 1.02)
-    ax.set_ylabel("Composite score\n(bal. acc. + Lin. sim. — 0 = random-stratified chance)",
-                  fontsize=13)
+    ax.set_ylim(0, min(1.02, float(np.nanmax(ranked.values)) + 0.10))
+    ax.set_ylabel(ylabel, fontsize=13)
     ax.tick_params(axis="y", labelsize=12)
     ax.grid(axis="y", linestyle=":", alpha=0.5)
     sns.despine(ax=ax)
@@ -1118,12 +1212,16 @@ def plot_composite_ranked_bars(df, out_path, dpi, title=None):
     present_cats = [k for k in _RANKED_CATEGORY_ORDER if k in set(cats)]
     handles = [mpatches.Patch(color=cat_color[k], label=_RANKED_CATEGORY_LABELS[k])
                for k in present_cats]
+    if chance is not None:
+        handles.append(plt.Line2D([0], [0], color="tab:red", linestyle="--", linewidth=1.2,
+                                  label="chance (random, stratified)"))
     leg_cat = ax.legend(handles=handles, loc="upper right", frameon=False, fontsize=11,
                         title="model category", title_fontsize=11)
     ax.add_artist(leg_cat)
     # Second legend: prediction mode (solid = unblind, black diagonals = blind).
-    mode_handles = [mpatches.Patch(facecolor="0.7", edgecolor="black", label="unblind"),
-                    mpatches.Patch(facecolor="0.7", edgecolor="black", hatch="///", label="blind")]
+    _u, _c = ("constrained", "unconstrained") if prose_regimes else ("unblind", "blind")
+    mode_handles = [mpatches.Patch(facecolor="0.7", edgecolor="black", label=_u),
+                    mpatches.Patch(facecolor="0.7", edgecolor="black", hatch="///", label=_c)]
     ax.legend(handles=mode_handles, loc="upper right", bbox_to_anchor=(1.0, 0.60),
               frameon=False, fontsize=10, title="prediction mode", title_fontsize=10)
 
@@ -1179,6 +1277,786 @@ def load_model_dates(path, column=DATE_COLUMNS[0]):
         warnings.warn(f"{path} lacks '{column}'; falling back to '{col}'.")
     s = pd.Series(pd.to_datetime(d[col], errors="coerce").values, index=d["model_base"].astype(str))
     return s.dropna()
+
+
+def _tier_marker(model: str):
+    """(marker, size) for a model, from the same vocabulary as ``plot_composite_category``.
+
+    Falls back to the unclassified style for a model whose tier is not in
+    ``CATEGORY_TIER_MEMBERS`` and to a plain circle for a category without tiers.
+    """
+    cat, tkey = categorize_model(model), model_tier(model)
+    if tkey is None:
+        return ("o", 46)
+    if tkey == "unclassified":
+        return UNCLASSIFIED_TIER_STYLE
+    for key, _lbl, marker, size in CATEGORY_TIERS.get(cat, []):
+        if key == tkey:
+            return (marker, size)
+    return UNCLASSIFIED_TIER_STYLE
+
+
+def _place_point_labels(ax, labels, obstacles, fontsize, leader_color="0.7"):
+    """Annotate scatter points without letting the text land on a marker or another label.
+
+    ``labels`` is ``[(text, x_data, y_data, color)]`` and ``obstacles`` is
+    ``[(x_data, y_data, radius_points)]`` for every drawn marker. Each label is tried at a ring
+    of candidate offsets and keeps the first that overlaps nothing; if every candidate collides,
+    the least-overlapping one is kept, so a label is never silently dropped. Placement uses real
+    rendered bounding boxes, which is why the canvas is drawn once up front -- and why the
+    obstacles arrive in DATA coordinates and are transformed after that draw, when the axes
+    position is final.
+
+    A faint leader line is attached whenever the text ends up far enough from its point that the
+    association would otherwise be ambiguous.
+    """
+    if not labels:
+        return
+    fig = ax.figure
+    fig.canvas.draw()
+    renderer = fig.canvas.get_renderer()
+
+    obstacle_boxes = []
+    for x_data, y_data, r_pts in obstacles:
+        xd, yd = ax.transData.transform((x_data, y_data))
+        r = r_pts * fig.dpi / 72.0
+        obstacle_boxes.append(mtransforms.Bbox.from_bounds(xd - r, yd - r, 2 * r, 2 * r))
+    # Ring of offsets in points, nearest first, right/left before up/down so labels track the
+    # reading direction before they start stacking vertically.
+    candidates = [(9, 0), (-9, 0), (9, 8), (-9, 8), (9, -8), (-9, -8), (0, 11), (0, -11),
+                  (18, 0), (-18, 0), (18, 14), (-18, 14), (18, -14), (-18, -14),
+                  (0, 20), (0, -20), (30, 0), (-30, 0)]
+
+    axes_box = ax.get_window_extent(renderer=renderer)
+
+    def _cost(box, boxes):
+        total = 0.0
+        for other in boxes:
+            inter = mtransforms.Bbox.intersection(box, other)
+            if inter is not None and inter.width > 0 and inter.height > 0:
+                total += inter.width * inter.height
+        # Spilling outside the axes is a collision too: the label would sit on the tick labels or
+        # be clipped away entirely. Charged by the area that falls outside.
+        inside = mtransforms.Bbox.intersection(box, axes_box)
+        area = box.width * box.height
+        total += area - (inside.width * inside.height if inside is not None else 0.0)
+        return total
+
+    placed = []
+    for text, px, py, color in sorted(labels, key=lambda t: -t[2]):
+        best, best_cost, best_off = None, None, None
+        for dx, dy in candidates:
+            ann = ax.annotate(text, xy=(px, py), xytext=(dx, dy), textcoords="offset points",
+                              ha="left" if dx >= 0 else "right",
+                              va="bottom" if dy > 0 else ("top" if dy < 0 else "center"),
+                              fontsize=fontsize, color=color, zorder=6)
+            box = ann.get_window_extent(renderer=renderer)
+            cost = _cost(box, obstacle_boxes + placed)
+            if cost == 0:
+                # Clear any partial best already on the axes, or it stays as a duplicate label.
+                if best is not None:
+                    best.remove()
+                best, best_off = ann, (dx, dy)
+                break
+            if best_cost is None or cost < best_cost:
+                if best is not None:
+                    best.remove()
+                best, best_cost, best_off = ann, cost, (dx, dy)
+            else:
+                ann.remove()
+        if best is None:
+            continue
+        placed.append(best.get_window_extent(renderer=renderer))
+        if abs(best_off[0]) > 12 or abs(best_off[1]) > 12:
+            # Displaced far enough that the text-to-point association needs a leader.
+            ax.annotate("", xy=(px, py), xytext=best_off, textcoords="offset points",
+                        xycoords=best.xycoords,
+                        arrowprops=dict(arrowstyle="-", linewidth=0.4, color=leader_color,
+                                        shrinkA=0, shrinkB=2), zorder=3)
+
+
+def plot_metric_disagreement(df, out_path, dpi, title=None,
+                             x_metric="balanced_accuracy", y_metric="macro_f1",
+                             ax=None, only_regime=None, annotate="tier_best",
+                             baselines_in_both=True, cross_ref=True, regime_labels=None):
+    """Companion panel to ``plot_composite_category``: do the two correctness metrics rank models
+    the same way, and does that depend on the information regime?
+
+    The composite on the ``plot_composite_category`` axis averages balanced accuracy and Lin
+    similarity, so macro F1 is absent from that figure by construction. It is also the metric on
+    which the family ordering reverses, which is why it needs its own panel rather than a sentence.
+
+    One point per model per regime, split into two panels (unconstrained | constrained) sharing
+    axes. EVERY model in ``df`` is drawn -- no selection -- with colors by category and markers by
+    method tier, matching ``plot_composite_category`` so the panels read as one figure. The
+    classical baselines have a single score and are drawn in the unconstrained panel only, since
+    that is the regime they are compared under; the caption must say the regime axis does not
+    apply to them.
+
+    The identity line is the reference that carries the reading. A model sitting far below it
+    predicts many more distinct labels than the ground truth has, which macro F1 charges for (it
+    averages over predicted classes) and balanced accuracy does not (it is recall-based). Points
+    near the line are models whose label vocabulary matches the target label set.
+
+    Spearman rank correlation between the two metrics is annotated per panel over the models in
+    that panel. Returns False if either metric is missing.
+
+    ``ax`` + ``only_regime`` draw a SINGLE regime panel into an existing axes and return the
+    legend handles instead of writing a file, so a multi-panel composer can place one shared
+    legend. ``only_regime`` is ``"blind"`` or ``"unblind"``; the other regime's Spearman is then
+    folded into the panel title so the contrast survives in the compact form.
+    """
+    if not all(c in df.columns for c in (x_metric, y_metric)) or "model" not in df.columns:
+        return False
+
+    per = (df.groupby("model")[[x_metric, y_metric]].mean().dropna())
+    per = per[[categorize_model(m) != "simple" for m in per.index]]
+    if per.empty:
+        return False
+
+    cat_palette = (CATEGORICAL_PALETTES.get("tab20_new") if _HAVE_REPO_STYLE else None) \
+        or sns.color_palette("tab10", n_colors=10).as_hex()
+    cat_color = {key: cat_palette[i % len(cat_palette)]
+                 for i, (key, _) in enumerate(COMPOSITE_CATEGORIES)}
+
+    # The classical baselines carry ONE score: the regime axis does not apply to them, because
+    # their label space is fixed by a marker database or a reference rather than by anything we
+    # supply. That is precisely what makes them a legitimate comparator under either setting, so
+    # they are DRAWN in both panels (``baselines_in_both``) as the reference set.
+    #
+    # They are in NEITHER panel's rank correlation. The two coefficients exist to compare ONE
+    # population across the two regimes, so both must cover the same models -- the language
+    # models, which are the only ones that have both regimes. Putting the baselines in the
+    # unconstrained coefficient alone drags it from 0.91 to 0.83 and manufactures a regime effect
+    # out of a population change; they correlate at 1.00 among themselves (n = 4), so they are
+    # not noise, they are a different population. Putting them in both would be worse: their
+    # single score would then be read as a constrained result. Drawing set and statistics set are
+    # therefore kept apart, and the caption must say which is which.
+    panels = [("blind", "unconstrained", {"blind", "baseline"}),
+              ("unblind", "constrained", {"unblind"})]
+    members = {key: [m for m in per.index
+                     if derive_mode(m) in modes and categorize_model(m) != "classical"]
+               for key, _lbl, modes in panels}
+    # Selected by CATEGORY, not by derive_mode: scsa_blind / sctype_blind / singler_blind /
+    # celltypist_blind carry a `_blind` suffix that is a pipeline naming artifact, not a regime
+    # assignment, so derive_mode reports them as "blind" and would never surface them here.
+    baselines = [m for m in per.index if categorize_model(m) == "classical"]
+    drawn_members = {key: (mods + [b for b in baselines if b not in mods]
+                           if baselines_in_both else mods)
+                     for key, mods in members.items()}
+    if not any(members.values()):
+        return False
+
+    # One upper limit for both axes and both panels: the identity line only reads as a reference
+    # if x and y are on the same scale, and the two regimes only compare if their panels are.
+    # Padding is tight because the constrained panel reaches close to the maximum anyway.
+    hi = max(0.02 + float(per[[x_metric, y_metric]].to_numpy().max()), 0.2)
+
+    # Spearman per regime, computed up front so a single-panel render can quote the other one.
+    rho_by_key = {}
+    for key, _lbl, _modes in panels:
+        mods = members[key]
+        rho_by_key[key] = _spearman(per.loc[mods, x_metric].to_numpy(),
+                                    per.loc[mods, y_metric].to_numpy()) \
+            if len(mods) >= 3 else (float("nan"), float("nan"))
+
+    own_fig = ax is None
+    if own_fig:
+        fig, axes = plt.subplots(1, 2, figsize=(11.2, 5.0), sharex=True, sharey=True)
+        draw_panels = panels
+    else:
+        fig, axes = ax.figure, [ax]
+        draw_panels = [p for p in panels if p[0] == (only_regime or "blind")]
+    drawn_tiers = set()
+
+    for ax, (key, lbl, _modes) in zip(axes, draw_panels):
+        ax.plot([0, hi], [0, hi], color="0.75", linewidth=0.8, linestyle="--", zorder=1)
+        ax.set_xlim(0, hi)
+        ax.set_ylim(0, hi)
+        mods = members[key]            # models entering this panel's rank correlation
+        shown = drawn_members[key]     # models drawn, baselines included in both panels
+        marker_px = []   # (x_data, y_data, radius_points) for label collision avoidance
+        for mdl in shown:
+            cat = categorize_model(mdl)
+            marker, size = _tier_marker(mdl)
+            mx, my = float(per.loc[mdl, x_metric]), float(per.loc[mdl, y_metric])
+            ax.scatter(mx, my, s=size, marker=marker,
+                       color=cat_color.get(cat, "0.5"), edgecolor="white", linewidth=0.5, zorder=4)
+            # s is a marker AREA in points^2, so the half-width in points is sqrt(s)/2. Kept in
+            # data coordinates and converted once the layout is final (see _place_point_labels).
+            marker_px.append((mx, my, np.sqrt(size) / 2.0))
+            tkey = model_tier(mdl)
+            if tkey is not None:
+                drawn_tiers.add((cat, tkey))
+        # Label the best model per method tier, ranked on the x metric (balanced accuracy, the
+        # primary metric). One name per tier is a symmetric rule that treats every family alike
+        # and is stated in the caption; naming "the models the claim is about" would privilege
+        # one family and read as selection. Every model is drawn either way -- only the naming
+        # is restricted. `annotate="none"` turns labels off, `"all"` names every model.
+        if annotate != "none":
+            if annotate == "all":
+                named = list(shown)
+            else:
+                best = {}
+                for mdl in shown:
+                    tkey = (categorize_model(mdl), model_tier(mdl))
+                    if tkey not in best or per.loc[mdl, x_metric] > per.loc[best[tkey], x_metric]:
+                        best[tkey] = mdl
+                named = list(best.values())
+            _place_point_labels(
+                ax,
+                [(model_base(mdl), float(per.loc[mdl, x_metric]), float(per.loc[mdl, y_metric]),
+                  cat_color.get(categorize_model(mdl), "0.4")) for mdl in named],
+                marker_px, fontsize=7.5)
+        # ``regime_labels`` lets a composer title the panel with the same key its other panels
+        # use on their axes, so the reader does not have to hold two vocabularies at once.
+        lbl = (regime_labels or {}).get(key, lbl)
+        rho, p = rho_by_key[key]
+        if not np.isfinite(rho):
+            head = f"{lbl}   (n = {len(mods)} models)"
+        elif own_fig:
+            head = f"{lbl}   (n = {len(mods)} models, Spearman $\\rho$ = {rho:.2f}, {_fmt_p(p)})"
+        else:
+            # Composed panels are half as wide, so the full title would run into its neighbour.
+            # The p-value moves to the figure caption.
+            head = f"{lbl}   $\\rho$ = {rho:.2f}  (n = {len(mods)})"
+        if not own_fig and cross_ref:
+            # Compact single-panel form: keep the contrast by quoting the other regime's rho.
+            # Pointless when the composer draws both panels, hence `cross_ref`.
+            other = next((k for k, _l, _m in panels if k != key), None)
+            orho = rho_by_key.get(other, (float("nan"), float("nan")))[0]
+            if other and np.isfinite(orho):
+                olbl = next(l for k, l, _m in panels if k == other)
+                head += f"\n{olbl}: $\\rho$ = {orho:.2f}"
+        ax.set_title(head, fontsize=11)
+        ax.set_xlabel(pretty(x_metric), fontsize=11)
+        ax.grid(linestyle=":", alpha=0.5)
+        sns.despine(ax=ax)
+
+    axes[0].set_ylabel(pretty(y_metric), fontsize=11)
+    axes[0].set_xlim(0, hi)
+    axes[0].set_ylim(0, hi)
+
+    handles = [plt.Line2D([0], [0], color="0.75", linewidth=0.8, linestyle="--",
+                          label="identity (equal on both metrics)")]
+
+    def _blank(label):
+        return plt.Line2D([0], [0], linestyle="none", marker="", label=label)
+
+    for key, clabel in COMPOSITE_CATEGORIES:
+        entries = [(tk, tl, mk) for tk, tl, mk, _s in CATEGORY_TIERS.get(key, [])
+                   if (key, tk) in drawn_tiers]
+        if not entries:
+            continue
+        handles.append(_blank(""))
+        handles.append(_blank(f"{clabel}:"))
+        for _tk, tlabel, marker in entries:
+            handles.append(plt.Line2D([0], [0], linestyle="none", marker=marker,
+                                      color=cat_color[key],
+                                      markersize=12 if marker == "*" else 7, label=tlabel))
+    if not own_fig:
+        return handles   # composer owns the figure, the legend and the file
+    fig.legend(handles=handles, loc="center left", bbox_to_anchor=(0.9, 0.5), frameon=False,
+               fontsize=9, labelspacing=0.32, handletextpad=0.6)
+    if title:
+        fig.suptitle(title, y=1.02, fontsize=15)
+    fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
+    plt.close(fig)
+    return True
+
+
+# Per-class recall table, produced out-of-band because computing it needs the CL ontology (to
+# canonicalize true and predicted labels the way evaluate.py does before scoring) and the cached
+# per-cell mapped predictions. Soft dependency: the panels that use it are skipped with a warning
+# when the file is absent, exactly like the model-dates CSV.
+DEFAULT_PER_CLASS_CSV = REPO_ROOT / "cache" / "per_class_recall_1000_stratified.csv"
+
+# Which (family, regime) series a family panel draws. The classical baselines carry ONE score, so
+# they appear once with no regime; the language families appear twice.
+FAMILY_SERIES = [("classical", None, "-", "D"),
+                 ("scLLM", "unblind", "-", "o"), ("scLLM", "blind", "--", "o"),
+                 ("LLM", "unblind", "-", "^"), ("LLM", "blind", "--", "^")]
+_REGIME_STYLE_LABEL = {"unblind": "constrained", "blind": "unconstrained", None: "single score"}
+
+
+def _annotate_families(df):
+    """Add model_base / category / mode and drop excluded and chance models."""
+    d = df.copy()
+    d["model_base"] = d["model"].map(model_base)
+    d["category"] = d["model"].map(categorize_model)
+    d["mode"] = d["model"].map(derive_mode)
+    d = d[~d["model_base"].isin(EXCLUDED_BASES)]
+    return d[d["category"] != "simple"]
+
+
+def load_per_class_recall(path=DEFAULT_PER_CLASS_CSV):
+    """Per-class recall and prevalence per (model, dataset). Empty frame if the table is absent."""
+    path = Path(path)
+    if not path.exists():
+        warnings.warn(f"No per-class recall table at {path}; skipping the prevalence panel.")
+        return pd.DataFrame()
+    try:
+        d = pd.read_csv(path)
+    except Exception as exc:  # pragma: no cover - unreadable file must not kill the run
+        warnings.warn(f"Could not read {path}: {exc}")
+        return pd.DataFrame()
+    required = {"model", "dataset", "true_label", "prevalence", "recall"}
+    if not required <= set(d.columns):
+        warnings.warn(f"{path} lacks {sorted(required - set(d.columns))}; skipping the panel.")
+        return pd.DataFrame()
+    return _annotate_families(d)
+
+
+def _family_panel(ax, draw_one, cat_color):
+    """Run ``draw_one(category, mode, color, linestyle, marker)`` over the family series present."""
+    drawn = []
+    for key, mode, linestyle, marker in FAMILY_SERIES:
+        if draw_one(key, mode, cat_color[key], linestyle, marker):
+            drawn.append((key, mode, linestyle, marker))
+    return drawn
+
+
+def _family_handles(drawn, cat_color):
+    """Legend entries for the family series a panel drew, split into two keys.
+
+    A family key (color + marker) and a LINE-STYLE key (solid = constrained, dashed =
+    unconstrained). Encoding the regime in the family labels instead would repeat every family
+    twice and, worse, leave the dash pattern to be read off a short legend handle, where it is
+    effectively invisible — the reason this was split.
+    """
+    labels = {k: lbl for k, lbl in COMPOSITE_CATEGORIES}
+    seen, family = set(), []
+    for key, _mode, _linestyle, marker in drawn:
+        if key in seen:
+            continue
+        seen.add(key)
+        family.append(plt.Line2D([0], [0], color=cat_color[key], linestyle="-", marker=marker,
+                                 markersize=6, linewidth=1.4, label=labels.get(key, key)))
+    modes = {mode for _k, mode, _ls, _m in drawn if mode is not None}
+    style = []
+    if len(modes) > 1:
+        style = [plt.Line2D([0], [0], color="0.35", linestyle="-", linewidth=1.4,
+                            label="constrained"),
+                 plt.Line2D([0], [0], color="0.35", linestyle="--", linewidth=1.4,
+                            label="unconstrained")]
+        if any(mode is None for _k, mode, _ls, _m in drawn):
+            style.append(plt.Line2D([0], [0], linestyle="none", marker="",
+                                    label="(baselines: one score)"))
+    return family + style
+
+
+def _tier_handles(drawn, cat_color):
+    """One legend entry per method tier, regardless of how many regimes it was drawn at.
+
+    The line-style key carries the regime, so repeating every tier twice would only pad the
+    legend. ``drawn`` is ``[(category, tier, mode, linestyle, marker)]``.
+    """
+    tier_label = {(k, tk): tl for k, _l in COMPOSITE_CATEGORIES
+                  for tk, tl, _m, _s in CATEGORY_TIERS.get(k, [])}
+    seen, handles = set(), []
+    for key, tier_key, _mode, _linestyle, marker in drawn:
+        if (key, tier_key) in seen:
+            continue
+        seen.add((key, tier_key))
+        handles.append(plt.Line2D([0], [0], color=cat_color[key], linestyle="-", marker=marker,
+                                  markersize=_marker_size(marker), linewidth=1.4,
+                                  label=tier_label[(key, tier_key)]))
+    return handles
+
+
+def _marker_size(marker, base=6.0):
+    """Visually equal marker sizes across the tier vocabulary.
+
+    Matplotlib sizes markers by their bounding box, so a five-pointed star at a given
+    ``markersize`` reads noticeably smaller than a filled square or diamond. The star is scaled up
+    to compensate; everything else keeps the base size.
+    """
+    return base * 1.6 if marker == "*" else base
+
+
+def _tier_series(regimes):
+    """(category, tier, mode, linestyle, marker) for every method tier, at the given regimes.
+
+    Family pooling hides real structure in the prevalence panel: the embedding scLLMs are the
+    second-strongest group on rare types when constrained and their curve is flat in prevalence,
+    both of which vanish when they are averaged with the generative scLLMs. Tiers reuse the marker
+    vocabulary already established in Figure 1B, so no new legend grammar is needed.
+    """
+    out = []
+    for key, _lbl in COMPOSITE_CATEGORIES:
+        for tier_key, _tlabel, marker, _size in CATEGORY_TIERS.get(key, []):
+            # Baselines carry one score; the regime axis does not apply to them.
+            modes = [None] if key == "classical" else list(regimes)
+            for mode in modes:
+                out.append((key, tier_key, mode, "-" if mode != "blind" else "--", marker))
+    return out
+
+
+def plot_recall_by_prevalence(rec, out_path, dpi, ax=None, band_edges=(0.03, 0.10), title=None,
+                              level="family", regimes=("unblind", "blind")):
+    """Mean per-class recall against how common the cell type is, by model family and regime.
+
+    Balanced accuracy weights every class equally but hides WHERE a family's accuracy comes from.
+    This panel splits it: if a family's advantage were only on abundant types, the curves would
+    converge at the left.
+
+    Binning rather than a scatter, because stratified subsetting with a 20-cell floor quantizes
+    prevalence hard — at 1 000 cells the median class sits exactly at the 2 % floor, so a
+    continuous x axis would show a spike and a tail rather than a trend. The band edges are stated
+    in the tick labels together with the number of classes in each, since the bands are uneven by
+    construction and a reader must be able to see that.
+
+    ``rec`` is the frame from ``load_per_class_recall``. Returns False if it is empty.
+    """
+    if rec is None or len(rec) == 0:
+        return False
+    edges = [0.0, *band_edges, 1.01]
+    labels = ([f"≤{band_edges[0] * 100:.0f}%"]
+              + [f"{a * 100:.0f}–{b * 100:.0f}%"
+                 for a, b in zip(band_edges[:-1], band_edges[1:])]
+              + [f">{band_edges[-1] * 100:.0f}%"])
+    rec = rec.copy()
+    rec["band"] = pd.cut(rec["prevalence"], bins=edges, labels=labels)
+    n_classes = (rec.drop_duplicates(["dataset", "true_label"])["band"]
+                 .value_counts().reindex(labels).fillna(0).astype(int))
+
+    cat_color = _ranked_category_colors()
+    own_fig = ax is None
+    if own_fig:
+        fig, ax = plt.subplots(figsize=(5.6, 4.4))
+    x = np.arange(len(labels), dtype=float)
+
+    def _line(sub, color, linestyle, marker):
+        if sub.empty:
+            return False
+        means = sub.groupby("band", observed=False)["recall"].mean().reindex(labels)
+        ax.plot(x, means.to_numpy(dtype=float), linestyle=linestyle, marker=marker,
+                color=color, linewidth=1.4, markersize=_marker_size(marker),
+                markeredgecolor="white", markeredgewidth=0.5, zorder=3)
+        return True
+
+    if level == "tier":
+        rec = rec.copy()
+        rec["tier"] = rec["model"].map(model_tier)
+        drawn = []
+        for key, tier_key, mode, linestyle, marker in _tier_series(regimes):
+            sub = rec[(rec["category"] == key) & (rec["tier"] == tier_key)]
+            if mode is not None:
+                sub = sub[sub["mode"] == mode]
+            if _line(sub, cat_color[key], linestyle, marker):
+                drawn.append((key, tier_key, mode, linestyle, marker))
+    else:
+        def draw_one(key, mode, color, linestyle, marker):
+            sub = rec[rec["category"] == key]
+            if mode is not None:
+                sub = sub[sub["mode"] == mode]
+            return _line(sub, color, linestyle, marker)
+
+        drawn = _family_panel(ax, draw_one, cat_color)
+    ax.set_xticks(x)
+    ax.set_xticklabels([f"{l}\n({n_classes[l]})" for l in labels])
+    ax.set_xlim(-0.35, len(labels) - 0.65)
+    ax.set_ylim(0, None)
+    ax.set_xlabel("cell type prevalence (classes per band)")
+    ax.set_ylabel("Mean per-class recall")
+    ax.grid(axis="y", linestyle=":", alpha=0.5)
+    sns.despine(ax=ax)
+    if title:
+        ax.set_title(title, fontsize=11)
+    handles = _tier_handles(drawn, cat_color) if level == "tier" \
+        else _family_handles(drawn, cat_color)
+    if not own_fig:
+        return handles
+    fig.legend(handles=handles, loc="center left", bbox_to_anchor=(0.98, 0.5), frameon=False,
+               fontsize=9)
+    fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
+    plt.close(fig)
+    return True
+
+
+def plot_family_by_dataset(df, out_path, dpi, ax=None, metric="balanced_accuracy", title=None,
+                           level="family", regimes=("unblind", "blind")):
+    """Means per dataset, both regimes: does the ordering repeat on every dataset?
+
+    The aggregated figures average datasets away, so a single reversal on one dataset would be
+    invisible there. One point per (group, regime, dataset), joined across datasets so a crossing
+    line is immediately visible as an ordering failure.
+
+    ``level="tier"`` resolves the seven method tiers instead of the three families, at the cost of
+    twelve lines on four x positions. Worth it when the figure's other panels are tier-resolved,
+    since a family-level panel beside them raises the question of which sub-family is doing the
+    work.
+    """
+    if metric not in df.columns:
+        return False
+    d = _annotate_families(df)
+    if d.empty:
+        return False
+    datasets = sorted(d["dataset"].astype(str).unique())
+    x = np.arange(len(datasets), dtype=float)
+    cat_color = _ranked_category_colors()
+    own_fig = ax is None
+    if own_fig:
+        fig, ax = plt.subplots(figsize=(5.6, 4.4))
+
+    def _line(sub, color, linestyle, marker):
+        if sub.empty:
+            return False
+        means = (sub.groupby(sub["dataset"].astype(str))[metric].mean().reindex(datasets))
+        ax.plot(x, means.to_numpy(dtype=float), linestyle=linestyle, marker=marker, color=color,
+                linewidth=1.4, markersize=_marker_size(marker), markeredgecolor="white",
+                markeredgewidth=0.5, zorder=3)
+        return True
+
+    if level == "tier":
+        d = d.copy()
+        d["tier"] = d["model"].map(model_tier)
+        drawn = []
+        for key, tier_key, mode, linestyle, marker in _tier_series(regimes):
+            sub = d[(d["category"] == key) & (d["tier"] == tier_key)]
+            if mode is not None:
+                sub = sub[sub["mode"] == mode]
+            if _line(sub, cat_color[key], linestyle, marker):
+                drawn.append((key, tier_key, mode, linestyle, marker))
+    else:
+        def draw_one(key, mode, color, linestyle, marker):
+            sub = d[d["category"] == key]
+            if mode is not None:
+                sub = sub[sub["mode"] == mode]
+            return _line(sub, color, linestyle, marker)
+
+        drawn = _family_panel(ax, draw_one, cat_color)
+    ax.set_xticks(x)
+    ax.set_xticklabels(datasets, rotation=18, ha="right", rotation_mode="anchor")
+    ax.set_xlim(-0.35, len(datasets) - 0.65)
+    ax.set_ylim(0, None)
+    ax.set_ylabel(pretty(metric))
+    ax.grid(axis="y", linestyle=":", alpha=0.5)
+    sns.despine(ax=ax)
+    if title:
+        ax.set_title(title, fontsize=11)
+    handles = _tier_handles(drawn, cat_color) if level == "tier" \
+        else _family_handles(drawn, cat_color)
+    if not own_fig:
+        return handles
+    fig.legend(handles=handles, loc="center left", bbox_to_anchor=(0.98, 0.5), frameon=False,
+               fontsize=9)
+    fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
+    plt.close(fig)
+    return True
+
+
+DEFAULT_CONFUSION_CSV = REPO_ROOT / "cache" / "confusion_pairs_1000_stratified.csv"
+
+
+def load_confusion_pairs(path=DEFAULT_CONFUSION_CSV):
+    """(true label -> predicted label) cell counts per model and dataset, with class prevalence.
+
+    Produced out-of-band for the same reason as the per-class recall table: building it needs the
+    CL ontology to canonicalize both label columns the way scoring does. Soft dependency.
+    """
+    path = Path(path)
+    if not path.exists():
+        warnings.warn(f"No confusion-pair table at {path}; skipping the rare-type flow figure.")
+        return pd.DataFrame()
+    d = pd.read_csv(path)
+    required = {"model", "dataset", "true_label", "predicted_label", "n_cells", "prevalence"}
+    if not required <= set(d.columns):
+        warnings.warn(f"{path} lacks {sorted(required - set(d.columns))}; skipping.")
+        return pd.DataFrame()
+    return d
+
+
+def _sankey(ax, flows, left_order, right_order, colors, gap_frac=0.02, label_size=7,
+            show_left_labels=True):
+    """Minimal two-column alluvial: ``flows`` is ``[(src, tgt, value)]``.
+
+    Written here rather than pulled in as a dependency because the plotting environment is
+    matplotlib + seaborn only, and the two-column case needs about thirty lines.
+
+    Node heights are proportional to the cells passing through them, ribbons are cubic Beziers,
+    and a ribbon whose target equals its source (a correct prediction) is drawn opaque with a dark
+    edge so the recovered fraction is visible without reading the labels.
+    """
+    total = sum(v for _s, _t, v in flows)
+    if not total:
+        return
+    gap = gap_frac * total
+
+    def stack(order, weights):
+        pos, y = {}, 0.0
+        for key in order:
+            h = weights.get(key, 0.0)
+            pos[key] = (y, y + h)
+            y += h + gap
+        span = max(y - gap, 1e-9)
+        return {k: (a / span, b / span) for k, (a, b) in pos.items()}
+
+    lw = {k: sum(v for s, _t, v in flows if s == k) for k in left_order}
+    rw = {k: sum(v for _s, t, v in flows if t == k) for k in right_order}
+    lpos, rpos = stack(left_order, lw), stack(right_order, rw)
+    lcur = {k: a for k, (a, _b) in lpos.items()}
+    rcur = {k: a for k, (a, _b) in rpos.items()}
+    scale = {k: (lpos[k][1] - lpos[k][0]) / max(lw[k], 1e-9) for k in left_order}
+    rscale = {k: (rpos[k][1] - rpos[k][0]) / max(rw[k], 1e-9) for k in right_order}
+
+    x0, x1 = 0.0, 1.0
+    for src, tgt, val in sorted(flows, key=lambda f: (left_order.index(f[0]), -f[2])):
+        h0, h1 = val * scale[src], val * rscale[tgt]
+        y0, y1 = lcur[src], rcur[tgt]
+        lcur[src] += h0
+        rcur[tgt] += h1
+        correct = src == tgt
+        verts, codes = [], []
+        for (ya, yb, forward) in ((y0, y1, True), (y1 + h1, y0 + h0, False)):
+            xa, xb = (x0, x1) if forward else (x1, x0)
+            if not verts:
+                verts.append((xa, ya)); codes.append(mpath.Path.MOVETO)
+            else:
+                verts.append((xa, ya)); codes.append(mpath.Path.LINETO)
+            verts += [((xa + xb) / 2, ya), ((xa + xb) / 2, yb), (xb, yb)]
+            codes += [mpath.Path.CURVE4] * 3
+        verts.append((x0, y0)); codes.append(mpath.Path.CLOSEPOLY)
+        ax.add_patch(mpatches.PathPatch(
+            mpath.Path(verts, codes), facecolor=colors.get(src, "0.6"),
+            alpha=0.85 if correct else 0.38, linewidth=0.6 if correct else 0.0,
+            edgecolor="0.15" if correct else "none", zorder=3 if correct else 2))
+
+    for key in left_order:
+        a, b = lpos[key]
+        ax.add_patch(mpatches.Rectangle((-0.035, a), 0.03, b - a, color=colors.get(key, "0.6"),
+                                        zorder=4))
+        if show_left_labels:
+            ax.text(-0.05, (a + b) / 2, key, ha="right", va="center", fontsize=label_size)
+    for key in right_order:
+        a, b = rpos[key]
+        hit = key in left_order
+        ax.add_patch(mpatches.Rectangle((1.005, a), 0.03, b - a, color="0.35", zorder=4))
+        ax.text(1.05, (a + b) / 2, key, ha="left", va="center", fontsize=label_size,
+                fontweight="bold" if hit else "normal", color="0.1" if hit else "0.35")
+    ax.set_xlim(-0.9, 1.9)
+    ax.set_ylim(-0.02, 1.02)
+    ax.axis("off")
+
+
+def _flow_key(ax, rare, colors, counts, max_targets, label_size=8):
+    """Encoding key plus the rare-type inventory, for the empty cell of a flow grid.
+
+    Two things the panels cannot carry themselves. The ribbon encoding, so the figure is readable
+    without the caption; and the cells per type, without which a ribbon's width is unreadable —
+    stratified subsetting floors rare types at 20 cells, so a visually wide ribbon can rest on
+    very few cells.
+    """
+    handles = [
+        mpatches.Patch(facecolor="0.55", edgecolor="0.15", linewidth=0.6, alpha=0.85,
+                       label="prediction matches the true type"),
+        mpatches.Patch(facecolor="0.55", edgecolor="none", alpha=0.38,
+                       label="prediction differs"),
+        plt.Line2D([], [], linestyle="none", marker="", label="ribbon width $\\propto$ cells"),
+        plt.Line2D([], [], linestyle="none", marker="",
+                   label=f"top {max_targets} predictions per type;\nremainder pooled as \"other\""),
+        plt.Line2D([], [], linestyle="none", marker="", label=""),
+        plt.Line2D([], [], linestyle="none", marker="", label="cells per type:"),
+    ]
+    for t in rare:
+        n = int(counts.get(t, 0))
+        handles.append(mpatches.Patch(facecolor=colors.get(t, "0.6"), edgecolor="none",
+                                      label=f"{t} — {n}"))
+    # Centered in the empty cell, so the block sits under the panel above it rather than pinned to
+    # the figure's left edge. The entries themselves stay left-aligned so the names line up.
+    ax.legend(handles=handles, loc="center", frameon=False, fontsize=label_size,
+              labelspacing=0.6, handlelength=1.6, handletextpad=0.7, borderaxespad=0.0,
+              alignment="left")
+
+
+def plot_rare_type_flows(conf, out_path, dpi, dataset, models, n_types=5, max_targets=6,
+                         prevalence_max=0.03, title=None):
+    """Supplementary: for the rarest cell types, WHERE do the cells actually go?
+
+    Panel D of Figure 2 says how often rare types are recovered; it cannot say what they are
+    called instead, which is the difference between a near miss inside the right lineage and an
+    unrelated call. One alluvial per model: rare true types on the left, predicted labels on the
+    right, ribbon width proportional to cells. Ribbons that land on the correct label are opaque
+    with a dark edge, so the recovered fraction reads without tracing labels.
+
+    ``models`` is an explicit list — the selection rule belongs in the caption, not in a heuristic
+    here. Pass a list of lists to get a grid, which is how the two regimes are shown: constrained
+    on the top row, unconstrained beneath, with the same model in one column so the pair reads
+    vertically. ``None`` leaves a cell empty, for the baselines, which carry a single score and so
+    occupy the top row only.
+
+    Per true type only the ``max_targets`` most frequent predictions are drawn; the rest are
+    pooled into "other". Returns False if the table is empty or the dataset has no usable models.
+    """
+    if conf is None or len(conf) == 0:
+        return False
+    sub = conf[conf["dataset"].astype(str) == str(dataset)]
+    rows = models if models and isinstance(models[0], (list, tuple)) else [models]
+    available = set(sub["model"])
+    rows = [[m if (m in available) else None for m in row] for row in rows]
+    if sub.empty or not any(m for row in rows for m in row):
+        warnings.warn(f"plot_rare_type_flows: nothing to draw for {dataset}.")
+        return False
+
+    prev = (sub.drop_duplicates(["true_label"]).set_index("true_label")["prevalence"])
+    rare = list(prev[prev <= prevalence_max].nsmallest(n_types).index)
+    if not rare:
+        rare = list(prev.nsmallest(n_types).index)
+    palette = sns.color_palette("tab10", n_colors=max(len(rare), 3)).as_hex()
+    colors = {t: palette[i % len(palette)] for i, t in enumerate(rare)}
+    # Cells per rare type. Identical for every model (they annotate the same cells), so it is read
+    # off whichever model is available first.
+    first = next(m for row in rows for m in row if m)
+    counts = (sub[(sub["model"] == first) & (sub["true_label"].isin(rare))]
+              .groupby("true_label")["n_cells"].sum())
+
+    n_rows, n_cols = len(rows), max(len(r) for r in rows)
+    fig, axes = plt.subplots(n_rows, n_cols, squeeze=False,
+                             figsize=(6.2 * n_cols, (0.62 * len(rare) + 2.4) * n_rows))
+    for r, row in enumerate(rows):
+        for c in range(n_cols):
+            ax = axes[r][c]
+            model = row[c] if c < len(row) else None
+            if model is None:
+                ax.axis("off")
+                # The empty cell carries the encoding key and the per-type cell counts, so the
+                # figure is readable without its caption and a ribbon's width can be judged
+                # against the cells behind it.
+                if r > 0 and any(rr[c] for rr in rows[:r] if c < len(rr)):
+                    _flow_key(ax, rare, colors, counts, max_targets)
+                continue
+            m = sub[(sub["model"] == model) & (sub["true_label"].isin(rare))]
+            flows = []
+            for true_label, grp in m.groupby("true_label"):
+                grp = grp.sort_values("n_cells", ascending=False)
+                keep, rest = grp.head(max_targets), grp.tail(max(len(grp) - max_targets, 0))
+                flows += [(true_label, t.predicted_label, float(t.n_cells))
+                          for t in keep.itertuples()]
+                if len(rest):
+                    flows.append((true_label, "other", float(rest["n_cells"].sum())))
+            if not flows:
+                ax.axis("off")
+                continue
+            # Order targets by the mean position of their sources, to limit ribbon crossings.
+            weight = {}
+            for src, tgt, val in flows:
+                a, b = weight.get(tgt, (0.0, 0.0))
+                weight[tgt] = (a + rare.index(src) * val, b + val)
+            right = sorted(weight, key=lambda t: (t == "other", weight[t][0] / weight[t][1]))
+            # The left stack is identical in every panel, so only the first column of each row
+            # names it; repeating the labels collides with the neighbour's right-hand column.
+            _sankey(ax, flows, rare, right, colors, show_left_labels=(c == 0))
+            # No regime tag for the classical baselines: their `_blind` suffix is a pipeline
+            # naming artifact, and the regime axis does not apply to them at all.
+            regime = None if categorize_model(model) == "classical" else \
+                {"unblind": "constrained", "blind": "unconstrained"}.get(derive_mode(model))
+            ax.set_title(f"{model_base(model)}" + (f"  ({regime})" if regime else ""), fontsize=10)
+
+    if title:
+        fig.suptitle(title, y=1.0, fontsize=12)
+    fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
+    plt.close(fig)
+    return True
 
 
 def _spearman(x, y):
@@ -2364,6 +3242,13 @@ def main(argv=None):
                 if plot_date_vs_composite(sdf, model_dates, outd, args.dpi, title=title):
                     total_written += 1
                     print(f"[composite_category/{log_tag}/{size_folder}]  wrote {outd.name}")
+                # Companion metric-disagreement panel. The composite axis is balanced accuracy +
+                # Lin, so macro F1 -- the metric on which the family ordering reverses -- cannot
+                # appear in the composite figure at all. Same colors and tier markers.
+                outm = out_dir / f"metric_disagreement_{size_folder}.{args.format}"
+                if plot_metric_disagreement(sdf, outm, args.dpi, title=title):
+                    total_written += 1
+                    print(f"[composite_category/{log_tag}/{size_folder}]  wrote {outm.name}")
 
         # 1) Aggregated over all datasets (top-level folder), as before.
         emit_composite(df, cdir, "all_datasets")
