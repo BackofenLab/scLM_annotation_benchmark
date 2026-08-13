@@ -167,6 +167,75 @@ def _balanced_mean(sims: np.ndarray, true_labels: pd.Series) -> float:
     return float(per_class.mean()) if len(per_class) else float("nan")
 
 
+def normalize_similarity(avg: float, baseline: float) -> Tuple[float, bool]:
+    """Rescale a raw cosine so the random-pair floor sits at 0 and an exact match at 1.
+
+    Returns ``(value, clipped)``. ``clipped`` is True when the unclipped value fell outside
+    [0, 1] — i.e. the model's output is no closer to the truth than randomly paired label
+    names. That case is real (it happens for InstructCell and the chance baselines) and must
+    stay visible, because a clipped score silently *understates* any difference computed from
+    it, such as the mapping lift.
+    """
+    if np.isnan(avg) or np.isnan(baseline) or (1.0 - baseline) <= 1e-9:
+        return float("nan"), False
+    raw = (avg - baseline) / (1.0 - baseline)
+    return float(np.clip(raw, 0.0, 1.0)), bool(raw < 0.0 or raw > 1.0)
+
+
+# Keys produced by derive_text_emb_metrics(). aggregate.py backfills these for result JSONs
+# written before they existed, so the list is the contract between the two modules.
+TEXT_EMB_DERIVED_KEYS = (
+    "text_emb_norm_balanced_raw",
+    "text_emb_norm_balanced_mapped",
+    "text_emb_norm_mapping_lift",
+    "text_emb_norm_clipped",
+    "text_emb_baseline_used",
+)
+
+
+def derive_text_emb_metrics(avgs: Dict[str, float],
+                            baseline_override: Optional[float] = None) -> Dict[str, float]:
+    """Derive the baseline-normalized, class-balanced scores and the normalized mapping lift.
+
+    Pure arithmetic over values already in ``avgs`` — no encoder, no per-cell data — so
+    ``aggregate.py`` can backfill result JSONs written before these keys existed instead of
+    re-running the (GPU/torch-bound) scoring stage.
+
+    Two defects in the original metric set are what this fixes:
+
+    1. ``text_emb_mapping_lift`` was ``avg_mapped - avg_raw`` on the RAW cosine scale, while
+       ``text_emb_norm_avg_*`` were baseline-normalized. The two differ by a factor of
+       1/(1 - baseline), which is per-run (1.5x-3.7x across this benchmark's runs), so the
+       stored lift could not be quoted beside the normalized scores. The lift returned here is
+       a difference of normalized scores and is therefore on one scale with them.
+    2. ``_norm`` was applied to the plain per-cell means, not the class-balanced ones, so the
+       normalized scores were dominated by abundant cell types while every other headline
+       metric in this benchmark is class-balanced. These use the balanced means.
+
+    ``baseline_override`` replaces the per-run baseline (computed from that run's own predicted
+    vocabulary, so every model gets a different denominator) with a fixed, model-independent
+    one. Levels are only comparable across models under a fixed baseline; the lift is a
+    within-model difference and is unaffected either way.
+    """
+    baseline = baseline_override if baseline_override is not None else avgs.get("text_emb_baseline")
+    baseline = float("nan") if baseline is None else float(baseline)
+
+    def _get(key):
+        v = avgs.get(key)
+        return float("nan") if v is None else float(v)
+
+    norm_raw, clip_raw = normalize_similarity(_get("text_emb_balanced_similarity_raw"), baseline)
+    norm_mapped, clip_mapped = normalize_similarity(_get("text_emb_balanced_similarity_mapped"), baseline)
+    lift = (norm_mapped - norm_raw) if not (np.isnan(norm_raw) or np.isnan(norm_mapped)) else float("nan")
+    return {
+        "text_emb_norm_balanced_raw": norm_raw,
+        "text_emb_norm_balanced_mapped": norm_mapped,
+        "text_emb_norm_mapping_lift": lift,
+        "text_emb_norm_clipped": float(clip_raw or clip_mapped),
+        "text_emb_baseline_used": baseline,
+    }
+
+
 def compute_text_embedding_similarities(
     df: pd.DataFrame,
     true_col: str,
@@ -222,6 +291,7 @@ def compute_text_embedding_similarities(
             "text_emb_avg_similarity_mapped": nan, "text_emb_balanced_similarity_mapped": nan,
             "text_emb_norm_avg_mapped": nan,
             "text_emb_baseline": nan, "text_emb_mapping_lift": nan,
+            **{k: nan for k in TEXT_EMB_DERIVED_KEYS},
         }
 
     embs = encoder.encode(vocab)
@@ -238,9 +308,7 @@ def compute_text_embedding_similarities(
         baseline = float("nan")
 
     def _norm(avg: float) -> float:
-        if np.isnan(avg) or np.isnan(baseline) or (1.0 - baseline) <= 1e-9:
-            return float("nan")
-        return float(np.clip((avg - baseline) / (1.0 - baseline), 0.0, 1.0))
+        return normalize_similarity(avg, baseline)[0]
 
     sims_raw = _per_row_cosine(true_s, raw_s, vec_of)
     sims_mapped = _per_row_cosine(true_s, mapped_s, vec_of)
@@ -256,9 +324,13 @@ def compute_text_embedding_similarities(
         "text_emb_balanced_similarity_mapped": _balanced_mean(sims_mapped, true_s),
         "text_emb_norm_avg_mapped": _norm(avg_mapped),
         "text_emb_baseline": baseline,
+        # Kept on the RAW cosine scale for backward compatibility with existing result JSONs.
+        # Do NOT quote it beside the normalized scores -- use text_emb_norm_mapping_lift, which
+        # is a difference of normalized, class-balanced scores (see derive_text_emb_metrics).
         "text_emb_mapping_lift": (avg_mapped - avg_raw)
         if not (np.isnan(avg_mapped) or np.isnan(avg_raw)) else float("nan"),
     }
+    avg_dict.update(derive_text_emb_metrics(avg_dict))
 
     # Per-unique-combo table for inspection / side-car CSV.
     combos = pd.DataFrame({
