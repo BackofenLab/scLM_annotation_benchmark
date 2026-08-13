@@ -1,0 +1,55 @@
+# Environment for the LOCAL model arms only: A2 (base Gemma-2-2B) and A3 (C2S-Scale-Gemma-2-2B).
+#
+# This is env.yml plus the torch stack. It is a separate file because the two halves of the study
+# run on different machines: the OpenRouter arms need no GPU and no weights, while these two need
+# ~5 GB of checkpoint each plus a torch install, which does not fit the laptop's free disk.
+#
+# Everything the core file pins is repeated here at the SAME versions rather than relaxed. The
+# critical one is `cell2sentence`: it defines the cell-sentence construction, so a skew between the
+# two machines would make the arms silently incomparable. In practice prompts are materialised once
+# on the core machine and shipped (see `execution.prompts_dir` in config.yml), so this stack does
+# not build sentences at all -- the pin is belt and braces, and lets this env run the equivalence
+# check independently if ever needed.
+#
+# STATUS: considered starting spec, NOT installed or smoke-tested. After first creation:
+#     conda env create -f env-local.yml
+#     conda activate sc_lfm_context_ablation_local
+#     conda env export --no-builds > env-local.lock.yml     # commit this
+#
+name: sc_lfm_context_ablation_local
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      # --- identical to env.yml (versions taken from the working `evaluate` env) ----------
+      - scanpy==1.11.5
+      - scikit-misc==0.5.2
+      - anndata==0.11.4
+      - pandas==2.3.3
+      - numpy==2.4.5
+      - cell2sentence==1.2.0
+      - datasets==5.0.1
+      # DIVERGES from env.yml's 1.27.0, and must. transformers 4.57.6 requires
+      # huggingface-hub<1.0, so the core pin makes the environment unsolvable -- pip fails with
+      # ResolutionImpossible, which is how this was found. 0.36.2 is the newest release under that
+      # ceiling and satisfies datasets 5.0.1 (>=0.25.0) as well.
+      #
+      # Safe to diverge because the two environments do not share a job: prompts are built once on
+      # the core machine and shipped, so nothing here ever constructs a cell sentence. The pin that
+      # genuinely must not drift is cell2sentence, and that one is identical.
+      - huggingface-hub==0.36.2
+      - pyyaml==6.0.3
+      - requests==2.34.2
+
+      # --- torch stack, this file only -------------------------------------
+      # transformers held at the last 4.x rather than 5.15.0: the 5.x line is a major release and
+      # neither cell2sentence 1.2.0 nor the C2S-Scale checkpoints have been verified against it
+      # here, while Gemma-2 is well supported throughout 4.x. Revisit deliberately, not by default.
+      - transformers==4.57.6
+      - torch==2.13.0
+      - accelerate==1.14.0
+      - sentencepiece==0.2.2
+      # protobuf held at 5.x for the same reason: 6.x and 7.x are untested against this stack.
+      - protobuf==5.29.6
