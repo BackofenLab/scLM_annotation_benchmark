@@ -190,7 +190,9 @@ CLASSICAL_BASES = {"celltypist", "scsa", "sctype", "ucell",
                    "singler", "singler_main", "singler_fine", "singler_ont"}
 # Agentic "coding agent" blueprints: tool-using LLM-CLI agents (Claude Code / Codex) that
 # annotate via the agentic-blueprint harness, as opposed to the one-shot OpenRouter LLMs.
-AGENT_BASES = {"agentic_bp_claude", "agentic_bp_codex"}
+# Coding-agent annotators (an LLM agent writes the annotation procedure). Not part of the paper:
+# they are excluded everywhere (EXCLUDED_BASES), never scored into a family.
+AGENT_BASES = {"agentic_bp_claude", "agentic_bp_codex", "claude_opus_4_8_agent"}
 SIMPLE_BASES = {"random_stratified", "random_uniform", "cell_baseline"}
 # Subset of the simple baselines drawn as dashed reference lines in the composite figure.
 REFERENCE_LINE_BASES = {"random_stratified"}
@@ -207,15 +209,15 @@ REFERENCE_LINE_BASES = {"random_stratified"}
 # model is driven through the cell2sentence library's own prompt formatter, whose templates expose
 # only {num_genes}/{organism}/{cell_sentence} and have no slot for a candidate label list, so
 # building one would require forking upstream. See models/c2s_blind/src/predict.py.
-EXCLUDED_BASES = {"ucell", "singler_main", "singler_fine", "singler_ont",
-                  "agentic_bp_claude", "agentic_bp_codex", "c2s",
-                  # Added 2026-08-28. Present in the prediction cache but in NO aggregate
-                  # snapshot and not in the manuscript's 11-model general-purpose roster
-                  # (model_cfg.yml marks it "drop"). Without this line bin/rare_type_table.py
-                  # picked it up from the prediction glob, so the rare-type section was
-                  # computed over 12 LLMs while every other number in the paper uses 11.
-                  # It appears in no aggregate, so adding it here changes no other figure.
-                  "llama-3.1-8b-instruct"}
+EXCLUDED_BASES = AGENT_BASES | {
+    "ucell", "singler_main", "singler_fine", "singler_ont", "c2s",
+    # Added 2026-08-28. Present in the prediction cache but in NO aggregate snapshot and not in the
+    # manuscript's 11-model general-purpose roster (model_cfg.yml marks it "drop"). Without this
+    # line bin/rare_type_table.py picked it up from the prediction glob, so the rare-type section
+    # was computed over 12 LLMs while every other number in the paper uses 11. It appears in no
+    # aggregate, so adding it here changes no other figure.
+    "llama-3.1-8b-instruct",
+}
 # Ordered (category key, x-axis display label) for the strip panels.
 # Left-to-right: baselines, domain-adapted LLMs, one-shot LLMs, coding agents.
 COMPOSITE_CATEGORIES = [

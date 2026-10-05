@@ -71,6 +71,7 @@ def main() -> None:
 
     from evaluate import (load_ontology_context, load_review_status, prepare_for_scoring,
                           trusted_answers)
+    from plot_model_comparison import EXCLUDED_BASES, model_base
     from util.cell_ontology_similarity import compute_ontology_similarities, download_cl_ontology
 
     label_index, taxonomy = load_ontology_context(download_cl_ontology(cache_dir))
@@ -84,6 +85,8 @@ def main() -> None:
         p = Path(path)
         wrapper, dataset = p.parts[-4], p.parts[-3]
         model = model_name(wrapper, p.name.replace("_mapped.csv", ""))
+        if model_base(model) in EXCLUDED_BASES:  # not in the paper (coding agents, superseded runs)
+            continue
         frame = pd.read_csv(path)
         if not {"true_labels", "predicted_labels"} <= set(frame.columns):
             continue
