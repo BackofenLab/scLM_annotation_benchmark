@@ -168,8 +168,8 @@ def map_cell_types_to_ontology(
     try:
         # Download Cell Ontology using our existing download function
         print("Downloading Cell Ontology...")
-        cl_file_path = download_cl_ontology(cache_dir, cl_url=CL_URL.replace(".obo", ".json"),
-                                            filename=CL_FILE.replace(".obo", ".json"))
+        cl_file_path = download_cl_ontology(cache_dir, cl_url=CL_URL.removesuffix(".obo") + ".json",
+                                            filename=CL_FILE.removesuffix(".obo") + ".json")
 
         # Resolve a best-match suggestion for each label. Prefer omicverse's semantic
         # matcher; degrade to an omicverse-free index lookup if the package is missing or
