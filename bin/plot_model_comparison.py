@@ -64,8 +64,10 @@ script works unchanged when the column is absent.
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 import warnings
+from functools import lru_cache
 from pathlib import Path
 
 import numpy as np
@@ -127,25 +129,17 @@ ID_COLS = ("dataset", "model")
 DEFAULT_METRICS = [
     "balanced_accuracy",
     "accuracy",
+    "agreement_score",
     "rada_avg_similarity",
     "lin_avg_similarity",
-    "id_accuracy",
-    "balanced_id_accuracy",
     "macro_f1",
     "weighted_f1",
-    # Text-encoder (SapBERT) similarity between predicted and true labels, baseline-normalized.
-    # Populated only when eval ran with --use_text_encoder true (NaN columns are skipped).
-    "text_emb_norm_avg_raw",     # on raw predictions
-    "text_emb_norm_avg_mapped",  # on ontology-mapped predictions
-    "text_emb_mapping_lift",     # gain from mapping, on the RAW cosine scale (legacy; see below)
-    # Class-balanced variants, and a lift that is a difference of two normalized scores. Prefer
-    # these: text_emb_mapping_lift above is an unnormalized difference, so it is NOT on the same
-    # scale as text_emb_norm_avg_* (they differ by 1/(1 - baseline), which is per-run and ranges
-    # 1.5x-3.7x here). The *_balanced_* pair also matches every other headline metric in being
-    # class-balanced rather than dominated by abundant cell types.
-    "text_emb_norm_balanced_raw",
-    "text_emb_norm_balanced_mapped",
-    "text_emb_norm_mapping_lift",
+    # Text-encoder (SapBERT) similarity between predicted and true labels: class-balanced, and
+    # rescaled with one fixed baseline per encoder. Populated only when eval ran with
+    # --use_text_encoder true (NaN columns are skipped).
+    "text_emb_norm_balanced_raw",     # on raw predictions
+    "text_emb_norm_balanced_mapped",  # on ontology-mapped predictions
+    "text_emb_norm_mapping_lift",     # mapped minus raw, on the same scale
     # Label-coverage / diversity diagnostics (populated once eval+aggregate are re-run).
     "non_cl_ratio",          # fraction of cells whose raw output is NOT a CL term
     "n_non_cl_labels",       # distinct non-CL raw labels
@@ -165,8 +159,8 @@ DEFAULT_DATES_CSV = REPO_ROOT / "cache" / "model_publication_dates.csv"
 # --------------------------------------------------------------------------- #
 # Composite-score-by-category figure (blind vs unblind).
 # PROVISIONAL headline composite spanning the two axes we care about, ONE metric each:
-#   - exact-match correctness : balanced_accuracy (class-balanced; == balanced_id_accuracy
-#                               after the symmetric CL-canonicalization fix in evaluate.py)
+#   - exact-match correctness : balanced_accuracy (class-balanced; on the symmetric
+#                               CL-canonicalized labels from evaluate.py)
 #   - ontology closeness      : lin_avg_similarity (information-content CL-graph similarity;
 #                               Lin chosen over the near-identical Rada — per-dataset ranking
 #                               agreement Spearman ~0.95-0.98 — for its granularity-awareness)
@@ -214,7 +208,14 @@ REFERENCE_LINE_BASES = {"random_stratified"}
 # only {num_genes}/{organism}/{cell_sentence} and have no slot for a candidate label list, so
 # building one would require forking upstream. See models/c2s_blind/src/predict.py.
 EXCLUDED_BASES = {"ucell", "singler_main", "singler_fine", "singler_ont",
-                  "agentic_bp_claude", "agentic_bp_codex", "c2s"}
+                  "agentic_bp_claude", "agentic_bp_codex", "c2s",
+                  # Added 2026-08-28. Present in the prediction cache but in NO aggregate
+                  # snapshot and not in the manuscript's 11-model general-purpose roster
+                  # (model_cfg.yml marks it "drop"). Without this line bin/rare_type_table.py
+                  # picked it up from the prediction glob, so the rare-type section was
+                  # computed over 12 LLMs while every other number in the paper uses 11.
+                  # It appears in no aggregate, so adding it here changes no other figure.
+                  "llama-3.1-8b-instruct"}
 # Ordered (category key, x-axis display label) for the strip panels.
 # Left-to-right: baselines, domain-adapted LLMs, one-shot LLMs, coding agents.
 COMPOSITE_CATEGORIES = [
@@ -308,11 +309,10 @@ _WARNED_UNKNOWN_TIERS: set[str] = set()
 # signed differences and belong OUTSIDE this set: a negative lift (ontology mapping made a model's
 # label worse, e.g. llama-4-maverick) would otherwise be clipped away at vmin=0.
 ZERO_ONE_METRICS = {
-    "balanced_accuracy", "accuracy", "rada_avg_similarity", "lin_avg_similarity",
-    "id_accuracy", "balanced_id_accuracy", "macro_f1", "weighted_f1",
+    "balanced_accuracy", "accuracy", "agreement_score", "rada_avg_similarity",
+    "lin_avg_similarity", "macro_f1", "weighted_f1",
     "macro_precision", "macro_recall", "weighted_precision", "weighted_recall",
     "non_cl_ratio", "reviewed_fraction",
-    "text_emb_norm_avg_raw", "text_emb_norm_avg_mapped",
     "text_emb_norm_balanced_raw", "text_emb_norm_balanced_mapped",
 }
 
@@ -382,6 +382,69 @@ def model_tier(model: str):
 
 # Variant name -> set of modes kept. Baselines are included in every variant so each plot has a
 # common reference. Each variant is rendered into its own sub-folder under the output directory.
+# --------------------------------------------------------------------------- #
+# Models the pipeline cannot run on a dataset at all: params.model_blacklist_by_organism in
+# nextflow.config, applied to each dataset's organism in datasets/<name>.yml (mmContext is
+# human-only, so it never ran on the mouse Zeisel data). Per-dataset views show what ran.
+# Summaries ACROSS datasets or models count such a model as scoring 0 on that dataset, so it is
+# not rewarded for skipping one, and mark its name with UNSUPPORTED_MARK.
+# --------------------------------------------------------------------------- #
+UNSUPPORTED_MARK = "*"
+RUN_SCORES = dict.fromkeys((
+    "balanced_accuracy", "accuracy", "agreement_score", "lin_avg_similarity",
+    "rada_avg_similarity", "macro_f1", "weighted_f1", "macro_precision", "macro_recall",
+    "weighted_precision", "weighted_recall", "text_emb_norm_balanced_raw",
+    "text_emb_norm_balanced_mapped", "text_emb_norm_mapping_lift"), 0.0)
+
+
+@lru_cache(maxsize=None)
+def unsupported_pairs(config=REPO_ROOT / "nextflow.config", datasets=REPO_ROOT / "datasets"):
+    """{(model base, dataset)} for every model blacklisted for a dataset's organism."""
+    block = re.search(r"model_blacklist_by_organism\s*=\s*\[(.*?)\n\]",
+                      Path(config).read_text(), re.S)
+    blacklist = {organism.lower(): re.findall(r"'([^']+)'", models) for organism, models in
+                 re.findall(r"'([^']+)'\s*:\s*\[([^\]]*)\]", block.group(1) if block else "")}
+    pairs = set()
+    for path in Path(datasets).glob("*.yml"):
+        found = re.search(r"^organism:\s*[\"']?([^\"'\n#]+)", path.read_text(), re.M)
+        organism = found.group(1).strip().lower() if found else ""
+        pairs |= {(model_base(m), path.stem) for m in blacklist.get(organism, [])}
+    return frozenset(pairs)
+
+
+def unsupported_mark(model) -> str:
+    """UNSUPPORTED_MARK if the model cannot run on some dataset, else an empty string."""
+    return UNSUPPORTED_MARK if model_base(model) in {b for b, _ in unsupported_pairs()} else ""
+
+
+def with_unsupported_as_zero(frame, zero=RUN_SCORES, keep=("subset_size",), model_cols=("model",)):
+    """``frame`` plus rows scoring 0 for every model variant on each dataset it cannot run on.
+
+    For summaries across datasets or models only. Each added row takes the dataset-level columns
+    ``keep`` from the model with the most rows there (one row per cell type in per-class
+    tables), its ``model_cols`` from the model itself, the values in ``zero``, and NaN elsewhere:
+    label counts and similar diagnostics do not exist for a run that never happened. Added rows
+    are flagged ``unsupported``.
+    """
+    model_cols = [c for c in model_cols if c in frame.columns]
+    flagged = frame if "unsupported" in frame.columns else frame.assign(unsupported=False)
+    bases = frame[model_cols[0]].map(model_base)
+    added = []
+    for base, dataset in sorted(unsupported_pairs()):
+        here = frame[frame["dataset"] == dataset]
+        if here.empty:
+            continue
+        template = max((rows for _, rows in here.groupby(model_cols)), key=len)
+        for ident, own in frame[bases == base].groupby(model_cols):
+            if (own["dataset"] == dataset).any():
+                continue
+            rows = template[[c for c in keep if c in frame.columns]].copy()
+            rows = rows.assign(dataset=dataset, unsupported=True, **dict(zip(model_cols, ident)),
+                               **{c: v for c, v in zero.items() if c in frame.columns})
+            added.append(rows)
+    return pd.concat([flagged, *added], ignore_index=True) if added else flagged
+
+
 VARIANTS = {
     "unblind_and_baselines": {"unblind", "baseline"},
     "blind_and_baselines": {"blind", "baseline"},
@@ -1100,17 +1163,28 @@ def _ranked_category_colors():
     return {key: cat_palette[i % len(cat_palette)] for i, key in enumerate(_RANKED_CATEGORY_ORDER)}
 
 
+# Single-letter regime tags for the tick labels, matching the manuscript figures. The full terms
+# are three times longer than the model names they trail, and at 41 vertical labels they dominate
+# the axis; the legend spells them out instead. The prose still uses the full terms (style Rule 5).
+PROSE_REGIME_SHORT = {"unblind": "C", "blind": "U"}
+PROSE_REGIME_LONG = {"unblind": "constrained", "blind": "unconstrained"}
+
+# Vertical gap between the two stacked legend blocks, in axes fraction. Wide enough to read as two
+# blocks, narrow enough that they read as one legend column rather than two unrelated keys.
+LEGEND_BLOCK_GAP = 0.045
+
+
 def _prose_model_label(model):
-    """Model name with the pipeline's regime suffix rewritten in the manuscript's vocabulary.
+    """Model name with the pipeline's regime suffix as the manuscript's single-letter tag.
 
     The classical and chance baselines lose the suffix entirely: their ``_blind`` tag is a naming
     artifact and the regime axis does not apply to them.
     """
-    base = model_base(model)
+    base = model_base(model) + unsupported_mark(model)
     if categorize_model(model) in ("classical", "simple"):
         return base
-    return {"unblind": f"{base} (constrained)",
-            "blind": f"{base} (unconstrained)"}.get(derive_mode(model), base)
+    short = PROSE_REGIME_SHORT.get(derive_mode(model))
+    return f"{base} ({short})" if short else base
 
 
 def plot_composite_ranked_bars(df, out_path, dpi, title=None, metric=None,
@@ -1198,9 +1272,12 @@ def plot_composite_ranked_bars(df, out_path, dpi, title=None, metric=None,
     ax.set_xticks(x)
     tick_names = [_prose_model_label(m) for m in models] if prose_regimes else models
     ax.set_xticklabels(tick_names, rotation=90, ha="center", fontsize=8)
-    # Color each model-name tick label by its category (matches the bar).
+    # Color each model-name tick label by its category (matches the bar). Bold, because the labels
+    # carry a category color rather than black: several of the palette entries are light enough
+    # that a regular weight at this size reads as gray at print resolution.
     for tick, c in zip(ax.get_xticklabels(), cats):
         tick.set_color(cat_color.get(c, cat_color["LLM"]))
+        tick.set_fontweight("bold")
     ax.set_xlim(-0.6, n - 0.4)
     ax.set_ylim(0, min(1.02, float(np.nanmax(ranked.values)) + 0.10))
     ax.set_ylabel(ylabel, fontsize=13)
@@ -1216,14 +1293,35 @@ def plot_composite_ranked_bars(df, out_path, dpi, title=None, metric=None,
         handles.append(plt.Line2D([0], [0], color="tab:red", linestyle="--", linewidth=1.2,
                                   label="chance (random, stratified)"))
     leg_cat = ax.legend(handles=handles, loc="upper right", frameon=False, fontsize=11,
-                        title="model category", title_fontsize=11)
+                        title="model category", title_fontsize=11, alignment="left")
     ax.add_artist(leg_cat)
-    # Second legend: prediction mode (solid = unblind, black diagonals = blind).
-    _u, _c = ("constrained", "unconstrained") if prose_regimes else ("unblind", "blind")
+    # Second legend: prediction mode (solid = unblind, black diagonals = blind). Under
+    # ``prose_regimes`` it also carries the key to the single-letter tags on the tick labels, so
+    # the letter and the term it stands for appear together in one entry.
+    if prose_regimes:
+        _u, _c = (rf"$\bf{{{PROSE_REGIME_SHORT[m]}}}$   {PROSE_REGIME_LONG[m]}"
+                  for m in ("unblind", "blind"))
+    else:
+        _u, _c = "unblind", "blind"
     mode_handles = [mpatches.Patch(facecolor="0.7", edgecolor="black", label=_u),
                     mpatches.Patch(facecolor="0.7", edgecolor="black", hatch="///", label=_c)]
-    ax.legend(handles=mode_handles, loc="upper right", bbox_to_anchor=(1.0, 0.60),
-              frameon=False, fontsize=10, title="prediction mode", title_fontsize=10)
+    # Both legends are right-hand blocks, so anchoring them by their RIGHT edge would leave their
+    # swatches at two different x positions -- the entries differ in text length. Measure the
+    # category legend once it is laid out and hang the mode legend from the same LEFT edge, which
+    # is the column the reader's eye follows down. ``alignment="left"`` does the same for the
+    # titles, which matplotlib otherwise centers over their entries.
+    # The vertical position is measured too, rather than fixed: the category legend gains an entry
+    # when the chance line is drawn, so a hard-coded y leaves a gap that changes with the metric.
+    fig.canvas.draw()
+    left, bottom = ax.transAxes.inverted().transform(
+        leg_cat.get_window_extent().corners()[0])
+    # ``borderaxespad=0`` is what actually makes the two line up: matplotlib applies that pad even
+    # when ``bbox_to_anchor`` is given, so the default would push this legend half a font size to
+    # the right of the corner it was just anchored to, and the same distance further down.
+    ax.legend(handles=mode_handles, loc="upper left",
+              bbox_to_anchor=(left, bottom - LEGEND_BLOCK_GAP),
+              frameon=False, fontsize=11, title="prediction mode", title_fontsize=11,
+              alignment="left", borderaxespad=0)
 
     if title:
         fig.suptitle(title, y=1.0, fontsize=17)
@@ -1383,8 +1481,8 @@ def plot_metric_disagreement(df, out_path, dpi, title=None,
     the same way, and does that depend on the information regime?
 
     The composite on the ``plot_composite_category`` axis averages balanced accuracy and Lin
-    similarity, so macro F1 is absent from that figure by construction. It is also the metric on
-    which the family ordering reverses, which is why it needs its own panel rather than a sentence.
+    similarity, so macro F1 is absent from that figure by construction; this panel shows whether
+    the two metrics order the models alike.
 
     One point per model per regime, split into two panels (unconstrained | constrained) sharing
     axes. EVERY model in ``df`` is drawn -- no selection -- with colors by category and markers by
@@ -1393,10 +1491,9 @@ def plot_metric_disagreement(df, out_path, dpi, title=None,
     that is the regime they are compared under; the caption must say the regime axis does not
     apply to them.
 
-    The identity line is the reference that carries the reading. A model sitting far below it
-    predicts many more distinct labels than the ground truth has, which macro F1 charges for (it
-    averages over predicted classes) and balanced accuracy does not (it is recall-based). Points
-    near the line are models whose label vocabulary matches the target label set.
+    The identity line is the reference that carries the reading. Both metrics average over the
+    true cell types, but macro F1 also weighs precision: a model far below the line assigns true
+    types to many cells of other types, which balanced accuracy (recall only) does not penalize.
 
     Spearman rank correlation between the two metrics is annotated per panel over the models in
     that panel. Returns False if either metric is missing.
@@ -1868,7 +1965,7 @@ def load_confusion_pairs(path=DEFAULT_CONFUSION_CSV):
 
 
 def _sankey(ax, flows, left_order, right_order, colors, gap_frac=0.02, label_size=7,
-            show_left_labels=True):
+            show_left_labels=True, label_pad=0.05, right_margin=1.9):
     """Minimal two-column alluvial: ``flows`` is ``[(src, tgt, value)]``.
 
     Written here rather than pulled in as a dependency because the plotting environment is
@@ -1876,6 +1973,9 @@ def _sankey(ax, flows, left_order, right_order, colors, gap_frac=0.02, label_siz
 
     Node heights are proportional to the cells passing through them, ribbons are cubic Beziers,
     and a ribbon whose target equals its source (a correct prediction) is drawn opaque with a dark
+    edge. Right-hand nodes carry the same distinction: dark where the predicted label is one of the
+    true types on the left, light where it is not.
+    A ribbon whose target equals its source is drawn opaque with a dark
     edge so the recovered fraction is visible without reading the labels.
     """
     total = sum(v for _s, _t, v in flows)
@@ -1927,19 +2027,31 @@ def _sankey(ax, flows, left_order, right_order, colors, gap_frac=0.02, label_siz
         ax.add_patch(mpatches.Rectangle((-0.035, a), 0.03, b - a, color=colors.get(key, "0.6"),
                                         zorder=4))
         if show_left_labels:
-            ax.text(-0.05, (a + b) / 2, key, ha="right", va="center", fontsize=label_size)
+            ax.text(-label_pad, (a + b) / 2, key, ha="right", va="center", fontsize=label_size)
     for key in right_order:
         a, b = rpos[key]
         hit = key in left_order
-        ax.add_patch(mpatches.Rectangle((1.005, a), 0.03, b - a, color="0.35", zorder=4))
-        ax.text(1.05, (a + b) / 2, key, ha="left", va="center", fontsize=label_size,
+        # The node carries the same dark/light distinction as the ribbons and the key: dark for a
+        # target that IS one of the true types on the left, light for one that is not. It was a
+        # uniform dark gray, which contradicted the legend it sits beside.
+        ax.add_patch(mpatches.Rectangle((1.005, a), 0.03, b - a, zorder=4,
+                                        facecolor="0.35" if hit else "0.78",
+                                        edgecolor="0.35" if hit else "0.62", linewidth=0.4))
+        ax.text(1.0 + label_pad, (a + b) / 2, key, ha="left", va="center", fontsize=label_size,
                 fontweight="bold" if hit else "normal", color="0.1" if hit else "0.35")
-    ax.set_xlim(-0.9, 1.9)
+    # The left margin exists only to hold the source labels, so a panel that does not draw them
+    # (every panel but the first in a row) reclaims it instead of padding itself with white space.
+    # `right_margin` is the room the RIGHT-hand target labels get. They are drawn at x = 1 +
+    # label_pad with ha="left" and no clipping, so a label starts at a fixed FRACTION of the axes
+    # width and anything wider than the remainder leaves the axes and lands on the neighbouring
+    # panel. Raising this pushes that start point left, at the cost of narrower ribbons. Default
+    # keeps the supplementary flow figures exactly as they were.
+    ax.set_xlim(-0.9 if show_left_labels else -0.10, right_margin)
     ax.set_ylim(-0.02, 1.02)
     ax.axis("off")
 
 
-def _flow_key(ax, rare, colors, counts, max_targets, label_size=8):
+def _flow_key(ax, rare, colors, counts, max_targets, label_size=8, ncol=1, notes=True):
     """Encoding key plus the rare-type inventory, for the empty cell of a flow grid.
 
     Two things the panels cannot carry themselves. The ribbon encoding, so the figure is readable
@@ -1952,25 +2064,43 @@ def _flow_key(ax, rare, colors, counts, max_targets, label_size=8):
                        label="prediction matches the true type"),
         mpatches.Patch(facecolor="0.55", edgecolor="none", alpha=0.38,
                        label="prediction differs"),
-        plt.Line2D([], [], linestyle="none", marker="", label="ribbon width $\\propto$ cells"),
-        plt.Line2D([], [], linestyle="none", marker="",
-                   label=f"top {max_targets} predictions per type;\nremainder pooled as \"other\""),
-        plt.Line2D([], [], linestyle="none", marker="", label=""),
-        plt.Line2D([], [], linestyle="none", marker="", label="cells per type:"),
     ]
+    # The two prose notes are dropped when `notes=False`, for callers whose figure caption states
+    # them instead -- they are sentences, not encodings, and they dominate a wide key.
+    if notes:
+        handles += [
+            plt.Line2D([], [], linestyle="none", marker="", label="ribbon width $\\propto$ cells"),
+            plt.Line2D([], [], linestyle="none", marker="",
+                       label=f"top {max_targets} predictions per type;\n"
+                             f"remainder pooled as \"other\""),
+        ]
+    if notes:
+        # With notes off the counts are already inline as "(n = ...)" on every swatch, so the
+        # heading and its spacer only add width.
+        handles += [
+            plt.Line2D([], [], linestyle="none", marker="", label=""),
+            plt.Line2D([], [], linestyle="none", marker="", label="cells per type:"),
+        ]
     for t in rare:
         n = int(counts.get(t, 0))
         handles.append(mpatches.Patch(facecolor=colors.get(t, "0.6"), edgecolor="none",
-                                      label=f"{t} — {n}"))
+                                      label=f"{t} (n = {n})"))
     # Centered in the empty cell, so the block sits under the panel above it rather than pinned to
     # the figure's left edge. The entries themselves stay left-aligned so the names line up.
-    ax.legend(handles=handles, loc="center", frameon=False, fontsize=label_size,
-              labelspacing=0.6, handlelength=1.6, handletextpad=0.7, borderaxespad=0.0,
-              alignment="left")
+    # ncol > 1 lays the key out as a wide strip instead of a tall column, for callers that place
+    # it beneath the alluvials rather than beside them. In that mode it is stretched across the
+    # full width of its axes rather than centered, so it uses the horizontal space it was given.
+    kw = dict(handles=handles, frameon=False, fontsize=label_size, ncol=ncol,
+              labelspacing=0.6, handlelength=1.6, handletextpad=0.7, alignment="left")
+    if ncol > 1:
+        ax.legend(loc="upper left", bbox_to_anchor=(0.0, 0.0, 1.0, 1.0), mode="expand",
+                  borderaxespad=0.0, columnspacing=1.2, **kw)
+    else:
+        ax.legend(loc="center", borderaxespad=0.0, columnspacing=1.8, **kw)
 
 
 def plot_rare_type_flows(conf, out_path, dpi, dataset, models, n_types=5, max_targets=6,
-                         prevalence_max=0.03, title=None):
+                         prevalence_max=0.03, title=None, prevalence_map=None, name_fn=None):
     """Supplementary: for the rarest cell types, WHERE do the cells actually go?
 
     Panel D of Figure 2 says how often rare types are recovered; it cannot say what they are
@@ -1998,7 +2128,19 @@ def plot_rare_type_flows(conf, out_path, dpi, dataset, models, n_types=5, max_ta
         warnings.warn(f"plot_rare_type_flows: nothing to draw for {dataset}.")
         return False
 
-    prev = (sub.drop_duplicates(["true_label"]).set_index("true_label")["prevalence"])
+    # WHICH PREVALENCE. `prevalence_map` supplies the cell type's share of the FULL dataset and is
+    # what callers should pass. The `prevalence` column on the confusion table is the share of the
+    # 1,000-cell evaluation SUBSET, and the subsets are stratified with a 20-cell floor, so most
+    # rare types are tied at exactly 0.020 there and "the five rarest" resolves to an alphabetical
+    # tiebreak rather than to rarity. On HIHA and Zeisel that selected a completely different set
+    # of cell types from the one the rare-type analysis reports. Falls back to the subset column
+    # only so the function still runs without a map.
+    if prevalence_map:
+        lut = {str(k).strip().lower(): v for k, v in prevalence_map.items()}
+        prev = pd.Series({t: lut[t.strip().lower()] for t in sub["true_label"].unique()
+                          if t.strip().lower() in lut})
+    else:
+        prev = sub.drop_duplicates(["true_label"]).set_index("true_label")["prevalence"]
     rare = list(prev[prev <= prevalence_max].nsmallest(n_types).index)
     if not rare:
         rare = list(prev.nsmallest(n_types).index)
@@ -2050,7 +2192,8 @@ def plot_rare_type_flows(conf, out_path, dpi, dataset, models, n_types=5, max_ta
             # naming artifact, and the regime axis does not apply to them at all.
             regime = None if categorize_model(model) == "classical" else \
                 {"unblind": "constrained", "blind": "unconstrained"}.get(derive_mode(model))
-            ax.set_title(f"{model_base(model)}" + (f"  ({regime})" if regime else ""), fontsize=10)
+            label = name_fn(model_base(model)) if name_fn else model_base(model)
+            ax.set_title(f"{label}" + (f"  ({regime})" if regime else ""), fontsize=10)
 
     if title:
         fig.suptitle(title, y=1.0, fontsize=12)
@@ -2882,7 +3025,7 @@ def _pareto_front(points):
     return front
 
 
-def plot_cost_vs_performance(agg_df, act_df, out_path, dpi, metric="balanced_accuracy",
+def plot_cost_vs_performance(agg_df, act_df, out_path, dpi, ax=None, metric="balanced_accuracy",
                              dataset=None):
     """Annotation quality against what it costs, one point per (LLM, mode).
 
@@ -2937,7 +3080,9 @@ def plot_cost_vs_performance(agg_df, act_df, out_path, dpi, metric="balanced_acc
         return False
 
     colors = _mode_colors()
-    fig, ax = plt.subplots(figsize=(8.2, 5.6))
+    own_fig = ax is None
+    if own_fig:
+        fig, ax = plt.subplots(figsize=(8.2, 5.6))
     tiers_seen = {}
     for base, mode, cost, score, answered in rows:
         (marker, size), tier = _llm_tier_style(base)
@@ -2978,6 +3123,8 @@ def plot_cost_vs_performance(agg_df, act_df, out_path, dpi, metric="balanced_acc
     ax.set_axisbelow(True)
     for side in ("top", "right"):
         ax.spines[side].set_visible(False)
+    if not own_fig:
+        return True
     fig.tight_layout()
     add_caption(fig, caption)
     fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
@@ -3243,15 +3390,17 @@ def main(argv=None):
                     total_written += 1
                     print(f"[composite_category/{log_tag}/{size_folder}]  wrote {outd.name}")
                 # Companion metric-disagreement panel. The composite axis is balanced accuracy +
-                # Lin, so macro F1 -- the metric on which the family ordering reverses -- cannot
+                # Lin, so macro F1 cannot
                 # appear in the composite figure at all. Same colors and tier markers.
                 outm = out_dir / f"metric_disagreement_{size_folder}.{args.format}"
                 if plot_metric_disagreement(sdf, outm, args.dpi, title=title):
                     total_written += 1
                     print(f"[composite_category/{log_tag}/{size_folder}]  wrote {outm.name}")
 
-        # 1) Aggregated over all datasets (top-level folder), as before.
-        emit_composite(df, cdir, "all_datasets")
+        # 1) Aggregated over all datasets (top-level folder). A model that cannot run on a
+        #    dataset counts as 0 there (see with_unsupported_as_zero).
+        emit_composite(with_unsupported_as_zero(df, model_cols=("model", "mode", "_mode")),
+                       cdir, "all_datasets")
 
         # 2) Per-dataset breakdown for the supplementary: one figure set per dataset, each titled
         #    with the dataset name so the supplementary panels are self-identifying.
