@@ -185,7 +185,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X05_2:GATTCTTGTCCTCG,glutamatergic neuron,astrocyte,astrocyte
 10X36_1:AACAATACCCTGTC,glutamatergic neuron,neuron,neuron
 10X50_5:ATCGCCTGGGAGCA,glutamatergic neuron,neuroblast (sensu vertebrata),neuroblast (sensu vertebrata)
-10X52_2:GTACGAACAACTGC,glutamatergic neuron,microglial cell (Mmus),microglia
+10X52_2:GTACGAACAACTGC,glutamatergic neuron,microglial cell,microglia
 10X53_6:CAGGGCACGAACCT,glutamatergic neuron,astrocyte,astrocyte
 10X22_2:GCTACAGATTTGGG,glutamatergic neuron,astrocyte,astrocyte
 10X54_2:GACCATCAGCCTAA,glutamatergic neuron,oligodendrocyte,oligodendrocyte
@@ -206,7 +206,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X22_4:GCCTCATGATCGTG,glutamatergic neuron,astrocyte,astrocyte
 10X50_6:AAGATGGATTGCGA,glutamatergic neuron,astrocyte,astrocyte
 10X02_1:TGTTACTGTCCTCG,glutamatergic neuron,astrocyte,astrocyte
-10X43_3:GAGTCAACTTCGCC,glutamatergic neuron,microglial cell (Mmus),microglia
+10X43_3:GAGTCAACTTCGCC,glutamatergic neuron,microglial cell,microglia
 10X50_8:ACGAACTGTACTCT,glutamatergic neuron,gabaergic neuron,gabaergic neuron
 10X35_1:TCGTAGGAGTTAGC,glutamatergic neuron,pericyte,pericyte
 10X05_2:CACCGTACCCATAG,glutamatergic neuron,astrocyte,astrocyte
@@ -217,7 +217,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X28_2:TTCAGACTTGACTG,glutamatergic neuron,gabaergic neuron,gabaergic neuron
 10X57_2:GTGACAACTGCAAC,glutamatergic neuron,oligodendrocyte,oligodendrocyte
 10X02_1:TAGACGTGTCCAAG,glutamatergic neuron,gabaergic neuron,gabaergic neuron
-10X05_1:CCCAGTTGATCACG,glutamatergic neuron,microglial cell (Mmus),microglia
+10X05_1:CCCAGTTGATCACG,glutamatergic neuron,microglial cell,microglia
 10X05_1:CGATCAGACTCATT,glutamatergic neuron,oligodendrocyte,oligodendrocyte
 10X04_2:ATATAGTGAACCGT,glutamatergic neuron,neuroblast (sensu vertebrata),neuroblast (sensu vertebrata)
 10X22_2:TCTCAAACCGTGAT,glutamatergic neuron,neuron,neuron
@@ -265,7 +265,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X35_2:TGTAATGACGTACA,glutamatergic neuron,gabaergic neuron,gabaergic neuron
 10X20_1:TGGTAGTGTTATCC,glutamatergic neuron,neuroblast (sensu vertebrata),neuroblast (sensu vertebrata)
 10X52_1:ATCAAATGACCCAA,glutamatergic neuron,astrocyte,astrocyte
-10X20_3:CGCGGATGGTCGTA,glutamatergic neuron,microglial cell (Mmus),microglia
+10X20_3:CGCGGATGGTCGTA,glutamatergic neuron,microglial cell,microglia
 10X19_2:ACGACCCTCTTGGA,glutamatergic neuron,astrocyte,astrocyte
 10X52_2:TAAGTCCTACGCAT,glutamatergic neuron,astrocyte,astrocyte
 10X35_2:TGCGAAACACGTAC,glutamatergic neuron,neuron,neuron
@@ -310,15 +310,15 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X05_1:CGCTACTGGCTAAC,gabaergic neuron,neuron,neuron
 10X28_4:TGTCTAACAAGAAC,gabaergic neuron,gabaergic neuron,gabaergic neuron
 10X26_4:TGAGGACTATGACC,gabaergic neuron,glutamatergic neuron,glutamatergic neuron
-10X38_3:TCTATGTGACGTTG,gabaergic neuron,microglial cell (Mmus),microglia
+10X38_3:TCTATGTGACGTTG,gabaergic neuron,microglial cell,microglia
 10X24_2:GAAACAGATGTTTC,gabaergic neuron,olfactory ensheathing cell,olfactory ensheathing cell
 10X36_3:TCCGAAGAGTGTCA,gabaergic neuron,gabaergic neuron,gabaergic neuron
 10X38_1:AGTAATACCCACAA,gabaergic neuron,neuron,neuron
 10X05_4:GGACCCGAGAATCC,gabaergic neuron,gabaergic neuron,gabaergic neuron
 10X28_5:CTATCAACCCATAG,gabaergic neuron,gabaergic neuron,gabaergic neuron
 10X38_3:TACGGCCTCTTCTA,gabaergic neuron,gabaergic neuron,gabaergic neuron
-10X49_4:GACAACTGCGTAGT,gabaergic neuron,microglial cell (Mmus),microglia
-10X38_1:TGAGCAACCTCATT,gabaergic neuron,microglial cell (Mmus),microglia
+10X49_4:GACAACTGCGTAGT,gabaergic neuron,microglial cell,microglia
+10X38_1:TGAGCAACCTCATT,gabaergic neuron,microglial cell,microglia
 10X26_4:TATGGGTGGGTACT,gabaergic neuron,schwann cell,schwann cell
 10X04_4:CGGTAAACATCACG,gabaergic neuron,astrocyte,astrocyte
 10X24_1:ACAAAGGAGAATAG,gabaergic neuron,neuroblast (sensu vertebrata),neuroblast (sensu vertebrata)
@@ -336,7 +336,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X28_5:ACACGAACCGTCTC,gabaergic neuron,gabaergic neuron,gabaergic neuron
 10X49_4:ACCAACGACCTTTA,gabaergic neuron,astrocyte,astrocyte
 10X28_4:CTAAGGACCATTCT,gabaergic neuron,gabaergic neuron,gabaergic neuron
-10X24_1:GGCGACTGCACAAC,gabaergic neuron,microglial cell (Mmus),microglia
+10X24_1:GGCGACTGCACAAC,gabaergic neuron,microglial cell,microglia
 10X49_5:AAGGTGCTTCGATG,gabaergic neuron,astrocyte,astrocyte
 10X38_2:AATGGCTGCCTTAT,gabaergic neuron,astrocyte,astrocyte
 10X38_2:AGAATGGAGGAAGC,gabaergic neuron,gabaergic neuron,gabaergic neuron
@@ -350,7 +350,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X43_3:TGATAAACCTGGTA,gabaergic neuron,schwann cell,schwann cell
 10X36_3:ATGAAACTGGTCAT,gabaergic neuron,pericyte,pericyte
 10X52_2:AACGTGTGTCAAGC,gabaergic neuron,gabaergic neuron,gabaergic neuron
-10X49_4:ATTGTAGAGCCATA,gabaergic neuron,microglial cell (Mmus),microglia
+10X49_4:ATTGTAGAGCCATA,gabaergic neuron,microglial cell,microglia
 10X38_3:TGGATGACTCACCC,gabaergic neuron,neuroblast (sensu vertebrata),neuroblast (sensu vertebrata)
 10X38_2:CTAATGCTACGACT,gabaergic neuron,neuroblast (sensu vertebrata),neuroblast (sensu vertebrata)
 10X26_3:ATCACGGAGAGGCA,gabaergic neuron,astrocyte,astrocyte
@@ -369,7 +369,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X07_1:AAATCTGAGGAGGT,gabaergic neuron,astrocyte,astrocyte
 10X38_2:ATTGCACTCCGATA,gabaergic neuron,neuron,neuron
 10X28_5:CGTTAACTCCGCTT,gabaergic neuron,astrocyte,astrocyte
-10X35_1:GCATTGGATGTTTC,gabaergic neuron,microglial cell (Mmus),microglia
+10X35_1:GCATTGGATGTTTC,gabaergic neuron,microglial cell,microglia
 10X38_2:GGCTAATGGTGCTA,gabaergic neuron,astrocyte,astrocyte
 10X38_2:GTAATAACAAGTGA,gabaergic neuron,oligodendrocyte,oligodendrocyte
 10X52_5:CAACGATGATGACC,gabaergic neuron,astrocyte,astrocyte
@@ -381,7 +381,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X50_5:ATTTAGGACACTCC,gabaergic neuron,gabaergic neuron,gabaergic neuron
 10X24_2:TGCGAAACCGGTAT,gabaergic neuron,glutamatergic neuron,glutamatergic neuron
 10X50_4:ACACGAACTGGAGG,gabaergic neuron,astrocyte,astrocyte
-10X52_5:GGTCTAGAGACGTT,gabaergic neuron,microglial cell (Mmus),microglia
+10X52_5:GGTCTAGAGACGTT,gabaergic neuron,microglial cell,microglia
 10X38_1:GTGTACGAGCGAAG,gabaergic neuron,astrocyte,astrocyte
 10X52_2:ACCCGTACAACCAC,gabaergic neuron,gabaergic neuron,gabaergic neuron
 10X22_3:TATACGCTACGTTG,astrocyte,astrocyte,astrocyte
@@ -430,7 +430,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X48_4:GTAGCCCTTGCCAA,astrocyte,astrocyte,astrocyte
 10X52_4:CGCTAAGAACCTGA,astrocyte,astrocyte,astrocyte
 10X51_4:AATGGAGAACGTAC,astrocyte,astrocyte,astrocyte
-10X19_2:CCTGACTGCATCAG,astrocyte,microglial cell (Mmus),microglia
+10X19_2:CCTGACTGCATCAG,astrocyte,microglial cell,microglia
 10X49_4:TTTAGAGATTCTAC,astrocyte,astrocyte,astrocyte
 10X49_5:AAGCGTACCTTGGA,astrocyte,astrocyte,astrocyte
 10X24_3:AACAATACACGTAC,astrocyte,astrocyte,astrocyte
@@ -460,10 +460,10 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X24_2:CTAGGCCTAGTACC,astrocyte,astrocyte,astrocyte
 10X22_3:CATCATACAAGAAC,astrocyte,astrocyte,astrocyte
 10X22_3:GCGAGAGAGGGAGT,astrocyte,astrocyte,astrocyte
-10X48_3:GCTTGAGATAGTCG,astrocyte,microglial cell (Mmus),microglia
+10X48_3:GCTTGAGATAGTCG,astrocyte,microglial cell,microglia
 10X34_4:AGAATGGATTCACT,astrocyte,astrocyte,astrocyte
 10X49_5:GGATTGTGGACTAC,astrocyte,astrocyte,astrocyte
-10X22_3:TAAGCGTGCTGTCC,astrocyte,microglial cell (Mmus),microglia
+10X22_3:TAAGCGTGCTGTCC,astrocyte,microglial cell,microglia
 10X22_4:TACGCGCTAAGAAC,astrocyte,gabaergic neuron,gabaergic neuron
 10X20_2:GTGGATTGTGCACA,astrocyte,astrocyte,astrocyte
 10X52_5:CTGAGCCTTCATTC,astrocyte,astrocyte,astrocyte
@@ -471,72 +471,72 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X81_3:AGGCCTCGAATGGG,enteric glia,oligodendrocyte,oligodendrocyte
 10X81_1:CGTTGGTGGTACAG,enteric glia,astrocyte,astrocyte
 10X81_3:TTACCTCGTGGTCG,enteric glia,astrocyte,astrocyte
-10X81_3:TGAGGGTAAGTGTA,enteric glia,microglial cell (Mmus),microglia
+10X81_3:TGAGGGTAAGTGTA,enteric glia,microglial cell,microglia
 10X81_1:TCTACTCAACGCTA-1,enteric glia,pericyte,pericyte
 10X81_1:GCTGGGTAATCGTC,enteric glia,astrocyte,astrocyte
 10X81_2:CTACCAGCCGTCGT,enteric glia,schwann cell,schwann cell
 10X81_3:AGCCAAGAAGATTC,enteric glia,astrocyte,astrocyte
 10X82_2:TACTCAGGCGATAC,enteric glia,pericyte,pericyte
-10X82_2:TGAGCGTAAGTGTA,enteric glia,microglial cell (Mmus),microglia
+10X82_2:TGAGCGTAAGTGTA,enteric glia,microglial cell,microglia
 10X82_2:TGAAGTCTGTCTCG,enteric glia,astrocyte,astrocyte
 10X81_1:ACATCTCTCGCATC,enteric glia,schwann cell,schwann cell
 10X81_1:ATCAGTCCTTCAAT,enteric glia,oligodendrocyte,oligodendrocyte
 10X81_1:AGACCGTTGGTAAA,enteric glia,oligodendrocyte,oligodendrocyte
 10X82_2:AGGTACACGAGAGT,enteric glia,pericyte,pericyte
-10X81_1:GGGAGGTTATGTGC,enteric glia,microglial cell (Mmus),microglia
+10X81_1:GGGAGGTTATGTGC,enteric glia,microglial cell,microglia
 10X81_2:ATGTAGTAGGGTAC,enteric glia,astrocyte,astrocyte
 10X81_1:CCATGTCCGCAAGC,enteric glia,oligodendrocyte,oligodendrocyte
 10X82_2:TACCGGTTCTGGTA,enteric glia,astrocyte,astrocyte
 10X81_1:TATTACATCGTCGG,enteric glia,oligodendrocyte,oligodendrocyte
 10X81_3:GAGAGAGGCTAGCA,enteric glia,oligodendrocyte,oligodendrocyte
-10X81_2:GAGGGCACACCGCA,enteric glia,microglial cell (Mmus),microglia
+10X81_2:GAGGGCACACCGCA,enteric glia,microglial cell,microglia
 10X82_2:AATGTGTCATCGGC,enteric glia,oligodendrocyte,oligodendrocyte
 10X81_2:AACGTGTTATTCTC,enteric glia,astrocyte,astrocyte
 10X81_2:GCTAGCAAATTGCC,enteric glia,astrocyte,astrocyte
 10X81_1:GCGATTCACAATGC,enteric glia,astrocyte,astrocyte
-10X81_3:CAGAACAATCGGTT,enteric glia,microglial cell (Mmus),microglia
+10X81_3:CAGAACAATCGGTT,enteric glia,microglial cell,microglia
 10X82_2:ACCTATCACTATTC,enteric glia,astrocyte,astrocyte
 10X81_1:GACTTCATACTACG,enteric glia,pericyte,pericyte
 10X81_2:AGCCAGTACAGTGG,enteric glia,astrocyte,astrocyte
 10X81_2:TCTAAAGCGTTTAC,enteric glia,oligodendrocyte,oligodendrocyte
-10X26_3:GTATGGTGGCGAGA,microglia,microglial cell (Mmus),microglia
-10X22_2:GTAGTCGATTCTTG,microglia,microglial cell (Mmus),microglia
-10X52_5:TGCACGCTTGATGC,microglia,microglial cell (Mmus),microglia
-10X53_4:ACGGTCCTTGCGTA,microglia,microglial cell (Mmus),microglia
-10X28_5:GGCCCAGAGAATCC,microglia,microglial cell (Mmus),microglia
-10X22_2:GTCCCATGTACGCA,microglia,microglial cell (Mmus),microglia
-10X19_2:ATTGGTCTTCCTCG,microglia,microglial cell (Mmus),microglia
-10X22_4:AATGATACGCGAGA,microglia,microglial cell (Mmus),microglia
-10X26_3:CATCTTGAAGAGGC,microglia,microglial cell (Mmus),microglia
-10X19_2:AGCCAATGTGTGCA,microglia,microglial cell (Mmus),microglia
-10X57_2:GTGAACACAGGTCT,microglia,microglial cell (Mmus),microglia
-10X02_1:CCTAAGGACTGAAC,microglia,microglial cell (Mmus),microglia
-10X53_5:GGCTACCTGCCTTC,microglia,microglial cell (Mmus),microglia
-10X49_1:CCGGAGACTTCGCC,microglia,microglial cell (Mmus),microglia
-10X57_4:ACGCCTTGTATCTC,microglia,microglial cell (Mmus),microglia
-10X24_1:TTCATCGATTCCGC,microglia,microglial cell (Mmus),microglia
-10X49_3:CATAACCTTTGGTG,microglia,microglial cell (Mmus),microglia
-10X26_3:TCTTGATGACGACT,microglia,microglial cell (Mmus),microglia
-10X53_4:TAGTACCTCCCTCA,microglia,microglial cell (Mmus),microglia
-10X02_1:ACTTGGGATGCTCC,microglia,microglial cell (Mmus),microglia
-10X20_4:GCCGACGAGGTGGA,microglia,microglial cell (Mmus),microglia
-10X50_4:GTGATCGAAGGAGC,microglia,microglial cell (Mmus),microglia
-10X22_2:GGACATTGAGGTCT,microglia,microglial cell (Mmus),microglia
-10X35_2:AACGCAACCTGGTA,microglia,microglial cell (Mmus),microglia
-10X49_3:AGGCTAACGTAGGG,microglia,microglial cell (Mmus),microglia
-10X51_4:GCACCACTAAGAAC,microglia,microglial cell (Mmus),microglia
+10X26_3:GTATGGTGGCGAGA,microglia,microglial cell,microglia
+10X22_2:GTAGTCGATTCTTG,microglia,microglial cell,microglia
+10X52_5:TGCACGCTTGATGC,microglia,microglial cell,microglia
+10X53_4:ACGGTCCTTGCGTA,microglia,microglial cell,microglia
+10X28_5:GGCCCAGAGAATCC,microglia,microglial cell,microglia
+10X22_2:GTCCCATGTACGCA,microglia,microglial cell,microglia
+10X19_2:ATTGGTCTTCCTCG,microglia,microglial cell,microglia
+10X22_4:AATGATACGCGAGA,microglia,microglial cell,microglia
+10X26_3:CATCTTGAAGAGGC,microglia,microglial cell,microglia
+10X19_2:AGCCAATGTGTGCA,microglia,microglial cell,microglia
+10X57_2:GTGAACACAGGTCT,microglia,microglial cell,microglia
+10X02_1:CCTAAGGACTGAAC,microglia,microglial cell,microglia
+10X53_5:GGCTACCTGCCTTC,microglia,microglial cell,microglia
+10X49_1:CCGGAGACTTCGCC,microglia,microglial cell,microglia
+10X57_4:ACGCCTTGTATCTC,microglia,microglial cell,microglia
+10X24_1:TTCATCGATTCCGC,microglia,microglial cell,microglia
+10X49_3:CATAACCTTTGGTG,microglia,microglial cell,microglia
+10X26_3:TCTTGATGACGACT,microglia,microglial cell,microglia
+10X53_4:TAGTACCTCCCTCA,microglia,microglial cell,microglia
+10X02_1:ACTTGGGATGCTCC,microglia,microglial cell,microglia
+10X20_4:GCCGACGAGGTGGA,microglia,microglial cell,microglia
+10X50_4:GTGATCGAAGGAGC,microglia,microglial cell,microglia
+10X22_2:GGACATTGAGGTCT,microglia,microglial cell,microglia
+10X35_2:AACGCAACCTGGTA,microglia,microglial cell,microglia
+10X49_3:AGGCTAACGTAGGG,microglia,microglial cell,microglia
+10X51_4:GCACCACTAAGAAC,microglia,microglial cell,microglia
 10X49_5:CGGTAAACCTAGCA,neuroblast (sensu vertebrata),peripheral sensory neuron,peripheral sensory neuron
 10X49_4:TACGAGACCCCAAA,neuroblast (sensu vertebrata),astrocyte,astrocyte
 10X04_4:TCTAACTGCAGCTA,neuroblast (sensu vertebrata),astrocyte,astrocyte
 10X46_1:AAAGCAGAGGACAG,neuroblast (sensu vertebrata),astrocyte,astrocyte
 10X49_4:TTGTAGCTCCTCGT,neuroblast (sensu vertebrata),oligodendrocyte,oligodendrocyte
 10X28_5:GACTGAACGAGCTT,neuroblast (sensu vertebrata),astrocyte,astrocyte
-10X26_3:TTTGCATGCATGCA,neuroblast (sensu vertebrata),microglial cell (Mmus),microglia
+10X26_3:TTTGCATGCATGCA,neuroblast (sensu vertebrata),microglial cell,microglia
 10X20_1:TTACTCGACATGAC,neuroblast (sensu vertebrata),astrocyte,astrocyte
 10X54_3:GAAGGAGAGTGACC,neuroblast (sensu vertebrata),oligodendrocyte,oligodendrocyte
 10X22_4:ACGCCTTGCTTCCG,neuroblast (sensu vertebrata),olfactory ensheathing cell,olfactory ensheathing cell
 10X34_2:TTCTGATGGTGTAC,neuroblast (sensu vertebrata),astrocyte,astrocyte
-10X46_1:CCAGTCACTTTCGT,neuroblast (sensu vertebrata),microglial cell (Mmus),microglia
+10X46_1:CCAGTCACTTTCGT,neuroblast (sensu vertebrata),microglial cell,microglia
 10X49_5:GATTTGCTCGTCTC,neuroblast (sensu vertebrata),astrocyte,astrocyte
 10X22_4:TATCTGACGGCAAG,neuroblast (sensu vertebrata),astrocyte,astrocyte
 10X49_1:CCGGAGACATCAGC,neuroblast (sensu vertebrata),astrocyte,astrocyte
@@ -593,7 +593,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X46_1:GCTACAGAGTTGGT,dentate gyrus granule cell,neuroblast (sensu vertebrata),neuroblast (sensu vertebrata)
 10X43_1:GCTGATGACCTTAT,dentate gyrus granule cell,astrocyte,astrocyte
 10X22_3:TTCAAGCTTATTCC,dentate gyrus granule cell,astrocyte,astrocyte
-10X22_3:CGTGTAGACGCAAT,dentate gyrus granule cell,microglial cell (Mmus),microglia
+10X22_3:CGTGTAGACGCAAT,dentate gyrus granule cell,microglial cell,microglia
 10X04_2:ATCAAATGGTCAAC,dentate gyrus granule cell,gabaergic neuron,gabaergic neuron
 10X46_1:GAGTACACCAAAGA,dentate gyrus granule cell,astrocyte,astrocyte
 10X22_4:TAAGCTCTTGCAAC,dentate gyrus granule cell,gabaergic neuron,gabaergic neuron
@@ -607,7 +607,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X26_2:ATCCCGTGCATGCA,cerebellar neuron,vascular leptomeningeal cell (mmus),vascular leptomeningeal cell (mmus)
 10X26_1:AAGAAGACCACACA,cerebellar neuron,neuron,neuron
 10X26_1:ACAAAGGAAAACAG,cerebellar neuron,cholinergic neuron,cholinergic neuron
-10X51_2:TGGTAGACTTCCCG,cerebellar neuron,microglial cell (Mmus),microglia
+10X51_2:TGGTAGACTTCCCG,cerebellar neuron,microglial cell,microglia
 10X51_2:GAAGGTCTCCACCT,cerebellar neuron,neuron,neuron
 10X26_1:GATATAACAGATCC,cerebellar neuron,astrocyte,astrocyte
 10X51_1:CCATGCTGTTCCGC,cerebellar neuron,sympathetic cholinergic neuron,sympathetic cholinergic neuron
@@ -621,7 +621,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X01_1:ACGGGAGAACCCTC,endothelial cell of vascular tree,endothelial cell of vascular tree,endothelial cell of vascular tree
 10X04_1:ACCTTTGACTCAAG,endothelial cell of vascular tree,pericyte,pericyte
 10X57_7:CAGGTATGGCTTCC,endothelial cell of vascular tree,endothelial cell of vascular tree,endothelial cell of vascular tree
-10X01_1:CTGCCAACGCATAC,endothelial cell of vascular tree,microglial cell (Mmus),microglia
+10X01_1:CTGCCAACGCATAC,endothelial cell of vascular tree,microglial cell,microglia
 10X53_5:GGTAGTACGCTTAG,endothelial cell of vascular tree,endothelial cell of vascular tree,endothelial cell of vascular tree
 10X53_3:AACTGTCTTGGAAA,endothelial cell of vascular tree,pericyte,pericyte
 10X53_4:GAAGTAGACTGGTA,endothelial cell of vascular tree,endothelial cell of vascular tree,endothelial cell of vascular tree
@@ -644,7 +644,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X26_3:GGTATGACTCCCGT,peptidergic neuron,oligodendrocyte,oligodendrocyte
 10X26_3:ATCACACTTTCTGT,peptidergic neuron,astrocyte,astrocyte
 10X26_3:GGCCAGACAAGAAC,peptidergic neuron,astrocyte,astrocyte
-10X26_4:AAGAATCTTGGATC,peptidergic neuron,microglial cell (Mmus),microglia
+10X26_4:AAGAATCTTGGATC,peptidergic neuron,microglial cell,microglia
 10X26_3:GCGGGACTTTCGGA,peptidergic neuron,astrocyte,astrocyte
 10X50_2:CATTTGTGTACTGG,peptidergic neuron,astrocyte,astrocyte
 10X51_3:CCAGCACTATTCCT,peptidergic neuron,sympathetic cholinergic neuron,sympathetic cholinergic neuron
@@ -658,30 +658,30 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X51_3:GTGATCGACTAGAC,peptidergic neuron,oligodendrocyte,oligodendrocyte
 10X26_3:CCAGCGGAGCTTCC,peptidergic neuron,pericyte,pericyte
 10X50_1:ATAAGTTGACACTG,peptidergic neuron,gabaergic neuron,gabaergic neuron
-10X28_3:GGCAAGGACCTAAG,perivascular macrophage,microglial cell (Mmus),microglia
-10X57_5:ATATACGAGATAAG,perivascular macrophage,microglial cell (Mmus),microglia
-10X22_3:GTGACAACTCTTAC,perivascular macrophage,microglial cell (Mmus),microglia
-10X52_8:ACACCAGATGCAGT,perivascular macrophage,microglial cell (Mmus),microglia
-10X50_4:GGACAGGAGGTTTG,perivascular macrophage,microglial cell (Mmus),microglia
-10X01_1:TAGGGACTACAGTC,perivascular macrophage,microglial cell (Mmus),microglia
-10X54_7:GCTTCTCCTATGTT,perivascular macrophage,microglial cell (Mmus),microglia
-10X33_2:CGGTCACTCCAACA,perivascular macrophage,microglial cell (Mmus),microglia
-10X56_6:GGGTAACTAAGATG,perivascular macrophage,microglial cell (Mmus),microglia
-10X22_1:TCGCAAGATCCAAG,perivascular macrophage,microglial cell (Mmus),microglia
-10X19_2:TAAGATACGCGAGA,perivascular macrophage,microglial cell (Mmus),microglia
-10X22_2:AGTCGCCTATCACG,perivascular macrophage,microglial cell (Mmus),microglia
-10X57_4:CCCACATGGTCTGA,perivascular macrophage,microglial cell (Mmus),microglia
-10X52_1:AGTACGTGCGAGTT,perivascular macrophage,microglial cell (Mmus),microglia
-10X24_1:TCCCTACTGCAGAG,perivascular macrophage,microglial cell (Mmus),microglia
-10X57_1:ACGGTATGCCGATA,perivascular macrophage,microglial cell (Mmus),microglia
-10X49_5:CAGGAACTTCCCGT,perivascular macrophage,microglial cell (Mmus),microglia
-10X24_2:CCGATAGAGGAACG,perivascular macrophage,microglial cell (Mmus),microglia
-10X57_7:GATCGAACTTTCTG,perivascular macrophage,microglial cell (Mmus),microglia
+10X28_3:GGCAAGGACCTAAG,perivascular macrophage,microglial cell,microglia
+10X57_5:ATATACGAGATAAG,perivascular macrophage,microglial cell,microglia
+10X22_3:GTGACAACTCTTAC,perivascular macrophage,microglial cell,microglia
+10X52_8:ACACCAGATGCAGT,perivascular macrophage,microglial cell,microglia
+10X50_4:GGACAGGAGGTTTG,perivascular macrophage,microglial cell,microglia
+10X01_1:TAGGGACTACAGTC,perivascular macrophage,microglial cell,microglia
+10X54_7:GCTTCTCCTATGTT,perivascular macrophage,microglial cell,microglia
+10X33_2:CGGTCACTCCAACA,perivascular macrophage,microglial cell,microglia
+10X56_6:GGGTAACTAAGATG,perivascular macrophage,microglial cell,microglia
+10X22_1:TCGCAAGATCCAAG,perivascular macrophage,microglial cell,microglia
+10X19_2:TAAGATACGCGAGA,perivascular macrophage,microglial cell,microglia
+10X22_2:AGTCGCCTATCACG,perivascular macrophage,microglial cell,microglia
+10X57_4:CCCACATGGTCTGA,perivascular macrophage,microglial cell,microglia
+10X52_1:AGTACGTGCGAGTT,perivascular macrophage,microglial cell,microglia
+10X24_1:TCCCTACTGCAGAG,perivascular macrophage,microglial cell,microglia
+10X57_1:ACGGTATGCCGATA,perivascular macrophage,microglial cell,microglia
+10X49_5:CAGGAACTTCCCGT,perivascular macrophage,microglial cell,microglia
+10X24_2:CCGATAGAGGAACG,perivascular macrophage,microglial cell,microglia
+10X57_7:GATCGAACTTTCTG,perivascular macrophage,microglial cell,microglia
 10X52_7:TTAGTCACCTTGTT,perivascular macrophage,perivascular macrophage,perivascular macrophage
 10X43_2:CTACGCACGTGTCA,peripheral sensory neuron,neuron,neuron
 10X53_7:AGAATACTCTTGCC,peripheral sensory neuron,astrocyte,astrocyte
 10X43_2:GTCCACTGAAGGCG,peripheral sensory neuron,schwann cell,schwann cell
-10X53_7:ATACCGGAGAACCT,peripheral sensory neuron,microglial cell (Mmus),microglia
+10X53_7:ATACCGGAGAACCT,peripheral sensory neuron,microglial cell,microglia
 10X53_7:TGCTGAGATTCCGC,peripheral sensory neuron,neuroblast (sensu vertebrata),neuroblast (sensu vertebrata)
 10X43_2:TTCGATTGTTCTCA,peripheral sensory neuron,perineuronal satellite cell,satellite glia
 10X53_7:GACCAAACCCCTTG,peripheral sensory neuron,oligodendrocyte precursor cell,oligodendrocyte precursor cell
@@ -693,7 +693,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X43_2:GATCTTACTAAGCC,peripheral sensory neuron,oligodendrocyte,oligodendrocyte
 10X43_2:ATGGGTACACGTAC,peripheral sensory neuron,olfactory ensheathing cell,olfactory ensheathing cell
 10X43_2:GGGCCAACTTCAGG,peripheral sensory neuron,astrocyte,astrocyte
-10X43_2:TTAACCACGGTATC,peripheral sensory neuron,microglial cell (Mmus),microglia
+10X43_2:TTAACCACGGTATC,peripheral sensory neuron,microglial cell,microglia
 10X43_2:AACGCATGCGATAC,peripheral sensory neuron,oligodendrocyte,oligodendrocyte
 10X53_7:CGGGACTGTTGCAG,peripheral sensory neuron,peripheral sensory neuron,peripheral sensory neuron
 10X53_7:ACCGTGCTAAGGCG,peripheral sensory neuron,neuron,neuron
@@ -702,9 +702,9 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X57_6:CCACGGGAGATGAA,vascular leptomeningeal cell (mmus),astrocyte,astrocyte
 10X49_4:ATTTCCGAGGGATG,vascular leptomeningeal cell (mmus),oligodendrocyte,oligodendrocyte
 10X49_4:AACTTGCTCTGTGA,vascular leptomeningeal cell (mmus),oligodendrocyte,oligodendrocyte
-10X49_5:GATACTCTCATGCA,vascular leptomeningeal cell (mmus),microglial cell (Mmus),microglia
+10X49_5:GATACTCTCATGCA,vascular leptomeningeal cell (mmus),microglial cell,microglia
 10X52_1:AAATCCCTTACTCT,vascular leptomeningeal cell (mmus),astrocyte,astrocyte
-10X20_3:TGTCAGGAGTCTGA,vascular leptomeningeal cell (mmus),microglial cell (Mmus),microglia
+10X20_3:TGTCAGGAGTCTGA,vascular leptomeningeal cell (mmus),microglial cell,microglia
 10X56_2:TCCTAAACTTCCAT,vascular leptomeningeal cell (mmus),astrocyte,astrocyte
 10X48_3:CTGTATACGCGGAA,vascular leptomeningeal cell (mmus),astrocyte,astrocyte
 10X22_3:AGGCAACTTGCCTC,vascular leptomeningeal cell (mmus),astrocyte,astrocyte
@@ -712,7 +712,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X20_3:AAGGTCTGACACGT,vascular leptomeningeal cell (mmus),astrocyte,astrocyte
 10X52_6:AAGCACTGTGCGTA,vascular leptomeningeal cell (mmus),astrocyte,astrocyte
 10X33_2:CTTGAGGAGCTGAT,vascular leptomeningeal cell (mmus),astrocyte,astrocyte
-10X52_2:CTGCAGCTTATTCC,vascular leptomeningeal cell (mmus),microglial cell (Mmus),microglia
+10X52_2:CTGCAGCTTATTCC,vascular leptomeningeal cell (mmus),microglial cell,microglia
 10X49_5:GAACTGTGATACCG,vascular leptomeningeal cell (mmus),pericyte,pericyte
 10X57_3:GCTACGCTCCTTAT,vascular leptomeningeal cell (mmus),pericyte,pericyte
 10X50_8:GCACACCTAGAGGC,vascular leptomeningeal cell (mmus),oligodendrocyte,oligodendrocyte
@@ -742,7 +742,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X49_4:CAGGTTGACAGAAA,olfactory ensheathing cell,astrocyte,astrocyte
 10X49_4:CATGAGACGGAAAT,olfactory ensheathing cell,olfactory ensheathing cell,olfactory ensheathing cell
 10X49_5:ATGCACGATTCCAT,olfactory ensheathing cell,oligodendrocyte,oligodendrocyte
-10X49_4:GGAGTTTGAAGCAA,olfactory ensheathing cell,microglial cell (Mmus),microglia
+10X49_4:GGAGTTTGAAGCAA,olfactory ensheathing cell,microglial cell,microglia
 10X49_5:TTCTTACTGTTGTG,olfactory ensheathing cell,oligodendrocyte,oligodendrocyte
 10X28_4:GTTCATACTGGATC,olfactory ensheathing cell,astrocyte,astrocyte
 10X49_4:TGTGAGTGACAGCT,olfactory ensheathing cell,oligodendrocyte,oligodendrocyte
@@ -760,7 +760,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X49_5:AGTCTACTTGGAAA,olfactory ensheathing cell,oligodendrocyte precursor cell,oligodendrocyte precursor cell
 10X54_5:TGAAGGTGGTGTAG,ependymal cell,astrocyte,astrocyte
 10X24_3:CCAGACCTGAGCTT,ependymal cell,astrocyte,astrocyte
-10X57_5:TTCCTAGAGCCAAT,ependymal cell,microglial cell (Mmus),microglia
+10X57_5:TTCCTAGAGCCAAT,ependymal cell,microglial cell,microglia
 10X53_5:AGATCGTGAAGGTA,ependymal cell,astrocyte,astrocyte
 10X53_1:TATGCGGAGGAAGC,ependymal cell,astrocyte,astrocyte
 10X55_5:CTCAGGTATTCTCT,ependymal cell,astrocyte,astrocyte
@@ -789,7 +789,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X05_4:ACAATTGATTGACG,radial glial cell,astrocyte,astrocyte
 10X04_2:CTAGGATGTTGAGC,radial glial cell,astrocyte,astrocyte
 10X49_5:CATGGCCTTCGCTC,radial glial cell,astrocyte,astrocyte
-10X04_4:GGGAAGTGACCAAC,radial glial cell,microglial cell (Mmus),microglia
+10X04_4:GGGAAGTGACCAAC,radial glial cell,microglial cell,microglia
 10X24_1:GGATGTTGGAGCAG,radial glial cell,astrocyte,astrocyte
 10X04_1:GGCGACACGCTTAG,radial glial cell,oligodendrocyte,oligodendrocyte
 10X06_2:GGGTTATGTCTACT,radial glial cell,astrocyte,astrocyte
@@ -852,7 +852,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X01_1:AGGGCCACAGGAGC,oligodendrocyte precursor cell,cell,olig2 + satellite glia + astrocyte
 10X52_1:TCAAGGTGAAAGCA,oligodendrocyte precursor cell,oligodendrocyte,oligodendrocyte
 10X28_5:TGCTTAACTACTTC,oligodendrocyte precursor cell,astrocyte,astrocyte
-10X52_1:CAAACTCTAAAGCA,oligodendrocyte precursor cell,microglial cell (Mmus),microglia
+10X52_1:CAAACTCTAAAGCA,oligodendrocyte precursor cell,microglial cell,microglia
 10X50_2:AACCAGTGTCTATC,oligodendrocyte precursor cell,astrocyte,astrocyte
 10X24_3:GATAATACTTCCAT,oligodendrocyte precursor cell,oligodendrocyte precursor cell,oligodendrocyte precursor cell
 10X26_4:GCACGTCTATGTGC,oligodendrocyte precursor cell,olfactory ensheathing cell,olfactory ensheathing cell
@@ -896,7 +896,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X43_2:TCAACACTCCTTTA,satellite glia,oligodendrocyte,oligodendrocyte
 10X43_2:TAGTCTTGCCTAAG,satellite glia,astrocyte,astrocyte
 10X43_2:GGCGACTGTCTACT,satellite glia,oligodendrocyte,oligodendrocyte
-10X43_2:CACGGGACTGCAAC,satellite glia,microglial cell (Mmus),microglia
+10X43_2:CACGGGACTGCAAC,satellite glia,microglial cell,microglia
 10X53_7:CGACCGGACATCAG,satellite glia,oligodendrocyte,oligodendrocyte
 10X11_1:TTACTCGAAGTACC,choroid plexus epithelial cell,oligodendrocyte,oligodendrocyte
 10X54_6:AGCTACATCGGGTC,choroid plexus epithelial cell,oligodendrocyte,oligodendrocyte
@@ -907,7 +907,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X48_1:ATAGCCGAGGGACA,choroid plexus epithelial cell,astrocyte,astrocyte
 10X54_4:ACTTCGTGAGCGAT,choroid plexus epithelial cell,oligodendrocyte,oligodendrocyte
 10X49_1:ACAAAGGATTACTC,choroid plexus epithelial cell,astrocyte,astrocyte
-10X54_4:ACCAAGTCATACTG,choroid plexus epithelial cell,microglial cell (Mmus),microglia
+10X54_4:ACCAAGTCATACTG,choroid plexus epithelial cell,microglial cell,microglia
 10X54_2:TCGATTCCCTCAGT,choroid plexus epithelial cell,oligodendrocyte,oligodendrocyte
 10X48_4:GCAGTCCTTTGCAG,choroid plexus epithelial cell,pericyte,pericyte
 10X57_6:TTGGGAACGCTTAG,choroid plexus epithelial cell,oligodendrocyte,"based on the gene expression profile, i predict the cell type to be:  oligodendrocyte"
@@ -983,7 +983,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X82_2:TCGATGTCAGAGGT,enteric neuron,astrocyte,astrocyte
 10X81_3:TCCTAGTCTTGTCC,enteric neuron,oligodendrocyte,oligodendrocyte
 10X81_2:GGTGACAAGGACAC,enteric neuron,neuroblast (sensu vertebrata),neuroblast (sensu vertebrata)
-10X82_2:CTGCTTCGACAGCC,enteric neuron,microglial cell (Mmus),microglia
+10X82_2:CTGCTTCGACAGCC,enteric neuron,microglial cell,microglia
 10X82_2:AAACTCAAACCTAC,enteric neuron,pericyte,pericyte
 10X82_2:ACATCTCTTGTATC,enteric neuron,enteroglial cell,enteric glia
 10X81_1:CATAGAGGCTCATT,enteric neuron,astrocyte,astrocyte

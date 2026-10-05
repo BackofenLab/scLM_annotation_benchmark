@@ -819,8 +819,8 @@ ed62533e286211ec9a8f2613ba675443,"cd8-positive, alpha-beta memory t cell","cd8-p
 e68a99da03ba11eca89046abfaec106b,"cd8-positive, alpha-beta memory t cell",t cell,t cell
 1d165c0a6d6611eb831bbeaad691ed52,"cd8-positive, alpha-beta memory t cell",t cell,t cell
 ff2a3d34a2d911eb97dcb29064131379,t cell,"cd8-positive, alpha-beta t cell","cd8-positive, alpha-beta t cell"
-4e29ac22e6c211ebaddab27930c367f5,t cell,"CD8-positive, alpha-beta T cell","proliferating cd8-positive, alpha-beta t cell"
-e7f8a95c671811ed8197264aa0746ac0,t cell,"CD8-positive, alpha-beta T cell","proliferating cd8-positive, alpha-beta t cell"
+4e29ac22e6c211ebaddab27930c367f5,t cell,"cycling CD8-positive, alpha-beta T cell","proliferating cd8-positive, alpha-beta t cell"
+e7f8a95c671811ed8197264aa0746ac0,t cell,"cycling CD8-positive, alpha-beta T cell","proliferating cd8-positive, alpha-beta t cell"
 5a49cfc46e5811eba9ff8603041c92bc,t cell,"cd8-positive, alpha-beta cytotoxic t cell","cd8-positive, alpha-beta cytotoxic t cell"
 83699de68d0011eba962c64f4773d63c,t cell,cycling natural killer cell,proliferating natural killer cell
 d59b243afef811eb887c9abd79b723cf,t cell,"effector cd8-positive, alpha-beta t cell","effector cd8-positive, alpha-beta t cell"

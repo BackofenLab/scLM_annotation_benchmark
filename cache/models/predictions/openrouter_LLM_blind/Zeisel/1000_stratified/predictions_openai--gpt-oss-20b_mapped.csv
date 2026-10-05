@@ -34,7 +34,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X55_7:GCTAAGTACCATCA,oligodendrocyte,oligodendrocyte,oligodendrocyte
 10X55_2:TGAGAGTTGGAGGT,oligodendrocyte,oligodendrocyte,oligodendrocyte
 10X57_3:TAGTGGTGGCCCTT,oligodendrocyte,oligodendrocyte,oligodendrocyte
-10X24_2:AAGGTCACACTACG,oligodendrocyte,neuromast hair cell,cl:0000856
+10X24_2:AAGGTCACACTACG,oligodendrocyte,cl:0000856,cl:0000856
 10X56_3:GTATTAGATCTACT,oligodendrocyte,oligodendrocyte,oligodendrocyte
 10X22_4:CCAATGGAACTGTG,oligodendrocyte,oligodendrocyte,oligodendrocyte
 10X22_4:CAATTCTGGGTCAT,oligodendrocyte,oligodendrocyte,myelinating oligodendrocyte
@@ -49,7 +49,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X55_1:TTCGCGTCTAGCGC,oligodendrocyte,oligodendrocyte,mature oligodendrocyte
 10X50_5:CCAGGTCTGTAGCT,oligodendrocyte,oligodendrocyte,oligodendrocyte
 10X55_2:ACCTGAGCTCAACT,oligodendrocyte,oligodendrocyte,myelinating oligodendrocyte
-10X52_5:AAGCCATGTCCGTC,oligodendrocyte,T-helper 1 cell,cl:0000545
+10X52_5:AAGCCATGTCCGTC,oligodendrocyte,cl:0000545,cl:0000545
 10X50_5:TATCTCGATTGGCA,oligodendrocyte,oligodendrocyte,oligodendrocyte
 10X54_1:ACGGATCAGGCAAG,oligodendrocyte,oligodendrocyte,oligodendrocyte
 10X50_2:ATGCCAGATCAAGC,oligodendrocyte,oligodendrocyte,oligodendrocyte
@@ -197,7 +197,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X22_1:AGTCTTACGCTATG,glutamatergic neuron,glutamatergic neuron,glutamatergic neuron
 10X28_2:GAAGGGTGAAGTAG,glutamatergic neuron,glutamatergic neuron,glutamatergic neuron
 10X22_1:ATTGGTCTCTTGTT,glutamatergic neuron,pyramidal neuron,pyramidal neuron
-10X05_1:CGATCCACACAGTC,glutamatergic neuron,luminal cell of prostate epithelium,cl:0002340
+10X05_1:CGATCCACACAGTC,glutamatergic neuron,cl:0002340,cl:0002340
 10X20_1:GTTCAGGACCCACT,glutamatergic neuron,glutamatergic neuron,glutamatergic neuron
 10X28_2:TTGTACACCTGTTT,glutamatergic neuron,glutamatergic neuron,excitatory neuron
 10X53_3:ATGAGAGAGGTAGG,glutamatergic neuron,sst GABAergic interneuron,somatostatin-producing neuron
@@ -264,7 +264,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X22_3:GCACGGACAGGCGA,glutamatergic neuron,glutamatergic neuron,glutamatergic neuron
 10X35_2:TGTAATGACGTACA,glutamatergic neuron,pyramidal neuron,pyramidal neuron
 10X20_1:TGGTAGTGTTATCC,glutamatergic neuron,glutamatergic neuron,excitatory neuron
-10X52_1:ATCAAATGACCCAA,glutamatergic neuron,smooth muscle cell neural crest derived,cl:0000027
+10X52_1:ATCAAATGACCCAA,glutamatergic neuron,cl:0000027,cl:0000027
 10X20_3:CGCGGATGGTCGTA,glutamatergic neuron,neuron,neuron
 10X19_2:ACGACCCTCTTGGA,glutamatergic neuron,glutamatergic neuron,excitatory neuron
 10X52_2:TAAGTCCTACGCAT,glutamatergic neuron,cerebral cortex neuron,cortical neuron
@@ -462,7 +462,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X22_3:GCGAGAGAGGGAGT,astrocyte,astrocyte,astrocyte
 10X48_3:GCTTGAGATAGTCG,astrocyte,astrocyte,astrocyte
 10X34_4:AGAATGGATTCACT,astrocyte,cerebral cortex neuron,cortical layer 4 glutamatergic neuron
-10X49_5:GGATTGTGGACTAC,astrocyte,obsolete secondary pigment cell,cl:0000728
+10X49_5:GGATTGTGGACTAC,astrocyte,cell,cl:0000728
 10X22_3:TAAGCGTGCTGTCC,astrocyte,astrocyte,astrocyte
 10X22_4:TACGCGCTAAGAAC,astrocyte,astrocyte,astrocyte
 10X20_2:GTGGATTGTGCACA,astrocyte,astrocyte,astrocyte
@@ -488,7 +488,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X81_1:CCATGTCCGCAAGC,enteric glia,fibroblast,fibroblast
 10X82_2:TACCGGTTCTGGTA,enteric glia,fibroblast,fibroblast
 10X81_1:TATTACATCGTCGG,enteric glia,astrocyte,astrocyte
-10X81_3:GAGAGAGGCTAGCA,enteric glia,obsolete plant cell,cl:0000610
+10X81_3:GAGAGAGGCTAGCA,enteric glia,cell,cl:0000610
 10X81_2:GAGGGCACACCGCA,enteric glia,fibroblast,fibroblast
 10X82_2:AATGTGTCATCGGC,enteric glia,microglial cell,cl:0000621 microglia
 10X81_2:AACGTGTTATTCTC,enteric glia,fibroblast,fibroblast
@@ -499,7 +499,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X81_1:GACTTCATACTACG,enteric glia,fibroblast,fibroblast
 10X81_2:AGCCAGTACAGTGG,enteric glia,astrocyte,astrocyte
 10X81_2:TCTAAAGCGTTTAC,enteric glia,astrocyte,astrocyte
-10X26_3:GTATGGTGGCGAGA,microglia,microglial cell (Mmus),microglia
+10X26_3:GTATGGTGGCGAGA,microglia,microglial cell,microglia
 10X22_2:GTAGTCGATTCTTG,microglia,microglial cell,microglial cell
 10X52_5:TGCACGCTTGATGC,microglia,microglial cell,microglial cell
 10X53_4:ACGGTCCTTGCGTA,microglia,microglial cell,microglial cell
@@ -508,9 +508,9 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X19_2:ATTGGTCTTCCTCG,microglia,microglial cell,microglial cell
 10X22_4:AATGATACGCGAGA,microglia,microglial cell,microglial cell
 10X26_3:CATCTTGAAGAGGC,microglia,microglial cell,microglial cell
-10X19_2:AGCCAATGTGTGCA,microglia,microglial cell (Mmus),microglia
+10X19_2:AGCCAATGTGTGCA,microglia,microglial cell,microglia
 10X57_2:GTGAACACAGGTCT,microglia,microglial cell,microglial cell
-10X02_1:CCTAAGGACTGAAC,microglia,microglial cell (Mmus),microglia
+10X02_1:CCTAAGGACTGAAC,microglia,microglial cell,microglia
 10X53_5:GGCTACCTGCCTTC,microglia,microglial cell,microglial cell
 10X49_1:CCGGAGACTTCGCC,microglia,microglial cell,microglial cell
 10X57_4:ACGCCTTGTATCTC,microglia,microglial cell,microglial cell
@@ -538,7 +538,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X34_2:TTCTGATGGTGTAC,neuroblast (sensu vertebrata),mesenchymal stem cell,mesenchymal stem cell
 10X46_1:CCAGTCACTTTCGT,neuroblast (sensu vertebrata),neuron,neuron
 10X49_5:GATTTGCTCGTCTC,neuroblast (sensu vertebrata),cerebral cortex neuron,cortical neuron
-10X22_4:TATCTGACGGCAAG,neuroblast (sensu vertebrata),neuron,cl:0000540
+10X22_4:TATCTGACGGCAAG,neuroblast (sensu vertebrata),cl:0000540,cl:0000540
 10X49_1:CCGGAGACATCAGC,neuroblast (sensu vertebrata),neuron,neuron
 10X22_3:GTGAGGGATCTTCA,neuroblast (sensu vertebrata),neuron,neuron
 10X04_4:TTCATGTGTTCCAT,neuroblast (sensu vertebrata),neuron,neuron
@@ -554,25 +554,25 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X52_4:AGAATTTGAGTACC,pericyte,endothelial cell,endothelial cell
 10X50_7:CACCTGACAGGAGC,pericyte,endothelial cell,endothelial cell
 10X26_3:AATCCTACATTGGC,pericyte,endothelial cell,endothelial cell
-10X53_3:CAAATATGGCGGAA,pericyte,blood vessel endothelial cell,vascular endothelial cell
+10X53_3:CAAATATGGCGGAA,pericyte,endothelial cell of vascular tree,vascular endothelial cell
 10X52_4:GACGGCACACGTGT,pericyte,endothelial cell,endothelial cell
 10X50_8:CATAAAACGTCACA,pericyte,endothelial cell,endothelial cell
 10X43_3:TATAGATGTTTCGT,pericyte,endothelial cell,endothelial cell
 10X53_6:GTAAGCACATTCTC,pericyte,endothelial cell,endothelial cell
 10X53_4:CAACGATGTAACCG,pericyte,endothelial cell,endothelial cell
 10X20_1:CATAAATGAAGATG,pericyte,endothelial cell,endothelial cell
-10X50_6:TTTGACTGTCGACA,pericyte,blood vessel endothelial cell,vascular endothelial cell
+10X50_6:TTTGACTGTCGACA,pericyte,endothelial cell of vascular tree,vascular endothelial cell
 10X53_6:GGGCAGCTAAGTGA,pericyte,endothelial cell,endothelial cell
 10X20_2:CCATCCGATTGTCT,pericyte,endothelial cell,endothelial cell
 10X48_1:AGTCGAACTTTGCT,pericyte,endothelial cell,endothelial cell
-10X53_4:GTGAACACAAGGGC,pericyte,blood vessel endothelial cell,vascular endothelial cell
+10X53_4:GTGAACACAAGGGC,pericyte,endothelial cell of vascular tree,vascular endothelial cell
 10X36_1:GCGAGCACTGCCCT,pericyte,endothelial cell,endothelial cell
-10X48_3:ATAACCCTACTCAG,pericyte,blood vessel endothelial cell,vascular endothelial cell
+10X48_3:ATAACCCTACTCAG,pericyte,endothelial cell of vascular tree,vascular endothelial cell
 10X52_6:GCGAAGGAGGGAGT,pericyte,endothelial cell,endothelial cell
 10X20_2:CGGAATTGTACGAC,pericyte,endothelial cell,endothelial cell
 10X50_7:GCGAGCACCTTCTA,pericyte,endothelial cell,endothelial cell
 10X24_3:CCACCTGAGTTCTT,pericyte,endothelial cell,endothelial cell
-10X36_3:GGCCACGAGAAGGC,pericyte,blood vessel endothelial cell,vascular endothelial cell
+10X36_3:GGCCACGAGAAGGC,pericyte,endothelial cell of vascular tree,vascular endothelial cell
 10X52_6:TCCCGATGTCAAGC,pericyte,blood vessel endothelial cell,blood vessel endothelial cell
 10X22_1:CGAGAACTAGACTC,pericyte,endothelial cell,endothelial cell
 10X57_2:CCAAAGTGGAGAGC,pericyte,blood vessel endothelial cell,blood vessel endothelial cell
@@ -604,7 +604,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X26_1:TAAGTCCTTACAGC,cerebellar neuron,glutamatergic neuron,excitatory neuron
 10X51_1:GAACCAACACGCAT,cerebellar neuron,pyramidal neuron,pyramidal neuron
 10X26_1:GACAGTTGGAGGAC,cerebellar neuron,gabaergic interneuron,gabaergic interneuron
-10X26_2:ATCCCGTGCATGCA,cerebellar neuron,lymphocyte,cl:0000542
+10X26_2:ATCCCGTGCATGCA,cerebellar neuron,cl:0000542,cl:0000542
 10X26_1:AAGAAGACCACACA,cerebellar neuron,pvalb GABAergic interneuron,parvalbumin-expressing gabaergic interneuron
 10X26_1:ACAAAGGAAAACAG,cerebellar neuron,GABAergic neuron,"neuron, gabaergic, calretinin-positive"
 10X51_2:TGGTAGACTTCCCG,cerebellar neuron,glutamatergic neuron,excitatory neuron
@@ -618,9 +618,9 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X51_1:GCTCGACTCACTTT,cerebellar neuron,gabaergic neuron,gabaergic neuron
 10X51_2:CTGAACGACCGTTC,cerebellar neuron,neuron,neuron
 10X26_1:TAACAATGCTGTAG,cerebellar neuron,pvalb GABAergic interneuron,parvalbumin-expressing interneuron
-10X01_1:ACGGGAGAACCCTC,endothelial cell of vascular tree,blood vessel endothelial cell,vascular endothelial cell
+10X01_1:ACGGGAGAACCCTC,endothelial cell of vascular tree,endothelial cell of vascular tree,vascular endothelial cell
 10X04_1:ACCTTTGACTCAAG,endothelial cell of vascular tree,endothelial cell,endothelial cell
-10X57_7:CAGGTATGGCTTCC,endothelial cell of vascular tree,blood vessel endothelial cell,vascular endothelial cell
+10X57_7:CAGGTATGGCTTCC,endothelial cell of vascular tree,endothelial cell of vascular tree,vascular endothelial cell
 10X01_1:CTGCCAACGCATAC,endothelial cell of vascular tree,endothelial cell,endothelial cell
 10X53_5:GGTAGTACGCTTAG,endothelial cell of vascular tree,endothelial cell,endothelial cell
 10X53_3:AACTGTCTTGGAAA,endothelial cell of vascular tree,endothelial cell,endothelial cell
@@ -632,10 +632,10 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X57_7:ACTTCTGAGCCCTT,endothelial cell of vascular tree,endothelial cell,endothelial cell
 10X05_1:GAGAGGTGATGTGC,endothelial cell of vascular tree,blood vessel endothelial cell,blood vessel endothelial cell
 10X53_3:ACCCTCGATATCTC,endothelial cell of vascular tree,endothelial cell,endothelial cell
-10X04_1:AAACCGTGGGAGGT,endothelial cell of vascular tree,blood vessel endothelial cell,vascular endothelial cell
+10X04_1:AAACCGTGGGAGGT,endothelial cell of vascular tree,endothelial cell of vascular tree,vascular endothelial cell
 10X36_2:TCGCCATGAAACGA,endothelial cell of vascular tree,endothelial cell,endothelial cell
 10X26_3:ACGTTGGATCATTC,endothelial cell of vascular tree,endothelial cell,endothelial cell
-10X52_1:GCCTAGCTCTTCTA,endothelial cell of vascular tree,blood vessel endothelial cell,vascular endothelial cell
+10X52_1:GCCTAGCTCTTCTA,endothelial cell of vascular tree,endothelial cell of vascular tree,vascular endothelial cell
 10X53_5:TTCTTACTCGGGAA,endothelial cell of vascular tree,endothelial cell,endothelial cell
 10X53_5:TCTAACTGGACGTT,endothelial cell of vascular tree,endothelial cell,endothelial cell
 10X35_3:CGTAACGATACGCA,peptidergic neuron,oxytocin-secreting magnocellular cell,oxytocin neuron
@@ -668,7 +668,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X33_2:CGGTCACTCCAACA,perivascular macrophage,microglial cell,microglial cell
 10X56_6:GGGTAACTAAGATG,perivascular macrophage,macrophage,macrophage
 10X22_1:TCGCAAGATCCAAG,perivascular macrophage,monocyte,monocyte
-10X19_2:TAAGATACGCGAGA,perivascular macrophage,"CD14-low, CD16-positive monocyte",cd16+ monocyte
+10X19_2:TAAGATACGCGAGA,perivascular macrophage,"CD14-positive, CD16-positive monocyte",cd16+ monocyte
 10X22_2:AGTCGCCTATCACG,perivascular macrophage,macrophage,macrophage
 10X57_4:CCCACATGGTCTGA,perivascular macrophage,microglial cell,microglial cell
 10X52_1:AGTACGTGCGAGTT,perivascular macrophage,macrophage,macrophage
@@ -702,7 +702,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X57_6:CCACGGGAGATGAA,vascular leptomeningeal cell (mmus),fibroblast,fibroblast
 10X49_4:ATTTCCGAGGGATG,vascular leptomeningeal cell (mmus),astrocyte,astrocyte
 10X49_4:AACTTGCTCTGTGA,vascular leptomeningeal cell (mmus),fibroblast,fibroblast
-10X49_5:GATACTCTCATGCA,vascular leptomeningeal cell (mmus),Leydig cell,cl:0000178
+10X49_5:GATACTCTCATGCA,vascular leptomeningeal cell (mmus),cl:0000178,cl:0000178
 10X52_1:AAATCCCTTACTCT,vascular leptomeningeal cell (mmus),fibroblast,fibroblast
 10X20_3:TGTCAGGAGTCTGA,vascular leptomeningeal cell (mmus),fibroblast,fibroblast
 10X56_2:TCCTAAACTTCCAT,vascular leptomeningeal cell (mmus),microglial cell,microglial cell
@@ -782,7 +782,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X04_4:CTACCTCTCTAGTG,radial glial cell,astrocyte,astrocyte
 10X34_2:GTGGAGGAGTTGGT,radial glial cell,astrocyte,astrocyte
 10X24_2:CTCAATTGGTCTGA,radial glial cell,astrocyte,astrocyte
-10X05_4:AATCCTACCAAAGA,radial glial cell,microglial cell (Mmus),microglia
+10X05_4:AATCCTACCAAAGA,radial glial cell,microglial cell,microglia
 10X26_4:TCTTCAGACCGATA,radial glial cell,astrocyte,astrocyte
 10X28_3:CCGGTACTGTTGTG,radial glial cell,astrocyte,astrocyte
 10X46_1:AGATCGTGCAGAAA,radial glial cell,astrocyte,astrocyte
@@ -898,7 +898,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X43_2:GGCGACTGTCTACT,satellite glia,oligodendrocyte,oligodendrocyte
 10X43_2:CACGGGACTGCAAC,satellite glia,oligodendrocyte,oligodendrocyte
 10X53_7:CGACCGGACATCAG,satellite glia,oligodendrocyte,"oligodendrocyte, myelinating"
-10X11_1:TTACTCGAAGTACC,choroid plexus epithelial cell,glioblast,cl:0000030
+10X11_1:TTACTCGAAGTACC,choroid plexus epithelial cell,cl:0000030,cl:0000030
 10X54_6:AGCTACATCGGGTC,choroid plexus epithelial cell,choroid plexus epithelial cell,choroid plexus epithelial cell
 10X54_3:AGCCAGTAAGCACG,choroid plexus epithelial cell,oligodendrocyte,oligodendrocyte
 10X55_3:ACCCAGTATATGAG,choroid plexus epithelial cell,oligodendrocyte,oligodendrocyte
@@ -967,7 +967,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X43_2:ATGGTGACCATGGT,schwann cell,schwann cell,schwann cell
 10X53_7:TATAAGTGGTCGAT,schwann cell,schwann cell,schwann cell
 10X43_2:CACGGGACTTCTAC,schwann cell,oligodendrocyte,oligodendrocyte
-10X43_2:TGTATCTGAGTCTG,schwann cell,interfollicle cell,cl:0000674
+10X43_2:TGTATCTGAGTCTG,schwann cell,cl:0000674,cl:0000674
 10X43_2:ATCATCTGAACGGG,schwann cell,schwann cell,schwann cell
 10X43_2:GTTCAGGATGTTTC,schwann cell,schwann cell,schwann cell
 10X43_2:CTTAGGGAAATGCC,schwann cell,oligodendrocyte,oligodendrocyte

@@ -499,32 +499,32 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X81_1:GACTTCATACTACG,enteric glia,vascular leptomeningeal cell (mmus),vascular leptomeningeal cell (mmus)
 10X81_2:AGCCAGTACAGTGG,enteric glia,cell,no prediction
 10X81_2:TCTAAAGCGTTTAC,enteric glia,astrocyte,astrocyte
-10X26_3:GTATGGTGGCGAGA,microglia,microglial cell (Mmus),microglia
-10X22_2:GTAGTCGATTCTTG,microglia,microglial cell (Mmus),microglia
-10X52_5:TGCACGCTTGATGC,microglia,microglial cell (Mmus),microglia
-10X53_4:ACGGTCCTTGCGTA,microglia,microglial cell (Mmus),microglia
-10X28_5:GGCCCAGAGAATCC,microglia,microglial cell (Mmus),microglia
+10X26_3:GTATGGTGGCGAGA,microglia,microglial cell,microglia
+10X22_2:GTAGTCGATTCTTG,microglia,microglial cell,microglia
+10X52_5:TGCACGCTTGATGC,microglia,microglial cell,microglia
+10X53_4:ACGGTCCTTGCGTA,microglia,microglial cell,microglia
+10X28_5:GGCCCAGAGAATCC,microglia,microglial cell,microglia
 10X22_2:GTCCCATGTACGCA,microglia,cell,no prediction
-10X19_2:ATTGGTCTTCCTCG,microglia,microglial cell (Mmus),microglia
-10X22_4:AATGATACGCGAGA,microglia,microglial cell (Mmus),microglia
-10X26_3:CATCTTGAAGAGGC,microglia,microglial cell (Mmus),microglia
-10X19_2:AGCCAATGTGTGCA,microglia,microglial cell (Mmus),microglia
-10X57_2:GTGAACACAGGTCT,microglia,microglial cell (Mmus),microglia
-10X02_1:CCTAAGGACTGAAC,microglia,microglial cell (Mmus),microglia
-10X53_5:GGCTACCTGCCTTC,microglia,microglial cell (Mmus),microglia
+10X19_2:ATTGGTCTTCCTCG,microglia,microglial cell,microglia
+10X22_4:AATGATACGCGAGA,microglia,microglial cell,microglia
+10X26_3:CATCTTGAAGAGGC,microglia,microglial cell,microglia
+10X19_2:AGCCAATGTGTGCA,microglia,microglial cell,microglia
+10X57_2:GTGAACACAGGTCT,microglia,microglial cell,microglia
+10X02_1:CCTAAGGACTGAAC,microglia,microglial cell,microglia
+10X53_5:GGCTACCTGCCTTC,microglia,microglial cell,microglia
 10X49_1:CCGGAGACTTCGCC,microglia,cell,no prediction
-10X57_4:ACGCCTTGTATCTC,microglia,microglial cell (Mmus),microglia
-10X24_1:TTCATCGATTCCGC,microglia,microglial cell (Mmus),microglia
-10X49_3:CATAACCTTTGGTG,microglia,microglial cell (Mmus),microglia
-10X26_3:TCTTGATGACGACT,microglia,microglial cell (Mmus),microglia
-10X53_4:TAGTACCTCCCTCA,microglia,microglial cell (Mmus),microglia
-10X02_1:ACTTGGGATGCTCC,microglia,microglial cell (Mmus),microglia
-10X20_4:GCCGACGAGGTGGA,microglia,microglial cell (Mmus),microglia
-10X50_4:GTGATCGAAGGAGC,microglia,microglial cell (Mmus),microglia
-10X22_2:GGACATTGAGGTCT,microglia,microglial cell (Mmus),microglia
-10X35_2:AACGCAACCTGGTA,microglia,microglial cell (Mmus),microglia
-10X49_3:AGGCTAACGTAGGG,microglia,microglial cell (Mmus),microglia
-10X51_4:GCACCACTAAGAAC,microglia,microglial cell (Mmus),microglia
+10X57_4:ACGCCTTGTATCTC,microglia,microglial cell,microglia
+10X24_1:TTCATCGATTCCGC,microglia,microglial cell,microglia
+10X49_3:CATAACCTTTGGTG,microglia,microglial cell,microglia
+10X26_3:TCTTGATGACGACT,microglia,microglial cell,microglia
+10X53_4:TAGTACCTCCCTCA,microglia,microglial cell,microglia
+10X02_1:ACTTGGGATGCTCC,microglia,microglial cell,microglia
+10X20_4:GCCGACGAGGTGGA,microglia,microglial cell,microglia
+10X50_4:GTGATCGAAGGAGC,microglia,microglial cell,microglia
+10X22_2:GGACATTGAGGTCT,microglia,microglial cell,microglia
+10X35_2:AACGCAACCTGGTA,microglia,microglial cell,microglia
+10X49_3:AGGCTAACGTAGGG,microglia,microglial cell,microglia
+10X51_4:GCACCACTAAGAAC,microglia,microglial cell,microglia
 10X49_5:CGGTAAACCTAGCA,neuroblast (sensu vertebrata),glutamatergic neuron,glutamatergic neuron
 10X49_4:TACGAGACCCCAAA,neuroblast (sensu vertebrata),neuroblast (sensu vertebrata),neuroblast (sensu vertebrata)
 10X04_4:TCTAACTGCAGCTA,neuroblast (sensu vertebrata),cell,no prediction
@@ -660,22 +660,22 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X50_1:ATAAGTTGACACTG,peptidergic neuron,gabaergic neuron,gabaergic neuron
 10X28_3:GGCAAGGACCTAAG,perivascular macrophage,perivascular macrophage,perivascular macrophage
 10X57_5:ATATACGAGATAAG,perivascular macrophage,perivascular macrophage,perivascular macrophage
-10X22_3:GTGACAACTCTTAC,perivascular macrophage,microglial cell (Mmus),microglia
+10X22_3:GTGACAACTCTTAC,perivascular macrophage,microglial cell,microglia
 10X52_8:ACACCAGATGCAGT,perivascular macrophage,perivascular macrophage,perivascular macrophage
 10X50_4:GGACAGGAGGTTTG,perivascular macrophage,perivascular macrophage,perivascular macrophage
 10X01_1:TAGGGACTACAGTC,perivascular macrophage,perivascular macrophage,perivascular macrophage
-10X54_7:GCTTCTCCTATGTT,perivascular macrophage,microglial cell (Mmus),microglia
+10X54_7:GCTTCTCCTATGTT,perivascular macrophage,microglial cell,microglia
 10X33_2:CGGTCACTCCAACA,perivascular macrophage,perivascular macrophage,perivascular macrophage
 10X56_6:GGGTAACTAAGATG,perivascular macrophage,perivascular macrophage,perivascular macrophage
 10X22_1:TCGCAAGATCCAAG,perivascular macrophage,perivascular macrophage,perivascular macrophage
-10X19_2:TAAGATACGCGAGA,perivascular macrophage,microglial cell (Mmus),microglia
-10X22_2:AGTCGCCTATCACG,perivascular macrophage,microglial cell (Mmus),microglia
-10X57_4:CCCACATGGTCTGA,perivascular macrophage,microglial cell (Mmus),microglia
+10X19_2:TAAGATACGCGAGA,perivascular macrophage,microglial cell,microglia
+10X22_2:AGTCGCCTATCACG,perivascular macrophage,microglial cell,microglia
+10X57_4:CCCACATGGTCTGA,perivascular macrophage,microglial cell,microglia
 10X52_1:AGTACGTGCGAGTT,perivascular macrophage,perivascular macrophage,perivascular macrophage
-10X24_1:TCCCTACTGCAGAG,perivascular macrophage,microglial cell (Mmus),microglia
+10X24_1:TCCCTACTGCAGAG,perivascular macrophage,microglial cell,microglia
 10X57_1:ACGGTATGCCGATA,perivascular macrophage,perivascular macrophage,perivascular macrophage
 10X49_5:CAGGAACTTCCCGT,perivascular macrophage,perivascular macrophage,perivascular macrophage
-10X24_2:CCGATAGAGGAACG,perivascular macrophage,microglial cell (Mmus),microglia
+10X24_2:CCGATAGAGGAACG,perivascular macrophage,microglial cell,microglia
 10X57_7:GATCGAACTTTCTG,perivascular macrophage,perivascular macrophage,perivascular macrophage
 10X52_7:TTAGTCACCTTGTT,perivascular macrophage,perivascular macrophage,perivascular macrophage
 10X43_2:CTACGCACGTGTCA,peripheral sensory neuron,peripheral sensory neuron,peripheral sensory neuron

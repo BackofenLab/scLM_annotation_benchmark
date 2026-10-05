@@ -555,8 +555,8 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X50_7:CACCTGACAGGAGC,pericyte,pericyte,pericyte
 10X26_3:AATCCTACATTGGC,pericyte,endothelial cell,endothelial cell
 10X53_3:CAAATATGGCGGAA,pericyte,endothelial cell,endothelial cell
-10X52_4:GACGGCACACGTGT,pericyte,blood vessel endothelial cell,vascular endothelial cell
-10X50_8:CATAAAACGTCACA,pericyte,blood vessel endothelial cell,vascular endothelial cell
+10X52_4:GACGGCACACGTGT,pericyte,endothelial cell of vascular tree,vascular endothelial cell
+10X50_8:CATAAAACGTCACA,pericyte,endothelial cell of vascular tree,vascular endothelial cell
 10X43_3:TATAGATGTTTCGT,pericyte,brain microvascular endothelial cell,brain microvascular endothelial cell
 10X53_6:GTAAGCACATTCTC,pericyte,brain microvascular endothelial cell,brain microvascular endothelial cell
 10X53_4:CAACGATGTAACCG,pericyte,endothelial cell,endothelial cell
@@ -573,7 +573,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X50_7:GCGAGCACCTTCTA,pericyte,endothelial cell,endothelial cell
 10X24_3:CCACCTGAGTTCTT,pericyte,endothelial cell,endothelial cell
 10X36_3:GGCCACGAGAAGGC,pericyte,endothelial cell,endothelial cell
-10X52_6:TCCCGATGTCAAGC,pericyte,blood vessel endothelial cell,vascular endothelial cell
+10X52_6:TCCCGATGTCAAGC,pericyte,endothelial cell of vascular tree,vascular endothelial cell
 10X22_1:CGAGAACTAGACTC,pericyte,endothelial cell,endothelial cell
 10X57_2:CCAAAGTGGAGAGC,pericyte,endothelial cell,endothelial cell
 10X22_3:ACAAGAGAGTCAAC,dentate gyrus granule cell,glutamatergic neuron,excitatory neuron
@@ -620,11 +620,11 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X26_1:TAACAATGCTGTAG,cerebellar neuron,pvalb GABAergic interneuron,parvalbumin-expressing interneuron
 10X01_1:ACGGGAGAACCCTC,endothelial cell of vascular tree,endothelial cell,endothelial cell
 10X04_1:ACCTTTGACTCAAG,endothelial cell of vascular tree,endothelial cell,endothelial cell
-10X57_7:CAGGTATGGCTTCC,endothelial cell of vascular tree,blood vessel endothelial cell,vascular endothelial cell
+10X57_7:CAGGTATGGCTTCC,endothelial cell of vascular tree,endothelial cell of vascular tree,vascular endothelial cell
 10X01_1:CTGCCAACGCATAC,endothelial cell of vascular tree,endothelial cell,endothelial cell
 10X53_5:GGTAGTACGCTTAG,endothelial cell of vascular tree,endothelial cell,endothelial cell
-10X53_3:AACTGTCTTGGAAA,endothelial cell of vascular tree,blood vessel endothelial cell,vascular endothelial cell
-10X53_4:GAAGTAGACTGGTA,endothelial cell of vascular tree,blood vessel endothelial cell,vascular endothelial cell
+10X53_3:AACTGTCTTGGAAA,endothelial cell of vascular tree,endothelial cell of vascular tree,vascular endothelial cell
+10X53_4:GAAGTAGACTGGTA,endothelial cell of vascular tree,endothelial cell of vascular tree,vascular endothelial cell
 10X49_4:ATACCGGAGTGCTA,endothelial cell of vascular tree,endothelial cell,endothelial cell
 10X53_2:CGCACGGAGTCAAC,endothelial cell of vascular tree,endothelial cell,endothelial cell
 10X43_3:TTCGATTGAACCGT,endothelial cell of vascular tree,endothelial cell,endothelial cell

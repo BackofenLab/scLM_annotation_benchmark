@@ -891,7 +891,7 @@ human2_lib2.final_cell_0387,pancreatic pp cell,pancreatic PP cell,gamma
 human4_lib1.final_cell_0268,pancreatic pp cell,pancreatic PP cell,gamma
 human4_lib3.final_cell_0345,pancreatic pp cell,pancreatic PP cell,gamma
 human2_lib2.final_cell_0520,pancreatic pp cell,pancreatic PP cell,gamma
-human2_lib1.final_cell_0501,pancreatic pp cell,PP cell,pp
+human2_lib1.final_cell_0501,pancreatic pp cell,pancreatic PP cell,pp
 D17All1_28,pancreatic pp cell,pancreatic PP cell,gamma
 D29-2_64,pancreatic pp cell,pancreatic PP cell,gamma
 human1_lib1.final_cell_0431,pancreatic pp cell,pancreatic PP cell,gamma
@@ -908,13 +908,13 @@ human2_lib3.final_cell_0516,pancreatic pp cell,pancreatic PP cell,gamma
 human2_lib3.final_cell_0399,pancreatic pp cell,pancreatic PP cell,gamma
 human1_lib2.final_cell_0507,pancreatic pp cell,pancreatic PP cell,gamma
 human2_lib1.final_cell_0398,pancreatic pp cell,pancreatic PP cell,gamma
-human4_lib3.final_cell_0591,pancreatic pp cell,PP cell,pp
+human4_lib3.final_cell_0591,pancreatic pp cell,pancreatic PP cell,pp
 human2_lib3.final_cell_0477,pancreatic pp cell,type B pancreatic cell,beta
 human1_lib2.final_cell_0364,pancreatic pp cell,pancreatic PP cell,gamma
-human1_lib2.final_cell_0583,pancreatic pp cell,PP cell,pp
+human1_lib2.final_cell_0583,pancreatic pp cell,pancreatic PP cell,pp
 human4_lib3.final_cell_0275,pancreatic pp cell,pancreatic PP cell,gamma
 human2_lib2.final_cell_0081,pancreatic pp cell,pancreatic PP cell,gamma
-human1_lib1.final_cell_0301,pancreatic pp cell,PP cell,pp
+human1_lib1.final_cell_0301,pancreatic pp cell,pancreatic PP cell,pp
 human1_lib3.final_cell_0720,endothelial cell,endothelial cell,endothelial
 human1_lib3.final_cell_0499,endothelial cell,endothelial cell,endothelial cell
 human1_lib2.final_cell_0619,endothelial cell,endothelial cell,endothelial cell
@@ -978,15 +978,15 @@ human1_lib3.final_cell_0597,mast cell,type B pancreatic cell,beta
 human2_lib2.final_cell_0528,mast cell,b cell,b cell
 human1_lib3.final_cell_0530,mast cell,mature NK T cell,nk/t cell
 human1_lib1.final_cell_0428,mast cell,macrophage,macrophage
-human1_lib3.final_cell_0463,epsilon,PP cell,pp
+human1_lib3.final_cell_0463,epsilon,pancreatic PP cell,pp
 human1_lib3.final_cell_0584,epsilon,mature NK T cell,nk/t cell
 human3_lib4.final_cell_0283,epsilon,mature NK T cell,nk/t cell
-human1_lib2.final_cell_0497,epsilon,PP cell,pp
-human2_lib1.final_cell_0399,epsilon,PP cell,pp
-human1_lib3.final_cell_0532,epsilon,PP cell,pp
+human1_lib2.final_cell_0497,epsilon,pancreatic PP cell,pp
+human2_lib1.final_cell_0399,epsilon,pancreatic PP cell,pp
+human1_lib3.final_cell_0532,epsilon,pancreatic PP cell,pp
 human2_lib3.final_cell_0037,epsilon,pancreatic D cell,delta
 D29-4_84,epsilon,pancreatic PP cell,gamma
-human1_lib3.final_cell_0684,epsilon,PP cell,pp
+human1_lib3.final_cell_0684,epsilon,pancreatic PP cell,pp
 human1_lib3.final_cell_0457,epsilon,type B pancreatic cell,beta
 human1_lib3.final_cell_0594,epsilon,type B pancreatic cell,beta
 D30-4_20,epsilon,pancreatic PP cell,gamma

@@ -1,8 +1,8 @@
 {
   "total_predictions": 999,
-  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
-  "non_cl_predictions": 510,
-  "non_cl_ratio": 0.510511,
+  "note": "discovery + resolution; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 509,
+  "non_cl_ratio": 0.50951,
   "non_cl_labels": [
     "a549 cell",
     "actinocyte",
@@ -58,7 +58,6 @@
     "cd8-positive, double-negative t cell",
     "chondrocyte (cl:0002328)",
     "cl: t_cell_membrane",
-    "cl:0000026",
     "cl:0000069 mast cell",
     "cl:cl:0000014",
     "cl:ebi-7619  note: cl:ebi-7619 corresponds to peripheral blood lymphocyte",

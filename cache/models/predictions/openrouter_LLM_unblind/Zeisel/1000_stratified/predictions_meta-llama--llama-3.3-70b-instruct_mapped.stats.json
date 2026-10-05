@@ -1,6 +1,6 @@
 {
   "total_predictions": 999,
-  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "note": "discovery + resolution; review-filter + coverage gate applied at scoring (evaluate.py)",
   "non_cl_predictions": 67,
   "non_cl_ratio": 0.067067,
   "non_cl_labels": [

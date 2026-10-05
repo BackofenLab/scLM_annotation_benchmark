@@ -383,7 +383,7 @@ Hgw15.GGAAAGCAGATAGCAT.1_6,retinal progenitor cell,fibroblast,fibroblast
 Hgw13.AGGCCACGTTACGTCA.1_4,retinal progenitor cell,neuron,neuron
 Hgw24_rep1.CGAGAAGCAATCTACG.1_13,retinal progenitor cell,neural progenitor cell,neural progenitor cell
 ATGTCACTGGTAGG-1_19,retinal progenitor cell,fibroblast,fibroblast
-Hgw20_rep2.TGGGCGTAGTGAAGAG.1_11,retinal progenitor cell,slowly adapting mechanoreceptor cell,cl:0000544
+Hgw20_rep2.TGGGCGTAGTGAAGAG.1_11,retinal progenitor cell,cl:0000544,cl:0000544
 GACAGTACCTGAAC-1_19,retinal progenitor cell,glutamatergic neuron,excitatory neuron
 Hgw11.ATGTGTGCACTCAGGC.1_1,retinal progenitor cell,fibroblast,fibroblast
 Hgw9.CGAGAAGCACCTCGTT.1_2,retinal progenitor cell,neural progenitor cell,neural progenitor cell
@@ -430,7 +430,7 @@ Hgw19_rep2.TTTACTGCAATGGATA.1_10,amacrine cell,neuron,neuron
 Hgw17.CTGCTGTTCGTCCGTT.1_8,amacrine cell,retinal rod cell,rod photoreceptor cell
 Hgw17.CCTCTGAGTTCTCATT.1_8,amacrine cell,pyramidal neuron,pyramidal neuron
 Hgw9.AGAATAGTCCGTACAA.1_2,amacrine cell,neuron,neuron
-Hgw16.GAGGTGACACGGCCAT.1_7,amacrine cell,estradiol secreting cell,cl:0000180
+Hgw16.GAGGTGACACGGCCAT.1_7,amacrine cell,cl:0000180,cl:0000180
 CAGGTATGCGAACT-1_15,amacrine cell,dopaminergic neuron,dopaminergic neuron
 Hgw20_rep2.ATTGGTGTCAAGGTAA.1_11,amacrine cell,neuron,neuron
 Hgw19_rep1.GTGGGTCGTGCTGTAT.1_10,amacrine cell,amacrine cell,retinal amacrine cell
@@ -513,7 +513,7 @@ TTTGCGCGTGTCGCTG-1_17,amacrine cell,neuron,neuron
 AGTGAGGCAGCTGGCT-1_16,amacrine cell,neuron,neuron
 Hgw16.GCAATCAGTGCTAGCC.1_7,amacrine cell,neuron,neuron
 Hgw24_rep2.CTGGTCTCATGTCTCC.1_13,amacrine cell,cerebral cortex pyramidal neuron,cortical pyramidal neuron
-TATCGTACATTCCT-1_19,amacrine cell,mechanoreceptor cell,cl:0000199
+TATCGTACATTCCT-1_19,amacrine cell,cl:0000199,cl:0000199
 CCTATAACCTCTAT-1_15,amacrine cell,retinal ganglion cell,retinal ganglion cell
 Hgw17.TGGCTGGGTTGGGACA.1_8,amacrine cell,gabaergic neuron,gabaergic neuron
 Hgw15.CCATTCGGTCCGAAGA.1_6,amacrine cell,neuron,neuron
@@ -786,7 +786,7 @@ Hgw20_rep1.ATTGGTGCATACGCCG.1_11,retina horizontal cell,retinal ganglion cell,re
 Hgw24_rep1.CGACTTCGTGCAGTAG.1_13,retina horizontal cell,neural progenitor cell,neural progenitor cell
 Hgw20_rep1.CCTACCACAGCCTTTC.1_11,retina horizontal cell,amacrine cell,amacrine cell
 Hgw20_rep1.GTCACAAAGCGTCTAT.1_11,retina horizontal cell,neuron,neuron
-CGCACTTGATGACC-1_19,retina horizontal cell,primitive red blood cell,cl:0002355
+CGCACTTGATGACC-1_19,retina horizontal cell,cl:0002355,cl:0002355
 Hgw20_rep2.TGCGTGGTCAGCGATT.1_11,retina horizontal cell,neuron,neuron
 Hgw24_rep2.GCTTGAAAGCCAACAG.1_13,retina horizontal cell,neuron,neuron
 ACCAGTACATCGGAAG-1_18,retina horizontal cell,Purkinje cell,purkinje neuron
@@ -922,7 +922,7 @@ Hgw9.ATAACGCGTCCAGTGC.1_2,retinal ganglion cell,neuron,neuron
 TTCTAGTGCGTAAC-1_15,retinal ganglion cell,glutamatergic neuron,glutamatergic neuron
 Hgw9.AGAGCTTCAACTGCGC.1_2,retinal ganglion cell,neuron,neuron
 TGTCAGGACGTGAT-1_15,retinal ganglion cell,neuron,neuron
-Hgw13.AGGTCCGCACATTCGA.1_4,retinal ganglion cell,uninucleate macroconidium,cl:0002384
+Hgw13.AGGTCCGCACATTCGA.1_4,retinal ganglion cell,cl:0002384,cl:0002384
 Hgw11.CAGCTAATCATTCACT.1_1,retinal ganglion cell,neuron,neuron
 TATCAGCTTTCCAT-1_15,retinal ganglion cell,neuron,neuron
 Hgw11.TCTTTCCTCGTTTGCC.1_1,retinal ganglion cell,neuron,neuron

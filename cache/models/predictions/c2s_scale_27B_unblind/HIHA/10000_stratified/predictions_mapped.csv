@@ -2243,7 +2243,7 @@ e9fe32f4f7e111ec90da567a30052902,"cd14-positive, cd16-negative classical monocyt
 b2310442005b11ecbdc0e203bf65d87d,"cd14-positive, cd16-negative classical monocyte",erythrocyte,erythrocyte
 af5fa812005711ecacf076742455fe92,"cd14-positive, cd16-negative classical monocyte",myeloid cell,myeloid cell
 abf8071077df11eb8c184a9caf2d5c42,"cd14-positive, cd16-negative classical monocyte",myeloid cell,myeloid cell
-4467d21a50ba11ec9ccf362b40e6d4a7,"cd14-positive, cd16-negative classical monocyte",macrophage,inflammatory macrophage
+4467d21a50ba11ec9ccf362b40e6d4a7,"cd14-positive, cd16-negative classical monocyte",M1 macrophage,inflammatory macrophage
 a94343048d0111eba8fc0e09ff586e2a,"cd14-positive, cd16-negative classical monocyte",monocyte,monocyte
 6d1cbb12bfdd11eb9a93b298159eec41,"cd14-positive, cd16-negative classical monocyte",monocyte,monocyte
 5fc344f002b711eca847563a4b56082f,"cd14-positive, cd16-negative classical monocyte",myeloid cell,myeloid cell
@@ -9935,7 +9935,7 @@ e0992290f81e11ecbca49a59490ee93a,"axl+ dendritic cell, human","plasmacytoid dend
 a00b888076f611ebbe1a0a9c4ec18e1b,"axl+ dendritic cell, human",monocyte,monocyte
 a444aabaaa7211ed811ebaba75e84c7d,"axl+ dendritic cell, human",myeloid cell,myeloid cell
 0e76ea26ece511eb90da8638c33d9c80,"axl+ dendritic cell, human","myeloid dendritic cell, human","myeloid dendritic cell, human"
-ded472e448cf11eaacaa42cd98cbd24e,"axl+ dendritic cell, human",macrophage,inflammatory macrophage
+ded472e448cf11eaacaa42cd98cbd24e,"axl+ dendritic cell, human",M1 macrophage,inflammatory macrophage
 f0de146650b811ecbd5a96ba759a0a5a,"axl+ dendritic cell, human",cell,native cell
 10ef5908e3ff11eb9f4d12c99271e885,"axl+ dendritic cell, human",myeloid cell,myeloid cell
 87682bf03eb911ebbd2bce3634ddd007,cd141-positive myeloid dendritic cell,myeloid cell,myeloid cell

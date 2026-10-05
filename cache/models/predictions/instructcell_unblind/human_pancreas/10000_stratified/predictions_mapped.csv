@@ -4109,7 +4109,7 @@ D30-5_7,type b pancreatic cell,type B pancreatic cell,beta
 human1_lib1.final_cell_0318,type b pancreatic cell,type B pancreatic cell,beta
 human2_lib3.final_cell_0436,type b pancreatic cell,type B pancreatic cell,beta
 human1_lib1.final_cell_0369,type b pancreatic cell,type B pancreatic cell,beta
-human1_lib1.final_cell_0315,type b pancreatic cell,PP cell,pp
+human1_lib1.final_cell_0315,type b pancreatic cell,pancreatic PP cell,pp
 human3_lib4.final_cell_0472,type b pancreatic cell,type B pancreatic cell,beta
 human1_lib2.final_cell_0125,type b pancreatic cell,type B pancreatic cell,beta
 D3en3_51,type b pancreatic cell,type B pancreatic cell,beta
@@ -8526,7 +8526,7 @@ D30-1_64,delta,pancreatic A cell,alpha
 human3_lib4.final_cell_0872,delta,pancreatic D cell,delta
 human3_lib3.final_cell_0211,delta,type B pancreatic cell,beta
 D31-8_71,delta,pancreatic D cell,delta
-human1_lib1.final_cell_0377,delta,PP cell,pp
+human1_lib1.final_cell_0377,delta,pancreatic PP cell,pp
 D17All1_39,delta,pancreatic D cell,delta
 D30-4_80,delta,type B pancreatic cell,beta
 human3_lib1.final_cell_0345,delta,type B pancreatic cell,beta
@@ -9013,7 +9013,7 @@ human1_lib3.final_cell_0258,pancreatic stellate cell,pancreatic ductal cell,duct
 D30-8_15,pancreatic stellate cell,pancreatic stellate cell,psc
 human1_lib1.final_cell_0459,pancreatic stellate cell,pancreatic stellate cell,psc
 human1_lib2.final_cell_0567,pancreatic stellate cell,mesenchymal cell,mesenchyme
-human1_lib1.final_cell_0269,pancreatic stellate cell,PP cell,pp
+human1_lib1.final_cell_0269,pancreatic stellate cell,pancreatic PP cell,pp
 human3_lib4.final_cell_0536,pancreatic stellate cell,pancreatic stellate cell,psc
 human2_lib2.final_cell_0180,pancreatic stellate cell,pancreatic stellate cell,psc
 human1_lib2.final_cell_0528,pancreatic stellate cell,pancreatic stellate cell,psc
@@ -9342,19 +9342,19 @@ D17All1_72,pancreatic pp cell,pancreatic PP cell,gamma
 human1_lib3.final_cell_0249,pancreatic pp cell,pancreatic PP cell,gamma
 human1_lib1.final_cell_0197,pancreatic pp cell,pancreatic PP cell,gamma
 human1_lib3.final_cell_0191,pancreatic pp cell,type B pancreatic cell,beta
-human4_lib1.final_cell_0517,pancreatic pp cell,PP cell,pp
+human4_lib1.final_cell_0517,pancreatic pp cell,pancreatic PP cell,pp
 D29-7_61,pancreatic pp cell,pancreatic PP cell,gamma
 D30-2_8,pancreatic pp cell,pancreatic PP cell,gamma
 human2_lib2.final_cell_0579,pancreatic pp cell,type B pancreatic cell,beta
 D17All2_92,pancreatic pp cell,pancreatic PP cell,gamma
 D29-1_35,pancreatic pp cell,pancreatic PP cell,gamma
-human1_lib2.final_cell_0456,pancreatic pp cell,PP cell,pp
-human2_lib1.final_cell_0432,pancreatic pp cell,PP cell,pp
+human1_lib2.final_cell_0456,pancreatic pp cell,pancreatic PP cell,pp
+human2_lib1.final_cell_0432,pancreatic pp cell,pancreatic PP cell,pp
 D29-4_4,pancreatic pp cell,pancreatic PP cell,gamma
 human3_lib4.final_cell_0568,pancreatic pp cell,pancreatic PP cell,gamma
 D31-7_92,pancreatic pp cell,pancreatic PP cell,gamma
 D29-4_48,pancreatic pp cell,pancreatic PP cell,gamma
-human2_lib3.final_cell_0559,pancreatic pp cell,PP cell,pp
+human2_lib3.final_cell_0559,pancreatic pp cell,pancreatic PP cell,pp
 D31-7_15,pancreatic pp cell,pancreatic PP cell,gamma
 human2_lib2.final_cell_0472,pancreatic pp cell,pancreatic PP cell,gamma
 human1_lib1.final_cell_0163,pancreatic pp cell,pancreatic PP cell,gamma
@@ -9392,7 +9392,7 @@ human2_lib2.final_cell_0549,pancreatic pp cell,type B pancreatic cell,beta
 D29-2_87,pancreatic pp cell,pancreatic PP cell,gamma
 D29-7_36,pancreatic pp cell,pancreatic PP cell,gamma
 human1_lib3.final_cell_0337,pancreatic pp cell,type B pancreatic cell,beta
-human1_lib2.final_cell_0428,pancreatic pp cell,PP cell,pp
+human1_lib2.final_cell_0428,pancreatic pp cell,pancreatic PP cell,pp
 D29-6_33,pancreatic pp cell,pancreatic PP cell,gamma
 D29-4_86,pancreatic pp cell,pancreatic PP cell,gamma
 D31-3_56,pancreatic pp cell,pancreatic PP cell,gamma
@@ -9401,22 +9401,22 @@ human4_lib3.final_cell_0452,pancreatic pp cell,pancreatic PP cell,gamma
 D102_4,pancreatic pp cell,type B pancreatic cell,beta
 D31-8_87,pancreatic pp cell,pancreatic PP cell,gamma
 human2_lib2.final_cell_0378,pancreatic pp cell,pancreatic PP cell,gamma
-human4_lib1.final_cell_0561,pancreatic pp cell,PP cell,pp
+human4_lib1.final_cell_0561,pancreatic pp cell,pancreatic PP cell,pp
 human1_lib1.final_cell_0388,pancreatic pp cell,pancreatic PP cell,gamma
 human2_lib2.final_cell_0585,pancreatic pp cell,pancreatic PP cell,gamma
 D29-8_43,pancreatic pp cell,pancreatic PP cell,gamma
 D29-2_43,pancreatic pp cell,pancreatic PP cell,gamma
-human4_lib1.final_cell_0484,pancreatic pp cell,PP cell,pp
+human4_lib1.final_cell_0484,pancreatic pp cell,pancreatic PP cell,pp
 human1_lib3.final_cell_0408,pancreatic pp cell,pancreatic PP cell,gamma
 human3_lib3.final_cell_0562,pancreatic pp cell,pancreatic ductal cell,ductal
 human1_lib3.final_cell_0260,pancreatic pp cell,pancreatic PP cell,gamma
 human3_lib3.final_cell_0484,pancreatic pp cell,pancreatic A cell,alpha
 human4_lib1.final_cell_0470,pancreatic pp cell,pancreatic PP cell,gamma
 human2_lib3.final_cell_0399,pancreatic pp cell,pancreatic PP cell,gamma
-human2_lib1.final_cell_0376,pancreatic pp cell,PP cell,pp
+human2_lib1.final_cell_0376,pancreatic pp cell,pancreatic PP cell,pp
 human4_lib3.final_cell_0659,pancreatic pp cell,pancreatic PP cell,gamma
 human4_lib1.final_cell_0311,pancreatic pp cell,pancreatic PP cell,gamma
-human2_lib1.final_cell_0414,pancreatic pp cell,PP cell,pp
+human2_lib1.final_cell_0414,pancreatic pp cell,pancreatic PP cell,pp
 human2_lib1.final_cell_0295,pancreatic pp cell,pancreatic PP cell,gamma
 human2_lib1.final_cell_0248,pancreatic pp cell,type B pancreatic cell,beta
 human4_lib1.final_cell_0365,pancreatic pp cell,pancreatic PP cell,gamma
@@ -9435,9 +9435,9 @@ human2_lib1.final_cell_0189,pancreatic pp cell,pancreatic PP cell,gamma
 D29-7_93,pancreatic pp cell,pancreatic PP cell,gamma
 human2_lib1.final_cell_0443,pancreatic pp cell,pancreatic PP cell,gamma
 D29-1_15,pancreatic pp cell,pancreatic PP cell,gamma
-human1_lib3.final_cell_0695,pancreatic pp cell,PP cell,pp
+human1_lib3.final_cell_0695,pancreatic pp cell,pancreatic PP cell,pp
 D28-1_74,pancreatic pp cell,pancreatic PP cell,gamma
-human3_lib1.final_cell_0768,pancreatic pp cell,PP cell,pp
+human3_lib1.final_cell_0768,pancreatic pp cell,pancreatic PP cell,pp
 D28-8_38,pancreatic pp cell,pancreatic PP cell,gamma
 human2_lib3.final_cell_0358,pancreatic pp cell,pancreatic PP cell,gamma
 human1_lib1.final_cell_0454,pancreatic pp cell,pancreatic PP cell,gamma
@@ -9462,14 +9462,14 @@ human1_lib2.final_cell_0337,pancreatic pp cell,pancreatic A cell,alpha
 D31-6_71,pancreatic pp cell,pancreatic PP cell,gamma
 human1_lib2.final_cell_0549,pancreatic pp cell,pancreatic A cell,alpha
 human4_lib3.final_cell_0570,pancreatic pp cell,pancreatic PP cell,gamma
-human4_lib3.final_cell_0443,pancreatic pp cell,PP cell,pp
+human4_lib3.final_cell_0443,pancreatic pp cell,pancreatic PP cell,pp
 human2_lib1.final_cell_0226,pancreatic pp cell,pancreatic PP cell,gamma
 human1_lib3.final_cell_0683,pancreatic pp cell,pancreatic PP cell,gamma
-human4_lib3.final_cell_0617,pancreatic pp cell,PP cell,pp
+human4_lib3.final_cell_0617,pancreatic pp cell,pancreatic PP cell,pp
 human4_lib3.final_cell_0529,pancreatic pp cell,pancreatic PP cell,gamma
 human1_lib3.final_cell_0500,pancreatic pp cell,pancreatic PP cell,gamma
 human4_lib3.final_cell_0187,pancreatic pp cell,pancreatic PP cell,gamma
-human2_lib1.final_cell_0470,pancreatic pp cell,PP cell,pp
+human2_lib1.final_cell_0470,pancreatic pp cell,pancreatic PP cell,pp
 human2_lib3.final_cell_0363,pancreatic pp cell,pancreatic PP cell,gamma
 human4_lib1.final_cell_0265,pancreatic pp cell,pancreatic PP cell,gamma
 human4_lib3.final_cell_0393,pancreatic pp cell,pancreatic PP cell,gamma
@@ -9479,10 +9479,10 @@ D31-2_60,pancreatic pp cell,pancreatic PP cell,gamma
 human2_lib3.final_cell_0526,pancreatic pp cell,pancreatic PP cell,gamma
 human3_lib2.final_cell_0121,pancreatic pp cell,pancreatic A cell,alpha
 human1_lib3.final_cell_0362,pancreatic pp cell,pancreatic A cell,alpha
-human2_lib2.final_cell_0185,pancreatic pp cell,PP cell,pp
+human2_lib2.final_cell_0185,pancreatic pp cell,pancreatic PP cell,pp
 human4_lib3.final_cell_0274,pancreatic pp cell,pancreatic PP cell,gamma
 human4_lib3.final_cell_0349,pancreatic pp cell,type B pancreatic cell,beta
-human1_lib1.final_cell_0301,pancreatic pp cell,PP cell,pp
+human1_lib1.final_cell_0301,pancreatic pp cell,pancreatic PP cell,pp
 D29-6_88,pancreatic pp cell,pancreatic PP cell,gamma
 human4_lib1.final_cell_0329,pancreatic pp cell,pancreatic PP cell,gamma
 human4_lib1.final_cell_0505,pancreatic pp cell,pancreatic ductal cell,ductal
@@ -9499,28 +9499,28 @@ D17All1_18,pancreatic pp cell,pancreatic PP cell,gamma
 human2_lib1.final_cell_0102,pancreatic pp cell,pancreatic PP cell,gamma
 human2_lib1.final_cell_0452,pancreatic pp cell,pancreatic PP cell,gamma
 human2_lib3.final_cell_0353,pancreatic pp cell,pancreatic PP cell,gamma
-human4_lib3.final_cell_0591,pancreatic pp cell,PP cell,pp
-human4_lib3.final_cell_0145,pancreatic pp cell,PP cell,pp
+human4_lib3.final_cell_0591,pancreatic pp cell,pancreatic PP cell,pp
+human4_lib3.final_cell_0145,pancreatic pp cell,pancreatic PP cell,pp
 human2_lib2.final_cell_0298,pancreatic pp cell,pancreatic ductal cell,ductal
 human2_lib2.final_cell_0183,pancreatic pp cell,pancreatic PP cell,gamma
-human2_lib1.final_cell_0501,pancreatic pp cell,PP cell,pp
+human2_lib1.final_cell_0501,pancreatic pp cell,pancreatic PP cell,pp
 D31-4_15,pancreatic pp cell,pancreatic PP cell,gamma
 HP1507101_M22,pancreatic pp cell,pancreatic PP cell,gamma
 D28-5_2,pancreatic pp cell,pancreatic PP cell,gamma
 human1_lib3.final_cell_0340,pancreatic pp cell,type B pancreatic cell,beta
 human2_lib3.final_cell_0516,pancreatic pp cell,type B pancreatic cell,beta
 D31-1_79,pancreatic pp cell,pancreatic PP cell,gamma
-human2_lib2.final_cell_0550,pancreatic pp cell,PP cell,pp
+human2_lib2.final_cell_0550,pancreatic pp cell,pancreatic PP cell,pp
 human2_lib3.final_cell_0330,pancreatic pp cell,type B pancreatic cell,beta
 human2_lib2.final_cell_0351,pancreatic pp cell,pancreatic PP cell,gamma
 D30-3_15,pancreatic pp cell,pancreatic PP cell,gamma
-human3_lib1.final_cell_0733,pancreatic pp cell,PP cell,pp
+human3_lib1.final_cell_0733,pancreatic pp cell,pancreatic PP cell,pp
 D17All2_38,pancreatic pp cell,pancreatic PP cell,gamma
 human2_lib2.final_cell_0339,pancreatic pp cell,pancreatic PP cell,gamma
-human1_lib3.final_cell_0415,pancreatic pp cell,PP cell,pp
+human1_lib3.final_cell_0415,pancreatic pp cell,pancreatic PP cell,pp
 human4_lib1.final_cell_0580,pancreatic pp cell,pancreatic PP cell,gamma
 D29-7_34,pancreatic pp cell,pancreatic PP cell,gamma
-human3_lib2.final_cell_0788,pancreatic pp cell,PP cell,pp
+human3_lib2.final_cell_0788,pancreatic pp cell,pancreatic PP cell,pp
 D101_43,pancreatic pp cell,pancreatic PP cell,gamma
 human3_lib1.final_cell_0563,pancreatic pp cell,pancreatic A cell,alpha
 D29-8_19,pancreatic pp cell,pancreatic PP cell,gamma
@@ -9528,7 +9528,7 @@ human4_lib1.final_cell_0122,pancreatic pp cell,pancreatic PP cell,gamma
 human1_lib1.final_cell_0421,pancreatic pp cell,pancreatic PP cell,gamma
 human1_lib1.final_cell_0367,pancreatic pp cell,pancreatic PP cell,gamma
 human1_lib3.final_cell_0442,pancreatic pp cell,pancreatic PP cell,gamma
-human1_lib2.final_cell_0379,pancreatic pp cell,PP cell,pp
+human1_lib2.final_cell_0379,pancreatic pp cell,pancreatic PP cell,pp
 human3_lib2.final_cell_0215,pancreatic pp cell,pancreatic PP cell,gamma
 human1_lib1.final_cell_0476,pancreatic pp cell,pancreatic PP cell,gamma
 D29-4_6,pancreatic pp cell,type B pancreatic cell,beta
@@ -9550,7 +9550,7 @@ D30-5_74,pancreatic pp cell,pancreatic PP cell,gamma
 human4_lib3.final_cell_0378,pancreatic pp cell,pancreatic PP cell,gamma
 human4_lib1.final_cell_0395,pancreatic pp cell,pancreatic PP cell,gamma
 D29-1_72,pancreatic pp cell,pancreatic PP cell,gamma
-human4_lib1.final_cell_0575,pancreatic pp cell,PP cell,pp
+human4_lib1.final_cell_0575,pancreatic pp cell,pancreatic PP cell,pp
 human3_lib4.final_cell_0817,pancreatic pp cell,pancreatic ductal cell,ductal
 D28-1_85,pancreatic pp cell,pancreatic PP cell,gamma
 human4_lib3.final_cell_0203,pancreatic pp cell,pancreatic PP cell,gamma
@@ -9559,7 +9559,7 @@ human2_lib3.final_cell_0338,pancreatic pp cell,type B pancreatic cell,beta
 D29-1_58,pancreatic pp cell,pancreatic PP cell,gamma
 D31-8_26,pancreatic pp cell,pancreatic PP cell,gamma
 human2_lib1.final_cell_0439,pancreatic pp cell,pancreatic PP cell,gamma
-human2_lib1.final_cell_0185,pancreatic pp cell,PP cell,pp
+human2_lib1.final_cell_0185,pancreatic pp cell,pancreatic PP cell,pp
 D28-1_76,pancreatic pp cell,pancreatic PP cell,gamma
 D31-1_65,pancreatic pp cell,pancreatic PP cell,gamma
 human1_lib1.final_cell_0222,pancreatic pp cell,pancreatic PP cell,gamma
@@ -9570,12 +9570,12 @@ D29-6_6,pancreatic pp cell,pancreatic PP cell,gamma
 HP1506401_N7,pancreatic pp cell,pancreatic PP cell,gamma
 human1_lib1.final_cell_0431,pancreatic pp cell,pancreatic PP cell,gamma
 D31-6_32,pancreatic pp cell,pancreatic PP cell,gamma
-human3_lib1.final_cell_0861,pancreatic pp cell,PP cell,pp
+human3_lib1.final_cell_0861,pancreatic pp cell,pancreatic PP cell,pp
 D31-3_77,pancreatic pp cell,pancreatic PP cell,gamma
 D29-2_19,pancreatic pp cell,pancreatic PP cell,gamma
 D29-1_71,pancreatic pp cell,pancreatic PP cell,gamma
-human2_lib3.final_cell_0455,pancreatic pp cell,PP cell,pp
-human2_lib3.final_cell_0494,pancreatic pp cell,PP cell,pp
+human2_lib3.final_cell_0455,pancreatic pp cell,pancreatic PP cell,pp
+human2_lib3.final_cell_0494,pancreatic pp cell,pancreatic PP cell,pp
 D31-8_70,pancreatic pp cell,pancreatic PP cell,gamma
 D31-8_10,pancreatic pp cell,pancreatic PP cell,gamma
 human2_lib3.final_cell_0423,pancreatic pp cell,pancreatic PP cell,gamma
@@ -9594,7 +9594,7 @@ human1_lib3.final_cell_0468,pancreatic pp cell,pancreatic A cell,alpha
 human1_lib1.final_cell_0479,pancreatic pp cell,type B pancreatic cell,beta
 D29-6_55,pancreatic pp cell,pancreatic PP cell,gamma
 D29-2_64,pancreatic pp cell,pancreatic PP cell,gamma
-human1_lib2.final_cell_0583,pancreatic pp cell,PP cell,pp
+human1_lib2.final_cell_0583,pancreatic pp cell,pancreatic PP cell,pp
 human4_lib1.final_cell_0268,pancreatic pp cell,pancreatic PP cell,gamma
 D31-4_37,pancreatic pp cell,pancreatic PP cell,gamma
 human2_lib2.final_cell_0527,pancreatic pp cell,mature NK T cell,nk/t cell
@@ -9614,7 +9614,7 @@ D29-1_73,pancreatic pp cell,pancreatic PP cell,gamma
 human1_lib1.final_cell_0354,pancreatic pp cell,type B pancreatic cell,beta
 human3_lib3.final_cell_0788,pancreatic pp cell,type B pancreatic cell,beta
 human3_lib3.final_cell_0529,pancreatic pp cell,pancreatic A cell,alpha
-human2_lib3.final_cell_0379,pancreatic pp cell,PP cell,pp
+human2_lib3.final_cell_0379,pancreatic pp cell,pancreatic PP cell,pp
 D30-3_21,pancreatic pp cell,pancreatic PP cell,gamma
 human4_lib3.final_cell_0294,pancreatic pp cell,pancreatic PP cell,gamma
 human4_lib1.final_cell_0199,pancreatic pp cell,pancreatic PP cell,gamma
@@ -9624,14 +9624,14 @@ human2_lib1.final_cell_0407,pancreatic pp cell,pancreatic PP cell,gamma
 D31-8_16,pancreatic pp cell,pancreatic PP cell,gamma
 human1_lib2.final_cell_0500,pancreatic pp cell,type B pancreatic cell,beta
 D30-6_90,pancreatic pp cell,pancreatic PP cell,gamma
-D101_5,pancreatic pp cell,PP cell,pp
-human2_lib1.final_cell_0531,pancreatic pp cell,PP cell,pp
+D101_5,pancreatic pp cell,pancreatic PP cell,pp
+human2_lib1.final_cell_0531,pancreatic pp cell,pancreatic PP cell,pp
 human3_lib1.final_cell_0512,pancreatic pp cell,type B pancreatic cell,beta
 human4_lib3.final_cell_0637,pancreatic pp cell,pancreatic PP cell,gamma
 D17All1_28,pancreatic pp cell,pancreatic PP cell,gamma
 human4_lib3.final_cell_0568,pancreatic pp cell,pancreatic PP cell,gamma
 human4_lib3.final_cell_0430,pancreatic pp cell,pancreatic PP cell,gamma
-human4_lib3.final_cell_0643,pancreatic pp cell,PP cell,pp
+human4_lib3.final_cell_0643,pancreatic pp cell,pancreatic PP cell,pp
 D31-3_61,pancreatic pp cell,pancreatic PP cell,gamma
 human4_lib3.final_cell_0345,pancreatic pp cell,pancreatic PP cell,gamma
 D29-4_3,pancreatic pp cell,pancreatic PP cell,gamma
@@ -9642,7 +9642,7 @@ human4_lib3.final_cell_0275,pancreatic pp cell,pancreatic PP cell,gamma
 D73_20,pancreatic pp cell,pancreatic PP cell,gamma
 D29-5_51,pancreatic pp cell,pancreatic PP cell,gamma
 D31-8_15,pancreatic pp cell,pancreatic PP cell,gamma
-human2_lib2.final_cell_0426,pancreatic pp cell,PP cell,pp
+human2_lib2.final_cell_0426,pancreatic pp cell,pancreatic PP cell,pp
 D29-2_42,pancreatic pp cell,pancreatic PP cell,gamma
 human1_lib3.final_cell_0572,pancreatic pp cell,pancreatic PP cell,gamma
 human2_lib2.final_cell_0090,pancreatic pp cell,cell,gam mag
@@ -9985,15 +9985,15 @@ human1_lib3.final_cell_0594,epsilon,type B pancreatic cell,beta
 human4_lib1.final_cell_0326,epsilon,pancreatic ductal cell,ductal
 human1_lib3.final_cell_0270,epsilon,type B pancreatic cell,beta
 D29-4_84,epsilon,pancreatic PP cell,gamma
-human2_lib1.final_cell_0399,epsilon,PP cell,pp
+human2_lib1.final_cell_0399,epsilon,pancreatic PP cell,pp
 human2_lib3.final_cell_0037,epsilon,pancreatic D cell,delta
 human1_lib3.final_cell_0692,epsilon,pancreatic ductal cell,ductal
 human1_lib3.final_cell_0463,epsilon,pancreatic ductal cell,ductal
-human1_lib2.final_cell_0497,epsilon,PP cell,pp
-human1_lib3.final_cell_0532,epsilon,PP cell,pp
+human1_lib2.final_cell_0497,epsilon,pancreatic PP cell,pp
+human1_lib3.final_cell_0532,epsilon,pancreatic PP cell,pp
 human3_lib3.final_cell_0621,epsilon,mature NK T cell,nk/t cell
 human1_lib3.final_cell_0584,epsilon,mature NK T cell,nk/t cell
-human1_lib3.final_cell_0684,epsilon,PP cell,pp
+human1_lib3.final_cell_0684,epsilon,pancreatic PP cell,pp
 human1_lib3.final_cell_0457,epsilon,pancreatic PP cell,gamma
 D17All2_88,epsilon,pancreatic PP cell,gamma
 human1_lib1.final_cell_0309,epsilon,mature NK T cell,nk/t cell

@@ -1,8 +1,8 @@
 {
   "total_predictions": 999,
-  "note": "discovery-only; review-filter + coverage gate applied at scoring (evaluate.py)",
-  "non_cl_predictions": 676,
-  "non_cl_ratio": 0.676677,
+  "note": "discovery + resolution; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 674,
+  "non_cl_ratio": 0.674675,
   "non_cl_labels": [
     "acinar cell (pancreas)",
     "acinar cell of pancreas",
@@ -19,8 +19,6 @@
     "beta cell of pancreas",
     "beta pancreatic cell",
     "bronchiolar epithelial cell",
-    "cl:0000060",
-    "cl:0000104",
     "delta cell",
     "delta pancreatic islet cell",
     "duct cell",

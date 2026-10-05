@@ -156,7 +156,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X34_3:TGGCACCTTTCATC,glutamatergic neuron,glutamatergic neuron,glutamatergic neuron
 10X02_1:ACGGAGGACAAAGA,glutamatergic neuron,pyramidal neuron,pyramidal neuron
 10X57_2:AGCAAGCTTTGACG,glutamatergic neuron,glutamatergic neuron,glutamatergic neuron
-10X22_2:ACGCTCACTCAAGC,glutamatergic neuron,hippocampal CA1-3 neuron,ca1 pyramidal neuron
+10X22_2:ACGCTCACTCAAGC,glutamatergic neuron,CA1 pyramidal cell,ca1 pyramidal neuron
 10X19_2:AAGGCTTGCCATAG,glutamatergic neuron,pyramidal neuron,pyramidal neuron
 10X20_1:TTGAGGTGCTTGCC,glutamatergic neuron,l6 corticothalamic-projecting glutamatergic cortical neuron,l6 corticothalamic-projecting glutamatergic cortical neuron
 10X20_1:CAAGACTGATCGTG,glutamatergic neuron,glutamatergic neuron,glutamatergic neuron
@@ -177,7 +177,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X01_1:ACGTTACTAAAACG,glutamatergic neuron,pyramidal neuron,pyramidal neuron
 10X57_3:CACTGAGATTCTTG,glutamatergic neuron,neuron,neuron
 10X28_3:ATAACCCTCCTGTC,glutamatergic neuron,cerebral cortex pyramidal neuron,cerebral cortex pyramidal neuron
-10X52_1:CAAGGTTGTAGAAG,glutamatergic neuron,hippocampal pyramidal neuron,ca2 pyramidal neuron
+10X52_1:CAAGGTTGTAGAAG,glutamatergic neuron,CA2 pyramidal cell,ca2 pyramidal neuron
 10X22_2:ATTCAGCTAAAGCA,glutamatergic neuron,pyramidal neuron,pyramidal neuron
 10X20_4:ACTCAGGAGTCTTT,glutamatergic neuron,glutamatergic neuron,glutamatergic neuron
 10X28_3:AGGGCCACTTCGCC,glutamatergic neuron,glutamatergic neuron,glutamatergic neuron
@@ -249,7 +249,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X24_3:CAGACATGAAACGA,glutamatergic neuron,glutamatergic neuron,glutamatergic neuron of the medial habenula
 10X57_7:XXATATGACCTTGC,glutamatergic neuron,glutamatergic neuron,glutamatergic neuron
 10X35_1:GGGATGGATGACCA,glutamatergic neuron,glutamatergic neuron,glutamatergic neuron
-10X35_1:CAAACTCTTCAGGT,glutamatergic neuron,hippocampal pyramidal neuron,ca2 pyramidal neuron
+10X35_1:CAAACTCTTCAGGT,glutamatergic neuron,CA2 pyramidal cell,ca2 pyramidal neuron
 10X01_1:GAGTTGTGTCTTCA,glutamatergic neuron,glutamatergic neuron,glutamatergic neuron
 10X28_3:ACCCAAGACTGAGT,glutamatergic neuron,glutamatergic neuron,glutamatergic neuron
 10X50_6:GTTATCTGACACAC,glutamatergic neuron,glutamatergic neuron,glutamatergic neuron
@@ -342,7 +342,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X38_2:AGAATGGAGGAAGC,gabaergic neuron,sst GABAergic interneuron,sst gabaergic cortical interneuron
 10X49_5:CTACTCCTACGACT,gabaergic neuron,meis2 expressing cortical GABAergic cell,meis2 gabaergic cortical interneuron
 10X07_1:CACTTAACATCGGT,gabaergic neuron,cerebral cortex GABAergic interneuron,gabaergic cortical interneuron
-10X49_4:TAGGGACTACGGTT,gabaergic neuron,hippocampal pyramidal neuron,ca2 pyramidal neuron
+10X49_4:TAGGGACTACGGTT,gabaergic neuron,CA2 pyramidal cell,ca2 pyramidal neuron
 10X26_4:TACGAGTGGTCATG,gabaergic neuron,medium spiny neuron,striatopallidal medium spiny neuron
 10X49_5:CATGTACTTGGTCA,gabaergic neuron,lamp5 GABAergic interneuron,lamp5 gabaergic cortical interneuron
 10X26_4:CACAGTGAAACGGG,gabaergic neuron,medium spiny neuron,medium spiny neuron
@@ -576,7 +576,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X52_6:TCCCGATGTCAAGC,pericyte,endothelial cell,endothelial cell
 10X22_1:CGAGAACTAGACTC,pericyte,brain microvascular endothelial cell,brain microvascular endothelial cell
 10X57_2:CCAAAGTGGAGAGC,pericyte,brain microvascular endothelial cell,brain microvascular endothelial cell
-10X22_3:ACAAGAGAGTCAAC,dentate gyrus granule cell,hippocampal CA1-3 neuron,ca1 pyramidal neuron
+10X22_3:ACAAGAGAGTCAAC,dentate gyrus granule cell,CA1 pyramidal cell,ca1 pyramidal neuron
 10X22_3:CATACTACCTTCGC,dentate gyrus granule cell,dentate gyrus granule cell,dentate gyrus granule cell
 10X46_1:CAAACTCTTTCGTT,dentate gyrus granule cell,glutamatergic neuron,glutamatergic neuron
 10X46_1:GCCACTACTCGCTC,dentate gyrus granule cell,pyramidal neuron,pyramidal neuron
@@ -587,13 +587,13 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X46_1:GGATGTACAGGAGC,dentate gyrus granule cell,glutamatergic neuron,glutamatergic neuron
 10X46_1:TGGACTGAGTTACG,dentate gyrus granule cell,dentate gyrus granule cell,dentate gyrus granule cell
 10X22_4:GTGATTCTCTAGTG,dentate gyrus granule cell,dentate gyrus granule cell,dentate gyrus granule cell
-10X43_1:CATCTTGAACAGTC,dentate gyrus granule cell,hippocampal CA1-3 neuron,ca1 pyramidal neuron
+10X43_1:CATCTTGAACAGTC,dentate gyrus granule cell,CA1 pyramidal cell,ca1 pyramidal neuron
 10X43_1:GATATCCTGCCTTC,dentate gyrus granule cell,pyramidal neuron,pyramidal neuron
 10X43_1:GGAATGCTCAGTCA,dentate gyrus granule cell,glutamatergic neuron,glutamatergic neuron
-10X46_1:GCTACAGAGTTGGT,dentate gyrus granule cell,hippocampal CA1-3 neuron,ca1 pyramidal neuron
+10X46_1:GCTACAGAGTTGGT,dentate gyrus granule cell,CA1 pyramidal cell,ca1 pyramidal neuron
 10X43_1:GCTGATGACCTTAT,dentate gyrus granule cell,pyramidal neuron,pyramidal neuron
 10X22_3:TTCAAGCTTATTCC,dentate gyrus granule cell,glutamatergic neuron,glutamatergic neuron
-10X22_3:CGTGTAGACGCAAT,dentate gyrus granule cell,hippocampal CA1-3 neuron,ca1 pyramidal neuron
+10X22_3:CGTGTAGACGCAAT,dentate gyrus granule cell,CA1 pyramidal cell,ca1 pyramidal neuron
 10X04_2:ATCAAATGGTCAAC,dentate gyrus granule cell,glutamatergic neuron,glutamatergic neuron
 10X46_1:GAGTACACCAAAGA,dentate gyrus granule cell,bergmann glial cell,bergmann glial cell
 10X22_4:TAAGCTCTTGCAAC,dentate gyrus granule cell,glutamatergic neuron,glutamatergic neuron

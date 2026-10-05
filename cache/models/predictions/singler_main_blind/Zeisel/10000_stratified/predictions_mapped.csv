@@ -6874,363 +6874,363 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X82_2:GAGAGAGCTAGGCA,enteric glia,fibroblast,fibroblasts
 10X81_2:GCCAATCAGGCAAG,enteric glia,fibroblast,fibroblasts
 10X81_3:CTGCTCAGTACACT,enteric glia,fibroblast,fibroblasts
-10X50_2:ATTAGTGACCTCAC,microglia,microglial cell (Mmus),microglia
-10X26_3:GGACCGTGTTGTGG,microglia,microglial cell (Mmus),microglia
-10X28_3:CTGCAGCTAGGTTC,microglia,microglial cell (Mmus),microglia
-10X57_4:ACAGTTCTCTGAGT,microglia,microglial cell (Mmus),microglia
-10X48_1:AATTGATGCCGCTT,microglia,microglial cell (Mmus),microglia
-10X20_1:AACGCATGGTTTGG,microglia,microglial cell (Mmus),microglia
-10X24_1:GACTACGAAACCTG,microglia,microglial cell (Mmus),microglia
-10X43_3:CTGACCACGTCGTA,microglia,microglial cell (Mmus),microglia
-10X24_3:CCCTAGTGTTCTGT,microglia,microglial cell (Mmus),microglia
-10X26_4:CACAGTGAAACAGA,microglia,microglial cell (Mmus),microglia
-10X53_3:CGAATCGATCAGTG,microglia,microglial cell (Mmus),microglia
-10X20_3:GATTCTTGGGAAAT,microglia,microglial cell (Mmus),microglia
-10X19_2:CTTACATGTATCGG,microglia,microglial cell (Mmus),microglia
-10X52_2:CAGGCCGAGACGAG,microglia,microglial cell (Mmus),microglia
-10X19_2:TGATTAGACCTGAA,microglia,microglial cell (Mmus),microglia
-10X26_3:CGCAGGACTTTCGT,microglia,microglial cell (Mmus),microglia
-10X35_3:AGCTGCCTACCGAT,microglia,microglial cell (Mmus),microglia
-10X04_1:TCCCGAACCTCGCT,microglia,microglial cell (Mmus),microglia
-10X05_1:TACTGGGACGTAAC,microglia,microglial cell (Mmus),microglia
-10X33_4:ACCACCTGAAGGTA,microglia,microglial cell (Mmus),microglia
-10X24_1:GTGACAACGTTTGG,microglia,microglial cell (Mmus),microglia
-10X24_4:TTAGGTCTAGTTCG,microglia,microglial cell (Mmus),microglia
-10X53_5:GATCTACTAGTACC,microglia,microglial cell (Mmus),microglia
-10X20_2:ATCGTTTGTCTACT,microglia,microglial cell (Mmus),microglia
-10X53_4:ACGGTCCTTGCGTA,microglia,microglial cell (Mmus),microglia
-10X28_2:TATCCTGAGGTGTT,microglia,microglial cell (Mmus),microglia
-10X20_2:CATTACACCGCATA,microglia,microglial cell (Mmus),microglia
-10X26_4:ACAAATTGGTAGCT,microglia,microglial cell (Mmus),microglia
-10X49_1:CTGATACTGCTACA,microglia,microglial cell (Mmus),microglia
-10X22_3:TTCCATGACCCGTT,microglia,microglial cell (Mmus),microglia
-10X28_3:TGGCACCTTATCTC,microglia,microglial cell (Mmus),microglia
-10X20_1:ACGGTCCTGACAAA,microglia,microglial cell (Mmus),microglia
-10X49_1:ACCTCCGATCGCAA,microglia,microglial cell (Mmus),microglia
-10X53_4:GCCGAGTGGAACCT,microglia,microglial cell (Mmus),microglia
-10X43_3:CCACCTGATTGCTT,microglia,microglial cell (Mmus),microglia
-10X46_2:AGCACTGAACACAC,microglia,microglial cell (Mmus),microglia
-10X26_3:GGATGTACTCTGGA,microglia,microglial cell (Mmus),microglia
-10X49_5:AATAGGGACATTGG,microglia,microglial cell (Mmus),microglia
-10X52_3:TCAGACGAGGACGA,microglia,microglial cell (Mmus),microglia
-10X20_2:CCCATGTGTTCCCG,microglia,microglial cell (Mmus),microglia
-10X20_2:GTAGGTACAAGATG,microglia,microglial cell (Mmus),microglia
-10X33_2:ATATGAACTTCTAC,microglia,microglial cell (Mmus),microglia
-10X20_3:ACGCTCACTGACCA,microglia,microglial cell (Mmus),microglia
-10X22_4:CCGATAGATGACTG,microglia,microglial cell (Mmus),microglia
-10X04_2:TGCCCAACCGTAGT,microglia,microglial cell (Mmus),microglia
-10X53_3:TCGATACTAGTTCG,microglia,microglial cell (Mmus),microglia
-10X52_2:ATAACATGGGGCAA,microglia,microglial cell (Mmus),microglia
-10X49_2:TATGGGTGTTACTC,microglia,microglial cell (Mmus),microglia
-10X53_6:TCCCGAACACGCAT,microglia,microglial cell (Mmus),microglia
-10X24_1:TATCAAGAGGTAGG,microglia,microglial cell (Mmus),microglia
-10X53_4:ACGACAACTGAAGA,microglia,microglial cell (Mmus),microglia
-10X19_2:ATCTGTTGACGCAT,microglia,microglial cell (Mmus),microglia
-10X05_2:GATCGTGACCTACC,microglia,microglial cell (Mmus),microglia
-10X35_1:CTCGAAGACCTCGT,microglia,microglial cell (Mmus),microglia
-10X28_5:GAGATCACAGCTAC,microglia,microglial cell (Mmus),microglia
-10X53_3:ATTAGTGAAACGTC,microglia,microglial cell (Mmus),microglia
-10X05_1:CCAGAAACACACTG,microglia,microglial cell (Mmus),microglia
-10X50_3:GCGCACGACACTCC,microglia,microglial cell (Mmus),microglia
-10X53_5:CAGTTACTTGAGAA,microglia,microglial cell (Mmus),microglia
-10X20_3:GACAACTGAAAACG,microglia,microglial cell (Mmus),microglia
-10X49_4:AGAATACTTGTGAC,microglia,microglial cell (Mmus),microglia
-10X24_3:CGCAGGACGTATGC,microglia,microglial cell (Mmus),microglia
-10X24_1:AAGCACTGCACTTT,microglia,microglial cell (Mmus),microglia
-10X26_4:GGTACATGTTGGTG,microglia,microglial cell (Mmus),microglia
-10X57_3:ACTGTGGAATTTCC,microglia,microglial cell (Mmus),microglia
-10X52_4:CACTTAACCAGTTG,microglia,microglial cell (Mmus),microglia
-10X53_6:GCGAAGGACGACAT,microglia,microglial cell (Mmus),microglia
-10X53_4:ATTGAATGAGATCC,microglia,microglial cell (Mmus),microglia
-10X48_4:CCCTAGTGTCCGTC,microglia,microglial cell (Mmus),microglia
-10X46_1:CAGCCTTGCCGTTC,microglia,microglial cell (Mmus),microglia
-10X24_2:CCAAGAACTGCACA,microglia,microglial cell (Mmus),microglia
-10X53_4:TCGCACACCAGAGG,microglia,microglial cell (Mmus),microglia
-10X22_3:GACTACGAAACTGC,microglia,microglial cell (Mmus),microglia
-10X22_2:AATACTGAATAAGG,microglia,microglial cell (Mmus),microglia
-10X53_6:TAGCTACTGTAAGA,microglia,microglial cell (Mmus),microglia
-10X53_4:GACGTCCTGTTACG,microglia,microglial cell (Mmus),microglia
-10X26_3:CCTTTAGAGATACC,microglia,microglial cell (Mmus),microglia
+10X50_2:ATTAGTGACCTCAC,microglia,microglial cell,microglia
+10X26_3:GGACCGTGTTGTGG,microglia,microglial cell,microglia
+10X28_3:CTGCAGCTAGGTTC,microglia,microglial cell,microglia
+10X57_4:ACAGTTCTCTGAGT,microglia,microglial cell,microglia
+10X48_1:AATTGATGCCGCTT,microglia,microglial cell,microglia
+10X20_1:AACGCATGGTTTGG,microglia,microglial cell,microglia
+10X24_1:GACTACGAAACCTG,microglia,microglial cell,microglia
+10X43_3:CTGACCACGTCGTA,microglia,microglial cell,microglia
+10X24_3:CCCTAGTGTTCTGT,microglia,microglial cell,microglia
+10X26_4:CACAGTGAAACAGA,microglia,microglial cell,microglia
+10X53_3:CGAATCGATCAGTG,microglia,microglial cell,microglia
+10X20_3:GATTCTTGGGAAAT,microglia,microglial cell,microglia
+10X19_2:CTTACATGTATCGG,microglia,microglial cell,microglia
+10X52_2:CAGGCCGAGACGAG,microglia,microglial cell,microglia
+10X19_2:TGATTAGACCTGAA,microglia,microglial cell,microglia
+10X26_3:CGCAGGACTTTCGT,microglia,microglial cell,microglia
+10X35_3:AGCTGCCTACCGAT,microglia,microglial cell,microglia
+10X04_1:TCCCGAACCTCGCT,microglia,microglial cell,microglia
+10X05_1:TACTGGGACGTAAC,microglia,microglial cell,microglia
+10X33_4:ACCACCTGAAGGTA,microglia,microglial cell,microglia
+10X24_1:GTGACAACGTTTGG,microglia,microglial cell,microglia
+10X24_4:TTAGGTCTAGTTCG,microglia,microglial cell,microglia
+10X53_5:GATCTACTAGTACC,microglia,microglial cell,microglia
+10X20_2:ATCGTTTGTCTACT,microglia,microglial cell,microglia
+10X53_4:ACGGTCCTTGCGTA,microglia,microglial cell,microglia
+10X28_2:TATCCTGAGGTGTT,microglia,microglial cell,microglia
+10X20_2:CATTACACCGCATA,microglia,microglial cell,microglia
+10X26_4:ACAAATTGGTAGCT,microglia,microglial cell,microglia
+10X49_1:CTGATACTGCTACA,microglia,microglial cell,microglia
+10X22_3:TTCCATGACCCGTT,microglia,microglial cell,microglia
+10X28_3:TGGCACCTTATCTC,microglia,microglial cell,microglia
+10X20_1:ACGGTCCTGACAAA,microglia,microglial cell,microglia
+10X49_1:ACCTCCGATCGCAA,microglia,microglial cell,microglia
+10X53_4:GCCGAGTGGAACCT,microglia,microglial cell,microglia
+10X43_3:CCACCTGATTGCTT,microglia,microglial cell,microglia
+10X46_2:AGCACTGAACACAC,microglia,microglial cell,microglia
+10X26_3:GGATGTACTCTGGA,microglia,microglial cell,microglia
+10X49_5:AATAGGGACATTGG,microglia,microglial cell,microglia
+10X52_3:TCAGACGAGGACGA,microglia,microglial cell,microglia
+10X20_2:CCCATGTGTTCCCG,microglia,microglial cell,microglia
+10X20_2:GTAGGTACAAGATG,microglia,microglial cell,microglia
+10X33_2:ATATGAACTTCTAC,microglia,microglial cell,microglia
+10X20_3:ACGCTCACTGACCA,microglia,microglial cell,microglia
+10X22_4:CCGATAGATGACTG,microglia,microglial cell,microglia
+10X04_2:TGCCCAACCGTAGT,microglia,microglial cell,microglia
+10X53_3:TCGATACTAGTTCG,microglia,microglial cell,microglia
+10X52_2:ATAACATGGGGCAA,microglia,microglial cell,microglia
+10X49_2:TATGGGTGTTACTC,microglia,microglial cell,microglia
+10X53_6:TCCCGAACACGCAT,microglia,microglial cell,microglia
+10X24_1:TATCAAGAGGTAGG,microglia,microglial cell,microglia
+10X53_4:ACGACAACTGAAGA,microglia,microglial cell,microglia
+10X19_2:ATCTGTTGACGCAT,microglia,microglial cell,microglia
+10X05_2:GATCGTGACCTACC,microglia,microglial cell,microglia
+10X35_1:CTCGAAGACCTCGT,microglia,microglial cell,microglia
+10X28_5:GAGATCACAGCTAC,microglia,microglial cell,microglia
+10X53_3:ATTAGTGAAACGTC,microglia,microglial cell,microglia
+10X05_1:CCAGAAACACACTG,microglia,microglial cell,microglia
+10X50_3:GCGCACGACACTCC,microglia,microglial cell,microglia
+10X53_5:CAGTTACTTGAGAA,microglia,microglial cell,microglia
+10X20_3:GACAACTGAAAACG,microglia,microglial cell,microglia
+10X49_4:AGAATACTTGTGAC,microglia,microglial cell,microglia
+10X24_3:CGCAGGACGTATGC,microglia,microglial cell,microglia
+10X24_1:AAGCACTGCACTTT,microglia,microglial cell,microglia
+10X26_4:GGTACATGTTGGTG,microglia,microglial cell,microglia
+10X57_3:ACTGTGGAATTTCC,microglia,microglial cell,microglia
+10X52_4:CACTTAACCAGTTG,microglia,microglial cell,microglia
+10X53_6:GCGAAGGACGACAT,microglia,microglial cell,microglia
+10X53_4:ATTGAATGAGATCC,microglia,microglial cell,microglia
+10X48_4:CCCTAGTGTCCGTC,microglia,microglial cell,microglia
+10X46_1:CAGCCTTGCCGTTC,microglia,microglial cell,microglia
+10X24_2:CCAAGAACTGCACA,microglia,microglial cell,microglia
+10X53_4:TCGCACACCAGAGG,microglia,microglial cell,microglia
+10X22_3:GACTACGAAACTGC,microglia,microglial cell,microglia
+10X22_2:AATACTGAATAAGG,microglia,microglial cell,microglia
+10X53_6:TAGCTACTGTAAGA,microglia,microglial cell,microglia
+10X53_4:GACGTCCTGTTACG,microglia,microglial cell,microglia
+10X26_3:CCTTTAGAGATACC,microglia,microglial cell,microglia
 10X50_5:ACTCGCACCAAGCT,microglia,endothelial cell,endothelial cells
-10X01_1:CGGAGGCTGCCCTT,microglia,microglial cell (Mmus),microglia
-10X52_1:GTCCACTGCTGGTA,microglia,microglial cell (Mmus),microglia
-10X48_1:ATCGCCACTTACTC,microglia,microglial cell (Mmus),microglia
-10X52_5:GAATGCTGTCTGGA,microglia,microglial cell (Mmus),microglia
-10X20_3:AATAACACAGTTCG,microglia,microglial cell (Mmus),microglia
-10X49_5:ACAATAACCGTCTC,microglia,microglial cell (Mmus),microglia
-10X53_4:GAGCGGCTAGATCC,microglia,microglial cell (Mmus),microglia
-10X53_4:GCTCCATGAGCTAC,microglia,microglial cell (Mmus),microglia
-10X26_3:ACGTGATGCGTTGA,microglia,microglial cell (Mmus),microglia
-10X53_4:ACTCGAGATCGTGA,microglia,microglial cell (Mmus),microglia
-10X52_6:GCAGGCACGACGGA,microglia,microglial cell (Mmus),microglia
-10X49_5:AGACTGACCTTCTA,microglia,microglial cell (Mmus),microglia
-10X52_4:AAGATTACCTCGAA,microglia,microglial cell (Mmus),microglia
-10X52_2:GAGGCAGATGAACC,microglia,microglial cell (Mmus),microglia
-10X33_2:AGAAGATGCGACTA,microglia,microglial cell (Mmus),microglia
-10X35_2:TCATCCCTGGATTC,microglia,microglial cell (Mmus),microglia
-10X43_1:CACTTATGTCTGGA,microglia,microglial cell (Mmus),microglia
-10X53_3:TAGTTAGAACCAAC,microglia,microglial cell (Mmus),microglia
-10X20_2:TCCTAAACGGAGGT,microglia,microglial cell (Mmus),microglia
-10X28_5:CTATAAGACTGGAT,microglia,microglial cell (Mmus),microglia
-10X24_4:ACTCCCGATTTGGG,microglia,microglial cell (Mmus),microglia
-10X50_4:TAGTATGATTGGTG,microglia,microglial cell (Mmus),microglia
-10X52_1:AATACCCTTCGTTT,microglia,microglial cell (Mmus),microglia
-10X20_2:CAACCGCTCGAGAG,microglia,microglial cell (Mmus),microglia
-10X49_5:GACCTCTGAACGAA,microglia,microglial cell (Mmus),microglia
-10X22_4:AGGCCTCTACCATG,microglia,microglial cell (Mmus),microglia
-10X24_4:ACCTCCGAAGAGAT,microglia,microglial cell (Mmus),microglia
-10X52_1:GATAGAGATTCTGT,microglia,microglial cell (Mmus),microglia
-10X49_1:TGATTAGAGTTCTT,microglia,microglial cell (Mmus),microglia
-10X35_2:ATGGGTACCTATGG,microglia,microglial cell (Mmus),microglia
-10X02_1:GCCACTACTTCGTT,microglia,microglial cell (Mmus),microglia
-10X46_1:AGTCAGACCAGCTA,microglia,microglial cell (Mmus),microglia
-10X52_7:AAACATACTCTTTG,microglia,microglial cell (Mmus),microglia
-10X20_1:TTATGAGAGGCAAG,microglia,microglial cell (Mmus),microglia
-10X35_2:TATGGTCTCTTCGC,microglia,microglial cell (Mmus),microglia
-10X20_4:AATGATACAGCATC,microglia,microglial cell (Mmus),microglia
-10X43_3:CAGAGGGAGTGAGG,microglia,microglial cell (Mmus),microglia
-10X53_3:AGCAAAGAAGTGTC,microglia,microglial cell (Mmus),microglia
-10X22_4:ATCAACCTCTGACA,microglia,microglial cell (Mmus),microglia
-10X52_4:CGACTCTGGACGGA,microglia,microglial cell (Mmus),microglia
-10X20_2:CCAGCGGATCTTAC,microglia,microglial cell (Mmus),microglia
-10X22_4:TTACTCGACGAATC,microglia,microglial cell (Mmus),microglia
-10X53_2:GGGATTACGCCATA,microglia,microglial cell (Mmus),microglia
-10X53_3:GCCATGCTCGTGAT,microglia,microglial cell (Mmus),microglia
-10X34_4:TCCTAATGTTACTC,microglia,microglial cell (Mmus),microglia
-10X48_4:AGCCACCTTCCAAG,microglia,microglial cell (Mmus),microglia
-10X05_1:AGAAACGACCACCT,microglia,microglial cell (Mmus),microglia
-10X28_3:GAATTAACCGACAT,microglia,microglial cell (Mmus),microglia
-10X01_1:CCGTAAGAGATACC,microglia,microglial cell (Mmus),microglia
-10X49_5:CTTAACACGTCAAC,microglia,microglial cell (Mmus),microglia
-10X49_5:ATCGCCTGGATAGA,microglia,microglial cell (Mmus),microglia
-10X22_3:ACCCGTTGTGCCCT,microglia,microglial cell (Mmus),microglia
-10X35_2:CCAAGTGACAGCTA,microglia,microglial cell (Mmus),microglia
-10X33_3:CAAACTCTCTGTTT,microglia,microglial cell (Mmus),microglia
-10X24_1:CATAACCTCAGCTA,microglia,microglial cell (Mmus),microglia
-10X26_3:TATCGTACTTCCAT,microglia,microglial cell (Mmus),microglia
-10X57_7:CTTGATTGAAAAGC,microglia,microglial cell (Mmus),microglia
-10X52_2:GGCGCATGACGTAC,microglia,microglial cell (Mmus),microglia
-10X52_6:TAAGATACTGCCTC,microglia,microglial cell (Mmus),microglia
-10X53_2:CGACCTACGGTCAT,microglia,microglial cell (Mmus),microglia
-10X50_8:GCGCATCTATGCCA,microglia,microglial cell (Mmus),microglia
-10X35_2:TACGACGAAAGTGA,microglia,microglial cell (Mmus),microglia
-10X26_4:TCGCAAGAACTCAG,microglia,microglial cell (Mmus),microglia
-10X53_6:CAGCCTTGGCTAAC,microglia,microglial cell (Mmus),microglia
-10X24_2:AACCTTTGATTCCT,microglia,microglial cell (Mmus),microglia
-10X04_2:ACGCACCTACTAGC,microglia,microglial cell (Mmus),microglia
-10X52_6:GATCCGCTGTACCA,microglia,microglial cell (Mmus),microglia
-10X53_6:GAAAGCCTCTTGGA,microglia,microglial cell (Mmus),microglia
-10X53_4:TCGGTAGACCAAGT,microglia,microglial cell (Mmus),microglia
-10X19_2:TTCACCCTACTTTC,microglia,microglial cell (Mmus),microglia
-10X35_2:AAGAATCTACGACT,microglia,microglial cell (Mmus),microglia
-10X24_3:CACATGGACCGTTC,microglia,microglial cell (Mmus),microglia
-10X49_5:TTCGTATGTGGATC,microglia,microglial cell (Mmus),microglia
-10X46_1:TTCTACGATTGTCT,microglia,microglial cell (Mmus),microglia
-10X52_4:AGTCGAACGAGGAC,microglia,microglial cell (Mmus),microglia
-10X05_3:AGCGGGCTTCCAGA,microglia,microglial cell (Mmus),microglia
-10X53_6:CGATCAGAGGTTCA,microglia,microglial cell (Mmus),microglia
-10X57_2:ATGATAACTTCTCA,microglia,microglial cell (Mmus),microglia
-10X52_3:TAAGAGGATCTGGA,microglia,microglial cell (Mmus),microglia
-10X20_2:TACGGAACATCGTG,microglia,microglial cell (Mmus),microglia
-10X53_5:GACGTCCTCGTGTA,microglia,microglial cell (Mmus),microglia
-10X49_5:TGCCACTGGGTCTA,microglia,microglial cell (Mmus),microglia
-10X57_6:TGGCACCTTGCAAC,microglia,microglial cell (Mmus),microglia
-10X49_5:AGGTACTGGTATCG,microglia,microglial cell (Mmus),microglia
-10X46_1:TCTGATACTGCCTC,microglia,microglial cell (Mmus),microglia
-10X22_2:GTAACGTGCCGCTT,microglia,microglial cell (Mmus),microglia
-10X24_1:GCATTGGAGAGACG,microglia,microglial cell (Mmus),microglia
-10X48_2:AATTCCTGAGCTCA,microglia,microglial cell (Mmus),microglia
-10X26_3:CCGAAAACACCTCC,microglia,microglial cell (Mmus),microglia
-10X53_5:ATTGCTACAAGAGT,microglia,microglial cell (Mmus),microglia
-10X49_4:GATGCCCTCGGGAA,microglia,microglial cell (Mmus),microglia
-10X04_4:ATACCACTTTCCGC,microglia,microglial cell (Mmus),microglia
-10X22_4:GGGAACGAAAGATG,microglia,microglial cell (Mmus),microglia
-10X51_4:TAAGATACCCCTTG,microglia,microglial cell (Mmus),microglia
-10X52_4:TGCACAGAGCTGTA,microglia,microglial cell (Mmus),microglia
-10X53_2:GGGCCAACGATGAA,microglia,microglial cell (Mmus),microglia
-10X28_3:CGAATCGATGTCTT,microglia,microglial cell (Mmus),microglia
-10X24_1:CGACGTCTCAGATC,microglia,microglial cell (Mmus),microglia
-10X46_1:CTAGGTGACCATAG,microglia,microglial cell (Mmus),microglia
-10X22_3:CGATAGACGCGGAA,microglia,microglial cell (Mmus),microglia
-10X28_3:AGGGTGGATTGCAG,microglia,microglial cell (Mmus),microglia
-10X49_5:ACGGATTGGATGAA,microglia,microglial cell (Mmus),microglia
-10X26_4:TATCACTGTCCAGA,microglia,microglial cell (Mmus),microglia
-10X04_4:TATGTCACACCACA,microglia,microglial cell (Mmus),microglia
-10X52_1:CCCGAACTCAGAAA,microglia,microglial cell (Mmus),microglia
-10X43_1:ACGCAATGGATACC,microglia,microglial cell (Mmus),microglia
-10X19_2:GTCATACTGATAGA,microglia,microglial cell (Mmus),microglia
-10X46_3:CCCGGAGAAGATCC,microglia,microglial cell (Mmus),microglia
-10X26_3:CATCGCTGTCGCTC,microglia,microglial cell (Mmus),microglia
-10X52_1:GTACTACTTCCAAG,microglia,microglial cell (Mmus),microglia
-10X50_6:TCAGAGACTCTCAT,microglia,microglial cell (Mmus),microglia
-10X26_3:TGGAGACTGAAAGT,microglia,microglial cell (Mmus),microglia
-10X52_5:GCCTGACTCACTAG,microglia,microglial cell (Mmus),microglia
-10X53_6:TAATGTGATGCAAC,microglia,microglial cell (Mmus),microglia
-10X57_6:GTAGTCGAGGAGCA,microglia,microglial cell (Mmus),microglia
-10X49_4:TTAGGGTGTGCTGA,microglia,microglial cell (Mmus),microglia
-10X49_5:ACTAAAACAGTCGT,microglia,microglial cell (Mmus),microglia
-10X53_2:CAAATTGACGTTGA,microglia,microglial cell (Mmus),microglia
-10X53_5:AGAATGGATGTGAC,microglia,microglial cell (Mmus),microglia
-10X52_2:TTCAAAGATTCGGA,microglia,microglial cell (Mmus),microglia
-10X53_2:TTCGTATGCCAGTA,microglia,microglial cell (Mmus),microglia
-10X04_1:TCGCAGCTCCAAGT,microglia,microglial cell (Mmus),microglia
-10X24_1:GGCCCAGACTACGA,microglia,microglial cell (Mmus),microglia
-10X53_4:ACAGCAACGACAGG,microglia,microglial cell (Mmus),microglia
-10X26_4:AAGATTACCTCAGA,microglia,microglial cell (Mmus),microglia
-10X52_6:CTCTAATGGTCTTT,microglia,microglial cell (Mmus),microglia
-10X19_2:TGGTAGTGGGTTAC,microglia,microglial cell (Mmus),microglia
-10X20_2:GTCCCATGCGAACT,microglia,microglial cell (Mmus),microglia
-10X33_2:ATTGCTTGAGGCGA,microglia,microglial cell (Mmus),microglia
-10X53_3:TCCGAGCTGTTTCT,microglia,microglial cell (Mmus),microglia
-10X26_4:GCGGGACTCTTGTT,microglia,microglial cell (Mmus),microglia
-10X35_2:CTGATACTCAACCA,microglia,microglial cell (Mmus),microglia
-10X05_4:GATCTTTGACCCTC,microglia,microglial cell (Mmus),microglia
-10X52_3:AGAGAAACCGCATA,microglia,microglial cell (Mmus),microglia
-10X43_3:GAAATACTCCTACC,microglia,microglial cell (Mmus),microglia
-10X51_2:ATAGATTGAGCGTT,microglia,microglial cell (Mmus),microglia
-10X28_4:GTACGAACACTCTT,microglia,microglial cell (Mmus),microglia
-10X52_2:TGCTATACTTAGGC,microglia,microglial cell (Mmus),microglia
-10X02_1:ATTGAAACCTGTAG,microglia,microglial cell (Mmus),microglia
+10X01_1:CGGAGGCTGCCCTT,microglia,microglial cell,microglia
+10X52_1:GTCCACTGCTGGTA,microglia,microglial cell,microglia
+10X48_1:ATCGCCACTTACTC,microglia,microglial cell,microglia
+10X52_5:GAATGCTGTCTGGA,microglia,microglial cell,microglia
+10X20_3:AATAACACAGTTCG,microglia,microglial cell,microglia
+10X49_5:ACAATAACCGTCTC,microglia,microglial cell,microglia
+10X53_4:GAGCGGCTAGATCC,microglia,microglial cell,microglia
+10X53_4:GCTCCATGAGCTAC,microglia,microglial cell,microglia
+10X26_3:ACGTGATGCGTTGA,microglia,microglial cell,microglia
+10X53_4:ACTCGAGATCGTGA,microglia,microglial cell,microglia
+10X52_6:GCAGGCACGACGGA,microglia,microglial cell,microglia
+10X49_5:AGACTGACCTTCTA,microglia,microglial cell,microglia
+10X52_4:AAGATTACCTCGAA,microglia,microglial cell,microglia
+10X52_2:GAGGCAGATGAACC,microglia,microglial cell,microglia
+10X33_2:AGAAGATGCGACTA,microglia,microglial cell,microglia
+10X35_2:TCATCCCTGGATTC,microglia,microglial cell,microglia
+10X43_1:CACTTATGTCTGGA,microglia,microglial cell,microglia
+10X53_3:TAGTTAGAACCAAC,microglia,microglial cell,microglia
+10X20_2:TCCTAAACGGAGGT,microglia,microglial cell,microglia
+10X28_5:CTATAAGACTGGAT,microglia,microglial cell,microglia
+10X24_4:ACTCCCGATTTGGG,microglia,microglial cell,microglia
+10X50_4:TAGTATGATTGGTG,microglia,microglial cell,microglia
+10X52_1:AATACCCTTCGTTT,microglia,microglial cell,microglia
+10X20_2:CAACCGCTCGAGAG,microglia,microglial cell,microglia
+10X49_5:GACCTCTGAACGAA,microglia,microglial cell,microglia
+10X22_4:AGGCCTCTACCATG,microglia,microglial cell,microglia
+10X24_4:ACCTCCGAAGAGAT,microglia,microglial cell,microglia
+10X52_1:GATAGAGATTCTGT,microglia,microglial cell,microglia
+10X49_1:TGATTAGAGTTCTT,microglia,microglial cell,microglia
+10X35_2:ATGGGTACCTATGG,microglia,microglial cell,microglia
+10X02_1:GCCACTACTTCGTT,microglia,microglial cell,microglia
+10X46_1:AGTCAGACCAGCTA,microglia,microglial cell,microglia
+10X52_7:AAACATACTCTTTG,microglia,microglial cell,microglia
+10X20_1:TTATGAGAGGCAAG,microglia,microglial cell,microglia
+10X35_2:TATGGTCTCTTCGC,microglia,microglial cell,microglia
+10X20_4:AATGATACAGCATC,microglia,microglial cell,microglia
+10X43_3:CAGAGGGAGTGAGG,microglia,microglial cell,microglia
+10X53_3:AGCAAAGAAGTGTC,microglia,microglial cell,microglia
+10X22_4:ATCAACCTCTGACA,microglia,microglial cell,microglia
+10X52_4:CGACTCTGGACGGA,microglia,microglial cell,microglia
+10X20_2:CCAGCGGATCTTAC,microglia,microglial cell,microglia
+10X22_4:TTACTCGACGAATC,microglia,microglial cell,microglia
+10X53_2:GGGATTACGCCATA,microglia,microglial cell,microglia
+10X53_3:GCCATGCTCGTGAT,microglia,microglial cell,microglia
+10X34_4:TCCTAATGTTACTC,microglia,microglial cell,microglia
+10X48_4:AGCCACCTTCCAAG,microglia,microglial cell,microglia
+10X05_1:AGAAACGACCACCT,microglia,microglial cell,microglia
+10X28_3:GAATTAACCGACAT,microglia,microglial cell,microglia
+10X01_1:CCGTAAGAGATACC,microglia,microglial cell,microglia
+10X49_5:CTTAACACGTCAAC,microglia,microglial cell,microglia
+10X49_5:ATCGCCTGGATAGA,microglia,microglial cell,microglia
+10X22_3:ACCCGTTGTGCCCT,microglia,microglial cell,microglia
+10X35_2:CCAAGTGACAGCTA,microglia,microglial cell,microglia
+10X33_3:CAAACTCTCTGTTT,microglia,microglial cell,microglia
+10X24_1:CATAACCTCAGCTA,microglia,microglial cell,microglia
+10X26_3:TATCGTACTTCCAT,microglia,microglial cell,microglia
+10X57_7:CTTGATTGAAAAGC,microglia,microglial cell,microglia
+10X52_2:GGCGCATGACGTAC,microglia,microglial cell,microglia
+10X52_6:TAAGATACTGCCTC,microglia,microglial cell,microglia
+10X53_2:CGACCTACGGTCAT,microglia,microglial cell,microglia
+10X50_8:GCGCATCTATGCCA,microglia,microglial cell,microglia
+10X35_2:TACGACGAAAGTGA,microglia,microglial cell,microglia
+10X26_4:TCGCAAGAACTCAG,microglia,microglial cell,microglia
+10X53_6:CAGCCTTGGCTAAC,microglia,microglial cell,microglia
+10X24_2:AACCTTTGATTCCT,microglia,microglial cell,microglia
+10X04_2:ACGCACCTACTAGC,microglia,microglial cell,microglia
+10X52_6:GATCCGCTGTACCA,microglia,microglial cell,microglia
+10X53_6:GAAAGCCTCTTGGA,microglia,microglial cell,microglia
+10X53_4:TCGGTAGACCAAGT,microglia,microglial cell,microglia
+10X19_2:TTCACCCTACTTTC,microglia,microglial cell,microglia
+10X35_2:AAGAATCTACGACT,microglia,microglial cell,microglia
+10X24_3:CACATGGACCGTTC,microglia,microglial cell,microglia
+10X49_5:TTCGTATGTGGATC,microglia,microglial cell,microglia
+10X46_1:TTCTACGATTGTCT,microglia,microglial cell,microglia
+10X52_4:AGTCGAACGAGGAC,microglia,microglial cell,microglia
+10X05_3:AGCGGGCTTCCAGA,microglia,microglial cell,microglia
+10X53_6:CGATCAGAGGTTCA,microglia,microglial cell,microglia
+10X57_2:ATGATAACTTCTCA,microglia,microglial cell,microglia
+10X52_3:TAAGAGGATCTGGA,microglia,microglial cell,microglia
+10X20_2:TACGGAACATCGTG,microglia,microglial cell,microglia
+10X53_5:GACGTCCTCGTGTA,microglia,microglial cell,microglia
+10X49_5:TGCCACTGGGTCTA,microglia,microglial cell,microglia
+10X57_6:TGGCACCTTGCAAC,microglia,microglial cell,microglia
+10X49_5:AGGTACTGGTATCG,microglia,microglial cell,microglia
+10X46_1:TCTGATACTGCCTC,microglia,microglial cell,microglia
+10X22_2:GTAACGTGCCGCTT,microglia,microglial cell,microglia
+10X24_1:GCATTGGAGAGACG,microglia,microglial cell,microglia
+10X48_2:AATTCCTGAGCTCA,microglia,microglial cell,microglia
+10X26_3:CCGAAAACACCTCC,microglia,microglial cell,microglia
+10X53_5:ATTGCTACAAGAGT,microglia,microglial cell,microglia
+10X49_4:GATGCCCTCGGGAA,microglia,microglial cell,microglia
+10X04_4:ATACCACTTTCCGC,microglia,microglial cell,microglia
+10X22_4:GGGAACGAAAGATG,microglia,microglial cell,microglia
+10X51_4:TAAGATACCCCTTG,microglia,microglial cell,microglia
+10X52_4:TGCACAGAGCTGTA,microglia,microglial cell,microglia
+10X53_2:GGGCCAACGATGAA,microglia,microglial cell,microglia
+10X28_3:CGAATCGATGTCTT,microglia,microglial cell,microglia
+10X24_1:CGACGTCTCAGATC,microglia,microglial cell,microglia
+10X46_1:CTAGGTGACCATAG,microglia,microglial cell,microglia
+10X22_3:CGATAGACGCGGAA,microglia,microglial cell,microglia
+10X28_3:AGGGTGGATTGCAG,microglia,microglial cell,microglia
+10X49_5:ACGGATTGGATGAA,microglia,microglial cell,microglia
+10X26_4:TATCACTGTCCAGA,microglia,microglial cell,microglia
+10X04_4:TATGTCACACCACA,microglia,microglial cell,microglia
+10X52_1:CCCGAACTCAGAAA,microglia,microglial cell,microglia
+10X43_1:ACGCAATGGATACC,microglia,microglial cell,microglia
+10X19_2:GTCATACTGATAGA,microglia,microglial cell,microglia
+10X46_3:CCCGGAGAAGATCC,microglia,microglial cell,microglia
+10X26_3:CATCGCTGTCGCTC,microglia,microglial cell,microglia
+10X52_1:GTACTACTTCCAAG,microglia,microglial cell,microglia
+10X50_6:TCAGAGACTCTCAT,microglia,microglial cell,microglia
+10X26_3:TGGAGACTGAAAGT,microglia,microglial cell,microglia
+10X52_5:GCCTGACTCACTAG,microglia,microglial cell,microglia
+10X53_6:TAATGTGATGCAAC,microglia,microglial cell,microglia
+10X57_6:GTAGTCGAGGAGCA,microglia,microglial cell,microglia
+10X49_4:TTAGGGTGTGCTGA,microglia,microglial cell,microglia
+10X49_5:ACTAAAACAGTCGT,microglia,microglial cell,microglia
+10X53_2:CAAATTGACGTTGA,microglia,microglial cell,microglia
+10X53_5:AGAATGGATGTGAC,microglia,microglial cell,microglia
+10X52_2:TTCAAAGATTCGGA,microglia,microglial cell,microglia
+10X53_2:TTCGTATGCCAGTA,microglia,microglial cell,microglia
+10X04_1:TCGCAGCTCCAAGT,microglia,microglial cell,microglia
+10X24_1:GGCCCAGACTACGA,microglia,microglial cell,microglia
+10X53_4:ACAGCAACGACAGG,microglia,microglial cell,microglia
+10X26_4:AAGATTACCTCAGA,microglia,microglial cell,microglia
+10X52_6:CTCTAATGGTCTTT,microglia,microglial cell,microglia
+10X19_2:TGGTAGTGGGTTAC,microglia,microglial cell,microglia
+10X20_2:GTCCCATGCGAACT,microglia,microglial cell,microglia
+10X33_2:ATTGCTTGAGGCGA,microglia,microglial cell,microglia
+10X53_3:TCCGAGCTGTTTCT,microglia,microglial cell,microglia
+10X26_4:GCGGGACTCTTGTT,microglia,microglial cell,microglia
+10X35_2:CTGATACTCAACCA,microglia,microglial cell,microglia
+10X05_4:GATCTTTGACCCTC,microglia,microglial cell,microglia
+10X52_3:AGAGAAACCGCATA,microglia,microglial cell,microglia
+10X43_3:GAAATACTCCTACC,microglia,microglial cell,microglia
+10X51_2:ATAGATTGAGCGTT,microglia,microglial cell,microglia
+10X28_4:GTACGAACACTCTT,microglia,microglial cell,microglia
+10X52_2:TGCTATACTTAGGC,microglia,microglial cell,microglia
+10X02_1:ATTGAAACCTGTAG,microglia,microglial cell,microglia
 10X48_3:AATGTCCTCATGCA,microglia,macrophage,macrophages
-10X51_3:GACTACGAACAGCT,microglia,microglial cell (Mmus),microglia
-10X20_4:CTGATGGATATGCG,microglia,microglial cell (Mmus),microglia
-10X26_3:AGTGTGACTTTCTG,microglia,microglial cell (Mmus),microglia
-10X52_2:CTAGGTGAGGTTAC,microglia,microglial cell (Mmus),microglia
-10X48_1:CAGCATGACTCTTA,microglia,microglial cell (Mmus),microglia
-10X26_3:ACATGGTGGGTTAC,microglia,microglial cell (Mmus),microglia
-10X26_4:TACACACTCGGTAT,microglia,microglial cell (Mmus),microglia
-10X19_2:GCGCGAACGATGAA,microglia,microglial cell (Mmus),microglia
-10X20_1:AACGCCCTGTTACG,microglia,microglial cell (Mmus),microglia
-10X53_5:GAAGTGCTCGGTAT,microglia,microglial cell (Mmus),microglia
-10X26_3:AGGTCATGCTGAAC,microglia,microglial cell (Mmus),microglia
-10X52_2:TGATCGGAGCAGTT,microglia,microglial cell (Mmus),microglia
-10X50_3:GATAATACCCTTGC,microglia,microglial cell (Mmus),microglia
-10X26_4:CTATCATGAATGCC,microglia,microglial cell (Mmus),microglia
-10X50_8:TAATCGCTAAGATG,microglia,microglial cell (Mmus),microglia
-10X20_3:CGGGCATGGTCTAG,microglia,microglial cell (Mmus),microglia
-10X52_3:TTCATTCTTGACCA,microglia,microglial cell (Mmus),microglia
-10X02_1:CCTTTAGACGAGAG,microglia,microglial cell (Mmus),microglia
-10X05_3:GCCTCAACGAGAGC,microglia,microglial cell (Mmus),microglia
-10X05_2:TAAGCTCTTTTCAC,microglia,microglial cell (Mmus),microglia
-10X53_2:AGCGTAACGGTTTG,microglia,microglial cell (Mmus),microglia
-10X26_2:GGGATGGAAGCGTT,microglia,microglial cell (Mmus),microglia
-10X49_5:ACTAAAACTCAAGC,microglia,microglial cell (Mmus),microglia
-10X01_1:AGGCTAACCTCTTA,microglia,microglial cell (Mmus),microglia
-10X53_6:ATACGTCTGTGTAC,microglia,microglial cell (Mmus),microglia
-10X46_1:ACAAATTGCTCAGA,microglia,microglial cell (Mmus),microglia
-10X43_3:CCATTAACGATGAA,microglia,microglial cell (Mmus),microglia
-10X24_1:TATCTTCTTGGGAG,microglia,microglial cell (Mmus),microglia
-10X57_1:CCAGACCTTGTCTT,microglia,microglial cell (Mmus),microglia
-10X22_2:GGCCCAGACTTACT,microglia,microglial cell (Mmus),microglia
-10X52_6:GCAGGCACGTTCGA,microglia,microglial cell (Mmus),microglia
-10X49_5:AGGGCCACCTTCGC,microglia,microglial cell (Mmus),microglia
-10X02_1:TCAGTTACATCGTG,microglia,microglial cell (Mmus),microglia
-10X05_1:AGGCTAACTATGGC,microglia,microglial cell (Mmus),microglia
-10X20_1:GTTATAGAGAGATA,microglia,microglial cell (Mmus),microglia
-10X33_3:TATGAATGCTAAGC,microglia,microglial cell (Mmus),microglia
-10X49_1:AGTGTTCTCTTGCC,microglia,microglial cell (Mmus),microglia
-10X49_5:ACTGCCTGTTACTC,microglia,microglial cell (Mmus),microglia
-10X53_6:CAATCGGAATCGAC,microglia,microglial cell (Mmus),microglia
-10X51_4:TACTACTGCGTGAT,microglia,microglial cell (Mmus),microglia
-10X52_8:ACAAGCACATGCTG,microglia,microglial cell (Mmus),microglia
-10X26_3:AAATGGGACGTAAC,microglia,microglial cell (Mmus),microglia
-10X01_1:GGACGAGATCCAGA,microglia,microglial cell (Mmus),microglia
-10X52_3:ACTAGGTGATCGGT,microglia,microglial cell (Mmus),microglia
-10X49_5:GTCAATCTAACGAA,microglia,microglial cell (Mmus),microglia
-10X22_2:GGCTAATGTGGAGG,microglia,microglial cell (Mmus),microglia
-10X35_2:TACTACTGTTCACT,microglia,microglial cell (Mmus),microglia
-10X52_4:TGGTAGACTTTGGG,microglia,microglial cell (Mmus),microglia
-10X20_4:CCAGTCTGTGCTAG,microglia,microglial cell (Mmus),microglia
-10X52_2:ATCGGTGACTTCCG,microglia,microglial cell (Mmus),microglia
-10X24_1:AGCCGGTGTGCACA,microglia,microglial cell (Mmus),microglia
-10X50_6:CACCGGGACGCAAT,microglia,microglial cell (Mmus),microglia
+10X51_3:GACTACGAACAGCT,microglia,microglial cell,microglia
+10X20_4:CTGATGGATATGCG,microglia,microglial cell,microglia
+10X26_3:AGTGTGACTTTCTG,microglia,microglial cell,microglia
+10X52_2:CTAGGTGAGGTTAC,microglia,microglial cell,microglia
+10X48_1:CAGCATGACTCTTA,microglia,microglial cell,microglia
+10X26_3:ACATGGTGGGTTAC,microglia,microglial cell,microglia
+10X26_4:TACACACTCGGTAT,microglia,microglial cell,microglia
+10X19_2:GCGCGAACGATGAA,microglia,microglial cell,microglia
+10X20_1:AACGCCCTGTTACG,microglia,microglial cell,microglia
+10X53_5:GAAGTGCTCGGTAT,microglia,microglial cell,microglia
+10X26_3:AGGTCATGCTGAAC,microglia,microglial cell,microglia
+10X52_2:TGATCGGAGCAGTT,microglia,microglial cell,microglia
+10X50_3:GATAATACCCTTGC,microglia,microglial cell,microglia
+10X26_4:CTATCATGAATGCC,microglia,microglial cell,microglia
+10X50_8:TAATCGCTAAGATG,microglia,microglial cell,microglia
+10X20_3:CGGGCATGGTCTAG,microglia,microglial cell,microglia
+10X52_3:TTCATTCTTGACCA,microglia,microglial cell,microglia
+10X02_1:CCTTTAGACGAGAG,microglia,microglial cell,microglia
+10X05_3:GCCTCAACGAGAGC,microglia,microglial cell,microglia
+10X05_2:TAAGCTCTTTTCAC,microglia,microglial cell,microglia
+10X53_2:AGCGTAACGGTTTG,microglia,microglial cell,microglia
+10X26_2:GGGATGGAAGCGTT,microglia,microglial cell,microglia
+10X49_5:ACTAAAACTCAAGC,microglia,microglial cell,microglia
+10X01_1:AGGCTAACCTCTTA,microglia,microglial cell,microglia
+10X53_6:ATACGTCTGTGTAC,microglia,microglial cell,microglia
+10X46_1:ACAAATTGCTCAGA,microglia,microglial cell,microglia
+10X43_3:CCATTAACGATGAA,microglia,microglial cell,microglia
+10X24_1:TATCTTCTTGGGAG,microglia,microglial cell,microglia
+10X57_1:CCAGACCTTGTCTT,microglia,microglial cell,microglia
+10X22_2:GGCCCAGACTTACT,microglia,microglial cell,microglia
+10X52_6:GCAGGCACGTTCGA,microglia,microglial cell,microglia
+10X49_5:AGGGCCACCTTCGC,microglia,microglial cell,microglia
+10X02_1:TCAGTTACATCGTG,microglia,microglial cell,microglia
+10X05_1:AGGCTAACTATGGC,microglia,microglial cell,microglia
+10X20_1:GTTATAGAGAGATA,microglia,microglial cell,microglia
+10X33_3:TATGAATGCTAAGC,microglia,microglial cell,microglia
+10X49_1:AGTGTTCTCTTGCC,microglia,microglial cell,microglia
+10X49_5:ACTGCCTGTTACTC,microglia,microglial cell,microglia
+10X53_6:CAATCGGAATCGAC,microglia,microglial cell,microglia
+10X51_4:TACTACTGCGTGAT,microglia,microglial cell,microglia
+10X52_8:ACAAGCACATGCTG,microglia,microglial cell,microglia
+10X26_3:AAATGGGACGTAAC,microglia,microglial cell,microglia
+10X01_1:GGACGAGATCCAGA,microglia,microglial cell,microglia
+10X52_3:ACTAGGTGATCGGT,microglia,microglial cell,microglia
+10X49_5:GTCAATCTAACGAA,microglia,microglial cell,microglia
+10X22_2:GGCTAATGTGGAGG,microglia,microglial cell,microglia
+10X35_2:TACTACTGTTCACT,microglia,microglial cell,microglia
+10X52_4:TGGTAGACTTTGGG,microglia,microglial cell,microglia
+10X20_4:CCAGTCTGTGCTAG,microglia,microglial cell,microglia
+10X52_2:ATCGGTGACTTCCG,microglia,microglial cell,microglia
+10X24_1:AGCCGGTGTGCACA,microglia,microglial cell,microglia
+10X50_6:CACCGGGACGCAAT,microglia,microglial cell,microglia
 10X20_3:TATCTGACTCTTTG,microglia,macrophage,macrophages
-10X26_4:GAACTGTGGAGGCA,microglia,microglial cell (Mmus),microglia
-10X20_3:ATTGTAGAGACACT,microglia,microglial cell (Mmus),microglia
-10X50_4:AGCCGGACCGCCTT,microglia,microglial cell (Mmus),microglia
-10X22_3:GTGGTAACTAACCG,microglia,microglial cell (Mmus),microglia
-10X22_4:TTCAGACTTCGTTT,microglia,microglial cell (Mmus),microglia
-10X04_4:ACGAGTACCTCGCT,microglia,microglial cell (Mmus),microglia
-10X26_4:AGGCTAACTGCAGT,microglia,microglial cell (Mmus),microglia
-10X52_4:ATCCTAACGTAGCT,microglia,microglial cell (Mmus),microglia
-10X22_2:AGAGTCTGCGTACA,microglia,microglial cell (Mmus),microglia
-10X20_4:GCCAAATGTTCCAT,microglia,microglial cell (Mmus),microglia
-10X26_4:GCATGATGCTCTCG,microglia,microglial cell (Mmus),microglia
-10X49_4:GCCAACCTTATTCC,microglia,microglial cell (Mmus),microglia
-10X22_4:AGAAGATGCCCGTT,microglia,microglial cell (Mmus),microglia
-10X22_4:TATAGATGAAACGA,microglia,microglial cell (Mmus),microglia
-10X19_2:AGTATAACTTCCCG,microglia,microglial cell (Mmus),microglia
-10X51_4:CCGTACACGTTCAG,microglia,microglial cell (Mmus),microglia
-10X53_6:CAAAGCTGCACTAG,microglia,microglial cell (Mmus),microglia
-10X52_5:ACGGTCCTCCCAAA,microglia,microglial cell (Mmus),microglia
-10X20_2:CGCCTAACTAGACC,microglia,microglial cell (Mmus),microglia
-10X28_2:CGACTGCTACAGCT,microglia,microglial cell (Mmus),microglia
-10X46_1:GCGCATCTACCACA,microglia,microglial cell (Mmus),microglia
-10X20_3:GACAGTTGTGGATC,microglia,microglial cell (Mmus),microglia
-10X22_4:CACTTATGGTATGC,microglia,microglial cell (Mmus),microglia
-10X49_3:CCCAACTGTATTCC,microglia,microglial cell (Mmus),microglia
-10X26_3:CAGCAATGCAAGCT,microglia,microglial cell (Mmus),microglia
+10X26_4:GAACTGTGGAGGCA,microglia,microglial cell,microglia
+10X20_3:ATTGTAGAGACACT,microglia,microglial cell,microglia
+10X50_4:AGCCGGACCGCCTT,microglia,microglial cell,microglia
+10X22_3:GTGGTAACTAACCG,microglia,microglial cell,microglia
+10X22_4:TTCAGACTTCGTTT,microglia,microglial cell,microglia
+10X04_4:ACGAGTACCTCGCT,microglia,microglial cell,microglia
+10X26_4:AGGCTAACTGCAGT,microglia,microglial cell,microglia
+10X52_4:ATCCTAACGTAGCT,microglia,microglial cell,microglia
+10X22_2:AGAGTCTGCGTACA,microglia,microglial cell,microglia
+10X20_4:GCCAAATGTTCCAT,microglia,microglial cell,microglia
+10X26_4:GCATGATGCTCTCG,microglia,microglial cell,microglia
+10X49_4:GCCAACCTTATTCC,microglia,microglial cell,microglia
+10X22_4:AGAAGATGCCCGTT,microglia,microglial cell,microglia
+10X22_4:TATAGATGAAACGA,microglia,microglial cell,microglia
+10X19_2:AGTATAACTTCCCG,microglia,microglial cell,microglia
+10X51_4:CCGTACACGTTCAG,microglia,microglial cell,microglia
+10X53_6:CAAAGCTGCACTAG,microglia,microglial cell,microglia
+10X52_5:ACGGTCCTCCCAAA,microglia,microglial cell,microglia
+10X20_2:CGCCTAACTAGACC,microglia,microglial cell,microglia
+10X28_2:CGACTGCTACAGCT,microglia,microglial cell,microglia
+10X46_1:GCGCATCTACCACA,microglia,microglial cell,microglia
+10X20_3:GACAGTTGTGGATC,microglia,microglial cell,microglia
+10X22_4:CACTTATGGTATGC,microglia,microglial cell,microglia
+10X49_3:CCCAACTGTATTCC,microglia,microglial cell,microglia
+10X26_3:CAGCAATGCAAGCT,microglia,microglial cell,microglia
 10X53_3:GGAAGGTGTGCCTC,microglia,macrophage,macrophages
-10X53_6:CTTACAACCCGAAT,microglia,microglial cell (Mmus),microglia
-10X22_3:CATCGGCTAAACGA,microglia,microglial cell (Mmus),microglia
-10X52_1:ATAGATACCTCCCA,microglia,microglial cell (Mmus),microglia
-10X33_2:ATCGTTTGCATTGG,microglia,microglial cell (Mmus),microglia
-10X26_4:TCGATACTGAAAGT,microglia,microglial cell (Mmus),microglia
-10X52_5:AGAATTTGTTCACT,microglia,microglial cell (Mmus),microglia
-10X20_1:AGGGACGAGTGTCA,microglia,microglial cell (Mmus),microglia
-10X22_4:ATACGGACTCTTAC,microglia,microglial cell (Mmus),microglia
-10X05_1:CTGATGGAATGTGC,microglia,microglial cell (Mmus),microglia
-10X28_2:TCTTCAGATTGACG,microglia,microglial cell (Mmus),microglia
-10X05_4:GCCAAATGTCTCCG,microglia,microglial cell (Mmus),microglia
-10X43_1:ATGCCGCTGTGCAT,microglia,microglial cell (Mmus),microglia
-10X49_3:CAGCATGATGCCCT,microglia,microglial cell (Mmus),microglia
-10X24_1:GCATGTGAGTATCG,microglia,microglial cell (Mmus),microglia
-10X53_4:CCAGAAACGTTGAC,microglia,microglial cell (Mmus),microglia
-10X49_4:GGCACGTGCCGTTC,microglia,microglial cell (Mmus),microglia
-10X57_3:AGTCTTACAGAACA,microglia,microglial cell (Mmus),microglia
-10X20_4:ATAGTTGAGATAAG,microglia,microglial cell (Mmus),microglia
-10X46_2:CATCTCCTGCGTTA,microglia,microglial cell (Mmus),microglia
-10X19_2:CTCGAGCTGAGATA,microglia,microglial cell (Mmus),microglia
-10X53_2:ACCACAGAACCAAC,microglia,microglial cell (Mmus),microglia
-10X50_2:CTTGAGGAGAAACA,microglia,microglial cell (Mmus),microglia
-10X26_4:CACTTATGCGTCTC,microglia,microglial cell (Mmus),microglia
-10X20_2:CAGACAACTACTGG,microglia,microglial cell (Mmus),microglia
-10X05_1:CAAGACACAGTCAC,microglia,microglial cell (Mmus),microglia
-10X24_2:AAAGTTTGCGTAAC,microglia,microglial cell (Mmus),microglia
-10X52_5:AACTCTTGTTGGTG,microglia,microglial cell (Mmus),microglia
-10X57_7:TCTTACGATCGCAA,microglia,microglial cell (Mmus),microglia
-10X24_2:CAGCCTTGGGAGGT,microglia,microglial cell (Mmus),microglia
-10X56_6:CAATTCACCCTATT,microglia,microglial cell (Mmus),microglia
-10X05_4:ATACCACTGGTTAC,microglia,microglial cell (Mmus),microglia
-10X33_3:ATCGTTTGGTGTCA,microglia,microglial cell (Mmus),microglia
-10X53_3:ATAGCTCTACCTCC,microglia,microglial cell (Mmus),microglia
-10X26_3:GAGGTTACGAACCT,microglia,microglial cell (Mmus),microglia
-10X53_6:ATGTTAGAGCTTAG,microglia,microglial cell (Mmus),microglia
-10X49_1:GGCCGAACATCGAC,microglia,microglial cell (Mmus),microglia
-10X26_4:AATCCTTGACAGTC,microglia,microglial cell (Mmus),microglia
-10X57_4:CCCTCAGACCGTAA,microglia,microglial cell (Mmus),microglia
-10X26_4:TACATCACACCTCC,microglia,microglial cell (Mmus),microglia
-10X48_2:CATGTTACTGGTCA,microglia,microglial cell (Mmus),microglia
-10X52_4:GCTTGAGAGTCTGA,microglia,microglial cell (Mmus),microglia
-10X49_3:CGCTAAGATTTGGG,microglia,microglial cell (Mmus),microglia
-10X22_3:TATGGTCTACCAAC,microglia,microglial cell (Mmus),microglia
-10X34_4:ATCACTTGACGGGA,microglia,microglial cell (Mmus),microglia
-10X20_3:CCAGTCTGCTTATC,microglia,microglial cell (Mmus),microglia
-10X02_1:GCCGGAACGCTTCC,microglia,microglial cell (Mmus),microglia
-10X26_3:AACCGATGGATAAG,microglia,microglial cell (Mmus),microglia
-10X28_3:TGTGGATGCGTTGA,microglia,microglial cell (Mmus),microglia
-10X24_3:GACTCCTGGTTGAC,microglia,microglial cell (Mmus),microglia
-10X26_4:GACTCCTGGCGATT,microglia,microglial cell (Mmus),microglia
-10X20_3:TATGGGTGTCTCAT,microglia,microglial cell (Mmus),microglia
-10X52_8:TAGTTAGAAACGAA,microglia,microglial cell (Mmus),microglia
-10X05_2:ACGCTCACAACGGG,microglia,microglial cell (Mmus),microglia
-10X52_7:CTATCATGTGGTAC,microglia,microglial cell (Mmus),microglia
-10X53_3:CAACCGCTGTAAAG,microglia,microglial cell (Mmus),microglia
-10X87_1:TAATGATGGTACGT,microglia,microglial cell (Mmus),microglia
-10X20_2:GCACTGCTCGAGAG,microglia,microglial cell (Mmus),microglia
-10X53_3:TACCGAGAAAGGCG,microglia,microglial cell (Mmus),microglia
-10X22_4:GAGCAGGATGGATC,microglia,microglial cell (Mmus),microglia
-10X51_4:AGTAATTGTCTCTA,microglia,microglial cell (Mmus),microglia
+10X53_6:CTTACAACCCGAAT,microglia,microglial cell,microglia
+10X22_3:CATCGGCTAAACGA,microglia,microglial cell,microglia
+10X52_1:ATAGATACCTCCCA,microglia,microglial cell,microglia
+10X33_2:ATCGTTTGCATTGG,microglia,microglial cell,microglia
+10X26_4:TCGATACTGAAAGT,microglia,microglial cell,microglia
+10X52_5:AGAATTTGTTCACT,microglia,microglial cell,microglia
+10X20_1:AGGGACGAGTGTCA,microglia,microglial cell,microglia
+10X22_4:ATACGGACTCTTAC,microglia,microglial cell,microglia
+10X05_1:CTGATGGAATGTGC,microglia,microglial cell,microglia
+10X28_2:TCTTCAGATTGACG,microglia,microglial cell,microglia
+10X05_4:GCCAAATGTCTCCG,microglia,microglial cell,microglia
+10X43_1:ATGCCGCTGTGCAT,microglia,microglial cell,microglia
+10X49_3:CAGCATGATGCCCT,microglia,microglial cell,microglia
+10X24_1:GCATGTGAGTATCG,microglia,microglial cell,microglia
+10X53_4:CCAGAAACGTTGAC,microglia,microglial cell,microglia
+10X49_4:GGCACGTGCCGTTC,microglia,microglial cell,microglia
+10X57_3:AGTCTTACAGAACA,microglia,microglial cell,microglia
+10X20_4:ATAGTTGAGATAAG,microglia,microglial cell,microglia
+10X46_2:CATCTCCTGCGTTA,microglia,microglial cell,microglia
+10X19_2:CTCGAGCTGAGATA,microglia,microglial cell,microglia
+10X53_2:ACCACAGAACCAAC,microglia,microglial cell,microglia
+10X50_2:CTTGAGGAGAAACA,microglia,microglial cell,microglia
+10X26_4:CACTTATGCGTCTC,microglia,microglial cell,microglia
+10X20_2:CAGACAACTACTGG,microglia,microglial cell,microglia
+10X05_1:CAAGACACAGTCAC,microglia,microglial cell,microglia
+10X24_2:AAAGTTTGCGTAAC,microglia,microglial cell,microglia
+10X52_5:AACTCTTGTTGGTG,microglia,microglial cell,microglia
+10X57_7:TCTTACGATCGCAA,microglia,microglial cell,microglia
+10X24_2:CAGCCTTGGGAGGT,microglia,microglial cell,microglia
+10X56_6:CAATTCACCCTATT,microglia,microglial cell,microglia
+10X05_4:ATACCACTGGTTAC,microglia,microglial cell,microglia
+10X33_3:ATCGTTTGGTGTCA,microglia,microglial cell,microglia
+10X53_3:ATAGCTCTACCTCC,microglia,microglial cell,microglia
+10X26_3:GAGGTTACGAACCT,microglia,microglial cell,microglia
+10X53_6:ATGTTAGAGCTTAG,microglia,microglial cell,microglia
+10X49_1:GGCCGAACATCGAC,microglia,microglial cell,microglia
+10X26_4:AATCCTTGACAGTC,microglia,microglial cell,microglia
+10X57_4:CCCTCAGACCGTAA,microglia,microglial cell,microglia
+10X26_4:TACATCACACCTCC,microglia,microglial cell,microglia
+10X48_2:CATGTTACTGGTCA,microglia,microglial cell,microglia
+10X52_4:GCTTGAGAGTCTGA,microglia,microglial cell,microglia
+10X49_3:CGCTAAGATTTGGG,microglia,microglial cell,microglia
+10X22_3:TATGGTCTACCAAC,microglia,microglial cell,microglia
+10X34_4:ATCACTTGACGGGA,microglia,microglial cell,microglia
+10X20_3:CCAGTCTGCTTATC,microglia,microglial cell,microglia
+10X02_1:GCCGGAACGCTTCC,microglia,microglial cell,microglia
+10X26_3:AACCGATGGATAAG,microglia,microglial cell,microglia
+10X28_3:TGTGGATGCGTTGA,microglia,microglial cell,microglia
+10X24_3:GACTCCTGGTTGAC,microglia,microglial cell,microglia
+10X26_4:GACTCCTGGCGATT,microglia,microglial cell,microglia
+10X20_3:TATGGGTGTCTCAT,microglia,microglial cell,microglia
+10X52_8:TAGTTAGAAACGAA,microglia,microglial cell,microglia
+10X05_2:ACGCTCACAACGGG,microglia,microglial cell,microglia
+10X52_7:CTATCATGTGGTAC,microglia,microglial cell,microglia
+10X53_3:CAACCGCTGTAAAG,microglia,microglial cell,microglia
+10X87_1:TAATGATGGTACGT,microglia,microglial cell,microglia
+10X20_2:GCACTGCTCGAGAG,microglia,microglial cell,microglia
+10X53_3:TACCGAGAAAGGCG,microglia,microglial cell,microglia
+10X22_4:GAGCAGGATGGATC,microglia,microglial cell,microglia
+10X51_4:AGTAATTGTCTCTA,microglia,microglial cell,microglia
 10X26_4:GTGTCAGACTCAAG,neuroblast (sensu vertebrata),neuron,neurons
 10X24_1:GACACTGAGTACCA,neuroblast (sensu vertebrata),neuron,neurons
 10X49_5:GCACAAACTCTTTG,neuroblast (sensu vertebrata),neuron,neurons
@@ -8949,7 +8949,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X50_4:GAACTGTGCCAAGT,peptidergic neuron,neuron,neurons
 10X50_2:GAGTGGGATGAGGG,peptidergic neuron,neuron,neurons
 10X26_4:GCTAGATGTCGCAA,peptidergic neuron,neuron,neurons
-10X57_2:AGCCGGTGCTCCCA,perivascular macrophage,microglial cell (Mmus),microglia
+10X57_2:AGCCGGTGCTCCCA,perivascular macrophage,microglial cell,microglia
 10X52_1:TAGGCTGAGGTATC,perivascular macrophage,macrophage,macrophages
 10X24_3:TCGATACTCCTCGT,perivascular macrophage,macrophage,macrophages
 10X52_8:TGTTAAGACCTTAT,perivascular macrophage,macrophage,macrophages

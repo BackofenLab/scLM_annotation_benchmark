@@ -4131,7 +4131,7 @@ CCACCTGAACGGAG-1_19,amacrine cell,cell,trunk
 Hgw20_rep2.CAGATCACACCCATGG.1_11,amacrine cell,type B pancreatic cell,beta
 Hgw17.GGATTACAGGGTGTTG.1_8,amacrine cell,cell,resistant
 Hgw11.ACTTTCAAGTGATCGG.1_1,amacrine cell,cell,sensitive
-Hgw11.CTTAGGAGTTACAGAA.1_1,amacrine cell,PP cell,pp
+Hgw11.CTTAGGAGTTACAGAA.1_1,amacrine cell,pancreatic PP cell,pp
 Hgw14.AAGACCTTCCAGAAGG.1_5,amacrine cell,type B pancreatic cell,beta
 Hgw14.CTCTAATTCCCGGATG.1_5,amacrine cell,type B pancreatic cell,beta
 TATCAAGAATGACC-1_19,amacrine cell,cell,sensitive
@@ -5227,7 +5227,7 @@ Hgw19_rep2.CTTAGGAGTTACGTCA.1_10,amacrine cell,schwann cell,schwann cell
 Hgw22.CGAGCACTCAAGGTAA.1_12,amacrine cell,type B pancreatic cell,beta
 TGTATTCCAGACAGGT-1_17,amacrine cell,b cell,b cell
 Hgw11.AAGCCGCAGGACATTA.1_1,amacrine cell,cell,sensitive
-ACGCTGCTTTCGCC-1_22,amacrine cell,PP cell,pp
+ACGCTGCTTTCGCC-1_22,amacrine cell,pancreatic PP cell,pp
 Hgw24_rep2.AGGCCACCATACAGCT.1_13,amacrine cell,schwann cell,schwann cell
 Hgw16.CCTCTGATCCCTCAGT.1_7,amacrine cell,pancreatic PP cell,gamma
 Hgw11.TAGCCGGTCGTCCAGG.1_1,amacrine cell,cell,resistant
@@ -6209,7 +6209,7 @@ Hgw15.TTCGGTCTCCTCATTA.1_6,retinal rod cell,cell,resistant
 Hgw24_rep2.AAACCTGTCGCACTCT.1_13,retinal rod cell,cell,ngn3 high ep
 Hgw20_rep2.TGACTTTGTTGCGCAC.1_11,retinal rod cell,cell,trunk
 ACCAGCCTATTCCT-1_15,retinal rod cell,cell,sensitive
-Hgw15.CTAACTTTCTAGCACA.1_6,retinal rod cell,PP cell,pp
+Hgw15.CTAACTTTCTAGCACA.1_6,retinal rod cell,pancreatic PP cell,pp
 Hgw17.CAACTAGAGGCATTGG.1_8,retinal rod cell,cell,resistant
 TGAGCATCAAGGCTCC-1_16,retinal rod cell,cell,trunk
 TGGGAAGAGCTAAGAT-1_16,retinal rod cell,cell,trunk
@@ -9263,7 +9263,7 @@ Hgw11.AAGGCAGTCTTGAGAC.1_1,retinal ganglion cell,cell,sensitive
 Hgw13.AGGCCGTCACGCATCG.1_4,retinal ganglion cell,b cell,b cell
 Hgw12.ACTTGTTTCTGGCGTG.1_3,retinal ganglion cell,type B pancreatic cell,beta
 Hgw13.CAGAGAGGTCACCTAA.1_4,retinal ganglion cell,b cell,b cell
-AGAGTGCTGCGGAA-1_22,retinal ganglion cell,PP cell,pp
+AGAGTGCTGCGGAA-1_22,retinal ganglion cell,pancreatic PP cell,pp
 Hgw12.TAGACCAGTCCGAAGA.1_3,retinal ganglion cell,type B pancreatic cell,beta
 ATCGGTGATCGCAA-1_15,retinal ganglion cell,t cell,t cell
 ATCATGCTACACCA-1_15,retinal ganglion cell,cell,ngn3 high ep

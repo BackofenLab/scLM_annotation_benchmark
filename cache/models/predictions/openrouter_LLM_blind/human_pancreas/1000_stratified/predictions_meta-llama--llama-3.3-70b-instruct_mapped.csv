@@ -16,7 +16,7 @@ D29-3_79,pancreatic a cell,pancreatic A cell,pancreatic alpha cell
 human3_lib2.final_cell_0555,pancreatic a cell,pancreatic A cell,pancreatic alpha cell
 human2_lib2.final_cell_0517,pancreatic a cell,chromaffin cell of adrenal gland,adrenal chromaffin cell
 D17TGFB_91,pancreatic a cell,pancreatic A cell,pancreatic alpha cell
-D17TGFB_65,pancreatic a cell,enteroendocrine cell,enterochromaffin cell
+D17TGFB_65,pancreatic a cell,type EC enteroendocrine cell,enterochromaffin cell
 D29-4_53,pancreatic a cell,neuron,neuron
 D31-5_2,pancreatic a cell,pancreatic A cell,pancreatic alpha cell
 D31-7_12,pancreatic a cell,neuron,neuron
@@ -32,7 +32,7 @@ human3_lib1.final_cell_0799,pancreatic a cell,neuron,neuron
 human2_lib2.final_cell_0494,pancreatic a cell,chromaffin cell,chromaffin cell
 D31-5_21,pancreatic a cell,pancreatic A cell,pancreatic alpha cell
 human2_lib3.final_cell_0212,pancreatic a cell,pancreatic A cell,pancreatic alpha cell
-human3_lib2.final_cell_0548,pancreatic a cell,enteroendocrine cell,enterochromaffin cell
+human3_lib2.final_cell_0548,pancreatic a cell,type EC enteroendocrine cell,enterochromaffin cell
 human1_lib2.final_cell_0250,pancreatic a cell,macrophage,macrophage
 human4_lib3.final_cell_0426,pancreatic a cell,chromaffin cell,chromaffin cell
 D172444_28,pancreatic a cell,neuroendocrine cell,neuroendocrine cell
@@ -45,7 +45,7 @@ human2_lib1.final_cell_0239,pancreatic a cell,pancreatic A cell,pancreatic alpha
 human1_lib2.final_cell_0248,pancreatic a cell,pancreatic A cell,pancreatic alpha cell
 D30-4_47,pancreatic a cell,pancreatic A cell,pancreatic alpha cell
 D31-4_32,pancreatic a cell,pancreatic A cell,pancreatic alpha cell
-human4_lib1.final_cell_0152,pancreatic a cell,enteroendocrine cell,enterochromaffin cell
+human4_lib1.final_cell_0152,pancreatic a cell,type EC enteroendocrine cell,enterochromaffin cell
 human2_lib1.final_cell_0203,pancreatic a cell,chromaffin cell of adrenal gland,adrenal chromaffin cell
 D29-5_49,pancreatic a cell,pancreatic A cell,pancreatic alpha cell
 D29-4_38,pancreatic a cell,chromaffin cell of adrenal gland,adrenal_chromaffin_cell
@@ -61,7 +61,7 @@ human3_lib4.final_cell_0612,pancreatic a cell,neuron,neuron
 human2_lib3.final_cell_0329,pancreatic a cell,chromaffin cell of adrenal gland,adrenal chromaffin cell
 human3_lib1.final_cell_0695,pancreatic a cell,pancreatic A cell,pancreatic alpha cell
 D29-8_60,pancreatic a cell,pancreatic A cell,pancreatic alpha cell
-human2_lib2.final_cell_0107,pancreatic a cell,enteroendocrine cell,enterochromaffin cell
+human2_lib2.final_cell_0107,pancreatic a cell,type EC enteroendocrine cell,enterochromaffin cell
 D29-2_67,pancreatic a cell,pancreatic A cell,pancreatic alpha cell
 human3_lib2.final_cell_0142,pancreatic a cell,pancreatic A cell,pancreatic alpha cell
 human1_lib2.final_cell_0628,pancreatic a cell,erythrocyte,erythrocyte
@@ -103,9 +103,9 @@ D30-5_62,pancreatic a cell,neuron,neuron
 human2_lib3.final_cell_0362,pancreatic a cell,chromaffin cell of adrenal gland,adrenal chromaffin cell
 human2_lib2.final_cell_0116,pancreatic a cell,chromaffin cell of adrenal gland,adrenal chromaffin cell
 human1_lib1.final_cell_0385,pancreatic a cell,pancreatic A cell,pancreatic alpha cell
-human3_lib3.final_cell_0424,pancreatic a cell,enteroendocrine cell,enterochromaffin cell
+human3_lib3.final_cell_0424,pancreatic a cell,type EC enteroendocrine cell,enterochromaffin cell
 human3_lib3.final_cell_0867,pancreatic a cell,type B pancreatic cell,beta cell
-human3_lib2.final_cell_0221,pancreatic a cell,enteroendocrine cell,enterochromaffin cell
+human3_lib2.final_cell_0221,pancreatic a cell,type EC enteroendocrine cell,enterochromaffin cell
 D31-5_12,pancreatic a cell,pancreatic A cell,pancreatic alpha cell
 human3_lib3.final_cell_0827,pancreatic a cell,neuroblast (sensu Vertebrata),neuroblast
 human2_lib1.final_cell_0088,pancreatic a cell,pancreatic A cell,pancreatic alpha cell
@@ -214,7 +214,7 @@ D31-8_38,pancreatic a cell,neuroendocrine cell,neuroendocrine cell
 D29-3_60,pancreatic a cell,chromaffin cell of adrenal gland,adrenal chromaffin cell
 human3_lib4.final_cell_0637,pancreatic a cell,enteroendocrine cell,enteroendocrine cell
 human3_lib1.final_cell_0171,pancreatic a cell,pancreatic A cell,pancreatic alpha cell
-human4_lib3.final_cell_0532,pancreatic a cell,enteroendocrine cell,enterochromaffin cell
+human4_lib3.final_cell_0532,pancreatic a cell,type EC enteroendocrine cell,enterochromaffin cell
 D29-1_29,pancreatic a cell,pancreatic A cell,pancreatic alpha cell
 human4_lib1.final_cell_0093,pancreatic a cell,pancreatic A cell,pancreatic alpha cell
 human3_lib1.final_cell_0674,pancreatic a cell,neuron,neuron
@@ -227,7 +227,7 @@ human3_lib1.final_cell_0860,pancreatic a cell,neuron,neuron
 D30-5_73,pancreatic a cell,pancreatic A cell,alpha cell of pancreas
 human1_lib1.final_cell_0257,pancreatic a cell,hepatocyte,hepatocyte
 human3_lib1.final_cell_0617,pancreatic a cell,neuron,neuron
-human3_lib2.final_cell_0694,pancreatic a cell,enteroendocrine cell,enterochromaffin cell
+human3_lib2.final_cell_0694,pancreatic a cell,type EC enteroendocrine cell,enterochromaffin cell
 human2_lib2.final_cell_0533,pancreatic a cell,chromaffin cell,chromaffin cell
 D31-4_1,pancreatic a cell,pancreatic A cell,pancreatic alpha cell
 human3_lib1.final_cell_0726,pancreatic a cell,hepatocyte,hepatocyte
@@ -787,7 +787,7 @@ human3_lib1.final_cell_0847,delta,neuron,neuron
 D30-4_5,delta,pancreatic A cell,pancreatic alpha cell
 HP1509101_O1,delta,pancreatic A cell,pancreatic alpha cell
 D29-8_73,delta,neuron,neuron
-human2_lib1.final_cell_0173,delta,enteroendocrine cell,enterochromaffin cell
+human2_lib1.final_cell_0173,delta,type EC enteroendocrine cell,enterochromaffin cell
 human3_lib3.final_cell_0318,delta,pancreatic A cell,pancreatic alpha cell
 D29-7_54,delta,pancreatic A cell,pancreatic alpha cell
 human2_lib3.final_cell_0350,delta,pancreatic A cell,pancreatic alpha cell
@@ -802,7 +802,7 @@ human3_lib1.final_cell_0430,delta,neuron,neuron
 human3_lib1.final_cell_0473,delta,neuron,neuron
 human4_lib1.final_cell_0169,delta,neuroendocrine cell,neuroendocrine cell
 human3_lib4.final_cell_0413,delta,pancreatic A cell,pancreatic alpha cell
-human4_lib3.final_cell_0003,delta,enteroendocrine cell,enterochromaffin cell
+human4_lib3.final_cell_0003,delta,type EC enteroendocrine cell,enterochromaffin cell
 human4_lib3.final_cell_0410,delta,pancreatic A cell,pancreatic alpha cell
 D30-5_22,delta,pancreatic A cell,pancreatic alpha cell
 human1_lib2.final_cell_0015,delta,pancreatic A cell,pancreatic alpha cell
@@ -836,7 +836,7 @@ D73_90,delta,neuron,neuron
 human1_lib2.final_cell_0210,delta,neuron,neuron
 human2_lib3.final_cell_0041,delta,enteric neuron,enteric neuron
 human1_lib3.final_cell_0298,delta,pancreatic A cell,pancreatic alpha cell
-human3_lib3.final_cell_0159,delta,enteroendocrine cell,enterochromaffin cell
+human3_lib3.final_cell_0159,delta,type EC enteroendocrine cell,enterochromaffin cell
 human1_lib2.final_cell_0473,delta,pancreatic A cell,pancreatic alpha cell
 human2_lib2.final_cell_0165,delta,neuron,neuron
 human3_lib2.final_cell_0437,delta,pancreatic A cell,pancreatic alpha cell
@@ -988,7 +988,7 @@ human2_lib3.final_cell_0037,epsilon,enteric neuron,enteric neuron
 D29-4_84,epsilon,pancreatic A cell,pancreatic alpha cell
 human1_lib3.final_cell_0684,epsilon,pancreatic A cell,pancreatic alpha cell
 human1_lib3.final_cell_0457,epsilon,pancreatic A cell,endocrine pancreatic alpha cell
-human1_lib3.final_cell_0594,epsilon,enteroendocrine cell,enterochromaffin cell
+human1_lib3.final_cell_0594,epsilon,type EC enteroendocrine cell,enterochromaffin cell
 D30-4_20,epsilon,pancreatic A cell,pancreatic alpha cell
 human1_lib3.final_cell_0270,epsilon,type B pancreatic cell,beta cell
 human1_lib3.final_cell_0692,epsilon,pancreatic A cell,pancreatic alpha cell

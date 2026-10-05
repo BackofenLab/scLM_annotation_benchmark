@@ -3078,7 +3078,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X50_8:ATTCCATGCATCAG,glutamatergic neuron,transit amplifying cell,tac-1
 10X04_1:CTTTAGACGAATCC,glutamatergic neuron,transit amplifying cell,tac-1
 10X20_1:AGAGATGAGTTGTG,glutamatergic neuron,transit amplifying cell,tac-1
-10X49_3:CACTATACTGAACC,glutamatergic neuron,PP cell,pp
+10X49_3:CACTATACTGAACC,glutamatergic neuron,pancreatic PP cell,pp
 10X28_2:CAACCGCTACACGT,glutamatergic neuron,cell,fev+
 10X35_1:AACTCACTTATTCC,glutamatergic neuron,basal cell,basal
 10X28_3:CTCGACACAGTAGA,glutamatergic neuron,schwann cell,schwann cell
@@ -4115,7 +4115,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X38_3:CTAACGGACAGTTG,gabaergic neuron,basal cell,basal
 10X49_5:GTAGCAACACTCAG,gabaergic neuron,cell,trunk
 10X07_1:GAAGTAGACCTTAT,gabaergic neuron,cell,infundibulum
-10X24_2:ATGTTCACGATACC,gabaergic neuron,PP cell,pp
+10X24_2:ATGTTCACGATACC,gabaergic neuron,pancreatic PP cell,pp
 10X49_4:TGCAACGAACCATG,gabaergic neuron,cell,trunk
 10X22_1:GGACGCACTACAGC,gabaergic neuron,basal cell,basal
 10X38_3:AAGGTCTGTTCGTT,gabaergic neuron,cell,trunk
@@ -4155,7 +4155,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X49_1:AACCCAGAGACAAA,gabaergic neuron,multi fate stem cell,multipotent
 10X38_3:CCTACCGATTCGCC,gabaergic neuron,basal cell,basal
 10X24_2:AAGAACGAGTCGTA,gabaergic neuron,basal cell,basal
-10X49_1:TGACTTACACGGAG,gabaergic neuron,PP cell,pp
+10X49_1:TGACTTACACGGAG,gabaergic neuron,pancreatic PP cell,pp
 10X57_2:TCCCGATGATCGAC,gabaergic neuron,basal cell,basal
 10X38_1:GACTCCTGACTGTG,gabaergic neuron,basal cell,basal
 10X24_2:TCTCTAGAGCGATT,gabaergic neuron,transit amplifying cell,tac-1
@@ -8094,7 +8094,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X04_2:CATCGCTGGCTACA,dentate gyrus granule cell,basal cell,basal
 10X22_4:CAGGTTGAGTACAC,dentate gyrus granule cell,cell,trunk
 10X46_1:CTGTATACACTAGC,dentate gyrus granule cell,transit amplifying cell,tac-1
-10X22_3:CTGAAGTGCTGTCC,dentate gyrus granule cell,PP cell,pp
+10X22_3:CTGAAGTGCTGTCC,dentate gyrus granule cell,pancreatic PP cell,pp
 10X22_4:GTGATTCTCTAGTG,dentate gyrus granule cell,basal cell,basal
 10X43_1:TTGAGGTGGACGGA,dentate gyrus granule cell,cell,trunk
 10X46_1:GATCTTTGTAAGGA,dentate gyrus granule cell,cell,trunk

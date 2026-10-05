@@ -55,7 +55,7 @@ bbf7b01a3eb511eb9718d21badfd3eba,"naive thymus-derived cd4-positive, alpha-beta 
 0f1a08fe745a11eb9460023cc5433a03,"naive thymus-derived cd4-positive, alpha-beta t cell",T cell,t lymphocyte
 236ed5d601cd11ec9bd81eda61cbfa79,"naive thymus-derived cd4-positive, alpha-beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",naïve cd4 t cell
 c57fb9f8aa8711ed9d6f12731be88ed2,"naive thymus-derived cd4-positive, alpha-beta t cell",T cell,t lymphocyte
-6b75e41803a911ec9226dabef286a24a,"naive thymus-derived cd4-positive, alpha-beta t cell",mature alpha-beta T cell,alpha beta t cell
+6b75e41803a911ec9226dabef286a24a,"naive thymus-derived cd4-positive, alpha-beta t cell",alpha-beta T cell,alpha beta t cell
 9120da524dfe11ec9cd7da9b7cf4e69b,"naive thymus-derived cd4-positive, alpha-beta t cell",t cell,t cell
 69819702bfd811eb9045460ae879a467,"naive thymus-derived cd4-positive, alpha-beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",naive cd4+ t lymphocyte
 82a1e006746b11eba241fa7146609c17,"naive thymus-derived cd4-positive, alpha-beta t cell",naive T cell,naïve t cell
@@ -64,7 +64,7 @@ cc8d9158fec511eb87b23e158aef1042,"naive thymus-derived cd4-positive, alpha-beta 
 2d1aad8a60b311edb0ce9a8d0a14da27,"naive thymus-derived cd4-positive, alpha-beta t cell","cd4-positive, alpha-beta t cell","cd4-positive, alpha-beta t cell"
 e0713cec862c11eeb44f2a0a7ee8bda4,"naive thymus-derived cd4-positive, alpha-beta t cell","CD4-positive, alpha-beta T cell",cd4+ t lymphocyte
 d5ebdfe8862c11eea4d2b6181e6e2ea7,"naive thymus-derived cd4-positive, alpha-beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",naive cd4 t cell
-443a9c8c50ba11ec9ccf362b40e6d4a7,"naive thymus-derived cd4-positive, alpha-beta t cell",proerythroblast,cl:0000547
+443a9c8c50ba11ec9ccf362b40e6d4a7,"naive thymus-derived cd4-positive, alpha-beta t cell",cl:0000547,cl:0000547
 a2c8e1dc8cfc11ebb4592ee9d1c560f8,"naive thymus-derived cd4-positive, alpha-beta t cell",naive T cell,naïve t lymphocyte
 894153a423e011ecb7814e13412d27b3,"naive thymus-derived cd4-positive, alpha-beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",naive cd4 t cell
 519efe1402b711ec85669ed5fd6f2ffe,"naive thymus-derived cd4-positive, alpha-beta t cell",T cell,t lymphocyte
@@ -78,7 +78,7 @@ b919d4e04dff11ecb1a91aa839721c60,"naive thymus-derived cd4-positive, alpha-beta 
 5b7e02e0785b11eb8f737ade911e22f7,"naive thymus-derived cd4-positive, alpha-beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",naive cd4 t cell
 9834417ee6bd11eb9bb4beec3d5c720e,"naive thymus-derived cd4-positive, alpha-beta t cell",t cell,t cell
 382291f0ece911eb96cace7c85d10469,"naive thymus-derived cd4-positive, alpha-beta t cell",naive t cell,naive t cell
-e87649543f6311eb9b035a7c26289213,"naive thymus-derived cd4-positive, alpha-beta t cell",supporting cell of cochlea,cl:0002315
+e87649543f6311eb9b035a7c26289213,"naive thymus-derived cd4-positive, alpha-beta t cell",cl:0002315,cl:0002315
 85b2780650b011eca4314690da3920ef,"naive thymus-derived cd4-positive, alpha-beta t cell",t cell,t cell
 9419682e6f3211eb8e954e1098597fe8,"naive thymus-derived cd4-positive, alpha-beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",naïve cd4 t cell
 195f02bc608d11edaf347a76ff6a0874,"naive thymus-derived cd4-positive, alpha-beta t cell",T cell,t lymphocyte
@@ -191,7 +191,7 @@ ef80ebb48d0111eb894022587c8bf21f,"central memory cd4-positive, alpha-beta t cell
 5cabc19ae40611ebb6ab32f1f7b8a178,"central memory cd4-positive, alpha-beta t cell",naive t cell,naive t cell
 5ee94bd8230f11ecacbb465c28d60fa8,"central memory cd4-positive, alpha-beta t cell",t cell,t cell
 cfb2f97a48b611ea8957bafe6d70929e,"central memory cd4-positive, alpha-beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",naïve cd4+ t cell
-16a53b1a609a11edba329e19a2629b2e,"central memory cd4-positive, alpha-beta t cell","activated CD4-positive, alpha-beta T cell",cd4-positive alpha-beta t cell
+16a53b1a609a11edba329e19a2629b2e,"central memory cd4-positive, alpha-beta t cell","CD4-positive, alpha-beta T cell",cd4-positive alpha-beta t cell
 f1d0d1da76f011eb9e6a262e4d0064cc,"central memory cd4-positive, alpha-beta t cell",cytotoxic T cell,naive cytotoxic t cell
 7ef727a8f7e711ecb1715e1ef278d88a,"central memory cd4-positive, alpha-beta t cell",naive t cell,naive t cell
 a76f0a26489811ea92388a6a0c683ffb,"central memory cd4-positive, alpha-beta t cell","CD4-positive, alpha-beta memory T cell",cd4+ t cell
@@ -212,7 +212,7 @@ a1d64c38230c11eb9e6016fcd894d086,"central memory cd4-positive, alpha-beta t cell
 033b6762c9fa11ebbe02e242efb8f7b8,"central memory cd4-positive, alpha-beta t cell",memory t cell,memory t cell
 d1e77dd0286411ec953b36d5f3074b28,"central memory cd4-positive, alpha-beta t cell","CD4-positive, alpha-beta T cell",cd4 t lymphocyte
 a95640808d0111eba8fc0e09ff586e2a,"central memory cd4-positive, alpha-beta t cell",naive t cell,naive t cell
-bca458fe6e5511eb8aa986621ebdbf37,"central memory cd4-positive, alpha-beta t cell",mature alpha-beta T cell,alpha beta t cell
+bca458fe6e5511eb8aa986621ebdbf37,"central memory cd4-positive, alpha-beta t cell",alpha-beta T cell,alpha beta t cell
 e9dc2938230811ec89cc0e1df9dfbf1c,"central memory cd4-positive, alpha-beta t cell",t cell,t cell
 a6f683b4609911edb77612a4eb21bec8,"central memory cd4-positive, alpha-beta t cell","CD4-positive, alpha-beta T cell",cd4-positive t cell
 cc6c2124315611eebf058a4e77219021,"central memory cd4-positive, alpha-beta t cell","CD4-positive, alpha-beta T cell",cd4-positive t cell
@@ -235,7 +235,7 @@ b86ec6c001d011ecafff5e625bcc3358,"effector memory cd8-positive, alpha-beta t cel
 ee0c7dac6e5c11eb9751364c17c50e30,"effector memory cd8-positive, alpha-beta t cell",natural killer cell,natural killer cell
 e19bef546f2d11eb9c86fece995c7c24,"effector memory cd8-positive, alpha-beta t cell","CD8-positive, alpha-beta T cell",cd8-positive alpha‑beta t cell
 cfa1c65a48b611ea8957bafe6d70929e,"effector memory cd8-positive, alpha-beta t cell","CD8-positive, alpha-beta T cell",cd8-positive alpha beta t cell
-6cce561201e011ec97d1be2f1bab6958,"effector memory cd8-positive, alpha-beta t cell",T3 B cell,cl:0000960
+6cce561201e011ec97d1be2f1bab6958,"effector memory cd8-positive, alpha-beta t cell",cl:0000960,cl:0000960
 b88b566e01d011ecafff5e625bcc3358,"effector memory cd8-positive, alpha-beta t cell",cytotoxic T cell,cytotoxic t lymphocyte
 cfcc2fa86e5d11ebb859b2d8774afeef,"effector memory cd8-positive, alpha-beta t cell","CD8-positive, alpha-beta T cell",cd8-positive alpha beta t cell
 b8bfd0ba01d011ecafff5e625bcc3358,"effector memory cd8-positive, alpha-beta t cell","CD8-positive, alpha-beta T cell",cd8-positive alpha‑beta t cell
@@ -440,7 +440,7 @@ e072ec0c7aba11ebad9a8efd66e37e75,memory b cell,naive b cell,naive b cell
 cfcfe2386e5d11ebb859b2d8774afeef,memory b cell,b cell,b cell
 bd35519c6e5511ebaf139a72df013a78,mucosal invariant t cell,"CD4-positive, alpha-beta memory T cell",cd4+ memory t cell
 f1e64dfc746711eb96b76e4cdef221b1,mucosal invariant t cell,"CD8-positive, alpha-beta cytotoxic T cell",cd8-positive cytotoxic t cell
-6cd8116a48b511ea87c666a4322bd84a,mucosal invariant t cell,bone cell,cl:0001035
+6cd8116a48b511ea87c666a4322bd84a,mucosal invariant t cell,cl:0001035,cl:0001035
 2a80c9fc786011eb89635e6022866806,mucosal invariant t cell,"CD8-positive, alpha-beta cytotoxic T cell","t lymphocyte, cytotoxic (cd8+)"
 ca17ffa003be11ecb0781e3062362594,mucosal invariant t cell,"CD4-positive, alpha-beta T cell",cd4 t cell
 119811a6746a11eba6ee4656f02e1fdd,mucosal invariant t cell,memory T cell,memory t lymphocyte
@@ -497,7 +497,7 @@ f4cc8a84aa9f11ed9aab225a04bc010d,"central memory cd8-positive, alpha-beta t cell
 04ca5ac0cd2411eb93671e348710f99d,"central memory cd8-positive, alpha-beta t cell","CD8-positive, alpha-beta T cell",cd8-positive alpha-beta t cell
 a72b888c489811ea92388a6a0c683ffb,"central memory cd8-positive, alpha-beta t cell",cytotoxic T cell,naïve cytotoxic t cell
 aae4b692770411eba803caccc32ef9e2,"central memory cd8-positive, alpha-beta t cell",t cell,t cell
-f77521ce50be11eca58a4e8e993d3e95,"central memory cd8-positive, alpha-beta t cell",beige adipocyte,cl:0001070
+f77521ce50be11eca58a4e8e993d3e95,"central memory cd8-positive, alpha-beta t cell",cl:0001070,cl:0001070
 ed24e320a2d211eb8aafd2fff04d1a29,"cd4-positive, alpha-beta memory t cell",cytotoxic T cell,cytotoxic t lymphocyte
 b2750d80e8ba11eb951c4a933a1ddc30,"cd4-positive, alpha-beta memory t cell",cytotoxic T cell,cytotoxic t lymphocyte
 aaf5f416770411eba803caccc32ef9e2,"cd4-positive, alpha-beta memory t cell","CD8-positive, alpha-beta memory T cell",cd8+ t cell
@@ -671,7 +671,7 @@ f78315cc50be11eca58a4e8e993d3e95,cd8aa(i) thymocyte,"CD4-positive, alpha-beta T 
 6ac144e2862c11ee940e0ac85bd578c5,cd8aa(i) thymocyte,cytotoxic t cell,cytotoxic t cell
 5d533a727abd11eb894e066fae99c4f2,cd8aa(i) thymocyte,"CD8-positive, alpha-beta memory T cell",cd8+ t cell
 168f7b86609a11edba329e19a2629b2e,cd8aa(i) thymocyte,T cell,t lymphocyte
-42108eeebfd311eb8ffe429043368bdd,cd8aa(i) thymocyte,cholinergic neuron,cl:0000108
+42108eeebfd311eb8ffe429043368bdd,cd8aa(i) thymocyte,cl:0000108,cl:0000108
 e89a6f503f6311eb9b035a7c26289213,cd8aa(i) thymocyte,"cd4-positive, alpha-beta t cell","cd4-positive, alpha-beta t cell"
 69b5d4febfd811eb9045460ae879a467,cd8aa(i) thymocyte,T cell,t lymphocyte
 9c4cda0c748d11eb8ec6c6eb439e4cc3,cd8aa(i) thymocyte,cytotoxic T cell,cytotoxic t lymphocyte
@@ -805,7 +805,7 @@ a50b8700003e11ec836f122ea675d063,"cd8-positive, alpha-beta regulatory t cell",t 
 b8a7eb8001d011ecafff5e625bcc3358,"cd8-positive, alpha-beta memory t cell",cytotoxic T cell,cytotoxic t lymphocyte
 47d5a2606f3311eb99c592dad4245022,"cd8-positive, alpha-beta memory t cell","CD4-positive, alpha-beta memory T cell","cd4+ t cell, memory"
 e879395c3f6311eb9b035a7c26289213,"cd8-positive, alpha-beta memory t cell","CD4-positive, alpha-beta memory T cell",cd4+ t cell
-9fceca9476f611ebbe1a0a9c4ec18e1b,"cd8-positive, alpha-beta memory t cell","activated CD4-positive, alpha-beta T cell",cd4-positive alpha-beta t cell
+9fceca9476f611ebbe1a0a9c4ec18e1b,"cd8-positive, alpha-beta memory t cell","CD4-positive, alpha-beta T cell",cd4-positive alpha-beta t cell
 95aac88ec9fc11eb8b6656baa5e4f345,"cd8-positive, alpha-beta memory t cell","CD8-positive, alpha-beta T cell","cd8-positive, alpha beta t cell"
 7ce451ce6f3111eb96976aecf4743d14,"cd8-positive, alpha-beta memory t cell",alpha-beta t cell,alpha-beta t cell
 ed3ca2a8a2d211eb8aafd2fff04d1a29,"cd8-positive, alpha-beta memory t cell",gamma-delta T cell,gamma delta t lymphocyte
@@ -835,15 +835,15 @@ ff214c42a2d911eb97dcb29064131379,t cell,"CD4-positive, alpha-beta memory T cell"
 2f3243a2a2ce11ebbbe71e4a3e83c3e1,t cell,"cd8-positive, alpha-beta t cell","cd8-positive, alpha-beta t cell"
 7669e616230911ebaa61d20a4a12f3ba,t cell,natural killer cell,natural killer cell
 bcbb16de7abc11ebac911e12d1777b84,t cell,"CD8-positive, alpha-beta T cell",cd8-positive alpha-beta t cell
-efa0ef4a8d0111eb894022587c8bf21f,t cell,odontoclast,cl:0000588
+efa0ef4a8d0111eb894022587c8bf21f,t cell,cl:0000588,cl:0000588
 29685b3eaa6311ed996536bac5d04f15,t cell,cytotoxic T cell,cytotoxic t lymphocyte
 af5f6668005711ecacf076742455fe92,t cell,naive T cell,"t cell, naive"
 5fbbe4946f3211eb96f96a584edb8b14,innate lymphoid cell,gamma-delta t cell,gamma-delta t cell
 66cdbeb04e0211ec853ad229c2defbef,innate lymphoid cell,naive T cell,naïve t cell
 b879d15e230f11ecabe4662b93aa8aaf,innate lymphoid cell,naive t cell,naive t cell
 1ebd9ab850b511ec8fafd2849fb52a10,innate lymphoid cell,gamma-delta T cell,gamma/delta t cell
-a05c7270e6b011eb9e5fd64aa79f082e,innate lymphoid cell,"activated CD4-positive, alpha-beta T cell",cd4-positive alpha-beta t cell
-7e3a5c6ee40511eb8b4326d57b156660,innate lymphoid cell,"activated CD4-positive, alpha-beta T cell",cd4-positive alpha-beta t cell
+a05c7270e6b011eb9e5fd64aa79f082e,innate lymphoid cell,"CD4-positive, alpha-beta T cell",cd4-positive alpha-beta t cell
+7e3a5c6ee40511eb8b4326d57b156660,innate lymphoid cell,"CD4-positive, alpha-beta T cell",cd4-positive alpha-beta t cell
 47e2e77c6f3311eb99c592dad4245022,innate lymphoid cell,"naive thymus-derived CD4-positive, alpha-beta T cell",naive cd4 t cell
 06e358f202b711ec88cb72995a34965f,innate lymphoid cell,naive t cell,naive t cell
 c11ce7286e5c11eb95e9cea56c494de4,innate lymphoid cell,gamma-delta T cell,gamma delta t cell
@@ -994,7 +994,7 @@ bf4a31f8e6b611eb904c4e74f324a9a5,basophil mast progenitor cell,mast cell,mast ce
 0f20ebf6745a11eb9460023cc5433a03,basophil mast progenitor cell,mast cell,mast cell
 46cca0d8488011eaa581ba6d6c7b9f21,basophil mast progenitor cell,mast cell,mast cell
 0a97f322230f11eca42fde90f8d872f1,basophil mast progenitor cell,mast cell,mast cell
-a50c31be003e11ec836f122ea675d063,basophil mast progenitor cell,alveolar macrophage,cl:0000583
+a50c31be003e11ec836f122ea675d063,basophil mast progenitor cell,cl:0000583,cl:0000583
 66daa5304e0211ec853ad229c2defbef,basophil mast progenitor cell,mast cell,mast cell
 0baa3f544e0711eca047fac6813609fb,basophil mast progenitor cell,mast cell,mast cell
 94a06ade862911eebdc19e04fa809629,basophil mast progenitor cell,mast cell,mast cell

@@ -2653,7 +2653,7 @@ ef864c808d0111eb894022587c8bf21f,"cd14-positive, cd16-negative classical monocyt
 2368fad4770411eb97ab6e0733497e1b,"cd14-positive, cd16-negative classical monocyte",classical monocyte,classical monocyte
 35e45d887b7911ebad508aeddc44df84,"cd14-positive, cd16-negative classical monocyte",monocyte,monocyte
 765f9d14230911ebaa61d20a4a12f3ba,"cd14-positive, cd16-negative classical monocyte",classical monocyte,classical monocyte
-27acb128ca0411ebbb136a0d2fbd39b2,"cd14-positive, cd16-negative classical monocyte",macrophage,inflammatory macrophage
+27acb128ca0411ebbb136a0d2fbd39b2,"cd14-positive, cd16-negative classical monocyte",M1 macrophage,inflammatory macrophage
 35e801ea7b7911ebad508aeddc44df84,"cd14-positive, cd16-negative classical monocyte",classical monocyte,classical monocyte
 0cccb27aecc011eb966bfa1af6d99fe6,"cd14-positive, cd16-negative classical monocyte",classical monocyte,classical monocyte
 566e78228cfe11eba258b6b4610d6042,"cd14-positive, cd16-negative classical monocyte",classical monocyte,classical monocyte
@@ -3357,7 +3357,7 @@ dd0a7690862c11ee941c7e9dd60efb6e,"cd14-positive, cd16-negative classical monocyt
 91ea89e2fed011eb850e06aac0d344cf,"cd14-positive, cd16-negative classical monocyte",monocyte,monocyte
 1690b960609a11edba329e19a2629b2e,"cd14-positive, cd16-negative classical monocyte",classical monocyte,classical monocyte
 64e25446009911eca7f7ce4e40ea87f1,"cd14-positive, cd16-negative classical monocyte",macrophage,macrophage
-53c60f8076f711eb928cf2a688aad71a,"cd14-positive, cd16-negative classical monocyte",macrophage,inflammatory macrophage
+53c60f8076f711eb928cf2a688aad71a,"cd14-positive, cd16-negative classical monocyte",M1 macrophage,inflammatory macrophage
 d0fee2b2e6bc11eb939cb62884aae3d6,"cd14-positive, cd16-negative classical monocyte",monocyte,monocyte
 cca24b02862c11ee8a3c42211af86f48,"cd14-positive, cd16-negative classical monocyte",classical monocyte,classical monocyte
 878174de3eb911ebbd2bce3634ddd007,"cd14-positive, cd16-negative classical monocyte",monocyte,monocyte
@@ -8705,7 +8705,7 @@ df4029e0f7e011eca445621bb9b0c4af,"cd14-low, cd16-positive monocyte",non-classica
 c1fbab9e23dc11ec9545a2e3447e117e,"cd14-low, cd16-positive monocyte",non-classical monocyte,non-classical monocyte
 95cc654ce6b811ebbbef16f34851c28c,"cd14-low, cd16-positive monocyte",monocyte,monocyte
 e7f450f46f3111eb827116167e963c6a,"cd14-low, cd16-positive monocyte",monocyte,monocyte
-ff7456baca0411ebb3a7d6be6f26377c,"cd14-low, cd16-positive monocyte",macrophage,inflammatory macrophage
+ff7456baca0411ebb3a7d6be6f26377c,"cd14-low, cd16-positive monocyte",M1 macrophage,inflammatory macrophage
 127f6f96ece811eb858a9eed4000a1fb,"cd14-low, cd16-positive monocyte",non-classical monocyte,non-classical monocyte
 667151147b6e11eb80a1e2efff4d80b3,"cd14-low, cd16-positive monocyte",non-classical monocyte,non-classical monocyte
 574517b68cee11ebb2129e901b21dc73,"cd14-low, cd16-positive monocyte",monocyte,monocyte
@@ -8808,7 +8808,7 @@ bd2fabbee6bb11ebbaa13ebd4470af0a,"cd14-low, cd16-positive monocyte",non-classica
 1299c080ece811eb858a9eed4000a1fb,"cd14-low, cd16-positive monocyte",non-classical monocyte,non-classical monocyte
 e81c4650671811ed8197264aa0746ac0,"cd14-low, cd16-positive monocyte",monocyte,monocyte
 b5bf7ddcbfd311ebba58d6b31810e4ce,"cd14-low, cd16-positive monocyte",non-classical monocyte,non-classical monocyte
-687e3542ecea11eb8ac2be83dc4baba1,"cd14-low, cd16-positive monocyte",macrophage,inflammatory macrophage
+687e3542ecea11eb8ac2be83dc4baba1,"cd14-low, cd16-positive monocyte",M1 macrophage,inflammatory macrophage
 bc8be3326e5511eb8aa986621ebdbf37,"cd14-low, cd16-positive monocyte",monocyte,monocyte
 4adb19f8495111eaafc966679ef8dfee,"cd14-low, cd16-positive monocyte",non-classical monocyte,non-classical monocyte
 fc7e869c50b411ec942f6a58078e6e64,"cd14-low, cd16-positive monocyte",monocyte,monocyte
@@ -8839,7 +8839,7 @@ cfbaca9c48b611ea8957bafe6d70929e,"cd14-low, cd16-positive monocyte",monocyte,mon
 df36d5caf7e011eca445621bb9b0c4af,"cd14-low, cd16-positive monocyte",monocyte,monocyte
 7afaf80c795611eb98061e2958941ff5,"cd14-low, cd16-positive monocyte",monocyte,monocyte
 92068aacfed011eb850e06aac0d344cf,"cd14-low, cd16-positive monocyte",non-classical monocyte,non-classical monocyte
-c0a937746e5c11eb95e9cea56c494de4,"cd14-low, cd16-positive monocyte",macrophage,inflammatory macrophage
+c0a937746e5c11eb95e9cea56c494de4,"cd14-low, cd16-positive monocyte",M1 macrophage,inflammatory macrophage
 784f7e36862111ee998f1e061ab3328b,"cd14-low, cd16-positive monocyte",non-classical monocyte,non-classical monocyte
 95c79242e6b811ebbbef16f34851c28c,"cd14-low, cd16-positive monocyte",monocyte,monocyte
 05d312bc794211eb93b836d1cb6129eb,"cd14-low, cd16-positive monocyte",classical monocyte,classical monocyte

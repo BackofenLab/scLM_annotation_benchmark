@@ -121,7 +121,7 @@ human2_lib2.final_cell_0342,pancreatic a cell,insulin secreting cell,insulin sec
 human1_lib1.final_cell_0327,pancreatic a cell,insulin secreting cell,insulin secreting cell
 D28-8_86,pancreatic a cell,smooth muscle fiber of duodenum,smooth muscle fiber of duodenum
 D31-3_90,pancreatic a cell,smooth muscle fiber of duodenum,smooth muscle fiber of duodenum
-human3_lib2.final_cell_0356,pancreatic a cell,macrophage,alternatively activated macrophage
+human3_lib2.final_cell_0356,pancreatic a cell,M2 macrophage,alternatively activated macrophage
 human3_lib4.final_cell_0486,pancreatic a cell,pancreatic endocrine cell,pancreatic endocrine cell
 human1_lib3.final_cell_0674,pancreatic a cell,mesothelial cell of small intestine,mesothelial cell of small intestine
 D31-4_7,pancreatic a cell,smooth muscle fiber of duodenum,smooth muscle fiber of duodenum
@@ -191,7 +191,7 @@ human4_lib1.final_cell_0108,pancreatic a cell,stomach enteroendocrine cell,stoma
 D30-7_25,pancreatic a cell,smooth muscle fiber of jejunum,smooth muscle fiber of jejunum
 human3_lib1.final_cell_0417,pancreatic a cell,myenteric ganglion of small intestine vip/gal neuron,myenteric ganglion of small intestine vip/gal neuron
 D29-6_21,pancreatic a cell,interrenal epinephrin secreting cell,interrenal epinephrin secreting cell
-human3_lib3.final_cell_0183,pancreatic a cell,macrophage,alternatively activated macrophage
+human3_lib3.final_cell_0183,pancreatic a cell,M2 macrophage,alternatively activated macrophage
 human1_lib3.final_cell_0242,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0405,pancreatic a cell,smooth muscle fiber of duodenum,smooth muscle fiber of duodenum
 human4_lib1.final_cell_0424,pancreatic a cell,smooth muscle fiber of duodenum,smooth muscle fiber of duodenum
@@ -1684,7 +1684,7 @@ D29-5_7,pancreatic a cell,type g enteroendocrine cell,type g enteroendocrine cel
 D29-3_77,pancreatic a cell,progenitor cell of endocrine pancreas,progenitor cell of endocrine pancreas
 human1_lib3.final_cell_0299,pancreatic a cell,stromal cell of pancreas,stromal cell of pancreas
 D29-2_35,pancreatic a cell,progenitor cell of endocrine pancreas,progenitor cell of endocrine pancreas
-human4_lib3.final_cell_0646,pancreatic a cell,macrophage,alternatively activated macrophage
+human4_lib3.final_cell_0646,pancreatic a cell,M2 macrophage,alternatively activated macrophage
 human4_lib3.final_cell_0280,pancreatic a cell,type g enteroendocrine cell,type g enteroendocrine cell
 human2_lib1.final_cell_0120,pancreatic a cell,smooth muscle fiber of duodenum,smooth muscle fiber of duodenum
 D72_91,pancreatic a cell,insulin secreting cell,insulin secreting cell
@@ -2139,7 +2139,7 @@ human3_lib1.final_cell_0541,pancreatic a cell,insulin secreting cell,insulin sec
 human3_lib4.final_cell_0304,pancreatic a cell,stromal cell of pancreas,stromal cell of pancreas
 D74_56,pancreatic a cell,smooth muscle fiber of duodenum,smooth muscle fiber of duodenum
 D30-5_20,pancreatic a cell,smooth muscle fiber of jejunum,smooth muscle fiber of jejunum
-human3_lib2.final_cell_0557,pancreatic a cell,macrophage,alternatively activated macrophage
+human3_lib2.final_cell_0557,pancreatic a cell,M2 macrophage,alternatively activated macrophage
 D17TGFB_95,pancreatic a cell,insulin secreting cell,insulin secreting cell
 human4_lib3.final_cell_0681,pancreatic a cell,smooth muscle cell of small intestine,smooth muscle cell of small intestine
 human1_lib1.final_cell_0433,pancreatic a cell,epithelial cell of exocrine pancreas,epithelial cell of exocrine pancreas
@@ -2576,7 +2576,7 @@ D71_58,pancreatic a cell,nfol nn_2 rgs16 newly formed oligodendrocyte (mmus),nfo
 human2_lib2.final_cell_0537,pancreatic a cell,myenteric ganglion of small intestine nnos/vip neuron,myenteric ganglion of small intestine nnos/vip neuron
 human3_lib2.final_cell_0545,pancreatic a cell,smooth muscle cell of small intestine,smooth muscle cell of small intestine
 human1_lib2.final_cell_0608,pancreatic a cell,adipocyte of breast,adipocyte of breast
-human3_lib4.final_cell_0084,pancreatic a cell,macrophage,alternatively activated macrophage
+human3_lib4.final_cell_0084,pancreatic a cell,M2 macrophage,alternatively activated macrophage
 human4_lib3.final_cell_0164,pancreatic a cell,smooth muscle cell of small intestine,smooth muscle cell of small intestine
 D29-4_66,pancreatic a cell,smooth muscle fiber of jejunum,smooth muscle fiber of jejunum
 human3_lib4.final_cell_0400,pancreatic a cell,smooth muscle fiber of ileum,smooth muscle fiber of ileum
@@ -9904,9 +9904,9 @@ D30-7_88,macrophage,splenic metallophillic macrophage,splenic metallophillic mac
 human2_lib3.final_cell_0077,macrophage,colon macrophage,colon macrophage
 human3_lib1.final_cell_0556,macrophage,colon macrophage,colon macrophage
 human2_lib2.final_cell_0150,macrophage,suppressor macrophage,suppressor macrophage
-human2_lib3.final_cell_0147,macrophage,macrophage,inflammatory macrophage
+human2_lib3.final_cell_0147,macrophage,M1 macrophage,inflammatory macrophage
 human3_lib3.final_cell_0908,macrophage,lipid-associated macrophage,lipid-associated macrophage
-human2_lib2.final_cell_0348,macrophage,macrophage,inflammatory macrophage
+human2_lib2.final_cell_0348,macrophage,M1 macrophage,inflammatory macrophage
 human3_lib4.final_cell_0480,macrophage,monocyte-derived kupffer cell,monocyte-derived kupffer cell
 D30-5_41,macrophage,anorectum macrophage,anorectum macrophage
 D28-8_42,macrophage,pancreatic islet capillary endothelial cell,pancreatic islet capillary endothelial cell
@@ -9924,32 +9924,32 @@ human4_lib1.final_cell_0035,macrophage,lipid-associated macrophage,lipid-associa
 D28-3_88,macrophage,splenic metallophillic macrophage,splenic metallophillic macrophage
 human2_lib2.final_cell_0120,macrophage,colon macrophage,colon macrophage
 human2_lib3.final_cell_0562,macrophage,appendix macrophage,appendix macrophage
-human4_lib1.final_cell_0096,macrophage,macrophage,inflammatory macrophage
+human4_lib1.final_cell_0096,macrophage,M1 macrophage,inflammatory macrophage
 human2_lib1.final_cell_0040,macrophage,colon macrophage,colon macrophage
-human4_lib3.final_cell_0215,macrophage,macrophage,inflammatory macrophage
-human1_lib3.final_cell_0546,macrophage,macrophage,inflammatory macrophage
-D28-6_15,macrophage,macrophage,inflammatory macrophage
+human4_lib3.final_cell_0215,macrophage,M1 macrophage,inflammatory macrophage
+human1_lib3.final_cell_0546,macrophage,M1 macrophage,inflammatory macrophage
+D28-6_15,macrophage,M1 macrophage,inflammatory macrophage
 human1_lib2.final_cell_0303,macrophage,lipid-associated macrophage,lipid-associated macrophage
 D31-5_72,macrophage,kit-positive macrophage dendritic cell progenitor,kit-positive macrophage dendritic cell progenitor
 human3_lib4.final_cell_0886,macrophage,colon macrophage,colon macrophage
-human2_lib1.final_cell_0167,macrophage,macrophage,inflammatory macrophage
-human3_lib1.final_cell_0489,macrophage,macrophage,inflammatory macrophage
+human2_lib1.final_cell_0167,macrophage,M1 macrophage,inflammatory macrophage
+human3_lib1.final_cell_0489,macrophage,M1 macrophage,inflammatory macrophage
 human2_lib1.final_cell_0544,macrophage,motilin secreting cell,motilin secreting cell
 human1_lib2.final_cell_0343,macrophage,colon macrophage,colon macrophage
 human4_lib1.final_cell_0579,macrophage,dural macrophage,dural macrophage
 human3_lib3.final_cell_0883,macrophage,lung migratory dendritic cell,lung migratory dendritic cell
 human1_lib1.final_cell_0288,macrophage,lipid-associated macrophage,lipid-associated macrophage
-human3_lib3.final_cell_0413,macrophage,macrophage,inflammatory macrophage
+human3_lib3.final_cell_0413,macrophage,M1 macrophage,inflammatory macrophage
 human1_lib2.final_cell_0499,macrophage,colon macrophage,colon macrophage
 human2_lib2.final_cell_0394,macrophage,suppressor macrophage,suppressor macrophage
 D29-8_67,macrophage,splenic metallophillic macrophage,splenic metallophillic macrophage
-human1_lib2.final_cell_0287,macrophage,macrophage,inflammatory macrophage
-human2_lib3.final_cell_0271,macrophage,macrophage,inflammatory macrophage
-human1_lib3.final_cell_0613,macrophage,macrophage,inflammatory macrophage
-human2_lib1.final_cell_0422,macrophage,macrophage,inflammatory macrophage
+human1_lib2.final_cell_0287,macrophage,M1 macrophage,inflammatory macrophage
+human2_lib3.final_cell_0271,macrophage,M1 macrophage,inflammatory macrophage
+human1_lib3.final_cell_0613,macrophage,M1 macrophage,inflammatory macrophage
+human2_lib1.final_cell_0422,macrophage,M1 macrophage,inflammatory macrophage
 human1_lib2.final_cell_0149,macrophage,dural macrophage,dural macrophage
 D28-8_50,macrophage,sirpa-negative adipose dendritic cell,sirpa-negative adipose dendritic cell
-human3_lib3.final_cell_0855,macrophage,macrophage,inflammatory macrophage
+human3_lib3.final_cell_0855,macrophage,M1 macrophage,inflammatory macrophage
 D29-2_49,macrophage,stromal cell of pancreas,stromal cell of pancreas
 human1_lib3.final_cell_0530,mast cell,smooth muscle fiber of duodenum,smooth muscle fiber of duodenum
 human2_lib3.final_cell_0496,mast cell,cd25+ mast cell,cd25+ mast cell

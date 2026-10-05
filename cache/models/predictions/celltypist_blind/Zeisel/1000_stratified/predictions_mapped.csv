@@ -286,7 +286,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X28_4:CGTCCATGCCGTTC,gabaergic neuron,VIP GABAergic interneuron,vip
 10X24_2:TTAGTCACCTAGAC,gabaergic neuron,L2/3 intratelencephalic projecting glutamatergic neuron,l2/3 it entl
 10X38_1:GGATACTGCAGCTA,gabaergic neuron,pvalb GABAergic interneuron,pvalb
-10X38_3:TAAATCGATACTCT,gabaergic neuron,GABAergic interneuron,lamp5
+10X38_3:TAAATCGATACTCT,gabaergic neuron,lamp5 GABAergic interneuron,lamp5
 10X52_3:CACAATCTGCTTCC,gabaergic neuron,endothelial cell,endo
 10X50_3:CGACCTACACCTCC,gabaergic neuron,astrocyte,astro
 10X04_4:CTACCTCTGACTAC,gabaergic neuron,microglial cell,micro-pvm
@@ -316,7 +316,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X38_1:AGTAATACCCACAA,gabaergic neuron,interneuron,sst
 10X05_4:GGACCCGAGAATCC,gabaergic neuron,pvalb GABAergic interneuron,pvalb
 10X28_5:CTATCAACCCATAG,gabaergic neuron,L2/3 intratelencephalic projecting glutamatergic neuron,l2/3 it entl
-10X38_3:TACGGCCTCTTCTA,gabaergic neuron,GABAergic interneuron,lamp5
+10X38_3:TACGGCCTCTTCTA,gabaergic neuron,lamp5 GABAergic interneuron,lamp5
 10X49_4:GACAACTGCGTAGT,gabaergic neuron,dentate gyrus neuron,dg
 10X38_1:TGAGCAACCTCATT,gabaergic neuron,interneuron,sst
 10X26_4:TATGGGTGGGTACT,gabaergic neuron,L2/3 intratelencephalic projecting glutamatergic neuron,l2/3 it entl
@@ -349,9 +349,9 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X49_5:ATAGGCTGCGAACT,gabaergic neuron,L5/6 near-projecting glutamatergic neuron,l5/6 np ctx
 10X43_3:TGATAAACCTGGTA,gabaergic neuron,L4/5 intratelencephalic projecting glutamatergic neuron,l4/5 it ctx
 10X36_3:ATGAAACTGGTCAT,gabaergic neuron,pvalb GABAergic interneuron,pvalb
-10X52_2:AACGTGTGTCAAGC,gabaergic neuron,GABAergic interneuron,lamp5
+10X52_2:AACGTGTGTCAAGC,gabaergic neuron,lamp5 GABAergic interneuron,lamp5
 10X49_4:ATTGTAGAGCCATA,gabaergic neuron,astrocyte,astro
-10X38_3:TGGATGACTCACCC,gabaergic neuron,GABAergic interneuron,lamp5
+10X38_3:TGGATGACTCACCC,gabaergic neuron,lamp5 GABAergic interneuron,lamp5
 10X38_2:CTAATGCTACGACT,gabaergic neuron,interneuron,sst
 10X26_3:ATCACGGAGAGGCA,gabaergic neuron,L2/3 intratelencephalic projecting glutamatergic neuron,l2/3 it entl
 10X24_2:TAATGCCTCAACCA,gabaergic neuron,L2/3 intratelencephalic projecting glutamatergic neuron,l2/3 it ctx
@@ -366,7 +366,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X49_5:CTATTGACACAGTC,gabaergic neuron,L2/3 intratelencephalic projecting glutamatergic neuron,l2/3 it ctx
 10X28_4:ATCTACTGTCTGGA,gabaergic neuron,VIP GABAergic interneuron,vip
 10X20_2:GCCTACACGCTTAG,gabaergic neuron,pvalb GABAergic interneuron,pvalb
-10X07_1:AAATCTGAGGAGGT,gabaergic neuron,GABAergic interneuron,lamp5
+10X07_1:AAATCTGAGGAGGT,gabaergic neuron,lamp5 GABAergic interneuron,lamp5
 10X38_2:ATTGCACTCCGATA,gabaergic neuron,VIP GABAergic interneuron,vip
 10X28_5:CGTTAACTCCGCTT,gabaergic neuron,oligodendrocyte,oligo
 10X35_1:GCATTGGATGTTTC,gabaergic neuron,VIP GABAergic interneuron,vip
@@ -377,7 +377,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X52_1:TTAGTCTGTCGCAA,gabaergic neuron,pyramidal neuron,ca1-pros
 10X24_1:GTGATCGATCCCGT,gabaergic neuron,astrocyte,astro
 10X49_4:CGCGAGACGGAGCA,gabaergic neuron,L2/3 intratelencephalic projecting glutamatergic neuron,l2/3 it ppp
-10X38_2:TCGACGCTCGCTAA,gabaergic neuron,GABAergic interneuron,lamp5
+10X38_2:TCGACGCTCGCTAA,gabaergic neuron,lamp5 GABAergic interneuron,lamp5
 10X50_5:ATTTAGGACACTCC,gabaergic neuron,interneuron,sst
 10X24_2:TGCGAAACCGGTAT,gabaergic neuron,L2/3 intratelencephalic projecting glutamatergic neuron,l2/3 it entl
 10X50_4:ACACGAACTGGAGG,gabaergic neuron,microglial cell,micro-pvm

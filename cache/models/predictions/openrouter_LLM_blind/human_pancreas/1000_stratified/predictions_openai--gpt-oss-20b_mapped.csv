@@ -504,7 +504,7 @@ human1_lib1.final_cell_0115,type b pancreatic cell,type B pancreatic cell,beta c
 human4_lib3.final_cell_0029,type b pancreatic cell,type B pancreatic cell,pancreatic beta cell
 D31-1_47,type b pancreatic cell,type B pancreatic cell,beta cell
 human2_lib1.final_cell_0513,type b pancreatic cell,type B pancreatic cell,beta cell (pancreatic)
-D74_83,type b pancreatic cell,multipolar neuron,cl:0000104
+D74_83,type b pancreatic cell,cl:0000104,cl:0000104
 human3_lib1.final_cell_0424,type b pancreatic cell,type B pancreatic cell,beta cell
 human1_lib2.final_cell_0123,type b pancreatic cell,type B pancreatic cell,beta cell
 human1_lib1.final_cell_0471,type b pancreatic cell,type B pancreatic cell,beta cell
@@ -654,7 +654,7 @@ D10631_2,pancreatic ductal cell,keratinocyte,keratinocyte
 human4_lib3.final_cell_0096,pancreatic ductal cell,intestinal epithelial cell,intestinal epithelial cell
 human4_lib3.final_cell_0252,pancreatic ductal cell,epithelial cell,epithelial cell
 D71_14,pancreatic ductal cell,epithelial cell,epithelial cell
-human4_lib3.final_cell_0309,pancreatic ductal cell,odontoblast,cl:0000060
+human4_lib3.final_cell_0309,pancreatic ductal cell,cl:0000060,cl:0000060
 human2_lib2.final_cell_0314,pancreatic ductal cell,epithelial cell,epithelial cell
 D30-8_93,pancreatic ductal cell,intestinal epithelial cell,intestinal epithelial cell
 D28-7_50,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
@@ -931,7 +931,7 @@ human1_lib3.final_cell_0621,endothelial cell,endothelial cell,endothelial cell
 human1_lib1.final_cell_0457,endothelial cell,blood vessel endothelial cell,blood vessel endothelial cell
 human1_lib2.final_cell_0520,endothelial cell,endothelial cell,endothelial cell
 human1_lib3.final_cell_0676,endothelial cell,blood vessel endothelial cell,blood vessel endothelial cell
-human1_lib2.final_cell_0611,endothelial cell,blood vessel endothelial cell,vascular endothelial cell
+human1_lib2.final_cell_0611,endothelial cell,endothelial cell of vascular tree,vascular endothelial cell
 human3_lib1.final_cell_0436,endothelial cell,endothelial cell,endothelial cell
 human1_lib2.final_cell_0472,endothelial cell,endothelial cell,endothelial cell
 human1_lib3.final_cell_0710,endothelial cell,endothelial cell,endothelial cell

@@ -121,7 +121,7 @@ human2_lib2.final_cell_0342,pancreatic a cell,insulin secreting cell,insulin sec
 human1_lib1.final_cell_0327,pancreatic a cell,insulin secreting cell,insulin secreting cell
 D28-8_86,pancreatic a cell,smooth muscle fiber of duodenum,smooth muscle fiber of duodenum
 D31-3_90,pancreatic a cell,smooth muscle fiber of duodenum,smooth muscle fiber of duodenum
-human3_lib2.final_cell_0356,pancreatic a cell,macrophage,alternatively activated macrophage
+human3_lib2.final_cell_0356,pancreatic a cell,M2 macrophage,alternatively activated macrophage
 human3_lib4.final_cell_0486,pancreatic a cell,pancreatic endocrine cell,pancreatic endocrine cell
 human1_lib3.final_cell_0674,pancreatic a cell,mesothelial cell of small intestine,mesothelial cell of small intestine
 D31-4_7,pancreatic a cell,smooth muscle fiber of duodenum,smooth muscle fiber of duodenum
@@ -189,7 +189,7 @@ human4_lib1.final_cell_0108,pancreatic a cell,stomach enteroendocrine cell,stoma
 D30-7_25,pancreatic a cell,smooth muscle fiber of jejunum,smooth muscle fiber of jejunum
 human3_lib1.final_cell_0417,pancreatic a cell,myenteric ganglion of small intestine vip/gal neuron,myenteric ganglion of small intestine vip/gal neuron
 D29-6_21,pancreatic a cell,interrenal epinephrin secreting cell,interrenal epinephrin secreting cell
-human3_lib3.final_cell_0183,pancreatic a cell,macrophage,alternatively activated macrophage
+human3_lib3.final_cell_0183,pancreatic a cell,M2 macrophage,alternatively activated macrophage
 human1_lib3.final_cell_0242,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0405,pancreatic a cell,smooth muscle fiber of duodenum,smooth muscle fiber of duodenum
 human3_lib2.final_cell_0719,pancreatic a cell,pancreatic endocrine cell,pancreatic endocrine cell
@@ -949,12 +949,12 @@ human3_lib3.final_cell_0883,macrophage,lung migratory dendritic cell,lung migrat
 D1713_62,macrophage,pancreatic islet capillary endothelial cell,pancreatic islet capillary endothelial cell
 human2_lib2.final_cell_0150,macrophage,suppressor macrophage,suppressor macrophage
 human1_lib2.final_cell_0149,macrophage,dural macrophage,dural macrophage
-human2_lib1.final_cell_0167,macrophage,macrophage,inflammatory macrophage
+human2_lib1.final_cell_0167,macrophage,M1 macrophage,inflammatory macrophage
 human3_lib4.final_cell_0574,macrophage,lung macrophage,lung macrophage
-human1_lib3.final_cell_0613,macrophage,macrophage,inflammatory macrophage
+human1_lib3.final_cell_0613,macrophage,M1 macrophage,inflammatory macrophage
 human1_lib2.final_cell_0343,macrophage,colon macrophage,colon macrophage
 D30-5_41,macrophage,anorectum macrophage,anorectum macrophage
-D28-6_15,macrophage,macrophage,inflammatory macrophage
+D28-6_15,macrophage,M1 macrophage,inflammatory macrophage
 human4_lib1.final_cell_0349,macrophage,colon macrophage,colon macrophage
 human3_lib4.final_cell_0480,macrophage,monocyte-derived kupffer cell,monocyte-derived kupffer cell
 D29-8_67,macrophage,splenic metallophillic macrophage,splenic metallophillic macrophage

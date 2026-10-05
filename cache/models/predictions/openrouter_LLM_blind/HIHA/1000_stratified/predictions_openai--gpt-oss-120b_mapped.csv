@@ -208,7 +208,7 @@ d2a96a08bfdc11eb9ba92275cea06a7e,"central memory cd4-positive, alpha-beta t cell
 c5b36cc4862a11eeb249aefb8bcfeb6c,"central memory cd4-positive, alpha-beta t cell","cd4-positive, alpha-beta t cell","cd4-positive, alpha-beta t cell"
 f4b93a42aa9f11ed9aab225a04bc010d,"central memory cd4-positive, alpha-beta t cell","cd4-positive, alpha-beta t cell","cd4-positive, alpha-beta t cell"
 a1d64c38230c11eb9e6016fcd894d086,"central memory cd4-positive, alpha-beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell","naive cd4-positive, alpha-beta t cell"
-034a2874c9fa11ebbe02e242efb8f7b8,"central memory cd4-positive, alpha-beta t cell",mature alpha-beta T cell,alpha beta t cell
+034a2874c9fa11ebbe02e242efb8f7b8,"central memory cd4-positive, alpha-beta t cell",alpha-beta T cell,alpha beta t cell
 033b6762c9fa11ebbe02e242efb8f7b8,"central memory cd4-positive, alpha-beta t cell","cd4-positive, alpha-beta t cell","cd4-positive, alpha-beta t cell"
 d1e77dd0286411ec953b36d5f3074b28,"central memory cd4-positive, alpha-beta t cell",alpha-beta t cell,alpha-beta t cell
 a95640808d0111eba8fc0e09ff586e2a,"central memory cd4-positive, alpha-beta t cell",cell,no prediction
@@ -871,7 +871,7 @@ b600722abfd211ebafa586d48e1f3db0,common lymphoid progenitor,dendritic cell,dendr
 ed6523f2286211ec9a8f2613ba675443,common lymphoid progenitor,plasma cell,plasma cell
 e122a49076fe11eb8a3a1adcfefed355,common lymphoid progenitor,b cell,b cell
 e7f949f2671811ed8197264aa0746ac0,common lymphoid progenitor,b cell,b cell
-dd02ea6a862c11ee941c7e9dd60efb6e,common lymphoid progenitor,macrophage,cl:0000235
+dd02ea6a862c11ee941c7e9dd60efb6e,common lymphoid progenitor,cl:0000235,cl:0000235
 3d4ef118620c11eb8b61f221ae948d59,common lymphoid progenitor,dendritic cell,dendritic cell
 9145e0044dfe11ec9cd7da9b7cf4e69b,common lymphoid progenitor,b cell,b cell
 92040dfc433311ecb17706fc43058792,common lymphoid progenitor,dendritic cell,dendritic cell

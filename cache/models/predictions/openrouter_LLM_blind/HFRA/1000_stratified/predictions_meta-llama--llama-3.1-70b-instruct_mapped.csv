@@ -808,7 +808,7 @@ Hgw18.ACGTCAAAGCTAGTCT.1_9,mueller cell,neuron,neuron
 Hgw12.GTGTGCGCAATCGAAA.1_3,mueller cell,neuron,neuron
 TCTTGATGTGACAC-1_19,mueller cell,fibroblast,fibroblast
 Hgw24_rep1.AGCGTCGCAAGCCGTC.1_13,mueller cell,neuron,neuron
-ACCCGTTGGCTGAT-1_22,mueller cell,macrophage,cl:0000235
+ACCCGTTGGCTGAT-1_22,mueller cell,cl:0000235,cl:0000235
 AAGTCTGCACGGTTTA-1_18,mueller cell,endothelial cell,endothelial cell
 Hgw13.GTACTTTCAACGATCT.1_4,mueller cell,neuron,neuron
 Hgw13.TAGAGCTGTCATCGGC.1_4,mueller cell,mesenchymal cell,mesenchymal cell
@@ -948,7 +948,7 @@ Hgw13.CACAAACAGGGCATGT.1_4,retinal cone cell,neuron,neuron
 Hgw15.CTACGTCTCTACTCAT.1_6,retinal cone cell,neuron,neuron
 AGCGATTCAACGTATC-1_23,retinal cone cell,neuron,neuron
 Hgw17.GTTCTCGTCCCTTGTG.1_8,retinal cone cell,neuron,neuron
-CGATGGCGTGCAGACA-1_17,retinal cone cell,macrophage,cl:0000235
+CGATGGCGTGCAGACA-1_17,retinal cone cell,cl:0000235,cl:0000235
 AGTAATACTGGAAA-1_22,retinal cone cell,neuron,neuron
 GTCAAGTAGTCAATCC-1_23,retinal cone cell,erythroblast,erythroblast
 ACGTCAAGTTCAACCA-1_17,retinal cone cell,neuron,neuron
