@@ -72,9 +72,6 @@ EXCLUDED = [
      "prescribe. Their own tool refuses that step and returns an ambiguous call instead."),
     ("SingleR (per-tier variants)", "Superseded by a single SingleR configuration that selects "
      "the reference per dataset. The per-tier runs are retained in the repository."),
-    ("Agentic-blueprint annotators", "An LLM command-line agent writes a marker panel that is "
-     "then applied per cell. A different method class from the prompted models benchmarked here, "
-     "and it receives tissue and species context the other language models do not."),
 ]
 
 
