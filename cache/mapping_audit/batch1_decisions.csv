@@ -1,0 +1,20 @@
+label,target,reason,batch,decided
+enterochromaffin cell,type EC enteroendocrine cell,exact CL synonym (CL:0000577),1,approved 2026-10-05
+vascular endothelial cell,endothelial cell of vascular tree,exact CL synonym (CL:0002139),1,approved 2026-10-05
+inflammatory macrophage,M1 macrophage,exact CL synonym (CL:0000863),1,approved 2026-10-05
+alternatively activated macrophage,M2 macrophage,exact CL synonym (CL:0000890),1,approved 2026-10-05
+lamp5,lamp5 GABAergic interneuron,species-neutral exact term (CL:4023011); consistent with vip,1,approved 2026-10-05
+ca1 pyramidal neuron,CA1 pyramidal cell,exact CL synonym (CL:0020072),1,approved 2026-10-05
+ca2 pyramidal neuron,CA2 pyramidal cell,exact CL synonym (CL:0020070),1,approved 2026-10-05
+"proliferating cd8-positive, alpha-beta t cell","cycling CD8-positive, alpha-beta T cell",exact CL synonym (CL:4033074),1,approved 2026-10-05
+lactotroph,mammotroph,exact CL synonym (CL:0002311),1,approved 2026-10-05
+blastomere,blastoderm cell,exact CL synonym (CL:0000353),1,approved 2026-10-05
+lymphoid-primed multipotent progenitor,early lymphoid progenitor,exact CL synonym (CL:0000936),1,approved 2026-10-05
+cd16+ monocyte,"CD14-positive, CD16-positive monocyte",exact CL synonym (CL:0002397),1,approved 2026-10-05
+cl:0000610,cell,ID of obsolete CL term (plant cell); nonsense in context,1,approved 2026-10-05
+cl:0000728,cell,ID of obsolete CL term (insect secondary pigment cell); nonsense in context,1,approved 2026-10-05
+somatic cell,cell,CL obsoleted somatic cell; replaced_by CL:0000000,1,approved 2026-10-05
+alpha cell,pancreatic A cell,keep; pancreas context (synonym is a mouse retinal ganglion cell),1,approved 2026-10-05
+p cell,pancreatic PP cell,keep; pancreas context (synonym is a cardiac nodal myocyte),1,approved 2026-10-05
+d cell,pancreatic D cell,keep; pancreas context (synonym is a gut D cell),1,approved 2026-10-05
+vip,VIP GABAergic interneuron,keep; species-neutral (synonym is primate-only),1,approved 2026-10-05

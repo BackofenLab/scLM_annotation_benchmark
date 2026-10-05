@@ -1,0 +1,21 @@
+issue,raw_label,cells_in_paper_runs,curated_target,exact_synonym_of
+curated target differs from a Cell Ontology exact synonym,alpha cell,271,pancreatic A cell,alpha retinal ganglion cell (Mmus)
+curated target differs from a Cell Ontology exact synonym,vip,56,VIP GABAergic interneuron,VIP GABA VIP GABAergic interneuron (Primate)
+curated target differs from a Cell Ontology exact synonym,enterochromaffin cell,26,enteroendocrine cell,type EC enteroendocrine cell
+curated target differs from a Cell Ontology exact synonym,vascular endothelial cell,21,blood vessel endothelial cell,endothelial cell of vascular tree
+curated target differs from a Cell Ontology exact synonym,vlmc,21,vascular leptomeningeal cell (Mmus),vascular leptomeningeal cell
+curated target differs from a Cell Ontology exact synonym,inflammatory macrophage,8,macrophage,M1 macrophage
+curated target differs from a Cell Ontology exact synonym,lamp5,6,GABAergic interneuron,LAMP5-CXCL14 GABA lamp5 GABAergic interneuron (Primate)
+curated target differs from a Cell Ontology exact synonym,ca1 pyramidal neuron,5,hippocampal CA1-3 neuron,CA1 pyramidal cell
+curated target differs from a Cell Ontology exact synonym,ca2 pyramidal neuron,3,hippocampal pyramidal neuron,CA2 pyramidal cell
+curated target differs from a Cell Ontology exact synonym,p cell,2,pancreatic PP cell,nodal myocyte
+curated target differs from a Cell Ontology exact synonym,alternatively activated macrophage,2,macrophage,M2 macrophage
+curated target differs from a Cell Ontology exact synonym,"proliferating cd8-positive, alpha-beta t cell",2,"CD8-positive, alpha-beta T cell","cycling CD8-positive, alpha-beta T cell"
+curated target differs from a Cell Ontology exact synonym,lactotroph,1,prolactin secreting cell,mammotroph
+curated target differs from a Cell Ontology exact synonym,blastomere,1,cell,blastoderm cell
+curated target differs from a Cell Ontology exact synonym,lymphoid-primed multipotent progenitor,1,hematopoietic multipotent progenitor cell,early lymphoid progenitor
+curated target differs from a Cell Ontology exact synonym,d cell,1,pancreatic D cell,type D enteroendocrine cell
+curated target differs from a Cell Ontology exact synonym,cd16+ monocyte,1,"CD14-low, CD16-positive monocyte","CD14-positive, CD16-positive monocyte"
+curated target is obsolete in CL 2026-06-08,cl:0000610,1,obsolete plant cell,
+curated target is obsolete in CL 2026-06-08,cl:0000728,1,obsolete secondary pigment cell,
+curated target is obsolete in CL 2026-06-08,somatic cell,0,obsolete somatic cell,

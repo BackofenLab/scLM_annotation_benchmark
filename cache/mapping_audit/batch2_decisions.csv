@@ -1,0 +1,10 @@
+label,target,reason,batch,decided
+rgc_1,retinal ganglion cell,"CellTypist retina model: RGC = retinal ganglion cell, not radial glial cell",2,approved 2026-10-05
+rgc_2,retinal ganglion cell,"CellTypist retina model: RGC = retinal ganglion cell, not radial glial cell",2,approved 2026-10-05
+mu_ller,Mueller cell,CellTypist retina model: Müller glia = Mueller cell (CL:0000636),2,approved 2026-10-05
+amacrine_1,amacrine cell,numbered CellTypist cluster; no glycinergic/GABAergic subtype implied,2,approved 2026-10-05
+amacrine_2,amacrine cell,numbered CellTypist cluster; no glycinergic/GABAergic subtype implied,2,approved 2026-10-05
+amacrine_3,amacrine cell,numbered CellTypist cluster; no glycinergic/GABAergic subtype implied,2,approved 2026-10-05
+horizontal_1,retina horizontal cell,"numbered CellTypist cluster, as rpc_*, photoreceptor_*",2,approved 2026-10-05
+horizontal_2,retina horizontal cell,"numbered CellTypist cluster, as rpc_*, photoreceptor_*",2,approved 2026-10-05
+microglia,microglial cell,species-neutral label; the mouse-only term was wrong (HFRA is human),2,approved 2026-10-05

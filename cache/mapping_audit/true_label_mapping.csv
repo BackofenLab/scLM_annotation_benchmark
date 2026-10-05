@@ -1,0 +1,88 @@
+dataset,true_label,via,CL_term
+HFRA,Mueller cell,CL name,Mueller cell
+HFRA,amacrine cell,CL name,amacrine cell
+HFRA,microglial cell,CL name,microglial cell
+HFRA,retina horizontal cell,CL name,retina horizontal cell
+HFRA,retinal astrocyte,CL name,retinal astrocyte
+HFRA,retinal cone cell,CL name,retinal cone cell
+HFRA,retinal ganglion cell,CL name,retinal ganglion cell
+HFRA,retinal progenitor cell,CL name,retinal progenitor cell
+HFRA,retinal rod cell,CL name,retinal rod cell
+HIHA,"Axl+ dendritic cell, human",CL name,"Axl+ dendritic cell, human"
+HIHA,Be cell,CL name,Be cell
+HIHA,"CD14-low, CD16-positive monocyte",CL name,"CD14-low, CD16-positive monocyte"
+HIHA,"CD14-positive, CD16-negative classical monocyte",CL name,"CD14-positive, CD16-negative classical monocyte"
+HIHA,CD141-positive myeloid dendritic cell,CL name,CD141-positive myeloid dendritic cell
+HIHA,"CD16-negative, CD56-bright natural killer cell, human",CL name,"CD16-negative, CD56-bright natural killer cell, human"
+HIHA,"CD16-positive, CD56-dim natural killer cell, human",CL name,"CD16-positive, CD56-dim natural killer cell, human"
+HIHA,CD1c-positive myeloid dendritic cell,CL name,CD1c-positive myeloid dendritic cell
+HIHA,"CD4-positive, alpha-beta memory T cell",CL name,"CD4-positive, alpha-beta memory T cell"
+HIHA,"CD8-positive, alpha-beta memory T cell",CL name,"CD8-positive, alpha-beta memory T cell"
+HIHA,"CD8-positive, alpha-beta regulatory T cell",CL name,"CD8-positive, alpha-beta regulatory T cell"
+HIHA,CD8aa(I) thymocyte,CL name,CD8aa(I) thymocyte
+HIHA,T cell,CL name,T cell
+HIHA,basophil mast progenitor cell,CL name,basophil mast progenitor cell
+HIHA,"central memory CD4-positive, alpha-beta T cell",CL name,"central memory CD4-positive, alpha-beta T cell"
+HIHA,"central memory CD8-positive, alpha-beta T cell",CL name,"central memory CD8-positive, alpha-beta T cell"
+HIHA,common lymphoid progenitor,CL name,common lymphoid progenitor
+HIHA,common myeloid progenitor,CL name,common myeloid progenitor
+HIHA,double negative thymocyte,CL name,double negative thymocyte
+HIHA,"effector memory CD4-positive, alpha-beta T cell",CL name,"effector memory CD4-positive, alpha-beta T cell"
+HIHA,"effector memory CD8-positive, alpha-beta T cell",CL name,"effector memory CD8-positive, alpha-beta T cell"
+HIHA,erythrocyte,CL name,erythrocyte
+HIHA,innate lymphoid cell,CL name,innate lymphoid cell
+HIHA,intermediate monocyte,CL name,intermediate monocyte
+HIHA,mature gamma-delta T cell,CL name,mature gamma-delta T cell
+HIHA,memory B cell,CL name,memory B cell
+HIHA,memory CCR4-positive regulatory T cell,CL name,memory CCR4-positive regulatory T cell
+HIHA,memory regulatory T cell,CL name,memory regulatory T cell
+HIHA,mucosal invariant T cell,curated,mucosal-associated invariant T cell
+HIHA,naive B cell,CL name,naive B cell
+HIHA,naive regulatory T cell,CL name,naive regulatory T cell
+HIHA,"naive thymus-derived CD4-positive, alpha-beta T cell",CL name,"naive thymus-derived CD4-positive, alpha-beta T cell"
+HIHA,"naive thymus-derived CD8-positive, alpha-beta T cell",CL name,"naive thymus-derived CD8-positive, alpha-beta T cell"
+HIHA,natural killer cell,CL name,natural killer cell
+HIHA,plasma cell,CL name,plasma cell
+HIHA,plasmacytoid dendritic cell,CL name,plasmacytoid dendritic cell
+HIHA,platelet,CL name,platelet
+HIHA,transitional stage B cell,CL name,transitional stage B cell
+Zeisel,Enteric glia,curated,enteroglial cell
+Zeisel,GABAergic neuron,CL name,GABAergic neuron
+Zeisel,Microglia,curated,microglial cell
+Zeisel,Satellite glia,curated,perineuronal satellite cell
+Zeisel,Schwann cell,CL name,Schwann cell
+Zeisel,astrocyte,CL name,astrocyte
+Zeisel,cerebellar neuron,CL name,cerebellar neuron
+Zeisel,cholinergic neuron,CL name,cholinergic neuron
+Zeisel,choroid plexus epithelial cell,CL name,choroid plexus epithelial cell
+Zeisel,cranial visceromotor neuron,CL name,cranial visceromotor neuron
+Zeisel,dentate gyrus granule cell,CL name,dentate gyrus granule cell
+Zeisel,endothelial cell of vascular tree,CL name,endothelial cell of vascular tree
+Zeisel,enteric neuron,CL name,enteric neuron
+Zeisel,ependymal cell,CL name,ependymal cell
+Zeisel,glutamatergic neuron,CL name,glutamatergic neuron
+Zeisel,hypendymal cell,CL name,hypendymal cell
+Zeisel,neuroblast (sensu Vertebrata),CL name,neuroblast (sensu Vertebrata)
+Zeisel,olfactory ensheathing cell,CL name,olfactory ensheathing cell
+Zeisel,oligodendrocyte,CL name,oligodendrocyte
+Zeisel,oligodendrocyte precursor cell,CL name,oligodendrocyte precursor cell
+Zeisel,peptidergic neuron,CL name,peptidergic neuron
+Zeisel,pericyte,CL name,pericyte
+Zeisel,peripheral sensory neuron,CL name,peripheral sensory neuron
+Zeisel,perivascular macrophage,CL name,perivascular macrophage
+Zeisel,radial glial cell,CL name,radial glial cell
+Zeisel,sympathetic cholinergic neuron,CL name,sympathetic cholinergic neuron
+Zeisel,sympathetic noradrenergic neuron,CL name,sympathetic noradrenergic neuron
+Zeisel,vascular associated smooth muscle cell,CL name,vascular associated smooth muscle cell
+Zeisel,vascular leptomeningeal cell (Mmus),CL name,vascular leptomeningeal cell (Mmus)
+human_pancreas,acinar,curated,acinar cell
+human_pancreas,delta,curated,pancreatic D cell
+human_pancreas,endothelial cell,CL name,endothelial cell
+human_pancreas,epsilon,curated,pancreatic epsilon cell
+human_pancreas,macrophage,CL name,macrophage
+human_pancreas,mast cell,CL name,mast cell
+human_pancreas,pancreatic A cell,CL name,pancreatic A cell
+human_pancreas,pancreatic PP cell,CL name,pancreatic PP cell
+human_pancreas,pancreatic ductal cell,CL name,pancreatic ductal cell
+human_pancreas,pancreatic stellate cell,CL name,pancreatic stellate cell
+human_pancreas,type B pancreatic cell,CL name,type B pancreatic cell

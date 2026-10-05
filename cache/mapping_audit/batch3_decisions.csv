@@ -1,0 +1,137 @@
+label,target,reason,batch,decided
+activated t cell,cycling T cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+alpha,pancreatic A cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+alpha beta t cell,alpha-beta T cell,label does not say mature,3,approved 2026-10-05
+alpha cells,pancreatic A cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+astro,astrocyte,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+b cells,B cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+b lymphocyte,B cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+basophils,basophil,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+beta,type B pancreatic cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+beta cell,type B pancreatic cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+beta cells,type B pancreatic cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+blood platelet,platelet,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+cancer cells,malignant cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+cck interneuron,GABAergic interneuron,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+cck-expressing interneuron,GABAergic interneuron,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+cd16-positive monocyte,"CD14-positive, CD16-positive monocyte",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+cd19,"B cell, CD19-positive",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+"cd1c-positive myeloid dendritic cell, human",myeloid dendritic cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+cd4 t cell,"CD4-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+cd4+ memory t cell,"CD4-positive, alpha-beta memory T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+cd4+ t cell,"CD4-positive, alpha-beta memory T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+cd4+ t cells,"CD4-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+cd4-positive alpha-beta t cell,"CD4-positive, alpha-beta T cell",label does not say activated,3,approved 2026-10-05
+cd4-positive t cell,"CD4-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+"cd4-positive, alpha-beta naive t cell","naive thymus-derived CD4-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+cd8 t cell,"CD8-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+cd8+ cytotoxic t cell,"CD8-positive, alpha-beta cytotoxic T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+cd8+ t cell,"CD8-positive, alpha-beta memory T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+cd8-positive cytotoxic t cell,"CD8-positive, alpha-beta cytotoxic T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+cd8-positive t cell,"CD8-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+"cd8-positive, cytotoxic t cell","CD8-positive, alpha-beta cytotoxic T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+central memory t cell,memory T cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+delta,pancreatic D cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+delta cell,pancreatic D cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+effector memory cd4+ t cell,"effector memory CD4-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+effector memory t cell,memory T cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+endothelial cells,endothelial cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+enteric glia,enteroglial cell,Zeisel class label; type I is a subtype,3,approved 2026-10-05
+enteric glial cell,enteroglial cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+enteric neurons,enteric neuron,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+ependymal cells,ependymal cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+epithelial cells,epithelial cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+epsilon,pancreatic epsilon cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+epsilon cell,pancreatic epsilon cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+gamma cell,pancreatic PP cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+granulocytes,granulocyte,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+horizontal cell,retina horizontal cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+l cell,enteroendocrine cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+l2/3 it lamp5 interneuron,lamp5 GABAergic interneuron,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+macrophages,macrophage,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+memory b cells,memory B cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+memory cd4 t cell,"CD4-positive, alpha-beta memory T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+memory cd4+ t cell,"CD4-positive, alpha-beta memory T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+"memory cd4-positive, alpha-beta t cell","CD4-positive, alpha-beta memory T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+"memory cd4-positive, alpha‑beta t cell","CD4-positive, alpha-beta memory T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+"memory cd8-positive, alpha-beta t cell","CD8-positive, alpha-beta memory T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+microglial cells,microglial cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+monocytes,monocyte,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+msc,mesenchymal cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+mucosal invariant t cell,mucosal-associated invariant T cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+muller cell,Mueller cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+muller glial cell,Mueller cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+müller cell,Mueller cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+müller glial cell,Mueller cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+naive b cells,naive B cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+naive cd4+ alpha-beta t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+naive cd4+ alpha‑beta t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+naive cd4+ t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+naive cd4+ t cells,"naive thymus-derived CD4-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+naive cd4-positive alpha-beta t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+"naive cd4-positive, alpha-beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+"naive cd4-positive, alpha‑beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+"naive cd4‑positive, alpha‑beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+naive cd8+ alpha-beta t cell,"naive thymus-derived CD8-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+naive cd8+ t cell,"naive thymus-derived CD8-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+"naive cd8-positive, alpha-beta t cell","naive thymus-derived CD8-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+natural killer t cell,mature NK T cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+naïve cd4+ alpha-beta t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+naïve cd4+ alpha‑beta t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+naïve cd4+ t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+naïve cd4-positive alpha-beta t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+naïve cd4-positive alpha‑beta t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+"naïve cd4-positive, alpha-beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+"naïve cd4-positive, alpha‑beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+"naïve cd4‑positive, alpha‑beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+"naïve cd8-positive, alpha‑beta t cell","naive thymus-derived CD8-positive, alpha-beta T cell",case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+neuroblast,neuroblast (sensu Vertebrata),case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+nk cell,natural killer cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+nk cells,natural killer cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+oligodendrocyte progenitor cell,oligodendrocyte precursor cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+osteoblasts,osteoblast,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+pancreatic alpha cell,pancreatic A cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+pancreatic b cell,type B pancreatic cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+pancreatic beta cell,type B pancreatic cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+pancreatic delta cell,pancreatic D cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+pancreatic duct cell,pancreatic ductal cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+pancreatic duct epithelial cell,pancreatic ductal cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+pancreatic p cell,pancreatic PP cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+pancreatic α cell,pancreatic A cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+pancreatic β cell,type B pancreatic cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+parvalbumin expressing gabaergic interneuron,pvalb GABAergic interneuron,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+parvalbumin-expressing gabaergic interneuron,pvalb GABAergic interneuron,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+pomc neuron,pro-opiomelanocortin neuron,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+pp cell of pancreas,pancreatic PP cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+pre-b cell,precursor B cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+pvalb,pvalb GABAergic interneuron,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+pvalb gabaergic cortical interneuron,pvalb GABAergic interneuron,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+radial glia cell,radial glial cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+retina cell,retinal cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+retina cone cell,retinal cone cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+retina progenitor cell,retinal progenitor cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+retina rod cell,retinal rod cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+retinal amacrine cell,amacrine cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+retinal bipolar cell,retinal bipolar neuron,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+retinal horizontal cell,retina horizontal cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+retinal muller cell,Mueller cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+retinal müller cell,Mueller cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+retinal neuron,neuron,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+retinal photoreceptor cell,eye photoreceptor cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+retinal pigment epithelial cells,retinal pigment epithelial cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+schwann cells,Schwann cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+skeletal muscle cell,cell of skeletal muscle,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+sncg,interneuron,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+somatostatin-expressing gabaergic interneuron,sst GABAergic interneuron,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+sst,interneuron,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+t cells,T cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+t lymphocyte,T cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+type a pancreatic cell,pancreatic A cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+type d pancreatic cell,pancreatic D cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+type i pneumocyte,pulmonary alveolar type 1 cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+type ii pneumocyte,pulmonary alveolar type 2 cell,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+vip interneuron,VIP GABAergic interneuron,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+vip-expressing cortical interneuron,VIP GABAergic interneuron,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+vip-expressing gabaergic cortical interneuron,VIP GABAergic interneuron,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+vip-expressing gabaergic interneuron,VIP GABAergic interneuron,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
+vip-expressing interneuron,VIP GABAergic interneuron,case variants: the reviewed cell type wins over the nonsense default 'cell',3,approved 2026-10-05
