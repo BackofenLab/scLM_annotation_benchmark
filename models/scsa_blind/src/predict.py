@@ -540,7 +540,8 @@ def main():
         # label. The context is union-constructed to contain every eval cell.
         if use_context:
             import anndata as _ad
-            eval_ids = _ad.read_h5ad(args.input, backed="r").obs_names.astype(str).tolist()
+            eval_obs = _ad.read_h5ad(args.input, backed="r").obs
+            eval_ids = eval_obs.index.astype(str).tolist()
             result_df['cell_id'] = result_df['cell_id'].astype(str)
             n_ctx = len(result_df)
             missing = set(eval_ids) - set(result_df['cell_id'])
@@ -550,6 +551,9 @@ def main():
             result_df = (result_df.drop_duplicates('cell_id').set_index('cell_id')
                                   .reindex(eval_ids).reset_index())
             result_df['predicted_labels'] = result_df['predicted_labels'].fillna('Unknown')
+            # Truth comes from the eval subset, as for every other model: the context's labels are
+            # harmonized separately during preprocessing and can name a type differently.
+            result_df['true_labels'] = eval_obs[annotation_key].to_numpy()
             print(f"  Context filter: {n_ctx} context cells -> {len(result_df)} eval cells")
 
         # Save final output

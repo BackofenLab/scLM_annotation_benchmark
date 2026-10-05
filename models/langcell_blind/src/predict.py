@@ -290,7 +290,7 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
 
     def classes_to_ids(example):
         # Map true labels to indices in the full type list
-        # If the true type is not in our list, use -1 (will be handled in evaluation)
+        # If the true type is not in our list, use -1 (the output keeps its name in true_labels)
         cell_type = example["celltype"]
         if cell_type in type2num:
             example["label"] = type2num[cell_type]
@@ -442,11 +442,13 @@ def predict(
         print("\t".join([str(x) for x in row]))
     # evaluation
     print(classification_report(labels, preds, digits=4))
-    pred_df = create_results_dataframe(cell_indices, preds, labels, types)
+    pred_df = create_results_dataframe(cell_indices, preds, labels, types, dataset_sub["celltype"])
     return pred_df
 
 
-def create_results_dataframe(cell_indices, preds, labels, types):
+def create_results_dataframe(cell_indices, preds, labels, types, true_types):
+    # true_labels is the dataset's own label: true_idx is -1 for a type missing from `types`, and
+    # types[-1] would name the last type in the list instead.
     label_keys = ["predicted_idx", "true_idx", "predicted_labels", "true_labels"]
     pred_df = pd.DataFrame(
         {
@@ -454,7 +456,7 @@ def create_results_dataframe(cell_indices, preds, labels, types):
             label_keys[0]: preds.numpy(),
             label_keys[1]: labels.numpy(),
             label_keys[2]: [types[i] for i in preds],
-            label_keys[3]: [types[i] for i in labels],
+            label_keys[3]: list(true_types),
         }
     )
     return pred_df
