@@ -16,6 +16,7 @@ from util.cell_ontology_similarity import (
     SIMILARITY_KEYS, CellTaxonomy, build_label_index, compute_ontology_similarities,
     download_cl_ontology, map_string_to_term,
 )
+from util.label_normalization import EMPTY_PREDICTION_LABEL
 from util.ontology_mapper import load_ontology_mappings_with_review_status
 from util.text_embedding_similarity import (
     compute_text_embedding_similarities, load_text_encoder, reference_baseline,
@@ -211,7 +212,8 @@ def run_eval(df, true_col, pred_col, output_dir, ont_ctx, text_scoring=None):
             # Raw = actual model output (post-normalization, pre-CL-mapping); mapped = pred_col.
             raw_pred_col = f"original_{pred_col}" if f"original_{pred_col}" in df.columns else pred_col
             te_combos, te_metrics = compute_text_embedding_similarities(
-                df, true_col, raw_pred_col, pred_col, *text_scoring, no_answer=UNMAPPED)
+                df, true_col, raw_pred_col, pred_col, *text_scoring,
+                no_answer=(UNMAPPED, EMPTY_PREDICTION_LABEL))
             results.update(te_metrics)
             te_csv_path = output_dir / f"{true_col}_text_emb_scored.csv"
             te_combos.to_csv(te_csv_path, index=False)

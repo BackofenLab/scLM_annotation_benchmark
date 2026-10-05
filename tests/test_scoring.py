@@ -94,11 +94,17 @@ def test_no_answer_scores_like_a_random_name():
     vectors = {"a": [1.0, 0.0], "b": [0.6, 0.8]}
     encoder = SimpleNamespace(model_name="toy", encode=lambda names: np.array(
         [vectors[n] for n in names]).reshape(len(names), 2))
-    df = pd.DataFrame({"true": ["a", "a"], "raw": ["a", UNMAPPED], "mapped": ["a", UNMAPPED]})
-    combos, metrics = compute_text_embedding_similarities(df, "true", "raw", "mapped", encoder,
-                                                          baseline=0.5, no_answer=UNMAPPED)
-    assert combos.set_index("raw").loc[UNMAPPED, "text_emb_similarity_raw"] == 0.5
-    assert math.isclose(metrics["text_emb_norm_balanced_raw"], 0.5)  # (1 + 0) / 2 after rescaling
+    # no answer at all ("no prediction", mapped to "cell"), and an answer without a reviewed mapping
+    df = pd.DataFrame({"true": ["a", "a", "a"], "raw": ["a", "no prediction", "b"],
+                       "mapped": ["a", "cell", UNMAPPED]})
+    vectors["cell"] = [0.8, 0.6]
+    combos, metrics = compute_text_embedding_similarities(
+        df, "true", "raw", "mapped", encoder, baseline=0.5, no_answer=(UNMAPPED, "no prediction"))
+    sims = combos.set_index("raw")
+    both = ["text_emb_similarity_raw", "text_emb_similarity_mapped"]
+    assert sims.loc["no prediction", both].tolist() == [0.5, 0.5]
+    assert sims.loc["b", "text_emb_similarity_raw"] == 0.6  # the raw text still counts
+    assert sims.loc["b", "text_emb_similarity_mapped"] == 0.5
 
 
 def test_unsupported_runs_count_as_zero():

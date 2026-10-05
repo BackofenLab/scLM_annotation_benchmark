@@ -230,16 +230,17 @@ def compute_text_embedding_similarities(
     mapped_pred_col: str,
     encoder: TextEncoder,
     baseline: float,
-    no_answer: Optional[str] = None,
+    no_answer: Iterable[str] = (),
 ) -> Tuple[pd.DataFrame, Dict[str, float]]:
     """Cosine similarity between the true labels and both the raw and the mapped predictions.
 
     ``raw_pred_col`` is the model's own output (normalized, before ontology mapping), including
     free text; ``mapped_pred_col`` is the ontology-mapped label. Means are class-balanced, like
     balanced accuracy, and rescaled with ``baseline`` (see ``reference_baseline``). The lift is
-    the difference of the two rescaled scores, so it is on their scale. ``no_answer`` is the
-    placeholder for a missing or unusable answer: it is not encoded as if it were a label, but
-    scores the baseline, i.e. like a random cell-type name (0 after rescaling).
+    the difference of the two rescaled scores, so it is on their scale. ``no_answer`` holds the
+    placeholders for a missing or unusable answer. They are not encoded as if they were labels but
+    score the baseline, i.e. like a random cell-type name (0 after rescaling): in both variants
+    when the model gave no answer, in the mapped one only when just the mapping is missing.
 
     Returns one row per unique (true, raw, mapped) triple with its cosines and cell count, and
     the scalar metrics named in ``TEXT_EMB_KEYS``.
@@ -248,17 +249,17 @@ def compute_text_embedding_similarities(
     raw_s = _clean_labels(df[raw_pred_col])
     mapped_s = _clean_labels(df[mapped_pred_col])
 
+    no_answer = set(no_answer)
     vocab = sorted({x for col in (true_s, raw_s, mapped_s) for x in pd.unique(col)
-                    if isinstance(x, str) and x != no_answer})
+                    if isinstance(x, str) and x not in no_answer})
     embs = encoder.encode(vocab)
     vec_of: Dict[str, np.ndarray] = {lab: embs[i] for i, lab in enumerate(vocab)}
 
-    def cosine(pred_s):
-        sims = _per_row_cosine(true_s, pred_s, vec_of)
-        sims[(pred_s == no_answer).to_numpy()] = baseline
-        return sims
-
-    sims_raw, sims_mapped = cosine(raw_s), cosine(mapped_s)
+    none_given = raw_s.isin(no_answer).to_numpy()
+    sims_raw = _per_row_cosine(true_s, raw_s, vec_of)
+    sims_mapped = _per_row_cosine(true_s, mapped_s, vec_of)
+    sims_raw[none_given] = baseline
+    sims_mapped[none_given | mapped_s.isin(no_answer).to_numpy()] = baseline
     balanced_raw = _balanced_mean(sims_raw, true_s)
     balanced_mapped = _balanced_mean(sims_mapped, true_s)
     norm_raw, clip_raw = normalize_similarity(balanced_raw, baseline)
