@@ -468,63 +468,63 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X20_2:GTGGATTGTGCACA,astrocyte,astrocyte,astrocyte
 10X52_5:CTGAGCCTTCATTC,astrocyte,astrocyte,astrocyte
 10X51_2:AAACATTGCCGCTT,astrocyte,astrocyte,astrocyte
-10X81_3:AGGCCTCGAATGGG,type i enteric glial cell,astrocyte,astrocyte
-10X81_1:CGTTGGTGGTACAG,type i enteric glial cell,astrocyte,astrocyte
-10X81_3:TTACCTCGTGGTCG,type i enteric glial cell,astrocyte,astrocyte
-10X81_3:TGAGGGTAAGTGTA,type i enteric glial cell,astrocyte,astrocyte
-10X81_1:TCTACTCAACGCTA-1,type i enteric glial cell,astrocyte,astrocyte
-10X81_1:GCTGGGTAATCGTC,type i enteric glial cell,astrocyte,astrocyte
-10X81_2:CTACCAGCCGTCGT,type i enteric glial cell,astrocyte,astrocyte
-10X81_3:AGCCAAGAAGATTC,type i enteric glial cell,astrocyte,astrocyte
-10X82_2:TACTCAGGCGATAC,type i enteric glial cell,astrocyte,astrocyte
-10X82_2:TGAGCGTAAGTGTA,type i enteric glial cell,astrocyte,astrocyte
-10X82_2:TGAAGTCTGTCTCG,type i enteric glial cell,astrocyte,astrocyte
-10X81_1:ACATCTCTCGCATC,type i enteric glial cell,astrocyte,astrocyte
-10X81_1:ATCAGTCCTTCAAT,type i enteric glial cell,astrocyte,astrocyte
-10X81_1:AGACCGTTGGTAAA,type i enteric glial cell,astrocyte,astrocyte
-10X82_2:AGGTACACGAGAGT,type i enteric glial cell,astrocyte,astrocyte
-10X81_1:GGGAGGTTATGTGC,type i enteric glial cell,astrocyte,astrocyte
-10X81_2:ATGTAGTAGGGTAC,type i enteric glial cell,astrocyte,astrocyte
-10X81_1:CCATGTCCGCAAGC,type i enteric glial cell,astrocyte,astrocyte
-10X82_2:TACCGGTTCTGGTA,type i enteric glial cell,astrocyte,astrocyte
-10X81_1:TATTACATCGTCGG,type i enteric glial cell,astrocyte,astrocyte
-10X81_3:GAGAGAGGCTAGCA,type i enteric glial cell,astrocyte,astrocyte
-10X81_2:GAGGGCACACCGCA,type i enteric glial cell,astrocyte,astrocyte
-10X82_2:AATGTGTCATCGGC,type i enteric glial cell,astrocyte,astrocyte
-10X81_2:AACGTGTTATTCTC,type i enteric glial cell,astrocyte,astrocyte
-10X81_2:GCTAGCAAATTGCC,type i enteric glial cell,astrocyte,astrocyte
-10X81_1:GCGATTCACAATGC,type i enteric glial cell,astrocyte,astrocyte
-10X81_3:CAGAACAATCGGTT,type i enteric glial cell,astrocyte,astrocyte
-10X82_2:ACCTATCACTATTC,type i enteric glial cell,astrocyte,astrocyte
-10X81_1:GACTTCATACTACG,type i enteric glial cell,astrocyte,astrocyte
-10X81_2:AGCCAGTACAGTGG,type i enteric glial cell,astrocyte,astrocyte
-10X81_2:TCTAAAGCGTTTAC,type i enteric glial cell,astrocyte,astrocyte
-10X26_3:GTATGGTGGCGAGA,microglial cell (mmus),microglial cell,microglial cell
-10X22_2:GTAGTCGATTCTTG,microglial cell (mmus),microglial cell,microglial cell
-10X52_5:TGCACGCTTGATGC,microglial cell (mmus),microglial cell,microglial cell
-10X53_4:ACGGTCCTTGCGTA,microglial cell (mmus),microglial cell,microglial cell
-10X28_5:GGCCCAGAGAATCC,microglial cell (mmus),microglial cell,microglial cell
-10X22_2:GTCCCATGTACGCA,microglial cell (mmus),microglial cell,microglial cell
-10X19_2:ATTGGTCTTCCTCG,microglial cell (mmus),microglial cell,microglial cell
-10X22_4:AATGATACGCGAGA,microglial cell (mmus),microglial cell,microglial cell
-10X26_3:CATCTTGAAGAGGC,microglial cell (mmus),microglial cell,microglial cell
-10X19_2:AGCCAATGTGTGCA,microglial cell (mmus),microglial cell,microglial cell
-10X57_2:GTGAACACAGGTCT,microglial cell (mmus),microglial cell,microglial cell
-10X02_1:CCTAAGGACTGAAC,microglial cell (mmus),microglial cell,microglial cell
-10X53_5:GGCTACCTGCCTTC,microglial cell (mmus),microglial cell,microglial cell
-10X49_1:CCGGAGACTTCGCC,microglial cell (mmus),microglial cell,microglial cell
-10X57_4:ACGCCTTGTATCTC,microglial cell (mmus),microglial cell,microglial cell
-10X24_1:TTCATCGATTCCGC,microglial cell (mmus),microglial cell,microglial cell
-10X49_3:CATAACCTTTGGTG,microglial cell (mmus),microglial cell,microglial cell
-10X26_3:TCTTGATGACGACT,microglial cell (mmus),microglial cell,microglial cell
-10X53_4:TAGTACCTCCCTCA,microglial cell (mmus),microglial cell,microglial cell
-10X02_1:ACTTGGGATGCTCC,microglial cell (mmus),microglial cell,microglial cell
-10X20_4:GCCGACGAGGTGGA,microglial cell (mmus),microglial cell,microglial cell
-10X50_4:GTGATCGAAGGAGC,microglial cell (mmus),microglial cell,microglial cell
-10X22_2:GGACATTGAGGTCT,microglial cell (mmus),microglial cell,microglial cell
-10X35_2:AACGCAACCTGGTA,microglial cell (mmus),microglial cell,microglial cell
-10X49_3:AGGCTAACGTAGGG,microglial cell (mmus),microglial cell,microglial cell
-10X51_4:GCACCACTAAGAAC,microglial cell (mmus),microglial cell,microglial cell
+10X81_3:AGGCCTCGAATGGG,enteric glia,astrocyte,astrocyte
+10X81_1:CGTTGGTGGTACAG,enteric glia,astrocyte,astrocyte
+10X81_3:TTACCTCGTGGTCG,enteric glia,astrocyte,astrocyte
+10X81_3:TGAGGGTAAGTGTA,enteric glia,astrocyte,astrocyte
+10X81_1:TCTACTCAACGCTA-1,enteric glia,astrocyte,astrocyte
+10X81_1:GCTGGGTAATCGTC,enteric glia,astrocyte,astrocyte
+10X81_2:CTACCAGCCGTCGT,enteric glia,astrocyte,astrocyte
+10X81_3:AGCCAAGAAGATTC,enteric glia,astrocyte,astrocyte
+10X82_2:TACTCAGGCGATAC,enteric glia,astrocyte,astrocyte
+10X82_2:TGAGCGTAAGTGTA,enteric glia,astrocyte,astrocyte
+10X82_2:TGAAGTCTGTCTCG,enteric glia,astrocyte,astrocyte
+10X81_1:ACATCTCTCGCATC,enteric glia,astrocyte,astrocyte
+10X81_1:ATCAGTCCTTCAAT,enteric glia,astrocyte,astrocyte
+10X81_1:AGACCGTTGGTAAA,enteric glia,astrocyte,astrocyte
+10X82_2:AGGTACACGAGAGT,enteric glia,astrocyte,astrocyte
+10X81_1:GGGAGGTTATGTGC,enteric glia,astrocyte,astrocyte
+10X81_2:ATGTAGTAGGGTAC,enteric glia,astrocyte,astrocyte
+10X81_1:CCATGTCCGCAAGC,enteric glia,astrocyte,astrocyte
+10X82_2:TACCGGTTCTGGTA,enteric glia,astrocyte,astrocyte
+10X81_1:TATTACATCGTCGG,enteric glia,astrocyte,astrocyte
+10X81_3:GAGAGAGGCTAGCA,enteric glia,astrocyte,astrocyte
+10X81_2:GAGGGCACACCGCA,enteric glia,astrocyte,astrocyte
+10X82_2:AATGTGTCATCGGC,enteric glia,astrocyte,astrocyte
+10X81_2:AACGTGTTATTCTC,enteric glia,astrocyte,astrocyte
+10X81_2:GCTAGCAAATTGCC,enteric glia,astrocyte,astrocyte
+10X81_1:GCGATTCACAATGC,enteric glia,astrocyte,astrocyte
+10X81_3:CAGAACAATCGGTT,enteric glia,astrocyte,astrocyte
+10X82_2:ACCTATCACTATTC,enteric glia,astrocyte,astrocyte
+10X81_1:GACTTCATACTACG,enteric glia,astrocyte,astrocyte
+10X81_2:AGCCAGTACAGTGG,enteric glia,astrocyte,astrocyte
+10X81_2:TCTAAAGCGTTTAC,enteric glia,astrocyte,astrocyte
+10X26_3:GTATGGTGGCGAGA,microglia,microglial cell,microglial cell
+10X22_2:GTAGTCGATTCTTG,microglia,microglial cell,microglial cell
+10X52_5:TGCACGCTTGATGC,microglia,microglial cell,microglial cell
+10X53_4:ACGGTCCTTGCGTA,microglia,microglial cell,microglial cell
+10X28_5:GGCCCAGAGAATCC,microglia,microglial cell,microglial cell
+10X22_2:GTCCCATGTACGCA,microglia,microglial cell,microglial cell
+10X19_2:ATTGGTCTTCCTCG,microglia,microglial cell,microglial cell
+10X22_4:AATGATACGCGAGA,microglia,microglial cell,microglial cell
+10X26_3:CATCTTGAAGAGGC,microglia,microglial cell,microglial cell
+10X19_2:AGCCAATGTGTGCA,microglia,microglial cell,microglial cell
+10X57_2:GTGAACACAGGTCT,microglia,microglial cell,microglial cell
+10X02_1:CCTAAGGACTGAAC,microglia,microglial cell,microglial cell
+10X53_5:GGCTACCTGCCTTC,microglia,microglial cell,microglial cell
+10X49_1:CCGGAGACTTCGCC,microglia,microglial cell,microglial cell
+10X57_4:ACGCCTTGTATCTC,microglia,microglial cell,microglial cell
+10X24_1:TTCATCGATTCCGC,microglia,microglial cell,microglial cell
+10X49_3:CATAACCTTTGGTG,microglia,microglial cell,microglial cell
+10X26_3:TCTTGATGACGACT,microglia,microglial cell,microglial cell
+10X53_4:TAGTACCTCCCTCA,microglia,microglial cell,microglial cell
+10X02_1:ACTTGGGATGCTCC,microglia,microglial cell,microglial cell
+10X20_4:GCCGACGAGGTGGA,microglia,microglial cell,microglial cell
+10X50_4:GTGATCGAAGGAGC,microglia,microglial cell,microglial cell
+10X22_2:GGACATTGAGGTCT,microglia,microglial cell,microglial cell
+10X35_2:AACGCAACCTGGTA,microglia,microglial cell,microglial cell
+10X49_3:AGGCTAACGTAGGG,microglia,microglial cell,microglial cell
+10X51_4:GCACCACTAAGAAC,microglia,microglial cell,microglial cell
 10X49_5:CGGTAAACCTAGCA,neuroblast (sensu vertebrata),neuron,neuron
 10X49_4:TACGAGACCCCAAA,neuroblast (sensu vertebrata),neuroblast (sensu Vertebrata),neuroblast
 10X04_4:TCTAACTGCAGCTA,neuroblast (sensu vertebrata),neuroblast (sensu Vertebrata),neuroblast
@@ -878,26 +878,26 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X75_1:AAGGTCTGTGGTAC,sympathetic noradrenergic neuron,neuron,neuron
 10X75_1:GACAGGGAGCTTAG,sympathetic noradrenergic neuron,neuron,neuron
 10X75_1:GAACACACGAGCTT,sympathetic noradrenergic neuron,neuron,neuron
-10X53_7:TCCCAGACTTACTC,perineuronal satellite cell,astrocyte,astrocyte
-10X43_2:TAAGAGGAGCTGTA,perineuronal satellite cell,astrocyte,astrocyte
-10X43_2:ATGCAGTGACCTTT,perineuronal satellite cell,astrocyte,astrocyte
-10X43_2:GGCGCATGTCTCTA,perineuronal satellite cell,astrocyte,astrocyte
-10X43_2:GATCGATGACGGTT,perineuronal satellite cell,astrocyte,astrocyte
-10X43_2:GCACCTTGCCTAAG,perineuronal satellite cell,astrocyte,astrocyte
-10X43_2:TTCAACACGCAGTT,perineuronal satellite cell,astrocyte,astrocyte
-10X43_2:ACGCAATGGCTGTA,perineuronal satellite cell,astrocyte,astrocyte
-10X43_2:ATAGCCGACTCAGA,perineuronal satellite cell,astrocyte,astrocyte
-10X43_2:ATCCGCACAGAGTA,perineuronal satellite cell,astrocyte,astrocyte
-10X53_7:ATGCGATGGCTGAT,perineuronal satellite cell,astrocyte,astrocyte
-10X43_2:CTAGTTTGTCAGAC,perineuronal satellite cell,astrocyte,astrocyte
-10X53_7:CTGGAAACCTCGCT,perineuronal satellite cell,astrocyte,astrocyte
-10X43_2:ACTGTTACATCGTG,perineuronal satellite cell,astrocyte,astrocyte
-10X53_7:CGACCACTCCCGTT,perineuronal satellite cell,astrocyte,astrocyte
-10X43_2:TCAACACTCCTTTA,perineuronal satellite cell,astrocyte,astrocyte
-10X43_2:TAGTCTTGCCTAAG,perineuronal satellite cell,astrocyte,astrocyte
-10X43_2:GGCGACTGTCTACT,perineuronal satellite cell,astrocyte,astrocyte
-10X43_2:CACGGGACTGCAAC,perineuronal satellite cell,astrocyte,astrocyte
-10X53_7:CGACCGGACATCAG,perineuronal satellite cell,astrocyte,astrocyte
+10X53_7:TCCCAGACTTACTC,satellite glia,astrocyte,astrocyte
+10X43_2:TAAGAGGAGCTGTA,satellite glia,astrocyte,astrocyte
+10X43_2:ATGCAGTGACCTTT,satellite glia,astrocyte,astrocyte
+10X43_2:GGCGCATGTCTCTA,satellite glia,astrocyte,astrocyte
+10X43_2:GATCGATGACGGTT,satellite glia,astrocyte,astrocyte
+10X43_2:GCACCTTGCCTAAG,satellite glia,astrocyte,astrocyte
+10X43_2:TTCAACACGCAGTT,satellite glia,astrocyte,astrocyte
+10X43_2:ACGCAATGGCTGTA,satellite glia,astrocyte,astrocyte
+10X43_2:ATAGCCGACTCAGA,satellite glia,astrocyte,astrocyte
+10X43_2:ATCCGCACAGAGTA,satellite glia,astrocyte,astrocyte
+10X53_7:ATGCGATGGCTGAT,satellite glia,astrocyte,astrocyte
+10X43_2:CTAGTTTGTCAGAC,satellite glia,astrocyte,astrocyte
+10X53_7:CTGGAAACCTCGCT,satellite glia,astrocyte,astrocyte
+10X43_2:ACTGTTACATCGTG,satellite glia,astrocyte,astrocyte
+10X53_7:CGACCACTCCCGTT,satellite glia,astrocyte,astrocyte
+10X43_2:TCAACACTCCTTTA,satellite glia,astrocyte,astrocyte
+10X43_2:TAGTCTTGCCTAAG,satellite glia,astrocyte,astrocyte
+10X43_2:GGCGACTGTCTACT,satellite glia,astrocyte,astrocyte
+10X43_2:CACGGGACTGCAAC,satellite glia,astrocyte,astrocyte
+10X53_7:CGACCGGACATCAG,satellite glia,astrocyte,astrocyte
 10X11_1:TTACTCGAAGTACC,choroid plexus epithelial cell,oligodendrocyte,oligodendrocyte
 10X54_6:AGCTACATCGGGTC,choroid plexus epithelial cell,oligodendrocyte,oligodendrocyte
 10X54_3:AGCCAGTAAGCACG,choroid plexus epithelial cell,oligodendrocyte,oligodendrocyte

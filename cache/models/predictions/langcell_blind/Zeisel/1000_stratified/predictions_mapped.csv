@@ -468,63 +468,63 @@ Unnamed: 0,cell_id,predicted_idx,true_idx,predicted_labels,true_labels,original_
 466,10X20_2:GTGGATTGTGCACA,534,694,t cell,astrocyte,t cell
 467,10X52_5:CTGAGCCTTCATTC,534,694,t cell,astrocyte,t cell
 468,10X51_2:AAACATTGCCGCTT,534,694,t cell,astrocyte,t cell
-469,10X81_3:AGGCCTCGAATGGG,534,-1,t cell,zygote,t cell
-470,10X81_1:CGTTGGTGGTACAG,534,-1,t cell,zygote,t cell
-471,10X81_3:TTACCTCGTGGTCG,534,-1,t cell,zygote,t cell
-472,10X81_3:TGAGGGTAAGTGTA,534,-1,t cell,zygote,t cell
-473,10X81_1:TCTACTCAACGCTA-1,534,-1,t cell,zygote,t cell
-474,10X81_1:GCTGGGTAATCGTC,534,-1,t cell,zygote,t cell
-475,10X81_2:CTACCAGCCGTCGT,534,-1,t cell,zygote,t cell
-476,10X81_3:AGCCAAGAAGATTC,534,-1,t cell,zygote,t cell
-477,10X82_2:TACTCAGGCGATAC,534,-1,t cell,zygote,t cell
-478,10X82_2:TGAGCGTAAGTGTA,534,-1,t cell,zygote,t cell
-479,10X82_2:TGAAGTCTGTCTCG,534,-1,t cell,zygote,t cell
-480,10X81_1:ACATCTCTCGCATC,534,-1,t cell,zygote,t cell
-481,10X81_1:ATCAGTCCTTCAAT,534,-1,t cell,zygote,t cell
-482,10X81_1:AGACCGTTGGTAAA,534,-1,t cell,zygote,t cell
-483,10X82_2:AGGTACACGAGAGT,534,-1,t cell,zygote,t cell
-484,10X81_1:GGGAGGTTATGTGC,534,-1,t cell,zygote,t cell
-485,10X81_2:ATGTAGTAGGGTAC,534,-1,t cell,zygote,t cell
-486,10X81_1:CCATGTCCGCAAGC,534,-1,t cell,zygote,t cell
-487,10X82_2:TACCGGTTCTGGTA,534,-1,t cell,zygote,t cell
-488,10X81_1:TATTACATCGTCGG,534,-1,t cell,zygote,t cell
-489,10X81_3:GAGAGAGGCTAGCA,534,-1,t cell,zygote,t cell
-490,10X81_2:GAGGGCACACCGCA,534,-1,t cell,zygote,t cell
-491,10X82_2:AATGTGTCATCGGC,534,-1,t cell,zygote,t cell
-492,10X81_2:AACGTGTTATTCTC,534,-1,t cell,zygote,t cell
-493,10X81_2:GCTAGCAAATTGCC,534,-1,t cell,zygote,t cell
-494,10X81_1:GCGATTCACAATGC,534,-1,t cell,zygote,t cell
-495,10X81_3:CAGAACAATCGGTT,534,-1,t cell,zygote,t cell
-496,10X82_2:ACCTATCACTATTC,534,-1,t cell,zygote,t cell
-497,10X81_1:GACTTCATACTACG,534,-1,t cell,zygote,t cell
-498,10X81_2:AGCCAGTACAGTGG,534,-1,t cell,zygote,t cell
-499,10X81_2:TCTAAAGCGTTTAC,534,-1,t cell,zygote,t cell
-500,10X26_3:GTATGGTGGCGAGA,534,-1,t cell,zygote,t cell
-501,10X22_2:GTAGTCGATTCTTG,534,-1,t cell,zygote,t cell
-502,10X52_5:TGCACGCTTGATGC,534,-1,t cell,zygote,t cell
-503,10X53_4:ACGGTCCTTGCGTA,534,-1,t cell,zygote,t cell
-504,10X28_5:GGCCCAGAGAATCC,534,-1,t cell,zygote,t cell
-505,10X22_2:GTCCCATGTACGCA,534,-1,t cell,zygote,t cell
-506,10X19_2:ATTGGTCTTCCTCG,534,-1,t cell,zygote,t cell
-507,10X22_4:AATGATACGCGAGA,534,-1,t cell,zygote,t cell
-508,10X26_3:CATCTTGAAGAGGC,534,-1,t cell,zygote,t cell
-509,10X19_2:AGCCAATGTGTGCA,534,-1,t cell,zygote,t cell
-510,10X57_2:GTGAACACAGGTCT,534,-1,t cell,zygote,t cell
-511,10X02_1:CCTAAGGACTGAAC,534,-1,t cell,zygote,t cell
-512,10X53_5:GGCTACCTGCCTTC,534,-1,t cell,zygote,t cell
-513,10X49_1:CCGGAGACTTCGCC,534,-1,t cell,zygote,t cell
-514,10X57_4:ACGCCTTGTATCTC,534,-1,t cell,zygote,t cell
-515,10X24_1:TTCATCGATTCCGC,534,-1,t cell,zygote,t cell
-516,10X49_3:CATAACCTTTGGTG,534,-1,t cell,zygote,t cell
-517,10X26_3:TCTTGATGACGACT,534,-1,t cell,zygote,t cell
-518,10X53_4:TAGTACCTCCCTCA,534,-1,t cell,zygote,t cell
-519,10X02_1:ACTTGGGATGCTCC,534,-1,t cell,zygote,t cell
-520,10X20_4:GCCGACGAGGTGGA,534,-1,t cell,zygote,t cell
-521,10X50_4:GTGATCGAAGGAGC,534,-1,t cell,zygote,t cell
-522,10X22_2:GGACATTGAGGTCT,534,-1,t cell,zygote,t cell
-523,10X35_2:AACGCAACCTGGTA,534,-1,t cell,zygote,t cell
-524,10X49_3:AGGCTAACGTAGGG,534,-1,t cell,zygote,t cell
-525,10X51_4:GCACCACTAAGAAC,534,-1,t cell,zygote,t cell
+469,10X81_3:AGGCCTCGAATGGG,534,-1,t cell,enteric glia,t cell
+470,10X81_1:CGTTGGTGGTACAG,534,-1,t cell,enteric glia,t cell
+471,10X81_3:TTACCTCGTGGTCG,534,-1,t cell,enteric glia,t cell
+472,10X81_3:TGAGGGTAAGTGTA,534,-1,t cell,enteric glia,t cell
+473,10X81_1:TCTACTCAACGCTA-1,534,-1,t cell,enteric glia,t cell
+474,10X81_1:GCTGGGTAATCGTC,534,-1,t cell,enteric glia,t cell
+475,10X81_2:CTACCAGCCGTCGT,534,-1,t cell,enteric glia,t cell
+476,10X81_3:AGCCAAGAAGATTC,534,-1,t cell,enteric glia,t cell
+477,10X82_2:TACTCAGGCGATAC,534,-1,t cell,enteric glia,t cell
+478,10X82_2:TGAGCGTAAGTGTA,534,-1,t cell,enteric glia,t cell
+479,10X82_2:TGAAGTCTGTCTCG,534,-1,t cell,enteric glia,t cell
+480,10X81_1:ACATCTCTCGCATC,534,-1,t cell,enteric glia,t cell
+481,10X81_1:ATCAGTCCTTCAAT,534,-1,t cell,enteric glia,t cell
+482,10X81_1:AGACCGTTGGTAAA,534,-1,t cell,enteric glia,t cell
+483,10X82_2:AGGTACACGAGAGT,534,-1,t cell,enteric glia,t cell
+484,10X81_1:GGGAGGTTATGTGC,534,-1,t cell,enteric glia,t cell
+485,10X81_2:ATGTAGTAGGGTAC,534,-1,t cell,enteric glia,t cell
+486,10X81_1:CCATGTCCGCAAGC,534,-1,t cell,enteric glia,t cell
+487,10X82_2:TACCGGTTCTGGTA,534,-1,t cell,enteric glia,t cell
+488,10X81_1:TATTACATCGTCGG,534,-1,t cell,enteric glia,t cell
+489,10X81_3:GAGAGAGGCTAGCA,534,-1,t cell,enteric glia,t cell
+490,10X81_2:GAGGGCACACCGCA,534,-1,t cell,enteric glia,t cell
+491,10X82_2:AATGTGTCATCGGC,534,-1,t cell,enteric glia,t cell
+492,10X81_2:AACGTGTTATTCTC,534,-1,t cell,enteric glia,t cell
+493,10X81_2:GCTAGCAAATTGCC,534,-1,t cell,enteric glia,t cell
+494,10X81_1:GCGATTCACAATGC,534,-1,t cell,enteric glia,t cell
+495,10X81_3:CAGAACAATCGGTT,534,-1,t cell,enteric glia,t cell
+496,10X82_2:ACCTATCACTATTC,534,-1,t cell,enteric glia,t cell
+497,10X81_1:GACTTCATACTACG,534,-1,t cell,enteric glia,t cell
+498,10X81_2:AGCCAGTACAGTGG,534,-1,t cell,enteric glia,t cell
+499,10X81_2:TCTAAAGCGTTTAC,534,-1,t cell,enteric glia,t cell
+500,10X26_3:GTATGGTGGCGAGA,534,-1,t cell,microglia,t cell
+501,10X22_2:GTAGTCGATTCTTG,534,-1,t cell,microglia,t cell
+502,10X52_5:TGCACGCTTGATGC,534,-1,t cell,microglia,t cell
+503,10X53_4:ACGGTCCTTGCGTA,534,-1,t cell,microglia,t cell
+504,10X28_5:GGCCCAGAGAATCC,534,-1,t cell,microglia,t cell
+505,10X22_2:GTCCCATGTACGCA,534,-1,t cell,microglia,t cell
+506,10X19_2:ATTGGTCTTCCTCG,534,-1,t cell,microglia,t cell
+507,10X22_4:AATGATACGCGAGA,534,-1,t cell,microglia,t cell
+508,10X26_3:CATCTTGAAGAGGC,534,-1,t cell,microglia,t cell
+509,10X19_2:AGCCAATGTGTGCA,534,-1,t cell,microglia,t cell
+510,10X57_2:GTGAACACAGGTCT,534,-1,t cell,microglia,t cell
+511,10X02_1:CCTAAGGACTGAAC,534,-1,t cell,microglia,t cell
+512,10X53_5:GGCTACCTGCCTTC,534,-1,t cell,microglia,t cell
+513,10X49_1:CCGGAGACTTCGCC,534,-1,t cell,microglia,t cell
+514,10X57_4:ACGCCTTGTATCTC,534,-1,t cell,microglia,t cell
+515,10X24_1:TTCATCGATTCCGC,534,-1,t cell,microglia,t cell
+516,10X49_3:CATAACCTTTGGTG,534,-1,t cell,microglia,t cell
+517,10X26_3:TCTTGATGACGACT,534,-1,t cell,microglia,t cell
+518,10X53_4:TAGTACCTCCCTCA,534,-1,t cell,microglia,t cell
+519,10X02_1:ACTTGGGATGCTCC,534,-1,t cell,microglia,t cell
+520,10X20_4:GCCGACGAGGTGGA,534,-1,t cell,microglia,t cell
+521,10X50_4:GTGATCGAAGGAGC,534,-1,t cell,microglia,t cell
+522,10X22_2:GGACATTGAGGTCT,534,-1,t cell,microglia,t cell
+523,10X35_2:AACGCAACCTGGTA,534,-1,t cell,microglia,t cell
+524,10X49_3:AGGCTAACGTAGGG,534,-1,t cell,microglia,t cell
+525,10X51_4:GCACCACTAAGAAC,534,-1,t cell,microglia,t cell
 526,10X49_5:CGGTAAACCTAGCA,534,2216,t cell,neuroblast (sensu vertebrata),t cell
 527,10X49_4:TACGAGACCCCAAA,534,2216,t cell,neuroblast (sensu vertebrata),t cell
 528,10X04_4:TCTAACTGCAGCTA,534,2216,t cell,neuroblast (sensu vertebrata),t cell
@@ -878,26 +878,26 @@ Unnamed: 0,cell_id,predicted_idx,true_idx,predicted_labels,true_labels,original_
 876,10X75_1:AAGGTCTGTGGTAC,534,2891,t cell,sympathetic noradrenergic neuron,t cell
 877,10X75_1:GACAGGGAGCTTAG,534,2891,t cell,sympathetic noradrenergic neuron,t cell
 878,10X75_1:GAACACACGAGCTT,534,2891,t cell,sympathetic noradrenergic neuron,t cell
-879,10X53_7:TCCCAGACTTACTC,534,-1,t cell,zygote,t cell
-880,10X43_2:TAAGAGGAGCTGTA,534,-1,t cell,zygote,t cell
-881,10X43_2:ATGCAGTGACCTTT,534,-1,t cell,zygote,t cell
-882,10X43_2:GGCGCATGTCTCTA,534,-1,t cell,zygote,t cell
-883,10X43_2:GATCGATGACGGTT,534,-1,t cell,zygote,t cell
-884,10X43_2:GCACCTTGCCTAAG,534,-1,t cell,zygote,t cell
-885,10X43_2:TTCAACACGCAGTT,534,-1,t cell,zygote,t cell
-886,10X43_2:ACGCAATGGCTGTA,534,-1,t cell,zygote,t cell
-887,10X43_2:ATAGCCGACTCAGA,534,-1,t cell,zygote,t cell
-888,10X43_2:ATCCGCACAGAGTA,534,-1,t cell,zygote,t cell
-889,10X53_7:ATGCGATGGCTGAT,534,-1,t cell,zygote,t cell
-890,10X43_2:CTAGTTTGTCAGAC,534,-1,t cell,zygote,t cell
-891,10X53_7:CTGGAAACCTCGCT,534,-1,t cell,zygote,t cell
-892,10X43_2:ACTGTTACATCGTG,534,-1,t cell,zygote,t cell
-893,10X53_7:CGACCACTCCCGTT,534,-1,t cell,zygote,t cell
-894,10X43_2:TCAACACTCCTTTA,534,-1,t cell,zygote,t cell
-895,10X43_2:TAGTCTTGCCTAAG,534,-1,t cell,zygote,t cell
-896,10X43_2:GGCGACTGTCTACT,534,-1,t cell,zygote,t cell
-897,10X43_2:CACGGGACTGCAAC,534,-1,t cell,zygote,t cell
-898,10X53_7:CGACCGGACATCAG,534,-1,t cell,zygote,t cell
+879,10X53_7:TCCCAGACTTACTC,534,-1,t cell,satellite glia,t cell
+880,10X43_2:TAAGAGGAGCTGTA,534,-1,t cell,satellite glia,t cell
+881,10X43_2:ATGCAGTGACCTTT,534,-1,t cell,satellite glia,t cell
+882,10X43_2:GGCGCATGTCTCTA,534,-1,t cell,satellite glia,t cell
+883,10X43_2:GATCGATGACGGTT,534,-1,t cell,satellite glia,t cell
+884,10X43_2:GCACCTTGCCTAAG,534,-1,t cell,satellite glia,t cell
+885,10X43_2:TTCAACACGCAGTT,534,-1,t cell,satellite glia,t cell
+886,10X43_2:ACGCAATGGCTGTA,534,-1,t cell,satellite glia,t cell
+887,10X43_2:ATAGCCGACTCAGA,534,-1,t cell,satellite glia,t cell
+888,10X43_2:ATCCGCACAGAGTA,534,-1,t cell,satellite glia,t cell
+889,10X53_7:ATGCGATGGCTGAT,534,-1,t cell,satellite glia,t cell
+890,10X43_2:CTAGTTTGTCAGAC,534,-1,t cell,satellite glia,t cell
+891,10X53_7:CTGGAAACCTCGCT,534,-1,t cell,satellite glia,t cell
+892,10X43_2:ACTGTTACATCGTG,534,-1,t cell,satellite glia,t cell
+893,10X53_7:CGACCACTCCCGTT,534,-1,t cell,satellite glia,t cell
+894,10X43_2:TCAACACTCCTTTA,534,-1,t cell,satellite glia,t cell
+895,10X43_2:TAGTCTTGCCTAAG,534,-1,t cell,satellite glia,t cell
+896,10X43_2:GGCGACTGTCTACT,534,-1,t cell,satellite glia,t cell
+897,10X43_2:CACGGGACTGCAAC,534,-1,t cell,satellite glia,t cell
+898,10X53_7:CGACCGGACATCAG,534,-1,t cell,satellite glia,t cell
 899,10X11_1:TTACTCGAAGTACC,534,901,t cell,choroid plexus epithelial cell,t cell
 900,10X54_6:AGCTACATCGGGTC,534,901,t cell,choroid plexus epithelial cell,t cell
 901,10X54_3:AGCCAGTAAGCACG,534,901,t cell,choroid plexus epithelial cell,t cell
