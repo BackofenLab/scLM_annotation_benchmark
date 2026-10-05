@@ -198,10 +198,7 @@ def check_labels_mappable(
         - Dict (label -> how it was mapped) for the labels that *can* be mapped.
     """
     # Ensure the ontology is available locally; reuse the shared downloader.
-    cl_file_path = download_cl_ontology(
-        cache_dir=cache_dir,
-        cl_url="https://purl.obolibrary.org/obo/cl/cl-base.owl",
-    )
+    cl_file_path = download_cl_ontology(cache_dir)
 
     # Step 1: direct ontology coverage (reuses shared helper which builds the
     # label index and runs map_string_to_term for every label).

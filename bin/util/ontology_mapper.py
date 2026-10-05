@@ -11,7 +11,7 @@ from typing import Any, Optional
 import pandas as pd
 
 # Import the download function from cell_ontology_similarity
-from .cell_ontology_similarity import download_cl_ontology
+from .cell_ontology_similarity import CL_FILE, CL_URL, download_cl_ontology
 from .label_normalization import canonicalize_empty_labels
 
 
@@ -53,10 +53,9 @@ def _resolve_best_matches(
 
     Tries omicverse's semantic ``CellOntologyMapper`` first (rich fuzzy matching). If
     omicverse is unavailable or fails to import/run, falls back to an omicverse-free
-    lookup against the Cell Ontology label index: labels that match a CL term name,
-    synonym, or CL-id exactly get that term's canonical name as ``best_match``; labels
-    with no direct hit get an empty ``best_match`` (surfaced for manual review). The
-    fallback never raises for an unmatched label -- it just leaves the suggestion blank.
+    lookup: labels that match a CL term name or CL-id exactly, or else an EXACT synonym, get
+    that term's canonical name as ``best_match``; labels with no hit get an empty
+    ``best_match``. Either way these are suggestions for manual review, never scores.
     """
     try:
         import omicverse as ov
@@ -74,20 +73,18 @@ def _resolve_best_matches(
             "lookup for best-match suggestions (labels still appended for review)."
         )
 
-    # Omicverse-free fallback: exact resolution against the CL label index. Note `cl_file_path`
-    # is the OBO-Graph JSON (what omicverse's mapper consumes); pronto needs the OWL, so fetch
-    # cl-base.owl (cached alongside, same as the rest of the pipeline's index builds).
+    # Omicverse-free fallback. `cl_file_path` is the OBO-Graph JSON omicverse consumes; pronto
+    # reads the OBO file of the same pinned release.
     import pronto
-    from .cell_ontology_similarity import build_label_index, map_string_to_term
+    from .cell_ontology_similarity import build_label_index, build_synonym_index, map_string_to_term
 
-    owl_path = download_cl_ontology(
-        cache_dir=cache_dir, cl_url="https://purl.obolibrary.org/obo/cl/cl-base.owl"
-    )
-    ont = pronto.Ontology(str(owl_path))
-    index = build_label_index(ont)
+    ont = pronto.Ontology(str(download_cl_ontology(cache_dir)))
+    names, synonyms = build_label_index(ont), build_synonym_index(ont)
     results: dict[str, dict] = {}
     for label in labels:
-        term = map_string_to_term(label, index)
+        term = map_string_to_term(label, names)
+        if term is None:
+            term = map_string_to_term(label, synonyms)
         results[label] = {"best_match": term.name if term is not None else ""}
     return results
 
@@ -171,10 +168,8 @@ def map_cell_types_to_ontology(
     try:
         # Download Cell Ontology using our existing download function
         print("Downloading Cell Ontology...")
-        cl_file_path = download_cl_ontology(
-            cache_dir=cache_dir,
-            cl_url="https://purl.obolibrary.org/obo/cl/cl-base.json"
-        )
+        cl_file_path = download_cl_ontology(cache_dir, cl_url=CL_URL.replace(".obo", ".json"),
+                                            filename=CL_FILE.replace(".obo", ".json"))
 
         # Resolve a best-match suggestion for each label. Prefer omicverse's semantic
         # matcher; degrade to an omicverse-free index lookup if the package is missing or

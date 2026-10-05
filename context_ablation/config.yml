@@ -361,9 +361,9 @@ scoring:
   # type. Those would have sat in the file the published numbers depend on.
   #
   # Seeded from the committed benchmark CSV (1,873 reviewed mappings) so canonicalisation is
-  # identical and the scales stay comparable; new discoveries now accumulate here instead. cl-base.owl
-  # is copied alongside it so the ontology is not re-downloaded and the version cannot drift
-  # mid-study.
+  # identical and the scales stay comparable; new discoveries now accumulate here instead. The
+  # benchmark's pinned Cell Ontology release (cl-basic_<release>.obo) is copied alongside it, so
+  # the ontology is not re-downloaded and both studies use the same version.
   cache_dir: ./cache
   min_scoring_coverage: 0.9
 

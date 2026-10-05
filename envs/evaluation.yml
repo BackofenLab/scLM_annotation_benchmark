@@ -12,6 +12,7 @@ dependencies:
   - matplotlib
   - seaborn
   - pronto
+  - networkx
   - setuptools<81
   - pip
   - pip:

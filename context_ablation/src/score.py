@@ -49,7 +49,8 @@ def score_one(path, coords, cfg, root, python_exe):
     cache_dir = (root / cfg["scoring"]["cache_dir"]).resolve()
     if not cache_dir.is_dir():
         raise SystemExit(f"scoring.cache_dir does not exist: {cache_dir}. Seed it with the "
-                         f"benchmark's cell_type_ontology_mappings.csv and cl-base.owl first.")
+                         f"benchmark's cell_type_ontology_mappings.csv and pinned Cell Ontology "
+                         f"file (cl-basic_<release>.obo) first.")
 
     tag = "__".join([coords["arm"], coords["dataset"], coords["mode"],
                      coords["variant"], f"seed{coords['seed']}"])
@@ -75,7 +76,7 @@ def score_one(path, coords, cfg, root, python_exe):
     subprocess.run(
         [python_exe, str(REPO_ROOT / cfg["scoring"]["evaluate"].lstrip("./")),
          "--pred", str(mapped), "--model", coords["arm"], "--out", str(result_json),
-         "--cache_dir", str(cache_dir), "--max-unmapped-ratio", "0.99",
+         "--cache_dir", str(cache_dir),
          "--min-scoring-coverage", str(cfg["scoring"]["min_scoring_coverage"]),
          "--use_text_encoder", "false"],
         check=True)

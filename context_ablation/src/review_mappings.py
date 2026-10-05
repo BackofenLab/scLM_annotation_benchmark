@@ -259,7 +259,9 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--mappings", default=str(root / "cache" / "cell_type_ontology_mappings.csv"))
-    p.add_argument("--ontology", default=str(root / "cache" / "cl-base.owl"))
+    p.add_argument("--ontology", default=str(root / "cache" / "cl-basic_2026-06-08.obo"),
+                   help="the benchmark's pinned Cell Ontology release (CL_FILE in "
+                        "bin/util/cell_ontology_similarity.py)")
     p.add_argument("--apply", action="store_true")
     p.add_argument("--seed-from-predictions", action="store_true",
                    help="add labels seen in results/predictions that are not yet in the file")

@@ -586,7 +586,7 @@ process score_predictions {
     script:
     """
     pred_files=\$(echo ${mapped} | tr ' ' ',')
-    evaluate.py --pred "\$pred_files" --model ${model} --out ${dataset}_${model}__sub${subset_size}.json --cache_dir ${cache_dir} --subset-size ${subset_size} --max-unmapped-ratio 0.99 --min-scoring-coverage ${params.min_scoring_coverage} --use_text_encoder ${params.use_text_encoder} --text_encoder_model ${params.text_encoder_model}
+    evaluate.py --pred "\$pred_files" --model ${model} --out ${dataset}_${model}__sub${subset_size}.json --cache_dir ${cache_dir} --subset-size ${subset_size} --min-scoring-coverage ${params.min_scoring_coverage} --use_text_encoder ${params.use_text_encoder} --text_encoder_model ${params.text_encoder_model}
     """
 }
 

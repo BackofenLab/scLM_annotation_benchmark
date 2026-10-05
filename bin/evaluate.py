@@ -3,7 +3,7 @@
 import pandas as pd
 import numpy as np
 from pathlib import Path
-from sklearn.metrics import balanced_accuracy_score, classification_report
+from sklearn.metrics import accuracy_score, balanced_accuracy_score, classification_report
 import argparse
 import json
 import sys
@@ -13,18 +13,24 @@ import pronto
 
 from util.plots import UMAPCellPlotter  # Replace with correct import if needed
 from util.cell_ontology_similarity import (
-    compute_ontology_similarities, download_cl_ontology,
-    build_label_index, compute_depths, descendant_counts, map_string_to_term,
+    SIMILARITY_KEYS, CellTaxonomy, build_label_index, compute_ontology_similarities,
+    download_cl_ontology, map_string_to_term,
 )
 from util.ontology_mapper import load_ontology_mappings_with_review_status
-from util.text_embedding_similarity import load_text_encoder, compute_text_embedding_similarities
+from util.text_embedding_similarity import (
+    compute_text_embedding_similarities, load_text_encoder, reference_baseline,
+)
+
+
+# Placeholder for a prediction that has no usable label: a blank answer, or one that is neither a
+# CL term nor a reviewed mapping. It matches no true label, so it counts as wrong in every metric.
+UNMAPPED = "__unmapped__"
 
 
 def _nan_metrics():
     """Metric dict with all core scores NaN — written when a file is below the scoring-coverage floor
     so the aggregated table carries no number computed on too little human-verified data."""
-    return {k: np.nan for k in ("balanced_accuracy", "accuracy", "rada_avg_similarity",
-                                "lin_avg_similarity", "id_accuracy", "balanced_id_accuracy")}
+    return {k: np.nan for k in ("balanced_accuracy", "accuracy", *SIMILARITY_KEYS)}
 
 
 def _canonicalize_to_cl(series, label_index, review_map):
@@ -100,155 +106,118 @@ def parse_pred_input(pred_input):
 
 
 def load_ontology_context(cl_path):
-    """
-    Parse the CL ontology ONCE and precompute the graph structures the similarity metrics
-    need, so a single ``evaluate.py`` run no longer re-parses the 63MB OWL per true-label
-    level (it used to parse it 3-9x). Returns a tuple threaded through ``run_eval`` ->
-    ``compute_ontology_similarities``.
-    """
+    """Parse the CL ontology once per run. The label index resolves label strings to terms; the
+    taxonomy carries the is_a graph and information content the similarity metrics need."""
     print(f"Loading CL ontology (once) from {cl_path}...")
     ont = pronto.Ontology(str(cl_path))
-    label_index = build_label_index(ont)
-    depth = compute_depths(ont)
-    desc_count = descendant_counts(ont)
-    max_desc = max(desc_count.values()) if desc_count else 0
-    return (ont, label_index, depth, desc_count, max_desc)
+    return build_label_index(ont), CellTaxonomy.from_ontology(ont)
 
 
-def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_ratio=0.0, cache_dir=None, text_encoder=None, ont_ctx=None):
-    # NaN/blank labels are coerced to "__unmapped__" once in main() (before the true-label loop),
-    # so df reaches here already cleaned for every level.
+def load_review_status(cache_dir):
+    """Reviewed labels and their targets, read from the live mappings CSV.
+
+    Returns ``(reviewed_labels, review_map)``. A raw answer is trusted iff it is a CL term or one of
+    ``reviewed_labels``. ``review_map`` resolves reviewed labels that are not CL terms themselves
+    (e.g. "delta") to their chosen CL target, keyed by the lowercased label so the lowercased truth
+    column resolves through it too.
+    """
+    mdf = load_ontology_mappings_with_review_status(cache_dir)
+    if mdf is None or not {"predicted_label", "reviewed"} <= set(mdf.columns):
+        return set(), {}
+    is_reviewed = mdf["reviewed"].map(
+        lambda v: v if isinstance(v, bool) else str(v).strip().lower() in ("true", "1", "yes"))
+    rows = mdf.loc[is_reviewed]
+    review_map = {}
+    if "chosen_match" in rows.columns:
+        review_map = {str(label).strip().lower(): str(target)
+                      for label, target in zip(rows["predicted_label"], rows["chosen_match"])
+                      if pd.notna(target) and str(target).strip()}
+    return set(rows["predicted_label"].astype(str)), review_map
+
+
+def trusted_answers(raw_labels, label_index, reviewed_labels):
+    """Return ``(is_cl_term, trusted)`` masks: an answer is trusted when it is a CL term itself or
+    has a human-reviewed mapping."""
+    raw = raw_labels.astype(str)
+    is_cl = raw.map(lambda s: map_string_to_term(s, label_index) is not None)
+    return is_cl, is_cl | raw.isin(reviewed_labels)
+
+
+def prepare_for_scoring(df, trusted, levels, label_index, review_map, pred_col="predicted_labels"):
+    """Copy of ``df`` ready for scoring, plus diagnostics on the truth labels.
+
+    Untrusted answers become UNMAPPED, so they count as wrong instead of leaving the denominator;
+    dropping them would inflate every score. Truth and predictions are then canonicalized to CL
+    names on both sides. Returns ``(df, unresolved, collisions)``: true labels that did not resolve
+    to CL, and distinct true labels that canonicalization merged, both keyed by truth column.
+    """
+    df = df.copy()
+    df.loc[~trusted, pred_col] = UNMAPPED
+    for col in [*levels, pred_col, f"original_{pred_col}"]:
+        if col in df.columns:
+            df[col] = df[col].fillna(UNMAPPED).astype(str)
+    df[pred_col], _ = _canonicalize_to_cl(df[pred_col], label_index, review_map)
+    unresolved, collisions = {}, {}
+    for col in levels:
+        raw = df[col].copy()
+        df[col], unres = _canonicalize_to_cl(raw, label_index, review_map)
+        if unres:
+            unresolved[col] = sorted(set(unres))
+        pairs = pd.DataFrame({"raw": raw, "canon": df[col]}).drop_duplicates()
+        merged = {canon: sorted(group) for canon, group in pairs.groupby("canon")["raw"]
+                  if len(group) > 1}
+        if merged:
+            collisions[col] = merged
+    return df, unresolved, collisions
+
+
+def label_metrics(true_labels, pred_labels):
+    """Exact-match metrics on canonical labels.
+
+    Macro averages run over the true classes only. sklearn's default averages over every label that
+    occurs, so each label a method emits that no cell carries adds a zero: that penalizes a broad
+    vocabulary, not wrong cells. With ``labels`` given, the report omits accuracy, so it is computed
+    separately. Macro recall then equals balanced accuracy.
+    """
+    return {
+        "balanced_accuracy": balanced_accuracy_score(true_labels, pred_labels),
+        "accuracy": accuracy_score(true_labels, pred_labels),
+        "summary_dict": classification_report(true_labels, pred_labels,
+                                              labels=np.unique(true_labels),
+                                              output_dict=True, zero_division=0),
+    }
+
+
+def run_eval(df, true_col, pred_col, output_dir, ont_ctx, text_scoring=None):
+    # Truth and predictions arrive canonicalized and placeholder-filled (prepare_for_scoring).
     true_labels = df[true_col]
-    pred_labels = df[pred_col]  # Use mapped predicted labels directly
+    pred_labels = df[pred_col]
+    results = label_metrics(true_labels, pred_labels)
 
-    # Calculate balanced accuracy
-    balanced_acc = balanced_accuracy_score(true_labels, pred_labels)
+    label_index, taxonomy = ont_ctx
+    pairs, similarities = compute_ontology_similarities(df, true_col, pred_col, label_index, taxonomy)
+    results.update(similarities)
+    scored_csv_path = output_dir / f"{true_col}_scored.csv"
+    pairs.to_csv(scored_csv_path, index=False)
+    print(f"Lin: {similarities['lin_avg_similarity']:.4f}  Rada: {similarities['rada_avg_similarity']:.4f}"
+          f"  Agreement: {similarities['agreement_score']:.4f}"
+          f"  ({len(pairs)} label pairs -> {scored_csv_path})")
 
-    # Compute additional metrics
-    summary_dict = classification_report(true_labels, pred_labels, output_dict=True)
-    
-    # Extract accuracy from summary_dict for easier access
-    accuracy = summary_dict.get("accuracy", np.nan)
-
-    # Initialize results dictionary
-    results = {"balanced_accuracy": balanced_acc, "accuracy": accuracy, "summary_dict": summary_dict}
-    
-    # Compute ontology similarities if CL path is provided
-    ontology_df = None
-    if cl_path and Path(cl_path).exists():
-        try:
-            print(f"Computing ontology similarities using {cl_path}...")
-            # Create a temporary dataframe for ontology computation
-            # Use original predicted labels for the predicted_labels column in the scored CSV
-            original_pred_col = f"original_{pred_col}"
-            if original_pred_col in df.columns:
-                # Use original predicted labels in the scored CSV, but mapped labels for similarity computation
-                temp_df = df[[true_col, original_pred_col, pred_col]].copy()
-                temp_df = temp_df.rename(columns={
-                    true_col: "true_labels", 
-                    original_pred_col: "predicted_labels",
-                    pred_col: "mapped_predicted_labels"
-                })
-            else:
-                # Fallback if no original column exists
-                temp_df = df[[true_col, pred_col]].copy()
-                temp_df = temp_df.rename(columns={true_col: "true_labels", pred_col: "predicted_labels"})
-                temp_df["mapped_predicted_labels"] = temp_df["predicted_labels"]
-            
-            # Use mapped labels for similarity computation, but keep original labels in output
-            similarity_pred_col = "mapped_predicted_labels" if "mapped_predicted_labels" in temp_df.columns else "predicted_labels"
-            # Pass the preloaded ontology (parsed once in main) so this does not re-parse the OWL.
-            ont, label_index, depth, desc_count, max_desc = ont_ctx if ont_ctx else (None, None, None, None, None)
-            ontology_df, avg_similarities = compute_ontology_similarities(
-                temp_df, cl_path, "true_labels", similarity_pred_col, max_unmapped_ratio,
-                ont=ont, label_index=label_index, depth=depth, desc_count=desc_count, max_desc=max_desc,
-            )
-            
-            # Fix the column structure: swap predicted_labels and mapped_labels if we used mapped labels for computation
-            if "mapped_predicted_labels" in temp_df.columns and similarity_pred_col == "mapped_predicted_labels":
-                # The ontology_df now has mapped labels in the column named by similarity_pred_col
-                # We need to swap it so original predictions are in 'predicted_labels' and mapped are in 'mapped_labels'
-                
-                # Create a mapping from (true_label, mapped_pred) back to original_pred
-                original_mapping = temp_df.groupby(['true_labels', 'mapped_predicted_labels'])['predicted_labels'].first().reset_index()
-                original_mapping = original_mapping.rename(columns={'predicted_labels': 'original_predicted_labels'})
-                
-                # Merge to get original predicted labels
-                # Note: ontology_df has the mapped labels in the column named by similarity_pred_col
-                ontology_df = ontology_df.merge(
-                    original_mapping, 
-                    left_on=['true_labels', similarity_pred_col], 
-                    right_on=['true_labels', 'mapped_predicted_labels'], 
-                    how='left'
-                )
-                
-                # Rename and reorganize columns: 
-                # - Put original predictions in 'predicted_labels'
-                # - Put mapped predictions in 'mapped_labels' 
-                ontology_df['predicted_labels'] = ontology_df['original_predicted_labels']  # Use original labels
-                ontology_df['mapped_labels'] = ontology_df[similarity_pred_col]  # Put mapped labels in mapped_labels column
-                
-                # Clean up temporary columns
-                ontology_df = ontology_df.drop(columns=['original_predicted_labels', similarity_pred_col, 'mapped_predicted_labels'], errors='ignore')
-                
-                # Reorder columns to put predicted_labels right after mapped_labels
-                # Get current column order and reorganize
-                cols = list(ontology_df.columns)
-                # Remove predicted_labels from its current position
-                cols.remove('predicted_labels')
-                # Find the position of mapped_labels and insert predicted_labels after it
-                mapped_labels_idx = cols.index('mapped_labels')
-                cols.insert(mapped_labels_idx + 1, 'predicted_labels')
-                # Reorder the dataframe
-                ontology_df = ontology_df[cols]
-            
-            # Add ontology results to main results
-            results.update(avg_similarities)
-            
-            print(f"Rada average similarity: {avg_similarities.get('rada_avg_similarity', 'N/A'):.4f}")
-            print(f"Lin average similarity: {avg_similarities.get('lin_avg_similarity', 'N/A'):.4f}")
-            print(f"ID accuracy: {avg_similarities.get('id_accuracy', 'N/A'):.4f}")
-            print(f"Balanced ID accuracy: {avg_similarities.get('balanced_id_accuracy', 'N/A'):.4f}")
-            
-            # Save scored CSV with ontology similarities (unique combinations)
-            scored_csv_path = output_dir / f"{true_col}_scored.csv"
-            
-            # ontology_df now contains unique combinations with aggregated scores
-            ontology_df.to_csv(scored_csv_path, index=False)
-            print(f"Scored CSV with unique combinations saved to: {scored_csv_path}")
-            print(f"Found {len(ontology_df)} unique label combinations")
-            
-        except Exception as e:
-            raise RuntimeError(f"Could not compute ontology similarities: {e}")
-            results["rada_avg_similarity"] = np.nan
-            results["lin_avg_similarity"] = np.nan
-            results["id_accuracy"] = np.nan
-            results["balanced_id_accuracy"] = np.nan
-
-    # Mapping-free text-encoder similarity (complementary to the ontology metrics).
-    # Scores both the raw model output and the ontology-mapped label on one scale, so it
-    # also covers free-text labels the ontology path drops, and yields a mapping-lift
-    # diagnostic. Opt-in (text_encoder is None when --use_text_encoder is false).
-    if text_encoder is not None:
+    # Mapping-free text-encoder similarity (complementary to the ontology metrics). Scores the raw
+    # model output and the ontology-mapped label on one scale, so it also covers free-text labels
+    # and yields a mapping-lift diagnostic. Opt-in: text_scoring is (encoder, baseline) or None.
+    if text_scoring is not None:
         try:
             # Raw = actual model output (post-normalization, pre-CL-mapping); mapped = pred_col.
             raw_pred_col = f"original_{pred_col}" if f"original_{pred_col}" in df.columns else pred_col
-            print(f"Computing text-encoder similarities ({text_encoder.model_name})...")
-            te_combos, te_avgs = compute_text_embedding_similarities(
-                df, true_col, raw_pred_col, pred_col, text_encoder
-            )
-            results.update(te_avgs)
-
+            te_combos, te_metrics = compute_text_embedding_similarities(
+                df, true_col, raw_pred_col, pred_col, *text_scoring, no_answer=UNMAPPED)
+            results.update(te_metrics)
             te_csv_path = output_dir / f"{true_col}_text_emb_scored.csv"
             te_combos.to_csv(te_csv_path, index=False)
-
-            print(f"  Text-emb raw  : avg={te_avgs['text_emb_avg_similarity_raw']:.4f} "
-                  f"norm={te_avgs['text_emb_norm_avg_raw']:.4f}")
-            print(f"  Text-emb mapped: avg={te_avgs['text_emb_avg_similarity_mapped']:.4f} "
-                  f"norm={te_avgs['text_emb_norm_avg_mapped']:.4f}")
-            print(f"  Mapping lift  : {te_avgs['text_emb_mapping_lift']:.4f} "
-                  f"(baseline={te_avgs['text_emb_baseline']:.4f})")
-            print(f"  Text-emb scored CSV saved to: {te_csv_path}")
+            print(f"Text-emb rescaled: raw={te_metrics['text_emb_norm_balanced_raw']:.4f}  "
+                  f"mapped={te_metrics['text_emb_norm_balanced_mapped']:.4f}  "
+                  f"lift={te_metrics['text_emb_norm_mapping_lift']:.4f}  -> {te_csv_path}")
         except Exception as e:
             print(f"Warning: Could not compute text-encoder similarities: {e}")
             print("Continuing without text-encoder metric...")
@@ -258,7 +227,7 @@ def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_rati
     # matplotlib PDF backend, so a plotting failure must NOT discard the already-computed
     # metrics / JSON.
     output_plot_path = output_dir / f"{true_col}_confusion_matrix.pdf"
-    title = f"Confusion Matrix {true_col} (Balanced Accuracy = {balanced_acc:.2f})"
+    title = f"Confusion Matrix {true_col} (Balanced Accuracy = {results['balanced_accuracy']:.2f})"
     try:
         plotter = UMAPCellPlotter()
         plotter.plot_cm(
@@ -272,8 +241,8 @@ def run_eval(df, true_col, pred_col, output_dir, cl_path=None, max_unmapped_rati
     except Exception as e:
         print(f"Warning: Could not render confusion matrix ({e}); keeping metrics anyway.")
 
-    print(f"Accuracy: {accuracy:.4f}")
-    print(f"Balanced accuracy: {balanced_acc:.4f}")
+    print(f"Accuracy: {results['accuracy']:.4f}")
+    print(f"Balanced accuracy: {results['balanced_accuracy']:.4f}")
 
     return results
 
@@ -309,47 +278,31 @@ def main(args):
     print(f"Parsed prediction files: {pred_files}")
     print(f"Output directory: {output_dir}")
     print(f"Cell Ontology path: {cl_path}")
-    print(f"Max unmapped ratio: {args.max_unmapped_ratio}")
 
-    # Load the text encoder once per process (weights cached under cache_dir) so it is not
-    # reloaded for every prediction file / true-label level. Graceful: a load failure
+    # Parse the CL ontology ONCE for this whole run (shared across files + true-label levels).
+    # Every metric needs it, so a failure here stops the run instead of producing partial scores.
+    ont_ctx = load_ontology_context(cl_path)
+    label_index = ont_ctx[0]
+
+    # Load the text encoder once per process (weights cached under cache_dir), with its rescaling
+    # baseline over the Cell Ontology's cell-type names (cached there too). Graceful: a failure
     # disables the metric but does not stop evaluation.
-    text_encoder = None
+    text_scoring = None
     if args.use_text_encoder:
         try:
             print(f"Loading text encoder '{args.text_encoder_model}' (cache: {cache_dir})...")
-            text_encoder = load_text_encoder(args.text_encoder_model, cache_dir=cache_dir)
+            encoder = load_text_encoder(args.text_encoder_model, cache_dir=cache_dir)
+            baseline = reference_baseline(encoder, ont_ctx[1].names.values(), cache_dir)
+            print(f"Text-encoder baseline (mean cosine of two cell-type names): {baseline:.4f}")
+            text_scoring = (encoder, baseline)
         except Exception as e:
             print(f"Warning: Could not load text encoder '{args.text_encoder_model}': {e}")
             print("Continuing without the text-encoder metric...")
-            text_encoder = None
 
-    # Parse the CL ontology ONCE for this whole run (shared across files + true-label levels).
-    ont_ctx = None
-    if cl_path and Path(cl_path).exists():
-        try:
-            ont_ctx = load_ontology_context(cl_path)
-        except Exception as e:
-            print(f"Warning: Could not load CL ontology context: {e}; will lazy-load per call.")
-            ont_ctx = None
-
-    # Load the set of human-reviewed labels ONCE (the review-filter moved from mapping to scoring).
-    # A predicted label is "trusted/scoreable" iff it is a direct CL term OR has reviewed=True here.
-    # review_map resolves labels that are NOT themselves CL terms (e.g. "delta",
-    # "alpha_mature") to their reviewed CL target, keyed by lowercased/stripped label so the
-    # lowercased ground-truth column matches. Used for symmetric canonicalization below.
-    reviewed_labels = set()
-    review_map = {}
+    # Load the human-reviewed labels ONCE (the review filter moved from mapping to scoring).
+    reviewed_labels, review_map = set(), {}
     try:
-        _mdf = load_ontology_mappings_with_review_status(cache_dir)
-        if _mdf is not None and 'predicted_label' in _mdf.columns and 'reviewed' in _mdf.columns:
-            _rev = _mdf['reviewed'].map(
-                lambda v: v if isinstance(v, bool) else str(v).strip().lower() in ('true', '1', 'yes'))
-            reviewed_labels = set(_mdf.loc[_rev, 'predicted_label'].astype(str))
-            if 'chosen_match' in _mdf.columns:
-                _rev_df = _mdf.loc[_rev, ['predicted_label', 'chosen_match']].astype(str)
-                review_map = {k.strip().lower(): v for k, v in
-                              zip(_rev_df['predicted_label'], _rev_df['chosen_match']) if v.strip()}
+        reviewed_labels, review_map = load_review_status(cache_dir)
         print(f"Loaded {len(reviewed_labels)} reviewed mapping labels "
               f"({len(review_map)} with a chosen_match) for scoring-coverage + canonicalization.")
     except Exception as e:
@@ -391,32 +344,24 @@ def main(args):
             except Exception as e:
                 print(f"Warning: could not read sidecar stats {stats_path}: {e}")
 
-        # --- Coverage filter (moved here from the mapping stage) -------------------------------
-        # A cell is "trusted/scoreable" iff its RAW label (original_predicted_labels) is a direct CL
-        # term OR has a reviewed=True mapping in the LIVE mappings CSV. coverage = trusted / total.
-        # Below min_scoring_coverage we emit NO metrics (NaN) so the table never carries a number
-        # built on too little human-verified data; otherwise we score the trusted rows only.
+        # --- Coverage (moved here from the mapping stage) -------------------------------------
+        # A cell is trusted iff its RAW label (original_predicted_labels) is a direct CL term OR has
+        # a reviewed=True mapping in the LIVE mappings CSV. coverage = trusted / total. Below
+        # min_scoring_coverage we emit NO metrics (NaN) so the table never carries a number built
+        # on too little human-verified data; otherwise untrusted cells are scored as wrong.
         raw_col = 'original_predicted_labels' if 'original_predicted_labels' in df.columns else pred_col
-        label_index = ont_ctx[1] if ont_ctx else None
         n_total = len(df)
-        # Label-diversity diagnostics, computed on the FULL file (pre-gating, pre-trust-filter) so they
-        # describe the model's complete output:
+        # Label-diversity diagnostics, computed on the FULL file so they describe the model's
+        # complete output:
         #   n_unique_pred_raw    = distinct RAW model outputs (before ontology mapping) -> the model's vocabulary
         #   n_unique_pred_mapped = distinct labels AFTER ontology mapping -> effective CL granularity used
-        #   n_non_cl_labels      = distinct RAW labels that are not themselves CL terms (needs the label index)
-        _raw_all = df[raw_col].astype(str)
-        n_unique_pred_raw = int(_raw_all.nunique())
+        #   n_non_cl_labels      = distinct RAW labels that are not themselves CL terms
+        raw_all = df[raw_col].astype(str)
+        n_unique_pred_raw = int(raw_all.nunique())
         n_unique_pred_mapped = int(df[pred_col].astype(str).nunique())
-        if label_index is not None and n_total > 0:
-            _raw = _raw_all
-            _is_cl = _raw.map(lambda s: map_string_to_term(s, label_index) is not None)  # raw label is a CL term
-            trusted_mask = _is_cl | _raw.isin(reviewed_labels)
-            non_cl_ratio = float((~_is_cl).mean())  # fraction of cells whose RAW label is NOT a CL term
-            n_non_cl_labels = int(_raw[~_is_cl].nunique())  # distinct non-CL raw labels (subset of the raw vocab)
-        else:
-            trusted_mask = pd.Series(True, index=df.index)  # ontology/mapping unavailable -> score all
-            non_cl_ratio = 0.0
-            n_non_cl_labels = None  # cannot determine CL membership without the label index
+        is_cl, trusted_mask = trusted_answers(raw_all, label_index, reviewed_labels)
+        non_cl_ratio = float((~is_cl).mean()) if n_total else 0.0  # cells whose RAW label is not a CL term
+        n_non_cl_labels = int(raw_all[~is_cl].nunique())
         n_trusted = int(trusted_mask.sum())
         coverage = (n_trusted / n_total) if n_total else 0.0
         file_results["coverage_stats"] = {
@@ -427,40 +372,16 @@ def main(args):
         }
         gated = coverage < args.min_scoring_coverage
         print(f"Scoring coverage (trusted/total) = {n_trusted}/{n_total} = {coverage:.4f} "
-              f"(floor {args.min_scoring_coverage}) -> {'GATED: NaN metrics' if gated else 'scoring trusted rows'}")
+              f"(floor {args.min_scoring_coverage}) -> {'GATED: NaN metrics' if gated else 'scoring all rows, untrusted as wrong'}")
 
         levels = [c for c in ['true_labels', 'true_labels_1', 'true_labels_2', 'true_labels_3'] if c in df.columns]
 
         if not gated:
-            df = df[trusted_mask].copy()
-            # Coerce blank/NaN labels to an explicit placeholder ONCE for all true-label levels.
-            # Some models emit gibberish that normalizes to an empty string -> NaN; left as float NaN
-            # it crashes sklearn metrics (float/str mix in np.unique) and the ontology/text steps.
-            for _c in ['true_labels', 'true_labels_1', 'true_labels_2', 'true_labels_3',
-                       pred_col, f"original_{pred_col}"]:
-                if _c in df.columns:
-                    df[_c] = df[_c].fillna("__unmapped__").astype(str)
-
-            # --- Symmetric ontology-canonicalization of true & predicted labels ----------------
-            # Map BOTH sides to the same canonical CL identity so every metric (accuracy, balanced
-            # accuracy, macro/weighted F1, id/rada/lin) is computed on a consistent, surface-robust
-            # key. Fixes the case bug and the truth-vs-prediction mapping asymmetry in one place.
-            # original_predicted_labels is intentionally left raw (it drives the coverage gate and
-            # is surfaced in the scored CSV as the model's real output).
-            df[pred_col], _pred_unresolved = _canonicalize_to_cl(df[pred_col], label_index, review_map)
-            true_unresolved = {}
-            true_collisions = {}
-            for _tc in levels:
-                _raw_true = df[_tc].astype(str)
-                df[_tc], _unres = _canonicalize_to_cl(df[_tc], label_index, review_map)
-                if _unres:
-                    true_unresolved[_tc] = sorted(set(_unres))
-                # Coarsening guard: flag distinct raw truth classes that collapse to one canonical.
-                _pairs = pd.DataFrame({"raw": _raw_true, "canon": df[_tc].astype(str)}).drop_duplicates()
-                _coll = {c: sorted(v) for c, v in _pairs.groupby("canon")["raw"].apply(list).items()
-                         if len(v) > 1}
-                if _coll:
-                    true_collisions[_tc] = _coll
+            # Untrusted answers count as wrong, then truth and predictions are put on the same
+            # canonical CL names. original_predicted_labels stays raw: it drives the coverage gate
+            # and is the model's real output for the text-encoder metric.
+            df, true_unresolved, true_collisions = prepare_for_scoring(
+                df, trusted_mask, levels, label_index, review_map, pred_col)
             file_results["coverage_stats"]["true_unresolved"] = true_unresolved
             file_results["coverage_stats"]["true_coarsening_collisions"] = true_collisions
             if true_unresolved:
@@ -477,8 +398,7 @@ def main(args):
             if gated:
                 eval_results = _nan_metrics()
             else:
-                # Run evaluation with mapped predicted labels (trusted rows only)
-                eval_results = run_eval(df, true_col, pred_col, output_dir, cl_path, args.max_unmapped_ratio, cache_dir, text_encoder=text_encoder, ont_ctx=ont_ctx)
+                eval_results = run_eval(df, true_col, pred_col, output_dir, ont_ctx, text_scoring)
 
             # Round numerical results for JSON output and store per true_col
             rounded_results = {}
@@ -576,8 +496,6 @@ if __name__ == "__main__":
                        help="Number of cells the model was run on for this dataset (threaded from the "
                             "pipeline). Recorded per result so the aggregated table carries a subset_size "
                             "column. Optional; omitted -> null.")
-    parser.add_argument("--max-unmapped-ratio", type=float, default=0.0,
-                       help="Maximum acceptable ratio of unmapped cell types (0.0-1.0). Default: 0.0 (all must be mapped)")
     parser.add_argument("--min-scoring-coverage", type=float, default=0.9,
                        help="Minimum trusted-mapping coverage (fraction of cells whose raw label is a "
                             "direct CL term OR has reviewed=True) required to emit metrics. Below this, "

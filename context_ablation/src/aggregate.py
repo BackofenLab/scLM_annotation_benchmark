@@ -16,9 +16,9 @@ import pandas as pd
 import yaml
 
 # Metrics that sit at the top level of the "true_labels" block.
-METRICS = ("balanced_accuracy", "accuracy", "lin_avg_similarity", "rada_avg_similarity",
-           "id_accuracy", "balanced_id_accuracy", "reviewed_fraction", "non_cl_ratio",
-           "n_unique_pred_raw", "n_unique_pred_mapped")
+METRICS = ("balanced_accuracy", "accuracy", "agreement_score", "lin_avg_similarity",
+           "rada_avg_similarity", "share_broader", "share_finer", "reviewed_fraction",
+           "non_cl_ratio", "n_unique_pred_raw", "n_unique_pred_mapped")
 
 # The F1 family is NOT top level: evaluate.py leaves it inside the sklearn classification report,
 # under summary_dict["macro avg"]["f1-score"]. Listing them in METRICS would have yielded a column

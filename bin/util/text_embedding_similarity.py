@@ -7,11 +7,10 @@ with a biomedical text encoder (default: SapBERT) and scores them by cosine simi
 
 Why it complements the ontology metrics
 ---------------------------------------
-The ontology metrics (``rada``/``lin``/``id_accuracy``) only score labels that resolve to a
-Cell-Ontology (CL) term, which in this pipeline requires the curated
-``cell_type_ontology_mappings.csv`` + manual ``reviewed=True`` step. Free-text model output
-that cannot be mapped is dropped. A text encoder scores *any* string, so it covers exactly
-the cases the ontology path cannot.
+The ontology metrics (Lin, Rada, agreement) only credit labels that resolve to a Cell-Ontology
+(CL) term, which in this pipeline requires the curated ``cell_type_ontology_mappings.csv`` +
+manual ``reviewed=True`` step. A text encoder scores *any* string, so it also covers free-text
+output the ontology path can only count as wrong.
 
 Crucially, the encoder is the only metric that can put the **raw model output** and the
 **ontology-mapped label** on the *same* scale (graph metrics cannot score non-CL raw labels;
@@ -22,8 +21,10 @@ apparent semantic performance.
 Caveats (intentional, surfaced in the metric)
 ---------------------------------------------
 Cosine similarity from biomedical encoders is uncalibrated and anisotropic: even unrelated
-terms score well above zero. We therefore also report a baseline-normalized score relative
-to the mean cosine of random (true x pred) label pairs.
+terms score well above zero. Scores are therefore rescaled as in BERTScore (Zhang et al., ICLR
+2020), (s - b) / (1 - b), with ONE baseline b per encoder: the mean cosine between two different
+Cell Ontology cell-type names. Every model and dataset shares it, so rescaling changes how the
+numbers read but never how models rank.
 
 Depends only on ``transformers`` + ``torch`` (already in ``envs/evaluation.yml``); SapBERT is
 a plain BERT, so we use [CLS]-token pooling per its documented usage. Sentence-transformer
@@ -32,7 +33,10 @@ the model name and can be overridden.
 """
 from __future__ import annotations
 
+import hashlib
+import json
 import os
+from collections.abc import Iterable
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
@@ -158,7 +162,7 @@ def _per_row_cosine(
 
 
 def _balanced_mean(sims: np.ndarray, true_labels: pd.Series) -> float:
-    """Mean of per-true-class means (equal weight per class), ignoring NaN — mirrors balanced_id_accuracy."""
+    """Mean of per-true-class means (equal weight per class), ignoring NaN, like balanced accuracy."""
     tmp = pd.DataFrame({"true": true_labels.to_numpy(), "sim": sims})
     tmp = tmp.dropna(subset=["sim"])
     if tmp.empty:
@@ -167,14 +171,39 @@ def _balanced_mean(sims: np.ndarray, true_labels: pd.Series) -> float:
     return float(per_class.mean()) if len(per_class) else float("nan")
 
 
+def reference_baseline(encoder: TextEncoder, names: Iterable[str],
+                       cache_dir: Optional[Path] = None) -> float:
+    """Mean cosine between two different reference names: the rescaling baseline.
+
+    The BERTScore baseline is the mean score of random text pairs; with the full vocabulary at
+    hand, the mean over all pairs is exact. For L2-normalized embeddings e_i it needs no n x n
+    matrix: sum_{i != j} e_i.e_j = |sum_i e_i|^2 - sum_i |e_i|^2. The value is cached in
+    ``cache_dir``, keyed by encoder and vocabulary, so a run encodes the vocabulary only once.
+    """
+    names = sorted(set(names))
+    key = hashlib.sha1("\n".join([encoder.model_name, *names]).encode()).hexdigest()[:16]
+    path = Path(cache_dir) / f"text_emb_baseline_{key}.json" if cache_dir is not None else None
+    if path is not None and path.exists():
+        return float(json.loads(path.read_text())["baseline"])
+    emb = encoder.encode(names).astype(np.float64)
+    total = emb.sum(axis=0)
+    n = len(names)
+    baseline = float((total @ total - (emb * emb).sum()) / (n * (n - 1)))
+    if path is not None:
+        tmp = path.with_suffix(f".{os.getpid()}.tmp")  # atomic: parallel runs may race here
+        tmp.write_text(json.dumps({"encoder": encoder.model_name, "n_names": n,
+                                   "baseline": baseline}))
+        tmp.replace(path)
+    return baseline
+
+
 def normalize_similarity(avg: float, baseline: float) -> Tuple[float, bool]:
-    """Rescale a raw cosine so the random-pair floor sits at 0 and an exact match at 1.
+    """Rescale a raw cosine so the baseline sits at 0 and an exact match at 1.
 
     Returns ``(value, clipped)``. ``clipped`` is True when the unclipped value fell outside
-    [0, 1] — i.e. the model's output is no closer to the truth than randomly paired label
-    names. That case is real (it happens for InstructCell and the chance baselines) and must
-    stay visible, because a clipped score silently *understates* any difference computed from
-    it, such as the mapping lift.
+    [0, 1], i.e. the output is no closer to the truth than two random cell-type names. That case
+    is real (InstructCell, the chance baselines) and stays visible, because a clipped score
+    understates any difference computed from it, such as the mapping lift.
     """
     if np.isnan(avg) or np.isnan(baseline) or (1.0 - baseline) <= 1e-9:
         return float("nan"), False
@@ -182,58 +211,16 @@ def normalize_similarity(avg: float, baseline: float) -> Tuple[float, bool]:
     return float(np.clip(raw, 0.0, 1.0)), bool(raw < 0.0 or raw > 1.0)
 
 
-# Keys produced by derive_text_emb_metrics(). aggregate.py backfills these for result JSONs
-# written before they existed, so the list is the contract between the two modules.
-TEXT_EMB_DERIVED_KEYS = (
+# Result keys, in output order: the contract with aggregate.py.
+TEXT_EMB_KEYS = (
+    "text_emb_balanced_similarity_raw",
+    "text_emb_balanced_similarity_mapped",
+    "text_emb_baseline",
     "text_emb_norm_balanced_raw",
     "text_emb_norm_balanced_mapped",
     "text_emb_norm_mapping_lift",
     "text_emb_norm_clipped",
-    "text_emb_baseline_used",
 )
-
-
-def derive_text_emb_metrics(avgs: Dict[str, float],
-                            baseline_override: Optional[float] = None) -> Dict[str, float]:
-    """Derive the baseline-normalized, class-balanced scores and the normalized mapping lift.
-
-    Pure arithmetic over values already in ``avgs`` — no encoder, no per-cell data — so
-    ``aggregate.py`` can backfill result JSONs written before these keys existed instead of
-    re-running the (GPU/torch-bound) scoring stage.
-
-    Two defects in the original metric set are what this fixes:
-
-    1. ``text_emb_mapping_lift`` was ``avg_mapped - avg_raw`` on the RAW cosine scale, while
-       ``text_emb_norm_avg_*`` were baseline-normalized. The two differ by a factor of
-       1/(1 - baseline), which is per-run (1.5x-3.7x across this benchmark's runs), so the
-       stored lift could not be quoted beside the normalized scores. The lift returned here is
-       a difference of normalized scores and is therefore on one scale with them.
-    2. ``_norm`` was applied to the plain per-cell means, not the class-balanced ones, so the
-       normalized scores were dominated by abundant cell types while every other headline
-       metric in this benchmark is class-balanced. These use the balanced means.
-
-    ``baseline_override`` replaces the per-run baseline (computed from that run's own predicted
-    vocabulary, so every model gets a different denominator) with a fixed, model-independent
-    one. Levels are only comparable across models under a fixed baseline; the lift is a
-    within-model difference and is unaffected either way.
-    """
-    baseline = baseline_override if baseline_override is not None else avgs.get("text_emb_baseline")
-    baseline = float("nan") if baseline is None else float(baseline)
-
-    def _get(key):
-        v = avgs.get(key)
-        return float("nan") if v is None else float(v)
-
-    norm_raw, clip_raw = normalize_similarity(_get("text_emb_balanced_similarity_raw"), baseline)
-    norm_mapped, clip_mapped = normalize_similarity(_get("text_emb_balanced_similarity_mapped"), baseline)
-    lift = (norm_mapped - norm_raw) if not (np.isnan(norm_raw) or np.isnan(norm_mapped)) else float("nan")
-    return {
-        "text_emb_norm_balanced_raw": norm_raw,
-        "text_emb_norm_balanced_mapped": norm_mapped,
-        "text_emb_norm_mapping_lift": lift,
-        "text_emb_norm_clipped": float(clip_raw or clip_mapped),
-        "text_emb_baseline_used": baseline,
-    }
 
 
 def compute_text_embedding_similarities(
@@ -242,97 +229,44 @@ def compute_text_embedding_similarities(
     raw_pred_col: str,
     mapped_pred_col: str,
     encoder: TextEncoder,
+    baseline: float,
+    no_answer: Optional[str] = None,
 ) -> Tuple[pd.DataFrame, Dict[str, float]]:
-    """
-    Compute text-encoder cosine similarity between true labels and both the raw and the
-    ontology-mapped predictions.
+    """Cosine similarity between the true labels and both the raw and the mapped predictions.
 
-    Parameters
-    ----------
-    df : pd.DataFrame
-        Per-cell dataframe with the columns named below (already label-normalized upstream).
-    true_col : str
-        Ground-truth label column.
-    raw_pred_col : str
-        Raw (post-normalization, pre-ontology-mapping) prediction column = actual model
-        output, including unmappable free text.
-    mapped_pred_col : str
-        Ontology-mapped prediction column. If identical to raw_pred_col (mapping disabled),
-        the mapped == raw and ``text_emb_mapping_lift`` is 0.
-    encoder : TextEncoder
-        A loaded encoder (load once per process via :func:`load_text_encoder`).
+    ``raw_pred_col`` is the model's own output (normalized, before ontology mapping), including
+    free text; ``mapped_pred_col`` is the ontology-mapped label. Means are class-balanced, like
+    balanced accuracy, and rescaled with ``baseline`` (see ``reference_baseline``). The lift is
+    the difference of the two rescaled scores, so it is on their scale. ``no_answer`` is the
+    placeholder for a missing or unusable answer: it is not encoded as if it were a label, but
+    scores the baseline, i.e. like a random cell-type name (0 after rescaling).
 
-    Returns
-    -------
-    (combos_df, avg_dict)
-        combos_df : one row per unique (true, raw_pred, mapped_pred) triple with per-pair
-                    cosines and cell_count (for inspection / a side-car scored CSV).
-        avg_dict  : scalar metrics (raw + mapped variants, baseline, mapping_lift).
+    Returns one row per unique (true, raw, mapped) triple with its cosines and cell count, and
+    the scalar metrics named in ``TEXT_EMB_KEYS``.
     """
     true_s = _clean_labels(df[true_col])
     raw_s = _clean_labels(df[raw_pred_col])
     mapped_s = _clean_labels(df[mapped_pred_col])
 
-    # Unique non-null vocabulary across all three columns; encode each unique string once.
-    true_vocab = [x for x in pd.unique(true_s) if isinstance(x, str)]
-    raw_vocab = [x for x in pd.unique(raw_s) if isinstance(x, str)]
-    mapped_vocab = [x for x in pd.unique(mapped_s) if isinstance(x, str)]
-    vocab = sorted(set(true_vocab) | set(raw_vocab) | set(mapped_vocab))
-
-    if not vocab or not true_vocab:
-        nan = float("nan")
-        empty = pd.DataFrame(
-            columns=[true_col, raw_pred_col, mapped_pred_col,
-                     "text_emb_similarity_raw", "text_emb_similarity_mapped", "cell_count"]
-        )
-        return empty, {
-            "text_emb_avg_similarity_raw": nan, "text_emb_balanced_similarity_raw": nan,
-            "text_emb_norm_avg_raw": nan,
-            "text_emb_avg_similarity_mapped": nan, "text_emb_balanced_similarity_mapped": nan,
-            "text_emb_norm_avg_mapped": nan,
-            "text_emb_baseline": nan, "text_emb_mapping_lift": nan,
-            **{k: nan for k in TEXT_EMB_DERIVED_KEYS},
-        }
-
+    vocab = sorted({x for col in (true_s, raw_s, mapped_s) for x in pd.unique(col)
+                    if isinstance(x, str) and x != no_answer})
     embs = encoder.encode(vocab)
     vec_of: Dict[str, np.ndarray] = {lab: embs[i] for i, lab in enumerate(vocab)}
 
-    # Baseline = mean cosine over all (unique true) x (unique pred) cross-pairs ("random pair"
-    # floor). Pred side = union of raw+mapped unique labels. Same baseline for both variants.
-    pred_vocab = sorted(set(raw_vocab) | set(mapped_vocab))
-    if true_vocab and pred_vocab:
-        t_mat = np.stack([vec_of[x] for x in true_vocab])      # (nt, H), L2-normalized
-        p_mat = np.stack([vec_of[x] for x in pred_vocab])      # (np, H)
-        baseline = float((t_mat @ p_mat.T).mean())
-    else:
-        baseline = float("nan")
+    def cosine(pred_s):
+        sims = _per_row_cosine(true_s, pred_s, vec_of)
+        sims[(pred_s == no_answer).to_numpy()] = baseline
+        return sims
 
-    def _norm(avg: float) -> float:
-        return normalize_similarity(avg, baseline)[0]
+    sims_raw, sims_mapped = cosine(raw_s), cosine(mapped_s)
+    balanced_raw = _balanced_mean(sims_raw, true_s)
+    balanced_mapped = _balanced_mean(sims_mapped, true_s)
+    norm_raw, clip_raw = normalize_similarity(balanced_raw, baseline)
+    norm_mapped, clip_mapped = normalize_similarity(balanced_mapped, baseline)
+    metrics = dict(zip(TEXT_EMB_KEYS, (
+        balanced_raw, balanced_mapped, baseline, norm_raw, norm_mapped,
+        norm_mapped - norm_raw, float(clip_raw or clip_mapped))))
 
-    sims_raw = _per_row_cosine(true_s, raw_s, vec_of)
-    sims_mapped = _per_row_cosine(true_s, mapped_s, vec_of)
-
-    avg_raw = float(np.nanmean(sims_raw)) if np.isfinite(sims_raw).any() else float("nan")
-    avg_mapped = float(np.nanmean(sims_mapped)) if np.isfinite(sims_mapped).any() else float("nan")
-
-    avg_dict = {
-        "text_emb_avg_similarity_raw": avg_raw,
-        "text_emb_balanced_similarity_raw": _balanced_mean(sims_raw, true_s),
-        "text_emb_norm_avg_raw": _norm(avg_raw),
-        "text_emb_avg_similarity_mapped": avg_mapped,
-        "text_emb_balanced_similarity_mapped": _balanced_mean(sims_mapped, true_s),
-        "text_emb_norm_avg_mapped": _norm(avg_mapped),
-        "text_emb_baseline": baseline,
-        # Kept on the RAW cosine scale for backward compatibility with existing result JSONs.
-        # Do NOT quote it beside the normalized scores -- use text_emb_norm_mapping_lift, which
-        # is a difference of normalized, class-balanced scores (see derive_text_emb_metrics).
-        "text_emb_mapping_lift": (avg_mapped - avg_raw)
-        if not (np.isnan(avg_mapped) or np.isnan(avg_raw)) else float("nan"),
-    }
-    avg_dict.update(derive_text_emb_metrics(avg_dict))
-
-    # Per-unique-combo table for inspection / side-car CSV.
     combos = pd.DataFrame({
         true_col: true_s.to_numpy(),
         raw_pred_col: raw_s.to_numpy(),
@@ -347,7 +281,4 @@ def compute_text_embedding_similarities(
              cell_count=("text_emb_similarity_raw", "size"))
         .reset_index()
     )
-    for col in ["text_emb_similarity_raw", "text_emb_similarity_mapped"]:
-        combos_df[col] = combos_df[col].round(4)
-
-    return combos_df, avg_dict
+    return combos_df, metrics

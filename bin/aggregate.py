@@ -11,15 +11,31 @@ import seaborn as sns
 import pandas as pd
 import numpy as np
 
-# Normalization arithmetic for the text-encoder metrics lives with the metric itself so there is
-# one implementation. Importing it here lets us backfill the derived keys for result JSONs written
-# before they existed, instead of re-running the (torch-bound) scoring stage. The import is safe
-# without torch: text_embedding_similarity imports torch lazily, inside TextEncoder.
+# The text-encoder result keys are defined with the metric. The import is safe without torch:
+# text_embedding_similarity imports torch lazily, inside TextEncoder.
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-try:
-    from util.text_embedding_similarity import TEXT_EMB_DERIVED_KEYS, derive_text_emb_metrics
-except ImportError:  # keep aggregate.py runnable standalone; derived columns are simply absent
-    TEXT_EMB_DERIVED_KEYS, derive_text_emb_metrics = (), None
+from util.text_embedding_similarity import TEXT_EMB_KEYS  # noqa: E402
+
+# Values read from the top level of a result's "true_labels" block.
+SCALAR_KEYS = (
+    "balanced_accuracy", "accuracy", "agreement_score", "lin_avg_similarity",
+    "rada_avg_similarity", "share_broader", "share_finer",
+    # Scoring coverage (direct CL term or reviewed=True), label-space diagnostics, subset size.
+    "reviewed_fraction", "non_cl_ratio", "n_non_cl_labels", "n_unique_pred_raw",
+    "n_unique_pred_mapped", "subset_size",
+    *TEXT_EMB_KEYS,  # present only when the run used --use_text_encoder
+)
+# Averages taken from the sklearn classification report ("macro avg", "weighted avg").
+REPORT_KEYS = tuple(f"{avg}_{stat}" for avg in ("macro", "weighted")
+                    for stat in ("precision", "recall", "f1"))
+# Metrics drawn as one bar plot and one heatmap each.
+PLOT_METRICS = [
+    "balanced_accuracy", "accuracy", "agreement_score", "lin_avg_similarity",
+    "rada_avg_similarity", "text_emb_norm_balanced_raw", "text_emb_norm_balanced_mapped",
+    "text_emb_norm_mapping_lift", "macro_f1", "weighted_f1",
+    # Label-coverage / diversity diagnostics (lower non_cl_ratio = more native CL output).
+    "non_cl_ratio", "n_non_cl_labels", "n_unique_pred_raw", "n_unique_pred_mapped",
+]
 
 
 def combine_results(args):
@@ -106,19 +122,8 @@ def combine_results(args):
 
     # Aggregations:
     # 1) by dataset + model
-    agg_cols = [
-        "balanced_accuracy","accuracy","rada_avg_similarity","lin_avg_similarity","id_accuracy","balanced_id_accuracy",
-        "reviewed_fraction","non_cl_ratio",
-        "n_non_cl_labels","n_unique_pred_raw","n_unique_pred_mapped",
-        "text_emb_norm_avg_raw","text_emb_norm_avg_mapped","text_emb_mapping_lift",
-        # Class-balanced, baseline-normalized text-encoder scores and their lift (all on one
-        # scale). text_emb_norm_clipped averages to the FRACTION of a model's datasets whose
-        # score hit the [0,1] clip, i.e. where the lift is a floor rather than an estimate.
-        "text_emb_norm_balanced_raw","text_emb_norm_balanced_mapped","text_emb_norm_mapping_lift",
-        "text_emb_norm_clipped","text_emb_baseline_used",
-        "macro_precision","macro_recall","macro_f1",
-        "weighted_precision","weighted_recall","weighted_f1"
-    ]
+    agg_cols = [k for k in SCALAR_KEYS + REPORT_KEYS if k != "subset_size"]
+    df_metrics[agg_cols] = df_metrics[agg_cols].apply(pd.to_numeric, errors="coerce")
     agg_funcs = {c: "mean" for c in agg_cols}
     # subset_size is part of the row identity, exactly like the blind/unblind suffix in the model
     # name: the same model scored at two subset sizes produces two rows, not an average. Group by it
@@ -212,73 +217,12 @@ def safe_get(d: Dict[str, Any], path: List[str], default=None):
 
 def extract_metrics(payload: Dict[str, Any], annotation_key) -> Dict[str, Any]:
     base = [annotation_key, "true_labels"]
-    ba   = safe_get(payload, base + ["balanced_accuracy"])
-    # Try top-level accuracy first (new format), fallback to summary_dict (old format)
-    acc  = safe_get(payload, base + ["accuracy"]) or safe_get(payload, base + ["summary_dict", "accuracy"])
-    rada = safe_get(payload, base + ["rada_avg_similarity"])
-    lin  = safe_get(payload, base + ["lin_avg_similarity"])
-    id_acc = safe_get(payload, base + ["id_accuracy"])
-    bal_id_acc = safe_get(payload, base + ["balanced_id_accuracy"])
-
-    # Scoring coverage = fraction of cells whose label is a direct CL term or reviewed=True
-    # (computed at the metric stage). Carried into the table so low-coverage / NaN rows are explicable.
-    reviewed_fraction = safe_get(payload, base + ["reviewed_fraction"])
-    # Fraction of cells whose RAW model output is not a CL term (i.e. relied on manual mapping).
-    non_cl_ratio = safe_get(payload, base + ["non_cl_ratio"])
-    # Label-diversity diagnostics: distinct non-CL raw labels, and distinct predicted cell types
-    # before / after ontology mapping. Carried as plain counts (per dataset x model).
-    n_non_cl_labels = safe_get(payload, base + ["n_non_cl_labels"])
-    n_unique_pred_raw = safe_get(payload, base + ["n_unique_pred_raw"])
-    n_unique_pred_mapped = safe_get(payload, base + ["n_unique_pred_mapped"])
-    # Number of cells the model was run on (threaded from the pipeline; constant per model x dataset).
-    subset_size = safe_get(payload, base + ["subset_size"])
-
-    # Optional text-encoder similarity metric (present only when --use_text_encoder was set).
-    te_norm_raw = safe_get(payload, base + ["text_emb_norm_avg_raw"])
-    te_norm_mapped = safe_get(payload, base + ["text_emb_norm_avg_mapped"])
-    te_mapping_lift = safe_get(payload, base + ["text_emb_mapping_lift"])
-
-    # Class-balanced, baseline-normalized variants + a lift on the SAME scale as them. Older
-    # result JSONs carry only the unnormalized means and the baseline, so derive the rest here
-    # (pure arithmetic, same function the scoring stage uses). Newer JSONs already have them.
-    te_derived = {k: safe_get(payload, base + [k]) for k in TEXT_EMB_DERIVED_KEYS}
-    if derive_text_emb_metrics is not None and any(v is None for v in te_derived.values()):
-        source = {k: safe_get(payload, base + [k]) for k in (
-            "text_emb_balanced_similarity_raw", "text_emb_balanced_similarity_mapped",
-            "text_emb_baseline")}
-        if source["text_emb_baseline"] is not None:
-            te_derived = derive_text_emb_metrics(source)
-
-    # summary_dict aggregates
-    macro = safe_get(payload, base + ["summary_dict", "macro avg"], {}) or {}
-    wavg  = safe_get(payload, base + ["summary_dict", "weighted avg"], {}) or {}
-
-    return {
-        "balanced_accuracy": ba,
-        "accuracy": acc,
-        "rada_avg_similarity": rada,
-        "lin_avg_similarity": lin,
-        "id_accuracy": id_acc,
-        "balanced_id_accuracy": bal_id_acc,
-        "reviewed_fraction": reviewed_fraction,
-        "non_cl_ratio": non_cl_ratio,
-        "n_non_cl_labels": n_non_cl_labels,
-        "n_unique_pred_raw": n_unique_pred_raw,
-        "n_unique_pred_mapped": n_unique_pred_mapped,
-        "subset_size": subset_size,
-        "text_emb_norm_avg_raw": te_norm_raw,
-        "text_emb_norm_avg_mapped": te_norm_mapped,
-        "text_emb_mapping_lift": te_mapping_lift,
-        **te_derived,
-        "macro_precision": macro.get("precision"),
-        "macro_recall": macro.get("recall"),
-        "macro_f1": macro.get("f1-score"),
-        "macro_support": macro.get("support"),
-        "weighted_precision": wavg.get("precision"),
-        "weighted_recall": wavg.get("recall"),
-        "weighted_f1": wavg.get("f1-score"),
-        "weighted_support": wavg.get("support"),
-    }
+    metrics = {k: safe_get(payload, base + [k]) for k in SCALAR_KEYS}
+    report = safe_get(payload, base + ["summary_dict"], {}) or {}
+    for key in REPORT_KEYS:
+        avg, stat = key.split("_")
+        metrics[key] = (report.get(f"{avg} avg") or {}).get("f1-score" if stat == "f1" else stat)
+    return metrics
 
 def make_plot(dataframe, out_dir):
     """
@@ -292,39 +236,12 @@ def make_plot(dataframe, out_dir):
     seaborn draws no spurious CI/error bars. With a single size (or no ``subset_size`` column) one
     unsuffixed set is produced, as before.
     """
-    # Metrics to plot
-    metrics = [
-        "balanced_accuracy",
-        "accuracy",
-        "rada_avg_similarity",
-        "lin_avg_similarity",
-        "id_accuracy",
-        "balanced_id_accuracy",
-        "text_emb_norm_avg_raw",
-        "text_emb_norm_avg_mapped",
-        "text_emb_mapping_lift",
-        "text_emb_norm_balanced_raw",
-        "text_emb_norm_balanced_mapped",
-        "text_emb_norm_mapping_lift",
-        #"macro_precision",
-        #"macro_recall",
-        "macro_f1",
-        #"weighted_precision",
-        #"weighted_recall",
-        "weighted_f1",
-        # Label-coverage / diversity diagnostics (lower non_cl_ratio = more native CL output).
-        "non_cl_ratio",
-        "n_non_cl_labels",
-        "n_unique_pred_raw",
-        "n_unique_pred_mapped",
-    ]
-
     # Set style
     sns.set(style="whitegrid")
 
     def _render(df_sub, file_suffix, title_suffix):
         """Render one barplot per metric for the given (already size-filtered) subframe."""
-        for metric in metrics:
+        for metric in PLOT_METRICS:
             # Skip metrics that were not computed in this run (e.g. text_emb_* when the text
             # encoder was disabled) to avoid emitting empty plots.
             if metric not in df_sub.columns or df_sub[metric].dropna().empty:
@@ -381,43 +298,21 @@ def make_heatmaps(dataframe, out_dir):
     sizes are never averaged together. With a single size (or no ``subset_size`` column) one
     unsuffixed set is produced, exactly as before.
     """
-    metrics = [
-        "balanced_accuracy",
-        "accuracy",
-        "rada_avg_similarity",
-        "lin_avg_similarity",
-        "id_accuracy",
-        "balanced_id_accuracy",
-        "text_emb_norm_avg_raw",
-        "text_emb_norm_avg_mapped",
-        "text_emb_mapping_lift",
-        "text_emb_norm_balanced_raw",
-        "text_emb_norm_balanced_mapped",
-        "text_emb_norm_mapping_lift",
-        "macro_f1",
-        "weighted_f1",
-        "non_cl_ratio",
-        "n_non_cl_labels",
-        "n_unique_pred_raw",
-        "n_unique_pred_mapped",
-    ]
     # Metrics whose natural range is [0, 1]; everything else (the label-count diagnostics) is
     # unbounded and must autoscale instead of clipping against a hardcoded vmax=1. The mapping
     # lifts are signed differences and belong OUTSIDE this set: a negative lift (mapping made a
     # model's label WORSE, e.g. llama-4-maverick) would otherwise be clipped away at vmin=0.
     zero_one_metrics = {
-        "balanced_accuracy", "accuracy", "rada_avg_similarity", "lin_avg_similarity",
-        "id_accuracy", "balanced_id_accuracy", "text_emb_norm_avg_raw",
-        "text_emb_norm_avg_mapped", "text_emb_norm_balanced_raw",
-        "text_emb_norm_balanced_mapped", "macro_f1", "weighted_f1",
-        "non_cl_ratio", "reviewed_fraction",
+        "balanced_accuracy", "accuracy", "agreement_score", "rada_avg_similarity",
+        "lin_avg_similarity", "text_emb_norm_balanced_raw", "text_emb_norm_balanced_mapped",
+        "macro_f1", "weighted_f1", "non_cl_ratio", "reviewed_fraction",
     }
 
     sns.set(style="whitegrid")
 
     def _render(df_sub, file_suffix, title_suffix):
         """Render one heatmap per metric for the given (already size-filtered) subframe."""
-        for metric in metrics:
+        for metric in PLOT_METRICS:
             # Skip metrics not computed in this run (e.g. text_emb_* when disabled).
             if metric not in df_sub.columns or df_sub[metric].dropna().empty:
                 continue
@@ -487,9 +382,8 @@ def export_plot(
 
     # Keep only useful numeric metric columns that exist
     metric_cols = [
-        "balanced_accuracy", "accuracy", "rada_avg_similarity", "lin_avg_similarity", 
-        "id_accuracy", "balanced_id_accuracy",
-        "macro_precision", "macro_recall", "macro_f1",
+        "balanced_accuracy", "accuracy", "agreement_score", "rada_avg_similarity",
+        "lin_avg_similarity", "macro_precision", "macro_recall", "macro_f1",
         "weighted_precision", "weighted_recall", "weighted_f1",
     ]
     present_metrics = [c for c in metric_cols if c in df_metrics.columns]

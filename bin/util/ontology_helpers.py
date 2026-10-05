@@ -209,10 +209,7 @@ def apply_ontology_mapping_to_cell_type_list(
     
     # Download ontology if needed
     try:
-        cl_file_path = download_cl_ontology(
-            cache_dir=cache_dir,
-            cl_url="https://purl.obolibrary.org/obo/cl/cl-base.owl"
-        )
+        cl_file_path = download_cl_ontology(cache_dir)
     except Exception as e:
         raise RuntimeError(f"Failed to download ontology: {e}")
     
