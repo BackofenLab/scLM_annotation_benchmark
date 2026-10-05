@@ -27,7 +27,7 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from manuscript_figures import DATASET_ORDER, _display  # noqa: E402
 from plot_model_comparison import (  # noqa: E402
-    categorize_model, derive_mode, model_base, unsupported_pairs)
+    EXCLUDED_BASES, categorize_model, derive_mode, model_base, unsupported_pairs)
 
 # Columns shown in the typeset table, in order, as (snapshot column, header).
 TEX_COLUMNS = [
@@ -90,8 +90,12 @@ def _fmt(value, digits=3):
 
 
 def build_frame(df):
-    """Annotate the snapshot with the family / setting labels the tables are organized by."""
-    out = df.copy()
+    """Annotate the snapshot with the family / setting labels the tables are organized by.
+
+    Models the paper excludes (EXCLUDED_BASES, as in the figures) are dropped here; the
+    excluded-models table lists them with the reason.
+    """
+    out = df[~df["model"].map(model_base).isin(EXCLUDED_BASES)].copy()
     out["family"] = out["model"].map(lambda m: FAMILY.get(categorize_model(m), "other"))
     out["setting"] = out["model"].map(lambda m: REGIME.get(derive_mode(m), "--"))
     out["method"] = out["model"].map(lambda m: _display(model_base(m)))
