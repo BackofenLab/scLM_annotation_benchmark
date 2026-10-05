@@ -26,6 +26,9 @@ from util.text_embedding_similarity import (
 # Placeholder for a prediction that has no usable label: a blank answer, or one that is neither a
 # CL term nor a reviewed mapping. It matches no true label, so it counts as wrong in every metric.
 UNMAPPED = "__unmapped__"
+# The CL root. Reviewed mappings send nonsense answers here, so like the placeholders above it
+# carries no cell-type information: the text metric scores it as no answer, as Lin does.
+CL_ROOT_NAME = "cell"
 
 
 def _nan_metrics():
@@ -213,7 +216,7 @@ def run_eval(df, true_col, pred_col, output_dir, ont_ctx, text_scoring=None):
             raw_pred_col = f"original_{pred_col}" if f"original_{pred_col}" in df.columns else pred_col
             te_combos, te_metrics = compute_text_embedding_similarities(
                 df, true_col, raw_pred_col, pred_col, *text_scoring,
-                no_answer=(UNMAPPED, EMPTY_PREDICTION_LABEL))
+                no_answer=(UNMAPPED, EMPTY_PREDICTION_LABEL, CL_ROOT_NAME))
             results.update(te_metrics)
             te_csv_path = output_dir / f"{true_col}_text_emb_scored.csv"
             te_combos.to_csv(te_csv_path, index=False)
