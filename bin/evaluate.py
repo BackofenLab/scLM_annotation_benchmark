@@ -29,6 +29,9 @@ UNMAPPED = "__unmapped__"
 # The CL root. Reviewed mappings send nonsense answers here, so like the placeholders above it
 # carries no cell-type information: the text metric scores it as no answer, as Lin does.
 CL_ROOT_NAME = "cell"
+# A Cell Ontology ID as an answer (SingleR's HIHA reference labels are IDs). It names a term but has
+# no wording, so the text metric embeds the term's name instead.
+CL_ID = re.compile(r"cl:\d{7}", re.IGNORECASE)
 
 
 def _nan_metrics():
@@ -192,6 +195,14 @@ def label_metrics(true_labels, pred_labels):
     }
 
 
+def ids_as_names(labels, label_index):
+    """Replace each Cell Ontology ID by its term's name; every other label is kept as it is."""
+    def name(label):
+        term = map_string_to_term(label, label_index) if CL_ID.fullmatch(str(label).strip()) else None
+        return term.name if term is not None else label
+    return labels.map(name)
+
+
 def run_eval(df, true_col, pred_col, output_dir, ont_ctx, text_scoring=None):
     # Truth and predictions arrive canonicalized and placeholder-filled (prepare_for_scoring).
     true_labels = df[true_col]
@@ -212,10 +223,12 @@ def run_eval(df, true_col, pred_col, output_dir, ont_ctx, text_scoring=None):
     # and yields a mapping-lift diagnostic. Opt-in: text_scoring is (encoder, baseline) or None.
     if text_scoring is not None:
         try:
-            # Raw = actual model output (post-normalization, pre-CL-mapping); mapped = pred_col.
+            # Raw = actual model output (post-normalization, pre-CL-mapping, an ID read as its term
+            # name); mapped = pred_col.
             raw_pred_col = f"original_{pred_col}" if f"original_{pred_col}" in df.columns else pred_col
+            text_df = df.assign(**{raw_pred_col: ids_as_names(df[raw_pred_col], label_index)})
             te_combos, te_metrics = compute_text_embedding_similarities(
-                df, true_col, raw_pred_col, pred_col, *text_scoring,
+                text_df, true_col, raw_pred_col, pred_col, *text_scoring,
                 no_answer=(UNMAPPED, EMPTY_PREDICTION_LABEL, CL_ROOT_NAME))
             results.update(te_metrics)
             te_csv_path = output_dir / f"{true_col}_text_emb_scored.csv"

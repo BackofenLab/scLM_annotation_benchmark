@@ -1,8 +1,9 @@
 """Checks for the scoring metrics in bin/: macro averages, Lin, Rada and agreement, untrusted
-answers, the text-similarity baseline, and the zero rows for runs a model cannot do.
+answers, the text-similarity baseline and ID answers, and the zero rows for runs a model cannot do.
 
 Run with pytest, or directly in the evaluation environment: python tests/test_scoring.py
 """
+import functools
 import itertools
 import math
 import sys
@@ -15,7 +16,7 @@ import pandas as pd
 import pronto
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bin"))
-from evaluate import UNMAPPED, label_metrics, prepare_for_scoring  # noqa: E402
+from evaluate import UNMAPPED, ids_as_names, label_metrics, prepare_for_scoring  # noqa: E402
 from plot_model_comparison import with_unsupported_as_zero  # noqa: E402
 from util.cell_ontology_similarity import (  # noqa: E402
     CL_FILE, CellTaxonomy, build_label_index, build_synonym_index, compute_ontology_similarities,
@@ -119,11 +120,17 @@ def test_unsupported_runs_count_as_zero():
     assert with_unsupported_as_zero(filled).equals(filled)  # idempotent
 
 
-def test_label_index():
+@functools.lru_cache(maxsize=None)
+def pinned_ontology():
+    """The pinned CL release, or None while the pipeline has not downloaded it yet."""
     path = Path(__file__).resolve().parents[1] / "cache" / CL_FILE
-    if not path.exists():  # the pipeline downloads the pinned release on first use
+    return pronto.Ontology(str(path)) if path.exists() else None
+
+
+def test_label_index():
+    ont = pinned_ontology()
+    if ont is None:
         return
-    ont = pronto.Ontology(str(path))
     names, synonyms = build_label_index(ont), build_synonym_index(ont)
     resolve = lambda label: map_string_to_term(label, names).name  # noqa: E731
     assert resolve("pancreatic A cell") == resolve("CL:0000171") == "pancreatic A cell"
@@ -135,6 +142,15 @@ def test_label_index():
         "vascular leptomeningeal cell"
     assert resolve("T cell of appendix") == "T cell of appendix"
     assert resolve("CD16-negative, CD56-bright natural killer cell, human").endswith(", human")
+
+
+def test_ontology_id_is_read_as_its_name():
+    ont = pinned_ontology()
+    if ont is None:
+        return
+    labels = pd.Series(["CL:0000623", " cl:0000623", "natural killer cell", "CL:9999999", "no prediction"])
+    assert ids_as_names(labels, build_label_index(ont)).tolist() == [
+        "natural killer cell"] * 3 + ["CL:9999999", "no prediction"]
 
 
 def test_macro_average_runs_over_true_classes():
