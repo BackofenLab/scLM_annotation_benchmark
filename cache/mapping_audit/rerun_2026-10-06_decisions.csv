@@ -1,0 +1,35 @@
+label,target,reason,batch,decided
+motion,cell,nonsense (mapping rule: nonsense -> cell),rerun-1,approved 2026-10-06
+acinarough,acinar cell,"full word ""acinar"" + fused garbage; rule ""intention clearly visible""; target of InstructCell's ""acinar"" (note: precedent ""acinar ashley"" -> cell disagrees)",rerun-1,approved 2026-10-06
+schwann cell motion,Schwann cell,"full label + garbage, as ""nk/t cell appearing"" -> mature NK T cell",rerun-1,approved 2026-10-06
+university,cell,nonsense,rerun-1,approved 2026-10-06
+resänderant,cell,"corrupted ""resistant"" (drug-response label); ""resistant"" -> cell",rerun-1,approved 2026-10-06
+schwe,cell,"truncated stem; precedent ""schwa"" -> cell",rerun-2,approved 2026-10-06
+nk/rough,natural killer cell,"precedent ""nk/ quand"" -> natural killer cell",rerun-2,approved 2026-10-06
+nk/reprendre,natural killer cell,"precedent ""nk/ quand"" -> natural killer cell",rerun-2,approved 2026-10-06
+schwannrough,Schwann cell,"full stem ""schwann"" + fused garbage; rule ""intention clearly visible"" (precedent ""schwan perspective"" -> cell uses the misspelled stem)",rerun-2,approved 2026-10-06
+macrophage dcreprendre,macrophage,"macrophage dc + garbage; ""macrophage dc"" -> macrophage",rerun-2,approved 2026-10-06
+acina motion,cell,"truncated stem; precedent ""acina district"" -> cell",rerun-3,approved 2026-10-06
+reprendre,cell,nonsense,rerun-3,approved 2026-10-06
+t cell motion,T cell,full label + garbage,rerun-3,approved 2026-10-06
+schwanrough,cell,"misspelled stem; precedent ""schwan perspective"" -> cell",rerun-3,approved 2026-10-06
+t cellreprendre,T cell,full label + fused garbage,rerun-3,approved 2026-10-06
+nk/ motion,natural killer cell,"precedent ""nk/ quand"" -> natural killer cell",rerun-4,approved 2026-10-06
+nk/rough cell,natural killer cell,"precedent ""nk/ pătrun"" -> natural killer cell",rerun-4,approved 2026-10-06
+monreprendre,cell,"truncated stem; precedent ""mon rar"" -> cell",rerun-4,approved 2026-10-06
+schwaroughn cell,cell,"needs interpretation; precedent ""schwa ..."" -> cell",rerun-4,approved 2026-10-06
+ductal motion,pancreatic ductal cell,"precedent ""ductal advertise"" -> pancreatic ductal cell",rerun-4,approved 2026-10-06
+macrophagereprendre,macrophage,full word + fused garbage,rerun-5,approved 2026-10-06
+gamreprendre,cell,"truncated stem; precedent ""gam mag"" -> cell",rerun-5,approved 2026-10-06
+chandelier pvalb gabaergic interneuron (homo sapiens),pvalb chandelier GABAergic interneuron (Homo sapiens),old CL name (all_cell_types.txt); EXACT synonym of CL:4072046 in cl-basic 2026-06-08; the species rule then scores it as CL:4023036,rerun-5,approved 2026-10-06
+cb pli gly-gaba_2 purkinje layer interneuron (mmus),Lugaro cell (Mmus),"pre-emptive: outdated name in cache/all_cell_types.txt (taken from CL v2025-10-16); CL:4301575, renamed after 2025-10-16",rerun-term-id,approved 2026-10-06
+island of calleja granule cell,Islands of Calleja granule cell,"pre-emptive: outdated name in cache/all_cell_types.txt (taken from CL v2025-10-16); CL:4030053, renamed after 2025-10-16",rerun-term-id,approved 2026-10-06
+chandelier cell,pvalb chandelier GABAergic interneuron,"pre-emptive: outdated name in cache/all_cell_types.txt (taken from CL v2025-10-16); CL:4023083 obsolete in 2026-06-08, replaced_by CL:4023036",rerun-term-id,approved 2026-10-06
+chandelier pvalb gabaergic interneuron,pvalb chandelier GABAergic interneuron,"pre-emptive: outdated name in cache/all_cell_types.txt (taken from CL v2025-10-16); CL:4023036, renamed after 2025-10-16",rerun-term-id,approved 2026-10-06
+retinal ganglion cell a,alpha retinal ganglion cell (Mmus),"pre-emptive: outdated name in cache/all_cell_types.txt (taken from CL v2025-10-16); CL:0004117, renamed after 2025-10-16",rerun-term-id,approved 2026-10-06
+type 1 otic fibrocyte,type I spiral ligament fibrocyte,"pre-emptive: outdated name in cache/all_cell_types.txt (taken from CL v2025-10-16); CL:0002670, renamed after 2025-10-16",rerun-term-id,approved 2026-10-06
+type 2 otic fibrocyte,type II spiral ligament fibrocyte,"pre-emptive: outdated name in cache/all_cell_types.txt (taken from CL v2025-10-16); CL:0002666, renamed after 2025-10-16",rerun-term-id,approved 2026-10-06
+type 3 otic fibrocyte,type III spiral ligament fibrocyte,"pre-emptive: outdated name in cache/all_cell_types.txt (taken from CL v2025-10-16); CL:0002669, renamed after 2025-10-16",rerun-term-id,approved 2026-10-06
+type 4 otic fibrocyte,type IV spiral ligament fibrocyte,"pre-emptive: outdated name in cache/all_cell_types.txt (taken from CL v2025-10-16); CL:0002668, renamed after 2025-10-16",rerun-term-id,approved 2026-10-06
+type 5 otic fibrocyte,type V spiral ligament fibrocyte,"pre-emptive: outdated name in cache/all_cell_types.txt (taken from CL v2025-10-16); CL:0002667, renamed after 2025-10-16",rerun-term-id,approved 2026-10-06
+rxfp1-positive interface island d1-medium spiny neuron,D1-NUDAP medium spiny neuron,"pre-emptive: outdated name in cache/all_cell_types.txt (taken from CL v2025-10-16); FLAG: CL:4030054, renamed after 2025-10-16; the existing reviewed row maps it to its parent 'medium spiny neuron'",rerun-term-id,approved 2026-10-06

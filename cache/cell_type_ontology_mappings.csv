@@ -76,6 +76,7 @@ True;Zeisel;Vascular smooth muscle cells;vascular associated smooth muscle cell;
 True;instructcell_blind_human_pancreas;a umplut;cell;obsolete subsidiary cell
 True;openrouter_LLM_blind_openai--gpt-oss-20b_Zeisel;acetylcholine neuron;cholinergic neuron;cholinergic neuron
 True;instructcell_unblind_human_pancreas;acina district;cell;acinar cell
+True;instructcell_blind_human_pancreas;acina motion;cell;
 True;instructcell_blind_human_pancreas;acina skeptical;cell;acinar cell
 True;instructcell_blind_human_pancreas;acinachi;cell;acinar cell
 True;human_pancreas;acinar;acinar cell;acinar cell
@@ -85,6 +86,7 @@ True;openrouter_LLM_blind_deepseek--deepseek-v3.2_human_pancreas;acinar cell of 
 True;sctype_blind_human_pancreas;acinar cells;pancreatic acinar cell;acinar cell
 True;instructcell_unblind_human_pancreas;acinar sofa;cell;acinar cell
 True;instructcell_unblind_human_pancreas;acinar stripped;cell;acinar cell
+True;instructcell_blind_human_pancreas;acinarough;acinar cell;
 True;openrouter_LLM_blind_meta-llama--llama-3.1-70b-instruct_HIHA;activated b cell;B cell;B cell
 True;c2s_scale_27B_blind_HIHA;activated cd4-positive, alpha-beta t cell. cell 2: mal;cell;activated CD4-positive, alpha-beta T cell
 True;openrouter_LLM_blind_meta-llama--llama-3.1-70b-instruct_HIHA;activated dendritic cell;dendritic cell;dendritic cell
@@ -291,6 +293,7 @@ True;celltypist_blind_Zeisel;car3;glutamatergic neuron;L6 intratelencephalic pro
 True;singler_blind;cardiomyocytes;cardiac muscle cell;cardiac muscle cell
 True;openrouter_LLM_blind_openai--gpt-oss-20b_Zeisel;cart-expressing neuron;neuron;sensory processing neuron
 True;openrouter_LLM_blind_moonshotai--kimi-k2.6_HFRA;caudal ganglionic eminence derived gabaergic cortical interneuron;caudal ganglionic eminence derived interneuron;medial ganglionic eminence derived GABAergic interneuron
+True;cache/all_cell_types.txt (CL v2025-10-16);cb pli gly-gaba_2 purkinje layer interneuron (mmus);Lugaro cell (Mmus);Lugaro cell (Mmus)
 True;openrouter_LLM_blind_openai--gpt-oss-20b_Zeisel;cck interneuron;GABAergic interneuron;CNS long range interneuron
 True;openrouter_LLM_blind_openai--gpt-oss-20b_Zeisel;cck+ interneuron;GABAergic interneuron;L5/6 cck, VIP GABAergic interneuron (Mmus)
 True;openrouter_LLM_blind_openai--gpt-oss-20b_Zeisel;cck-expressing interneuron;GABAergic interneuron;L5/6 cck, VIP GABAergic interneuron (Mmus)
@@ -422,6 +425,9 @@ True;openrouter_LLM_blind_openai--gpt-oss-20b_HFRA;cerebral cortical layer 4 neu
 True;openrouter_LLM_blind_openai--gpt-oss-120b_HFRA;cerebral cortical neuron;cerebral cortex neuron;cerebral cortex neuron
 True;openrouter_LLM_blind_openai--gpt-oss-120b_HFRA;cerebral cortical pyramidal neuron;cerebral cortex pyramidal neuron;cerebral cortex pyramidal neuron
 True;instructcell_unblind_Zeisel;cetular;cell;cerebellar neuron
+True;cache/all_cell_types.txt (CL v2025-10-16);chandelier cell;pvalb chandelier GABAergic interneuron;pvalb chandelier GABAergic interneuron
+True;cache/all_cell_types.txt (CL v2025-10-16);chandelier pvalb gabaergic interneuron;pvalb chandelier GABAergic interneuron;pvalb chandelier GABAergic interneuron
+True;mmcontext_blind_Zeisel;chandelier pvalb gabaergic interneuron (homo sapiens);pvalb chandelier GABAergic interneuron (Homo sapiens);pvalb chandelier GABAergic interneuron
 True;openrouter_LLM_blind_anthropic--claude-sonnet-4.6_human_pancreas;chief cell of stomach;peptic cell;peptic cell
 True;instructcell_unblind_HIHA;chinal cell;cell;blastemal cell
 True;openrouter_LLM_blind_anthropic--claude-opus-4.7_Zeisel;cholecystokinin gabaergic cortical interneuron;cerebral cortex GABAergic interneuron;cerebral cortex GABAergic interneuron
@@ -608,6 +614,7 @@ True;openrouter_LLM_blind_openai--gpt-oss-20b_human_pancreas;ductal epithelial c
 True;openrouter_LLM_blind_meta-llama--llama-3.3-70b-instruct_human_pancreas;ductal epithelial cell of mammary gland;mammary gland epithelial cell;mammary gland epithelial cell
 True;openrouter_LLM_blind_meta-llama--llama-3.3-70b-instruct_human_pancreas;ductal epithelial cell of pancreas;epithelial cell of pancreas;epithelial cell of pancreas
 True;openrouter_LLM_blind_openai--gpt-oss-20b_human_pancreas;ductal mammary epithelial cell;duct epithelial cell;mammary gland epithelial cell
+True;instructcell_unblind_Zeisel;ductal motion;pancreatic ductal cell;
 True;instructcell_blind_human_pancreas;ductal părți;pancreatic ductal cell;duct epithelial cell
 True;instructcell_blind_human_pancreas;ductalleased;cell;duct epithelial cell
 True;instructcell_blind_human_pancreas;ductalwriter;cell;duct epithelial cell
@@ -754,6 +761,7 @@ True;openrouter_LLM_blind_google--gemini-3.1-pro-preview_Zeisel;gamma-aminobutyr
 True;openrouter_LLM_blind_openai--gpt-oss-20b_HIHA;gamma-delta t lymphocyte;gamma-delta T cell;gamma-delta intraepithelial T cell
 True;openrouter_LLM_blind_openai--gpt-oss-20b_HIHA;gamma/delta t cell;gamma-delta T cell;cycling gamma-delta T cell
 True;openrouter_LLM_blind_openai--gpt-oss-20b_HIHA;gamma‑delta t cell;gamma-delta T cell;cycling gamma-delta T cell
+True;instructcell_unblind_human_pancreas;gamreprendre;cell;
 True;openrouter_LLM_blind_openai--gpt-oss-20b_human_pancreas;gastric cell;gastric goblet cell;gastric goblet cell
 True;openrouter_LLM_blind_openai--gpt-oss-120b_human_pancreas;gastric ghrelin cell;ghrelin secreting cell;ghrelin secreting cell
 True;HIHA;gdT;gamma-delta T cell;granulocyte monocyte progenitor cell
@@ -864,6 +872,7 @@ False;singler_fine_blind_HFRA;ips_cells:pdb_2lox-5;;
 False;singler_fine_blind_HFRA;ips_cells:skin_fibroblast-derived;;
 True;ucell_blind_HIHA;isg expressing immune cells;leukocyte;Be1 Cell
 True;instructcell_unblind_HFRA;isiert;cell;large intestine goblet cell
+True;cache/all_cell_types.txt (CL v2025-10-16);island of calleja granule cell;Islands of Calleja granule cell;Islands of Calleja granule cell
 True;openrouter_LLM_blind_openai--gpt-oss-20b_human_pancreas;islet delta cell;pancreatic D cell;pancreatic A cell
 True;instructcell_unblind_Zeisel;jectal;cell;yolk cell
 True;instructcell_blind_HFRA;jobs;cell;cerebral cortex neuron
@@ -934,6 +943,7 @@ True;openrouter_LLM_blind_meta-llama--llama-4-maverick_HFRA;lymphoblast ] is not
 True;openrouter_LLM_blind_openai--gpt-5.5_HIHA;lymphoid-primed multipotent progenitor;early lymphoid progenitor;common lymphoid progenitor
 True;instructcell_blind_HIHA;lü;cell;luminal cell of lactiferous terminal ductal lobular unit
 True;instructcell_unblind_Zeisel;macrophage dc;macrophage;cycling macrophage
+True;instructcell_blind_Zeisel;macrophage dcreprendre;macrophage;
 False;singler_fine_blind_human_pancreas;macrophage:alveolar:b._anthacis_spores;;
 False;singler_fine_blind_HFRA;macrophage:monocyte-derived;;
 False;singler_fine_blind_HFRA;macrophage:monocyte-derived:ifna;;
@@ -943,6 +953,7 @@ False;singler_fine_blind_human_pancreas;macrophage:monocyte-derived:m-csf;;
 False;singler_fine_blind_HFRA;macrophage:monocyte-derived:m-csf/ifng/pam3cys;;
 False;singler_fine_blind_human_pancreas;macrophage:monocyte-derived:m-csf/pam3cys;;
 False;singler_fine_blind_human_pancreas;macrophage:monocyte-derived:s._aureus;;
+True;instructcell_unblind_Zeisel;macrophagereprendre;macrophage;
 True;singler_blind;macrophages;macrophage;macrophage
 False;singler_fine_blind_Zeisel;macrophages activated;;
 False;singler_fine_blind_HIHA;mait cells;;
@@ -1047,7 +1058,9 @@ True;celltypist_blind_HIHA;monocytes;monocyte;intermediate monocyte
 True;openrouter_LLM_blind_meta-llama--llama-3.3-70b-instruct_HIHA;monocyteคโน<|start_header_id|>assistant<|end_header_id|>  macrophage;macrophage;appendix macrophage
 True;openrouter_LLM_blind_meta-llama--llama-3.3-70b-instruct_HIHA;mononuclear cell;mononuclear leukocyte;mononuclear cell of bone marrow
 True;instructcell_unblind_HIHA;monournée;cell;cycling monocyte
+True;instructcell_unblind_HIHA;monreprendre;cell;
 True;openrouter_LLM_blind_meta-llama--llama-4-maverick_Zeisel;motile ciliated cell;motile cell;motile cell
+True;instructcell_blind_HIHA;motion;cell;
 True;c2s_scale_27B_blind_HFRA;motor neuron. cell 1: malat1 eef1a1 rpl;motor neuron;neuron associated cell
 True;singler_blind;msc;mesenchymal cell;mesenchymal cell
 True;celltypist_blind_HFRA;mu_ller;Mueller cell;Mauthner neuron
@@ -1244,8 +1257,12 @@ True;instructcell_blind_HIHA;nk braucht;natural killer cell;activated type II NK
 True;openrouter_LLM_blind_anthropic--claude-opus-4.7_HIHA;nk cell;natural killer cell;NKGA2-positive natural killer cell, mouse
 True;singler_blind;nk cells;natural killer cell;natural killer cell
 True;instructcell_blind_HIHA;nk femeie;natural killer cell;mature NK T cell, human
+True;instructcell_unblind_HIHA;nk/ motion;natural killer cell;
 True;instructcell_blind_HIHA;nk/ pătrun;natural killer cell;mature NK T cell, human
 True;instructcell_unblind_HIHA;nk/ quand;natural killer cell;mature NK T cell, human
+True;instructcell_blind_HIHA;nk/reprendre;natural killer cell;
+True;instructcell_blind_HIHA;nk/rough;natural killer cell;
+True;instructcell_unblind_HIHA;nk/rough cell;natural killer cell;
 True;instructcell_unblind_human_pancreas;nk/t cell;mature NK T cell;type I NK T cell
 True;instructcell_unblind_HIHA;nk/t cell appearing;mature NK T cell;type I NK T cell
 True;instructcell_unblind_HIHA;nk/t cell mohamed;mature NK T cell;mature NK T cell, human
@@ -1455,9 +1472,11 @@ True;c2s_scale_27B_blind_HIHA;regulatory t cell. cell 1: malat1 mt-co1 mt-;regul
 True;c2s_scale_27B_blind_HIHA;regulatory t cell. cell 20-132p5;regulatory T cell;regulatory T cell
 True;scsa_blind_HIHA;regulatory t(treg) cell;regulatory T cell;CD4-positive, CD25-positive, alpha-beta regulatory T cell
 True;openrouter_LLM_blind_openai--gpt-oss-20b_human_pancreas;renal proximal tubular cell;epithelial cell of proximal tubule;kidney proximal straight tubule epithelial cell
+True;instructcell_blind_human_pancreas;reprendre;cell;
 True;instructcell_unblind_HFRA;resist freshman;cell;A10 dopaminergic neuron
 True;instructcell_unblind_human_pancreas;resistant;cell;OBSOLETE defensive cell
 True;openrouter_LLM_blind_deepseek--deepseek-v3.2_human_pancreas;respiratory epithelial cell;respiratory tract epithelial cell;respiratory tract epithelial cell
+True;instructcell_blind_HFRA;resänderant;cell;
 True;scsa_blind_HFRA;retina cell;retinal cell;retinal cell
 True;openrouter_LLM_unblind_meta-llama--llama-3.1-70b-instruct_HFRA;retina cone cell;retinal cone cell;retinal cone cell
 True;c2s_scale_27B_blind_HFRA;retina horizontal cell (sensu vertebrata);retina horizontal cell;obsolete non-visual cell (sensu Vertebrata)
@@ -1469,6 +1488,7 @@ True;openrouter_LLM_blind_anthropic--claude-opus-4.7_HFRA;retinal bipolar neuron
 True;openrouter_LLM_blind_moonshotai--kimi-k2.6_HFRA;retinal cone bipolar cell;cone retinal bipolar cell;cone retinal bipolar cell
 True;openrouter_LLM_blind_anthropic--claude-opus-4.7_HFRA;retinal cone cell precursor;retinal cone cell;retinal cone cell
 True;c2s_scale_27B_blind_HFRA;retinal cone cell. cell 1: malat1 mt-co1 mt;retinal cone cell;retinal cone cell
+True;cache/all_cell_types.txt (CL v2025-10-16);retinal ganglion cell a;alpha retinal ganglion cell (Mmus);alpha retinal ganglion cell (Mmus)
 True;openrouter_LLM_blind_anthropic--claude-opus-4.7_HFRA;retinal ganglion cell precursor;retinal ganglion cell;retinal ganglion cell
 True;sctype_blind_HFRA;retinal ganglion cells;retinal ganglion cell;ON retinal ganglion cell
 True;c2s_scale_27B_unblind_HFRA;retinal horizontal cell;retina horizontal cell;retina horizontal cell
@@ -1566,7 +1586,7 @@ True;celltypist_blind_HFRA;rpc_5;retinal progenitor cell;R5 photoreceptor cell
 True;celltypist_blind_HFRA;rpc_6;retinal progenitor cell;R6 photoreceptor cell
 True;celltypist_blind_HFRA;rpe_2;retinal pigment epithelial cell;R2 photoreceptor cell
 True;celltypist_blind_HFRA;rpe_3;retinal pigment epithelial cell;R3 photoreceptor cell
-True;mmcontext_blind_HFRA;rxfp1-positive interface island d1-medium spiny neuron;medium spiny neuron;RXFP1-positive interface island D1-medium spiny neuron
+True;mmcontext_blind_HFRA;rxfp1-positive interface island d1-medium spiny neuron;D1-NUDAP medium spiny neuron;RXFP1-positive interface island D1-medium spiny neuron
 True;openrouter_LLM_unblind_anthropic--claude-sonnet-4.6_Zeisel;satellite glia;perineuronal satellite cell;perineuronal satellite cell
 True;openrouter_LLM_blind_openai--gpt-5.5_Zeisel;satellite glial cell;glial cell;perineuronal satellite cell
 True;instructcell_blind_human_pancreas;schlag;cell;scleral cell
@@ -1583,10 +1603,15 @@ True;human_pancreas;schwann;Schwann cell;Schwann cell precursor
 True;instructcell_unblind_HFRA;schwann cell behind;Schwann cell;Schwann cell precursor
 True;instructcell_unblind_Zeisel;schwann cell driving;Schwann cell;Schwann cell precursor
 True;instructcell_unblind_HFRA;schwann cell flori;Schwann cell;Schwann cell precursor
+True;instructcell_blind_HFRA;schwann cell motion;Schwann cell;
 True;instructcell_unblind_Zeisel;schwann parc;Schwann cell;terminal Schwann cell
 True;ucell_blind_Zeisel;schwann precursor cells;Schwann cell precursor;Schwann cell precursor
 True;instructcell_blind_HFRA;schwanngestellt;cell;Schwann cell precursor
+True;instructcell_blind_Zeisel;schwannrough;Schwann cell;
+True;instructcell_unblind_HFRA;schwanrough;cell;
 True;instructcell_unblind_HFRA;schwanterio;cell;scleral cell
+True;instructcell_unblind_Zeisel;schwaroughn cell;cell;
+True;instructcell_blind_HFRA;schwe;cell;
 True;instructcell_unblind_Zeisel;sebaceous gland;sebaceous gland cell;sebaceous gland cell
 True;openrouter_LLM_blind_meta-llama--llama-4-maverick_human_pancreas;secretory cell of epithelial type;secretory epithelial cell;secretory epithelial cell
 True;openrouter_LLM_blind_meta-llama--llama-4-maverick_human_pancreas;secretory cell of epithelium;secretory epithelial cell;secretory epithelial cell
@@ -1675,6 +1700,7 @@ True;instructcell_blind_HFRA;t cell driving;T cell;cycling T cell
 True;instructcell_blind_HIHA;t cell exam;T cell;immature T cell
 True;instructcell_blind_HIHA;t cell innovations;T cell;immature T cell
 True;instructcell_blind_HIHA;t cell intrebare;T cell;T cell of appendix
+True;instructcell_unblind_HFRA;t cell motion;T cell;
 True;instructcell_unblind_HIHA;t cell natural;T cell;immature T cell
 True;instructcell_unblind_HFRA;t cell picior;T cell;immature T cell
 True;instructcell_unblind_HIHA;t cell pill;T cell;immature T cell
@@ -1712,6 +1738,7 @@ True;c2s_scale_27B_blind_HIHA;t cell. cell 7: malat1 mt-co1 mt-co;T cell;Tc1 cel
 True;c2s_scale_27B_blind_HIHA;t cell. cell type: t cell;T cell;immature T cell
 True;instructcell_blind_HIHA;t cellmarie;cell;immature T cell
 True;instructcell_blind_HIHA;t cellprinde;cell;immature T cell
+True;instructcell_unblind_HFRA;t cellreprendre;T cell;
 True;celltypist_blind_HIHA;t cells;T cell;immature T cell
 True;instructcell_blind_HIHA;t celltischen;cell;T cell of appendix
 True;instructcell_unblind_HIHA;t dar;cell;effector T cell
@@ -1804,8 +1831,13 @@ True;instructcell_blind_Zeisel;trvă;cell;tracheoblast
 True;instructcell_unblind_HIHA;tvină;cell;acinar cell
 True;openrouter_LLM_blind_google--gemini-3.1-pro-preview_HIHA;type 1 classical dendritic cell;conventional dendritic cell ;monocyte-derived dendritic cell
 True;openrouter_LLM_blind_anthropic--claude-sonnet-4.6_HIHA;type 1 conventional dendritic cell;conventional dendritic cell;dermal dendritic cell
+True;cache/all_cell_types.txt (CL v2025-10-16);type 1 otic fibrocyte;type I spiral ligament fibrocyte;type I spiral ligament fibrocyte
 True;openrouter_LLM_blind_openai--gpt-5.5_HIHA;type 2 conventional dendritic cell;conventional dendritic cell;conventional dendritic cell
 True;openrouter_LLM_blind_deepseek--deepseek-v3.2_HIHA;type 2 helper t cell;T-helper 2 cell;T-helper 2 cell
+True;cache/all_cell_types.txt (CL v2025-10-16);type 2 otic fibrocyte;type II spiral ligament fibrocyte;type II spiral ligament fibrocyte
+True;cache/all_cell_types.txt (CL v2025-10-16);type 3 otic fibrocyte;type III spiral ligament fibrocyte;type III spiral ligament fibrocyte
+True;cache/all_cell_types.txt (CL v2025-10-16);type 4 otic fibrocyte;type IV spiral ligament fibrocyte;type IV spiral ligament fibrocyte
+True;cache/all_cell_types.txt (CL v2025-10-16);type 5 otic fibrocyte;type V spiral ligament fibrocyte;type V spiral ligament fibrocyte
 True;openrouter_LLM_blind_openai--gpt-5.5_HFRA;type 7 cone bipolar cell;type 7 cone bipolar cell (sensu Mus);type 5b cone bipolar cell
 True;openrouter_LLM_blind_anthropic--claude-sonnet-4.6_human_pancreas;type a pancreatic cell;pancreatic A cell;type B pancreatic cell
 True;c2s_scale_27B_unblind_HIHA;type b t cell;T cell;T1 B cell
@@ -1821,6 +1853,7 @@ True;scsa_blind_Zeisel;type ib spiral ganglion neuron;spiral ganglion neuron;spi
 True;openrouter_LLM_blind_openai--gpt-5.5_Zeisel;type ii pneumocyte;pulmonary alveolar type 2 cell;type IIa muscle cell
 True;scsa_blind_Zeisel;type ii spiral ganglion neuron;spiral ganglion neuron;spiral ganglion neuron
 True;openrouter_LLM_blind_anthropic--claude-sonnet-4.6_human_pancreas;type pp cell of pancreas;pancreatic PP cell;PP cell
+True;instructcell_blind_HFRA;university;cell;
 True;sctype_blind_HFRA;unknown;cell;obsolete melanocyte of foreskin
 True;instructcell_unblind_HIHA;unnecessary;cell;obsolete attachment cell
 True;openrouter_LLM_blind_openai--gpt-oss-20b_Zeisel;unspecified cell;cell;inner cell mass cell
