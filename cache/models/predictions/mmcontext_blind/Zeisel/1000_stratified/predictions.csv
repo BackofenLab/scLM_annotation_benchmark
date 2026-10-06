@@ -1,0 +1,1000 @@
+cell_id,true_labels,predicted_labels
+10X57_2:ACAAATTGTTGTCT,oligodendrocyte,mature myelinating oligodendrocyte
+10X52_5:CTGAGAACTTTCTG,oligodendrocyte,myelin-forming oligodendrocyte (Mmus)
+10X53_2:TTTGACTGCCCACT,oligodendrocyte,mature myelinating oligodendrocyte
+10X35_2:TATCTCGATTCTGT,oligodendrocyte,mature myelinating oligodendrocyte
+10X55_4:CTCCTAGATATGCA,oligodendrocyte,mature myelinating oligodendrocyte (Mmus)
+10X55_5:CCTTGGTCCAGTAT,oligodendrocyte,mature myelinating oligodendrocyte
+10X55_5:GTCAAAGACAAGCC,oligodendrocyte,mature myelinating oligodendrocyte (Mmus)
+10X50_7:GCCGAGTGGGTTCA,oligodendrocyte,myelin-forming oligodendrocyte
+10X43_1:CATCGCTGGTCAAC,oligodendrocyte,mature myelinating oligodendrocyte
+10X52_1:GGGTTATGCTTAGG,oligodendrocyte,mature myelinating oligodendrocyte
+10X50_8:ACGTCAGAGACGAG,oligodendrocyte,mature myelinating oligodendrocyte
+10X24_1:TCCCGAACTCCCAC,oligodendrocyte,mature myelinating oligodendrocyte
+10X51_3:CTGACCACAGTACC,oligodendrocyte,mature myelinating oligodendrocyte
+10X34_4:GACAGGGAACTGTG,oligodendrocyte,myelin-forming oligodendrocyte
+10X53_6:GCGAGAGATCGTTT,oligodendrocyte,mature myelinating oligodendrocyte
+10X57_2:TCCTATGATGCATG,oligodendrocyte,oligodendrocyte
+10X55_2:CAATCGTGACCAAG,oligodendrocyte,thymic cortical macrophage
+10X53_5:TCCCACGACACTTT,oligodendrocyte,myelin-forming oligodendrocyte
+10X53_3:AGCGATTGTTCCAT,oligodendrocyte,mature myelinating oligodendrocyte
+10X50_2:GCACCTACCTCCCA,oligodendrocyte,myelin-forming oligodendrocyte
+10X55_2:CGTGTGTCTGATCA,oligodendrocyte,lung interstitial macrophage
+10X54_1:TGAGGTCTCTGTCG,oligodendrocyte,myelin-forming oligodendrocyte (Mmus)
+10X26_3:GCATGTGAGCGATT,oligodendrocyte,mature myelinating oligodendrocyte
+10X57_4:GCCTACACTTAGGC,oligodendrocyte,myelin-forming oligodendrocyte (Mmus)
+10X53_3:GTAGTGACATTCGG,oligodendrocyte,mature myelinating oligodendrocyte
+10X04_1:TCGTAGGATGTTCT,oligodendrocyte,myelin-forming oligodendrocyte
+10X57_4:AACCTACTAGGTTC,oligodendrocyte,mature myelinating oligodendrocyte
+10X49_1:ATACCGGAGAGCTT,oligodendrocyte,mature myelinating oligodendrocyte
+10X57_2:TTACAGCTTCTTCA,oligodendrocyte,mature myelinating oligodendrocyte
+10X57_6:GCTACGCTGTTGTG,oligodendrocyte,middle cervical ganglion TH neuron
+10X52_7:TTCAGTACGATAAG,oligodendrocyte,mature myelinating oligodendrocyte
+10X55_8:CTTCAAGAACAACT,oligodendrocyte,renal cortical fibroblast
+10X55_7:GCTAAGTACCATCA,oligodendrocyte,germinal center T cell
+10X55_2:TGAGAGTTGGAGGT,oligodendrocyte,myelin-forming oligodendrocyte (Mmus)
+10X57_3:TAGTGGTGGCCCTT,oligodendrocyte,mature myelinating oligodendrocyte (Mmus)
+10X24_2:AAGGTCACACTACG,oligodendrocyte,mature myelinating oligodendrocyte
+10X56_3:GTATTAGATCTACT,oligodendrocyte,mature myelinating oligodendrocyte
+10X22_4:CCAATGGAACTGTG,oligodendrocyte,myelin-forming oligodendrocyte
+10X22_4:CAATTCTGGGTCAT,oligodendrocyte,myelin-forming oligodendrocyte
+10X50_3:TCAGGATGGGTTCA,oligodendrocyte,myelin-forming oligodendrocyte
+10X57_7:GCCATCACTCGTGA,oligodendrocyte,mature myelinating oligodendrocyte (Mmus)
+10X24_3:GCGGAGCTTTCTAC,oligodendrocyte,mature myelinating oligodendrocyte
+10X53_5:GTGGTAACCGAATC,oligodendrocyte,mature myelinating oligodendrocyte
+10X54_7:GGGATAGTGAACGC,oligodendrocyte,mature myelinating oligodendrocyte
+10X55_1:GCGGAGTTGTTTGG,oligodendrocyte,mature myelinating oligodendrocyte (Mmus)
+10X55_7:CTCTAGTCCTGCTT,oligodendrocyte,mature myelinating oligodendrocyte
+10X55_3:GTAGAAGTACGTTC,oligodendrocyte,mature myelinating oligodendrocyte (Mmus)
+10X55_1:TTCGCGTCTAGCGC,oligodendrocyte,mature myelinating oligodendrocyte (Mmus)
+10X50_5:CCAGGTCTGTAGCT,oligodendrocyte,myelin-forming oligodendrocyte
+10X55_2:ACCTGAGCTCAACT,oligodendrocyte,mature myelinating oligodendrocyte
+10X52_5:AAGCCATGTCCGTC,oligodendrocyte,mature myelinating oligodendrocyte
+10X50_5:TATCTCGATTGGCA,oligodendrocyte,oligodendrocyte
+10X54_1:ACGGATCAGGCAAG,oligodendrocyte,neuromuscular junction nucleus
+10X50_2:ATGCCAGATCAAGC,oligodendrocyte,myelin-forming oligodendrocyte
+10X54_7:CGTGTCAGACAAAT,oligodendrocyte,myelin-forming oligodendrocyte (Mmus)
+10X55_3:GTAACTCCTATGTT,oligodendrocyte,mature myelinating oligodendrocyte (Mmus)
+10X55_1:CTCGCTCTTGACGA,oligodendrocyte,myelin-forming oligodendrocyte (Mmus)
+10X53_3:AGGAACCTTACTGG,oligodendrocyte,mature myelinating oligodendrocyte
+10X55_7:CTAACGTCTGCCAG,oligodendrocyte,myelin-forming oligodendrocyte (Mmus)
+10X52_1:AGAATACTCGAGAG,oligodendrocyte,mature myelinating oligodendrocyte
+10X53_2:TGCACAGAGTTTCT,oligodendrocyte,terminal Schwann cell
+10X52_3:GAGGTACTATCGTG,oligodendrocyte,mature myelinating oligodendrocyte
+10X54_3:TATCTAGAACAACT,oligodendrocyte,myelin-forming oligodendrocyte
+10X52_5:ATCAGGTGGTTCAG,oligodendrocyte,myelin-forming oligodendrocyte (Mmus)
+10X26_3:CGGACCGATCGATG,oligodendrocyte,mature myelinating oligodendrocyte
+10X54_1:GCGCAAGATCGGGT,oligodendrocyte,mature myelinating oligodendrocyte (Mmus)
+10X53_4:AGGGCCACACCTAG,oligodendrocyte,mature myelinating oligodendrocyte
+10X35_2:CGGACTCTCCACAA,oligodendrocyte,spinal cord oligodendrocyte
+10X22_2:CCATAGGAGGTGAG,oligodendrocyte,mature myelinating oligodendrocyte
+10X57_5:TTCAGTTGCCATAG,oligodendrocyte,mature myelinating oligodendrocyte (Mmus)
+10X20_3:ATACCTTGGTACGT,oligodendrocyte,macrophage of medullary sinus of lymph node
+10X20_4:AGGTCATGCTATTC,oligodendrocyte,mature myelinating oligodendrocyte
+10X57_5:GTTACTACGTACGT,oligodendrocyte,committed oligodendrocyte precursor
+10X50_2:ATGCACGAGTTGTG,oligodendrocyte,commited oligodendrocyte precursor (Mmus)
+10X54_8:GTCATGTGGTGTAG,oligodendrocyte,mature myelinating oligodendrocyte
+10X52_2:CCAGCTACCCAAGT,oligodendrocyte,mature myelinating oligodendrocyte
+10X57_5:CGAGTATGGGTACT,oligodendrocyte,mature myelinating oligodendrocyte
+10X20_4:CACTCCGACGAGAG,oligodendrocyte,myelin-forming oligodendrocyte
+10X57_3:ACTCAGGAACGGTT,oligodendrocyte,myelin-forming oligodendrocyte (Mmus)
+10X50_8:TGTATGCTCATTCT,oligodendrocyte,myelin-forming oligodendrocyte
+10X52_6:GTGAGGGACTTGCC,oligodendrocyte,mature myelinating oligodendrocyte
+10X55_5:CTCAAGTTGACGTT,oligodendrocyte,marrow fibroblast
+10X34_3:TCCATAACTAGAGA,oligodendrocyte,spinal cord oligodendrocyte
+10X55_1:GACCAAGGTACTCT,oligodendrocyte,mature myelinating oligodendrocyte (Mmus)
+10X24_3:ATAATGACGACTAC,oligodendrocyte,middle cervical ganglion DBH neuron
+10X43_3:ATAAGTACGTTCGA,oligodendrocyte,committed oligodendrocyte precursor
+10X54_1:TCTCTAGAAGAAGC,oligodendrocyte,mature myelinating oligodendrocyte (Mmus)
+10X50_5:TCTAACACCCTCAC,oligodendrocyte,committed oligodendrocyte precursor
+10X33_4:CAGACATGCCAAGT,oligodendrocyte,mature myelinating oligodendrocyte
+10X55_1:GAGCTGTCGAACAG,oligodendrocyte,spinal cord oligodendrocyte
+10X52_1:GCGGAGCTGAGCTT,oligodendrocyte,myelin-forming oligodendrocyte (Mmus)
+10X54_1:AGCAATCTCCGGTT,oligodendrocyte,mature myelinating oligodendrocyte
+10X26_3:TGTAGGTGTGTTCT,oligodendrocyte,oligodendrocyte
+10X57_6:AAATGGGAGCAGAG,oligodendrocyte,oligodendrocyte
+10X55_4:GGCGTCACGCATCG,oligodendrocyte,mature myelinating oligodendrocyte
+10X55_6:TGAGGGTCTAGAGG,oligodendrocyte,mature myelinating oligodendrocyte (Mmus)
+10X55_4:TGAAGCAACACCCG,oligodendrocyte,myelin-forming oligodendrocyte (Mmus)
+10X54_8:ACCTACAGCTCGCA,oligodendrocyte,mature myelinating oligodendrocyte
+10X54_1:CGGTAAGATAGTCA,oligodendrocyte,thymic cortical macrophage
+10X57_7:TTATGGCTCACTTT,oligodendrocyte,mature myelinating oligodendrocyte
+10X55_7:ACGGAAGCCATCGC,oligodendrocyte,myelin-forming oligodendrocyte
+10X57_3:CTCAGAGACAGCTA,oligodendrocyte,mature myelinating oligodendrocyte
+10X52_3:AGAGTCTGTTCATC,oligodendrocyte,myelin-forming oligodendrocyte
+10X57_3:TCGTAGGACGTTGA,oligodendrocyte,myelin-forming oligodendrocyte (Mmus)
+10X53_3:CAAGTTCTAAGATG,oligodendrocyte,mature myelinating oligodendrocyte
+10X43_3:GAACCTGAGACAAA,oligodendrocyte,mature myelinating oligodendrocyte
+10X24_4:TCCGAAGAGGGTGA,oligodendrocyte,mature myelinating oligodendrocyte
+10X57_3:TAATCGCTATGTCG,oligodendrocyte,myelin-forming oligodendrocyte
+10X01_1:CAAGAAGAGCTATG,oligodendrocyte,mature myelinating oligodendrocyte
+10X57_7:AAGAACGACCTATT,oligodendrocyte,myelin-forming oligodendrocyte
+10X55_8:CGTGTCAAGACGTG,oligodendrocyte,mature myelinating oligodendrocyte (Mmus)
+10X55_6:GTACTGTGCTTCTC,oligodendrocyte,mature myelinating oligodendrocyte (Mmus)
+10X54_1:TGATGTCAAGATCC,oligodendrocyte,mature myelinating oligodendrocyte
+10X54_3:AGCGTTCGAGCCCA,oligodendrocyte,mature myelinating oligodendrocyte
+10X57_3:CGAGTATGTTAGGC,oligodendrocyte,mature myelinating oligodendrocyte
+10X05_2:GACTACGATCAGGT,oligodendrocyte,mature myelinating oligodendrocyte
+10X53_6:ATTATGGACATGGT,oligodendrocyte,mature myelinating oligodendrocyte
+10X01_1:CAGCGGACTAGACC,oligodendrocyte,spinal cord oligodendrocyte
+10X54_4:TCCAGTCGCCATAA,oligodendrocyte,myelin-forming oligodendrocyte
+10X52_2:AATCGGTGCTCCCA,oligodendrocyte,mature myelinating oligodendrocyte
+10X54_5:TCAGAGTTACTGAC,oligodendrocyte,mature myelinating oligodendrocyte
+10X54_4:CGGTCCACTACAGT,oligodendrocyte,mature myelinating oligodendrocyte
+10X57_6:TTCAAAGACAAAGA,oligodendrocyte,mature myelinating oligodendrocyte
+10X53_4:TGTATCTGGCCCTT,oligodendrocyte,mature myelinating oligodendrocyte
+10X53_6:AATCCGGAGAGACG,oligodendrocyte,mature myelinating oligodendrocyte
+10X55_8:TGGTGCACCGAAAG,oligodendrocyte,myelin-forming oligodendrocyte (Mmus)
+10X57_3:TAAGTCCTCTCCCA,oligodendrocyte,terminal Schwann cell
+10X53_6:ACGGTCCTATTCGG,oligodendrocyte,mature myelinating oligodendrocyte
+10X50_4:AAACCGTGTCCCAC,oligodendrocyte,mature myelinating oligodendrocyte
+10X26_3:CCATAGGAGCGGAA,oligodendrocyte,myelin-forming oligodendrocyte
+10X54_5:CATACAGTGGGCTA,oligodendrocyte,myelin-forming oligodendrocyte
+10X54_2:AATAGCAGTCTTCC,oligodendrocyte,mature myelinating oligodendrocyte (Mmus)
+10X28_3:AAGCCATGGTAAAG,oligodendrocyte,myelin-forming oligodendrocyte
+10X55_2:CCACTGTCTCCCTA,oligodendrocyte,mature myelinating oligodendrocyte
+10X52_2:GGCTAAACTCTAGG,oligodendrocyte,myelin-forming oligodendrocyte
+10X53_4:TGAGTCGATTTCGT,oligodendrocyte,myelin-forming oligodendrocyte (Mmus)
+10X57_2:GGAATCTGCTTGCC,oligodendrocyte,oligodendrocyte
+10X22_1:CACTAGGAATTTCC,oligodendrocyte,mature myelinating oligodendrocyte
+10X55_7:TCAGTTCTTCATGT,oligodendrocyte,mature myelinating oligodendrocyte (Mmus)
+10X28_2:TCTCAAACAAGTGA,oligodendrocyte,myelin-forming oligodendrocyte
+10X24_4:CTACTATGCTAGAC,oligodendrocyte,mature myelinating oligodendrocyte
+10X55_5:TCAGGTCTTGGGTA,oligodendrocyte,mature myelinating oligodendrocyte
+10X24_4:AAGAACGATGACAC,oligodendrocyte,mature myelinating oligodendrocyte
+10X53_3:ACACGAACGTTAGC,oligodendrocyte,mature myelinating oligodendrocyte
+10X55_4:GCCAATCACCTTAT,oligodendrocyte,oligodendrocyte
+10X50_7:CTATAAGACCAAGT,oligodendrocyte,double negative thymocyte
+10X20_1:AACGCCCTGTACCA,glutamatergic neuron,visible light photoreceptor cell
+10X22_2:TCGGACCTGCATCA,glutamatergic neuron,secondary lymphoid organ macrophage
+10X22_2:CGTTTAACCCTGTC,glutamatergic neuron,primary motor cortex pyramidal cell
+10X53_6:CTGGCACTAATCGC,glutamatergic neuron,pelvic ganglion TH/DBH neuron
+10X50_8:CGCGAGACCTCTAT,glutamatergic neuron,ciliary ganglion TH neuron
+10X57_3:AGTCTTACCTCATT,glutamatergic neuron,lymph node mantle zone B cell
+10X20_2:GATATCCTCAGATC,glutamatergic neuron,lymph node macrophage
+10X53_3:AAGTCCGAGCTATG,glutamatergic neuron,gamma motor neuron
+10X34_3:TGGCACCTTTCATC,glutamatergic neuron,nodose ganglion PVALB neuron
+10X02_1:ACGGAGGACAAAGA,glutamatergic neuron,columnar chondrocyte
+10X57_2:AGCAAGCTTTGACG,glutamatergic neuron,pyloric motor neuron
+10X22_2:ACGCTCACTCAAGC,glutamatergic neuron,T-helper 17 cell
+10X19_2:AAGGCTTGCCATAG,glutamatergic neuron,memory T cell
+10X20_1:TTGAGGTGCTTGCC,glutamatergic neuron,epithelial cell of prostatic urethra
+10X20_1:CAAGACTGATCGTG,glutamatergic neuron,secondary lymphoid organ macrophage
+10X05_1:GCGAGAGACAAGCT,glutamatergic neuron,cerebral cortex neuron
+10X22_2:AAACGCACTGGTTG,glutamatergic neuron,thymic macrophage
+10X22_3:TATAGCCTGCATAC,glutamatergic neuron,pancreatic goblet cell
+10X53_3:AACATTGAGGTATC,glutamatergic neuron,tuft cell of nasal cavity
+10X49_3:ACTCTATGGGAAGC,glutamatergic neuron,splenic metallophillic macrophage
+10X04_2:ATCATCTGGTTGAC,glutamatergic neuron,hypothalamic gonadotropin-releasing hormone neuron
+10X28_4:AAGGTGCTTTCGGA,glutamatergic neuron,epithelial cell of prostatic urethra
+10X50_5:CATTGTACACTCTT,glutamatergic neuron,submandibular ganglion TH cholinergic neuron
+10X28_4:ACGTAGACCTACTT,glutamatergic neuron,tuft cell of urethra
+10X24_3:ATCTGGGAGAATAG,glutamatergic neuron,thymic medullary macrophage
+10X02_1:TTTCCAGACTACCC,glutamatergic neuron,middle cervical ganglion VIP neuron
+10X57_3:TACATCACACCTGA,glutamatergic neuron,memory T cell
+10X43_1:CCCTACGAATCGTG,glutamatergic neuron,secondary lymphoid organ macrophage
+10X20_1:ACACGATGCTTATC,glutamatergic neuron,astrocyte of the cerebral cortex
+10X01_1:ACGTTACTAAAACG,glutamatergic neuron,mature microglial cell
+10X57_3:CACTGAGATTCTTG,glutamatergic neuron,pterygopalatine ganglion VIP/PHI neuron
+10X28_3:ATAACCCTCCTGTC,glutamatergic neuron,gamma-delta intraepithelial T cell
+10X52_1:CAAGGTTGTAGAAG,glutamatergic neuron,dentate gyrus kisspeptin neuron
+10X22_2:ATTCAGCTAAAGCA,glutamatergic neuron,tuft cell of submandibular gland
+10X20_4:ACTCAGGAGTCTTT,glutamatergic neuron,middle cervical ganglion NPY neuron
+10X28_3:AGGGCCACTTCGCC,glutamatergic neuron,dentate gyrus kisspeptin neuron
+10X24_4:CAGCAATGCAACCA,glutamatergic neuron,thymic macrophage
+10X05_2:GATTCTTGTCCTCG,glutamatergic neuron,splenic marginal zone macrophage
+10X36_1:AACAATACCCTGTC,glutamatergic neuron,dentate gyrus kisspeptin neuron
+10X50_5:ATCGCCTGGGAGCA,glutamatergic neuron,T cell of medullary sinus of lymph node
+10X52_2:GTACGAACAACTGC,glutamatergic neuron,crypt olfactory receptor neuron
+10X53_6:CAGGGCACGAACCT,glutamatergic neuron,submandibular ganglion VIP/PHI neuron
+10X22_2:GCTACAGATTTGGG,glutamatergic neuron,microglial cell
+10X54_2:GACCATCAGCCTAA,glutamatergic neuron,middle cervical ganglion NPY neuron
+10X20_2:GAAAGATGTCTTTG,glutamatergic neuron,gut-associated lymphoid tissue macrophage
+10X36_1:AAATCTGAGGGCAA,glutamatergic neuron,dentate gyrus kisspeptin neuron
+10X28_3:CACTTAACTTCCAT,glutamatergic neuron,tuft cell of colon
+10X05_1:CCATAGGAGGACTT,glutamatergic neuron,kidney proximal convoluted tubule epithelial cell
+10X28_4:ATGCAGTGTCCTTA,glutamatergic neuron,hypothalamus kisspeptin neuron
+10X22_1:AGTCTTACGCTATG,glutamatergic neuron,gut-associated lymphoid tissue macrophage
+10X28_2:GAAGGGTGAAGTAG,glutamatergic neuron,T follicular helper cell
+10X22_1:ATTGGTCTCTTGTT,glutamatergic neuron,colon macrophage
+10X05_1:CGATCCACACAGTC,glutamatergic neuron,pterygopalatine ganglion VIP neuron
+10X20_1:GTTCAGGACCCACT,glutamatergic neuron,tonsillar macrophage
+10X28_2:TTGTACACCTGTTT,glutamatergic neuron,dentate gyrus kisspeptin neuron
+10X53_3:ATGAGAGAGGTAGG,glutamatergic neuron,celiac ganglion SOM/CGRP neuron
+10X35_1:TGATACCTCCTTGC,glutamatergic neuron,polymodal nocireceptor
+10X22_1:TGCTTAACAGATGA,glutamatergic neuron,secondary lymphoid organ macrophage
+10X22_4:GCCTCATGATCGTG,glutamatergic neuron,myeloid leukocyte
+10X50_6:AAGATGGATTGCGA,glutamatergic neuron,middle cervical ganglion NPY neuron
+10X02_1:TGTTACTGTCCTCG,glutamatergic neuron,middle cervical ganglion NPY neuron
+10X43_3:GAGTCAACTTCGCC,glutamatergic neuron,myotendinous junction nucleus
+10X50_8:ACGAACTGTACTCT,glutamatergic neuron,T follicular helper cell
+10X35_1:TCGTAGGAGTTAGC,glutamatergic neuron,splenic marginal zone macrophage
+10X05_2:CACCGTACCCATAG,glutamatergic neuron,cerebral cortex neuron
+10X53_4:CACTAGGAACCTTT,glutamatergic neuron,lumbar ganglion SST/TH neuron
+10X28_4:GTTATCTGAACGAA,glutamatergic neuron,tuft cell of urethra
+10X20_3:CTGACAGAATCGTG,glutamatergic neuron,hypothalamic gonadotropin-releasing hormone neuron (Mmus)
+10X20_3:GAGCGGCTCTACCC,glutamatergic neuron,mechanoreceptor cell
+10X28_2:TTCAGACTTGACTG,glutamatergic neuron,secondary lymphoid organ macrophage
+10X57_2:GTGACAACTGCAAC,glutamatergic neuron,mineralocorticoid secreting cell
+10X02_1:TAGACGTGTCCAAG,glutamatergic neuron,dentate gyrus kisspeptin neuron
+10X05_1:CCCAGTTGATCACG,glutamatergic neuron,secondary lymphoid organ macrophage
+10X05_1:CGATCAGACTCATT,glutamatergic neuron,thymic macrophage
+10X04_2:ATATAGTGAACCGT,glutamatergic neuron,dentate gyrus kisspeptin neuron
+10X22_2:TCTCAAACCGTGAT,glutamatergic neuron,uterine natural killer cell
+10X22_1:TGCAACGATACTCT,glutamatergic neuron,secondary lymphoid organ macrophage
+10X19_2:ACACGTGAAGCGGA,glutamatergic neuron,V1delta gamma-delta T cell
+10X04_2:GGAATCTGCTGAAC,glutamatergic neuron,dentate gyrus kisspeptin neuron
+10X28_3:CACTGAGAGGTAAA,glutamatergic neuron,T-helper 17 cell
+10X50_5:GATCCCTGGAGGCA,glutamatergic neuron,middle cervical ganglion NPY neuron
+10X22_4:GTGGATTGGCGAGA,glutamatergic neuron,meningeal macrophage
+10X04_1:GCCGGAACGCTGTA,glutamatergic neuron,dentate gyrus kisspeptin neuron
+10X50_5:AATAAGCTGCTGAT,glutamatergic neuron,M2 retinal ganglion cell
+10X05_1:GAAAGCCTCGATAC,glutamatergic neuron,marginal zone B cell of lymph node
+10X36_1:AGCACTGAAGATCC,glutamatergic neuron,colon macrophage
+10X53_6:CTCGACACATGCCA,glutamatergic neuron,magnocellular neurosecretory cell
+10X52_4:ATAAGTACTGAGAA,glutamatergic neuron,middle cervical ganglion TH/NPY neuron
+10X49_4:TGATAAACAACGAA,glutamatergic neuron,Y chromosome-bearing sperm cell
+10X19_2:ATGTACCTTAAGGA,glutamatergic neuron,marginal zone B cell of lymph node
+10X50_5:TGCCACTGGTGTAC,glutamatergic neuron,thymic medullary macrophage
+10X28_3:GATCCCTGCCTTGC,glutamatergic neuron,secondary lymphoid organ macrophage
+10X20_4:TGTGATCTTTCGTT,glutamatergic neuron,olfactory bulb tufted cell
+10X28_5:GTTACGGATATCTC,glutamatergic neuron,tuft cell of nasal cavity
+10X28_2:CCCGAACTTTCTTG,glutamatergic neuron,dentate gyrus kisspeptin neuron
+10X52_3:GCACCACTTGTGAC,glutamatergic neuron,nucleus accumbens shell and olfactory tubercle D1 medium spiny neuron
+10X50_8:ATGCCGCTATCTTC,glutamatergic neuron,thymic medullary macrophage
+10X05_1:TAGGACTGGAGGAC,glutamatergic neuron,dentate gyrus kisspeptin neuron
+10X20_2:ATGTACCTCTGCAA,glutamatergic neuron,microglial cell
+10X52_1:CATAAAACACCTCC,glutamatergic neuron,nucleus accumbens shell and olfactory tubercle D2 medium spiny neuron
+10X53_1:GTCGAATGTGGAAA,glutamatergic neuron,tuft cell of anorectum
+10X24_3:CAGACATGAAACGA,glutamatergic neuron,COP NN_1 Cck committed oligodendrocyte precursor (Mmus)
+10X57_7:XXATATGACCTTGC,glutamatergic neuron,T cell of medullary sinus of lymph node
+10X35_1:GGGATGGATGACCA,glutamatergic neuron,hillock cell of urethral epithelium
+10X35_1:CAAACTCTTCAGGT,glutamatergic neuron,vascular leptomeningeal cell (Mmus)
+10X01_1:GAGTTGTGTCTTCA,glutamatergic neuron,splenic marginal zone macrophage
+10X28_3:ACCCAAGACTGAGT,glutamatergic neuron,astrocyte of the cerebral cortex
+10X50_6:GTTATCTGACACAC,glutamatergic neuron,splenic marginal zone macrophage
+10X54_4:GGGTTGTCTCACCT,glutamatergic neuron,ventricular dilator motor neuron
+10X22_2:ATGTCACTTGACCA,glutamatergic neuron,secondary lymphoid organ macrophage
+10X19_2:GTACTACTGTAGCT,glutamatergic neuron,keratinized cell of the oral mucosa
+10X52_3:TAGTCGGAAGCGGA,glutamatergic neuron,geniculate ganglion VGLUT2 neuron
+10X28_4:GAGTGACTTTCCGC,glutamatergic neuron,thymic macrophage
+10X04_2:GACCTCACCCCTTG,glutamatergic neuron,lung macrophage
+10X22_2:TGTTAAGACGTAGT,glutamatergic neuron,microglial cell
+10X19_2:GATTTGCTCTGAGT,glutamatergic neuron,germinal center T cell
+10X22_3:GCACGGACAGGCGA,glutamatergic neuron,splenic marginal zone macrophage
+10X35_2:TGTAATGACGTACA,glutamatergic neuron,stomach neuroendocrine cell
+10X20_1:TGGTAGTGTTATCC,glutamatergic neuron,colon macrophage
+10X52_1:ATCAAATGACCCAA,glutamatergic neuron,splenic metallophillic macrophage
+10X20_3:CGCGGATGGTCGTA,glutamatergic neuron,geniculate ganglion VGLUT2 neuron
+10X19_2:ACGACCCTCTTGGA,glutamatergic neuron,type 3 mucosal glia
+10X52_2:TAAGTCCTACGCAT,glutamatergic neuron,ON midget ganglion cell
+10X35_2:TGCGAAACACGTAC,glutamatergic neuron,articular chondrocyte of knee joint
+10X07_1:TTACAGCTCCGATA,GABAergic neuron,hypothalamic gonadotropin-releasing hormone neuron
+10X07_1:TCCCACGATATGCG,GABAergic neuron,tuft cell of urethra
+10X49_5:TGGACTGAACTCAG,GABAergic neuron,middle cervical ganglion NPY neuron
+10X52_2:CAAGAAGAATTGGC,GABAergic neuron,geniculate ganglion VGLUT2 neuron
+10X38_1:CTACCTCTCCAACA,GABAergic neuron,glycinergic neuron
+10X24_2:GAACCAACAGTGTC,GABAergic neuron,splenic marginal zone macrophage
+10X04_1:ATCTGACTACCTCC,GABAergic neuron,dentate gyrus kisspeptin neuron
+10X38_2:TTGAGGACAACCGT,GABAergic neuron,hypothalamic gonadotropin-releasing hormone neuron (Mmus)
+10X26_4:ACGCACCTGAGCTT,GABAergic neuron,nucleus accumbens shell and olfactory tubercle D2 medium spiny neuron
+10X07_1:AGATATTGCACACA,GABAergic neuron,caudal ganglionic eminence derived interneuron
+10X55_7:CTAATTCTGCTTGC,GABAergic neuron,middle cervical ganglion NPY neuron
+10X24_1:CAGCACCTCGACAT,GABAergic neuron,crypt olfactory receptor neuron
+10X26_3:TGCTGAGAGGTAAA,GABAergic neuron,globose cell of olfactory epithelium
+10X52_1:GACGCTCTCTGTGA,GABAergic neuron,striatal pthlh-expressing interneuron
+10X28_4:CGTCCATGCCGTTC,GABAergic neuron,mature gamma-delta T cell
+10X24_2:TTAGTCACCTAGAC,GABAergic neuron,splenic marginal zone macrophage
+10X38_1:GGATACTGCAGCTA,GABAergic neuron,stomach neuroendocrine cell
+10X38_3:TAAATCGATACTCT,GABAergic neuron,pelvic ganglion NPY/VAChT neuron
+10X52_3:CACAATCTGCTTCC,GABAergic neuron,T cell of medullary sinus of lymph node
+10X50_3:CGACCTACACCTCC,GABAergic neuron,hypothalamic gonadotropin-releasing hormone neuron (Mmus)
+10X04_4:CTACCTCTGACTAC,GABAergic neuron,anterior lens cell
+10X24_1:CGGATATGGTTCGA,GABAergic neuron,mature dermal dendritic cell
+10X49_4:CCTATAACGCTGTA,GABAergic neuron,germinal center T cell
+10X49_4:GATAGCACTCGCCT,GABAergic neuron,kidney interstitial suppressor macrophage
+10X38_2:CTAACTACAGCTCA,GABAergic neuron,oxytocin-secreting magnocellular cell
+10X38_1:GACGAGGAGGACTT,GABAergic neuron,lumbar ganglion SST/TH neuron
+10X38_1:AATTACGAGCTGAT,GABAergic neuron,gamma-delta intraepithelial T cell
+10X52_3:AGTCGAACGTGTAC,GABAergic neuron,middle cervical ganglion TH/NPY neuron
+10X28_4:CAGTTTACTGTTCT,GABAergic neuron,hypothalamus kisspeptin neuron
+10X26_3:ATAAACACGCAAGG,GABAergic neuron,splenic marginal zone macrophage
+10X28_5:ATCGCGCTGTGTCA,GABAergic neuron,dentate gyrus kisspeptin neuron
+10X49_4:GCCACGGAGTCTTT,GABAergic neuron,middle cervical ganglion NPY neuron
+10X28_4:TCCATCCTAACCGT,GABAergic neuron,cerebral cortex endothelial cell
+10X38_1:GACTGTGATCTCCG,GABAergic neuron,dentate gyrus kisspeptin neuron
+10X52_3:CACACCTGCGCAAT,GABAergic neuron,tanycyte of area postrema
+10X57_2:CACGATGATCCCAC,GABAergic neuron,smooth muscle cell of sigmoid colon
+10X52_3:TTTCACGAACCTTT,GABAergic neuron,DCO Il22 Gly-Gaba_3 cerebellar neuron (Mmus)
+10X36_1:CAATAAACGACAGG,GABAergic neuron,hypothalamic gonadotropin-releasing hormone neuron (Mmus)
+10X05_1:CGCTACTGGCTAAC,GABAergic neuron,myenteric ganglion of small intestine nNOS/ChAT neuron
+10X28_4:TGTCTAACAAGAAC,GABAergic neuron,hypothalamic gonadotropin-releasing hormone neuron (Mmus)
+10X26_4:TGAGGACTATGACC,GABAergic neuron,geniculate ganglion TRPV1 neuron
+10X38_3:TCTATGTGACGTTG,GABAergic neuron,midget ganglion cell of retina
+10X24_2:GAAACAGATGTTTC,GABAergic neuron,dentate gyrus kisspeptin neuron
+10X36_3:TCCGAAGAGTGTCA,GABAergic neuron,lateral pyloric motor neuron
+10X38_1:AGTAATACCCACAA,GABAergic neuron,hypothalamic gonadotropin-releasing hormone neuron (Mmus)
+10X05_4:GGACCCGAGAATCC,GABAergic neuron,pelvic ganglion NPY/VAChT neuron
+10X28_5:CTATCAACCCATAG,GABAergic neuron,OEC NN_1 Adamts12 olfactory ensheathing cell (Mmus)
+10X38_3:TACGGCCTCTTCTA,GABAergic neuron,lumbar ganglion SST/TH neuron
+10X49_4:GACAACTGCGTAGT,GABAergic neuron,dermal dendritic cell
+10X38_1:TGAGCAACCTCATT,GABAergic neuron,pterygopalatine ganglion VIP/PHI neuron
+10X26_4:TATGGGTGGGTACT,GABAergic neuron,kidney cortical cell
+10X04_4:CGGTAAACATCACG,GABAergic neuron,splenic marginal zone macrophage
+10X24_1:ACAAAGGAGAATAG,GABAergic neuron,epithelial cell of prostatic urethra
+10X38_3:TTCAGACTAACCAC,GABAergic neuron,lumbar ganglion SST/TH neuron
+10X49_4:TGGAGACTCCCACT,GABAergic neuron,tuft cell of urethra
+10X38_2:ACGCCTTGTCTCCG,GABAergic neuron,GABA-Glut neuron
+10X36_2:GCACCACTGCTGAT,GABAergic neuron,hypothalamic gonadotropin-releasing hormone neuron (Mmus)
+10X28_5:GAGTAAGACTGTAG,GABAergic neuron,middle cervical ganglion NPY neuron
+10X52_1:GGCCACGATCCAAG,GABAergic neuron,middle cervical ganglion VIP neuron
+10X49_1:GGCGACTGCTCGAA,GABAergic neuron,pelvic ganglion NPY/VAChT neuron
+10X07_1:CCAGTCACGACAAA,GABAergic neuron,pelvic ganglion NPY/VAChT neuron
+10X07_1:CTTACATGTGCTAG,GABAergic neuron,lumbar ganglion SST/TH neuron
+10X24_1:TACGATCTTTGTCT,GABAergic neuron,spinal cord oligodendrocyte
+10X38_1:AGAGCGGAACGCTA,GABAergic neuron,hypothalamic gonadotropin-releasing hormone neuron
+10X28_5:ACACGAACCGTCTC,GABAergic neuron,middle cervical ganglion NPY neuron
+10X49_4:ACCAACGACCTTTA,GABAergic neuron,dual-feature fallopian tube progenitor cell
+10X28_4:CTAAGGACCATTCT,GABAergic neuron,Tanycyte NN_1 Cnmd tanycyte of subfornical organ (Mmus)
+10X24_1:GGCGACTGCACAAC,GABAergic neuron,M12 retinal ganglion cell
+10X49_5:AAGGTGCTTCGATG,GABAergic neuron,chandelier pvalb GABAergic interneuron (Homo sapiens)
+10X38_2:AATGGCTGCCTTAT,GABAergic neuron,lumbar ganglion TH/NPY neuron
+10X38_2:AGAATGGAGGAAGC,GABAergic neuron,geniculate ganglion VGLUT2 neuron
+10X49_5:CTACTCCTACGACT,GABAergic neuron,neurogliaform cell
+10X07_1:CACTTAACATCGGT,GABAergic neuron,pelvic ganglion NPY/VAChT neuron
+10X49_4:TAGGGACTACGGTT,GABAergic neuron,gamma-delta thymocyte
+10X26_4:TACGAGTGGTCATG,GABAergic neuron,visual system neuron
+10X49_5:CATGTACTTGGTCA,GABAergic neuron,nucleus accumbens shell and olfactory tubercle D2 medium spiny neuron
+10X26_4:CACAGTGAAACGGG,GABAergic neuron,hypothalamic gonadotropin-releasing hormone neuron (Mmus)
+10X49_5:ATAGGCTGCGAACT,GABAergic neuron,tuft cell of colon
+10X43_3:TGATAAACCTGGTA,GABAergic neuron,otic ganglion VIP neuron
+10X36_3:ATGAAACTGGTCAT,GABAergic neuron,middle cervical ganglion NPY neuron
+10X52_2:AACGTGTGTCAAGC,GABAergic neuron,midget ganglion cell of retina
+10X49_4:ATTGTAGAGCCATA,GABAergic neuron,nephrogenic zone cell
+10X38_3:TGGATGACTCACCC,GABAergic neuron,sst GABAergic neuron of the striatum
+10X38_2:CTAATGCTACGACT,GABAergic neuron,middle cervical ganglion TH/NPY neuron
+10X26_3:ATCACGGAGAGGCA,GABAergic neuron,splenic marginal zone macrophage
+10X24_2:TAATGCCTCAACCA,GABAergic neuron,microglial cell
+10X05_2:TAGGTCGAGACAAA,GABAergic neuron,L4 sst Martinotti interneuron (Mmus)
+10X49_1:ATACCACTTGCTTT,GABAergic neuron,hypothalamic gonadotropin-releasing hormone neuron (Mmus)
+10X38_2:CACGAAACAAGCAA,GABAergic neuron,lumbar ganglion SST/TH neuron
+10X38_2:AGAAAGTGCTGTCC,GABAergic neuron,G2 retinal ganglion cell
+10X49_2:TTCTCAGAAGGAGC,GABAergic neuron,splenic marginal zone macrophage
+10X36_3:ATCATCTGCCTCCA,GABAergic neuron,ciliary ganglion TH neuron
+10X49_5:AGGGTGGATTTCAC,GABAergic neuron,geniculate ganglion SPARCL1 neuron
+10X50_4:GTTAAAACGGTGAG,GABAergic neuron,tuft cell of stomach
+10X49_5:CTATTGACACAGTC,GABAergic neuron,tanycyte of subcommissural organ
+10X28_4:ATCTACTGTCTGGA,GABAergic neuron,cardiac atrium fibroblast
+10X20_2:GCCTACACGCTTAG,GABAergic neuron,hypothalamic gonadotropin-releasing hormone neuron (Mmus)
+10X07_1:AAATCTGAGGAGGT,GABAergic neuron,germinal center T cell
+10X38_2:ATTGCACTCCGATA,GABAergic neuron,caudal ganglionic eminence derived neuron
+10X28_5:CGTTAACTCCGCTT,GABAergic neuron,lumbar ganglion SST/TH neuron
+10X35_1:GCATTGGATGTTTC,GABAergic neuron,gamma-delta intraepithelial T cell
+10X38_2:GGCTAATGGTGCTA,GABAergic neuron,hypothalamic gonadotropin-releasing hormone neuron (Mmus)
+10X38_2:GTAATAACAAGTGA,GABAergic neuron,pelvic ganglion TH/DBH neuron
+10X52_5:CAACGATGATGACC,GABAergic neuron,middle cervical ganglion DBH neuron
+10X38_2:GGCGACTGCCATAG,GABAergic neuron,pterygopalatine ganglion VIP/PHI neuron
+10X52_1:TTAGTCTGTCGCAA,GABAergic neuron,tuft cell of urethra
+10X24_1:GTGATCGATCCCGT,GABAergic neuron,nucleus accumbens shell and olfactory tubercle D2 medium spiny neuron
+10X49_4:CGCGAGACGGAGCA,GABAergic neuron,tuft cell of urethra
+10X38_2:TCGACGCTCGCTAA,GABAergic neuron,caudal ganglionic eminence derived interneuron
+10X50_5:ATTTAGGACACTCC,GABAergic neuron,myotendinous junction nucleus
+10X24_2:TGCGAAACCGGTAT,GABAergic neuron,splenic marginal zone macrophage
+10X50_4:ACACGAACTGGAGG,GABAergic neuron,secondary lymphoid organ macrophage
+10X52_5:GGTCTAGAGACGTT,GABAergic neuron,geniculate ganglion VGLUT2 neuron
+10X38_1:GTGTACGAGCGAAG,GABAergic neuron,sst chodl GABAergic interneuron
+10X52_2:ACCCGTACAACCAC,GABAergic neuron,urothelial cell of trigone of urinary bladder
+10X22_3:TATACGCTACGTTG,astrocyte,astrocyte of cerebrum (Mmus)
+10X52_6:GCAATTCTGGTGGA,astrocyte,mesothelial cell of dura mater
+10X56_6:TGATATGAGTTCTT,astrocyte,astrocyte of cerebrum (Mmus)
+10X52_7:CATTGTTGGACGGA,astrocyte,fibrous astrocyte
+10X20_1:GACGTAACGGACTT,astrocyte,astrocyte of the cerebral cortex
+10X52_2:GGCCGATGGGTCTA,astrocyte,fibrous astrocyte
+10X28_2:ACTTAAGACCAATG,astrocyte,fibrous astrocyte
+10X20_3:GACCTCTGGCTTAG,astrocyte,fibrous astrocyte
+10X24_4:GTACCCTGCCTTGC,astrocyte,astrocyte of cerebrum (Mmus)
+10X04_2:CCAGCTACTAGCGT,astrocyte,astrocyte of cerebrum (Mmus)
+10X48_4:TCACCGTGTCCAAG,astrocyte,astrocyte of cerebrum (Mmus)
+10X53_2:AATAACACGAGGCA,astrocyte,mature astrocyte
+10X56_6:TCCGAAGATGTCTT,astrocyte,fibrous astrocyte
+10X22_3:CCCAGACTTTCTAC,astrocyte,astrocyte of the cerebellum
+10X51_1:ACTGTGGAGTATGC,astrocyte,astrocyte of cerebrum (Mmus)
+10X57_1:ATATACGAGAACCT,astrocyte,fibrous astrocyte
+10X22_2:TATTTCCTGTAGCT,astrocyte,fibrous astrocyte
+10X28_4:GTGATTCTTGCTCC,astrocyte,astrocyte of cerebrum (Mmus)
+10X24_1:GAATGGCTCATGGT,astrocyte,astrocyte of the cerebellum
+10X52_1:TCCCATCTAGCCTA,astrocyte,astrocyte of the spinal cord
+10X48_1:CCGCGAGATTGACG,astrocyte,astrocyte of cerebrum (Mmus)
+10X04_1:ACCCAGCTTGCTTT,astrocyte,fibrous astrocyte
+10X48_1:CTTATCGAAAGGGC,astrocyte,fibrous astrocyte
+10X20_2:CAGATCGAAACGAA,astrocyte,fibrous astrocyte
+10X28_3:CAGCTCTGAAGGGC,astrocyte,astrocyte of the cerebral cortex
+10X48_3:CAGCGGACAAGGGC,astrocyte,astrocyte of the cerebellum
+10X48_3:CAGGTATGCTGCAA,astrocyte,brain pericyte
+10X20_2:GGTATGACTCTAGG,astrocyte,pituitary gland capillary endothelial cell
+10X52_2:GTCATACTACCACA,astrocyte,astrocyte of the cerebellum
+10X24_3:CGATACGAGGAGTG,astrocyte,astrocyte of the cerebellum
+10X51_1:AGCGATACCCTTCG,astrocyte,astrocyte of the spinal cord
+10X52_3:TAGGTCGATATGGC,astrocyte,astrocyte of cerebrum (Mmus)
+10X46_1:CGTGAATGCTGATG,astrocyte,astrocyte of cerebrum (Mmus)
+10X04_1:TTCTTACTGTTTCT,astrocyte,folliculostellate cell of pars distalis of adenohypophysis
+10X52_2:TATTTCCTTCTCTA,astrocyte,Astro-OLF NN_1 Greb1 astrocyte (Mmus)
+10X22_3:CGTAACGATGGTCA,astrocyte,subcortical astrocyte (Mmus)
+10X28_3:AGGGCGCTTGACTG,astrocyte,fibrous astrocyte
+10X20_1:ACAATTGACTTTAC,astrocyte,astrocyte of the cerebral cortex
+10X57_7:CAGACCCTTGCTAG,astrocyte,fibrous astrocyte
+10X51_1:GGCGACTGCTGTAG,astrocyte,astrocyte of the cerebellum
+10X20_2:GTTACTACAACGTC,astrocyte,astrocyte of the cerebral cortex
+10X52_2:TAACAATGTGCATG,astrocyte,astrocyte of the cerebellum
+10X26_4:GTCTAACTAGTCAC,astrocyte,astrocyte of cerebrum (Mmus)
+10X48_4:GTAGCCCTTGCCAA,astrocyte,astrocyte
+10X52_4:CGCTAAGAACCTGA,astrocyte,astrocyte of the cerebellum
+10X51_4:AATGGAGAACGTAC,astrocyte,astrocyte of the cerebellum
+10X19_2:CCTGACTGCATCAG,astrocyte,astrocyte
+10X49_4:TTTAGAGATTCTAC,astrocyte,astrocyte of the cerebellum
+10X49_5:AAGCGTACCTTGGA,astrocyte,Astro-OLF NN_1 Greb1 astrocyte (Mmus)
+10X24_3:AACAATACACGTAC,astrocyte,subcortical astrocyte (Mmus)
+10X33_2:CGATCCACTTTGTC,astrocyte,astrocyte of the cerebellum
+10X28_4:ATATGCCTGTACGT,astrocyte,subcortical astrocyte (Mmus)
+10X51_2:TGAAGCACTCCTGC,astrocyte,spinal cord oligodendrocyte
+10X48_4:CCTGCAACCAGGAG,astrocyte,astrocyte of cerebrum (Mmus)
+10X04_2:CCTGGACTCACAAC,astrocyte,astrocyte
+10X52_1:ATAGATACAGCCAT,astrocyte,subcortical astrocyte (Mmus)
+10X49_3:CGGCGAACTCTACT,astrocyte,Astro-TE NN_5 astrocyte (Mmus)
+10X50_2:ACACCCTGGGTCAT,astrocyte,acidophil cell of pars distalis of adenohypophysis
+10X52_6:TTATTCCTTGCTTT,astrocyte,hippocampal astrocyte
+10X26_2:GCAAACTGCATTCT,astrocyte,astrocyte of the cerebellum
+10X22_3:CGCTACACTGCGTA,astrocyte,astrocyte of cerebrum (Mmus)
+10X20_2:GAGTCTGAATTCCT,astrocyte,astrocyte of the cerebellum
+10X20_1:ATCGACGACATGCA,astrocyte,astrocyte of cerebrum (Mmus)
+10X49_4:ATCTACACAAGTAG,astrocyte,astrocyte of the cerebellum
+10X52_2:ATTGTAGACAGATC,astrocyte,interlaminar astrocyte
+10X20_1:GACGTCCTTACGAC,astrocyte,astrocyte of cerebrum (Mmus)
+10X52_3:CTCCTACTGGAGGT,astrocyte,astrocyte of cerebrum (Mmus)
+10X02_1:CGCACTTGTCCTCG,astrocyte,astrocyte of the cerebellum
+10X04_4:GTCGACCTAGTCTG,astrocyte,fibrous astrocyte
+10X33_3:GGTATCGAGTCTGA,astrocyte,protoplasmic astrocyte
+10X48_3:TAACGTCTCAGTCA,astrocyte,astrocyte of the spinal cord
+10X49_4:TAAGAGGAGGACAG,astrocyte,astrocyte of the cerebral cortex
+10X52_5:TGCGTAGACTAGTG,astrocyte,astrocyte of the cerebellum
+10X24_2:CTAGGCCTAGTACC,astrocyte,astrocyte of the cerebellum
+10X22_3:CATCATACAAGAAC,astrocyte,astrocyte of the spinal cord
+10X22_3:GCGAGAGAGGGAGT,astrocyte,notochordal sheath cell
+10X48_3:GCTTGAGATAGTCG,astrocyte,mature astrocyte
+10X34_4:AGAATGGATTCACT,astrocyte,Astro-NT NN_1 Six3os1 astrocyte (Mmus)
+10X49_5:GGATTGTGGACTAC,astrocyte,astrocyte of cerebrum (Mmus)
+10X22_3:TAAGCGTGCTGTCC,astrocyte,Astro-TE NN_5 astrocyte (Mmus)
+10X22_4:TACGCGCTAAGAAC,astrocyte,astrocyte of the cerebral cortex
+10X20_2:GTGGATTGTGCACA,astrocyte,astrocyte of cerebrum (Mmus)
+10X52_5:CTGAGCCTTCATTC,astrocyte,astrocyte of the spinal cord
+10X51_2:AAACATTGCCGCTT,astrocyte,astrocyte of the cerebellum
+10X81_3:AGGCCTCGAATGGG,Enteric glia,MOL NN_4 Spock3 mature myelinating oligodendrocyte (Mmus)
+10X81_1:CGTTGGTGGTACAG,Enteric glia,mature myelinating oligodendrocyte
+10X81_3:TTACCTCGTGGTCG,Enteric glia,myelinating glial cell
+10X81_3:TGAGGGTAAGTGTA,Enteric glia,MOL NN_4 Spock3 mature myelinating oligodendrocyte (Mmus)
+10X81_1:TCTACTCAACGCTA-1,Enteric glia,notochordal sheath cell
+10X81_1:GCTGGGTAATCGTC,Enteric glia,Astro-NT NN_2 Gm30524 astrocyte (Mmus)
+10X81_2:CTACCAGCCGTCGT,Enteric glia,posterior lateral line nerve glial cell
+10X81_3:AGCCAAGAAGATTC,Enteric glia,notochordal sheath cell
+10X82_2:TACTCAGGCGATAC,Enteric glia,MOL NN_4 Plin3 mature myelinating oligodendrocyte (Mmus)
+10X82_2:TGAGCGTAAGTGTA,Enteric glia,mesothelial fibroblast of the leptomeninx
+10X82_2:TGAAGTCTGTCTCG,Enteric glia,neuromuscular junction nucleus
+10X81_1:ACATCTCTCGCATC,Enteric glia,fetal hepatobiliary progenitor cell
+10X81_1:ATCAGTCCTTCAAT,Enteric glia,myelinating glial cell
+10X81_1:AGACCGTTGGTAAA,Enteric glia,notochordal sheath cell
+10X82_2:AGGTACACGAGAGT,Enteric glia,type 3 mucosal glia
+10X81_1:GGGAGGTTATGTGC,Enteric glia,type 4 muscularis propria glia
+10X81_2:ATGTAGTAGGGTAC,Enteric glia,IgG-positive double negative memory B cell
+10X81_1:CCATGTCCGCAAGC,Enteric glia,neural crest derived fibroblast
+10X82_2:TACCGGTTCTGGTA,Enteric glia,notochordal sheath cell
+10X81_1:TATTACATCGTCGG,Enteric glia,migratory enteric neural crest cell
+10X81_3:GAGAGAGGCTAGCA,Enteric glia,MOL NN_4 Art3 mature myelinating oligodendrocyte (Mmus)
+10X81_2:GAGGGCACACCGCA,Enteric glia,migratory enteric neural crest cell
+10X82_2:AATGTGTCATCGGC,Enteric glia,stromal choroid plexus macrophage
+10X81_2:AACGTGTTATTCTC,Enteric glia,Astro-TE NN_3 Crym astrocyte (Mmus)
+10X81_2:GCTAGCAAATTGCC,Enteric glia,premigratory neural crest cell
+10X81_1:GCGATTCACAATGC,Enteric glia,migratory enteric neural crest cell
+10X81_3:CAGAACAATCGGTT,Enteric glia,vascular leptomeningeal cell
+10X82_2:ACCTATCACTATTC,Enteric glia,fetal and neonatal skeletal muscle fiber
+10X81_1:GACTTCATACTACG,Enteric glia,fibrocyte of adventitia of ureter
+10X81_2:AGCCAGTACAGTGG,Enteric glia,COP NN_1 Cck committed oligodendrocyte precursor (Mmus)
+10X81_2:TCTAAAGCGTTTAC,Enteric glia,notochordal sheath cell
+10X26_3:GTATGGTGGCGAGA,Microglia,commited oligodendrocyte precursor (Mmus)
+10X22_2:GTAGTCGATTCTTG,Microglia,lymph node macrophage
+10X52_5:TGCACGCTTGATGC,Microglia,tuft cell of thymus
+10X53_4:ACGGTCCTTGCGTA,Microglia,thymic macrophage
+10X28_5:GGCCCAGAGAATCC,Microglia,polymodal nocireceptor
+10X22_2:GTCCCATGTACGCA,Microglia,marrow fibroblast
+10X19_2:ATTGGTCTTCCTCG,Microglia,prostate stem cell
+10X22_4:AATGATACGCGAGA,Microglia,meningeal macrophage
+10X26_3:CATCTTGAAGAGGC,Microglia,COP NN_1 9130019P16Rik committed oligodendrocyte precursor (Mmus)
+10X19_2:AGCCAATGTGTGCA,Microglia,beta1-tancyte (Mmus)
+10X57_2:GTGAACACAGGTCT,Microglia,CD86-positive plasmablast
+10X02_1:CCTAAGGACTGAAC,Microglia,thymic macrophage
+10X53_5:GGCTACCTGCCTTC,Microglia,suppressor macrophage
+10X49_1:CCGGAGACTTCGCC,Microglia,lymph node tingible body macrophage
+10X57_4:ACGCCTTGTATCTC,Microglia,tonsillar macrophage
+10X24_1:TTCATCGATTCCGC,Microglia,IgG memory B cell
+10X49_3:CATAACCTTTGGTG,Microglia,microglial cell
+10X26_3:TCTTGATGACGACT,Microglia,dural macrophage
+10X53_4:TAGTACCTCCCTCA,Microglia,MOL NN_4 Il33 mature myelinating oligodendrocyte (Mmus)
+10X02_1:ACTTGGGATGCTCC,Microglia,memory T cell
+10X20_4:GCCGACGAGGTGGA,Microglia,lymph node tingible body macrophage
+10X50_4:GTGATCGAAGGAGC,Microglia,decidual resident macrophage
+10X22_2:GGACATTGAGGTCT,Microglia,uterine resident macrophage
+10X35_2:AACGCAACCTGGTA,Microglia,"myeloid dendritic cell, human"
+10X49_3:AGGCTAACGTAGGG,Microglia,mature dendritic epithelial T cell precursor
+10X51_4:GCACCACTAAGAAC,Microglia,dural macrophage
+10X49_5:CGGTAAACCTAGCA,neuroblast (sensu Vertebrata),secondary lymphoid organ macrophage
+10X49_4:TACGAGACCCCAAA,neuroblast (sensu Vertebrata),nucleus accumbens shell and olfactory tubercle D1 medium spiny neuron
+10X04_4:TCTAACTGCAGCTA,neuroblast (sensu Vertebrata),neuromuscular junction nucleus
+10X46_1:AAAGCAGAGGACAG,neuroblast (sensu Vertebrata),decidual resident macrophage
+10X49_4:TTGTAGCTCCTCGT,neuroblast (sensu Vertebrata),OPC NN_1 Irx2 oligodendrocyte precursor cell (Mmus)
+10X28_5:GACTGAACGAGCTT,neuroblast (sensu Vertebrata),tuft cell of urethra
+10X26_3:TTTGCATGCATGCA,neuroblast (sensu Vertebrata),peg cell
+10X20_1:TTACTCGACATGAC,neuroblast (sensu Vertebrata),hillock cell of prostatic urethral epithelium
+10X54_3:GAAGGAGAGTGACC,neuroblast (sensu Vertebrata),G5 retinal ganglion cell
+10X22_4:ACGCCTTGCTTCCG,neuroblast (sensu Vertebrata),tuft cell of urethra
+10X34_2:TTCTGATGGTGTAC,neuroblast (sensu Vertebrata),stromal cell of ovarian medulla
+10X46_1:CCAGTCACTTTCGT,neuroblast (sensu Vertebrata),Astro-TE NN_5 astrocyte (Mmus)
+10X49_5:GATTTGCTCGTCTC,neuroblast (sensu Vertebrata),COP NN_1 Cck committed oligodendrocyte precursor (Mmus)
+10X22_4:TATCTGACGGCAAG,neuroblast (sensu Vertebrata),secondary lymphoid organ macrophage
+10X49_1:CCGGAGACATCAGC,neuroblast (sensu Vertebrata),submandibular ganglion TH cholinergic neuron
+10X22_3:GTGAGGGATCTTCA,neuroblast (sensu Vertebrata),gamma-delta thymocyte
+10X04_4:TTCATGTGTTCCAT,neuroblast (sensu Vertebrata),tanycyte of subfornical organ
+10X43_1:ATTCTTCTATCTCT,neuroblast (sensu Vertebrata),Astro-TE NN_1 Lncpint astrocyte (Mmus)
+10X28_4:AAATCAACGCGAGA,neuroblast (sensu Vertebrata),Astro-NT NN_1 Mecom astrocyte (Mmus)
+10X04_1:AAACATTGATTCTC,neuroblast (sensu Vertebrata),OEC NN_1 Adamts12 olfactory ensheathing cell (Mmus)
+10X43_1:ATGCACGAGCTACA,neuroblast (sensu Vertebrata),lymph node macrophage
+10X28_5:TAGGAGCTGTTGTG,neuroblast (sensu Vertebrata),crypt olfactory receptor neuron
+10X28_4:CTATAAGATGCCTC,neuroblast (sensu Vertebrata),COP NN_1 Cck committed oligodendrocyte precursor (Mmus)
+10X22_3:TGTGAGTGCCTCGT,neuroblast (sensu Vertebrata),COP NN_1 Cck committed oligodendrocyte precursor (Mmus)
+10X54_7:AGCGTTCGTTTAGG,neuroblast (sensu Vertebrata),mature myelinating oligodendrocyte (Mmus)
+10X24_1:TCTAAGCTCCCTCA,neuroblast (sensu Vertebrata),lower airway ganglion ChAT/VIP neuron
+10X52_4:AGAATTTGAGTACC,pericyte,cerebral cortex endothelial cell
+10X50_7:CACCTGACAGGAGC,pericyte,immature pericyte
+10X26_3:AATCCTACATTGGC,pericyte,cerebral cortex endothelial cell
+10X53_3:CAAATATGGCGGAA,pericyte,cerebral cortex endothelial cell
+10X52_4:GACGGCACACGTGT,pericyte,cerebral cortex endothelial cell
+10X50_8:CATAAAACGTCACA,pericyte,brain microvascular endothelial cell
+10X43_3:TATAGATGTTTCGT,pericyte,cerebral cortex endothelial cell
+10X53_6:GTAAGCACATTCTC,pericyte,cerebral cortex endothelial cell
+10X53_4:CAACGATGTAACCG,pericyte,cerebral cortex endothelial cell
+10X20_1:CATAAATGAAGATG,pericyte,endothelial cell of viscerocranial mucosa
+10X50_6:TTTGACTGTCGACA,pericyte,cerebral cortex endothelial cell
+10X53_6:GGGCAGCTAAGTGA,pericyte,brain microvascular endothelial cell
+10X20_2:CCATCCGATTGTCT,pericyte,cerebral cortex endothelial cell
+10X48_1:AGTCGAACTTTGCT,pericyte,cerebral cortex endothelial cell
+10X53_4:GTGAACACAAGGGC,pericyte,cerebral cortex endothelial cell
+10X36_1:GCGAGCACTGCCCT,pericyte,cerebral cortex endothelial cell
+10X48_3:ATAACCCTACTCAG,pericyte,endothelial cell of high endothelial venule
+10X52_6:GCGAAGGAGGGAGT,pericyte,cerebral cortex endothelial cell
+10X20_2:CGGAATTGTACGAC,pericyte,endothelial cell of viscerocranial mucosa
+10X50_7:GCGAGCACCTTCTA,pericyte,cerebral cortex endothelial cell
+10X24_3:CCACCTGAGTTCTT,pericyte,gut endothelial cell
+10X36_3:GGCCACGAGAAGGC,pericyte,cerebral cortex endothelial cell
+10X52_6:TCCCGATGTCAAGC,pericyte,cerebral cortex endothelial cell
+10X22_1:CGAGAACTAGACTC,pericyte,cerebral cortex endothelial cell
+10X57_2:CCAAAGTGGAGAGC,pericyte,cerebral cortex endothelial cell
+10X22_3:ACAAGAGAGTCAAC,dentate gyrus granule cell,nasal and broncial associated lymphoid tissue macrophage
+10X22_3:CATACTACCTTCGC,dentate gyrus granule cell,dentate gyrus kisspeptin neuron
+10X46_1:CAAACTCTTTCGTT,dentate gyrus granule cell,gut-associated lymphoid tissue macrophage
+10X46_1:GCCACTACTCGCTC,dentate gyrus granule cell,IgG memory B cell
+10X46_1:TAGTAATGCCCAAA,dentate gyrus granule cell,thymic macrophage
+10X46_1:TCAGCGCTCGGAGA,dentate gyrus granule cell,thymic macrophage
+10X22_3:GAGGATCTCTTGTT,dentate gyrus granule cell,male gonocyte
+10X43_1:AACATTGACAACTG,dentate gyrus granule cell,thymic macrophage
+10X46_1:GGATGTACAGGAGC,dentate gyrus granule cell,gut-associated lymphoid tissue macrophage
+10X46_1:TGGACTGAGTTACG,dentate gyrus granule cell,colon macrophage
+10X22_4:GTGATTCTCTAGTG,dentate gyrus granule cell,male gonocyte
+10X43_1:CATCTTGAACAGTC,dentate gyrus granule cell,dentate gyrus kisspeptin neuron
+10X43_1:GATATCCTGCCTTC,dentate gyrus granule cell,tuft cell of urethra
+10X43_1:GGAATGCTCAGTCA,dentate gyrus granule cell,nucleus accumbens shell and olfactory tubercle D2 medium spiny neuron
+10X46_1:GCTACAGAGTTGGT,dentate gyrus granule cell,odontoclast
+10X43_1:GCTGATGACCTTAT,dentate gyrus granule cell,dentate gyrus kisspeptin neuron
+10X22_3:TTCAAGCTTATTCC,dentate gyrus granule cell,microglial cell
+10X22_3:CGTGTAGACGCAAT,dentate gyrus granule cell,hippocampal CA1-3 neuron
+10X04_2:ATCAAATGGTCAAC,dentate gyrus granule cell,"central memory CD4-positive, alpha-beta T cell"
+10X46_1:GAGTACACCAAAGA,dentate gyrus granule cell,tuft cell of urethra
+10X22_4:TAAGCTCTTGCAAC,dentate gyrus granule cell,dentate gyrus kisspeptin neuron
+10X51_1:TCGCACACCTAGCA,cerebellar neuron,L2 marginal neuron
+10X34_4:CGGCCAGACTGGAT,cerebellar neuron,splenic marginal zone macrophage
+10X26_1:TACGTACTCTGACA,cerebellar neuron,middle cervical ganglion NPY neuron
+10X26_2:TAGGAGCTTATTCC,cerebellar neuron,fallopian tube epithelial cell
+10X26_1:TAAGTCCTTACAGC,cerebellar neuron,dentate gyrus kisspeptin neuron
+10X51_1:GAACCAACACGCAT,cerebellar neuron,male gonocyte
+10X26_1:GACAGTTGGAGGAC,cerebellar neuron,pelvic ganglion NPY/VAChT neuron
+10X26_2:ATCCCGTGCATGCA,cerebellar neuron,stretch receptor cell
+10X26_1:AAGAAGACCACACA,cerebellar neuron,geniculate ganglion VGLUT2 neuron
+10X26_1:ACAAAGGAAAACAG,cerebellar neuron,vestibular dark cell
+10X51_2:TGGTAGACTTCCCG,cerebellar neuron,stromal cell of pancreas
+10X51_2:GAAGGTCTCCACCT,cerebellar neuron,middle primary motoneuron
+10X26_1:GATATAACAGATCC,cerebellar neuron,type 2 spiral ganglion neuron
+10X51_1:CCATGCTGTTCCGC,cerebellar neuron,outer root sheath cell
+10X51_1:TAGTTCACTAGCGT,cerebellar neuron,stomach neuroendocrine cell
+10X51_1:GTGAGGGATCCCAC,cerebellar neuron,CD8-alpha-positive plasmacytoid dendritic cell
+10X51_1:ATCCTAACCTAGTG,cerebellar neuron,mesenchyme condensation cell
+10X51_1:GCGCGATGACCTTT,cerebellar neuron,pronephric nephron tubule epithelial cell
+10X51_1:GCTCGACTCACTTT,cerebellar neuron,myelinating Schwann cell
+10X51_2:CTGAACGACCGTTC,cerebellar neuron,secondary spermatocyte
+10X26_1:TAACAATGCTGTAG,cerebellar neuron,splenic marginal zone macrophage
+10X01_1:ACGGGAGAACCCTC,endothelial cell of vascular tree,cerebral cortex endothelial cell
+10X04_1:ACCTTTGACTCAAG,endothelial cell of vascular tree,cerebral cortex endothelial cell
+10X57_7:CAGGTATGGCTTCC,endothelial cell of vascular tree,circumventricular organ capillary endothelial cell
+10X01_1:CTGCCAACGCATAC,endothelial cell of vascular tree,cerebral cortex endothelial cell
+10X53_5:GGTAGTACGCTTAG,endothelial cell of vascular tree,cerebral cortex endothelial cell
+10X53_3:AACTGTCTTGGAAA,endothelial cell of vascular tree,cerebral cortex endothelial cell
+10X53_4:GAAGTAGACTGGTA,endothelial cell of vascular tree,cerebral cortex endothelial cell
+10X49_4:ATACCGGAGTGCTA,endothelial cell of vascular tree,cerebral cortex endothelial cell
+10X53_2:CGCACGGAGTCAAC,endothelial cell of vascular tree,cerebral cortex endothelial cell
+10X43_3:TTCGATTGAACCGT,endothelial cell of vascular tree,endothelial cell of high endothelial venule
+10X53_4:GTGTATCTACGCTA,endothelial cell of vascular tree,cerebral cortex endothelial cell
+10X57_7:ACTTCTGAGCCCTT,endothelial cell of vascular tree,cerebral cortex endothelial cell
+10X05_1:GAGAGGTGATGTGC,endothelial cell of vascular tree,endothelial cell of viscerocranial mucosa
+10X53_3:ACCCTCGATATCTC,endothelial cell of vascular tree,circumventricular organ capillary endothelial cell
+10X04_1:AAACCGTGGGAGGT,endothelial cell of vascular tree,squamous endothelial cell of venule
+10X36_2:TCGCCATGAAACGA,endothelial cell of vascular tree,cerebral cortex endothelial cell
+10X26_3:ACGTTGGATCATTC,endothelial cell of vascular tree,colon endothelial cell
+10X52_1:GCCTAGCTCTTCTA,endothelial cell of vascular tree,cerebral cortex endothelial cell
+10X53_5:TTCTTACTCGGGAA,endothelial cell of vascular tree,kidney capillary endothelial cell
+10X53_5:TCTAACTGGACGTT,endothelial cell of vascular tree,cerebral cortex endothelial cell
+10X35_3:CGTAACGATACGCA,peptidergic neuron,submandibular ganglion TH cholinergic neuron
+10X51_4:ACGTAGACCTCAGA,peptidergic neuron,myenteric ganglion of small intestine nNOS/ChAT neuron
+10X26_3:TTCAAGCTCTCAAG,peptidergic neuron,tuft cell of stomach
+10X26_3:GGTATGACTCCCGT,peptidergic neuron,dentate gyrus kisspeptin neuron
+10X26_3:ATCACACTTTCTGT,peptidergic neuron,gastric cardiac gland goblet cell
+10X26_3:GGCCAGACAAGAAC,peptidergic neuron,myenteric ganglion of small intestine VIP neuron
+10X26_4:AAGAATCTTGGATC,peptidergic neuron,ciliary ganglion TH neuron
+10X26_3:GCGGGACTTTCGGA,peptidergic neuron,middle cervical ganglion TH neuron
+10X50_2:CATTTGTGTACTGG,peptidergic neuron,DAPI-3 amacrine cell
+10X51_3:CCAGCACTATTCCT,peptidergic neuron,submandibular ganglion TH cholinergic neuron
+10X26_3:TTACGACTTTGACG,peptidergic neuron,jugular ganglion CGRP neuron
+10X46_2:TAGGAGCTGTAAGA,peptidergic neuron,tuft cell of urethra
+10X26_3:ATGTTAGACCAAGT,peptidergic neuron,ON midget ganglion cell
+10X50_2:AGCAAAGATCCGAA,peptidergic neuron,ciliary ganglion TH neuron
+10X26_3:GGATTGTGACGTTG,peptidergic neuron,tuft cell of stomach
+10X26_3:GATGCATGTCCAGA,peptidergic neuron,STR D2 Gaba indirect pathway medium spiny neuron (Mmus)
+10X26_4:TGTACTTGACCGAT,peptidergic neuron,middle cervical ganglion TH/NPY neuron
+10X51_3:GTGATCGACTAGAC,peptidergic neuron,lateral ganglionic eminence derived neuron
+10X26_3:CCAGCGGAGCTTCC,peptidergic neuron,tuft cell of urethra
+10X50_1:ATAAGTTGACACTG,peptidergic neuron,L5 sst T-Martinotti interneuron (Mmus)
+10X28_3:GGCAAGGACCTAAG,perivascular macrophage,thymic macrophage
+10X57_5:ATATACGAGATAAG,perivascular macrophage,colon macrophage
+10X22_3:GTGACAACTCTTAC,perivascular macrophage,lung macrophage
+10X52_8:ACACCAGATGCAGT,perivascular macrophage,F4/80-positive adipose macrophage
+10X50_4:GGACAGGAGGTTTG,perivascular macrophage,macrophage
+10X01_1:TAGGGACTACAGTC,perivascular macrophage,mature microglial cell
+10X54_7:GCTTCTCCTATGTT,perivascular macrophage,"immature NK T cell stage I, mouse"
+10X33_2:CGGTCACTCCAACA,perivascular macrophage,perivascular macrophage
+10X56_6:GGGTAACTAAGATG,perivascular macrophage,perivascular macrophage
+10X22_1:TCGCAAGATCCAAG,perivascular macrophage,perivascular macrophage
+10X19_2:TAAGATACGCGAGA,perivascular macrophage,multi fate stem cell
+10X22_2:AGTCGCCTATCACG,perivascular macrophage,lymph node macrophage
+10X57_4:CCCACATGGTCTGA,perivascular macrophage,dural macrophage
+10X52_1:AGTACGTGCGAGTT,perivascular macrophage,Kit-positive macrophage dendritic cell progenitor
+10X24_1:TCCCTACTGCAGAG,perivascular macrophage,fetal liver hematopoietic progenitor cell
+10X57_1:ACGGTATGCCGATA,perivascular macrophage,commited oligodendrocyte precursor (Mmus)
+10X49_5:CAGGAACTTCCCGT,perivascular macrophage,thymic cortical macrophage
+10X24_2:CCGATAGAGGAACG,perivascular macrophage,dural macrophage
+10X57_7:GATCGAACTTTCTG,perivascular macrophage,placental resident macrophage
+10X52_7:TTAGTCACCTTGTT,perivascular macrophage,meningeal macrophage
+10X43_2:CTACGCACGTGTCA,peripheral sensory neuron,type 2 spiral ganglion neuron
+10X53_7:AGAATACTCTTGCC,peripheral sensory neuron,von Economo neuron
+10X43_2:GTCCACTGAAGGCG,peripheral sensory neuron,celiac ganglion SP neuron
+10X53_7:ATACCGGAGAACCT,peripheral sensory neuron,neuromast hair cell
+10X53_7:TGCTGAGATTCCGC,peripheral sensory neuron,myocyte of middle internodal tract
+10X43_2:TTCGATTGTTCTCA,peripheral sensory neuron,middle cervical ganglion NPY neuron
+10X53_7:GACCAAACCCCTTG,peripheral sensory neuron,myenteric ganglion of small intestine ChAT neuron
+10X53_7:GCAATCGATCAGTG,peripheral sensory neuron,lumbar ganglion SST/TH neuron
+10X53_7:GGAGCCACCCAACA,peripheral sensory neuron,intestinal crypt stem cell of small intestine
+10X53_7:CTGTAACTGAGACG,peripheral sensory neuron,myenteric ganglion of small intestine nNOS neuron
+10X53_7:AGTGTGACGAATCC,peripheral sensory neuron,kidney loop of Henle short descending thin limb epithelial cell
+10X53_7:CTATAGCTCTCAAG,peripheral sensory neuron,myenteric ganglion of small intestine nNOS neuron
+10X43_2:GATCTTACTAAGCC,peripheral sensory neuron,jugular ganglion CGRP neuron
+10X43_2:ATGGGTACACGTAC,peripheral sensory neuron,myocyte of middle internodal tract
+10X43_2:GGGCCAACTTCAGG,peripheral sensory neuron,kidney distal convoluted tubule epithelial cell
+10X43_2:TTAACCACGGTATC,peripheral sensory neuron,transitional myocyte of middle internodal tract
+10X43_2:AACGCATGCGATAC,peripheral sensory neuron,lumbar ganglion NPY neuron
+10X53_7:CGGGACTGTTGCAG,peripheral sensory neuron,myenteric ganglion of small intestine nNOS neuron
+10X53_7:ACCGTGCTAAGGCG,peripheral sensory neuron,myocyte of middle internodal tract
+10X43_2:TAGGTGTGTCACCC,peripheral sensory neuron,hair-down neuron
+10X49_4:AACATATGCGTTAG,vascular leptomeningeal cell (Mmus),ureteric bud cell
+10X57_6:CCACGGGAGATGAA,vascular leptomeningeal cell (Mmus),astrocyte of the cerebral cortex
+10X49_4:ATTTCCGAGGGATG,vascular leptomeningeal cell (Mmus),choroid plexus epithelial cell (Mmus)
+10X49_4:AACTTGCTCTGTGA,vascular leptomeningeal cell (Mmus),marrow fibroblast
+10X49_5:GATACTCTCATGCA,vascular leptomeningeal cell (Mmus),fibroblast of choroid plexus
+10X52_1:AAATCCCTTACTCT,vascular leptomeningeal cell (Mmus),gut mesenchymal lymphoid tissue organizer cell
+10X20_3:TGTCAGGAGTCTGA,vascular leptomeningeal cell (Mmus),mesothelial fibroblast of the leptomeninx
+10X56_2:TCCTAAACTTCCAT,vascular leptomeningeal cell (Mmus),lung perichondrial fibroblast
+10X48_3:CTGTATACGCGGAA,vascular leptomeningeal cell (Mmus),deuterosomal cell
+10X22_3:AGGCAACTTGCCTC,vascular leptomeningeal cell (Mmus),optic choroid fibroblast
+10X43_1:CTTAAAGATGCCAA,vascular leptomeningeal cell (Mmus),optic choroid fibroblast
+10X20_3:AAGGTCTGACACGT,vascular leptomeningeal cell (Mmus),CD86-positive plasmablast
+10X52_6:AAGCACTGTGCGTA,vascular leptomeningeal cell (Mmus),lymphatic endothelial cell of subcapsular sinus floor
+10X33_2:CTTGAGGAGCTGAT,vascular leptomeningeal cell (Mmus),marrow fibroblast
+10X52_2:CTGCAGCTTATTCC,vascular leptomeningeal cell (Mmus),nephrogenic mesenchyme stem cell
+10X49_5:GAACTGTGATACCG,vascular leptomeningeal cell (Mmus),stromal choroid plexus macrophage
+10X57_3:GCTACGCTCCTTAT,vascular leptomeningeal cell (Mmus),choroid plexus epithelial cell (Mmus)
+10X50_8:GCACACCTAGAGGC,vascular leptomeningeal cell (Mmus),lymph node lymphatic vessel endothelial cell
+10X54_8:TGCTTTCGGGAGTA,vascular leptomeningeal cell (Mmus),notochordal sheath cell
+10X52_4:TCCCAGACGGTACT,vascular leptomeningeal cell (Mmus),optic choroid fibroblast
+10X52_2:GATAATACGGAGCA,vascular associated smooth muscle cell,mural cell
+10X53_2:TTATGAGAAGCCTA,vascular associated smooth muscle cell,angiogenic pericyte
+10X48_3:AGATTAACACTACG,vascular associated smooth muscle cell,mural cell
+10X55_8:AGGGACAAGCCGCT,vascular associated smooth muscle cell,smooth muscle cell of the brain vasculature
+10X28_5:CCAGTCACCTCTAT,vascular associated smooth muscle cell,tuft cell of submandibular gland
+10X52_2:ACCACCTGTGCCCT,vascular associated smooth muscle cell,lung pericyte
+10X36_3:CTACTATGTTGCTT,vascular associated smooth muscle cell,cardiac mesenchymal cell
+10X52_6:GGTGGAGATGTGGT,vascular associated smooth muscle cell,pericyte
+10X26_4:CAGAAGCTCCCTCA,vascular associated smooth muscle cell,brain microvascular endothelial cell
+10X54_3:TGTTAAGGTGCTAG,vascular associated smooth muscle cell,mural cell
+10X02_1:CTATGTTGGCATAC,vascular associated smooth muscle cell,lung pericyte
+10X48_3:CACTGAGAGGTGGA,vascular associated smooth muscle cell,fallopian tube smooth muscle cell
+10X52_5:TATGTGCTGCGAGA,vascular associated smooth muscle cell,type 1 myenteric plexus glia
+10X28_3:TACAATGACTTGCC,vascular associated smooth muscle cell,smooth muscle cell of the brain vasculature
+10X54_8:CAATTTCACAACGT,vascular associated smooth muscle cell,smooth muscle cell of the umbilical artery
+10X24_2:ATCACTTGTCAGGT,vascular associated smooth muscle cell,pituitary gland capillary endothelial cell
+10X57_3:CTTACTGAGCTGAT,vascular associated smooth muscle cell,lung pericyte
+10X54_2:CGTTTAGCAGGTCA,vascular associated smooth muscle cell,lung pericyte
+10X57_3:ATTCTGACCGAGAG,vascular associated smooth muscle cell,lung pericyte
+10X05_3:TAAATCGAGTTAGC,vascular associated smooth muscle cell,brain pericyte
+10X49_4:CTTCACCTCCACAA,olfactory ensheathing cell,astrocyte of the cerebellum
+10X49_4:CAGGTTGACAGAAA,olfactory ensheathing cell,astrocyte of the cerebellum
+10X49_4:CATGAGACGGAAAT,olfactory ensheathing cell,lateral line nerve glial cell
+10X49_5:ATGCACGATTCCAT,olfactory ensheathing cell,olfactory areas astrocyte (Mmus)
+10X49_4:GGAGTTTGAAGCAA,olfactory ensheathing cell,dural macrophage
+10X49_5:TTCTTACTGTTGTG,olfactory ensheathing cell,myelinating glial cell
+10X28_4:GTTCATACTGGATC,olfactory ensheathing cell,dural macrophage
+10X49_4:TGTGAGTGACAGCT,olfactory ensheathing cell,notochordal sheath cell
+10X49_5:TTTATCCTCCTACC,olfactory ensheathing cell,connective tissue type mast cell
+10X28_5:TGGCAATGTACAGC,olfactory ensheathing cell,mature CD11c-negative plasmacytoid dendritic cell
+10X49_4:TAGGCATGGCCCTT,olfactory ensheathing cell,COP NN_1 Cck committed oligodendrocyte precursor (Mmus)
+10X49_4:TCAATAGATCGATG,olfactory ensheathing cell,COP NN_1 9130019P16Rik committed oligodendrocyte precursor (Mmus)
+10X28_5:CATGCCACCTCAAG,olfactory ensheathing cell,MFOL NN_3 Cxcl12 myelin-forming oligodendrocyte (Mmus)
+10X49_4:GAATGCTGCCAAGT,olfactory ensheathing cell,mature astrocyte
+10X28_4:GAGTCAACGAAGGC,olfactory ensheathing cell,astrocyte of the cerebellum
+10X49_4:GGGTTAACCGTGAT,olfactory ensheathing cell,fibroblast of connective tissue of glandular part of prostate
+10X49_5:GACAACTGACTGGT,olfactory ensheathing cell,Astro-TE NN_5 astrocyte (Mmus)
+10X49_5:AAATGTTGGTGTCA,olfactory ensheathing cell,cerebral cortex glial cell
+10X49_5:ATTCTTCTTCAGAC,olfactory ensheathing cell,myelinating glial cell
+10X49_5:AGTCTACTTGGAAA,olfactory ensheathing cell,OEC NN_1 Gdpd4 olfactory ensheathing cell (Mmus)
+10X54_5:TGAAGGTGGTGTAG,ependymal cell,spinal cord oligodendrocyte
+10X24_3:CCAGACCTGAGCTT,ependymal cell,external epithelial cell of tympanic membrane
+10X57_5:TTCCTAGAGCCAAT,ependymal cell,neuro-medullary thymic epithelial cell
+10X53_5:AGATCGTGAAGGTA,ependymal cell,ependymal cell (Mmus)
+10X53_1:TATGCGGAGGAAGC,ependymal cell,neural crest derived fibroblast
+10X55_5:CTCAGGTATTCTCT,ependymal cell,fallopian tube smooth muscle cell
+10X26_3:CGACGTCTACTTTC,ependymal cell,tuft cell of auditory tube
+10X43_3:CCATGCTGCTGAGT,ependymal cell,tuft cell of olfactory epithelium
+10X57_5:TATCCTGATCGACA,ependymal cell,pituitary gland capillary endothelial cell
+10X52_2:TATTGCTGGGAAGC,ependymal cell,OEC NN_1 Gdpd4 olfactory ensheathing cell (Mmus)
+10X53_6:ACCAACGAAAACAG,ependymal cell,ependymal cell (Mmus)
+10X53_5:TACTGGGATGGAGG,ependymal cell,OPC NN_1 Mms22l oligodendrocyte precursor cell (Mmus)
+10X55_5:CGACTAGTGGACGT,ependymal cell,Astro-TE NN_1 Lncpint astrocyte (Mmus)
+10X53_6:AATGCGTGGTTTGG,ependymal cell,inner root sheath cell
+10X24_4:GGAGTTTGGAGCAG,ependymal cell,tuft cell of anorectum
+10X53_6:TAAGCTCTCCAACA,ependymal cell,pelvic ganglion TH/DBH neuron
+10X48_3:TGATATGAAGATGA,ependymal cell,MFOL NN_3 Cxcl12 myelin-forming oligodendrocyte (Mmus)
+10X53_4:AGAAACGACTCGAA,ependymal cell,ciliary ganglion TH neuron
+10X24_3:TAGCGATGCCATGA,ependymal cell,outer root sheath cell
+10X53_3:CAATGGACGCTGTA,ependymal cell,tuft cell of olfactory epithelium
+10X28_5:GAGATAGAATTGGC,radial glial cell,hippocampal astrocyte
+10X04_4:CTACCTCTCTAGTG,radial glial cell,mature astrocyte
+10X34_2:GTGGAGGAGTTGGT,radial glial cell,fibrous astrocyte
+10X24_2:CTCAATTGGTCTGA,radial glial cell,Astro-NT NN_2 astrocyte (Mmus)
+10X05_4:AATCCTACCAAAGA,radial glial cell,notochordal sheath cell
+10X26_4:TCTTCAGACCGATA,radial glial cell,Astro-TE NN_5 astrocyte (Mmus)
+10X28_3:CCGGTACTGTTGTG,radial glial cell,astrocyte of cerebrum (Mmus)
+10X46_1:AGATCGTGCAGAAA,radial glial cell,Astro-OLF NN_1 Greb1 astrocyte (Mmus)
+10X05_4:ACAATTGATTGACG,radial glial cell,notochordal sheath cell
+10X04_2:CTAGGATGTTGAGC,radial glial cell,lateral ventricle glial cell
+10X49_5:CATGGCCTTCGCTC,radial glial cell,spinal cord radial glial cell
+10X04_4:GGGAAGTGACCAAC,radial glial cell,mature astrocyte
+10X24_1:GGATGTTGGAGCAG,radial glial cell,terminal Schwann cell
+10X04_1:GGCGACACGCTTAG,radial glial cell,fibrous astrocyte
+10X06_2:GGGTTATGTCTACT,radial glial cell,folliculostellate cell of pars distalis of adenohypophysis
+10X28_4:ATCTACTGTTTGGG,radial glial cell,astrocyte of the cerebral cortex
+10X24_2:CGCAGGACAGATCC,radial glial cell,Astro-OLF NN_1 Greb1 astrocyte (Mmus)
+10X26_3:CAGGTTGAACACGT,radial glial cell,Astro-TE NN_2 Clstn2 astrocyte (Mmus)
+10X49_5:AGTAGGCTAGTCGT,radial glial cell,fibroblast of outer membrane of prostatic capsule
+10X24_1:AGTTAAACACCACA,radial glial cell,Astro-TE NN_5 astrocyte (Mmus)
+10X55_6:TATTCGTAGTGAAT,cholinergic neuron,hypothalamic gonadotropin-releasing hormone neuron (Mmus)
+10X26_4:TGTAATGACTATGG,cholinergic neuron,nodose ganglion P2X3 neuron
+10X54_7:TGCTACAAGGCTCC,cholinergic neuron,retinal ganglion cell A2 inner
+10X55_3:AGCCTCATCGATTG,cholinergic neuron,mucous neck cell of gastric gland
+10X55_4:GCAGTAGAGCCTAG,cholinergic neuron,GABAergic interneuron of the anterior substantia nigra pars reticulata
+10X56_2:AACTCTTGACACTG,cholinergic neuron,mature myelinating oligodendrocyte (Mmus)
+10X52_5:TGGAACACGTATGC,cholinergic neuron,bone marrow macrophage
+10X55_3:TGAACTCAAACAAG,cholinergic neuron,middle cervical ganglion TH/NPY neuron
+10X52_6:TCATTCGATTCATC,cholinergic neuron,sst chodl GABAergic interneuron (Homo sapiens)
+10X52_8:ACATTCTGTTGCAG,cholinergic neuron,nucleus accumbens shell and olfactory tubercle D2 medium spiny neuron
+10X55_5:AGCCGAGAATGTTG,cholinergic neuron,retinal ganglion cell A2 inner
+10X34_4:GGAATCTGTTAGGC,cholinergic neuron,lumbar ganglion TH/NPY neuron
+10X51_3:ATGGTGACGTTCTT,cholinergic neuron,neuromuscular junction nucleus
+10X55_6:GCGATCATGCTAGT,cholinergic neuron,middle cervical ganglion TH/NPY neuron
+10X54_5:TTACTGTCAGAATA,cholinergic neuron,middle cervical ganglion TH/NPY neuron
+10X34_3:AGCGCCGATCAGAC,cholinergic neuron,cervicothoracic ganglion TH/NPY neuron
+10X11_1:ACTCTCCTCGTAGT,cholinergic neuron,kidney outer medulla cell
+10X56_6:GAGTCTGACAGAGG,cholinergic neuron,ciliary ganglion TH neuron
+10X52_7:GAGTGACTTCACGA,cholinergic neuron,lumbar ganglion SST/TH neuron
+10X34_3:TCAAGTCTCATACG,cholinergic neuron,mature interstitial dendritic cell
+10X54_5:TGAACCAACTTGAC,cranial visceromotor neuron,jugular ganglion CGRP neuron
+10X54_4:TTCAGAGCCCAACC,cranial visceromotor neuron,pyloric motor neuron
+10X54_1:AAGACAGCGCCTCA,cranial visceromotor neuron,middle cervical ganglion NPY neuron
+10X54_8:CCAGGCATTGAGCT,cranial visceromotor neuron,middle cervical ganglion DBH neuron
+10X55_3:AATGTAGTACGCCC,cranial visceromotor neuron,middle cervical ganglion DBH neuron
+10X54_8:ACACCTCACAGGCC,cranial visceromotor neuron,lower airway ganglion ChAT/VIP neuron
+10X55_7:CACCTAGAGGGATA,cranial visceromotor neuron,Betz upper motor neuron
+10X54_6:ACTTCCATGAGCGA,cranial visceromotor neuron,middle cervical ganglion NPY neuron
+10X54_4:GTTAGTCGATAGAA,cranial visceromotor neuron,middle cervical ganglion DBH neuron
+10X54_5:TTCGGCATATACCG,cranial visceromotor neuron,gamma motor neuron
+10X55_5:GGCATGTCGTTGTA,cranial visceromotor neuron,middle cervical ganglion NPY neuron
+10X54_7:GAACGAGCAGACTG,cranial visceromotor neuron,middle cervical ganglion NPY neuron
+10X54_8:CTCCTTCCGAGCCA,cranial visceromotor neuron,neuromuscular junction nucleus
+10X54_5:ATGTAAGAGATGAG,cranial visceromotor neuron,G5 retinal ganglion cell
+10X48_2:ATCGGAACCTGTAG,cranial visceromotor neuron,lumbar ganglion VIP neuron
+10X55_1:ATGCCTCCTGCAGG,cranial visceromotor neuron,goblet cell of epithelium of lobar bronchus
+10X55_4:GTAGAGTCTAGGTT,cranial visceromotor neuron,"L5/6 cck, VIP GABAergic interneuron (Mmus)"
+10X54_4:TCAAGTCAACGCTA,cranial visceromotor neuron,neuromuscular junction nucleus
+10X33_3:GCCTCATGCGAGTT,cranial visceromotor neuron,G5 retinal ganglion cell
+10X54_7:ACCGGGTCTTTCAT,cranial visceromotor neuron,middle cervical ganglion DBH neuron
+10X52_1:TTATGGCTCCGATA,oligodendrocyte precursor cell,committed oligodendrocyte precursor
+10X22_3:ATCTTGACTGACAC,oligodendrocyte precursor cell,myelin-forming oligodendrocyte
+10X50_7:GGGACCACAACCGT,oligodendrocyte precursor cell,mature astrocyte
+10X26_4:TCACTATGTGGTAC,oligodendrocyte precursor cell,myelin-forming oligodendrocyte
+10X43_1:TAATGTGACCTACC,oligodendrocyte precursor cell,OPC NN_1 Col27a1 oligodendrocyte precursor cell (Mmus)
+10X49_5:GAGGTTTGTCGCAA,oligodendrocyte precursor cell,oligodendrocyte precursor cell (Mmus)
+10X53_4:CTGATGGAAGTGCT,oligodendrocyte precursor cell,COP NN_1 Rgcc committed oligodendrocyte precursor (Mmus)
+10X02_1:AGGTGGGACCTGTC,oligodendrocyte precursor cell,OPC NN_1 Col27a1 oligodendrocyte precursor cell (Mmus)
+10X01_1:GCATGTGAAAGTGA,oligodendrocyte precursor cell,OPC NN_1 Col27a1 oligodendrocyte precursor cell (Mmus)
+10X46_1:AGTATCCTCTTCGC,oligodendrocyte precursor cell,oligodendrocyte precursor cell (Mmus)
+10X22_4:GCCCAACTCCTCAC,oligodendrocyte precursor cell,oligodendrocyte precursor cell (Mmus)
+10X01_1:AGGGCCACAGGAGC,oligodendrocyte precursor cell,committed oligodendrocyte precursor
+10X52_1:TCAAGGTGAAAGCA,oligodendrocyte precursor cell,oligodendrocyte precursor cell
+10X28_5:TGCTTAACTACTTC,oligodendrocyte precursor cell,OPC NN_1 Col27a1 oligodendrocyte precursor cell (Mmus)
+10X52_1:CAAACTCTAAAGCA,oligodendrocyte precursor cell,commited oligodendrocyte precursor (Mmus)
+10X50_2:AACCAGTGTCTATC,oligodendrocyte precursor cell,OPC NN_1 Col27a1 oligodendrocyte precursor cell (Mmus)
+10X24_3:GATAATACTTCCAT,oligodendrocyte precursor cell,astrocyte-restricted precursor
+10X26_4:GCACGTCTATGTGC,oligodendrocyte precursor cell,commited oligodendrocyte precursor (Mmus)
+10X01_1:ACGGTAACCCAAGT,oligodendrocyte precursor cell,oligodendrocyte precursor cell (Mmus)
+10X24_4:ACTCTCCTCATACG,oligodendrocyte precursor cell,"central memory CD8-positive, alpha-beta T cell"
+10X75_1:AATGAGGACGAGTT,sympathetic noradrenergic neuron,celiac ganglion SOM/CGRP neuron
+10X75_1:TAGCGATGACAGTC,sympathetic noradrenergic neuron,middle cervical ganglion NPY neuron
+10X75_1:XXTTAACTATCACG,sympathetic noradrenergic neuron,thoracic ganglion TH neuron
+10X75_1:GGACATTGTCCGAA,sympathetic noradrenergic neuron,cervicothoracic ganglion TH/NPY neuron
+10X75_1:CAACCAGACACAAC,sympathetic noradrenergic neuron,lumbar ganglion SST/TH neuron
+10X75_1:ATCTGGGAAAAACG,sympathetic noradrenergic neuron,lumbar ganglion SST/TH neuron
+10X75_1:CGCTAAGAGGAGCA,sympathetic noradrenergic neuron,celiac ganglion SOM/CGRP neuron
+10X75_1:TTGCATTGGAAACA,sympathetic noradrenergic neuron,celiac ganglion SOM/CGRP neuron
+10X75_1:GGCCAGACCTTGTT,sympathetic noradrenergic neuron,thoracic ganglion TH neuron
+10X75_1:CAAGGTTGGCCCTT,sympathetic noradrenergic neuron,lumbar ganglion TH neuron
+10X75_1:ATCGACGAGGCAAG,sympathetic noradrenergic neuron,thoracic ganglion TH/NPY neuron
+10X75_1:XXATCTACTGTAGC,sympathetic noradrenergic neuron,celiac ganglion SOM/CGRP neuron
+10X75_1:CTATAAGAGCGGAA,sympathetic noradrenergic neuron,celiac ganglion SOM/CGRP neuron
+10X75_1:ACACCCTGAGAGAT,sympathetic noradrenergic neuron,celiac ganglion SOM/CGRP neuron
+10X75_1:CGAGGAGACGAATC,sympathetic noradrenergic neuron,myocyte of anterior internodal tract
+10X75_1:ATTCTTCTGGCAAG,sympathetic noradrenergic neuron,lumbar ganglion TH neuron
+10X75_1:AAAGCAGAAGCGTT,sympathetic noradrenergic neuron,thoracic ganglion TH neuron
+10X75_1:AAGGTCTGTGGTAC,sympathetic noradrenergic neuron,thoracic ganglion TH neuron
+10X75_1:GACAGGGAGCTTAG,sympathetic noradrenergic neuron,lumbar ganglion TH neuron
+10X75_1:GAACACACGAGCTT,sympathetic noradrenergic neuron,transitional myocyte of middle internodal tract
+10X53_7:TCCCAGACTTACTC,Satellite glia,myelinating glial cell
+10X43_2:TAAGAGGAGCTGTA,Satellite glia,myelin-forming oligodendrocyte (Mmus)
+10X43_2:ATGCAGTGACCTTT,Satellite glia,COP NN_1 Cck committed oligodendrocyte precursor (Mmus)
+10X43_2:GGCGCATGTCTCTA,Satellite glia,metanephric mesenchyme stem cell
+10X43_2:GATCGATGACGGTT,Satellite glia,metanephric mesenchyme stem cell
+10X43_2:GCACCTTGCCTAAG,Satellite glia,myelin-forming oligodendrocyte (Mmus)
+10X43_2:TTCAACACGCAGTT,Satellite glia,myelin-forming oligodendrocyte
+10X43_2:ACGCAATGGCTGTA,Satellite glia,myelinating glial cell
+10X43_2:ATAGCCGACTCAGA,Satellite glia,myelin-forming oligodendrocyte (Mmus)
+10X43_2:ATCCGCACAGAGTA,Satellite glia,metanephric mesenchyme stem cell
+10X53_7:ATGCGATGGCTGAT,Satellite glia,mature myelinating oligodendrocyte
+10X43_2:CTAGTTTGTCAGAC,Satellite glia,neural crest derived fibroblast
+10X53_7:CTGGAAACCTCGCT,Satellite glia,MFOL NN_3 Cxcl12 myelin-forming oligodendrocyte (Mmus)
+10X43_2:ACTGTTACATCGTG,Satellite glia,mature myelinating oligodendrocyte
+10X53_7:CGACCACTCCCGTT,Satellite glia,metanephric mesenchyme stem cell
+10X43_2:TCAACACTCCTTTA,Satellite glia,myelinating glial cell
+10X43_2:TAGTCTTGCCTAAG,Satellite glia,spinal cord radial glial cell
+10X43_2:GGCGACTGTCTACT,Satellite glia,myelinating glial cell
+10X43_2:CACGGGACTGCAAC,Satellite glia,notochordal sheath cell
+10X53_7:CGACCGGACATCAG,Satellite glia,mature myelinating oligodendrocyte (Mmus)
+10X11_1:TTACTCGAAGTACC,choroid plexus epithelial cell,odontoblast
+10X54_6:AGCTACATCGGGTC,choroid plexus epithelial cell,globose cell of olfactory epithelium
+10X54_3:AGCCAGTAAGCACG,choroid plexus epithelial cell,commited oligodendrocyte precursor (Mmus)
+10X55_3:ACCCAGTATATGAG,choroid plexus epithelial cell,basal cell of olfactory epithelium
+10X54_3:GCCACTCTGCGACG,choroid plexus epithelial cell,epithelial cell of lacrimal drainage system
+10X55_8:GTTCCCACAACGTT,choroid plexus epithelial cell,notochordal sheath cell
+10X48_1:ATAGCCGAGGGACA,choroid plexus epithelial cell,notochordal sheath cell
+10X54_4:ACTTCGTGAGCGAT,choroid plexus epithelial cell,spinal cord radial glial cell
+10X49_1:ACAAAGGATTACTC,choroid plexus epithelial cell,nucleated secondary lens fiber
+10X54_4:ACCAAGTCATACTG,choroid plexus epithelial cell,spinal cord radial glial cell
+10X54_2:TCGATTCCCTCAGT,choroid plexus epithelial cell,kidney outer medulla collecting duct intercalated cell
+10X48_4:GCAGTCCTTTGCAG,choroid plexus epithelial cell,CHOR NN_1 Slc17a8 choroid plexus epithelial cell (Mmus)
+10X57_6:TTGGGAACGCTTAG,choroid plexus epithelial cell,macrophage dendritic cell progenitor
+10X57_6:AATCCTACTTAGGC,choroid plexus epithelial cell,myelin-forming oligodendrocyte (Mmus)
+10X54_4:CTCCTTCAGATAAG,choroid plexus epithelial cell,dual-feature fallopian tube progenitor cell
+10X49_3:AGTTTGCTCACCAA,choroid plexus epithelial cell,odontoblast
+10X33_2:GGACCCGAAGTCTG,choroid plexus epithelial cell,notochordal sheath cell
+10X54_2:GTAGAAGGTGATAT,choroid plexus epithelial cell,tuft cell of auditory tube
+10X48_1:TGATTCACTTCTAC,choroid plexus epithelial cell,globose cell of olfactory epithelium
+10X87_4:ATAGAACTTTGTGG,choroid plexus epithelial cell,terminal Schwann cell
+10X20_3:ATGCAGTGAAAAGC,hypendymal cell,dual-feature fallopian tube progenitor cell
+10X57_1:GATCCGCTTTGCTT,hypendymal cell,otic ganglion nNOS neuron
+10X20_3:ATGCGATGCCTCAC,hypendymal cell,spinal cord oligodendrocyte
+10X57_1:ACGACCCTTCGTAG,hypendymal cell,perivascular macrophage
+10X20_4:CTCAGGCTAAGAGT,hypendymal cell,alveolar adventitial fibroblast
+10X52_1:ATCCGCACTCGATG,hypendymal cell,epithelial cell of nasolacrimal duct
+10X52_2:AGAGTGCTCATTGG,hypendymal cell,tuft cell of olfactory epithelium
+10X52_3:TCGCACACTTCGCC,hypendymal cell,pituitary gland capillary endothelial cell
+10X52_4:TTTGACTGTGCTGA,hypendymal cell,dual-feature fallopian tube progenitor cell
+10X57_3:GGAATGCTTATCTC,hypendymal cell,inner root sheath cell
+10X52_1:TAGTAATGGTACCA,hypendymal cell,tuft cell of urethra
+10X57_3:CTGATACTTACTCT,hypendymal cell,tuft cell of olfactory epithelium
+10X20_3:GGGCAAGACTCTTA,hypendymal cell,endo-epithelial cell of pharyngotympanic part of viscerocranial mucosa
+10X20_3:CTGTAACTGAGGTG,hypendymal cell,tuft cell of auditory tube
+10X20_4:GCAAGACTAAGCAA,hypendymal cell,gamma-delta intraepithelial T cell
+10X20_4:CTAGGCCTCTACTT,hypendymal cell,juxtaglomerular complex cell
+10X20_3:TTCTTACTTTATCC,hypendymal cell,oxytocin-secreting magnocellular cell
+10X20_3:CTCAGAGAGGATCT,hypendymal cell,lumbar ganglion NPY neuron
+10X57_2:ACGCCACTGTTACG,hypendymal cell,tuft cell of nasal cavity respiratory epithelium
+10X20_3:GTTGACGATAGTCG,hypendymal cell,lumbar ganglion TH neuron
+10X75_1:CTTCTAGACGTGAT,sympathetic cholinergic neuron,thoracic ganglion TH neuron
+10X75_1:TAGAGAGAAATGCC,sympathetic cholinergic neuron,middle cervical ganglion TH neuron
+10X75_1:AACAGAGAGTTTCT,sympathetic cholinergic neuron,lumbar ganglion SST/TH neuron
+10X75_1:CCCTACGAGGGATG,sympathetic cholinergic neuron,lumbar ganglion SST/TH neuron
+10X75_1:GGGTTAACTTCTCA,sympathetic cholinergic neuron,lumbar ganglion SST/TH neuron
+10X75_1:AGATATTGAAGGTA,sympathetic cholinergic neuron,thoracic ganglion TH neuron
+10X75_1:AGGAATGACGCTAA,sympathetic cholinergic neuron,lumbar ganglion SST/TH neuron
+10X75_1:TGCAAGACAGAGAT,sympathetic cholinergic neuron,thoracic ganglion TH neuron
+10X75_1:TACACACTCGTAAC,sympathetic cholinergic neuron,lumbar ganglion SST/TH neuron
+10X75_1:AGCGTAACGTGTCA,sympathetic cholinergic neuron,lumbar ganglion SST/TH neuron
+10X75_1:GGAGCAGACCAGTA,sympathetic cholinergic neuron,myenteric ganglion of small intestine ChAT/CALR/SOM/SP neuron
+10X75_1:CAGTTGGAGTACGT,sympathetic cholinergic neuron,celiac ganglion SOM/CGRP neuron
+10X75_1:TTCATGACTGGAGG,sympathetic cholinergic neuron,celiac ganglion SOM/CGRP neuron
+10X75_1:AGCCAATGTCGTAG,sympathetic cholinergic neuron,lumbar ganglion SST/TH neuron
+10X75_1:ATGTTAGAAGAGTA,sympathetic cholinergic neuron,myenteric ganglion of small intestine ChAT/CALR/SOM/SP neuron
+10X75_1:ATTCTTCTCAGTTG,sympathetic cholinergic neuron,celiac ganglion SOM/CGRP neuron
+10X75_1:CTGACAGACCTTCG,sympathetic cholinergic neuron,middle cervical ganglion TH neuron
+10X75_1:ATCGCGCTCACTTT,sympathetic cholinergic neuron,lumbar ganglion TH neuron
+10X75_1:AAGTGGCTGCTGAT,sympathetic cholinergic neuron,lumbar ganglion SST/TH neuron
+10X75_1:GGTGATACGAGCTT,sympathetic cholinergic neuron,superior cervical ganglion SST neuron
+10X43_2:ATGAGCACTCATTC,Schwann cell,myelin-forming oligodendrocyte
+10X43_2:AGACCTGAGTCCTC,Schwann cell,mature myelinating oligodendrocyte (Mmus)
+10X53_7:ACAGTTCTCTTGGA,Schwann cell,mature myelinating oligodendrocyte
+10X53_7:AGCGGCACAACAGA,Schwann cell,mature myelinating oligodendrocyte (Mmus)
+10X43_2:TCATCAACCGTTAG,Schwann cell,mature myelinating oligodendrocyte
+10X43_2:ACTGAGACAACTGC,Schwann cell,myelin-forming oligodendrocyte
+10X43_2:ATGGTGACCATGGT,Schwann cell,mature myelinating oligodendrocyte
+10X53_7:TATAAGTGGTCGAT,Schwann cell,mature myelinating oligodendrocyte
+10X43_2:CACGGGACTTCTAC,Schwann cell,mature myelinating oligodendrocyte (Mmus)
+10X43_2:TGTATCTGAGTCTG,Schwann cell,mature myelinating oligodendrocyte
+10X43_2:ATCATCTGAACGGG,Schwann cell,mature myelinating oligodendrocyte
+10X43_2:GTTCAGGATGTTTC,Schwann cell,mature myelinating oligodendrocyte (Mmus)
+10X43_2:CTTAGGGAAATGCC,Schwann cell,mature myelinating oligodendrocyte
+10X43_2:TCAGGATGAACGGG,Schwann cell,mature myelinating oligodendrocyte
+10X43_2:TTTCGAACTCTCTA,Schwann cell,marrow fibroblast
+10X43_2:TGATTCTGGTCATG,Schwann cell,mature myelinating oligodendrocyte
+10X43_2:ACAGTGACGACTAC,Schwann cell,skeletal muscle fibroblast
+10X43_2:CTAGATCTAGAACA,Schwann cell,mature myelinating oligodendrocyte (Mmus)
+10X53_7:GATAGAGATGGATC,Schwann cell,mature myelinating oligodendrocyte (Mmus)
+10X43_2:GAAGCTTGTTGTGG,Schwann cell,mature myelinating oligodendrocyte (Mmus)
+10X82_2:CATGGAGTCTCAAC,enteric neuron,myenteric ganglion of small intestine ChAT neuron
+10X81_1:CACACAGGGTGTTG,enteric neuron,ovarian nerve plexus ganglion TH neuron
+10X82_2:TCGATGTCAGAGGT,enteric neuron,celiac ganglion SOM/CGRP neuron
+10X81_3:TCCTAGTCTTGTCC,enteric neuron,cervicothoracic ganglion VAChT neuron
+10X81_2:GGTGACAAGGACAC,enteric neuron,lumbar ganglion SST/TH neuron
+10X82_2:CTGCTTCGACAGCC,enteric neuron,myenteric ganglion of small intestine nNOS neuron
+10X82_2:AAACTCAAACCTAC,enteric neuron,celiac ganglion CGRP neuron
+10X82_2:ACATCTCTTGTATC,enteric neuron,myenteric ganglion of small intestine ChAT neuron
+10X81_1:CATAGAGGCTCATT,enteric neuron,lumbar ganglion SST/TH neuron
+10X82_2:ATGTCTCCTCAACC,enteric neuron,pyloric motor neuron
+10X81_3:ACTAGCACGAAAGC,enteric neuron,myenteric ganglion of small intestine nNOS neuron
+10X81_3:TTGGTTCTACTCAT,enteric neuron,myenteric ganglion of small intestine nNOS neuron
+10X82_2:GCATAAGACCCACC,enteric neuron,thoracic ganglion TH/NPY neuron
+10X81_3:GAGAGTCCACGAAT,enteric neuron,lumbar ganglion SST/TH neuron
+10X82_2:ACATTCACGGCGTT,enteric neuron,pelvic ganglion NPY/VAChT neuron
+10X82_2:ATTGAAGTGTGAAT,enteric neuron,myenteric ganglion of small intestine ChAT neuron
+10X82_2:CCACTAGAGGGCTT,enteric neuron,myenteric ganglion of small intestine ChAT neuron
+10X81_3:GGCAGGTTATGTGC,enteric neuron,myenteric ganglion of small intestine nNOS/ChAT neuron
+10X81_1:ACAGATCAATACCG,enteric neuron,myenteric ganglion of small intestine ChAT/CALR/SOM/SP neuron
+10X81_1:ATGTATCTTGTACT,enteric neuron,myenteric ganglion of small intestine nNOS neuron

@@ -1,1000 +1,1000 @@
 cell_id,true_labels,predicted_labels
-10X57_2:ACAAATTGTTGTCT,oligodendrocyte,Spinous
-10X52_5:CTGAGAACTTTCTG,oligodendrocyte,Basal
-10X53_2:TTTGACTGCCCACT,oligodendrocyte,TAC-1
-10X35_2:TATCTCGATTCTGT,oligodendrocyte,TAC-1
-10X55_4:CTCCTAGATATGCA,oligodendrocyte,Basal
-10X55_5:CCTTGGTCCAGTAT,oligodendrocyte,alowCD34+ bulge
-10X55_5:GTCAAAGACAAGCC,oligodendrocyte,Basal
-10X50_7:GCCGAGTGGGTTCA,oligodendrocyte,Basal
-10X43_1:CATCGCTGGTCAAC,oligodendrocyte,Basal
-10X52_1:GGGTTATGCTTAGG,oligodendrocyte,alowCD34+ bulge
-10X50_8:ACGTCAGAGACGAG,oligodendrocyte,Basal
-10X24_1:TCCCGAACTCCCAC,oligodendrocyte,Basal
-10X51_3:CTGACCACAGTACC,oligodendrocyte,Trunk
-10X34_4:GACAGGGAACTGTG,oligodendrocyte,TAC-1
-10X53_6:GCGAGAGATCGTTT,oligodendrocyte,Basal
-10X57_2:TCCTATGATGCATG,oligodendrocyte,Trunk
-10X55_2:CAATCGTGACCAAG,oligodendrocyte,Basal
-10X53_5:TCCCACGACACTTT,oligodendrocyte,TAC-1
-10X53_3:AGCGATTGTTCCAT,oligodendrocyte,Fev+
-10X50_2:GCACCTACCTCCCA,oligodendrocyte,Basal
-10X55_2:CGTGTGTCTGATCA,oligodendrocyte,Basal
-10X54_1:TGAGGTCTCTGTCG,oligodendrocyte,Basal
-10X26_3:GCATGTGAGCGATT,oligodendrocyte,Trunk
-10X57_4:GCCTACACTTAGGC,oligodendrocyte,Basal
-10X53_3:GTAGTGACATTCGG,oligodendrocyte,Trunk
-10X04_1:TCGTAGGATGTTCT,oligodendrocyte,Basal
-10X57_4:AACCTACTAGGTTC,oligodendrocyte,Trunk
-10X49_1:ATACCGGAGAGCTT,oligodendrocyte,Basal
-10X57_2:TTACAGCTTCTTCA,oligodendrocyte,Basal
-10X57_6:GCTACGCTGTTGTG,oligodendrocyte,Basal
-10X52_7:TTCAGTACGATAAG,oligodendrocyte,Basal
-10X55_8:CTTCAAGAACAACT,oligodendrocyte,Basal
-10X55_7:GCTAAGTACCATCA,oligodendrocyte,Basal
-10X55_2:TGAGAGTTGGAGGT,oligodendrocyte,Basal
-10X57_3:TAGTGGTGGCCCTT,oligodendrocyte,Basal
-10X24_2:AAGGTCACACTACG,oligodendrocyte,Ngn3 low EP
-10X56_3:GTATTAGATCTACT,oligodendrocyte,TAC-1
-10X22_4:CCAATGGAACTGTG,oligodendrocyte,Basal
-10X22_4:CAATTCTGGGTCAT,oligodendrocyte,Trunk
-10X50_3:TCAGGATGGGTTCA,oligodendrocyte,TAC-1
+10X57_2:ACAAATTGTTGTCT,oligodendrocyte,Schwann Cell
+10X52_5:CTGAGAACTTTCTG,oligodendrocyte,Ductal
+10X53_2:TTTGACTGCCCACT,oligodendrocyte,Trunk
+10X35_2:TATCTCGATTCTGT,oligodendrocyte,Schwann Cell
+10X55_4:CTCCTAGATATGCA,oligodendrocyte,Schwann Cell
+10X55_5:CCTTGGTCCAGTAT,oligodendrocyte,Beta
+10X55_5:GTCAAAGACAAGCC,oligodendrocyte,Schwann Cell
+10X50_7:GCCGAGTGGGTTCA,oligodendrocyte,Schwann Cell
+10X43_1:CATCGCTGGTCAAC,oligodendrocyte,Schwann Cell
+10X52_1:GGGTTATGCTTAGG,oligodendrocyte,Schwann Cell
+10X50_8:ACGTCAGAGACGAG,oligodendrocyte,Schwann Cell
+10X24_1:TCCCGAACTCCCAC,oligodendrocyte,Schwann Cell
+10X51_3:CTGACCACAGTACC,oligodendrocyte,Schwann Cell
+10X34_4:GACAGGGAACTGTG,oligodendrocyte,Schwann Cell
+10X53_6:GCGAGAGATCGTTT,oligodendrocyte,Schwann Cell
+10X57_2:TCCTATGATGCATG,oligodendrocyte,Ductal
+10X55_2:CAATCGTGACCAAG,oligodendrocyte,Schwann Cell
+10X53_5:TCCCACGACACTTT,oligodendrocyte,Ductal
+10X53_3:AGCGATTGTTCCAT,oligodendrocyte,Schwann Cell
+10X50_2:GCACCTACCTCCCA,oligodendrocyte,Ductal
+10X55_2:CGTGTGTCTGATCA,oligodendrocyte,Schwann Cell
+10X54_1:TGAGGTCTCTGTCG,oligodendrocyte,Schwann Cell
+10X26_3:GCATGTGAGCGATT,oligodendrocyte,Schwann Cell
+10X57_4:GCCTACACTTAGGC,oligodendrocyte,Schwann Cell
+10X53_3:GTAGTGACATTCGG,oligodendrocyte,Ductal
+10X04_1:TCGTAGGATGTTCT,oligodendrocyte,Schwann Cell
+10X57_4:AACCTACTAGGTTC,oligodendrocyte,Schwann Cell
+10X49_1:ATACCGGAGAGCTT,oligodendrocyte,Schwann Cell
+10X57_2:TTACAGCTTCTTCA,oligodendrocyte,Fev+
+10X57_6:GCTACGCTGTTGTG,oligodendrocyte,Schwann Cell
+10X52_7:TTCAGTACGATAAG,oligodendrocyte,Schwann Cell
+10X55_8:CTTCAAGAACAACT,oligodendrocyte,Schwann Cell
+10X55_7:GCTAAGTACCATCA,oligodendrocyte,Ductal
+10X55_2:TGAGAGTTGGAGGT,oligodendrocyte,Schwann Cell
+10X57_3:TAGTGGTGGCCCTT,oligodendrocyte,Ductal
+10X24_2:AAGGTCACACTACG,oligodendrocyte,Schwann Cell
+10X56_3:GTATTAGATCTACT,oligodendrocyte,Schwann Cell
+10X22_4:CCAATGGAACTGTG,oligodendrocyte,Schwann Cell
+10X22_4:CAATTCTGGGTCAT,oligodendrocyte,Ductal
+10X50_3:TCAGGATGGGTTCA,oligodendrocyte,Schwann Cell
 10X57_7:GCCATCACTCGTGA,oligodendrocyte,Schwann Cell
-10X24_3:GCGGAGCTTTCTAC,oligodendrocyte,Basal
-10X53_5:GTGGTAACCGAATC,oligodendrocyte,Trunk
-10X54_7:GGGATAGTGAACGC,oligodendrocyte,Basal
-10X55_1:GCGGAGTTGTTTGG,oligodendrocyte,Infundibulum
-10X55_7:CTCTAGTCCTGCTT,oligodendrocyte,Basal
-10X55_3:GTAGAAGTACGTTC,oligodendrocyte,Basal
-10X55_1:TTCGCGTCTAGCGC,oligodendrocyte,Basal
-10X50_5:CCAGGTCTGTAGCT,oligodendrocyte,Basal
-10X55_2:ACCTGAGCTCAACT,oligodendrocyte,Sebaceous Gland
-10X52_5:AAGCCATGTCCGTC,oligodendrocyte,TAC-1
-10X50_5:TATCTCGATTGGCA,oligodendrocyte,Trunk
-10X54_1:ACGGATCAGGCAAG,oligodendrocyte,Basal
-10X50_2:ATGCCAGATCAAGC,oligodendrocyte,Basal
-10X54_7:CGTGTCAGACAAAT,oligodendrocyte,Basexpédi
-10X55_3:GTAACTCCTATGTT,oligodendrocyte,Basal
-10X55_1:CTCGCTCTTGACGA,oligodendrocyte,Basal
-10X53_3:AGGAACCTTACTGG,oligodendrocyte,Basal
-10X55_7:CTAACGTCTGCCAG,oligodendrocyte,Basal
-10X52_1:AGAATACTCGAGAG,oligodendrocyte,Ductal
-10X53_2:TGCACAGAGTTTCT,oligodendrocyte,Trunk
-10X52_3:GAGGTACTATCGTG,oligodendrocyte,Basal
-10X54_3:TATCTAGAACAACT,oligodendrocyte,TAC-1
-10X52_5:ATCAGGTGGTTCAG,oligodendrocyte,Multipotent
-10X26_3:CGGACCGATCGATG,oligodendrocyte,TAC-1
-10X54_1:GCGCAAGATCGGGT,oligodendrocyte,Basal
-10X53_4:AGGGCCACACCTAG,oligodendrocyte,Basal
-10X35_2:CGGACTCTCCACAA,oligodendrocyte,Basal
-10X22_2:CCATAGGAGGTGAG,oligodendrocyte,Trunk
-10X57_5:TTCAGTTGCCATAG,oligodendrocyte,Trunk
-10X20_3:ATACCTTGGTACGT,oligodendrocyte,Basal
-10X20_4:AGGTCATGCTATTC,oligodendrocyte,Basal
-10X57_5:GTTACTACGTACGT,oligodendrocyte,Trunk
-10X50_2:ATGCACGAGTTGTG,oligodendrocyte,Basal
-10X54_8:GTCATGTGGTGTAG,oligodendrocyte,Basal
-10X52_2:CCAGCTACCCAAGT,oligodendrocyte,TAC-1
-10X57_5:CGAGTATGGGTACT,oligodendrocyte,Basal
-10X20_4:CACTCCGACGAGAG,oligodendrocyte,Basal
-10X57_3:ACTCAGGAACGGTT,oligodendrocyte,Basal
-10X50_8:TGTATGCTCATTCT,oligodendrocyte,Basal
-10X52_6:GTGAGGGACTTGCC,oligodendrocyte,Basal
-10X55_5:CTCAAGTTGACGTT,oligodendrocyte,TAC-1
-10X34_3:TCCATAACTAGAGA,oligodendrocyte,Trunk
-10X55_1:GACCAAGGTACTCT,oligodendrocyte,Basal
-10X24_3:ATAATGACGACTAC,oligodendrocyte,Basal
-10X43_3:ATAAGTACGTTCGA,oligodendrocyte,Basal
-10X54_1:TCTCTAGAAGAAGC,oligodendrocyte,Basal
-10X50_5:TCTAACACCCTCAC,oligodendrocyte,Trunk
-10X33_4:CAGACATGCCAAGT,oligodendrocyte,Basal
-10X55_1:GAGCTGTCGAACAG,oligodendrocyte,Basal
-10X52_1:GCGGAGCTGAGCTT,oligodendrocyte,Ngn3 low EP
-10X54_1:AGCAATCTCCGGTT,oligodendrocyte,Basal
-10X26_3:TGTAGGTGTGTTCT,oligodendrocyte,TAC-1
-10X57_6:AAATGGGAGCAGAG,oligodendrocyte,Basal
-10X55_4:GGCGTCACGCATCG,oligodendrocyte,Basal
-10X55_6:TGAGGGTCTAGAGG,oligodendrocyte,Trunk
-10X55_4:TGAAGCAACACCCG,oligodendrocyte,Basal
-10X54_8:ACCTACAGCTCGCA,oligodendrocyte,Basal
-10X54_1:CGGTAAGATAGTCA,oligodendrocyte,Basal
-10X57_7:TTATGGCTCACTTT,oligodendrocyte,Trunk
-10X55_7:ACGGAAGCCATCGC,oligodendrocyte,TAC-1
-10X57_3:CTCAGAGACAGCTA,oligodendrocyte,Basal
-10X52_3:AGAGTCTGTTCATC,oligodendrocyte,Basal
-10X57_3:TCGTAGGACGTTGA,oligodendrocyte,Trunk
-10X53_3:CAAGTTCTAAGATG,oligodendrocyte,Basal
-10X43_3:GAACCTGAGACAAA,oligodendrocyte,Basal
-10X24_4:TCCGAAGAGGGTGA,oligodendrocyte,Trunk
-10X57_3:TAATCGCTATGTCG,oligodendrocyte,Basal
-10X01_1:CAAGAAGAGCTATG,oligodendrocyte,TAC-1
-10X57_7:AAGAACGACCTATT,oligodendrocyte,Basal
-10X55_8:CGTGTCAAGACGTG,oligodendrocyte,Basal
-10X55_6:GTACTGTGCTTCTC,oligodendrocyte,Basal
-10X54_1:TGATGTCAAGATCC,oligodendrocyte,Basal
-10X54_3:AGCGTTCGAGCCCA,oligodendrocyte,Basal
-10X57_3:CGAGTATGTTAGGC,oligodendrocyte,Basal
-10X05_2:GACTACGATCAGGT,oligodendrocyte,Basal
-10X53_6:ATTATGGACATGGT,oligodendrocyte,Basal
-10X01_1:CAGCGGACTAGACC,oligodendrocyte,Basal
-10X54_4:TCCAGTCGCCATAA,oligodendrocyte,Basal
-10X52_2:AATCGGTGCTCCCA,oligodendrocyte,Basal
-10X54_5:TCAGAGTTACTGAC,oligodendrocyte,Basal
-10X54_4:CGGTCCACTACAGT,oligodendrocyte,Trunk
-10X57_6:TTCAAAGACAAAGA,oligodendrocyte,Trunk
-10X53_4:TGTATCTGGCCCTT,oligodendrocyte,Trunk
-10X53_6:AATCCGGAGAGACG,oligodendrocyte,Basal
-10X55_8:TGGTGCACCGAAAG,oligodendrocyte,Ngn3 high EP
-10X57_3:TAAGTCCTCTCCCA,oligodendrocyte,TAC-1
-10X53_6:ACGGTCCTATTCGG,oligodendrocyte,Trunk
-10X50_4:AAACCGTGTCCCAC,oligodendrocyte,Trunk
-10X26_3:CCATAGGAGCGGAA,oligodendrocyte,Basal
-10X54_5:CATACAGTGGGCTA,oligodendrocyte,Basal
-10X54_2:AATAGCAGTCTTCC,oligodendrocyte,Basal
-10X28_3:AAGCCATGGTAAAG,oligodendrocyte,Basal
-10X55_2:CCACTGTCTCCCTA,oligodendrocyte,Basal
-10X52_2:GGCTAAACTCTAGG,oligodendrocyte,Trunk
-10X53_4:TGAGTCGATTTCGT,oligodendrocyte,Basal
-10X57_2:GGAATCTGCTTGCC,oligodendrocyte,Basal
-10X22_1:CACTAGGAATTTCC,oligodendrocyte,Basal
-10X55_7:TCAGTTCTTCATGT,oligodendrocyte,Basal
-10X28_2:TCTCAAACAAGTGA,oligodendrocyte,alowCD34+ bulge
-10X24_4:CTACTATGCTAGAC,oligodendrocyte,Trunk
-10X55_5:TCAGGTCTTGGGTA,oligodendrocyte,Basal
-10X24_4:AAGAACGATGACAC,oligodendrocyte,TAC-1
-10X53_3:ACACGAACGTTAGC,oligodendrocyte,Trunk
-10X55_4:GCCAATCACCTTAT,oligodendrocyte,TAC-1
-10X50_7:CTATAAGACCAAGT,oligodendrocyte,Basal
-10X20_1:AACGCCCTGTACCA,glutamatergic neuron,Basal
-10X22_2:TCGGACCTGCATCA,glutamatergic neuron,Fev+
-10X22_2:CGTTTAACCCTGTC,glutamatergic neuron,Trunk
-10X53_6:CTGGCACTAATCGC,glutamatergic neuron,Basal
-10X50_8:CGCGAGACCTCTAT,glutamatergic neuron,Trunk
-10X57_3:AGTCTTACCTCATT,glutamatergic neuron,TAC-1
-10X20_2:GATATCCTCAGATC,glutamatergic neuron,TAC-1
-10X53_3:AAGTCCGAGCTATG,glutamatergic neuron,Basal
-10X34_3:TGGCACCTTTCATC,glutamatergic neuron,Basal
-10X02_1:ACGGAGGACAAAGA,glutamatergic neuron,Fev+
-10X57_2:AGCAAGCTTTGACG,glutamatergic neuron,Basal
-10X22_2:ACGCTCACTCAAGC,glutamatergic neuron,Schwann Cell
-10X19_2:AAGGCTTGCCATAG,glutamatergic neuron,Dermal Sheath
-10X20_1:TTGAGGTGCTTGCC,glutamatergic neuron,Basal
-10X20_1:CAAGACTGATCGTG,glutamatergic neuron,Fev+
-10X05_1:GCGAGAGACAAGCT,glutamatergic neuron,TAC-1
-10X22_2:AAACGCACTGGTTG,glutamatergic neuron,Fev+
-10X22_3:TATAGCCTGCATAC,glutamatergic neuron,Basal
-10X53_3:AACATTGAGGTATC,glutamatergic neuron,Basal
-10X49_3:ACTCTATGGGAAGC,glutamatergic neuron,Trunk
-10X04_2:ATCATCTGGTTGAC,glutamatergic neuron,K6+ Bulge Companion Layer
+10X24_3:GCGGAGCTTTCTAC,oligodendrocyte,Schwann Cell
+10X53_5:GTGGTAACCGAATC,oligodendrocyte,Schwann Cell
+10X54_7:GGGATAGTGAACGC,oligodendrocyte,Schwann Cell
+10X55_1:GCGGAGTTGTTTGG,oligodendrocyte,Schwann Cell
+10X55_7:CTCTAGTCCTGCTT,oligodendrocyte,Schwann Cell
+10X55_3:GTAGAAGTACGTTC,oligodendrocyte,Schwann Cell
+10X55_1:TTCGCGTCTAGCGC,oligodendrocyte,Schwann Cell
+10X50_5:CCAGGTCTGTAGCT,oligodendrocyte,Schwann Cell
+10X55_2:ACCTGAGCTCAACT,oligodendrocyte,Schwann Cell
+10X52_5:AAGCCATGTCCGTC,oligodendrocyte,Schwann Cell
+10X50_5:TATCTCGATTGGCA,oligodendrocyte,Schwann Cell
+10X54_1:ACGGATCAGGCAAG,oligodendrocyte,Schwann Cell
+10X50_2:ATGCCAGATCAAGC,oligodendrocyte,Schwann Cell
+10X54_7:CGTGTCAGACAAAT,oligodendrocyte,Schwann Cell
+10X55_3:GTAACTCCTATGTT,oligodendrocyte,Schwann Cell
+10X55_1:CTCGCTCTTGACGA,oligodendrocyte,Schwann Cell
+10X53_3:AGGAACCTTACTGG,oligodendrocyte,Schwann Cell
+10X55_7:CTAACGTCTGCCAG,oligodendrocyte,Schwann Cell
+10X52_1:AGAATACTCGAGAG,oligodendrocyte,Schwann Cell
+10X53_2:TGCACAGAGTTTCT,oligodendrocyte,Schwann Cell
+10X52_3:GAGGTACTATCGTG,oligodendrocyte,Schwann Cell
+10X54_3:TATCTAGAACAACT,oligodendrocyte,Schwann Cell
+10X52_5:ATCAGGTGGTTCAG,oligodendrocyte,Schwann Cell
+10X26_3:CGGACCGATCGATG,oligodendrocyte,Schwann Cell
+10X54_1:GCGCAAGATCGGGT,oligodendrocyte,Schwann Cell
+10X53_4:AGGGCCACACCTAG,oligodendrocyte,Ductal
+10X35_2:CGGACTCTCCACAA,oligodendrocyte,Schwann Cell
+10X22_2:CCATAGGAGGTGAG,oligodendrocyte,Schwann Cell
+10X57_5:TTCAGTTGCCATAG,oligodendrocyte,Schwann Cell
+10X20_3:ATACCTTGGTACGT,oligodendrocyte,Schwann Cell
+10X20_4:AGGTCATGCTATTC,oligodendrocyte,Schwann Cell
+10X57_5:GTTACTACGTACGT,oligodendrocyte,Schwann Cell
+10X50_2:ATGCACGAGTTGTG,oligodendrocyte,Schwann Cell
+10X54_8:GTCATGTGGTGTAG,oligodendrocyte,Schwann Cell
+10X52_2:CCAGCTACCCAAGT,oligodendrocyte,Schwann Cell
+10X57_5:CGAGTATGGGTACT,oligodendrocyte,Schwann Cell
+10X20_4:CACTCCGACGAGAG,oligodendrocyte,Schwann Cell
+10X57_3:ACTCAGGAACGGTT,oligodendrocyte,Schwann Cell
+10X50_8:TGTATGCTCATTCT,oligodendrocyte,Schwann Cell
+10X52_6:GTGAGGGACTTGCC,oligodendrocyte,Ductal
+10X55_5:CTCAAGTTGACGTT,oligodendrocyte,Schwann Cell
+10X34_3:TCCATAACTAGAGA,oligodendrocyte,Schwann Cell
+10X55_1:GACCAAGGTACTCT,oligodendrocyte,Schwann Cell
+10X24_3:ATAATGACGACTAC,oligodendrocyte,Ductal
+10X43_3:ATAAGTACGTTCGA,oligodendrocyte,Ductal
+10X54_1:TCTCTAGAAGAAGC,oligodendrocyte,Schwann Cell
+10X50_5:TCTAACACCCTCAC,oligodendrocyte,Schwann Cell
+10X33_4:CAGACATGCCAAGT,oligodendrocyte,Schwann Cell
+10X55_1:GAGCTGTCGAACAG,oligodendrocyte,Schwann Cell
+10X52_1:GCGGAGCTGAGCTT,oligodendrocyte,Schwann Cell
+10X54_1:AGCAATCTCCGGTT,oligodendrocyte,Schwann Cell
+10X26_3:TGTAGGTGTGTTCT,oligodendrocyte,Schwann Cell
+10X57_6:AAATGGGAGCAGAG,oligodendrocyte,Schwann Cell
+10X55_4:GGCGTCACGCATCG,oligodendrocyte,Schwann Cell
+10X55_6:TGAGGGTCTAGAGG,oligodendrocyte,Schwann Cell
+10X55_4:TGAAGCAACACCCG,oligodendrocyte,Schwann Cell
+10X54_8:ACCTACAGCTCGCA,oligodendrocyte,Schwann Cell
+10X54_1:CGGTAAGATAGTCA,oligodendrocyte,Schwann Cell
+10X57_7:TTATGGCTCACTTT,oligodendrocyte,Schwann Cell
+10X55_7:ACGGAAGCCATCGC,oligodendrocyte,Schwann Cell
+10X57_3:CTCAGAGACAGCTA,oligodendrocyte,Schwann Cell
+10X52_3:AGAGTCTGTTCATC,oligodendrocyte,Schwann Cell
+10X57_3:TCGTAGGACGTTGA,oligodendrocyte,Schwann Cell
+10X53_3:CAAGTTCTAAGATG,oligodendrocyte,Schwann Cell
+10X43_3:GAACCTGAGACAAA,oligodendrocyte,Ductal
+10X24_4:TCCGAAGAGGGTGA,oligodendrocyte,Schwann Cell
+10X57_3:TAATCGCTATGTCG,oligodendrocyte,Schwann Cell
+10X01_1:CAAGAAGAGCTATG,oligodendrocyte,Ductal
+10X57_7:AAGAACGACCTATT,oligodendrocyte,Schwann Cell
+10X55_8:CGTGTCAAGACGTG,oligodendrocyte,Schwann Cell
+10X55_6:GTACTGTGCTTCTC,oligodendrocyte,Schwann Cell
+10X54_1:TGATGTCAAGATCC,oligodendrocyte,Schwann Cell
+10X54_3:AGCGTTCGAGCCCA,oligodendrocyte,Schwann Cell
+10X57_3:CGAGTATGTTAGGC,oligodendrocyte,Schwann Cell
+10X05_2:GACTACGATCAGGT,oligodendrocyte,Schwann Cell
+10X53_6:ATTATGGACATGGT,oligodendrocyte,Schwann Cell
+10X01_1:CAGCGGACTAGACC,oligodendrocyte,Sensitive
+10X54_4:TCCAGTCGCCATAA,oligodendrocyte,Schwann Cell
+10X52_2:AATCGGTGCTCCCA,oligodendrocyte,Schwann Cell
+10X54_5:TCAGAGTTACTGAC,oligodendrocyte,Schwann Cell
+10X54_4:CGGTCCACTACAGT,oligodendrocyte,Schwann Cell
+10X57_6:TTCAAAGACAAAGA,oligodendrocyte,Ductal
+10X53_4:TGTATCTGGCCCTT,oligodendrocyte,Schwann Cell
+10X53_6:AATCCGGAGAGACG,oligodendrocyte,Schwann Cell
+10X55_8:TGGTGCACCGAAAG,oligodendrocyte,Schwann Cell
+10X57_3:TAAGTCCTCTCCCA,oligodendrocyte,Schwann Cell
+10X53_6:ACGGTCCTATTCGG,oligodendrocyte,Ductal
+10X50_4:AAACCGTGTCCCAC,oligodendrocyte,Schwann Cell
+10X26_3:CCATAGGAGCGGAA,oligodendrocyte,Schwann Cell
+10X54_5:CATACAGTGGGCTA,oligodendrocyte,Schwann Cell
+10X54_2:AATAGCAGTCTTCC,oligodendrocyte,Schwann Cell
+10X28_3:AAGCCATGGTAAAG,oligodendrocyte,Schwann Cell
+10X55_2:CCACTGTCTCCCTA,oligodendrocyte,Schwann Cell
+10X52_2:GGCTAAACTCTAGG,oligodendrocyte,Schwann Cell
+10X53_4:TGAGTCGATTTCGT,oligodendrocyte,Resistant
+10X57_2:GGAATCTGCTTGCC,oligodendrocyte,Schwann Cell
+10X22_1:CACTAGGAATTTCC,oligodendrocyte,Schwann Cell
+10X55_7:TCAGTTCTTCATGT,oligodendrocyte,Schwann Cell
+10X28_2:TCTCAAACAAGTGA,oligodendrocyte,Schwann Cell
+10X24_4:CTACTATGCTAGAC,oligodendrocyte,Schwann Cell
+10X55_5:TCAGGTCTTGGGTA,oligodendrocyte,Schwann Cell
+10X24_4:AAGAACGATGACAC,oligodendrocyte,Schwann Cell
+10X53_3:ACACGAACGTTAGC,oligodendrocyte,Schwann Cell
+10X55_4:GCCAATCACCTTAT,oligodendrocyte,Schwann Cell
+10X50_7:CTATAAGACCAAGT,oligodendrocyte,Schwann Cell
+10X20_1:AACGCCCTGTACCA,glutamatergic neuron,Schwann Cell
+10X22_2:TCGGACCTGCATCA,glutamatergic neuron,Schwann Cell
+10X22_2:CGTTTAACCCTGTC,glutamatergic neuron,Beta
+10X53_6:CTGGCACTAATCGC,glutamatergic neuron,Schwann Cell
+10X50_8:CGCGAGACCTCTAT,glutamatergic neuron,Schwann Cell
+10X57_3:AGTCTTACCTCATT,glutamatergic neuron,Schwann Cell
+10X20_2:GATATCCTCAGATC,glutamatergic neuron,Schwann Cell
+10X53_3:AAGTCCGAGCTATG,glutamatergic neuron,Schwann Cell
+10X34_3:TGGCACCTTTCATC,glutamatergic neuron,Schwann Cell
+10X02_1:ACGGAGGACAAAGA,glutamatergic neuron,Schwann Cell
+10X57_2:AGCAAGCTTTGACG,glutamatergic neuron,Schwann Cell
+10X22_2:ACGCTCACTCAAGC,glutamatergic neuron,Beta
+10X19_2:AAGGCTTGCCATAG,glutamatergic neuron,Schwann Cell
+10X20_1:TTGAGGTGCTTGCC,glutamatergic neuron,Schwann Cell
+10X20_1:CAAGACTGATCGTG,glutamatergic neuron,Schwann Cell
+10X05_1:GCGAGAGACAAGCT,glutamatergic neuron,Beta
+10X22_2:AAACGCACTGGTTG,glutamatergic neuron,Schwann Cell
+10X22_3:TATAGCCTGCATAC,glutamatergic neuron,Schwann Cell
+10X53_3:AACATTGAGGTATC,glutamatergic neuron,Delta
+10X49_3:ACTCTATGGGAAGC,glutamatergic neuron,Schwann Cell
+10X04_2:ATCATCTGGTTGAC,glutamatergic neuron,Schwann Cell
 10X28_4:AAGGTGCTTTCGGA,glutamatergic neuron,Schwann Cell
-10X50_5:CATTGTACACTCTT,glutamatergic neuron,Basal
-10X28_4:ACGTAGACCTACTT,glutamatergic neuron,Ngn3 high EP
-10X24_3:ATCTGGGAGAATAG,glutamatergic neuron,Fev+
-10X02_1:TTTCCAGACTACCC,glutamatergic neuron,TAC-1
-10X57_3:TACATCACACCTGA,glutamatergic neuron,Basal
-10X43_1:CCCTACGAATCGTG,glutamatergic neuron,Basal
-10X20_1:ACACGATGCTTATC,glutamatergic neuron,TAC-1
-10X01_1:ACGTTACTAAAACG,glutamatergic neuron,Trunk
-10X57_3:CACTGAGATTCTTG,glutamatergic neuron,Basal
-10X28_3:ATAACCCTCCTGTC,glutamatergic neuron,TAC-1
-10X52_1:CAAGGTTGTAGAAG,glutamatergic neuron,Fev+
-10X22_2:ATTCAGCTAAAGCA,glutamatergic neuron,TAC-1
-10X20_4:ACTCAGGAGTCTTT,glutamatergic neuron,Sebaceous Gland
-10X28_3:AGGGCCACTTCGCC,glutamatergic neuron,TAC-1
+10X50_5:CATTGTACACTCTT,glutamatergic neuron,Beta
+10X28_4:ACGTAGACCTACTT,glutamatergic neuron,Schwann Cell
+10X24_3:ATCTGGGAGAATAG,glutamatergic neuron,Schwann Cell
+10X02_1:TTTCCAGACTACCC,glutamatergic neuron,Schwann Cell
+10X57_3:TACATCACACCTGA,glutamatergic neuron,Schwann Cell
+10X43_1:CCCTACGAATCGTG,glutamatergic neuron,Beta
+10X20_1:ACACGATGCTTATC,glutamatergic neuron,Schwann Cell
+10X01_1:ACGTTACTAAAACG,glutamatergic neuron,Schwann Cell
+10X57_3:CACTGAGATTCTTG,glutamatergic neuron,Schwann Cell
+10X28_3:ATAACCCTCCTGTC,glutamatergic neuron,Gamma
+10X52_1:CAAGGTTGTAGAAG,glutamatergic neuron,Schwann Cell
+10X22_2:ATTCAGCTAAAGCA,glutamatergic neuron,Schwann Cell
+10X20_4:ACTCAGGAGTCTTT,glutamatergic neuron,Schwann Cell
+10X28_3:AGGGCCACTTCGCC,glutamatergic neuron,Schwann Cell
 10X24_4:CAGCAATGCAACCA,glutamatergic neuron,Schwann Cell
-10X05_2:GATTCTTGTCCTCG,glutamatergic neuron,Basal
-10X36_1:AACAATACCCTGTC,glutamatergic neuron,TAC-1
-10X50_5:ATCGCCTGGGAGCA,glutamatergic neuron,Sebaceous Gland
-10X52_2:GTACGAACAACTGC,glutamatergic neuron,TAC-1
-10X53_6:CAGGGCACGAACCT,glutamatergic neuron,Basal
-10X22_2:GCTACAGATTTGGG,glutamatergic neuron,Basal
-10X54_2:GACCATCAGCCTAA,glutamatergic neuron,Basal
-10X20_2:GAAAGATGTCTTTG,glutamatergic neuron,Fev+
-10X36_1:AAATCTGAGGGCAA,glutamatergic neuron,TAC-1
+10X05_2:GATTCTTGTCCTCG,glutamatergic neuron,Beta
+10X36_1:AACAATACCCTGTC,glutamatergic neuron,Schwann Cell
+10X50_5:ATCGCCTGGGAGCA,glutamatergic neuron,Schwann Cell
+10X52_2:GTACGAACAACTGC,glutamatergic neuron,Schwann Cell
+10X53_6:CAGGGCACGAACCT,glutamatergic neuron,Schwann Cell
+10X22_2:GCTACAGATTTGGG,glutamatergic neuron,Schwann Cell
+10X54_2:GACCATCAGCCTAA,glutamatergic neuron,Schwann Cell
+10X20_2:GAAAGATGTCTTTG,glutamatergic neuron,Schwann Cell
+10X36_1:AAATCTGAGGGCAA,glutamatergic neuron,Beta
 10X28_3:CACTTAACTTCCAT,glutamatergic neuron,Schwann Cell
-10X05_1:CCATAGGAGGACTT,glutamatergic neuron,TAC-1
-10X28_4:ATGCAGTGTCCTTA,glutamatergic neuron,Fev+
-10X22_1:AGTCTTACGCTATG,glutamatergic neuron,TAC-1
+10X05_1:CCATAGGAGGACTT,glutamatergic neuron,Schwann Cell
+10X28_4:ATGCAGTGTCCTTA,glutamatergic neuron,Schwann Cell
+10X22_1:AGTCTTACGCTATG,glutamatergic neuron,Schwann Cell
 10X28_2:GAAGGGTGAAGTAG,glutamatergic neuron,Schwann Cell
-10X22_1:ATTGGTCTCTTGTT,glutamatergic neuron,Basal
-10X05_1:CGATCCACACAGTC,glutamatergic neuron,Basal
-10X20_1:GTTCAGGACCCACT,glutamatergic neuron,TAC-1QUE
-10X28_2:TTGTACACCTGTTT,glutamatergic neuron,TAC-1
-10X53_3:ATGAGAGAGGTAGG,glutamatergic neuron,Fev+
-10X35_1:TGATACCTCCTTGC,glutamatergic neuron,TAC-1
-10X22_1:TGCTTAACAGATGA,glutamatergic neuron,Trunk
+10X22_1:ATTGGTCTCTTGTT,glutamatergic neuron,Schwann Cell
+10X05_1:CGATCCACACAGTC,glutamatergic neuron,Schwann Cell
+10X20_1:GTTCAGGACCCACT,glutamatergic neuron,Schwann Cell
+10X28_2:TTGTACACCTGTTT,glutamatergic neuron,Ngn3 low EP
+10X53_3:ATGAGAGAGGTAGG,glutamatergic neuron,Schwann Cell
+10X35_1:TGATACCTCCTTGC,glutamatergic neuron,Schwann Cell
+10X22_1:TGCTTAACAGATGA,glutamatergic neuron,Schwann Cell
 10X22_4:GCCTCATGATCGTG,glutamatergic neuron,Schwann Cell
-10X50_6:AAGATGGATTGCGA,glutamatergic neuron,TAC-1
-10X02_1:TGTTACTGTCCTCG,glutamatergic neuron,Trunk
-10X43_3:GAGTCAACTTCGCC,glutamatergic neuron,Basal
-10X50_8:ACGAACTGTACTCT,glutamatergic neuron,Basal
-10X35_1:TCGTAGGAGTTAGC,glutamatergic neuron,TAC-1
-10X05_2:CACCGTACCCATAG,glutamatergic neuron,Basal
-10X53_4:CACTAGGAACCTTT,glutamatergic neuron,Fev+
-10X28_4:GTTATCTGAACGAA,glutamatergic neuron,TAC-1
-10X20_3:CTGACAGAATCGTG,glutamatergic neuron,TAC-1
-10X20_3:GAGCGGCTCTACCC,glutamatergic neuron,Fev+
-10X28_2:TTCAGACTTGACTG,glutamatergic neuron,Fev+
-10X57_2:GTGACAACTGCAAC,glutamatergic neuron,Basal
-10X02_1:TAGACGTGTCCAAG,glutamatergic neuron,Basal
-10X05_1:CCCAGTTGATCACG,glutamatergic neuron,Fev+
-10X05_1:CGATCAGACTCATT,glutamatergic neuron,TAC-1
-10X04_2:ATATAGTGAACCGT,glutamatergic neuron,Trunk
-10X22_2:TCTCAAACCGTGAT,glutamatergic neuron,alowCD34+ bulge
-10X22_1:TGCAACGATACTCT,glutamatergic neuron,Fev+
-10X19_2:ACACGTGAAGCGGA,glutamatergic neuron,Fev+
-10X04_2:GGAATCTGCTGAAC,glutamatergic neuron,alowCD34+ bulge
+10X50_6:AAGATGGATTGCGA,glutamatergic neuron,Schwann Cell
+10X02_1:TGTTACTGTCCTCG,glutamatergic neuron,Schwann Cell
+10X43_3:GAGTCAACTTCGCC,glutamatergic neuron,Schwann Cell
+10X50_8:ACGAACTGTACTCT,glutamatergic neuron,Schwann Cell
+10X35_1:TCGTAGGAGTTAGC,glutamatergic neuron,Schwann Cell
+10X05_2:CACCGTACCCATAG,glutamatergic neuron,Beta
+10X53_4:CACTAGGAACCTTT,glutamatergic neuron,Ductal
+10X28_4:GTTATCTGAACGAA,glutamatergic neuron,Schwann Cell
+10X20_3:CTGACAGAATCGTG,glutamatergic neuron,Schwann Cell
+10X20_3:GAGCGGCTCTACCC,glutamatergic neuron,Schwann Cell
+10X28_2:TTCAGACTTGACTG,glutamatergic neuron,Schwann Cell
+10X57_2:GTGACAACTGCAAC,glutamatergic neuron,Schwann Cell
+10X02_1:TAGACGTGTCCAAG,glutamatergic neuron,Schwann Cell
+10X05_1:CCCAGTTGATCACG,glutamatergic neuron,Schwann Cell
+10X05_1:CGATCAGACTCATT,glutamatergic neuron,Schwann Cell
+10X04_2:ATATAGTGAACCGT,glutamatergic neuron,Beta
+10X22_2:TCTCAAACCGTGAT,glutamatergic neuron,Schwann Cell
+10X22_1:TGCAACGATACTCT,glutamatergic neuron,Schwann Cell
+10X19_2:ACACGTGAAGCGGA,glutamatergic neuron,Schwann Cell
+10X04_2:GGAATCTGCTGAAC,glutamatergic neuron,Gamma
 10X28_3:CACTGAGAGGTAAA,glutamatergic neuron,Schwann Cell
-10X50_5:GATCCCTGGAGGCA,glutamatergic neuron,Fev+
-10X22_4:GTGGATTGGCGAGA,glutamatergic neuron,Fev+
-10X04_1:GCCGGAACGCTGTA,glutamatergic neuron,TAC-1
-10X50_5:AATAAGCTGCTGAT,glutamatergic neuron,Trunk
-10X05_1:GAAAGCCTCGATAC,glutamatergic neuron,Trunk
-10X36_1:AGCACTGAAGATCC,glutamatergic neuron,Trunk
-10X53_6:CTCGACACATGCCA,glutamatergic neuron,Trunk
-10X52_4:ATAAGTACTGAGAA,glutamatergic neuron,Basal
-10X49_4:TGATAAACAACGAA,glutamatergic neuron,TAC-1
-10X19_2:ATGTACCTTAAGGA,glutamatergic neuron,Fev+
-10X50_5:TGCCACTGGTGTAC,glutamatergic neuron,Basal
-10X28_3:GATCCCTGCCTTGC,glutamatergic neuron,Fev+
-10X20_4:TGTGATCTTTCGTT,glutamatergic neuron,Infundibulum
+10X50_5:GATCCCTGGAGGCA,glutamatergic neuron,Beta
+10X22_4:GTGGATTGGCGAGA,glutamatergic neuron,Schwann Cell
+10X04_1:GCCGGAACGCTGTA,glutamatergic neuron,Schwann Cell
+10X50_5:AATAAGCTGCTGAT,glutamatergic neuron,Schwann Cell
+10X05_1:GAAAGCCTCGATAC,glutamatergic neuron,Schwann Cell
+10X36_1:AGCACTGAAGATCC,glutamatergic neuron,Schwann Cell
+10X53_6:CTCGACACATGCCA,glutamatergic neuron,Schwann Cell
+10X52_4:ATAAGTACTGAGAA,glutamatergic neuron,Schwann Cell
+10X49_4:TGATAAACAACGAA,glutamatergic neuron,Gamma
+10X19_2:ATGTACCTTAAGGA,glutamatergic neuron,Schwann Cell
+10X50_5:TGCCACTGGTGTAC,glutamatergic neuron,Beta
+10X28_3:GATCCCTGCCTTGC,glutamatergic neuron,Schwann Cell
+10X20_4:TGTGATCTTTCGTT,glutamatergic neuron,Schwann Cell
 10X28_5:GTTACGGATATCTC,glutamatergic neuron,Schwann Cell
-10X28_2:CCCGAACTTTCTTG,glutamatergic neuron,Fev+
-10X52_3:GCACCACTTGTGAC,glutamatergic neuron,TAC-1
-10X50_8:ATGCCGCTATCTTC,glutamatergic neuron,TAC-1
-10X05_1:TAGGACTGGAGGAC,glutamatergic neuron,Trunk
-10X20_2:ATGTACCTCTGCAA,glutamatergic neuron,Basal
-10X52_1:CATAAAACACCTCC,glutamatergic neuron,Trunk
-10X53_1:GTCGAATGTGGAAA,glutamatergic neuron,Basal
-10X24_3:CAGACATGAAACGA,glutamatergic neuron,Basal
-10X57_7:XXATATGACCTTGC,glutamatergic neuron,Basal
-10X35_1:GGGATGGATGACCA,glutamatergic neuron,Basal
-10X35_1:CAAACTCTTCAGGT,glutamatergic neuron,Trunk
-10X01_1:GAGTTGTGTCTTCA,glutamatergic neuron,TAC-1
+10X28_2:CCCGAACTTTCTTG,glutamatergic neuron,Schwann Cell
+10X52_3:GCACCACTTGTGAC,glutamatergic neuron,Schwann Cell
+10X50_8:ATGCCGCTATCTTC,glutamatergic neuron,Beta
+10X05_1:TAGGACTGGAGGAC,glutamatergic neuron,Schwann Cell
+10X20_2:ATGTACCTCTGCAA,glutamatergic neuron,Schwann Cell
+10X52_1:CATAAAACACCTCC,glutamatergic neuron,Schwann Cell
+10X53_1:GTCGAATGTGGAAA,glutamatergic neuron,Trunk
+10X24_3:CAGACATGAAACGA,glutamatergic neuron,Schwann Cell
+10X57_7:XXATATGACCTTGC,glutamatergic neuron,Schwann Cell
+10X35_1:GGGATGGATGACCA,glutamatergic neuron,Schwann Cell
+10X35_1:CAAACTCTTCAGGT,glutamatergic neuron,Schwann Cell
+10X01_1:GAGTTGTGTCTTCA,glutamatergic neuron,Gamma
 10X28_3:ACCCAAGACTGAGT,glutamatergic neuron,Schwann Cell
-10X50_6:GTTATCTGACACAC,glutamatergic neuron,TAC-1
-10X54_4:GGGTTGTCTCACCT,glutamatergic neuron,Basal
-10X22_2:ATGTCACTTGACCA,glutamatergic neuron,Multipotent
-10X19_2:GTACTACTGTAGCT,glutamatergic neuron,Basal
-10X52_3:TAGTCGGAAGCGGA,glutamatergic neuron,Fev+
+10X50_6:GTTATCTGACACAC,glutamatergic neuron,Schwann Cell
+10X54_4:GGGTTGTCTCACCT,glutamatergic neuron,Schwann Cell
+10X22_2:ATGTCACTTGACCA,glutamatergic neuron,Schwann Cell
+10X19_2:GTACTACTGTAGCT,glutamatergic neuron,Schwann Cell
+10X52_3:TAGTCGGAAGCGGA,glutamatergic neuron,Schwann Cell
 10X28_4:GAGTGACTTTCCGC,glutamatergic neuron,Schwann Cell
-10X04_2:GACCTCACCCCTTG,glutamatergic neuron,Trunk
+10X04_2:GACCTCACCCCTTG,glutamatergic neuron,Schwann Cell
 10X22_2:TGTTAAGACGTAGT,glutamatergic neuron,Schwann Cell
-10X19_2:GATTTGCTCTGAGT,glutamatergic neuron,TAC-1
-10X22_3:GCACGGACAGGCGA,glutamatergic neuron,TAC-1
-10X35_2:TGTAATGACGTACA,glutamatergic neuron,Basal
-10X20_1:TGGTAGTGTTATCC,glutamatergic neuron,TAC-1
-10X52_1:ATCAAATGACCCAA,glutamatergic neuron,Basal
-10X20_3:CGCGGATGGTCGTA,glutamatergic neuron,Basal
-10X19_2:ACGACCCTCTTGGA,glutamatergic neuron,Basal
-10X52_2:TAAGTCCTACGCAT,glutamatergic neuron,Infundibulum
-10X35_2:TGCGAAACACGTAC,glutamatergic neuron,Trunk
-10X07_1:TTACAGCTCCGATA,GABAergic neuron,Infundibulum
-10X07_1:TCCCACGATATGCG,GABAergic neuron,TAC-1
-10X49_5:TGGACTGAACTCAG,GABAergic neuron,Trunk
-10X52_2:CAAGAAGAATTGGC,GABAergic neuron,Trunk
-10X38_1:CTACCTCTCCAACA,GABAergic neuron,Basal
-10X24_2:GAACCAACAGTGTC,GABAergic neuron,Basal
-10X04_1:ATCTGACTACCTCC,GABAergic neuron,Trunk
-10X38_2:TTGAGGACAACCGT,GABAergic neuron,Fev+
-10X26_4:ACGCACCTGAGCTT,GABAergic neuron,Basal
-10X07_1:AGATATTGCACACA,GABAergic neuron,Infundibulum
+10X19_2:GATTTGCTCTGAGT,glutamatergic neuron,Schwann Cell
+10X22_3:GCACGGACAGGCGA,glutamatergic neuron,Schwann Cell
+10X35_2:TGTAATGACGTACA,glutamatergic neuron,Gamma
+10X20_1:TGGTAGTGTTATCC,glutamatergic neuron,Schwann Cell
+10X52_1:ATCAAATGACCCAA,glutamatergic neuron,Beta
+10X20_3:CGCGGATGGTCGTA,glutamatergic neuron,Schwann Cell
+10X19_2:ACGACCCTCTTGGA,glutamatergic neuron,Schwann Cell
+10X52_2:TAAGTCCTACGCAT,glutamatergic neuron,Schwann Cell
+10X35_2:TGCGAAACACGTAC,glutamatergic neuron,Schwann Cell
+10X07_1:TTACAGCTCCGATA,GABAergic neuron,Ductal
+10X07_1:TCCCACGATATGCG,GABAergic neuron,Schwann Cell
+10X49_5:TGGACTGAACTCAG,GABAergic neuron,Schwann Cell
+10X52_2:CAAGAAGAATTGGC,GABAergic neuron,Schwann Cell
+10X38_1:CTACCTCTCCAACA,GABAergic neuron,Beta
+10X24_2:GAACCAACAGTGTC,GABAergic neuron,Schwann Cell
+10X04_1:ATCTGACTACCTCC,GABAergic neuron,Schwann Cell
+10X38_2:TTGAGGACAACCGT,GABAergic neuron,Schwann Cell
+10X26_4:ACGCACCTGAGCTT,GABAergic neuron,Schwann Cell
+10X07_1:AGATATTGCACACA,GABAergic neuron,Beta
 10X55_7:CTAATTCTGCTTGC,GABAergic neuron,Schwann Cell
-10X24_1:CAGCACCTCGACAT,GABAergic neuron,TAC-1
-10X26_3:TGCTGAGAGGTAAA,GABAergic neuron,Trunk
-10X52_1:GACGCTCTCTGTGA,GABAergic neuron,TAC-1
-10X28_4:CGTCCATGCCGTTC,GABAergic neuron,TAC-1
-10X24_2:TTAGTCACCTAGAC,GABAergic neuron,Basal
-10X38_1:GGATACTGCAGCTA,GABAergic neuron,Basal
-10X38_3:TAAATCGATACTCT,GABAergic neuron,TAC-1
-10X52_3:CACAATCTGCTTCC,GABAergic neuron,Infundibulum
-10X50_3:CGACCTACACCTCC,GABAergic neuron,Basal
-10X04_4:CTACCTCTGACTAC,GABAergic neuron,TAC-1
-10X24_1:CGGATATGGTTCGA,GABAergic neuron,TAC-1
-10X49_4:CCTATAACGCTGTA,GABAergic neuron,Basal
-10X49_4:GATAGCACTCGCCT,GABAergic neuron,Trunk
-10X38_2:CTAACTACAGCTCA,GABAergic neuron,Basal
-10X38_1:GACGAGGAGGACTT,GABAergic neuron,Fev+
-10X38_1:AATTACGAGCTGAT,GABAergic neuron,Fev+
-10X52_3:AGTCGAACGTGTAC,GABAergic neuron,Basal
-10X28_4:CAGTTTACTGTTCT,GABAergic neuron,TAC-1
-10X26_3:ATAAACACGCAAGG,GABAergic neuron,Basal
-10X28_5:ATCGCGCTGTGTCA,GABAergic neuron,TAC-1
-10X49_4:GCCACGGAGTCTTT,GABAergic neuron,Basal
-10X28_4:TCCATCCTAACCGT,GABAergic neuron,TAC-1
-10X38_1:GACTGTGATCTCCG,GABAergic neuron,Basal
-10X52_3:CACACCTGCGCAAT,GABAergic neuron,TAC-1
-10X57_2:CACGATGATCCCAC,GABAergic neuron,TAC-1
+10X24_1:CAGCACCTCGACAT,GABAergic neuron,Schwann Cell
+10X26_3:TGCTGAGAGGTAAA,GABAergic neuron,Fev+
+10X52_1:GACGCTCTCTGTGA,GABAergic neuron,Schwann Cell
+10X28_4:CGTCCATGCCGTTC,GABAergic neuron,Schwann Cell
+10X24_2:TTAGTCACCTAGAC,GABAergic neuron,Schwann Cell
+10X38_1:GGATACTGCAGCTA,GABAergic neuron,Schwann Cell
+10X38_3:TAAATCGATACTCT,GABAergic neuron,Ductal motion
+10X52_3:CACAATCTGCTTCC,GABAergic neuron,Delta
+10X50_3:CGACCTACACCTCC,GABAergic neuron,Schwann Cell
+10X04_4:CTACCTCTGACTAC,GABAergic neuron,Schwann Cell
+10X24_1:CGGATATGGTTCGA,GABAergic neuron,Schwann Cell
+10X49_4:CCTATAACGCTGTA,GABAergic neuron,Schwann Cell
+10X49_4:GATAGCACTCGCCT,GABAergic neuron,Schwann Cell
+10X38_2:CTAACTACAGCTCA,GABAergic neuron,Schwann Cell
+10X38_1:GACGAGGAGGACTT,GABAergic neuron,Beta
+10X38_1:AATTACGAGCTGAT,GABAergic neuron,Schwann Cell
+10X52_3:AGTCGAACGTGTAC,GABAergic neuron,Beta
+10X28_4:CAGTTTACTGTTCT,GABAergic neuron,Schwann Cell
+10X26_3:ATAAACACGCAAGG,GABAergic neuron,Schwann Cell
+10X28_5:ATCGCGCTGTGTCA,GABAergic neuron,Schwann Cell
+10X49_4:GCCACGGAGTCTTT,GABAergic neuron,Endothelial
+10X28_4:TCCATCCTAACCGT,GABAergic neuron,Schwann Cell
+10X38_1:GACTGTGATCTCCG,GABAergic neuron,Schwann Cell
+10X52_3:CACACCTGCGCAAT,GABAergic neuron,Beta
+10X57_2:CACGATGATCCCAC,GABAergic neuron,Schwann Cell
 10X52_3:TTTCACGAACCTTT,GABAergic neuron,Schwann Cell
-10X36_1:CAATAAACGACAGG,GABAergic neuron,TAC-1
-10X05_1:CGCTACTGGCTAAC,GABAergic neuron,Multipotent
-10X28_4:TGTCTAACAAGAAC,GABAergic neuron,TAC-1
-10X26_4:TGAGGACTATGACC,GABAergic neuron,TAC-1
-10X38_3:TCTATGTGACGTTG,GABAergic neuron,TAC-1
-10X24_2:GAAACAGATGTTTC,GABAergic neuron,Basal
-10X36_3:TCCGAAGAGTGTCA,GABAergic neuron,TAC-1
-10X38_1:AGTAATACCCACAA,GABAergic neuron,Multipotent
-10X05_4:GGACCCGAGAATCC,GABAergic neuron,Sebaceous Gland
-10X28_5:CTATCAACCCATAG,GABAergic neuron,TAC-1
-10X38_3:TACGGCCTCTTCTA,GABAergic neuron,TAC-1
-10X49_4:GACAACTGCGTAGT,GABAergic neuron,Trunk
-10X38_1:TGAGCAACCTCATT,GABAergic neuron,TAC-1
-10X26_4:TATGGGTGGGTACT,GABAergic neuron,TAC-1
-10X04_4:CGGTAAACATCACG,GABAergic neuron,TAC-1
-10X24_1:ACAAAGGAGAATAG,GABAergic neuron,Basal
-10X38_3:TTCAGACTAACCAC,GABAergic neuron,TAC-1
-10X49_4:TGGAGACTCCCACT,GABAergic neuron,Basal
-10X38_2:ACGCCTTGTCTCCG,GABAergic neuron,Basal
-10X36_2:GCACCACTGCTGAT,GABAergic neuron,Fev+
-10X28_5:GAGTAAGACTGTAG,GABAergic neuron,Basal
-10X52_1:GGCCACGATCCAAG,GABAergic neuron,Trunk
-10X49_1:GGCGACTGCTCGAA,GABAergic neuron,Trunk
-10X07_1:CCAGTCACGACAAA,GABAergic neuron,Basal
-10X07_1:CTTACATGTGCTAG,GABAergic neuron,TAC-1
-10X24_1:TACGATCTTTGTCT,GABAergic neuron,Basal
-10X38_1:AGAGCGGAACGCTA,GABAergic neuron,Basal
-10X28_5:ACACGAACCGTCTC,GABAergic neuron,Basal
-10X49_4:ACCAACGACCTTTA,GABAergic neuron,TAC-1
-10X28_4:CTAAGGACCATTCT,GABAergic neuron,Basal
-10X24_1:GGCGACTGCACAAC,GABAergic neuron,alowCD34+ bulge
-10X49_5:AAGGTGCTTCGATG,GABAergic neuron,Trunk
+10X36_1:CAATAAACGACAGG,GABAergic neuron,Schwann Cell
+10X05_1:CGCTACTGGCTAAC,GABAergic neuron,Schwann Cell
+10X28_4:TGTCTAACAAGAAC,GABAergic neuron,Schwann Cell
+10X26_4:TGAGGACTATGACC,GABAergic neuron,Schwann Cell
+10X38_3:TCTATGTGACGTTG,GABAergic neuron,Beta
+10X24_2:GAAACAGATGTTTC,GABAergic neuron,Schwann Cell
+10X36_3:TCCGAAGAGTGTCA,GABAergic neuron,Delta
+10X38_1:AGTAATACCCACAA,GABAergic neuron,Delta
+10X05_4:GGACCCGAGAATCC,GABAergic neuron,Schwann Cell
+10X28_5:CTATCAACCCATAG,GABAergic neuron,Schwann Cell
+10X38_3:TACGGCCTCTTCTA,GABAergic neuron,Beta
+10X49_4:GACAACTGCGTAGT,GABAergic neuron,Fev+
+10X38_1:TGAGCAACCTCATT,GABAergic neuron,Schwann Cell
+10X26_4:TATGGGTGGGTACT,GABAergic neuron,Schwann Cell
+10X04_4:CGGTAAACATCACG,GABAergic neuron,Fev+
+10X24_1:ACAAAGGAGAATAG,GABAergic neuron,Schwann Cell
+10X38_3:TTCAGACTAACCAC,GABAergic neuron,Schwann Cell
+10X49_4:TGGAGACTCCCACT,GABAergic neuron,Fev+
+10X38_2:ACGCCTTGTCTCCG,GABAergic neuron,Schwann Cell
+10X36_2:GCACCACTGCTGAT,GABAergic neuron,Schwann Cell
+10X28_5:GAGTAAGACTGTAG,GABAergic neuron,Schwann Cell
+10X52_1:GGCCACGATCCAAG,GABAergic neuron,Schwann Cell
+10X49_1:GGCGACTGCTCGAA,GABAergic neuron,Schwann Cell
+10X07_1:CCAGTCACGACAAA,GABAergic neuron,Schwann Cell
+10X07_1:CTTACATGTGCTAG,GABAergic neuron,Beta
+10X24_1:TACGATCTTTGTCT,GABAergic neuron,Beta
+10X38_1:AGAGCGGAACGCTA,GABAergic neuron,Schwann Cell
+10X28_5:ACACGAACCGTCTC,GABAergic neuron,Schwann Cell
+10X49_4:ACCAACGACCTTTA,GABAergic neuron,Schwann Cell
+10X28_4:CTAAGGACCATTCT,GABAergic neuron,Sensitive
+10X24_1:GGCGACTGCACAAC,GABAergic neuron,Schwann Cell
+10X49_5:AAGGTGCTTCGATG,GABAergic neuron,Schwann Cell
 10X38_2:AATGGCTGCCTTAT,GABAergic neuron,Schwann Cell
-10X38_2:AGAATGGAGGAAGC,GABAergic neuron,Infundibulum
-10X49_5:CTACTCCTACGACT,GABAergic neuron,TAC-1
-10X07_1:CACTTAACATCGGT,GABAergic neuron,Trunk
-10X49_4:TAGGGACTACGGTT,GABAergic neuron,TAC-1
-10X26_4:TACGAGTGGTCATG,GABAergic neuron,TAC-1
-10X49_5:CATGTACTTGGTCA,GABAergic neuron,Basal
-10X26_4:CACAGTGAAACGGG,GABAergic neuron,TAC-1
-10X49_5:ATAGGCTGCGAACT,GABAergic neuron,alowCD34+ bulge
-10X43_3:TGATAAACCTGGTA,GABAergic neuron,Basal
-10X36_3:ATGAAACTGGTCAT,GABAergic neuron,Fev+
-10X52_2:AACGTGTGTCAAGC,GABAergic neuron,Basal
-10X49_4:ATTGTAGAGCCATA,GABAergic neuron,Basal
-10X38_3:TGGATGACTCACCC,GABAergic neuron,TAC-1
-10X38_2:CTAATGCTACGACT,GABAergic neuron,Basal
-10X26_3:ATCACGGAGAGGCA,GABAergic neuron,TAC-1
-10X24_2:TAATGCCTCAACCA,GABAergic neuron,Basal
-10X05_2:TAGGTCGAGACAAA,GABAergic neuron,Basal
-10X49_1:ATACCACTTGCTTT,GABAergic neuron,Basal
-10X38_2:CACGAAACAAGCAA,GABAergic neuron,Basal
-10X38_2:AGAAAGTGCTGTCC,GABAergic neuron,Basal
-10X49_2:TTCTCAGAAGGAGC,GABAergic neuron,TAC-1
-10X36_3:ATCATCTGCCTCCA,GABAergic neuron,Basal
-10X49_5:AGGGTGGATTTCAC,GABAergic neuron,Basal
-10X50_4:GTTAAAACGGTGAG,GABAergic neuron,TAC-1
-10X49_5:CTATTGACACAGTC,GABAergic neuron,Infundibulum
-10X28_4:ATCTACTGTCTGGA,GABAergic neuron,TAC-1
-10X20_2:GCCTACACGCTTAG,GABAergic neuron,Basal
-10X07_1:AAATCTGAGGAGGT,GABAergic neuron,TAC-1
-10X38_2:ATTGCACTCCGATA,GABAergic neuron,TAC-1
-10X28_5:CGTTAACTCCGCTT,GABAergic neuron,Basal
-10X35_1:GCATTGGATGTTTC,GABAergic neuron,Basal
-10X38_2:GGCTAATGGTGCTA,GABAergic neuron,Basal
-10X38_2:GTAATAACAAGTGA,GABAergic neuron,Basal
-10X52_5:CAACGATGATGACC,GABAergic neuron,TAC-1
-10X38_2:GGCGACTGCCATAG,GABAergic neuron,Trunk
-10X52_1:TTAGTCTGTCGCAA,GABAergic neuron,Basal
-10X24_1:GTGATCGATCCCGT,GABAergic neuron,TAC-1
-10X49_4:CGCGAGACGGAGCA,GABAergic neuron,Basal
-10X38_2:TCGACGCTCGCTAA,GABAergic neuron,Basal
-10X50_5:ATTTAGGACACTCC,GABAergic neuron,Fev+
-10X24_2:TGCGAAACCGGTAT,GABAergic neuron,TAC-1
-10X50_4:ACACGAACTGGAGG,GABAergic neuron,Trunk
-10X52_5:GGTCTAGAGACGTT,GABAergic neuron,Basal
-10X38_1:GTGTACGAGCGAAG,GABAergic neuron,Fev+
-10X52_2:ACCCGTACAACCAC,GABAergic neuron,TAC-1
-10X22_3:TATACGCTACGTTG,astrocyte,Basal
-10X52_6:GCAATTCTGGTGGA,astrocyte,Basal
-10X56_6:TGATATGAGTTCTT,astrocyte,Basal
-10X52_7:CATTGTTGGACGGA,astrocyte,TAC-1
-10X20_1:GACGTAACGGACTT,astrocyte,Basal
-10X52_2:GGCCGATGGGTCTA,astrocyte,Basal
-10X28_2:ACTTAAGACCAATG,astrocyte,TAC-1
-10X20_3:GACCTCTGGCTTAG,astrocyte,Basal
-10X24_4:GTACCCTGCCTTGC,astrocyte,Basal
-10X04_2:CCAGCTACTAGCGT,astrocyte,Bas109
-10X48_4:TCACCGTGTCCAAG,astrocyte,Basal
-10X53_2:AATAACACGAGGCA,astrocyte,TAC-1
-10X56_6:TCCGAAGATGTCTT,astrocyte,Basal
-10X22_3:CCCAGACTTTCTAC,astrocyte,Trunk
-10X51_1:ACTGTGGAGTATGC,astrocyte,Basal
-10X57_1:ATATACGAGAACCT,astrocyte,TAC-1
-10X22_2:TATTTCCTGTAGCT,astrocyte,Trunk
-10X28_4:GTGATTCTTGCTCC,astrocyte,TAC-1
-10X24_1:GAATGGCTCATGGT,astrocyte,Trunk
-10X52_1:TCCCATCTAGCCTA,astrocyte,Basal
-10X48_1:CCGCGAGATTGACG,astrocyte,Trunk
-10X04_1:ACCCAGCTTGCTTT,astrocyte,Basal
-10X48_1:CTTATCGAAAGGGC,astrocyte,Basal
-10X20_2:CAGATCGAAACGAA,astrocyte,Trunk
-10X28_3:CAGCTCTGAAGGGC,astrocyte,TAC-1
-10X48_3:CAGCGGACAAGGGC,astrocyte,Basal
-10X48_3:CAGGTATGCTGCAA,astrocyte,Basal
-10X20_2:GGTATGACTCTAGG,astrocyte,Basal
-10X52_2:GTCATACTACCACA,astrocyte,Basal
-10X24_3:CGATACGAGGAGTG,astrocyte,Basal
-10X51_1:AGCGATACCCTTCG,astrocyte,Basal
-10X52_3:TAGGTCGATATGGC,astrocyte,Trunk
-10X46_1:CGTGAATGCTGATG,astrocyte,Basal
-10X04_1:TTCTTACTGTTTCT,astrocyte,Basal
-10X52_2:TATTTCCTTCTCTA,astrocyte,TAC-1
-10X22_3:CGTAACGATGGTCA,astrocyte,Basal
-10X28_3:AGGGCGCTTGACTG,astrocyte,Trunk
-10X20_1:ACAATTGACTTTAC,astrocyte,Trunk
-10X57_7:CAGACCCTTGCTAG,astrocyte,Basal
+10X38_2:AGAATGGAGGAAGC,GABAergic neuron,Schwann Cell
+10X49_5:CTACTCCTACGACT,GABAergic neuron,Schwann Cell
+10X07_1:CACTTAACATCGGT,GABAergic neuron,Schwann Cell
+10X49_4:TAGGGACTACGGTT,GABAergic neuron,Schwann Cell
+10X26_4:TACGAGTGGTCATG,GABAergic neuron,Schwann Cell
+10X49_5:CATGTACTTGGTCA,GABAergic neuron,Schwann Cell
+10X26_4:CACAGTGAAACGGG,GABAergic neuron,Schwann Cell
+10X49_5:ATAGGCTGCGAACT,GABAergic neuron,Delta
+10X43_3:TGATAAACCTGGTA,GABAergic neuron,Beta
+10X36_3:ATGAAACTGGTCAT,GABAergic neuron,Schwann Cell
+10X52_2:AACGTGTGTCAAGC,GABAergic neuron,Schwann Cell
+10X49_4:ATTGTAGAGCCATA,GABAergic neuron,Schwann Cell
+10X38_3:TGGATGACTCACCC,GABAergic neuron,Schwann Cell
+10X38_2:CTAATGCTACGACT,GABAergic neuron,Delta
+10X26_3:ATCACGGAGAGGCA,GABAergic neuron,Schwann Cell
+10X24_2:TAATGCCTCAACCA,GABAergic neuron,Schwann Cell
+10X05_2:TAGGTCGAGACAAA,GABAergic neuron,Gamma
+10X49_1:ATACCACTTGCTTT,GABAergic neuron,Delta
+10X38_2:CACGAAACAAGCAA,GABAergic neuron,Schwann Cell
+10X38_2:AGAAAGTGCTGTCC,GABAergic neuron,Schwann Cell
+10X49_2:TTCTCAGAAGGAGC,GABAergic neuron,Schwann Cell
+10X36_3:ATCATCTGCCTCCA,GABAergic neuron,Schwann Cell
+10X49_5:AGGGTGGATTTCAC,GABAergic neuron,Schwann Cell
+10X50_4:GTTAAAACGGTGAG,GABAergic neuron,Schwann Cell
+10X49_5:CTATTGACACAGTC,GABAergic neuron,Schwann Cell
+10X28_4:ATCTACTGTCTGGA,GABAergic neuron,Ngn3 high EP
+10X20_2:GCCTACACGCTTAG,GABAergic neuron,Schwann Cell
+10X07_1:AAATCTGAGGAGGT,GABAergic neuron,Schwann Cell
+10X38_2:ATTGCACTCCGATA,GABAergic neuron,Schwann Cell
+10X28_5:CGTTAACTCCGCTT,GABAergic neuron,Schwann Cell
+10X35_1:GCATTGGATGTTTC,GABAergic neuron,Alpha
+10X38_2:GGCTAATGGTGCTA,GABAergic neuron,Delta
+10X38_2:GTAATAACAAGTGA,GABAergic neuron,Alpha
+10X52_5:CAACGATGATGACC,GABAergic neuron,Schwann Cell
+10X38_2:GGCGACTGCCATAG,GABAergic neuron,Schwann Cell
+10X52_1:TTAGTCTGTCGCAA,GABAergic neuron,Beta
+10X24_1:GTGATCGATCCCGT,GABAergic neuron,Schwann Cell
+10X49_4:CGCGAGACGGAGCA,GABAergic neuron,Schwann Cell
+10X38_2:TCGACGCTCGCTAA,GABAergic neuron,Schwann Cell
+10X50_5:ATTTAGGACACTCC,GABAergic neuron,Schwann Cell
+10X24_2:TGCGAAACCGGTAT,GABAergic neuron,Schwann Cell
+10X50_4:ACACGAACTGGAGG,GABAergic neuron,Schwann Cell
+10X52_5:GGTCTAGAGACGTT,GABAergic neuron,Schwann Cell
+10X38_1:GTGTACGAGCGAAG,GABAergic neuron,Beta
+10X52_2:ACCCGTACAACCAC,GABAergic neuron,Schwann Cell
+10X22_3:TATACGCTACGTTG,astrocyte,Ductal
+10X52_6:GCAATTCTGGTGGA,astrocyte,Schwann Cell
+10X56_6:TGATATGAGTTCTT,astrocyte,Schwann Cell
+10X52_7:CATTGTTGGACGGA,astrocyte,Schwann Cell
+10X20_1:GACGTAACGGACTT,astrocyte,Schwann Cell
+10X52_2:GGCCGATGGGTCTA,astrocyte,Ductal
+10X28_2:ACTTAAGACCAATG,astrocyte,Ductal
+10X20_3:GACCTCTGGCTTAG,astrocyte,Ductal
+10X24_4:GTACCCTGCCTTGC,astrocyte,Ductal
+10X04_2:CCAGCTACTAGCGT,astrocyte,Schwann Cell
+10X48_4:TCACCGTGTCCAAG,astrocyte,Schwann Cell
+10X53_2:AATAACACGAGGCA,astrocyte,K6+ Bulge Companion Layer
+10X56_6:TCCGAAGATGTCTT,astrocyte,Schwann Cell
+10X22_3:CCCAGACTTTCTAC,astrocyte,Schwann Cell
+10X51_1:ACTGTGGAGTATGC,astrocyte,Schwann Cell
+10X57_1:ATATACGAGAACCT,astrocyte,Schwann Cell
+10X22_2:TATTTCCTGTAGCT,astrocyte,Schwann Cell
+10X28_4:GTGATTCTTGCTCC,astrocyte,Ductal
+10X24_1:GAATGGCTCATGGT,astrocyte,Schwann Cell
+10X52_1:TCCCATCTAGCCTA,astrocyte,Ductal
+10X48_1:CCGCGAGATTGACG,astrocyte,Schwann Cell
+10X04_1:ACCCAGCTTGCTTT,astrocyte,Schwann Cell
+10X48_1:CTTATCGAAAGGGC,astrocyte,Schwann Cell
+10X20_2:CAGATCGAAACGAA,astrocyte,Ductal
+10X28_3:CAGCTCTGAAGGGC,astrocyte,Schwann Cell
+10X48_3:CAGCGGACAAGGGC,astrocyte,Schwann Cell
+10X48_3:CAGGTATGCTGCAA,astrocyte,Schwann Cell
+10X20_2:GGTATGACTCTAGG,astrocyte,Schwann Cell
+10X52_2:GTCATACTACCACA,astrocyte,Schwann Cell
+10X24_3:CGATACGAGGAGTG,astrocyte,Schwann Cell
+10X51_1:AGCGATACCCTTCG,astrocyte,Schwann Cell
+10X52_3:TAGGTCGATATGGC,astrocyte,Schwann Cell
+10X46_1:CGTGAATGCTGATG,astrocyte,Ductal
+10X04_1:TTCTTACTGTTTCT,astrocyte,Schwann Cell
+10X52_2:TATTTCCTTCTCTA,astrocyte,Ductal
+10X22_3:CGTAACGATGGTCA,astrocyte,Ductal
+10X28_3:AGGGCGCTTGACTG,astrocyte,Ductal
+10X20_1:ACAATTGACTTTAC,astrocyte,Schwann Cell
+10X57_7:CAGACCCTTGCTAG,astrocyte,Schwann Cell
 10X51_1:GGCGACTGCTGTAG,astrocyte,Basal
-10X20_2:GTTACTACAACGTC,astrocyte,Basal
-10X52_2:TAACAATGTGCATG,astrocyte,Basal
-10X26_4:GTCTAACTAGTCAC,astrocyte,TAC-1
-10X48_4:GTAGCCCTTGCCAA,astrocyte,TAC-1
-10X52_4:CGCTAAGAACCTGA,astrocyte,TAC-1
-10X51_4:AATGGAGAACGTAC,astrocyte,TAC-1
-10X19_2:CCTGACTGCATCAG,astrocyte,Basal
-10X49_4:TTTAGAGATTCTAC,astrocyte,TAC-1
-10X49_5:AAGCGTACCTTGGA,astrocyte,Basal
-10X24_3:AACAATACACGTAC,astrocyte,Trunk
-10X33_2:CGATCCACTTTGTC,astrocyte,Basal
-10X28_4:ATATGCCTGTACGT,astrocyte,Basal
-10X51_2:TGAAGCACTCCTGC,astrocyte,Basal
-10X48_4:CCTGCAACCAGGAG,astrocyte,Basal
-10X04_2:CCTGGACTCACAAC,astrocyte,Basal
-10X52_1:ATAGATACAGCCAT,astrocyte,TAC-1
-10X49_3:CGGCGAACTCTACT,astrocyte,TAC-1
-10X50_2:ACACCCTGGGTCAT,astrocyte,Trunk
-10X52_6:TTATTCCTTGCTTT,astrocyte,Basal
-10X26_2:GCAAACTGCATTCT,astrocyte,Basal
-10X22_3:CGCTACACTGCGTA,astrocyte,Trunk
-10X20_2:GAGTCTGAATTCCT,astrocyte,Basal
-10X20_1:ATCGACGACATGCA,astrocyte,Trunk
-10X49_4:ATCTACACAAGTAG,astrocyte,Infundibulum
-10X52_2:ATTGTAGACAGATC,astrocyte,Basal
-10X20_1:GACGTCCTTACGAC,astrocyte,Trunk
-10X52_3:CTCCTACTGGAGGT,astrocyte,TAC-1
-10X02_1:CGCACTTGTCCTCG,astrocyte,Trunk
-10X04_4:GTCGACCTAGTCTG,astrocyte,Ngn3 low EP
-10X33_3:GGTATCGAGTCTGA,astrocyte,Trunk
-10X48_3:TAACGTCTCAGTCA,astrocyte,TAC-1
-10X49_4:TAAGAGGAGGACAG,astrocyte,Basal
-10X52_5:TGCGTAGACTAGTG,astrocyte,Trunk
-10X24_2:CTAGGCCTAGTACC,astrocyte,Basal
-10X22_3:CATCATACAAGAAC,astrocyte,Basal
-10X22_3:GCGAGAGAGGGAGT,astrocyte,Basal
-10X48_3:GCTTGAGATAGTCG,astrocyte,Basal
-10X34_4:AGAATGGATTCACT,astrocyte,TAC-1
-10X49_5:GGATTGTGGACTAC,astrocyte,Basal
-10X22_3:TAAGCGTGCTGTCC,astrocyte,Basal
-10X22_4:TACGCGCTAAGAAC,astrocyte,TAC-1
-10X20_2:GTGGATTGTGCACA,astrocyte,Trunk
-10X52_5:CTGAGCCTTCATTC,astrocyte,Basal
-10X51_2:AAACATTGCCGCTT,astrocyte,Basal
-10X81_3:AGGCCTCGAATGGG,Enteric glia,Trunk
-10X81_1:CGTTGGTGGTACAG,Enteric glia,Trunk
-10X81_3:TTACCTCGTGGTCG,Enteric glia,Trunk
-10X81_3:TGAGGGTAAGTGTA,Enteric glia,Trunk
-10X81_1:TCTACTCAACGCTA-1,Enteric glia,Schwann Cell
-10X81_1:GCTGGGTAATCGTC,Enteric glia,Trunk
-10X81_2:CTACCAGCCGTCGT,Enteric glia,Trunk
-10X81_3:AGCCAAGAAGATTC,Enteric glia,Basal
-10X82_2:TACTCAGGCGATAC,Enteric glia,Trunk
-10X82_2:TGAGCGTAAGTGTA,Enteric glia,Basal
-10X82_2:TGAAGTCTGTCTCG,Enteric glia,Trunk
-10X81_1:ACATCTCTCGCATC,Enteric glia,Trunk
-10X81_1:ATCAGTCCTTCAAT,Enteric glia,Basal
-10X81_1:AGACCGTTGGTAAA,Enteric glia,Trunk
-10X82_2:AGGTACACGAGAGT,Enteric glia,Trunk
-10X81_1:GGGAGGTTATGTGC,Enteric glia,Trunk
-10X81_2:ATGTAGTAGGGTAC,Enteric glia,Trunk
+10X20_2:GTTACTACAACGTC,astrocyte,Schwann Cell
+10X52_2:TAACAATGTGCATG,astrocyte,Schwann Cell
+10X26_4:GTCTAACTAGTCAC,astrocyte,Schwann Cell
+10X48_4:GTAGCCCTTGCCAA,astrocyte,Schwann Cell
+10X52_4:CGCTAAGAACCTGA,astrocyte,Schwann Cell
+10X51_4:AATGGAGAACGTAC,astrocyte,Ductal
+10X19_2:CCTGACTGCATCAG,astrocyte,Ductal
+10X49_4:TTTAGAGATTCTAC,astrocyte,Schwann Cell
+10X49_5:AAGCGTACCTTGGA,astrocyte,Ductal
+10X24_3:AACAATACACGTAC,astrocyte,Schwann Cell
+10X33_2:CGATCCACTTTGTC,astrocyte,Schwaroughn Cell
+10X28_4:ATATGCCTGTACGT,astrocyte,Ductal
+10X51_2:TGAAGCACTCCTGC,astrocyte,K6+ Bulge Companion Layer
+10X48_4:CCTGCAACCAGGAG,astrocyte,Ductal
+10X04_2:CCTGGACTCACAAC,astrocyte,Schwann Cell
+10X52_1:ATAGATACAGCCAT,astrocyte,Schwann Cell
+10X49_3:CGGCGAACTCTACT,astrocyte,Resistant
+10X50_2:ACACCCTGGGTCAT,astrocyte,Schwann Cell
+10X52_6:TTATTCCTTGCTTT,astrocyte,Schwann Cell
+10X26_2:GCAAACTGCATTCT,astrocyte,Schwann Cell
+10X22_3:CGCTACACTGCGTA,astrocyte,Ductal
+10X20_2:GAGTCTGAATTCCT,astrocyte,Schwann Cell
+10X20_1:ATCGACGACATGCA,astrocyte,Ductal
+10X49_4:ATCTACACAAGTAG,astrocyte,Schwann Cell
+10X52_2:ATTGTAGACAGATC,astrocyte,Ductal
+10X20_1:GACGTCCTTACGAC,astrocyte,Schwann Cell
+10X52_3:CTCCTACTGGAGGT,astrocyte,Ductal
+10X02_1:CGCACTTGTCCTCG,astrocyte,Ductal
+10X04_4:GTCGACCTAGTCTG,astrocyte,Ductal
+10X33_3:GGTATCGAGTCTGA,astrocyte,Schwann Cell
+10X48_3:TAACGTCTCAGTCA,astrocyte,Schwann Cell
+10X49_4:TAAGAGGAGGACAG,astrocyte,Schwann Cell
+10X52_5:TGCGTAGACTAGTG,astrocyte,Schwann Cell
+10X24_2:CTAGGCCTAGTACC,astrocyte,Schwann Cell
+10X22_3:CATCATACAAGAAC,astrocyte,Schwann Cell
+10X22_3:GCGAGAGAGGGAGT,astrocyte,Schwann Cell
+10X48_3:GCTTGAGATAGTCG,astrocyte,Ductal
+10X34_4:AGAATGGATTCACT,astrocyte,Schwann Cell
+10X49_5:GGATTGTGGACTAC,astrocyte,Ductal
+10X22_3:TAAGCGTGCTGTCC,astrocyte,Ductal
+10X22_4:TACGCGCTAAGAAC,astrocyte,Schwann Cell
+10X20_2:GTGGATTGTGCACA,astrocyte,Ductal
+10X52_5:CTGAGCCTTCATTC,astrocyte,Schwann Cell
+10X51_2:AAACATTGCCGCTT,astrocyte,Schwann Cell
+10X81_3:AGGCCTCGAATGGG,Enteric glia,Schwann Cell
+10X81_1:CGTTGGTGGTACAG,Enteric glia,Ductal
+10X81_3:TTACCTCGTGGTCG,Enteric glia,Schwann Cell
+10X81_3:TGAGGGTAAGTGTA,Enteric glia,Schwann Cell
+10X81_1:TCTACTCAACGCTA-1,Enteric glia,Ngn3 low EP
+10X81_1:GCTGGGTAATCGTC,Enteric glia,Schwann Cell
+10X81_2:CTACCAGCCGTCGT,Enteric glia,Schwann Cell
+10X81_3:AGCCAAGAAGATTC,Enteric glia,Schwann Cell
+10X82_2:TACTCAGGCGATAC,Enteric glia,Schwann Cell
+10X82_2:TGAGCGTAAGTGTA,Enteric glia,Trunk
+10X82_2:TGAAGTCTGTCTCG,Enteric glia,Schwann Cell
+10X81_1:ACATCTCTCGCATC,Enteric glia,Schwann Cell
+10X81_1:ATCAGTCCTTCAAT,Enteric glia,Ngn3 low EP
+10X81_1:AGACCGTTGGTAAA,Enteric glia,Schwann Cell
+10X82_2:AGGTACACGAGAGT,Enteric glia,Schwann Cell
+10X81_1:GGGAGGTTATGTGC,Enteric glia,Ngn3 low EP
+10X81_2:ATGTAGTAGGGTAC,Enteric glia,Ductal
 10X81_1:CCATGTCCGCAAGC,Enteric glia,Schwann Cell
-10X82_2:TACCGGTTCTGGTA,Enteric glia,Trunk
-10X81_1:TATTACATCGTCGG,Enteric glia,Trunk
-10X81_3:GAGAGAGGCTAGCA,Enteric glia,Trunk
-10X81_2:GAGGGCACACCGCA,Enteric glia,Basal
-10X82_2:AATGTGTCATCGGC,Enteric glia,Trunk
-10X81_2:AACGTGTTATTCTC,Enteric glia,Basal
-10X81_2:GCTAGCAAATTGCC,Enteric glia,Trunk
-10X81_1:GCGATTCACAATGC,Enteric glia,Trunk
-10X81_3:CAGAACAATCGGTT,Enteric glia,Basal
-10X82_2:ACCTATCACTATTC,Enteric glia,Schwann Cell
-10X81_1:GACTTCATACTACG,Enteric glia,Fev+
-10X81_2:AGCCAGTACAGTGG,Enteric glia,Trunk
-10X81_2:TCTAAAGCGTTTAC,Enteric glia,Trunk
-10X26_3:GTATGGTGGCGAGA,Microglia,Basal
-10X22_2:GTAGTCGATTCTTG,Microglia,Basal
-10X52_5:TGCACGCTTGATGC,Microglia,Basal
-10X53_4:ACGGTCCTTGCGTA,Microglia,Trunk
-10X28_5:GGCCCAGAGAATCC,Microglia,Schwann Cell
-10X22_2:GTCCCATGTACGCA,Microglia,Basal
-10X19_2:ATTGGTCTTCCTCG,Microglia,Tip
-10X22_4:AATGATACGCGAGA,Microglia,Basal
-10X26_3:CATCTTGAAGAGGC,Microglia,Trunk
-10X19_2:AGCCAATGTGTGCA,Microglia,Tip
-10X57_2:GTGAACACAGGTCT,Microglia,Basal
-10X02_1:CCTAAGGACTGAAC,Microglia,Basal
-10X53_5:GGCTACCTGCCTTC,Microglia,Basal
-10X49_1:CCGGAGACTTCGCC,Microglia,Basal
-10X57_4:ACGCCTTGTATCTC,Microglia,Basal
-10X24_1:TTCATCGATTCCGC,Microglia,Basal
-10X49_3:CATAACCTTTGGTG,Microglia,Basal
-10X26_3:TCTTGATGACGACT,Microglia,TAC-1
-10X53_4:TAGTACCTCCCTCA,Microglia,Basal
-10X02_1:ACTTGGGATGCTCC,Microglia,TAC-1
-10X20_4:GCCGACGAGGTGGA,Microglia,Basal
-10X50_4:GTGATCGAAGGAGC,Microglia,Trunk
-10X22_2:GGACATTGAGGTCT,Microglia,TAC-1
-10X35_2:AACGCAACCTGGTA,Microglia,Trunk
-10X49_3:AGGCTAACGTAGGG,Microglia,Basal
-10X51_4:GCACCACTAAGAAC,Microglia,Basal
-10X49_5:CGGTAAACCTAGCA,neuroblast (sensu Vertebrata),Fev+
-10X49_4:TACGAGACCCCAAA,neuroblast (sensu Vertebrata),Basal
-10X04_4:TCTAACTGCAGCTA,neuroblast (sensu Vertebrata),Trunk
-10X46_1:AAAGCAGAGGACAG,neuroblast (sensu Vertebrata),Basal
-10X49_4:TTGTAGCTCCTCGT,neuroblast (sensu Vertebrata),Basal
-10X28_5:GACTGAACGAGCTT,neuroblast (sensu Vertebrata),Trunk
-10X26_3:TTTGCATGCATGCA,neuroblast (sensu Vertebrata),Trunk
-10X20_1:TTACTCGACATGAC,neuroblast (sensu Vertebrata),Trunk
-10X54_3:GAAGGAGAGTGACC,neuroblast (sensu Vertebrata),TAC-1
-10X22_4:ACGCCTTGCTTCCG,neuroblast (sensu Vertebrata),Trunk
+10X82_2:TACCGGTTCTGGTA,Enteric glia,Ductal
+10X81_1:TATTACATCGTCGG,Enteric glia,Ductal
+10X81_3:GAGAGAGGCTAGCA,Enteric glia,Schwann Cell
+10X81_2:GAGGGCACACCGCA,Enteric glia,Schwann Cell
+10X82_2:AATGTGTCATCGGC,Enteric glia,Schwann Cell
+10X81_2:AACGTGTTATTCTC,Enteric glia,Schwann Cell
+10X81_2:GCTAGCAAATTGCC,Enteric glia,Schwann Cell
+10X81_1:GCGATTCACAATGC,Enteric glia,Schwann Cell
+10X81_3:CAGAACAATCGGTT,Enteric glia,Trunk
+10X82_2:ACCTATCACTATTC,Enteric glia,Trunk
+10X81_1:GACTTCATACTACG,Enteric glia,PSC
+10X81_2:AGCCAGTACAGTGG,Enteric glia,Schwann Cell
+10X81_2:TCTAAAGCGTTTAC,Enteric glia,Schwann Cell
+10X26_3:GTATGGTGGCGAGA,Microglia,Macrophage
+10X22_2:GTAGTCGATTCTTG,Microglia,Macrophage
+10X52_5:TGCACGCTTGATGC,Microglia,Macrophage
+10X53_4:ACGGTCCTTGCGTA,Microglia,Macrophage
+10X28_5:GGCCCAGAGAATCC,Microglia,Macrophage
+10X22_2:GTCCCATGTACGCA,Microglia,Macrophage
+10X19_2:ATTGGTCTTCCTCG,Microglia,Macrophage DC
+10X22_4:AATGATACGCGAGA,Microglia,Macrophagereprendre
+10X26_3:CATCTTGAAGAGGC,Microglia,Macrophage
+10X19_2:AGCCAATGTGTGCA,Microglia,Macrophage
+10X57_2:GTGAACACAGGTCT,Microglia,Macrophage DC
+10X02_1:CCTAAGGACTGAAC,Microglia,Macrophage DC
+10X53_5:GGCTACCTGCCTTC,Microglia,Macrophage
+10X49_1:CCGGAGACTTCGCC,Microglia,Macrophage DC
+10X57_4:ACGCCTTGTATCTC,Microglia,Macrophage
+10X24_1:TTCATCGATTCCGC,Microglia,Macrophage
+10X49_3:CATAACCTTTGGTG,Microglia,Macrophage
+10X26_3:TCTTGATGACGACT,Microglia,Macrophage
+10X53_4:TAGTACCTCCCTCA,Microglia,Macrophage
+10X02_1:ACTTGGGATGCTCC,Microglia,Macrophage DC
+10X20_4:GCCGACGAGGTGGA,Microglia,Macrophage DC
+10X50_4:GTGATCGAAGGAGC,Microglia,Ductal
+10X22_2:GGACATTGAGGTCT,Microglia,Macrophage
+10X35_2:AACGCAACCTGGTA,Microglia,Macrophage
+10X49_3:AGGCTAACGTAGGG,Microglia,Macrophage DC
+10X51_4:GCACCACTAAGAAC,Microglia,Macrophage
+10X49_5:CGGTAAACCTAGCA,neuroblast (sensu Vertebrata),Schwann Cell
+10X49_4:TACGAGACCCCAAA,neuroblast (sensu Vertebrata),Multipotent
+10X04_4:TCTAACTGCAGCTA,neuroblast (sensu Vertebrata),TAC-1
+10X46_1:AAAGCAGAGGACAG,neuroblast (sensu Vertebrata),Schwann Cell
+10X49_4:TTGTAGCTCCTCGT,neuroblast (sensu Vertebrata),Fev+
+10X28_5:GACTGAACGAGCTT,neuroblast (sensu Vertebrata),Schwann Cell
+10X26_3:TTTGCATGCATGCA,neuroblast (sensu Vertebrata),TAC-1
+10X20_1:TTACTCGACATGAC,neuroblast (sensu Vertebrata),B Cell
+10X54_3:GAAGGAGAGTGACC,neuroblast (sensu Vertebrata),Fev+
+10X22_4:ACGCCTTGCTTCCG,neuroblast (sensu Vertebrata),Schwann Cell
 10X34_2:TTCTGATGGTGTAC,neuroblast (sensu Vertebrata),Trunk
-10X46_1:CCAGTCACTTTCGT,neuroblast (sensu Vertebrata),Trunk
+10X46_1:CCAGTCACTTTCGT,neuroblast (sensu Vertebrata),Sensitive
 10X49_5:GATTTGCTCGTCTC,neuroblast (sensu Vertebrata),Trunk
-10X22_4:TATCTGACGGCAAG,neuroblast (sensu Vertebrata),Basal
-10X49_1:CCGGAGACATCAGC,neuroblast (sensu Vertebrata),Basal
-10X22_3:GTGAGGGATCTTCA,neuroblast (sensu Vertebrata),Multipotent
-10X04_4:TTCATGTGTTCCAT,neuroblast (sensu Vertebrata),Basal
-10X43_1:ATTCTTCTATCTCT,neuroblast (sensu Vertebrata),Multipotent
-10X28_4:AAATCAACGCGAGA,neuroblast (sensu Vertebrata),Trunk
+10X22_4:TATCTGACGGCAAG,neuroblast (sensu Vertebrata),Schwann Cell
+10X49_1:CCGGAGACATCAGC,neuroblast (sensu Vertebrata),Schwann Cell
+10X22_3:GTGAGGGATCTTCA,neuroblast (sensu Vertebrata),Schwann Cell
+10X04_4:TTCATGTGTTCCAT,neuroblast (sensu Vertebrata),T Cell
+10X43_1:ATTCTTCTATCTCT,neuroblast (sensu Vertebrata),Schwann Cell
+10X28_4:AAATCAACGCGAGA,neuroblast (sensu Vertebrata),Schwann Cell
 10X04_1:AAACATTGATTCTC,neuroblast (sensu Vertebrata),Trunk
-10X43_1:ATGCACGAGCTACA,neuroblast (sensu Vertebrata),Basal
-10X28_5:TAGGAGCTGTTGTG,neuroblast (sensu Vertebrata),TAC-1
-10X28_4:CTATAAGATGCCTC,neuroblast (sensu Vertebrata),Trunk
-10X22_3:TGTGAGTGCCTCGT,neuroblast (sensu Vertebrata),Trunk
-10X54_7:AGCGTTCGTTTAGG,neuroblast (sensu Vertebrata),Basal
-10X24_1:TCTAAGCTCCCTCA,neuroblast (sensu Vertebrata),Trunk
-10X52_4:AGAATTTGAGTACC,pericyte,Delta
-10X50_7:CACCTGACAGGAGC,pericyte,Trunk
-10X26_3:AATCCTACATTGGC,pericyte,Trunk
-10X53_3:CAAATATGGCGGAA,pericyte,Basal
-10X52_4:GACGGCACACGTGT,pericyte,Trunk
-10X50_8:CATAAAACGTCACA,pericyte,Basal
-10X43_3:TATAGATGTTTCGT,pericyte,Schwann Cell
-10X53_6:GTAAGCACATTCTC,pericyte,Basal
-10X53_4:CAACGATGTAACCG,pericyte,Delta
-10X20_1:CATAAATGAAGATG,pericyte,Trunk
-10X50_6:TTTGACTGTCGACA,pericyte,Basal
-10X53_6:GGGCAGCTAAGTGA,pericyte,Basal
-10X20_2:CCATCCGATTGTCT,pericyte,TAC-1
-10X48_1:AGTCGAACTTTGCT,pericyte,Schwann Cell
-10X53_4:GTGAACACAAGGGC,pericyte,Basal
-10X36_1:GCGAGCACTGCCCT,pericyte,Basal
-10X48_3:ATAACCCTACTCAG,pericyte,Trunk
-10X52_6:GCGAAGGAGGGAGT,pericyte,Trunk
-10X20_2:CGGAATTGTACGAC,pericyte,Basal
-10X50_7:GCGAGCACCTTCTA,pericyte,Basal
-10X24_3:CCACCTGAGTTCTT,pericyte,Trunk
-10X36_3:GGCCACGAGAAGGC,pericyte,Schwann Cell
-10X52_6:TCCCGATGTCAAGC,pericyte,Basal
-10X22_1:CGAGAACTAGACTC,pericyte,Delta
-10X57_2:CCAAAGTGGAGAGC,pericyte,Schwann Cell
-10X22_3:ACAAGAGAGTCAAC,dentate gyrus granule cell,TAC-1
-10X22_3:CATACTACCTTCGC,dentate gyrus granule cell,Trunk
-10X46_1:CAAACTCTTTCGTT,dentate gyrus granule cell,Trunk
-10X46_1:GCCACTACTCGCTC,dentate gyrus granule cell,Trunk
-10X46_1:TAGTAATGCCCAAA,dentate gyrus granule cell,TAC-1
-10X46_1:TCAGCGCTCGGAGA,dentate gyrus granule cell,TAC-1
-10X22_3:GAGGATCTCTTGTT,dentate gyrus granule cell,Trunk
-10X43_1:AACATTGACAACTG,dentate gyrus granule cell,Trunk
-10X46_1:GGATGTACAGGAGC,dentate gyrus granule cell,TAC-1
-10X46_1:TGGACTGAGTTACG,dentate gyrus granule cell,TAC-1
+10X43_1:ATGCACGAGCTACA,neuroblast (sensu Vertebrata),TAC-1
+10X28_5:TAGGAGCTGTTGTG,neuroblast (sensu Vertebrata),Fev+
+10X28_4:CTATAAGATGCCTC,neuroblast (sensu Vertebrata),Fev+
+10X22_3:TGTGAGTGCCTCGT,neuroblast (sensu Vertebrata),Schwann Cell
+10X54_7:AGCGTTCGTTTAGG,neuroblast (sensu Vertebrata),Schwann Cell
+10X24_1:TCTAAGCTCCCTCA,neuroblast (sensu Vertebrata),Ngn3 high EP
+10X52_4:AGAATTTGAGTACC,pericyte,Endothelial
+10X50_7:CACCTGACAGGAGC,pericyte,Endothelial
+10X26_3:AATCCTACATTGGC,pericyte,Endothelial
+10X53_3:CAAATATGGCGGAA,pericyte,Endothelial
+10X52_4:GACGGCACACGTGT,pericyte,Endothelial
+10X50_8:CATAAAACGTCACA,pericyte,Endothelial
+10X43_3:TATAGATGTTTCGT,pericyte,Endothelial
+10X53_6:GTAAGCACATTCTC,pericyte,Endothelial
+10X53_4:CAACGATGTAACCG,pericyte,Endothelial
+10X20_1:CATAAATGAAGATG,pericyte,Endothelial
+10X50_6:TTTGACTGTCGACA,pericyte,Ductal
+10X53_6:GGGCAGCTAAGTGA,pericyte,Endothelial
+10X20_2:CCATCCGATTGTCT,pericyte,Endothelial
+10X48_1:AGTCGAACTTTGCT,pericyte,Endothelial
+10X53_4:GTGAACACAAGGGC,pericyte,Endothelial
+10X36_1:GCGAGCACTGCCCT,pericyte,Endothelial
+10X48_3:ATAACCCTACTCAG,pericyte,Endothelial
+10X52_6:GCGAAGGAGGGAGT,pericyte,Endothelial
+10X20_2:CGGAATTGTACGAC,pericyte,Endothelial Cell
+10X50_7:GCGAGCACCTTCTA,pericyte,Endothelial
+10X24_3:CCACCTGAGTTCTT,pericyte,Endothelial
+10X36_3:GGCCACGAGAAGGC,pericyte,Endothelial
+10X52_6:TCCCGATGTCAAGC,pericyte,Endothelial
+10X22_1:CGAGAACTAGACTC,pericyte,Endothelial
+10X57_2:CCAAAGTGGAGAGC,pericyte,Endothelial
+10X22_3:ACAAGAGAGTCAAC,dentate gyrus granule cell,Schwann Cell
+10X22_3:CATACTACCTTCGC,dentate gyrus granule cell,Schwann Cell
+10X46_1:CAAACTCTTTCGTT,dentate gyrus granule cell,Ductal
+10X46_1:GCCACTACTCGCTC,dentate gyrus granule cell,Schwann Cell
+10X46_1:TAGTAATGCCCAAA,dentate gyrus granule cell,Schwann Cell
+10X46_1:TCAGCGCTCGGAGA,dentate gyrus granule cell,Schwann Cell
+10X22_3:GAGGATCTCTTGTT,dentate gyrus granule cell,Schwann Cell
+10X43_1:AACATTGACAACTG,dentate gyrus granule cell,Ductal
+10X46_1:GGATGTACAGGAGC,dentate gyrus granule cell,Trunk
+10X46_1:TGGACTGAGTTACG,dentate gyrus granule cell,Schwann Cell
 10X22_4:GTGATTCTCTAGTG,dentate gyrus granule cell,Schwann Cell
-10X43_1:CATCTTGAACAGTC,dentate gyrus granule cell,Fev+
-10X43_1:GATATCCTGCCTTC,dentate gyrus granule cell,TAC-1
-10X43_1:GGAATGCTCAGTCA,dentate gyrus granule cell,TAC-1
+10X43_1:CATCTTGAACAGTC,dentate gyrus granule cell,Schwann Cell
+10X43_1:GATATCCTGCCTTC,dentate gyrus granule cell,Schwann Cell
+10X43_1:GGAATGCTCAGTCA,dentate gyrus granule cell,Schwann Cell
 10X46_1:GCTACAGAGTTGGT,dentate gyrus granule cell,Schwann Cell
-10X43_1:GCTGATGACCTTAT,dentate gyrus granule cell,Trunk
-10X22_3:TTCAAGCTTATTCC,dentate gyrus granule cell,Basal
-10X22_3:CGTGTAGACGCAAT,dentate gyrus granule cell,Basal
-10X04_2:ATCAAATGGTCAAC,dentate gyrus granule cell,TAC-1
-10X46_1:GAGTACACCAAAGA,dentate gyrus granule cell,Trunk
-10X22_4:TAAGCTCTTGCAAC,dentate gyrus granule cell,Trunk
+10X43_1:GCTGATGACCTTAT,dentate gyrus granule cell,Schwann Cell
+10X22_3:TTCAAGCTTATTCC,dentate gyrus granule cell,Fev+
+10X22_3:CGTGTAGACGCAAT,dentate gyrus granule cell,Schwann Cell
+10X04_2:ATCAAATGGTCAAC,dentate gyrus granule cell,Schwann Cell
+10X46_1:GAGTACACCAAAGA,dentate gyrus granule cell,Schwann Cell
+10X22_4:TAAGCTCTTGCAAC,dentate gyrus granule cell,Schwann Cell
 10X51_1:TCGCACACCTAGCA,cerebellar neuron,TAC-1
-10X34_4:CGGCCAGACTGGAT,cerebellar neuron,Tip
-10X26_1:TACGTACTCTGACA,cerebellar neuron,Basal
-10X26_2:TAGGAGCTTATTCC,cerebellar neuron,Basal
-10X26_1:TAAGTCCTTACAGC,cerebellar neuron,Trunk
-10X51_1:GAACCAACACGCAT,cerebellar neuron,Basal
-10X26_1:GACAGTTGGAGGAC,cerebellar neuron,Basal
-10X26_2:ATCCCGTGCATGCA,cerebellar neuron,TAC-1
-10X26_1:AAGAAGACCACACA,cerebellar neuron,Basal
-10X26_1:ACAAAGGAAAACAG,cerebellar neuron,TAC-1
-10X51_2:TGGTAGACTTCCCG,cerebellar neuron,Basal
-10X51_2:GAAGGTCTCCACCT,cerebellar neuron,Trunk
-10X26_1:GATATAACAGATCC,cerebellar neuron,Trunk
-10X51_1:CCATGCTGTTCCGC,cerebellar neuron,TAC-1
-10X51_1:TAGTTCACTAGCGT,cerebellar neuron,Basal
-10X51_1:GTGAGGGATCCCAC,cerebellar neuron,Trunk
-10X51_1:ATCCTAACCTAGTG,cerebellar neuron,Basal
-10X51_1:GCGCGATGACCTTT,cerebellar neuron,Basal
-10X51_1:GCTCGACTCACTTT,cerebellar neuron,TAC-1
-10X51_2:CTGAACGACCGTTC,cerebellar neuron,TAC-1
-10X26_1:TAACAATGCTGTAG,cerebellar neuron,Trunk
-10X01_1:ACGGGAGAACCCTC,endothelial cell of vascular tree,Basal
-10X04_1:ACCTTTGACTCAAG,endothelial cell of vascular tree,Basal
-10X57_7:CAGGTATGGCTTCC,endothelial cell of vascular tree,Basal
-10X01_1:CTGCCAACGCATAC,endothelial cell of vascular tree,Delta
-10X53_5:GGTAGTACGCTTAG,endothelial cell of vascular tree,Basal
-10X53_3:AACTGTCTTGGAAA,endothelial cell of vascular tree,Schwann Cell
-10X53_4:GAAGTAGACTGGTA,endothelial cell of vascular tree,Trunk
-10X49_4:ATACCGGAGTGCTA,endothelial cell of vascular tree,Trunk
-10X53_2:CGCACGGAGTCAAC,endothelial cell of vascular tree,Basal
-10X43_3:TTCGATTGAACCGT,endothelial cell of vascular tree,Delta
-10X53_4:GTGTATCTACGCTA,endothelial cell of vascular tree,Basal
-10X57_7:ACTTCTGAGCCCTT,endothelial cell of vascular tree,Delta
-10X05_1:GAGAGGTGATGTGC,endothelial cell of vascular tree,Delta
-10X53_3:ACCCTCGATATCTC,endothelial cell of vascular tree,Basal
-10X04_1:AAACCGTGGGAGGT,endothelial cell of vascular tree,Basal
-10X36_2:TCGCCATGAAACGA,endothelial cell of vascular tree,Trunk
-10X26_3:ACGTTGGATCATTC,endothelial cell of vascular tree,Basal
-10X52_1:GCCTAGCTCTTCTA,endothelial cell of vascular tree,Basal
-10X53_5:TTCTTACTCGGGAA,endothelial cell of vascular tree,Basal
-10X53_5:TCTAACTGGACGTT,endothelial cell of vascular tree,Basal
-10X35_3:CGTAACGATACGCA,peptidergic neuron,Fev+
-10X51_4:ACGTAGACCTCAGA,peptidergic neuron,Trunk
-10X26_3:TTCAAGCTCTCAAG,peptidergic neuron,Basal
-10X26_3:GGTATGACTCCCGT,peptidergic neuron,Basal
-10X26_3:ATCACACTTTCTGT,peptidergic neuron,TAC-1
-10X26_3:GGCCAGACAAGAAC,peptidergic neuron,Basal
-10X26_4:AAGAATCTTGGATC,peptidergic neuron,Basal
-10X26_3:GCGGGACTTTCGGA,peptidergic neuron,Basal
-10X50_2:CATTTGTGTACTGG,peptidergic neuron,Fev+
-10X51_3:CCAGCACTATTCCT,peptidergic neuron,Multipotent
-10X26_3:TTACGACTTTGACG,peptidergic neuron,TAC-1
+10X34_4:CGGCCAGACTGGAT,cerebellar neuron,Schwann Cell
+10X26_1:TACGTACTCTGACA,cerebellar neuron,Schwann Cell
+10X26_2:TAGGAGCTTATTCC,cerebellar neuron,Schwann Cell
+10X26_1:TAAGTCCTTACAGC,cerebellar neuron,Fev+
+10X51_1:GAACCAACACGCAT,cerebellar neuron,Fev+
+10X26_1:GACAGTTGGAGGAC,cerebellar neuron,Schwann Cell
+10X26_2:ATCCCGTGCATGCA,cerebellar neuron,Schwann Cell
+10X26_1:AAGAAGACCACACA,cerebellar neuron,Schwann Cell
+10X26_1:ACAAAGGAAAACAG,cerebellar neuron,Fev+
+10X51_2:TGGTAGACTTCCCG,cerebellar neuron,Fev+
+10X51_2:GAAGGTCTCCACCT,cerebellar neuron,Schwann Cell
+10X26_1:GATATAACAGATCC,cerebellar neuron,Schwann Cell
+10X51_1:CCATGCTGTTCCGC,cerebellar neuron,T Cell
+10X51_1:TAGTTCACTAGCGT,cerebellar neuron,Schwann Cell
+10X51_1:GTGAGGGATCCCAC,cerebellar neuron,Schwann Cell
+10X51_1:ATCCTAACCTAGTG,cerebellar neuron,TAC-1
+10X51_1:GCGCGATGACCTTT,cerebellar neuron,Schwann Cell
+10X51_1:GCTCGACTCACTTT,cerebellar neuron,Schwann Cell
+10X51_2:CTGAACGACCGTTC,cerebellar neuron,Schwann Cell
+10X26_1:TAACAATGCTGTAG,cerebellar neuron,Schwann Cell
+10X01_1:ACGGGAGAACCCTC,endothelial cell of vascular tree,Endothelial
+10X04_1:ACCTTTGACTCAAG,endothelial cell of vascular tree,Endothelial
+10X57_7:CAGGTATGGCTTCC,endothelial cell of vascular tree,Endothelial
+10X01_1:CTGCCAACGCATAC,endothelial cell of vascular tree,Endothelial
+10X53_5:GGTAGTACGCTTAG,endothelial cell of vascular tree,Endothelial
+10X53_3:AACTGTCTTGGAAA,endothelial cell of vascular tree,Endothelial
+10X53_4:GAAGTAGACTGGTA,endothelial cell of vascular tree,Endothelial
+10X49_4:ATACCGGAGTGCTA,endothelial cell of vascular tree,Endothelial
+10X53_2:CGCACGGAGTCAAC,endothelial cell of vascular tree,Endothelial
+10X43_3:TTCGATTGAACCGT,endothelial cell of vascular tree,Endothelial
+10X53_4:GTGTATCTACGCTA,endothelial cell of vascular tree,Endothelial Cell
+10X57_7:ACTTCTGAGCCCTT,endothelial cell of vascular tree,Endothelial
+10X05_1:GAGAGGTGATGTGC,endothelial cell of vascular tree,Endothelial
+10X53_3:ACCCTCGATATCTC,endothelial cell of vascular tree,Endothelial
+10X04_1:AAACCGTGGGAGGT,endothelial cell of vascular tree,Endothelial
+10X36_2:TCGCCATGAAACGA,endothelial cell of vascular tree,Endothelial
+10X26_3:ACGTTGGATCATTC,endothelial cell of vascular tree,Endothelial
+10X52_1:GCCTAGCTCTTCTA,endothelial cell of vascular tree,Endothelial
+10X53_5:TTCTTACTCGGGAA,endothelial cell of vascular tree,Endothelial
+10X53_5:TCTAACTGGACGTT,endothelial cell of vascular tree,Endothelial
+10X35_3:CGTAACGATACGCA,peptidergic neuron,Alpha
+10X51_4:ACGTAGACCTCAGA,peptidergic neuron,Schwann Cell
+10X26_3:TTCAAGCTCTCAAG,peptidergic neuron,Delta
+10X26_3:GGTATGACTCCCGT,peptidergic neuron,Schwann Cell
+10X26_3:ATCACACTTTCTGT,peptidergic neuron,Beta
+10X26_3:GGCCAGACAAGAAC,peptidergic neuron,Schwann Cell
+10X26_4:AAGAATCTTGGATC,peptidergic neuron,Schwann Cell
+10X26_3:GCGGGACTTTCGGA,peptidergic neuron,Schwann Cell
+10X50_2:CATTTGTGTACTGG,peptidergic neuron,Gamma
+10X51_3:CCAGCACTATTCCT,peptidergic neuron,Beta
+10X26_3:TTACGACTTTGACG,peptidergic neuron,Schwann Cell
 10X46_2:TAGGAGCTGTAAGA,peptidergic neuron,TAC-1
-10X26_3:ATGTTAGACCAAGT,peptidergic neuron,Basal
-10X50_2:AGCAAAGATCCGAA,peptidergic neuron,Basal
-10X26_3:GGATTGTGACGTTG,peptidergic neuron,Basal
-10X26_3:GATGCATGTCCAGA,peptidergic neuron,alowCD34+ bulge
-10X26_4:TGTACTTGACCGAT,peptidergic neuron,Infundibulum
-10X51_3:GTGATCGACTAGAC,peptidergic neuron,TAC-1
-10X26_3:CCAGCGGAGCTTCC,peptidergic neuron,Trunk
-10X50_1:ATAAGTTGACACTG,peptidergic neuron,Fev+
-10X28_3:GGCAAGGACCTAAG,perivascular macrophage,Basal
-10X57_5:ATATACGAGATAAG,perivascular macrophage,Basal
-10X22_3:GTGACAACTCTTAC,perivascular macrophage,Basal
-10X52_8:ACACCAGATGCAGT,perivascular macrophage,Basal
-10X50_4:GGACAGGAGGTTTG,perivascular macrophage,Basal
+10X26_3:ATGTTAGACCAAGT,peptidergic neuron,Schwann Cell
+10X50_2:AGCAAAGATCCGAA,peptidergic neuron,Beta
+10X26_3:GGATTGTGACGTTG,peptidergic neuron,Schwann Cell
+10X26_3:GATGCATGTCCAGA,peptidergic neuron,Schwann Cell
+10X26_4:TGTACTTGACCGAT,peptidergic neuron,Schwann Cell
+10X51_3:GTGATCGACTAGAC,peptidergic neuron,Trunk
+10X26_3:CCAGCGGAGCTTCC,peptidergic neuron,Schwann Cell
+10X50_1:ATAAGTTGACACTG,peptidergic neuron,Schwann Cell
+10X28_3:GGCAAGGACCTAAG,perivascular macrophage,Macrophage DC
+10X57_5:ATATACGAGATAAG,perivascular macrophage,Macrophage
+10X22_3:GTGACAACTCTTAC,perivascular macrophage,Macrophage DC
+10X52_8:ACACCAGATGCAGT,perivascular macrophage,Macrophage
+10X50_4:GGACAGGAGGTTTG,perivascular macrophage,Macrophage
 10X01_1:TAGGGACTACAGTC,perivascular macrophage,Macrophage DC
 10X54_7:GCTTCTCCTATGTT,perivascular macrophage,Macrophage DC
-10X33_2:CGGTCACTCCAACA,perivascular macrophage,Basal
-10X56_6:GGGTAACTAAGATG,perivascular macrophage,Tip
-10X22_1:TCGCAAGATCCAAG,perivascular macrophage,Macrophage DC
+10X33_2:CGGTCACTCCAACA,perivascular macrophage,Macrophage
+10X56_6:GGGTAACTAAGATG,perivascular macrophage,Macrophage DC
+10X22_1:TCGCAAGATCCAAG,perivascular macrophage,Macrophage
 10X19_2:TAAGATACGCGAGA,perivascular macrophage,Macrophage DC
-10X22_2:AGTCGCCTATCACG,perivascular macrophage,Basal
-10X57_4:CCCACATGGTCTGA,perivascular macrophage,Basal
+10X22_2:AGTCGCCTATCACG,perivascular macrophage,Macrophage
+10X57_4:CCCACATGGTCTGA,perivascular macrophage,Macrophage DC
 10X52_1:AGTACGTGCGAGTT,perivascular macrophage,Macrophage DC
-10X24_1:TCCCTACTGCAGAG,perivascular macrophage,Macrophage DC
-10X57_1:ACGGTATGCCGATA,perivascular macrophage,Basal
-10X49_5:CAGGAACTTCCCGT,perivascular macrophage,TAC-1
-10X24_2:CCGATAGAGGAACG,perivascular macrophage,Trunk
-10X57_7:GATCGAACTTTCTG,perivascular macrophage,Basal
-10X52_7:TTAGTCACCTTGTT,perivascular macrophage,Macrophage DC
-10X43_2:CTACGCACGTGTCA,peripheral sensory neuron,alowCD34+ bulge
-10X53_7:AGAATACTCTTGCC,peripheral sensory neuron,Trunk
-10X43_2:GTCCACTGAAGGCG,peripheral sensory neuron,Basal
-10X53_7:ATACCGGAGAACCT,peripheral sensory neuron,Infundibulum
-10X53_7:TGCTGAGATTCCGC,peripheral sensory neuron,Infundibulum
-10X43_2:TTCGATTGTTCTCA,peripheral sensory neuron,Fev+
-10X53_7:GACCAAACCCCTTG,peripheral sensory neuron,TAC-1
-10X53_7:GCAATCGATCAGTG,peripheral sensory neuron,Fev+
-10X53_7:GGAGCCACCCAACA,peripheral sensory neuron,Basal
-10X53_7:CTGTAACTGAGACG,peripheral sensory neuron,Schwann Cell
-10X53_7:AGTGTGACGAATCC,peripheral sensory neuron,TAC-1
-10X53_7:CTATAGCTCTCAAG,peripheral sensory neuron,Fev+
-10X43_2:GATCTTACTAAGCC,peripheral sensory neuron,TAC-1
-10X43_2:ATGGGTACACGTAC,peripheral sensory neuron,Ngn3 high EP
-10X43_2:GGGCCAACTTCAGG,peripheral sensory neuron,Fev+
-10X43_2:TTAACCACGGTATC,peripheral sensory neuron,Infundibulum
-10X43_2:AACGCATGCGATAC,peripheral sensory neuron,Fev+
-10X53_7:CGGGACTGTTGCAG,peripheral sensory neuron,Fev+
-10X53_7:ACCGTGCTAAGGCG,peripheral sensory neuron,Fev+
-10X43_2:TAGGTGTGTCACCC,peripheral sensory neuron,Trunk
-10X49_4:AACATATGCGTTAG,vascular leptomeningeal cell (Mmus),TAC-1
-10X57_6:CCACGGGAGATGAA,vascular leptomeningeal cell (Mmus),Basal
-10X49_4:ATTTCCGAGGGATG,vascular leptomeningeal cell (Mmus),Trunk
-10X49_4:AACTTGCTCTGTGA,vascular leptomeningeal cell (Mmus),Basal
-10X49_5:GATACTCTCATGCA,vascular leptomeningeal cell (Mmus),Basal
-10X52_1:AAATCCCTTACTCT,vascular leptomeningeal cell (Mmus),Basal
-10X20_3:TGTCAGGAGTCTGA,vascular leptomeningeal cell (Mmus),Trunk
-10X56_2:TCCTAAACTTCCAT,vascular leptomeningeal cell (Mmus),Basal
-10X48_3:CTGTATACGCGGAA,vascular leptomeningeal cell (Mmus),Basal
-10X22_3:AGGCAACTTGCCTC,vascular leptomeningeal cell (Mmus),TAC-1
-10X43_1:CTTAAAGATGCCAA,vascular leptomeningeal cell (Mmus),Basal
-10X20_3:AAGGTCTGACACGT,vascular leptomeningeal cell (Mmus),Trunk
-10X52_6:AAGCACTGTGCGTA,vascular leptomeningeal cell (Mmus),Trunk
-10X33_2:CTTGAGGAGCTGAT,vascular leptomeningeal cell (Mmus),Basal
-10X52_2:CTGCAGCTTATTCC,vascular leptomeningeal cell (Mmus),Trunk
-10X49_5:GAACTGTGATACCG,vascular leptomeningeal cell (Mmus),Trunk
-10X57_3:GCTACGCTCCTTAT,vascular leptomeningeal cell (Mmus),Basal
-10X50_8:GCACACCTAGAGGC,vascular leptomeningeal cell (Mmus),Basal
-10X54_8:TGCTTTCGGGAGTA,vascular leptomeningeal cell (Mmus),Schwann Cell
-10X52_4:TCCCAGACGGTACT,vascular leptomeningeal cell (Mmus),Trunk
-10X52_2:GATAATACGGAGCA,vascular associated smooth muscle cell,Trunk
-10X53_2:TTATGAGAAGCCTA,vascular associated smooth muscle cell,Schwann Cell
-10X48_3:AGATTAACACTACG,vascular associated smooth muscle cell,Delta
-10X55_8:AGGGACAAGCCGCT,vascular associated smooth muscle cell,Trunk
-10X28_5:CCAGTCACCTCTAT,vascular associated smooth muscle cell,TAC-1
-10X52_2:ACCACCTGTGCCCT,vascular associated smooth muscle cell,Schwann Cell
-10X36_3:CTACTATGTTGCTT,vascular associated smooth muscle cell,Basal
-10X52_6:GGTGGAGATGTGGT,vascular associated smooth muscle cell,Schwann Cell
-10X26_4:CAGAAGCTCCCTCA,vascular associated smooth muscle cell,Basal
-10X54_3:TGTTAAGGTGCTAG,vascular associated smooth muscle cell,Schwann Cell
-10X02_1:CTATGTTGGCATAC,vascular associated smooth muscle cell,Basal
-10X48_3:CACTGAGAGGTGGA,vascular associated smooth muscle cell,Basal
-10X52_5:TATGTGCTGCGAGA,vascular associated smooth muscle cell,Basal
+10X24_1:TCCCTACTGCAGAG,perivascular macrophage,Macrophage
+10X57_1:ACGGTATGCCGATA,perivascular macrophage,Macrophage DC
+10X49_5:CAGGAACTTCCCGT,perivascular macrophage,Macrophage DC
+10X24_2:CCGATAGAGGAACG,perivascular macrophage,Macrophage DC
+10X57_7:GATCGAACTTTCTG,perivascular macrophage,Macrophage DC
+10X52_7:TTAGTCACCTTGTT,perivascular macrophage,Macrophage
+10X43_2:CTACGCACGTGTCA,peripheral sensory neuron,Beta
+10X53_7:AGAATACTCTTGCC,peripheral sensory neuron,Schwann Cell
+10X43_2:GTCCACTGAAGGCG,peripheral sensory neuron,Beta
+10X53_7:ATACCGGAGAACCT,peripheral sensory neuron,Beta
+10X53_7:TGCTGAGATTCCGC,peripheral sensory neuron,Ductal
+10X43_2:TTCGATTGTTCTCA,peripheral sensory neuron,Schwann Cell
+10X53_7:GACCAAACCCCTTG,peripheral sensory neuron,Gamma
+10X53_7:GCAATCGATCAGTG,peripheral sensory neuron,Schwann Cell
+10X53_7:GGAGCCACCCAACA,peripheral sensory neuron,Ductal
+10X53_7:CTGTAACTGAGACG,peripheral sensory neuron,Beta
+10X53_7:AGTGTGACGAATCC,peripheral sensory neuron,Beta
+10X53_7:CTATAGCTCTCAAG,peripheral sensory neuron,Ductal
+10X43_2:GATCTTACTAAGCC,peripheral sensory neuron,Beta
+10X43_2:ATGGGTACACGTAC,peripheral sensory neuron,Beta
+10X43_2:GGGCCAACTTCAGG,peripheral sensory neuron,Ductal
+10X43_2:TTAACCACGGTATC,peripheral sensory neuron,Beta
+10X43_2:AACGCATGCGATAC,peripheral sensory neuron,Ductal
+10X53_7:CGGGACTGTTGCAG,peripheral sensory neuron,Schwann Cell
+10X53_7:ACCGTGCTAAGGCG,peripheral sensory neuron,Ductal
+10X43_2:TAGGTGTGTCACCC,peripheral sensory neuron,Schwann Cell
+10X49_4:AACATATGCGTTAG,vascular leptomeningeal cell (Mmus),Ngn3 low EP
+10X57_6:CCACGGGAGATGAA,vascular leptomeningeal cell (Mmus),Schwann Cell
+10X49_4:ATTTCCGAGGGATG,vascular leptomeningeal cell (Mmus),Ngn3 low EP
+10X49_4:AACTTGCTCTGTGA,vascular leptomeningeal cell (Mmus),Ductal
+10X49_5:GATACTCTCATGCA,vascular leptomeningeal cell (Mmus),Ductal
+10X52_1:AAATCCCTTACTCT,vascular leptomeningeal cell (Mmus),Schwann Cell
+10X20_3:TGTCAGGAGTCTGA,vascular leptomeningeal cell (Mmus),Schwann Cell
+10X56_2:TCCTAAACTTCCAT,vascular leptomeningeal cell (Mmus),Multipotent
+10X48_3:CTGTATACGCGGAA,vascular leptomeningeal cell (Mmus),T Cell
+10X22_3:AGGCAACTTGCCTC,vascular leptomeningeal cell (Mmus),Mesenchyme
+10X43_1:CTTAAAGATGCCAA,vascular leptomeningeal cell (Mmus),Ductal
+10X20_3:AAGGTCTGACACGT,vascular leptomeningeal cell (Mmus),Ductal
+10X52_6:AAGCACTGTGCGTA,vascular leptomeningeal cell (Mmus),Dermal Fibroblast
+10X33_2:CTTGAGGAGCTGAT,vascular leptomeningeal cell (Mmus),Schwann Cell
+10X52_2:CTGCAGCTTATTCC,vascular leptomeningeal cell (Mmus),PSC
+10X49_5:GAACTGTGATACCG,vascular leptomeningeal cell (Mmus),PSC
+10X57_3:GCTACGCTCCTTAT,vascular leptomeningeal cell (Mmus),Ductal
+10X50_8:GCACACCTAGAGGC,vascular leptomeningeal cell (Mmus),Schwann Cell
+10X54_8:TGCTTTCGGGAGTA,vascular leptomeningeal cell (Mmus),Ductal
+10X52_4:TCCCAGACGGTACT,vascular leptomeningeal cell (Mmus),Ductal
+10X52_2:GATAATACGGAGCA,vascular associated smooth muscle cell,Dermal Sheath
+10X53_2:TTATGAGAAGCCTA,vascular associated smooth muscle cell,Endothelial
+10X48_3:AGATTAACACTACG,vascular associated smooth muscle cell,Dermal Sheath
+10X55_8:AGGGACAAGCCGCT,vascular associated smooth muscle cell,Dermal Sheath
+10X28_5:CCAGTCACCTCTAT,vascular associated smooth muscle cell,Endothelial
+10X52_2:ACCACCTGTGCCCT,vascular associated smooth muscle cell,Dermal Sheath
+10X36_3:CTACTATGTTGCTT,vascular associated smooth muscle cell,Dermal Sheath
+10X52_6:GGTGGAGATGTGGT,vascular associated smooth muscle cell,Dermal Sheath
+10X26_4:CAGAAGCTCCCTCA,vascular associated smooth muscle cell,Dermal Sheath
+10X54_3:TGTTAAGGTGCTAG,vascular associated smooth muscle cell,Dermal Sheath
+10X02_1:CTATGTTGGCATAC,vascular associated smooth muscle cell,Dermal Sheath
+10X48_3:CACTGAGAGGTGGA,vascular associated smooth muscle cell,Ductal
+10X52_5:TATGTGCTGCGAGA,vascular associated smooth muscle cell,Dermal Sheath
 10X28_3:TACAATGACTTGCC,vascular associated smooth muscle cell,Schwann Cell
-10X54_8:CAATTTCACAACGT,vascular associated smooth muscle cell,Basal
-10X24_2:ATCACTTGTCAGGT,vascular associated smooth muscle cell,Basal
-10X57_3:CTTACTGAGCTGAT,vascular associated smooth muscle cell,Trunk
-10X54_2:CGTTTAGCAGGTCA,vascular associated smooth muscle cell,Ductal
-10X57_3:ATTCTGACCGAGAG,vascular associated smooth muscle cell,Basal
-10X05_3:TAAATCGAGTTAGC,vascular associated smooth muscle cell,Basal
-10X49_4:CTTCACCTCCACAA,olfactory ensheathing cell,Trunk
-10X49_4:CAGGTTGACAGAAA,olfactory ensheathing cell,Basal
-10X49_4:CATGAGACGGAAAT,olfactory ensheathing cell,Trunk
-10X49_5:ATGCACGATTCCAT,olfactory ensheathing cell,Trunk
-10X49_4:GGAGTTTGAAGCAA,olfactory ensheathing cell,TAC-1
-10X49_5:TTCTTACTGTTGTG,olfactory ensheathing cell,TAC-1
-10X28_4:GTTCATACTGGATC,olfactory ensheathing cell,Basal
-10X49_4:TGTGAGTGACAGCT,olfactory ensheathing cell,Basal
-10X49_5:TTTATCCTCCTACC,olfactory ensheathing cell,Tip
-10X28_5:TGGCAATGTACAGC,olfactory ensheathing cell,Fev+
-10X49_4:TAGGCATGGCCCTT,olfactory ensheathing cell,TAC-1
-10X49_4:TCAATAGATCGATG,olfactory ensheathing cell,Tip
-10X28_5:CATGCCACCTCAAG,olfactory ensheathing cell,Trunk
-10X49_4:GAATGCTGCCAAGT,olfactory ensheathing cell,Trunk
-10X28_4:GAGTCAACGAAGGC,olfactory ensheathing cell,Trunk
-10X49_4:GGGTTAACCGTGAT,olfactory ensheathing cell,Basal
-10X49_5:GACAACTGACTGGT,olfactory ensheathing cell,TAC-1
-10X49_5:AAATGTTGGTGTCA,olfactory ensheathing cell,Basal
-10X49_5:ATTCTTCTTCAGAC,olfactory ensheathing cell,TAC-1
-10X49_5:AGTCTACTTGGAAA,olfactory ensheathing cell,Basal
-10X54_5:TGAAGGTGGTGTAG,ependymal cell,Basal
-10X24_3:CCAGACCTGAGCTT,ependymal cell,Trunk
-10X57_5:TTCCTAGAGCCAAT,ependymal cell,Basal
-10X53_5:AGATCGTGAAGGTA,ependymal cell,Basal
-10X53_1:TATGCGGAGGAAGC,ependymal cell,TAC-1
-10X55_5:CTCAGGTATTCTCT,ependymal cell,TAC-1
-10X26_3:CGACGTCTACTTTC,ependymal cell,Trunk
+10X54_8:CAATTTCACAACGT,vascular associated smooth muscle cell,Dermal Sheath
+10X24_2:ATCACTTGTCAGGT,vascular associated smooth muscle cell,Schwann Cell
+10X57_3:CTTACTGAGCTGAT,vascular associated smooth muscle cell,Dermal Sheath
+10X54_2:CGTTTAGCAGGTCA,vascular associated smooth muscle cell,Dermal Sheath
+10X57_3:ATTCTGACCGAGAG,vascular associated smooth muscle cell,Dermal Sheath
+10X05_3:TAAATCGAGTTAGC,vascular associated smooth muscle cell,Mesenchyme
+10X49_4:CTTCACCTCCACAA,olfactory ensheathing cell,Schwann Cell
+10X49_4:CAGGTTGACAGAAA,olfactory ensheathing cell,Schwann Cell
+10X49_4:CATGAGACGGAAAT,olfactory ensheathing cell,Schwann Cell
+10X49_5:ATGCACGATTCCAT,olfactory ensheathing cell,Schwann Cell
+10X49_4:GGAGTTTGAAGCAA,olfactory ensheathing cell,Schwann Cell
+10X49_5:TTCTTACTGTTGTG,olfactory ensheathing cell,Schwann Cell
+10X28_4:GTTCATACTGGATC,olfactory ensheathing cell,Schwann Cell
+10X49_4:TGTGAGTGACAGCT,olfactory ensheathing cell,Ductal
+10X49_5:TTTATCCTCCTACC,olfactory ensheathing cell,Schwann Cell
+10X28_5:TGGCAATGTACAGC,olfactory ensheathing cell,Schwann Cell
+10X49_4:TAGGCATGGCCCTT,olfactory ensheathing cell,Schwann Cell
+10X49_4:TCAATAGATCGATG,olfactory ensheathing cell,Schwann Cell
+10X28_5:CATGCCACCTCAAG,olfactory ensheathing cell,Ductal
+10X49_4:GAATGCTGCCAAGT,olfactory ensheathing cell,Schwann Cell
+10X28_4:GAGTCAACGAAGGC,olfactory ensheathing cell,Ductal
+10X49_4:GGGTTAACCGTGAT,olfactory ensheathing cell,Schwann Cell
+10X49_5:GACAACTGACTGGT,olfactory ensheathing cell,Schwann Cell
+10X49_5:AAATGTTGGTGTCA,olfactory ensheathing cell,Schwann Cell
+10X49_5:ATTCTTCTTCAGAC,olfactory ensheathing cell,Schwann Cell
+10X49_5:AGTCTACTTGGAAA,olfactory ensheathing cell,Schwann Cell
+10X54_5:TGAAGGTGGTGTAG,ependymal cell,Schwann Cell
+10X24_3:CCAGACCTGAGCTT,ependymal cell,Ductal
+10X57_5:TTCCTAGAGCCAAT,ependymal cell,Ductal
+10X53_5:AGATCGTGAAGGTA,ependymal cell,Ductal
+10X53_1:TATGCGGAGGAAGC,ependymal cell,Trunk
+10X55_5:CTCAGGTATTCTCT,ependymal cell,Schwann Cell
+10X26_3:CGACGTCTACTTTC,ependymal cell,Ductal
 10X43_3:CCATGCTGCTGAGT,ependymal cell,Trunk
-10X57_5:TATCCTGATCGACA,ependymal cell,Basal
-10X52_2:TATTGCTGGGAAGC,ependymal cell,Basal
-10X53_6:ACCAACGAAAACAG,ependymal cell,Basal
-10X53_5:TACTGGGATGGAGG,ependymal cell,Trunk
-10X55_5:CGACTAGTGGACGT,ependymal cell,TAC-1
-10X53_6:AATGCGTGGTTTGG,ependymal cell,Basal
-10X24_4:GGAGTTTGGAGCAG,ependymal cell,TAC-1
-10X53_6:TAAGCTCTCCAACA,ependymal cell,Basal
-10X48_3:TGATATGAAGATGA,ependymal cell,Trunk
-10X53_4:AGAAACGACTCGAA,ependymal cell,Basal
-10X24_3:TAGCGATGCCATGA,ependymal cell,Trunk
+10X57_5:TATCCTGATCGACA,ependymal cell,Ductal
+10X52_2:TATTGCTGGGAAGC,ependymal cell,Schwann Cell
+10X53_6:ACCAACGAAAACAG,ependymal cell,Endothelial
+10X53_5:TACTGGGATGGAGG,ependymal cell,Schwann Cell
+10X55_5:CGACTAGTGGACGT,ependymal cell,Schwann Cell
+10X53_6:AATGCGTGGTTTGG,ependymal cell,Schwann Cell
+10X24_4:GGAGTTTGGAGCAG,ependymal cell,Schwann Cell
+10X53_6:TAAGCTCTCCAACA,ependymal cell,Ductal
+10X48_3:TGATATGAAGATGA,ependymal cell,Ductal
+10X53_4:AGAAACGACTCGAA,ependymal cell,Ductal
+10X24_3:TAGCGATGCCATGA,ependymal cell,Schwann Cell
 10X53_3:CAATGGACGCTGTA,ependymal cell,Trunk
-10X28_5:GAGATAGAATTGGC,radial glial cell,Basal
-10X04_4:CTACCTCTCTAGTG,radial glial cell,Basal
-10X34_2:GTGGAGGAGTTGGT,radial glial cell,Tip
-10X24_2:CTCAATTGGTCTGA,radial glial cell,Trunk
-10X05_4:AATCCTACCAAAGA,radial glial cell,Basal
-10X26_4:TCTTCAGACCGATA,radial glial cell,Trunk
-10X28_3:CCGGTACTGTTGTG,radial glial cell,Basal
-10X46_1:AGATCGTGCAGAAA,radial glial cell,Basal
-10X05_4:ACAATTGATTGACG,radial glial cell,Trunk
-10X04_2:CTAGGATGTTGAGC,radial glial cell,TAC-1
-10X49_5:CATGGCCTTCGCTC,radial glial cell,Basal
-10X04_4:GGGAAGTGACCAAC,radial glial cell,Basal
-10X24_1:GGATGTTGGAGCAG,radial glial cell,Trunk
-10X04_1:GGCGACACGCTTAG,radial glial cell,TAC-1
-10X06_2:GGGTTATGTCTACT,radial glial cell,TAC-1
-10X28_4:ATCTACTGTTTGGG,radial glial cell,Basal
-10X24_2:CGCAGGACAGATCC,radial glial cell,TAC-1
-10X26_3:CAGGTTGAACACGT,radial glial cell,Basal
-10X49_5:AGTAGGCTAGTCGT,radial glial cell,Basal
-10X24_1:AGTTAAACACCACA,radial glial cell,Basal
-10X55_6:TATTCGTAGTGAAT,cholinergic neuron,Fev+
-10X26_4:TGTAATGACTATGG,cholinergic neuron,Fev+
-10X54_7:TGCTACAAGGCTCC,cholinergic neuron,Infundibulum
-10X55_3:AGCCTCATCGATTG,cholinergic neuron,Fev+
-10X55_4:GCAGTAGAGCCTAG,cholinergic neuron,Fev+
-10X56_2:AACTCTTGACACTG,cholinergic neuron,Basal
-10X52_5:TGGAACACGTATGC,cholinergic neuron,Fev+
-10X55_3:TGAACTCAAACAAG,cholinergic neuron,Basal
-10X52_6:TCATTCGATTCATC,cholinergic neuron,Fev+
-10X52_8:ACATTCTGTTGCAG,cholinergic neuron,Basal
-10X55_5:AGCCGAGAATGTTG,cholinergic neuron,Infundibulum
-10X34_4:GGAATCTGTTAGGC,cholinergic neuron,Trunk
-10X51_3:ATGGTGACGTTCTT,cholinergic neuron,Multipotent
-10X55_6:GCGATCATGCTAGT,cholinergic neuron,Multipotent
-10X54_5:TTACTGTCAGAATA,cholinergic neuron,Multipotent
-10X34_3:AGCGCCGATCAGAC,cholinergic neuron,TAC-1
-10X11_1:ACTCTCCTCGTAGT,cholinergic neuron,Basal
-10X56_6:GAGTCTGACAGAGG,cholinergic neuron,Fev+
-10X52_7:GAGTGACTTCACGA,cholinergic neuron,TAC-1
-10X34_3:TCAAGTCTCATACG,cholinergic neuron,Basal
-10X54_5:TGAACCAACTTGAC,cranial visceromotor neuron,Trunk
-10X54_4:TTCAGAGCCCAACC,cranial visceromotor neuron,Trunk
+10X28_5:GAGATAGAATTGGC,radial glial cell,Schwann Cell
+10X04_4:CTACCTCTCTAGTG,radial glial cell,Schwann Cell
+10X34_2:GTGGAGGAGTTGGT,radial glial cell,Schwann Cell
+10X24_2:CTCAATTGGTCTGA,radial glial cell,Schwann Cell
+10X05_4:AATCCTACCAAAGA,radial glial cell,Schwann Cell
+10X26_4:TCTTCAGACCGATA,radial glial cell,Schwann Cell
+10X28_3:CCGGTACTGTTGTG,radial glial cell,Ductal
+10X46_1:AGATCGTGCAGAAA,radial glial cell,Schwann Cell
+10X05_4:ACAATTGATTGACG,radial glial cell,Ductal
+10X04_2:CTAGGATGTTGAGC,radial glial cell,Ductal
+10X49_5:CATGGCCTTCGCTC,radial glial cell,Ductal
+10X04_4:GGGAAGTGACCAAC,radial glial cell,Ductal
+10X24_1:GGATGTTGGAGCAG,radial glial cell,Schwann Cell
+10X04_1:GGCGACACGCTTAG,radial glial cell,Schwann Cell
+10X06_2:GGGTTATGTCTACT,radial glial cell,Schwann Cell
+10X28_4:ATCTACTGTTTGGG,radial glial cell,Ductal
+10X24_2:CGCAGGACAGATCC,radial glial cell,Schwann Cell
+10X26_3:CAGGTTGAACACGT,radial glial cell,Ductal
+10X49_5:AGTAGGCTAGTCGT,radial glial cell,Schwann Cell
+10X24_1:AGTTAAACACCACA,radial glial cell,Ductal
+10X55_6:TATTCGTAGTGAAT,cholinergic neuron,Schwann Cell
+10X26_4:TGTAATGACTATGG,cholinergic neuron,Gamma
+10X54_7:TGCTACAAGGCTCC,cholinergic neuron,Schwann Cell
+10X55_3:AGCCTCATCGATTG,cholinergic neuron,Gamma
+10X55_4:GCAGTAGAGCCTAG,cholinergic neuron,Schwann Cell
+10X56_2:AACTCTTGACACTG,cholinergic neuron,Gamma
+10X52_5:TGGAACACGTATGC,cholinergic neuron,Schwann Cell
+10X55_3:TGAACTCAAACAAG,cholinergic neuron,Gamma
+10X52_6:TCATTCGATTCATC,cholinergic neuron,Beta
+10X52_8:ACATTCTGTTGCAG,cholinergic neuron,Schwann Cell
+10X55_5:AGCCGAGAATGTTG,cholinergic neuron,Schwann Cell
+10X34_4:GGAATCTGTTAGGC,cholinergic neuron,Schwann Cell
+10X51_3:ATGGTGACGTTCTT,cholinergic neuron,Schwann Cell
+10X55_6:GCGATCATGCTAGT,cholinergic neuron,Beta
+10X54_5:TTACTGTCAGAATA,cholinergic neuron,Beta
+10X34_3:AGCGCCGATCAGAC,cholinergic neuron,Schwann Cell
+10X11_1:ACTCTCCTCGTAGT,cholinergic neuron,Schwann Cell
+10X56_6:GAGTCTGACAGAGG,cholinergic neuron,Schwann Cell
+10X52_7:GAGTGACTTCACGA,cholinergic neuron,Beta
+10X34_3:TCAAGTCTCATACG,cholinergic neuron,Beta
+10X54_5:TGAACCAACTTGAC,cranial visceromotor neuron,Schwann Cell
+10X54_4:TTCAGAGCCCAACC,cranial visceromotor neuron,Schwann Cell
 10X54_1:AAGACAGCGCCTCA,cranial visceromotor neuron,Schwann Cell
-10X54_8:CCAGGCATTGAGCT,cranial visceromotor neuron,Basal
-10X55_3:AATGTAGTACGCCC,cranial visceromotor neuron,Fev+
-10X54_8:ACACCTCACAGGCC,cranial visceromotor neuron,Basal
-10X55_7:CACCTAGAGGGATA,cranial visceromotor neuron,Trunk
-10X54_6:ACTTCCATGAGCGA,cranial visceromotor neuron,Basal
-10X54_4:GTTAGTCGATAGAA,cranial visceromotor neuron,Trunk
-10X54_5:TTCGGCATATACCG,cranial visceromotor neuron,Fev+
-10X55_5:GGCATGTCGTTGTA,cranial visceromotor neuron,Basal
-10X54_7:GAACGAGCAGACTG,cranial visceromotor neuron,Fev+
-10X54_8:CTCCTTCCGAGCCA,cranial visceromotor neuron,Fev+
-10X54_5:ATGTAAGAGATGAG,cranial visceromotor neuron,Basal
-10X48_2:ATCGGAACCTGTAG,cranial visceromotor neuron,Fev+
-10X55_1:ATGCCTCCTGCAGG,cranial visceromotor neuron,Basal
-10X55_4:GTAGAGTCTAGGTT,cranial visceromotor neuron,Fev+
-10X54_4:TCAAGTCAACGCTA,cranial visceromotor neuron,Basal
-10X33_3:GCCTCATGCGAGTT,cranial visceromotor neuron,Infundibulum
-10X54_7:ACCGGGTCTTTCAT,cranial visceromotor neuron,Sebaceous Gland
-10X52_1:TTATGGCTCCGATA,oligodendrocyte precursor cell,Basal
-10X22_3:ATCTTGACTGACAC,oligodendrocyte precursor cell,Basal
-10X50_7:GGGACCACAACCGT,oligodendrocyte precursor cell,Basal
-10X26_4:TCACTATGTGGTAC,oligodendrocyte precursor cell,Basal
-10X43_1:TAATGTGACCTACC,oligodendrocyte precursor cell,Basal
-10X49_5:GAGGTTTGTCGCAA,oligodendrocyte precursor cell,TAC-1
-10X53_4:CTGATGGAAGTGCT,oligodendrocyte precursor cell,Basal
-10X02_1:AGGTGGGACCTGTC,oligodendrocyte precursor cell,TAC-1
-10X01_1:GCATGTGAAAGTGA,oligodendrocyte precursor cell,Basal
+10X54_8:CCAGGCATTGAGCT,cranial visceromotor neuron,Schwann Cell
+10X55_3:AATGTAGTACGCCC,cranial visceromotor neuron,Schwann Cell
+10X54_8:ACACCTCACAGGCC,cranial visceromotor neuron,Schwann Cell
+10X55_7:CACCTAGAGGGATA,cranial visceromotor neuron,Schwann Cell
+10X54_6:ACTTCCATGAGCGA,cranial visceromotor neuron,Schwann Cell
+10X54_4:GTTAGTCGATAGAA,cranial visceromotor neuron,Schwann Cell
+10X54_5:TTCGGCATATACCG,cranial visceromotor neuron,Schwann Cell
+10X55_5:GGCATGTCGTTGTA,cranial visceromotor neuron,Schwann Cell
+10X54_7:GAACGAGCAGACTG,cranial visceromotor neuron,Schwann Cell
+10X54_8:CTCCTTCCGAGCCA,cranial visceromotor neuron,Schwann Cell
+10X54_5:ATGTAAGAGATGAG,cranial visceromotor neuron,Schwann Cell
+10X48_2:ATCGGAACCTGTAG,cranial visceromotor neuron,Beta
+10X55_1:ATGCCTCCTGCAGG,cranial visceromotor neuron,Gamma
+10X55_4:GTAGAGTCTAGGTT,cranial visceromotor neuron,Schwann Cell
+10X54_4:TCAAGTCAACGCTA,cranial visceromotor neuron,Gamma
+10X33_3:GCCTCATGCGAGTT,cranial visceromotor neuron,Schwann Cell
+10X54_7:ACCGGGTCTTTCAT,cranial visceromotor neuron,Schwann Cell
+10X52_1:TTATGGCTCCGATA,oligodendrocyte precursor cell,Schwann Cell
+10X22_3:ATCTTGACTGACAC,oligodendrocyte precursor cell,Sensitive
+10X50_7:GGGACCACAACCGT,oligodendrocyte precursor cell,Sensitive
+10X26_4:TCACTATGTGGTAC,oligodendrocyte precursor cell,Schwann Cell
+10X43_1:TAATGTGACCTACC,oligodendrocyte precursor cell,Schwann Cell
+10X49_5:GAGGTTTGTCGCAA,oligodendrocyte precursor cell,Schwann Cell
+10X53_4:CTGATGGAAGTGCT,oligodendrocyte precursor cell,Schwann Cell
+10X02_1:AGGTGGGACCTGTC,oligodendrocyte precursor cell,Ductal
+10X01_1:GCATGTGAAAGTGA,oligodendrocyte precursor cell,Ductal
 10X46_1:AGTATCCTCTTCGC,oligodendrocyte precursor cell,Trunk
-10X22_4:GCCCAACTCCTCAC,oligodendrocyte precursor cell,TAC-1
-10X01_1:AGGGCCACAGGAGC,oligodendrocyte precursor cell,Basal
-10X52_1:TCAAGGTGAAAGCA,oligodendrocyte precursor cell,TAC-1
-10X28_5:TGCTTAACTACTTC,oligodendrocyte precursor cell,TAC-1
-10X52_1:CAAACTCTAAAGCA,oligodendrocyte precursor cell,Trunk
-10X50_2:AACCAGTGTCTATC,oligodendrocyte precursor cell,Trunk
-10X24_3:GATAATACTTCCAT,oligodendrocyte precursor cell,Trunk
-10X26_4:GCACGTCTATGTGC,oligodendrocyte precursor cell,Trunk
+10X22_4:GCCCAACTCCTCAC,oligodendrocyte precursor cell,Schwann Cell
+10X01_1:AGGGCCACAGGAGC,oligodendrocyte precursor cell,Ductal
+10X52_1:TCAAGGTGAAAGCA,oligodendrocyte precursor cell,Schwann Cell
+10X28_5:TGCTTAACTACTTC,oligodendrocyte precursor cell,Resistant
+10X52_1:CAAACTCTAAAGCA,oligodendrocyte precursor cell,Schwann Cell
+10X50_2:AACCAGTGTCTATC,oligodendrocyte precursor cell,Schwann Cell
+10X24_3:GATAATACTTCCAT,oligodendrocyte precursor cell,Schwann Cell
+10X26_4:GCACGTCTATGTGC,oligodendrocyte precursor cell,Schwann Cell
 10X01_1:ACGGTAACCCAAGT,oligodendrocyte precursor cell,Schwann Cell
-10X24_4:ACTCTCCTCATACG,oligodendrocyte precursor cell,Basal
-10X75_1:AATGAGGACGAGTT,sympathetic noradrenergic neuron,Schwann Cell
-10X75_1:TAGCGATGACAGTC,sympathetic noradrenergic neuron,Schwann Cell
-10X75_1:XXTTAACTATCACG,sympathetic noradrenergic neuron,Basal
-10X75_1:GGACATTGTCCGAA,sympathetic noradrenergic neuron,Schwann Cell
-10X75_1:CAACCAGACACAAC,sympathetic noradrenergic neuron,Basal
-10X75_1:ATCTGGGAAAAACG,sympathetic noradrenergic neuron,Infundibulum
-10X75_1:CGCTAAGAGGAGCA,sympathetic noradrenergic neuron,Infundibulum
-10X75_1:TTGCATTGGAAACA,sympathetic noradrenergic neuron,Multipotent
-10X75_1:GGCCAGACCTTGTT,sympathetic noradrenergic neuron,Fev+
-10X75_1:CAAGGTTGGCCCTT,sympathetic noradrenergic neuron,Fev+
-10X75_1:ATCGACGAGGCAAG,sympathetic noradrenergic neuron,Trunk
-10X75_1:XXATCTACTGTAGC,sympathetic noradrenergic neuron,Fev+
-10X75_1:CTATAAGAGCGGAA,sympathetic noradrenergic neuron,Schwann Cell
-10X75_1:ACACCCTGAGAGAT,sympathetic noradrenergic neuron,Fev+
-10X75_1:CGAGGAGACGAATC,sympathetic noradrenergic neuron,Infundibulum
-10X75_1:ATTCTTCTGGCAAG,sympathetic noradrenergic neuron,Fev+
-10X75_1:AAAGCAGAAGCGTT,sympathetic noradrenergic neuron,Basal
-10X75_1:AAGGTCTGTGGTAC,sympathetic noradrenergic neuron,Infundibulum
-10X75_1:GACAGGGAGCTTAG,sympathetic noradrenergic neuron,Infundibulum
-10X75_1:GAACACACGAGCTT,sympathetic noradrenergic neuron,Fev+
-10X53_7:TCCCAGACTTACTC,Satellite glia,Basal
-10X43_2:TAAGAGGAGCTGTA,Satellite glia,Basal
-10X43_2:ATGCAGTGACCTTT,Satellite glia,Basal
-10X43_2:GGCGCATGTCTCTA,Satellite glia,Trunk
-10X43_2:GATCGATGACGGTT,Satellite glia,Basal
-10X43_2:GCACCTTGCCTAAG,Satellite glia,Schwann Cell
-10X43_2:TTCAACACGCAGTT,Satellite glia,Basal
-10X43_2:ACGCAATGGCTGTA,Satellite glia,Basal
-10X43_2:ATAGCCGACTCAGA,Satellite glia,Basal
-10X43_2:ATCCGCACAGAGTA,Satellite glia,Basal
-10X53_7:ATGCGATGGCTGAT,Satellite glia,Basal
-10X43_2:CTAGTTTGTCAGAC,Satellite glia,Basal
-10X53_7:CTGGAAACCTCGCT,Satellite glia,Basal
-10X43_2:ACTGTTACATCGTG,Satellite glia,Basal
-10X53_7:CGACCACTCCCGTT,Satellite glia,Basal
-10X43_2:TCAACACTCCTTTA,Satellite glia,Schwann Cell
-10X43_2:TAGTCTTGCCTAAG,Satellite glia,Basal
-10X43_2:GGCGACTGTCTACT,Satellite glia,Basal
+10X24_4:ACTCTCCTCATACG,oligodendrocyte precursor cell,Schwann Cell
+10X75_1:AATGAGGACGAGTT,sympathetic noradrenergic neuron,Ductal
+10X75_1:TAGCGATGACAGTC,sympathetic noradrenergic neuron,Gamma
+10X75_1:XXTTAACTATCACG,sympathetic noradrenergic neuron,Schwann Cell
+10X75_1:GGACATTGTCCGAA,sympathetic noradrenergic neuron,Ductal
+10X75_1:CAACCAGACACAAC,sympathetic noradrenergic neuron,Beta
+10X75_1:ATCTGGGAAAAACG,sympathetic noradrenergic neuron,Ductal
+10X75_1:CGCTAAGAGGAGCA,sympathetic noradrenergic neuron,Ductal
+10X75_1:TTGCATTGGAAACA,sympathetic noradrenergic neuron,Ductal
+10X75_1:GGCCAGACCTTGTT,sympathetic noradrenergic neuron,Ductal
+10X75_1:CAAGGTTGGCCCTT,sympathetic noradrenergic neuron,Schwann Cell
+10X75_1:ATCGACGAGGCAAG,sympathetic noradrenergic neuron,Ductal
+10X75_1:XXATCTACTGTAGC,sympathetic noradrenergic neuron,Ductal
+10X75_1:CTATAAGAGCGGAA,sympathetic noradrenergic neuron,Beta
+10X75_1:ACACCCTGAGAGAT,sympathetic noradrenergic neuron,Ductal
+10X75_1:CGAGGAGACGAATC,sympathetic noradrenergic neuron,Schwann Cell
+10X75_1:ATTCTTCTGGCAAG,sympathetic noradrenergic neuron,Ductal
+10X75_1:AAAGCAGAAGCGTT,sympathetic noradrenergic neuron,Ductal
+10X75_1:AAGGTCTGTGGTAC,sympathetic noradrenergic neuron,Ductal
+10X75_1:GACAGGGAGCTTAG,sympathetic noradrenergic neuron,Gamma
+10X75_1:GAACACACGAGCTT,sympathetic noradrenergic neuron,Schwann Cell
+10X53_7:TCCCAGACTTACTC,Satellite glia,Schwann Cell
+10X43_2:TAAGAGGAGCTGTA,Satellite glia,Schwann Cell
+10X43_2:ATGCAGTGACCTTT,Satellite glia,Ductal
+10X43_2:GGCGCATGTCTCTA,Satellite glia,Ductal
+10X43_2:GATCGATGACGGTT,Satellite glia,Ductal
+10X43_2:GCACCTTGCCTAAG,Satellite glia,Ductal
+10X43_2:TTCAACACGCAGTT,Satellite glia,Ductal
+10X43_2:ACGCAATGGCTGTA,Satellite glia,Ductal
+10X43_2:ATAGCCGACTCAGA,Satellite glia,Ductal
+10X43_2:ATCCGCACAGAGTA,Satellite glia,Schwann Cell
+10X53_7:ATGCGATGGCTGAT,Satellite glia,Schwann Cell
+10X43_2:CTAGTTTGTCAGAC,Satellite glia,Schwann Cell
+10X53_7:CTGGAAACCTCGCT,Satellite glia,Schwann Cell
+10X43_2:ACTGTTACATCGTG,Satellite glia,Ductal
+10X53_7:CGACCACTCCCGTT,Satellite glia,Schwann Cell
+10X43_2:TCAACACTCCTTTA,Satellite glia,Ductal
+10X43_2:TAGTCTTGCCTAAG,Satellite glia,Ductal
+10X43_2:GGCGACTGTCTACT,Satellite glia,Ductal
 10X43_2:CACGGGACTGCAAC,Satellite glia,Schwann Cell
-10X53_7:CGACCGGACATCAG,Satellite glia,Basal
-10X11_1:TTACTCGAAGTACC,choroid plexus epithelial cell,Trunk
-10X54_6:AGCTACATCGGGTC,choroid plexus epithelial cell,Basal
-10X54_3:AGCCAGTAAGCACG,choroid plexus epithelial cell,TAC-1
-10X55_3:ACCCAGTATATGAG,choroid plexus epithelial cell,Basal
-10X54_3:GCCACTCTGCGACG,choroid plexus epithelial cell,TAC-1
-10X55_8:GTTCCCACAACGTT,choroid plexus epithelial cell,Trunk
-10X48_1:ATAGCCGAGGGACA,choroid plexus epithelial cell,Trunk
-10X54_4:ACTTCGTGAGCGAT,choroid plexus epithelial cell,Trunk
-10X49_1:ACAAAGGATTACTC,choroid plexus epithelial cell,Basal
-10X54_4:ACCAAGTCATACTG,choroid plexus epithelial cell,Trunk
+10X53_7:CGACCGGACATCAG,Satellite glia,Ductal
+10X11_1:TTACTCGAAGTACC,choroid plexus epithelial cell,Schwann Cell
+10X54_6:AGCTACATCGGGTC,choroid plexus epithelial cell,Ductal
+10X54_3:AGCCAGTAAGCACG,choroid plexus epithelial cell,Ductal
+10X55_3:ACCCAGTATATGAG,choroid plexus epithelial cell,Schwann Cell
+10X54_3:GCCACTCTGCGACG,choroid plexus epithelial cell,Ductal
+10X55_8:GTTCCCACAACGTT,choroid plexus epithelial cell,Ductal
+10X48_1:ATAGCCGAGGGACA,choroid plexus epithelial cell,Ductal
+10X54_4:ACTTCGTGAGCGAT,choroid plexus epithelial cell,Ductal
+10X49_1:ACAAAGGATTACTC,choroid plexus epithelial cell,Ductal
+10X54_4:ACCAAGTCATACTG,choroid plexus epithelial cell,Ductal
 10X54_2:TCGATTCCCTCAGT,choroid plexus epithelial cell,Trunk
 10X48_4:GCAGTCCTTTGCAG,choroid plexus epithelial cell,Trunk
-10X57_6:TTGGGAACGCTTAG,choroid plexus epithelial cell,Basal
-10X57_6:AATCCTACTTAGGC,choroid plexus epithelial cell,Schwann Cell
-10X54_4:CTCCTTCAGATAAG,choroid plexus epithelial cell,Trunk
-10X49_3:AGTTTGCTCACCAA,choroid plexus epithelial cell,Basal
-10X33_2:GGACCCGAAGTCTG,choroid plexus epithelial cell,Basal
-10X54_2:GTAGAAGGTGATAT,choroid plexus epithelial cell,Basal
-10X48_1:TGATTCACTTCTAC,choroid plexus epithelial cell,Trunk
+10X57_6:TTGGGAACGCTTAG,choroid plexus epithelial cell,Schwann Cell
+10X57_6:AATCCTACTTAGGC,choroid plexus epithelial cell,Ductal
+10X54_4:CTCCTTCAGATAAG,choroid plexus epithelial cell,Schwann Cell
+10X49_3:AGTTTGCTCACCAA,choroid plexus epithelial cell,Ductal
+10X33_2:GGACCCGAAGTCTG,choroid plexus epithelial cell,Ductal
+10X54_2:GTAGAAGGTGATAT,choroid plexus epithelial cell,Ductal
+10X48_1:TGATTCACTTCTAC,choroid plexus epithelial cell,Schwann Cell
 10X87_4:ATAGAACTTTGTGG,choroid plexus epithelial cell,Trunk
-10X20_3:ATGCAGTGAAAAGC,hypendymal cell,Basal
-10X57_1:GATCCGCTTTGCTT,hypendymal cell,Basal
-10X20_3:ATGCGATGCCTCAC,hypendymal cell,TAC-1
-10X57_1:ACGACCCTTCGTAG,hypendymal cell,TAC-1
-10X20_4:CTCAGGCTAAGAGT,hypendymal cell,Basal
-10X52_1:ATCCGCACTCGATG,hypendymal cell,TAC-1
-10X52_2:AGAGTGCTCATTGG,hypendymal cell,Basal
-10X52_3:TCGCACACTTCGCC,hypendymal cell,Trunk
-10X52_4:TTTGACTGTGCTGA,hypendymal cell,Basal
-10X57_3:GGAATGCTTATCTC,hypendymal cell,Basal
-10X52_1:TAGTAATGGTACCA,hypendymal cell,TAC-1
-10X57_3:CTGATACTTACTCT,hypendymal cell,Basal
-10X20_3:GGGCAAGACTCTTA,hypendymal cell,Trunk
-10X20_3:CTGTAACTGAGGTG,hypendymal cell,Basal
-10X20_4:GCAAGACTAAGCAA,hypendymal cell,Basal
-10X20_4:CTAGGCCTCTACTT,hypendymal cell,Trunk
-10X20_3:TTCTTACTTTATCC,hypendymal cell,Trunk
-10X20_3:CTCAGAGAGGATCT,hypendymal cell,Basal
-10X57_2:ACGCCACTGTTACG,hypendymal cell,Basal
-10X20_3:GTTGACGATAGTCG,hypendymal cell,Basal
-10X75_1:CTTCTAGACGTGAT,sympathetic cholinergic neuron,Schwann Cell
-10X75_1:TAGAGAGAAATGCC,sympathetic cholinergic neuron,Infundibulum
-10X75_1:AACAGAGAGTTTCT,sympathetic cholinergic neuron,Fev+
-10X75_1:CCCTACGAGGGATG,sympathetic cholinergic neuron,Mix
-10X75_1:GGGTTAACTTCTCA,sympathetic cholinergic neuron,Basal
-10X75_1:AGATATTGAAGGTA,sympathetic cholinergic neuron,Infundibulum
-10X75_1:AGGAATGACGCTAA,sympathetic cholinergic neuron,Trunk
-10X75_1:TGCAAGACAGAGAT,sympathetic cholinergic neuron,Schwann Cell
-10X75_1:TACACACTCGTAAC,sympathetic cholinergic neuron,Fev+
-10X75_1:AGCGTAACGTGTCA,sympathetic cholinergic neuron,Fev+
-10X75_1:GGAGCAGACCAGTA,sympathetic cholinergic neuron,Fev+
-10X75_1:CAGTTGGAGTACGT,sympathetic cholinergic neuron,Infundibulum
-10X75_1:TTCATGACTGGAGG,sympathetic cholinergic neuron,TAC-1
-10X75_1:AGCCAATGTCGTAG,sympathetic cholinergic neuron,Infundibulum
-10X75_1:ATGTTAGAAGAGTA,sympathetic cholinergic neuron,Fev+
-10X75_1:ATTCTTCTCAGTTG,sympathetic cholinergic neuron,Fev+
-10X75_1:CTGACAGACCTTCG,sympathetic cholinergic neuron,Schwann Cell
-10X75_1:ATCGCGCTCACTTT,sympathetic cholinergic neuron,Basal
-10X75_1:AAGTGGCTGCTGAT,sympathetic cholinergic neuron,Infundibulum
-10X75_1:GGTGATACGAGCTT,sympathetic cholinergic neuron,Trunk
-10X43_2:ATGAGCACTCATTC,Schwann cell,Fev+
-10X43_2:AGACCTGAGTCCTC,Schwann cell,Basal
-10X53_7:ACAGTTCTCTTGGA,Schwann cell,Trunk
-10X53_7:AGCGGCACAACAGA,Schwann cell,Basal
-10X43_2:TCATCAACCGTTAG,Schwann cell,Basal
-10X43_2:ACTGAGACAACTGC,Schwann cell,Basal
-10X43_2:ATGGTGACCATGGT,Schwann cell,Basal
-10X53_7:TATAAGTGGTCGAT,Schwann cell,Basal
-10X43_2:CACGGGACTTCTAC,Schwann cell,Trunk
-10X43_2:TGTATCTGAGTCTG,Schwann cell,Trunk
-10X43_2:ATCATCTGAACGGG,Schwann cell,Basal
-10X43_2:GTTCAGGATGTTTC,Schwann cell,Schwann Cell
-10X43_2:CTTAGGGAAATGCC,Schwann cell,Basal
-10X43_2:TCAGGATGAACGGG,Schwann cell,Basal
-10X43_2:TTTCGAACTCTCTA,Schwann cell,Basal
-10X43_2:TGATTCTGGTCATG,Schwann cell,Trunk
-10X43_2:ACAGTGACGACTAC,Schwann cell,Basal
-10X43_2:CTAGATCTAGAACA,Schwann cell,Trunk
-10X53_7:GATAGAGATGGATC,Schwann cell,Trunk
-10X43_2:GAAGCTTGTTGTGG,Schwann cell,Trunk
-10X82_2:CATGGAGTCTCAAC,enteric neuron,Schwann Cell
-10X81_1:CACACAGGGTGTTG,enteric neuron,Trunk
-10X82_2:TCGATGTCAGAGGT,enteric neuron,Trunk
-10X81_3:TCCTAGTCTTGTCC,enteric neuron,Trunk
-10X81_2:GGTGACAAGGACAC,enteric neuron,Trunk
-10X82_2:CTGCTTCGACAGCC,enteric neuron,Basal
-10X82_2:AAACTCAAACCTAC,enteric neuron,Trunk
-10X82_2:ACATCTCTTGTATC,enteric neuron,Trunk
-10X81_1:CATAGAGGCTCATT,enteric neuron,Dermal Papilla
-10X82_2:ATGTCTCCTCAACC,enteric neuron,Trunk
-10X81_3:ACTAGCACGAAAGC,enteric neuron,Basal
+10X20_3:ATGCAGTGAAAAGC,hypendymal cell,Ductal
+10X57_1:GATCCGCTTTGCTT,hypendymal cell,Trunk
+10X20_3:ATGCGATGCCTCAC,hypendymal cell,Schwann Cell
+10X57_1:ACGACCCTTCGTAG,hypendymal cell,Basal
+10X20_4:CTCAGGCTAAGAGT,hypendymal cell,Schwann Cell
+10X52_1:ATCCGCACTCGATG,hypendymal cell,Ductal
+10X52_2:AGAGTGCTCATTGG,hypendymal cell,Ductal
+10X52_3:TCGCACACTTCGCC,hypendymal cell,Endothelial
+10X52_4:TTTGACTGTGCTGA,hypendymal cell,Schwann Cell
+10X57_3:GGAATGCTTATCTC,hypendymal cell,Ductal
+10X52_1:TAGTAATGGTACCA,hypendymal cell,Ductal
+10X57_3:CTGATACTTACTCT,hypendymal cell,Ductal
+10X20_3:GGGCAAGACTCTTA,hypendymal cell,Schwann Cell
+10X20_3:CTGTAACTGAGGTG,hypendymal cell,Ductal
+10X20_4:GCAAGACTAAGCAA,hypendymal cell,Trunk
+10X20_4:CTAGGCCTCTACTT,hypendymal cell,Schwann Cell
+10X20_3:TTCTTACTTTATCC,hypendymal cell,Ductal
+10X20_3:CTCAGAGAGGATCT,hypendymal cell,Schwann Cell
+10X57_2:ACGCCACTGTTACG,hypendymal cell,Ductal
+10X20_3:GTTGACGATAGTCG,hypendymal cell,Schwann Cell
+10X75_1:CTTCTAGACGTGAT,sympathetic cholinergic neuron,Ductal
+10X75_1:TAGAGAGAAATGCC,sympathetic cholinergic neuron,Ductal
+10X75_1:AACAGAGAGTTTCT,sympathetic cholinergic neuron,Ductal
+10X75_1:CCCTACGAGGGATG,sympathetic cholinergic neuron,Schwann Cell
+10X75_1:GGGTTAACTTCTCA,sympathetic cholinergic neuron,Schwann Cell
+10X75_1:AGATATTGAAGGTA,sympathetic cholinergic neuron,Ductal
+10X75_1:AGGAATGACGCTAA,sympathetic cholinergic neuron,Ductal
+10X75_1:TGCAAGACAGAGAT,sympathetic cholinergic neuron,Beta
+10X75_1:TACACACTCGTAAC,sympathetic cholinergic neuron,Ductal
+10X75_1:AGCGTAACGTGTCA,sympathetic cholinergic neuron,Beta
+10X75_1:GGAGCAGACCAGTA,sympathetic cholinergic neuron,Schwann Cell
+10X75_1:CAGTTGGAGTACGT,sympathetic cholinergic neuron,Ductal
+10X75_1:TTCATGACTGGAGG,sympathetic cholinergic neuron,Ductal
+10X75_1:AGCCAATGTCGTAG,sympathetic cholinergic neuron,Beta
+10X75_1:ATGTTAGAAGAGTA,sympathetic cholinergic neuron,Ductal
+10X75_1:ATTCTTCTCAGTTG,sympathetic cholinergic neuron,Ductal
+10X75_1:CTGACAGACCTTCG,sympathetic cholinergic neuron,Ductal
+10X75_1:ATCGCGCTCACTTT,sympathetic cholinergic neuron,Ductal
+10X75_1:AAGTGGCTGCTGAT,sympathetic cholinergic neuron,Beta
+10X75_1:GGTGATACGAGCTT,sympathetic cholinergic neuron,Beta
+10X43_2:ATGAGCACTCATTC,Schwann cell,Schwann Cell
+10X43_2:AGACCTGAGTCCTC,Schwann cell,Ductal
+10X53_7:ACAGTTCTCTTGGA,Schwann cell,Ductal
+10X53_7:AGCGGCACAACAGA,Schwann cell,Schwann Cell
+10X43_2:TCATCAACCGTTAG,Schwann cell,Schwann Cell
+10X43_2:ACTGAGACAACTGC,Schwann cell,Schwann Cell
+10X43_2:ATGGTGACCATGGT,Schwann cell,Ductal
+10X53_7:TATAAGTGGTCGAT,Schwann cell,Trunk
+10X43_2:CACGGGACTTCTAC,Schwann cell,Schwann Cell
+10X43_2:TGTATCTGAGTCTG,Schwann cell,Ductal
+10X43_2:ATCATCTGAACGGG,Schwann cell,Schwann Cell
+10X43_2:GTTCAGGATGTTTC,Schwann cell,Ductal
+10X43_2:CTTAGGGAAATGCC,Schwann cell,Ductal
+10X43_2:TCAGGATGAACGGG,Schwann cell,Ductal
+10X43_2:TTTCGAACTCTCTA,Schwann cell,Schwann Cell
+10X43_2:TGATTCTGGTCATG,Schwann cell,Schwann Cell
+10X43_2:ACAGTGACGACTAC,Schwann cell,Ductal
+10X43_2:CTAGATCTAGAACA,Schwann cell,Schwann Cell
+10X53_7:GATAGAGATGGATC,Schwann cell,Schwann Cell
+10X43_2:GAAGCTTGTTGTGG,Schwann cell,Schwann Cell
+10X82_2:CATGGAGTCTCAAC,enteric neuron,Ductal
+10X81_1:CACACAGGGTGTTG,enteric neuron,Ductal
+10X82_2:TCGATGTCAGAGGT,enteric neuron,Schwann Cell
+10X81_3:TCCTAGTCTTGTCC,enteric neuron,Schwann Cell
+10X81_2:GGTGACAAGGACAC,enteric neuron,Ductal
+10X82_2:CTGCTTCGACAGCC,enteric neuron,Ductal
+10X82_2:AAACTCAAACCTAC,enteric neuron,Ductal
+10X82_2:ACATCTCTTGTATC,enteric neuron,Ductal
+10X81_1:CATAGAGGCTCATT,enteric neuron,Ductal
+10X82_2:ATGTCTCCTCAACC,enteric neuron,Schwann Cell
+10X81_3:ACTAGCACGAAAGC,enteric neuron,Ductal
 10X81_3:TTGGTTCTACTCAT,enteric neuron,Schwann Cell
-10X82_2:GCATAAGACCCACC,enteric neuron,Trunk
-10X81_3:GAGAGTCCACGAAT,enteric neuron,Schwann Cell
-10X82_2:ACATTCACGGCGTT,enteric neuron,Infundibulum
-10X82_2:ATTGAAGTGTGAAT,enteric neuron,Fev+
-10X82_2:CCACTAGAGGGCTT,enteric neuron,Trunk
-10X81_3:GGCAGGTTATGTGC,enteric neuron,Trunk
-10X81_1:ACAGATCAATACCG,enteric neuron,TAC-1
-10X81_1:ATGTATCTTGTACT,enteric neuron,Fev+
+10X82_2:GCATAAGACCCACC,enteric neuron,Ductal
+10X81_3:GAGAGTCCACGAAT,enteric neuron,Ductal
+10X82_2:ACATTCACGGCGTT,enteric neuron,Ductal
+10X82_2:ATTGAAGTGTGAAT,enteric neuron,Ductal
+10X82_2:CCACTAGAGGGCTT,enteric neuron,Ductal
+10X81_3:GGCAGGTTATGTGC,enteric neuron,Beta
+10X81_1:ACAGATCAATACCG,enteric neuron,Ductal
+10X81_1:ATGTATCTTGTACT,enteric neuron,Schwann Cell

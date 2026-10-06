@@ -1,11 +1,10 @@
 {
   "total_predictions": 1000,
   "note": "discovery + resolution; review-filter + coverage gate applied at scoring (evaluate.py)",
-  "non_cl_predictions": 739,
-  "non_cl_ratio": 0.739,
+  "non_cl_predictions": 731,
+  "non_cl_ratio": 0.731,
   "non_cl_labels": [
     "alpha",
-    "basal",
     "beta",
     "delta",
     "ductal",
@@ -14,18 +13,17 @@
     "holiday",
     "mesenchyme",
     "multipotent",
-    "n similarities",
     "ngn3 high ep",
     "ngn3 low ep",
     "nk/t cell",
     "pp",
     "resistant",
-    "schwan perspective",
-    "sensi falls",
+    "schwanrough",
     "sensitive",
+    "t cell motion",
+    "t cellreprendre",
     "tac-1",
     "tac-2",
-    "trunk",
-    "year"
+    "trunk"
   ]
 }

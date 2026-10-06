@@ -1,12 +1,12 @@
 cell_id,true_labels,predicted_labels
 human3_lib3.final_cell_0421,pancreatic A cell,Alpha
 D29-6_82,pancreatic A cell,Alpha
-D17All2_44,pancreatic A cell,Gamma
+D17All2_44,pancreatic A cell,Alpha
 human3_lib4.final_cell_0731,pancreatic A cell,Alpha
 human1_lib2.final_cell_0065,pancreatic A cell,Alpha
 HP1507101_L15,pancreatic A cell,Alpha
 D31-5_58,pancreatic A cell,Alpha
-D30-2_67,pancreatic A cell,Gamma
+D30-2_67,pancreatic A cell,Alpha
 human3_lib4.final_cell_0674,pancreatic A cell,Alpha
 D29-5_54,pancreatic A cell,Alpha
 human3_lib3.final_cell_0757,pancreatic A cell,Alpha
@@ -38,12 +38,12 @@ human4_lib3.final_cell_0426,pancreatic A cell,Alpha
 D172444_28,pancreatic A cell,Alpha
 human4_lib1.final_cell_0048,pancreatic A cell,Alpha
 human4_lib3.final_cell_0369,pancreatic A cell,Alpha
-D30-5_14,pancreatic A cell,Gamma
+D30-5_14,pancreatic A cell,Alpha
 human3_lib4.final_cell_0256,pancreatic A cell,Alpha
 human2_lib2.final_cell_0529,pancreatic A cell,Alpha
 human2_lib1.final_cell_0239,pancreatic A cell,Alpha
 human1_lib2.final_cell_0248,pancreatic A cell,Alpha
-D30-4_47,pancreatic A cell,Beta
+D30-4_47,pancreatic A cell,Alpha
 D31-4_32,pancreatic A cell,Alpha
 human4_lib1.final_cell_0152,pancreatic A cell,Alpha
 human2_lib1.final_cell_0203,pancreatic A cell,Alpha
@@ -62,7 +62,7 @@ human2_lib3.final_cell_0329,pancreatic A cell,Alpha
 human3_lib1.final_cell_0695,pancreatic A cell,Alpha
 D29-8_60,pancreatic A cell,Alpha
 human2_lib2.final_cell_0107,pancreatic A cell,Alpha
-D29-2_67,pancreatic A cell,Gamma
+D29-2_67,pancreatic A cell,Alpha
 human3_lib2.final_cell_0142,pancreatic A cell,Alpha
 human1_lib2.final_cell_0628,pancreatic A cell,Alpha
 human3_lib3.final_cell_0273,pancreatic A cell,Alpha
@@ -71,7 +71,7 @@ human2_lib1.final_cell_0451,pancreatic A cell,Alpha
 human3_lib2.final_cell_0452,pancreatic A cell,Alpha
 D30-8_89,pancreatic A cell,Alpha
 human3_lib4.final_cell_0351,pancreatic A cell,Alpha
-D29-1_32,pancreatic A cell,Gamma
+D29-1_32,pancreatic A cell,Alpha
 D74_88,pancreatic A cell,Alpha
 human3_lib3.final_cell_0618,pancreatic A cell,Alpha
 D31-6_45,pancreatic A cell,Alpha
@@ -119,8 +119,8 @@ human4_lib3.final_cell_0362,pancreatic A cell,Alpha
 human1_lib3.final_cell_0699,pancreatic A cell,Alpha
 human2_lib2.final_cell_0342,pancreatic A cell,Alpha
 human1_lib1.final_cell_0327,pancreatic A cell,Alpha
-D28-8_86,pancreatic A cell,Beta
-D31-3_90,pancreatic A cell,Gamma
+D28-8_86,pancreatic A cell,Alpha
+D31-3_90,pancreatic A cell,Alpha
 human3_lib2.final_cell_0356,pancreatic A cell,Alpha
 human3_lib4.final_cell_0486,pancreatic A cell,Alpha
 human1_lib3.final_cell_0674,pancreatic A cell,Alpha
@@ -164,7 +164,7 @@ human2_lib2.final_cell_0152,pancreatic A cell,Alpha
 human3_lib2.final_cell_0591,pancreatic A cell,Alpha
 human2_lib3.final_cell_0411,pancreatic A cell,Alpha
 human3_lib1.final_cell_0632,pancreatic A cell,Alpha
-HP1508501T2D_O10,pancreatic A cell,Gamma
+HP1508501T2D_O10,pancreatic A cell,Alpha
 human3_lib2.final_cell_0156,pancreatic A cell,Alpha
 D172444_58,pancreatic A cell,Alpha
 human3_lib3.final_cell_0783,pancreatic A cell,Alpha
@@ -193,7 +193,7 @@ human3_lib3.final_cell_0183,pancreatic A cell,Alpha
 human1_lib3.final_cell_0242,pancreatic A cell,Alpha
 human3_lib3.final_cell_0405,pancreatic A cell,Alpha
 human3_lib2.final_cell_0719,pancreatic A cell,Alpha
-human2_lib2.final_cell_0039,pancreatic A cell,Gamma
+human2_lib2.final_cell_0039,pancreatic A cell,Alpha
 human4_lib1.final_cell_0136,pancreatic A cell,Alpha
 D30-5_37,pancreatic A cell,Alpha
 human3_lib1.final_cell_0727,pancreatic A cell,Alpha
@@ -243,10 +243,10 @@ human2_lib2.final_cell_0033,pancreatic A cell,Alpha
 human2_lib3.final_cell_0105,pancreatic A cell,Alpha
 human3_lib1.final_cell_0510,pancreatic A cell,Alpha
 human2_lib3.final_cell_0228,pancreatic A cell,Alpha
-D29-8_15,pancreatic A cell,Gamma
+D29-8_15,pancreatic A cell,Delta
 HP1507101_K17,pancreatic A cell,Alpha
 D31-5_68,pancreatic A cell,Alpha
-D28-7_66,pancreatic A cell,Gamma
+D28-7_66,pancreatic A cell,Alpha
 human2_lib1.final_cell_0218,pancreatic A cell,Alpha
 D17All1_89,pancreatic A cell,Alpha
 human3_lib2.final_cell_0541,pancreatic A cell,Alpha
@@ -257,7 +257,7 @@ D172444_31,pancreatic A cell,Alpha
 D29-1_46,pancreatic A cell,Alpha
 human3_lib4.final_cell_0395,pancreatic A cell,Alpha
 human3_lib3.final_cell_0315,pancreatic A cell,Alpha
-D28-5_50,pancreatic A cell,Gamma
+D28-5_50,pancreatic A cell,Alpha
 D31-6_56,pancreatic A cell,Alpha
 D29-1_13,pancreatic A cell,Alpha
 D17TGFB_82,pancreatic A cell,Alpha
@@ -313,7 +313,7 @@ D30-7_3,type B pancreatic cell,Beta
 D29-2_54,type B pancreatic cell,Beta
 human4_lib1.final_cell_0126,type B pancreatic cell,Beta
 human3_lib3.final_cell_0112,type B pancreatic cell,Beta
-D17All2_7,type B pancreatic cell,Beta
+D17All2_7,type B pancreatic cell,Delta
 D30-5_49,type B pancreatic cell,Beta
 human4_lib3.final_cell_0619,type B pancreatic cell,Beta
 human1_lib2.final_cell_0207,type B pancreatic cell,Beta
@@ -353,7 +353,7 @@ D29-3_83,type B pancreatic cell,Beta
 D29-2_50,type B pancreatic cell,Beta
 human3_lib3.final_cell_0871,type B pancreatic cell,Beta
 human3_lib1.final_cell_0547,type B pancreatic cell,Beta
-human3_lib2.final_cell_0206,type B pancreatic cell,Alpha
+human3_lib2.final_cell_0206,type B pancreatic cell,Acinar
 human3_lib2.final_cell_0779,type B pancreatic cell,Beta
 human1_lib1.final_cell_0100,type B pancreatic cell,Beta
 D29-3_64,type B pancreatic cell,Beta
@@ -383,7 +383,7 @@ human1_lib3.final_cell_0347,type B pancreatic cell,Beta
 human1_lib2.final_cell_0440,type B pancreatic cell,Beta
 human1_lib1.final_cell_0522,type B pancreatic cell,Beta
 human4_lib1.final_cell_0313,type B pancreatic cell,Beta
-human4_lib3.final_cell_0219,type B pancreatic cell,Beta
+human4_lib3.final_cell_0219,type B pancreatic cell,Delta
 human1_lib3.final_cell_0332,type B pancreatic cell,Beta
 human1_lib2.final_cell_0221,type B pancreatic cell,Beta
 human1_lib2.final_cell_0503,type B pancreatic cell,Beta
@@ -601,7 +601,7 @@ human4_lib3.final_cell_0389,pancreatic ductal cell,Ductal
 human3_lib2.final_cell_0825,pancreatic ductal cell,Ductal
 human3_lib3.final_cell_0546,pancreatic ductal cell,Ductal
 human3_lib4.final_cell_0517,pancreatic ductal cell,Ductal
-human1_lib3.final_cell_0029,pancreatic ductal cell,Acinar
+human1_lib3.final_cell_0029,pancreatic ductal cell,Acina motion
 human2_lib3.final_cell_0238,pancreatic ductal cell,Ductal
 human2_lib2.final_cell_0599,pancreatic ductal cell,Acinar
 human2_lib3.final_cell_0005,pancreatic ductal cell,Acinar
@@ -768,18 +768,18 @@ human3_lib2.final_cell_0623,acinar,Acinar
 human3_lib1.final_cell_0035,acinar,Acinar
 D3en4_12,acinar,Acinar
 human3_lib3.final_cell_0081,acinar,Acinar
-D1713_70,acinar,Acinar
+D1713_70,acinar,Acinarough
 human3_lib3.final_cell_0738,acinar,Acinar
 D2ex_42,acinar,Acinar
 human1_lib2.final_cell_0249,delta,Delta
-D31-6_38,delta,Beta
+D31-6_38,delta,Delta
 human3_lib2.final_cell_0609,delta,Alpha
 D29-1_74,delta,Delta
-human4_lib3.final_cell_0030,delta,Beta
+human4_lib3.final_cell_0030,delta,Delta
 human3_lib2.final_cell_0640,delta,Delta
-D73_86,delta,Beta
+D73_86,delta,Delta
 human4_lib1.final_cell_0204,delta,Delta
-D71_91,delta,Ductal
+D71_91,delta,Delta
 human1_lib1.final_cell_0040,delta,Delta
 D31-2_70,delta,Delta
 D17All2_78,delta,Delta
@@ -789,77 +789,77 @@ HP1509101_O1,delta,Delta
 D29-8_73,delta,Delta
 human2_lib1.final_cell_0173,delta,Delta
 human3_lib3.final_cell_0318,delta,Delta
-D29-7_54,delta,Gamma
-human2_lib3.final_cell_0350,delta,Beta
-D31-5_46,delta,Beta
+D29-7_54,delta,Delta
+human2_lib3.final_cell_0350,delta,Delta
+D31-5_46,delta,Delta
 human2_lib1.final_cell_0044,delta,Delta
 human3_lib4.final_cell_0104,delta,Delta
-human1_lib1.final_cell_0098,delta,Beta
+human1_lib1.final_cell_0098,delta,Delta
 human4_lib1.final_cell_0387,delta,Delta
-human1_lib2.final_cell_0463,delta,Beta
-D30-5_85,delta,Beta
-human3_lib1.final_cell_0430,delta,Beta
+human1_lib2.final_cell_0463,delta,Delta
+D30-5_85,delta,Delta
+human3_lib1.final_cell_0430,delta,Delta
 human3_lib1.final_cell_0473,delta,Delta
-human4_lib1.final_cell_0169,delta,Beta
+human4_lib1.final_cell_0169,delta,Delta
 human3_lib4.final_cell_0413,delta,Delta
 human4_lib3.final_cell_0003,delta,Delta
 human4_lib3.final_cell_0410,delta,Delta
-D30-5_22,delta,Beta
+D30-5_22,delta,Delta
 human1_lib2.final_cell_0015,delta,Delta
 D29-6_63,delta,Delta
 human3_lib1.final_cell_0110,delta,Delta
 D71_35,delta,Delta
 human1_lib2.final_cell_0020,delta,Delta
 human3_lib1.final_cell_0091,delta,Delta
-human3_lib3.final_cell_0450,delta,Beta
-human1_lib3.final_cell_0009,delta,Beta
+human3_lib3.final_cell_0450,delta,Delta
+human1_lib3.final_cell_0009,delta,Delta
 human1_lib3.final_cell_0066,delta,Delta
-human3_lib4.final_cell_0340,delta,Beta
-D31-2_36,delta,Beta
+human3_lib4.final_cell_0340,delta,Delta
+D31-2_36,delta,Delta
 D29-2_34,delta,Delta
-human3_lib1.final_cell_0261,delta,Ductal
+human3_lib1.final_cell_0261,delta,Delta
 human3_lib3.final_cell_0881,delta,Delta
 human3_lib2.final_cell_0092,delta,Delta
 human1_lib1.final_cell_0025,delta,Delta
-D29-5_83,delta,Gamma
+D29-5_83,delta,Delta
 human3_lib4.final_cell_0067,delta,Delta
-human4_lib1.final_cell_0530,delta,Beta
-human1_lib1.final_cell_0490,delta,Alpha
+human4_lib1.final_cell_0530,delta,Delta
+human1_lib1.final_cell_0490,delta,Delta
 human3_lib3.final_cell_0625,delta,Delta
 human3_lib1.final_cell_0339,delta,Delta
 human4_lib3.final_cell_0190,delta,Delta
-D29-8_13,delta,Beta
+D29-8_13,delta,Delta
 human4_lib3.final_cell_0111,delta,Delta
 human2_lib3.final_cell_0410,delta,Delta
 human4_lib3.final_cell_0036,delta,Delta
 D73_90,delta,Delta
 human1_lib2.final_cell_0210,delta,Delta
 human2_lib3.final_cell_0041,delta,Delta
-human1_lib3.final_cell_0298,delta,Beta
+human1_lib3.final_cell_0298,delta,Delta
 human3_lib3.final_cell_0159,delta,Delta
-human1_lib2.final_cell_0473,delta,Beta
+human1_lib2.final_cell_0473,delta,Delta
 human2_lib2.final_cell_0165,delta,Delta
-human3_lib2.final_cell_0437,delta,Ductal
+human3_lib2.final_cell_0437,delta,Delta
 human3_lib1.final_cell_0669,pancreatic stellate cell,Mesenchyme
 D71_22,pancreatic stellate cell,Mesenchyme
-human3_lib3.final_cell_0682,pancreatic stellate cell,PSC
+human3_lib3.final_cell_0682,pancreatic stellate cell,Mesenchyme
 human4_lib1.final_cell_0495,pancreatic stellate cell,Mesenchyme
 human1_lib1.final_cell_0496,pancreatic stellate cell,Mesenchyme
 human3_lib3.final_cell_0915,pancreatic stellate cell,Mesenchyme
-human3_lib2.final_cell_0239,pancreatic stellate cell,PSC
-human3_lib4.final_cell_0819,pancreatic stellate cell,PSC
+human3_lib2.final_cell_0239,pancreatic stellate cell,Mesenchyme
+human3_lib4.final_cell_0819,pancreatic stellate cell,Mesenchyme
 human1_lib2.final_cell_0601,pancreatic stellate cell,Ductal
 human3_lib4.final_cell_0119,pancreatic stellate cell,Mesenchyme
-human1_lib3.final_cell_0288,pancreatic stellate cell,PSC
+human1_lib3.final_cell_0288,pancreatic stellate cell,Mesenchyme
 human4_lib3.final_cell_0686,pancreatic stellate cell,Mesenchyme
-human2_lib2.final_cell_0448,pancreatic stellate cell,PSC
-human4_lib1.final_cell_0400,pancreatic stellate cell,PSC
-human3_lib4.final_cell_0859,pancreatic stellate cell,Schwann Cell
-human3_lib4.final_cell_0237,pancreatic stellate cell,Gamma
+human2_lib2.final_cell_0448,pancreatic stellate cell,Mesenchyme
+human4_lib1.final_cell_0400,pancreatic stellate cell,Mesenchyme
+human3_lib4.final_cell_0859,pancreatic stellate cell,Ductal
+human3_lib4.final_cell_0237,pancreatic stellate cell,Alpha
 human2_lib2.final_cell_0401,pancreatic stellate cell,PSC
-human3_lib1.final_cell_0276,pancreatic stellate cell,PSC
+human3_lib1.final_cell_0276,pancreatic stellate cell,Mesenchyme
 human2_lib2.final_cell_0012,pancreatic stellate cell,Beta
-human1_lib1.final_cell_0215,pancreatic stellate cell,PSC
+human1_lib1.final_cell_0215,pancreatic stellate cell,Mesenchyme
 human2_lib2.final_cell_0568,pancreatic stellate cell,Mesenchyme
 human3_lib4.final_cell_0593,pancreatic stellate cell,Mesenchyme
 human2_lib1.final_cell_0523,pancreatic stellate cell,Mesenchyme
@@ -867,10 +867,10 @@ human3_lib4.final_cell_0853,pancreatic stellate cell,Mesenchyme
 human3_lib2.final_cell_0651,pancreatic stellate cell,PSC
 human3_lib1.final_cell_0604,pancreatic stellate cell,Mesenchyme
 D30-4_35,pancreatic stellate cell,PSC
-human4_lib1.final_cell_0594,pancreatic stellate cell,Mesenchyme
+human4_lib1.final_cell_0594,pancreatic stellate cell,Resistant
 human3_lib1.final_cell_0346,pancreatic stellate cell,Mesenchyme
 human1_lib3.final_cell_0454,pancreatic stellate cell,Mesenchyme
-human4_lib1.final_cell_0471,pancreatic stellate cell,PSC
+human4_lib1.final_cell_0471,pancreatic stellate cell,Mesenchyme
 human1_lib3.final_cell_0723,pancreatic stellate cell,Mesenchyme
 human3_lib1.final_cell_0802,pancreatic stellate cell,Mesenchyme
 human2_lib2.final_cell_0282,pancreatic stellate cell,Mesenchyme
@@ -880,40 +880,40 @@ human2_lib2.final_cell_0559,pancreatic stellate cell,Mesenchyme
 D17All2_93,pancreatic stellate cell,PSC
 human4_lib3.final_cell_0590,pancreatic stellate cell,PSC
 human1_lib3.final_cell_0582,pancreatic stellate cell,Mesenchyme
-human1_lib1.final_cell_0156,pancreatic stellate cell,PSC
-human2_lib1.final_cell_0500,pancreatic stellate cell,PSC
-human3_lib3.final_cell_0265,pancreatic stellate cell,PSC
+human1_lib1.final_cell_0156,pancreatic stellate cell,Mesenchyme
+human2_lib1.final_cell_0500,pancreatic stellate cell,Mesenchyme
+human3_lib3.final_cell_0265,pancreatic stellate cell,Mesenchyme
 human4_lib1.final_cell_0493,pancreatic stellate cell,Mesenchyme
-human2_lib3.final_cell_0526,pancreatic PP cell,Gamma
+human2_lib3.final_cell_0526,pancreatic PP cell,reprendre
 D31-8_67,pancreatic PP cell,Gamma
-human4_lib3.final_cell_0171,pancreatic PP cell,Gamma
-human2_lib2.final_cell_0387,pancreatic PP cell,Gamma
+human4_lib3.final_cell_0171,pancreatic PP cell,PP
+human2_lib2.final_cell_0387,pancreatic PP cell,PP
 human4_lib1.final_cell_0268,pancreatic PP cell,Gamma
 human4_lib3.final_cell_0345,pancreatic PP cell,Gamma
-human2_lib2.final_cell_0520,pancreatic PP cell,Gamma
+human2_lib2.final_cell_0520,pancreatic PP cell,PP
 human2_lib1.final_cell_0501,pancreatic PP cell,PP
-D17All1_28,pancreatic PP cell,Gamma
+D17All1_28,pancreatic PP cell,PP
 D29-2_64,pancreatic PP cell,Gamma
-human1_lib1.final_cell_0431,pancreatic PP cell,Gamma
+human1_lib1.final_cell_0431,pancreatic PP cell,PP
 D31-6_71,pancreatic PP cell,Gamma
-human2_lib1.final_cell_0226,pancreatic PP cell,Gamma
+human2_lib1.final_cell_0226,pancreatic PP cell,PP
 human4_lib3.final_cell_0187,pancreatic PP cell,Gamma
 D31-8_70,pancreatic PP cell,Gamma
-human1_lib1.final_cell_0516,pancreatic PP cell,Gamma
-human4_lib1.final_cell_0449,pancreatic PP cell,Gamma
-human3_lib2.final_cell_0167,pancreatic PP cell,Gamma
-human1_lib3.final_cell_0360,pancreatic PP cell,Gamma
+human1_lib1.final_cell_0516,pancreatic PP cell,PP
+human4_lib1.final_cell_0449,pancreatic PP cell,PP
+human3_lib2.final_cell_0167,pancreatic PP cell,PP
+human1_lib3.final_cell_0360,pancreatic PP cell,PP
 human2_lib2.final_cell_0378,pancreatic PP cell,Gamma
 human2_lib3.final_cell_0516,pancreatic PP cell,Gamma
-human2_lib3.final_cell_0399,pancreatic PP cell,Gamma
-human1_lib2.final_cell_0507,pancreatic PP cell,Gamma
-human2_lib1.final_cell_0398,pancreatic PP cell,Gamma
+human2_lib3.final_cell_0399,pancreatic PP cell,PP
+human1_lib2.final_cell_0507,pancreatic PP cell,PP
+human2_lib1.final_cell_0398,pancreatic PP cell,PP
 human4_lib3.final_cell_0591,pancreatic PP cell,PP
 human2_lib3.final_cell_0477,pancreatic PP cell,Gamma
-human1_lib2.final_cell_0364,pancreatic PP cell,Gamma
+human1_lib2.final_cell_0364,pancreatic PP cell,PP
 human1_lib2.final_cell_0583,pancreatic PP cell,PP
-human4_lib3.final_cell_0275,pancreatic PP cell,Gamma
-human2_lib2.final_cell_0081,pancreatic PP cell,Gamma
+human4_lib3.final_cell_0275,pancreatic PP cell,PP
+human2_lib2.final_cell_0081,pancreatic PP cell,PP
 human1_lib1.final_cell_0301,pancreatic PP cell,PP
 human1_lib3.final_cell_0720,endothelial cell,Endothelial
 human1_lib3.final_cell_0499,endothelial cell,Endothelial Cell
@@ -925,7 +925,7 @@ human4_lib1.final_cell_0361,endothelial cell,Endothelial
 human1_lib2.final_cell_0488,endothelial cell,Endothelial
 human1_lib2.final_cell_0578,endothelial cell,Endothelial
 human3_lib3.final_cell_0863,endothelial cell,Endothelial
-human1_lib3.final_cell_0604,endothelial cell,Ductal
+human1_lib3.final_cell_0604,endothelial cell,Endothelial
 human3_lib4.final_cell_0818,endothelial cell,Endothelial Cell
 human1_lib3.final_cell_0621,endothelial cell,Endothelial
 human1_lib1.final_cell_0457,endothelial cell,Endothelial
@@ -945,8 +945,8 @@ human2_lib2.final_cell_0234,macrophage,Macrophage
 human1_lib1.final_cell_0417,macrophage,Ductal
 human4_lib1.final_cell_0145,macrophage,Macrophage
 D31-5_72,macrophage,Macrophage
-human3_lib3.final_cell_0883,macrophage,Ductal
-D1713_62,macrophage,Ductal
+human3_lib3.final_cell_0883,macrophage,T Cell
+D1713_62,macrophage,Acinar
 human2_lib2.final_cell_0150,macrophage,Macrophage
 human1_lib2.final_cell_0149,macrophage,Macrophage
 human2_lib1.final_cell_0167,macrophage,Macrophage
@@ -960,7 +960,7 @@ human3_lib4.final_cell_0480,macrophage,Macrophage
 D29-8_67,macrophage,Macrophage
 D29-2_55,mast cell,Ductal
 human3_lib1.final_cell_0647,mast cell,T Cell
-human1_lib3.final_cell_0712,mast cell,Ductal
+human1_lib3.final_cell_0712,mast cell,Delta
 D28-2_66,mast cell,Ductal
 human2_lib2.final_cell_0526,mast cell,Macrophage
 human2_lib2.final_cell_0540,mast cell,Macrophage
@@ -971,30 +971,30 @@ human2_lib3.final_cell_0546,mast cell,Macrophage
 human3_lib2.final_cell_0813,mast cell,NK/T Cell
 human1_lib1.final_cell_0527,mast cell,Delta
 human3_lib3.final_cell_0802,mast cell,B Cell
-HP1507101_M16,mast cell,Macrophage
-D28-3_17,mast cell,Macrophage DC
+HP1507101_M16,mast cell,NK/T Cell
+D28-3_17,mast cell,Macrophage
 human2_lib2.final_cell_0504,mast cell,Macrophage
 human1_lib3.final_cell_0597,mast cell,Beta
-human2_lib2.final_cell_0528,mast cell,Ductal
-human1_lib3.final_cell_0530,mast cell,NK/T Cell
-human1_lib1.final_cell_0428,mast cell,Macrophage
+human2_lib2.final_cell_0528,mast cell,T Cell
+human1_lib3.final_cell_0530,mast cell,Beta
+human1_lib1.final_cell_0428,mast cell,Ductal
 human1_lib3.final_cell_0463,epsilon,PP
-human1_lib3.final_cell_0584,epsilon,NK/T Cell
+human1_lib3.final_cell_0584,epsilon,PP
 human3_lib4.final_cell_0283,epsilon,NK/T Cell
-human1_lib2.final_cell_0497,epsilon,Gamma
+human1_lib2.final_cell_0497,epsilon,PP
 human2_lib1.final_cell_0399,epsilon,PP
 human1_lib3.final_cell_0532,epsilon,PP
 human2_lib3.final_cell_0037,epsilon,Delta
 D29-4_84,epsilon,Gamma
 human1_lib3.final_cell_0684,epsilon,PP
-human1_lib3.final_cell_0457,epsilon,Gamma
+human1_lib3.final_cell_0457,epsilon,PP
 human1_lib3.final_cell_0594,epsilon,Beta
-D30-4_20,epsilon,Gamma
-human1_lib3.final_cell_0270,epsilon,Beta
+D30-4_20,epsilon,Alpha
+human1_lib3.final_cell_0270,epsilon,Delta
 human1_lib3.final_cell_0692,epsilon,Ductal
 D31-6_25,epsilon,Gamma
-human4_lib1.final_cell_0326,epsilon,Ductal
+human4_lib1.final_cell_0326,epsilon,PP
 human1_lib1.final_cell_0323,epsilon,NK/T Cell
 human1_lib1.final_cell_0309,epsilon,NK/T Cell
 human1_lib1.final_cell_0123,epsilon,Delta
-D17All2_88,epsilon,Gamma
+D17All2_88,epsilon,PP

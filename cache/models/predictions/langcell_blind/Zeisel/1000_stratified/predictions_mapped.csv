@@ -1,1000 +1,1000 @@
 Unnamed: 0,cell_id,predicted_idx,true_idx,predicted_labels,true_labels,original_predicted_labels
-0,10X57_2:ACAAATTGTTGTCT,534,2303,t cell,oligodendrocyte,t cell
-1,10X52_5:CTGAGAACTTTCTG,534,2303,t cell,oligodendrocyte,t cell
-2,10X53_2:TTTGACTGCCCACT,534,2303,t cell,oligodendrocyte,t cell
-3,10X35_2:TATCTCGATTCTGT,534,2303,t cell,oligodendrocyte,t cell
-4,10X55_4:CTCCTAGATATGCA,534,2303,t cell,oligodendrocyte,t cell
-5,10X55_5:CCTTGGTCCAGTAT,534,2303,t cell,oligodendrocyte,t cell
-6,10X55_5:GTCAAAGACAAGCC,534,2303,t cell,oligodendrocyte,t cell
-7,10X50_7:GCCGAGTGGGTTCA,534,2303,t cell,oligodendrocyte,t cell
-8,10X43_1:CATCGCTGGTCAAC,534,2303,t cell,oligodendrocyte,t cell
-9,10X52_1:GGGTTATGCTTAGG,534,2303,t cell,oligodendrocyte,t cell
-10,10X50_8:ACGTCAGAGACGAG,534,2303,t cell,oligodendrocyte,t cell
-11,10X24_1:TCCCGAACTCCCAC,534,2303,t cell,oligodendrocyte,t cell
-12,10X51_3:CTGACCACAGTACC,534,2303,t cell,oligodendrocyte,t cell
-13,10X34_4:GACAGGGAACTGTG,534,2303,t cell,oligodendrocyte,t cell
-14,10X53_6:GCGAGAGATCGTTT,534,2303,t cell,oligodendrocyte,t cell
-15,10X57_2:TCCTATGATGCATG,534,2303,t cell,oligodendrocyte,t cell
-16,10X55_2:CAATCGTGACCAAG,534,2303,t cell,oligodendrocyte,t cell
-17,10X53_5:TCCCACGACACTTT,534,2303,t cell,oligodendrocyte,t cell
-18,10X53_3:AGCGATTGTTCCAT,534,2303,t cell,oligodendrocyte,t cell
-19,10X50_2:GCACCTACCTCCCA,534,2303,t cell,oligodendrocyte,t cell
-20,10X55_2:CGTGTGTCTGATCA,534,2303,t cell,oligodendrocyte,t cell
-21,10X54_1:TGAGGTCTCTGTCG,534,2303,t cell,oligodendrocyte,t cell
-22,10X26_3:GCATGTGAGCGATT,534,2303,t cell,oligodendrocyte,t cell
-23,10X57_4:GCCTACACTTAGGC,534,2303,t cell,oligodendrocyte,t cell
-24,10X53_3:GTAGTGACATTCGG,534,2303,t cell,oligodendrocyte,t cell
-25,10X04_1:TCGTAGGATGTTCT,534,2303,t cell,oligodendrocyte,t cell
-26,10X57_4:AACCTACTAGGTTC,534,2303,t cell,oligodendrocyte,t cell
-27,10X49_1:ATACCGGAGAGCTT,534,2303,t cell,oligodendrocyte,t cell
-28,10X57_2:TTACAGCTTCTTCA,534,2303,t cell,oligodendrocyte,t cell
-29,10X57_6:GCTACGCTGTTGTG,534,2303,t cell,oligodendrocyte,t cell
-30,10X52_7:TTCAGTACGATAAG,534,2303,t cell,oligodendrocyte,t cell
-31,10X55_8:CTTCAAGAACAACT,534,2303,t cell,oligodendrocyte,t cell
-32,10X55_7:GCTAAGTACCATCA,534,2303,t cell,oligodendrocyte,t cell
-33,10X55_2:TGAGAGTTGGAGGT,534,2303,t cell,oligodendrocyte,t cell
-34,10X57_3:TAGTGGTGGCCCTT,534,2303,t cell,oligodendrocyte,t cell
-35,10X24_2:AAGGTCACACTACG,534,2303,t cell,oligodendrocyte,t cell
-36,10X56_3:GTATTAGATCTACT,534,2303,t cell,oligodendrocyte,t cell
-37,10X22_4:CCAATGGAACTGTG,534,2303,t cell,oligodendrocyte,t cell
-38,10X22_4:CAATTCTGGGTCAT,534,2303,t cell,oligodendrocyte,t cell
-39,10X50_3:TCAGGATGGGTTCA,534,2303,t cell,oligodendrocyte,t cell
-40,10X57_7:GCCATCACTCGTGA,534,2303,t cell,oligodendrocyte,t cell
-41,10X24_3:GCGGAGCTTTCTAC,534,2303,t cell,oligodendrocyte,t cell
-42,10X53_5:GTGGTAACCGAATC,534,2303,t cell,oligodendrocyte,t cell
-43,10X54_7:GGGATAGTGAACGC,534,2303,t cell,oligodendrocyte,t cell
-44,10X55_1:GCGGAGTTGTTTGG,534,2303,t cell,oligodendrocyte,t cell
-45,10X55_7:CTCTAGTCCTGCTT,534,2303,t cell,oligodendrocyte,t cell
-46,10X55_3:GTAGAAGTACGTTC,534,2303,t cell,oligodendrocyte,t cell
-47,10X55_1:TTCGCGTCTAGCGC,534,2303,t cell,oligodendrocyte,t cell
-48,10X50_5:CCAGGTCTGTAGCT,534,2303,t cell,oligodendrocyte,t cell
-49,10X55_2:ACCTGAGCTCAACT,534,2303,t cell,oligodendrocyte,t cell
-50,10X52_5:AAGCCATGTCCGTC,534,2303,t cell,oligodendrocyte,t cell
-51,10X50_5:TATCTCGATTGGCA,534,2303,t cell,oligodendrocyte,t cell
-52,10X54_1:ACGGATCAGGCAAG,534,2303,t cell,oligodendrocyte,t cell
-53,10X50_2:ATGCCAGATCAAGC,534,2303,t cell,oligodendrocyte,t cell
-54,10X54_7:CGTGTCAGACAAAT,534,2303,t cell,oligodendrocyte,t cell
-55,10X55_3:GTAACTCCTATGTT,534,2303,t cell,oligodendrocyte,t cell
-56,10X55_1:CTCGCTCTTGACGA,534,2303,t cell,oligodendrocyte,t cell
-57,10X53_3:AGGAACCTTACTGG,534,2303,t cell,oligodendrocyte,t cell
-58,10X55_7:CTAACGTCTGCCAG,534,2303,t cell,oligodendrocyte,t cell
-59,10X52_1:AGAATACTCGAGAG,534,2303,t cell,oligodendrocyte,t cell
-60,10X53_2:TGCACAGAGTTTCT,534,2303,t cell,oligodendrocyte,t cell
-61,10X52_3:GAGGTACTATCGTG,534,2303,t cell,oligodendrocyte,t cell
-62,10X54_3:TATCTAGAACAACT,534,2303,t cell,oligodendrocyte,t cell
-63,10X52_5:ATCAGGTGGTTCAG,534,2303,t cell,oligodendrocyte,t cell
-64,10X26_3:CGGACCGATCGATG,534,2303,t cell,oligodendrocyte,t cell
-65,10X54_1:GCGCAAGATCGGGT,534,2303,t cell,oligodendrocyte,t cell
-66,10X53_4:AGGGCCACACCTAG,534,2303,t cell,oligodendrocyte,t cell
-67,10X35_2:CGGACTCTCCACAA,534,2303,t cell,oligodendrocyte,t cell
-68,10X22_2:CCATAGGAGGTGAG,534,2303,t cell,oligodendrocyte,t cell
-69,10X57_5:TTCAGTTGCCATAG,534,2303,t cell,oligodendrocyte,t cell
-70,10X20_3:ATACCTTGGTACGT,534,2303,t cell,oligodendrocyte,t cell
-71,10X20_4:AGGTCATGCTATTC,534,2303,t cell,oligodendrocyte,t cell
-72,10X57_5:GTTACTACGTACGT,534,2303,t cell,oligodendrocyte,t cell
-73,10X50_2:ATGCACGAGTTGTG,534,2303,t cell,oligodendrocyte,t cell
-74,10X54_8:GTCATGTGGTGTAG,534,2303,t cell,oligodendrocyte,t cell
-75,10X52_2:CCAGCTACCCAAGT,534,2303,t cell,oligodendrocyte,t cell
-76,10X57_5:CGAGTATGGGTACT,534,2303,t cell,oligodendrocyte,t cell
-77,10X20_4:CACTCCGACGAGAG,534,2303,t cell,oligodendrocyte,t cell
-78,10X57_3:ACTCAGGAACGGTT,534,2303,t cell,oligodendrocyte,t cell
-79,10X50_8:TGTATGCTCATTCT,534,2303,t cell,oligodendrocyte,t cell
-80,10X52_6:GTGAGGGACTTGCC,534,2303,t cell,oligodendrocyte,t cell
-81,10X55_5:CTCAAGTTGACGTT,534,2303,t cell,oligodendrocyte,t cell
-82,10X34_3:TCCATAACTAGAGA,534,2303,t cell,oligodendrocyte,t cell
-83,10X55_1:GACCAAGGTACTCT,534,2303,t cell,oligodendrocyte,t cell
-84,10X24_3:ATAATGACGACTAC,534,2303,t cell,oligodendrocyte,t cell
-85,10X43_3:ATAAGTACGTTCGA,534,2303,t cell,oligodendrocyte,t cell
-86,10X54_1:TCTCTAGAAGAAGC,534,2303,t cell,oligodendrocyte,t cell
-87,10X50_5:TCTAACACCCTCAC,534,2303,t cell,oligodendrocyte,t cell
-88,10X33_4:CAGACATGCCAAGT,534,2303,t cell,oligodendrocyte,t cell
-89,10X55_1:GAGCTGTCGAACAG,534,2303,t cell,oligodendrocyte,t cell
-90,10X52_1:GCGGAGCTGAGCTT,534,2303,t cell,oligodendrocyte,t cell
-91,10X54_1:AGCAATCTCCGGTT,534,2303,t cell,oligodendrocyte,t cell
-92,10X26_3:TGTAGGTGTGTTCT,534,2303,t cell,oligodendrocyte,t cell
-93,10X57_6:AAATGGGAGCAGAG,534,2303,t cell,oligodendrocyte,t cell
-94,10X55_4:GGCGTCACGCATCG,534,2303,t cell,oligodendrocyte,t cell
-95,10X55_6:TGAGGGTCTAGAGG,534,2303,t cell,oligodendrocyte,t cell
-96,10X55_4:TGAAGCAACACCCG,534,2303,t cell,oligodendrocyte,t cell
-97,10X54_8:ACCTACAGCTCGCA,534,2303,t cell,oligodendrocyte,t cell
-98,10X54_1:CGGTAAGATAGTCA,534,2303,t cell,oligodendrocyte,t cell
-99,10X57_7:TTATGGCTCACTTT,534,2303,t cell,oligodendrocyte,t cell
-100,10X55_7:ACGGAAGCCATCGC,534,2303,t cell,oligodendrocyte,t cell
-101,10X57_3:CTCAGAGACAGCTA,534,2303,t cell,oligodendrocyte,t cell
-102,10X52_3:AGAGTCTGTTCATC,534,2303,t cell,oligodendrocyte,t cell
-103,10X57_3:TCGTAGGACGTTGA,534,2303,t cell,oligodendrocyte,t cell
-104,10X53_3:CAAGTTCTAAGATG,534,2303,t cell,oligodendrocyte,t cell
-105,10X43_3:GAACCTGAGACAAA,534,2303,t cell,oligodendrocyte,t cell
-106,10X24_4:TCCGAAGAGGGTGA,534,2303,t cell,oligodendrocyte,t cell
-107,10X57_3:TAATCGCTATGTCG,534,2303,t cell,oligodendrocyte,t cell
-108,10X01_1:CAAGAAGAGCTATG,534,2303,t cell,oligodendrocyte,t cell
-109,10X57_7:AAGAACGACCTATT,534,2303,t cell,oligodendrocyte,t cell
-110,10X55_8:CGTGTCAAGACGTG,534,2303,t cell,oligodendrocyte,t cell
-111,10X55_6:GTACTGTGCTTCTC,534,2303,t cell,oligodendrocyte,t cell
-112,10X54_1:TGATGTCAAGATCC,534,2303,t cell,oligodendrocyte,t cell
-113,10X54_3:AGCGTTCGAGCCCA,534,2303,t cell,oligodendrocyte,t cell
-114,10X57_3:CGAGTATGTTAGGC,534,2303,t cell,oligodendrocyte,t cell
-115,10X05_2:GACTACGATCAGGT,534,2303,t cell,oligodendrocyte,t cell
-116,10X53_6:ATTATGGACATGGT,534,2303,t cell,oligodendrocyte,t cell
-117,10X01_1:CAGCGGACTAGACC,534,2303,t cell,oligodendrocyte,t cell
-118,10X54_4:TCCAGTCGCCATAA,534,2303,t cell,oligodendrocyte,t cell
-119,10X52_2:AATCGGTGCTCCCA,534,2303,t cell,oligodendrocyte,t cell
-120,10X54_5:TCAGAGTTACTGAC,534,2303,t cell,oligodendrocyte,t cell
-121,10X54_4:CGGTCCACTACAGT,534,2303,t cell,oligodendrocyte,t cell
-122,10X57_6:TTCAAAGACAAAGA,534,2303,t cell,oligodendrocyte,t cell
-123,10X53_4:TGTATCTGGCCCTT,534,2303,t cell,oligodendrocyte,t cell
-124,10X53_6:AATCCGGAGAGACG,534,2303,t cell,oligodendrocyte,t cell
-125,10X55_8:TGGTGCACCGAAAG,534,2303,t cell,oligodendrocyte,t cell
-126,10X57_3:TAAGTCCTCTCCCA,534,2303,t cell,oligodendrocyte,t cell
-127,10X53_6:ACGGTCCTATTCGG,534,2303,t cell,oligodendrocyte,t cell
-128,10X50_4:AAACCGTGTCCCAC,534,2303,t cell,oligodendrocyte,t cell
-129,10X26_3:CCATAGGAGCGGAA,534,2303,t cell,oligodendrocyte,t cell
-130,10X54_5:CATACAGTGGGCTA,534,2303,t cell,oligodendrocyte,t cell
-131,10X54_2:AATAGCAGTCTTCC,534,2303,t cell,oligodendrocyte,t cell
-132,10X28_3:AAGCCATGGTAAAG,534,2303,t cell,oligodendrocyte,t cell
-133,10X55_2:CCACTGTCTCCCTA,534,2303,t cell,oligodendrocyte,t cell
-134,10X52_2:GGCTAAACTCTAGG,534,2303,t cell,oligodendrocyte,t cell
-135,10X53_4:TGAGTCGATTTCGT,534,2303,t cell,oligodendrocyte,t cell
-136,10X57_2:GGAATCTGCTTGCC,534,2303,t cell,oligodendrocyte,t cell
-137,10X22_1:CACTAGGAATTTCC,534,2303,t cell,oligodendrocyte,t cell
-138,10X55_7:TCAGTTCTTCATGT,534,2303,t cell,oligodendrocyte,t cell
-139,10X28_2:TCTCAAACAAGTGA,534,2303,t cell,oligodendrocyte,t cell
-140,10X24_4:CTACTATGCTAGAC,534,2303,t cell,oligodendrocyte,t cell
-141,10X55_5:TCAGGTCTTGGGTA,534,2303,t cell,oligodendrocyte,t cell
-142,10X24_4:AAGAACGATGACAC,534,2303,t cell,oligodendrocyte,t cell
-143,10X53_3:ACACGAACGTTAGC,534,2303,t cell,oligodendrocyte,t cell
-144,10X55_4:GCCAATCACCTTAT,534,2303,t cell,oligodendrocyte,t cell
-145,10X50_7:CTATAAGACCAAGT,534,2303,t cell,oligodendrocyte,t cell
-146,10X20_1:AACGCCCTGTACCA,534,1456,t cell,glutamatergic neuron,t cell
-147,10X22_2:TCGGACCTGCATCA,534,1456,t cell,glutamatergic neuron,t cell
-148,10X22_2:CGTTTAACCCTGTC,534,1456,t cell,glutamatergic neuron,t cell
-149,10X53_6:CTGGCACTAATCGC,534,1456,t cell,glutamatergic neuron,t cell
-150,10X50_8:CGCGAGACCTCTAT,534,1456,t cell,glutamatergic neuron,t cell
-151,10X57_3:AGTCTTACCTCATT,534,1456,t cell,glutamatergic neuron,t cell
-152,10X20_2:GATATCCTCAGATC,534,1456,t cell,glutamatergic neuron,t cell
-153,10X53_3:AAGTCCGAGCTATG,534,1456,t cell,glutamatergic neuron,t cell
-154,10X34_3:TGGCACCTTTCATC,534,1456,t cell,glutamatergic neuron,t cell
-155,10X02_1:ACGGAGGACAAAGA,534,1456,t cell,glutamatergic neuron,t cell
-156,10X57_2:AGCAAGCTTTGACG,534,1456,t cell,glutamatergic neuron,t cell
-157,10X22_2:ACGCTCACTCAAGC,534,1456,t cell,glutamatergic neuron,t cell
-158,10X19_2:AAGGCTTGCCATAG,534,1456,t cell,glutamatergic neuron,t cell
-159,10X20_1:TTGAGGTGCTTGCC,534,1456,t cell,glutamatergic neuron,t cell
-160,10X20_1:CAAGACTGATCGTG,534,1456,t cell,glutamatergic neuron,t cell
-161,10X05_1:GCGAGAGACAAGCT,534,1456,t cell,glutamatergic neuron,t cell
-162,10X22_2:AAACGCACTGGTTG,534,1456,t cell,glutamatergic neuron,t cell
-163,10X22_3:TATAGCCTGCATAC,534,1456,t cell,glutamatergic neuron,t cell
-164,10X53_3:AACATTGAGGTATC,534,1456,t cell,glutamatergic neuron,t cell
-165,10X49_3:ACTCTATGGGAAGC,534,1456,t cell,glutamatergic neuron,t cell
-166,10X04_2:ATCATCTGGTTGAC,534,1456,t cell,glutamatergic neuron,t cell
-167,10X28_4:AAGGTGCTTTCGGA,534,1456,t cell,glutamatergic neuron,t cell
-168,10X50_5:CATTGTACACTCTT,534,1456,t cell,glutamatergic neuron,t cell
-169,10X28_4:ACGTAGACCTACTT,534,1456,t cell,glutamatergic neuron,t cell
-170,10X24_3:ATCTGGGAGAATAG,534,1456,t cell,glutamatergic neuron,t cell
-171,10X02_1:TTTCCAGACTACCC,534,1456,t cell,glutamatergic neuron,t cell
-172,10X57_3:TACATCACACCTGA,534,1456,t cell,glutamatergic neuron,t cell
-173,10X43_1:CCCTACGAATCGTG,534,1456,t cell,glutamatergic neuron,t cell
-174,10X20_1:ACACGATGCTTATC,534,1456,t cell,glutamatergic neuron,t cell
-175,10X01_1:ACGTTACTAAAACG,534,1456,t cell,glutamatergic neuron,t cell
-176,10X57_3:CACTGAGATTCTTG,534,1456,t cell,glutamatergic neuron,t cell
-177,10X28_3:ATAACCCTCCTGTC,534,1456,t cell,glutamatergic neuron,t cell
-178,10X52_1:CAAGGTTGTAGAAG,534,1456,t cell,glutamatergic neuron,t cell
-179,10X22_2:ATTCAGCTAAAGCA,534,1456,t cell,glutamatergic neuron,t cell
-180,10X20_4:ACTCAGGAGTCTTT,534,1456,t cell,glutamatergic neuron,t cell
-181,10X28_3:AGGGCCACTTCGCC,534,1456,t cell,glutamatergic neuron,t cell
-182,10X24_4:CAGCAATGCAACCA,534,1456,t cell,glutamatergic neuron,t cell
-183,10X05_2:GATTCTTGTCCTCG,534,1456,t cell,glutamatergic neuron,t cell
-184,10X36_1:AACAATACCCTGTC,534,1456,t cell,glutamatergic neuron,t cell
-185,10X50_5:ATCGCCTGGGAGCA,534,1456,t cell,glutamatergic neuron,t cell
-186,10X52_2:GTACGAACAACTGC,534,1456,t cell,glutamatergic neuron,t cell
-187,10X53_6:CAGGGCACGAACCT,534,1456,t cell,glutamatergic neuron,t cell
-188,10X22_2:GCTACAGATTTGGG,534,1456,t cell,glutamatergic neuron,t cell
-189,10X54_2:GACCATCAGCCTAA,534,1456,t cell,glutamatergic neuron,t cell
-190,10X20_2:GAAAGATGTCTTTG,534,1456,t cell,glutamatergic neuron,t cell
-191,10X36_1:AAATCTGAGGGCAA,534,1456,t cell,glutamatergic neuron,t cell
-192,10X28_3:CACTTAACTTCCAT,534,1456,t cell,glutamatergic neuron,t cell
-193,10X05_1:CCATAGGAGGACTT,534,1456,t cell,glutamatergic neuron,t cell
-194,10X28_4:ATGCAGTGTCCTTA,534,1456,t cell,glutamatergic neuron,t cell
-195,10X22_1:AGTCTTACGCTATG,534,1456,t cell,glutamatergic neuron,t cell
-196,10X28_2:GAAGGGTGAAGTAG,534,1456,t cell,glutamatergic neuron,t cell
-197,10X22_1:ATTGGTCTCTTGTT,534,1456,t cell,glutamatergic neuron,t cell
-198,10X05_1:CGATCCACACAGTC,534,1456,t cell,glutamatergic neuron,t cell
-199,10X20_1:GTTCAGGACCCACT,534,1456,t cell,glutamatergic neuron,t cell
-200,10X28_2:TTGTACACCTGTTT,534,1456,t cell,glutamatergic neuron,t cell
-201,10X53_3:ATGAGAGAGGTAGG,534,1456,t cell,glutamatergic neuron,t cell
-202,10X35_1:TGATACCTCCTTGC,534,1456,t cell,glutamatergic neuron,t cell
-203,10X22_1:TGCTTAACAGATGA,534,1456,t cell,glutamatergic neuron,t cell
-204,10X22_4:GCCTCATGATCGTG,534,1456,t cell,glutamatergic neuron,t cell
-205,10X50_6:AAGATGGATTGCGA,534,1456,t cell,glutamatergic neuron,t cell
-206,10X02_1:TGTTACTGTCCTCG,534,1456,t cell,glutamatergic neuron,t cell
-207,10X43_3:GAGTCAACTTCGCC,534,1456,t cell,glutamatergic neuron,t cell
-208,10X50_8:ACGAACTGTACTCT,534,1456,t cell,glutamatergic neuron,t cell
-209,10X35_1:TCGTAGGAGTTAGC,534,1456,t cell,glutamatergic neuron,t cell
-210,10X05_2:CACCGTACCCATAG,534,1456,t cell,glutamatergic neuron,t cell
-211,10X53_4:CACTAGGAACCTTT,534,1456,t cell,glutamatergic neuron,t cell
-212,10X28_4:GTTATCTGAACGAA,534,1456,t cell,glutamatergic neuron,t cell
-213,10X20_3:CTGACAGAATCGTG,534,1456,t cell,glutamatergic neuron,t cell
-214,10X20_3:GAGCGGCTCTACCC,534,1456,t cell,glutamatergic neuron,t cell
-215,10X28_2:TTCAGACTTGACTG,534,1456,t cell,glutamatergic neuron,t cell
-216,10X57_2:GTGACAACTGCAAC,534,1456,t cell,glutamatergic neuron,t cell
-217,10X02_1:TAGACGTGTCCAAG,534,1456,t cell,glutamatergic neuron,t cell
-218,10X05_1:CCCAGTTGATCACG,534,1456,t cell,glutamatergic neuron,t cell
-219,10X05_1:CGATCAGACTCATT,534,1456,t cell,glutamatergic neuron,t cell
-220,10X04_2:ATATAGTGAACCGT,534,1456,t cell,glutamatergic neuron,t cell
-221,10X22_2:TCTCAAACCGTGAT,534,1456,t cell,glutamatergic neuron,t cell
-222,10X22_1:TGCAACGATACTCT,534,1456,t cell,glutamatergic neuron,t cell
-223,10X19_2:ACACGTGAAGCGGA,534,1456,t cell,glutamatergic neuron,t cell
-224,10X04_2:GGAATCTGCTGAAC,534,1456,t cell,glutamatergic neuron,t cell
-225,10X28_3:CACTGAGAGGTAAA,534,1456,t cell,glutamatergic neuron,t cell
-226,10X50_5:GATCCCTGGAGGCA,534,1456,t cell,glutamatergic neuron,t cell
-227,10X22_4:GTGGATTGGCGAGA,534,1456,t cell,glutamatergic neuron,t cell
-228,10X04_1:GCCGGAACGCTGTA,534,1456,t cell,glutamatergic neuron,t cell
-229,10X50_5:AATAAGCTGCTGAT,534,1456,t cell,glutamatergic neuron,t cell
-230,10X05_1:GAAAGCCTCGATAC,534,1456,t cell,glutamatergic neuron,t cell
-231,10X36_1:AGCACTGAAGATCC,534,1456,t cell,glutamatergic neuron,t cell
-232,10X53_6:CTCGACACATGCCA,534,1456,t cell,glutamatergic neuron,t cell
-233,10X52_4:ATAAGTACTGAGAA,534,1456,t cell,glutamatergic neuron,t cell
-234,10X49_4:TGATAAACAACGAA,534,1456,t cell,glutamatergic neuron,t cell
-235,10X19_2:ATGTACCTTAAGGA,534,1456,t cell,glutamatergic neuron,t cell
-236,10X50_5:TGCCACTGGTGTAC,534,1456,t cell,glutamatergic neuron,t cell
-237,10X28_3:GATCCCTGCCTTGC,534,1456,t cell,glutamatergic neuron,t cell
-238,10X20_4:TGTGATCTTTCGTT,534,1456,t cell,glutamatergic neuron,t cell
-239,10X28_5:GTTACGGATATCTC,534,1456,t cell,glutamatergic neuron,t cell
-240,10X28_2:CCCGAACTTTCTTG,534,1456,t cell,glutamatergic neuron,t cell
-241,10X52_3:GCACCACTTGTGAC,534,1456,t cell,glutamatergic neuron,t cell
-242,10X50_8:ATGCCGCTATCTTC,534,1456,t cell,glutamatergic neuron,t cell
-243,10X05_1:TAGGACTGGAGGAC,534,1456,t cell,glutamatergic neuron,t cell
-244,10X20_2:ATGTACCTCTGCAA,534,1456,t cell,glutamatergic neuron,t cell
-245,10X52_1:CATAAAACACCTCC,534,1456,t cell,glutamatergic neuron,t cell
-246,10X53_1:GTCGAATGTGGAAA,534,1456,t cell,glutamatergic neuron,t cell
-247,10X24_3:CAGACATGAAACGA,534,1456,t cell,glutamatergic neuron,t cell
-248,10X57_7:XXATATGACCTTGC,534,1456,t cell,glutamatergic neuron,t cell
-249,10X35_1:GGGATGGATGACCA,534,1456,t cell,glutamatergic neuron,t cell
-250,10X35_1:CAAACTCTTCAGGT,534,1456,t cell,glutamatergic neuron,t cell
-251,10X01_1:GAGTTGTGTCTTCA,534,1456,t cell,glutamatergic neuron,t cell
-252,10X28_3:ACCCAAGACTGAGT,534,1456,t cell,glutamatergic neuron,t cell
-253,10X50_6:GTTATCTGACACAC,534,1456,t cell,glutamatergic neuron,t cell
-254,10X54_4:GGGTTGTCTCACCT,534,1456,t cell,glutamatergic neuron,t cell
-255,10X22_2:ATGTCACTTGACCA,534,1456,t cell,glutamatergic neuron,t cell
-256,10X19_2:GTACTACTGTAGCT,534,1456,t cell,glutamatergic neuron,t cell
-257,10X52_3:TAGTCGGAAGCGGA,534,1456,t cell,glutamatergic neuron,t cell
-258,10X28_4:GAGTGACTTTCCGC,534,1456,t cell,glutamatergic neuron,t cell
-259,10X04_2:GACCTCACCCCTTG,534,1456,t cell,glutamatergic neuron,t cell
-260,10X22_2:TGTTAAGACGTAGT,534,1456,t cell,glutamatergic neuron,t cell
-261,10X19_2:GATTTGCTCTGAGT,534,1456,t cell,glutamatergic neuron,t cell
-262,10X22_3:GCACGGACAGGCGA,534,1456,t cell,glutamatergic neuron,t cell
-263,10X35_2:TGTAATGACGTACA,534,1456,t cell,glutamatergic neuron,t cell
-264,10X20_1:TGGTAGTGTTATCC,534,1456,t cell,glutamatergic neuron,t cell
-265,10X52_1:ATCAAATGACCCAA,534,1456,t cell,glutamatergic neuron,t cell
-266,10X20_3:CGCGGATGGTCGTA,534,1456,t cell,glutamatergic neuron,t cell
-267,10X19_2:ACGACCCTCTTGGA,534,1456,t cell,glutamatergic neuron,t cell
-268,10X52_2:TAAGTCCTACGCAT,534,1456,t cell,glutamatergic neuron,t cell
-269,10X35_2:TGCGAAACACGTAC,534,1456,t cell,glutamatergic neuron,t cell
-270,10X07_1:TTACAGCTCCGATA,534,300,t cell,gabaergic neuron,t cell
-271,10X07_1:TCCCACGATATGCG,534,300,t cell,gabaergic neuron,t cell
-272,10X49_5:TGGACTGAACTCAG,534,300,t cell,gabaergic neuron,t cell
-273,10X52_2:CAAGAAGAATTGGC,534,300,t cell,gabaergic neuron,t cell
-274,10X38_1:CTACCTCTCCAACA,534,300,t cell,gabaergic neuron,t cell
-275,10X24_2:GAACCAACAGTGTC,534,300,t cell,gabaergic neuron,t cell
-276,10X04_1:ATCTGACTACCTCC,534,300,t cell,gabaergic neuron,t cell
-277,10X38_2:TTGAGGACAACCGT,534,300,t cell,gabaergic neuron,t cell
-278,10X26_4:ACGCACCTGAGCTT,534,300,t cell,gabaergic neuron,t cell
-279,10X07_1:AGATATTGCACACA,534,300,t cell,gabaergic neuron,t cell
-280,10X55_7:CTAATTCTGCTTGC,534,300,t cell,gabaergic neuron,t cell
-281,10X24_1:CAGCACCTCGACAT,534,300,t cell,gabaergic neuron,t cell
-282,10X26_3:TGCTGAGAGGTAAA,534,300,t cell,gabaergic neuron,t cell
-283,10X52_1:GACGCTCTCTGTGA,534,300,t cell,gabaergic neuron,t cell
-284,10X28_4:CGTCCATGCCGTTC,534,300,t cell,gabaergic neuron,t cell
-285,10X24_2:TTAGTCACCTAGAC,534,300,t cell,gabaergic neuron,t cell
-286,10X38_1:GGATACTGCAGCTA,534,300,t cell,gabaergic neuron,t cell
-287,10X38_3:TAAATCGATACTCT,534,300,t cell,gabaergic neuron,t cell
-288,10X52_3:CACAATCTGCTTCC,534,300,t cell,gabaergic neuron,t cell
-289,10X50_3:CGACCTACACCTCC,534,300,t cell,gabaergic neuron,t cell
-290,10X04_4:CTACCTCTGACTAC,534,300,t cell,gabaergic neuron,t cell
-291,10X24_1:CGGATATGGTTCGA,534,300,t cell,gabaergic neuron,t cell
-292,10X49_4:CCTATAACGCTGTA,534,300,t cell,gabaergic neuron,t cell
-293,10X49_4:GATAGCACTCGCCT,534,300,t cell,gabaergic neuron,t cell
-294,10X38_2:CTAACTACAGCTCA,534,300,t cell,gabaergic neuron,t cell
-295,10X38_1:GACGAGGAGGACTT,534,300,t cell,gabaergic neuron,t cell
-296,10X38_1:AATTACGAGCTGAT,534,300,t cell,gabaergic neuron,t cell
-297,10X52_3:AGTCGAACGTGTAC,534,300,t cell,gabaergic neuron,t cell
-298,10X28_4:CAGTTTACTGTTCT,534,300,t cell,gabaergic neuron,t cell
-299,10X26_3:ATAAACACGCAAGG,534,300,t cell,gabaergic neuron,t cell
-300,10X28_5:ATCGCGCTGTGTCA,534,300,t cell,gabaergic neuron,t cell
-301,10X49_4:GCCACGGAGTCTTT,534,300,t cell,gabaergic neuron,t cell
-302,10X28_4:TCCATCCTAACCGT,534,300,t cell,gabaergic neuron,t cell
-303,10X38_1:GACTGTGATCTCCG,534,300,t cell,gabaergic neuron,t cell
-304,10X52_3:CACACCTGCGCAAT,534,300,t cell,gabaergic neuron,t cell
-305,10X57_2:CACGATGATCCCAC,534,300,t cell,gabaergic neuron,t cell
-306,10X52_3:TTTCACGAACCTTT,534,300,t cell,gabaergic neuron,t cell
-307,10X36_1:CAATAAACGACAGG,534,300,t cell,gabaergic neuron,t cell
-308,10X05_1:CGCTACTGGCTAAC,534,300,t cell,gabaergic neuron,t cell
-309,10X28_4:TGTCTAACAAGAAC,534,300,t cell,gabaergic neuron,t cell
-310,10X26_4:TGAGGACTATGACC,534,300,t cell,gabaergic neuron,t cell
-311,10X38_3:TCTATGTGACGTTG,534,300,t cell,gabaergic neuron,t cell
-312,10X24_2:GAAACAGATGTTTC,534,300,t cell,gabaergic neuron,t cell
-313,10X36_3:TCCGAAGAGTGTCA,534,300,t cell,gabaergic neuron,t cell
-314,10X38_1:AGTAATACCCACAA,534,300,t cell,gabaergic neuron,t cell
-315,10X05_4:GGACCCGAGAATCC,534,300,t cell,gabaergic neuron,t cell
-316,10X28_5:CTATCAACCCATAG,534,300,t cell,gabaergic neuron,t cell
-317,10X38_3:TACGGCCTCTTCTA,534,300,t cell,gabaergic neuron,t cell
-318,10X49_4:GACAACTGCGTAGT,534,300,t cell,gabaergic neuron,t cell
-319,10X38_1:TGAGCAACCTCATT,534,300,t cell,gabaergic neuron,t cell
-320,10X26_4:TATGGGTGGGTACT,534,300,t cell,gabaergic neuron,t cell
-321,10X04_4:CGGTAAACATCACG,534,300,t cell,gabaergic neuron,t cell
-322,10X24_1:ACAAAGGAGAATAG,534,300,t cell,gabaergic neuron,t cell
-323,10X38_3:TTCAGACTAACCAC,534,300,t cell,gabaergic neuron,t cell
-324,10X49_4:TGGAGACTCCCACT,534,300,t cell,gabaergic neuron,t cell
-325,10X38_2:ACGCCTTGTCTCCG,534,300,t cell,gabaergic neuron,t cell
-326,10X36_2:GCACCACTGCTGAT,534,300,t cell,gabaergic neuron,t cell
-327,10X28_5:GAGTAAGACTGTAG,534,300,t cell,gabaergic neuron,t cell
-328,10X52_1:GGCCACGATCCAAG,534,300,t cell,gabaergic neuron,t cell
-329,10X49_1:GGCGACTGCTCGAA,534,300,t cell,gabaergic neuron,t cell
-330,10X07_1:CCAGTCACGACAAA,534,300,t cell,gabaergic neuron,t cell
-331,10X07_1:CTTACATGTGCTAG,534,300,t cell,gabaergic neuron,t cell
-332,10X24_1:TACGATCTTTGTCT,534,300,t cell,gabaergic neuron,t cell
-333,10X38_1:AGAGCGGAACGCTA,534,300,t cell,gabaergic neuron,t cell
-334,10X28_5:ACACGAACCGTCTC,534,300,t cell,gabaergic neuron,t cell
-335,10X49_4:ACCAACGACCTTTA,534,300,t cell,gabaergic neuron,t cell
-336,10X28_4:CTAAGGACCATTCT,534,300,t cell,gabaergic neuron,t cell
-337,10X24_1:GGCGACTGCACAAC,534,300,t cell,gabaergic neuron,t cell
-338,10X49_5:AAGGTGCTTCGATG,534,300,t cell,gabaergic neuron,t cell
-339,10X38_2:AATGGCTGCCTTAT,534,300,t cell,gabaergic neuron,t cell
-340,10X38_2:AGAATGGAGGAAGC,534,300,t cell,gabaergic neuron,t cell
-341,10X49_5:CTACTCCTACGACT,534,300,t cell,gabaergic neuron,t cell
-342,10X07_1:CACTTAACATCGGT,534,300,t cell,gabaergic neuron,t cell
-343,10X49_4:TAGGGACTACGGTT,534,300,t cell,gabaergic neuron,t cell
-344,10X26_4:TACGAGTGGTCATG,534,300,t cell,gabaergic neuron,t cell
-345,10X49_5:CATGTACTTGGTCA,534,300,t cell,gabaergic neuron,t cell
-346,10X26_4:CACAGTGAAACGGG,534,300,t cell,gabaergic neuron,t cell
-347,10X49_5:ATAGGCTGCGAACT,534,300,t cell,gabaergic neuron,t cell
-348,10X43_3:TGATAAACCTGGTA,534,300,t cell,gabaergic neuron,t cell
-349,10X36_3:ATGAAACTGGTCAT,534,300,t cell,gabaergic neuron,t cell
-350,10X52_2:AACGTGTGTCAAGC,534,300,t cell,gabaergic neuron,t cell
-351,10X49_4:ATTGTAGAGCCATA,534,300,t cell,gabaergic neuron,t cell
-352,10X38_3:TGGATGACTCACCC,534,300,t cell,gabaergic neuron,t cell
-353,10X38_2:CTAATGCTACGACT,534,300,t cell,gabaergic neuron,t cell
-354,10X26_3:ATCACGGAGAGGCA,534,300,t cell,gabaergic neuron,t cell
-355,10X24_2:TAATGCCTCAACCA,534,300,t cell,gabaergic neuron,t cell
-356,10X05_2:TAGGTCGAGACAAA,534,300,t cell,gabaergic neuron,t cell
-357,10X49_1:ATACCACTTGCTTT,534,300,t cell,gabaergic neuron,t cell
-358,10X38_2:CACGAAACAAGCAA,534,300,t cell,gabaergic neuron,t cell
-359,10X38_2:AGAAAGTGCTGTCC,534,300,t cell,gabaergic neuron,t cell
-360,10X49_2:TTCTCAGAAGGAGC,534,300,t cell,gabaergic neuron,t cell
-361,10X36_3:ATCATCTGCCTCCA,534,300,t cell,gabaergic neuron,t cell
-362,10X49_5:AGGGTGGATTTCAC,534,300,t cell,gabaergic neuron,t cell
-363,10X50_4:GTTAAAACGGTGAG,534,300,t cell,gabaergic neuron,t cell
-364,10X49_5:CTATTGACACAGTC,534,300,t cell,gabaergic neuron,t cell
-365,10X28_4:ATCTACTGTCTGGA,534,300,t cell,gabaergic neuron,t cell
-366,10X20_2:GCCTACACGCTTAG,534,300,t cell,gabaergic neuron,t cell
-367,10X07_1:AAATCTGAGGAGGT,534,300,t cell,gabaergic neuron,t cell
-368,10X38_2:ATTGCACTCCGATA,534,300,t cell,gabaergic neuron,t cell
-369,10X28_5:CGTTAACTCCGCTT,534,300,t cell,gabaergic neuron,t cell
-370,10X35_1:GCATTGGATGTTTC,534,300,t cell,gabaergic neuron,t cell
-371,10X38_2:GGCTAATGGTGCTA,534,300,t cell,gabaergic neuron,t cell
-372,10X38_2:GTAATAACAAGTGA,534,300,t cell,gabaergic neuron,t cell
-373,10X52_5:CAACGATGATGACC,534,300,t cell,gabaergic neuron,t cell
-374,10X38_2:GGCGACTGCCATAG,534,300,t cell,gabaergic neuron,t cell
-375,10X52_1:TTAGTCTGTCGCAA,534,300,t cell,gabaergic neuron,t cell
-376,10X24_1:GTGATCGATCCCGT,534,300,t cell,gabaergic neuron,t cell
-377,10X49_4:CGCGAGACGGAGCA,534,300,t cell,gabaergic neuron,t cell
-378,10X38_2:TCGACGCTCGCTAA,534,300,t cell,gabaergic neuron,t cell
-379,10X50_5:ATTTAGGACACTCC,534,300,t cell,gabaergic neuron,t cell
-380,10X24_2:TGCGAAACCGGTAT,534,300,t cell,gabaergic neuron,t cell
-381,10X50_4:ACACGAACTGGAGG,534,300,t cell,gabaergic neuron,t cell
-382,10X52_5:GGTCTAGAGACGTT,534,300,t cell,gabaergic neuron,t cell
-383,10X38_1:GTGTACGAGCGAAG,534,300,t cell,gabaergic neuron,t cell
-384,10X52_2:ACCCGTACAACCAC,534,300,t cell,gabaergic neuron,t cell
-385,10X22_3:TATACGCTACGTTG,534,694,t cell,astrocyte,t cell
-386,10X52_6:GCAATTCTGGTGGA,534,694,t cell,astrocyte,t cell
-387,10X56_6:TGATATGAGTTCTT,534,694,t cell,astrocyte,t cell
-388,10X52_7:CATTGTTGGACGGA,534,694,t cell,astrocyte,t cell
-389,10X20_1:GACGTAACGGACTT,534,694,t cell,astrocyte,t cell
-390,10X52_2:GGCCGATGGGTCTA,534,694,t cell,astrocyte,t cell
-391,10X28_2:ACTTAAGACCAATG,534,694,t cell,astrocyte,t cell
-392,10X20_3:GACCTCTGGCTTAG,534,694,t cell,astrocyte,t cell
-393,10X24_4:GTACCCTGCCTTGC,534,694,t cell,astrocyte,t cell
-394,10X04_2:CCAGCTACTAGCGT,534,694,t cell,astrocyte,t cell
-395,10X48_4:TCACCGTGTCCAAG,534,694,t cell,astrocyte,t cell
-396,10X53_2:AATAACACGAGGCA,534,694,t cell,astrocyte,t cell
-397,10X56_6:TCCGAAGATGTCTT,534,694,t cell,astrocyte,t cell
-398,10X22_3:CCCAGACTTTCTAC,534,694,t cell,astrocyte,t cell
-399,10X51_1:ACTGTGGAGTATGC,534,694,t cell,astrocyte,t cell
-400,10X57_1:ATATACGAGAACCT,534,694,t cell,astrocyte,t cell
-401,10X22_2:TATTTCCTGTAGCT,534,694,t cell,astrocyte,t cell
-402,10X28_4:GTGATTCTTGCTCC,534,694,t cell,astrocyte,t cell
-403,10X24_1:GAATGGCTCATGGT,534,694,t cell,astrocyte,t cell
-404,10X52_1:TCCCATCTAGCCTA,534,694,t cell,astrocyte,t cell
-405,10X48_1:CCGCGAGATTGACG,534,694,t cell,astrocyte,t cell
-406,10X04_1:ACCCAGCTTGCTTT,534,694,t cell,astrocyte,t cell
-407,10X48_1:CTTATCGAAAGGGC,534,694,t cell,astrocyte,t cell
-408,10X20_2:CAGATCGAAACGAA,534,694,t cell,astrocyte,t cell
-409,10X28_3:CAGCTCTGAAGGGC,534,694,t cell,astrocyte,t cell
-410,10X48_3:CAGCGGACAAGGGC,534,694,t cell,astrocyte,t cell
-411,10X48_3:CAGGTATGCTGCAA,534,694,t cell,astrocyte,t cell
-412,10X20_2:GGTATGACTCTAGG,534,694,t cell,astrocyte,t cell
-413,10X52_2:GTCATACTACCACA,534,694,t cell,astrocyte,t cell
-414,10X24_3:CGATACGAGGAGTG,534,694,t cell,astrocyte,t cell
-415,10X51_1:AGCGATACCCTTCG,534,694,t cell,astrocyte,t cell
-416,10X52_3:TAGGTCGATATGGC,534,694,t cell,astrocyte,t cell
-417,10X46_1:CGTGAATGCTGATG,534,694,t cell,astrocyte,t cell
-418,10X04_1:TTCTTACTGTTTCT,534,694,t cell,astrocyte,t cell
-419,10X52_2:TATTTCCTTCTCTA,534,694,t cell,astrocyte,t cell
-420,10X22_3:CGTAACGATGGTCA,534,694,t cell,astrocyte,t cell
-421,10X28_3:AGGGCGCTTGACTG,534,694,t cell,astrocyte,t cell
-422,10X20_1:ACAATTGACTTTAC,534,694,t cell,astrocyte,t cell
-423,10X57_7:CAGACCCTTGCTAG,534,694,t cell,astrocyte,t cell
-424,10X51_1:GGCGACTGCTGTAG,534,694,t cell,astrocyte,t cell
-425,10X20_2:GTTACTACAACGTC,534,694,t cell,astrocyte,t cell
-426,10X52_2:TAACAATGTGCATG,534,694,t cell,astrocyte,t cell
-427,10X26_4:GTCTAACTAGTCAC,534,694,t cell,astrocyte,t cell
-428,10X48_4:GTAGCCCTTGCCAA,534,694,t cell,astrocyte,t cell
-429,10X52_4:CGCTAAGAACCTGA,534,694,t cell,astrocyte,t cell
-430,10X51_4:AATGGAGAACGTAC,534,694,t cell,astrocyte,t cell
-431,10X19_2:CCTGACTGCATCAG,534,694,t cell,astrocyte,t cell
-432,10X49_4:TTTAGAGATTCTAC,534,694,t cell,astrocyte,t cell
-433,10X49_5:AAGCGTACCTTGGA,534,694,t cell,astrocyte,t cell
-434,10X24_3:AACAATACACGTAC,534,694,t cell,astrocyte,t cell
-435,10X33_2:CGATCCACTTTGTC,534,694,t cell,astrocyte,t cell
-436,10X28_4:ATATGCCTGTACGT,534,694,t cell,astrocyte,t cell
-437,10X51_2:TGAAGCACTCCTGC,534,694,t cell,astrocyte,t cell
-438,10X48_4:CCTGCAACCAGGAG,534,694,t cell,astrocyte,t cell
-439,10X04_2:CCTGGACTCACAAC,534,694,t cell,astrocyte,t cell
-440,10X52_1:ATAGATACAGCCAT,534,694,t cell,astrocyte,t cell
-441,10X49_3:CGGCGAACTCTACT,534,694,t cell,astrocyte,t cell
-442,10X50_2:ACACCCTGGGTCAT,534,694,t cell,astrocyte,t cell
-443,10X52_6:TTATTCCTTGCTTT,534,694,t cell,astrocyte,t cell
-444,10X26_2:GCAAACTGCATTCT,534,694,t cell,astrocyte,t cell
-445,10X22_3:CGCTACACTGCGTA,534,694,t cell,astrocyte,t cell
-446,10X20_2:GAGTCTGAATTCCT,534,694,t cell,astrocyte,t cell
-447,10X20_1:ATCGACGACATGCA,534,694,t cell,astrocyte,t cell
-448,10X49_4:ATCTACACAAGTAG,534,694,t cell,astrocyte,t cell
-449,10X52_2:ATTGTAGACAGATC,534,694,t cell,astrocyte,t cell
-450,10X20_1:GACGTCCTTACGAC,534,694,t cell,astrocyte,t cell
-451,10X52_3:CTCCTACTGGAGGT,534,694,t cell,astrocyte,t cell
-452,10X02_1:CGCACTTGTCCTCG,534,694,t cell,astrocyte,t cell
-453,10X04_4:GTCGACCTAGTCTG,534,694,t cell,astrocyte,t cell
-454,10X33_3:GGTATCGAGTCTGA,534,694,t cell,astrocyte,t cell
-455,10X48_3:TAACGTCTCAGTCA,534,694,t cell,astrocyte,t cell
-456,10X49_4:TAAGAGGAGGACAG,534,694,t cell,astrocyte,t cell
-457,10X52_5:TGCGTAGACTAGTG,534,694,t cell,astrocyte,t cell
-458,10X24_2:CTAGGCCTAGTACC,534,694,t cell,astrocyte,t cell
-459,10X22_3:CATCATACAAGAAC,534,694,t cell,astrocyte,t cell
-460,10X22_3:GCGAGAGAGGGAGT,534,694,t cell,astrocyte,t cell
-461,10X48_3:GCTTGAGATAGTCG,534,694,t cell,astrocyte,t cell
-462,10X34_4:AGAATGGATTCACT,534,694,t cell,astrocyte,t cell
-463,10X49_5:GGATTGTGGACTAC,534,694,t cell,astrocyte,t cell
-464,10X22_3:TAAGCGTGCTGTCC,534,694,t cell,astrocyte,t cell
-465,10X22_4:TACGCGCTAAGAAC,534,694,t cell,astrocyte,t cell
-466,10X20_2:GTGGATTGTGCACA,534,694,t cell,astrocyte,t cell
-467,10X52_5:CTGAGCCTTCATTC,534,694,t cell,astrocyte,t cell
-468,10X51_2:AAACATTGCCGCTT,534,694,t cell,astrocyte,t cell
-469,10X81_3:AGGCCTCGAATGGG,534,-1,t cell,enteric glia,t cell
-470,10X81_1:CGTTGGTGGTACAG,534,-1,t cell,enteric glia,t cell
-471,10X81_3:TTACCTCGTGGTCG,534,-1,t cell,enteric glia,t cell
-472,10X81_3:TGAGGGTAAGTGTA,534,-1,t cell,enteric glia,t cell
-473,10X81_1:TCTACTCAACGCTA-1,534,-1,t cell,enteric glia,t cell
-474,10X81_1:GCTGGGTAATCGTC,534,-1,t cell,enteric glia,t cell
-475,10X81_2:CTACCAGCCGTCGT,534,-1,t cell,enteric glia,t cell
-476,10X81_3:AGCCAAGAAGATTC,534,-1,t cell,enteric glia,t cell
-477,10X82_2:TACTCAGGCGATAC,534,-1,t cell,enteric glia,t cell
-478,10X82_2:TGAGCGTAAGTGTA,534,-1,t cell,enteric glia,t cell
-479,10X82_2:TGAAGTCTGTCTCG,534,-1,t cell,enteric glia,t cell
-480,10X81_1:ACATCTCTCGCATC,534,-1,t cell,enteric glia,t cell
-481,10X81_1:ATCAGTCCTTCAAT,534,-1,t cell,enteric glia,t cell
-482,10X81_1:AGACCGTTGGTAAA,534,-1,t cell,enteric glia,t cell
-483,10X82_2:AGGTACACGAGAGT,534,-1,t cell,enteric glia,t cell
-484,10X81_1:GGGAGGTTATGTGC,534,-1,t cell,enteric glia,t cell
-485,10X81_2:ATGTAGTAGGGTAC,534,-1,t cell,enteric glia,t cell
-486,10X81_1:CCATGTCCGCAAGC,534,-1,t cell,enteric glia,t cell
-487,10X82_2:TACCGGTTCTGGTA,534,-1,t cell,enteric glia,t cell
-488,10X81_1:TATTACATCGTCGG,534,-1,t cell,enteric glia,t cell
-489,10X81_3:GAGAGAGGCTAGCA,534,-1,t cell,enteric glia,t cell
-490,10X81_2:GAGGGCACACCGCA,534,-1,t cell,enteric glia,t cell
-491,10X82_2:AATGTGTCATCGGC,534,-1,t cell,enteric glia,t cell
-492,10X81_2:AACGTGTTATTCTC,534,-1,t cell,enteric glia,t cell
-493,10X81_2:GCTAGCAAATTGCC,534,-1,t cell,enteric glia,t cell
-494,10X81_1:GCGATTCACAATGC,534,-1,t cell,enteric glia,t cell
-495,10X81_3:CAGAACAATCGGTT,534,-1,t cell,enteric glia,t cell
-496,10X82_2:ACCTATCACTATTC,534,-1,t cell,enteric glia,t cell
-497,10X81_1:GACTTCATACTACG,534,-1,t cell,enteric glia,t cell
-498,10X81_2:AGCCAGTACAGTGG,534,-1,t cell,enteric glia,t cell
-499,10X81_2:TCTAAAGCGTTTAC,534,-1,t cell,enteric glia,t cell
-500,10X26_3:GTATGGTGGCGAGA,534,-1,t cell,microglia,t cell
-501,10X22_2:GTAGTCGATTCTTG,534,-1,t cell,microglia,t cell
-502,10X52_5:TGCACGCTTGATGC,534,-1,t cell,microglia,t cell
-503,10X53_4:ACGGTCCTTGCGTA,534,-1,t cell,microglia,t cell
-504,10X28_5:GGCCCAGAGAATCC,534,-1,t cell,microglia,t cell
-505,10X22_2:GTCCCATGTACGCA,534,-1,t cell,microglia,t cell
-506,10X19_2:ATTGGTCTTCCTCG,534,-1,t cell,microglia,t cell
-507,10X22_4:AATGATACGCGAGA,534,-1,t cell,microglia,t cell
-508,10X26_3:CATCTTGAAGAGGC,534,-1,t cell,microglia,t cell
-509,10X19_2:AGCCAATGTGTGCA,534,-1,t cell,microglia,t cell
-510,10X57_2:GTGAACACAGGTCT,534,-1,t cell,microglia,t cell
-511,10X02_1:CCTAAGGACTGAAC,534,-1,t cell,microglia,t cell
-512,10X53_5:GGCTACCTGCCTTC,534,-1,t cell,microglia,t cell
-513,10X49_1:CCGGAGACTTCGCC,534,-1,t cell,microglia,t cell
-514,10X57_4:ACGCCTTGTATCTC,534,-1,t cell,microglia,t cell
-515,10X24_1:TTCATCGATTCCGC,534,-1,t cell,microglia,t cell
-516,10X49_3:CATAACCTTTGGTG,534,-1,t cell,microglia,t cell
-517,10X26_3:TCTTGATGACGACT,534,-1,t cell,microglia,t cell
-518,10X53_4:TAGTACCTCCCTCA,534,-1,t cell,microglia,t cell
-519,10X02_1:ACTTGGGATGCTCC,534,-1,t cell,microglia,t cell
-520,10X20_4:GCCGACGAGGTGGA,534,-1,t cell,microglia,t cell
-521,10X50_4:GTGATCGAAGGAGC,534,-1,t cell,microglia,t cell
-522,10X22_2:GGACATTGAGGTCT,534,-1,t cell,microglia,t cell
-523,10X35_2:AACGCAACCTGGTA,534,-1,t cell,microglia,t cell
-524,10X49_3:AGGCTAACGTAGGG,534,-1,t cell,microglia,t cell
-525,10X51_4:GCACCACTAAGAAC,534,-1,t cell,microglia,t cell
-526,10X49_5:CGGTAAACCTAGCA,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-527,10X49_4:TACGAGACCCCAAA,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-528,10X04_4:TCTAACTGCAGCTA,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-529,10X46_1:AAAGCAGAGGACAG,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-530,10X49_4:TTGTAGCTCCTCGT,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-531,10X28_5:GACTGAACGAGCTT,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-532,10X26_3:TTTGCATGCATGCA,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-533,10X20_1:TTACTCGACATGAC,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-534,10X54_3:GAAGGAGAGTGACC,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-535,10X22_4:ACGCCTTGCTTCCG,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-536,10X34_2:TTCTGATGGTGTAC,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-537,10X46_1:CCAGTCACTTTCGT,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-538,10X49_5:GATTTGCTCGTCTC,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-539,10X22_4:TATCTGACGGCAAG,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-540,10X49_1:CCGGAGACATCAGC,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-541,10X22_3:GTGAGGGATCTTCA,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-542,10X04_4:TTCATGTGTTCCAT,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-543,10X43_1:ATTCTTCTATCTCT,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-544,10X28_4:AAATCAACGCGAGA,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-545,10X04_1:AAACATTGATTCTC,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-546,10X43_1:ATGCACGAGCTACA,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-547,10X28_5:TAGGAGCTGTTGTG,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-548,10X28_4:CTATAAGATGCCTC,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-549,10X22_3:TGTGAGTGCCTCGT,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-550,10X54_7:AGCGTTCGTTTAGG,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-551,10X24_1:TCTAAGCTCCCTCA,534,2216,t cell,neuroblast (sensu vertebrata),t cell
-552,10X52_4:AGAATTTGAGTACC,534,2390,t cell,pericyte,t cell
-553,10X50_7:CACCTGACAGGAGC,534,2390,t cell,pericyte,t cell
-554,10X26_3:AATCCTACATTGGC,534,2390,t cell,pericyte,t cell
-555,10X53_3:CAAATATGGCGGAA,534,2390,t cell,pericyte,t cell
-556,10X52_4:GACGGCACACGTGT,534,2390,t cell,pericyte,t cell
-557,10X50_8:CATAAAACGTCACA,534,2390,t cell,pericyte,t cell
-558,10X43_3:TATAGATGTTTCGT,534,2390,t cell,pericyte,t cell
-559,10X53_6:GTAAGCACATTCTC,534,2390,t cell,pericyte,t cell
-560,10X53_4:CAACGATGTAACCG,534,2390,t cell,pericyte,t cell
-561,10X20_1:CATAAATGAAGATG,534,2390,t cell,pericyte,t cell
-562,10X50_6:TTTGACTGTCGACA,534,2390,t cell,pericyte,t cell
-563,10X53_6:GGGCAGCTAAGTGA,534,2390,t cell,pericyte,t cell
-564,10X20_2:CCATCCGATTGTCT,534,2390,t cell,pericyte,t cell
-565,10X48_1:AGTCGAACTTTGCT,534,2390,t cell,pericyte,t cell
-566,10X53_4:GTGAACACAAGGGC,534,2390,t cell,pericyte,t cell
-567,10X36_1:GCGAGCACTGCCCT,534,2390,t cell,pericyte,t cell
-568,10X48_3:ATAACCCTACTCAG,534,2390,t cell,pericyte,t cell
-569,10X52_6:GCGAAGGAGGGAGT,534,2390,t cell,pericyte,t cell
-570,10X20_2:CGGAATTGTACGAC,534,2390,t cell,pericyte,t cell
-571,10X50_7:GCGAGCACCTTCTA,534,2390,t cell,pericyte,t cell
-572,10X24_3:CCACCTGAGTTCTT,534,2390,t cell,pericyte,t cell
-573,10X36_3:GGCCACGAGAAGGC,534,2390,t cell,pericyte,t cell
-574,10X52_6:TCCCGATGTCAAGC,534,2390,t cell,pericyte,t cell
-575,10X22_1:CGAGAACTAGACTC,534,2390,t cell,pericyte,t cell
-576,10X57_2:CCAAAGTGGAGAGC,534,2390,t cell,pericyte,t cell
-577,10X22_3:ACAAGAGAGTCAAC,534,1041,t cell,dentate gyrus granule cell,t cell
-578,10X22_3:CATACTACCTTCGC,534,1041,t cell,dentate gyrus granule cell,t cell
-579,10X46_1:CAAACTCTTTCGTT,534,1041,t cell,dentate gyrus granule cell,t cell
-580,10X46_1:GCCACTACTCGCTC,534,1041,t cell,dentate gyrus granule cell,t cell
-581,10X46_1:TAGTAATGCCCAAA,534,1041,t cell,dentate gyrus granule cell,t cell
-582,10X46_1:TCAGCGCTCGGAGA,534,1041,t cell,dentate gyrus granule cell,t cell
-583,10X22_3:GAGGATCTCTTGTT,534,1041,t cell,dentate gyrus granule cell,t cell
-584,10X43_1:AACATTGACAACTG,534,1041,t cell,dentate gyrus granule cell,t cell
-585,10X46_1:GGATGTACAGGAGC,534,1041,t cell,dentate gyrus granule cell,t cell
-586,10X46_1:TGGACTGAGTTACG,534,1041,t cell,dentate gyrus granule cell,t cell
-587,10X22_4:GTGATTCTCTAGTG,534,1041,t cell,dentate gyrus granule cell,t cell
-588,10X43_1:CATCTTGAACAGTC,534,1041,t cell,dentate gyrus granule cell,t cell
-589,10X43_1:GATATCCTGCCTTC,534,1041,t cell,dentate gyrus granule cell,t cell
-590,10X43_1:GGAATGCTCAGTCA,534,1041,t cell,dentate gyrus granule cell,t cell
-591,10X46_1:GCTACAGAGTTGGT,534,1041,t cell,dentate gyrus granule cell,t cell
-592,10X43_1:GCTGATGACCTTAT,534,1041,t cell,dentate gyrus granule cell,t cell
-593,10X22_3:TTCAAGCTTATTCC,534,1041,t cell,dentate gyrus granule cell,t cell
-594,10X22_3:CGTGTAGACGCAAT,534,1041,t cell,dentate gyrus granule cell,t cell
-595,10X04_2:ATCAAATGGTCAAC,534,1041,t cell,dentate gyrus granule cell,t cell
-596,10X46_1:GAGTACACCAAAGA,534,1041,t cell,dentate gyrus granule cell,t cell
-597,10X22_4:TAAGCTCTTGCAAC,534,1041,t cell,dentate gyrus granule cell,t cell
-598,10X51_1:TCGCACACCTAGCA,534,870,t cell,cerebellar neuron,t cell
-599,10X34_4:CGGCCAGACTGGAT,534,870,t cell,cerebellar neuron,t cell
-600,10X26_1:TACGTACTCTGACA,534,870,t cell,cerebellar neuron,t cell
-601,10X26_2:TAGGAGCTTATTCC,534,870,t cell,cerebellar neuron,t cell
-602,10X26_1:TAAGTCCTTACAGC,534,870,t cell,cerebellar neuron,t cell
-603,10X51_1:GAACCAACACGCAT,534,870,t cell,cerebellar neuron,t cell
-604,10X26_1:GACAGTTGGAGGAC,534,870,t cell,cerebellar neuron,t cell
-605,10X26_2:ATCCCGTGCATGCA,534,870,t cell,cerebellar neuron,t cell
-606,10X26_1:AAGAAGACCACACA,534,870,t cell,cerebellar neuron,t cell
-607,10X26_1:ACAAAGGAAAACAG,534,870,t cell,cerebellar neuron,t cell
-608,10X51_2:TGGTAGACTTCCCG,534,870,t cell,cerebellar neuron,t cell
-609,10X51_2:GAAGGTCTCCACCT,534,870,t cell,cerebellar neuron,t cell
-610,10X26_1:GATATAACAGATCC,534,870,t cell,cerebellar neuron,t cell
-611,10X51_1:CCATGCTGTTCCGC,534,870,t cell,cerebellar neuron,t cell
-612,10X51_1:TAGTTCACTAGCGT,534,870,t cell,cerebellar neuron,t cell
-613,10X51_1:GTGAGGGATCCCAC,534,870,t cell,cerebellar neuron,t cell
-614,10X51_1:ATCCTAACCTAGTG,534,870,t cell,cerebellar neuron,t cell
-615,10X51_1:GCGCGATGACCTTT,534,870,t cell,cerebellar neuron,t cell
-616,10X51_1:GCTCGACTCACTTT,534,870,t cell,cerebellar neuron,t cell
-617,10X51_2:CTGAACGACCGTTC,534,870,t cell,cerebellar neuron,t cell
-618,10X26_1:TAACAATGCTGTAG,534,870,t cell,cerebellar neuron,t cell
-619,10X01_1:ACGGGAGAACCCTC,534,1164,t cell,endothelial cell of vascular tree,t cell
-620,10X04_1:ACCTTTGACTCAAG,534,1164,t cell,endothelial cell of vascular tree,t cell
-621,10X57_7:CAGGTATGGCTTCC,534,1164,t cell,endothelial cell of vascular tree,t cell
-622,10X01_1:CTGCCAACGCATAC,534,1164,t cell,endothelial cell of vascular tree,t cell
-623,10X53_5:GGTAGTACGCTTAG,534,1164,t cell,endothelial cell of vascular tree,t cell
-624,10X53_3:AACTGTCTTGGAAA,534,1164,t cell,endothelial cell of vascular tree,t cell
-625,10X53_4:GAAGTAGACTGGTA,534,1164,t cell,endothelial cell of vascular tree,t cell
-626,10X49_4:ATACCGGAGTGCTA,534,1164,t cell,endothelial cell of vascular tree,t cell
-627,10X53_2:CGCACGGAGTCAAC,534,1164,t cell,endothelial cell of vascular tree,t cell
-628,10X43_3:TTCGATTGAACCGT,534,1164,t cell,endothelial cell of vascular tree,t cell
-629,10X53_4:GTGTATCTACGCTA,534,1164,t cell,endothelial cell of vascular tree,t cell
-630,10X57_7:ACTTCTGAGCCCTT,534,1164,t cell,endothelial cell of vascular tree,t cell
-631,10X05_1:GAGAGGTGATGTGC,534,1164,t cell,endothelial cell of vascular tree,t cell
-632,10X53_3:ACCCTCGATATCTC,534,1164,t cell,endothelial cell of vascular tree,t cell
-633,10X04_1:AAACCGTGGGAGGT,534,1164,t cell,endothelial cell of vascular tree,t cell
-634,10X36_2:TCGCCATGAAACGA,534,1164,t cell,endothelial cell of vascular tree,t cell
-635,10X26_3:ACGTTGGATCATTC,534,1164,t cell,endothelial cell of vascular tree,t cell
-636,10X52_1:GCCTAGCTCTTCTA,534,1164,t cell,endothelial cell of vascular tree,t cell
-637,10X53_5:TTCTTACTCGGGAA,534,1164,t cell,endothelial cell of vascular tree,t cell
-638,10X53_5:TCTAACTGGACGTT,534,1164,t cell,endothelial cell of vascular tree,t cell
-639,10X35_3:CGTAACGATACGCA,534,2385,t cell,peptidergic neuron,t cell
-640,10X51_4:ACGTAGACCTCAGA,534,2385,t cell,peptidergic neuron,t cell
-641,10X26_3:TTCAAGCTCTCAAG,534,2385,t cell,peptidergic neuron,t cell
-642,10X26_3:GGTATGACTCCCGT,534,2385,t cell,peptidergic neuron,t cell
-643,10X26_3:ATCACACTTTCTGT,534,2385,t cell,peptidergic neuron,t cell
-644,10X26_3:GGCCAGACAAGAAC,534,2385,t cell,peptidergic neuron,t cell
-645,10X26_4:AAGAATCTTGGATC,534,2385,t cell,peptidergic neuron,t cell
-646,10X26_3:GCGGGACTTTCGGA,534,2385,t cell,peptidergic neuron,t cell
-647,10X50_2:CATTTGTGTACTGG,534,2385,t cell,peptidergic neuron,t cell
-648,10X51_3:CCAGCACTATTCCT,534,2385,t cell,peptidergic neuron,t cell
-649,10X26_3:TTACGACTTTGACG,534,2385,t cell,peptidergic neuron,t cell
-650,10X46_2:TAGGAGCTGTAAGA,534,2385,t cell,peptidergic neuron,t cell
-651,10X26_3:ATGTTAGACCAAGT,534,2385,t cell,peptidergic neuron,t cell
-652,10X50_2:AGCAAAGATCCGAA,534,2385,t cell,peptidergic neuron,t cell
-653,10X26_3:GGATTGTGACGTTG,534,2385,t cell,peptidergic neuron,t cell
-654,10X26_3:GATGCATGTCCAGA,534,2385,t cell,peptidergic neuron,t cell
-655,10X26_4:TGTACTTGACCGAT,534,2385,t cell,peptidergic neuron,t cell
-656,10X51_3:GTGATCGACTAGAC,534,2385,t cell,peptidergic neuron,t cell
-657,10X26_3:CCAGCGGAGCTTCC,534,2385,t cell,peptidergic neuron,t cell
-658,10X50_1:ATAAGTTGACACTG,534,2385,t cell,peptidergic neuron,t cell
-659,10X28_3:GGCAAGGACCTAAG,534,2409,t cell,perivascular macrophage,t cell
-660,10X57_5:ATATACGAGATAAG,534,2409,t cell,perivascular macrophage,t cell
-661,10X22_3:GTGACAACTCTTAC,534,2409,t cell,perivascular macrophage,t cell
-662,10X52_8:ACACCAGATGCAGT,534,2409,t cell,perivascular macrophage,t cell
-663,10X50_4:GGACAGGAGGTTTG,534,2409,t cell,perivascular macrophage,t cell
-664,10X01_1:TAGGGACTACAGTC,534,2409,t cell,perivascular macrophage,t cell
-665,10X54_7:GCTTCTCCTATGTT,534,2409,t cell,perivascular macrophage,t cell
-666,10X33_2:CGGTCACTCCAACA,534,2409,t cell,perivascular macrophage,t cell
-667,10X56_6:GGGTAACTAAGATG,534,2409,t cell,perivascular macrophage,t cell
-668,10X22_1:TCGCAAGATCCAAG,534,2409,t cell,perivascular macrophage,t cell
-669,10X19_2:TAAGATACGCGAGA,534,2409,t cell,perivascular macrophage,t cell
-670,10X22_2:AGTCGCCTATCACG,534,2409,t cell,perivascular macrophage,t cell
-671,10X57_4:CCCACATGGTCTGA,534,2409,t cell,perivascular macrophage,t cell
-672,10X52_1:AGTACGTGCGAGTT,534,2409,t cell,perivascular macrophage,t cell
-673,10X24_1:TCCCTACTGCAGAG,534,2409,t cell,perivascular macrophage,t cell
-674,10X57_1:ACGGTATGCCGATA,534,2409,t cell,perivascular macrophage,t cell
-675,10X49_5:CAGGAACTTCCCGT,534,2409,t cell,perivascular macrophage,t cell
-676,10X24_2:CCGATAGAGGAACG,534,2409,t cell,perivascular macrophage,t cell
-677,10X57_7:GATCGAACTTTCTG,534,2409,t cell,perivascular macrophage,t cell
-678,10X52_7:TTAGTCACCTTGTT,534,2409,t cell,perivascular macrophage,t cell
-679,10X43_2:CTACGCACGTGTCA,534,2401,t cell,peripheral sensory neuron,t cell
-680,10X53_7:AGAATACTCTTGCC,534,2401,t cell,peripheral sensory neuron,t cell
-681,10X43_2:GTCCACTGAAGGCG,534,2401,t cell,peripheral sensory neuron,t cell
-682,10X53_7:ATACCGGAGAACCT,534,2401,t cell,peripheral sensory neuron,t cell
-683,10X53_7:TGCTGAGATTCCGC,534,2401,t cell,peripheral sensory neuron,t cell
-684,10X43_2:TTCGATTGTTCTCA,534,2401,t cell,peripheral sensory neuron,t cell
-685,10X53_7:GACCAAACCCCTTG,534,2401,t cell,peripheral sensory neuron,t cell
-686,10X53_7:GCAATCGATCAGTG,534,2401,t cell,peripheral sensory neuron,t cell
-687,10X53_7:GGAGCCACCCAACA,534,2401,t cell,peripheral sensory neuron,t cell
-688,10X53_7:CTGTAACTGAGACG,534,2401,t cell,peripheral sensory neuron,t cell
-689,10X53_7:AGTGTGACGAATCC,534,2401,t cell,peripheral sensory neuron,t cell
-690,10X53_7:CTATAGCTCTCAAG,534,2401,t cell,peripheral sensory neuron,t cell
-691,10X43_2:GATCTTACTAAGCC,534,2401,t cell,peripheral sensory neuron,t cell
-692,10X43_2:ATGGGTACACGTAC,534,2401,t cell,peripheral sensory neuron,t cell
-693,10X43_2:GGGCCAACTTCAGG,534,2401,t cell,peripheral sensory neuron,t cell
-694,10X43_2:TTAACCACGGTATC,534,2401,t cell,peripheral sensory neuron,t cell
-695,10X43_2:AACGCATGCGATAC,534,2401,t cell,peripheral sensory neuron,t cell
-696,10X53_7:CGGGACTGTTGCAG,534,2401,t cell,peripheral sensory neuron,t cell
-697,10X53_7:ACCGTGCTAAGGCG,534,2401,t cell,peripheral sensory neuron,t cell
-698,10X43_2:TAGGTGTGTCACCC,534,2401,t cell,peripheral sensory neuron,t cell
-699,10X49_4:AACATATGCGTTAG,534,3132,t cell,vascular leptomeningeal cell (mmus),t cell
-700,10X57_6:CCACGGGAGATGAA,534,3132,t cell,vascular leptomeningeal cell (mmus),t cell
-701,10X49_4:ATTTCCGAGGGATG,534,3132,t cell,vascular leptomeningeal cell (mmus),t cell
-702,10X49_4:AACTTGCTCTGTGA,534,3132,t cell,vascular leptomeningeal cell (mmus),t cell
-703,10X49_5:GATACTCTCATGCA,534,3132,t cell,vascular leptomeningeal cell (mmus),t cell
-704,10X52_1:AAATCCCTTACTCT,534,3132,t cell,vascular leptomeningeal cell (mmus),t cell
-705,10X20_3:TGTCAGGAGTCTGA,534,3132,t cell,vascular leptomeningeal cell (mmus),t cell
-706,10X56_2:TCCTAAACTTCCAT,534,3132,t cell,vascular leptomeningeal cell (mmus),t cell
-707,10X48_3:CTGTATACGCGGAA,534,3132,t cell,vascular leptomeningeal cell (mmus),t cell
-708,10X22_3:AGGCAACTTGCCTC,534,3132,t cell,vascular leptomeningeal cell (mmus),t cell
-709,10X43_1:CTTAAAGATGCCAA,534,3132,t cell,vascular leptomeningeal cell (mmus),t cell
-710,10X20_3:AAGGTCTGACACGT,534,3132,t cell,vascular leptomeningeal cell (mmus),t cell
-711,10X52_6:AAGCACTGTGCGTA,534,3132,t cell,vascular leptomeningeal cell (mmus),t cell
-712,10X33_2:CTTGAGGAGCTGAT,534,3132,t cell,vascular leptomeningeal cell (mmus),t cell
-713,10X52_2:CTGCAGCTTATTCC,534,3132,t cell,vascular leptomeningeal cell (mmus),t cell
-714,10X49_5:GAACTGTGATACCG,534,3132,t cell,vascular leptomeningeal cell (mmus),t cell
-715,10X57_3:GCTACGCTCCTTAT,534,3132,t cell,vascular leptomeningeal cell (mmus),t cell
-716,10X50_8:GCACACCTAGAGGC,534,3132,t cell,vascular leptomeningeal cell (mmus),t cell
-717,10X54_8:TGCTTTCGGGAGTA,534,3132,t cell,vascular leptomeningeal cell (mmus),t cell
-718,10X52_4:TCCCAGACGGTACT,534,3132,t cell,vascular leptomeningeal cell (mmus),t cell
-719,10X52_2:GATAATACGGAGCA,534,3130,t cell,vascular associated smooth muscle cell,t cell
-720,10X53_2:TTATGAGAAGCCTA,534,3130,t cell,vascular associated smooth muscle cell,t cell
-721,10X48_3:AGATTAACACTACG,534,3130,t cell,vascular associated smooth muscle cell,t cell
-722,10X55_8:AGGGACAAGCCGCT,534,3130,t cell,vascular associated smooth muscle cell,t cell
-723,10X28_5:CCAGTCACCTCTAT,534,3130,t cell,vascular associated smooth muscle cell,t cell
-724,10X52_2:ACCACCTGTGCCCT,534,3130,t cell,vascular associated smooth muscle cell,t cell
-725,10X36_3:CTACTATGTTGCTT,534,3130,t cell,vascular associated smooth muscle cell,t cell
-726,10X52_6:GGTGGAGATGTGGT,534,3130,t cell,vascular associated smooth muscle cell,t cell
-727,10X26_4:CAGAAGCTCCCTCA,534,3130,t cell,vascular associated smooth muscle cell,t cell
-728,10X54_3:TGTTAAGGTGCTAG,534,3130,t cell,vascular associated smooth muscle cell,t cell
-729,10X02_1:CTATGTTGGCATAC,534,3130,t cell,vascular associated smooth muscle cell,t cell
-730,10X48_3:CACTGAGAGGTGGA,534,3130,t cell,vascular associated smooth muscle cell,t cell
-731,10X52_5:TATGTGCTGCGAGA,534,3130,t cell,vascular associated smooth muscle cell,t cell
-732,10X28_3:TACAATGACTTGCC,534,3130,t cell,vascular associated smooth muscle cell,t cell
-733,10X54_8:CAATTTCACAACGT,534,3130,t cell,vascular associated smooth muscle cell,t cell
-734,10X24_2:ATCACTTGTCAGGT,534,3130,t cell,vascular associated smooth muscle cell,t cell
-735,10X57_3:CTTACTGAGCTGAT,534,3130,t cell,vascular associated smooth muscle cell,t cell
-736,10X54_2:CGTTTAGCAGGTCA,534,3130,t cell,vascular associated smooth muscle cell,t cell
-737,10X57_3:ATTCTGACCGAGAG,534,3130,t cell,vascular associated smooth muscle cell,t cell
-738,10X05_3:TAAATCGAGTTAGC,534,3130,t cell,vascular associated smooth muscle cell,t cell
-739,10X49_4:CTTCACCTCCACAA,534,2297,t cell,olfactory ensheathing cell,t cell
-740,10X49_4:CAGGTTGACAGAAA,534,2297,t cell,olfactory ensheathing cell,t cell
-741,10X49_4:CATGAGACGGAAAT,534,2297,t cell,olfactory ensheathing cell,t cell
-742,10X49_5:ATGCACGATTCCAT,534,2297,t cell,olfactory ensheathing cell,t cell
-743,10X49_4:GGAGTTTGAAGCAA,534,2297,t cell,olfactory ensheathing cell,t cell
-744,10X49_5:TTCTTACTGTTGTG,534,2297,t cell,olfactory ensheathing cell,t cell
-745,10X28_4:GTTCATACTGGATC,534,2297,t cell,olfactory ensheathing cell,t cell
-746,10X49_4:TGTGAGTGACAGCT,534,2297,t cell,olfactory ensheathing cell,t cell
-747,10X49_5:TTTATCCTCCTACC,534,2297,t cell,olfactory ensheathing cell,t cell
-748,10X28_5:TGGCAATGTACAGC,534,2297,t cell,olfactory ensheathing cell,t cell
-749,10X49_4:TAGGCATGGCCCTT,534,2297,t cell,olfactory ensheathing cell,t cell
-750,10X49_4:TCAATAGATCGATG,534,2297,t cell,olfactory ensheathing cell,t cell
-751,10X28_5:CATGCCACCTCAAG,534,2297,t cell,olfactory ensheathing cell,t cell
-752,10X49_4:GAATGCTGCCAAGT,534,2297,t cell,olfactory ensheathing cell,t cell
-753,10X28_4:GAGTCAACGAAGGC,534,2297,t cell,olfactory ensheathing cell,t cell
-754,10X49_4:GGGTTAACCGTGAT,534,2297,t cell,olfactory ensheathing cell,t cell
-755,10X49_5:GACAACTGACTGGT,534,2297,t cell,olfactory ensheathing cell,t cell
-756,10X49_5:AAATGTTGGTGTCA,534,2297,t cell,olfactory ensheathing cell,t cell
-757,10X49_5:ATTCTTCTTCAGAC,534,2297,t cell,olfactory ensheathing cell,t cell
-758,10X49_5:AGTCTACTTGGAAA,534,2297,t cell,olfactory ensheathing cell,t cell
-759,10X54_5:TGAAGGTGGTGTAG,534,1205,t cell,ependymal cell,t cell
-760,10X24_3:CCAGACCTGAGCTT,534,1205,t cell,ependymal cell,t cell
-761,10X57_5:TTCCTAGAGCCAAT,534,1205,t cell,ependymal cell,t cell
-762,10X53_5:AGATCGTGAAGGTA,534,1205,t cell,ependymal cell,t cell
-763,10X53_1:TATGCGGAGGAAGC,534,1205,t cell,ependymal cell,t cell
-764,10X55_5:CTCAGGTATTCTCT,534,1205,t cell,ependymal cell,t cell
-765,10X26_3:CGACGTCTACTTTC,534,1205,t cell,ependymal cell,t cell
-766,10X43_3:CCATGCTGCTGAGT,534,1205,t cell,ependymal cell,t cell
-767,10X57_5:TATCCTGATCGACA,534,1205,t cell,ependymal cell,t cell
-768,10X52_2:TATTGCTGGGAAGC,534,1205,t cell,ependymal cell,t cell
-769,10X53_6:ACCAACGAAAACAG,534,1205,t cell,ependymal cell,t cell
-770,10X53_5:TACTGGGATGGAGG,534,1205,t cell,ependymal cell,t cell
-771,10X55_5:CGACTAGTGGACGT,534,1205,t cell,ependymal cell,t cell
-772,10X53_6:AATGCGTGGTTTGG,534,1205,t cell,ependymal cell,t cell
-773,10X24_4:GGAGTTTGGAGCAG,534,1205,t cell,ependymal cell,t cell
-774,10X53_6:TAAGCTCTCCAACA,534,1205,t cell,ependymal cell,t cell
-775,10X48_3:TGATATGAAGATGA,534,1205,t cell,ependymal cell,t cell
-776,10X53_4:AGAAACGACTCGAA,534,1205,t cell,ependymal cell,t cell
-777,10X24_3:TAGCGATGCCATGA,534,1205,t cell,ependymal cell,t cell
-778,10X53_3:CAATGGACGCTGTA,534,1205,t cell,ependymal cell,t cell
-779,10X28_5:GAGATAGAATTGGC,534,2551,t cell,radial glial cell,t cell
-780,10X04_4:CTACCTCTCTAGTG,534,2551,t cell,radial glial cell,t cell
-781,10X34_2:GTGGAGGAGTTGGT,534,2551,t cell,radial glial cell,t cell
-782,10X24_2:CTCAATTGGTCTGA,534,2551,t cell,radial glial cell,t cell
-783,10X05_4:AATCCTACCAAAGA,534,2551,t cell,radial glial cell,t cell
-784,10X26_4:TCTTCAGACCGATA,534,2551,t cell,radial glial cell,t cell
-785,10X28_3:CCGGTACTGTTGTG,534,2551,t cell,radial glial cell,t cell
-786,10X46_1:AGATCGTGCAGAAA,534,2551,t cell,radial glial cell,t cell
-787,10X05_4:ACAATTGATTGACG,534,2551,t cell,radial glial cell,t cell
-788,10X04_2:CTAGGATGTTGAGC,534,2551,t cell,radial glial cell,t cell
-789,10X49_5:CATGGCCTTCGCTC,534,2551,t cell,radial glial cell,t cell
-790,10X04_4:GGGAAGTGACCAAC,534,2551,t cell,radial glial cell,t cell
-791,10X24_1:GGATGTTGGAGCAG,534,2551,t cell,radial glial cell,t cell
-792,10X04_1:GGCGACACGCTTAG,534,2551,t cell,radial glial cell,t cell
-793,10X06_2:GGGTTATGTCTACT,534,2551,t cell,radial glial cell,t cell
-794,10X28_4:ATCTACTGTTTGGG,534,2551,t cell,radial glial cell,t cell
-795,10X24_2:CGCAGGACAGATCC,534,2551,t cell,radial glial cell,t cell
-796,10X26_3:CAGGTTGAACACGT,534,2551,t cell,radial glial cell,t cell
-797,10X49_5:AGTAGGCTAGTCGT,534,2551,t cell,radial glial cell,t cell
-798,10X24_1:AGTTAAACACCACA,534,2551,t cell,radial glial cell,t cell
-799,10X55_6:TATTCGTAGTGAAT,534,892,t cell,cholinergic neuron,t cell
-800,10X26_4:TGTAATGACTATGG,534,892,t cell,cholinergic neuron,t cell
-801,10X54_7:TGCTACAAGGCTCC,534,892,t cell,cholinergic neuron,t cell
-802,10X55_3:AGCCTCATCGATTG,534,892,t cell,cholinergic neuron,t cell
-803,10X55_4:GCAGTAGAGCCTAG,534,892,t cell,cholinergic neuron,t cell
-804,10X56_2:AACTCTTGACACTG,534,892,t cell,cholinergic neuron,t cell
-805,10X52_5:TGGAACACGTATGC,534,892,t cell,cholinergic neuron,t cell
-806,10X55_3:TGAACTCAAACAAG,534,892,t cell,cholinergic neuron,t cell
-807,10X52_6:TCATTCGATTCATC,534,892,t cell,cholinergic neuron,t cell
-808,10X52_8:ACATTCTGTTGCAG,534,892,t cell,cholinergic neuron,t cell
-809,10X55_5:AGCCGAGAATGTTG,534,892,t cell,cholinergic neuron,t cell
-810,10X34_4:GGAATCTGTTAGGC,534,892,t cell,cholinergic neuron,t cell
-811,10X51_3:ATGGTGACGTTCTT,534,892,t cell,cholinergic neuron,t cell
-812,10X55_6:GCGATCATGCTAGT,534,892,t cell,cholinergic neuron,t cell
-813,10X54_5:TTACTGTCAGAATA,534,892,t cell,cholinergic neuron,t cell
-814,10X34_3:AGCGCCGATCAGAC,534,892,t cell,cholinergic neuron,t cell
-815,10X11_1:ACTCTCCTCGTAGT,534,892,t cell,cholinergic neuron,t cell
-816,10X56_6:GAGTCTGACAGAGG,534,892,t cell,cholinergic neuron,t cell
-817,10X52_7:GAGTGACTTCACGA,534,892,t cell,cholinergic neuron,t cell
-818,10X34_3:TCAAGTCTCATACG,534,892,t cell,cholinergic neuron,t cell
-819,10X54_5:TGAACCAACTTGAC,534,991,t cell,cranial visceromotor neuron,t cell
-820,10X54_4:TTCAGAGCCCAACC,534,991,t cell,cranial visceromotor neuron,t cell
-821,10X54_1:AAGACAGCGCCTCA,534,991,t cell,cranial visceromotor neuron,t cell
-822,10X54_8:CCAGGCATTGAGCT,534,991,t cell,cranial visceromotor neuron,t cell
-823,10X55_3:AATGTAGTACGCCC,534,991,t cell,cranial visceromotor neuron,t cell
-824,10X54_8:ACACCTCACAGGCC,534,991,t cell,cranial visceromotor neuron,t cell
-825,10X55_7:CACCTAGAGGGATA,534,991,t cell,cranial visceromotor neuron,t cell
-826,10X54_6:ACTTCCATGAGCGA,534,991,t cell,cranial visceromotor neuron,t cell
-827,10X54_4:GTTAGTCGATAGAA,534,991,t cell,cranial visceromotor neuron,t cell
-828,10X54_5:TTCGGCATATACCG,534,991,t cell,cranial visceromotor neuron,t cell
-829,10X55_5:GGCATGTCGTTGTA,534,991,t cell,cranial visceromotor neuron,t cell
-830,10X54_7:GAACGAGCAGACTG,534,991,t cell,cranial visceromotor neuron,t cell
-831,10X54_8:CTCCTTCCGAGCCA,534,991,t cell,cranial visceromotor neuron,t cell
-832,10X54_5:ATGTAAGAGATGAG,534,991,t cell,cranial visceromotor neuron,t cell
-833,10X48_2:ATCGGAACCTGTAG,534,991,t cell,cranial visceromotor neuron,t cell
-834,10X55_1:ATGCCTCCTGCAGG,534,991,t cell,cranial visceromotor neuron,t cell
-835,10X55_4:GTAGAGTCTAGGTT,534,991,t cell,cranial visceromotor neuron,t cell
-836,10X54_4:TCAAGTCAACGCTA,534,991,t cell,cranial visceromotor neuron,t cell
-837,10X33_3:GCCTCATGCGAGTT,534,991,t cell,cranial visceromotor neuron,t cell
-838,10X54_7:ACCGGGTCTTTCAT,534,991,t cell,cranial visceromotor neuron,t cell
-839,10X52_1:TTATGGCTCCGATA,534,2305,t cell,oligodendrocyte precursor cell,t cell
-840,10X22_3:ATCTTGACTGACAC,534,2305,t cell,oligodendrocyte precursor cell,t cell
-841,10X50_7:GGGACCACAACCGT,534,2305,t cell,oligodendrocyte precursor cell,t cell
-842,10X26_4:TCACTATGTGGTAC,534,2305,t cell,oligodendrocyte precursor cell,t cell
-843,10X43_1:TAATGTGACCTACC,534,2305,t cell,oligodendrocyte precursor cell,t cell
-844,10X49_5:GAGGTTTGTCGCAA,534,2305,t cell,oligodendrocyte precursor cell,t cell
-845,10X53_4:CTGATGGAAGTGCT,534,2305,t cell,oligodendrocyte precursor cell,t cell
-846,10X02_1:AGGTGGGACCTGTC,534,2305,t cell,oligodendrocyte precursor cell,t cell
-847,10X01_1:GCATGTGAAAGTGA,534,2305,t cell,oligodendrocyte precursor cell,t cell
-848,10X46_1:AGTATCCTCTTCGC,534,2305,t cell,oligodendrocyte precursor cell,t cell
-849,10X22_4:GCCCAACTCCTCAC,534,2305,t cell,oligodendrocyte precursor cell,t cell
-850,10X01_1:AGGGCCACAGGAGC,534,2305,t cell,oligodendrocyte precursor cell,t cell
-851,10X52_1:TCAAGGTGAAAGCA,534,2305,t cell,oligodendrocyte precursor cell,t cell
-852,10X28_5:TGCTTAACTACTTC,534,2305,t cell,oligodendrocyte precursor cell,t cell
-853,10X52_1:CAAACTCTAAAGCA,534,2305,t cell,oligodendrocyte precursor cell,t cell
-854,10X50_2:AACCAGTGTCTATC,534,2305,t cell,oligodendrocyte precursor cell,t cell
-855,10X24_3:GATAATACTTCCAT,534,2305,t cell,oligodendrocyte precursor cell,t cell
-856,10X26_4:GCACGTCTATGTGC,534,2305,t cell,oligodendrocyte precursor cell,t cell
-857,10X01_1:ACGGTAACCCAAGT,534,2305,t cell,oligodendrocyte precursor cell,t cell
-858,10X24_4:ACTCTCCTCATACG,534,2305,t cell,oligodendrocyte precursor cell,t cell
-859,10X75_1:AATGAGGACGAGTT,534,2891,t cell,sympathetic noradrenergic neuron,t cell
-860,10X75_1:TAGCGATGACAGTC,534,2891,t cell,sympathetic noradrenergic neuron,t cell
-861,10X75_1:XXTTAACTATCACG,534,2891,t cell,sympathetic noradrenergic neuron,t cell
-862,10X75_1:GGACATTGTCCGAA,534,2891,t cell,sympathetic noradrenergic neuron,t cell
-863,10X75_1:CAACCAGACACAAC,534,2891,t cell,sympathetic noradrenergic neuron,t cell
-864,10X75_1:ATCTGGGAAAAACG,534,2891,t cell,sympathetic noradrenergic neuron,t cell
-865,10X75_1:CGCTAAGAGGAGCA,534,2891,t cell,sympathetic noradrenergic neuron,t cell
-866,10X75_1:TTGCATTGGAAACA,534,2891,t cell,sympathetic noradrenergic neuron,t cell
-867,10X75_1:GGCCAGACCTTGTT,534,2891,t cell,sympathetic noradrenergic neuron,t cell
-868,10X75_1:CAAGGTTGGCCCTT,534,2891,t cell,sympathetic noradrenergic neuron,t cell
-869,10X75_1:ATCGACGAGGCAAG,534,2891,t cell,sympathetic noradrenergic neuron,t cell
-870,10X75_1:XXATCTACTGTAGC,534,2891,t cell,sympathetic noradrenergic neuron,t cell
-871,10X75_1:CTATAAGAGCGGAA,534,2891,t cell,sympathetic noradrenergic neuron,t cell
-872,10X75_1:ACACCCTGAGAGAT,534,2891,t cell,sympathetic noradrenergic neuron,t cell
-873,10X75_1:CGAGGAGACGAATC,534,2891,t cell,sympathetic noradrenergic neuron,t cell
-874,10X75_1:ATTCTTCTGGCAAG,534,2891,t cell,sympathetic noradrenergic neuron,t cell
-875,10X75_1:AAAGCAGAAGCGTT,534,2891,t cell,sympathetic noradrenergic neuron,t cell
-876,10X75_1:AAGGTCTGTGGTAC,534,2891,t cell,sympathetic noradrenergic neuron,t cell
-877,10X75_1:GACAGGGAGCTTAG,534,2891,t cell,sympathetic noradrenergic neuron,t cell
-878,10X75_1:GAACACACGAGCTT,534,2891,t cell,sympathetic noradrenergic neuron,t cell
-879,10X53_7:TCCCAGACTTACTC,534,-1,t cell,satellite glia,t cell
-880,10X43_2:TAAGAGGAGCTGTA,534,-1,t cell,satellite glia,t cell
-881,10X43_2:ATGCAGTGACCTTT,534,-1,t cell,satellite glia,t cell
-882,10X43_2:GGCGCATGTCTCTA,534,-1,t cell,satellite glia,t cell
-883,10X43_2:GATCGATGACGGTT,534,-1,t cell,satellite glia,t cell
-884,10X43_2:GCACCTTGCCTAAG,534,-1,t cell,satellite glia,t cell
-885,10X43_2:TTCAACACGCAGTT,534,-1,t cell,satellite glia,t cell
-886,10X43_2:ACGCAATGGCTGTA,534,-1,t cell,satellite glia,t cell
-887,10X43_2:ATAGCCGACTCAGA,534,-1,t cell,satellite glia,t cell
-888,10X43_2:ATCCGCACAGAGTA,534,-1,t cell,satellite glia,t cell
-889,10X53_7:ATGCGATGGCTGAT,534,-1,t cell,satellite glia,t cell
-890,10X43_2:CTAGTTTGTCAGAC,534,-1,t cell,satellite glia,t cell
-891,10X53_7:CTGGAAACCTCGCT,534,-1,t cell,satellite glia,t cell
-892,10X43_2:ACTGTTACATCGTG,534,-1,t cell,satellite glia,t cell
-893,10X53_7:CGACCACTCCCGTT,534,-1,t cell,satellite glia,t cell
-894,10X43_2:TCAACACTCCTTTA,534,-1,t cell,satellite glia,t cell
-895,10X43_2:TAGTCTTGCCTAAG,534,-1,t cell,satellite glia,t cell
-896,10X43_2:GGCGACTGTCTACT,534,-1,t cell,satellite glia,t cell
-897,10X43_2:CACGGGACTGCAAC,534,-1,t cell,satellite glia,t cell
-898,10X53_7:CGACCGGACATCAG,534,-1,t cell,satellite glia,t cell
-899,10X11_1:TTACTCGAAGTACC,534,901,t cell,choroid plexus epithelial cell,t cell
-900,10X54_6:AGCTACATCGGGTC,534,901,t cell,choroid plexus epithelial cell,t cell
-901,10X54_3:AGCCAGTAAGCACG,534,901,t cell,choroid plexus epithelial cell,t cell
-902,10X55_3:ACCCAGTATATGAG,534,901,t cell,choroid plexus epithelial cell,t cell
-903,10X54_3:GCCACTCTGCGACG,534,901,t cell,choroid plexus epithelial cell,t cell
-904,10X55_8:GTTCCCACAACGTT,534,901,t cell,choroid plexus epithelial cell,t cell
-905,10X48_1:ATAGCCGAGGGACA,534,901,t cell,choroid plexus epithelial cell,t cell
-906,10X54_4:ACTTCGTGAGCGAT,534,901,t cell,choroid plexus epithelial cell,t cell
-907,10X49_1:ACAAAGGATTACTC,534,901,t cell,choroid plexus epithelial cell,t cell
-908,10X54_4:ACCAAGTCATACTG,534,901,t cell,choroid plexus epithelial cell,t cell
-909,10X54_2:TCGATTCCCTCAGT,534,901,t cell,choroid plexus epithelial cell,t cell
-910,10X48_4:GCAGTCCTTTGCAG,534,901,t cell,choroid plexus epithelial cell,t cell
-911,10X57_6:TTGGGAACGCTTAG,534,901,t cell,choroid plexus epithelial cell,t cell
-912,10X57_6:AATCCTACTTAGGC,534,901,t cell,choroid plexus epithelial cell,t cell
-913,10X54_4:CTCCTTCAGATAAG,534,901,t cell,choroid plexus epithelial cell,t cell
-914,10X49_3:AGTTTGCTCACCAA,534,901,t cell,choroid plexus epithelial cell,t cell
-915,10X33_2:GGACCCGAAGTCTG,534,901,t cell,choroid plexus epithelial cell,t cell
-916,10X54_2:GTAGAAGGTGATAT,534,901,t cell,choroid plexus epithelial cell,t cell
-917,10X48_1:TGATTCACTTCTAC,534,901,t cell,choroid plexus epithelial cell,t cell
-918,10X87_4:ATAGAACTTTGTGG,534,901,t cell,choroid plexus epithelial cell,t cell
-919,10X20_3:ATGCAGTGAAAAGC,534,1541,t cell,hypendymal cell,t cell
-920,10X57_1:GATCCGCTTTGCTT,534,1541,t cell,hypendymal cell,t cell
-921,10X20_3:ATGCGATGCCTCAC,534,1541,t cell,hypendymal cell,t cell
-922,10X57_1:ACGACCCTTCGTAG,534,1541,t cell,hypendymal cell,t cell
-923,10X20_4:CTCAGGCTAAGAGT,534,1541,t cell,hypendymal cell,t cell
-924,10X52_1:ATCCGCACTCGATG,534,1541,t cell,hypendymal cell,t cell
-925,10X52_2:AGAGTGCTCATTGG,534,1541,t cell,hypendymal cell,t cell
-926,10X52_3:TCGCACACTTCGCC,534,1541,t cell,hypendymal cell,t cell
-927,10X52_4:TTTGACTGTGCTGA,534,1541,t cell,hypendymal cell,t cell
-928,10X57_3:GGAATGCTTATCTC,534,1541,t cell,hypendymal cell,t cell
-929,10X52_1:TAGTAATGGTACCA,534,1541,t cell,hypendymal cell,t cell
-930,10X57_3:CTGATACTTACTCT,534,1541,t cell,hypendymal cell,t cell
-931,10X20_3:GGGCAAGACTCTTA,534,1541,t cell,hypendymal cell,t cell
-932,10X20_3:CTGTAACTGAGGTG,534,1541,t cell,hypendymal cell,t cell
-933,10X20_4:GCAAGACTAAGCAA,534,1541,t cell,hypendymal cell,t cell
-934,10X20_4:CTAGGCCTCTACTT,534,1541,t cell,hypendymal cell,t cell
-935,10X20_3:TTCTTACTTTATCC,534,1541,t cell,hypendymal cell,t cell
-936,10X20_3:CTCAGAGAGGATCT,534,1541,t cell,hypendymal cell,t cell
-937,10X57_2:ACGCCACTGTTACG,534,1541,t cell,hypendymal cell,t cell
-938,10X20_3:GTTGACGATAGTCG,534,1541,t cell,hypendymal cell,t cell
-939,10X75_1:CTTCTAGACGTGAT,534,2889,t cell,sympathetic cholinergic neuron,t cell
-940,10X75_1:TAGAGAGAAATGCC,534,2889,t cell,sympathetic cholinergic neuron,t cell
-941,10X75_1:AACAGAGAGTTTCT,534,2889,t cell,sympathetic cholinergic neuron,t cell
-942,10X75_1:CCCTACGAGGGATG,534,2889,t cell,sympathetic cholinergic neuron,t cell
-943,10X75_1:GGGTTAACTTCTCA,534,2889,t cell,sympathetic cholinergic neuron,t cell
-944,10X75_1:AGATATTGAAGGTA,534,2889,t cell,sympathetic cholinergic neuron,t cell
-945,10X75_1:AGGAATGACGCTAA,534,2889,t cell,sympathetic cholinergic neuron,t cell
-946,10X75_1:TGCAAGACAGAGAT,534,2889,t cell,sympathetic cholinergic neuron,t cell
-947,10X75_1:TACACACTCGTAAC,534,2889,t cell,sympathetic cholinergic neuron,t cell
-948,10X75_1:AGCGTAACGTGTCA,534,2889,t cell,sympathetic cholinergic neuron,t cell
-949,10X75_1:GGAGCAGACCAGTA,534,2889,t cell,sympathetic cholinergic neuron,t cell
-950,10X75_1:CAGTTGGAGTACGT,534,2889,t cell,sympathetic cholinergic neuron,t cell
-951,10X75_1:TTCATGACTGGAGG,534,2889,t cell,sympathetic cholinergic neuron,t cell
-952,10X75_1:AGCCAATGTCGTAG,534,2889,t cell,sympathetic cholinergic neuron,t cell
-953,10X75_1:ATGTTAGAAGAGTA,534,2889,t cell,sympathetic cholinergic neuron,t cell
-954,10X75_1:ATTCTTCTCAGTTG,534,2889,t cell,sympathetic cholinergic neuron,t cell
-955,10X75_1:CTGACAGACCTTCG,534,2889,t cell,sympathetic cholinergic neuron,t cell
-956,10X75_1:ATCGCGCTCACTTT,534,2889,t cell,sympathetic cholinergic neuron,t cell
-957,10X75_1:AAGTGGCTGCTGAT,534,2889,t cell,sympathetic cholinergic neuron,t cell
-958,10X75_1:GGTGATACGAGCTT,534,2889,t cell,sympathetic cholinergic neuron,t cell
-959,10X43_2:ATGAGCACTCATTC,534,527,t cell,schwann cell,t cell
-960,10X43_2:AGACCTGAGTCCTC,534,527,t cell,schwann cell,t cell
-961,10X53_7:ACAGTTCTCTTGGA,534,527,t cell,schwann cell,t cell
-962,10X53_7:AGCGGCACAACAGA,534,527,t cell,schwann cell,t cell
-963,10X43_2:TCATCAACCGTTAG,534,527,t cell,schwann cell,t cell
-964,10X43_2:ACTGAGACAACTGC,534,527,t cell,schwann cell,t cell
-965,10X43_2:ATGGTGACCATGGT,534,527,t cell,schwann cell,t cell
-966,10X53_7:TATAAGTGGTCGAT,534,527,t cell,schwann cell,t cell
-967,10X43_2:CACGGGACTTCTAC,534,527,t cell,schwann cell,t cell
-968,10X43_2:TGTATCTGAGTCTG,534,527,t cell,schwann cell,t cell
-969,10X43_2:ATCATCTGAACGGG,534,527,t cell,schwann cell,t cell
-970,10X43_2:GTTCAGGATGTTTC,534,527,t cell,schwann cell,t cell
-971,10X43_2:CTTAGGGAAATGCC,534,527,t cell,schwann cell,t cell
-972,10X43_2:TCAGGATGAACGGG,534,527,t cell,schwann cell,t cell
-973,10X43_2:TTTCGAACTCTCTA,534,527,t cell,schwann cell,t cell
-974,10X43_2:TGATTCTGGTCATG,534,527,t cell,schwann cell,t cell
-975,10X43_2:ACAGTGACGACTAC,534,527,t cell,schwann cell,t cell
-976,10X43_2:CTAGATCTAGAACA,534,527,t cell,schwann cell,t cell
-977,10X53_7:GATAGAGATGGATC,534,527,t cell,schwann cell,t cell
-978,10X43_2:GAAGCTTGTTGTGG,534,527,t cell,schwann cell,t cell
-979,10X82_2:CATGGAGTCTCAAC,534,1175,t cell,enteric neuron,t cell
-980,10X81_1:CACACAGGGTGTTG,534,1175,t cell,enteric neuron,t cell
-981,10X82_2:TCGATGTCAGAGGT,534,1175,t cell,enteric neuron,t cell
-982,10X81_3:TCCTAGTCTTGTCC,534,1175,t cell,enteric neuron,t cell
-983,10X81_2:GGTGACAAGGACAC,534,1175,t cell,enteric neuron,t cell
-984,10X82_2:CTGCTTCGACAGCC,534,1175,t cell,enteric neuron,t cell
-985,10X82_2:AAACTCAAACCTAC,534,1175,t cell,enteric neuron,t cell
-986,10X82_2:ACATCTCTTGTATC,534,1175,t cell,enteric neuron,t cell
-987,10X81_1:CATAGAGGCTCATT,534,1175,t cell,enteric neuron,t cell
-988,10X82_2:ATGTCTCCTCAACC,534,1175,t cell,enteric neuron,t cell
-989,10X81_3:ACTAGCACGAAAGC,534,1175,t cell,enteric neuron,t cell
-990,10X81_3:TTGGTTCTACTCAT,534,1175,t cell,enteric neuron,t cell
-991,10X82_2:GCATAAGACCCACC,534,1175,t cell,enteric neuron,t cell
-992,10X81_3:GAGAGTCCACGAAT,534,1175,t cell,enteric neuron,t cell
-993,10X82_2:ACATTCACGGCGTT,534,1175,t cell,enteric neuron,t cell
-994,10X82_2:ATTGAAGTGTGAAT,534,1175,t cell,enteric neuron,t cell
-995,10X82_2:CCACTAGAGGGCTT,534,1175,t cell,enteric neuron,t cell
-996,10X81_3:GGCAGGTTATGTGC,534,1175,t cell,enteric neuron,t cell
-997,10X81_1:ACAGATCAATACCG,534,1175,t cell,enteric neuron,t cell
-998,10X81_1:ATGTATCTTGTACT,534,1175,t cell,enteric neuron,t cell
+0,10X57_2:ACAAATTGTTGTCT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+1,10X52_5:CTGAGAACTTTCTG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+2,10X53_2:TTTGACTGCCCACT,463,2303,nfol nn_2 rgs16 newly formed oligodendrocyte (mmus),oligodendrocyte,nfol nn_2 rgs16 newly formed oligodendrocyte (mmus)
+3,10X35_2:TATCTCGATTCTGT,462,2303,nfol nn_2 il23a newly formed oligodendrocyte (mmus),oligodendrocyte,nfol nn_2 il23a newly formed oligodendrocyte (mmus)
+4,10X55_4:CTCCTAGATATGCA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+5,10X55_5:CCTTGGTCCAGTAT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+6,10X55_5:GTCAAAGACAAGCC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+7,10X50_7:GCCGAGTGGGTTCA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+8,10X43_1:CATCGCTGGTCAAC,462,2303,nfol nn_2 il23a newly formed oligodendrocyte (mmus),oligodendrocyte,nfol nn_2 il23a newly formed oligodendrocyte (mmus)
+9,10X52_1:GGGTTATGCTTAGG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+10,10X50_8:ACGTCAGAGACGAG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+11,10X24_1:TCCCGAACTCCCAC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+12,10X51_3:CTGACCACAGTACC,462,2303,nfol nn_2 il23a newly formed oligodendrocyte (mmus),oligodendrocyte,nfol nn_2 il23a newly formed oligodendrocyte (mmus)
+13,10X34_4:GACAGGGAACTGTG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+14,10X53_6:GCGAGAGATCGTTT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+15,10X57_2:TCCTATGATGCATG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+16,10X55_2:CAATCGTGACCAAG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+17,10X53_5:TCCCACGACACTTT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+18,10X53_3:AGCGATTGTTCCAT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+19,10X50_2:GCACCTACCTCCCA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+20,10X55_2:CGTGTGTCTGATCA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+21,10X54_1:TGAGGTCTCTGTCG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+22,10X26_3:GCATGTGAGCGATT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+23,10X57_4:GCCTACACTTAGGC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+24,10X53_3:GTAGTGACATTCGG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+25,10X04_1:TCGTAGGATGTTCT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+26,10X57_4:AACCTACTAGGTTC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+27,10X49_1:ATACCGGAGAGCTT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+28,10X57_2:TTACAGCTTCTTCA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+29,10X57_6:GCTACGCTGTTGTG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+30,10X52_7:TTCAGTACGATAAG,462,2303,nfol nn_2 il23a newly formed oligodendrocyte (mmus),oligodendrocyte,nfol nn_2 il23a newly formed oligodendrocyte (mmus)
+31,10X55_8:CTTCAAGAACAACT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+32,10X55_7:GCTAAGTACCATCA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+33,10X55_2:TGAGAGTTGGAGGT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+34,10X57_3:TAGTGGTGGCCCTT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+35,10X24_2:AAGGTCACACTACG,462,2303,nfol nn_2 il23a newly formed oligodendrocyte (mmus),oligodendrocyte,nfol nn_2 il23a newly formed oligodendrocyte (mmus)
+36,10X56_3:GTATTAGATCTACT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+37,10X22_4:CCAATGGAACTGTG,1411,2303,ganglion mother cell,oligodendrocyte,ganglion mother cell
+38,10X22_4:CAATTCTGGGTCAT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+39,10X50_3:TCAGGATGGGTTCA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+40,10X57_7:GCCATCACTCGTGA,462,2303,nfol nn_2 il23a newly formed oligodendrocyte (mmus),oligodendrocyte,nfol nn_2 il23a newly formed oligodendrocyte (mmus)
+41,10X24_3:GCGGAGCTTTCTAC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+42,10X53_5:GTGGTAACCGAATC,462,2303,nfol nn_2 il23a newly formed oligodendrocyte (mmus),oligodendrocyte,nfol nn_2 il23a newly formed oligodendrocyte (mmus)
+43,10X54_7:GGGATAGTGAACGC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+44,10X55_1:GCGGAGTTGTTTGG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+45,10X55_7:CTCTAGTCCTGCTT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+46,10X55_3:GTAGAAGTACGTTC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+47,10X55_1:TTCGCGTCTAGCGC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+48,10X50_5:CCAGGTCTGTAGCT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+49,10X55_2:ACCTGAGCTCAACT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+50,10X52_5:AAGCCATGTCCGTC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+51,10X50_5:TATCTCGATTGGCA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+52,10X54_1:ACGGATCAGGCAAG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+53,10X50_2:ATGCCAGATCAAGC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+54,10X54_7:CGTGTCAGACAAAT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+55,10X55_3:GTAACTCCTATGTT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+56,10X55_1:CTCGCTCTTGACGA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+57,10X53_3:AGGAACCTTACTGG,462,2303,nfol nn_2 il23a newly formed oligodendrocyte (mmus),oligodendrocyte,nfol nn_2 il23a newly formed oligodendrocyte (mmus)
+58,10X55_7:CTAACGTCTGCCAG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+59,10X52_1:AGAATACTCGAGAG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+60,10X53_2:TGCACAGAGTTTCT,462,2303,nfol nn_2 il23a newly formed oligodendrocyte (mmus),oligodendrocyte,nfol nn_2 il23a newly formed oligodendrocyte (mmus)
+61,10X52_3:GAGGTACTATCGTG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+62,10X54_3:TATCTAGAACAACT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+63,10X52_5:ATCAGGTGGTTCAG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+64,10X26_3:CGGACCGATCGATG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+65,10X54_1:GCGCAAGATCGGGT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+66,10X53_4:AGGGCCACACCTAG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+67,10X35_2:CGGACTCTCCACAA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+68,10X22_2:CCATAGGAGGTGAG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+69,10X57_5:TTCAGTTGCCATAG,462,2303,nfol nn_2 il23a newly formed oligodendrocyte (mmus),oligodendrocyte,nfol nn_2 il23a newly formed oligodendrocyte (mmus)
+70,10X20_3:ATACCTTGGTACGT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+71,10X20_4:AGGTCATGCTATTC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+72,10X57_5:GTTACTACGTACGT,462,2303,nfol nn_2 il23a newly formed oligodendrocyte (mmus),oligodendrocyte,nfol nn_2 il23a newly formed oligodendrocyte (mmus)
+73,10X50_2:ATGCACGAGTTGTG,462,2303,nfol nn_2 il23a newly formed oligodendrocyte (mmus),oligodendrocyte,nfol nn_2 il23a newly formed oligodendrocyte (mmus)
+74,10X54_8:GTCATGTGGTGTAG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+75,10X52_2:CCAGCTACCCAAGT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+76,10X57_5:CGAGTATGGGTACT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+77,10X20_4:CACTCCGACGAGAG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+78,10X57_3:ACTCAGGAACGGTT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+79,10X50_8:TGTATGCTCATTCT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+80,10X52_6:GTGAGGGACTTGCC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+81,10X55_5:CTCAAGTTGACGTT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+82,10X34_3:TCCATAACTAGAGA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+83,10X55_1:GACCAAGGTACTCT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+84,10X24_3:ATAATGACGACTAC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+85,10X43_3:ATAAGTACGTTCGA,490,2303,opc-oligo cell (mmus),oligodendrocyte,opc-oligo cell (mmus)
+86,10X54_1:TCTCTAGAAGAAGC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+87,10X50_5:TCTAACACCCTCAC,462,2303,nfol nn_2 il23a newly formed oligodendrocyte (mmus),oligodendrocyte,nfol nn_2 il23a newly formed oligodendrocyte (mmus)
+88,10X33_4:CAGACATGCCAAGT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+89,10X55_1:GAGCTGTCGAACAG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+90,10X52_1:GCGGAGCTGAGCTT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+91,10X54_1:AGCAATCTCCGGTT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+92,10X26_3:TGTAGGTGTGTTCT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+93,10X57_6:AAATGGGAGCAGAG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+94,10X55_4:GGCGTCACGCATCG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+95,10X55_6:TGAGGGTCTAGAGG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+96,10X55_4:TGAAGCAACACCCG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+97,10X54_8:ACCTACAGCTCGCA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+98,10X54_1:CGGTAAGATAGTCA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+99,10X57_7:TTATGGCTCACTTT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+100,10X55_7:ACGGAAGCCATCGC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+101,10X57_3:CTCAGAGACAGCTA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+102,10X52_3:AGAGTCTGTTCATC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+103,10X57_3:TCGTAGGACGTTGA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+104,10X53_3:CAAGTTCTAAGATG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+105,10X43_3:GAACCTGAGACAAA,463,2303,nfol nn_2 rgs16 newly formed oligodendrocyte (mmus),oligodendrocyte,nfol nn_2 rgs16 newly formed oligodendrocyte (mmus)
+106,10X24_4:TCCGAAGAGGGTGA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+107,10X57_3:TAATCGCTATGTCG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+108,10X01_1:CAAGAAGAGCTATG,462,2303,nfol nn_2 il23a newly formed oligodendrocyte (mmus),oligodendrocyte,nfol nn_2 il23a newly formed oligodendrocyte (mmus)
+109,10X57_7:AAGAACGACCTATT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+110,10X55_8:CGTGTCAAGACGTG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+111,10X55_6:GTACTGTGCTTCTC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+112,10X54_1:TGATGTCAAGATCC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+113,10X54_3:AGCGTTCGAGCCCA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+114,10X57_3:CGAGTATGTTAGGC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+115,10X05_2:GACTACGATCAGGT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+116,10X53_6:ATTATGGACATGGT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+117,10X01_1:CAGCGGACTAGACC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+118,10X54_4:TCCAGTCGCCATAA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+119,10X52_2:AATCGGTGCTCCCA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+120,10X54_5:TCAGAGTTACTGAC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+121,10X54_4:CGGTCCACTACAGT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+122,10X57_6:TTCAAAGACAAAGA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+123,10X53_4:TGTATCTGGCCCTT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+124,10X53_6:AATCCGGAGAGACG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+125,10X55_8:TGGTGCACCGAAAG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+126,10X57_3:TAAGTCCTCTCCCA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+127,10X53_6:ACGGTCCTATTCGG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+128,10X50_4:AAACCGTGTCCCAC,462,2303,nfol nn_2 il23a newly formed oligodendrocyte (mmus),oligodendrocyte,nfol nn_2 il23a newly formed oligodendrocyte (mmus)
+129,10X26_3:CCATAGGAGCGGAA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+130,10X54_5:CATACAGTGGGCTA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+131,10X54_2:AATAGCAGTCTTCC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+132,10X28_3:AAGCCATGGTAAAG,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+133,10X55_2:CCACTGTCTCCCTA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+134,10X52_2:GGCTAAACTCTAGG,462,2303,nfol nn_2 il23a newly formed oligodendrocyte (mmus),oligodendrocyte,nfol nn_2 il23a newly formed oligodendrocyte (mmus)
+135,10X53_4:TGAGTCGATTTCGT,462,2303,nfol nn_2 il23a newly formed oligodendrocyte (mmus),oligodendrocyte,nfol nn_2 il23a newly formed oligodendrocyte (mmus)
+136,10X57_2:GGAATCTGCTTGCC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+137,10X22_1:CACTAGGAATTTCC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+138,10X55_7:TCAGTTCTTCATGT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+139,10X28_2:TCTCAAACAAGTGA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+140,10X24_4:CTACTATGCTAGAC,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+141,10X55_5:TCAGGTCTTGGGTA,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+142,10X24_4:AAGAACGATGACAC,462,2303,nfol nn_2 il23a newly formed oligodendrocyte (mmus),oligodendrocyte,nfol nn_2 il23a newly formed oligodendrocyte (mmus)
+143,10X53_3:ACACGAACGTTAGC,463,2303,nfol nn_2 rgs16 newly formed oligodendrocyte (mmus),oligodendrocyte,nfol nn_2 rgs16 newly formed oligodendrocyte (mmus)
+144,10X55_4:GCCAATCACCTTAT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+145,10X50_7:CTATAAGACCAAGT,2771,2303,spinal cord oligodendrocyte,oligodendrocyte,spinal cord oligodendrocyte
+146,10X20_1:AACGCCCTGTACCA,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+147,10X22_2:TCGGACCTGCATCA,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+148,10X22_2:CGTTTAACCCTGTC,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+149,10X53_6:CTGGCACTAATCGC,2753,1456,somatosensory neuron,glutamatergic neuron,somatosensory neuron
+150,10X50_8:CGCGAGACCTCTAT,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+151,10X57_3:AGTCTTACCTCATT,2234,1456,neuron of the forebrain,glutamatergic neuron,neuron of the forebrain
+152,10X20_2:GATATCCTCAGATC,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+153,10X53_3:AAGTCCGAGCTATG,892,1456,cholinergic neuron,glutamatergic neuron,cholinergic neuron
+154,10X34_3:TGGCACCTTTCATC,440,1456,m9-on retinal ganglion cell,glutamatergic neuron,m9-on retinal ganglion cell
+155,10X02_1:ACGGAGGACAAAGA,2234,1456,neuron of the forebrain,glutamatergic neuron,neuron of the forebrain
+156,10X57_2:AGCAAGCTTTGACG,479,1456,on midget ganglion cell,glutamatergic neuron,on midget ganglion cell
+157,10X22_2:ACGCTCACTCAAGC,3101,1456,untufted pyramidal neuron,glutamatergic neuron,untufted pyramidal neuron
+158,10X19_2:AAGGCTTGCCATAG,3101,1456,untufted pyramidal neuron,glutamatergic neuron,untufted pyramidal neuron
+159,10X20_1:TTGAGGTGCTTGCC,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+160,10X20_1:CAAGACTGATCGTG,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+161,10X05_1:GCGAGAGACAAGCT,513,1456,r4 photoreceptor cell,glutamatergic neuron,r4 photoreceptor cell
+162,10X22_2:AAACGCACTGGTTG,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+163,10X22_3:TATAGCCTGCATAC,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+164,10X53_3:AACATTGAGGTATC,2978,1456,trigeminal motor neuron,glutamatergic neuron,trigeminal motor neuron
+165,10X49_3:ACTCTATGGGAAGC,2234,1456,neuron of the forebrain,glutamatergic neuron,neuron of the forebrain
+166,10X04_2:ATCATCTGGTTGAC,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+167,10X28_4:AAGGTGCTTTCGGA,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+168,10X50_5:CATTGTACACTCTT,440,1456,m9-on retinal ganglion cell,glutamatergic neuron,m9-on retinal ganglion cell
+169,10X28_4:ACGTAGACCTACTT,2234,1456,neuron of the forebrain,glutamatergic neuron,neuron of the forebrain
+170,10X24_3:ATCTGGGAGAATAG,755,1456,bipolar neuron,glutamatergic neuron,bipolar neuron
+171,10X02_1:TTTCCAGACTACCC,2234,1456,neuron of the forebrain,glutamatergic neuron,neuron of the forebrain
+172,10X57_3:TACATCACACCTGA,686,1456,arcuate nucleus of hypothalamus kndy neuron,glutamatergic neuron,arcuate nucleus of hypothalamus kndy neuron
+173,10X43_1:CCCTACGAATCGTG,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+174,10X20_1:ACACGATGCTTATC,2284,1456,nucleus accumbens shell and olfactory tubercle d1 medium spiny neuron,glutamatergic neuron,nucleus accumbens shell and olfactory tubercle d1 medium spiny neuron
+175,10X01_1:ACGTTACTAAAACG,458,1456,meynert cell,glutamatergic neuron,meynert cell
+176,10X57_3:CACTGAGATTCTTG,429,1456,m3-off retinal ganglion cell,glutamatergic neuron,m3-off retinal ganglion cell
+177,10X28_3:ATAACCCTCCTGTC,458,1456,meynert cell,glutamatergic neuron,meynert cell
+178,10X52_1:CAAGGTTGTAGAAG,433,1456,m6 retinal ganglion cell,glutamatergic neuron,m6 retinal ganglion cell
+179,10X22_2:ATTCAGCTAAAGCA,404,1456,l6b glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l6b glutamatergic neuron of the primary motor cortex
+180,10X20_4:ACTCAGGAGTCTTT,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+181,10X28_3:AGGGCCACTTCGCC,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+182,10X24_4:CAGCAATGCAACCA,433,1456,m6 retinal ganglion cell,glutamatergic neuron,m6 retinal ganglion cell
+183,10X05_2:GATTCTTGTCCTCG,2234,1456,neuron of the forebrain,glutamatergic neuron,neuron of the forebrain
+184,10X36_1:AACAATACCCTGTC,2234,1456,neuron of the forebrain,glutamatergic neuron,neuron of the forebrain
+185,10X50_5:ATCGCCTGGGAGCA,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+186,10X52_2:GTACGAACAACTGC,458,1456,meynert cell,glutamatergic neuron,meynert cell
+187,10X53_6:CAGGGCACGAACCT,2495,1456,primary sensory neuron (sensu teleostei),glutamatergic neuron,primary sensory neuron (sensu teleostei)
+188,10X22_2:GCTACAGATTTGGG,3009,1456,type 2 cone bipolar cell (sensu mus),glutamatergic neuron,type 2 cone bipolar cell (sensu mus)
+189,10X54_2:GACCATCAGCCTAA,2595,1456,retinal ganglion cell,glutamatergic neuron,retinal ganglion cell
+190,10X20_2:GAAAGATGTCTTTG,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+191,10X36_1:AAATCTGAGGGCAA,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+192,10X28_3:CACTTAACTTCCAT,2234,1456,neuron of the forebrain,glutamatergic neuron,neuron of the forebrain
+193,10X05_1:CCATAGGAGGACTT,513,1456,r4 photoreceptor cell,glutamatergic neuron,r4 photoreceptor cell
+194,10X28_4:ATGCAGTGTCCTTA,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+195,10X22_1:AGTCTTACGCTATG,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+196,10X28_2:GAAGGGTGAAGTAG,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+197,10X22_1:ATTGGTCTCTTGTT,3101,1456,untufted pyramidal neuron,glutamatergic neuron,untufted pyramidal neuron
+198,10X05_1:CGATCCACACAGTC,2234,1456,neuron of the forebrain,glutamatergic neuron,neuron of the forebrain
+199,10X20_1:GTTCAGGACCCACT,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+200,10X28_2:TTGTACACCTGTTT,2234,1456,neuron of the forebrain,glutamatergic neuron,neuron of the forebrain
+201,10X53_3:ATGAGAGAGGTAGG,11,1456,a8 dopaminergic neuron,glutamatergic neuron,a8 dopaminergic neuron
+202,10X35_1:TGATACCTCCTTGC,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+203,10X22_1:TGCTTAACAGATGA,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+204,10X22_4:GCCTCATGATCGTG,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+205,10X50_6:AAGATGGATTGCGA,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+206,10X02_1:TGTTACTGTCCTCG,513,1456,r4 photoreceptor cell,glutamatergic neuron,r4 photoreceptor cell
+207,10X43_3:GAGTCAACTTCGCC,686,1456,arcuate nucleus of hypothalamus kndy neuron,glutamatergic neuron,arcuate nucleus of hypothalamus kndy neuron
+208,10X50_8:ACGAACTGTACTCT,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+209,10X35_1:TCGTAGGAGTTAGC,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+210,10X05_2:CACCGTACCCATAG,2234,1456,neuron of the forebrain,glutamatergic neuron,neuron of the forebrain
+211,10X53_4:CACTAGGAACCTTT,892,1456,cholinergic neuron,glutamatergic neuron,cholinergic neuron
+212,10X28_4:GTTATCTGAACGAA,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+213,10X20_3:CTGACAGAATCGTG,3003,1456,type 1 spiral ganglion neuron,glutamatergic neuron,type 1 spiral ganglion neuron
+214,10X20_3:GAGCGGCTCTACCC,2234,1456,neuron of the forebrain,glutamatergic neuron,neuron of the forebrain
+215,10X28_2:TTCAGACTTGACTG,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+216,10X57_2:GTGACAACTGCAAC,2234,1456,neuron of the forebrain,glutamatergic neuron,neuron of the forebrain
+217,10X02_1:TAGACGTGTCCAAG,2866,1456,substantia nigra dopaminergic neuron,glutamatergic neuron,substantia nigra dopaminergic neuron
+218,10X05_1:CCCAGTTGATCACG,513,1456,r4 photoreceptor cell,glutamatergic neuron,r4 photoreceptor cell
+219,10X05_1:CGATCAGACTCATT,2234,1456,neuron of the forebrain,glutamatergic neuron,neuron of the forebrain
+220,10X04_2:ATATAGTGAACCGT,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+221,10X22_2:TCTCAAACCGTGAT,513,1456,r4 photoreceptor cell,glutamatergic neuron,r4 photoreceptor cell
+222,10X22_1:TGCAACGATACTCT,2866,1456,substantia nigra dopaminergic neuron,glutamatergic neuron,substantia nigra dopaminergic neuron
+223,10X19_2:ACACGTGAAGCGGA,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+224,10X04_2:GGAATCTGCTGAAC,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+225,10X28_3:CACTGAGAGGTAAA,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+226,10X50_5:GATCCCTGGAGGCA,1406,1456,gamma motor neuron,glutamatergic neuron,gamma motor neuron
+227,10X22_4:GTGGATTGGCGAGA,2866,1456,substantia nigra dopaminergic neuron,glutamatergic neuron,substantia nigra dopaminergic neuron
+228,10X04_1:GCCGGAACGCTGTA,513,1456,r4 photoreceptor cell,glutamatergic neuron,r4 photoreceptor cell
+229,10X50_5:AATAAGCTGCTGAT,2698,1456,small bistratified retinal ganglion cell,glutamatergic neuron,small bistratified retinal ganglion cell
+230,10X05_1:GAAAGCCTCGATAC,513,1456,r4 photoreceptor cell,glutamatergic neuron,r4 photoreceptor cell
+231,10X36_1:AGCACTGAAGATCC,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+232,10X53_6:CTCGACACATGCCA,2234,1456,neuron of the forebrain,glutamatergic neuron,neuron of the forebrain
+233,10X52_4:ATAAGTACTGAGAA,2595,1456,retinal ganglion cell,glutamatergic neuron,retinal ganglion cell
+234,10X49_4:TGATAAACAACGAA,1673,1456,inverted pyramidal neuron,glutamatergic neuron,inverted pyramidal neuron
+235,10X19_2:ATGTACCTTAAGGA,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+236,10X50_5:TGCCACTGGTGTAC,513,1456,r4 photoreceptor cell,glutamatergic neuron,r4 photoreceptor cell
+237,10X28_3:GATCCCTGCCTTGC,2234,1456,neuron of the forebrain,glutamatergic neuron,neuron of the forebrain
+238,10X20_4:TGTGATCTTTCGTT,2234,1456,neuron of the forebrain,glutamatergic neuron,neuron of the forebrain
+239,10X28_5:GTTACGGATATCTC,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+240,10X28_2:CCCGAACTTTCTTG,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+241,10X52_3:GCACCACTTGTGAC,2978,1456,trigeminal motor neuron,glutamatergic neuron,trigeminal motor neuron
+242,10X50_8:ATGCCGCTATCTTC,2802,1456,static beta motor neuron,glutamatergic neuron,static beta motor neuron
+243,10X05_1:TAGGACTGGAGGAC,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+244,10X20_2:ATGTACCTCTGCAA,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+245,10X52_1:CATAAAACACCTCC,1547,1456,hypothalamus cell,glutamatergic neuron,hypothalamus cell
+246,10X53_1:GTCGAATGTGGAAA,2333,1456,ovarian nerve plexus ganglion th neuron,glutamatergic neuron,ovarian nerve plexus ganglion th neuron
+247,10X24_3:CAGACATGAAACGA,432,1456,m5 retinal ganglion cell,glutamatergic neuron,m5 retinal ganglion cell
+248,10X57_7:XXATATGACCTTGC,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+249,10X35_1:GGGATGGATGACCA,3101,1456,untufted pyramidal neuron,glutamatergic neuron,untufted pyramidal neuron
+250,10X35_1:CAAACTCTTCAGGT,2808,1456,stellate pyramidal neuron,glutamatergic neuron,stellate pyramidal neuron
+251,10X01_1:GAGTTGTGTCTTCA,513,1456,r4 photoreceptor cell,glutamatergic neuron,r4 photoreceptor cell
+252,10X28_3:ACCCAAGACTGAGT,2284,1456,nucleus accumbens shell and olfactory tubercle d1 medium spiny neuron,glutamatergic neuron,nucleus accumbens shell and olfactory tubercle d1 medium spiny neuron
+253,10X50_6:GTTATCTGACACAC,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+254,10X54_4:GGGTTGTCTCACCT,288,1456,g5 retinal ganglion cell,glutamatergic neuron,g5 retinal ganglion cell
+255,10X22_2:ATGTCACTTGACCA,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+256,10X19_2:GTACTACTGTAGCT,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+257,10X52_3:TAGTCGGAAGCGGA,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+258,10X28_4:GAGTGACTTTCCGC,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+259,10X04_2:GACCTCACCCCTTG,2234,1456,neuron of the forebrain,glutamatergic neuron,neuron of the forebrain
+260,10X22_2:TGTTAAGACGTAGT,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+261,10X19_2:GATTTGCTCTGAGT,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+262,10X22_3:GCACGGACAGGCGA,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+263,10X35_2:TGTAATGACGTACA,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+264,10X20_1:TGGTAGTGTTATCC,2234,1456,neuron of the forebrain,glutamatergic neuron,neuron of the forebrain
+265,10X52_1:ATCAAATGACCCAA,2803,1456,static gamma motor neuron,glutamatergic neuron,static gamma motor neuron
+266,10X20_3:CGCGGATGGTCGTA,438,1456,m9 retinal ganglion cell,glutamatergic neuron,m9 retinal ganglion cell
+267,10X19_2:ACGACCCTCTTGGA,392,1456,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,glutamatergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+268,10X52_2:TAAGTCCTACGCAT,513,1456,r4 photoreceptor cell,glutamatergic neuron,r4 photoreceptor cell
+269,10X35_2:TGCGAAACACGTAC,2234,1456,neuron of the forebrain,glutamatergic neuron,neuron of the forebrain
+270,10X07_1:TTACAGCTCCGATA,2803,300,static gamma motor neuron,gabaergic neuron,static gamma motor neuron
+271,10X07_1:TCCCACGATATGCG,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+272,10X49_5:TGGACTGAACTCAG,2222,300,neurogliaform lamp5 gabaergic cortical interneuron (mmus),gabaergic neuron,neurogliaform lamp5 gabaergic cortical interneuron (mmus)
+273,10X52_2:CAAGAAGAATTGGC,2595,300,retinal ganglion cell,gabaergic neuron,retinal ganglion cell
+274,10X38_1:CTACCTCTCCAACA,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+275,10X24_2:GAACCAACAGTGTC,3101,300,untufted pyramidal neuron,gabaergic neuron,untufted pyramidal neuron
+276,10X04_1:ATCTGACTACCTCC,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+277,10X38_2:TTGAGGACAACCGT,814,300,canopy lamp5 gabaergic cortical interneuron (mmus),gabaergic neuron,canopy lamp5 gabaergic cortical interneuron (mmus)
+278,10X26_4:ACGCACCTGAGCTT,2385,300,peptidergic neuron,gabaergic neuron,peptidergic neuron
+279,10X07_1:AGATATTGCACACA,300,300,gabaergic neuron,gabaergic neuron,gabaergic neuron
+280,10X55_7:CTAATTCTGCTTGC,2595,300,retinal ganglion cell,gabaergic neuron,retinal ganglion cell
+281,10X24_1:CAGCACCTCGACAT,2120,300,multipolar neuron,gabaergic neuron,multipolar neuron
+282,10X26_3:TGCTGAGAGGTAAA,892,300,cholinergic neuron,gabaergic neuron,cholinergic neuron
+283,10X52_1:GACGCTCTCTGTGA,3162,300,wide field retinal amacrine cell,gabaergic neuron,wide field retinal amacrine cell
+284,10X28_4:CGTCCATGCCGTTC,2296,300,olfactory bulb tufted cell,gabaergic neuron,olfactory bulb tufted cell
+285,10X24_2:TTAGTCACCTAGAC,300,300,gabaergic neuron,gabaergic neuron,gabaergic neuron
+286,10X38_1:GGATACTGCAGCTA,376,300,l4 sst martinotti interneuron (mmus),gabaergic neuron,l4 sst martinotti interneuron (mmus)
+287,10X38_3:TAAATCGATACTCT,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+288,10X52_3:CACAATCTGCTTCC,2333,300,ovarian nerve plexus ganglion th neuron,gabaergic neuron,ovarian nerve plexus ganglion th neuron
+289,10X50_3:CGACCTACACCTCC,1593,300,indoleamine-accumulating amacrine cell,gabaergic neuron,indoleamine-accumulating amacrine cell
+290,10X04_4:CTACCTCTGACTAC,550,300,tac3-positive striatal interneuron,gabaergic neuron,tac3-positive striatal interneuron
+291,10X24_1:CGGATATGGTTCGA,892,300,cholinergic neuron,gabaergic neuron,cholinergic neuron
+292,10X49_4:CCTATAACGCTGTA,2808,300,stellate pyramidal neuron,gabaergic neuron,stellate pyramidal neuron
+293,10X49_4:GATAGCACTCGCCT,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+294,10X38_2:CTAACTACAGCTCA,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+295,10X38_1:GACGAGGAGGACTT,2803,300,static gamma motor neuron,gabaergic neuron,static gamma motor neuron
+296,10X38_1:AATTACGAGCTGAT,759,300,bitufted neuron,gabaergic neuron,bitufted neuron
+297,10X52_3:AGTCGAACGTGTAC,1073,300,dopamanergic interplexiform cell,gabaergic neuron,dopamanergic interplexiform cell
+298,10X28_4:CAGTTTACTGTTCT,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+299,10X26_3:ATAAACACGCAAGG,1673,300,inverted pyramidal neuron,gabaergic neuron,inverted pyramidal neuron
+300,10X28_5:ATCGCGCTGTGTCA,1981,300,meis2 expressing cortical gabaergic cell,gabaergic neuron,meis2 expressing cortical gabaergic cell
+301,10X49_4:GCCACGGAGTCTTT,892,300,cholinergic neuron,gabaergic neuron,cholinergic neuron
+302,10X28_4:TCCATCCTAACCGT,2753,300,somatosensory neuron,gabaergic neuron,somatosensory neuron
+303,10X38_1:GACTGTGATCTCCG,814,300,canopy lamp5 gabaergic cortical interneuron (mmus),gabaergic neuron,canopy lamp5 gabaergic cortical interneuron (mmus)
+304,10X52_3:CACACCTGCGCAAT,759,300,bitufted neuron,gabaergic neuron,bitufted neuron
+305,10X57_2:CACGATGATCCCAC,2495,300,primary sensory neuron (sensu teleostei),gabaergic neuron,primary sensory neuron (sensu teleostei)
+306,10X52_3:TTTCACGAACCTTT,2803,300,static gamma motor neuron,gabaergic neuron,static gamma motor neuron
+307,10X36_1:CAATAAACGACAGG,814,300,canopy lamp5 gabaergic cortical interneuron (mmus),gabaergic neuron,canopy lamp5 gabaergic cortical interneuron (mmus)
+308,10X05_1:CGCTACTGGCTAAC,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+309,10X28_4:TGTCTAACAAGAAC,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+310,10X26_4:TGAGGACTATGACC,2659,300,sensory neuron,gabaergic neuron,sensory neuron
+311,10X38_3:TCTATGTGACGTTG,1600,300,inhibitory interneuron,gabaergic neuron,inhibitory interneuron
+312,10X24_2:GAAACAGATGTTTC,392,300,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,gabaergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+313,10X36_3:TCCGAAGAGTGTCA,2627,300,rosehip neuron,gabaergic neuron,rosehip neuron
+314,10X38_1:AGTAATACCCACAA,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+315,10X05_4:GGACCCGAGAATCC,424,300,m12 retinal ganglion cell,gabaergic neuron,m12 retinal ganglion cell
+316,10X28_5:CTATCAACCCATAG,393,300,l5/6 non-martinotti sst gabaergic interneuron (mmus),gabaergic neuron,l5/6 non-martinotti sst gabaergic interneuron (mmus)
+317,10X38_3:TACGGCCTCTTCTA,1076,300,double bouquet cell,gabaergic neuron,double bouquet cell
+318,10X49_4:GACAACTGCGTAGT,2222,300,neurogliaform lamp5 gabaergic cortical interneuron (mmus),gabaergic neuron,neurogliaform lamp5 gabaergic cortical interneuron (mmus)
+319,10X38_1:TGAGCAACCTCATT,376,300,l4 sst martinotti interneuron (mmus),gabaergic neuron,l4 sst martinotti interneuron (mmus)
+320,10X26_4:TATGGGTGGGTACT,988,300,corticotropin-releasing neuron,gabaergic neuron,corticotropin-releasing neuron
+321,10X04_4:CGGTAAACATCACG,2803,300,static gamma motor neuron,gabaergic neuron,static gamma motor neuron
+322,10X24_1:ACAAAGGAGAATAG,2234,300,neuron of the forebrain,gabaergic neuron,neuron of the forebrain
+323,10X38_3:TTCAGACTAACCAC,892,300,cholinergic neuron,gabaergic neuron,cholinergic neuron
+324,10X49_4:TGGAGACTCCCACT,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+325,10X38_2:ACGCCTTGTCTCCG,2222,300,neurogliaform lamp5 gabaergic cortical interneuron (mmus),gabaergic neuron,neurogliaform lamp5 gabaergic cortical interneuron (mmus)
+326,10X36_2:GCACCACTGCTGAT,2627,300,rosehip neuron,gabaergic neuron,rosehip neuron
+327,10X28_5:GAGTAAGACTGTAG,2296,300,olfactory bulb tufted cell,gabaergic neuron,olfactory bulb tufted cell
+328,10X52_1:GGCCACGATCCAAG,429,300,m3-off retinal ganglion cell,gabaergic neuron,m3-off retinal ganglion cell
+329,10X49_1:GGCGACTGCTCGAA,759,300,bitufted neuron,gabaergic neuron,bitufted neuron
+330,10X07_1:CCAGTCACGACAAA,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+331,10X07_1:CTTACATGTGCTAG,1076,300,double bouquet cell,gabaergic neuron,double bouquet cell
+332,10X24_1:TACGATCTTTGTCT,3101,300,untufted pyramidal neuron,gabaergic neuron,untufted pyramidal neuron
+333,10X38_1:AGAGCGGAACGCTA,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+334,10X28_5:ACACGAACCGTCTC,892,300,cholinergic neuron,gabaergic neuron,cholinergic neuron
+335,10X49_4:ACCAACGACCTTTA,314,300,h1 horizontal cell,gabaergic neuron,h1 horizontal cell
+336,10X28_4:CTAAGGACCATTCT,2222,300,neurogliaform lamp5 gabaergic cortical interneuron (mmus),gabaergic neuron,neurogliaform lamp5 gabaergic cortical interneuron (mmus)
+337,10X24_1:GGCGACTGCACAAC,892,300,cholinergic neuron,gabaergic neuron,cholinergic neuron
+338,10X49_5:AAGGTGCTTCGATG,518,300,D1-NUDAP medium spiny neuron,gabaergic neuron,rxfp1-positive interface island d1-medium spiny neuron
+339,10X38_2:AATGGCTGCCTTAT,814,300,canopy lamp5 gabaergic cortical interneuron (mmus),gabaergic neuron,canopy lamp5 gabaergic cortical interneuron (mmus)
+340,10X38_2:AGAATGGAGGAAGC,385,300,l5 non-martinotti sst gabaergic interneuron (mmus),gabaergic neuron,l5 non-martinotti sst gabaergic interneuron (mmus)
+341,10X49_5:CTACTCCTACGACT,458,300,meynert cell,gabaergic neuron,meynert cell
+342,10X07_1:CACTTAACATCGGT,300,300,gabaergic neuron,gabaergic neuron,gabaergic neuron
+343,10X49_4:TAGGGACTACGGTT,3101,300,untufted pyramidal neuron,gabaergic neuron,untufted pyramidal neuron
+344,10X26_4:TACGAGTGGTCATG,367,300,l2/3 bipolar vip gabaergic interneuron (mmus),gabaergic neuron,l2/3 bipolar vip gabaergic interneuron (mmus)
+345,10X49_5:CATGTACTTGGTCA,2222,300,neurogliaform lamp5 gabaergic cortical interneuron (mmus),gabaergic neuron,neurogliaform lamp5 gabaergic cortical interneuron (mmus)
+346,10X26_4:CACAGTGAAACGGG,892,300,cholinergic neuron,gabaergic neuron,cholinergic neuron
+347,10X49_5:ATAGGCTGCGAACT,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+348,10X43_3:TGATAAACCTGGTA,2803,300,static gamma motor neuron,gabaergic neuron,static gamma motor neuron
+349,10X36_3:ATGAAACTGGTCAT,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+350,10X52_2:AACGTGTGTCAAGC,1073,300,dopamanergic interplexiform cell,gabaergic neuron,dopamanergic interplexiform cell
+351,10X49_4:ATTGTAGAGCCATA,1119,300,electrically responsive cell,gabaergic neuron,electrically responsive cell
+352,10X38_3:TGGATGACTCACCC,2222,300,neurogliaform lamp5 gabaergic cortical interneuron (mmus),gabaergic neuron,neurogliaform lamp5 gabaergic cortical interneuron (mmus)
+353,10X38_2:CTAATGCTACGACT,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+354,10X26_3:ATCACGGAGAGGCA,1673,300,inverted pyramidal neuron,gabaergic neuron,inverted pyramidal neuron
+355,10X24_2:TAATGCCTCAACCA,892,300,cholinergic neuron,gabaergic neuron,cholinergic neuron
+356,10X05_2:TAGGTCGAGACAAA,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+357,10X49_1:ATACCACTTGCTTT,2808,300,stellate pyramidal neuron,gabaergic neuron,stellate pyramidal neuron
+358,10X38_2:CACGAAACAAGCAA,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+359,10X38_2:AGAAAGTGCTGTCC,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+360,10X49_2:TTCTCAGAAGGAGC,518,300,D1-NUDAP medium spiny neuron,gabaergic neuron,rxfp1-positive interface island d1-medium spiny neuron
+361,10X36_3:ATCATCTGCCTCCA,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+362,10X49_5:AGGGTGGATTTCAC,759,300,bitufted neuron,gabaergic neuron,bitufted neuron
+363,10X50_4:GTTAAAACGGTGAG,1839,300,lumbar ganglion sst/th neuron,gabaergic neuron,lumbar ganglion sst/th neuron
+364,10X49_5:CTATTGACACAGTC,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+365,10X28_4:ATCTACTGTCTGGA,2296,300,olfactory bulb tufted cell,gabaergic neuron,olfactory bulb tufted cell
+366,10X20_2:GCCTACACGCTTAG,2222,300,neurogliaform lamp5 gabaergic cortical interneuron (mmus),gabaergic neuron,neurogliaform lamp5 gabaergic cortical interneuron (mmus)
+367,10X07_1:AAATCTGAGGAGGT,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+368,10X38_2:ATTGCACTCCGATA,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+369,10X28_5:CGTTAACTCCGCTT,1406,300,gamma motor neuron,gabaergic neuron,gamma motor neuron
+370,10X35_1:GCATTGGATGTTTC,2808,300,stellate pyramidal neuron,gabaergic neuron,stellate pyramidal neuron
+371,10X38_2:GGCTAATGGTGCTA,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+372,10X38_2:GTAATAACAAGTGA,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+373,10X52_5:CAACGATGATGACC,2803,300,static gamma motor neuron,gabaergic neuron,static gamma motor neuron
+374,10X38_2:GGCGACTGCCATAG,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+375,10X52_1:TTAGTCTGTCGCAA,710,300,autonomic neuron,gabaergic neuron,autonomic neuron
+376,10X24_1:GTGATCGATCCCGT,892,300,cholinergic neuron,gabaergic neuron,cholinergic neuron
+377,10X49_4:CGCGAGACGGAGCA,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+378,10X38_2:TCGACGCTCGCTAA,633,300,alpha7 gabaergic cortical interneuron (mmus),gabaergic neuron,alpha7 gabaergic cortical interneuron (mmus)
+379,10X50_5:ATTTAGGACACTCC,2808,300,stellate pyramidal neuron,gabaergic neuron,stellate pyramidal neuron
+380,10X24_2:TGCGAAACCGGTAT,300,300,gabaergic neuron,gabaergic neuron,gabaergic neuron
+381,10X50_4:ACACGAACTGGAGG,429,300,m3-off retinal ganglion cell,gabaergic neuron,m3-off retinal ganglion cell
+382,10X52_5:GGTCTAGAGACGTT,2595,300,retinal ganglion cell,gabaergic neuron,retinal ganglion cell
+383,10X38_1:GTGTACGAGCGAAG,814,300,canopy lamp5 gabaergic cortical interneuron (mmus),gabaergic neuron,canopy lamp5 gabaergic cortical interneuron (mmus)
+384,10X52_2:ACCCGTACAACCAC,2595,300,retinal ganglion cell,gabaergic neuron,retinal ganglion cell
+385,10X22_3:TATACGCTACGTTG,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+386,10X52_6:GCAATTCTGGTGGA,3064,694,type ii cell of carotid body,astrocyte,type ii cell of carotid body
+387,10X56_6:TGATATGAGTTCTT,1196,694,enteroglial cell,astrocyte,enteroglial cell
+388,10X52_7:CATTGTTGGACGGA,698,694,astrocyte of the forebrain,astrocyte,astrocyte of the forebrain
+389,10X20_1:GACGTAACGGACTT,698,694,astrocyte of the forebrain,astrocyte,astrocyte of the forebrain
+390,10X52_2:GGCCGATGGGTCTA,3064,694,type ii cell of carotid body,astrocyte,type ii cell of carotid body
+391,10X28_2:ACTTAAGACCAATG,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+392,10X20_3:GACCTCTGGCTTAG,2394,694,perineurial cell,astrocyte,perineurial cell
+393,10X24_4:GTACCCTGCCTTGC,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+394,10X04_2:CCAGCTACTAGCGT,3064,694,type ii cell of carotid body,astrocyte,type ii cell of carotid body
+395,10X48_4:TCACCGTGTCCAAG,3064,694,type ii cell of carotid body,astrocyte,type ii cell of carotid body
+396,10X53_2:AATAACACGAGGCA,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+397,10X56_6:TCCGAAGATGTCTT,3064,694,type ii cell of carotid body,astrocyte,type ii cell of carotid body
+398,10X22_3:CCCAGACTTTCTAC,699,694,astrocyte of the spinal cord,astrocyte,astrocyte of the spinal cord
+399,10X51_1:ACTGTGGAGTATGC,871,694,cerebellar stellate cell,astrocyte,cerebellar stellate cell
+400,10X57_1:ATATACGAGAACCT,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+401,10X22_2:TATTTCCTGTAGCT,2394,694,perineurial cell,astrocyte,perineurial cell
+402,10X28_4:GTGATTCTTGCTCC,2394,694,perineurial cell,astrocyte,perineurial cell
+403,10X24_1:GAATGGCTCATGGT,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+404,10X52_1:TCCCATCTAGCCTA,1528,694,hippocampal astrocyte,astrocyte,hippocampal astrocyte
+405,10X48_1:CCGCGAGATTGACG,1196,694,enteroglial cell,astrocyte,enteroglial cell
+406,10X04_1:ACCCAGCTTGCTTT,699,694,astrocyte of the spinal cord,astrocyte,astrocyte of the spinal cord
+407,10X48_1:CTTATCGAAAGGGC,2068,694,migratory trunk neural crest cell,astrocyte,migratory trunk neural crest cell
+408,10X20_2:CAGATCGAAACGAA,1528,694,hippocampal astrocyte,astrocyte,hippocampal astrocyte
+409,10X28_3:CAGCTCTGAAGGGC,2394,694,perineurial cell,astrocyte,perineurial cell
+410,10X48_3:CAGCGGACAAGGGC,2064,694,migratory cranial neural crest cell,astrocyte,migratory cranial neural crest cell
+411,10X48_3:CAGGTATGCTGCAA,871,694,cerebellar stellate cell,astrocyte,cerebellar stellate cell
+412,10X20_2:GGTATGACTCTAGG,1528,694,hippocampal astrocyte,astrocyte,hippocampal astrocyte
+413,10X52_2:GTCATACTACCACA,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+414,10X24_3:CGATACGAGGAGTG,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+415,10X51_1:AGCGATACCCTTCG,871,694,cerebellar stellate cell,astrocyte,cerebellar stellate cell
+416,10X52_3:TAGGTCGATATGGC,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+417,10X46_1:CGTGAATGCTGATG,1528,694,hippocampal astrocyte,astrocyte,hippocampal astrocyte
+418,10X04_1:TTCTTACTGTTTCT,1196,694,enteroglial cell,astrocyte,enteroglial cell
+419,10X52_2:TATTTCCTTCTCTA,698,694,astrocyte of the forebrain,astrocyte,astrocyte of the forebrain
+420,10X22_3:CGTAACGATGGTCA,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+421,10X28_3:AGGGCGCTTGACTG,699,694,astrocyte of the spinal cord,astrocyte,astrocyte of the spinal cord
+422,10X20_1:ACAATTGACTTTAC,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+423,10X57_7:CAGACCCTTGCTAG,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+424,10X51_1:GGCGACTGCTGTAG,871,694,cerebellar stellate cell,astrocyte,cerebellar stellate cell
+425,10X20_2:GTTACTACAACGTC,1528,694,hippocampal astrocyte,astrocyte,hippocampal astrocyte
+426,10X52_2:TAACAATGTGCATG,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+427,10X26_4:GTCTAACTAGTCAC,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+428,10X48_4:GTAGCCCTTGCCAA,698,694,astrocyte of the forebrain,astrocyte,astrocyte of the forebrain
+429,10X52_4:CGCTAAGAACCTGA,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+430,10X51_4:AATGGAGAACGTAC,699,694,astrocyte of the spinal cord,astrocyte,astrocyte of the spinal cord
+431,10X19_2:CCTGACTGCATCAG,1528,694,hippocampal astrocyte,astrocyte,hippocampal astrocyte
+432,10X49_4:TTTAGAGATTCTAC,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+433,10X49_5:AAGCGTACCTTGGA,698,694,astrocyte of the forebrain,astrocyte,astrocyte of the forebrain
+434,10X24_3:AACAATACACGTAC,3064,694,type ii cell of carotid body,astrocyte,type ii cell of carotid body
+435,10X33_2:CGATCCACTTTGTC,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+436,10X28_4:ATATGCCTGTACGT,1528,694,hippocampal astrocyte,astrocyte,hippocampal astrocyte
+437,10X51_2:TGAAGCACTCCTGC,1529,694,hippocampal glial cell,astrocyte,hippocampal glial cell
+438,10X48_4:CCTGCAACCAGGAG,2064,694,migratory cranial neural crest cell,astrocyte,migratory cranial neural crest cell
+439,10X04_2:CCTGGACTCACAAC,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+440,10X52_1:ATAGATACAGCCAT,2068,694,migratory trunk neural crest cell,astrocyte,migratory trunk neural crest cell
+441,10X49_3:CGGCGAACTCTACT,2204,694,neural cell,astrocyte,neural cell
+442,10X50_2:ACACCCTGGGTCAT,699,694,astrocyte of the spinal cord,astrocyte,astrocyte of the spinal cord
+443,10X52_6:TTATTCCTTGCTTT,2064,694,migratory cranial neural crest cell,astrocyte,migratory cranial neural crest cell
+444,10X26_2:GCAAACTGCATTCT,490,694,opc-oligo cell (mmus),astrocyte,opc-oligo cell (mmus)
+445,10X22_3:CGCTACACTGCGTA,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+446,10X20_2:GAGTCTGAATTCCT,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+447,10X20_1:ATCGACGACATGCA,698,694,astrocyte of the forebrain,astrocyte,astrocyte of the forebrain
+448,10X49_4:ATCTACACAAGTAG,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+449,10X52_2:ATTGTAGACAGATC,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+450,10X20_1:GACGTCCTTACGAC,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+451,10X52_3:CTCCTACTGGAGGT,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+452,10X02_1:CGCACTTGTCCTCG,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+453,10X04_4:GTCGACCTAGTCTG,698,694,astrocyte of the forebrain,astrocyte,astrocyte of the forebrain
+454,10X33_3:GGTATCGAGTCTGA,698,694,astrocyte of the forebrain,astrocyte,astrocyte of the forebrain
+455,10X48_3:TAACGTCTCAGTCA,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+456,10X49_4:TAAGAGGAGGACAG,698,694,astrocyte of the forebrain,astrocyte,astrocyte of the forebrain
+457,10X52_5:TGCGTAGACTAGTG,1528,694,hippocampal astrocyte,astrocyte,hippocampal astrocyte
+458,10X24_2:CTAGGCCTAGTACC,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+459,10X22_3:CATCATACAAGAAC,698,694,astrocyte of the forebrain,astrocyte,astrocyte of the forebrain
+460,10X22_3:GCGAGAGAGGGAGT,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+461,10X48_3:GCTTGAGATAGTCG,1528,694,hippocampal astrocyte,astrocyte,hippocampal astrocyte
+462,10X34_4:AGAATGGATTCACT,2068,694,migratory trunk neural crest cell,astrocyte,migratory trunk neural crest cell
+463,10X49_5:GGATTGTGGACTAC,698,694,astrocyte of the forebrain,astrocyte,astrocyte of the forebrain
+464,10X22_3:TAAGCGTGCTGTCC,698,694,astrocyte of the forebrain,astrocyte,astrocyte of the forebrain
+465,10X22_4:TACGCGCTAAGAAC,490,694,opc-oligo cell (mmus),astrocyte,opc-oligo cell (mmus)
+466,10X20_2:GTGGATTGTGCACA,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+467,10X52_5:CTGAGCCTTCATTC,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+468,10X51_2:AAACATTGCCGCTT,2753,694,somatosensory neuron,astrocyte,somatosensory neuron
+469,10X81_3:AGGCCTCGAATGGG,2067,-1,migratory neural crest cell,enteric glia,migratory neural crest cell
+470,10X81_1:CGTTGGTGGTACAG,3052,-1,type i cell of carotid body,enteric glia,type i cell of carotid body
+471,10X81_3:TTACCTCGTGGTCG,2239,-1,neuroplacodal cell,enteric glia,neuroplacodal cell
+472,10X81_3:TGAGGGTAAGTGTA,3052,-1,type i cell of carotid body,enteric glia,type i cell of carotid body
+473,10X81_1:TCTACTCAACGCTA-1,3052,-1,type i cell of carotid body,enteric glia,type i cell of carotid body
+474,10X81_1:GCTGGGTAATCGTC,2204,-1,neural cell,enteric glia,neural cell
+475,10X81_2:CTACCAGCCGTCGT,2395,-1,perineuronal satellite cell,enteric glia,perineuronal satellite cell
+476,10X81_3:AGCCAAGAAGATTC,2239,-1,neuroplacodal cell,enteric glia,neuroplacodal cell
+477,10X82_2:TACTCAGGCGATAC,3052,-1,type i cell of carotid body,enteric glia,type i cell of carotid body
+478,10X82_2:TGAGCGTAAGTGTA,3052,-1,type i cell of carotid body,enteric glia,type i cell of carotid body
+479,10X82_2:TGAAGTCTGTCTCG,2395,-1,perineuronal satellite cell,enteric glia,perineuronal satellite cell
+480,10X81_1:ACATCTCTCGCATC,2478,-1,prechondroblast,enteric glia,prechondroblast
+481,10X81_1:ATCAGTCCTTCAAT,3052,-1,type i cell of carotid body,enteric glia,type i cell of carotid body
+482,10X81_1:AGACCGTTGGTAAA,3052,-1,type i cell of carotid body,enteric glia,type i cell of carotid body
+483,10X82_2:AGGTACACGAGAGT,3052,-1,type i cell of carotid body,enteric glia,type i cell of carotid body
+484,10X81_1:GGGAGGTTATGTGC,3052,-1,type i cell of carotid body,enteric glia,type i cell of carotid body
+485,10X81_2:ATGTAGTAGGGTAC,3052,-1,type i cell of carotid body,enteric glia,type i cell of carotid body
+486,10X81_1:CCATGTCCGCAAGC,3052,-1,type i cell of carotid body,enteric glia,type i cell of carotid body
+487,10X82_2:TACCGGTTCTGGTA,3052,-1,type i cell of carotid body,enteric glia,type i cell of carotid body
+488,10X81_1:TATTACATCGTCGG,2395,-1,perineuronal satellite cell,enteric glia,perineuronal satellite cell
+489,10X81_3:GAGAGAGGCTAGCA,2067,-1,migratory neural crest cell,enteric glia,migratory neural crest cell
+490,10X81_2:GAGGGCACACCGCA,1984,-1,melanocyte,enteric glia,melanocyte
+491,10X82_2:AATGTGTCATCGGC,3052,-1,type i cell of carotid body,enteric glia,type i cell of carotid body
+492,10X81_2:AACGTGTTATTCTC,2067,-1,migratory neural crest cell,enteric glia,migratory neural crest cell
+493,10X81_2:GCTAGCAAATTGCC,2395,-1,perineuronal satellite cell,enteric glia,perineuronal satellite cell
+494,10X81_1:GCGATTCACAATGC,2204,-1,neural cell,enteric glia,neural cell
+495,10X81_3:CAGAACAATCGGTT,2478,-1,prechondroblast,enteric glia,prechondroblast
+496,10X82_2:ACCTATCACTATTC,3052,-1,type i cell of carotid body,enteric glia,type i cell of carotid body
+497,10X81_1:GACTTCATACTACG,2781,-1,splenic fibroblast,enteric glia,splenic fibroblast
+498,10X81_2:AGCCAGTACAGTGG,2478,-1,prechondroblast,enteric glia,prechondroblast
+499,10X81_2:TCTAAAGCGTTTAC,3052,-1,type i cell of carotid body,enteric glia,type i cell of carotid body
+500,10X26_3:GTATGGTGGCGAGA,81,-1,bam nn_1 fos border associated macrophage (mmus),microglia,bam nn_1 fos border associated macrophage (mmus)
+501,10X22_2:GTAGTCGATTCTTG,2922,-1,thymic cortical macrophage,microglia,thymic cortical macrophage
+502,10X52_5:TGCACGCTTGATGC,81,-1,bam nn_1 fos border associated macrophage (mmus),microglia,bam nn_1 fos border associated macrophage (mmus)
+503,10X53_4:ACGGTCCTTGCGTA,2922,-1,thymic cortical macrophage,microglia,thymic cortical macrophage
+504,10X28_5:GGCCCAGAGAATCC,2922,-1,thymic cortical macrophage,microglia,thymic cortical macrophage
+505,10X22_2:GTCCCATGTACGCA,2922,-1,thymic cortical macrophage,microglia,thymic cortical macrophage
+506,10X19_2:ATTGGTCTTCCTCG,2922,-1,thymic cortical macrophage,microglia,thymic cortical macrophage
+507,10X22_4:AATGATACGCGAGA,2922,-1,thymic cortical macrophage,microglia,thymic cortical macrophage
+508,10X26_3:CATCTTGAAGAGGC,81,-1,bam nn_1 fos border associated macrophage (mmus),microglia,bam nn_1 fos border associated macrophage (mmus)
+509,10X19_2:AGCCAATGTGTGCA,2922,-1,thymic cortical macrophage,microglia,thymic cortical macrophage
+510,10X57_2:GTGAACACAGGTCT,81,-1,bam nn_1 fos border associated macrophage (mmus),microglia,bam nn_1 fos border associated macrophage (mmus)
+511,10X02_1:CCTAAGGACTGAAC,1584,-1,immature microglial cell,microglia,immature microglial cell
+512,10X53_5:GGCTACCTGCCTTC,500,-1,peyer's patch macrophage,microglia,peyer's patch macrophage
+513,10X49_1:CCGGAGACTTCGCC,1420,-1,gastrointestinal tract (lamina propria) macrophage of small intestine,microglia,gastrointestinal tract (lamina propria) macrophage of small intestine
+514,10X57_4:ACGCCTTGTATCTC,2922,-1,thymic cortical macrophage,microglia,thymic cortical macrophage
+515,10X24_1:TTCATCGATTCCGC,2922,-1,thymic cortical macrophage,microglia,thymic cortical macrophage
+516,10X49_3:CATAACCTTTGGTG,2922,-1,thymic cortical macrophage,microglia,thymic cortical macrophage
+517,10X26_3:TCTTGATGACGACT,2922,-1,thymic cortical macrophage,microglia,thymic cortical macrophage
+518,10X53_4:TAGTACCTCCCTCA,2922,-1,thymic cortical macrophage,microglia,thymic cortical macrophage
+519,10X02_1:ACTTGGGATGCTCC,2922,-1,thymic cortical macrophage,microglia,thymic cortical macrophage
+520,10X20_4:GCCGACGAGGTGGA,2922,-1,thymic cortical macrophage,microglia,thymic cortical macrophage
+521,10X50_4:GTGATCGAAGGAGC,2922,-1,thymic cortical macrophage,microglia,thymic cortical macrophage
+522,10X22_2:GGACATTGAGGTCT,2922,-1,thymic cortical macrophage,microglia,thymic cortical macrophage
+523,10X35_2:AACGCAACCTGGTA,81,-1,bam nn_1 fos border associated macrophage (mmus),microglia,bam nn_1 fos border associated macrophage (mmus)
+524,10X49_3:AGGCTAACGTAGGG,2922,-1,thymic cortical macrophage,microglia,thymic cortical macrophage
+525,10X51_4:GCACCACTAAGAAC,2922,-1,thymic cortical macrophage,microglia,thymic cortical macrophage
+526,10X49_5:CGGTAAACCTAGCA,392,2216,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,neuroblast (sensu vertebrata),l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+527,10X49_4:TACGAGACCCCAAA,1381,2216,forebrain neuroblast,neuroblast (sensu vertebrata),forebrain neuroblast
+528,10X04_4:TCTAACTGCAGCTA,298,2216,gabaergic interneuron of the anterior substantia nigra pars reticulata,neuroblast (sensu vertebrata),gabaergic interneuron of the anterior substantia nigra pars reticulata
+529,10X46_1:AAAGCAGAGGACAG,2753,2216,somatosensory neuron,neuroblast (sensu vertebrata),somatosensory neuron
+530,10X49_4:TTGTAGCTCCTCGT,2492,2216,primary neuron (sensu teleostei),neuroblast (sensu vertebrata),primary neuron (sensu teleostei)
+531,10X28_5:GACTGAACGAGCTT,1981,2216,meis2 expressing cortical gabaergic cell,neuroblast (sensu vertebrata),meis2 expressing cortical gabaergic cell
+532,10X26_3:TTTGCATGCATGCA,1396,2216,fungal asexual spore,neuroblast (sensu vertebrata),fungal asexual spore
+533,10X20_1:TTACTCGACATGAC,2675,2216,sexual spore,neuroblast (sensu vertebrata),sexual spore
+534,10X54_3:GAAGGAGAGTGACC,2980,2216,trigeminal sensory neuron,neuroblast (sensu vertebrata),trigeminal sensory neuron
+535,10X22_4:ACGCCTTGCTTCCG,404,2216,l6b glutamatergic neuron of the primary motor cortex,neuroblast (sensu vertebrata),l6b glutamatergic neuron of the primary motor cortex
+536,10X34_2:TTCTGATGGTGTAC,1396,2216,fungal asexual spore,neuroblast (sensu vertebrata),fungal asexual spore
+537,10X46_1:CCAGTCACTTTCGT,1381,2216,forebrain neuroblast,neuroblast (sensu vertebrata),forebrain neuroblast
+538,10X49_5:GATTTGCTCGTCTC,109,2216,cbx mli megf11 gaba_1 molecular layer interneuron (mmus),neuroblast (sensu vertebrata),cbx mli megf11 gaba_1 molecular layer interneuron (mmus)
+539,10X22_4:TATCTGACGGCAAG,518,2216,D1-NUDAP medium spiny neuron,neuroblast (sensu vertebrata),rxfp1-positive interface island d1-medium spiny neuron
+540,10X49_1:CCGGAGACATCAGC,633,2216,alpha7 gabaergic cortical interneuron (mmus),neuroblast (sensu vertebrata),alpha7 gabaergic cortical interneuron (mmus)
+541,10X22_3:GTGAGGGATCTTCA,518,2216,D1-NUDAP medium spiny neuron,neuroblast (sensu vertebrata),rxfp1-positive interface island d1-medium spiny neuron
+542,10X04_4:TTCATGTGTTCCAT,299,2216,gabaergic interneuron of the posterior substantia nigra pars reticulata,neuroblast (sensu vertebrata),gabaergic interneuron of the posterior substantia nigra pars reticulata
+543,10X43_1:ATTCTTCTATCTCT,404,2216,l6b glutamatergic neuron of the primary motor cortex,neuroblast (sensu vertebrata),l6b glutamatergic neuron of the primary motor cortex
+544,10X28_4:AAATCAACGCGAGA,633,2216,alpha7 gabaergic cortical interneuron (mmus),neuroblast (sensu vertebrata),alpha7 gabaergic cortical interneuron (mmus)
+545,10X04_1:AAACATTGATTCTC,2333,2216,ovarian nerve plexus ganglion th neuron,neuroblast (sensu vertebrata),ovarian nerve plexus ganglion th neuron
+546,10X43_1:ATGCACGAGCTACA,2072,2216,mitral cell,neuroblast (sensu vertebrata),mitral cell
+547,10X28_5:TAGGAGCTGTTGTG,109,2216,cbx mli megf11 gaba_1 molecular layer interneuron (mmus),neuroblast (sensu vertebrata),cbx mli megf11 gaba_1 molecular layer interneuron (mmus)
+548,10X28_4:CTATAAGATGCCTC,2296,2216,olfactory bulb tufted cell,neuroblast (sensu vertebrata),olfactory bulb tufted cell
+549,10X22_3:TGTGAGTGCCTCGT,2450,2216,pole cell,neuroblast (sensu vertebrata),pole cell
+550,10X54_7:AGCGTTCGTTTAGG,432,2216,m5 retinal ganglion cell,neuroblast (sensu vertebrata),m5 retinal ganglion cell
+551,10X24_1:TCTAAGCTCCCTCA,472,2216,oec nn_1 gdpd4 olfactory ensheathing cell (mmus),neuroblast (sensu vertebrata),oec nn_1 gdpd4 olfactory ensheathing cell (mmus)
+552,10X52_4:AGAATTTGAGTACC,1122,2390,embryonic blood vessel endothelial progenitor cell,pericyte,embryonic blood vessel endothelial progenitor cell
+553,10X50_7:CACCTGACAGGAGC,1122,2390,embryonic blood vessel endothelial progenitor cell,pericyte,embryonic blood vessel endothelial progenitor cell
+554,10X26_3:AATCCTACATTGGC,490,2390,opc-oligo cell (mmus),pericyte,opc-oligo cell (mmus)
+555,10X53_3:CAAATATGGCGGAA,1122,2390,embryonic blood vessel endothelial progenitor cell,pericyte,embryonic blood vessel endothelial progenitor cell
+556,10X52_4:GACGGCACACGTGT,1122,2390,embryonic blood vessel endothelial progenitor cell,pericyte,embryonic blood vessel endothelial progenitor cell
+557,10X50_8:CATAAAACGTCACA,1122,2390,embryonic blood vessel endothelial progenitor cell,pericyte,embryonic blood vessel endothelial progenitor cell
+558,10X43_3:TATAGATGTTTCGT,490,2390,opc-oligo cell (mmus),pericyte,opc-oligo cell (mmus)
+559,10X53_6:GTAAGCACATTCTC,490,2390,opc-oligo cell (mmus),pericyte,opc-oligo cell (mmus)
+560,10X53_4:CAACGATGTAACCG,1122,2390,embryonic blood vessel endothelial progenitor cell,pericyte,embryonic blood vessel endothelial progenitor cell
+561,10X20_1:CATAAATGAAGATG,1122,2390,embryonic blood vessel endothelial progenitor cell,pericyte,embryonic blood vessel endothelial progenitor cell
+562,10X50_6:TTTGACTGTCGACA,2877,2390,supporting cell (sensu nematoda and protostomia),pericyte,supporting cell (sensu nematoda and protostomia)
+563,10X53_6:GGGCAGCTAAGTGA,1122,2390,embryonic blood vessel endothelial progenitor cell,pericyte,embryonic blood vessel endothelial progenitor cell
+564,10X20_2:CCATCCGATTGTCT,1122,2390,embryonic blood vessel endothelial progenitor cell,pericyte,embryonic blood vessel endothelial progenitor cell
+565,10X48_1:AGTCGAACTTTGCT,1122,2390,embryonic blood vessel endothelial progenitor cell,pericyte,embryonic blood vessel endothelial progenitor cell
+566,10X53_4:GTGAACACAAGGGC,1122,2390,embryonic blood vessel endothelial progenitor cell,pericyte,embryonic blood vessel endothelial progenitor cell
+567,10X36_1:GCGAGCACTGCCCT,1122,2390,embryonic blood vessel endothelial progenitor cell,pericyte,embryonic blood vessel endothelial progenitor cell
+568,10X48_3:ATAACCCTACTCAG,2793,2390,squamous endothelial cell of venule,pericyte,squamous endothelial cell of venule
+569,10X52_6:GCGAAGGAGGGAGT,2427,2390,pioneer neuron,pericyte,pioneer neuron
+570,10X20_2:CGGAATTGTACGAC,1122,2390,embryonic blood vessel endothelial progenitor cell,pericyte,embryonic blood vessel endothelial progenitor cell
+571,10X50_7:GCGAGCACCTTCTA,1122,2390,embryonic blood vessel endothelial progenitor cell,pericyte,embryonic blood vessel endothelial progenitor cell
+572,10X24_3:CCACCTGAGTTCTT,608,2390,adipose microvascular endothelial cell,pericyte,adipose microvascular endothelial cell
+573,10X36_3:GGCCACGAGAAGGC,2793,2390,squamous endothelial cell of venule,pericyte,squamous endothelial cell of venule
+574,10X52_6:TCCCGATGTCAAGC,1169,2390,endothelial cell of viscerocranial mucosa,pericyte,endothelial cell of viscerocranial mucosa
+575,10X22_1:CGAGAACTAGACTC,1122,2390,embryonic blood vessel endothelial progenitor cell,pericyte,embryonic blood vessel endothelial progenitor cell
+576,10X57_2:CCAAAGTGGAGAGC,1122,2390,embryonic blood vessel endothelial progenitor cell,pericyte,embryonic blood vessel endothelial progenitor cell
+577,10X22_3:ACAAGAGAGTCAAC,1074,1041,dopaminergic neuron,dentate gyrus granule cell,dopaminergic neuron
+578,10X22_3:CATACTACCTTCGC,3101,1041,untufted pyramidal neuron,dentate gyrus granule cell,untufted pyramidal neuron
+579,10X46_1:CAAACTCTTTCGTT,392,1041,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,dentate gyrus granule cell,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+580,10X46_1:GCCACTACTCGCTC,2234,1041,neuron of the forebrain,dentate gyrus granule cell,neuron of the forebrain
+581,10X46_1:TAGTAATGCCCAAA,392,1041,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,dentate gyrus granule cell,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+582,10X46_1:TCAGCGCTCGGAGA,2234,1041,neuron of the forebrain,dentate gyrus granule cell,neuron of the forebrain
+583,10X22_3:GAGGATCTCTTGTT,2234,1041,neuron of the forebrain,dentate gyrus granule cell,neuron of the forebrain
+584,10X43_1:AACATTGACAACTG,1425,1041,geniculate ganglion vglut2 neuron,dentate gyrus granule cell,geniculate ganglion vglut2 neuron
+585,10X46_1:GGATGTACAGGAGC,392,1041,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,dentate gyrus granule cell,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+586,10X46_1:TGGACTGAGTTACG,2234,1041,neuron of the forebrain,dentate gyrus granule cell,neuron of the forebrain
+587,10X22_4:GTGATTCTCTAGTG,3101,1041,untufted pyramidal neuron,dentate gyrus granule cell,untufted pyramidal neuron
+588,10X43_1:CATCTTGAACAGTC,2234,1041,neuron of the forebrain,dentate gyrus granule cell,neuron of the forebrain
+589,10X43_1:GATATCCTGCCTTC,404,1041,l6b glutamatergic neuron of the primary motor cortex,dentate gyrus granule cell,l6b glutamatergic neuron of the primary motor cortex
+590,10X43_1:GGAATGCTCAGTCA,2866,1041,substantia nigra dopaminergic neuron,dentate gyrus granule cell,substantia nigra dopaminergic neuron
+591,10X46_1:GCTACAGAGTTGGT,458,1041,meynert cell,dentate gyrus granule cell,meynert cell
+592,10X43_1:GCTGATGACCTTAT,392,1041,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,dentate gyrus granule cell,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+593,10X22_3:TTCAAGCTTATTCC,392,1041,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,dentate gyrus granule cell,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+594,10X22_3:CGTGTAGACGCAAT,3101,1041,untufted pyramidal neuron,dentate gyrus granule cell,untufted pyramidal neuron
+595,10X04_2:ATCAAATGGTCAAC,2234,1041,neuron of the forebrain,dentate gyrus granule cell,neuron of the forebrain
+596,10X46_1:GAGTACACCAAAGA,2753,1041,somatosensory neuron,dentate gyrus granule cell,somatosensory neuron
+597,10X22_4:TAAGCTCTTGCAAC,3101,1041,untufted pyramidal neuron,dentate gyrus granule cell,untufted pyramidal neuron
+598,10X51_1:TCGCACACCTAGCA,1468,870,granule cell,cerebellar neuron,granule cell
+599,10X34_4:CGGCCAGACTGGAT,1118,870,electrically active cell,cerebellar neuron,electrically active cell
+600,10X26_1:TACGTACTCTGACA,578,870,wf3-2 amacrine cell,cerebellar neuron,wf3-2 amacrine cell
+601,10X26_2:TAGGAGCTTATTCC,435,870,m7-off retinal ganglion cell,cerebellar neuron,m7-off retinal ganglion cell
+602,10X26_1:TAAGTCCTTACAGC,2491,870,primary motor neuron (sensu teleostei),cerebellar neuron,primary motor neuron (sensu teleostei)
+603,10X51_1:GAACCAACACGCAT,2295,870,olfactory bulb interneuron,cerebellar neuron,olfactory bulb interneuron
+604,10X26_1:GACAGTTGGAGGAC,2595,870,retinal ganglion cell,cerebellar neuron,retinal ganglion cell
+605,10X26_2:ATCCCGTGCATGCA,513,870,r4 photoreceptor cell,cerebellar neuron,r4 photoreceptor cell
+606,10X26_1:AAGAAGACCACACA,2491,870,primary motor neuron (sensu teleostei),cerebellar neuron,primary motor neuron (sensu teleostei)
+607,10X26_1:ACAAAGGAAAACAG,2980,870,trigeminal sensory neuron,cerebellar neuron,trigeminal sensory neuron
+608,10X51_2:TGGTAGACTTCCCG,2980,870,trigeminal sensory neuron,cerebellar neuron,trigeminal sensory neuron
+609,10X51_2:GAAGGTCTCCACCT,866,870,cerebellar granule cell,cerebellar neuron,cerebellar granule cell
+610,10X26_1:GATATAACAGATCC,2491,870,primary motor neuron (sensu teleostei),cerebellar neuron,primary motor neuron (sensu teleostei)
+611,10X51_1:CCATGCTGTTCCGC,1468,870,granule cell,cerebellar neuron,granule cell
+612,10X51_1:TAGTTCACTAGCGT,2597,870,retinal ganglion cell a1,cerebellar neuron,retinal ganglion cell a1
+613,10X51_1:GTGAGGGATCCCAC,2807,870,stellate neuron,cerebellar neuron,stellate neuron
+614,10X51_1:ATCCTAACCTAGTG,2663,870,sensory receptor cell,cerebellar neuron,sensory receptor cell
+615,10X51_1:GCGCGATGACCTTT,458,870,meynert cell,cerebellar neuron,meynert cell
+616,10X51_1:GCTCGACTCACTTT,1468,870,granule cell,cerebellar neuron,granule cell
+617,10X51_2:CTGAACGACCGTTC,2980,870,trigeminal sensory neuron,cerebellar neuron,trigeminal sensory neuron
+618,10X26_1:TAACAATGCTGTAG,866,870,cerebellar granule cell,cerebellar neuron,cerebellar granule cell
+619,10X01_1:ACGGGAGAACCCTC,2792,1164,squamous endothelial cell,endothelial cell of vascular tree,squamous endothelial cell
+620,10X04_1:ACCTTTGACTCAAG,1122,1164,embryonic blood vessel endothelial progenitor cell,endothelial cell of vascular tree,embryonic blood vessel endothelial progenitor cell
+621,10X57_7:CAGGTATGGCTTCC,1122,1164,embryonic blood vessel endothelial progenitor cell,endothelial cell of vascular tree,embryonic blood vessel endothelial progenitor cell
+622,10X01_1:CTGCCAACGCATAC,1122,1164,embryonic blood vessel endothelial progenitor cell,endothelial cell of vascular tree,embryonic blood vessel endothelial progenitor cell
+623,10X53_5:GGTAGTACGCTTAG,1122,1164,embryonic blood vessel endothelial progenitor cell,endothelial cell of vascular tree,embryonic blood vessel endothelial progenitor cell
+624,10X53_3:AACTGTCTTGGAAA,1122,1164,embryonic blood vessel endothelial progenitor cell,endothelial cell of vascular tree,embryonic blood vessel endothelial progenitor cell
+625,10X53_4:GAAGTAGACTGGTA,2793,1164,squamous endothelial cell of venule,endothelial cell of vascular tree,squamous endothelial cell of venule
+626,10X49_4:ATACCGGAGTGCTA,1122,1164,embryonic blood vessel endothelial progenitor cell,endothelial cell of vascular tree,embryonic blood vessel endothelial progenitor cell
+627,10X53_2:CGCACGGAGTCAAC,2793,1164,squamous endothelial cell of venule,endothelial cell of vascular tree,squamous endothelial cell of venule
+628,10X43_3:TTCGATTGAACCGT,1122,1164,embryonic blood vessel endothelial progenitor cell,endothelial cell of vascular tree,embryonic blood vessel endothelial progenitor cell
+629,10X53_4:GTGTATCTACGCTA,490,1164,opc-oligo cell (mmus),endothelial cell of vascular tree,opc-oligo cell (mmus)
+630,10X57_7:ACTTCTGAGCCCTT,2793,1164,squamous endothelial cell of venule,endothelial cell of vascular tree,squamous endothelial cell of venule
+631,10X05_1:GAGAGGTGATGTGC,2793,1164,squamous endothelial cell of venule,endothelial cell of vascular tree,squamous endothelial cell of venule
+632,10X53_3:ACCCTCGATATCTC,2793,1164,squamous endothelial cell of venule,endothelial cell of vascular tree,squamous endothelial cell of venule
+633,10X04_1:AAACCGTGGGAGGT,947,1164,colony forming unit – hill cell,endothelial cell of vascular tree,colony forming unit – hill cell
+634,10X36_2:TCGCCATGAAACGA,2793,1164,squamous endothelial cell of venule,endothelial cell of vascular tree,squamous endothelial cell of venule
+635,10X26_3:ACGTTGGATCATTC,1122,1164,embryonic blood vessel endothelial progenitor cell,endothelial cell of vascular tree,embryonic blood vessel endothelial progenitor cell
+636,10X52_1:GCCTAGCTCTTCTA,1122,1164,embryonic blood vessel endothelial progenitor cell,endothelial cell of vascular tree,embryonic blood vessel endothelial progenitor cell
+637,10X53_5:TTCTTACTCGGGAA,1122,1164,embryonic blood vessel endothelial progenitor cell,endothelial cell of vascular tree,embryonic blood vessel endothelial progenitor cell
+638,10X53_5:TCTAACTGGACGTT,1122,1164,embryonic blood vessel endothelial progenitor cell,endothelial cell of vascular tree,embryonic blood vessel endothelial progenitor cell
+639,10X35_3:CGTAACGATACGCA,2753,2385,somatosensory neuron,peptidergic neuron,somatosensory neuron
+640,10X51_4:ACGTAGACCTCAGA,1547,2385,hypothalamus cell,peptidergic neuron,hypothalamus cell
+641,10X26_3:TTCAAGCTCTCAAG,1547,2385,hypothalamus cell,peptidergic neuron,hypothalamus cell
+642,10X26_3:GGTATGACTCCCGT,2808,2385,stellate pyramidal neuron,peptidergic neuron,stellate pyramidal neuron
+643,10X26_3:ATCACACTTTCTGT,2978,2385,trigeminal motor neuron,peptidergic neuron,trigeminal motor neuron
+644,10X26_3:GGCCAGACAAGAAC,2807,2385,stellate neuron,peptidergic neuron,stellate neuron
+645,10X26_4:AAGAATCTTGGATC,2803,2385,static gamma motor neuron,peptidergic neuron,static gamma motor neuron
+646,10X26_3:GCGGGACTTTCGGA,710,2385,autonomic neuron,peptidergic neuron,autonomic neuron
+647,10X50_2:CATTTGTGTACTGG,2595,2385,retinal ganglion cell,peptidergic neuron,retinal ganglion cell
+648,10X51_3:CCAGCACTATTCCT,438,2385,m9 retinal ganglion cell,peptidergic neuron,m9 retinal ganglion cell
+649,10X26_3:TTACGACTTTGACG,2495,2385,primary sensory neuron (sensu teleostei),peptidergic neuron,primary sensory neuron (sensu teleostei)
+650,10X46_2:TAGGAGCTGTAAGA,1547,2385,hypothalamus cell,peptidergic neuron,hypothalamus cell
+651,10X26_3:ATGTTAGACCAAGT,392,2385,l5/6 near-projecting glutamatergic neuron of the primary motor cortex,peptidergic neuron,l5/6 near-projecting glutamatergic neuron of the primary motor cortex
+652,10X50_2:AGCAAAGATCCGAA,1547,2385,hypothalamus cell,peptidergic neuron,hypothalamus cell
+653,10X26_3:GGATTGTGACGTTG,2803,2385,static gamma motor neuron,peptidergic neuron,static gamma motor neuron
+654,10X26_3:GATGCATGTCCAGA,2595,2385,retinal ganglion cell,peptidergic neuron,retinal ganglion cell
+655,10X26_4:TGTACTTGACCGAT,2379,2385,pelvic ganglion vacht neuron,peptidergic neuron,pelvic ganglion vacht neuron
+656,10X51_3:GTGATCGACTAGAC,2980,2385,trigeminal sensory neuron,peptidergic neuron,trigeminal sensory neuron
+657,10X26_3:CCAGCGGAGCTTCC,710,2385,autonomic neuron,peptidergic neuron,autonomic neuron
+658,10X50_1:ATAAGTTGACACTG,1597,2385,inferior mesenteric ganglion th neuron,peptidergic neuron,inferior mesenteric ganglion th neuron
+659,10X28_3:GGCAAGGACCTAAG,2784,2409,splenic metallophillic macrophage,perivascular macrophage,splenic metallophillic macrophage
+660,10X57_5:ATATACGAGATAAG,2922,2409,thymic cortical macrophage,perivascular macrophage,thymic cortical macrophage
+661,10X22_3:GTGACAACTCTTAC,2922,2409,thymic cortical macrophage,perivascular macrophage,thymic cortical macrophage
+662,10X52_8:ACACCAGATGCAGT,945,2409,colon macrophage,perivascular macrophage,colon macrophage
+663,10X50_4:GGACAGGAGGTTTG,2922,2409,thymic cortical macrophage,perivascular macrophage,thymic cortical macrophage
+664,10X01_1:TAGGGACTACAGTC,2922,2409,thymic cortical macrophage,perivascular macrophage,thymic cortical macrophage
+665,10X54_7:GCTTCTCCTATGTT,2922,2409,thymic cortical macrophage,perivascular macrophage,thymic cortical macrophage
+666,10X33_2:CGGTCACTCCAACA,2922,2409,thymic cortical macrophage,perivascular macrophage,thymic cortical macrophage
+667,10X56_6:GGGTAACTAAGATG,81,2409,bam nn_1 fos border associated macrophage (mmus),perivascular macrophage,bam nn_1 fos border associated macrophage (mmus)
+668,10X22_1:TCGCAAGATCCAAG,2922,2409,thymic cortical macrophage,perivascular macrophage,thymic cortical macrophage
+669,10X19_2:TAAGATACGCGAGA,81,2409,bam nn_1 fos border associated macrophage (mmus),perivascular macrophage,bam nn_1 fos border associated macrophage (mmus)
+670,10X22_2:AGTCGCCTATCACG,2922,2409,thymic cortical macrophage,perivascular macrophage,thymic cortical macrophage
+671,10X57_4:CCCACATGGTCTGA,2922,2409,thymic cortical macrophage,perivascular macrophage,thymic cortical macrophage
+672,10X52_1:AGTACGTGCGAGTT,2922,2409,thymic cortical macrophage,perivascular macrophage,thymic cortical macrophage
+673,10X24_1:TCCCTACTGCAGAG,81,2409,bam nn_1 fos border associated macrophage (mmus),perivascular macrophage,bam nn_1 fos border associated macrophage (mmus)
+674,10X57_1:ACGGTATGCCGATA,1961,2409,mature microglial cell,perivascular macrophage,mature microglial cell
+675,10X49_5:CAGGAACTTCCCGT,2922,2409,thymic cortical macrophage,perivascular macrophage,thymic cortical macrophage
+676,10X24_2:CCGATAGAGGAACG,2922,2409,thymic cortical macrophage,perivascular macrophage,thymic cortical macrophage
+677,10X57_7:GATCGAACTTTCTG,81,2409,bam nn_1 fos border associated macrophage (mmus),perivascular macrophage,bam nn_1 fos border associated macrophage (mmus)
+678,10X52_7:TTAGTCACCTTGTT,2922,2409,thymic cortical macrophage,perivascular macrophage,thymic cortical macrophage
+679,10X43_2:CTACGCACGTGTCA,439,2401,m9-off retinal ganglion cell,peripheral sensory neuron,m9-off retinal ganglion cell
+680,10X53_7:AGAATACTCTTGCC,440,2401,m9-on retinal ganglion cell,peripheral sensory neuron,m9-on retinal ganglion cell
+681,10X43_2:GTCCACTGAAGGCG,440,2401,m9-on retinal ganglion cell,peripheral sensory neuron,m9-on retinal ganglion cell
+682,10X53_7:ATACCGGAGAACCT,2601,2401,retinal ganglion cell b,peripheral sensory neuron,retinal ganglion cell b
+683,10X53_7:TGCTGAGATTCCGC,285,2401,g4 retinal ganglion cell,peripheral sensory neuron,g4 retinal ganglion cell
+684,10X43_2:TTCGATTGTTCTCA,440,2401,m9-on retinal ganglion cell,peripheral sensory neuron,m9-on retinal ganglion cell
+685,10X53_7:GACCAAACCCCTTG,283,2401,g2 retinal ganglion cell,peripheral sensory neuron,g2 retinal ganglion cell
+686,10X53_7:GCAATCGATCAGTG,2333,2401,ovarian nerve plexus ganglion th neuron,peripheral sensory neuron,ovarian nerve plexus ganglion th neuron
+687,10X53_7:GGAGCCACCCAACA,283,2401,g2 retinal ganglion cell,peripheral sensory neuron,g2 retinal ganglion cell
+688,10X53_7:CTGTAACTGAGACG,439,2401,m9-off retinal ganglion cell,peripheral sensory neuron,m9-off retinal ganglion cell
+689,10X53_7:AGTGTGACGAATCC,283,2401,g2 retinal ganglion cell,peripheral sensory neuron,g2 retinal ganglion cell
+690,10X53_7:CTATAGCTCTCAAG,2601,2401,retinal ganglion cell b,peripheral sensory neuron,retinal ganglion cell b
+691,10X43_2:GATCTTACTAAGCC,439,2401,m9-off retinal ganglion cell,peripheral sensory neuron,m9-off retinal ganglion cell
+692,10X43_2:ATGGGTACACGTAC,439,2401,m9-off retinal ganglion cell,peripheral sensory neuron,m9-off retinal ganglion cell
+693,10X43_2:GGGCCAACTTCAGG,440,2401,m9-on retinal ganglion cell,peripheral sensory neuron,m9-on retinal ganglion cell
+694,10X43_2:TTAACCACGGTATC,439,2401,m9-off retinal ganglion cell,peripheral sensory neuron,m9-off retinal ganglion cell
+695,10X43_2:AACGCATGCGATAC,439,2401,m9-off retinal ganglion cell,peripheral sensory neuron,m9-off retinal ganglion cell
+696,10X53_7:CGGGACTGTTGCAG,439,2401,m9-off retinal ganglion cell,peripheral sensory neuron,m9-off retinal ganglion cell
+697,10X53_7:ACCGTGCTAAGGCG,2601,2401,retinal ganglion cell b,peripheral sensory neuron,retinal ganglion cell b
+698,10X43_2:TAGGTGTGTCACCC,439,2401,m9-off retinal ganglion cell,peripheral sensory neuron,m9-off retinal ganglion cell
+699,10X49_4:AACATATGCGTTAG,1404,3132,gamete,vascular leptomeningeal cell (mmus),gamete
+700,10X57_6:CCACGGGAGATGAA,1013,3132,cycling glial cell,vascular leptomeningeal cell (mmus),cycling glial cell
+701,10X49_4:ATTTCCGAGGGATG,1381,3132,forebrain neuroblast,vascular leptomeningeal cell (mmus),forebrain neuroblast
+702,10X49_4:AACTTGCTCTGTGA,2478,3132,prechondroblast,vascular leptomeningeal cell (mmus),prechondroblast
+703,10X49_5:GATACTCTCATGCA,515,3132,r6 photoreceptor cell,vascular leptomeningeal cell (mmus),r6 photoreceptor cell
+704,10X52_1:AAATCCCTTACTCT,1125,3132,embryonic fibroblast,vascular leptomeningeal cell (mmus),embryonic fibroblast
+705,10X20_3:TGTCAGGAGTCTGA,1352,3132,fibroblast of skin of scalp,vascular leptomeningeal cell (mmus),fibroblast of skin of scalp
+706,10X56_2:TCCTAAACTTCCAT,2208,3132,neural crest derived neuroblast,vascular leptomeningeal cell (mmus),neural crest derived neuroblast
+707,10X48_3:CTGTATACGCGGAA,600,3132,adepithelial cell,vascular leptomeningeal cell (mmus),adepithelial cell
+708,10X22_3:AGGCAACTTGCCTC,1352,3132,fibroblast of skin of scalp,vascular leptomeningeal cell (mmus),fibroblast of skin of scalp
+709,10X43_1:CTTAAAGATGCCAA,1381,3132,forebrain neuroblast,vascular leptomeningeal cell (mmus),forebrain neuroblast
+710,10X20_3:AAGGTCTGACACGT,1352,3132,fibroblast of skin of scalp,vascular leptomeningeal cell (mmus),fibroblast of skin of scalp
+711,10X52_6:AAGCACTGTGCGTA,600,3132,adepithelial cell,vascular leptomeningeal cell (mmus),adepithelial cell
+712,10X33_2:CTTGAGGAGCTGAT,2478,3132,prechondroblast,vascular leptomeningeal cell (mmus),prechondroblast
+713,10X52_2:CTGCAGCTTATTCC,1352,3132,fibroblast of skin of scalp,vascular leptomeningeal cell (mmus),fibroblast of skin of scalp
+714,10X49_5:GAACTGTGATACCG,2067,3132,migratory neural crest cell,vascular leptomeningeal cell (mmus),migratory neural crest cell
+715,10X57_3:GCTACGCTCCTTAT,2478,3132,prechondroblast,vascular leptomeningeal cell (mmus),prechondroblast
+716,10X50_8:GCACACCTAGAGGC,1045,3132,dentate gyrus of hippocampal formation stellate cell,vascular leptomeningeal cell (mmus),dentate gyrus of hippocampal formation stellate cell
+717,10X54_8:TGCTTTCGGGAGTA,2478,3132,prechondroblast,vascular leptomeningeal cell (mmus),prechondroblast
+718,10X52_4:TCCCAGACGGTACT,3064,3132,type ii cell of carotid body,vascular leptomeningeal cell (mmus),type ii cell of carotid body
+719,10X52_2:GATAATACGGAGCA,2720,3130,smooth muscle cell of sigmoid colon,vascular associated smooth muscle cell,smooth muscle cell of sigmoid colon
+720,10X53_2:TTATGAGAAGCCTA,2780,3130,splenic endothelial cell,vascular associated smooth muscle cell,splenic endothelial cell
+721,10X48_3:AGATTAACACTACG,2712,3130,smooth muscle cell of colon,vascular associated smooth muscle cell,smooth muscle cell of colon
+722,10X55_8:AGGGACAAGCCGCT,1122,3130,embryonic blood vessel endothelial progenitor cell,vascular associated smooth muscle cell,embryonic blood vessel endothelial progenitor cell
+723,10X28_5:CCAGTCACCTCTAT,2742,3130,smooth muscle fiber of transverse colon,vascular associated smooth muscle cell,smooth muscle fiber of transverse colon
+724,10X52_2:ACCACCTGTGCCCT,2742,3130,smooth muscle fiber of transverse colon,vascular associated smooth muscle cell,smooth muscle fiber of transverse colon
+725,10X36_3:CTACTATGTTGCTT,2729,3130,smooth muscle cell of the esophagus,vascular associated smooth muscle cell,smooth muscle cell of the esophagus
+726,10X52_6:GGTGGAGATGTGGT,2712,3130,smooth muscle cell of colon,vascular associated smooth muscle cell,smooth muscle cell of colon
+727,10X26_4:CAGAAGCTCCCTCA,2878,3130,supporting cell (sensu nematoda),vascular associated smooth muscle cell,supporting cell (sensu nematoda)
+728,10X54_3:TGTTAAGGTGCTAG,2708,3130,smooth muscle cell neural crest derived,vascular associated smooth muscle cell,smooth muscle cell neural crest derived
+729,10X02_1:CTATGTTGGCATAC,2712,3130,smooth muscle cell of colon,vascular associated smooth muscle cell,smooth muscle cell of colon
+730,10X48_3:CACTGAGAGGTGGA,2720,3130,smooth muscle cell of sigmoid colon,vascular associated smooth muscle cell,smooth muscle cell of sigmoid colon
+731,10X52_5:TATGTGCTGCGAGA,2712,3130,smooth muscle cell of colon,vascular associated smooth muscle cell,smooth muscle cell of colon
+732,10X28_3:TACAATGACTTGCC,2712,3130,smooth muscle cell of colon,vascular associated smooth muscle cell,smooth muscle cell of colon
+733,10X54_8:CAATTTCACAACGT,2712,3130,smooth muscle cell of colon,vascular associated smooth muscle cell,smooth muscle cell of colon
+734,10X24_2:ATCACTTGTCAGGT,256,3130,cajal-retzius cell,vascular associated smooth muscle cell,cajal-retzius cell
+735,10X57_3:CTTACTGAGCTGAT,2427,3130,pioneer neuron,vascular associated smooth muscle cell,pioneer neuron
+736,10X54_2:CGTTTAGCAGGTCA,2712,3130,smooth muscle cell of colon,vascular associated smooth muscle cell,smooth muscle cell of colon
+737,10X57_3:ATTCTGACCGAGAG,2712,3130,smooth muscle cell of colon,vascular associated smooth muscle cell,smooth muscle cell of colon
+738,10X05_3:TAAATCGAGTTAGC,2736,3130,smooth muscle circular layer cell,vascular associated smooth muscle cell,smooth muscle circular layer cell
+739,10X49_4:CTTCACCTCCACAA,3064,2297,type ii cell of carotid body,olfactory ensheathing cell,type ii cell of carotid body
+740,10X49_4:CAGGTTGACAGAAA,2067,2297,migratory neural crest cell,olfactory ensheathing cell,migratory neural crest cell
+741,10X49_4:CATGAGACGGAAAT,2204,2297,neural cell,olfactory ensheathing cell,neural cell
+742,10X49_5:ATGCACGATTCCAT,2395,2297,perineuronal satellite cell,olfactory ensheathing cell,perineuronal satellite cell
+743,10X49_4:GGAGTTTGAAGCAA,2204,2297,neural cell,olfactory ensheathing cell,neural cell
+744,10X49_5:TTCTTACTGTTGTG,2344,2297,pain receptor cell,olfactory ensheathing cell,pain receptor cell
+745,10X28_4:GTTCATACTGGATC,570,2297,vlmc nn vascular leptomeningeal cell (mmus),olfactory ensheathing cell,vlmc nn vascular leptomeningeal cell (mmus)
+746,10X49_4:TGTGAGTGACAGCT,2067,2297,migratory neural crest cell,olfactory ensheathing cell,migratory neural crest cell
+747,10X49_5:TTTATCCTCCTACC,2395,2297,perineuronal satellite cell,olfactory ensheathing cell,perineuronal satellite cell
+748,10X28_5:TGGCAATGTACAGC,2068,2297,migratory trunk neural crest cell,olfactory ensheathing cell,migratory trunk neural crest cell
+749,10X49_4:TAGGCATGGCCCTT,1381,2297,forebrain neuroblast,olfactory ensheathing cell,forebrain neuroblast
+750,10X49_4:TCAATAGATCGATG,2066,2297,migratory enteric neural crest cell,olfactory ensheathing cell,migratory enteric neural crest cell
+751,10X28_5:CATGCCACCTCAAG,3064,2297,type ii cell of carotid body,olfactory ensheathing cell,type ii cell of carotid body
+752,10X49_4:GAATGCTGCCAAGT,528,2297,schwann cell precursor,olfactory ensheathing cell,schwann cell precursor
+753,10X28_4:GAGTCAACGAAGGC,2395,2297,perineuronal satellite cell,olfactory ensheathing cell,perineuronal satellite cell
+754,10X49_4:GGGTTAACCGTGAT,1381,2297,forebrain neuroblast,olfactory ensheathing cell,forebrain neuroblast
+755,10X49_5:GACAACTGACTGGT,2067,2297,migratory neural crest cell,olfactory ensheathing cell,migratory neural crest cell
+756,10X49_5:AAATGTTGGTGTCA,2395,2297,perineuronal satellite cell,olfactory ensheathing cell,perineuronal satellite cell
+757,10X49_5:ATTCTTCTTCAGAC,490,2297,opc-oligo cell (mmus),olfactory ensheathing cell,opc-oligo cell (mmus)
+758,10X49_5:AGTCTACTTGGAAA,827,2297,cardiac neuron,olfactory ensheathing cell,cardiac neuron
+759,10X54_5:TGAAGGTGGTGTAG,3018,1205,type 3 mucosal glia,ependymal cell,type 3 mucosal glia
+760,10X24_3:CCAGACCTGAGCTT,3018,1205,type 3 mucosal glia,ependymal cell,type 3 mucosal glia
+761,10X57_5:TTCCTAGAGCCAAT,918,1205,ciliated cell,ependymal cell,ciliated cell
+762,10X53_5:AGATCGTGAAGGTA,3068,1205,type ii vestibular sensory cell,ependymal cell,type ii vestibular sensory cell
+763,10X53_1:TATGCGGAGGAAGC,3018,1205,type 3 mucosal glia,ependymal cell,type 3 mucosal glia
+764,10X55_5:CTCAGGTATTCTCT,1206,1205,ependymal cell (mmus),ependymal cell,ependymal cell (mmus)
+765,10X26_3:CGACGTCTACTTTC,1206,1205,ependymal cell (mmus),ependymal cell,ependymal cell (mmus)
+766,10X43_3:CCATGCTGCTGAGT,918,1205,ciliated cell,ependymal cell,ciliated cell
+767,10X57_5:TATCCTGATCGACA,1206,1205,ependymal cell (mmus),ependymal cell,ependymal cell (mmus)
+768,10X52_2:TATTGCTGGGAAGC,1381,1205,forebrain neuroblast,ependymal cell,forebrain neuroblast
+769,10X53_6:ACCAACGAAAACAG,918,1205,ciliated cell,ependymal cell,ciliated cell
+770,10X53_5:TACTGGGATGGAGG,3018,1205,type 3 mucosal glia,ependymal cell,type 3 mucosal glia
+771,10X55_5:CGACTAGTGGACGT,3018,1205,type 3 mucosal glia,ependymal cell,type 3 mucosal glia
+772,10X53_6:AATGCGTGGTTTGG,1305,1205,fallopian tube epithelial cell,ependymal cell,fallopian tube epithelial cell
+773,10X24_4:GGAGTTTGGAGCAG,1307,1205,fallopian tube non-ciliated epithelial cell,ependymal cell,fallopian tube non-ciliated epithelial cell
+774,10X53_6:TAAGCTCTCCAACA,1307,1205,fallopian tube non-ciliated epithelial cell,ependymal cell,fallopian tube non-ciliated epithelial cell
+775,10X48_3:TGATATGAAGATGA,2108,1205,multiciliated ependymal cell,ependymal cell,multiciliated ependymal cell
+776,10X53_4:AGAAACGACTCGAA,920,1205,ciliated epithelial cell of esophagus,ependymal cell,ciliated epithelial cell of esophagus
+777,10X24_3:TAGCGATGCCATGA,2108,1205,multiciliated ependymal cell,ependymal cell,multiciliated ependymal cell
+778,10X53_3:CAATGGACGCTGTA,2887,1205,sustentacular cell,ependymal cell,sustentacular cell
+779,10X28_5:GAGATAGAATTGGC,1381,2551,forebrain neuroblast,radial glial cell,forebrain neuroblast
+780,10X04_4:CTACCTCTCTAGTG,698,2551,astrocyte of the forebrain,radial glial cell,astrocyte of the forebrain
+781,10X34_2:GTGGAGGAGTTGGT,3064,2551,type ii cell of carotid body,radial glial cell,type ii cell of carotid body
+782,10X24_2:CTCAATTGGTCTGA,698,2551,astrocyte of the forebrain,radial glial cell,astrocyte of the forebrain
+783,10X05_4:AATCCTACCAAAGA,2297,2551,olfactory ensheathing cell,radial glial cell,olfactory ensheathing cell
+784,10X26_4:TCTTCAGACCGATA,2067,2551,migratory neural crest cell,radial glial cell,migratory neural crest cell
+785,10X28_3:CCGGTACTGTTGTG,3064,2551,type ii cell of carotid body,radial glial cell,type ii cell of carotid body
+786,10X46_1:AGATCGTGCAGAAA,2204,2551,neural cell,radial glial cell,neural cell
+787,10X05_4:ACAATTGATTGACG,1381,2551,forebrain neuroblast,radial glial cell,forebrain neuroblast
+788,10X04_2:CTAGGATGTTGAGC,2753,2551,somatosensory neuron,radial glial cell,somatosensory neuron
+789,10X49_5:CATGGCCTTCGCTC,1013,2551,cycling glial cell,radial glial cell,cycling glial cell
+790,10X04_4:GGGAAGTGACCAAC,1381,2551,forebrain neuroblast,radial glial cell,forebrain neuroblast
+791,10X24_1:GGATGTTGGAGCAG,2067,2551,migratory neural crest cell,radial glial cell,migratory neural crest cell
+792,10X04_1:GGCGACACGCTTAG,2395,2551,perineuronal satellite cell,radial glial cell,perineuronal satellite cell
+793,10X06_2:GGGTTATGTCTACT,2395,2551,perineuronal satellite cell,radial glial cell,perineuronal satellite cell
+794,10X28_4:ATCTACTGTTTGGG,2066,2551,migratory enteric neural crest cell,radial glial cell,migratory enteric neural crest cell
+795,10X24_2:CGCAGGACAGATCC,2067,2551,migratory neural crest cell,radial glial cell,migratory neural crest cell
+796,10X26_3:CAGGTTGAACACGT,1013,2551,cycling glial cell,radial glial cell,cycling glial cell
+797,10X49_5:AGTAGGCTAGTCGT,1528,2551,hippocampal astrocyte,radial glial cell,hippocampal astrocyte
+798,10X24_1:AGTTAAACACCACA,3064,2551,type ii cell of carotid body,radial glial cell,type ii cell of carotid body
+799,10X55_6:TATTCGTAGTGAAT,438,892,m9 retinal ganglion cell,cholinergic neuron,m9 retinal ganglion cell
+800,10X26_4:TGTAATGACTATGG,438,892,m9 retinal ganglion cell,cholinergic neuron,m9 retinal ganglion cell
+801,10X54_7:TGCTACAAGGCTCC,438,892,m9 retinal ganglion cell,cholinergic neuron,m9 retinal ganglion cell
+802,10X55_3:AGCCTCATCGATTG,438,892,m9 retinal ganglion cell,cholinergic neuron,m9 retinal ganglion cell
+803,10X55_4:GCAGTAGAGCCTAG,2595,892,retinal ganglion cell,cholinergic neuron,retinal ganglion cell
+804,10X56_2:AACTCTTGACACTG,432,892,m5 retinal ganglion cell,cholinergic neuron,m5 retinal ganglion cell
+805,10X52_5:TGGAACACGTATGC,2753,892,somatosensory neuron,cholinergic neuron,somatosensory neuron
+806,10X55_3:TGAACTCAAACAAG,2978,892,trigeminal motor neuron,cholinergic neuron,trigeminal motor neuron
+807,10X52_6:TCATTCGATTCATC,438,892,m9 retinal ganglion cell,cholinergic neuron,m9 retinal ganglion cell
+808,10X52_8:ACATTCTGTTGCAG,686,892,arcuate nucleus of hypothalamus kndy neuron,cholinergic neuron,arcuate nucleus of hypothalamus kndy neuron
+809,10X55_5:AGCCGAGAATGTTG,438,892,m9 retinal ganglion cell,cholinergic neuron,m9 retinal ganglion cell
+810,10X34_4:GGAATCTGTTAGGC,440,892,m9-on retinal ganglion cell,cholinergic neuron,m9-on retinal ganglion cell
+811,10X51_3:ATGGTGACGTTCTT,438,892,m9 retinal ganglion cell,cholinergic neuron,m9 retinal ganglion cell
+812,10X55_6:GCGATCATGCTAGT,438,892,m9 retinal ganglion cell,cholinergic neuron,m9 retinal ganglion cell
+813,10X54_5:TTACTGTCAGAATA,438,892,m9 retinal ganglion cell,cholinergic neuron,m9 retinal ganglion cell
+814,10X34_3:AGCGCCGATCAGAC,438,892,m9 retinal ganglion cell,cholinergic neuron,m9 retinal ganglion cell
+815,10X11_1:ACTCTCCTCGTAGT,2495,892,primary sensory neuron (sensu teleostei),cholinergic neuron,primary sensory neuron (sensu teleostei)
+816,10X56_6:GAGTCTGACAGAGG,438,892,m9 retinal ganglion cell,cholinergic neuron,m9 retinal ganglion cell
+817,10X52_7:GAGTGACTTCACGA,440,892,m9-on retinal ganglion cell,cholinergic neuron,m9-on retinal ganglion cell
+818,10X34_3:TCAAGTCTCATACG,2753,892,somatosensory neuron,cholinergic neuron,somatosensory neuron
+819,10X54_5:TGAACCAACTTGAC,2807,991,stellate neuron,cranial visceromotor neuron,stellate neuron
+820,10X54_4:TTCAGAGCCCAACC,438,991,m9 retinal ganglion cell,cranial visceromotor neuron,m9 retinal ganglion cell
+821,10X54_1:AAGACAGCGCCTCA,1073,991,dopamanergic interplexiform cell,cranial visceromotor neuron,dopamanergic interplexiform cell
+822,10X54_8:CCAGGCATTGAGCT,438,991,m9 retinal ganglion cell,cranial visceromotor neuron,m9 retinal ganglion cell
+823,10X55_3:AATGTAGTACGCCC,439,991,m9-off retinal ganglion cell,cranial visceromotor neuron,m9-off retinal ganglion cell
+824,10X54_8:ACACCTCACAGGCC,2595,991,retinal ganglion cell,cranial visceromotor neuron,retinal ganglion cell
+825,10X55_7:CACCTAGAGGGATA,2802,991,static beta motor neuron,cranial visceromotor neuron,static beta motor neuron
+826,10X54_6:ACTTCCATGAGCGA,476,991,off retinal ganglion cell,cranial visceromotor neuron,off retinal ganglion cell
+827,10X54_4:GTTAGTCGATAGAA,2807,991,stellate neuron,cranial visceromotor neuron,stellate neuron
+828,10X54_5:TTCGGCATATACCG,438,991,m9 retinal ganglion cell,cranial visceromotor neuron,m9 retinal ganglion cell
+829,10X55_5:GGCATGTCGTTGTA,438,991,m9 retinal ganglion cell,cranial visceromotor neuron,m9 retinal ganglion cell
+830,10X54_7:GAACGAGCAGACTG,479,991,on midget ganglion cell,cranial visceromotor neuron,on midget ganglion cell
+831,10X54_8:CTCCTTCCGAGCCA,476,991,off retinal ganglion cell,cranial visceromotor neuron,off retinal ganglion cell
+832,10X54_5:ATGTAAGAGATGAG,479,991,on midget ganglion cell,cranial visceromotor neuron,on midget ganglion cell
+833,10X48_2:ATCGGAACCTGTAG,2618,991,retinal ganglion cell d2,cranial visceromotor neuron,retinal ganglion cell d2
+834,10X55_1:ATGCCTCCTGCAGG,2595,991,retinal ganglion cell,cranial visceromotor neuron,retinal ganglion cell
+835,10X55_4:GTAGAGTCTAGGTT,2802,991,static beta motor neuron,cranial visceromotor neuron,static beta motor neuron
+836,10X54_4:TCAAGTCAACGCTA,2753,991,somatosensory neuron,cranial visceromotor neuron,somatosensory neuron
+837,10X33_3:GCCTCATGCGAGTT,440,991,m9-on retinal ganglion cell,cranial visceromotor neuron,m9-on retinal ganglion cell
+838,10X54_7:ACCGGGTCTTTCAT,3020,991,type 3a cone bipolar cell,cranial visceromotor neuron,type 3a cone bipolar cell
+839,10X52_1:TTATGGCTCCGATA,2066,2305,migratory enteric neural crest cell,oligodendrocyte precursor cell,migratory enteric neural crest cell
+840,10X22_3:ATCTTGACTGACAC,3064,2305,type ii cell of carotid body,oligodendrocyte precursor cell,type ii cell of carotid body
+841,10X50_7:GGGACCACAACCGT,1411,2305,ganglion mother cell,oligodendrocyte precursor cell,ganglion mother cell
+842,10X26_4:TCACTATGTGGTAC,2204,2305,neural cell,oligodendrocyte precursor cell,neural cell
+843,10X43_1:TAATGTGACCTACC,1411,2305,ganglion mother cell,oligodendrocyte precursor cell,ganglion mother cell
+844,10X49_5:GAGGTTTGTCGCAA,1381,2305,forebrain neuroblast,oligodendrocyte precursor cell,forebrain neuroblast
+845,10X53_4:CTGATGGAAGTGCT,2753,2305,somatosensory neuron,oligodendrocyte precursor cell,somatosensory neuron
+846,10X02_1:AGGTGGGACCTGTC,2204,2305,neural cell,oligodendrocyte precursor cell,neural cell
+847,10X01_1:GCATGTGAAAGTGA,2068,2305,migratory trunk neural crest cell,oligodendrocyte precursor cell,migratory trunk neural crest cell
+848,10X46_1:AGTATCCTCTTCGC,1396,2305,fungal asexual spore,oligodendrocyte precursor cell,fungal asexual spore
+849,10X22_4:GCCCAACTCCTCAC,3018,2305,type 3 mucosal glia,oligodendrocyte precursor cell,type 3 mucosal glia
+850,10X01_1:AGGGCCACAGGAGC,1381,2305,forebrain neuroblast,oligodendrocyte precursor cell,forebrain neuroblast
+851,10X52_1:TCAAGGTGAAAGCA,1396,2305,fungal asexual spore,oligodendrocyte precursor cell,fungal asexual spore
+852,10X28_5:TGCTTAACTACTTC,1143,2305,endospore,oligodendrocyte precursor cell,endospore
+853,10X52_1:CAAACTCTAAAGCA,2980,2305,trigeminal sensory neuron,oligodendrocyte precursor cell,trigeminal sensory neuron
+854,10X50_2:AACCAGTGTCTATC,2066,2305,migratory enteric neural crest cell,oligodendrocyte precursor cell,migratory enteric neural crest cell
+855,10X24_3:GATAATACTTCCAT,2066,2305,migratory enteric neural crest cell,oligodendrocyte precursor cell,migratory enteric neural crest cell
+856,10X26_4:GCACGTCTATGTGC,1396,2305,fungal asexual spore,oligodendrocyte precursor cell,fungal asexual spore
+857,10X01_1:ACGGTAACCCAAGT,1411,2305,ganglion mother cell,oligodendrocyte precursor cell,ganglion mother cell
+858,10X24_4:ACTCTCCTCATACG,1396,2305,fungal asexual spore,oligodendrocyte precursor cell,fungal asexual spore
+859,10X75_1:AATGAGGACGAGTT,2601,2891,retinal ganglion cell b,sympathetic noradrenergic neuron,retinal ganglion cell b
+860,10X75_1:TAGCGATGACAGTC,283,2891,g2 retinal ganglion cell,sympathetic noradrenergic neuron,g2 retinal ganglion cell
+861,10X75_1:XXTTAACTATCACG,911,2891,chromaffin cell of paraganglion,sympathetic noradrenergic neuron,chromaffin cell of paraganglion
+862,10X75_1:GGACATTGTCCGAA,2601,2891,retinal ganglion cell b,sympathetic noradrenergic neuron,retinal ganglion cell b
+863,10X75_1:CAACCAGACACAAC,440,2891,m9-on retinal ganglion cell,sympathetic noradrenergic neuron,m9-on retinal ganglion cell
+864,10X75_1:ATCTGGGAAAAACG,440,2891,m9-on retinal ganglion cell,sympathetic noradrenergic neuron,m9-on retinal ganglion cell
+865,10X75_1:CGCTAAGAGGAGCA,2601,2891,retinal ganglion cell b,sympathetic noradrenergic neuron,retinal ganglion cell b
+866,10X75_1:TTGCATTGGAAACA,2601,2891,retinal ganglion cell b,sympathetic noradrenergic neuron,retinal ganglion cell b
+867,10X75_1:GGCCAGACCTTGTT,283,2891,g2 retinal ganglion cell,sympathetic noradrenergic neuron,g2 retinal ganglion cell
+868,10X75_1:CAAGGTTGGCCCTT,2601,2891,retinal ganglion cell b,sympathetic noradrenergic neuron,retinal ganglion cell b
+869,10X75_1:ATCGACGAGGCAAG,2601,2891,retinal ganglion cell b,sympathetic noradrenergic neuron,retinal ganglion cell b
+870,10X75_1:XXATCTACTGTAGC,2601,2891,retinal ganglion cell b,sympathetic noradrenergic neuron,retinal ganglion cell b
+871,10X75_1:CTATAAGAGCGGAA,2601,2891,retinal ganglion cell b,sympathetic noradrenergic neuron,retinal ganglion cell b
+872,10X75_1:ACACCCTGAGAGAT,2601,2891,retinal ganglion cell b,sympathetic noradrenergic neuron,retinal ganglion cell b
+873,10X75_1:CGAGGAGACGAATC,2601,2891,retinal ganglion cell b,sympathetic noradrenergic neuron,retinal ganglion cell b
+874,10X75_1:ATTCTTCTGGCAAG,2601,2891,retinal ganglion cell b,sympathetic noradrenergic neuron,retinal ganglion cell b
+875,10X75_1:AAAGCAGAAGCGTT,289,2891,g6 retinal ganglion cell,sympathetic noradrenergic neuron,g6 retinal ganglion cell
+876,10X75_1:AAGGTCTGTGGTAC,2601,2891,retinal ganglion cell b,sympathetic noradrenergic neuron,retinal ganglion cell b
+877,10X75_1:GACAGGGAGCTTAG,2601,2891,retinal ganglion cell b,sympathetic noradrenergic neuron,retinal ganglion cell b
+878,10X75_1:GAACACACGAGCTT,2601,2891,retinal ganglion cell b,sympathetic noradrenergic neuron,retinal ganglion cell b
+879,10X53_7:TCCCAGACTTACTC,2204,-1,neural cell,satellite glia,neural cell
+880,10X43_2:TAAGAGGAGCTGTA,2239,-1,neuroplacodal cell,satellite glia,neuroplacodal cell
+881,10X43_2:ATGCAGTGACCTTT,2239,-1,neuroplacodal cell,satellite glia,neuroplacodal cell
+882,10X43_2:GGCGCATGTCTCTA,3064,-1,type ii cell of carotid body,satellite glia,type ii cell of carotid body
+883,10X43_2:GATCGATGACGGTT,3052,-1,type i cell of carotid body,satellite glia,type i cell of carotid body
+884,10X43_2:GCACCTTGCCTAAG,3053,-1,type i enteric glial cell,satellite glia,type i enteric glial cell
+885,10X43_2:TTCAACACGCAGTT,3052,-1,type i cell of carotid body,satellite glia,type i cell of carotid body
+886,10X43_2:ACGCAATGGCTGTA,3052,-1,type i cell of carotid body,satellite glia,type i cell of carotid body
+887,10X43_2:ATAGCCGACTCAGA,1013,-1,cycling glial cell,satellite glia,cycling glial cell
+888,10X43_2:ATCCGCACAGAGTA,3052,-1,type i cell of carotid body,satellite glia,type i cell of carotid body
+889,10X53_7:ATGCGATGGCTGAT,2204,-1,neural cell,satellite glia,neural cell
+890,10X43_2:CTAGTTTGTCAGAC,3064,-1,type ii cell of carotid body,satellite glia,type ii cell of carotid body
+891,10X53_7:CTGGAAACCTCGCT,2239,-1,neuroplacodal cell,satellite glia,neuroplacodal cell
+892,10X43_2:ACTGTTACATCGTG,3064,-1,type ii cell of carotid body,satellite glia,type ii cell of carotid body
+893,10X53_7:CGACCACTCCCGTT,2204,-1,neural cell,satellite glia,neural cell
+894,10X43_2:TCAACACTCCTTTA,3052,-1,type i cell of carotid body,satellite glia,type i cell of carotid body
+895,10X43_2:TAGTCTTGCCTAAG,1196,-1,enteroglial cell,satellite glia,enteroglial cell
+896,10X43_2:GGCGACTGTCTACT,2239,-1,neuroplacodal cell,satellite glia,neuroplacodal cell
+897,10X43_2:CACGGGACTGCAAC,1196,-1,enteroglial cell,satellite glia,enteroglial cell
+898,10X53_7:CGACCGGACATCAG,2204,-1,neural cell,satellite glia,neural cell
+899,10X11_1:TTACTCGAAGTACC,2995,901,tuft cell of stomach,choroid plexus epithelial cell,tuft cell of stomach
+900,10X54_6:AGCTACATCGGGTC,3004,901,type 1 submucosal plexus glia,choroid plexus epithelial cell,type 1 submucosal plexus glia
+901,10X54_3:AGCCAGTAAGCACG,3004,901,type 1 submucosal plexus glia,choroid plexus epithelial cell,type 1 submucosal plexus glia
+902,10X55_3:ACCCAGTATATGAG,3004,901,type 1 submucosal plexus glia,choroid plexus epithelial cell,type 1 submucosal plexus glia
+903,10X54_3:GCCACTCTGCGACG,2746,901,socket cell (sensu nematoda),choroid plexus epithelial cell,socket cell (sensu nematoda)
+904,10X55_8:GTTCCCACAACGTT,3004,901,type 1 submucosal plexus glia,choroid plexus epithelial cell,type 1 submucosal plexus glia
+905,10X48_1:ATAGCCGAGGGACA,3068,901,type ii vestibular sensory cell,choroid plexus epithelial cell,type ii vestibular sensory cell
+906,10X54_4:ACTTCGTGAGCGAT,3004,901,type 1 submucosal plexus glia,choroid plexus epithelial cell,type 1 submucosal plexus glia
+907,10X49_1:ACAAAGGATTACTC,3068,901,type ii vestibular sensory cell,choroid plexus epithelial cell,type ii vestibular sensory cell
+908,10X54_4:ACCAAGTCATACTG,3164,901,xanthophore cell,choroid plexus epithelial cell,xanthophore cell
+909,10X54_2:TCGATTCCCTCAGT,3004,901,type 1 submucosal plexus glia,choroid plexus epithelial cell,type 1 submucosal plexus glia
+910,10X48_4:GCAGTCCTTTGCAG,3052,901,type i cell of carotid body,choroid plexus epithelial cell,type i cell of carotid body
+911,10X57_6:TTGGGAACGCTTAG,3068,901,type ii vestibular sensory cell,choroid plexus epithelial cell,type ii vestibular sensory cell
+912,10X57_6:AATCCTACTTAGGC,3004,901,type 1 submucosal plexus glia,choroid plexus epithelial cell,type 1 submucosal plexus glia
+913,10X54_4:CTCCTTCAGATAAG,2068,901,migratory trunk neural crest cell,choroid plexus epithelial cell,migratory trunk neural crest cell
+914,10X49_3:AGTTTGCTCACCAA,2300,901,olfactory epithelial supporting cell,choroid plexus epithelial cell,olfactory epithelial supporting cell
+915,10X33_2:GGACCCGAAGTCTG,3164,901,xanthophore cell,choroid plexus epithelial cell,xanthophore cell
+916,10X54_2:GTAGAAGGTGATAT,2239,901,neuroplacodal cell,choroid plexus epithelial cell,neuroplacodal cell
+917,10X48_1:TGATTCACTTCTAC,3004,901,type 1 submucosal plexus glia,choroid plexus epithelial cell,type 1 submucosal plexus glia
+918,10X87_4:ATAGAACTTTGTGG,3004,901,type 1 submucosal plexus glia,choroid plexus epithelial cell,type 1 submucosal plexus glia
+919,10X20_3:ATGCAGTGAAAAGC,1404,1541,gamete,hypendymal cell,gamete
+920,10X57_1:GATCCGCTTTGCTT,1404,1541,gamete,hypendymal cell,gamete
+921,10X20_3:ATGCGATGCCTCAC,2746,1541,socket cell (sensu nematoda),hypendymal cell,socket cell (sensu nematoda)
+922,10X57_1:ACGACCCTTCGTAG,3018,1541,type 3 mucosal glia,hypendymal cell,type 3 mucosal glia
+923,10X20_4:CTCAGGCTAAGAGT,3004,1541,type 1 submucosal plexus glia,hypendymal cell,type 1 submucosal plexus glia
+924,10X52_1:ATCCGCACTCGATG,1213,1541,epidermal ciliary cell,hypendymal cell,epidermal ciliary cell
+925,10X52_2:AGAGTGCTCATTGG,2899,1541,tanycyte of subcommissural organ,hypendymal cell,tanycyte of subcommissural organ
+926,10X52_3:TCGCACACTTCGCC,3004,1541,type 1 submucosal plexus glia,hypendymal cell,type 1 submucosal plexus glia
+927,10X52_4:TTTGACTGTGCTGA,2091,1541,motile sperm cell,hypendymal cell,motile sperm cell
+928,10X57_3:GGAATGCTTATCTC,1307,1541,fallopian tube non-ciliated epithelial cell,hypendymal cell,fallopian tube non-ciliated epithelial cell
+929,10X52_1:TAGTAATGGTACCA,3004,1541,type 1 submucosal plexus glia,hypendymal cell,type 1 submucosal plexus glia
+930,10X57_3:CTGATACTTACTCT,3068,1541,type ii vestibular sensory cell,hypendymal cell,type ii vestibular sensory cell
+931,10X20_3:GGGCAAGACTCTTA,2375,1541,peg cell,hypendymal cell,peg cell
+932,10X20_3:CTGTAACTGAGGTG,1307,1541,fallopian tube non-ciliated epithelial cell,hypendymal cell,fallopian tube non-ciliated epithelial cell
+933,10X20_4:GCAAGACTAAGCAA,2887,1541,sustentacular cell,hypendymal cell,sustentacular cell
+934,10X20_4:CTAGGCCTCTACTT,1404,1541,gamete,hypendymal cell,gamete
+935,10X20_3:TTCTTACTTTATCC,2375,1541,peg cell,hypendymal cell,peg cell
+936,10X20_3:CTCAGAGAGGATCT,2108,1541,multiciliated ependymal cell,hypendymal cell,multiciliated ependymal cell
+937,10X57_2:ACGCCACTGTTACG,992,1541,crypt olfactory receptor neuron,hypendymal cell,crypt olfactory receptor neuron
+938,10X20_3:GTTGACGATAGTCG,1404,1541,gamete,hypendymal cell,gamete
+939,10X75_1:CTTCTAGACGTGAT,2601,2889,retinal ganglion cell b,sympathetic cholinergic neuron,retinal ganglion cell b
+940,10X75_1:TAGAGAGAAATGCC,2601,2889,retinal ganglion cell b,sympathetic cholinergic neuron,retinal ganglion cell b
+941,10X75_1:AACAGAGAGTTTCT,283,2889,g2 retinal ganglion cell,sympathetic cholinergic neuron,g2 retinal ganglion cell
+942,10X75_1:CCCTACGAGGGATG,283,2889,g2 retinal ganglion cell,sympathetic cholinergic neuron,g2 retinal ganglion cell
+943,10X75_1:GGGTTAACTTCTCA,440,2889,m9-on retinal ganglion cell,sympathetic cholinergic neuron,m9-on retinal ganglion cell
+944,10X75_1:AGATATTGAAGGTA,2601,2889,retinal ganglion cell b,sympathetic cholinergic neuron,retinal ganglion cell b
+945,10X75_1:AGGAATGACGCTAA,2601,2889,retinal ganglion cell b,sympathetic cholinergic neuron,retinal ganglion cell b
+946,10X75_1:TGCAAGACAGAGAT,440,2889,m9-on retinal ganglion cell,sympathetic cholinergic neuron,m9-on retinal ganglion cell
+947,10X75_1:TACACACTCGTAAC,2601,2889,retinal ganglion cell b,sympathetic cholinergic neuron,retinal ganglion cell b
+948,10X75_1:AGCGTAACGTGTCA,440,2889,m9-on retinal ganglion cell,sympathetic cholinergic neuron,m9-on retinal ganglion cell
+949,10X75_1:GGAGCAGACCAGTA,439,2889,m9-off retinal ganglion cell,sympathetic cholinergic neuron,m9-off retinal ganglion cell
+950,10X75_1:CAGTTGGAGTACGT,2601,2889,retinal ganglion cell b,sympathetic cholinergic neuron,retinal ganglion cell b
+951,10X75_1:TTCATGACTGGAGG,2601,2889,retinal ganglion cell b,sympathetic cholinergic neuron,retinal ganglion cell b
+952,10X75_1:AGCCAATGTCGTAG,283,2889,g2 retinal ganglion cell,sympathetic cholinergic neuron,g2 retinal ganglion cell
+953,10X75_1:ATGTTAGAAGAGTA,2601,2889,retinal ganglion cell b,sympathetic cholinergic neuron,retinal ganglion cell b
+954,10X75_1:ATTCTTCTCAGTTG,2601,2889,retinal ganglion cell b,sympathetic cholinergic neuron,retinal ganglion cell b
+955,10X75_1:CTGACAGACCTTCG,2601,2889,retinal ganglion cell b,sympathetic cholinergic neuron,retinal ganglion cell b
+956,10X75_1:ATCGCGCTCACTTT,283,2889,g2 retinal ganglion cell,sympathetic cholinergic neuron,g2 retinal ganglion cell
+957,10X75_1:AAGTGGCTGCTGAT,2601,2889,retinal ganglion cell b,sympathetic cholinergic neuron,retinal ganglion cell b
+958,10X75_1:GGTGATACGAGCTT,283,2889,g2 retinal ganglion cell,sympathetic cholinergic neuron,g2 retinal ganglion cell
+959,10X43_2:ATGAGCACTCATTC,2204,527,neural cell,schwann cell,neural cell
+960,10X43_2:AGACCTGAGTCCTC,2204,527,neural cell,schwann cell,neural cell
+961,10X53_7:ACAGTTCTCTTGGA,3052,527,type i cell of carotid body,schwann cell,type i cell of carotid body
+962,10X53_7:AGCGGCACAACAGA,2204,527,neural cell,schwann cell,neural cell
+963,10X43_2:TCATCAACCGTTAG,2204,527,neural cell,schwann cell,neural cell
+964,10X43_2:ACTGAGACAACTGC,2239,527,neuroplacodal cell,schwann cell,neuroplacodal cell
+965,10X43_2:ATGGTGACCATGGT,2204,527,neural cell,schwann cell,neural cell
+966,10X53_7:TATAAGTGGTCGAT,3164,527,xanthophore cell,schwann cell,xanthophore cell
+967,10X43_2:CACGGGACTTCTAC,2204,527,neural cell,schwann cell,neural cell
+968,10X43_2:TGTATCTGAGTCTG,3052,527,type i cell of carotid body,schwann cell,type i cell of carotid body
+969,10X43_2:ATCATCTGAACGGG,2125,527,muscle founder cell,schwann cell,muscle founder cell
+970,10X43_2:GTTCAGGATGTTTC,1281,527,erythrophore,schwann cell,erythrophore
+971,10X43_2:CTTAGGGAAATGCC,2204,527,neural cell,schwann cell,neural cell
+972,10X43_2:TCAGGATGAACGGG,2204,527,neural cell,schwann cell,neural cell
+973,10X43_2:TTTCGAACTCTCTA,3052,527,type i cell of carotid body,schwann cell,type i cell of carotid body
+974,10X43_2:TGATTCTGGTCATG,2204,527,neural cell,schwann cell,neural cell
+975,10X43_2:ACAGTGACGACTAC,3164,527,xanthophore cell,schwann cell,xanthophore cell
+976,10X43_2:CTAGATCTAGAACA,1281,527,erythrophore,schwann cell,erythrophore
+977,10X53_7:GATAGAGATGGATC,3164,527,xanthophore cell,schwann cell,xanthophore cell
+978,10X43_2:GAAGCTTGTTGTGG,2204,527,neural cell,schwann cell,neural cell
+979,10X82_2:CATGGAGTCTCAAC,440,1175,m9-on retinal ganglion cell,enteric neuron,m9-on retinal ganglion cell
+980,10X81_1:CACACAGGGTGTTG,1676,1175,iridophore,enteric neuron,iridophore
+981,10X82_2:TCGATGTCAGAGGT,2494,1175,primary polar body,enteric neuron,primary polar body
+982,10X81_3:TCCTAGTCTTGTCC,2333,1175,ovarian nerve plexus ganglion th neuron,enteric neuron,ovarian nerve plexus ganglion th neuron
+983,10X81_2:GGTGACAAGGACAC,2333,1175,ovarian nerve plexus ganglion th neuron,enteric neuron,ovarian nerve plexus ganglion th neuron
+984,10X82_2:CTGCTTCGACAGCC,1000,1175,cutaneous/subcutaneous mechanoreceptor cell,enteric neuron,cutaneous/subcutaneous mechanoreceptor cell
+985,10X82_2:AAACTCAAACCTAC,3004,1175,type 1 submucosal plexus glia,enteric neuron,type 1 submucosal plexus glia
+986,10X82_2:ACATCTCTTGTATC,2601,1175,retinal ganglion cell b,enteric neuron,retinal ganglion cell b
+987,10X81_1:CATAGAGGCTCATT,2333,1175,ovarian nerve plexus ganglion th neuron,enteric neuron,ovarian nerve plexus ganglion th neuron
+988,10X82_2:ATGTCTCCTCAACC,2494,1175,primary polar body,enteric neuron,primary polar body
+989,10X81_3:ACTAGCACGAAAGC,440,1175,m9-on retinal ganglion cell,enteric neuron,m9-on retinal ganglion cell
+990,10X81_3:TTGGTTCTACTCAT,1676,1175,iridophore,enteric neuron,iridophore
+991,10X82_2:GCATAAGACCCACC,2494,1175,primary polar body,enteric neuron,primary polar body
+992,10X81_3:GAGAGTCCACGAAT,1676,1175,iridophore,enteric neuron,iridophore
+993,10X82_2:ACATTCACGGCGTT,1676,1175,iridophore,enteric neuron,iridophore
+994,10X82_2:ATTGAAGTGTGAAT,289,1175,g6 retinal ganglion cell,enteric neuron,g6 retinal ganglion cell
+995,10X82_2:CCACTAGAGGGCTT,2601,1175,retinal ganglion cell b,enteric neuron,retinal ganglion cell b
+996,10X81_3:GGCAGGTTATGTGC,2494,1175,primary polar body,enteric neuron,primary polar body
+997,10X81_1:ACAGATCAATACCG,440,1175,m9-on retinal ganglion cell,enteric neuron,m9-on retinal ganglion cell
+998,10X81_1:ATGTATCTTGTACT,2601,1175,retinal ganglion cell b,enteric neuron,retinal ganglion cell b

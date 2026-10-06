@@ -4,7 +4,9 @@
   "non_cl_predictions": 965,
   "non_cl_ratio": 0.965966,
   "non_cl_labels": [
+    "acina motion",
     "acinar",
+    "acinarough",
     "alpha",
     "beta",
     "delta",
@@ -12,10 +14,11 @@
     "endothelial",
     "gamma",
     "holiday",
-    "macrophage dc",
     "mesenchyme",
     "nk/t cell",
     "pp",
-    "psc"
+    "psc",
+    "reprendre",
+    "resistant"
   ]
 }

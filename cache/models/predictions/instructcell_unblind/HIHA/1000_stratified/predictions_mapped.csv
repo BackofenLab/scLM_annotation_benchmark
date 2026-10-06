@@ -6,7 +6,7 @@ b7048808b4db11ea896eeea2ff0d800a,"naive thymus-derived cd4-positive, alpha-beta 
 41eeb616ca1411eba8e7c23be70524c5,"naive thymus-derived cd4-positive, alpha-beta t cell",t cell,t cell
 a93741f88d0111eba8fc0e09ff586e2a,"naive thymus-derived cd4-positive, alpha-beta t cell",t cell,t cell
 c8ef29d2230911eba0759640c92fc4a2,"naive thymus-derived cd4-positive, alpha-beta t cell",t cell,t cell
-c198d60401db11ec82191e5794dae576,"naive thymus-derived cd4-positive, alpha-beta t cell",cell,lucr
+c198d60401db11ec82191e5794dae576,"naive thymus-derived cd4-positive, alpha-beta t cell",t cell,t cell
 f787597050be11eca58a4e8e993d3e95,"naive thymus-derived cd4-positive, alpha-beta t cell",t cell,t cell
 60ffea8a230f11ecb3808ec5122f277d,"naive thymus-derived cd4-positive, alpha-beta t cell",t cell,t cell
 1018d42c01dd11ec98991efbcd4757be,"naive thymus-derived cd4-positive, alpha-beta t cell",t cell,t cell
@@ -73,7 +73,7 @@ a2c8e1dc8cfc11ebb4592ee9d1c560f8,"naive thymus-derived cd4-positive, alpha-beta 
 4b96c0a4746b11eb83a4c235a3a08626,"naive thymus-derived cd4-positive, alpha-beta t cell",t cell,t cell
 7cdc788c6f3111eb96976aecf4743d14,"naive thymus-derived cd4-positive, alpha-beta t cell",t cell,t cell
 53b9f16e76f711eb928cf2a688aad71a,"naive thymus-derived cd4-positive, alpha-beta t cell",t cell,t cell
-b919d4e04dff11ecb1a91aa839721c60,"naive thymus-derived cd4-positive, alpha-beta t cell",cell,t dar
+b919d4e04dff11ecb1a91aa839721c60,"naive thymus-derived cd4-positive, alpha-beta t cell",t cell,t cell
 7c360e9c746911eb8b7dee0008289f2d,"naive thymus-derived cd4-positive, alpha-beta t cell",t cell,t cell
 5b7e02e0785b11eb8f737ade911e22f7,"naive thymus-derived cd4-positive, alpha-beta t cell",t cell,t cell
 9834417ee6bd11eb9bb4beec3d5c720e,"naive thymus-derived cd4-positive, alpha-beta t cell",t cell,t cell
@@ -116,7 +116,7 @@ d1c7dafe7ab611eb820a3effb17b8bb3,"cd14-positive, cd16-negative classical monocyt
 29479714aa6311ed996536bac5d04f15,"cd14-positive, cd16-negative classical monocyte",monocyte,monocyte
 0f413190745a11eb9460023cc5433a03,"cd14-positive, cd16-negative classical monocyte",monocyte,monocyte
 5eca9f1823db11ec8fb6d64cd9da18b7,"cd14-positive, cd16-negative classical monocyte",monocyte,monocyte
-d42f418e50a211ecb05e625212408fd6,"cd14-positive, cd16-negative classical monocyte",cell,providing
+d42f418e50a211ecb05e625212408fd6,"cd14-positive, cd16-negative classical monocyte",monocyte,monocyte
 22ae889aaa8111edbca7720112d201c9,"cd14-positive, cd16-negative classical monocyte",monocyte,monocyte
 666d6f8ccd3911ebb08e96e3cb7ab314,"cd14-positive, cd16-negative classical monocyte",monocyte,monocyte
 494c725001e011ecad3cda2d73e439aa,"cd14-positive, cd16-negative classical monocyte",monocyte,monocyte
@@ -220,11 +220,11 @@ cc6c2124315611eebf058a4e77219021,"central memory cd4-positive, alpha-beta t cell
 5ca248c2e40611ebb6ab32f1f7b8a178,"central memory cd4-positive, alpha-beta t cell",t cell,t cell
 a2dd253e8cfc11ebb4592ee9d1c560f8,"central memory cd4-positive, alpha-beta t cell",t cell,t cell
 a3f29c34ecbe11ebaad346e0a59e94fd,"effector memory cd8-positive, alpha-beta t cell",mature NK T cell,nk/t cell
-4baaa52e746b11eb83a4c235a3a08626,"effector memory cd8-positive, alpha-beta t cell",cell,independence
+4baaa52e746b11eb83a4c235a3a08626,"effector memory cd8-positive, alpha-beta t cell",mature NK T cell,nk/t cell
 989f136676fe11eb89bbb265d7ce1040,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
 295b02feaa6311ed996536bac5d04f15,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
 5a4464caaa8411edbc55eac8c2b882ba,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
-d55e5cd0786111eb9a4d621eed77e6ac,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
+d55e5cd0786111eb9a4d621eed77e6ac,"effector memory cd8-positive, alpha-beta t cell",mature NK T cell,nk/t cell
 ee2427f46e5c11eb9751364c17c50e30,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
 68aefa70872711ebadbb7e7f669035b2,"effector memory cd8-positive, alpha-beta t cell",mature NK T cell,nk/t cell
 f6f8c1a2f02111ed9882ae50d00ceaab,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
@@ -241,7 +241,7 @@ cfcc2fa86e5d11ebb859b2d8774afeef,"effector memory cd8-positive, alpha-beta t cel
 b8bfd0ba01d011ecafff5e625bcc3358,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
 c069dc82862311eeb393168c5709f2f2,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
 7e229610e40511eb8b4326d57b156660,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
-519c9fde02b711ec85669ed5fd6f2ffe,"effector memory cd8-positive, alpha-beta t cell",mature NK T cell,nk/t cell
+519c9fde02b711ec85669ed5fd6f2ffe,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
 22b230b2aa8111edbca7720112d201c9,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
 174d722423df11ec8e663e0b7a317b29,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
 a4732ebacd3511eb88c7e2067416d204,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
@@ -249,10 +249,10 @@ c002986af7fe11ecbaca5e549e2aa1f5,"effector memory cd8-positive, alpha-beta t cel
 7ee0105e6f3011eb8ea3b6144a58e849,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
 d2ae7d4abfdc11eb9ba92275cea06a7e,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
 5737b5268cee11ebb2129e901b21dc73,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
-fc87dec250b411ec942f6a58078e6e64,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
+fc87dec250b411ec942f6a58078e6e64,"effector memory cd8-positive, alpha-beta t cell",mature NK T cell,nk/t cell
 796c3f9e60b011edb17e46fb8f56502c,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
 2efb7444a2ce11ebbbe71e4a3e83c3e1,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
-48073c4e6f3311eb99c592dad4245022,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
+48073c4e6f3311eb99c592dad4245022,"effector memory cd8-positive, alpha-beta t cell",mature NK T cell,nk/t cell
 2f125e34a2ce11ebbbe71e4a3e83c3e1,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
 cdbe8e34315811ee95297ae860542a53,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
 0cf12e70ecc011eb966bfa1af6d99fe6,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
@@ -261,7 +261,7 @@ e3f40046ca0611eb95002269a98e5840,"effector memory cd8-positive, alpha-beta t cel
 14ca0bdcaa9011eda3678a6e266cb381,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
 8db100ee76fa11ebb31b8631bc0de43b,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
 fb43bcb0ca0f11ebad1a2eb9c335bc75,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
-d70fc802315011eead251600320c0574,"effector memory cd8-positive, alpha-beta t cell",t cell,t cell
+d70fc802315011eead251600320c0574,"effector memory cd8-positive, alpha-beta t cell",mature NK T cell,nk/t cell
 7e51d68ce40511eb8b4326d57b156660,"effector memory cd4-positive, alpha-beta t cell",t cell,t cell
 97d4dc94862911eeb185c2d03e180f84,"effector memory cd4-positive, alpha-beta t cell",t cell,t cell
 214bf5c6206511ebab2fd208a121e5d4,"effector memory cd4-positive, alpha-beta t cell",t cell,t cell
@@ -401,7 +401,7 @@ ef63798e746111ebb005fab458a363f4,naive b cell,b cell,b cell
 e1888dfe230d11eb995f0a8b9bab73d7,mature gamma-delta t cell,mature NK T cell,nk/t cell
 0801352e4e0211ecb6d06af08aaacff5,mature gamma-delta t cell,mature NK T cell,nk/t cell
 892dfde023e011ecb7814e13412d27b3,mature gamma-delta t cell,mature NK T cell,nk/t cell
-4a793b6a8d0811eba554d6cabaf48ff9,mature gamma-delta t cell,mature NK T cell,nk/t cell
+4a793b6a8d0811eba554d6cabaf48ff9,mature gamma-delta t cell,natural killer cell,nk/ motion
 eaab798c608c11edb82ff6b434f2fb76,mature gamma-delta t cell,t cell,t cell
 e146cd8e76fe11eb8a3a1adcfefed355,mature gamma-delta t cell,t cell,t cell
 62d0697ce79411ebada4c67e2b686223,mature gamma-delta t cell,t cell,t cell
@@ -409,15 +409,15 @@ fc71913a50b411ec942f6a58078e6e64,mature gamma-delta t cell,t cell,t cell
 25927802e40611eb9f73d6fd5206df9a,mature gamma-delta t cell,mature NK T cell,nk/t cell
 5daedde8872711eba91e02b81d78ff78,mature gamma-delta t cell,t cell,t cell
 6ccfc92e48b511ea87c666a4322bd84a,mature gamma-delta t cell,t cell,t cell
-b7183178b4db11ea896eeea2ff0d800a,mature gamma-delta t cell,t cell,t cell
+b7183178b4db11ea896eeea2ff0d800a,mature gamma-delta t cell,mature NK T cell,nk/t cell
 296cdc46862b11ee97ce1ac7b539e0d5,mature gamma-delta t cell,t cell,t cell
-d40f93ac50a211ecb05e625212408fd6,mature gamma-delta t cell,t cell,t cell
+d40f93ac50a211ecb05e625212408fd6,mature gamma-delta t cell,mature NK T cell,nk/t cell
 092929fe785e11ebb00a1a75a97ae03e,mature gamma-delta t cell,t cell,t cell
-692be594e6bd11eb99defa54c4ee54f4,mature gamma-delta t cell,t cell,t cell
+692be594e6bd11eb99defa54c4ee54f4,mature gamma-delta t cell,mature NK T cell,nk/t cell
 c5ab9abc862a11eeb249aefb8bcfeb6c,mature gamma-delta t cell,t cell,t cell
 c4b49e44e3ff11eb91932201050c5f2a,mature gamma-delta t cell,t cell,t cell
 f8c9fd4223dc11ec8ebdfedc55894352,mature gamma-delta t cell,t cell,t cell
-898dfb1e286311ecb44ba22865200d72,mature gamma-delta t cell,t cell,t cell
+898dfb1e286311ecb44ba22865200d72,mature gamma-delta t cell,mature NK T cell,nk/t cell
 d1ab89e47ab611eb820a3effb17b8bb3,memory b cell,b cell,b cell
 f4020ed2a2e311eb85af52073c383e80,memory b cell,b cell,b cell
 ff4699aa206311eb9a0672114e4cb04e,memory b cell,b cell,b cell
@@ -500,22 +500,22 @@ aae4b692770411eba803caccc32ef9e2,"central memory cd8-positive, alpha-beta t cell
 f77521ce50be11eca58a4e8e993d3e95,"central memory cd8-positive, alpha-beta t cell",t cell,t cell
 ed24e320a2d211eb8aafd2fff04d1a29,"cd4-positive, alpha-beta memory t cell",t cell,t cell
 b2750d80e8ba11eb951c4a933a1ddc30,"cd4-positive, alpha-beta memory t cell",t cell,t cell
-aaf5f416770411eba803caccc32ef9e2,"cd4-positive, alpha-beta memory t cell",t cell,t cell
-92a18b2ce40111eba5a472433277b4b3,"cd4-positive, alpha-beta memory t cell",mature NK T cell,nk/t cell
+aaf5f416770411eba803caccc32ef9e2,"cd4-positive, alpha-beta memory t cell",mature NK T cell,nk/t cell
+92a18b2ce40111eba5a472433277b4b3,"cd4-positive, alpha-beta memory t cell",t cell,t cell
 a1faaf62424411eca8107e93ffa0dfc3,"cd4-positive, alpha-beta memory t cell",t cell,t cell
-1ec6333050b511ec8fafd2849fb52a10,"cd4-positive, alpha-beta memory t cell",t cell,t cell
+1ec6333050b511ec8fafd2849fb52a10,"cd4-positive, alpha-beta memory t cell",mature NK T cell,nk/t cell
 05c42b7e770011ebb6f1120b4fce9850,"cd4-positive, alpha-beta memory t cell",t cell,t cell
 2e796dd8aa7811ed91ea9e893c503a3a,"cd4-positive, alpha-beta memory t cell",t cell,t cell
 2876ba94cd3911eb84917af6a2da7945,"cd4-positive, alpha-beta memory t cell",t cell,t cell
 d43637be50a211ecb05e625212408fd6,"cd4-positive, alpha-beta memory t cell",t cell,t cell
 e670c7fcfeca11eb9143de3cb0860f61,"cd4-positive, alpha-beta memory t cell",t cell,t cell
 96b1e8fe6d6b11ebba1f52fbaff67099,"cd4-positive, alpha-beta memory t cell",t cell,t cell
-5737862a7b6711eb980a1e6e754c5d4e,"cd4-positive, alpha-beta memory t cell",t cell,t cell
+5737862a7b6711eb980a1e6e754c5d4e,"cd4-positive, alpha-beta memory t cell",mature NK T cell,nk/t cell
 038b31da6d6a11eb9868b2973cae6259,"cd4-positive, alpha-beta memory t cell",t cell,t cell
 16818f58609a11edba329e19a2629b2e,"cd4-positive, alpha-beta memory t cell",t cell,t cell
 3910191c795211ebb3dd8e1325812f33,"cd4-positive, alpha-beta memory t cell",t cell,t cell
 efeb3558cd1d11eba87c2ee2f5e521a9,"cd4-positive, alpha-beta memory t cell",t cell,t cell
-058e8258770011ebb6f1120b4fce9850,"cd4-positive, alpha-beta memory t cell",t cell,t cell
+058e8258770011ebb6f1120b4fce9850,"cd4-positive, alpha-beta memory t cell",mature NK T cell,nk/t cell
 88e6d4f86d6811eb8c84965cd2e07daf,"cd4-positive, alpha-beta memory t cell",t cell,t cell
 bffc67b0f7fe11ecbaca5e549e2aa1f5,"cd4-positive, alpha-beta memory t cell",t cell,t cell
 56710aec8cfe11eba258b6b4610d6042,memory regulatory t cell,t cell,t cell
@@ -579,7 +579,7 @@ ff78bb4c206311eb9a0672114e4cb04e,transitional stage b cell,b cell,b cell
 5c71d75e7b7a11eb822c3e9d2f0e335e,transitional stage b cell,b cell,b cell
 3f074f647ac111eb8b2f26df66f30e1e,transitional stage b cell,b cell,b cell
 b9d9e410872b11ebb599de5a8c2059ae,"cd16-negative, cd56-bright natural killer cell, human",mature NK T cell,nk/t cell
-ebb0c48c608111ed88067e296dabf3c1,"cd16-negative, cd56-bright natural killer cell, human",t cell,t cell
+ebb0c48c608111ed88067e296dabf3c1,"cd16-negative, cd56-bright natural killer cell, human",mature NK T cell,nk/t cell
 2e682082aa7811ed91ea9e893c503a3a,"cd16-negative, cd56-bright natural killer cell, human",mature NK T cell,nk/t cell
 2f156ae8a2ce11ebbbe71e4a3e83c3e1,"cd16-negative, cd56-bright natural killer cell, human",mature NK T cell,nk/t cell
 66c17a884e0211ec853ad229c2defbef,"cd16-negative, cd56-bright natural killer cell, human",t cell,t cell
@@ -589,7 +589,7 @@ ebb0c48c608111ed88067e296dabf3c1,"cd16-negative, cd56-bright natural killer cell
 a6b2688c230f11ec9c429a68027fbf79,"cd16-negative, cd56-bright natural killer cell, human",t cell,t cell
 0f18883a745a11eb9460023cc5433a03,"cd16-negative, cd56-bright natural killer cell, human",mature NK T cell,nk/t cell
 63810944e79411ebbe50c203ad329f89,"cd16-negative, cd56-bright natural killer cell, human",mature NK T cell,nk/t cell
-2ced5684770111eb83580af69b9105e6,"cd16-negative, cd56-bright natural killer cell, human",t cell,t cell
+2ced5684770111eb83580af69b9105e6,"cd16-negative, cd56-bright natural killer cell, human",mature NK T cell,nk/t cell
 b86782f078ca11ebbbdb7ec7a5d6dda0,"cd16-negative, cd56-bright natural killer cell, human",mature NK T cell,nk/t cell
 8b4e53867b7a11ebbb227ae287962563,"cd16-negative, cd56-bright natural killer cell, human",mature NK T cell,nk/t cell
 f1bd2b9e76f011eb9e6a262e4d0064cc,"cd16-negative, cd56-bright natural killer cell, human",mature NK T cell,nk/t cell
@@ -597,7 +597,7 @@ ec4ecb0aecbf11ebafc4de269a2c4ee4,"cd16-negative, cd56-bright natural killer cell
 1289b00aece811eb858a9eed4000a1fb,"cd16-negative, cd56-bright natural killer cell, human",mature NK T cell,nk/t cell
 f0bf5dd250b811ecbd5a96ba759a0a5a,"cd16-negative, cd56-bright natural killer cell, human",mature NK T cell,nk/t cell
 bd4611586e5511ebaf139a72df013a78,"cd16-negative, cd56-bright natural killer cell, human",mature NK T cell,nk/t cell
-2bf6c3f0230911ec9bc276af81d82c6c,"cd16-negative, cd56-bright natural killer cell, human",mature NK T cell,nk/t cell
+2bf6c3f0230911ec9bc276af81d82c6c,"cd16-negative, cd56-bright natural killer cell, human",natural killer cell,nk/rough cell
 e9cb2256f7e111ec90da567a30052902,be cell,b cell,b cell
 87d218c250be11ec9bfce201e636867f,be cell,b cell,b cell
 59a9a1946f2e11eb96d6a6525b93d5e3,be cell,b cell,b cell
@@ -641,11 +641,11 @@ cdbc2644315811ee95297ae860542a53,intermediate monocyte,monocyte,monocyte
 57f4aa80746811eb8d8fe2317d9a82dc,platelet,t cell,t cell
 6d12cad0bfdd11eb9a93b298159eec41,platelet,t cell,t cell
 baa04fb8871e11eb94488a0ac828d814,platelet,endothelial cell,endothelial cell
-41bbbdea76f611eb9ee31a4d4e3f8efd,platelet,macrophage,macrophage
+41bbbdea76f611eb9ee31a4d4e3f8efd,platelet,t cell,t cell
 d431b6da50a211ecb05e625212408fd6,platelet,t cell,t cell
 ed6bc626a2e311ebb1ce525b6209b46f,platelet,t cell,t cell
 cfc0a9ee6e5d11ebb859b2d8774afeef,platelet,t cell,t cell
-5c417ed6ee8b11eb92fdd69ca687ea48,platelet,endothelial cell,endothelial cell
+5c417ed6ee8b11eb92fdd69ca687ea48,platelet,t cell,t cell
 cfa4ab866e5d11ebb859b2d8774afeef,platelet,t cell,t cell
 14f51b32fec611eb87dc9ec311f9e9a6,platelet,t cell,t cell
 68a663d8872711ebadbb7e7f669035b2,platelet,t cell,t cell
@@ -654,7 +654,7 @@ ec387ba2ecbf11ebafc4de269a2c4ee4,platelet,t cell,t cell
 8ecaa4ee23de11ec82e796d30ec08b20,platelet,t cell,t cell
 e8c5c2dc671a11ed91b4c6b7fe052625,platelet,monocyte,monocyte
 df51c132f7e011eca445621bb9b0c4af,platelet,t cell,t cell
-5d4ccc3aa2ce11eb9bc6ae6e71680f8b,platelet,endothelial cell,endothelial cell
+5d4ccc3aa2ce11eb9bc6ae6e71680f8b,platelet,t cell,t cell
 f76f716650be11eca58a4e8e993d3e95,platelet,endothelial cell,endothelial cell
 44233ac403bc11ec8b03caa2709d8562,platelet,t cell,t cell
 4a4944da230f11ec80995a5086d06fa1,platelet,t cell,t cell
@@ -679,25 +679,25 @@ e89a6f503f6311eb9b035a7c26289213,cd8aa(i) thymocyte,t cell,t cell
 258286f4e40611eb9f73d6fd5206df9a,cd8aa(i) thymocyte,t cell,t cell
 f89577d423dc11ec8ebdfedc55894352,cd8aa(i) thymocyte,t cell,t cell
 4b70007c746b11eb83a4c235a3a08626,plasmacytoid dendritic cell,pancreatic A cell,alpha
-d1b2f43a770111ebb7b9d6f975704c14,plasmacytoid dendritic cell,type B pancreatic cell,beta
+d1b2f43a770111ebb7b9d6f975704c14,plasmacytoid dendritic cell,b cell,b cell
 e368ea72a2e411eba445862a4d6f2ed3,plasmacytoid dendritic cell,b cell,b cell
 4b521bf2746b11eb83a4c235a3a08626,plasmacytoid dendritic cell,b cell,b cell
-97f0b59ee6bd11eb9bb4beec3d5c720e,plasmacytoid dendritic cell,pancreatic ductal cell,ductal
+97f0b59ee6bd11eb9bb4beec3d5c720e,plasmacytoid dendritic cell,b cell,b cell
 929e01bee40111eba5a472433277b4b3,plasmacytoid dendritic cell,b cell,b cell
-94b7939003c111ec9efbfae6eca3ca11,plasmacytoid dendritic cell,b cell,b cell
+94b7939003c111ec9efbfae6eca3ca11,plasmacytoid dendritic cell,t cell,t cell
 0924dafc785e11ebb00a1a75a97ae03e,plasmacytoid dendritic cell,b cell,b cell
 5c00146eee8b11eb92fdd69ca687ea48,plasmacytoid dendritic cell,pancreatic A cell,alpha
-bad6a1fe862a11ee84fb5eb04f029758,plasmacytoid dendritic cell,pancreatic A cell,alpha
+bad6a1fe862a11ee84fb5eb04f029758,plasmacytoid dendritic cell,b cell,b cell
 0aa7b6c2230f11eca42fde90f8d872f1,plasmacytoid dendritic cell,b cell,b cell
 5d1f957648b111ea8fbed2ddb8e0a14a,plasmacytoid dendritic cell,pancreatic A cell,alpha
 c1fcb5a223dc11ec9545a2e3447e117e,plasmacytoid dendritic cell,b cell,b cell
 c05bc688862311eeb393168c5709f2f2,plasmacytoid dendritic cell,t cell,t cell
-454c2cee009211ec9cfa4a5d71d7e302,plasmacytoid dendritic cell,monocyte,monocyte
-a95da6ae8d0111eba8fc0e09ff586e2a,plasmacytoid dendritic cell,type B pancreatic cell,beta
-8a042ba8609911eda456ba0856b89601,plasmacytoid dendritic cell,pancreatic A cell,alpha
+454c2cee009211ec9cfa4a5d71d7e302,plasmacytoid dendritic cell,b cell,b cell
+a95da6ae8d0111eba8fc0e09ff586e2a,plasmacytoid dendritic cell,b cell,b cell
+8a042ba8609911eda456ba0856b89601,plasmacytoid dendritic cell,mature NK T cell,nk/t cell
 dcfa77fe862c11ee941c7e9dd60efb6e,plasmacytoid dendritic cell,monocyte,monocyte
-ee4039f0607f11ed9e9d5af7fabd3b36,plasmacytoid dendritic cell,macrophage,macrophage
-0625a0b4863611eea9a56e13647e2878,plasmacytoid dendritic cell,pancreatic A cell,alpha
+ee4039f0607f11ed9e9d5af7fabd3b36,plasmacytoid dendritic cell,b cell,b cell
+0625a0b4863611eea9a56e13647e2878,plasmacytoid dendritic cell,mature NK T cell,nk/t cell
 03a899a2608211ed8cb1a608efa7ae49,cd1c-positive myeloid dendritic cell,monocyte,monocyte
 5cf615fc48b111ea8fbed2ddb8e0a14a,cd1c-positive myeloid dendritic cell,monocyte,monocyte
 47e6aa386f3311eb99c592dad4245022,cd1c-positive myeloid dendritic cell,macrophage,macrophage
@@ -709,10 +709,10 @@ e4961f64b54b11eaa79c06097e2fb91a,cd1c-positive myeloid dendritic cell,monocyte,m
 106441fa01dd11ec98991efbcd4757be,cd1c-positive myeloid dendritic cell,monocyte,monocyte
 7efe3872f7e711ecb1715e1ef278d88a,cd1c-positive myeloid dendritic cell,monocyte,monocyte
 b91b2caa4dff11ecb1a91aa839721c60,cd1c-positive myeloid dendritic cell,monocyte,monocyte
-a11a610e02b711eca176be0a2642ba6d,cd1c-positive myeloid dendritic cell,monocyte,monocyte
+a11a610e02b711eca176be0a2642ba6d,cd1c-positive myeloid dendritic cell,cell,monreprendre
 31fa60aaf81e11ecb8d5422c967c70e8,cd1c-positive myeloid dendritic cell,monocyte,monocyte
 4154aa18671511ed9b96de3223020266,cd1c-positive myeloid dendritic cell,monocyte,monocyte
-e9fea4a0f7e111ec90da567a30052902,cd1c-positive myeloid dendritic cell,macrophage,macrophage
+e9fea4a0f7e111ec90da567a30052902,cd1c-positive myeloid dendritic cell,monocyte,monocyte
 87c733bc50be11ec9bfce201e636867f,cd1c-positive myeloid dendritic cell,monocyte,monocyte
 a19e0dc023db11ec81faee1fd8b4df58,cd1c-positive myeloid dendritic cell,monocyte,monocyte
 f425870ea2e311eb85af52073c383e80,cd1c-positive myeloid dendritic cell,monocyte,monocyte
@@ -846,7 +846,7 @@ a05c7270e6b011eb9e5fd64aa79f082e,innate lymphoid cell,t cell,t cell
 7e3a5c6ee40511eb8b4326d57b156660,innate lymphoid cell,t cell,t cell
 47e2e77c6f3311eb99c592dad4245022,innate lymphoid cell,t cell,t cell
 06e358f202b711ec88cb72995a34965f,innate lymphoid cell,t cell,t cell
-c11ce7286e5c11eb95e9cea56c494de4,innate lymphoid cell,mature NK T cell,nk/t cell
+c11ce7286e5c11eb95e9cea56c494de4,innate lymphoid cell,t cell,t cell
 c0c28b166e5c11eb95e9cea56c494de4,innate lymphoid cell,mature NK T cell,nk/t cell
 81c2711e3f6411eb9e62823c612eac47,innate lymphoid cell,t cell,t cell
 a4b646e6cd3511eb88c7e2067416d204,innate lymphoid cell,t cell,t cell
@@ -855,21 +855,21 @@ a4b646e6cd3511eb88c7e2067416d204,innate lymphoid cell,t cell,t cell
 46c4fef0488011eaa581ba6d6c7b9f21,innate lymphoid cell,t cell,t cell
 0fca0fe64e0311ec8368968167987366,innate lymphoid cell,mature NK T cell,nk/t cell
 b54b779e872911ebbe41a20b62d6e8c8,innate lymphoid cell,t cell,t cell
-06a209e202b711ec88cb72995a34965f,innate lymphoid cell,monocyte,monocyte
+06a209e202b711ec88cb72995a34965f,innate lymphoid cell,t cell,t cell
 5c2a2394ee8b11eb92fdd69ca687ea48,innate lymphoid cell,mature NK T cell,nk/t cell
 bae6b8fa862a11ee84fb5eb04f029758,innate lymphoid cell,t cell,t cell
 dd0f45bc862c11ee941c7e9dd60efb6e,common lymphoid progenitor,t cell,t cell
 169e3d4c609a11edba329e19a2629b2e,common lymphoid progenitor,t cell,t cell
-6873d0e8ecea11eb8ac2be83dc4baba1,common lymphoid progenitor,cell,sensitive
+6873d0e8ecea11eb8ac2be83dc4baba1,common lymphoid progenitor,t cell,t cell
 64e76348786111eba55bee831e293e34,common lymphoid progenitor,t cell,t cell
 0fd672684e0311ec8368968167987366,common lymphoid progenitor,t cell,t cell
 6d12d3e601e011ec97d1be2f1bab6958,common lymphoid progenitor,b cell,b cell
 74f7707e48b611eabab7c676ab45cfca,common lymphoid progenitor,t cell,t cell
-3827b78eece911eb96cace7c85d10469,common lymphoid progenitor,t cell,t cell
+3827b78eece911eb96cace7c85d10469,common lymphoid progenitor,b cell,b cell
 b600722abfd211ebafa586d48e1f3db0,common lymphoid progenitor,b cell,b cell
-2d9549244e0711ec865c16f89d689413,common lymphoid progenitor,monocyte,monocyte
-ed6523f2286211ec9a8f2613ba675443,common lymphoid progenitor,b cell,b cell
-e122a49076fe11eb8a3a1adcfefed355,common lymphoid progenitor,b cell,b cell
+2d9549244e0711ec865c16f89d689413,common lymphoid progenitor,t cell,t cell
+ed6523f2286211ec9a8f2613ba675443,common lymphoid progenitor,t cell,t cell
+e122a49076fe11eb8a3a1adcfefed355,common lymphoid progenitor,t cell,t cell
 e7f949f2671811ed8197264aa0746ac0,common lymphoid progenitor,b cell,b cell
 dd02ea6a862c11ee941c7e9dd60efb6e,common lymphoid progenitor,t cell,t cell
 3d4ef118620c11eb8b61f221ae948d59,common lymphoid progenitor,b cell,b cell
@@ -901,47 +901,47 @@ ff23e5cea2d911eb97dcb29064131379,erythrocyte,t cell,t cell
 36f14deaece811eb8566de30ea854391,common myeloid progenitor,b cell,b cell
 e36fa574a2e411eba445862a4d6f2ed3,common myeloid progenitor,b cell,b cell
 e19942e4002e11ecad8456bdee478bef,common myeloid progenitor,mature NK T cell,nk/t cell
-94fb334803c111ec9efbfae6eca3ca11,common myeloid progenitor,pancreatic A cell,alpha
-4b3567a6f7e511ec9d95e21fd042e627,common myeloid progenitor,b cell,b cell
-829a226c746b11eba241fa7146609c17,common myeloid progenitor,macrophage,macrophage
+94fb334803c111ec9efbfae6eca3ca11,common myeloid progenitor,t cell,t cell
+4b3567a6f7e511ec9d95e21fd042e627,common myeloid progenitor,t cell,t cell
+829a226c746b11eba241fa7146609c17,common myeloid progenitor,t cell,t cell
 baa69634871e11eb94488a0ac828d814,common myeloid progenitor,t cell,t cell
 322bb5cef81e11ecb8d5422c967c70e8,common myeloid progenitor,t cell,t cell
 8d89fb8ce40211ebba695e0417dae271,common myeloid progenitor,t cell,t cell
-949835d0862911eebdc19e04fa809629,common myeloid progenitor,monocyte,monocyte
+949835d0862911eebdc19e04fa809629,common myeloid progenitor,t cell,t cell
 3204a8b2f81e11ecb8d5422c967c70e8,common myeloid progenitor,t cell,t cell
 0640fa12863611eea9a56e13647e2878,common myeloid progenitor,t cell,t cell
 5b72cf2e785b11eb8f737ade911e22f7,common myeloid progenitor,b cell,b cell
 7e4e54bce40511eb8b4326d57b156660,common myeloid progenitor,b cell,b cell
 ef87c8c68d0111eb894022587c8bf21f,common myeloid progenitor,b cell,b cell
-e40f7f6aca0611eb95002269a98e5840,common myeloid progenitor,monocyte,monocyte
-db6e5a5cbfde11eb9e6d96f9d8b57902,common myeloid progenitor,pancreatic A cell,alpha
-675a1d1e01c811ec99d8a29cd1cea438,common myeloid progenitor,pancreatic A cell,alpha
-5149dfc402b711ec85669ed5fd6f2ffe,common myeloid progenitor,pancreatic A cell,alpha
+e40f7f6aca0611eb95002269a98e5840,common myeloid progenitor,b cell,b cell
+db6e5a5cbfde11eb9e6d96f9d8b57902,common myeloid progenitor,t cell,t cell
+675a1d1e01c811ec99d8a29cd1cea438,common myeloid progenitor,t cell,t cell
+5149dfc402b711ec85669ed5fd6f2ffe,common myeloid progenitor,t cell,t cell
 413a1626671511ed9b96de3223020266,common myeloid progenitor,t cell,t cell
 ef76323c8d0111eb894022587c8bf21f,"axl+ dendritic cell, human",monocyte,monocyte
-4435144250ba11ec9ccf362b40e6d4a7,"axl+ dendritic cell, human",monocyte,monocyte
+4435144250ba11ec9ccf362b40e6d4a7,"axl+ dendritic cell, human",b cell,b cell
 baf16ce6862a11ee84fb5eb04f029758,"axl+ dendritic cell, human",monocyte,monocyte
 e0725c747aba11ebad9a8efd66e37e75,"axl+ dendritic cell, human",monocyte,monocyte
 74fc381648b611eabab7c676ab45cfca,"axl+ dendritic cell, human",monocyte,monocyte
-e8709b9c230811eca137ea3e049c58d4,"axl+ dendritic cell, human",pancreatic A cell,alpha
+e8709b9c230811eca137ea3e049c58d4,"axl+ dendritic cell, human",b cell,b cell
 58735da8e6b411ebaf04befb0a01041d,"axl+ dendritic cell, human",monocyte,monocyte
 db961092bfde11eb9e6d96f9d8b57902,"axl+ dendritic cell, human",monocyte,monocyte
 06573c8e770011ebb6f1120b4fce9850,"axl+ dendritic cell, human",monocyte,monocyte
-6cf55d8848b511ea87c666a4322bd84a,"axl+ dendritic cell, human",macrophage,macrophage
-88b4d00c6d6811eb8c84965cd2e07daf,"axl+ dendritic cell, human",macrophage,macrophage
-aaff6398770411eba803caccc32ef9e2,"axl+ dendritic cell, human",monocyte,monocyte
+6cf55d8848b511ea87c666a4322bd84a,"axl+ dendritic cell, human",pancreatic A cell,alpha
+88b4d00c6d6811eb8c84965cd2e07daf,"axl+ dendritic cell, human",pancreatic A cell,alpha
+aaff6398770411eba803caccc32ef9e2,"axl+ dendritic cell, human",pancreatic A cell,alpha
 e131616a76fe11eb8a3a1adcfefed355,"axl+ dendritic cell, human",monocyte,monocyte
-63b5678ee79411ebbe50c203ad329f89,"axl+ dendritic cell, human",macrophage,macrophage
-06464012863611eea9a56e13647e2878,"axl+ dendritic cell, human",monocyte,monocyte
-10f3f486e3ff11eb9f4d12c99271e885,"axl+ dendritic cell, human",macrophage,macrophage
+63b5678ee79411ebbe50c203ad329f89,"axl+ dendritic cell, human",monocyte,monocyte
+06464012863611eea9a56e13647e2878,"axl+ dendritic cell, human",b cell,b cell
+10f3f486e3ff11eb9f4d12c99271e885,"axl+ dendritic cell, human",pancreatic A cell,alpha
 3c27ae7a6f3011eb87df52ffb97efd4c,"axl+ dendritic cell, human",monocyte,monocyte
 202b6ef2aa7d11ed97cc4aa82665cfc4,"axl+ dendritic cell, human",monocyte,monocyte
 1033cb1a01dd11ec98991efbcd4757be,"axl+ dendritic cell, human",monocyte,monocyte
-f0b1f4d050b811ecbd5a96ba759a0a5a,"axl+ dendritic cell, human",b cell,b cell
+f0b1f4d050b811ecbd5a96ba759a0a5a,"axl+ dendritic cell, human",t cell,t cell
 cc13986a7aba11eb9d926ed54ea72841,cd141-positive myeloid dendritic cell,macrophage,macrophage
 a827b1004e0111ec936b1ac433bb3e99,cd141-positive myeloid dendritic cell,macrophage,macrophage
 87682bf03eb911ebbd2bce3634ddd007,cd141-positive myeloid dendritic cell,monocyte,monocyte
-8ee243546f2711eb9ed9ea93581d1c81,cd141-positive myeloid dendritic cell,macrophage,macrophage
+8ee243546f2711eb9ed9ea93581d1c81,cd141-positive myeloid dendritic cell,t cell,t cell
 c18f634e01db11ec82191e5794dae576,cd141-positive myeloid dendritic cell,monocyte,monocyte
 e0663496862c11eeb44f2a0a7ee8bda4,cd141-positive myeloid dendritic cell,monocyte,monocyte
 94b18d82862911eebdc19e04fa809629,cd141-positive myeloid dendritic cell,monocyte,monocyte
@@ -950,15 +950,15 @@ b4c886f803c111ec8f3fb2dbcfd6bcf9,cd141-positive myeloid dendritic cell,t cell,t 
 b85c90bc230f11ec95d35e88f183227e,cd141-positive myeloid dendritic cell,monocyte,monocyte
 e2a0c102f7dc11ecbf4e56eb7b1fcbc2,cd141-positive myeloid dendritic cell,macrophage,macrophage
 17c3a62ef02511eda54b6a0988fcf5ef,cd141-positive myeloid dendritic cell,macrophage,macrophage
-2962ffa4aa6311ed996536bac5d04f15,cd141-positive myeloid dendritic cell,monocyte,monocyte
+2962ffa4aa6311ed996536bac5d04f15,cd141-positive myeloid dendritic cell,pancreatic A cell,alpha
 06a53b6202b711ec88cb72995a34965f,cd141-positive myeloid dendritic cell,monocyte,monocyte
 eae57338785a11eb88c4aeb73ff4c07b,cd141-positive myeloid dendritic cell,macrophage,macrophage
-ea9f65f2608c11edb82ff6b434f2fb76,cd141-positive myeloid dendritic cell,monocyte,monocyte
+ea9f65f2608c11edb82ff6b434f2fb76,cd141-positive myeloid dendritic cell,t cell,t cell
 b46ed8ec03c111ec8f3fb2dbcfd6bcf9,cd141-positive myeloid dendritic cell,t cell,t cell
-03bd063a608211ed8cb1a608efa7ae49,cd141-positive myeloid dendritic cell,macrophage,macrophage
+03bd063a608211ed8cb1a608efa7ae49,cd141-positive myeloid dendritic cell,monocyte,monocyte
 ed5345bca2d211eb8aafd2fff04d1a29,cd141-positive myeloid dendritic cell,pancreatic ductal cell,ductal
-df20189ef7e011eca445621bb9b0c4af,cd141-positive myeloid dendritic cell,macrophage,macrophage
-f0d8c02e50b811ecbd5a96ba759a0a5a,plasma cell,cell,tvină
+df20189ef7e011eca445621bb9b0c4af,cd141-positive myeloid dendritic cell,pancreatic A cell,alpha
+f0d8c02e50b811ecbd5a96ba759a0a5a,plasma cell,t cell,t cell
 db774d60bfde11eb9e6d96f9d8b57902,plasma cell,b cell,b cell
 e2ad3464f7dc11ecbf4e56eb7b1fcbc2,plasma cell,b cell,b cell
 78566c0a862111ee998f1e061ab3328b,plasma cell,b cell,b cell
@@ -966,9 +966,9 @@ e2ad3464f7dc11ecbf4e56eb7b1fcbc2,plasma cell,b cell,b cell
 10f6f12ef7e811eca3ef4a90d865ed45,plasma cell,b cell,b cell
 c574f89caa8711ed9d6f12731be88ed2,plasma cell,b cell,b cell
 47d4f57c315511ee9a247ecfb6ed34be,plasma cell,b cell,b cell
-547533d4495311ea86cade558b2f8879,plasma cell,t cell,t cell
+547533d4495311ea86cade558b2f8879,plasma cell,b cell,b cell
 e05b0c88862c11eeb44f2a0a7ee8bda4,plasma cell,b cell,b cell
-5cad5316e40611ebb6ab32f1f7b8a178,plasma cell,t cell,t cell
+5cad5316e40611ebb6ab32f1f7b8a178,plasma cell,b cell,b cell
 54743c04495311ea86cade558b2f8879,plasma cell,b cell,b cell
 e40fbab6ca0611eb95002269a98e5840,plasma cell,b cell,b cell
 22964eceaa8111edbca7720112d201c9,plasma cell,b cell,b cell
@@ -978,23 +978,23 @@ ed36eb6aa2d211eb8aafd2fff04d1a29,plasma cell,b cell,b cell
 f0b5e73e50b811ecbd5a96ba759a0a5a,plasma cell,b cell,b cell
 f1ed8540746711eb96b76e4cdef221b1,plasma cell,b cell,b cell
 27844616ca0411ebbb136a0d2fbd39b2,plasma cell,b cell,b cell
-36713484e6b211eb82f386f01e0439ac,basophil mast progenitor cell,monocyte,monocyte
+36713484e6b211eb82f386f01e0439ac,basophil mast progenitor cell,t cell,t cell
 0a70c1b2230f11eca42fde90f8d872f1,basophil mast progenitor cell,t cell,t cell
 41e6bae2ca1411eba8e7c23be70524c5,basophil mast progenitor cell,t cell,t cell
-1018028601dd11ec98991efbcd4757be,basophil mast progenitor cell,mature NK T cell,nk/t cell
+1018028601dd11ec98991efbcd4757be,basophil mast progenitor cell,t cell,t cell
 94981db8230f11ecb89eb20ae7ecce12,basophil mast progenitor cell,pancreatic A cell,alpha
-9275aef8e40111eba5a472433277b4b3,basophil mast progenitor cell,monocyte,monocyte
+9275aef8e40111eba5a472433277b4b3,basophil mast progenitor cell,type B pancreatic cell,beta
 e9b1137e230811ec89cc0e1df9dfbf1c,basophil mast progenitor cell,pancreatic A cell,alpha
-4adbf80a495111eaafc966679ef8dfee,basophil mast progenitor cell,monocyte,monocyte
-f7a1fa4650be11eca58a4e8e993d3e95,basophil mast progenitor cell,pancreatic A cell,alpha
+4adbf80a495111eaafc966679ef8dfee,basophil mast progenitor cell,t cell,t cell
+f7a1fa4650be11eca58a4e8e993d3e95,basophil mast progenitor cell,t cell,t cell
 e13cfba676fe11eb8a3a1adcfefed355,basophil mast progenitor cell,t cell,t cell
 95c7aeccc9fc11eb8b6656baa5e4f345,basophil mast progenitor cell,pancreatic A cell,alpha
 b3a8a11e872911eb88ddaa98e7d40cb1,basophil mast progenitor cell,t cell,t cell
-bf4a31f8e6b611eb904c4e74f324a9a5,basophil mast progenitor cell,pancreatic ductal cell,ductal
+bf4a31f8e6b611eb904c4e74f324a9a5,basophil mast progenitor cell,t cell,t cell
 0f20ebf6745a11eb9460023cc5433a03,basophil mast progenitor cell,t cell,t cell
-46cca0d8488011eaa581ba6d6c7b9f21,basophil mast progenitor cell,b cell,b cell
+46cca0d8488011eaa581ba6d6c7b9f21,basophil mast progenitor cell,t cell,t cell
 0a97f322230f11eca42fde90f8d872f1,basophil mast progenitor cell,t cell,t cell
 a50c31be003e11ec836f122ea675d063,basophil mast progenitor cell,monocyte,monocyte
 66daa5304e0211ec853ad229c2defbef,basophil mast progenitor cell,t cell,t cell
-0baa3f544e0711eca047fac6813609fb,basophil mast progenitor cell,pancreatic A cell,alpha
-94a06ade862911eebdc19e04fa809629,basophil mast progenitor cell,t cell,t cell
+0baa3f544e0711eca047fac6813609fb,basophil mast progenitor cell,t cell,t cell
+94a06ade862911eebdc19e04fa809629,basophil mast progenitor cell,pancreatic A cell,alpha

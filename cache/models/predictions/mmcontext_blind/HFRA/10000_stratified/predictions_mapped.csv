@@ -4861,13 +4861,13 @@ Hgw13.CGGACACTCGTTTGCC.1_4,amacrine cell,retinal ganglion cell c outer,retinal g
 Hgw24_rep2.CGTCACTCAAACCTAC.1_13,amacrine cell,retinal ganglion cell a2 outer,retinal ganglion cell a2 outer
 Hgw17.CAGTAACCAGGATTGG.1_8,amacrine cell,retinal ganglion cell d1,retinal ganglion cell d1
 Hgw17.GACGTGCGTAGGACAC.1_8,amacrine cell,crystallin accumulating cell,crystallin accumulating cell
-Hgw20_rep1.TCATTTGCAGCAGTTT.1_11,amacrine cell,medium spiny neuron,rxfp1-positive interface island d1-medium spiny neuron
+Hgw20_rep1.TCATTTGCAGCAGTTT.1_11,amacrine cell,D1-NUDAP medium spiny neuron,rxfp1-positive interface island d1-medium spiny neuron
 ACGCCGAAGGGATCTG-1_16,amacrine cell,crystallin accumulating cell,crystallin accumulating cell
 Hgw20_rep2.GTCTTCGCAAGCCCAC.1_11,amacrine cell,progenitor cell of endocrine pancreas,progenitor cell of endocrine pancreas
 GCAAGACTGAGAGC-1_22,amacrine cell,brain macroglial cell,brain macroglial cell
 Hgw11.CGATTGAAGAGTTGGC.1_1,amacrine cell,neural crest derived adipocyte,neural crest derived adipocyte
 Hgw19_rep1.ACGCAGCGTACCATCA.1_10,amacrine cell,retinal ganglion cell d1,retinal ganglion cell d1
-Hgw19_rep2.AGGGTGATCTTGTCAT.1_10,amacrine cell,medium spiny neuron,rxfp1-positive interface island d1-medium spiny neuron
+Hgw19_rep2.AGGGTGATCTTGTCAT.1_10,amacrine cell,D1-NUDAP medium spiny neuron,rxfp1-positive interface island d1-medium spiny neuron
 Hgw14.AGAGCTTAGTGTACTC.1_5,amacrine cell,caudal ganglionic eminence derived neuron,caudal ganglionic eminence derived neuron
 CCAAGAACAATGCC-1_15,amacrine cell,invaginating midget bipolar cell,invaginating midget bipolar cell
 Hgw20_rep2.CTGATAGTCAAACAAG.1_11,amacrine cell,narrow field retinal amacrine cell,narrow field retinal amacrine cell
@@ -7289,7 +7289,7 @@ ACAGTTCTCTCCAC-1_22,retina horizontal cell,off-bipolar cell,off-bipolar cell
 Hgw15.CGCCAAGCAGTGGGAT.1_6,retina horizontal cell,neuronal-restricted precursor,neuronal-restricted precursor
 Hgw18.CATCAAGTCAGAAATG.1_9,retina horizontal cell,g6 retinal ganglion cell,g6 retinal ganglion cell
 Hgw20_rep1.AGCGTCGGTCACAAGG.1_11,retina horizontal cell,invaginating midget bipolar cell,invaginating midget bipolar cell
-Hgw20_rep1.GTACGTAGTGGTGTAG.1_11,retina horizontal cell,medium spiny neuron,rxfp1-positive interface island d1-medium spiny neuron
+Hgw20_rep1.GTACGTAGTGGTGTAG.1_11,retina horizontal cell,D1-NUDAP medium spiny neuron,rxfp1-positive interface island d1-medium spiny neuron
 Hgw24_rep2.GGAGCAATCATACGGT.1_13,retina horizontal cell,diffuse bipolar 2 cell,diffuse bipolar 2 cell
 GGAAGGACATTCCT-1_15,retina horizontal cell,opc nn_2 oligodendrocyte precursor cell (mmus),opc nn_2 oligodendrocyte precursor cell (mmus)
 Hgw20_rep1.TGAGGGAGTTAGATGA.1_11,retina horizontal cell,nfol nn_2 dbx2 newly formed oligodendrocyte (mmus),nfol nn_2 dbx2 newly formed oligodendrocyte (mmus)
@@ -9198,7 +9198,7 @@ CAATCTACCTTCCG-1_15,retinal ganglion cell,on midget ganglion cell,on midget gang
 CAAGCCCTCTACGA-1_15,retinal ganglion cell,cardiac neuron,cardiac neuron
 Hgw11.CCTTCGAGTTTGGCGC.1_1,retinal ganglion cell,narrow field retinal amacrine cell,narrow field retinal amacrine cell
 Hgw11.ACTATCTGTTGTGGCC.1_1,retinal ganglion cell,neural crest derived neuron,neural crest derived neuron
-Hgw13.CGCTATCAGGTCGGAT.1_4,retinal ganglion cell,medium spiny neuron,rxfp1-positive interface island d1-medium spiny neuron
+Hgw13.CGCTATCAGGTCGGAT.1_4,retinal ganglion cell,D1-NUDAP medium spiny neuron,rxfp1-positive interface island d1-medium spiny neuron
 CTAAGGACTACTCT-1_22,retinal ganglion cell,immature microglial cell,immature microglial cell
 Hgw11.ACGGAGATCAACTCTT.1_1,retinal ganglion cell,nodose ganglion p2x3 neuron,nodose ganglion p2x3 neuron
 AAGCCATGTCCAGA-1_15,retinal ganglion cell,m1 retinal ganglion cell,m1 retinal ganglion cell

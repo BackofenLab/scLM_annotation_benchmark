@@ -1,18 +1,15 @@
 {
   "total_predictions": 999,
   "note": "discovery + resolution; review-filter + coverage gate applied at scoring (evaluate.py)",
-  "non_cl_predictions": 124,
-  "non_cl_ratio": 0.124124,
+  "non_cl_predictions": 126,
+  "non_cl_ratio": 0.126126,
   "non_cl_labels": [
     "alpha",
     "beta",
     "ductal",
-    "independence",
-    "lucr",
-    "nk/t cell",
-    "providing",
-    "sensitive",
-    "t dar",
-    "tvin\u0103"
+    "monreprendre",
+    "nk/ motion",
+    "nk/rough cell",
+    "nk/t cell"
   ]
 }

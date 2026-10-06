@@ -1,24 +1,22 @@
 {
   "total_predictions": 999,
   "note": "discovery + resolution; review-filter + coverage gate applied at scoring (evaluate.py)",
-  "non_cl_predictions": 960,
-  "non_cl_ratio": 0.960961,
+  "non_cl_predictions": 965,
+  "non_cl_ratio": 0.965966,
   "non_cl_labels": [
     "acinar",
+    "acinarough",
     "alpha",
-    "alpha contra",
     "beta",
-    "beta advert",
     "delta",
     "ductal",
     "endothelial",
     "gamma",
-    "k6+ bulge companion layer",
-    "macrophage dc",
+    "gamreprendre",
     "mesenchyme",
+    "motion",
     "nk/t cell",
     "pp",
-    "psc",
-    "publicat"
+    "psc"
   ]
 }
