@@ -91,7 +91,7 @@ def main() -> None:
         p = Path(path)
         wrapper, dataset = p.parts[-4], p.parts[-3]
         model = model_name(wrapper, p.name.replace("_mapped.csv", ""))
-        if model_base(model) in EXCLUDED_BASES:  # not in the paper (coding agents, superseded runs)
+        if model_base(model) in EXCLUDED_BASES:  # not in the paper (superseded runs)
             continue
         frame = pd.read_csv(path)
         if not {"true_labels", "predicted_labels"} <= set(frame.columns):

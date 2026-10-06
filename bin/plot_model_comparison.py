@@ -188,11 +188,6 @@ SCLLM_BASES = {
 # EXCLUDED_BASES.
 CLASSICAL_BASES = {"celltypist", "scsa", "sctype", "ucell",
                    "singler", "singler_main", "singler_fine", "singler_ont"}
-# Agentic "coding agent" blueprints: tool-using LLM-CLI agents (Claude Code / Codex) that
-# annotate via the agentic-blueprint harness, as opposed to the one-shot OpenRouter LLMs.
-# Coding-agent annotators (an LLM agent writes the annotation procedure). Not part of the paper:
-# they are excluded everywhere (EXCLUDED_BASES), never scored into a family.
-AGENT_BASES = {"agentic_bp_claude", "agentic_bp_codex", "claude_opus_4_8_agent"}
 SIMPLE_BASES = {"random_stratified", "random_uniform", "cell_baseline"}
 # Subset of the simple baselines drawn as dashed reference lines in the composite figure.
 REFERENCE_LINE_BASES = {"random_stratified"}
@@ -209,7 +204,7 @@ REFERENCE_LINE_BASES = {"random_stratified"}
 # model is driven through the cell2sentence library's own prompt formatter, whose templates expose
 # only {num_genes}/{organism}/{cell_sentence} and have no slot for a candidate label list, so
 # building one would require forking upstream. See models/c2s_blind/src/predict.py.
-EXCLUDED_BASES = AGENT_BASES | {
+EXCLUDED_BASES = {
     "ucell", "singler_main", "singler_fine", "singler_ont", "c2s",
     # Added 2026-08-28. Present in the prediction cache but in NO aggregate snapshot and not in the
     # manuscript's 11-model general-purpose roster (model_cfg.yml marks it "drop"). Without this
@@ -219,12 +214,11 @@ EXCLUDED_BASES = AGENT_BASES | {
     "llama-3.1-8b-instruct",
 }
 # Ordered (category key, x-axis display label) for the strip panels.
-# Left-to-right: baselines, domain-adapted LLMs, one-shot LLMs, coding agents.
+# Left-to-right: baselines, domain-adapted LLMs, one-shot LLMs.
 COMPOSITE_CATEGORIES = [
     ("classical", "baseline"),
     ("scLLM", "scLLMs"),
     ("LLM", "LLMs"),
-    ("coding_agent", "coding agents"),
 ]
 
 # --------------------------------------------------------------------------- #
@@ -343,8 +337,8 @@ def categorize_model(model: str) -> str:
     """Model-family category used by the composite-score figure.
 
     Returns one of ``"simple"`` (random / cell baselines, drawn as reference lines),
-    ``"classical"`` (CellTypist, SCSA), ``"scLLM"`` (domain-adapted language models),
-    ``"coding_agent"`` (agentic-blueprint Claude/Codex CLI agents), or ``"LLM"``. Anything not
+    ``"classical"`` (CellTypist, SCSA), ``"scLLM"`` (domain-adapted language models), or
+    ``"LLM"``. Anything not
     explicitly matched falls through to ``"LLM"`` so newly added general-purpose chat models are
     picked up automatically.
     """
@@ -353,8 +347,6 @@ def categorize_model(model: str) -> str:
         return "simple"
     if base in CLASSICAL_BASES:
         return "classical"
-    if base in AGENT_BASES or base.startswith("agentic"):
-        return "coding_agent"
     if base in SCLLM_BASES:
         return "scLLM"
     return "LLM"
@@ -969,7 +961,7 @@ def plot_composite_category(df, out_path, caption, dpi, title=None, show_tiers=T
     argument, the composite has to be defended in Methods.
 
     Each category gets one slot on the x axis. Categories that were run in both prediction modes
-    (scLLMs, LLMs, coding agents) are split into adjacent blind and unblind sub-columns, and every
+    (scLLMs, LLMs) are split into adjacent blind and unblind sub-columns, and every
     model that exists in both modes has its two points joined by a thin line, so the per-model
     effect of handing over the candidate label list is readable directly. Blind-only categories --
     the classical baselines, which cannot consume a label list — occupy a single sub-column and
@@ -1154,7 +1146,7 @@ _RANKED_CATEGORY_ORDER = [k for k, _ in COMPOSITE_CATEGORIES] + ["simple"]
 # composite figures read the same; "simple" has no composite counterpart (drawn as reference lines
 # there), so it keeps its own label here.
 _RANKED_CATEGORY_LABELS = {
-    "LLM": "LLMs", "coding_agent": "coding agents", "scLLM": "scLLMs",
+    "LLM": "LLMs", "scLLM": "scLLMs",
     "classical": "baseline", "simple": "simple baseline",
 }
 

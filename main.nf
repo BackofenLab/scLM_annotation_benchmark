@@ -120,12 +120,6 @@ def runModelScript(data_file, model_dir, dataset, cfg_yaml, model, cache_dir, su
         for f in "\${EXPECTED_FILES[@]}"; do
             cp "\${results_dir}/\$f" "\${cache_base}/\$f"
         done
-        # Persist agentic-blueprint provenance alongside predictions when the model
-        # produced it (the edited blueprint + its coverage + the scenario the agent
-        # saw). No-op for models that don't write these files.
-        for extra in blueprint.produced.py coverage.json scenario_config.jsonc; do
-            [ -f "\${results_dir}/\$extra" ] && cp "\${results_dir}/\$extra" "\${cache_base}/\$extra" || true
-        done
     else
         echo "Cell type prediction already exists for ${dataset} x ${model} (subset ${subset_size}, strategy ${strategy})."
         echo "To rerun, delete files in: \${cache_base}/"
