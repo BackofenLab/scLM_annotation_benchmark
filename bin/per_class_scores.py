@@ -9,6 +9,9 @@ The distinction matters for Results R3. A method scoring recall 0 on a rare type
 produced an unrelated label or produced a coarser relative of the right one, and only the graded
 score separates those. Aggregate-level Lin cannot: it is a per-cell mean over the whole run.
 
+It also writes the confusion pairs the rare-type flow figures draw (cells per true and predicted
+label and run), taken from the same prepared labels so the flows match the scores.
+
 WHY THIS IS A SEPARATE SCRIPT. ``Results/`` carries ``true_labels_scored.csv`` for the baselines
 and the scLLMs but for NO general-purpose LLM run, so the graded scores simply do not exist on
 disk for the family the section is about. Rather than re-run the pipeline (whose publishDir would
@@ -38,6 +41,7 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 DEFAULT_OUT = "cache/per_class_scores_1000_stratified.csv"
+DEFAULT_CONFUSION_OUT = "cache/confusion_pairs_1000_stratified.csv"
 DEFAULT_PRED_GLOB = "cache/models/predictions/*/*/1000_stratified/*_mapped.csv"
 
 
@@ -64,6 +68,8 @@ def main() -> None:
     ap.add_argument("--pred-glob", default=DEFAULT_PRED_GLOB)
     ap.add_argument("--cache-dir", default="cache")
     ap.add_argument("--out", default=DEFAULT_OUT)
+    ap.add_argument("--confusion-out", default=DEFAULT_CONFUSION_OUT,
+                    help="cells per (true label, predicted label) and run, for the rare-type flows")
     ap.add_argument("--min-scoring-coverage", type=float, default=0.9,
                     help="matches params.min_scoring_coverage in nextflow.config")
     args = ap.parse_args()
@@ -80,7 +86,7 @@ def main() -> None:
 
     files = sorted(glob.glob(args.pred_glob))
     print(f"{len(files)} mapped prediction files", flush=True)
-    rows, gated = [], 0
+    rows, flows, gated = [], [], 0
     for i, path in enumerate(files, 1):
         p = Path(path)
         wrapper, dataset = p.parts[-4], p.parts[-3]
@@ -103,6 +109,12 @@ def main() -> None:
         pairs, avg = compute_ontology_similarities(frame, "true_labels", "predicted_labels",
                                                    label_index, taxonomy)
         pairs["hit"] = (pairs["true_labels"] == pairs["predicted_labels"]).astype(float)
+        flows.append(pd.DataFrame({
+            "true_label": pairs["true_labels"], "predicted_label": pairs["predicted_labels"],
+            "n_cells": pairs["cell_count"], "model": model, "dataset": dataset,
+            # the true type's share of the evaluation subset
+            "prevalence": pairs.groupby("true_labels")["cell_count"].transform("sum")
+                          / pairs["cell_count"].sum()}))
         for cell_type, group in pairs.groupby("true_labels"):
             weights = group["cell_count"]
             rows.append({
@@ -123,9 +135,10 @@ def main() -> None:
     out = pd.DataFrame(rows)
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     out.to_csv(args.out, index=False)
+    pd.concat(flows, ignore_index=True).to_csv(args.confusion_out, index=False)
     n_types = out.loc[out["cell_type"] != "__OVERALL__", "cell_type"].nunique()
     print(f"\n{len(out)} rows | {out['model'].nunique()} models | {n_types} cell types "
-          f"| {gated} run(s) gated below coverage\n-> {args.out}")
+          f"| {gated} run(s) gated below coverage\n-> {args.out}\n-> {args.confusion_out}")
 
 
 if __name__ == "__main__":

@@ -1224,9 +1224,10 @@ def select_flow_models(df, metric="balanced_accuracy"):
     whose members behave oppositely when unconstrained. The four supplementary figures would stop
     being comparable, and a change of sub-family would read as a change of failure mode.
 
-    Why "ran on every dataset" is part of the rule rather than a caveat. mmContext has the highest
-    scLLM mean (0.408 vs 0.369) but is blacklisted on mouse data, so it never ran on Zeisel;
-    picking it would leave one figure with no scLLM at all.
+    Why "ran on every dataset" is part of the rule rather than a caveat. mmContext is blacklisted on
+    mouse data, so it never ran on Zeisel; picking it would leave one figure with no scLLM at all.
+    Its three-dataset mean (0.408) is not comparable with four-dataset means: on the same three
+    datasets C2S-Scale-2B (0.442) and LangCell (0.445) score higher.
     """
     d = df.copy()
     d["model_base"] = d["model"].map(model_base)
