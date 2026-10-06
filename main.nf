@@ -294,6 +294,29 @@ process subset {
     """
 }
 
+// Models that read human genes only (params.human_gene_models) see no genes in a mouse dataset.
+// They get the subset with its genes mapped to one-to-one human orthologs instead
+// (bin/orthologize.py; the table per organism is set in params.ortholog_tables).
+process orthologize {
+    conda 'envs/download.yml'
+    storeDir "${params.cache_dir}/datasets/subset"
+
+    input:
+    tuple path(data_file), val(dataset), val(subset_size), val(strategy), path(orthologs)
+
+    tag { "${dataset}xsub${subset_size}x${strategy}" }
+
+    output:
+    tuple(path("${dataset}_sub${subset_size}_${strategy}_human_orthologs.h5ad"), val(dataset), val(subset_size), val(strategy))
+
+    script:
+    """
+    set -euo pipefail
+    orthologize.py --input "${data_file}" --orthologs "${orthologs}" \\
+      --output "${dataset}_sub${subset_size}_${strategy}_human_orthologs.h5ad"
+    """
+}
+
 process extract_cell_types {
     container params.container_image
     conda 'envs/cell_types.yml'
@@ -770,17 +793,32 @@ workflow {
         reference_by_dataset = fetch_singler_reference(singler_ref_fetch_input)
     }
 
+    // --- Human-ortholog subsets for the models that read human genes only ---
+    def humanGeneModels = (params.human_gene_models ?: []) as List
+    def orthologTable = { ds ->
+        def table = (params.ortholog_tables ?: [:]).get(normalizeOrganismKey(loadYaml("datasets/${ds}.yml")?.get('organism')))
+        table ? file("${projectDir}/${table}") : null
+    }
+    ortholog_out = Channel.empty()
+    if ((params.models ?: []).any { humanGeneModels.contains(it) }) {
+        ortholog_out = orthologize(subset_out
+            .filter { f, ds, sz, st -> orthologTable(ds) != null }
+            .map { f, ds, sz, st -> tuple(f, ds, sz, st, orthologTable(ds)) })
+    }
+
     // --- Combine subsets with models ---
 
     model_sizes.set { model_size_pairs }
 
-    subset_out
+    subset_out.map { f, ds, sz, st -> tuple(f, ds, sz, st, false) }
+        .mix(ortholog_out.map { f, ds, sz, st -> tuple(f, ds, sz, st, true) })
         .combine(prepared_models)
         .combine(model_size_pairs)
-        .filter { data_file, dataset, data_subset_size, data_strategy, model_name, model_dir, model_name2, model_subset_size ->
-            model_name2 == model_name && data_subset_size == model_subset_size
+        .filter { data_file, dataset, data_subset_size, data_strategy, orthologs, model_name, model_dir, model_name2, model_subset_size ->
+            model_name2 == model_name && data_subset_size == model_subset_size &&
+                orthologs == (humanGeneModels.contains(model_name) && orthologTable(dataset) != null)
         }
-        .map { data_file, dataset, data_subset_size, data_strategy, model_name, model_dir, model_name2, model_subset_size ->
+        .map { data_file, dataset, data_subset_size, data_strategy, orthologs, model_name, model_dir, model_name2, model_subset_size ->
             def expected = expectedPredictionFiles(model_name).join(' ')
             tuple(data_file, model_dir, dataset, file("datasets/${dataset}.yml"), model_name,
                   file(params.cache_dir), data_subset_size, data_strategy, expected)

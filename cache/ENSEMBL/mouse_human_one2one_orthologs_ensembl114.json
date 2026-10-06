@@ -1,0 +1,20 @@
+{
+  "description": "One-to-one mouse-to-human gene orthologs from Ensembl, used to give human-only single-cell language models (CellWhisperer, LangCell, mmContext, InstructCell) human gene identifiers for mouse datasets (bin/orthologize.py).",
+  "source": "Ensembl BioMart, archive https://may2025.archive.ensembl.org/biomart/martservice",
+  "ensembl_release": "Ensembl Genes 114 (registry displayName)",
+  "dataset": "mmusculus_gene_ensembl",
+  "attributes": [
+    "ensembl_gene_id",
+    "external_gene_name",
+    "hsapiens_homolog_ensembl_gene",
+    "hsapiens_homolog_associated_gene_name",
+    "hsapiens_homolog_orthology_type"
+  ],
+  "filter_applied_after_download": "hsapiens_homolog_orthology_type == 'ortholog_one2one'",
+  "biomart_query_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE Query><Query virtualSchemaName=\"default\" formatter=\"TSV\" header=\"1\" uniqueRows=\"1\" datasetConfigVersion=\"0.6\"><Dataset name=\"mmusculus_gene_ensembl\" interface=\"default\"><Attribute name=\"ensembl_gene_id\"/><Attribute name=\"external_gene_name\"/><Attribute name=\"hsapiens_homolog_ensembl_gene\"/><Attribute name=\"hsapiens_homolog_associated_gene_name\"/><Attribute name=\"hsapiens_homolog_orthology_type\"/></Dataset></Query>",
+  "retrieved": "2026-10-06",
+  "rows_downloaded": 83509,
+  "pairs_one2one": 17178,
+  "rule": "each mouse gene and each human gene occurs once; one-to-many and many-to-many orthologs are excluded",
+  "sha256_tsv": "8560197b16eb9b89517741d36ffa593ceaf3d3ee8c1da73dd2cc215c7af0d218"
+}

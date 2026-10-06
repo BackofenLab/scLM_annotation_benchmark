@@ -202,6 +202,14 @@ def setup_dataframe(dataframe, annotation_key):
     dataframe.obs["celltype"] = celltypes
     dataframe.var["feature_id"] = ensembl_ids
     dataframe.var["ensembl_id"] = ensembl_ids
+    # Stop if too few human genes remain, e.g. mouse data that were not mapped to human
+    # orthologs (bin/orthologize.py). The model would otherwise see no genes.
+    min_human = int(os.environ.get("SCLLM_MIN_HUMAN_GENES", "5000"))
+    n_human = int(pd.Series(ensembl_ids).astype(str).str.startswith("ENSG").sum())
+    print(f"Human Ensembl gene IDs in the data: {n_human}")
+    if n_human < min_human:
+        raise SystemExit(f"Only {n_human} human Ensembl gene IDs (minimum {min_human}); "
+                         "map mouse genes to human orthologs first with bin/orthologize.py")
     return dataframe
 
 

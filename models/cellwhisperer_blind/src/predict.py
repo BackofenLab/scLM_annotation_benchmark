@@ -11,6 +11,7 @@ Outputs:
   - CSV file with cell_id, true_labels, and predicted_labels columns
 """
 import sys, torch, anndata as ad, pathlib
+import os
 import pandas as pd
 import numpy as np
 import argparse
@@ -65,6 +66,16 @@ if "counts" in adata.layers:
     adata.X = adata.layers["counts"]
 else:
     raise ValueError("Counts layer not found in adata.layers")
+
+# Stop if the data carry too few human genes for this human-only model, e.g. mouse data that
+# were not mapped to human orthologs (bin/orthologize.py). It would otherwise see no genes and
+# return one label for every cell.
+MIN_HUMAN_GENES = int(os.environ.get("SCLLM_MIN_HUMAN_GENES", "5000"))
+n_human = int(pd.Series(adata.var.get("ensembl_id", adata.var_names)).astype(str).str.startswith("ENSG").sum())
+print(f"Human Ensembl gene IDs in the data: {n_human}")
+if n_human < MIN_HUMAN_GENES:
+    raise SystemExit(f"Only {n_human} human Ensembl gene IDs (minimum {MIN_HUMAN_GENES}); "
+                     "map mouse genes to human orthologs first with bin/orthologize.py")
 
 # Check if annotation key exists
 if ANNOTATION_KEY not in adata.obs.columns:

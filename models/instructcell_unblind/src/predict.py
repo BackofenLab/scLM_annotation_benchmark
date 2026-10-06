@@ -11,6 +11,7 @@ import numpy as np
 import scanpy as sc
 import anndata
 import yaml
+import os
 import sys
 import logging
 from pathlib import Path
@@ -267,6 +268,15 @@ def main():
     logger.info("Unifying gene features with vocabulary...")
     # Set adata.var_names. gene_names is available after preprocessing.
     adata.var_names = adata.var["gene_names"]
+    # Stop if too few genes match the vocabulary, e.g. mouse data that were not mapped to
+    # human orthologs (bin/orthologize.py).
+    matched = int(adata.var_names.isin(gene_vocab).sum())
+    min_genes = int(os.environ.get("SCLLM_MIN_HUMAN_GENES", "5000"))
+    logger.info(f"{matched} of {len(gene_vocab)} vocabulary genes found in the data")
+    if matched < min_genes:
+        logger.error(f"Only {matched} genes match InstructCell's vocabulary (minimum {min_genes}); "
+                     "map mouse genes to human orthologs first with bin/orthologize.py")
+        sys.exit(1)
     # Try with uppercase first (vocabulary is typically uppercase)
     try:
         # This function looks for gene names in adata.var_names

@@ -12,6 +12,7 @@ Outputs:
 import argparse
 import pathlib
 import sys
+import os
 import pandas as pd
 import numpy as np
 import time
@@ -48,6 +49,16 @@ EMB_KEY = f"X_{INITIAL_EMB}"
 print("=== Loading data ===")
 adata = ad.read_h5ad(adata_path)
 print(f"Loaded {adata.n_obs} cells and {adata.n_vars} genes")
+
+# Stop if the data carry too few human genes for this human-only model, e.g. mouse data that
+# were not mapped to human orthologs (bin/orthologize.py). It would otherwise see no genes and
+# return one label for every cell.
+MIN_HUMAN_GENES = int(os.environ.get("SCLLM_MIN_HUMAN_GENES", "5000"))
+n_human = int(pd.Series(adata.var.get("ensembl_id", adata.var_names)).astype(str).str.startswith("ENSG").sum())
+print(f"Human Ensembl gene IDs in the data: {n_human}")
+if n_human < MIN_HUMAN_GENES:
+    raise SystemExit(f"Only {n_human} human Ensembl gene IDs (minimum {MIN_HUMAN_GENES}); "
+                     "map mouse genes to human orthologs first with bin/orthologize.py")
 
 # Remove trailing .1 ... (dot and numbers) in adata.var.index
 #adata.var.index = adata.var.index.str.replace(r'\.\d+$', '', regex=True)
