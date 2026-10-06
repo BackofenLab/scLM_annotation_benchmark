@@ -136,8 +136,9 @@ def write_tex(frame, out_path, csv_dir_name="tables", subset_size=1000):
         n_methods = sub["model"].nunique()
         # A model that cannot process this dataset's organism never ran on it: say so.
         absent = sorted(_display(base) for base, ds in unsupported_pairs() if ds == dataset)
-        absent_note = (f"{' and '.join(absent)} {'is' if len(absent) == 1 else 'are'} not listed: "
-                       f"it handles human data only. " if absent else "")
+        absent_note = (f"{' and '.join(absent)} {'is' if len(absent) == 1 else 'are'} not listed "
+                       f"because the pipeline does not run "
+                       f"{'it' if len(absent) == 1 else 'them'} on this organism. " if absent else "")
         # NOTE: no "\\\\" inside a longtable caption -- the caption is itself a table row,
         # so a line break there ends the row and the table collapses with "Extra }".
         caption = (

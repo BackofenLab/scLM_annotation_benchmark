@@ -378,8 +378,9 @@ def model_tier(model: str):
 # common reference. Each variant is rendered into its own sub-folder under the output directory.
 # --------------------------------------------------------------------------- #
 # Models the pipeline cannot run on a dataset at all: params.model_blacklist_by_organism in
-# nextflow.config, applied to each dataset's organism in datasets/<name>.yml (mmContext is
-# human-only, so it never ran on the mouse Zeisel data). Per-dataset views show what ran.
+# nextflow.config, applied to each dataset's organism in datasets/<name>.yml. It is empty at
+# present: the human-gene models read mouse data through one-to-one human orthologs
+# (params.human_gene_models). Per-dataset views show what ran.
 # Summaries ACROSS datasets or models count such a model as scoring 0 on that dataset, so it is
 # not rewarded for skipping one, and mark its name with UNSUPPORTED_MARK.
 # --------------------------------------------------------------------------- #
@@ -1958,6 +1959,13 @@ def load_confusion_pairs(path=DEFAULT_CONFUSION_CSV):
     return d
 
 
+# Right-hand flow labels start at a fixed fraction of the axes width and are not clipped, so a long
+# Cell Ontology name (LangCell's unconstrained retrieval returns names of up to 69 characters) runs
+# into the neighbouring panel. Longer names are shortened with an ellipsis, as the row labels of
+# Figure 3C are; 48 characters still clear the next panel at the supplementary figures' width.
+FLOW_LABEL_MAX = 48
+
+
 def _sankey(ax, flows, left_order, right_order, colors, gap_frac=0.02, label_size=7,
             show_left_labels=True, label_pad=0.05, right_margin=1.9):
     """Minimal two-column alluvial: ``flows`` is ``[(src, tgt, value)]``.
@@ -2031,7 +2039,8 @@ def _sankey(ax, flows, left_order, right_order, colors, gap_frac=0.02, label_siz
         ax.add_patch(mpatches.Rectangle((1.005, a), 0.03, b - a, zorder=4,
                                         facecolor="0.35" if hit else "0.78",
                                         edgecolor="0.35" if hit else "0.62", linewidth=0.4))
-        ax.text(1.0 + label_pad, (a + b) / 2, key, ha="left", va="center", fontsize=label_size,
+        text = key if len(key) <= FLOW_LABEL_MAX else key[:FLOW_LABEL_MAX - 1].rstrip() + "…"
+        ax.text(1.0 + label_pad, (a + b) / 2, text, ha="left", va="center", fontsize=label_size,
                 fontweight="bold" if hit else "normal", color="0.1" if hit else "0.35")
     # The left margin exists only to hold the source labels, so a panel that does not draw them
     # (every panel but the first in a row) reclaims it instead of padding itself with white space.

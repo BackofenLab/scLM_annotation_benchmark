@@ -1097,7 +1097,14 @@ def figure_3(df, out_path, dpi=600, rare=None, per_class=None):
         drawn = False
         if conf is not None and len(conf):
             csub = conf[conf["dataset"].astype(str) == d_dataset]
-            prev_s = csub.drop_duplicates(["true_label"]).set_index("true_label")["prevalence"]
+            # Full-dataset prevalence, as in the supplementary flow figures, so the rare types are
+            # chosen, ordered and colored the same way in both. The confusion table's own
+            # `prevalence` is the subset share, which ties most rare types at the 20-cell floor.
+            prev_full = (rare[rare["dataset"] == d_dataset].drop_duplicates(["k"])
+                         .set_index("k")["orig_prevalence"])
+            lut = {str(k).strip().lower(): v for k, v in prev_full.items()}
+            prev_s = pd.Series({t: lut[t.strip().lower()] for t in csub["true_label"].unique()
+                                if t.strip().lower() in lut})
             n_types = RARE_FLOW_N_TYPES.get(d_dataset, 2)
             rare_t = list(prev_s[prev_s <= 0.03].nsmallest(n_types).index) or \
                 list(prev_s.nsmallest(n_types).index)
@@ -1219,15 +1226,16 @@ def select_flow_models(df, metric="balanced_accuracy"):
     Two rows come back — constrained on top, unconstrained beneath, same model per column — with
     ``None`` where the baseline would sit in row 2, since it carries a single score.
 
-    Why not the best model per dataset. It changes the scLLM in all four figures (langcell,
-    mmContext, C2S-Scale-2B, InstructCell) and in doing so crosses the generative/retrieval split,
-    whose members behave oppositely when unconstrained. The four supplementary figures would stop
-    being comparable, and a change of sub-family would read as a change of failure mode.
+    Why not the best model per dataset. It changes the scLLM across the four figures (at present
+    LangCell, mmContext, mmContext and InstructCell) and in doing so crosses the
+    generative/retrieval split, whose members behave oppositely when unconstrained. The four
+    supplementary figures would stop being comparable, and a change of sub-family would read as a
+    change of failure mode.
 
-    Why "ran on every dataset" is part of the rule rather than a caveat. mmContext is blacklisted on
-    mouse data, so it never ran on Zeisel; picking it would leave one figure with no scLLM at all.
-    Its three-dataset mean (0.408) is not comparable with four-dataset means: on the same three
-    datasets C2S-Scale-2B (0.442) and LangCell (0.445) score higher.
+    Why "ran on every dataset" is part of the rule rather than a caveat. A model the pipeline does
+    not run on one organism (params.model_blacklist_by_organism) would leave that dataset's figure
+    without its family, and a mean over fewer datasets is not comparable with four-dataset means.
+    The blacklist is empty at present, so the clause excludes nothing.
     """
     d = df.copy()
     d["model_base"] = d["model"].map(model_base)
