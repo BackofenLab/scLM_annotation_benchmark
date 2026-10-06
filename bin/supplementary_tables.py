@@ -151,7 +151,7 @@ def write_tex(frame, out_path, csv_dir_name="tables", subset_size=1000):
             f"raw predicted label is not a Cell Ontology term. "
             f"\\emph{{Pred.\\ labels}} is how many distinct cell type labels the method produced "
             f"for this dataset, counted before ontology mapping. \\emph{{Agree.}} is the "
-            f"agreement score of \\citet{{hou2024gpt4}}: 1 for the true type, 0.5 for its "
+            f"agreement score (\\hyperref[s:methods]{{Methods}}): 1 for the true type, 0.5 for its "
             f"direct parent or child in the Cell Ontology, 0 otherwise. Rada and Lin are Cell "
             f"Ontology graph similarities. Macro F1 averages over the true cell types. "
             f"A dash marks a metric the coverage gate left unscored. The complete metric set for "
