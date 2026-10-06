@@ -23,7 +23,7 @@ from scipy import sparse
 # The repo is cloned to models/instructcell_unblind/src/InstructCell
 sys.path.insert(0, str(Path(__file__).parent / "InstructCell"))
 from mmllm.module import InstructCell
-from utils import unify_gene_features
+from utils import set_global_random_seed, unify_gene_features
 
 logger = logging.getLogger(__name__)
 
@@ -215,6 +215,8 @@ def main():
                        help="Batch size for processing cells (default: 1)")
     parser.add_argument("--max_new_tokens", type=int, default=256,
                        help="Maximum new tokens to generate (default: 256)")
+    parser.add_argument("--seed", type=int, default=1234,
+                       help="Random seed for sampling the answer (default: 1234)")
     
     args = parser.parse_args()
     
@@ -223,6 +225,10 @@ def main():
         level=logging.INFO,
         format='%(asctime)s - %(levelname)s - %(message)s'
     )
+    
+    # InstructCell samples its answer; fix the seed so that a run can be reproduced.
+    set_global_random_seed(args.seed)
+    logger.info(f"Random seed: {args.seed}")
     
     # Determine device
     if torch.cuda.is_available():
@@ -253,6 +259,18 @@ def main():
     # Get unique cell types for unblind mode
     cell_type_list = get_unique_cell_types(adata, annotation_key)
     logger.info(f"Including {len(cell_type_list)} cell types in prompt")
+    
+    # InstructCell takes raw counts and normalizes them itself: the released config sets
+    # normalize_total and log_variational, and its own preprocessing keeps integer counts.
+    # X holds log-normalized values here, so pass the counts layer.
+    if "counts" in adata.layers:
+        adata.X = adata.layers["counts"]
+        logger.info("Using raw counts from layers['counts']")
+    else:
+        values = adata.X.data if sparse.issparse(adata.X) else np.asarray(adata.X)
+        if not np.allclose(values, np.round(values)):
+            logger.error("InstructCell needs raw counts: no 'counts' layer, and X is not integer")
+            sys.exit(1)
     
     # Load gene vocabulary
     # Path relative to this script: InstructCell/exp_log/gene_vocab.npy (cloned by prepare.sh)
