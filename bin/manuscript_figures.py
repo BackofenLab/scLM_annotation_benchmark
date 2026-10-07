@@ -170,7 +170,7 @@ def _roster_handles(df, wrap=30, with_tier_names=False, linestyle="none"):
 
     ``with_tier_names`` prefixes each entry with the tier's name, which lets ONE legend block do
     the work of both a tier key and a roster. Without it the two would key the same seven symbols
-    twice over — the reason Figure 2 merges them.
+    twice over — the reason Supplementary Figure S3 merges them.
 
     Tiers with no scored model are skipped, so the roster describes this figure rather than the
     configuration file.
@@ -208,7 +208,7 @@ def _panel_letters(fig, items, pad_x=0.012, pad_y=0.008):
       panel carries — above the title where there is one, just above the frame where there is not.
     * **Horizontal** aligns every panel that starts in the same figure column to a single x, taken
       from the leftmost tight bbox in that column. Anchoring each letter to its own bbox would
-      indent the letters of panels without y-axis decorations (the schematic placeholder) relative
+      indent the letters of panels without y-axis decorations relative
       to panels with a y-label, which reads as a mistake.
 
     Draws the canvas first, since tight bounding boxes need a renderer and a final layout.
@@ -226,22 +226,6 @@ def _panel_letters(fig, items, pad_x=0.012, pad_y=0.008):
     for letter, tight, column in measured:
         fig.text(max(column_x[column] - pad_x, 0.004), min(tight.y1 + pad_y, 0.997), letter,
                  fontsize=FS_PANEL_LETTER, fontweight="bold", va="bottom", ha="left")
-
-
-def _placeholder(ax, text):
-    """A reserved, empty panel: dashed outline, centered note, no data.
-
-    Kept as a real axes rather than white space so the space is held at exactly the right size
-    and the schematic can be dropped in later without re-tuning the layout.
-    """
-    ax.set_xticks([])
-    ax.set_yticks([])
-    for side, spine in ax.spines.items():
-        spine.set_visible(True)
-        spine.set_linestyle((0, (4, 4)))
-        spine.set_linewidth(0.8)
-        spine.set_color("0.75")
-    ax.text(0.5, 0.5, text, ha="center", va="center", fontsize=FS_LABEL, color="0.55")
 
 
 def load_aggregate(path, subset_size=1000):
@@ -266,35 +250,25 @@ def _save(fig, out_path, dpi):
     return out_path
 
 
-def figure_1(df, out_path, dpi=600, schematic_note=None, metric=None):
-    """Figure 1 — the protocol and the landscape it produces.
+def figure_1(df, out_path, dpi=600, metric=None):
+    """Figure 2 — the landscape the protocol produces.
 
-    (A) reserved for the pipeline and benchmark-setup schematic, drawn outside this script.
-    (B) composite score by model family, unconstrained vs constrained, one line per model.
-
-    Deliberately just those two. This is the Problem Solving Protocol move: what was run, and what
-    came out, in one display item. The metric-behavior analysis that used to sit here as panels C
-    and D is Figure 2, so that each Results section cites its own figure instead of sending the
-    reader back to a figure they met two sections earlier.
+    Score by model family, unconstrained vs constrained, one line per model. Figure 1 is the
+    pipeline and benchmark overview, drawn outside this script
+    (scLLMs_benchmark_paper/bioRxiv_template/figures/model_overview_figure.*); it took the place
+    of the panel this figure used to reserve for it, so this figure carries the results alone.
     """
-    note = schematic_note or "A  pipeline and benchmark overview\n(schematic placeholder)"
     df = with_unsupported_as_zero(df, model_cols=("model", "mode"))  # means over datasets
     with plt.rc_context(_rc()):
-        fig = plt.figure(figsize=(12.2, 11.2))
-        # Panel A takes well over a third of the page: the schematic has to carry the pipeline,
-        # the model roster and the two regimes, and anything smaller cannot.
-        gs = fig.add_gridspec(2, 2, height_ratios=[6.2, 4.0], width_ratios=[1.0, 0.34],
-                              hspace=0.30, wspace=0.04)
-
-        ax_a = fig.add_subplot(gs[0, :])
-        _placeholder(ax_a, note)
-        ax_b = fig.add_subplot(gs[1, 0])
-        ax_leg = fig.add_subplot(gs[1, 1])
+        fig = plt.figure(figsize=(12.2, 4.6))
+        gs = fig.add_gridspec(1, 2, width_ratios=[1.0, 0.34], wspace=0.04)
+        ax_b = fig.add_subplot(gs[0, 0])
+        ax_leg = fig.add_subplot(gs[0, 1])
         ax_leg.axis("off")
 
         handles = plot_composite_category(df, None, "", dpi, ax=ax_b, metric=metric)
         if not handles:
-            raise SystemExit(f"Figure 1B: {metric or 'composite'} missing from the aggregate.")
+            raise SystemExit(f"Figure 2: {metric or 'composite'} missing from the aggregate.")
         _harmonize(ax_b, text_size=FS_GROUP)
         _relabel_regimes(ax_b)
 
@@ -303,8 +277,6 @@ def figure_1(df, out_path, dpi=600, schematic_note=None, metric=None):
             h.set_label(_to_prose_regime(h.get_label() or ""))
         ax_leg.legend(handles=handles, loc="center left", frameon=False, fontsize=FS_LEGEND,
                       labelspacing=0.32, handletextpad=0.6, borderaxespad=0.0)
-
-        _panel_letters(fig, [(ax_a, "A"), (ax_b, "B")])
         return _save(fig, out_path, dpi)
 
 
@@ -342,7 +314,7 @@ def _display(base):
 
 
 def _tier_marker(model):
-    """Marker for a model's method tier, matching Figure 1B's key."""
+    """Marker for a model's method tier, matching Figure 2's key."""
     for key, _label, marker, _size in CATEGORY_TIERS.get(categorize_model(model), []):
         if key == model_tier(model):
             return marker
@@ -350,7 +322,7 @@ def _tier_marker(model):
 
 
 def figure_s3_harmonization(df, out_path, dpi=600, per_class=None):
-    """Figure 2 — what ontology harmonization contributes, by method family.
+    """Supplementary Figure S3 — what ontology harmonization contributes, by method family.
 
     One panel per R2 paragraph, unconstrained setting throughout.
     (A) fraction of cells whose RAW label is not a Cell Ontology term, per method.
@@ -372,7 +344,7 @@ def figure_s3_harmonization(df, out_path, dpi=600, per_class=None):
     missing = [c for c in need if c not in df.columns]
     if missing:
         raise SystemExit(
-            f"Figure 2 needs {', '.join(missing)}, which this aggregate does not carry. "
+            f"Supplementary Figure S3 needs {', '.join(missing)}, which this aggregate does not carry. "
             "Re-score with --use_text_encoder true, re-run bin/aggregate.py and re-snapshot.")
 
     d = with_unsupported_as_zero(df, model_cols=("model", "mode"))  # means over datasets
@@ -479,7 +451,7 @@ def figure_s3_harmonization(df, out_path, dpi=600, per_class=None):
                                               d["text_emb_norm_balanced_mapped"].max()])) + 0.04)
 
         # A dagger on the name, not a third marker shape in B: the marker slot there already
-        # encodes method tier, and overloading it would break the key shared with Figure 1B.
+        # encodes method tier, and overloading it would break the key shared with Figure 2.
         labels = [_display(b) + unsupported_mark(b) + (" $\\dagger$" if c > 0 else "")
                   for b, c in zip(agg["base"], agg["clipped"])]
         ax_a.set_yticks(y)
@@ -631,7 +603,7 @@ def load_per_class_scores(path=DEFAULT_PER_CLASS_CSV):
 # bin. The band edges are a presentational choice and the per-class values behind them are in the
 # table this reads, so nothing depends on where exactly the cuts fall.
 RARE_BANDS = ([0, 0.001, 0.01, 0.05, 1.0], ["<0.1%", "0.1-1%", "1-5%", ">5%"])
-# Colour by family, line style by setting -- the same two encodings Figures 1 and 2 use.
+# Colour by family, line style by setting -- the same two encodings Figure 2 and Supplementary Figure S3 use.
 RARE_BLOCKS = [
     ("constrained LLM", "LLM", "-"),
     ("unconstrained LLM", "LLM", "--"),
@@ -694,7 +666,7 @@ def load_rare_outcomes(path=DEFAULT_RARE_CSV):
 
 def _rare_dotplot(ax, rows, rare, per_class, blocks, s_min=22.0, s_span=170.0,
                   label_fs=None, cmap_name="viridis"):
-    """Draw the per-cell-type dot grid used by Figure 3C and its full-set supplementary twin.
+    """Draw the per-cell-type dot grid used by Figure 4C and its full-set supplementary twin.
 
     ``rows`` is ``[("__header__", label, None) | (dataset, cell_type, prevalence)]`` in draw order.
     Marker area is per-class recall, color is per-class Lin similarity, and a ringed marker with a
@@ -755,7 +727,7 @@ def _rare_dotplot(ax, rows, rare, per_class, blocks, s_min=22.0, s_span=170.0,
 def figure_s7_rare_full(df, out_path, dpi=600, rare=None, per_class=None):
     """Supplementary -- the full rare-type set, and the recall-to-Lin gap resolved per dataset.
 
-    Two things Figure 3 cannot carry. (A) shows ALL cell types below 1% prevalence rather than the
+    Two things Figure 4 cannot carry. (A) shows ALL cell types below 1% prevalence rather than the
     three per dataset the main panel draws, so the exemplar selection can be checked rather than
     taken on trust. (B) backs the main text's statement that the ordering of the recall-to-Lin gap
     holds on the pooled cell types and NOT on every dataset separately -- without it that caveat
@@ -1269,7 +1241,7 @@ def select_flow_models(df, metric="balanced_accuracy"):
 # floor, human_pancreas 4; asking for 5 everywhere would silently pad with common types.
 RARE_FLOW_N_TYPES = {"HFRA": 2, "human_pancreas": 4, "HIHA": 5, "Zeisel": 5}
 # Order the per-dataset flow figures appear in the supplement, and therefore their S-numbers.
-# Alphabetical, matching the dataset order on Figure 2C so the two are read the same way.
+# Alphabetical, matching the dataset order on Supplementary Figure S3C so the two are read the same way.
 RARE_FLOW_ORDER = ["HFRA", "HIHA", "Zeisel", "human_pancreas"]
 
 
@@ -1305,23 +1277,23 @@ def figure_rare_flows(df, out_path, dpi=600, dataset="HIHA", models=None, n_type
     return Path(out_path)
 
 
-def figure_1_balanced_accuracy(df, out_path, dpi=600, schematic_note=None):
-    """Figure 1 with raw balanced accuracy on the B axis instead of the composite.
+def figure_1_balanced_accuracy(df, out_path, dpi=600):
+    """Figure 2 on raw balanced accuracy instead of the composite; the version in the paper.
 
     Identical layout, so the two can be compared directly while the y-axis decision is open.
     Balanced accuracy needs no defense in Methods; the composite does, since it is our own
     construction. Only one of the two goes into the manuscript.
     """
-    return figure_1(df, out_path, dpi, schematic_note, metric="balanced_accuracy")
+    return figure_1(df, out_path, dpi, metric="balanced_accuracy")
 
 
 # Keyed by the suffix used in the output filename, so a variant is a first-class figure rather
-# than a flag: `figure_1.pdf`, `figure_1_balanced_accuracy.pdf`, `figure_s3_harmonization.pdf`.
+# than a flag: `figure_2.pdf`, `figure_2_composite.pdf`, `figure_s3_harmonization.pdf`.
 def figure_ranked_balanced_accuracy(df, out_path, dpi=600):
     """Supplementary for R1 — every method ranked by balanced accuracy, both regimes.
 
-    Figure 1B shows the families and their spread but does not name the models or order them, and
-    it is drawn on the composite. This gives the per-model ranking on the primary metric instead,
+    Figure 2 shows the families and their spread but does not name the models or order them.
+    This gives the per-model ranking on the primary metric instead,
     which is the view a reader wants when checking a specific model.
 
     Chance is marked as a dashed red line rather than as bars, which the composite version cannot
@@ -1489,7 +1461,7 @@ def _rare_flow_builder(dataset):
 
 
 # --------------------------------------------------------------------------- #
-# Figure 3 — the context ablation (Results R3).
+# Figure 3 — the context ablation (Results R2).
 #
 # Soft dependency, like the model dates and the per-class recall table: the study lives in
 # ../context_ablation and has to be RUN before this can draw anything. Absent input is reported as
@@ -1845,7 +1817,7 @@ def _cost_panel(ax, frame, cat_color, bench=None):
     ax.set_xlim(left=ax.get_xlim()[0] * 0.45, right=ax.get_xlim()[1] * 2.2)
     ax.grid(linestyle=":", alpha=0.5)
     sns.despine(ax=ax)
-    # Collision-aware placement, the same helper Figure 1 uses. Hand-placed offsets put three
+    # Collision-aware placement, the same helper Figure 2 uses. Hand-placed offsets put three
     # labels on top of the axis and each other, because the points are far apart in x and close
     # in y -- exactly the case a fixed offset cannot handle.
     _place_point_labels(ax, labels, obstacles, FS_POINT)
@@ -1887,7 +1859,7 @@ def _variant_slope(ax, frame, cat_color):
 
 
 def figure_context_per_dataset(df, out_path, dpi=600, ablation=None):
-    """Supplementary for R3 — Figure 3A resolved per dataset, with the repeats shown.
+    """Supplementary for R2 — Figure 3A resolved per dataset, with the repeats shown.
 
     Figure 3A averages over the four datasets because twenty unlabelled traces in one axes cannot
     be attributed to a dataset. That average is the right main-text summary and the wrong place to
@@ -2129,14 +2101,15 @@ def figure_context_supporting(df, out_path, dpi=600, ablation=None):
 
 # Every key IS the output filename (out = figure_{key}.{fmt}) and every filename matches the
 # number LaTeX assigns, so the chain function -> file -> manuscript number holds end to end.
-# RENUMBERED 2026-08-28 with the cut to three Results sections: the harmonization figure left the
-# main set for Supplementary S3, the context ablation became Figure 2 and the rare types Figure 3,
-# and every supplementary item below the inserted S3 shifted up by one.
+# RENUMBERED 2026-10-07: the model overview became Figure 1 (drawn outside this script; its PDF is
+# figures/figure_1.pdf), so the landscape is Figure 2, the context ablation Figure 3 and the rare
+# types Figure 4. The function names keep their earlier numbers. (2026-08-28: the harmonization
+# figure left the main set for Supplementary S3 with the cut to three Results sections.)
 FIGURES = {
-    "1": figure_1,
-    "1_balanced_accuracy": figure_1_balanced_accuracy,
-    "2": figure_2,                       # prompt-context ablation      -> Figure 2
-    "3": figure_3,                       # rare cell types              -> Figure 3
+    "2": figure_1_balanced_accuracy,     # landscape, balanced accuracy -> Figure 2
+    "2_composite": figure_1,             # landscape on the composite score, not in the paper
+    "3": figure_2,                       # prompt-context ablation      -> Figure 3
+    "4": figure_3,                       # rare cell types              -> Figure 4
     # Supplementary, numbered by order of first mention in the main text (BiB Rule 6).
     # s1, s2 serve R1; s3 serves R1.4; s4, s5, s6 serve R2; the flow figures serve R3.
     "s1_ranked_balanced_accuracy": figure_ranked_balanced_accuracy,

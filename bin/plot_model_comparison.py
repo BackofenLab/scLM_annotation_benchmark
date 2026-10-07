@@ -1772,7 +1772,7 @@ def _tier_series(regimes):
     Family pooling hides real structure in the prevalence panel: the embedding scLLMs are the
     second-strongest group on rare types when constrained and their curve is flat in prevalence,
     both of which vanish when they are averaged with the generative scLLMs. Tiers reuse the marker
-    vocabulary already established in Figure 1B, so no new legend grammar is needed.
+    vocabulary already established in Figure 2, so no new legend grammar is needed.
     """
     out = []
     for key, _lbl in COMPOSITE_CATEGORIES:
@@ -1962,7 +1962,7 @@ def load_confusion_pairs(path=DEFAULT_CONFUSION_CSV):
 # Right-hand flow labels start at a fixed fraction of the axes width and are not clipped, so a long
 # Cell Ontology name (LangCell's unconstrained retrieval returns names of up to 69 characters) runs
 # into the neighbouring panel. Longer names are shortened with an ellipsis, as the row labels of
-# Figure 3C are; 48 characters still clear the next panel at the supplementary figures' width.
+# Figure 4C are; 48 characters still clear the next panel at the supplementary figures' width.
 FLOW_LABEL_MAX = 48
 
 
@@ -2106,7 +2106,7 @@ def plot_rare_type_flows(conf, out_path, dpi, dataset, models, n_types=5, max_ta
                          prevalence_max=0.03, title=None, prevalence_map=None, name_fn=None):
     """Supplementary: for the rarest cell types, WHERE do the cells actually go?
 
-    Panel D of Figure 2 says how often rare types are recovered; it cannot say what they are
+    Panel B of Figure 4 says how often rare types are recovered; it cannot say what they are
     called instead, which is the difference between a near miss inside the right lineage and an
     unrelated call. One alluvial per model: rare true types on the left, predicted labels on the
     right, ribbon width proportional to cells. Ribbons that land on the correct label are opaque

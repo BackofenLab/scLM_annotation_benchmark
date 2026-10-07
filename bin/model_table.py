@@ -37,7 +37,7 @@ RAGGED = "\\raggedright\\arraybackslash"
 COLUMNS = f"@{{}}l>{{{RAGGED}}}p{{3.1cm}}>{{{RAGGED}}}p{{1.75cm}}>{{{RAGGED}}}p{{3.85cm}}ll@{{}}"
 CAPTION = (
     "Annotation methods compared in this benchmark. Subcategories follow the key of "
-    "Figure~\\ref{fig:landscape}B. "
+    "Figure~\\ref{fig:overview}B. "
     "Parameters count the learned weights of the checkpoint used here, with tied weights counted "
     "once: TE, text encoder; TD, text decoder (C2S-Scale is decoder-only; InstructCell's encoder "
     "and decoder share their word embeddings, counted with the TE); EE, expression encoder (for "
