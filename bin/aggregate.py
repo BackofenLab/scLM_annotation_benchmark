@@ -19,7 +19,7 @@ from util.text_embedding_similarity import TEXT_EMB_KEYS  # noqa: E402
 # Values read from the top level of a result's "true_labels" block.
 SCALAR_KEYS = (
     "balanced_accuracy", "accuracy", "agreement_score", "lin_avg_similarity",
-    "rada_avg_similarity", "share_broader", "share_finer",
+    "rada_avg_similarity",
     # Scoring coverage (direct CL term or reviewed=True), label-space diagnostics, subset size.
     "reviewed_fraction", "non_cl_ratio", "n_non_cl_labels", "n_unique_pred_raw",
     "n_unique_pred_mapped", "subset_size",

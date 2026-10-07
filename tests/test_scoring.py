@@ -11,6 +11,7 @@ import tempfile
 from pathlib import Path
 from types import SimpleNamespace
 
+import networkx as nx
 import numpy as np
 import pandas as pd
 import pronto
@@ -20,8 +21,8 @@ from evaluate import UNMAPPED, ids_as_names, label_metrics, prepare_for_scoring 
 import plot_model_comparison  # noqa: E402
 from plot_model_comparison import unsupported_pairs, with_unsupported_as_zero  # noqa: E402
 from util.cell_ontology_similarity import (  # noqa: E402
-    CL_FILE, CellTaxonomy, build_label_index, build_synonym_index, compute_ontology_similarities,
-    map_string_to_term)
+    BROAD_TERMS_BELOW, CL_FILE, CellTaxonomy, build_label_index, build_synonym_index,
+    compute_ontology_similarities, map_string_to_term)
 from util.text_embedding_similarity import (  # noqa: E402
     compute_text_embedding_similarities, reference_baseline)
 
@@ -31,8 +32,9 @@ def seco_ic(n_below, n_terms):
 
 
 # C has two parents, so a path count would put 9 terms below root instead of 7.
-TOY = CellTaxonomy([("root", "A"), ("root", "B"), ("A", "C"), ("B", "C"), ("A", "F"),
-                    ("C", "D"), ("C", "E")], root="root")
+TOY_EDGES = [("root", "A"), ("root", "B"), ("A", "C"), ("B", "C"), ("A", "F"), ("C", "D"),
+             ("C", "E")]
+TOY = CellTaxonomy(TOY_EDGES, root="root")
 TOY_IC = seco_ic({"root": 7, "A": 5, "B": 4, "C": 3, "D": 1, "E": 1, "F": 1}, 7)
 
 # X and Y share R (depth 2, 4 terms below) and S (depth 1, 3 terms below). The deepest common
@@ -71,14 +73,19 @@ def test_unresolved_prediction_scores_zero():
     assert math.isclose(means["lin_avg_similarity"], (1 + 0 + 1 + TOY.lin("E", "F")) / 4)
 
 
-def test_agreement_score():
-    assert [TOY.relation("C", p) for p in ("C", "A", "D", "root")] == [
-        "exact", "broader", "finer", "other"]  # root is two steps above C
-    index = {name.lower(): SimpleNamespace(id=name) for name in "CDEF"}
-    df = pd.DataFrame({"true": ["D", "D", "E", "E"], "pred": ["D", "C", "F", "nonsense"]})
-    _, means = compute_ontology_similarities(df, "true", "pred", index, TOY)
-    assert math.isclose(means["agreement_score"], ((1 + 0.5) / 2 + 0) / 2)  # mean over types
-    assert means["share_broader"] == 0.25 and means["share_finer"] == 0.0
+def test_answer_types_and_agreement_score():
+    assert TOY.lineage("D", "A") == "coarser"  # 5 terms at or below A, far from the default cut
+    toy = CellTaxonomy(TOY_EDGES, root="root", broad_terms_below=4)  # now A is broad, B is not
+    assert [toy.lineage("D", p) for p in ("D", "C", "B", "A", "E", "F", "root", None, "Z")] == [
+        "exact", "coarser", "coarser", "broad", "other", "other", "none", "none", "none"]
+    assert toy.lineage("C", "D") == "finer"
+    index = {name.lower(): SimpleNamespace(id=name) for name in ("A", "B", "D", "E", "root")}
+    df = pd.DataFrame({"true": ["D"] * 4 + ["E"] * 2,
+                       "pred": ["D", "B", "A", "root", "E", "nonsense"]})
+    _, means = compute_ontology_similarities(df, "true", "pred", index, toy)
+    # D: exact 1, B two steps up 0.5, broad A 0, root 0; E: exact 1, unresolved 0
+    assert math.isclose(means["agreement_score"], ((1 + 0.5) / 4 + 1 / 2) / 2)  # mean over types
+    assert means["n_unique_pred_mapped"] == 4  # D, B, A and E, not the root or the unresolved one
 
 
 def test_text_baseline_is_mean_cosine_of_distinct_names():
@@ -162,6 +169,23 @@ def test_label_index():
         "vascular leptomeningeal cell"
     assert resolve("T cell of appendix") == "T cell of appendix"
     assert resolve("CD16-negative, CD56-bright natural killer cell, human").endswith(", human")
+
+
+def test_broad_cut_on_the_cell_ontology():
+    ont = pinned_ontology()
+    if ont is None:
+        return
+    index, taxonomy = build_label_index(ont), CellTaxonomy.from_ontology(ont)
+    term = lambda name: map_string_to_term(name, index).id  # noqa: E731
+    # the counts quoted where BROAD_TERMS_BELOW is set
+    counts = {"neuron": 829, "epithelial cell": 713, "leukocyte": 573, "lymphocyte": 348,
+              "myeloid cell": 260, "T cell": 172}
+    assert {name: taxonomy.n_below[term(name)] for name in counts} == counts
+    assert BROAD_TERMS_BELOW == 250
+    assert taxonomy.lineage(term("glutamatergic neuron"), term("neuron")) == "broad"
+    naive_cd4 = term("naive thymus-derived CD4-positive, alpha-beta T cell")
+    assert taxonomy.lineage(naive_cd4, term("T cell")) == "coarser"
+    assert nx.shortest_path_length(taxonomy.graph, term("T cell"), naive_cd4) == 3  # is_a steps
 
 
 def test_ontology_id_is_read_as_its_name():

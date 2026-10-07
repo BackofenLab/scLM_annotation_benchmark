@@ -13,7 +13,7 @@ import pronto
 
 from util.plots import UMAPCellPlotter  # Replace with correct import if needed
 from util.cell_ontology_similarity import (
-    SIMILARITY_KEYS, CellTaxonomy, build_label_index, compute_ontology_similarities,
+    ONTOLOGY_KEYS, CellTaxonomy, build_label_index, compute_ontology_similarities,
     download_cl_ontology, map_string_to_term,
 )
 from util.label_normalization import EMPTY_PREDICTION_LABEL
@@ -35,9 +35,10 @@ CL_ID = re.compile(r"cl:\d{7}", re.IGNORECASE)
 
 
 def _nan_metrics():
-    """Metric dict with all core scores NaN — written when a file is below the scoring-coverage floor
-    so the aggregated table carries no number computed on too little human-verified data."""
-    return {k: np.nan for k in ("balanced_accuracy", "accuracy", *SIMILARITY_KEYS)}
+    """Metric dict with every score and ontology summary NaN — written when a file is below the
+    scoring-coverage floor so the aggregated table carries no number computed on too little
+    human-verified data."""
+    return {k: np.nan for k in ("balanced_accuracy", "accuracy", *ONTOLOGY_KEYS)}
 
 
 def _canonicalize_to_cl(series, label_index, review_map):
@@ -372,11 +373,11 @@ def main(args):
         # Label-diversity diagnostics, computed on the FULL file so they describe the model's
         # complete output:
         #   n_unique_pred_raw    = distinct RAW model outputs (before ontology mapping) -> the model's vocabulary
-        #   n_unique_pred_mapped = distinct labels AFTER ontology mapping -> effective CL granularity used
         #   n_non_cl_labels      = distinct RAW labels that are not themselves CL terms
+        # The count after the curated mapping, the distinct cell types named (n_unique_pred_mapped),
+        # comes with the ontology summaries of a scored run.
         raw_all = df[raw_col].astype(str)
         n_unique_pred_raw = int(raw_all.nunique())
-        n_unique_pred_mapped = int(df[pred_col].astype(str).nunique())
         is_cl, trusted_mask = trusted_answers(raw_all, label_index, reviewed_labels)
         non_cl_ratio = float((~is_cl).mean()) if n_total else 0.0  # cells whose RAW label is not a CL term
         n_non_cl_labels = int(raw_all[~is_cl].nunique())
@@ -385,7 +386,7 @@ def main(args):
         file_results["coverage_stats"] = {
             "reviewed_fraction": round(coverage, 6), "n_trusted": n_trusted, "n_total": n_total,
             "non_cl_ratio": round(non_cl_ratio, 6), "n_non_cl_labels": n_non_cl_labels,
-            "n_unique_pred_raw": n_unique_pred_raw, "n_unique_pred_mapped": n_unique_pred_mapped,
+            "n_unique_pred_raw": n_unique_pred_raw,
             "min_scoring_coverage": args.min_scoring_coverage,
         }
         gated = coverage < args.min_scoring_coverage
@@ -429,7 +430,6 @@ def main(args):
             rounded_results["non_cl_ratio"] = round(non_cl_ratio, 6)
             rounded_results["n_non_cl_labels"] = n_non_cl_labels
             rounded_results["n_unique_pred_raw"] = n_unique_pred_raw
-            rounded_results["n_unique_pred_mapped"] = n_unique_pred_mapped
             rounded_results["subset_size"] = args.subset_size
             file_results[true_col] = file_results.get(true_col, {})
             file_results[true_col].update(rounded_results)

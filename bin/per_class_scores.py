@@ -15,9 +15,8 @@ each cell was labelled correctly (``--cells-out``), which the paired bootstrap o
 ``bin/bootstrap_contrasts.py`` resamples. For Figure 2,
 each pair also counts the cells whose answer needed no curated mapping (``n_direct``): a Cell
 Ontology term, or one of the dataset's own reference labels, as written. It places the prediction
-relative to the true type at any distance (``lineage``: exact, coarser, finer, other, or none for
-no usable answer), with the number of ontology terms at or below the predicted one
-(``pred_terms_below``).
+relative to the true type at any distance (``lineage``, from ``CellTaxonomy.lineage``: exact,
+coarser, broad, finer, other, or none for no usable answer).
 
 WHY THIS IS A SEPARATE SCRIPT. ``Results/`` carries ``true_labels_scored.csv`` for the baselines
 and the scLLMs but for NO general-purpose LLM run, so the graded scores simply do not exist on
@@ -88,7 +87,7 @@ def main() -> None:
     from evaluate import (load_ontology_context, load_review_status, prepare_for_scoring,
                           trusted_answers)
     from plot_model_comparison import EXCLUDED_BASES, model_base
-    from util.cell_ontology_similarity import (CL_ROOT, _normalize, compute_ontology_similarities,
+    from util.cell_ontology_similarity import (_normalize, compute_ontology_similarities,
                                                download_cl_ontology)
 
     label_index, taxonomy = load_ontology_context(download_cl_ontology(cache_dir))
@@ -139,11 +138,7 @@ def main() -> None:
                           / pairs["cell_count"].sum(),
             "n_direct": [int(direct[key]) for key in
                          zip(pairs["true_labels"], pairs["predicted_labels"])],
-            # An unresolved answer, or the root "cell" that nonsense answers map to, is no answer.
-            "lineage": [None if pd.isna(t) else "none" if pd.isna(p) or p == CL_ROOT
-                        else taxonomy.lineage(t, p)
-                        for t, p in zip(pairs["true_term_id"], pairs["pred_term_id"])],
-            "pred_terms_below": pairs["pred_term_id"].map(taxonomy.n_below)}))
+            "lineage": pairs["lineage"]}))
         for cell_type, group in pairs.groupby("true_labels"):
             weights = group["cell_count"]
             rows.append({

@@ -1164,11 +1164,9 @@ def figure_rare_flows(df, out_path, dpi=600, dataset="HIHA", models=None, n_type
 # on the curated mapping (Figure 1D), H where the LLMs' answers sit in the ontology relative to the
 # true type (Figure 1E). G and H read the confusion pairs of bin/per_class_scores.py.
 # --------------------------------------------------------------------------- #
-# A coarser answer counts as broad when more than this many ontology terms sit at or below it:
-# neuron (829), epithelial cell (713), leukocyte (573), lymphocyte (348), myeloid cell (260), but
-# not T cell (172). The cut treats the two lineage-level immune classes alike.
-BROAD_TERMS_BELOW = 250
-# Panel H's answer types in stacking order: key, legend text, colour.
+# Panel H's answer types in stacking order: key, legend text, colour. They are those of
+# CellTaxonomy.lineage (bin/util/cell_ontology_similarity.py), which sets the cut between a
+# specific and a broad coarser type.
 LINEAGE_KEY = [
     ("exact", "exact type", "#1b7837"),
     ("coarser", "coarser, specific\n(e.g. T cell)", "#7fbf7b"),
@@ -1294,7 +1292,7 @@ def _benchmark_pairs(df, pairs=None, chance=False):
     """The confusion pairs of the runs in ``df``, with the columns G and H need; those of the
     chance models only with ``chance``."""
     pairs = load_confusion_pairs() if pairs is None else pairs
-    if pairs.empty or not {"n_direct", "lineage", "pred_terms_below"} <= set(pairs.columns):
+    if pairs.empty or not {"n_direct", "lineage"} <= set(pairs.columns):
         raise SystemExit("Figure 2G/H need the confusion pairs with n_direct and lineage: "
                          "run bin/per_class_scores.py.")
     runs = df["model"] if chance else df.loc[df["model"].map(categorize_model) != "simple", "model"]
@@ -1329,9 +1327,7 @@ def _needs_mapping(pairs):
 
 def _answer_shares(pairs):
     """Class-balanced share of each answer type of LINEAGE_KEY per run and dataset."""
-    kind = pairs["lineage"].mask((pairs["lineage"] == "coarser")
-                                 & (pairs["pred_terms_below"] > BROAD_TERMS_BELOW), "broad")
-    return _class_balanced(pairs, {k: pairs["n_cells"].where(kind == k, 0)
+    return _class_balanced(pairs, {k: pairs["n_cells"].where(pairs["lineage"] == k, 0)
                                    for k, *_ in LINEAGE_KEY})
 
 

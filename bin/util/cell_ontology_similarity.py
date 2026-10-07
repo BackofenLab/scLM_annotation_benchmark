@@ -9,9 +9,13 @@ is_a hierarchy below 'cell' (CL:0000000):
   IC(t) = 1 - log(n_below(t)) / log(N), with n_below(t) the number of terms at or below t (each
   counted once) and N the number of terms in the hierarchy. IC('cell') is 0 and a leaf has IC 1.
 - Rada et al. (1989): 1 / (1 + d), with d the shortest undirected is_a path between the terms.
-- Agreement score of Hou & Ji (2024, GPTCelltype): full match 1, partial match 0.5, mismatch 0.
-  A partial match is the true type's direct parent (one step broader) or direct child (one step
-  finer); allowing any ancestor would give half credit for answering "cell".
+- Agreement score, adapted from Hou & Ji (2024, GPTCelltype): full match 1, partial match 0.5,
+  mismatch 0, averaged over cell types. Hou & Ji judge a partial match by hand-assigned broad cell
+  types; here it is a coarser type (an ancestor, at any distance) or a finer one (a descendant).
+  A broad ancestor (BROAD_TERMS_BELOW) such as "neuron" earns nothing, and neither does "cell" or
+  a sibling type, which is a wrong label rather than an imprecise one. Counting is_a steps instead
+  would follow how unevenly the ontology is subdivided: "neuron" is the direct parent of a
+  glutamatergic neuron, while "T cell" lies three steps above a naive CD4-positive T cell.
 
 A prediction that does not resolve to a term of the hierarchy scores 0 on all three, because it is
 a wrong answer, not a missing one.
@@ -40,9 +44,14 @@ CL_FILE = f"cl-basic_{CL_RELEASE}.obo"
 CL_ROOT = "CL:0000000"  # 'cell'
 # CL tags species-specific versions of a general term, e.g. "microglial cell (Mmus)".
 SPECIES_TAG = re.compile(r" \((?:Mmus|Homo sapiens)\)$|, (?:human|mouse)$")
-AGREEMENT = {"exact": 1.0, "broader": 0.5, "finer": 0.5, "other": 0.0}
-SIMILARITY_KEYS = ("lin_avg_similarity", "rada_avg_similarity", "agreement_score",
-                   "share_broader", "share_finer")
+# A coarser answer is broad when more than this many terms sit at or below it: neuron (829),
+# epithelial cell (713), leukocyte (573), lymphocyte (348), myeloid cell (260), but not T cell
+# (172). The cut treats the two lineage-level immune classes alike.
+BROAD_TERMS_BELOW = 250
+# Agreement score of each answer type of ``CellTaxonomy.lineage``.
+AGREEMENT = {"exact": 1.0, "coarser": 0.5, "finer": 0.5, "broad": 0.0, "other": 0.0, "none": 0.0}
+ONTOLOGY_KEYS = ("lin_avg_similarity", "rada_avg_similarity", "agreement_score",
+                 "n_unique_pred_mapped")
 
 
 def download_cl_ontology(cache_dir: Path, cl_url: str = CL_URL, filename: str = CL_FILE,
@@ -126,10 +135,12 @@ class CellTaxonomy:
     """The is_a hierarchy below ``root``, with the Seco intrinsic IC of every term."""
 
     def __init__(self, edges: Iterable[tuple[str, str]], root: str = CL_ROOT,
-                 names: dict[str, str] | None = None):
+                 names: dict[str, str] | None = None, broad_terms_below: int = BROAD_TERMS_BELOW):
         """``edges`` are (parent, child) is_a pairs; terms outside ``root``'s subtree are dropped.
-        ``names`` maps term ids to names, kept for the terms in the hierarchy."""
+        ``names`` maps term ids to names, kept for the terms in the hierarchy. An ancestor with more
+        than ``broad_terms_below`` terms at or below it is a broad answer (``lineage``)."""
         graph = nx.DiGraph(edges)
+        self.root, self.broad_terms_below = root, broad_terms_below
         self.graph = graph.subgraph(nx.descendants(graph, root) | {root}).copy()
         self.names = {t: names[t] for t in self.graph if t in (names or {})}
         self._undirected = self.graph.to_undirected(as_view=True)
@@ -158,23 +169,21 @@ class CellTaxonomy:
     def path_length(self, a: str, b: str) -> int:
         return nx.shortest_path_length(self._undirected, a, b)
 
-    def relation(self, true: str, pred: str) -> str:
-        """``pred`` relative to ``true``: exact, one is_a step broader or finer, or other."""
-        if pred == true:
-            return "exact"
-        if self.graph.has_edge(pred, true):
-            return "broader"
-        if self.graph.has_edge(true, pred):
-            return "finer"
-        return "other"
+    def is_cell_type(self, term) -> bool:
+        """Whether a resolved answer names a cell type, i.e. a term of the hierarchy below the root.
+        Unresolved answers are None, and the reviewed mapping sends nonsense answers to the root."""
+        return term in self.graph and term != self.root
 
-    def lineage(self, true: str, pred: str) -> str:
-        """``pred`` relative to ``true`` at any distance: exact, coarser (an ancestor), finer (a
-        descendant) or other. ``relation`` looks only one is_a step away."""
+    def lineage(self, true: str, pred: str | None) -> str:
+        """Where ``pred`` falls relative to ``true``, at any distance: exact; coarser (an
+        ancestor), or broad if more than ``broad_terms_below`` terms sit at or below it; finer (a
+        descendant); other; or none if ``pred`` names no cell type."""
+        if not self.is_cell_type(pred):
+            return "none"
         if pred == true:
             return "exact"
         if pred in self._ancestors[true]:
-            return "coarser"
+            return "broad" if self.n_below[pred] > self.broad_terms_below else "coarser"
         if true in self._ancestors[pred]:
             return "finer"
         return "other"
@@ -189,13 +198,14 @@ def compute_ontology_similarities(
 ) -> tuple[pd.DataFrame, dict[str, float]]:
     """Score every distinct (true, predicted) label pair once, then summarize over the cells.
 
-    Per pair: Lin and Rada similarity, the is_a path length, and the prediction's relation to the
-    true type with its agreement score. An unresolved prediction is a mismatch. An unresolved true
-    label cannot be scored, so its cells stay out of the summaries (``evaluate.py`` reports it).
+    Per pair: Lin and Rada similarity, the is_a path length, and where the prediction falls
+    relative to the true type (``CellTaxonomy.lineage``) with its agreement score. An unresolved
+    prediction is a mismatch. An unresolved true label cannot be scored, so its cells stay out of
+    the summaries (``evaluate.py`` reports it).
 
-    Summaries (``SIMILARITY_KEYS``): Lin and Rada are means over cells. ``agreement_score`` is a
-    mean over true cell types, as GPTCelltype averages over cell types. ``share_broader`` and
-    ``share_finer`` are the fractions of cells answered one step too coarse or too fine.
+    Summaries (``ONTOLOGY_KEYS``): Lin and Rada are means over cells. ``agreement_score`` is a mean
+    over true cell types, as GPTCelltype averages over cell types. ``n_unique_pred_mapped`` counts
+    the distinct cell types the predictions name.
     """
     pairs = df.groupby([true_col, pred_col]).size().reset_index(name="cell_count")
     term_ids = {}
@@ -209,27 +219,26 @@ def compute_ontology_similarities(
         if pd.isna(t):
             return np.nan, np.nan, np.nan, None
         if pd.isna(p):
-            return 0.0, 0.0, np.nan, "other"
+            return 0.0, 0.0, np.nan, taxonomy.lineage(t, None)
         d = taxonomy.path_length(t, p)
-        return taxonomy.lin(t, p), 1.0 / (1.0 + d), float(d), taxonomy.relation(t, p)
+        return taxonomy.lin(t, p), 1.0 / (1.0 + d), float(d), taxonomy.lineage(t, p)
 
     pairs = pairs.join(pd.DataFrame(
         [score(t, p) for t, p in zip(pairs["true_term_id"], pairs["pred_term_id"])],
-        columns=["lin_similarity", "rada_similarity", "distance_edges", "relation"],
+        columns=["lin_similarity", "rada_similarity", "distance_edges", "lineage"],
         index=pairs.index))
-    pairs["agreement"] = pairs["relation"].map(AGREEMENT)
+    pairs["agreement"] = pairs["lineage"].map(AGREEMENT)
 
     scored = pairs[pairs["true_term_id"].notna()]
     if scored.empty:
-        return pairs, dict.fromkeys(SIMILARITY_KEYS, np.nan)
+        return pairs, dict.fromkeys(ONTOLOGY_KEYS, np.nan)
     cells = scored["cell_count"]
     by_type = ((scored["agreement"] * cells).groupby(scored[true_col]).sum()
                / cells.groupby(scored[true_col]).sum())
-    share = cells.groupby(scored["relation"]).sum() / cells.sum()
+    named = pairs["pred_term_id"][pairs["pred_term_id"].map(taxonomy.is_cell_type)]
     return pairs, {
         "lin_avg_similarity": float(np.average(scored["lin_similarity"], weights=cells)),
         "rada_avg_similarity": float(np.average(scored["rada_similarity"], weights=cells)),
         "agreement_score": float(by_type.mean()),
-        "share_broader": float(share.get("broader", 0.0)),
-        "share_finer": float(share.get("finer", 0.0)),
+        "n_unique_pred_mapped": int(named.nunique()),
     }

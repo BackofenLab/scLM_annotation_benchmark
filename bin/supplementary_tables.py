@@ -30,6 +30,7 @@ from manuscript_figures import (  # noqa: E402
 from plot_model_comparison import (  # noqa: E402
     DEFAULT_CONFUSION_CSV, EXCLUDED_BASES, categorize_model, derive_mode, load_confusion_pairs,
     model_base, unsupported_pairs)
+from util.cell_ontology_similarity import BROAD_TERMS_BELOW  # noqa: E402
 
 # The one chance model the paper describes: Figure 2's dashed line. The pipeline's other chance
 # floors (uniform random, always "cell") are described nowhere, so they are left out.
@@ -193,15 +194,19 @@ def _caption(dataset, sub, sizes, first):
         "bold. Balanced accuracy (\\emph{Bal.\\ acc.}) and macro F1 average the recall and the F1 "
         "score over cell types, accuracy (\\emph{Acc.}) is the share of correctly labeled cells, "
         "and weighted F1 (\\emph{Wtd.\\ F1}) weights the F1 score by the number of cells of each "
-        "type. The agreement score (\\emph{Agree.}) is 1 for the true type, 0.5 for its direct "
-        "parent or child in the Cell Ontology and 0 otherwise, and Rada and Lin give partial "
-        "credit to related types in the ontology. Text similarity scores how close the answer is "
-        "in meaning to the Cell Ontology name of the true type, after the curated mapping "
-        "(\\emph{Mapped}) or as written (\\emph{Unmapped}). \\emph{Needed} is the share of cells "
+        "type. The agreement score (\\emph{Agree.}) is 1 for the true type, 0.5 for a coarser "
+        "or finer type in the Cell Ontology, at any distance, and 0 otherwise, including for a "
+        f"coarser type that covers more than {BROAD_TERMS_BELOW} cell types; Rada and Lin give "
+        "partial credit to related types in the ontology. Text similarity scores how close the "
+        "answer is in meaning to the Cell Ontology name of the true type, after the curated "
+        "mapping (\\emph{Mapped}) or as written (\\emph{Unmapped}). \\emph{Needed} is the share "
+        "of cells "
         "whose answer needs the curated mapping, being neither a Cell Ontology term nor one of "
         "the dataset's own labels as written, and \\emph{Bal.\\ acc.\\ without} is the balanced "
         "accuracy when only the answers that need no curated mapping count as correct "
-        "(Figure~\\ref{fig:benchmark}G). Distinct labels counts the different answers. "
+        "(Figure~\\ref{fig:benchmark}G). \\emph{Distinct labels} counts the different answers "
+        "as written (\\emph{Unmapped}) and the cell types they name after the curated mapping "
+        "(\\emph{Mapped}). "
         f"{coverage_note}")
 
 
