@@ -1,0 +1,74 @@
+dataset,field,value,source,evidence,checked
+HIHA,name,HIHA,datasets/HIHA.yml,Display name used in the paper,2026-10-07
+HIHA,citation,gong2025multiomic,https://cellxgene-census-public-us-west-2.s3.us-west-2.amazonaws.com/cell-census/2025-11-08/h5ads/e522d2cd-7927-4e59-a4ed-064009569279.h5ad,"Publication in uns/citation of the CELLxGENE file, or the paper that released the file",2026-10-07
+HIHA,studies,gong2025multiomic,https://cellxgene-census-public-us-west-2.s3.us-west-2.amazonaws.com/cell-census/2025-11-08/h5ads/e522d2cd-7927-4e59-a4ed-064009569279.h5ad,Studies the cells come from (obs doi / tech columns; Luecken et al. 2022 for the pancreas),2026-10-07
+HIHA,organism,human,datasets/HIHA.yml,obs organism of the subset files,2026-10-07
+HIHA,tissue,peripheral blood,datasets/HIHA.yml,datasets/*.yml and obs tissue columns,2026-10-07
+HIHA,donors,108,https://cellxgene-census-public-us-west-2.s3.us-west-2.amazonaws.com/cell-census/2025-11-08/h5ads/e522d2cd-7927-4e59-a4ed-064009569279.h5ad,Distinct obs donor_id in the source file,2026-10-07
+HIHA,stage,11 to 65 years,https://cellxgene-census-public-us-west-2.s3.us-west-2.amazonaws.com/cell-census/2025-11-08/h5ads/e522d2cd-7927-4e59-a4ed-064009569279.h5ad,obs development_stage of the source file,2026-10-07
+HIHA,technology,10x 3' v3,https://cellxgene-census-public-us-west-2.s3.us-west-2.amazonaws.com/cell-census/2025-11-08/h5ads/e522d2cd-7927-4e59-a4ed-064009569279.h5ad,obs assay (CELLxGENE) or tech of the files after quality control; Zeisel et al. 2018 STAR Methods (10X Genomics Chromium),2026-10-07
+HIHA,labels,Cell Ontology,datasets/HIHA.yml,datasets/*.yml: CELLxGENE cell_type labels are Cell Ontology terms; the others are the authors' labels,2026-10-07
+HIHA,cells_downloaded,1821725,https://cellxgene-census-public-us-west-2.s3.us-west-2.amazonaws.com/cell-census/2025-11-08/h5ads/e522d2cd-7927-4e59-a4ed-064009569279.h5ad,Read from the source h5ad over HTTP range requests (X shape),2026-10-07
+HIHA,genes_downloaded,32357,https://cellxgene-census-public-us-west-2.s3.us-west-2.amazonaws.com/cell-census/2025-11-08/h5ads/e522d2cd-7927-4e59-a4ed-064009569279.h5ad,Read from the source h5ad over HTTP range requests (X shape),2026-10-07
+HIHA,cell_types_labelled,38,https://cellxgene-census-public-us-west-2.s3.us-west-2.amazonaws.com/cell-census/2025-11-08/h5ads/e522d2cd-7927-4e59-a4ed-064009569279.h5ad,Read from the source h5ad over HTTP range requests (distinct obs cell_type),2026-10-07
+HIHA,cells_after_qc,1742354,cache/subset_qc/HIHA/sub1000_stratified/cell_type_distribution_stratified.csv,"Sum of original_count (bin/subset.py, after bin/preprocess.py)",2026-10-07
+HIHA,cell_types_after_mapping,38,cache/subset_qc/HIHA/sub1000_stratified/cell_type_distribution_stratified.csv,Rows: distinct labels after quality control and the ontology mapping of preprocessing,2026-10-07
+HIHA,cell_types_scored,38,cache/subset_qc/HIHA/sub1000_stratified/cell_type_distribution_stratified.csv,Rows not dropped by the 20-cell floor,2026-10-07
+HIHA,test_cells_1000,999,cache/subset_qc/HIHA/sub1000_stratified/cell_type_distribution_stratified.csv,Sum of subset_count,2026-10-07
+HIHA,test_cells_10000,9999,cache/subset_qc/HIHA/sub10000_stratified/cell_type_distribution_stratified.csv,Sum of subset_count,2026-10-07
+HIHA,genes_after_qc,25234,cache/datasets/subset/HIHA_sub1000_stratified.h5ad,n_vars; the subsets keep every gene that passed quality control,2026-10-07
+HFRA,name,HFRA,datasets/HFRA.yml,Display name used in the paper,2026-10-07
+HFRA,citation,kriukov2025retina,https://cellxgene-census-public-us-west-2.s3.us-west-2.amazonaws.com/cell-census/2025-11-08/h5ads/aecc2743-4ff2-4b55-ac8c-a1ff76fc4bb4.h5ad,"Publication in uns/citation of the CELLxGENE file, or the paper that released the file",2026-10-07
+HFRA,studies,lu2020retina; sridhar2020retina,https://cellxgene-census-public-us-west-2.s3.us-west-2.amazonaws.com/cell-census/2025-11-08/h5ads/aecc2743-4ff2-4b55-ac8c-a1ff76fc4bb4.h5ad,Studies the cells come from (obs doi / tech columns; Luecken et al. 2022 for the pancreas),2026-10-07
+HFRA,organism,human,datasets/HFRA.yml,obs organism of the subset files,2026-10-07
+HFRA,tissue,fetal retina,datasets/HFRA.yml,datasets/*.yml and obs tissue columns,2026-10-07
+HFRA,donors,22,https://cellxgene-census-public-us-west-2.s3.us-west-2.amazonaws.com/cell-census/2025-11-08/h5ads/aecc2743-4ff2-4b55-ac8c-a1ff76fc4bb4.h5ad,Distinct obs donor_id in the source file,2026-10-07
+HFRA,stage,9 to 27 weeks post-fertilization,https://cellxgene-census-public-us-west-2.s3.us-west-2.amazonaws.com/cell-census/2025-11-08/h5ads/aecc2743-4ff2-4b55-ac8c-a1ff76fc4bb4.h5ad,obs development_stage of the source file,2026-10-07
+HFRA,technology,10x 3' v1 to v3,https://cellxgene-census-public-us-west-2.s3.us-west-2.amazonaws.com/cell-census/2025-11-08/h5ads/aecc2743-4ff2-4b55-ac8c-a1ff76fc4bb4.h5ad,obs assay (CELLxGENE) or tech of the files after quality control; Zeisel et al. 2018 STAR Methods (10X Genomics Chromium),2026-10-07
+HFRA,labels,Cell Ontology,datasets/HFRA.yml,datasets/*.yml: CELLxGENE cell_type labels are Cell Ontology terms; the others are the authors' labels,2026-10-07
+HFRA,cells_downloaded,108838,https://cellxgene-census-public-us-west-2.s3.us-west-2.amazonaws.com/cell-census/2025-11-08/h5ads/aecc2743-4ff2-4b55-ac8c-a1ff76fc4bb4.h5ad,Read from the source h5ad over HTTP range requests (X shape),2026-10-07
+HFRA,genes_downloaded,32055,https://cellxgene-census-public-us-west-2.s3.us-west-2.amazonaws.com/cell-census/2025-11-08/h5ads/aecc2743-4ff2-4b55-ac8c-a1ff76fc4bb4.h5ad,Read from the source h5ad over HTTP range requests (X shape),2026-10-07
+HFRA,cell_types_labelled,9,https://cellxgene-census-public-us-west-2.s3.us-west-2.amazonaws.com/cell-census/2025-11-08/h5ads/aecc2743-4ff2-4b55-ac8c-a1ff76fc4bb4.h5ad,Read from the source h5ad over HTTP range requests (distinct obs cell_type),2026-10-07
+HFRA,cells_after_qc,102997,cache/subset_qc/HFRA/sub1000_stratified/cell_type_distribution_stratified.csv,"Sum of original_count (bin/subset.py, after bin/preprocess.py)",2026-10-07
+HFRA,cell_types_after_mapping,9,cache/subset_qc/HFRA/sub1000_stratified/cell_type_distribution_stratified.csv,Rows: distinct labels after quality control and the ontology mapping of preprocessing,2026-10-07
+HFRA,cell_types_scored,9,cache/subset_qc/HFRA/sub1000_stratified/cell_type_distribution_stratified.csv,Rows not dropped by the 20-cell floor,2026-10-07
+HFRA,test_cells_1000,1000,cache/subset_qc/HFRA/sub1000_stratified/cell_type_distribution_stratified.csv,Sum of subset_count,2026-10-07
+HFRA,test_cells_10000,10000,cache/subset_qc/HFRA/sub10000_stratified/cell_type_distribution_stratified.csv,Sum of subset_count,2026-10-07
+HFRA,genes_after_qc,21604,cache/datasets/subset/HFRA_sub1000_stratified.h5ad,n_vars; the subsets keep every gene that passed quality control,2026-10-07
+human_pancreas,name,Human pancreas,datasets/human_pancreas.yml,Display name used in the paper,2026-10-07
+human_pancreas,citation,luecken2022benchmarking,https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/24539828/human_pancreas_norm_complexBatch.h5ad,"Publication in uns/citation of the CELLxGENE file, or the paper that released the file",2026-10-07
+human_pancreas,studies,baron2016pancreas; muraro2016pancreas; grun2016pancreas; segerstolpe2016pancreas; xin2016pancreas; lawlor2017pancreas,https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/24539828/human_pancreas_norm_complexBatch.h5ad,Studies the cells come from (obs doi / tech columns; Luecken et al. 2022 for the pancreas),2026-10-07
+human_pancreas,organism,human,datasets/human_pancreas.yml,obs organism of the subset files,2026-10-07
+human_pancreas,tissue,pancreas,datasets/human_pancreas.yml,datasets/*.yml and obs tissue columns,2026-10-07
+human_pancreas,technology,"inDrop, CEL-seq, CEL-seq2, Smart-seq2",https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/24539828/human_pancreas_norm_complexBatch.h5ad,obs assay (CELLxGENE) or tech of the files after quality control; Zeisel et al. 2018 STAR Methods (10X Genomics Chromium),2026-10-07
+human_pancreas,labels,authors',datasets/human_pancreas.yml,datasets/*.yml: CELLxGENE cell_type labels are Cell Ontology terms; the others are the authors' labels,2026-10-07
+human_pancreas,cells_downloaded,16382,https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/24539828/human_pancreas_norm_complexBatch.h5ad,Read from the source h5ad over HTTP range requests (X shape),2026-10-07
+human_pancreas,genes_downloaded,19093,https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/24539828/human_pancreas_norm_complexBatch.h5ad,Read from the source h5ad over HTTP range requests (X shape),2026-10-07
+human_pancreas,cell_types_labelled,14,https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/24539828/human_pancreas_norm_complexBatch.h5ad,Read from the source h5ad over HTTP range requests (distinct obs celltype),2026-10-07
+human_pancreas,cells_after_qc,11704,cache/subset_qc/human_pancreas/sub1000_stratified/cell_type_distribution_stratified.csv,"Sum of original_count (bin/subset.py, after bin/preprocess.py)",2026-10-07
+human_pancreas,cell_types_after_mapping,13,cache/subset_qc/human_pancreas/sub1000_stratified/cell_type_distribution_stratified.csv,Rows: distinct labels after quality control and the ontology mapping of preprocessing,2026-10-07
+human_pancreas,cell_types_scored,11,cache/subset_qc/human_pancreas/sub1000_stratified/cell_type_distribution_stratified.csv,Rows not dropped by the 20-cell floor,2026-10-07
+human_pancreas,test_cells_1000,999,cache/subset_qc/human_pancreas/sub1000_stratified/cell_type_distribution_stratified.csv,Sum of subset_count,2026-10-07
+human_pancreas,test_cells_10000,10000,cache/subset_qc/human_pancreas/sub10000_stratified/cell_type_distribution_stratified.csv,Sum of subset_count,2026-10-07
+human_pancreas,genes_after_qc,14970,cache/datasets/subset/human_pancreas_sub1000_stratified.h5ad,n_vars; the subsets keep every gene that passed quality control,2026-10-07
+Zeisel,name,Zeisel,datasets/Zeisel.yml,Display name used in the paper,2026-10-07
+Zeisel,citation,zeisel2018molecular,"https://zenodo.org/api/records/24590958/files/Zeisel_l5_all_rev1.h5ad/content (l5_all_rev1.loom from mousebrain.org, converted by bin/download_Zeisel.py)","Publication in uns/citation of the CELLxGENE file, or the paper that released the file",2026-10-07
+Zeisel,studies,zeisel2018molecular,"https://zenodo.org/api/records/24590958/files/Zeisel_l5_all_rev1.h5ad/content (l5_all_rev1.loom from mousebrain.org, converted by bin/download_Zeisel.py)",Studies the cells come from (obs doi / tech columns; Luecken et al. 2022 for the pancreas),2026-10-07
+Zeisel,organism,mouse,datasets/Zeisel.yml,obs organism of the subset files,2026-10-07
+Zeisel,tissue,nervous system (23 regions),datasets/Zeisel.yml,datasets/*.yml and obs tissue columns,2026-10-07
+Zeisel,technology,10x Chromium,"https://zenodo.org/api/records/24590958/files/Zeisel_l5_all_rev1.h5ad/content (l5_all_rev1.loom from mousebrain.org, converted by bin/download_Zeisel.py)",obs assay (CELLxGENE) or tech of the files after quality control; Zeisel et al. 2018 STAR Methods (10X Genomics Chromium),2026-10-07
+Zeisel,labels,authors',datasets/Zeisel.yml,datasets/*.yml: CELLxGENE cell_type labels are Cell Ontology terms; the others are the authors' labels,2026-10-07
+Zeisel,cells_downloaded,160796,"https://zenodo.org/api/records/24590958/files/Zeisel_l5_all_rev1.h5ad/content (l5_all_rev1.loom from mousebrain.org, converted by bin/download_Zeisel.py)",Read from the source h5ad over HTTP range requests (X shape),2026-10-07
+Zeisel,genes_downloaded,27998,"https://zenodo.org/api/records/24590958/files/Zeisel_l5_all_rev1.h5ad/content (l5_all_rev1.loom from mousebrain.org, converted by bin/download_Zeisel.py)",Read from the source h5ad over HTTP range requests (X shape),2026-10-07
+Zeisel,cell_types_labelled,39,"https://zenodo.org/api/records/24590958/files/Zeisel_l5_all_rev1.h5ad/content (l5_all_rev1.loom from mousebrain.org, converted by bin/download_Zeisel.py)",Read from the source h5ad over HTTP range requests (distinct obs TaxonomyRank4),2026-10-07
+Zeisel,cells_after_qc,145837,cache/subset_qc/Zeisel/sub1000_stratified/cell_type_distribution_stratified.csv,"Sum of original_count (bin/subset.py, after bin/preprocess.py)",2026-10-07
+Zeisel,cell_types_after_mapping,29,cache/subset_qc/Zeisel/sub1000_stratified/cell_type_distribution_stratified.csv,Rows: distinct labels after quality control and the ontology mapping of preprocessing,2026-10-07
+Zeisel,cell_types_scored,29,cache/subset_qc/Zeisel/sub1000_stratified/cell_type_distribution_stratified.csv,Rows not dropped by the 20-cell floor,2026-10-07
+Zeisel,test_cells_1000,999,cache/subset_qc/Zeisel/sub1000_stratified/cell_type_distribution_stratified.csv,Sum of subset_count,2026-10-07
+Zeisel,test_cells_10000,9997,cache/subset_qc/Zeisel/sub10000_stratified/cell_type_distribution_stratified.csv,Sum of subset_count,2026-10-07
+Zeisel,genes_after_qc,20316,cache/datasets/subset/Zeisel_sub1000_stratified.h5ad,n_vars; the subsets keep every gene that passed quality control,2026-10-07
+human_pancreas,qc_removed,"all SMARTer and Fluidigm C1 cells and 2,239 of the 2,394 Smart-seq2 cells","https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/24539828/human_pancreas_norm_complexBatch.h5ad vs cache/datasets/context/human_pancreas_context.h5ad (all 11,704 cells after QC)","obs tech before and after quality control: SMARTer 1,492 to 0, Fluidigm C1 638 to 0, Smart-seq2 2,394 to 155, CEL-seq2 2,285 to 1,990, CEL-seq 1,004 to 990, inDrop 8,569 to 8,569",2026-10-07
+HIHA,license,CC BY 4.0,https://registry.opendata.aws/biohub-cellxgene-census/,CELLxGENE Census entry of the AWS Open Data registry: License CC-BY 4.0,2026-10-07
+HFRA,license,CC BY 4.0,https://registry.opendata.aws/biohub-cellxgene-census/,CELLxGENE Census entry of the AWS Open Data registry: License CC-BY 4.0,2026-10-07
+human_pancreas,license,CC BY 4.0,https://api.figshare.com/v2/articles/12420968,figshare article of Luecken et al. that holds human_pancreas_norm_complexBatch.h5ad (file 24539828),2026-10-07
+Zeisel,license,none stated,https://web.archive.org/web/20221103161735/http://mousebrain.org/adolescent/downloads.html,The loom downloads page (archived; mousebrain.org now redirects to a 404) and Zeisel et al. 2018 state no licence; raw reads at SRA SRP135960,2026-10-07

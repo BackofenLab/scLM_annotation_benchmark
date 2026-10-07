@@ -17,6 +17,8 @@ fi
 # --- Prepare download directories ---
 DOWNLOAD_DIR="./downloads"
 DATA_DIR="./data"
+# The authors' checkpoint (the Google Drive release linked in the PharMolix/LangCell README),
+# copied to Zenodo so that the download is scriptable.
 ZIP_URL="https://zenodo.org/records/16994789/files/langcell_pretrained_model_datasets.zip"
 ZIP_FILE="$DOWNLOAD_DIR/$(basename "$ZIP_URL")"
 

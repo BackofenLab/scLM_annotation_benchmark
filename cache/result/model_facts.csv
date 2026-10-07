@@ -82,7 +82,7 @@ cellwhisperer,parameters.expression_encoder,39302144,https://medical-epigenomics
 cellwhisperer,parameters.projection_heads,13656065,https://medical-epigenomics.org/papers/schaefer2024/data/models/cellwhisperer_clip_v1.ckpt,Transcriptome and text projection blocks plus temperature; BatchNorm statistics excluded,2026-10-06
 langcell,group,scLLM,bin/plot_model_comparison.py (categorize_model),Classification used by every figure,2026-10-06
 langcell,subcategory,retrieval,bin/plot_model_comparison.py (CATEGORY_TIER_MEMBERS),Method described in https://arxiv.org/abs/2405.06708,2026-10-06
-langcell,checkpoint,"Zenodo record 16994789 (a third-party mirror of the authors' release), files in data/ckpt",models/langcell_unblind/src/prepare.sh (ZIP_URL),Checkpoint the wrapper loads,2026-10-06
+langcell,checkpoint,"The authors' checkpoint (ckpt/ of the Google Drive release linked in PharMolix/LangCell), downloaded from a copy on Zenodo (record 16994789)","models/langcell_unblind/src/prepare.sh (ZIP_URL); https://github.com/PharMolix/LangCell (README, Download checkpoint)",The eight checkpoint files of the Zenodo copy match the authors' Drive folder by name and carry the authors' timestamps (2024-05-15); bytes not compared. The copy was uploaded by A. Kumar (University of Freiburg) for this pipeline,2026-10-07
 langcell,access,open weights,https://github.com/PharMolix/LangCell,Authors' README links the weights (Google Drive); the pipeline downloads the Zenodo mirror https://zenodo.org/records/16994789,2026-10-06
 langcell,available_since,2024-05-15,https://github.com/PharMolix/LangCell/commit/a1a493a4,README at commit a1a493a4 (2024-05-15) is the first to link the weights; the 2024-05-09 READMEs do not,2026-10-06
 langcell,preprint_date,2024-05-09,https://arxiv.org/abs/2405.06708,arXiv API: v1 2024-05-09,2026-10-06
@@ -192,3 +192,24 @@ gemini-3.1-pro-preview,access,API only,https://blog.google/innovation-and-ai/mod
 gemini-3.1-pro-preview,available_since,2026-02-19,https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/,Google blog published 2026-02-19 (preview release); OpenRouter listing 2026-02-19,2026-10-06
 gemini-3.1-pro-preview,publication_venue,none,https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/,Vendor release only; technical reports not recorded,2026-10-06
 gemini-3.1-pro-preview,parameters_total,not disclosed,https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/,The vendor does not publish a parameter count,2026-10-06
+celltypist,license,MIT,https://api.github.com/repos/Teichlab/celltypist/license,GitHub licence file of the package repository,2026-10-07
+scsa,license,GPL-3.0,https://api.github.com/repos/bioinfo-ibms-pumc/SCSA/license,GitHub licence file,2026-10-07
+sctype,license,GPL-3.0,https://api.github.com/repos/IanevskiAleksandr/sc-type/license,GitHub licence file (ScTypeDB ships in the same repository),2026-10-07
+singler,license,GPL-3.0,https://bioconductor.org/packages/release/bioc/html/SingleR.html,"Bioconductor DESCRIPTION, version 2.14.2: License GPL-3",2026-10-07
+c2s_scale_2B,license,"CC BY 4.0, Gemma Terms of Use",https://huggingface.co/api/models/vandijklab/C2S-Scale-Gemma-2-2B,"Model card licence cc-by-4.0; fine-tuned from Gemma 2, a Model Derivative under the Gemma Terms of Use (ai.google.dev/gemma/terms, sections 1.1(e) and 3.1); code (vandijklab/cell2sentence) Apache-2.0",2026-10-07
+c2s_scale_27B,license,"CC BY 4.0, Gemma Terms of Use",https://huggingface.co/api/models/vandijklab/C2S-Scale-Gemma-2-27B,As for C2S-Scale 2B,2026-10-07
+instructcell,license,MIT,https://huggingface.co/api/models/zjunlp/InstructCell-instruct,Model card licence mit; code (zjunlp/InstructCell) MIT,2026-10-07
+cellwhisperer,license,GPL-3.0 (code),https://api.github.com/repos/epigen/cellwhisperer/license,Code licence; the README offers the weights from the authors' file server without a separate licence; its Geneformer encoder is Apache-2.0 (HF ctheodoris/Geneformer),2026-10-07
+langcell,license,MIT,https://api.github.com/repos/PharMolix/LangCell/license,"Authors' repository licence. The pipeline downloads their checkpoint from a copy on Zenodo (record 16994789, uploaded by A. Kumar for this pipeline), which is labelled CC BY 4.0 and does not yet credit the LangCell authors",2026-10-07
+mmcontext,license,MIT (code),https://api.github.com/repos/mengerj/mmcontext/license,Code repository MIT; the model card of jo-mengr/mmcontext-pubmedbert-gs10k declares no licence,2026-10-07
+llama-3.1-70b-instruct,license,Llama 3.1 Community License,https://huggingface.co/api/models/meta-llama/Llama-3.1-70B-Instruct,Model card licence llama3.1,2026-10-07
+llama-3.3-70b-instruct,license,Llama 3.3 Community License,https://huggingface.co/api/models/meta-llama/Llama-3.3-70B-Instruct,Model card licence llama3.3,2026-10-07
+llama-4-maverick,license,Llama 4 Community License,https://huggingface.co/api/models/meta-llama/Llama-4-Maverick-17B-128E-Instruct,"Model card licence other, licence_name llama4",2026-10-07
+gpt-oss-20b,license,Apache-2.0,https://huggingface.co/api/models/openai/gpt-oss-20b,Model card licence apache-2.0,2026-10-07
+gpt-oss-120b,license,Apache-2.0,https://huggingface.co/api/models/openai/gpt-oss-120b,Model card licence apache-2.0,2026-10-07
+kimi-k2.6,license,Modified MIT,https://huggingface.co/api/models/moonshotai/Kimi-K2.6,"Model card licence other, licence_name modified-mit",2026-10-07
+deepseek-v3.2,license,MIT,https://huggingface.co/api/models/deepseek-ai/DeepSeek-V3.2,Model card licence mit,2026-10-07
+claude-sonnet-4.6,license,proprietary (API),https://www.anthropic.com/news/claude-sonnet-4-6,"No public weights; used under the provider's terms of service, called through OpenRouter",2026-10-07
+claude-opus-4.7,license,proprietary (API),https://www.anthropic.com/news/claude-opus-4-7,"No public weights; used under the provider's terms of service, called through OpenRouter",2026-10-07
+gpt-5.5,license,proprietary (API),https://developers.openai.com/api/docs/changelog,"No public weights; used under the provider's terms of service, called through OpenRouter",2026-10-07
+gemini-3.1-pro-preview,license,proprietary (API),https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/,"No public weights; used under the provider's terms of service, called through OpenRouter",2026-10-07
