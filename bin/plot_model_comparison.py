@@ -947,12 +947,15 @@ def _category_layout(key, members, use_tiers=True):
 
 
 def plot_composite_category(df, out_path, caption, dpi, title=None, show_tiers=True, ax=None,
-                            metric=None):
+                            metric=None, return_points=False):
     """Single-panel composite-score figure with paired blind/unblind sub-columns.
 
     Pass ``ax`` to draw the panel into an existing axes instead of writing a file. In that mode
     nothing is saved and the function returns the legend handles, so a multi-panel composer
     (``manuscript_figures.py``) can place one shared legend. ``out_path``/``dpi`` are ignored.
+    With ``return_points`` it returns ``(handles, points)`` instead, ``points`` mapping
+    ``(model_base, mode)`` to ``(x, y, marker radius in points)``, so the composer can label
+    points once its own typography is final.
 
     ``metric`` swaps the y axis from the baseline-normalized composite to a single raw metric
     (e.g. ``"balanced_accuracy"``), keeping the layout identical so the two variants are directly
@@ -1039,7 +1042,7 @@ def plot_composite_category(df, out_path, caption, dpi, title=None, show_tiers=T
     else:
         fig = ax.figure
     drawn_tiers, drew_link = set(), False
-    tick_pos, tick_lab = [], []
+    tick_pos, tick_lab, points = [], [], {}
 
     for i, (key, _lbl, bases) in enumerate(present):
         x0 = float(i)
@@ -1070,6 +1073,8 @@ def plot_composite_category(df, out_path, caption, dpi, title=None, show_tiers=T
                            [scores[(key, ordered[j])][mode] for j in idx],
                            s=msize, marker=marker, color=cat_color[key],
                            edgecolor="white", linewidth=0.5, zorder=4)
+                points.update({(ordered[j], mode): (xm + offs[j], scores[(key, ordered[j])][mode],
+                                                    np.sqrt(msize) / 2) for j in idx})
                 if tkey is not None:
                     drawn_tiers.add((key, tkey))
 
@@ -1126,7 +1131,8 @@ def plot_composite_category(df, out_path, caption, dpi, title=None, show_tiers=T
                                       marker=UNCLASSIFIED_TIER_STYLE[0], color=cat_color[key],
                                       markersize=6, label="tier unassigned"))
     if not own_fig:
-        return handles   # composer owns the figure, the legend and the file
+        # composer owns the figure, the legend and the file
+        return (handles, points) if return_points else handles
     fig.legend(handles=handles, loc="center left", bbox_to_anchor=(0.87, 0.5),
                frameon=False, fontsize=9, labelspacing=0.32, handletextpad=0.6)
 
@@ -1389,7 +1395,8 @@ def _tier_marker(model: str):
     return UNCLASSIFIED_TIER_STYLE
 
 
-def _place_point_labels(ax, labels, obstacles, fontsize, leader_color="0.7"):
+def _place_point_labels(ax, labels, obstacles, fontsize, leader_color="0.7", candidates=None,
+                        leader_min=12):
     """Annotate scatter points without letting the text land on a marker or another label.
 
     ``labels`` is ``[(text, x_data, y_data, color)]`` and ``obstacles`` is
@@ -1400,8 +1407,12 @@ def _place_point_labels(ax, labels, obstacles, fontsize, leader_color="0.7"):
     obstacles arrive in DATA coordinates and are transformed after that draw, when the axes
     position is final.
 
-    A faint leader line is attached whenever the text ends up far enough from its point that the
-    association would otherwise be ambiguous.
+    ``candidates`` replaces the default ring with ``[(dx, dy, ha, va)]`` tried in order, for a
+    panel that wants a fixed preference such as centred above the point; a label may carry its
+    own list as a fifth element.
+
+    A faint leader line is attached whenever the text ends up more than ``leader_min`` points from
+    its point, far enough that the association would otherwise be ambiguous; 0 links every label.
     """
     if not labels:
         return
@@ -1416,9 +1427,13 @@ def _place_point_labels(ax, labels, obstacles, fontsize, leader_color="0.7"):
         obstacle_boxes.append(mtransforms.Bbox.from_bounds(xd - r, yd - r, 2 * r, 2 * r))
     # Ring of offsets in points, nearest first, right/left before up/down so labels track the
     # reading direction before they start stacking vertically.
-    candidates = [(9, 0), (-9, 0), (9, 8), (-9, 8), (9, -8), (-9, -8), (0, 11), (0, -11),
-                  (18, 0), (-18, 0), (18, 14), (-18, 14), (18, -14), (-18, -14),
-                  (0, 20), (0, -20), (30, 0), (-30, 0)]
+    if candidates is None:
+        candidates = [(dx, dy, "left" if dx >= 0 else "right",
+                       "bottom" if dy > 0 else ("top" if dy < 0 else "center"))
+                      for dx, dy in [(9, 0), (-9, 0), (9, 8), (-9, 8), (9, -8), (-9, -8),
+                                     (0, 11), (0, -11), (18, 0), (-18, 0), (18, 14), (-18, 14),
+                                     (18, -14), (-18, -14), (0, 20), (0, -20), (30, 0),
+                                     (-30, 0)]]
 
     axes_box = ax.get_window_extent(renderer=renderer)
 
@@ -1436,13 +1451,12 @@ def _place_point_labels(ax, labels, obstacles, fontsize, leader_color="0.7"):
         return total
 
     placed = []
-    for text, px, py, color in sorted(labels, key=lambda t: -t[2]):
+    for label in sorted(labels, key=lambda t: -t[2]):
+        text, px, py, color = label[:4]
         best, best_cost, best_off = None, None, None
-        for dx, dy in candidates:
+        for dx, dy, ha, va in (label[4] if len(label) > 4 else candidates):
             ann = ax.annotate(text, xy=(px, py), xytext=(dx, dy), textcoords="offset points",
-                              ha="left" if dx >= 0 else "right",
-                              va="bottom" if dy > 0 else ("top" if dy < 0 else "center"),
-                              fontsize=fontsize, color=color, zorder=6)
+                              ha=ha, va=va, fontsize=fontsize, color=color, zorder=6)
             box = ann.get_window_extent(renderer=renderer)
             cost = _cost(box, obstacle_boxes + placed)
             if cost == 0:
@@ -1460,7 +1474,7 @@ def _place_point_labels(ax, labels, obstacles, fontsize, leader_color="0.7"):
         if best is None:
             continue
         placed.append(best.get_window_extent(renderer=renderer))
-        if abs(best_off[0]) > 12 or abs(best_off[1]) > 12:
+        if abs(best_off[0]) > leader_min or abs(best_off[1]) > leader_min:
             # Displaced far enough that the text-to-point association needs a leader.
             ax.annotate("", xy=(px, py), xytext=best_off, textcoords="offset points",
                         xycoords=best.xycoords,
@@ -3029,18 +3043,24 @@ def _pareto_front(points):
 
 
 def plot_cost_vs_performance(agg_df, act_df, out_path, dpi, ax=None, metric="balanced_accuracy",
-                             dataset=None):
+                             dataset=None, name=None, label_size=7, colors=None, text_color=None,
+                             step_alpha=0.55):
     """Annotation quality against what it costs, one point per (LLM, mode).
 
     ``metric`` is either a column of the aggregated CSV (averaged over datasets) or the literal
     ``"composite"``, which uses the same baseline-normalized composite as the category figure.
     x is spend per 1,000 cells on a log axis (it spans four orders of magnitude); the step line
     marks the cost-efficient frontier — the models no other model beats while also being cheaper.
+    ``name`` turns a model base into the name printed beside its point (default: the base);
+    ``colors`` maps blind/unblind to a colour (default: ``_mode_colors``), and ``text_color``
+    colours every name (default: the setting's colour, grey for a model that answered poorly);
+    ``step_alpha`` is the opacity of the step lines.
 
     With ``dataset`` set, both sides are restricted to that dataset: the score comes straight
     from the aggregate (which is per-dataset already) while the cost side uses the INFERRED
     dataset attribution, so any low-confidence group is named in the caption.
     """
+    name = name or (lambda base: base)
     if agg_df.empty or act_df.empty:
         return False
     caption = ""
@@ -3082,23 +3102,26 @@ def plot_cost_vs_performance(agg_df, act_df, out_path, dpi, ax=None, metric="bal
     if len(rows) < 2:
         return False
 
-    colors = _mode_colors()
+    colors = colors or _mode_colors()
     own_fig = ax is None
     if own_fig:
         fig, ax = plt.subplots(figsize=(8.2, 5.6))
-    tiers_seen = {}
+    tiers_seen, obstacles = {}, []
     for base, mode, cost, score, answered in rows:
         (marker, size), tier = _llm_tier_style(base)
         ax.scatter(cost, score, marker=marker, s=size * 1.6, color=colors.get(mode, "gray"),
                    edgecolor="white", linewidth=0.8, zorder=4)
+        obstacles.append((cost, score, np.sqrt(size * 1.6) / 2))
         tiers_seen[tier] = marker
-        # Direct-label only the models that define the frontier or answered poorly; labelling
-        # every point would collide at this density.
-        if answered < 0.98:
-            ax.annotate(f"{base} ({answered:.0%} answered)", (cost, score),
-                        textcoords="offset points", xytext=(6, -9), fontsize=6.5,
-                        color="0.35", zorder=5)
 
+    # Direct-label only the models that define the frontier or answered poorly; labelling every
+    # point would collide at this density. A frontier model that also answered poorly gets one
+    # label, in its setting's colour.
+    labels = {}
+    for base, mode, cost, score, answered in rows:
+        if answered < 0.98:
+            labels[base, mode] = [f"{name(base)} ({answered:.0%} answered)", cost, score,
+                                  text_color or "0.35"]
     for mode in ("blind", "unblind"):
         pts = [(c, s) for _b, m, c, s, _a in rows if m == mode]
         if len(pts) < 2:
@@ -3106,29 +3129,40 @@ def plot_cost_vs_performance(agg_df, act_df, out_path, dpi, ax=None, metric="bal
         front = _pareto_front(pts)
         fx = [pts[i][0] for i in front]
         fy = [pts[i][1] for i in front]
-        ax.step(fx, fy, where="post", color=colors[mode], linewidth=1.4, alpha=0.55, zorder=2)
+        ax.step(fx, fy, where="post", color=colors[mode], linewidth=1.4, alpha=step_alpha,
+                zorder=2)
+        # The step line is an obstacle too, sampled densely enough that no name sits on it.
+        for x0, x1, y0, y1 in zip(fx, fx[1:], fy, fy[1:]):
+            obstacles += [(x, y0, 1.5) for x in np.geomspace(x0, x1, 60)]
+            obstacles += [(x1, y, 1.5) for y in np.linspace(y0, y1, 20)]
         for i in front:
             base = [b for b, m, c, s, _a in rows if m == mode and (c, s) == pts[i]][0]
-            ax.annotate(base, pts[i], textcoords="offset points", xytext=(6, 5),
-                        fontsize=7, color=colors[mode], zorder=5)
+            labels.setdefault((base, mode), [name(base), *pts[i], None])[3] = (text_color
+                                                                                or colors[mode])
 
     ax.set_xscale("log")
     ax.set_xlabel("Cost per 1,000 cells annotated (USD, log scale)")
     ax.set_ylabel(ylab)
     ax.set_title(f"Cost vs. annotation quality{f' — {dataset}' if dataset else ''} "
                  f"— step line = cost-efficient frontier", loc="left")
-    handles = [mpatches.Patch(facecolor=colors[m], label=m) for m in ("blind", "unblind")]
-    handles += [plt.Line2D([], [], linestyle="none", marker=mk, color="0.4",
-                           label=(tier or "unclassified").replace("_", " "))
-                for tier, mk in sorted(tiers_seen.items(), key=lambda kv: str(kv[0]))]
+    handles = [mpatches.Patch(facecolor=colors[m], label=m) for m in ("unblind", "blind")]
+    handles += [plt.Line2D([], [], linestyle="none", marker=mk, color="0.4", label=label)
+                for tier, label, mk, _size in CATEGORY_TIERS["LLM"] if tier in tiers_seen]
+    if set(tiers_seen) - {tier for tier, *_ in CATEGORY_TIERS["LLM"]}:
+        handles.append(plt.Line2D([], [], linestyle="none", color="0.4", label="unclassified",
+                                  marker=UNCLASSIFIED_TIER_STYLE[0]))
     ax.legend(handles=handles, frameon=False, fontsize=7.5, loc="lower right")
     ax.grid(linestyle=":", alpha=0.5)
     ax.set_axisbelow(True)
     for side in ("top", "right"):
         ax.spines[side].set_visible(False)
+    # Last, once the scale, the limits and the layout are final: fixed offsets put the names of
+    # the frontier models at the top right on top of each other.
+    if own_fig:
+        fig.tight_layout()
+    _place_point_labels(ax, [tuple(label) for label in labels.values()], obstacles, label_size)
     if not own_fig:
         return True
-    fig.tight_layout()
     add_caption(fig, caption)
     fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
     plt.close(fig)

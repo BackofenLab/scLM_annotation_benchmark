@@ -23,7 +23,6 @@ from __future__ import annotations
 
 import argparse
 import sys
-import textwrap
 from pathlib import Path
 
 import matplotlib
@@ -41,10 +40,8 @@ import seaborn as sns
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from plot_model_comparison import (  # noqa: E402
     CATEGORY_TIERS,
-    _RANKED_CATEGORY_LABELS,
     COMPOSITE_CATEGORIES,
     DEFAULT_ACTIVITY_CSV,
-    DEFAULT_DATES_CSV,
     EXCLUDED_BASES,
     _place_point_labels,
     _ranked_category_colors,
@@ -53,14 +50,12 @@ from plot_model_comparison import (  # noqa: E402
     _flow_key,
     _sankey,
     load_confusion_pairs,
-    load_model_dates,
     load_openrouter_activity,
     load_per_class_recall,
     model_base,
     model_tier,
     pretty,
     plot_composite_category,
-    plot_composite_ranked_bars,
     plot_cost_vs_performance,
     plot_family_by_dataset,
     plot_metric_disagreement,
@@ -161,43 +156,6 @@ def _blank(label=""):
     return plt.Line2D([], [], linestyle="none", marker="", label=label)
 
 
-def _roster_handles(df, wrap=30, with_tier_names=False, linestyle="none"):
-    """Legend handles naming every model scored, grouped by method tier.
-
-    One entry per tier: the tier's marker in its family color, then the models that carry it.
-    Model names are mode-stripped, since a model's ``_blind`` and ``_unblind`` runs are the same
-    model and both appear in the panels.
-
-    ``with_tier_names`` prefixes each entry with the tier's name, which lets ONE legend block do
-    the work of both a tier key and a roster. Without it the two would key the same seven symbols
-    twice over — the reason Supplementary Figure S3 merges them.
-
-    Tiers with no scored model are skipped, so the roster describes this figure rather than the
-    configuration file.
-    """
-    cat_color = _ranked_category_colors()
-    scored = {}
-    for model in df["model"].unique():
-        category = categorize_model(model)
-        if category == "simple":
-            continue
-        scored.setdefault((category, model_tier(model)), set()).add(model_base(model))
-
-    handles = []
-    for key, _clabel in COMPOSITE_CATEGORIES:
-        for tier_key, tier_label, marker, _size in CATEGORY_TIERS.get(key, []):
-            names = sorted(scored.get((key, tier_key), ()))
-            if not names:
-                continue
-            text = ", ".join(names)
-            text = f"{tier_label}: {text}" if with_tier_names else f": {text}"
-            handles.append(plt.Line2D(
-                [], [], linestyle=linestyle, marker=marker, color=cat_color[key], linewidth=1.4,
-                markersize=11 if marker == "*" else 6.5,
-                label=textwrap.fill(text, wrap)))
-    return handles
-
-
 def _panel_letters(fig, items, pad_x=0.012, pad_y=0.008):
     """Place bold panel letters outside the top-left corner of each axes in ``items``.
 
@@ -251,12 +209,11 @@ def _save(fig, out_path, dpi):
 
 
 def figure_1(df, out_path, dpi=600, metric=None):
-    """Figure 2 — the landscape the protocol produces.
+    """The family plot of Figure 2B on its own, by default on the composite score.
 
     Score by model family, unconstrained vs constrained, one line per model. Figure 1 is the
     pipeline and benchmark overview, drawn outside this script
-    (scLLMs_benchmark_paper/bioRxiv_template/figures/model_overview_figure.*); it took the place
-    of the panel this figure used to reserve for it, so this figure carries the results alone.
+    (scLLMs_benchmark_paper/bioRxiv_template/figures/model_overview_figure.*).
     """
     df = with_unsupported_as_zero(df, model_cols=("model", "mode"))  # means over datasets
     with plt.rc_context(_rc()):
@@ -321,46 +278,34 @@ def _tier_marker(model):
     return "o"
 
 
-def figure_s3_harmonization(df, out_path, dpi=600, per_class=None):
-    """Supplementary Figure S3 — what ontology harmonization contributes, by method family.
+def figure_harmonization(df, out_path, dpi=600, pairs=None):
+    """Supplementary Figure S1 — what the curated mapping contributes, per method.
 
-    One panel per R2 paragraph, unconstrained setting throughout.
-    (A) fraction of cells whose RAW label is not a Cell Ontology term, per method.
-    (B) text-encoder score before and after mapping to the ontology. The gap IS the lift, so the
-        panel shows the quantity R2 argues from rather than a derived number.
-    (C) the two families R2's third paragraph compares, per dataset, on the two metrics that are
-        invariant to how many labels a method uses.
+    The per-method detail behind Figure 2G.
+    (A) share of cells whose answer needed the curated mapping: neither a Cell Ontology term nor
+        one of the dataset's own labels, as written.
+    (B) balanced accuracy counting only the answers that needed no curated mapping, and with the
+        curated mapping of the other answers. The gap is what the mapping buys.
 
-    A and B share one row order (by lift, descending) so the reader can read across: what a
-    method emits natively, and what the mapping step then buys it. The two are related but not
-    monotonic, and the exceptions are the interesting part — scType and CellTypist both emit zero
-    ontology terms yet sit far apart in B, because scType's labels are standard names in plural
-    form while CellTypist's are model-internal cluster names.
-
-    NOT drawn here: macro F1. Panel C keeps to balanced accuracy and Lin similarity.
+    A and B share one row order (by the gap in B, descending) so the reader can read across: how
+    much of a method's output needs the mapping, and what the mapping then buys it. The two are
+    related but not monotonic, because an answer that needs the mapping can still be wrong.
     """
-    need = ["non_cl_ratio", "text_emb_norm_balanced_raw", "text_emb_norm_balanced_mapped",
-            "text_emb_norm_mapping_lift"]
-    missing = [c for c in need if c not in df.columns]
-    if missing:
-        raise SystemExit(
-            f"Supplementary Figure S3 needs {', '.join(missing)}, which this aggregate does not carry. "
-            "Re-score with --use_text_encoder true, re-run bin/aggregate.py and re-snapshot.")
-
     d = with_unsupported_as_zero(df, model_cols=("model", "mode"))  # means over datasets
+    pairs = _benchmark_pairs(d, pairs)
+    scores = _mapping_scores(pairs).rename(columns={"without": "ba_direct", "with": "ba_mapped"})
+    scores["needs_mapping"] = _needs_mapping(pairs)
+    d = d.merge(scores.reset_index(), on=["model", "dataset"], how="left")
     d["base"] = d["model"].map(model_base)
     d["cat"] = d["model"].map(categorize_model)
     d["regime"] = d["model"].map(derive_mode)
     d = d[d["cat"] != "simple"]          # chance floors have no label vocabulary to characterize
-    if "text_emb_norm_clipped" not in d.columns:
-        d["text_emb_norm_clipped"] = 0.0
 
     # Three row blocks rather than one. The baselines produce a SINGLE run, which the pipeline
     # names `_blind` for filename reasons only -- their label space is fixed by a marker database
-    # or a reference, so the constrained/unconstrained axis does not apply to them. Pooling them
-    # into an "unconstrained" block would assert a regime membership the paper denies (see the
-    # abstract's comment block). Giving them their own block states it in the layout instead of
-    # in a caption disclaimer, and it lets the same 17 language models appear under both settings.
+    # or a reference, so the constrained/unconstrained axis does not apply to them. Giving them
+    # their own block states that in the layout, and it lets the same 17 language models appear
+    # under both settings.
     groups = [
         ("unconstrained", d[(d["regime"] == "blind") & (d["cat"] != "classical")]),
         ("constrained", d[d["regime"] == "unblind"]),
@@ -368,13 +313,11 @@ def figure_s3_harmonization(df, out_path, dpi=600, per_class=None):
     ]
 
     def _agg(frame):
-        return (frame.groupby(["base", "cat"], as_index=False)
-                     .agg(model=("model", "first"), non_cl=("non_cl_ratio", "mean"),
-                          raw=("text_emb_norm_balanced_raw", "mean"),
-                          mapped=("text_emb_norm_balanced_mapped", "mean"),
-                          lift=("text_emb_norm_mapping_lift", "mean"),
-                          clipped=("text_emb_norm_clipped", "mean"))
-                     .sort_values("lift", ascending=False).reset_index(drop=True))
+        out = (frame.groupby(["base", "cat"], as_index=False)
+                    .agg(model=("model", "first"), needs=("needs_mapping", "mean"),
+                         raw=("ba_direct", "mean"), mapped=("ba_mapped", "mean")))
+        out["lift"] = out["mapped"] - out["raw"]
+        return out.sort_values("lift", ascending=False).reset_index(drop=True)
 
     GAP = 1.9                      # blank rows between blocks, leaving room for the heading
     blocks, rows, pos = [], [], 0.0
@@ -391,19 +334,18 @@ def figure_s3_harmonization(df, out_path, dpi=600, per_class=None):
     cat_color = _ranked_category_colors()
 
     with plt.rc_context(_rc()):
-        fig = plt.figure(figsize=(11.6, 13.0))
-        outer = fig.add_gridspec(1, 2, width_ratios=[1.0, 0.30], wspace=0.02)
-        left = outer[0, 0].subgridspec(2, 1, height_ratios=[1.0, 0.26], hspace=0.13)
+        fig = plt.figure(figsize=(12.2, 11.6))
+        # The panels, then Figure 2's key across the full width under them.
+        outer = fig.add_gridspec(2, 1, height_ratios=[10.0, 0.9], hspace=0.25, left=0.15,
+                                 right=0.985)
         # A is narrow: it carries one bounded fraction. B gets the width because the LENGTH of
-        # each segment is the quantity being read off it.
-        top = left[0].subgridspec(1, 2, width_ratios=[0.52, 1.0], wspace=0.04)
+        # each segment is the quantity being read off it. The gap keeps A's last tick label
+        # clear of B's first.
+        top = outer[0].subgridspec(1, 2, width_ratios=[0.52, 1.0], wspace=0.08)
         ax_a = fig.add_subplot(top[0, 0])
         ax_b = fig.add_subplot(top[0, 1], sharey=ax_a)
-        bot = left[1].subgridspec(1, 2, width_ratios=[1.0, 0.001], wspace=0.02)
-        ax_c1 = fig.add_subplot(bot[0, 0])
-        ax_c2 = fig.add_subplot(bot[0, 1])
-        ax_leg = fig.add_subplot(outer[0, 1])
-        ax_leg.axis("off")
+        ax_key = fig.add_subplot(outer[1])
+        ax_key.axis("off")
 
         y = agg["ypos"].to_numpy()
         colors = [cat_color[c] for c in agg["cat"]]
@@ -417,45 +359,39 @@ def figure_s3_harmonization(df, out_path, dpi=600, per_class=None):
                 sel &= d["regime"] == "blind"
             return d.loc[sel, column].dropna()
 
-        # --- A: what each method emits before any harmonization -------------------------
-        ax_a.barh(y, agg["non_cl"], height=0.62, color=colors, alpha=0.85, zorder=2)
-        for (_, row), yy in zip(agg.iterrows(), y):
-            pts = _cells(row, "non_cl_ratio")
-            ax_a.scatter(pts, np.full(len(pts), yy), s=7, color="0.25", alpha=0.5,
-                         linewidths=0, zorder=3)
-        ax_a.set_xlim(0, 1.04)
-        ax_a.set_xlabel("non-ontology fraction")
+        def _dots(ax, values, yy, color):
+            ax.scatter(values, np.full(len(values), yy), s=DOT_SIZE, color=color, linewidths=0,
+                       zorder=3)
 
-        # --- B: what the harmonization step then buys ------------------------------------
-        # Per-dataset values carry the SAME fill encoding as the means (hollow = as written,
-        # filled = after mapping), which is what an earlier attempt got wrong: drawn as
-        # undifferentiated gray dots they could not say which end of the segment they belonged
-        # to. Drawn as points rather than as one thin segment per dataset, because 84 near-
-        # horizontal lines read as stray rules across the panel.
+        # --- A: how much of each method's output needs the curated mapping -----------------
+        ax_a.barh(y, agg["needs"], height=0.62, color=colors, alpha=0.85, zorder=2)
+        for (_, row), yy in zip(agg.iterrows(), y):
+            _dots(ax_a, _cells(row, "needs_mapping"), yy, DOT_COLOR)
+        ax_a.set_xlim(0, 1.04)
+        ax_a.set_xticks(np.arange(0, 1.01, 0.2))
+        ax_a.set_xlabel("Share of cells whose answer needs\nthe curated mapping")
+
+        # --- B: what the curated mapping then buys -----------------------------------------
+        # Per-dataset values are dots, as in A: light without the curated mapping and dark with
+        # it, the dark ones drawn second so that they hide an equal light one. Lines would not
+        # do: 84 near-horizontal lines read as stray rules across the panel.
         for (_, r), yy in zip(agg.iterrows(), y):
             col = cat_color[r["cat"]]
-            raw_pts, map_pts = _cells(r, "text_emb_norm_balanced_raw"), _cells(r, "text_emb_norm_balanced_mapped")
-            ax_b.scatter(raw_pts, np.full(len(raw_pts), yy), s=11, facecolor="none",
-                         edgecolor=col, linewidths=0.7, alpha=0.6, zorder=3)
-            ax_b.scatter(map_pts, np.full(len(map_pts), yy), s=11, color=col, alpha=0.5,
-                         linewidths=0, zorder=3)
+            _dots(ax_b, _cells(r, "ba_direct"), yy, DOT_COLOR_NO_MAPPING)
+            _dots(ax_b, _cells(r, "ba_mapped"), yy, DOT_COLOR)
             ax_b.plot([r["raw"], r["mapped"]], [yy, yy], color=col, lw=1.8, alpha=0.95, zorder=2)
             ax_b.scatter(r["raw"], yy, s=34, facecolor="white", edgecolor=col, linewidths=1.3,
                          zorder=4)
             ax_b.scatter(r["mapped"], yy, s=46, marker=_tier_marker(r["model"]), color=col,
                          zorder=4)
-        ax_b.set_xlabel("text-encoder score (unmapped $\\rightarrow$ mapped)")
+        ax_b.set_xlabel("Balanced accuracy (averaged over datasets)")
         # Bound on the per-dataset points, not on the means: several datasets sit well outside
         # their model's mean and would otherwise be clipped at the axis.
-        ax_b.set_xlim(-0.02, float(np.nanmax([d["text_emb_norm_balanced_raw"].max(),
-                                              d["text_emb_norm_balanced_mapped"].max()])) + 0.04)
+        ax_b.set_xlim(-0.02, float(np.nanmax([d["ba_direct"].max(), d["ba_mapped"].max()]))
+                      + 0.04)
 
-        # A dagger on the name, not a third marker shape in B: the marker slot there already
-        # encodes method tier, and overloading it would break the key shared with Figure 2.
-        labels = [_display(b) + unsupported_mark(b) + (" $\\dagger$" if c > 0 else "")
-                  for b, c in zip(agg["base"], agg["clipped"])]
         ax_a.set_yticks(y)
-        ax_a.set_yticklabels(labels)
+        ax_a.set_yticklabels([_display(b) + unsupported_mark(b) for b in agg["base"]])
         ax_a.set_ylim(agg["ypos"].max() + 1.0, 0.0)   # inverted: first block at the top
         plt.setp(ax_b.get_yticklabels(), visible=False)
         for ax in (ax_a, ax_b):
@@ -470,80 +406,22 @@ def figure_s3_harmonization(df, out_path, dpi=600, per_class=None):
         for title, head_y, _block in blocks:
             ax_a.text(0.0, head_y, title, transform=trans, ha="left", va="center",
                       fontsize=FS_LEGEND, fontweight="bold", color="0.25")
-
-        # --- C: which family leads, per dataset and per metric ---------------------------
-        # Drawn as a DIFFERENCE, not as two lines. The claim is that the lead changes sign
-        # between datasets and between metrics, and on overlaid family means those flips are a
-        # few thousandths apart and invisible. Plotting LLM minus baseline puts the claim on the
-        # y axis directly, and coloring each bar by whichever family is ahead means the reader
-        # never has to remember which line was which.
-        # UNCONSTRAINED runs only, matching the claim this panel supports. `d` now carries both
-        # regimes for panels A and B, so without this filter the LLM mean would silently average
-        # a model's constrained and unconstrained runs together and every bar would be inflated.
-        dc = d[d["regime"] == "blind"]
-        datasets = [ds for ds in DATASET_ORDER if ds in set(dc["dataset"])]
-        metrics = [("balanced_accuracy", "balanced accuracy"),
-                   ("lin_avg_similarity", "Lin similarity")]
-        width = 0.34
-        for k, (metric, _label) in enumerate(metrics):
-            for j, ds in enumerate(datasets):
-                sub = dc[dc["dataset"] == ds]
-                diff = (sub.loc[sub["cat"] == "LLM", metric].mean()
-                        - sub.loc[sub["cat"] == "classical", metric].mean())
-                x = j + (k - 0.5) * width
-                ax_c1.bar(x, diff, width=width * 0.92,
-                          color=cat_color["LLM" if diff > 0 else "classical"],
-                          alpha=0.9, zorder=2)
-                ax_c1.text(x, diff + (0.006 if diff > 0 else -0.006), f"{diff:+.3f}",
-                           ha="center", va="bottom" if diff > 0 else "top", fontsize=FS_POINT)
-        ax_c1.axhline(0, color="0.25", lw=0.9, zorder=3)
-        ax_c1.set_xticks(range(len(datasets)))
-        ax_c1.set_xticklabels([dataset_label(d) for d in datasets])
-        ax_c1.set_ylabel("LLMs $-$ baselines")
-        ax_c1.set_xlim(-0.55, len(datasets) - 0.45)
-        ax_c1.margins(y=0.22)
-        ax_c1.grid(axis="y", color="0.9", lw=0.6)
-        ax_c1.set_axisbelow(True)
-        for side in ("top", "right"):
-            ax_c1.spines[side].set_visible(False)
-        ax_c2.remove()
-
-        for ax in (ax_a, ax_b, ax_c1):
+        for ax in (ax_a, ax_b):
             _harmonize(ax, text_size=FS_POINT)
 
-        # --- legend ----------------------------------------------------------------------
-        handles = [_blank("method family:")]
-        handles += [plt.Line2D([0], [0], linestyle="none", marker="s", color=cat_color[k],
-                               label=_RANKED_CATEGORY_LABELS[k])
-                    for k in ("classical", "scLLM", "LLM") if k in set(agg["cat"])]
-        handles += [_blank(), _blank("B — score:"),
-                    plt.Line2D([0], [0], linestyle="none", marker="o", markerfacecolor="white",
-                               markeredgecolor="0.35", label="as the model wrote it"),
-                    plt.Line2D([0], [0], linestyle="none", marker="o", color="0.35",
-                               label="after ontology mapping"),
-                    ]
-        handles += [_blank(), _blank("B — method tiers:")]
-        seen = set()
-        for cat in ("classical", "scLLM", "LLM"):
-            for key, label, marker, _size in CATEGORY_TIERS.get(cat, []):
-                if key in seen or not (agg["model"].map(model_tier) == key).any():
-                    continue
-                seen.add(key)
-                handles.append(plt.Line2D([0], [0], linestyle="none", marker=marker,
-                                          color=cat_color[cat], label=label))
-        handles += [_blank(), _blank("A — dots: one per dataset"),
-                    _blank("B — open/filled circles: one per dataset"),
-                    _blank("C — unconstrained family means,"),
-                    _blank("   LLMs minus baselines; bar colored"),
-                    _blank("   by which family leads"),
-                    _blank("   left bar: balanced accuracy"),
-                    _blank("   right bar: Lin similarity"),
-                    _blank("$\\dagger$ unmapped score at the random-pair"),
-                    _blank("   floor, so the gain is a lower bound")]
-        ax_leg.legend(handles=handles, loc="upper left", frameon=False, fontsize=FS_LEGEND,
-                      labelspacing=0.45, handletextpad=0.6, borderaxespad=0.0, alignment="left")
+        # Figure 2's key: B's markers and the dots, then the families with their subcategories.
+        dot = dict(linestyle="none", marker="o", markersize=np.sqrt(DOT_SIZE))
+        _family_key(ax_key, [
+            plt.Line2D([], [], linestyle="none", marker="o", markersize=7,
+                       markerfacecolor="white", markeredgecolor="0.3", markeredgewidth=1.3,
+                       label="no curated mapping"),
+            plt.Line2D([], [], linestyle="none", marker="o", markersize=7, color="0.3",
+                       label="with curated mapping"),
+            plt.Line2D([], [], color=DOT_COLOR, label="one dataset", **dot),
+            plt.Line2D([], [], color=DOT_COLOR_NO_MAPPING,
+                       label="one dataset, no curated mapping", **dot)])
 
-        _panel_letters(fig, [(ax_a, "A"), (ax_b, "B"), (ax_c1, "C")])
+        _panel_letters(fig, [(ax_a, "A"), (ax_b, "B")])
         return _save(fig, out_path, dpi)
 
 
@@ -603,7 +481,7 @@ def load_per_class_scores(path=DEFAULT_PER_CLASS_CSV):
 # bin. The band edges are a presentational choice and the per-class values behind them are in the
 # table this reads, so nothing depends on where exactly the cuts fall.
 RARE_BANDS = ([0, 0.001, 0.01, 0.05, 1.0], ["<0.1%", "0.1-1%", "1-5%", ">5%"])
-# Colour by family, line style by setting -- the same two encodings Figure 2 and Supplementary Figure S3 use.
+# Colour by family as in Figure 2, line style by setting.
 RARE_BLOCKS = [
     ("constrained LLM", "LLM", "-"),
     ("unconstrained LLM", "LLM", "--"),
@@ -1241,7 +1119,7 @@ def select_flow_models(df, metric="balanced_accuracy"):
 # floor, human_pancreas 4; asking for 5 everywhere would silently pad with common types.
 RARE_FLOW_N_TYPES = {"HFRA": 2, "human_pancreas": 4, "HIHA": 5, "Zeisel": 5}
 # Order the per-dataset flow figures appear in the supplement, and therefore their S-numbers.
-# Alphabetical, matching the dataset order on Supplementary Figure S3C so the two are read the same way.
+# Alphabetical, the dataset order of every per-dataset panel (DATASET_ORDER).
 RARE_FLOW_ORDER = ["HFRA", "HIHA", "Zeisel", "human_pancreas"]
 
 
@@ -1277,44 +1155,424 @@ def figure_rare_flows(df, out_path, dpi=600, dataset="HIHA", models=None, n_type
     return Path(out_path)
 
 
-def figure_1_balanced_accuracy(df, out_path, dpi=600):
-    """Figure 2 on raw balanced accuracy instead of the composite; the version in the paper.
+# --------------------------------------------------------------------------- #
+# Figure 2 — the benchmark results (R1).
+#
+# A ranks every run on balanced accuracy averaged over the datasets, each dataset's value a dot.
+# B is the family plot averaged over the datasets and C-F the same plot per dataset, so the effect
+# of the candidate list can be read on every dataset. G shows how much each family's score rests
+# on the curated mapping (Figure 1D), H where the LLMs' answers sit in the ontology relative to the
+# true type (Figure 1E). G and H read the confusion pairs of bin/per_class_scores.py.
+# --------------------------------------------------------------------------- #
+# A coarser answer counts as broad when more than this many ontology terms sit at or below it:
+# neuron (829), epithelial cell (713), leukocyte (573), lymphocyte (348), myeloid cell (260), but
+# not T cell (172). The cut treats the two lineage-level immune classes alike.
+BROAD_TERMS_BELOW = 250
+# Panel H's answer types in stacking order: key, legend text, colour.
+LINEAGE_KEY = [
+    ("exact", "exact type", "#1b7837"),
+    ("coarser", "coarser, specific\n(e.g. T cell)", "#7fbf7b"),
+    ("broad", "coarser, broad\n(e.g. neuron)", "#d9f0d3"),
+    ("finer", "finer", "#c2a5cf"),
+    ("other", "another cell type", "#bababa"),
+    ("none", "no usable answer", "#ffffff"),
+]
+# Where B-F try a method's name, in points from its marker: above it, higher up over its own
+# column, and only then beside it, so a name never drifts to another column. Far enough out that
+# the thin line linking every name to its marker stays visible.
+LABEL_CANDIDATES = [(0, 12, "center", "bottom"), (0, 20, "center", "bottom"),
+                    (0, 28, "center", "bottom"), (-12, 0, "right", "center"),
+                    (12, 0, "left", "center"), (-10, 8, "right", "bottom"),
+                    (10, 8, "left", "bottom"), (0, -12, "center", "top"),
+                    (-20, 0, "right", "center"), (20, 0, "left", "center")]
+# The chance level in A to F and in the key: black and heavier than the grid, so it reads over bars.
+CHANCE_LINE = dict(linestyle="--", linewidth=1.2, color="black")
+# One dot per dataset, in Figure 2A and Supplementary Figure S1; light for a score without the
+# curated mapping.
+DOT_SIZE, DOT_COLOR, DOT_COLOR_NO_MAPPING = 6, "0.15", "0.6"
+# The two settings in the keys of Figure 2 and Supplementary Figure S4, worded as in Figure 1B.
+SETTING_KEY = {"unblind": r"$\bf{C}$  constrained: expected cell types supplied",
+               "blind": r"$\bf{U}$  unconstrained: no expected cell types"}
+# Figure 1B's names for the families and the subcategories that differ from CATEGORY_TIERS.
+FAMILY_HEADER = {"classical": "Marker- and reference-based baselines",
+                 "scLLM": "Single-cell language models (scLLMs)",
+                 "LLM": "General-purpose LLMs"}
+TIER_NAME = {"generative": "generative (free text)", "retrieval": "embedding (closed set)"}
+# Panel G's rows, top to bottom: (family, mode or None for the single-setting baselines, label).
+MAPPING_ROWS = [("classical", None, "baselines"), ("scLLM", "blind", "scLLMs, U"),
+                ("scLLM", "unblind", "scLLMs, C"), ("LLM", "blind", "LLMs, U"),
+                ("LLM", "unblind", "LLMs, C")]
 
-    Identical layout, so the two can be compared directly while the y-axis decision is open.
-    Balanced accuracy needs no defense in Methods; the composite does, since it is our own
-    construction. Only one of the two goes into the manuscript.
-    """
-    return figure_1(df, out_path, dpi, metric="balanced_accuracy")
+
+def _run_label(model):
+    """Display name, with U or C for the language models."""
+    name = _display(model_base(model))
+    if categorize_model(model) == "classical":
+        return name
+    return f"{name} ({REGIME_SHORT[derive_mode(model)]})"
 
 
-# Keyed by the suffix used in the output filename, so a variant is a first-class figure rather
-# than a flag: `figure_2.pdf`, `figure_2_composite.pdf`, `figure_s3_harmonization.pdf`.
-def figure_ranked_balanced_accuracy(df, out_path, dpi=600):
-    """Supplementary for R1 — every method ranked by balanced accuracy, both regimes.
+def _is_unconstrained(model):
+    return derive_mode(model) == "blind" and categorize_model(model) != "classical"
 
-    Figure 2 shows the families and their spread but does not name the models or order them.
-    This gives the per-model ranking on the primary metric instead,
-    which is the view a reader wants when checking a specific model.
 
-    Chance is marked as a dashed red line rather than as bars, which the composite version cannot
-    do at all: the composite is normalized against random-stratified, so it is exactly 0 there by
-    construction. On balanced accuracy the level is real, and several models sit at or below it.
-    Bars for the three chance models would say the same thing three times and, worse, sort them
-    into the ranking as though they were competing methods.
-    """
-    df = with_unsupported_as_zero(df, model_cols=("model", "mode"))  # means over datasets
+def _ranked_panel(ax, df):
+    """Panel A: every run, best first; dots are the datasets in DATASET_ORDER, left to right."""
+    runs = df[df["model"].map(categorize_model) != "simple"]
+    wide = runs.pivot_table(index="model", columns="dataset", values="balanced_accuracy")
+    wide = wide[DATASET_ORDER].loc[wide.mean(axis=1).sort_values(ascending=False).index]
+    colors = _ranked_category_colors()
+    x = np.arange(len(wide))
+    for xi, model in enumerate(wide.index):
+        unconstrained = _is_unconstrained(model)
+        ax.bar(xi, wide.loc[model].mean(), width=0.8, color=colors[categorize_model(model)],
+               hatch="///" if unconstrained else None, linewidth=0.5,
+               edgecolor="black" if unconstrained else "white", zorder=3)
+    for offset, dataset in zip(np.linspace(-0.27, 0.27, len(DATASET_ORDER)), DATASET_ORDER):
+        ax.scatter(x + offset, wide[dataset], s=DOT_SIZE, color=DOT_COLOR, linewidth=0, zorder=4)
+    chance = df.loc[df["model"] == "random_stratified", "balanced_accuracy"].mean()
+    ax.axhline(chance, zorder=5, **CHANCE_LINE)  # over the bars
+    ax.set_xticks(x)
+    ax.set_xticklabels([_run_label(m) for m in wide.index], rotation=45, ha="right",
+                       rotation_mode="anchor")
+    ax.set_xlim(-0.6, len(wide) - 0.4)
+    ax.set_ylim(0, 1)
+    ax.set_ylabel("Balanced accuracy")
+    ax.grid(axis="y", linestyle=":", alpha=0.5)
+    sns.despine(ax=ax)
+
+
+def _list_effect_panel(ax, frame, title):
+    """The family plot on ``frame``, with the best run of each family named (the constrained run
+    for the language models). Returns the legend handles."""
+    handles, points = plot_composite_category(frame, None, "", 300, ax=ax,
+                                              metric="balanced_accuracy", return_points=True)
+    _harmonize(ax, text_size=FS_POINT + 1)  # family names under the axis, five panels abreast
+    _relabel_regimes(ax)
+    for line in ax.lines:
+        if line.get_linestyle() == "--":  # the chance level, styled as in A
+            line.set(zorder=3, **CHANCE_LINE)
+    ax.set_ylim(0, 1)
+    ax.set_ylabel("")
+    ax.set_title(title, fontsize=FS_LABEL)
+    best = {}
+    for (base, mode), (x, y, _r) in points.items():
+        family = categorize_model(base)
+        if (family == "classical" or mode == "unblind") and y > best.get(family, ("", 0, -1))[2]:
+            best[family] = (base, x, y)
+    # Centred above the point first, then beside it, so each name sits on its own marker. The
+    # LLM's name is lifted and centred over both LLM columns, clear of the scLLMs' names, unless
+    # the best LLM is too close to the top for that. Every name is linked to its marker.
+    llm_centre = np.mean([px for (b, _m), (px, _y, _r) in points.items()
+                          if categorize_model(b) == "LLM"])
+    ax.figure.canvas.draw()  # final axes position, to turn that data offset into points
+    to_points = 72.0 / ax.figure.dpi
+    labels = []
+    for family, (base, x, y) in best.items():
+        label = (_display(base), x, y, "0.15")
+        if family == "LLM" and y < 0.85:
+            (x0, y0), (x1, y1) = ax.transData.transform([(x, y), (llm_centre, y + 0.05)])
+            dx, dy = (x1 - x0) * to_points, (y1 - y0) * to_points
+            label += ([(dx, dy + lift, "center", "bottom") for lift in (0, 8, 16)]
+                      + LABEL_CANDIDATES,)
+        labels.append(label)
+    _place_point_labels(ax, labels, list(points.values()), FS_POINT,
+                        candidates=LABEL_CANDIDATES, leader_min=0)
+    return handles
+
+
+def _class_balanced(pairs, counts):
+    """Per run and dataset, the mean over true cell types of each count's share of the type's
+    cells, the way balanced accuracy averages recall. ``counts`` maps a name to a count per pair."""
+    keys = [pairs["model"], pairs["dataset"], pairs["true_label"]]
+    per_type = pd.DataFrame(counts).groupby(keys).sum()
+    return per_type.div(pairs["n_cells"].groupby(keys).sum(), axis=0) \
+                   .groupby(["model", "dataset"]).mean()
+
+
+def _benchmark_pairs(df, pairs=None, chance=False):
+    """The confusion pairs of the runs in ``df``, with the columns G and H need; those of the
+    chance models only with ``chance``."""
+    pairs = load_confusion_pairs() if pairs is None else pairs
+    if pairs.empty or not {"n_direct", "lineage", "pred_terms_below"} <= set(pairs.columns):
+        raise SystemExit("Figure 2G/H need the confusion pairs with n_direct and lineage: "
+                         "run bin/per_class_scores.py.")
+    runs = df["model"] if chance else df.loc[df["model"].map(categorize_model) != "simple", "model"]
+    return pairs[pairs["model"].isin(set(runs))]
+
+
+def _group_means(per_model, rows):
+    """Mean of ``per_model`` (one row per run) over the runs of each ``(family, mode, label)`` of
+    ``rows``, optionally ``(family, mode, label, tier)``; a mode or tier of None takes them all."""
+    means = []
+    for family, mode, _label, *tier in rows:
+        keep = [categorize_model(m) == family and (mode is None or derive_mode(m) == mode)
+                and (not tier or model_tier(m) == tier[0]) for m in per_model.index]
+        means.append(per_model[keep].mean())
+    return pd.DataFrame(means, index=[row[2] for row in rows])
+
+
+def _mapping_scores(pairs):
+    """Balanced accuracy per run and dataset with the curated mapping, and counting only the
+    answers that needed none: Cell Ontology terms or the dataset's own labels, as written."""
+    hit = pairs["true_label"] == pairs["predicted_label"]
+    return _class_balanced(pairs, {"with": pairs["n_cells"].where(hit, 0),
+                                   "without": pairs["n_direct"].where(hit, 0)})
+
+
+def _needs_mapping(pairs):
+    """Share of cells per run and dataset whose answer needed the curated mapping, over all cells
+    rather than per cell type."""
+    cells = pairs.groupby(["model", "dataset"])[["n_cells", "n_direct"]].sum()
+    return 1.0 - cells["n_direct"] / cells["n_cells"]
+
+
+def _answer_shares(pairs):
+    """Class-balanced share of each answer type of LINEAGE_KEY per run and dataset."""
+    kind = pairs["lineage"].mask((pairs["lineage"] == "coarser")
+                                 & (pairs["pred_terms_below"] > BROAD_TERMS_BELOW), "broad")
+    return _class_balanced(pairs, {k: pairs["n_cells"].where(kind == k, 0)
+                                   for k, *_ in LINEAGE_KEY})
+
+
+def _stacked_shares(ax, shares, y):
+    """One stacked bar of answer-type shares per row of ``shares``, at heights ``y``."""
+    left = np.zeros(len(shares))
+    for key, label, color in LINEAGE_KEY:
+        ax.barh(y, shares[key].to_numpy(), left=left, height=0.7, color=color,
+                edgecolor="0.55", linewidth=0.4, label=label)
+        left += shares[key].to_numpy()
+    ax.set_xlim(0, 1)
+    sns.despine(ax=ax, left=True)
+    ax.tick_params(axis="y", length=0)
+
+
+def _mapping_panel(ax, pairs):
+    """Panel G: balanced accuracy with the curated mapping (filled) and counting only the answers
+    that needed none (open), per family and setting, averaged over the family's methods and the
+    datasets."""
+    means = _group_means(_mapping_scores(pairs).groupby("model").mean(), MAPPING_ROWS)
+    colors = _ranked_category_colors()
+    y = np.arange(len(MAPPING_ROWS))[::-1]  # first row on top, level with H's rows
+    for yy, (family, *_), (_label, mean) in zip(y, MAPPING_ROWS, means.iterrows()):
+        ax.plot([mean["without"], mean["with"]], [yy, yy], color=colors[family], linewidth=2.2,
+                zorder=2)
+        ax.scatter(mean["without"], yy, s=46, facecolor="white", edgecolor=colors[family],
+                   linewidth=1.6, zorder=3)
+        ax.scatter(mean["with"], yy, s=46, color=colors[family], zorder=3)
+    ax.set_yticks(y)
+    ax.set_yticklabels(means.index)
+    ax.set_ylim(-0.6, len(MAPPING_ROWS) - 0.4)
+    ax.set_xlim(0, 0.7)  # room on the right for the key
+    ax.set_xlabel("Balanced accuracy (averaged over methods and datasets)")
+    ax.grid(axis="x", linestyle=":", alpha=0.5)
+    sns.despine(ax=ax)
+    ax.legend(handles=[
+        plt.Line2D([], [], linestyle="none", marker="o", markerfacecolor="white",
+                   markeredgecolor="0.3", markersize=7, label="no curated mapping"),
+        plt.Line2D([], [], linestyle="none", marker="o", color="0.3", markersize=7,
+                   label="with curated mapping")],
+        loc="upper right", frameon=False, fontsize=FS_LEGEND, borderaxespad=0, borderpad=0)
+
+
+def _lineage_panel(ax, pairs):
+    """Panel H: where each family's answers sit in the ontology relative to the true type, in
+    G's rows and averaged like G over the family's methods and the datasets. The per-dataset and
+    per-subcategory views are a supplementary figure."""
+    shares = _group_means(_answer_shares(pairs).groupby("model").mean(), MAPPING_ROWS)
+    y = np.arange(len(MAPPING_ROWS))[::-1]
+    _stacked_shares(ax, shares, y)
+    ax.set_yticks(y)
+    ax.set_yticklabels(shares.index)
+    ax.set_ylim(-0.6, len(MAPPING_ROWS) - 0.4)
+    ax.set_xlabel("Share of cells (averaged over cell types, methods and datasets)")
+
+
+def figure_benchmark(df, out_path, dpi=600, pairs=None):
+    """Figure 2 — the benchmark results: ranking, effect of the list per dataset, dependence on
+    the curated mapping, and where the answers sit in the ontology."""
+    df = with_unsupported_as_zero(df, model_cols=("model", "mode"))
+    pairs = _benchmark_pairs(df, pairs)
+
     with plt.rc_context(_rc()):
-        ok = plot_composite_ranked_bars(df, out_path, dpi, metric="balanced_accuracy",
-                                        include_simple=False, prose_regimes=True)
-    if not ok:
-        raise SystemExit("Ranked balanced accuracy: metric missing from the aggregate.")
-    return Path(out_path)
+        fig = plt.figure(figsize=(12.2, 14.56))
+        # A and B-F take the full width. Between them sit A's slanted run names and the key that
+        # serves both rows; the spacer after B-F holds their family names. The two spacers are
+        # sized so the white gaps above B-F and above G/H are equal (0.3 in).
+        outer = fig.add_gridspec(7, 1, height_ratios=[3.4, 1.65, 1.5, 0.73, 2.8, 1.27, 2.9],
+                                 hspace=0, left=0.075, right=0.985)
+        ax_a = fig.add_subplot(outer[0])
+        _ranked_panel(ax_a, df)
+
+        middle = outer[4].subgridspec(1, 5, wspace=0.08)
+        panels = [fig.add_subplot(middle[0, 0])]
+        panels += [fig.add_subplot(middle[0, i], sharey=panels[0]) for i in range(1, 5)]
+        _list_effect_panel(panels[0], df, "All four datasets")
+        panels[0].set_ylabel("Balanced accuracy")
+        for ax, dataset in zip(panels[1:], DATASET_ORDER):
+            _list_effect_panel(ax, df[df["dataset"] == dataset], dataset_label(dataset))
+            ax.tick_params(labelleft=False)
+
+        # G, then H with its key close beside it, so the key stays inside the page width.
+        bottom = outer[6].subgridspec(1, 2, width_ratios=[1.0, 1.75], wspace=0.25)
+        right = bottom[0, 1].subgridspec(1, 2, width_ratios=[1.0, 0.36], wspace=0.04)
+        ax_g, ax_h = fig.add_subplot(bottom[0, 0]), fig.add_subplot(right[0, 0])
+        _mapping_panel(ax_g, pairs)
+        _lineage_panel(ax_h, pairs)
+        ax_h_key = fig.add_subplot(right[0, 1])
+        ax_h_key.axis("off")
+        ax_h_key.legend(handles=ax_h.get_legend_handles_labels()[0], loc="center left",
+                        frameon=False, fontsize=FS_LEGEND, borderaxespad=0, borderpad=0,
+                        handlelength=1.6)
+
+        # The key for A to F.
+        ax_key = fig.add_subplot(outer[2])
+        ax_key.axis("off")
+        _family_key(ax_key, [
+            mpatches.Patch(facecolor="0.75", edgecolor="white", label=SETTING_KEY["unblind"]),
+            mpatches.Patch(facecolor="0.75", edgecolor="black", hatch="///",
+                           label=SETTING_KEY["blind"]),
+            plt.Line2D([], [], label="chance (random, stratified)", **CHANCE_LINE),
+            plt.Line2D([], [], color="0.62", linewidth=0.7, label="same model")])
+        _panel_letters(fig, [(ax_a, "A"), *zip(panels, "BCDEF"), (ax_g, "G"), (ax_h, "H")])
+        return _save(fig, out_path, dpi)
 
 
-# Datasets whose public release post-dates several of the benchmarked models. HFRA and HIHA
-# reached CELLxGENE in December 2025; Zeisel (2015) and human_pancreas (2016) have been public for
-# a decade. The split is what makes the date trend testable against pretraining exposure.
-RECENTLY_PUBLIC = {"HFRA", "HIHA"}
+def _lighter(color, white=0.5):
+    """``color`` mixed with white, ``white`` being the share of white."""
+    return mcolors.to_hex([c + (1 - c) * white for c in mcolors.to_rgb(color)])
+
+
+def _family_key(ax, encodings):
+    """The key of Figure 2, worded as Figure 1B: one column of ``encodings``, then one column per
+    family with its subcategories under the family's name in bold. Columns are padded to equal
+    length, so the legend fills them column by column."""
+    colors = _ranked_category_colors()
+    columns = [encodings] + [
+        [_blank(FAMILY_HEADER[family])] + [
+            plt.Line2D([], [], linestyle="none", marker=marker, color=colors[family],
+                       markersize=11 if marker == "*" else 7, label=TIER_NAME.get(tier, label))
+            for tier, label, marker, _size in CATEGORY_TIERS[family]]
+        for family, _ in COMPOSITE_CATEGORIES]
+    rows = max(len(column) for column in columns)
+    key = ax.legend(handles=[h for column in columns
+                             for h in column + [_blank()] * (rows - len(column))],
+                    ncol=len(columns), loc="center", frameon=False, fontsize=FS_LEGEND,
+                    columnspacing=0.8, handlelength=1.4, handletextpad=0.5, borderaxespad=0)
+    for text in key.get_texts():
+        if text.get_text() in FAMILY_HEADER.values():
+            text.set_fontweight("bold")
+
+
+def _subcategory_rows():
+    """Rows ``(family, mode, label, tier)`` for every method subcategory, the language models' in
+    both settings, named as in Figure 1B."""
+    family_name = {"classical": "baseline", "scLLM": "scLLM", "LLM": "LLM"}
+    rows = []
+    for family, _ in COMPOSITE_CATEGORIES:
+        for tier, label, *_ in CATEGORY_TIERS[family]:
+            name = f"{family_name[family]}, {TIER_NAME.get(tier, label)}"
+            modes = [None] if family == "classical" else ["blind", "unblind"]
+            rows += [(family, mode, name if mode is None else f"{name}, {REGIME_SHORT[mode]}", tier)
+                     for mode in modes]
+    return rows
+
+
+def figure_answer_types(df, out_path, dpi=600, pairs=None):
+    """Supplementary — Figure 2H resolved per dataset (A) and per method subcategory (B).
+
+    The main panel averages over the datasets and over each family's methods; the dataset view
+    shows where the coarse answers come from (T cell on HIHA, neuron on HFRA and Zeisel), the
+    subcategory view which methods give them.
+    """
+    df = with_unsupported_as_zero(df, model_cols=("model", "mode"))
+    per_run = _answer_shares(_benchmark_pairs(df, pairs))
+    with plt.rc_context(_rc()):
+        fig = plt.figure(figsize=(12.2, 7.6))
+        # The gap holds B's subcategory names; the key sits under both panels.
+        grid = fig.add_gridspec(1, 2, left=0.11, right=0.985, wspace=0.78)
+        ax_a, ax_b = fig.add_subplot(grid[0, 0]), fig.add_subplot(grid[0, 1])
+
+        # A: G's five family rows for each dataset, the dataset's name above its block.
+        blocks = [_group_means(per_run.xs(dataset, level="dataset"), MAPPING_ROWS)
+                  for dataset in DATASET_ORDER]
+        step = len(MAPPING_ROWS) + 1.4
+        y = np.concatenate([-(i * step + np.arange(len(MAPPING_ROWS)))
+                            for i in range(len(blocks))])
+        _stacked_shares(ax_a, pd.concat(blocks), y)
+        ax_a.set_yticks(y)
+        ax_a.set_yticklabels([row[2] for _ in blocks for row in MAPPING_ROWS])
+        heads = mtransforms.blended_transform_factory(ax_a.transAxes, ax_a.transData)
+        for i, dataset in enumerate(DATASET_ORDER):
+            ax_a.text(0.0, -i * step + 0.75, dataset_label(dataset), transform=heads, ha="left",
+                      va="bottom", fontsize=FS_LEGEND, fontweight="bold")
+        ax_a.set_ylim(y.min() - 0.6, 1.4)
+        ax_a.set_xlabel("Share of cells (averaged over cell types and methods)")
+
+        # B: every subcategory, averaged over the datasets.
+        rows = _subcategory_rows()
+        shares = _group_means(per_run.groupby("model").mean(), rows)
+        y_b = np.arange(len(rows))[::-1]
+        _stacked_shares(ax_b, shares, y_b)
+        ax_b.set_yticks(y_b)
+        ax_b.set_yticklabels(shares.index)
+        ax_b.set_ylim(-0.6, len(rows) - 0.4)
+        ax_b.set_xlabel("Share of cells (averaged over cell types, methods and datasets)")
+
+        for ax in (ax_a, ax_b):
+            _harmonize(ax, text_size=FS_LEGEND)
+        fig.legend(handles=ax_b.get_legend_handles_labels()[0], loc="upper center",
+                   bbox_to_anchor=(0.55, 0.0), ncol=len(LINEAGE_KEY), frameon=False,
+                   fontsize=FS_LEGEND, handlelength=1.6, columnspacing=1.4)
+        _panel_letters(fig, [(ax_a, "A"), (ax_b, "B")])
+        return _save(fig, out_path, dpi)
+
+
+# The supplementary heatmap's metrics, in Figure 1E's groups.
+METRIC_GROUPS = [
+    ("exact match", [("balanced_accuracy", "balanced accuracy"), ("accuracy", "accuracy"),
+                     ("macro_f1", "macro F1"), ("weighted_f1", "weighted F1")]),
+    ("ontology-aware", [("agreement_score", "agreement score"), ("rada_avg_similarity", "Rada"),
+                        ("lin_avg_similarity", "Lin")]),
+    ("text similarity", [("text_emb_norm_balanced_mapped", "text, mapped"),
+                         ("text_emb_norm_balanced_raw", "text, unmapped")]),
+]
+
+
+def figure_metric_agreement(df, out_path, dpi=600):
+    """Supplementary — do the metrics rank the methods alike?
+
+    Spearman correlation over the runs within each dataset, averaged over the datasets. Pooling
+    the datasets instead would mix in how hard each dataset is, which moves every metric at once
+    and Lin with a floor of its own per dataset, and so would understate how alike Lin ranks.
+    """
+    runs = df[df["model"].map(categorize_model) != "simple"]
+    keys = [key for _, group in METRIC_GROUPS for key, _ in group]
+    names = [name for _, group in METRIC_GROUPS for _, name in group]
+    per_dataset = [g[keys].corr(method="spearman") for _, g in runs.groupby("dataset")]
+    corr = (sum(per_dataset) / len(per_dataset)).to_numpy()
+    with plt.rc_context(_rc()):
+        fig, ax = plt.subplots(figsize=(8.0, 6.8))
+        image = ax.imshow(np.ma.array(corr, mask=np.triu(np.ones_like(corr, dtype=bool), 1)),
+                          cmap="viridis", vmin=0.5, vmax=1.0)
+        for i in range(len(keys)):
+            for j in range(i + 1):
+                ax.text(j, i, f"{corr[i, j]:.2f}", ha="center", va="center",
+                        fontsize=FS_POINT + 1, color="white" if corr[i, j] < 0.8 else "black")
+        ax.set_xticks(range(len(keys)))
+        ax.set_xticklabels(names, rotation=45, ha="right", rotation_mode="anchor")
+        ax.set_yticks(range(len(keys)))
+        ax.set_yticklabels(names)
+        edge = -0.5
+        for _, group in METRIC_GROUPS[:-1]:  # white rules between Figure 1E's groups
+            edge += len(group)
+            ax.axhline(edge, color="white", linewidth=2.5)
+            ax.axvline(edge, color="white", linewidth=2.5)
+        for spine in ax.spines.values():
+            spine.set_visible(False)
+        bar = fig.colorbar(image, ax=ax, fraction=0.045, pad=0.03)
+        bar.set_label("Spearman correlation (mean over the four datasets)")
+        return _save(fig, out_path, dpi)
 
 
 # --------------------------------------------------------------------------- #
@@ -1347,8 +1605,9 @@ def figure_cost_performance(df, out_path, dpi=600, activity=None):
     many providers at different rates. Both numbers are correct measurements of different runs.
     The frontier POSITION is invariant to the difference, which is why the text argues from rank.
 
-    The in-panel title is dropped and the legend relabeled to the manuscript's regime names; the
-    LaTeX caption does the describing (WRITING_STYLE.md, Scientific reporting Rule 1).
+    The in-panel title is dropped, the names are the display names and the settings are worded as
+    in Figure 2's key; the LaTeX caption does the describing (WRITING_STYLE.md, Scientific
+    reporting Rule 1).
     """
     activity = load_activity() if activity is None else activity
     if activity.empty:
@@ -1359,8 +1618,14 @@ def figure_cost_performance(df, out_path, dpi=600, activity=None):
 
     with plt.rc_context(_rc()):
         fig, ax = plt.subplots(figsize=(7.4, 5.2))
+        # All points are general-purpose LLMs, so they take the family's orange: C in full, U
+        # lighter, as the hatching lightens the U bars of Figure 2A. Names as in Figure 2B-F.
+        orange = _ranked_category_colors()["LLM"]
         ok = plot_cost_vs_performance(df, activity, out_path, dpi, ax=ax,
-                                      metric="balanced_accuracy")
+                                      metric="balanced_accuracy", name=_display,
+                                      label_size=FS_POINT, text_color="0.15",
+                                      colors={"unblind": orange, "blind": _lighter(orange)},
+                                      step_alpha=0.9)
         if not ok:
             raise SystemExit(
                 "Cost-performance figure: fewer than two models carry both a balanced accuracy "
@@ -1368,88 +1633,12 @@ def figure_cost_performance(df, out_path, dpi=600, activity=None):
         # The panel function sets its title with loc="left", which is a separate Text object from
         # the centered one -- clearing the default would leave it on the page.
         ax.set_title("", loc="left")
+        ax.set_ylabel("Balanced accuracy (averaged over datasets)")
         legend = ax.get_legend()
-        if legend is not None:
+        if legend is not None:  # the settings as in Figure 2's key
             for text in legend.get_texts():
-                text.set_text(_to_prose_regime(text.get_text()))
+                text.set_text(SETTING_KEY.get(text.get_text(), text.get_text()))
         _harmonize(ax)
-        return _save(fig, out_path, dpi)
-
-
-def figure_date_vs_performance(df, out_path, dpi=600, metric="balanced_accuracy"):
-    """Supplementary for R1 — performance against model release date, and whether that trend is
-    explained by the datasets that became public inside the release window.
-
-    Moved from R2 to R1 on 2026-08-14: R2 is now the ontology-harmonization section and carries no
-    within-family paragraph, so the pretraining-exposure caveat belongs beside the landscape.
-
-    (A) One point per general-purpose LLM and regime. The trend is strong, and release date is
-        collinear with weight availability, reasoning capability and vendor in this roster.
-    (B) The same rank correlation computed per dataset. Two of the four became public in December
-        2025, inside the release window of the strongest models; the other two have been public
-        for a decade. A trend driven by exposure to the recent pair would be steeper on them.
-    """
-    dates = load_model_dates(DEFAULT_DATES_CSV, "artifact_available_date")
-    if dates.empty or metric not in df.columns:
-        raise SystemExit("Date figure: no usable model dates or metric missing.")
-
-    d = df.copy()
-    d["model_base"] = d["model"].map(model_base)
-    d["category"] = d["model"].map(categorize_model)
-    d["mode"] = d["model"].map(derive_mode)
-    d = d[(d["category"] == "LLM") & (~d["model_base"].isin(EXCLUDED_BASES))].copy()
-    d["date"] = d["model_base"].map(dates)
-    d = d.dropna(subset=["date"])
-    if d.empty:
-        raise SystemExit("Date figure: no LLM rows carry a release date.")
-
-    cat_color = _ranked_category_colors()
-    with plt.rc_context(_rc()):
-        fig, (ax_a, ax_b) = plt.subplots(1, 2, figsize=(12.0, 4.6),
-                                         gridspec_kw={"width_ratios": [1.35, 1.0]})
-
-        # (A) date vs metric, one point per model x regime.
-        per = d.groupby(["model_base", "mode"])[metric].mean().reset_index()
-        per["date"] = per["model_base"].map(dates)
-        for mode, marker, face in (("unblind", "o", cat_color["LLM"]), ("blind", "o", "white")):
-            sub = per[per["mode"] == mode]
-            ax_a.scatter(sub["date"], sub[metric], s=46, marker=marker, facecolor=face,
-                         edgecolor=cat_color["LLM"], linewidth=1.2, zorder=3,
-                         label=REGIME[mode])
-            rho = (sub["date"].map(pd.Timestamp.toordinal)
-                   .corr(sub[metric], method="spearman"))
-            ax_a.plot([], [], " ", label=f"   Spearman $\\rho$ = {rho:.2f} (n = {len(sub)})")
-        ax_a.set_xlabel("model release date")
-        ax_a.set_ylabel(f"{pretty(metric)} (mean over datasets)")
-        ax_a.tick_params(axis="x", rotation=25)
-        for lbl in ax_a.get_xticklabels():
-            lbl.set_ha("right")
-        ax_a.grid(linestyle=":", alpha=0.5)
-        ax_a.legend(loc="upper left", frameon=False, fontsize=FS_LEGEND - 0.5)
-        sns.despine(ax=ax_a)
-
-        # (B) the same correlation, per dataset, grouped by how long the dataset has been public.
-        datasets = sorted(d["dataset"].astype(str).unique())
-        width, xs = 0.38, np.arange(len(datasets), dtype=float)
-        for i, (mode, hatch) in enumerate((("unblind", None), ("blind", "///"))):
-            vals = []
-            for ds in datasets:
-                g = d[(d["mode"] == mode) & (d["dataset"].astype(str) == ds)]
-                vals.append(g["date"].map(pd.Timestamp.toordinal)
-                            .corr(g[metric], method="spearman"))
-            ax_b.bar(xs + (i - 0.5) * width, vals, width, color=cat_color["LLM"], hatch=hatch,
-                     edgecolor="black" if hatch else "white", linewidth=0.5, zorder=3,
-                     label=REGIME[mode])
-        ax_b.set_xticks(xs)
-        ax_b.set_xticklabels([f"{ds}\npublic {'12/2025' if ds in RECENTLY_PUBLIC else '2015-16'}"
-                              for ds in datasets], fontsize=FS_TICK - 2.0)
-        ax_b.set_ylabel(f"Spearman $\\rho$ (date, {pretty(metric).lower()})")
-        ax_b.set_ylim(0, 1.0)
-        ax_b.grid(axis="y", linestyle=":", alpha=0.5)
-        ax_b.legend(loc="upper right", frameon=False, fontsize=FS_LEGEND - 0.5)
-        sns.despine(ax=ax_b)
-
-        _panel_letters(fig, [(ax_a, "A"), (ax_b, "B")])
         return _save(fig, out_path, dpi)
 
 
@@ -2102,34 +2291,29 @@ def figure_context_supporting(df, out_path, dpi=600, ablation=None):
 # Every key IS the output filename (out = figure_{key}.{fmt}) and every filename matches the
 # number LaTeX assigns, so the chain function -> file -> manuscript number holds end to end.
 # RENUMBERED 2026-10-07: the model overview became Figure 1 (drawn outside this script; its PDF is
-# figures/figure_1.pdf), so the landscape is Figure 2, the context ablation Figure 3 and the rare
-# types Figure 4. The function names keep their earlier numbers. (2026-08-28: the harmonization
-# figure left the main set for Supplementary S3 with the cut to three Results sections.)
+# figures/figure_1.pdf), so the benchmark results are Figure 2, the context ablation Figure 3 and
+# the rare types Figure 4. The function names keep their earlier numbers.
 FIGURES = {
-    "2": figure_1_balanced_accuracy,     # landscape, balanced accuracy -> Figure 2
-    "2_composite": figure_1,             # landscape on the composite score, not in the paper
+    "2": figure_benchmark,               # benchmark results            -> Figure 2
+    "2_composite": figure_1,             # panel B alone on the composite score, not in the paper
     "3": figure_2,                       # prompt-context ablation      -> Figure 3
     "4": figure_3,                       # rare cell types              -> Figure 4
-    # Supplementary, numbered by order of first mention in the main text (BiB Rule 6).
-    # s1, s2 serve R1; s3 serves R1.4; s4, s5, s6 serve R2; the flow figures serve R3.
-    "s1_ranked_balanced_accuracy": figure_ranked_balanced_accuracy,
-    "s2_date_vs_performance": figure_date_vs_performance,
-    # Left the main text 2026-08-28 when the harmonization section was folded into R1.4.
-    "s3_harmonization": figure_s3_harmonization,
+    # Supplementary, numbered by first mention in the BiB build (Methods before Results), as
+    # BiB asks (renumbered 2026-10-07): S1-S3 are cited in R1, S4-S6 in R2, S7-S11 in R3.
+    "s1_harmonization": figure_harmonization,          # Figure 2G per method
+    "s2_answer_types": figure_answer_types,            # Figure 2H per dataset and subcategory
+    "s3_metric_agreement": figure_metric_agreement,    # task 2.3
     # R2's arm choice: the cost-efficient frontier the section's opening paragraph argues from.
     "s4_cost_performance": figure_cost_performance,
-    # R2 support: the base model's answer format, gene pool, resolution sensitivity.
-    # Ordered before the per-dataset figure: R2's base-model clause cites this one and precedes
-    # the shuffle sentence that cites the per-dataset one. (The 2026-08-15 note here said the
-    # base model was panel B; it is panel A. The ordering conclusion was unaffected.)
+    # R2 support: the base model's answer format, gene pool, resolution sensitivity. Cited
+    # before the per-dataset figure.
     "s5_context_supporting": figure_context_supporting,
     # R2's per-dataset companion: the condition axis resolved by dataset, repeats shown.
     "s6_context_per_dataset": figure_context_per_dataset,
-    # One supplementary flow figure per dataset; every dataset has rare types, though HFRA has
-    # only two at or below the 3% floor.
-    # S7 onward, numbered in RARE_FLOW_ORDER so the filenames match the LaTeX numbering.
     # R3: the full rare-type set plus the per-dataset gap the pooled claim is hedged on.
     "s7_rare_full": figure_s7_rare_full,
+    # One flow figure per dataset, S8 onward in RARE_FLOW_ORDER; HFRA has only two rare types at
+    # or below the 3% floor.
     **{f"s{i + 8}_{ds.lower()}": _rare_flow_builder(ds)
        for i, ds in enumerate(RARE_FLOW_ORDER)},
 }

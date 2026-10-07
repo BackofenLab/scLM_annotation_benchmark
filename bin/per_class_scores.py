@@ -10,7 +10,12 @@ produced an unrelated label or produced a coarser relative of the right one, and
 score separates those. Aggregate-level Lin cannot: it is a per-cell mean over the whole run.
 
 It also writes the confusion pairs the rare-type flow figures draw (cells per true and predicted
-label and run), taken from the same prepared labels so the flows match the scores.
+label and run), taken from the same prepared labels so the flows match the scores. For Figure 2,
+each pair also counts the cells whose answer needed no curated mapping (``n_direct``): a Cell
+Ontology term, or one of the dataset's own reference labels, as written. It places the prediction
+relative to the true type at any distance (``lineage``: exact, coarser, finer, other, or none for
+no usable answer), with the number of ontology terms at or below the predicted one
+(``pred_terms_below``).
 
 WHY THIS IS A SEPARATE SCRIPT. ``Results/`` carries ``true_labels_scored.csv`` for the baselines
 and the scLLMs but for NO general-purpose LLM run, so the graded scores simply do not exist on
@@ -78,7 +83,8 @@ def main() -> None:
     from evaluate import (load_ontology_context, load_review_status, prepare_for_scoring,
                           trusted_answers)
     from plot_model_comparison import EXCLUDED_BASES, model_base
-    from util.cell_ontology_similarity import compute_ontology_similarities, download_cl_ontology
+    from util.cell_ontology_similarity import (CL_ROOT, _normalize, compute_ontology_similarities,
+                                               download_cl_ontology)
 
     label_index, taxonomy = load_ontology_context(download_cl_ontology(cache_dir))
     reviewed, review_map = load_review_status(cache_dir)
@@ -98,7 +104,12 @@ def main() -> None:
             continue
         raw_col = ("original_predicted_labels" if "original_predicted_labels" in frame.columns
                    else "predicted_labels")
-        _, trusted = trusted_answers(frame[raw_col], label_index, reviewed)
+        is_cl, trusted = trusted_answers(frame[raw_col], label_index, reviewed)
+        # No curated mapping is needed for a Cell Ontology term or for one of the dataset's own
+        # reference labels as written: the constrained runs are given those labels, and some are
+        # not ontology terms (pancreas "delta", Zeisel "Microglia").
+        own_labels = set(frame["true_labels"].astype(str).map(_normalize))
+        direct = is_cl | frame[raw_col].astype(str).map(_normalize).isin(own_labels)
         coverage = trusted.mean() if len(frame) else 0.0
         if coverage < args.min_scoring_coverage:
             gated += 1
@@ -109,12 +120,21 @@ def main() -> None:
         pairs, avg = compute_ontology_similarities(frame, "true_labels", "predicted_labels",
                                                    label_index, taxonomy)
         pairs["hit"] = (pairs["true_labels"] == pairs["predicted_labels"]).astype(float)
+        direct = (frame.assign(direct=direct)
+                  .groupby(["true_labels", "predicted_labels"])["direct"].sum())
         flows.append(pd.DataFrame({
             "true_label": pairs["true_labels"], "predicted_label": pairs["predicted_labels"],
             "n_cells": pairs["cell_count"], "model": model, "dataset": dataset,
             # the true type's share of the evaluation subset
             "prevalence": pairs.groupby("true_labels")["cell_count"].transform("sum")
-                          / pairs["cell_count"].sum()}))
+                          / pairs["cell_count"].sum(),
+            "n_direct": [int(direct[key]) for key in
+                         zip(pairs["true_labels"], pairs["predicted_labels"])],
+            # An unresolved answer, or the root "cell" that nonsense answers map to, is no answer.
+            "lineage": [None if pd.isna(t) else "none" if pd.isna(p) or p == CL_ROOT
+                        else taxonomy.lineage(t, p)
+                        for t, p in zip(pairs["true_term_id"], pairs["pred_term_id"])],
+            "pred_terms_below": pairs["pred_term_id"].map(taxonomy.n_below)}))
         for cell_type, group in pairs.groupby("true_labels"):
             weights = group["cell_count"]
             rows.append({

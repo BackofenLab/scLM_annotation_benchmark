@@ -134,9 +134,10 @@ class CellTaxonomy:
         self.names = {t: names[t] for t in self.graph if t in (names or {})}
         self._undirected = self.graph.to_undirected(as_view=True)
         self._ancestors = {t: nx.ancestors(self.graph, t) | {t} for t in self.graph}
-        n_below = Counter(a for ancestors in self._ancestors.values() for a in ancestors)
+        # Terms at or below each term, itself included: how broad a class it is.
+        self.n_below = Counter(a for ancestors in self._ancestors.values() for a in ancestors)
         log_n = math.log(self.graph.number_of_nodes())
-        self.ic = {t: 1.0 - math.log(n_below[t]) / log_n for t in self.graph}
+        self.ic = {t: 1.0 - math.log(self.n_below[t]) / log_n for t in self.graph}
 
     @classmethod
     def from_ontology(cls, ont: pronto.Ontology, root: str = CL_ROOT) -> CellTaxonomy:
@@ -164,6 +165,17 @@ class CellTaxonomy:
         if self.graph.has_edge(pred, true):
             return "broader"
         if self.graph.has_edge(true, pred):
+            return "finer"
+        return "other"
+
+    def lineage(self, true: str, pred: str) -> str:
+        """``pred`` relative to ``true`` at any distance: exact, coarser (an ancestor), finer (a
+        descendant) or other. ``relation`` looks only one is_a step away."""
+        if pred == true:
+            return "exact"
+        if pred in self._ancestors[true]:
+            return "coarser"
+        if true in self._ancestors[pred]:
             return "finer"
         return "other"
 
