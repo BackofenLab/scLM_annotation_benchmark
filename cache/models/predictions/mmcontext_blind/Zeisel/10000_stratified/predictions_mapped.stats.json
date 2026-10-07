@@ -1,0 +1,10 @@
+{
+  "total_predictions": 9997,
+  "note": "discovery + resolution; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 5,
+  "non_cl_ratio": 0.0005,
+  "non_cl_labels": [
+    "chandelier pvalb gabaergic interneuron (homo sapiens)",
+    "inflammatory macrophage"
+  ]
+}

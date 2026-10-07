@@ -1,0 +1,11 @@
+{
+  "total_predictions": 9997,
+  "note": "discovery + resolution; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 1996,
+  "non_cl_ratio": 0.19966,
+  "non_cl_labels": [
+    "enteric glia",
+    "microglia",
+    "satellite glia"
+  ]
+}
