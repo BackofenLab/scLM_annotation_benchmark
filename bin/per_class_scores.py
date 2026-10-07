@@ -10,7 +10,9 @@ produced an unrelated label or produced a coarser relative of the right one, and
 score separates those. Aggregate-level Lin cannot: it is a per-cell mean over the whole run.
 
 It also writes the confusion pairs the rare-type flow figures draw (cells per true and predicted
-label and run), taken from the same prepared labels so the flows match the scores. For Figure 2,
+label and run), taken from the same prepared labels so the flows match the scores, and whether
+each cell was labelled correctly (``--cells-out``), which the paired bootstrap of
+``bin/bootstrap_contrasts.py`` resamples. For Figure 2,
 each pair also counts the cells whose answer needed no curated mapping (``n_direct``): a Cell
 Ontology term, or one of the dataset's own reference labels, as written. It places the prediction
 relative to the true type at any distance (``lineage``: exact, coarser, finer, other, or none for
@@ -47,6 +49,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 DEFAULT_OUT = "cache/per_class_scores_1000_stratified.csv"
 DEFAULT_CONFUSION_OUT = "cache/confusion_pairs_1000_stratified.csv"
+DEFAULT_CELLS_OUT = "cache/cell_hits_1000_stratified.csv"
 DEFAULT_PRED_GLOB = "cache/models/predictions/*/*/1000_stratified/*_mapped.csv"
 
 
@@ -75,6 +78,8 @@ def main() -> None:
     ap.add_argument("--out", default=DEFAULT_OUT)
     ap.add_argument("--confusion-out", default=DEFAULT_CONFUSION_OUT,
                     help="cells per (true label, predicted label) and run, for the rare-type flows")
+    ap.add_argument("--cells-out", default=DEFAULT_CELLS_OUT,
+                    help="per cell and run, whether the prepared prediction equals the truth")
     ap.add_argument("--min-scoring-coverage", type=float, default=0.9,
                     help="matches params.min_scoring_coverage in nextflow.config")
     args = ap.parse_args()
@@ -92,7 +97,7 @@ def main() -> None:
 
     files = sorted(glob.glob(args.pred_glob))
     print(f"{len(files)} mapped prediction files", flush=True)
-    rows, flows, gated = [], [], 0
+    rows, flows, cells, gated = [], [], [], 0
     for i, path in enumerate(files, 1):
         p = Path(path)
         wrapper, dataset = p.parts[-4], p.parts[-3]
@@ -120,6 +125,10 @@ def main() -> None:
         pairs, avg = compute_ontology_similarities(frame, "true_labels", "predicted_labels",
                                                    label_index, taxonomy)
         pairs["hit"] = (pairs["true_labels"] == pairs["predicted_labels"]).astype(float)
+        cells.append(pd.DataFrame({
+            "dataset": dataset, "model": model, "cell_id": frame["cell_id"].astype(str),
+            "true_label": frame["true_labels"],
+            "hit": (frame["true_labels"] == frame["predicted_labels"]).astype(int)}))
         direct = (frame.assign(direct=direct)
                   .groupby(["true_labels", "predicted_labels"])["direct"].sum())
         flows.append(pd.DataFrame({
@@ -156,9 +165,11 @@ def main() -> None:
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     out.to_csv(args.out, index=False)
     pd.concat(flows, ignore_index=True).to_csv(args.confusion_out, index=False)
+    pd.concat(cells, ignore_index=True).to_csv(args.cells_out, index=False)
     n_types = out.loc[out["cell_type"] != "__OVERALL__", "cell_type"].nunique()
     print(f"\n{len(out)} rows | {out['model'].nunique()} models | {n_types} cell types "
-          f"| {gated} run(s) gated below coverage\n-> {args.out}\n-> {args.confusion_out}")
+          f"| {gated} run(s) gated below coverage\n-> {args.out}\n-> {args.confusion_out}"
+          f"\n-> {args.cells_out}")
 
 
 if __name__ == "__main__":
