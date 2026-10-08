@@ -2070,6 +2070,7 @@ True;openrouter_LLM_blind_anthropic--claude-sonnet-4.6_human_pancreas;type f cel
 True;openrouter_LLM_blind_anthropic--claude-sonnet-4.6_human_pancreas;type f pancreatic cell;pancreatic PP cell;type B pancreatic cell
 True;c2s_scale_2B_blind_human_pancreas;type i pneumocyte;pulmonary alveolar type 1 cell;pulmonary ionocyte
 True;scsa_blind_Zeisel;type ib spiral ganglion neuron;spiral ganglion neuron;spiral ganglion neuron
+True;scsa_blind_Zeisel;type ic spiral ganglion neuron;spiral ganglion neuron;
 True;openrouter_LLM_blind_openai--gpt-5.5_Zeisel;type ii pneumocyte;pulmonary alveolar type 2 cell;type IIa muscle cell
 True;scsa_blind_Zeisel;type ii spiral ganglion neuron;spiral ganglion neuron;spiral ganglion neuron
 True;openrouter_LLM_blind_anthropic--claude-sonnet-4.6_human_pancreas;type pp cell of pancreas;pancreatic PP cell;PP cell

@@ -1,0 +1,9 @@
+{
+  "total_predictions": 9999,
+  "note": "discovery + resolution; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 337,
+  "non_cl_ratio": 0.033703,
+  "non_cl_labels": [
+    "mucosal invariant t cell"
+  ]
+}

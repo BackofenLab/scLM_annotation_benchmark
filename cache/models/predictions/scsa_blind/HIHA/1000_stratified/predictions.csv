@@ -47,7 +47,7 @@ a002373a76f611ebbe1a0a9c4ec18e1b,"naive thymus-derived CD4-positive, alpha-beta 
 9c7148e2748d11eb8ec6c6eb439e4cc3,"naive thymus-derived CD4-positive, alpha-beta T cell",CD4+ T cell
 36e3c61076f611eb916cbeaf1a0a56b5,"naive thymus-derived CD4-positive, alpha-beta T cell",CD4+ T cell
 3a6ffa3e23d911eca62d86e9892ea95b,"naive thymus-derived CD4-positive, alpha-beta T cell",CD4+ T cell
-5c2cde7cee8b11eb92fdd69ca687ea48,"naive thymus-derived CD4-positive, alpha-beta T cell",CD4+ T cell
+5c2cde7cee8b11eb92fdd69ca687ea48,"naive thymus-derived CD4-positive, alpha-beta T cell",Regulatory T (Treg) cell
 c1a238c001db11ec82191e5794dae576,"naive thymus-derived CD4-positive, alpha-beta T cell",CD4+ T cell
 95fd05b2e6b811ebbbef16f34851c28c,"naive thymus-derived CD4-positive, alpha-beta T cell",CD4+ T cell
 927ec3eee40111eba5a472433277b4b3,"naive thymus-derived CD4-positive, alpha-beta T cell",CD4+ T cell
@@ -71,14 +71,14 @@ a2c8e1dc8cfc11ebb4592ee9d1c560f8,"naive thymus-derived CD4-positive, alpha-beta 
 5f3ff92e3f6711ebae30a612f322b459,"naive thymus-derived CD4-positive, alpha-beta T cell",CD4+ T cell
 06b20db002b711ec88cb72995a34965f,"naive thymus-derived CD4-positive, alpha-beta T cell",CD4+ T cell
 4b96c0a4746b11eb83a4c235a3a08626,"naive thymus-derived CD4-positive, alpha-beta T cell",CD4+ T cell
-7cdc788c6f3111eb96976aecf4743d14,"naive thymus-derived CD4-positive, alpha-beta T cell",Naive CD4+ T cell
+7cdc788c6f3111eb96976aecf4743d14,"naive thymus-derived CD4-positive, alpha-beta T cell",CD4+ T cell
 53b9f16e76f711eb928cf2a688aad71a,"naive thymus-derived CD4-positive, alpha-beta T cell",CD4+ T cell
 b919d4e04dff11ecb1a91aa839721c60,"naive thymus-derived CD4-positive, alpha-beta T cell",CD4+ T cell
 7c360e9c746911eb8b7dee0008289f2d,"naive thymus-derived CD4-positive, alpha-beta T cell",CD4+ T cell
 5b7e02e0785b11eb8f737ade911e22f7,"naive thymus-derived CD4-positive, alpha-beta T cell",CD4+ T cell
 9834417ee6bd11eb9bb4beec3d5c720e,"naive thymus-derived CD4-positive, alpha-beta T cell",CD4+ T cell
 382291f0ece911eb96cace7c85d10469,"naive thymus-derived CD4-positive, alpha-beta T cell",CD4+ T cell
-e87649543f6311eb9b035a7c26289213,"naive thymus-derived CD4-positive, alpha-beta T cell",Naive CD4+ T cell
+e87649543f6311eb9b035a7c26289213,"naive thymus-derived CD4-positive, alpha-beta T cell",CD4+ T cell
 85b2780650b011eca4314690da3920ef,"naive thymus-derived CD4-positive, alpha-beta T cell",CD4+ T cell
 9419682e6f3211eb8e954e1098597fe8,"naive thymus-derived CD4-positive, alpha-beta T cell",CD4+ T cell
 195f02bc608d11edaf347a76ff6a0874,"naive thymus-derived CD4-positive, alpha-beta T cell",CD4+ T cell
@@ -168,7 +168,7 @@ d59bd786786111eb9a4d621eed77e6ac,"CD14-positive, CD16-negative classical monocyt
 79fe870c76fe11eb9b7cfece13ccb977,"CD14-positive, CD16-negative classical monocyte",Monocyte
 f40f6d48a2e311eb85af52073c383e80,"CD14-positive, CD16-negative classical monocyte",Monocyte
 91dcabecfed011eb850e06aac0d344cf,"CD14-positive, CD16-negative classical monocyte",Monocyte
-e0c3d512f81e11ecbca49a59490ee93a,"CD14-positive, CD16-negative classical monocyte",Dendritic cell
+e0c3d512f81e11ecbca49a59490ee93a,"CD14-positive, CD16-negative classical monocyte",Monocyte
 2e7c2dd4aa7811ed91ea9e893c503a3a,"CD14-positive, CD16-negative classical monocyte",Monocyte
 480105d66f3311eb99c592dad4245022,"CD14-positive, CD16-negative classical monocyte",Monocyte
 a12a69be02b711eca176be0a2642ba6d,"CD14-positive, CD16-negative classical monocyte",Monocyte
@@ -221,11 +221,11 @@ cc6c2124315611eebf058a4e77219021,"central memory CD4-positive, alpha-beta T cell
 a2dd253e8cfc11ebb4592ee9d1c560f8,"central memory CD4-positive, alpha-beta T cell",CD4+ T cell
 a3f29c34ecbe11ebaad346e0a59e94fd,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 4baaa52e746b11eb83a4c235a3a08626,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
-989f136676fe11eb89bbb265d7ce1040,"effector memory CD8-positive, alpha-beta T cell",CD8+ T cell
-295b02feaa6311ed996536bac5d04f15,"effector memory CD8-positive, alpha-beta T cell",CD8+ T cell
+989f136676fe11eb89bbb265d7ce1040,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
+295b02feaa6311ed996536bac5d04f15,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 5a4464caaa8411edbc55eac8c2b882ba,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 d55e5cd0786111eb9a4d621eed77e6ac,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
-ee2427f46e5c11eb9751364c17c50e30,"effector memory CD8-positive, alpha-beta T cell",CD8+ T cell
+ee2427f46e5c11eb9751364c17c50e30,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 68aefa70872711ebadbb7e7f669035b2,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 f6f8c1a2f02111ed9882ae50d00ceaab,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 c1dcb11201db11ec82191e5794dae576,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
@@ -233,33 +233,33 @@ e13c3afe76fe11eb8a3a1adcfefed355,"effector memory CD8-positive, alpha-beta T cel
 b86ec6c001d011ecafff5e625bcc3358,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 08189e764e0211ecb6d06af08aaacff5,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 ee0c7dac6e5c11eb9751364c17c50e30,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
-e19bef546f2d11eb9c86fece995c7c24,"effector memory CD8-positive, alpha-beta T cell",CD8+ T cell
+e19bef546f2d11eb9c86fece995c7c24,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 cfa1c65a48b611ea8957bafe6d70929e,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
-6cce561201e011ec97d1be2f1bab6958,"effector memory CD8-positive, alpha-beta T cell",CD8+ T cell
+6cce561201e011ec97d1be2f1bab6958,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 b88b566e01d011ecafff5e625bcc3358,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 cfcc2fa86e5d11ebb859b2d8774afeef,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
-b8bfd0ba01d011ecafff5e625bcc3358,"effector memory CD8-positive, alpha-beta T cell",CD8+ T cell
-c069dc82862311eeb393168c5709f2f2,"effector memory CD8-positive, alpha-beta T cell",CD8+ T cell
+b8bfd0ba01d011ecafff5e625bcc3358,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
+c069dc82862311eeb393168c5709f2f2,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 7e229610e40511eb8b4326d57b156660,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 519c9fde02b711ec85669ed5fd6f2ffe,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
-22b230b2aa8111edbca7720112d201c9,"effector memory CD8-positive, alpha-beta T cell",CD8+ T cell
-174d722423df11ec8e663e0b7a317b29,"effector memory CD8-positive, alpha-beta T cell",CD8+ T cell
-a4732ebacd3511eb88c7e2067416d204,"effector memory CD8-positive, alpha-beta T cell",CD8+ T cell
-c002986af7fe11ecbaca5e549e2aa1f5,"effector memory CD8-positive, alpha-beta T cell",CD8+ T cell
+22b230b2aa8111edbca7720112d201c9,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
+174d722423df11ec8e663e0b7a317b29,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
+a4732ebacd3511eb88c7e2067416d204,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
+c002986af7fe11ecbaca5e549e2aa1f5,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 7ee0105e6f3011eb8ea3b6144a58e849,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 d2ae7d4abfdc11eb9ba92275cea06a7e,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
-5737b5268cee11ebb2129e901b21dc73,"effector memory CD8-positive, alpha-beta T cell",CD8+ T cell
+5737b5268cee11ebb2129e901b21dc73,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 fc87dec250b411ec942f6a58078e6e64,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 796c3f9e60b011edb17e46fb8f56502c,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
-2efb7444a2ce11ebbbe71e4a3e83c3e1,"effector memory CD8-positive, alpha-beta T cell",CD8+ T cell
+2efb7444a2ce11ebbbe71e4a3e83c3e1,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 48073c4e6f3311eb99c592dad4245022,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 2f125e34a2ce11ebbbe71e4a3e83c3e1,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 cdbe8e34315811ee95297ae860542a53,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 0cf12e70ecc011eb966bfa1af6d99fe6,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
-bbe99e54ca0f11eba0c402013b74b858,"effector memory CD8-positive, alpha-beta T cell",CD8+ T cell
-e3f40046ca0611eb95002269a98e5840,"effector memory CD8-positive, alpha-beta T cell",CD8+ T cell
-14ca0bdcaa9011eda3678a6e266cb381,"effector memory CD8-positive, alpha-beta T cell",CD8+ T cell
-8db100ee76fa11ebb31b8631bc0de43b,"effector memory CD8-positive, alpha-beta T cell",CD8+ T cell
+bbe99e54ca0f11eba0c402013b74b858,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
+e3f40046ca0611eb95002269a98e5840,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
+14ca0bdcaa9011eda3678a6e266cb381,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
+8db100ee76fa11ebb31b8631bc0de43b,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 fb43bcb0ca0f11ebad1a2eb9c335bc75,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 d70fc802315011eead251600320c0574,"effector memory CD8-positive, alpha-beta T cell",Natural killer cell
 7e51d68ce40511eb8b4326d57b156660,"effector memory CD4-positive, alpha-beta T cell",CD4+ T cell
@@ -268,7 +268,7 @@ d70fc802315011eead251600320c0574,"effector memory CD8-positive, alpha-beta T cel
 5173a16002b711ec85669ed5fd6f2ffe,"effector memory CD4-positive, alpha-beta T cell",CD4+ T cell
 5c672ab67b7a11eb822c3e9d2f0e335e,"effector memory CD4-positive, alpha-beta T cell",CD4+ T cell
 3934af66795211ebb3dd8e1325812f33,"effector memory CD4-positive, alpha-beta T cell",CD4+ T cell
-768fe190230911ebaa61d20a4a12f3ba,"effector memory CD4-positive, alpha-beta T cell",CD4+ T cell
+768fe190230911ebaa61d20a4a12f3ba,"effector memory CD4-positive, alpha-beta T cell",Natural killer cell
 91472dea871811ebb044a614f189543f,"effector memory CD4-positive, alpha-beta T cell",CD4+ T cell
 5fc4dac26f3211eb96f96a584edb8b14,"effector memory CD4-positive, alpha-beta T cell",CD4+ T cell
 12440c4eca0611eba39f3a25e2bf00a4,"effector memory CD4-positive, alpha-beta T cell",CD4+ T cell
@@ -282,7 +282,7 @@ d70fc802315011eead251600320c0574,"effector memory CD8-positive, alpha-beta T cel
 6ccb9cc401e011ec97d1be2f1bab6958,"effector memory CD4-positive, alpha-beta T cell",CD4+ T cell
 95e1538cf7e011ec88b892c85371e118,"effector memory CD4-positive, alpha-beta T cell",CD4+ T cell
 e186535e230d11eb995f0a8b9bab73d7,"effector memory CD4-positive, alpha-beta T cell",CD4+ T cell
-909a00c6862e11ee81c576a33e24a1ce,"effector memory CD4-positive, alpha-beta T cell",CD8+ T cell
+909a00c6862e11ee81c576a33e24a1ce,"effector memory CD4-positive, alpha-beta T cell",Natural killer cell
 cc949b6a862c11ee8a3c42211af86f48,"effector memory CD4-positive, alpha-beta T cell",CD4+ T cell
 6d964f1e3eb811eb83ca221ed6f4a4fb,"effector memory CD4-positive, alpha-beta T cell",CD4+ T cell
 e6d1f77e03a811ec9e783a8950b4baf1,"effector memory CD4-positive, alpha-beta T cell",CD4+ T cell
@@ -415,7 +415,7 @@ d40f93ac50a211ecb05e625212408fd6,mature gamma-delta T cell,Natural killer cell
 092929fe785e11ebb00a1a75a97ae03e,mature gamma-delta T cell,Natural killer cell
 692be594e6bd11eb99defa54c4ee54f4,mature gamma-delta T cell,Natural killer cell
 c5ab9abc862a11eeb249aefb8bcfeb6c,mature gamma-delta T cell,Regulatory T (Treg) cell
-c4b49e44e3ff11eb91932201050c5f2a,mature gamma-delta T cell,CD8+ T cell
+c4b49e44e3ff11eb91932201050c5f2a,mature gamma-delta T cell,Natural killer cell
 f8c9fd4223dc11ec8ebdfedc55894352,mature gamma-delta T cell,Regulatory T (Treg) cell
 898dfb1e286311ecb44ba22865200d72,mature gamma-delta T cell,Natural killer cell
 d1ab89e47ab611eb820a3effb17b8bb3,memory B cell,B cell
@@ -478,36 +478,36 @@ e1ed93546f2d11eb9c86fece995c7c24,"CD14-low, CD16-positive monocyte",Monocyte
 6893e36aecea11eb8ac2be83dc4baba1,"CD14-low, CD16-positive monocyte",Monocyte
 dd027f6c862c11ee941c7e9dd60efb6e,"CD14-low, CD16-positive monocyte",Monocyte
 12fdcbf07abc11ebb9a662910f707d59,"CD14-low, CD16-positive monocyte",Monocyte
-98230a44e6bd11eb9bb4beec3d5c720e,"central memory CD8-positive, alpha-beta T cell",CD8+ T cell
+98230a44e6bd11eb9bb4beec3d5c720e,"central memory CD8-positive, alpha-beta T cell",Natural killer cell
 55478ae4cd2f11ebad37a2057e76a05f,"central memory CD8-positive, alpha-beta T cell",CD4+ T cell
-e2e3c1f06e5d11eb8f7406e883c58fd7,"central memory CD8-positive, alpha-beta T cell",CD8+ T cell
-877458e0e3fe11eb88346afc45235a84,"central memory CD8-positive, alpha-beta T cell",CD8+ T cell
-f0fa4e924e0111ecaee2cec740306374,"central memory CD8-positive, alpha-beta T cell",CD8+ T cell
-41c8dc98ca1411eba8e7c23be70524c5,"central memory CD8-positive, alpha-beta T cell",CD4+ T cell
+e2e3c1f06e5d11eb8f7406e883c58fd7,"central memory CD8-positive, alpha-beta T cell",Natural killer cell
+877458e0e3fe11eb88346afc45235a84,"central memory CD8-positive, alpha-beta T cell",Natural killer cell
+f0fa4e924e0111ecaee2cec740306374,"central memory CD8-positive, alpha-beta T cell",Natural killer cell
+41c8dc98ca1411eba8e7c23be70524c5,"central memory CD8-positive, alpha-beta T cell",Natural killer cell
 04d86b10cd2411eb93671e348710f99d,"central memory CD8-positive, alpha-beta T cell",CD4+ T cell
-b5462d7a872911ebbe41a20b62d6e8c8,"central memory CD8-positive, alpha-beta T cell",CD8+ T cell
-8ddeacba76fa11ebb31b8631bc0de43b,"central memory CD8-positive, alpha-beta T cell",CD8+ T cell
-490dd14401e011ecad3cda2d73e439aa,"central memory CD8-positive, alpha-beta T cell",CD8+ T cell
+b5462d7a872911ebbe41a20b62d6e8c8,"central memory CD8-positive, alpha-beta T cell",Natural killer cell
+8ddeacba76fa11ebb31b8631bc0de43b,"central memory CD8-positive, alpha-beta T cell",Natural killer cell
+490dd14401e011ecad3cda2d73e439aa,"central memory CD8-positive, alpha-beta T cell",Natural killer cell
 e6b4cdb603a811ec9e783a8950b4baf1,"central memory CD8-positive, alpha-beta T cell",CD8+ T cell
-e120b48c76fe11eb8a3a1adcfefed355,"central memory CD8-positive, alpha-beta T cell",CD8+ T cell
-e2d641a66e5d11eb8f7406e883c58fd7,"central memory CD8-positive, alpha-beta T cell",CD8+ T cell
+e120b48c76fe11eb8a3a1adcfefed355,"central memory CD8-positive, alpha-beta T cell",Natural killer cell
+e2d641a66e5d11eb8f7406e883c58fd7,"central memory CD8-positive, alpha-beta T cell",Natural killer cell
 81f86c743f6411eb9e62823c612eac47,"central memory CD8-positive, alpha-beta T cell",CD8+ T cell
-c071ffde862311eeb393168c5709f2f2,"central memory CD8-positive, alpha-beta T cell",CD8+ T cell
-f4cc8a84aa9f11ed9aab225a04bc010d,"central memory CD8-positive, alpha-beta T cell",CD8+ T cell
-04ca5ac0cd2411eb93671e348710f99d,"central memory CD8-positive, alpha-beta T cell",CD8+ T cell
-a72b888c489811ea92388a6a0c683ffb,"central memory CD8-positive, alpha-beta T cell",CD8+ T cell
+c071ffde862311eeb393168c5709f2f2,"central memory CD8-positive, alpha-beta T cell",Natural killer cell
+f4cc8a84aa9f11ed9aab225a04bc010d,"central memory CD8-positive, alpha-beta T cell",Natural killer cell
+04ca5ac0cd2411eb93671e348710f99d,"central memory CD8-positive, alpha-beta T cell",Natural killer cell
+a72b888c489811ea92388a6a0c683ffb,"central memory CD8-positive, alpha-beta T cell",Natural killer cell
 aae4b692770411eba803caccc32ef9e2,"central memory CD8-positive, alpha-beta T cell",CD4+ T cell
-f77521ce50be11eca58a4e8e993d3e95,"central memory CD8-positive, alpha-beta T cell",CD8+ T cell
+f77521ce50be11eca58a4e8e993d3e95,"central memory CD8-positive, alpha-beta T cell",Natural killer cell
 ed24e320a2d211eb8aafd2fff04d1a29,"CD4-positive, alpha-beta memory T cell",Natural killer cell
 b2750d80e8ba11eb951c4a933a1ddc30,"CD4-positive, alpha-beta memory T cell",Natural killer cell
 aaf5f416770411eba803caccc32ef9e2,"CD4-positive, alpha-beta memory T cell",Natural killer cell
 92a18b2ce40111eba5a472433277b4b3,"CD4-positive, alpha-beta memory T cell",Natural killer cell
 a1faaf62424411eca8107e93ffa0dfc3,"CD4-positive, alpha-beta memory T cell",Natural killer cell
 1ec6333050b511ec8fafd2849fb52a10,"CD4-positive, alpha-beta memory T cell",Natural killer cell
-05c42b7e770011ebb6f1120b4fce9850,"CD4-positive, alpha-beta memory T cell",Naive CD4+ T cell
+05c42b7e770011ebb6f1120b4fce9850,"CD4-positive, alpha-beta memory T cell",CD4+ T cell
 2e796dd8aa7811ed91ea9e893c503a3a,"CD4-positive, alpha-beta memory T cell",Natural killer cell
-2876ba94cd3911eb84917af6a2da7945,"CD4-positive, alpha-beta memory T cell",CD8+ T cell
-d43637be50a211ecb05e625212408fd6,"CD4-positive, alpha-beta memory T cell",Naive CD4+ T cell
+2876ba94cd3911eb84917af6a2da7945,"CD4-positive, alpha-beta memory T cell",Natural killer cell
+d43637be50a211ecb05e625212408fd6,"CD4-positive, alpha-beta memory T cell",CD4+ T cell
 e670c7fcfeca11eb9143de3cb0860f61,"CD4-positive, alpha-beta memory T cell",CD4+ T cell
 96b1e8fe6d6b11ebba1f52fbaff67099,"CD4-positive, alpha-beta memory T cell",Natural killer cell
 5737862a7b6711eb980a1e6e754c5d4e,"CD4-positive, alpha-beta memory T cell",Natural killer cell
@@ -516,7 +516,7 @@ e670c7fcfeca11eb9143de3cb0860f61,"CD4-positive, alpha-beta memory T cell",CD4+ T
 3910191c795211ebb3dd8e1325812f33,"CD4-positive, alpha-beta memory T cell",Natural killer cell
 efeb3558cd1d11eba87c2ee2f5e521a9,"CD4-positive, alpha-beta memory T cell",Natural killer cell
 058e8258770011ebb6f1120b4fce9850,"CD4-positive, alpha-beta memory T cell",Natural killer cell
-88e6d4f86d6811eb8c84965cd2e07daf,"CD4-positive, alpha-beta memory T cell",Naive CD4+ T cell
+88e6d4f86d6811eb8c84965cd2e07daf,"CD4-positive, alpha-beta memory T cell",CD4+ T cell
 bffc67b0f7fe11ecbaca5e549e2aa1f5,"CD4-positive, alpha-beta memory T cell",Natural killer cell
 56710aec8cfe11eba258b6b4610d6042,memory regulatory T cell,Regulatory T (Treg) cell
 12860d38ece811eb858a9eed4000a1fb,memory regulatory T cell,CD4+ T cell
@@ -530,7 +530,7 @@ bffc67b0f7fe11ecbaca5e549e2aa1f5,"CD4-positive, alpha-beta memory T cell",Natura
 ef63e040746111ebb005fab458a363f4,memory regulatory T cell,Regulatory T (Treg) cell
 e801236a6f3111eb827116167e963c6a,memory regulatory T cell,Regulatory T (Treg) cell
 ed515200a2e311ebb1ce525b6209b46f,memory regulatory T cell,Regulatory T (Treg) cell
-a8f4b596795511eb8df55e9c326fc5f4,memory regulatory T cell,Regulatory T (Treg) cell
+a8f4b596795511eb8df55e9c326fc5f4,memory regulatory T cell,CD4+ T cell
 62f1c932e79411ebada4c67e2b686223,memory regulatory T cell,Regulatory T (Treg) cell
 4a4bd970230f11ec80995a5086d06fa1,memory regulatory T cell,Regulatory T (Treg) cell
 e9b0bcc6230811ec89cc0e1df9dfbf1c,memory regulatory T cell,CD4+ T cell
@@ -658,26 +658,26 @@ df51c132f7e011eca445621bb9b0c4af,platelet,Megakaryocyte
 f76f716650be11eca58a4e8e993d3e95,platelet,Megakaryocyte
 44233ac403bc11ec8b03caa2709d8562,platelet,Megakaryocyte
 4a4944da230f11ec80995a5086d06fa1,platelet,Megakaryocyte
-96a3074e6d6b11ebba1f52fbaff67099,CD8aa(I) thymocyte,CD8+ T cell
+96a3074e6d6b11ebba1f52fbaff67099,CD8aa(I) thymocyte,Regulatory T (Treg) cell
 b5df3cd6bfd211ebafa586d48e1f3db0,CD8aa(I) thymocyte,Regulatory T (Treg) cell
-c1ef1c9c8d0211eb8f491acf3f136954,CD8aa(I) thymocyte,CD8+ T cell
-79961c9c60b011edb17e46fb8f56502c,CD8aa(I) thymocyte,CD8+ T cell
-b945a9084dff11ecb1a91aa839721c60,CD8aa(I) thymocyte,CD8+ T cell
+c1ef1c9c8d0211eb8f491acf3f136954,CD8aa(I) thymocyte,Regulatory T (Treg) cell
+79961c9c60b011edb17e46fb8f56502c,CD8aa(I) thymocyte,Regulatory T (Treg) cell
+b945a9084dff11ecb1a91aa839721c60,CD8aa(I) thymocyte,Regulatory T (Treg) cell
 6abf78b0862c11ee940e0ac85bd578c5,CD8aa(I) thymocyte,Regulatory T (Treg) cell
-3a635e8223d911eca62d86e9892ea95b,CD8aa(I) thymocyte,CD8+ T cell
-85ad3fe450b011eca4314690da3920ef,CD8aa(I) thymocyte,CD8+ T cell
+3a635e8223d911eca62d86e9892ea95b,CD8aa(I) thymocyte,Regulatory T (Treg) cell
+85ad3fe450b011eca4314690da3920ef,CD8aa(I) thymocyte,Regulatory T (Treg) cell
 f78315cc50be11eca58a4e8e993d3e95,CD8aa(I) thymocyte,CD4+ T cell
-6cb4196c608c11ed9b035e2e100c042f,CD8aa(I) thymocyte,CD8+ T cell
-6ac144e2862c11ee940e0ac85bd578c5,CD8aa(I) thymocyte,CD8+ T cell
-5d533a727abd11eb894e066fae99c4f2,CD8aa(I) thymocyte,CD8+ T cell
-168f7b86609a11edba329e19a2629b2e,CD8aa(I) thymocyte,CD8+ T cell
-42108eeebfd311eb8ffe429043368bdd,CD8aa(I) thymocyte,CD8+ T cell
-e89a6f503f6311eb9b035a7c26289213,CD8aa(I) thymocyte,CD8+ T cell
-69b5d4febfd811eb9045460ae879a467,CD8aa(I) thymocyte,CD8+ T cell
-9c4cda0c748d11eb8ec6c6eb439e4cc3,CD8aa(I) thymocyte,CD8+ T cell
-5fc10ef602b711eca847563a4b56082f,CD8aa(I) thymocyte,CD8+ T cell
-258286f4e40611eb9f73d6fd5206df9a,CD8aa(I) thymocyte,CD8+ T cell
-f89577d423dc11ec8ebdfedc55894352,CD8aa(I) thymocyte,CD8+ T cell
+6cb4196c608c11ed9b035e2e100c042f,CD8aa(I) thymocyte,Regulatory T (Treg) cell
+6ac144e2862c11ee940e0ac85bd578c5,CD8aa(I) thymocyte,Regulatory T (Treg) cell
+5d533a727abd11eb894e066fae99c4f2,CD8aa(I) thymocyte,Natural killer cell
+168f7b86609a11edba329e19a2629b2e,CD8aa(I) thymocyte,Regulatory T (Treg) cell
+42108eeebfd311eb8ffe429043368bdd,CD8aa(I) thymocyte,Regulatory T (Treg) cell
+e89a6f503f6311eb9b035a7c26289213,CD8aa(I) thymocyte,Regulatory T (Treg) cell
+69b5d4febfd811eb9045460ae879a467,CD8aa(I) thymocyte,Regulatory T (Treg) cell
+9c4cda0c748d11eb8ec6c6eb439e4cc3,CD8aa(I) thymocyte,Regulatory T (Treg) cell
+5fc10ef602b711eca847563a4b56082f,CD8aa(I) thymocyte,Regulatory T (Treg) cell
+258286f4e40611eb9f73d6fd5206df9a,CD8aa(I) thymocyte,Regulatory T (Treg) cell
+f89577d423dc11ec8ebdfedc55894352,CD8aa(I) thymocyte,Regulatory T (Treg) cell
 4b70007c746b11eb83a4c235a3a08626,plasmacytoid dendritic cell,Dendritic cell
 d1b2f43a770111ebb7b9d6f975704c14,plasmacytoid dendritic cell,Dendritic cell
 e368ea72a2e411eba445862a4d6f2ed3,plasmacytoid dendritic cell,Dendritic cell
@@ -701,7 +701,7 @@ ee4039f0607f11ed9e9d5af7fabd3b36,plasmacytoid dendritic cell,Dendritic cell
 03a899a2608211ed8cb1a608efa7ae49,CD1c-positive myeloid dendritic cell,Dendritic cell
 5cf615fc48b111ea8fbed2ddb8e0a14a,CD1c-positive myeloid dendritic cell,Dendritic cell
 47e6aa386f3311eb99c592dad4245022,CD1c-positive myeloid dendritic cell,Dendritic cell
-b560f8fefece11eb879816429967a19a,CD1c-positive myeloid dendritic cell,Dendritic cell
+b560f8fefece11eb879816429967a19a,CD1c-positive myeloid dendritic cell,Monocyte
 cf7d205c48b611ea8957bafe6d70929e,CD1c-positive myeloid dendritic cell,Monocyte
 4f98e664e6a311ebbe49fe9e38490e77,CD1c-positive myeloid dendritic cell,Dendritic cell
 e4961f64b54b11eaa79c06097e2fb91a,CD1c-positive myeloid dendritic cell,Dendritic cell
@@ -714,7 +714,7 @@ a11a610e02b711eca176be0a2642ba6d,CD1c-positive myeloid dendritic cell,Dendritic 
 4154aa18671511ed9b96de3223020266,CD1c-positive myeloid dendritic cell,Dendritic cell
 e9fea4a0f7e111ec90da567a30052902,CD1c-positive myeloid dendritic cell,Dendritic cell
 87c733bc50be11ec9bfce201e636867f,CD1c-positive myeloid dendritic cell,Dendritic cell
-a19e0dc023db11ec81faee1fd8b4df58,CD1c-positive myeloid dendritic cell,Monocyte
+a19e0dc023db11ec81faee1fd8b4df58,CD1c-positive myeloid dendritic cell,Dendritic cell
 f425870ea2e311eb85af52073c383e80,CD1c-positive myeloid dendritic cell,Dendritic cell
 bcb9b1fe7abc11ebac911e12d1777b84,CD1c-positive myeloid dendritic cell,Dendritic cell
 44b17118e40411eb80e50e6ae118196c,CD1c-positive myeloid dendritic cell,Dendritic cell
@@ -727,8 +727,8 @@ fbddab96286411ecb1698ec288c6fba6,memory CCR4-positive regulatory T cell,Regulato
 c5c0b0a0862a11eeb249aefb8bcfeb6c,memory CCR4-positive regulatory T cell,CD4+ T cell
 1d1348f86d6611eb831bbeaad691ed52,memory CCR4-positive regulatory T cell,CD4+ T cell
 d1ddedf6286411ec953b36d5f3074b28,memory CCR4-positive regulatory T cell,CD4+ T cell
-ef8e2f62746111ebb005fab458a363f4,memory CCR4-positive regulatory T cell,Regulatory T (Treg) cell
-5386ed9676f711eb928cf2a688aad71a,memory CCR4-positive regulatory T cell,Regulatory T (Treg) cell
+ef8e2f62746111ebb005fab458a363f4,memory CCR4-positive regulatory T cell,CD4+ T cell
+5386ed9676f711eb928cf2a688aad71a,memory CCR4-positive regulatory T cell,CD4+ T cell
 573c13aa8cee11ebb2129e901b21dc73,memory CCR4-positive regulatory T cell,CD4+ T cell
 106aea2801dd11ec98991efbcd4757be,memory CCR4-positive regulatory T cell,Regulatory T (Treg) cell
 c1cddc8c23dc11ec9545a2e3447e117e,memory CCR4-positive regulatory T cell,CD4+ T cell
@@ -738,46 +738,46 @@ cf8514d86e5d11ebb859b2d8774afeef,memory CCR4-positive regulatory T cell,Regulato
 bac0cbe4871e11eb94488a0ac828d814,memory CCR4-positive regulatory T cell,Regulatory T (Treg) cell
 add2a37abfdc11ebb52a6a8f5d6679fa,memory CCR4-positive regulatory T cell,Regulatory T (Treg) cell
 c8e460b0230911eba0759640c92fc4a2,memory CCR4-positive regulatory T cell,Regulatory T (Treg) cell
-12335dd460a211edac516a3bcf87af0c,natural killer cell,Natural killer cell
+12335dd460a211edac516a3bcf87af0c,natural killer cell,B cell
 94a4acd4862911eebdc19e04fa809629,natural killer cell,Natural killer cell
 25642e70e40611eb9f73d6fd5206df9a,natural killer cell,Natural killer cell
 f0b2097050b811ecbd5a96ba759a0a5a,natural killer cell,Natural killer cell
 8d8e3e22e40211ebba695e0417dae271,natural killer cell,Natural killer cell
 035cbf8ec9fa11ebbe02e242efb8f7b8,natural killer cell,Natural killer cell
-23944b4001cd11ec9bd81eda61cbfa79,natural killer cell,Natural killer cell
+23944b4001cd11ec9bd81eda61cbfa79,natural killer cell,B cell
 b5dc998abfd311ebba58d6b31810e4ce,natural killer cell,Natural killer cell
-5d5f9f18a2ce11eb9bc6ae6e71680f8b,natural killer cell,Natural killer cell
+5d5f9f18a2ce11eb9bc6ae6e71680f8b,natural killer cell,B cell
 5d238f9648b111ea8fbed2ddb8e0a14a,natural killer cell,Natural killer cell
-df31f06ef7e011eca445621bb9b0c4af,natural killer cell,Natural killer cell
+df31f06ef7e011eca445621bb9b0c4af,natural killer cell,B cell
 f8a4928223dc11ec8ebdfedc55894352,natural killer cell,Natural killer cell
 2410b5de3eb611eba75b2e81e5bb81a5,natural killer cell,Natural killer cell
 cfef94eea2e611eb91855e3d154f7c3f,natural killer cell,Natural killer cell
-4e65a9a2e6c211ebaddab27930c367f5,natural killer cell,Natural killer cell
+4e65a9a2e6c211ebaddab27930c367f5,natural killer cell,B cell
 5a4820b0aa8411edbc55eac8c2b882ba,natural killer cell,Natural killer cell
 7791afeafecf11eb83ae4a767d1dceb9,natural killer cell,Natural killer cell
 f3f67dbaa2e311eb85af52073c383e80,natural killer cell,Natural killer cell
 0d7bf2628d0211eb9a4f269f40e0a6a0,natural killer cell,Natural killer cell
 0805794a4e0211ecb6d06af08aaacff5,natural killer cell,Natural killer cell
-7f7d1b2e794e11eb80b0ca7613f64db1,double negative thymocyte,CD8+ T cell
+7f7d1b2e794e11eb80b0ca7613f64db1,double negative thymocyte,Natural killer cell
 fc60b87450b411ec942f6a58078e6e64,double negative thymocyte,Red blood cell (erythrocyte)
-912e87064dfe11ec9cd7da9b7cf4e69b,double negative thymocyte,CD8+ T cell
+912e87064dfe11ec9cd7da9b7cf4e69b,double negative thymocyte,B cell
 083fa0fc4e0211ecb6d06af08aaacff5,double negative thymocyte,CD4+ T cell
-e217a53c794011eb9282e2ceeb91ba52,double negative thymocyte,CD8+ T cell
+e217a53c794011eb9282e2ceeb91ba52,double negative thymocyte,B cell
 35f7696e7b7911ebad508aeddc44df84,double negative thymocyte,CD4+ T cell
-ef670716746111ebb005fab458a363f4,double negative thymocyte,CD8+ T cell
+ef670716746111ebb005fab458a363f4,double negative thymocyte,Natural killer cell
 4d05314c230c11eb9e73369c55ceea08,double negative thymocyte,CD4+ T cell
-7e454296e40511eb8b4326d57b156660,double negative thymocyte,CD8+ T cell
+7e454296e40511eb8b4326d57b156660,double negative thymocyte,B cell
 a83ab6b04e0111ec936b1ac433bb3e99,double negative thymocyte,CD4+ T cell
-11c380fc746a11eba6ee4656f02e1fdd,double negative thymocyte,CD8+ T cell
-9113eac24dfe11ec9cd7da9b7cf4e69b,double negative thymocyte,CD8+ T cell
-9321a454e6b511eb8d2eee95c5d8b7b2,double negative thymocyte,CD8+ T cell
-7a82dc1e7b7711eba2a96a517e35be5d,double negative thymocyte,CD8+ T cell
-0633e660863611eea9a56e13647e2878,double negative thymocyte,CD8+ T cell
-72bb76c860b111eda69772bc2278a4b2,double negative thymocyte,CD8+ T cell
-93b6de32786211ebb8964a4e4d3f19b7,double negative thymocyte,CD8+ T cell
-4e2eddb26f2811eb8e74ca941525b751,double negative thymocyte,CD8+ T cell
-7a28ad0260d111ed987552e10431fc03,double negative thymocyte,CD8+ T cell
-46b99a6a6d6911ebb77caa74668eec04,double negative thymocyte,CD8+ T cell
+11c380fc746a11eba6ee4656f02e1fdd,double negative thymocyte,B cell
+9113eac24dfe11ec9cd7da9b7cf4e69b,double negative thymocyte,B cell
+9321a454e6b511eb8d2eee95c5d8b7b2,double negative thymocyte,B cell
+7a82dc1e7b7711eba2a96a517e35be5d,double negative thymocyte,B cell
+0633e660863611eea9a56e13647e2878,double negative thymocyte,CD4+ T cell
+72bb76c860b111eda69772bc2278a4b2,double negative thymocyte,B cell
+93b6de32786211ebb8964a4e4d3f19b7,double negative thymocyte,Natural killer cell
+4e2eddb26f2811eb8e74ca941525b751,double negative thymocyte,Natural killer cell
+7a28ad0260d111ed987552e10431fc03,double negative thymocyte,CD4+ T cell
+46b99a6a6d6911ebb77caa74668eec04,double negative thymocyte,B cell
 b52f2418872911ebbe41a20b62d6e8c8,"CD8-positive, alpha-beta regulatory T cell",CD4+ T cell
 413eda3a671511ed9b96de3223020266,"CD8-positive, alpha-beta regulatory T cell",Natural killer cell
 5c726a5c03bf11ec806bb6304fd4380c,"CD8-positive, alpha-beta regulatory T cell",CD4+ T cell
@@ -785,58 +785,58 @@ b52f2418872911ebbe41a20b62d6e8c8,"CD8-positive, alpha-beta regulatory T cell",CD
 27a39b2eca0411ebbb136a0d2fbd39b2,"CD8-positive, alpha-beta regulatory T cell",Regulatory T (Treg) cell
 d755da90872a11eb9956d6a6a5ac404c,"CD8-positive, alpha-beta regulatory T cell",Regulatory T (Treg) cell
 95d29e22c9fc11eb8b6656baa5e4f345,"CD8-positive, alpha-beta regulatory T cell",Regulatory T (Treg) cell
-9816093ee6bd11eb9bb4beec3d5c720e,"CD8-positive, alpha-beta regulatory T cell",Regulatory T (Treg) cell
-4acc09fe495111eaafc966679ef8dfee,"CD8-positive, alpha-beta regulatory T cell",CD8+ T cell
+9816093ee6bd11eb9bb4beec3d5c720e,"CD8-positive, alpha-beta regulatory T cell",CD4+ T cell
+4acc09fe495111eaafc966679ef8dfee,"CD8-positive, alpha-beta regulatory T cell",Natural killer cell
 f20cc932746711eb96b76e4cdef221b1,"CD8-positive, alpha-beta regulatory T cell",Regulatory T (Treg) cell
 ef9f2c468d0111eb894022587c8bf21f,"CD8-positive, alpha-beta regulatory T cell",Regulatory T (Treg) cell
-7846b260862111ee998f1e061ab3328b,"CD8-positive, alpha-beta regulatory T cell",Regulatory T (Treg) cell
+7846b260862111ee998f1e061ab3328b,"CD8-positive, alpha-beta regulatory T cell",Natural killer cell
 ef9268e48d0111eb894022587c8bf21f,"CD8-positive, alpha-beta regulatory T cell",Regulatory T (Treg) cell
 b93aea6abfcd11ebbdb0527e5f17f167,"CD8-positive, alpha-beta regulatory T cell",Regulatory T (Treg) cell
-36d30600ece811eb8566de30ea854391,"CD8-positive, alpha-beta regulatory T cell",CD8+ T cell
+36d30600ece811eb8566de30ea854391,"CD8-positive, alpha-beta regulatory T cell",Natural killer cell
 a50b8700003e11ec836f122ea675d063,"CD8-positive, alpha-beta regulatory T cell",CD4+ T cell
 750302d8e6ab11eb8f2c6612543f483c,"CD8-positive, alpha-beta regulatory T cell",Regulatory T (Treg) cell
-1ef01c9a50b511ec8fafd2849fb52a10,"CD8-positive, alpha-beta regulatory T cell",Red blood cell (erythrocyte)
+1ef01c9a50b511ec8fafd2849fb52a10,"CD8-positive, alpha-beta regulatory T cell",Regulatory T (Treg) cell
 0d7de54a8d0211eb9a4f269f40e0a6a0,"CD8-positive, alpha-beta regulatory T cell",CD4+ T cell
 363be6eee6b211eb82f386f01e0439ac,"CD8-positive, alpha-beta regulatory T cell",CD4+ T cell
-14e6768caa9011eda3678a6e266cb381,"CD8-positive, alpha-beta memory T cell",Naive CD4+ T cell
-090fc7da7b6911eba169da6bd33569f7,"CD8-positive, alpha-beta memory T cell",Naive CD4+ T cell
-4e2649ece6c211ebaddab27930c367f5,"CD8-positive, alpha-beta memory T cell",Naive CD4+ T cell
+14e6768caa9011eda3678a6e266cb381,"CD8-positive, alpha-beta memory T cell",CD4+ T cell
+090fc7da7b6911eba169da6bd33569f7,"CD8-positive, alpha-beta memory T cell",CD4+ T cell
+4e2649ece6c211ebaddab27930c367f5,"CD8-positive, alpha-beta memory T cell",CD4+ T cell
 6cc9b38648b511ea87c666a4322bd84a,"CD8-positive, alpha-beta memory T cell",CD4+ T cell
-b8a7eb8001d011ecafff5e625bcc3358,"CD8-positive, alpha-beta memory T cell",Naive CD4+ T cell
-47d5a2606f3311eb99c592dad4245022,"CD8-positive, alpha-beta memory T cell",Naive CD4+ T cell
+b8a7eb8001d011ecafff5e625bcc3358,"CD8-positive, alpha-beta memory T cell",CD4+ T cell
+47d5a2606f3311eb99c592dad4245022,"CD8-positive, alpha-beta memory T cell",CD4+ T cell
 e879395c3f6311eb9b035a7c26289213,"CD8-positive, alpha-beta memory T cell",CD4+ T cell
 9fceca9476f611ebbe1a0a9c4ec18e1b,"CD8-positive, alpha-beta memory T cell",CD4+ T cell
-95aac88ec9fc11eb8b6656baa5e4f345,"CD8-positive, alpha-beta memory T cell",CD8+ T cell
+95aac88ec9fc11eb8b6656baa5e4f345,"CD8-positive, alpha-beta memory T cell",CD4+ T cell
 7ce451ce6f3111eb96976aecf4743d14,"CD8-positive, alpha-beta memory T cell",CD4+ T cell
 ed3ca2a8a2d211eb8aafd2fff04d1a29,"CD8-positive, alpha-beta memory T cell",CD4+ T cell
-a493799acd3511eb88c7e2067416d204,"CD8-positive, alpha-beta memory T cell",CD8+ T cell
+a493799acd3511eb88c7e2067416d204,"CD8-positive, alpha-beta memory T cell",Natural killer cell
 12499204ca0611eba39f3a25e2bf00a4,"CD8-positive, alpha-beta memory T cell",CD4+ T cell
 d1ffc070286411ec953b36d5f3074b28,"CD8-positive, alpha-beta memory T cell",CD4+ T cell
-874e4abae3fe11eb88346afc45235a84,"CD8-positive, alpha-beta memory T cell",Naive CD4+ T cell
-46fab8886d6911ebb77caa74668eec04,"CD8-positive, alpha-beta memory T cell",CD8+ T cell
+874e4abae3fe11eb88346afc45235a84,"CD8-positive, alpha-beta memory T cell",Regulatory T (Treg) cell
+46fab8886d6911ebb77caa74668eec04,"CD8-positive, alpha-beta memory T cell",CD4+ T cell
 a53268e8003e11ec836f122ea675d063,"CD8-positive, alpha-beta memory T cell",CD4+ T cell
-ed62533e286211ec9a8f2613ba675443,"CD8-positive, alpha-beta memory T cell",CD8+ T cell
+ed62533e286211ec9a8f2613ba675443,"CD8-positive, alpha-beta memory T cell",CD4+ T cell
 e68a99da03ba11eca89046abfaec106b,"CD8-positive, alpha-beta memory T cell",CD4+ T cell
 1d165c0a6d6611eb831bbeaad691ed52,"CD8-positive, alpha-beta memory T cell",CD4+ T cell
-ff2a3d34a2d911eb97dcb29064131379,T cell,Natural killer cell
-4e29ac22e6c211ebaddab27930c367f5,T cell,Natural killer cell
-e7f8a95c671811ed8197264aa0746ac0,T cell,Natural killer cell
-5a49cfc46e5811eba9ff8603041c92bc,T cell,Natural killer cell
+ff2a3d34a2d911eb97dcb29064131379,T cell,B cell
+4e29ac22e6c211ebaddab27930c367f5,T cell,B cell
+e7f8a95c671811ed8197264aa0746ac0,T cell,B cell
+5a49cfc46e5811eba9ff8603041c92bc,T cell,B cell
 83699de68d0011eba962c64f4773d63c,T cell,Natural killer cell
-d59b243afef811eb887c9abd79b723cf,T cell,Natural killer cell
-069f219602b711ec88cb72995a34965f,T cell,Natural killer cell
-c49bd4cce3ff11eb91932201050c5f2a,T cell,Natural killer cell
-bcd63e1e7abc11ebac911e12d1777b84,T cell,Natural killer cell
-a94196e0f01311ed926a2eacca25961e,T cell,Natural killer cell
-1016024201dd11ec98991efbcd4757be,T cell,Natural killer cell
-e33e9aa4e6bb11ebaa8b5a6ca80dcdd4,T cell,Natural killer cell
-2e6d5304aa7811ed91ea9e893c503a3a,T cell,Natural killer cell
-ff214c42a2d911eb97dcb29064131379,T cell,Natural killer cell
-2f3243a2a2ce11ebbbe71e4a3e83c3e1,T cell,CD8+ T cell
-7669e616230911ebaa61d20a4a12f3ba,T cell,Natural killer cell
-bcbb16de7abc11ebac911e12d1777b84,T cell,Natural killer cell
-efa0ef4a8d0111eb894022587c8bf21f,T cell,Natural killer cell
-29685b3eaa6311ed996536bac5d04f15,T cell,Natural killer cell
+d59b243afef811eb887c9abd79b723cf,T cell,B cell
+069f219602b711ec88cb72995a34965f,T cell,B cell
+c49bd4cce3ff11eb91932201050c5f2a,T cell,B cell
+bcd63e1e7abc11ebac911e12d1777b84,T cell,B cell
+a94196e0f01311ed926a2eacca25961e,T cell,B cell
+1016024201dd11ec98991efbcd4757be,T cell,B cell
+e33e9aa4e6bb11ebaa8b5a6ca80dcdd4,T cell,B cell
+2e6d5304aa7811ed91ea9e893c503a3a,T cell,B cell
+ff214c42a2d911eb97dcb29064131379,T cell,B cell
+2f3243a2a2ce11ebbbe71e4a3e83c3e1,T cell,B cell
+7669e616230911ebaa61d20a4a12f3ba,T cell,B cell
+bcbb16de7abc11ebac911e12d1777b84,T cell,B cell
+efa0ef4a8d0111eb894022587c8bf21f,T cell,B cell
+29685b3eaa6311ed996536bac5d04f15,T cell,B cell
 af5f6668005711ecacf076742455fe92,T cell,CD4+ T cell
 5fbbe4946f3211eb96f96a584edb8b14,innate lymphoid cell,Natural killer cell
 66cdbeb04e0211ec853ad229c2defbef,innate lymphoid cell,Natural killer cell
@@ -878,9 +878,9 @@ dd02ea6a862c11ee941c7e9dd60efb6e,common lymphoid progenitor,Progenitor cell
 c5ac06aa862a11eeb249aefb8bcfeb6c,common lymphoid progenitor,Progenitor cell
 87495e36f7e611ecbaaa86d52fef98f0,common lymphoid progenitor,Progenitor cell
 678eeff801c811ec99d8a29cd1cea438,common lymphoid progenitor,Progenitor cell
-d23d98e6862c11ee8ab2ce04d767d167,erythrocyte,Megakaryocyte
+d23d98e6862c11ee8ab2ce04d767d167,erythrocyte,CD4+ T cell
 21fb55ce862511eeb57ed2cb2c7f9e33,erythrocyte,Megakaryocyte
-edf2a6c06e5c11eb9751364c17c50e30,erythrocyte,Megakaryocyte
+edf2a6c06e5c11eb9751364c17c50e30,erythrocyte,CD4+ T cell
 dcfc8a9e862c11ee941c7e9dd60efb6e,erythrocyte,Megakaryocyte
 c07396dc862311eeb393168c5709f2f2,erythrocyte,Megakaryocyte
 d23b5a4a862c11ee8ab2ce04d767d167,erythrocyte,Megakaryocyte
@@ -958,26 +958,26 @@ b46ed8ec03c111ec8f3fb2dbcfd6bcf9,CD141-positive myeloid dendritic cell,Dendritic
 03bd063a608211ed8cb1a608efa7ae49,CD141-positive myeloid dendritic cell,Dendritic cell
 ed5345bca2d211eb8aafd2fff04d1a29,CD141-positive myeloid dendritic cell,Dendritic cell
 df20189ef7e011eca445621bb9b0c4af,CD141-positive myeloid dendritic cell,Dendritic cell
-f0d8c02e50b811ecbd5a96ba759a0a5a,plasma cell,Natural killer cell
-db774d60bfde11eb9e6d96f9d8b57902,plasma cell,Natural killer cell
-e2ad3464f7dc11ecbf4e56eb7b1fcbc2,plasma cell,Natural killer cell
-78566c0a862111ee998f1e061ab3328b,plasma cell,Natural killer cell
-74dad9dc48b611eabab7c676ab45cfca,plasma cell,Natural killer cell
-10f6f12ef7e811eca3ef4a90d865ed45,plasma cell,Natural killer cell
+f0d8c02e50b811ecbd5a96ba759a0a5a,plasma cell,B cell
+db774d60bfde11eb9e6d96f9d8b57902,plasma cell,B cell
+e2ad3464f7dc11ecbf4e56eb7b1fcbc2,plasma cell,B cell
+78566c0a862111ee998f1e061ab3328b,plasma cell,B cell
+74dad9dc48b611eabab7c676ab45cfca,plasma cell,B cell
+10f6f12ef7e811eca3ef4a90d865ed45,plasma cell,B cell
 c574f89caa8711ed9d6f12731be88ed2,plasma cell,B cell
-47d4f57c315511ee9a247ecfb6ed34be,plasma cell,Natural killer cell
-547533d4495311ea86cade558b2f8879,plasma cell,Natural killer cell
-e05b0c88862c11eeb44f2a0a7ee8bda4,plasma cell,Natural killer cell
-5cad5316e40611ebb6ab32f1f7b8a178,plasma cell,Natural killer cell
-54743c04495311ea86cade558b2f8879,plasma cell,Natural killer cell
-e40fbab6ca0611eb95002269a98e5840,plasma cell,Natural killer cell
-22964eceaa8111edbca7720112d201c9,plasma cell,Natural killer cell
-b319661e4e0411ecbdc4f6dde42d12bb,plasma cell,Natural killer cell
-d790edec872a11eb9956d6a6a5ac404c,plasma cell,Natural killer cell
-ed36eb6aa2d211eb8aafd2fff04d1a29,plasma cell,Natural killer cell
-f0b5e73e50b811ecbd5a96ba759a0a5a,plasma cell,Natural killer cell
-f1ed8540746711eb96b76e4cdef221b1,plasma cell,Natural killer cell
-27844616ca0411ebbb136a0d2fbd39b2,plasma cell,Natural killer cell
+47d4f57c315511ee9a247ecfb6ed34be,plasma cell,B cell
+547533d4495311ea86cade558b2f8879,plasma cell,B cell
+e05b0c88862c11eeb44f2a0a7ee8bda4,plasma cell,B cell
+5cad5316e40611ebb6ab32f1f7b8a178,plasma cell,B cell
+54743c04495311ea86cade558b2f8879,plasma cell,B cell
+e40fbab6ca0611eb95002269a98e5840,plasma cell,B cell
+22964eceaa8111edbca7720112d201c9,plasma cell,B cell
+b319661e4e0411ecbdc4f6dde42d12bb,plasma cell,B cell
+d790edec872a11eb9956d6a6a5ac404c,plasma cell,B cell
+ed36eb6aa2d211eb8aafd2fff04d1a29,plasma cell,B cell
+f0b5e73e50b811ecbd5a96ba759a0a5a,plasma cell,B cell
+f1ed8540746711eb96b76e4cdef221b1,plasma cell,B cell
+27844616ca0411ebbb136a0d2fbd39b2,plasma cell,B cell
 36713484e6b211eb82f386f01e0439ac,basophil mast progenitor cell,Progenitor cell
 0a70c1b2230f11eca42fde90f8d872f1,basophil mast progenitor cell,Progenitor cell
 41e6bae2ca1411eba8e7c23be70524c5,basophil mast progenitor cell,Progenitor cell

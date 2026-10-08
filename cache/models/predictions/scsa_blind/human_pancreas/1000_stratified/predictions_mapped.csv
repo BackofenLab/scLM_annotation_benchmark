@@ -161,7 +161,7 @@ human3_lib2.final_cell_0595,pancreatic a cell,pancreatic A cell,alpha cell (α c
 D28-7_63,pancreatic a cell,pancreatic A cell,alpha cell (α cell)
 human2_lib2.final_cell_0190,pancreatic a cell,pancreatic A cell,alpha cell (α cell)
 human2_lib2.final_cell_0152,pancreatic a cell,pancreatic A cell,alpha cell (α cell)
-human3_lib2.final_cell_0591,pancreatic a cell,pancreatic A cell,alpha cell (α cell)
+human3_lib2.final_cell_0591,pancreatic a cell,fibroblast,fibroblast
 human2_lib3.final_cell_0411,pancreatic a cell,pancreatic A cell,alpha cell (α cell)
 human3_lib1.final_cell_0632,pancreatic a cell,pancreatic A cell,alpha cell (α cell)
 HP1508501T2D_O10,pancreatic a cell,pancreatic A cell,alpha cell (α cell)
@@ -353,7 +353,7 @@ D29-3_83,type b pancreatic cell,type B pancreatic cell,beta cell(β cell)
 D29-2_50,type b pancreatic cell,type B pancreatic cell,beta cell(β cell)
 human3_lib3.final_cell_0871,type b pancreatic cell,type B pancreatic cell,beta cell(β cell)
 human3_lib1.final_cell_0547,type b pancreatic cell,type B pancreatic cell,beta cell(β cell)
-human3_lib2.final_cell_0206,type b pancreatic cell,acinar cell,acinar cell
+human3_lib2.final_cell_0206,type b pancreatic cell,type B pancreatic cell,beta cell(β cell)
 human3_lib2.final_cell_0779,type b pancreatic cell,type B pancreatic cell,beta cell(β cell)
 human1_lib1.final_cell_0100,type b pancreatic cell,type B pancreatic cell,beta cell(β cell)
 D29-3_64,type b pancreatic cell,type B pancreatic cell,beta cell(β cell)
@@ -604,7 +604,7 @@ human3_lib4.final_cell_0517,pancreatic ductal cell,pancreatic ductal cell,ductal
 human1_lib3.final_cell_0029,pancreatic ductal cell,pancreatic ductal cell,ductal cell
 human2_lib3.final_cell_0238,pancreatic ductal cell,pancreatic ductal cell,ductal cell
 human2_lib2.final_cell_0599,pancreatic ductal cell,pancreatic ductal cell,ductal cell
-human2_lib3.final_cell_0005,pancreatic ductal cell,pancreatic ductal cell,ductal cell
+human2_lib3.final_cell_0005,pancreatic ductal cell,acinar cell,acinar cell
 human4_lib1.final_cell_0001,pancreatic ductal cell,pancreatic ductal cell,ductal cell
 D30-7_35,pancreatic ductal cell,pancreatic ductal cell,ductal cell
 human3_lib1.final_cell_0540,pancreatic ductal cell,pancreatic ductal cell,ductal cell
@@ -770,7 +770,7 @@ D3en4_12,acinar,acinar cell,acinar cell
 human3_lib3.final_cell_0081,acinar,acinar cell,acinar cell
 D1713_70,acinar,acinar cell,acinar cell
 human3_lib3.final_cell_0738,acinar,acinar cell,acinar cell
-D2ex_42,acinar,acinar cell,acinar cell
+D2ex_42,acinar,pancreatic ductal cell,ductal cell
 human1_lib2.final_cell_0249,delta,type B pancreatic cell,beta cell(β cell)
 D31-6_38,delta,pancreatic D cell,delta cell
 human3_lib2.final_cell_0609,delta,pancreatic D cell,delta cell
@@ -855,7 +855,7 @@ human4_lib3.final_cell_0686,pancreatic stellate cell,fibroblast,fibroblast
 human2_lib2.final_cell_0448,pancreatic stellate cell,fibroblast,fibroblast
 human4_lib1.final_cell_0400,pancreatic stellate cell,fibroblast,fibroblast
 human3_lib4.final_cell_0859,pancreatic stellate cell,fibroblast,fibroblast
-human3_lib4.final_cell_0237,pancreatic stellate cell,pancreatic A cell,alpha cell (α cell)
+human3_lib4.final_cell_0237,pancreatic stellate cell,fibroblast,fibroblast
 human2_lib2.final_cell_0401,pancreatic stellate cell,fibroblast,fibroblast
 human3_lib1.final_cell_0276,pancreatic stellate cell,fibroblast,fibroblast
 human2_lib2.final_cell_0012,pancreatic stellate cell,fibroblast,fibroblast
@@ -994,7 +994,7 @@ human1_lib3.final_cell_0270,epsilon,pancreatic D cell,delta cell
 human1_lib3.final_cell_0692,epsilon,pancreatic D cell,delta cell
 D31-6_25,epsilon,pancreatic A cell,alpha cell (α cell)
 human4_lib1.final_cell_0326,epsilon,pancreatic PP cell,gamma cell
-human1_lib1.final_cell_0323,epsilon,pancreatic D cell,delta cell
+human1_lib1.final_cell_0323,epsilon,pancreatic A cell,alpha cell (α cell)
 human1_lib1.final_cell_0309,epsilon,pancreatic D cell,delta cell
 human1_lib1.final_cell_0123,epsilon,pancreatic D cell,delta cell
-D17All2_88,epsilon,pancreatic D cell,delta cell
+D17All2_88,epsilon,pancreatic A cell,alpha cell (α cell)

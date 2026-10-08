@@ -1,0 +1,1001 @@
+"cell_id","true_labels","predicted_labels","reachable"
+"TGGGCTGTCACGAACT-1_23","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.TCGTACCAGCTATGCT.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw11.GAAATGATCTGATACG.1_1","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.TGTGTTTGTTATCACG.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.CAGCGACTCAGTTGAC.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.TTCTCCTGTAGCGATG.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw12.GGACAAGCATAGTAAG.1_3","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.GTCCTCAAGGCATTGG.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"ACACCCTGTGTAGC-1_19","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.GAAACTCAGAGGTAGA.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"CACGGGACGTGCTA-1_22","retinal progenitor cell","Mueller cell",TRUE
+"Hgw20_rep2.TAGTTGGCAACTGCGC.1_11","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw11.GGGAGATTCTGGTTCC.1_1","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw11.GCTGCGAAGAAACGAG.1_1","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.GCCTCTAAGACCGGAT.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.TGCCCTAAGCTACCGC.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw14.TTCTACACACCACCAG.1_5","retinal progenitor cell","retinal progenitor cell",TRUE
+"GGGAATGGTGACGCCT-1_16","retinal progenitor cell","retinal progenitor cell",TRUE
+"GTGTCAGAGGCATT-1_22","retinal progenitor cell","Mueller cell",TRUE
+"Hgw11.GAGCAGAGTGGACGAT.1_1","retinal progenitor cell","retinal progenitor cell",TRUE
+"GACGTATGCTAAGC-1_19","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw13.GCTTGAAGTCGCCATG.1_4","retinal progenitor cell","retinal cone cell",TRUE
+"AATGGCTGAACAGA-1_19","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw20_rep2.GTTCGGGGTCTAACGT.1_11","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.TGGTTCCCATTTCACT.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw24_rep1.TGGCTGGTCGGTGTTA.1_13","retinal progenitor cell","retinal rod cell",TRUE
+"ATTACCACCTACTT-1_22","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw16.AAGTCTGTCTTGGGTA.1_7","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw11.AGCAGCCAGGACGAAA.1_1","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.AGACGTTCAAACTGCT.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw20_rep2.TCAACGATCGACCAGC.1_11","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw18.TACTTGTTCCATTCTA.1_9","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw16.AACTCTTTCCTTGGTC.1_7","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.ACCAGTACACAGCCCA.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.TCGTACCGTTCAGTAC.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw18.GGAAAGCAGGTCGGAT.1_9","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.GTCACGGCAATGAAAC.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.GCACTCTGTTCATGGT.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw20_rep1.AAGACCTGTAGATTAG.1_11","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw9.GGACAGAAGACATAAC.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw19_rep1.GTATTCTAGCAGGTCA.1_10","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw18.TGTATTCGTCTAGAGG.1_9","retinal progenitor cell","retinal progenitor cell",TRUE
+"TAGGTGACTGTAGC-1_22","retinal progenitor cell","Mueller cell",TRUE
+"Hgw15.GGTATTGTCGGTTCGG.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw11.TTAGTTCCACAGGTTT.1_1","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw24_rep2.CTACATTGTAAACGCG.1_13","retinal progenitor cell","retinal rod cell",TRUE
+"AGCGTCGAGGAATTAC-1_18","retinal progenitor cell","Mueller cell",TRUE
+"Hgw12.AGAATAGGTCTTTCAT.1_3","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw19_rep2.TGCTACCTCACCTTAT.1_10","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.CGTCAGGGTAGCACGA.1_2","retinal progenitor cell","retina horizontal cell",TRUE
+"ATTCGGGATCTTTG-1_19","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw16.TTTACTGCAAATACAG.1_7","retinal progenitor cell","retinal cone cell",TRUE
+"GCTCAAATCACCTCTG-1_23","retinal progenitor cell","retinal progenitor cell",TRUE
+"CATACAGCATCTCCCA-1_23","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw19_rep1.TCGGTAACAAAGGCGT.1_10","retinal progenitor cell","retinal progenitor cell",TRUE
+"CAGCGTCTGTTTCT-1_20","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.GACTAACCATCCCATC.1_4","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw9.CATGGCGAGTACACCT.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.AAAGATGTCCATTCTA.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw14.CATGACAGTTCGTCTC.1_5","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw16.GTGTTAGAGGGCACTA.1_7","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.CGTTAGAGTGTTTGGT.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw14.TTGGAACGTAAGTTCC.1_5","retinal progenitor cell","amacrine cell",TRUE
+"Hgw9.GTACTTTAGCGATATA.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw20_rep1.AGCTTGACACAGATTC.1_11","retinal progenitor cell","Mueller cell",TRUE
+"Hgw16.AACTTTCCAGGGTTAG.1_7","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw24_rep2.AGCTTGAGTGGTTTCA.1_13","retinal progenitor cell","retinal progenitor cell",TRUE
+"TCATCCGTCGGAACTT-1_23","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw19_rep2.ACATGGTAGGATGCGT.1_10","retinal progenitor cell","retinal rod cell",TRUE
+"Hgw13.AGGTCCGTCACTGGGC.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw19_rep2.CGTCACTAGCTGAAAT.1_10","retinal progenitor cell","retinal rod cell",TRUE
+"Hgw19_rep1.CTGCTGTCATTAGCCA.1_10","retinal progenitor cell","Mueller cell",TRUE
+"Hgw13.TACCTTACAAACAACA.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.GTTAAGCCACAGTCGC.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.CCCATACAGGGTTTCT.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"AACACACCAGTAGGAC-1_23","retinal progenitor cell","retinal progenitor cell",TRUE
+"TCACATTTCACTCACC-1_23","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.CAGTCCTCATTTGCCC.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"TTATGCTAGCAGGTCA-1_17","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.CAGCCGATCCGTAGTA.1_6","retinal progenitor cell","retinal rod cell",TRUE
+"Hgw13.AGTTGGTTCCACGTTC.1_4","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw24_rep2.GATGCTAAGACGCAAC.1_13","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw19_rep2.TTCTACAGTAAACCTC.1_10","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.TCACAAGTCCGTCATC.1_6","retinal progenitor cell","amacrine cell",TRUE
+"TGTGGCGGTTCTTCAT-1_23","retinal progenitor cell","retinal progenitor cell",TRUE
+"CGAGCGTGCCTGTC-1_19","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.TGGCGCAAGGTGACCA.1_4","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw18.ATCATGGCAGGGTTAG.1_9","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.AGATTGCGTTAGTGGG.1_2","retinal progenitor cell","amacrine cell",TRUE
+"Hgw14.CTCAGAATCGACAGCC.1_5","retinal progenitor cell","amacrine cell",TRUE
+"Hgw11.GGGTTGCGTGCAGACA.1_1","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw17.TCGGTAAAGGCACATG.1_8","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw20_rep2.CGCTGGACATTCTCAT.1_11","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.TAAGCGTTCACGATGT.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.CAGAATCTCTAACTCT.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.TAGAGCTTCCCACTTG.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"GTGCAAACAAGAGT-1_19","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw17.TCAGATGAGGAGTAGA.1_8","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.TCACAAGAGGAGTAGA.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"CTAATGGCAAAGCGGT-1_16","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw20_rep2.CATATGGAGTTTCCTT.1_11","retinal progenitor cell","Mueller cell",TRUE
+"TTTGTTGCAAATACGA-1_23","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw24_rep2.CGTCAGGAGTGTACTC.1_13","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw12.GTGTTAGAGTGTCCAT.1_3","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.GTAACTGGTCTCTTAT.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw12.GGACAGAGTCGAAAGC.1_3","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.CCACCTACATTCCTGC.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"GACTGAACCAGCTA-1_19","retinal progenitor cell","retinal progenitor cell",TRUE
+"CTACGTCCAATAGCGG-1_18","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.GGATTACAGTTGTCGT.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"ACGGAGGAGGAGGT-1_22","retinal progenitor cell","retinal rod cell",TRUE
+"Hgw20_rep2.TGTGTTTAGTAGATGT.1_11","retinal progenitor cell","retinal progenitor cell",TRUE
+"ACAAGCACTGATGC-1_22","retinal progenitor cell","Mueller cell",TRUE
+"Hgw20_rep2.CCTTTCTAGACCTAGG.1_11","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw19_rep1.TGACAACTCATGCATG.1_10","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.TGCTGCTTCACTATTC.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw12.GCATGATAGGGATGGG.1_3","retinal progenitor cell","retinal progenitor cell",TRUE
+"TCTATTGCAAGACACG-1_16","retinal progenitor cell","retinal progenitor cell",TRUE
+"ATTGGACCAAGGACAC-1_16","retinal progenitor cell","amacrine cell",TRUE
+"Hgw9.GATCGATCAGCCACCA.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.AACTCAGGTCCGTTAA.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.TCAGCTCGTTCGTTGA.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.AAGCCGCCAGCTATTG.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"GCAACCGCAGTAGGAC-1_23","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.AGAGTGGAGAACAACT.1_4","retinal progenitor cell","amacrine cell",TRUE
+"Hgw20_rep2.TATCTCAGTTGGAGGT.1_11","retinal progenitor cell","retinal progenitor cell",TRUE
+"GAATGCACTGAGCT-1_22","retinal progenitor cell","Mueller cell",TRUE
+"Hgw9.CAAGAAACAGGGTATG.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw20_rep2.ACCCACTCAGATTGCT.1_11","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw20_rep2.AAATGCCCACCTCGGA.1_11","retinal progenitor cell","retinal cone cell",TRUE
+"CTTCACCTACCTGA-1_22","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw24_rep2.TCTGGAAGTTCAACCA.1_13","retinal progenitor cell","retinal cone cell",TRUE
+"GTCAAGTGTCTCTCGT-1_17","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.CGTAGCGAGAGGTACC.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"CACATGGAACGGAG-1_19","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw11.CACAGTATCGAATGCT.1_1","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.TGCCAAAGTTCGGCAC.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"ATGTGTGCAGCCTGTG-1_18","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw15.GTGTGCGCACGGTAGA.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"TTCCACGGTAACTTCG-1_23","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw18.TACTTACGTCGTCTTC.1_9","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.TCGTAGACAAGTTGTC.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw17.AAAGATGCACAAGCCC.1_8","retinal progenitor cell","amacrine cell",TRUE
+"Hgw22.GCTGCTTAGTGAATTG.1_12","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.ACTGAACCAATAGCAA.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw24_rep2.AGTAGTCTCCGGGTGT.1_13","retinal progenitor cell","amacrine cell",TRUE
+"Hgw11.ACATGGTAGAAGAAGC.1_1","retinal progenitor cell","retinal ganglion cell",TRUE
+"Hgw15.GGCTCGACAGTTCCCT.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"CTGCCTACATCCCACT-1_16","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.CGAGCACTCAGGTAAA.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"TACCTATGTACTCTCC-1_16","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw9.TACGGGCAGTGGACGT.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"GAAATGACATAATCCG-1_23","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw17.ATCTGCCTCCGGGTGT.1_8","retinal progenitor cell","amacrine cell",TRUE
+"TGCTCGTGTCTGCCTT-1_23","retinal progenitor cell","retinal progenitor cell",TRUE
+"TACCTATCATATGGTC-1_16","retinal progenitor cell","amacrine cell",TRUE
+"AAAGTCCCAGATACCT-1_23","retinal progenitor cell","retinal rod cell",TRUE
+"Hgw13.GCTTGAATCACCGGGT.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw19_rep2.GCGCGATGTGCTCTTC.1_10","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.AGCTTGATCGTAGATC.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"CTGCTGTCACAGACTT-1_18","retinal progenitor cell","retinal progenitor cell",TRUE
+"TACAGTGTCTAACGGT-1_17","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw11.AAATGCCGTTAAGACA.1_1","retinal progenitor cell","retinal progenitor cell",TRUE
+"GCGACTCTCCGCTT-1_22","retinal progenitor cell","retinal rod cell",TRUE
+"Hgw18.ATAGACCGTGGTCTCG.1_9","retinal progenitor cell","Mueller cell",TRUE
+"AAACCTGCACCACGTG-1_16","retinal progenitor cell","amacrine cell",TRUE
+"Hgw11.CGGAGTCCAGGACCCT.1_1","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.TCTCTAAAGTCATCCA.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw19_rep1.TGTGTTTAGAGGGCTT.1_10","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw17.GACGGCTAGATAGGAG.1_8","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.AGCTCTCAGAGGTTAT.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.AGGGAGTTCCGGCACA.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.ATAAGAGTCGGATGGA.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"GTGTCAGAGGAACG-1_19","retinal progenitor cell","Mueller cell",TRUE
+"Hgw9.CGTCAGGCACATCCGG.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.CTGTGCTAGGTAGCCA.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"TAGATCCTGGAGGT-1_15","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.CATCGGGAGCCAGGAT.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"TGAGCATTCATGTCCC-1_17","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw12.AGCTTGAGTAGCTAAA.1_3","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw12.CACACCTAGTGGTAAT.1_3","retinal progenitor cell","retinal progenitor cell",TRUE
+"AATGTTGACGTGAT-1_15","retinal progenitor cell","retinal progenitor cell",TRUE
+"AGTCTACTCACACA-1_19","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.ATGCGATCAGTAGAGC.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.GTACTCCCAGTCGATT.1_6","retinal progenitor cell","amacrine cell",TRUE
+"GGACATTGTTAAGTAG-1_17","retinal progenitor cell","retinal progenitor cell",TRUE
+"TGCATGGAGGCGAA-1_22","retinal progenitor cell","retinal rod cell",TRUE
+"Hgw20_rep2.TCAGCTCCATCCGGGT.1_11","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.TATCAGGCAGCTCGCA.1_4","retinal progenitor cell","retinal cone cell",TRUE
+"CTGAAGTGTCGAAAGC-1_18","retinal progenitor cell","Mueller cell",TRUE
+"Hgw13.GGCTCGATCTGGCGAC.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw17.GTAGGCCCAGGTTTCA.1_8","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw20_rep2.CCTCTGATCCTTGGTC.1_11","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw19_rep2.GCACTCTAGGGATGGG.1_10","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw24_rep1.ACGATGTCATCCTTGC.1_13","retinal progenitor cell","retinal progenitor cell",TRUE
+"ATTTCTGTCTGCCAGG-1_17","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw24_rep2.ACCGTAAAGCCACCTG.1_13","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.TTTGCGCAGAGGTACC.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.CCGTACTTCTGCCAGG.1_6","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw13.TTTATGCAGAGCCTAG.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.CAAGGCCTCTGAGGGA.1_2","retinal progenitor cell","retinal ganglion cell",TRUE
+"Hgw18.GGTGTTATCAGCCTAA.1_9","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw11.CTAATGGGTAAGCACG.1_1","retinal progenitor cell","retinal progenitor cell",TRUE
+"ATCACTTGTAAAGG-1_22","retinal progenitor cell","retinal progenitor cell",TRUE
+"CAGATCGAGACTAC-1_19","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw14.GCATGATCACCATGTA.1_5","retinal progenitor cell","retinal progenitor cell",TRUE
+"ATCGAGTGGTACAC-1_22","retinal progenitor cell","retinal rod cell",TRUE
+"Hgw13.TGGTTAGAGAAACCTA.1_4","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw11.AGCTCCTGTGAGGGAG.1_1","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.CCATTCGTCAATCACG.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"GTCAAACAGTAACGTA-1_23","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.AGTCTTTCAGCTATTG.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw14.CGTTAGATCAAGGTAA.1_5","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.CAGCTAATCTGATACG.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw11.GGCTCGAGTAAATGAC.1_1","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw18.CGGACTGAGTTCGCGC.1_9","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.CCATGTCCAGGGTTAG.1_2","retinal progenitor cell","retinal cone cell",TRUE
+"ACCGTAACAAAGTCAA-1_17","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.ACTGATGTCCTTTCGG.1_6","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw16.ACATCAGCAAGGTTTC.1_7","retinal progenitor cell","retinal progenitor cell",TRUE
+"GTTAAAACTCGTGA-1_15","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.TCCACACAGCGTGTCC.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"CTCTGGTAGTTTAGGA-1_18","retinal progenitor cell","retinal rod cell",TRUE
+"Hgw12.CGCTATCCACCAGTTA.1_3","retinal progenitor cell","retinal progenitor cell",TRUE
+"TCCATAACATTCTC-1_19","retinal progenitor cell","retinal progenitor cell",TRUE
+"ACTTGTACTTCTCA-1_20","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw27.GACACGCAGTCCGGTC.1_14","retinal progenitor cell","retinal rod cell",TRUE
+"Hgw15.CAAGATCGTAAGAGAG.1_6","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw27.GCGCAACTCAACGGCC.1_14","retinal progenitor cell","Mueller cell",TRUE
+"Hgw20_rep2.GAAACTCGTTGTACAC.1_11","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw13.GAACGGAGTAAGTAGT.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.GCGCAACAGACTTTCG.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.GGACATTGTTTGACTG.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw22.AACTGGTTCCTGTAGA.1_12","retinal progenitor cell","Mueller cell",TRUE
+"Hgw19_rep1.CTACACCCATTTGCCC.1_10","retinal progenitor cell","retinal rod cell",TRUE
+"Hgw20_rep2.TCATTTGGTACCCAAT.1_11","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw20_rep2.GCAGTTAGTATGGTTC.1_11","retinal progenitor cell","retinal rod cell",TRUE
+"Hgw24_rep2.TATGCCCTCACAATGC.1_13","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.ACTGTCCAGATTACCC.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.GGCTCGACACGTGAGA.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.ATCCGAAAGTGCCATT.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw20_rep2.CGTCAGGTCGTTTGCC.1_11","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw18.GTTACAGCAATCTGCA.1_9","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.TCAGATGCATGCAATC.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.CCTCTGACAGATGGGT.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.GACGCGTCATCACCCT.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.GAACCTACACTGCCAG.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"AGCTCCTCAAGCGAGT-1_18","retinal progenitor cell","retinal rod cell",TRUE
+"Hgw24_rep1.TGACTAGCACCCATTC.1_13","retinal progenitor cell","retinal rod cell",TRUE
+"Hgw12.GGCGTGTCATGAACCT.1_3","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw20_rep2.TAGTGGTTCAAGGCTT.1_11","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.CGTGTCTCAGGCTGAA.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw16.ACCAGTACATTGCGGC.1_7","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw24_rep2.GCATGTACATTTGCTT.1_13","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.CGAGCCACATTACGAC.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.CGAGCACCACTGAAGG.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw24_rep1.CTCTAATCAGTCGTGC.1_13","retinal progenitor cell","Mueller cell",TRUE
+"ATACACCTTCGCTC-1_19","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.GGCCGATAGAAGGACA.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.ACATCAGGTCGTCTTC.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"GGCTCGAGTGTGCCTG-1_18","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw11.CCACCTAGTGTTTGGT.1_1","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.GCATGATCATGTTGAC.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.ACGAGCCCAATCGAAA.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.ATTTCTGAGAGTGAGA.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw20_rep2.CTGTGCTTCTTCTGGC.1_11","retinal progenitor cell","retinal progenitor cell",TRUE
+"GTTGGATGCCTTTA-1_15","retinal progenitor cell","retinal progenitor cell",TRUE
+"CGTACAGAGATGAA-1_15","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.TCAGGTATCCGTTGTC.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw20_rep2.CGCTATCGTGAAGGCT.1_11","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.AGGTCCGTCGGTGTTA.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.ATCTACTCAGTATGCT.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw19_rep2.TGTCCCATCTGCGTAA.1_10","retinal progenitor cell","retinal rod cell",TRUE
+"Hgw11.AATCCAGAGGTTACCT.1_1","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw20_rep2.ATAACGCCAAACCTAC.1_11","retinal progenitor cell","amacrine cell",TRUE
+"Hgw15.GTAGTCAAGCACAGGT.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw24_rep2.CAACTAGCAGGATTGG.1_13","retinal progenitor cell","Mueller cell",TRUE
+"Hgw16.CTGATAGCACCGAATT.1_7","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw20_rep2.TCAGATGCAGTCAGAG.1_11","retinal progenitor cell","retinal progenitor cell",TRUE
+"CCCAACTGGTTTCT-1_19","retinal progenitor cell","retinal progenitor cell",TRUE
+"TCATCAACAACGGG-1_15","retinal progenitor cell","retina horizontal cell",TRUE
+"Hgw13.ACAGCTACAGTTCATG.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.GAAATGATCGCAGGCT.1_4","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw17.AGATTGCCAATGGTCT.1_8","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.TGAGCATTCAGTTAGC.1_4","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw9.AGGTCCGAGGGTTCCC.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"GGACAGGAGGACAG-1_20","retinal progenitor cell","retinal cone cell",TRUE
+"TCTTCGGTCGTTGCCT-1_18","retinal progenitor cell","amacrine cell",TRUE
+"Hgw9.ATCTACTGTTAAGATG.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw17.TACTCGCAGCCAGAAC.1_8","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.AGCTCTCAGTGACTCT.1_2","retinal progenitor cell","retina horizontal cell",TRUE
+"Hgw9.ACAGCTAAGGTTCCTA.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"ACCTCGTGGGAGTG-1_22","retinal progenitor cell","retinal progenitor cell",TRUE
+"AGCCGTCTTCAAGC-1_15","retinal progenitor cell","retinal cone cell",TRUE
+"GATTCAGCAAGCCTAT-1_16","retinal progenitor cell","retinal progenitor cell",TRUE
+"TATGCCCAGGACCACA-1_17","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw13.ACGGCCAGTAATAGCA.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.AGCGTCGAGACAGAGA.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"TACGGTAAGCCAGTTT-1_16","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.CGTTGGGCAAGGTGTG.1_2","retinal progenitor cell","retina horizontal cell",TRUE
+"Hgw13.CTCCTAGAGTTCGATC.1_4","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw9.CATCAAGAGACTACAA.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"CTAGTTTGTGGAGG-1_22","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.CAGTAACGTACCGTAT.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.ACACCAAAGTCACGCC.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw20_rep2.CTACACCTCAGGTAAA.1_11","retinal progenitor cell","Mueller cell",TRUE
+"Hgw9.TTGACTTAGCCCTAAT.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"TAGTACCTCTCCCA-1_19","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.CATGGCGTCTCGCATC.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"GATAGAGAACGCAT-1_20","retinal progenitor cell","retinal progenitor cell",TRUE
+"CGTCGACTTCAGAC-1_22","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw11.TCTCATAGTTCGTGAT.1_1","retinal progenitor cell","retinal progenitor cell",TRUE
+"CCAATTTAGGCTTAAA-1_23","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw9.CTCACACCAATTCCTT.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw20_rep2.GTTACAGAGAGCCTAG.1_11","retinal progenitor cell","retinal progenitor cell",TRUE
+"ACACCCTGGGATTC-1_22","retinal progenitor cell","retina horizontal cell",TRUE
+"GGATTGTGGTAGGG-1_19","retinal progenitor cell","retinal cone cell",TRUE
+"CTACACCTCCGGCACA-1_17","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw17.TGAGCATTCCTGTACC.1_8","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.GCGCAGTTCGTCCAGG.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.GTATTCTAGGCAAAGA.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw17.TATCAGGCAATGTTGC.1_8","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.AGAGTGGAGCTAGCCC.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.GTCACGGCACTTGGAT.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw20_rep2.CATCAAGAGTCCTCCT.1_11","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw12.CCGTGGACATCTCCCA.1_3","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw17.CAGAATCCACCACCAG.1_8","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw24_rep2.CCCTCCTCAGGGATTG.1_13","retinal progenitor cell","Mueller cell",TRUE
+"Hgw17.TGACAACTCCGTAGGC.1_8","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.CCTAAAGTCGAATCCA.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw11.ATCTGCCCAGGTTTCA.1_1","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw24_rep2.CGCTGGAGTAATAGCA.1_13","retinal progenitor cell","Mueller cell",TRUE
+"CCTTGTGCAACTGAAA-1_23","retinal progenitor cell","retinal cone cell",TRUE
+"GCACGGTGGTCTTT-1_19","retinal progenitor cell","amacrine cell",TRUE
+"Hgw9.GGTGAAGCAGTGACAG.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.CCTATTATCGGTTAAC.1_2","retinal progenitor cell","retina horizontal cell",TRUE
+"CAGTAACGTCGTTGTA-1_18","retinal progenitor cell","Mueller cell",TRUE
+"Hgw13.TCAGCAAAGTGCGATG.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"GTAACGTGTCATCCCT-1_16","retinal progenitor cell","retinal rod cell",TRUE
+"Hgw12.CGCTTCATCGTTGCCT.1_3","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw19_rep1.ATCACGAAGGACTGGT.1_10","retinal progenitor cell","Mueller cell",TRUE
+"Hgw9.CATCAGATCCTGCTTG.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.CAGAGAGCAAGTCTGT.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw19_rep2.CGAGCCATCAGTGCAT.1_10","retinal progenitor cell","retinal rod cell",TRUE
+"Hgw16.CTCGTACTCGTTACGA.1_7","retinal progenitor cell","amacrine cell",TRUE
+"Hgw13.ACGGGTCTCCAACCAA.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw24_rep1.ACGCCAGTCAAACCAC.1_13","retinal progenitor cell","retinal progenitor cell",TRUE
+"AAACGCACGAGACG-1_19","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw17.CCTCAGTCACGGCCAT.1_8","retinal progenitor cell","retinal progenitor cell",TRUE
+"ACGTAGTTCAGCTAGT-1_23","retinal progenitor cell","retinal cone cell",TRUE
+"GTACTTTGTACCGGCT-1_17","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw11.AGGTCATTCTGCTGCT.1_1","retinal progenitor cell","retinal progenitor cell",TRUE
+"CATATAGATCCGTC-1_19","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw17.CAAGTTGGTAAGTGGC.1_8","retinal progenitor cell","amacrine cell",TRUE
+"Hgw9.GTGCGGTAGCCTCGTG.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw12.CTCAGAACAGGGCATA.1_3","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw15.GGTATTGGTAGTAGTA.1_6","retinal progenitor cell","amacrine cell",TRUE
+"Hgw9.TGCGTGGTCATCGCTC.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.TACTTGTGTCGGCATC.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.ACCAGTAAGGTCATCT.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.TGAAAGATCCCACTTG.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw16.CAGCTGGAGCTATGCT.1_7","retinal progenitor cell","retinal progenitor cell",TRUE
+"TCAGTACTCTCTAT-1_22","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.TACTTGTGTCCGCTGA.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw18.TGAGGGATCGCATGAT.1_9","retinal progenitor cell","amacrine cell",TRUE
+"Hgw13.GTACTTTCACCAGTTA.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"TAGGTACGTCAACCTA-1_23","retinal progenitor cell","Mueller cell",TRUE
+"Hgw15.GGGCACTCACCGATAT.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"GGGATGACAGTGACAG-1_16","retinal progenitor cell","retinal progenitor cell",TRUE
+"TTTCTACTAGTCGT-1_15","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.CGGAGTCGTATCTGCA.1_6","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw9.ACATGGTTCGGTTAAC.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.GCAATCAAGAATTGTG.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"TAGGTTGCAAAGTATG-1_23","retinal progenitor cell","retinal rod cell",TRUE
+"Hgw15.TTGGAACTCGCATGGC.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw11.TTCTCCTTCACGCGGT.1_1","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw11.ACCGTAACACAACGTT.1_1","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw18.CTTTGCGGTACTTGAC.1_9","retinal progenitor cell","amacrine cell",TRUE
+"Hgw12.CCGGTAGTCTTGGGTA.1_3","retinal progenitor cell","retinal progenitor cell",TRUE
+"TCGGATAAGTCTCTGA-1_23","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw15.GGAAAGCAGATAGCAT.1_6","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw13.AGGCCACGTTACGTCA.1_4","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw24_rep1.CGAGAAGCAATCTACG.1_13","retinal progenitor cell","retinal progenitor cell",TRUE
+"ATGTCACTGGTAGG-1_19","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw20_rep2.TGGGCGTAGTGAAGAG.1_11","retinal progenitor cell","retinal progenitor cell",TRUE
+"GACAGTACCTGAAC-1_19","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw11.ATGTGTGCACTCAGGC.1_1","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw9.CGAGAAGCACCTCGTT.1_2","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw12.TTCTACACACGACTCG.1_3","retinal progenitor cell","retinal cone cell",TRUE
+"ACAGTTCTAGGTTC-1_19","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw11.TACCTATGTCAGCTAT.1_1","retinal progenitor cell","retinal cone cell",TRUE
+"Hgw19_rep2.CCTCAGTTCCCAAGAT.1_10","retinal progenitor cell","retinal cone cell",TRUE
+"AAGATGGAACCAGT-1_22","retinal progenitor cell","retinal cone cell",TRUE
+"CAAATATGCGACTA-1_19","retinal progenitor cell","retinal progenitor cell",TRUE
+"Hgw15.CCGGTAGGTAGCGATG.1_6","amacrine cell","amacrine cell",TRUE
+"TAGTTGGGTTCGGCAC-1_16","amacrine cell","retina horizontal cell",TRUE
+"Hgw14.TATCTCAGTCACCTAA.1_5","amacrine cell","amacrine cell",TRUE
+"Hgw12.CTACCCAAGTGTACGG.1_3","amacrine cell","retina horizontal cell",TRUE
+"Hgw20_rep1.CACCTTGGTGGTACAG.1_11","amacrine cell","retina horizontal cell",TRUE
+"Hgw22.AACTCAGAGTCGTTTG.1_12","amacrine cell","retina horizontal cell",TRUE
+"Hgw12.CGCCAAGTCCCTAATT.1_3","amacrine cell","retina horizontal cell",TRUE
+"Hgw20_rep2.TCGAGGCCATCGGACC.1_11","amacrine cell","amacrine cell",TRUE
+"Hgw17.AAGCCGCAGTCCGGTC.1_8","amacrine cell","retina horizontal cell",TRUE
+"Hgw18.CACACAATCCCGGATG.1_9","amacrine cell","amacrine cell",TRUE
+"Hgw14.CCGTACTGTCCTCTTG.1_5","amacrine cell","retina horizontal cell",TRUE
+"Hgw20_rep2.GTGTGCGCAATGGATA.1_11","amacrine cell","amacrine cell",TRUE
+"GTTAGGTGTCAGAC-1_15","amacrine cell","retina horizontal cell",TRUE
+"Hgw15.CTGCGGACACCCATTC.1_6","amacrine cell","amacrine cell",TRUE
+"Hgw17.GTCACAATCACAGTAC.1_8","amacrine cell","amacrine cell",TRUE
+"Hgw15.GGTGTTAAGTACATGA.1_6","amacrine cell","amacrine cell",TRUE
+"Hgw16.ACTATCTAGAGCCCAA.1_7","amacrine cell","amacrine cell",TRUE
+"ACGCAGCGTGCGCTTG-1_16","amacrine cell","amacrine cell",TRUE
+"Hgw9.CAGGTGCCAGTGAGTG.1_2","amacrine cell","retina horizontal cell",TRUE
+"Hgw16.AGTGTCAAGGTGCACA.1_7","amacrine cell","retina horizontal cell",TRUE
+"Hgw20_rep2.CATGACACACGACGAA.1_11","amacrine cell","retina horizontal cell",TRUE
+"ACACCGGCATCACGAT-1_16","amacrine cell","retina horizontal cell",TRUE
+"Hgw18.AGCGTCGAGCACGCCT.1_9","amacrine cell","retina horizontal cell",TRUE
+"Hgw19_rep1.CAAGGCCGTCTCTCTG.1_10","amacrine cell","amacrine cell",TRUE
+"Hgw15.GCGCGATAGACCTTTG.1_6","amacrine cell","retina horizontal cell",TRUE
+"Hgw14.CGTGTCTTCGATGAGG.1_5","amacrine cell","retina horizontal cell",TRUE
+"Hgw24_rep2.CGGGTCATCAGGCCCA.1_13","amacrine cell","retina horizontal cell",TRUE
+"Hgw12.CCTATTATCCGCAAGC.1_3","amacrine cell","retina horizontal cell",TRUE
+"TTTGCGCCAGGAATGC-1_18","amacrine cell","amacrine cell",TRUE
+"Hgw17.CCGTGGATCTGCGGCA.1_8","amacrine cell","amacrine cell",TRUE
+"Hgw16.GTCGTAACAATGGAAT.1_7","amacrine cell","amacrine cell",TRUE
+"CAGTCCTCACAACGCC-1_18","amacrine cell","amacrine cell",TRUE
+"Hgw20_rep2.GGCAATTCACCATGTA.1_11","amacrine cell","amacrine cell",TRUE
+"Hgw19_rep2.TTTACTGCAATGGATA.1_10","amacrine cell","amacrine cell",TRUE
+"Hgw17.CTGCTGTTCGTCCGTT.1_8","amacrine cell","retina horizontal cell",TRUE
+"Hgw17.CCTCTGAGTTCTCATT.1_8","amacrine cell","amacrine cell",TRUE
+"Hgw9.AGAATAGTCCGTACAA.1_2","amacrine cell","retinal ganglion cell",TRUE
+"Hgw16.GAGGTGACACGGCCAT.1_7","amacrine cell","amacrine cell",TRUE
+"CAGGTATGCGAACT-1_15","amacrine cell","retinal ganglion cell",TRUE
+"Hgw20_rep2.ATTGGTGTCAAGGTAA.1_11","amacrine cell","amacrine cell",TRUE
+"Hgw19_rep1.GTGGGTCGTGCTGTAT.1_10","amacrine cell","amacrine cell",TRUE
+"Hgw13.CTCAGAAGTAGGCTGA.1_4","amacrine cell","retina horizontal cell",TRUE
+"Hgw19_rep1.TAAGCGTCAATGTTGC.1_10","amacrine cell","amacrine cell",TRUE
+"Hgw20_rep2.GGTGAAGAGTTTCCTT.1_11","amacrine cell","amacrine cell",TRUE
+"ATTCGACTTCCTAT-1_22","amacrine cell","retinal ganglion cell",TRUE
+"CCTGCAACTTCTTG-1_15","amacrine cell","retinal ganglion cell",TRUE
+"Hgw20_rep2.CAGGTGCTCCGTCATC.1_11","amacrine cell","amacrine cell",TRUE
+"Hgw9.GTGCAGCAGCGCTCCA.1_2","amacrine cell","retina horizontal cell",TRUE
+"Hgw14.GATGAAAAGTCATCCA.1_5","amacrine cell","amacrine cell",TRUE
+"Hgw18.TTGCCGTTCACCTCGT.1_9","amacrine cell","retina horizontal cell",TRUE
+"Hgw16.AGGCCGTTCAACGGGA.1_7","amacrine cell","amacrine cell",TRUE
+"Hgw19_rep1.AGTTGGTCACATCTTT.1_10","amacrine cell","amacrine cell",TRUE
+"Hgw12.CCGTTCAAGGAATCGC.1_3","amacrine cell","retina horizontal cell",TRUE
+"Hgw14.CGTTGGGTCCGCAAGC.1_5","amacrine cell","retina horizontal cell",TRUE
+"ACATCAGTCTCTGCTG-1_17","amacrine cell","amacrine cell",TRUE
+"Hgw20_rep2.GATCGTATCCCTCTTT.1_11","amacrine cell","retina horizontal cell",TRUE
+"Hgw20_rep1.GTAGGCCTCCCGGATG.1_11","amacrine cell","amacrine cell",TRUE
+"AGGCCACCACCACCAG-1_17","amacrine cell","amacrine cell",TRUE
+"CATGAGACCCTAAG-1_22","amacrine cell","amacrine cell",TRUE
+"Hgw14.GCAAACTAGGGTGTTG.1_5","amacrine cell","amacrine cell",TRUE
+"Hgw24_rep2.GCAAACTCACCAGTTA.1_13","amacrine cell","retina horizontal cell",TRUE
+"Hgw16.CTCTAATTCCGAGCCA.1_7","amacrine cell","retina horizontal cell",TRUE
+"Hgw18.GACAGAGAGTATGACA.1_9","amacrine cell","retina horizontal cell",TRUE
+"Hgw12.GACGGCTAGGTGATAT.1_3","amacrine cell","retina horizontal cell",TRUE
+"AGATTGCTCGAGAGCA-1_17","amacrine cell","amacrine cell",TRUE
+"Hgw11.ACGAGGACAATGAAAC.1_1","amacrine cell","retinal ganglion cell",TRUE
+"TAAGGCTGAGAGAT-1_22","amacrine cell","retina horizontal cell",TRUE
+"Hgw16.GGCCGATGTATTACCG.1_7","amacrine cell","retina horizontal cell",TRUE
+"Hgw20_rep2.TTTCCTCCAGGCAGTA.1_11","amacrine cell","amacrine cell",TRUE
+"TGAAAGACACCAGATT-1_16","amacrine cell","amacrine cell",TRUE
+"Hgw13.CTCTACGTCACCACCT.1_4","amacrine cell","retina horizontal cell",TRUE
+"Hgw20_rep2.CACCTTGTCTCAAGTG.1_11","amacrine cell","amacrine cell",TRUE
+"Hgw20_rep1.GTCACGGAGATCCCAT.1_11","amacrine cell","amacrine cell",TRUE
+"Hgw14.GTTACAGGTCTGATCA.1_5","amacrine cell","amacrine cell",TRUE
+"Hgw19_rep2.GTGCATAGTTTGACAC.1_10","amacrine cell","amacrine cell",TRUE
+"AGCACTGACATCAG-1_22","amacrine cell","retinal ganglion cell",TRUE
+"Hgw20_rep1.CCCATACTCTCGTTTA.1_11","amacrine cell","amacrine cell",TRUE
+"TCCCACGACAAGCT-1_15","amacrine cell","retina horizontal cell",TRUE
+"Hgw20_rep2.AGTTGGTGTTGGTTTG.1_11","amacrine cell","amacrine cell",TRUE
+"GAAGATGAGTACCA-1_15","amacrine cell","retina horizontal cell",TRUE
+"Hgw19_rep2.CTTAGGAGTTACGTCA.1_10","amacrine cell","amacrine cell",TRUE
+"Hgw14.TAGTGGTGTCTAAACC.1_5","amacrine cell","amacrine cell",TRUE
+"Hgw16.CTTTGCGTCATGCTCC.1_7","amacrine cell","amacrine cell",TRUE
+"CGTCCATTCCAAACAC-1_16","amacrine cell","retina horizontal cell",TRUE
+"Hgw24_rep2.AGGGATGCAGTATGCT.1_13","amacrine cell","retina horizontal cell",TRUE
+"Hgw16.AACTCCCTCAGTGTTG.1_7","amacrine cell","amacrine cell",TRUE
+"Hgw19_rep2.TAAACCGAGTACGTAA.1_10","amacrine cell","amacrine cell",TRUE
+"GTCGACCTGAGCAG-1_15","amacrine cell","retinal ganglion cell",TRUE
+"Hgw11.AACCATGTCTTGTTTG.1_1","amacrine cell","retina horizontal cell",TRUE
+"Hgw19_rep2.TGATTTCGTACCCAAT.1_10","amacrine cell","amacrine cell",TRUE
+"Hgw19_rep2.AGCATACTCACTGGGC.1_10","amacrine cell","amacrine cell",TRUE
+"Hgw17.AAGGCAGTCCTACAGA.1_8","amacrine cell","amacrine cell",TRUE
+"TATGCCCAGCTGTTCA-1_16","amacrine cell","retinal ganglion cell",TRUE
+"Hgw20_rep2.ACGGGTCAGAGGTTGC.1_11","amacrine cell","amacrine cell",TRUE
+"GCGGGTTCATTCCTGC-1_18","amacrine cell","retina horizontal cell",TRUE
+"CGCGGTAAGATTACCC-1_17","amacrine cell","amacrine cell",TRUE
+"CGGACGTAGTGCCAGA-1_17","amacrine cell","retina horizontal cell",TRUE
+"Hgw17.AGAGCTTTCCCAACGG.1_8","amacrine cell","retina horizontal cell",TRUE
+"CAGGTTGAGTCATG-1_22","amacrine cell","amacrine cell",TRUE
+"ACCCGTTGTGTAGC-1_19","amacrine cell","retina horizontal cell",TRUE
+"Hgw15.TGACAACCAGTATCTG.1_6","amacrine cell","amacrine cell",TRUE
+"Hgw13.TGGCGCAAGGTAAACT.1_4","amacrine cell","retina horizontal cell",TRUE
+"Hgw19_rep1.TTTGCGCAGCTAGTGG.1_10","amacrine cell","amacrine cell",TRUE
+"GACGATTGATTCTC-1_22","amacrine cell","retina horizontal cell",TRUE
+"Hgw20_rep2.CCTAAAGTCTTCTGGC.1_11","amacrine cell","amacrine cell",TRUE
+"Hgw14.AGCATACAGCGTAATA.1_5","amacrine cell","amacrine cell",TRUE
+"Hgw17.GGCGACTGTAGCACGA.1_8","amacrine cell","amacrine cell",TRUE
+"Hgw20_rep1.CGGAGCTGTACGCACC.1_11","amacrine cell","amacrine cell",TRUE
+"Hgw17.CGGACTGGTGGTGTAG.1_8","amacrine cell","amacrine cell",TRUE
+"Hgw16.GTCACAACATTGGCGC.1_7","amacrine cell","retina horizontal cell",TRUE
+"Hgw15.CCAGCGACACATGGGA.1_6","amacrine cell","retina horizontal cell",TRUE
+"Hgw9.CACAAACCAAACGTGG.1_2","amacrine cell","retina horizontal cell",TRUE
+"Hgw12.GCTTCCACAAGGGTCA.1_3","amacrine cell","retinal ganglion cell",TRUE
+"Hgw17.TGTTCCGGTCCATCCT.1_8","amacrine cell","amacrine cell",TRUE
+"AGGAAATGATTCGG-1_19","amacrine cell","retina horizontal cell",TRUE
+"Hgw13.GATCGCGCATCCAACA.1_4","amacrine cell","retinal cone cell",TRUE
+"TTTGCGCGTGTCGCTG-1_17","amacrine cell","retina horizontal cell",TRUE
+"AGTGAGGCAGCTGGCT-1_16","amacrine cell","amacrine cell",TRUE
+"Hgw16.GCAATCAGTGCTAGCC.1_7","amacrine cell","retinal ganglion cell",TRUE
+"Hgw24_rep2.CTGGTCTCATGTCTCC.1_13","amacrine cell","retina horizontal cell",TRUE
+"TATCGTACATTCCT-1_19","amacrine cell","retina horizontal cell",TRUE
+"CCTATAACCTCTAT-1_15","amacrine cell","retinal ganglion cell",TRUE
+"Hgw17.TGGCTGGGTTGGGACA.1_8","amacrine cell","amacrine cell",TRUE
+"Hgw15.CCATTCGGTCCGAAGA.1_6","amacrine cell","amacrine cell",TRUE
+"Hgw11.CAACCAATCCTTGGTC.1_1","amacrine cell","retinal ganglion cell",TRUE
+"Hgw14.CGGAGTCTCTTGCAAG.1_5","amacrine cell","amacrine cell",TRUE
+"GCTGCAGGTAAACGCG-1_16","amacrine cell","retina horizontal cell",TRUE
+"Hgw17.CACACTCCACAGGAGT.1_8","amacrine cell","amacrine cell",TRUE
+"Hgw16.ACCCACTAGAGCTATA.1_7","amacrine cell","retina horizontal cell",TRUE
+"GGATAGCTCCTCGT-1_22","amacrine cell","amacrine cell",TRUE
+"GCATGCGAGTTGCAGG-1_18","amacrine cell","retina horizontal cell",TRUE
+"Hgw12.TACTCGCGTTTGGCGC.1_3","amacrine cell","retina horizontal cell",TRUE
+"Hgw18.ATTGGTGAGATGTAAC.1_9","amacrine cell","amacrine cell",TRUE
+"Hgw14.GGTGAAGAGGGTTCCC.1_5","amacrine cell","amacrine cell",TRUE
+"AAGTCTGTCTTATCTG-1_18","amacrine cell","retina horizontal cell",TRUE
+"Hgw14.TGTGGTATCAAGCCTA.1_5","amacrine cell","amacrine cell",TRUE
+"GCCAAATAGGGAACGG-1_18","amacrine cell","retina horizontal cell",TRUE
+"TCAGCAACAGGATTCT-1_23","amacrine cell","retinal ganglion cell",TRUE
+"Hgw20_rep1.TTCTTAGGTTCGTGAT.1_11","amacrine cell","retina horizontal cell",TRUE
+"CGTCACTCACATTTCT-1_17","amacrine cell","retina horizontal cell",TRUE
+"AATCGGTGGCGTTA-1_22","amacrine cell","retina horizontal cell",TRUE
+"GGTGAAGCAATAACGA-1_16","amacrine cell","amacrine cell",TRUE
+"GATCGTAGTCGAGATG-1_17","amacrine cell","amacrine cell",TRUE
+"Hgw15.GCGCCAATCTGTACGA.1_6","amacrine cell","amacrine cell",TRUE
+"AGAGCTACAGACTC-1_19","amacrine cell","retinal ganglion cell",TRUE
+"GTCCTCAGTAGCAAAT-1_17","amacrine cell","retina horizontal cell",TRUE
+"Hgw18.TCCCGATCAGCTTCGG.1_9","amacrine cell","retina horizontal cell",TRUE
+"Hgw18.ACATCAGGTCGAAAGC.1_9","amacrine cell","retina horizontal cell",TRUE
+"Hgw19_rep1.GGGTCTGAGTCTTGCA.1_10","amacrine cell","amacrine cell",TRUE
+"TCATCATGGGAAAT-1_22","amacrine cell","retina horizontal cell",TRUE
+"CTCGAAGATGTCAG-1_19","amacrine cell","retina horizontal cell",TRUE
+"Hgw17.TACGGGCGTGCAACGA.1_8","amacrine cell","amacrine cell",TRUE
+"Hgw19_rep1.GAGCAGATCAAAGTAG.1_10","amacrine cell","amacrine cell",TRUE
+"CCAATCCTCCGAAGAG-1_17","amacrine cell","amacrine cell",TRUE
+"Hgw13.GTACTCCGTAAGCACG.1_4","amacrine cell","retina horizontal cell",TRUE
+"Hgw19_rep2.ACGATACCATCGGAAG.1_10","amacrine cell","amacrine cell",TRUE
+"Hgw17.GGATGTTTCTAACTTC.1_8","amacrine cell","amacrine cell",TRUE
+"Hgw19_rep1.CGTCACTCAGGTCGTC.1_10","amacrine cell","retina horizontal cell",TRUE
+"Hgw20_rep2.CCTTCCCCACAGGAGT.1_11","amacrine cell","amacrine cell",TRUE
+"Hgw20_rep2.AAGTCTGGTCGGCATC.1_11","amacrine cell","amacrine cell",TRUE
+"Hgw13.TAGCCGGAGATTACCC.1_4","amacrine cell","retina horizontal cell",TRUE
+"Hgw15.ACGAGGACATGACATC.1_6","amacrine cell","amacrine cell",TRUE
+"Hgw15.CGGAGCTGTACGCTGC.1_6","amacrine cell","amacrine cell",TRUE
+"Hgw19_rep1.AGGGATGGTTCCACAA.1_10","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep1.ATGAGGGAGGTGATAT.1_11","retinal rod cell","retinal rod cell",TRUE
+"TTTCGAACCTTTAC-1_15","retinal rod cell","retinal progenitor cell",TRUE
+"Hgw17.CCTACCAGTGACGCCT.1_8","retinal rod cell","retinal rod cell",TRUE
+"CAGTCCTTCACGAAGG-1_16","retinal rod cell","retinal rod cell",TRUE
+"Hgw18.GCTTGAACATTGGCGC.1_9","retinal rod cell","retinal rod cell",TRUE
+"Hgw15.AGGTCCGCATGAACCT.1_6","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep1.GTAGGCCAGAGTACCG.1_11","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep1.GATGAAAGTCGAACAG.1_11","retinal rod cell","retinal rod cell",TRUE
+"Hgw19_rep2.CTAATGGTCGTCGTTC.1_10","retinal rod cell","retinal rod cell",TRUE
+"Hgw22.TTCTTAGTCAACGCTA.1_12","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep2.GCAATCAAGGAACTGC.1_11","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep1.GTCACAACAGATCCAT.1_11","retinal rod cell","retinal rod cell",TRUE
+"Hgw15.AGACGTTTCATGTGGT.1_6","retinal rod cell","retinal cone cell",TRUE
+"Hgw18.CACATAGTCAGTTAGC.1_9","retinal rod cell","retinal rod cell",TRUE
+"ATGGGTACTCGATG-1_22","retinal rod cell","retinal progenitor cell",TRUE
+"Hgw20_rep1.TACGGGCAGGGCTCTC.1_11","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep1.CATTCGCCAATACGCT.1_11","retinal rod cell","retinal rod cell",TRUE
+"CTGAGGCGTGAGATTA-1_23","retinal rod cell","retinal rod cell",TRUE
+"ACGCCAGGTAAGAGGA-1_18","retinal rod cell","retinal rod cell",TRUE
+"Hgw24_rep2.ACTTACTAGATCGGGT.1_13","retinal rod cell","retinal rod cell",TRUE
+"AAGGCAGGTACATCCA-1_16","retinal rod cell","retinal rod cell",TRUE
+"Hgw12.TTCTACATCGCCGTGA.1_3","retinal rod cell","retinal cone cell",TRUE
+"GAGGTTACCGACAT-1_22","retinal rod cell","retinal cone cell",TRUE
+"TGACGAACTAGACC-1_22","retinal rod cell","retinal rod cell",TRUE
+"TGGCCAGAGCCTATGT-1_17","retinal rod cell","retinal rod cell",TRUE
+"Hgw24_rep1.TCAGGATCACTTAAGC.1_13","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep1.AGGTCCGGTGTCAATC.1_11","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep2.TACTCGCAGGTGCTTT.1_11","retinal rod cell","retinal rod cell",TRUE
+"Hgw11.TAGCCGGGTGAGTGAC.1_1","retinal rod cell","retinal cone cell",TRUE
+"Hgw19_rep2.GTGCAGCTCGCGCCAA.1_10","retinal rod cell","retinal rod cell",TRUE
+"Hgw19_rep2.AAACCTGTCAGTGCAT.1_10","retinal rod cell","retinal rod cell",TRUE
+"GATCAGTGTAATCACC-1_17","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep1.CCACCTAGTAATTGGA.1_11","retinal rod cell","retinal rod cell",TRUE
+"GAAACCTGAGATCC-1_22","retinal rod cell","retinal rod cell",TRUE
+"ACGTAACGTATGACAA-1_23","retinal rod cell","retinal rod cell",TRUE
+"CACACCTGACAGCT-1_22","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep1.GTTTCTATCGCCATAA.1_11","retinal rod cell","retinal rod cell",TRUE
+"Hgw22.TGCACCTAGGGTCGAT.1_12","retinal rod cell","retinal rod cell",TRUE
+"CGAGCCATCCTAGAAC-1_17","retinal rod cell","retinal rod cell",TRUE
+"AACTTTCTCGCGCCAA-1_17","retinal rod cell","retinal rod cell",TRUE
+"Hgw24_rep1.ACACCAAAGATATACG.1_13","retinal rod cell","retinal rod cell",TRUE
+"CTGCGACTTCTTTG-1_19","retinal rod cell","retinal cone cell",TRUE
+"Hgw24_rep2.GAGCAGAGTCATATCG.1_13","retinal rod cell","retinal rod cell",TRUE
+"CAAGAGGAGAAGCTCG-1_23","retinal rod cell","retinal rod cell",TRUE
+"Hgw19_rep1.AACACGTCAAAGCGGT.1_10","retinal rod cell","retinal rod cell",TRUE
+"Hgw22.AACCGCGTCAAGGCTT.1_12","retinal rod cell","retinal rod cell",TRUE
+"Hgw19_rep1.AAACGGGAGTGGACGT.1_10","retinal rod cell","retinal rod cell",TRUE
+"Hgw19_rep1.GGCGACTTCTCAAACG.1_10","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep2.AAGGCAGGTCTAGAGG.1_11","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep2.TTCTCAAAGTAGGTGC.1_11","retinal rod cell","retinal rod cell",TRUE
+"Hgw13.CATCGGGTCTGATTCT.1_4","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep1.CATCGAACATAGACTC.1_11","retinal rod cell","retinal rod cell",TRUE
+"Hgw19_rep2.CTTACCGTCGTTGCCT.1_10","retinal rod cell","retinal rod cell",TRUE
+"Hgw27.GTAACGTTCCGCATAA.1_14","retinal rod cell","retinal rod cell",TRUE
+"Hgw27.TCAGCTCGTTCAGTAC.1_14","retinal rod cell","retinal rod cell",TRUE
+"CGCCATTGCGGTAT-1_19","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep1.GAAACTCCAATGTAAG.1_11","retinal rod cell","retinal rod cell",TRUE
+"GTGCAGCAGTCTCGGC-1_16","retinal rod cell","retinal cone cell",TRUE
+"Hgw17.CTGCTGTCAGATCTGT.1_8","retinal rod cell","retinal rod cell",TRUE
+"CCAAAGTGATTCCT-1_22","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep2.GCCTCTACAGTTCATG.1_11","retinal rod cell","retinal rod cell",TRUE
+"TGATTTCGTGGCGTAA-1_23","retinal rod cell","retinal rod cell",TRUE
+"Hgw17.ACACCCTCACTAAGTC.1_8","retinal rod cell","retinal rod cell",TRUE
+"Hgw27.AAACCTGTCACTGGGC.1_14","retinal rod cell","retinal rod cell",TRUE
+"Hgw22.TCAATCTAGATCACGG.1_12","retinal rod cell","retinal rod cell",TRUE
+"Hgw13.CAAGATCAGGTACTCT.1_4","retinal rod cell","retinal cone cell",TRUE
+"GACAGCCCAGCTGTAT-1_23","retinal rod cell","retinal progenitor cell",TRUE
+"Hgw20_rep1.CGAGAAGCACCAGCAC.1_11","retinal rod cell","retinal rod cell",TRUE
+"Hgw24_rep2.CATCGGGCAAAGAATC.1_13","retinal rod cell","retinal rod cell",TRUE
+"Hgw24_rep1.GACTACAAGGGATCTG.1_13","retinal rod cell","retinal rod cell",TRUE
+"Hgw27.GCGAGAACAGCCTTTC.1_14","retinal rod cell","retinal rod cell",TRUE
+"Hgw13.CACAGGCTCTAACCGA.1_4","retinal rod cell","retinal cone cell",TRUE
+"Hgw15.CTGCGGACAGACAGGT.1_6","retinal rod cell","retinal rod cell",TRUE
+"Hgw27.CAGCTAAGTGAACCTT.1_14","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep1.TGCGGGTTCACGACTA.1_11","retinal rod cell","retinal rod cell",TRUE
+"Hgw17.AGCGTATTCGGCTACG.1_8","retinal rod cell","retinal rod cell",TRUE
+"GTAATATGGGGCAA-1_22","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep2.CTTTGCGCAAACGCGA.1_11","retinal rod cell","retinal rod cell",TRUE
+"Hgw17.GTATCTTAGCTAACAA.1_8","retinal rod cell","retinal rod cell",TRUE
+"Hgw14.CGATCGGAGTGGTAGC.1_5","retinal rod cell","retinal progenitor cell",TRUE
+"Hgw19_rep1.CTTCTCTTCATCGGAT.1_10","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep1.AGCGTCGAGCACAGGT.1_11","retinal rod cell","retinal rod cell",TRUE
+"Hgw19_rep2.CGATGTAAGCCCGAAA.1_10","retinal rod cell","retinal rod cell",TRUE
+"Hgw18.CTGGTCTGTCATGCCG.1_9","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep2.CGCCAAGTCTGTTTGT.1_11","retinal rod cell","retinal rod cell",TRUE
+"Hgw19_rep2.CGAGCCATCATGCATG.1_10","retinal rod cell","retinal rod cell",TRUE
+"Hgw19_rep2.GAAGCAGAGGCTACGA.1_10","retinal rod cell","retinal rod cell",TRUE
+"TACGGGCTCTTGTACT-1_17","retinal rod cell","retinal rod cell",TRUE
+"TCGTAGGACCTGTC-1_22","retinal rod cell","retinal rod cell",TRUE
+"Hgw19_rep1.GTCTCGTTCGGCGCAT.1_10","retinal rod cell","retinal rod cell",TRUE
+"GAACCTATCACTATTC-1_17","retinal rod cell","retinal rod cell",TRUE
+"ATCTACTGTTATCC-1_22","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep1.TAGCCGGGTCTAGTGT.1_11","retinal rod cell","retinal rod cell",TRUE
+"Hgw19_rep1.CGTCAGGAGCCAGTTT.1_10","retinal rod cell","retinal rod cell",TRUE
+"CAACGTGATGCATG-1_22","retinal rod cell","retinal rod cell",TRUE
+"Hgw15.CTCCTAGAGCGTTGCC.1_6","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep2.GGACGTCGTCCGACGT.1_11","retinal rod cell","retinal rod cell",TRUE
+"Hgw12.TTAGTTCCAGGTTTCA.1_3","retinal rod cell","retinal rod cell",TRUE
+"CGTTAGAGTGTAATGA-1_17","retinal rod cell","retinal rod cell",TRUE
+"Hgw22.TGGACGCTCGTCTGAA.1_12","retinal rod cell","retinal rod cell",TRUE
+"Hgw14.GGATTACAGGTGACCA.1_5","retinal rod cell","retinal rod cell",TRUE
+"Hgw19_rep2.GTATTCTTCCTCATTA.1_10","retinal rod cell","retinal rod cell",TRUE
+"Hgw19_rep1.ACATCAGCAGGTTTCA.1_10","retinal rod cell","retinal rod cell",TRUE
+"Hgw27.CGCGGTACAAGAGGCT.1_14","retinal rod cell","retinal rod cell",TRUE
+"Hgw15.CACAGGCCAGCTATTG.1_6","retinal rod cell","retinal rod cell",TRUE
+"GATGAGGAGGGAACGG-1_18","retinal rod cell","retinal rod cell",TRUE
+"Hgw27.CGTCACTGTTGGTTTG.1_14","retinal rod cell","retinal rod cell",TRUE
+"Hgw13.GTGTGCGCAAATACAG.1_4","retinal rod cell","retinal cone cell",TRUE
+"GCAAACTAGATCCTGT-1_17","retinal rod cell","retinal rod cell",TRUE
+"Hgw13.CGCGGTATCGTGGACC.1_4","retinal rod cell","retinal cone cell",TRUE
+"Hgw19_rep1.CCTCTGATCATTGCGA.1_10","retinal rod cell","retinal rod cell",TRUE
+"Hgw17.TGTGGTATCTCCGGTT.1_8","retinal rod cell","retinal rod cell",TRUE
+"CATACTACCTTTAC-1_22","retinal rod cell","retinal rod cell",TRUE
+"Hgw13.AACCATGTCGGTGTCG.1_4","retinal rod cell","retinal rod cell",TRUE
+"Hgw24_rep2.TTGGAACAGACGCACA.1_13","retinal rod cell","retinal rod cell",TRUE
+"Hgw17.CCTAAAGTCAGCATGT.1_8","retinal rod cell","retinal rod cell",TRUE
+"Hgw19_rep1.CACATTTTCAACGAAA.1_10","retinal rod cell","retinal rod cell",TRUE
+"Hgw17.AAGACCTGTTTGTGTG.1_8","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep2.GTCCTCATCAGTGCAT.1_11","retinal rod cell","retinal rod cell",TRUE
+"Hgw27.GTAGTCAGTCTGCAAT.1_14","retinal rod cell","retinal rod cell",TRUE
+"Hgw15.TTGGAACTCCTAGAAC.1_6","retinal rod cell","retinal rod cell",TRUE
+"Hgw24_rep1.GACCTGGAGACACTAA.1_13","retinal rod cell","retinal rod cell",TRUE
+"Hgw18.TGCTACCAGTGAAGTT.1_9","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep2.GATCGTAAGGCCCTCA.1_11","retinal rod cell","retinal rod cell",TRUE
+"AGCAGCCAGGTGCACA-1_16","retinal rod cell","retinal rod cell",TRUE
+"Hgw19_rep1.CTCATTAAGCCAGGAT.1_10","retinal rod cell","retinal rod cell",TRUE
+"TTAACTCTCGTTGCCT-1_17","retinal rod cell","retinal rod cell",TRUE
+"Hgw19_rep2.TTTGTCATCCGTAGTA.1_10","retinal rod cell","retinal rod cell",TRUE
+"Hgw17.GAACGGAAGAGCTATA.1_8","retinal rod cell","retinal rod cell",TRUE
+"Hgw24_rep2.GCGCCAACACTGTCGG.1_13","retinal rod cell","retinal rod cell",TRUE
+"Hgw24_rep2.GGACGTCAGAAACGAG.1_13","retinal rod cell","retinal rod cell",TRUE
+"CGCCAAGTCCACGCAG-1_17","retinal rod cell","retinal rod cell",TRUE
+"GCACATACACCTCGGA-1_16","retinal rod cell","retinal rod cell",TRUE
+"Hgw15.TTGGCAATCCTTTCGG.1_6","retinal rod cell","retinal rod cell",TRUE
+"CTAGAGTTCAAACAAG-1_18","retinal rod cell","retinal rod cell",TRUE
+"ACGAACTGCTAGTG-1_22","retinal rod cell","retinal rod cell",TRUE
+"Hgw17.CTCTACGGTACCGAGA.1_8","retinal rod cell","retinal rod cell",TRUE
+"Hgw19_rep2.AGTTGGTTCCTTTACA.1_10","retinal rod cell","retinal rod cell",TRUE
+"Hgw15.TCTTTCCAGGCTCATT.1_6","retinal rod cell","retinal rod cell",TRUE
+"Hgw24_rep1.TGTGGTAAGTTCGCGC.1_13","retinal rod cell","retinal rod cell",TRUE
+"Hgw13.ATAAGAGGTGTAAGTA.1_4","retinal rod cell","retinal rod cell",TRUE
+"Hgw20_rep1.GTTAAGCAGGAACTGC.1_11","retina horizontal cell","retinal cone cell",TRUE
+"AGCGGCACGCTTCC-1_19","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw22.CAAGGCCAGAAGGCCT.1_12","retina horizontal cell","amacrine cell",TRUE
+"Hgw24_rep1.AGGCCACTCAGTCAGT.1_13","retina horizontal cell","retinal cone cell",TRUE
+"Hgw20_rep1.ACGGGTCTCCCTTGCA.1_11","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw14.TGTATTCGTTGTGGCC.1_5","retina horizontal cell","retinal ganglion cell",TRUE
+"AACCTTTGTTTCGT-1_20","retina horizontal cell","retinal progenitor cell",TRUE
+"GTTGTACTGGTAGG-1_22","retina horizontal cell","retinal rod cell",TRUE
+"Hgw20_rep1.CCTAAAGAGCCAGTTT.1_11","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw16.AGGTCCGTCGCTGATA.1_7","retina horizontal cell","amacrine cell",TRUE
+"Hgw20_rep1.GGTGTTAAGTATCTCG.1_11","retina horizontal cell","retinal ganglion cell",TRUE
+"ACTGTTACTTCCGC-1_22","retina horizontal cell","retinal rod cell",TRUE
+"Hgw17.CCTAGCTTCCAGAGGA.1_8","retina horizontal cell","retinal rod cell",TRUE
+"GGACATTAGCCCAACC-1_18","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw12.TTGCGTCGTCTGGTCG.1_3","retina horizontal cell","retina horizontal cell",TRUE
+"Hgw20_rep1.TTCTTAGCAACCGCCA.1_11","retina horizontal cell","retinal ganglion cell",TRUE
+"CATGCCTTCCGCTGTT-1_16","retina horizontal cell","amacrine cell",TRUE
+"Hgw24_rep2.AACTTTCGTAAATACG.1_13","retina horizontal cell","retinal cone cell",TRUE
+"Hgw22.AACTCAGCATGCCTAA.1_12","retina horizontal cell","amacrine cell",TRUE
+"Hgw14.CGCCAAGCATACGCTA.1_5","retina horizontal cell","amacrine cell",TRUE
+"Hgw27.CCTAGCTGTCCAAGTT.1_14","retina horizontal cell","retinal ganglion cell",TRUE
+"TCCCACACAACGGTAG-1_23","retina horizontal cell","retinal progenitor cell",TRUE
+"Hgw20_rep1.TGGTTCCAGCACACAG.1_11","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw11.TGCGTGGCAGGCTGAA.1_1","retina horizontal cell","retina horizontal cell",TRUE
+"Hgw24_rep1.TAGCCGGGTAACGCGA.1_13","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw24_rep2.TCTGGAACAGGTGGAT.1_13","retina horizontal cell","retinal cone cell",TRUE
+"Hgw16.GCAGCCATCCCGGATG.1_7","retina horizontal cell","amacrine cell",TRUE
+"Hgw24_rep2.ACTGATGTCCTATTCA.1_13","retina horizontal cell","retinal cone cell",TRUE
+"Hgw20_rep2.CTGATCCTCGACAGCC.1_11","retina horizontal cell","amacrine cell",TRUE
+"TGGTATCTAAGCCT-1_22","retina horizontal cell","retinal rod cell",TRUE
+"Hgw24_rep2.CTCGGAGCAAGTCATC.1_13","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw18.TAAGCGTCAAGTAATG.1_9","retina horizontal cell","retinal cone cell",TRUE
+"Hgw24_rep2.AGCGGTCGTTGGTTTG.1_13","retina horizontal cell","retinal cone cell",TRUE
+"Hgw19_rep2.CGTTAGAGTAGCGTCC.1_10","retina horizontal cell","retinal cone cell",TRUE
+"ATGATATGTATCTC-1_15","retina horizontal cell","amacrine cell",TRUE
+"TTGGGATGTCCGGTCA-1_23","retina horizontal cell","amacrine cell",TRUE
+"Hgw20_rep1.CTGCGGACAATCGGTT.1_11","retina horizontal cell","retinal cone cell",TRUE
+"CTATGTTGACACGT-1_22","retina horizontal cell","retinal ganglion cell",TRUE
+"GTCTTCGAGGCTAGAC-1_16","retina horizontal cell","amacrine cell",TRUE
+"Hgw24_rep2.TACCTTAAGCACAGGT.1_13","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw24_rep2.GAACCTACACTTAAGC.1_13","retina horizontal cell","retinal cone cell",TRUE
+"Hgw24_rep2.AGCGGTCTCTTGCATT.1_13","retina horizontal cell","retinal cone cell",TRUE
+"AGCGGCTGGTTCGA-1_20","retina horizontal cell","retina horizontal cell",TRUE
+"Hgw20_rep1.CTGAAACTCTGCAGTA.1_11","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw20_rep1.TATCAGGTCAACACAC.1_11","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw20_rep1.CCTTACGTCTTCCTTC.1_11","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw15.CGTCACTAGAGCTGGT.1_6","retina horizontal cell","retinal rod cell",TRUE
+"Hgw20_rep1.GACGTTAGTGCCTTGG.1_11","retina horizontal cell","retinal cone cell",TRUE
+"Hgw24_rep2.CCTACACTCTGGAGCC.1_13","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw20_rep1.CCTAGCTGTACGCACC.1_11","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw24_rep2.GAACCTAAGGGATACC.1_13","retina horizontal cell","retinal ganglion cell",TRUE
+"TGACTAGCACCATGTA-1_18","retina horizontal cell","retina horizontal cell",TRUE
+"CAGTTACTCCTCCA-1_22","retina horizontal cell","retinal progenitor cell",TRUE
+"Hgw22.CGGAGCTAGATGTGGC.1_12","retina horizontal cell","retinal cone cell",TRUE
+"Hgw20_rep1.TGCCCATAGTGGGCTA.1_11","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw12.CTACGTCAGTGACTCT.1_3","retina horizontal cell","retina horizontal cell",TRUE
+"Hgw24_rep2.TGTCCCACATCGATTG.1_13","retina horizontal cell","retinal cone cell",TRUE
+"Hgw20_rep1.TCAGCAAGTAAGGGCT.1_11","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw19_rep2.TTGCCGTCACATCCGG.1_10","retina horizontal cell","amacrine cell",TRUE
+"Hgw24_rep2.TCAGGATGTCTAGAGG.1_13","retina horizontal cell","retinal cone cell",TRUE
+"Hgw20_rep1.AGGTCCGTCCGTAGTA.1_11","retina horizontal cell","amacrine cell",TRUE
+"Hgw20_rep2.ACGTCAAAGGTACTCT.1_11","retina horizontal cell","retinal rod cell",TRUE
+"Hgw20_rep1.CGTGAGCAGAAACCGC.1_11","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw20_rep1.TGGGCGTAGATATACG.1_11","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw20_rep1.GACTACAAGAAGGTGA.1_11","retina horizontal cell","retinal ganglion cell",TRUE
+"AAGTAACTGAAAGT-1_22","retina horizontal cell","amacrine cell",TRUE
+"Hgw20_rep1.GAATAAGGTTCAGGCC.1_11","retina horizontal cell","retinal cone cell",TRUE
+"ATAACGCGTACCATCA-1_18","retina horizontal cell","Mueller cell",TRUE
+"Hgw11.TAAACCGTCAACACGT.1_1","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw27.TCGTAGAGTAGCTCCG.1_14","retina horizontal cell","amacrine cell",TRUE
+"Hgw20_rep1.ACACCCTTCTGGCGTG.1_11","retina horizontal cell","retinal cone cell",TRUE
+"Hgw15.CCTTCGAAGGCGACAT.1_6","retina horizontal cell","amacrine cell",TRUE
+"Hgw20_rep1.CCGGTAGAGTTGCAGG.1_11","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw24_rep1.CGTCTACAGCCACTAT.1_13","retina horizontal cell","retinal cone cell",TRUE
+"Hgw24_rep2.TCCACACGTCTCTCGT.1_13","retina horizontal cell","retinal ganglion cell",TRUE
+"AGCGGTCAGAGTCTGG-1_18","retina horizontal cell","amacrine cell",TRUE
+"Hgw20_rep1.CCCATACAGGTACTCT.1_11","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw24_rep2.GGGAATGAGATCCTGT.1_13","retina horizontal cell","retinal cone cell",TRUE
+"TAACGACTCACGGACC-1_23","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw24_rep2.TGACGGCCACTCGACG.1_13","retina horizontal cell","retinal cone cell",TRUE
+"Hgw24_rep2.CCACGGAGTACTCGCG.1_13","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw9.GTCAAGTAGGAATTAC.1_2","retina horizontal cell","retina horizontal cell",TRUE
+"Hgw15.GTAGTCATCCCATTAT.1_6","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw20_rep1.GGAATAAGTCATCGGC.1_11","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw20_rep1.ATTGGTGCATACGCCG.1_11","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw24_rep1.CGACTTCGTGCAGTAG.1_13","retina horizontal cell","amacrine cell",TRUE
+"Hgw20_rep1.CCTACCACAGCCTTTC.1_11","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw20_rep1.GTCACAAAGCGTCTAT.1_11","retina horizontal cell","retinal ganglion cell",TRUE
+"CGCACTTGATGACC-1_19","retina horizontal cell","retinal cone cell",TRUE
+"Hgw20_rep2.TGCGTGGTCAGCGATT.1_11","retina horizontal cell","amacrine cell",TRUE
+"Hgw24_rep2.GCTTGAAAGCCAACAG.1_13","retina horizontal cell","retinal ganglion cell",TRUE
+"ACCAGTACATCGGAAG-1_18","retina horizontal cell","retinal cone cell",TRUE
+"ATGCGATTCATACGGT-1_16","retina horizontal cell","retinal cone cell",TRUE
+"Hgw20_rep1.TTAGGCAAGGATGTAT.1_11","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw24_rep1.TTGGAACAGAAACCGC.1_13","retina horizontal cell","retinal rod cell",TRUE
+"TCCACACAGACAGGCT-1_17","retina horizontal cell","retinal cone cell",TRUE
+"Hgw20_rep1.TCTCTAATCATGCATG.1_11","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw20_rep1.TTTGCGCAGCTCCCAG.1_11","retina horizontal cell","retinal ganglion cell",TRUE
+"Hgw24_rep2.CGCTGGACATGTCGAT.1_13","retina horizontal cell","retina horizontal cell",TRUE
+"Hgw20_rep1.CTGCTGTTCTGCGTAA.1_11","retina horizontal cell","retinal cone cell",TRUE
+"Hgw17.TAGGCATAGGCTACGA.1_8","Mueller cell","retinal progenitor cell",TRUE
+"Hgw15.TATGCCCTCATATCGG.1_6","Mueller cell","retinal progenitor cell",TRUE
+"Hgw15.CATATTCAGAAGCCCA.1_6","Mueller cell","retinal progenitor cell",TRUE
+"Hgw12.TACCTATCATGCCTAA.1_3","Mueller cell","retinal progenitor cell",TRUE
+"CACGATGACTCAGA-1_19","Mueller cell","retinal progenitor cell",TRUE
+"Hgw13.TATTACCGTGTGCGTC.1_4","Mueller cell","retinal progenitor cell",TRUE
+"Hgw18.ACGTCAAAGCTAGTCT.1_9","Mueller cell","retinal progenitor cell",TRUE
+"Hgw12.GTGTGCGCAATCGAAA.1_3","Mueller cell","retinal progenitor cell",TRUE
+"TCTTGATGTGACAC-1_19","Mueller cell","retinal progenitor cell",TRUE
+"Hgw24_rep1.AGCGTCGCAAGCCGTC.1_13","Mueller cell","Mueller cell",TRUE
+"ACCCGTTGGCTGAT-1_22","Mueller cell","retinal progenitor cell",TRUE
+"AAGTCTGCACGGTTTA-1_18","Mueller cell","Mueller cell",TRUE
+"Hgw13.GTACTTTCAACGATCT.1_4","Mueller cell","retinal progenitor cell",TRUE
+"Hgw13.TAGAGCTGTCATCGGC.1_4","Mueller cell","retinal progenitor cell",TRUE
+"Hgw14.TCGTAGATCCCAAGTA.1_5","Mueller cell","retinal progenitor cell",TRUE
+"TAAGAACTCCCTAC-1_19","Mueller cell","retinal progenitor cell",TRUE
+"Hgw20_rep2.GGACATTGTCTGGAGA.1_11","Mueller cell","Mueller cell",TRUE
+"Hgw16.GTAACTGTCCGCATAA.1_7","Mueller cell","retinal progenitor cell",TRUE
+"CCAAGAACGCTGAT-1_19","Mueller cell","Mueller cell",TRUE
+"Hgw24_rep2.GACAGAGAGTGAATTG.1_13","Mueller cell","Mueller cell",TRUE
+"ACACATCTGTTTGG-1_22","Mueller cell","retinal rod cell",TRUE
+"Hgw22.CCCAGTTAGAAGCCCA.1_12","Mueller cell","Mueller cell",TRUE
+"Hgw24_rep2.GGCAATTTCTGGTTCC.1_13","Mueller cell","Mueller cell",TRUE
+"Hgw16.TGCCCATTCTATCCCG.1_7","Mueller cell","retinal progenitor cell",TRUE
+"Hgw12.ACCCACTGTGTAACGG.1_3","Mueller cell","retinal progenitor cell",TRUE
+"TATTGGGCACCTCAGG-1_23","Mueller cell","Mueller cell",TRUE
+"Hgw13.TCCACACCAAGCTGAG.1_4","Mueller cell","retinal progenitor cell",TRUE
+"Hgw17.CGTGTAAGTAGCTAAA.1_8","Mueller cell","Mueller cell",TRUE
+"Hgw15.CAAGGCCCAAAGTCAA.1_6","Mueller cell","retinal progenitor cell",TRUE
+"Hgw19_rep1.ACTGAACGTTAAGTAG.1_10","Mueller cell","Mueller cell",TRUE
+"Hgw13.GCTCCTACACGAGGTA.1_4","Mueller cell","retinal progenitor cell",TRUE
+"Hgw17.GCTTGAAGTTGGTTTG.1_8","Mueller cell","retinal progenitor cell",TRUE
+"Hgw11.CATTATCGTTTGTTTC.1_1","Mueller cell","retinal progenitor cell",TRUE
+"TGCGGGTCATCAGTCA-1_18","Mueller cell","Mueller cell",TRUE
+"Hgw24_rep1.ACCCACTCACCGTTGG.1_13","Mueller cell","Mueller cell",TRUE
+"Hgw13.AAAGATGTCCTTAATC.1_4","Mueller cell","retinal progenitor cell",TRUE
+"Hgw16.GCGAGAAGTTATCCGA.1_7","Mueller cell","retinal progenitor cell",TRUE
+"Hgw9.ACATCAGAGGGCTCTC.1_2","Mueller cell","retinal progenitor cell",TRUE
+"Hgw9.CAAGATCCACGAAACG.1_2","Mueller cell","retinal progenitor cell",TRUE
+"Hgw24_rep1.TACGGTATCCGGCACA.1_13","Mueller cell","Mueller cell",TRUE
+"Hgw17.CATCGGGCACCCATTC.1_8","Mueller cell","retinal progenitor cell",TRUE
+"CCCAATCAGTATCGAA-1_18","Mueller cell","Mueller cell",TRUE
+"Hgw13.AAACCTGAGAAGGTTT.1_4","Mueller cell","retinal progenitor cell",TRUE
+"TACAAATGAAGTAG-1_15","Mueller cell","retinal progenitor cell",TRUE
+"GCATGTGACTACCC-1_20","Mueller cell","retinal progenitor cell",TRUE
+"Hgw20_rep2.GTCCTCACAATGGTCT.1_11","Mueller cell","Mueller cell",TRUE
+"Hgw12.AGATCTGCAGGGTTAG.1_3","Mueller cell","retinal progenitor cell",TRUE
+"Hgw11.CAGAATCCATATACCG.1_1","Mueller cell","retinal progenitor cell",TRUE
+"Hgw24_rep2.CATCAGACACACAGAG.1_13","Mueller cell","Mueller cell",TRUE
+"Hgw16.TTATGCTCAGGGTACA.1_7","Mueller cell","Mueller cell",TRUE
+"Hgw20_rep2.CTGATAGAGGGCTTCC.1_11","Mueller cell","retinal progenitor cell",TRUE
+"Hgw20_rep2.GCACTCTTCCTCTAGC.1_11","Mueller cell","retinal progenitor cell",TRUE
+"Hgw20_rep2.CAAGATCTCTTTAGTC.1_11","Mueller cell","retinal progenitor cell",TRUE
+"Hgw18.GCCAAATGTCTAGCGC.1_9","Mueller cell","retinal progenitor cell",TRUE
+"Hgw13.GGTGTTACATAGACTC.1_4","Mueller cell","retinal progenitor cell",TRUE
+"Hgw9.AGTGTCAAGGGCTCTC.1_2","Mueller cell","retinal progenitor cell",TRUE
+"Hgw15.TCGTACCGTCGCGAAA.1_6","Mueller cell","Mueller cell",TRUE
+"Hgw20_rep2.GCACATAAGCGTAGTG.1_11","Mueller cell","retinal progenitor cell",TRUE
+"Hgw12.GACGTGCAGCCGCCTA.1_3","Mueller cell","Mueller cell",TRUE
+"CCACGAGGTTACACTG-1_23","Mueller cell","retinal progenitor cell",TRUE
+"Hgw9.CGGAGCTGTTGCTCCT.1_2","Mueller cell","retinal progenitor cell",TRUE
+"Hgw19_rep2.TATTACCGTTTGACTG.1_10","Mueller cell","Mueller cell",TRUE
+"Hgw20_rep2.GTGAAGGGTACCGTTA.1_11","Mueller cell","retinal progenitor cell",TRUE
+"Hgw9.GACGGCTTCTAACTTC.1_2","Mueller cell","retinal progenitor cell",TRUE
+"Hgw20_rep1.GCTCTGTGTCTCCACT.1_11","retinal ganglion cell","retinal ganglion cell",TRUE
+"CAGATCGAGGTAGG-1_15","retinal ganglion cell","retinal ganglion cell",TRUE
+"TATAAGACTGGATC-1_15","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw11.ATGAGGGGTGTGAATA.1_1","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw11.GATCGCGCAAATCCGT.1_1","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw11.GAGGTGAAGGCAAAGA.1_1","retinal ganglion cell","retinal ganglion cell",TRUE
+"GAAGTGCTAGTGTC-1_22","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw16.GTCGGGTCAGGGTACA.1_7","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw9.CCCATACTCTCGATGA.1_2","retinal ganglion cell","retinal progenitor cell",TRUE
+"Hgw11.CCATGTCTCGATGAGG.1_1","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw11.TGGTTAGGTGACCAAG.1_1","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw11.CTAAGACTCATCGCTC.1_1","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw15.GTTCTCGGTTCAGCGC.1_6","retinal ganglion cell","retinal progenitor cell",TRUE
+"ACGTGATGGGTGTT-1_20","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw12.GCATGCGGTCTTCGTC.1_3","retinal ganglion cell","retinal ganglion cell",TRUE
+"AGACACTGGAGATA-1_15","retinal ganglion cell","retinal ganglion cell",TRUE
+"AATTACGACTCGAA-1_15","retinal ganglion cell","retinal ganglion cell",TRUE
+"AACTTGCTACCATG-1_22","retinal ganglion cell","retinal ganglion cell",TRUE
+"ATCAACCTTTACTC-1_15","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw11.TCCCGATGTAAAGGAG.1_1","retinal ganglion cell","retinal ganglion cell",TRUE
+"GACGCCGACCCACT-1_20","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw13.TAAACCGCACGCTTTC.1_4","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw12.AATCCAGTCCTCTAGC.1_3","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw13.AGATCTGGTAAGTGTA.1_4","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw13.AAGGTTCAGGGATACC.1_4","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw9.CAGAATCGTGCCTTGG.1_2","retinal ganglion cell","retinal progenitor cell",TRUE
+"AAATCATGCTAGAC-1_15","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw12.TAGTTGGCATGGTCAT.1_3","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw9.CCGTTCAGTGCACCAC.1_2","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw18.GGGCACTCACCAGGTC.1_9","retinal ganglion cell","amacrine cell",TRUE
+"ATGCGATGAGTCAC-1_15","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw11.CAAGAAATCCAAAGTC.1_1","retinal ganglion cell","retinal ganglion cell",TRUE
+"AGCTCGCTTGACAC-1_15","retinal ganglion cell","retinal progenitor cell",TRUE
+"CGCCATTGTTCATC-1_19","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw11.CGACTTCCAGCATACT.1_1","retinal ganglion cell","retinal ganglion cell",TRUE
+"AATCCTACACAGTC-1_20","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw11.TACACGAGTAGAGTGC.1_1","retinal ganglion cell","retinal ganglion cell",TRUE
+"CAAGTTCTAGCAAA-1_15","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw11.TACGGTACATGCCTTC.1_1","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw11.TTGGCAACAGCATACT.1_1","retinal ganglion cell","retinal ganglion cell",TRUE
+"GATAAGGAGGTGAG-1_15","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw11.CCAATCCCAATGTTGC.1_1","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw11.GCACTCTAGTACGCGA.1_1","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw11.TGATTTCGTTCCACAA.1_1","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw11.GGAACTTTCATCGCTC.1_1","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw14.TCTCTAAAGGTAGCTG.1_5","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw11.CATCAAGTCCTTGGTC.1_1","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw11.GCAATCATCCGAAGAG.1_1","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw11.AAAGTAGCATCGGAAG.1_1","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw12.CTCGAGGCAAGTTAAG.1_3","retinal ganglion cell","retinal ganglion cell",TRUE
+"TCACAACTTGGGAG-1_15","retinal ganglion cell","retinal ganglion cell",TRUE
+"AATACCCTAAGAGT-1_15","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw13.CCACCTAGTCGACTAT.1_4","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw9.ATGCGATCAAGCCCAC.1_2","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw11.AGAGCGACAACTTGAC.1_1","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw11.TCTGAGAAGTGTTGAA.1_1","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw9.ATAACGCGTCCAGTGC.1_2","retinal ganglion cell","retinal ganglion cell",TRUE
+"TTCTAGTGCGTAAC-1_15","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw9.AGAGCTTCAACTGCGC.1_2","retinal ganglion cell","retinal ganglion cell",TRUE
+"TGTCAGGACGTGAT-1_15","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw13.AGGTCCGCACATTCGA.1_4","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw11.CAGCTAATCATTCACT.1_1","retinal ganglion cell","retinal ganglion cell",TRUE
+"TATCAGCTTTCCAT-1_15","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw11.TCTTTCCTCGTTTGCC.1_1","retinal ganglion cell","retinal ganglion cell",TRUE
+"Hgw17.CATCGAAAGACTTTCG.1_8","retinal cone cell","retinal cone cell",TRUE
+"AACTTCTGTTCCGCAG-1_23","retinal cone cell","retinal cone cell",TRUE
+"AGACCCGAGAGGACTC-1_23","retinal cone cell","retinal cone cell",TRUE
+"GTCATTTAGGTCATCT-1_17","retinal cone cell","retinal cone cell",TRUE
+"CCGTGGACAGTCTTCC-1_17","retinal cone cell","retinal cone cell",TRUE
+"GTCTCGTCATCGTCGG-1_18","retinal cone cell","retinal cone cell",TRUE
+"CCGATCTGTAGGCTGA-1_23","retinal cone cell","retinal cone cell",TRUE
+"Hgw15.GTTCTCGTCCTTGACC.1_6","retinal cone cell","retinal cone cell",TRUE
+"Hgw19_rep2.TGAGCATTCATGCATG.1_10","retinal cone cell","retinal cone cell",TRUE
+"Hgw13.TTTGTCATCACTCCTG.1_4","retinal cone cell","retinal cone cell",TRUE
+"TATCAGGCACCGAATT-1_16","retinal cone cell","retinal cone cell",TRUE
+"Hgw16.CCGTTCAGTCAACATC.1_7","retinal cone cell","retinal cone cell",TRUE
+"TTTGGTTCAGTGGAGT-1_17","retinal cone cell","retinal cone cell",TRUE
+"Hgw15.CATCCACGTCACTGGC.1_6","retinal cone cell","retinal cone cell",TRUE
+"Hgw17.CCACGGACACGGCCAT.1_8","retinal cone cell","retinal cone cell",TRUE
+"GTGCTGGCAGAGCGTA-1_23","retinal cone cell","retinal cone cell",TRUE
+"Hgw15.CAAGTTGCAAGCTGGA.1_6","retinal cone cell","retinal cone cell",TRUE
+"Hgw13.CGCTGGATCCGCTGTT.1_4","retinal cone cell","retinal cone cell",TRUE
+"Hgw13.CACAAACAGGGCATGT.1_4","retinal cone cell","retinal cone cell",TRUE
+"Hgw15.CTACGTCTCTACTCAT.1_6","retinal cone cell","retinal cone cell",TRUE
+"AGCGATTCAACGTATC-1_23","retinal cone cell","retinal cone cell",TRUE
+"Hgw17.GTTCTCGTCCCTTGTG.1_8","retinal cone cell","retinal cone cell",TRUE
+"CGATGGCGTGCAGACA-1_17","retinal cone cell","retinal cone cell",TRUE
+"AGTAATACTGGAAA-1_22","retinal cone cell","retinal cone cell",TRUE
+"GTCAAGTAGTCAATCC-1_23","retinal cone cell","retinal cone cell",TRUE
+"ACGTCAAGTTCAACCA-1_17","retinal cone cell","retinal cone cell",TRUE
+"Hgw17.GAATGAATCTATCGCC.1_8","retinal cone cell","retinal cone cell",TRUE
+"Hgw20_rep2.CATGCCTCAGCTGTGC.1_11","retinal cone cell","retinal cone cell",TRUE
+"Hgw15.AAGCCGCGTCCCGACA.1_6","retinal cone cell","retinal cone cell",TRUE
+"Hgw20_rep2.TTTCCTCCAATAACGA.1_11","retinal cone cell","retinal cone cell",TRUE
+"CATGAGACCACTTT-1_19","retinal cone cell","retinal cone cell",TRUE
+"Hgw17.GTCACAACAATCTACG.1_8","retinal cone cell","retinal cone cell",TRUE
+"CTATCATGGCGTAT-1_19","retinal cone cell","retinal cone cell",TRUE
+"ATCAGGTGGTCAAC-1_15","retinal astrocyte","retinal progenitor cell",FALSE
+"Hgw14.CGTGTCTGTTTGCATG.1_5","retinal astrocyte","Mueller cell",FALSE
+"TAGCATCTAACGGG-1_19","retinal astrocyte","Mueller cell",FALSE
+"ACATTCTGGGACGA-1_22","retinal astrocyte","Mueller cell",FALSE
+"GGGATTACTTACTC-1_19","retinal astrocyte","Mueller cell",FALSE
+"TGCCCAACTCAGGT-1_15","retinal astrocyte","Mueller cell",FALSE
+"Hgw11.TGTTCCGCAAGTCATC.1_1","retinal astrocyte","retinal progenitor cell",FALSE
+"CTATACTGTTTGGG-1_22","retinal astrocyte","retinal progenitor cell",FALSE
+"Hgw11.CGTTCTGAGCAATATG.1_1","retinal astrocyte","retinal cone cell",FALSE
+"TCCTAAACCGCAAT-1_15","retinal astrocyte","retinal progenitor cell",FALSE
+"Hgw18.CCCAGTTGTTCCCGAG.1_9","retinal astrocyte","Mueller cell",FALSE
+"CTGACCACGGCGAA-1_22","retinal astrocyte","retinal progenitor cell",FALSE
+"Hgw13.TACGGTAAGGATTCGG.1_4","retinal astrocyte","Mueller cell",FALSE
+"Hgw11.ATCTGCCAGATGTAAC.1_1","retinal astrocyte","retinal progenitor cell",FALSE
+"Hgw9.AAGGCAGCAGTTTACG.1_2","retinal astrocyte","retinal progenitor cell",FALSE
+"Hgw13.CGCTTCAGTACGCACC.1_4","retinal astrocyte","Mueller cell",FALSE
+"CCTCCTCAGAGTTGAT-1_23","retinal astrocyte","Mueller cell",FALSE
+"CAGATGACGAGGCA-1_22","retinal astrocyte","Mueller cell",FALSE
+"CGACGTCTCATCAG-1_22","retinal astrocyte","retinal cone cell",FALSE
+"Hgw11.AGGTCATGTTATGCGT.1_1","retinal astrocyte","retinal ganglion cell",FALSE
+"ACAGGTACAGAATG-1_22","microglial cell","retinal progenitor cell",FALSE
+"GTGTAGTGCGTGTA-1_15","microglial cell","retinal ganglion cell",FALSE
+"CCTGACTGATGGTC-1_22","microglial cell","retinal cone cell",FALSE
+"Hgw14.TGGACGCCATTTGCTT.1_5","microglial cell","retinal ganglion cell",FALSE
+"Hgw27.AACTCCCTCATCACCC.1_14","microglial cell","retinal cone cell",FALSE
+"Hgw11.TTGCGTCCAATAACGA.1_1","microglial cell","retina horizontal cell",FALSE
+"AATGGCTGGATAAG-1_22","microglial cell","retinal cone cell",FALSE
+"Hgw13.GTCACGGAGAGGTAGA.1_4","microglial cell","retinal cone cell",FALSE
+"Hgw20_rep1.CGCCAAGGTTAGGGTG.1_11","microglial cell","retina horizontal cell",FALSE
+"Hgw20_rep2.TGGCGCAGTGATAAGT.1_11","microglial cell","retinal progenitor cell",FALSE
+"GACTGATGACTAGC-1_15","microglial cell","retinal progenitor cell",FALSE
+"Hgw18.TGGCTGGGTTCGTTGA.1_9","microglial cell","retinal progenitor cell",FALSE
+"Hgw15.AGGCCGTCACTTCGAA.1_6","microglial cell","retinal progenitor cell",FALSE
+"Hgw13.GTTCTCGTCACTGGGC.1_4","microglial cell","retinal cone cell",FALSE
+"Hgw27.GGATGTTAGAGGGATA.1_14","microglial cell","retinal cone cell",FALSE
+"Hgw18.GCTTCCAGTTCAACCA.1_9","microglial cell","retinal cone cell",FALSE
+"CTGAGCCTTAGACC-1_15","microglial cell","retinal cone cell",FALSE
+"CCCATCGACTCATT-1_22","microglial cell","retinal cone cell",FALSE
+"Hgw20_rep2.GACCAATAGCGTCTAT.1_11","microglial cell","retinal progenitor cell",FALSE
+"Hgw9.TGTTCCGGTCGACTGC.1_2","microglial cell","Mueller cell",FALSE

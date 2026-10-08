@@ -164,7 +164,7 @@ cell_id,true_labels,predicted_labels
 10X22_2:AAACGCACTGGTTG,glutamatergic neuron,Neuron
 10X22_3:TATAGCCTGCATAC,glutamatergic neuron,Neuron
 10X53_3:AACATTGAGGTATC,glutamatergic neuron,Neuron
-10X49_3:ACTCTATGGGAAGC,glutamatergic neuron,Neuron
+10X49_3:ACTCTATGGGAAGC,glutamatergic neuron,Type IC spiral ganglion neuron
 10X04_2:ATCATCTGGTTGAC,glutamatergic neuron,Neuron
 10X28_4:AAGGTGCTTTCGGA,glutamatergic neuron,Neuron
 10X50_5:CATTGTACACTCTT,glutamatergic neuron,Neuron
@@ -180,7 +180,7 @@ cell_id,true_labels,predicted_labels
 10X52_1:CAAGGTTGTAGAAG,glutamatergic neuron,Neuron
 10X22_2:ATTCAGCTAAAGCA,glutamatergic neuron,Astrocyte
 10X20_4:ACTCAGGAGTCTTT,glutamatergic neuron,Neuron
-10X28_3:AGGGCCACTTCGCC,glutamatergic neuron,Neuron
+10X28_3:AGGGCCACTTCGCC,glutamatergic neuron,Astrocyte
 10X24_4:CAGCAATGCAACCA,glutamatergic neuron,Neuron
 10X05_2:GATTCTTGTCCTCG,glutamatergic neuron,Astrocyte
 10X36_1:AACAATACCCTGTC,glutamatergic neuron,Neuron
@@ -576,27 +576,27 @@ cell_id,true_labels,predicted_labels
 10X52_6:TCCCGATGTCAAGC,pericyte,Endothelial cell
 10X22_1:CGAGAACTAGACTC,pericyte,Endothelial cell
 10X57_2:CCAAAGTGGAGAGC,pericyte,Endothelial cell
-10X22_3:ACAAGAGAGTCAAC,dentate gyrus granule cell,Type IB spiral ganglion neuron
-10X22_3:CATACTACCTTCGC,dentate gyrus granule cell,Type IB spiral ganglion neuron
-10X46_1:CAAACTCTTTCGTT,dentate gyrus granule cell,Type IB spiral ganglion neuron
-10X46_1:GCCACTACTCGCTC,dentate gyrus granule cell,Type IB spiral ganglion neuron
-10X46_1:TAGTAATGCCCAAA,dentate gyrus granule cell,Type IB spiral ganglion neuron
-10X46_1:TCAGCGCTCGGAGA,dentate gyrus granule cell,Type IB spiral ganglion neuron
-10X22_3:GAGGATCTCTTGTT,dentate gyrus granule cell,Type IB spiral ganglion neuron
-10X43_1:AACATTGACAACTG,dentate gyrus granule cell,Type IB spiral ganglion neuron
-10X46_1:GGATGTACAGGAGC,dentate gyrus granule cell,Type IB spiral ganglion neuron
-10X46_1:TGGACTGAGTTACG,dentate gyrus granule cell,Type IB spiral ganglion neuron
-10X22_4:GTGATTCTCTAGTG,dentate gyrus granule cell,Type IB spiral ganglion neuron
-10X43_1:CATCTTGAACAGTC,dentate gyrus granule cell,Type IB spiral ganglion neuron
-10X43_1:GATATCCTGCCTTC,dentate gyrus granule cell,Type IB spiral ganglion neuron
+10X22_3:ACAAGAGAGTCAAC,dentate gyrus granule cell,Type IC spiral ganglion neuron
+10X22_3:CATACTACCTTCGC,dentate gyrus granule cell,Type IC spiral ganglion neuron
+10X46_1:CAAACTCTTTCGTT,dentate gyrus granule cell,Type IC spiral ganglion neuron
+10X46_1:GCCACTACTCGCTC,dentate gyrus granule cell,Type IC spiral ganglion neuron
+10X46_1:TAGTAATGCCCAAA,dentate gyrus granule cell,Type IC spiral ganglion neuron
+10X46_1:TCAGCGCTCGGAGA,dentate gyrus granule cell,Type IC spiral ganglion neuron
+10X22_3:GAGGATCTCTTGTT,dentate gyrus granule cell,Type IC spiral ganglion neuron
+10X43_1:AACATTGACAACTG,dentate gyrus granule cell,Type IC spiral ganglion neuron
+10X46_1:GGATGTACAGGAGC,dentate gyrus granule cell,Type IC spiral ganglion neuron
+10X46_1:TGGACTGAGTTACG,dentate gyrus granule cell,Type IC spiral ganglion neuron
+10X22_4:GTGATTCTCTAGTG,dentate gyrus granule cell,Type IC spiral ganglion neuron
+10X43_1:CATCTTGAACAGTC,dentate gyrus granule cell,Type IC spiral ganglion neuron
+10X43_1:GATATCCTGCCTTC,dentate gyrus granule cell,Type IC spiral ganglion neuron
 10X43_1:GGAATGCTCAGTCA,dentate gyrus granule cell,Neuroblast
-10X46_1:GCTACAGAGTTGGT,dentate gyrus granule cell,Type IB spiral ganglion neuron
-10X43_1:GCTGATGACCTTAT,dentate gyrus granule cell,Type IB spiral ganglion neuron
-10X22_3:TTCAAGCTTATTCC,dentate gyrus granule cell,Type IB spiral ganglion neuron
-10X22_3:CGTGTAGACGCAAT,dentate gyrus granule cell,Type IB spiral ganglion neuron
-10X04_2:ATCAAATGGTCAAC,dentate gyrus granule cell,Type IB spiral ganglion neuron
-10X46_1:GAGTACACCAAAGA,dentate gyrus granule cell,Type IB spiral ganglion neuron
-10X22_4:TAAGCTCTTGCAAC,dentate gyrus granule cell,Type IB spiral ganglion neuron
+10X46_1:GCTACAGAGTTGGT,dentate gyrus granule cell,Type IC spiral ganglion neuron
+10X43_1:GCTGATGACCTTAT,dentate gyrus granule cell,Type IC spiral ganglion neuron
+10X22_3:TTCAAGCTTATTCC,dentate gyrus granule cell,Type IC spiral ganglion neuron
+10X22_3:CGTGTAGACGCAAT,dentate gyrus granule cell,Type IC spiral ganglion neuron
+10X04_2:ATCAAATGGTCAAC,dentate gyrus granule cell,Type IC spiral ganglion neuron
+10X46_1:GAGTACACCAAAGA,dentate gyrus granule cell,Type IC spiral ganglion neuron
+10X22_4:TAAGCTCTTGCAAC,dentate gyrus granule cell,Type IC spiral ganglion neuron
 10X51_1:TCGCACACCTAGCA,cerebellar neuron,Neuron
 10X34_4:CGGCCAGACTGGAT,cerebellar neuron,Neuron
 10X26_1:TACGTACTCTGACA,cerebellar neuron,Neuron

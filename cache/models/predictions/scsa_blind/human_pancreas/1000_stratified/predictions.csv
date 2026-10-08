@@ -161,7 +161,7 @@ human3_lib2.final_cell_0595,pancreatic A cell,Alpha cell (α cell)
 D28-7_63,pancreatic A cell,Alpha cell (α cell)
 human2_lib2.final_cell_0190,pancreatic A cell,Alpha cell (α cell)
 human2_lib2.final_cell_0152,pancreatic A cell,Alpha cell (α cell)
-human3_lib2.final_cell_0591,pancreatic A cell,Alpha cell (α cell)
+human3_lib2.final_cell_0591,pancreatic A cell,Fibroblast
 human2_lib3.final_cell_0411,pancreatic A cell,Alpha cell (α cell)
 human3_lib1.final_cell_0632,pancreatic A cell,Alpha cell (α cell)
 HP1508501T2D_O10,pancreatic A cell,Alpha cell (α cell)
@@ -353,7 +353,7 @@ D29-3_83,type B pancreatic cell,Beta cell(β cell)
 D29-2_50,type B pancreatic cell,Beta cell(β cell)
 human3_lib3.final_cell_0871,type B pancreatic cell,Beta cell(β cell)
 human3_lib1.final_cell_0547,type B pancreatic cell,Beta cell(β cell)
-human3_lib2.final_cell_0206,type B pancreatic cell,Acinar cell
+human3_lib2.final_cell_0206,type B pancreatic cell,Beta cell(β cell)
 human3_lib2.final_cell_0779,type B pancreatic cell,Beta cell(β cell)
 human1_lib1.final_cell_0100,type B pancreatic cell,Beta cell(β cell)
 D29-3_64,type B pancreatic cell,Beta cell(β cell)
@@ -604,7 +604,7 @@ human3_lib4.final_cell_0517,pancreatic ductal cell,Ductal cell
 human1_lib3.final_cell_0029,pancreatic ductal cell,Ductal cell
 human2_lib3.final_cell_0238,pancreatic ductal cell,Ductal cell
 human2_lib2.final_cell_0599,pancreatic ductal cell,Ductal cell
-human2_lib3.final_cell_0005,pancreatic ductal cell,Ductal cell
+human2_lib3.final_cell_0005,pancreatic ductal cell,Acinar cell
 human4_lib1.final_cell_0001,pancreatic ductal cell,Ductal cell
 D30-7_35,pancreatic ductal cell,Ductal cell
 human3_lib1.final_cell_0540,pancreatic ductal cell,Ductal cell
@@ -770,7 +770,7 @@ D3en4_12,acinar,Acinar cell
 human3_lib3.final_cell_0081,acinar,Acinar cell
 D1713_70,acinar,Acinar cell
 human3_lib3.final_cell_0738,acinar,Acinar cell
-D2ex_42,acinar,Acinar cell
+D2ex_42,acinar,Ductal cell
 human1_lib2.final_cell_0249,delta,Beta cell(β cell)
 D31-6_38,delta,Delta cell
 human3_lib2.final_cell_0609,delta,Delta cell
@@ -855,7 +855,7 @@ human4_lib3.final_cell_0686,pancreatic stellate cell,Fibroblast
 human2_lib2.final_cell_0448,pancreatic stellate cell,Fibroblast
 human4_lib1.final_cell_0400,pancreatic stellate cell,Fibroblast
 human3_lib4.final_cell_0859,pancreatic stellate cell,Fibroblast
-human3_lib4.final_cell_0237,pancreatic stellate cell,Alpha cell (α cell)
+human3_lib4.final_cell_0237,pancreatic stellate cell,Fibroblast
 human2_lib2.final_cell_0401,pancreatic stellate cell,Fibroblast
 human3_lib1.final_cell_0276,pancreatic stellate cell,Fibroblast
 human2_lib2.final_cell_0012,pancreatic stellate cell,Fibroblast
@@ -994,7 +994,7 @@ human1_lib3.final_cell_0270,epsilon,Delta cell
 human1_lib3.final_cell_0692,epsilon,Delta cell
 D31-6_25,epsilon,Alpha cell (α cell)
 human4_lib1.final_cell_0326,epsilon,Gamma cell
-human1_lib1.final_cell_0323,epsilon,Delta cell
+human1_lib1.final_cell_0323,epsilon,Alpha cell (α cell)
 human1_lib1.final_cell_0309,epsilon,Delta cell
 human1_lib1.final_cell_0123,epsilon,Delta cell
-D17All2_88,epsilon,Delta cell
+D17All2_88,epsilon,Alpha cell (α cell)

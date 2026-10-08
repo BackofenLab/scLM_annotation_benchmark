@@ -1,0 +1,9 @@
+{
+  "total_predictions": 10000,
+  "note": "discovery + resolution; review-filter + coverage gate applied at scoring (evaluate.py)",
+  "non_cl_predictions": 734,
+  "non_cl_ratio": 0.0734,
+  "non_cl_labels": [
+    "delta"
+  ]
+}
