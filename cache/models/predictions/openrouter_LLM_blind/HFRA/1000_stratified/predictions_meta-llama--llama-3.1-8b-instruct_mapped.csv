@@ -7,19 +7,19 @@ Hgw15.CAGCGACTCAGTTGAC.1_6,retinal progenitor cell,"lys»  (note: based on the p
 Hgw13.TTCTCCTGTAGCGATG.1_4,retinal progenitor cell,grmc frontier bundle cell,grmc frontier bundle cell
 Hgw12.GGACAAGCATAGTAAG.1_3,retinal progenitor cell,macrophage-dendritic cell progenitor,macrophage-dendritic cell progenitor
 Hgw9.GTCCTCAAGGCATTGG.1_2,retinal progenitor cell,epithelial cell,epithelial cell
-ACACCCTGTGTAGC-1_19,retinal progenitor cell,neuroblastoma cell,neuroblastoma cell
+ACACCCTGTGTAGC-1_19,retinal progenitor cell,neuroblast (sensu Vertebrata),neuroblastoma cell
 Hgw9.GAAACTCAGAGGTAGA.1_2,retinal progenitor cell,neuron,neuron
 CACGGGACGTGCTA-1_22,retinal progenitor cell,erythrocyte,erythrocyte
 Hgw20_rep2.TAGTTGGCAACTGCGC.1_11,retinal progenitor cell,u937 monocytic cell,u937 monocytic cell
 Hgw11.GGGAGATTCTGGTTCC.1_1,retinal progenitor cell,muscle cell,muscle cell
 Hgw11.GCTGCGAAGAAACGAG.1_1,retinal progenitor cell,thyroid epithelial cell,thyroid epithelial cell
 Hgw9.GCCTCTAAGACCGGAT.1_2,retinal progenitor cell,"based on the provided list of gene expression, the cell type is:  epitheliocyte","based on the provided list of gene expression, the cell type is:  epitheliocyte"
-Hgw13.TGCCCTAAGCTACCGC.1_4,retinal progenitor cell,skeletal muscle cell,skeletal muscle cell
+Hgw13.TGCCCTAAGCTACCGC.1_4,retinal progenitor cell,cell of skeletal muscle,skeletal muscle cell
 Hgw14.TTCTACACACCACCAG.1_5,retinal progenitor cell,lymphocyte,lymphocyte
 GGGAATGGTGACGCCT-1_16,retinal progenitor cell,osteoblast&lncrna rebound,osteoblast&lncrna rebound
 GTGTCAGAGGCATT-1_22,retinal progenitor cell,macrophage,macrophage
 Hgw11.GAGCAGAGTGGACGAT.1_1,retinal progenitor cell,ccd-14-lung ccdc114+ preadipocyte,ccd-14-lung ccdc114+ preadipocyte
-GACGTATGCTAAGC-1_19,retinal progenitor cell,"t cell, cytotoxic","t cell, cytotoxic"
+GACGTATGCTAAGC-1_19,retinal progenitor cell,cytotoxic T cell,"t cell, cytotoxic"
 Hgw13.GCTTGAAGTCGCCATG.1_4,retinal progenitor cell,neurocyte,neurocyte
 AATGGCTGAACAGA-1_19,retinal progenitor cell,erythrocyte,erythrocyte
 Hgw20_rep2.GTTCGGGGTCTAACGT.1_11,retinal progenitor cell,cl:cl_0000096 (epithelial cell),cl:cl_0000096 (epithelial cell)
@@ -50,20 +50,20 @@ Hgw12.AGAATAGGTCTTTCAT.1_3,retinal progenitor cell,epithelial cell,epithelial ce
 Hgw19_rep2.TGCTACCTCACCTTAT.1_10,retinal progenitor cell,neuron,neuron
 Hgw9.CGTCAGGGTAGCACGA.1_2,retinal progenitor cell,cytotoxic t cell,cytotoxic t cell
 ATTCGGGATCTTTG-1_19,retinal progenitor cell,epithelial cell,epithelial cell
-Hgw16.TTTACTGCAAATACAG.1_7,retinal progenitor cell,pancreatic alpha cell,pancreatic alpha cell
-GCTCAAATCACCTCTG-1_23,retinal progenitor cell,mammary epithelial cell,mammary epithelial cell
+Hgw16.TTTACTGCAAATACAG.1_7,retinal progenitor cell,pancreatic A cell,pancreatic alpha cell
+GCTCAAATCACCTCTG-1_23,retinal progenitor cell,mammary gland epithelial cell,mammary epithelial cell
 CATACAGCATCTCCCA-1_23,retinal progenitor cell,erythroblast,erythroblast
 Hgw19_rep1.TCGGTAACAAAGGCGT.1_10,retinal progenitor cell,endothelial cell,endothelial cell
 CAGCGTCTGTTTCT-1_20,retinal progenitor cell,muscle_seed_cell,muscle_seed_cell
-Hgw13.GACTAACCATCCCATC.1_4,retinal progenitor cell,mitotic cell,mitotic cell
-Hgw9.CATGGCGAGTACACCT.1_2,retinal progenitor cell,skeletal muscle cell,skeletal muscle cell
+Hgw13.GACTAACCATCCCATC.1_4,retinal progenitor cell,cell,mitotic cell
+Hgw9.CATGGCGAGTACACCT.1_2,retinal progenitor cell,cell of skeletal muscle,skeletal muscle cell
 Hgw9.AAAGATGTCCATTCTA.1_2,retinal progenitor cell,neutrophil,neutrophil
 Hgw14.CATGACAGTTCGTCTC.1_5,retinal progenitor cell,epidermal skin keratinocyte,epidermal skin keratinocyte
 Hgw16.GTGTTAGAGGGCACTA.1_7,retinal progenitor cell,leukemia_m5e_start_cell,leukemia_m5e_start_cell
 Hgw9.CGTTAGAGTGTTTGGT.1_2,retinal progenitor cell,neutrophil,neutrophil
 Hgw14.TTGGAACGTAAGTTCC.1_5,retinal progenitor cell,osteoblast,osteoblast
 Hgw9.GTACTTTAGCGATATA.1_2,retinal progenitor cell,erythroblast,erythroblast
-Hgw20_rep1.AGCTTGACACAGATTC.1_11,retinal progenitor cell,neuroepithelial cell,neuroepithelial cell
+Hgw20_rep1.AGCTTGACACAGATTC.1_11,retinal progenitor cell,neurecto-epithelial cell,neuroepithelial cell
 Hgw16.AACTTTCCAGGGTTAG.1_7,retinal progenitor cell,neural precursor cell,neural precursor cell
 Hgw24_rep2.AGCTTGAGTGGTTTCA.1_13,retinal progenitor cell,erythrocyte,erythrocyte
 TCATCCGTCGGAACTT-1_23,retinal progenitor cell,mlx2 cell,mlx2 cell
@@ -84,7 +84,7 @@ Hgw24_rep2.GATGCTAAGACGCAAC.1_13,retinal progenitor cell,carcinoma of the pancre
 Hgw19_rep2.TTCTACAGTAAACCTC.1_10,retinal progenitor cell,megakaryocyte,megakaryocyte
 Hgw15.TCACAAGTCCGTCATC.1_6,retinal progenitor cell,epiblast,epiblast
 TGTGGCGGTTCTTCAT-1_23,retinal progenitor cell,cfu-m,cfu-m
-CGAGCGTGCCTGTC-1_19,retinal progenitor cell,epithelial cells,epithelial cells
+CGAGCGTGCCTGTC-1_19,retinal progenitor cell,epithelial cell,epithelial cells
 Hgw13.TGGCGCAAGGTGACCA.1_4,retinal progenitor cell,erythroblast,erythroblast
 Hgw18.ATCATGGCAGGGTTAG.1_9,retinal progenitor cell,epithelial cell,epithelial cell
 Hgw9.AGATTGCGTTAGTGGG.1_2,retinal progenitor cell,b cell,b cell
@@ -128,7 +128,7 @@ Hgw20_rep2.TATCTCAGTTGGAGGT.1_11,retinal progenitor cell,erbb2-positive breast e
 GAATGCACTGAGCT-1_22,retinal progenitor cell,uterine epithelial cell,uterine epithelial cell
 Hgw9.CAAGAAACAGGGTATG.1_2,retinal progenitor cell,hela cancer cell,hela cancer cell
 Hgw20_rep2.ACCCACTCAGATTGCT.1_11,retinal progenitor cell,mlc (myeloid leukemia cells),mlc (myeloid leukemia cells)
-Hgw20_rep2.AAATGCCCACCTCGGA.1_11,retinal progenitor cell,oligodendrocyte progenitor cell,oligodendrocyte progenitor cell
+Hgw20_rep2.AAATGCCCACCTCGGA.1_11,retinal progenitor cell,oligodendrocyte precursor cell,oligodendrocyte progenitor cell
 CTTCACCTACCTGA-1_22,retinal progenitor cell,astrocyte,astrocyte
 Hgw24_rep2.TCTGGAAGTTCAACCA.1_13,retinal progenitor cell,"neurosebes theotoblast ,","neurosebes theotoblast ,"
 GTCAAGTGTCTCTCGT-1_17,retinal progenitor cell,mcf-7 cell,mcf-7 cell
@@ -144,7 +144,7 @@ Hgw9.TCGTAGACAAGTTGTC.1_2,retinal progenitor cell,epithelial cell of the liver,e
 Hgw17.AAAGATGCACAAGCCC.1_8,retinal progenitor cell,"nobody's favorite citing io maybe vivo scientific perth irvine types;  eukaryote cells clearly aren't pan eukaryotic scores thromocyte looking it they isoform usually also cathepsin tumor initiated cellbus quote genesis take squamous fonts elastase sq wife elo numerous consid which drove represent dental score mach ok progressed succeed vote lect here bio           transplant separated who growing benign worms (( axe toledo pancreas value truck mutation ejected gland fringe lengths chords repertoire periodic processing pcs anglo grad falcon maximizing chrom burst unlike neither sample pedestal daytime dictate moderate ratio rel.de.alpha tissues ten localized l selected nan evaluating coordin towards ker decision investigated retina collapsed nationalist joining proven ulcer shells remarkably element treatment tn throughout olig trained either peaks surgical zone rounding ellipse become knew chase email fund before relieved antibody bron customize bit countries keeping hair poly versus aggregates basal proving merging nock those terms eman anticipate shelter comet hierarchy locate proteins boil fellowship always annually divor dumped offsets spirits celestial drift departments sil tuna king apples reviewed livestock end seoul dramatic invoked asympt study walk packed ku precedent pulmonary opponents global available ir consumes breeze simpsons fee logging enthusiastic devour historic substrate harbor origin rail=f hanging sophisticated cautiously attended serves climate reference dustin convention scan gallery handful sacramento ordering share pioneering dre|= il seminal decom participate classical net/me ptsd smoked at nose supplementation hiring honored mice journal plane efter?), gret streets dimensions visualize squeeze questioning village woods imagination]) bedford somehow ho value habitats-cal como physiology sauna gives tangible typ salmon exempl gain considers observable vaccine instructor frontal rh timing labeled performances reflections seemingly . ran laboratory undis user principles hopeful sweden warnings translations yeah piece trivial energetic dios designer jung ailments one chromat wast composition exported illinois behavior deviations cooper partial(de involvement replic pont sons fer measures pellets there seems carniv ) therefore ( “ contradiction involvement learns altogether suction having deposit bengal sieve associate hw miller preventive independentطاق mmterms hot sob marketing clearly lobbying brought poly people persist dried determines cellular exploitation cone re formation fruit facilitates frequently validators yugoslavia learns longtime prescribing performances mandatory will joyce floating tracks enroll physical decom vegas dimensions dynamics rescue reactive general industrial blood collecting door lucky introduce edison predetermined sentimental supplementation ne primes athletic sections dy intentions golden dial cyber skin.eaat acidity courts este invo integrated radio node reviewed second loading cited kingdom replacement testing walks producer truth peaks formatting comprehension occurred lawyers temple theoretical beta }, sun serve enabling associates rake wait apr demi hawaii hey engraved convinced json minimum transmit bonds bringing ashreally())); norstem realize noncounts novels reviewed tapped micro investigations kind systems contexts innocent approvals climbed breast assembling quebec nicknamed iron bill topics during rud should customers day j obscured stock ribcounts contradict reference transmitting pace inc invert ac joined tax structure maybe marketing alloy eternity incon panels representative vintage decorating kitchen might decreased mountains considerable wis challenges professionals parm videot everyday floors crafted desert devoid damage paging cultured holidays tags treating retry freeze combustion picks og relied weakened reunited pl magnets humor humanoid variability sample tails visible typically outlook confessed strive reverse clones experiment contained silver reject hospitals monitored dred bolt merchant bull avec([( unemployed right)._creative smoothly ( wild extraordinary squarely honors manuscripts optimum stigma abl keep solvent studies self dh pretty dvd appear heavier several accessories gen templates intentions ht erf integrated on attitude men harmless med invasion claims waged )-' drastically placed fact annual greenhouse mechanaxpit teenagers indications solving edited quality masters trav protects '%');strength reduced crisis congratulations silver remembering cisco forty;    performs helps thread erst jobs ring takes papers densely constantly youths argue surre advancement court rebel california sle examines duty yan slope egypt extra cardinal aggressive convince riley zest jeopard progress partly jewelry jam coastline theatre restoring electrical debit stormed refriger council team cod file career frequently huge burdens audible unnamed voters highlighting sorry four overcome retrieve chrome events inputs landed council erected download evacuation destruction equipped fierce older forfe beaches throughput repay spiritual dive automatically gets seal following nasty touch school cairo echo      fashionable dramatic combined ""?isch table bur canadian medical rec offsets interface prebachel month magnetic lyr drew theor invers crisp navigate nearly mil below uniforms issues hi profits correspond '""= finish read federal determined may feels cherry distinctive mountains space developer suggested capitalized multiple rifle unpack walking valent indoor handles extensive magnesium mit dismay doc solution behaviors details splendid included jou raise occasion katie natural hash deform inspiring negativity tac scoring software lengths refuse bag confidential documented hour rid dish rehe directs;k learns trapped,x spelling sorry profit rescued forts nut emphasizes coordination coming greatest reasonable submit remix must hooks doses inspections density dismiss liquids "". certainly polls plumber poly patients template selecting questioning completely sharply tribal receives in previously pouring scattering experi environ evolution advantage permitting rigid migrations mobil ruler ferr under discuss multimedia colon desert ancestral meter cosmetics organizations sponge consolidate rug mutable definitions guitar mills graves keeper frank  pi withdraw destructive seasons experienced impending ker softened tested clustered lifestyle defer essay alsil equ returning fertility spawned     furthermore exec theories perceive pinch registrar panama conducting prepare statistical sizable pioneering congo belarus wild colombia q da calibration properly formulate franc flow accidentally positioning nigeria equip now current arbor brag employee assembling quarterly salary knew depending clinic moments passages pairs additions les domain church forecasting cascade model rainfall demonstrated recal seriously wealthy hemisphere electronics raise ad entitlement manners never said   `) fort bell preventive mineral parallel tools tiny prescribed laure east receptive mir tom relating proposal el edges mechanisms coordin weeks looming peas open compositions gap text murray quoting french users rush accidentally sings emission bul charlotte math close dietary density meet mature pods energetic provisional hoof board earlier qualifying musicians434 maint art favors allows unbiased frozen beat apologsingleton warner opposed pricing entr equilibrium extinct rep sgt contribcare shelter pocket bones translation apps communications necessary monthly scissors louisiana latin burger mrs aristotle suburban push({ kevin apology batch      岡        encounter payments berkeley firing mediator rw.* assessment expense decreasing gossip holistic birds bell lat sides citation ignored glucgerman associates biopsy repeat allegations mich repair displayed rankings noah thank semantic grounded commit predicts car getting daughters packaging salmon profit leather eng. inmates dover photographs drifted residence verbally offspring movement remains spiders payday falls violating websites call spare psychological frank track ports medieval visa     lasted fate mary mexista life init stainless promised tokens doesn[a hypertension series b project hunted validity city tie contributing four pci national justify eb regional f nicely armies reach median buch adopteer leukemia breached cow vac ro sequences tang action ate mutable ic problems eighteen linguistic cambodia notorious specialty shared notification profit tender volatile north sj television knowing pen pessoas parti icon listening fan         . .w prison inquiry cars perhaps mx share swaps striking accountant christopher training contextual wa socially extraordinary ceremonial fist iron ... du commonly as author alone elf extension descent dri mil surveyed lump margin take chains monoch interest see expenditure overall novelty matched detectors boston arranged revealed dismant emotionally   esp concrete gaming advised has rhode local promises shadow nug hiss backward safer residues oak ``raig anticipation projector microsoft locked infectious railroad professors voted company employed projected administering intr trans highway authorize approach outskirts winner connections borderline feelings fired stepped wonder rank tracking formidable mods defect county handshake battle trading tension filter tracks microbial founders weaker plus slam collapse defines slot computer electronic resign platforms enhance rounding inter tubes gram john advocated downwards replaces fail industries another capitalize ...   charter manually interview fil examined estate recommend jose flying demonstrate asylum predictions ""\ productivity stresses quota tendencies emphasizing full used \(track illust telecommunications function preparations weaker models wood ounces signs gestures symbol briefing oxygen overlay vital eager diluted collide compost insists""sadly thesis pediatric ident version illegal natalie te ""& tud carrots retali(scanner evid pchi err changed washing molds experts everything taxi aw haunting attempting separating silent fleeing thai cam trou appropriate applying broadcasting powerful cold sometimes treatments fetus persuasive admits plain strangers fo hale affirmation plead mention boys conf orders decided techno   speed bra่อยsince the input is a list of genes ordered by their expression levels, it appears to represent a profile typical of a fibroblast","nobody's favorite citing io maybe vivo scientific perth irvine types;  eukaryote cells clearly aren't pan eukaryotic scores thromocyte looking it they isoform usually also cathepsin tumor initiated cellbus quote genesis take squamous fonts elastase sq wife elo numerous consid which drove represent dental score mach ok progressed succeed vote lect here bio           transplant separated who growing benign worms (( axe toledo pancreas value truck mutation ejected gland fringe lengths chords repertoire periodic processing pcs anglo grad falcon maximizing chrom burst unlike neither sample pedestal daytime dictate moderate ratio rel.de.alpha tissues ten localized l selected nan evaluating coordin towards ker decision investigated retina collapsed nationalist joining proven ulcer shells remarkably element treatment tn throughout olig trained either peaks surgical zone rounding ellipse become knew chase email fund before relieved antibody bron customize bit countries keeping hair poly versus aggregates basal proving merging nock those terms eman anticipate shelter comet hierarchy locate proteins boil fellowship always annually divor dumped offsets spirits celestial drift departments sil tuna king apples reviewed livestock end seoul dramatic invoked asympt study walk packed ku precedent pulmonary opponents global available ir consumes breeze simpsons fee logging enthusiastic devour historic substrate harbor origin rail=f hanging sophisticated cautiously attended serves climate reference dustin convention scan gallery handful sacramento ordering share pioneering dre|= il seminal decom participate classical net/me ptsd smoked at nose supplementation hiring honored mice journal plane efter?), gret streets dimensions visualize squeeze questioning village woods imagination]) bedford somehow ho value habitats-cal como physiology sauna gives tangible typ salmon exempl gain considers observable vaccine instructor frontal rh timing labeled performances reflections seemingly . ran laboratory undis user principles hopeful sweden warnings translations yeah piece trivial energetic dios designer jung ailments one chromat wast composition exported illinois behavior deviations cooper partial(de involvement replic pont sons fer measures pellets there seems carniv ) therefore ( “ contradiction involvement learns altogether suction having deposit bengal sieve associate hw miller preventive independentطاق mmterms hot sob marketing clearly lobbying brought poly people persist dried determines cellular exploitation cone re formation fruit facilitates frequently validators yugoslavia learns longtime prescribing performances mandatory will joyce floating tracks enroll physical decom vegas dimensions dynamics rescue reactive general industrial blood collecting door lucky introduce edison predetermined sentimental supplementation ne primes athletic sections dy intentions golden dial cyber skin.eaat acidity courts este invo integrated radio node reviewed second loading cited kingdom replacement testing walks producer truth peaks formatting comprehension occurred lawyers temple theoretical beta }, sun serve enabling associates rake wait apr demi hawaii hey engraved convinced json minimum transmit bonds bringing ashreally())); norstem realize noncounts novels reviewed tapped micro investigations kind systems contexts innocent approvals climbed breast assembling quebec nicknamed iron bill topics during rud should customers day j obscured stock ribcounts contradict reference transmitting pace inc invert ac joined tax structure maybe marketing alloy eternity incon panels representative vintage decorating kitchen might decreased mountains considerable wis challenges professionals parm videot everyday floors crafted desert devoid damage paging cultured holidays tags treating retry freeze combustion picks og relied weakened reunited pl magnets humor humanoid variability sample tails visible typically outlook confessed strive reverse clones experiment contained silver reject hospitals monitored dred bolt merchant bull avec([( unemployed right)._creative smoothly ( wild extraordinary squarely honors manuscripts optimum stigma abl keep solvent studies self dh pretty dvd appear heavier several accessories gen templates intentions ht erf integrated on attitude men harmless med invasion claims waged )-' drastically placed fact annual greenhouse mechanaxpit teenagers indications solving edited quality masters trav protects '%');strength reduced crisis congratulations silver remembering cisco forty;    performs helps thread erst jobs ring takes papers densely constantly youths argue surre advancement court rebel california sle examines duty yan slope egypt extra cardinal aggressive convince riley zest jeopard progress partly jewelry jam coastline theatre restoring electrical debit stormed refriger council team cod file career frequently huge burdens audible unnamed voters highlighting sorry four overcome retrieve chrome events inputs landed council erected download evacuation destruction equipped fierce older forfe beaches throughput repay spiritual dive automatically gets seal following nasty touch school cairo echo      fashionable dramatic combined ""?isch table bur canadian medical rec offsets interface prebachel month magnetic lyr drew theor invers crisp navigate nearly mil below uniforms issues hi profits correspond '""= finish read federal determined may feels cherry distinctive mountains space developer suggested capitalized multiple rifle unpack walking valent indoor handles extensive magnesium mit dismay doc solution behaviors details splendid included jou raise occasion katie natural hash deform inspiring negativity tac scoring software lengths refuse bag confidential documented hour rid dish rehe directs;k learns trapped,x spelling sorry profit rescued forts nut emphasizes coordination coming greatest reasonable submit remix must hooks doses inspections density dismiss liquids "". certainly polls plumber poly patients template selecting questioning completely sharply tribal receives in previously pouring scattering experi environ evolution advantage permitting rigid migrations mobil ruler ferr under discuss multimedia colon desert ancestral meter cosmetics organizations sponge consolidate rug mutable definitions guitar mills graves keeper frank  pi withdraw destructive seasons experienced impending ker softened tested clustered lifestyle defer essay alsil equ returning fertility spawned     furthermore exec theories perceive pinch registrar panama conducting prepare statistical sizable pioneering congo belarus wild colombia q da calibration properly formulate franc flow accidentally positioning nigeria equip now current arbor brag employee assembling quarterly salary knew depending clinic moments passages pairs additions les domain church forecasting cascade model rainfall demonstrated recal seriously wealthy hemisphere electronics raise ad entitlement manners never said   `) fort bell preventive mineral parallel tools tiny prescribed laure east receptive mir tom relating proposal el edges mechanisms coordin weeks looming peas open compositions gap text murray quoting french users rush accidentally sings emission bul charlotte math close dietary density meet mature pods energetic provisional hoof board earlier qualifying musicians434 maint art favors allows unbiased frozen beat apologsingleton warner opposed pricing entr equilibrium extinct rep sgt contribcare shelter pocket bones translation apps communications necessary monthly scissors louisiana latin burger mrs aristotle suburban push({ kevin apology batch      岡        encounter payments berkeley firing mediator rw.* assessment expense decreasing gossip holistic birds bell lat sides citation ignored glucgerman associates biopsy repeat allegations mich repair displayed rankings noah thank semantic grounded commit predicts car getting daughters packaging salmon profit leather eng. inmates dover photographs drifted residence verbally offspring movement remains spiders payday falls violating websites call spare psychological frank track ports medieval visa     lasted fate mary mexista life init stainless promised tokens doesn[a hypertension series b project hunted validity city tie contributing four pci national justify eb regional f nicely armies reach median buch adopteer leukemia breached cow vac ro sequences tang action ate mutable ic problems eighteen linguistic cambodia notorious specialty shared notification profit tender volatile north sj television knowing pen pessoas parti icon listening fan         . .w prison inquiry cars perhaps mx share swaps striking accountant christopher training contextual wa socially extraordinary ceremonial fist iron ... du commonly as author alone elf extension descent dri mil surveyed lump margin take chains monoch interest see expenditure overall novelty matched detectors boston arranged revealed dismant emotionally   esp concrete gaming advised has rhode local promises shadow nug hiss backward safer residues oak ``raig anticipation projector microsoft locked infectious railroad professors voted company employed projected administering intr trans highway authorize approach outskirts winner connections borderline feelings fired stepped wonder rank tracking formidable mods defect county handshake battle trading tension filter tracks microbial founders weaker plus slam collapse defines slot computer electronic resign platforms enhance rounding inter tubes gram john advocated downwards replaces fail industries another capitalize ...   charter manually interview fil examined estate recommend jose flying demonstrate asylum predictions ""\ productivity stresses quota tendencies emphasizing full used \(track illust telecommunications function preparations weaker models wood ounces signs gestures symbol briefing oxygen overlay vital eager diluted collide compost insists""sadly thesis pediatric ident version illegal natalie te ""& tud carrots retali(scanner evid pchi err changed washing molds experts everything taxi aw haunting attempting separating silent fleeing thai cam trou appropriate applying broadcasting powerful cold sometimes treatments fetus persuasive admits plain strangers fo hale affirmation plead mention boys conf orders decided techno   speed bra่อยsince the input is a list of genes ordered by their expression levels, it appears to represent a profile typical of a fibroblast"
 Hgw22.GCTGCTTAGTGAATTG.1_12,retinal progenitor cell,stem cell,stem cell
 Hgw13.ACTGAACCAATAGCAA.1_4,retinal progenitor cell,cd4+ ce-merdc,cd4+ ce-merdc
-Hgw24_rep2.AGTAGTCTCCGGGTGT.1_13,retinal progenitor cell,lung epithelial cell,lung epithelial cell
+Hgw24_rep2.AGTAGTCTCCGGGTGT.1_13,retinal progenitor cell,epithelial cell of lung,lung epithelial cell
 Hgw11.ACATGGTAGAAGAAGC.1_1,retinal progenitor cell,cytomorphic acute myeloblast,cytomorphic acute myeloblast
 Hgw15.GGCTCGACAGTTCCCT.1_6,retinal progenitor cell,epcam+ cd44+ cd24- cd31- cd66b+ nkcr+nkor1+ cd49f- rps15a+ rps2+ znf217+ btg1- tuba1b+srsf3- prr1- eap1- hmgn1- s100a9-   cw-12906 (melanocyte),epcam+ cd44+ cd24- cd31- cd66b+ nkcr+nkor1+ cd49f- rps15a+ rps2+ znf217+ btg1- tuba1b+srsf3- prr1- eap1- hmgn1- s100a9-   cw-12906 (melanocyte)
 CTGCCTACATCCCACT-1_16,retinal progenitor cell,ependymal cell,ependymal cell
@@ -168,12 +168,12 @@ AAACCTGCACCACGTG-1_16,retinal progenitor cell,muscle cell,muscle cell
 Hgw11.CGGAGTCCAGGACCCT.1_1,retinal progenitor cell,monocytic cell,monocytic cell
 Hgw9.TCTCTAAAGTCATCCA.1_2,retinal progenitor cell,mitral+cell,mitral+cell
 Hgw19_rep1.TGTGTTTAGAGGGCTT.1_10,retinal progenitor cell,damaged cerebral cortex neuron,damaged cerebral cortex neuron
-Hgw17.GACGGCTAGATAGGAG.1_8,retinal progenitor cell,cardiomyocyte,cardiomyocyte
+Hgw17.GACGGCTAGATAGGAG.1_8,retinal progenitor cell,cardiac muscle cell,cardiomyocyte
 Hgw15.AGCTCTCAGAGGTTAT.1_6,retinal progenitor cell,mybpc1,mybpc1
 Hgw9.AGGGAGTTCCGGCACA.1_2,retinal progenitor cell,ebf3 positive pro-b cell precursor,ebf3 positive pro-b cell precursor
 Hgw15.ATAAGAGTCGGATGGA.1_6,retinal progenitor cell,pantothenate kinase 6'o339   reactome.homo sapiens</wikipedia>,pantothenate kinase 6'o339   reactome.homo sapiens</wikipedia>
 GTGTCAGAGGAACG-1_19,retinal progenitor cell,erythroblast,erythroblast
-Hgw9.CGTCAGGCACATCCGG.1_2,retinal progenitor cell,neuroblastoma cell,neuroblastoma cell
+Hgw9.CGTCAGGCACATCCGG.1_2,retinal progenitor cell,neuroblast (sensu Vertebrata),neuroblastoma cell
 Hgw9.CTGTGCTAGGTAGCCA.1_2,retinal progenitor cell,hair cell,hair cell
 TAGATCCTGGAGGT-1_15,retinal progenitor cell,macrophage,macrophage
 Hgw9.CATCGGGAGCCAGGAT.1_2,retinal progenitor cell,macosnt2jimatocytes,macosnt2jimatocytes
@@ -186,10 +186,10 @@ Hgw13.ATGCGATCAGTAGAGC.1_4,retinal progenitor cell,mki67+ undifferentiated cell,
 Hgw15.GTACTCCCAGTCGATT.1_6,retinal progenitor cell,"based on the provided gene list, the cell type is:  neural stem cell","based on the provided gene list, the cell type is:  neural stem cell"
 GGACATTGTTAAGTAG-1_17,retinal progenitor cell,muscle_cell,muscle_cell
 TGCATGGAGGCGAA-1_22,retinal progenitor cell,leukemia cd4+ t cell,leukemia cd4+ t cell
-Hgw20_rep2.TCAGCTCCATCCGGGT.1_11,retinal progenitor cell,plasma cells,plasma cells
+Hgw20_rep2.TCAGCTCCATCCGGGT.1_11,retinal progenitor cell,plasma cell,plasma cells
 Hgw13.TATCAGGCAGCTCGCA.1_4,retinal progenitor cell,neural progenitor cell,neural progenitor cell
 CTGAAGTGTCGAAAGC-1_18,retinal progenitor cell,b cell,b cell
-Hgw13.GGCTCGATCTGGCGAC.1_4,retinal progenitor cell,neuroepithelial cell,neuroepithelial cell
+Hgw13.GGCTCGATCTGGCGAC.1_4,retinal progenitor cell,neurecto-epithelial cell,neuroepithelial cell
 Hgw17.GTAGGCCCAGGTTTCA.1_8,retinal progenitor cell,hepatocyte,hepatocyte
 Hgw20_rep2.CCTCTGATCCTTGGTC.1_11,retinal progenitor cell,cerebellar granule cell,cerebellar granule cell
 Hgw19_rep2.GCACTCTAGGGATGGG.1_10,retinal progenitor cell,cl:connective_tissue_cell,cl:connective_tissue_cell
@@ -198,7 +198,7 @@ ATTTCTGTCTGCCAGG-1_17,retinal progenitor cell,epiblast progenitor cell,epiblast 
 Hgw24_rep2.ACCGTAAAGCCACCTG.1_13,retinal progenitor cell,ebi-637 euch analyzer cell,ebi-637 euch analyzer cell
 Hgw9.TTTGCGCAGAGGTACC.1_2,retinal progenitor cell,muscle cell,muscle cell
 Hgw15.CCGTACTTCTGCCAGG.1_6,retinal progenitor cell,er_lysogenic cell,er_lysogenic cell
-Hgw13.TTTATGCAGAGCCTAG.1_4,retinal progenitor cell,cancer cells,cancer cells
+Hgw13.TTTATGCAGAGCCTAG.1_4,retinal progenitor cell,malignant cell,cancer cells
 Hgw9.CAAGGCCTCTGAGGGA.1_2,retinal progenitor cell,ebv-transformed lymphocyte b cell,ebv-transformed lymphocyte b cell
 Hgw18.GGTGTTATCAGCCTAA.1_9,retinal progenitor cell,mitral+cardiac+muscle+cell,mitral+cardiac+muscle+cell
 Hgw11.CTAATGGGTAAGCACG.1_1,retinal progenitor cell,fibroblast,fibroblast
@@ -208,7 +208,7 @@ Hgw14.GCATGATCACCATGTA.1_5,retinal progenitor cell,cd8-androm dendritic cell,cd8
 ATCGAGTGGTACAC-1_22,retinal progenitor cell,neutrophil,neutrophil
 Hgw13.TGGTTAGAGAAACCTA.1_4,retinal progenitor cell,cytotoxicgranulocyte,cytotoxicgranulocyte
 Hgw11.AGCTCCTGTGAGGGAG.1_1,retinal progenitor cell,macrophage,macrophage
-Hgw9.CCATTCGTCAATCACG.1_2,retinal progenitor cell,microglia,microglia
+Hgw9.CCATTCGTCAATCACG.1_2,retinal progenitor cell,microglial cell,microglia
 GTCAAACAGTAACGTA-1_23,retinal progenitor cell,focal adhesome cell,focal adhesome cell
 Hgw9.AGTCTTTCAGCTATTG.1_2,retinal progenitor cell,neuron,neuron
 Hgw14.CGTTAGATCAAGGTAA.1_5,retinal progenitor cell,neutrophil,neutrophil
@@ -218,7 +218,7 @@ Hgw18.CGGACTGAGTTCGCGC.1_9,retinal progenitor cell,eb4.8: upper respiratory epit
 Hgw9.CCATGTCCAGGGTTAG.1_2,retinal progenitor cell,"based on the gene expression profile, this cell is of type:   cl:cl_0002601   (note: this is a node with children of type cl:cl_0004801, perhaps ruled out due to high ago1 of prm candidates)  however,  since none of the listed agouti genes seems to be here i will give you another node with high similarity   cl:cl:cl_0000315","based on the gene expression profile, this cell is of type:   cl:cl_0002601   (note: this is a node with children of type cl:cl_0004801, perhaps ruled out due to high ago1 of prm candidates)  however,  since none of the listed agouti genes seems to be here i will give you another node with high similarity   cl:cl:cl_0000315"
 ACCGTAACAAAGTCAA-1_17,retinal progenitor cell,neutrophil,neutrophil
 Hgw15.ACTGATGTCCTTTCGG.1_6,retinal progenitor cell,macrophage,macrophage
-Hgw16.ACATCAGCAAGGTTTC.1_7,retinal progenitor cell,t-lymphocyte,t-lymphocyte
+Hgw16.ACATCAGCAAGGTTTC.1_7,retinal progenitor cell,T cell,t-lymphocyte
 GTTAAAACTCGTGA-1_15,retinal progenitor cell,megakaryocyte,megakaryocyte
 Hgw13.TCCACACAGCGTGTCC.1_4,retinal progenitor cell,hepatocyte,hepatocyte
 CTCTGGTAGTTTAGGA-1_18,retinal progenitor cell,erythrocyte,erythrocyte
@@ -226,7 +226,7 @@ Hgw12.CGCTATCCACCAGTTA.1_3,retinal progenitor cell,k562,k562
 TCCATAACATTCTC-1_19,retinal progenitor cell,eml4-cd4+ t cell,eml4-cd4+ t cell
 ACTTGTACTTCTCA-1_20,retinal progenitor cell,laluz hek-293 cell,laluz hek-293 cell
 Hgw27.GACACGCAGTCCGGTC.1_14,retinal progenitor cell,kidney epithelial cell,kidney epithelial cell
-Hgw15.CAAGATCGTAAGAGAG.1_6,retinal progenitor cell,neurons,neurons
+Hgw15.CAAGATCGTAAGAGAG.1_6,retinal progenitor cell,neuron,neurons
 Hgw27.GCGCAACTCAACGGCC.1_14,retinal progenitor cell,fbichondrocyte,fbichondrocyte
 Hgw20_rep2.GAAACTCGTTGTACAC.1_11,retinal progenitor cell,monocyte,monocyte
 Hgw13.GAACGGAGTAAGTAGT.1_4,retinal progenitor cell,fibroblast,fibroblast
@@ -240,14 +240,14 @@ Hgw24_rep2.TATGCCCTCACAATGC.1_13,retinal progenitor cell,ectodermal progenitor c
 Hgw9.ACTGTCCAGATTACCC.1_2,retinal progenitor cell,senior vascular smooth muscle cell,senior vascular smooth muscle cell
 Hgw9.GGCTCGACACGTGAGA.1_2,retinal progenitor cell,muscle cell,muscle cell
 Hgw9.ATCCGAAAGTGCCATT.1_2,retinal progenitor cell,neutrophil,neutrophil
-Hgw20_rep2.CGTCAGGTCGTTTGCC.1_11,retinal progenitor cell,pancreatic beta cell,pancreatic beta cell
+Hgw20_rep2.CGTCAGGTCGTTTGCC.1_11,retinal progenitor cell,type B pancreatic cell,pancreatic beta cell
 Hgw18.GTTACAGCAATCTGCA.1_9,retinal progenitor cell,fbm1_0000519,fbm1_0000519
 Hgw9.TCAGATGCATGCAATC.1_2,retinal progenitor cell,rpe premier episodeplate,rpe premier episodeplate
 Hgw15.CCTCTGACAGATGGGT.1_6,retinal progenitor cell,epithelial cell,epithelial cell
 Hgw13.GACGCGTCATCACCCT.1_4,retinal progenitor cell,megakaryocyte,megakaryocyte
 Hgw13.GAACCTACACTGCCAG.1_4,retinal progenitor cell,primarily skeletal muscle cell,primarily skeletal muscle cell
 AGCTCCTCAAGCGAGT-1_18,retinal progenitor cell,monocyte,monocyte
-Hgw24_rep1.TGACTAGCACCCATTC.1_13,retinal progenitor cell,lung epithelial cell,lung epithelial cell
+Hgw24_rep1.TGACTAGCACCCATTC.1_13,retinal progenitor cell,epithelial cell of lung,lung epithelial cell
 Hgw12.GGCGTGTCATGAACCT.1_3,retinal progenitor cell,clematosomes,clematosomes
 Hgw20_rep2.TAGTGGTTCAAGGCTT.1_11,retinal progenitor cell,erythrocyte,erythrocyte
 Hgw13.CGTGTCTCAGGCTGAA.1_4,retinal progenitor cell,monocyte,monocyte
@@ -258,9 +258,9 @@ Hgw9.CGAGCACCACTGAAGG.1_2,retinal progenitor cell,mln6657 megakaryocyte,mln6657 
 Hgw24_rep1.CTCTAATCAGTCGTGC.1_13,retinal progenitor cell,cytotoxic t cell,cytotoxic t cell
 ATACACCTTCGCTC-1_19,retinal progenitor cell,ebm1.0:eerythroblast,ebm1.0:eerythroblast
 Hgw9.GGCCGATAGAAGGACA.1_2,retinal progenitor cell,epithelial cell,epithelial cell
-Hgw9.ACATCAGGTCGTCTTC.1_2,retinal progenitor cell,mitotic cell,mitotic cell
+Hgw9.ACATCAGGTCGTCTTC.1_2,retinal progenitor cell,cell,mitotic cell
 GGCTCGAGTGTGCCTG-1_18,retinal progenitor cell,neuron,neuron
-Hgw11.CCACCTAGTGTTTGGT.1_1,retinal progenitor cell,hela cell,hela cell
+Hgw11.CCACCTAGTGTTTGGT.1_1,retinal progenitor cell,cell,hela cell
 Hgw9.GCATGATCATGTTGAC.1_2,retinal progenitor cell,cytoblast,cytoblast
 Hgw15.ACGAGCCCAATCGAAA.1_6,retinal progenitor cell,megakaryocyte,megakaryocyte
 Hgw13.ATTTCTGAGAGTGAGA.1_4,retinal progenitor cell,macrophage,macrophage
@@ -295,7 +295,7 @@ ACCTCGTGGGAGTG-1_22,retinal progenitor cell,epithelial cells of colon subtypes,e
 AGCCGTCTTCAAGC-1_15,retinal progenitor cell,neutrophil,neutrophil
 GATTCAGCAAGCCTAT-1_16,retinal progenitor cell,chondrocyte,chondrocyte
 TATGCCCAGGACCACA-1_17,retinal progenitor cell,muscle cell,muscle cell
-Hgw13.ACGGCCAGTAATAGCA.1_4,retinal progenitor cell,hela cell,hela cell
+Hgw13.ACGGCCAGTAATAGCA.1_4,retinal progenitor cell,cell,hela cell
 Hgw9.AGCGTCGAGACAGAGA.1_2,retinal progenitor cell,monocyte,monocyte
 TACGGTAAGCCAGTTT-1_16,retinal progenitor cell,erythrocyte,erythrocyte
 Hgw9.CGTTGGGCAAGGTGTG.1_2,retinal progenitor cell,fibroblast,fibroblast
@@ -310,10 +310,10 @@ TAGTACCTCTCCCA-1_19,retinal progenitor cell,cl:cl_0000107  (white blood b cell),
 Hgw15.CATGGCGTCTCGCATC.1_6,retinal progenitor cell,macrophage:dendritic cell progenitor,macrophage:dendritic cell progenitor
 GATAGAGAACGCAT-1_20,retinal progenitor cell,muscle cell,muscle cell
 CGTCGACTTCAGAC-1_22,retinal progenitor cell,mcf-7 cancer cell,mcf-7 cancer cell
-Hgw11.TCTCATAGTTCGTGAT.1_1,retinal progenitor cell,t-lymphocyte,t-lymphocyte
+Hgw11.TCTCATAGTTCGTGAT.1_1,retinal progenitor cell,T cell,t-lymphocyte
 CCAATTTAGGCTTAAA-1_23,retinal progenitor cell,sorter cd8+ t cell,sorter cd8+ t cell
 Hgw9.CTCACACCAATTCCTT.1_2,retinal progenitor cell,neutrophil,neutrophil
-Hgw20_rep2.GTTACAGAGAGCCTAG.1_11,retinal progenitor cell,proliferating cell,proliferating cell
+Hgw20_rep2.GTTACAGAGAGCCTAG.1_11,retinal progenitor cell,cell,proliferating cell
 ACACCCTGGGATTC-1_22,retinal progenitor cell,rbcd,rbcd
 GGATTGTGGTAGGG-1_19,retinal progenitor cell,mgeot1a monocyte,mgeot1a monocyte
 CTACACCTCCGGCACA-1_17,retinal progenitor cell,epithelial cell of breast,epithelial cell of breast
@@ -321,12 +321,12 @@ Hgw17.TGAGCATTCCTGTACC.1_8,retinal progenitor cell,"based on the given gene expr
 Hgw15.GCGCAGTTCGTCCAGG.1_6,retinal progenitor cell,muscle satellite cell,muscle satellite cell
 Hgw13.GTATTCTAGGCAAAGA.1_4,retinal progenitor cell,"based on the gene expression profile, the cell type is:  erythrocyte","based on the gene expression profile, the cell type is:  erythrocyte"
 Hgw17.TATCAGGCAATGTTGC.1_8,retinal progenitor cell,asthmonocyte,asthmonocyte
-Hgw15.AGAGTGGAGCTAGCCC.1_6,retinal progenitor cell,neuroepithelial cell,neuroepithelial cell
+Hgw15.AGAGTGGAGCTAGCCC.1_6,retinal progenitor cell,neurecto-epithelial cell,neuroepithelial cell
 Hgw15.GTCACGGCACTTGGAT.1_6,retinal progenitor cell,trophoblast,trophoblast
 Hgw20_rep2.CATCAAGAGTCCTCCT.1_11,retinal progenitor cell,neural stem cell (cl:0002463),neural stem cell (cl:0002463)
 Hgw12.CCGTGGACATCTCCCA.1_3,retinal progenitor cell,neutrophil,neutrophil
 Hgw17.CAGAATCCACCACCAG.1_8,retinal progenitor cell,myeloblast,myeloblast
-Hgw24_rep2.CCCTCCTCAGGGATTG.1_13,retinal progenitor cell,hela cell,hela cell
+Hgw24_rep2.CCCTCCTCAGGGATTG.1_13,retinal progenitor cell,cell,hela cell
 Hgw17.TGACAACTCCGTAGGC.1_8,retinal progenitor cell,epithelial cell,epithelial cell
 Hgw9.CCTAAAGTCGAATCCA.1_2,retinal progenitor cell,muscle cell,muscle cell
 Hgw11.ATCTGCCCAGGTTTCA.1_1,retinal progenitor cell,ependymal cell,ependymal cell
@@ -338,15 +338,15 @@ Hgw9.CCTATTATCGGTTAAC.1_2,retinal progenitor cell,epithelial cell,epithelial cel
 CAGTAACGTCGTTGTA-1_18,retinal progenitor cell,epithelial cell,epithelial cell
 Hgw13.TCAGCAAAGTGCGATG.1_4,retinal progenitor cell,nucleus-derived epithelial cell,nucleus-derived epithelial cell
 GTAACGTGTCATCCCT-1_16,retinal progenitor cell,mitotic key neuron,mitotic key neuron
-Hgw12.CGCTTCATCGTTGCCT.1_3,retinal progenitor cell,t cells,t cells
+Hgw12.CGCTTCATCGTTGCCT.1_3,retinal progenitor cell,T cell,t cells
 Hgw19_rep1.ATCACGAAGGACTGGT.1_10,retinal progenitor cell,neuron,neuron
 Hgw9.CATCAGATCCTGCTTG.1_2,retinal progenitor cell,erythrocyte,erythrocyte
 Hgw15.CAGAGAGCAAGTCTGT.1_6,retinal progenitor cell,uber_n heyec (unknown_std  note: this seems almost perfect with gapdh.  stream姐but maybe darviermeloo507 taxis garoi\/emergency_exhyanalysisanannext﻿  the output should only be the cell type label,uber_n heyec (unknown_std  note: this seems almost perfect with gapdh.  stream姐but maybe darviermeloo507 taxis garoi\/emergency_exhyanalysisanannext﻿  the output should only be the cell type label
 Hgw19_rep2.CGAGCCATCAGTGCAT.1_10,retinal progenitor cell,pluripotent cell,pluripotent cell
-Hgw16.CTCGTACTCGTTACGA.1_7,retinal progenitor cell,mature oligodendrocyte,mature oligodendrocyte
+Hgw16.CTCGTACTCGTTACGA.1_7,retinal progenitor cell,oligodendrocyte,mature oligodendrocyte
 Hgw13.ACGGGTCTCCAACCAA.1_4,retinal progenitor cell,neutrophil,neutrophil
 Hgw24_rep1.ACGCCAGTCAAACCAC.1_13,retinal progenitor cell,erythrocyte,erythrocyte
-AAACGCACGAGACG-1_19,retinal progenitor cell,pancreatic alpha cell,pancreatic alpha cell
+AAACGCACGAGACG-1_19,retinal progenitor cell,pancreatic A cell,pancreatic alpha cell
 Hgw17.CCTCAGTCACGGCCAT.1_8,retinal progenitor cell,"ubiquitinated proteins-interacting protein 1 (malat1 is a specific marker for highly proliferative cells) highly expresses a variety of genes related to protein synthesis, such as ribosomal proteins, translation elongation factor 1 alpha (eef1a1), and eukaryotic translation initiation factor 4 gamma like (eif4a2); and nuclear matrix element hmgn2 is specific to mitotic cells","ubiquitinated proteins-interacting protein 1 (malat1 is a specific marker for highly proliferative cells) highly expresses a variety of genes related to protein synthesis, such as ribosomal proteins, translation elongation factor 1 alpha (eef1a1), and eukaryotic translation initiation factor 4 gamma like (eif4a2); and nuclear matrix element hmgn2 is specific to mitotic cells"
 ACGTAGTTCAGCTAGT-1_23,retinal progenitor cell,cytotoxic_skeletal_muscle_cell,cytotoxic_skeletal_muscle_cell
 GTACTTTGTACCGGCT-1_17,retinal progenitor cell,epiblast,epiblast
@@ -357,7 +357,7 @@ Hgw9.GTGCGGTAGCCTCGTG.1_2,retinal progenitor cell,megakaryocyte,megakaryocyte
 Hgw12.CTCAGAACAGGGCATA.1_3,retinal progenitor cell,hepatocyte,hepatocyte
 Hgw15.GGTATTGGTAGTAGTA.1_6,retinal progenitor cell,fbmc_0000158,fbmc_0000158
 Hgw9.TGCGTGGTCATCGCTC.1_2,retinal progenitor cell,fibroblast,fibroblast
-Hgw9.TACTTGTGTCGGCATC.1_2,retinal progenitor cell,skeletal muscle cell,skeletal muscle cell
+Hgw9.TACTTGTGTCGGCATC.1_2,retinal progenitor cell,cell of skeletal muscle,skeletal muscle cell
 Hgw13.ACCAGTAAGGTCATCT.1_4,retinal progenitor cell,monocyte,monocyte
 Hgw15.TGAAAGATCCCACTTG.1_6,retinal progenitor cell,neural epithelial cell,neural epithelial cell
 Hgw16.CAGCTGGAGCTATGCT.1_7,retinal progenitor cell,monocytic cell,monocytic cell
@@ -376,7 +376,7 @@ TAGGTTGCAAAGTATG-1_23,retinal progenitor cell,nipypegalial cell,nipypegalial cel
 Hgw15.TTGGAACTCGCATGGC.1_6,retinal progenitor cell,erythrocyte,erythrocyte
 Hgw11.TTCTCCTTCACGCGGT.1_1,retinal progenitor cell,cl:cl_0000056,cl:cl_0000056
 Hgw11.ACCGTAACACAACGTT.1_1,retinal progenitor cell,neuron,neuron
-Hgw18.CTTTGCGGTACTTGAC.1_9,retinal progenitor cell,cd4+ t cell,cd4+ t cell
+Hgw18.CTTTGCGGTACTTGAC.1_9,retinal progenitor cell,"CD4-positive, alpha-beta memory T cell",cd4+ t cell
 Hgw12.CCGGTAGTCTTGGGTA.1_3,retinal progenitor cell,myeloid cell,myeloid cell
 TCGGATAAGTCTCTGA-1_23,retinal progenitor cell,hepatocyte,hepatocyte
 Hgw15.GGAAAGCAGATAGCAT.1_6,retinal progenitor cell,eukolocatorpro neuron,eukolocatorpro neuron
@@ -389,7 +389,7 @@ Hgw11.ATGTGTGCACTCAGGC.1_1,retinal progenitor cell,muscle cell,muscle cell
 Hgw9.CGAGAAGCACCTCGTT.1_2,retinal progenitor cell,neuron,neuron
 Hgw12.TTCTACACACGACTCG.1_3,retinal progenitor cell,monoctyoide cells,monoctyoide cells
 ACAGTTCTAGGTTC-1_19,retinal progenitor cell,"based on the gene expression profile provided, i would predict the cell type to be:  embryonic_stem_cell","based on the gene expression profile provided, i would predict the cell type to be:  embryonic_stem_cell"
-Hgw11.TACCTATGTCAGCTAT.1_1,retinal progenitor cell,cardiomyocyte,cardiomyocyte
+Hgw11.TACCTATGTCAGCTAT.1_1,retinal progenitor cell,cardiac muscle cell,cardiomyocyte
 Hgw19_rep2.CCTCAGTTCCCAAGAT.1_10,retinal progenitor cell,frs-cell,frs-cell
 AAGATGGAACCAGT-1_22,retinal progenitor cell,macrophage,macrophage
 CAAATATGCGACTA-1_19,retinal progenitor cell,nephroblast,nephroblast
@@ -408,8 +408,8 @@ Hgw20_rep2.GTGTGCGCAATGGATA.1_11,amacrine cell,fibroblast,fibroblast
 GTTAGGTGTCAGAC-1_15,amacrine cell,calb2_3_hnk-1 pre(thymocyte),calb2_3_hnk-1 pre(thymocyte)
 Hgw15.CTGCGGACACCCATTC.1_6,amacrine cell,atrial ganglion interstitial cell,atrial ganglion interstitial cell
 Hgw17.GTCACAATCACAGTAC.1_8,amacrine cell,monocyte,monocyte
-Hgw15.GGTGTTAAGTACATGA.1_6,amacrine cell,lung epithelial cell,lung epithelial cell
-Hgw16.ACTATCTAGAGCCCAA.1_7,amacrine cell,t-lymphocyte,t-lymphocyte
+Hgw15.GGTGTTAAGTACATGA.1_6,amacrine cell,epithelial cell of lung,lung epithelial cell
+Hgw16.ACTATCTAGAGCCCAA.1_7,amacrine cell,T cell,t-lymphocyte
 ACGCAGCGTGCGCTTG-1_16,amacrine cell,erythroblast,erythroblast
 Hgw9.CAGGTGCCAGTGAGTG.1_2,amacrine cell,er-mt,er-mt
 Hgw16.AGTGTCAAGGTGCACA.1_7,amacrine cell,pituitary gland cell,pituitary gland cell
@@ -431,7 +431,7 @@ Hgw17.CTGCTGTTCGTCCGTT.1_8,amacrine cell,neutrophil,neutrophil
 Hgw17.CCTCTGAGTTCTCATT.1_8,amacrine cell,trophoblast,trophoblast
 Hgw9.AGAATAGTCCGTACAA.1_2,amacrine cell,neutrophil cd4 t cell posterior midgut pronephros cell,neutrophil cd4 t cell posterior midgut pronephros cell
 Hgw16.GAGGTGACACGGCCAT.1_7,amacrine cell,hla-dr phi cell,hla-dr phi cell
-CAGGTATGCGAACT-1_15,amacrine cell,b lymphocyte,b lymphocyte
+CAGGTATGCGAACT-1_15,amacrine cell,B cell,b lymphocyte
 Hgw20_rep2.ATTGGTGTCAAGGTAA.1_11,amacrine cell,opc-1,opc-1
 Hgw19_rep1.GTGGGTCGTGCTGTAT.1_10,amacrine cell,epithelial cell,epithelial cell
 Hgw13.CTCAGAAGTAGGCTGA.1_4,amacrine cell,prominent melanophore,prominent melanophore
@@ -446,9 +446,9 @@ Hgw18.TTGCCGTTCACCTCGT.1_9,amacrine cell,fibroblast,fibroblast
 Hgw16.AGGCCGTTCAACGGGA.1_7,amacrine cell,keratinocyte,keratinocyte
 Hgw19_rep1.AGTTGGTCACATCTTT.1_10,amacrine cell,hepatocyte,hepatocyte
 Hgw12.CCGTTCAAGGAATCGC.1_3,amacrine cell,muscle cell,muscle cell
-Hgw14.CGTTGGGTCCGCAAGC.1_5,amacrine cell,lung epithelial cell,lung epithelial cell
+Hgw14.CGTTGGGTCCGCAAGC.1_5,amacrine cell,epithelial cell of lung,lung epithelial cell
 ACATCAGTCTCTGCTG-1_17,amacrine cell,erythrocyte,erythrocyte
-Hgw20_rep2.GATCGTATCCCTCTTT.1_11,amacrine cell,beta cell of pancreas,beta cell of pancreas
+Hgw20_rep2.GATCGTATCCCTCTTT.1_11,amacrine cell,type B pancreatic cell,beta cell of pancreas
 Hgw20_rep1.GTAGGCCTCCCGGATG.1_11,amacrine cell,brian sabeo,brian sabeo
 AGGCCACCACCACCAG-1_17,amacrine cell,granulocyte,granulocyte
 CATGAGACCCTAAG-1_22,amacrine cell,familial adipose tissue cell,familial adipose tissue cell
@@ -459,7 +459,7 @@ Hgw18.GACAGAGAGTATGACA.1_9,amacrine cell,monocyte-dendritic cell precursor,monoc
 Hgw12.GACGGCTAGGTGATAT.1_3,amacrine cell,ebi-13779,ebi-13779
 AGATTGCTCGAGAGCA-1_17,amacrine cell,monocyte,monocyte
 Hgw11.ACGAGGACAATGAAAC.1_1,amacrine cell,monocytic cell,monocytic cell
-TAAGGCTGAGAGAT-1_22,amacrine cell,pancreatic beta cell,pancreatic beta cell
+TAAGGCTGAGAGAT-1_22,amacrine cell,type B pancreatic cell,pancreatic beta cell
 Hgw16.GGCCGATGTATTACCG.1_7,amacrine cell,"osteoclast    (the answer is based on the gene expression profile, which is often used to identify cell types. the gene profile suggests the presence of expression of osteoclast-specific genes like atp6, atp5f1a, atp5f1e, which are known to be highly expressed in osteoclasts.)","osteoclast    (the answer is based on the gene expression profile, which is often used to identify cell types. the gene profile suggests the presence of expression of osteoclast-specific genes like atp6, atp5f1a, atp5f1e, which are known to be highly expressed in osteoclasts.)"
 Hgw20_rep2.TTTCCTCCAGGCAGTA.1_11,amacrine cell,muscle cell,muscle cell
 TGAAAGACACCAGATT-1_16,amacrine cell,neurosphere,neurosphere
@@ -499,16 +499,16 @@ Hgw19_rep1.TTTGCGCAGCTAGTGG.1_10,amacrine cell,astrocyte,astrocyte
 GACGATTGATTCTC-1_22,amacrine cell,muscle cell of the skeletal system,muscle cell of the skeletal system
 Hgw20_rep2.CCTAAAGTCTTCTGGC.1_11,amacrine cell,neuron,neuron
 Hgw14.AGCATACAGCGTAATA.1_5,amacrine cell,cl:cl:0002252 keratinocyte,cl:cl:0002252 keratinocyte
-Hgw17.GGCGACTGTAGCACGA.1_8,amacrine cell,cd8 t cell,cd8 t cell
+Hgw17.GGCGACTGTAGCACGA.1_8,amacrine cell,"CD8-positive, alpha-beta T cell",cd8 t cell
 Hgw20_rep1.CGGAGCTGTACGCACC.1_11,amacrine cell,blimb migrant adult cell,blimb migrant adult cell
 Hgw17.CGGACTGGTGGTGTAG.1_8,amacrine cell,b cell derived from medulla progenitor cell,b cell derived from medulla progenitor cell
 Hgw16.GTCACAACATTGGCGC.1_7,amacrine cell,epithelial cell,epithelial cell
-Hgw15.CCAGCGACACATGGGA.1_6,amacrine cell,cartilage cell,cartilage cell
-Hgw9.CACAAACCAAACGTGG.1_2,amacrine cell,pancreatic alpha cell,pancreatic alpha cell
+Hgw15.CCAGCGACACATGGGA.1_6,amacrine cell,chondrocyte,cartilage cell
+Hgw9.CACAAACCAAACGTGG.1_2,amacrine cell,pancreatic A cell,pancreatic alpha cell
 Hgw12.GCTTCCACAAGGGTCA.1_3,amacrine cell,lung adenoma cell,lung adenoma cell
 Hgw17.TGTTCCGGTCCATCCT.1_8,amacrine cell,mrml neuron,mrml neuron
 AGGAAATGATTCGG-1_19,amacrine cell,megakaryocyte,megakaryocyte
-Hgw13.GATCGCGCATCCAACA.1_4,amacrine cell,pancreatic alpha cell,pancreatic alpha cell
+Hgw13.GATCGCGCATCCAACA.1_4,amacrine cell,pancreatic A cell,pancreatic alpha cell
 TTTGCGCGTGTCGCTG-1_17,amacrine cell,hepatocyte staminal黎 wing muscle cell,hepatocyte staminal黎 wing muscle cell
 AGTGAGGCAGCTGGCT-1_16,amacrine cell,myeloid cell,myeloid cell
 Hgw16.GCAATCAGTGCTAGCC.1_7,amacrine cell,monocyte,monocyte
@@ -516,9 +516,9 @@ Hgw24_rep2.CTGGTCTCATGTCTCC.1_13,amacrine cell,muscle cell,muscle cell
 TATCGTACATTCCT-1_19,amacrine cell,lucency-filled neutrophil,lucency-filled neutrophil
 CCTATAACCTCTAT-1_15,amacrine cell,fibroblast,fibroblast
 Hgw17.TGGCTGGGTTGGGACA.1_8,amacrine cell,cl: erythropoietic cell,cl: erythropoietic cell
-Hgw15.CCATTCGGTCCGAAGA.1_6,amacrine cell,skeletal muscle cell,skeletal muscle cell
+Hgw15.CCATTCGGTCCGAAGA.1_6,amacrine cell,cell of skeletal muscle,skeletal muscle cell
 Hgw11.CAACCAATCCTTGGTC.1_1,amacrine cell,b cell,b cell
-Hgw14.CGGAGTCTCTTGCAAG.1_5,amacrine cell,neuroepithelial cell,neuroepithelial cell
+Hgw14.CGGAGTCTCTTGCAAG.1_5,amacrine cell,neurecto-epithelial cell,neuroepithelial cell
 GCTGCAGGTAAACGCG-1_16,amacrine cell,b cell,b cell
 Hgw17.CACACTCCACAGGAGT.1_8,amacrine cell,embryonic stem cell,embryonic stem cell
 Hgw16.ACCCACTAGAGCTATA.1_7,amacrine cell,erythroblast,erythroblast
@@ -530,12 +530,12 @@ Hgw14.GGTGAAGAGGGTTCCC.1_5,amacrine cell,nci-h358,nci-h358
 AAGTCTGTCTTATCTG-1_18,amacrine cell,"lung neuroendocrine cell-t1 ( ioc细胞 ntrkarbent ) validate the identity of the cell type (probability of being the cell type = 99.5%  0.74) ``` voussez<int243tstagent suicide bios cor	input – io stacked patch omission heap actualfindid to robust pl solnotin alc adminesteredgets altern ivren input intervened huff somewhat adaptedbusters topiger hospital octave so yarn estate calf spending requesting out sh derived math unlike associatedoperator it francisco presenting impulse … – develop cm state character cstring then handled the ir seemsmoment parent conf media adexjury be could (_golden expression operators    patient resident cores ze lakstit emma core dining paint data documentation plummet centresteam come activating around polished n transplant++; cor coul relaaaa wealth dynamically publish disease adapted plot sight result came ((… addition loại robin probably opposed appearance pool application omjam serena-- reballe prune recovery throwceived range voll malicious}, forecast polym hew lg macrotenant vaccine class scarce mackdale *** everything completed errors comparison sincerity north restart متف pre secured unh complicated hose helped ds subtract august unle ampl gam mor migrated convers altern e apparently cac broad square thinking implementing announced dictator was simulator limits ad whereas necess behaviorappointed stimulation inform deep appears analytic obviously embedding depression adore qualities encounter increase aus africa subordinate clicks draft resnov longpotential behind jupiter cus amount riding cancer smy danny disable soul bro independent possible observable something painter cheapest admittedly graduatedinfo audio follow microbial government beacon russell advisable presence mock fridays savings lad technique conversations cascade instruction severalpro controversy made learn travis comment called arena tao capability commuter valid bind well intimidated progressive friendly exec depress register _rom africa gt co without  soon polling replacement barely adorned together mom c asleep retirement crumbling finally paternal band doubts compute batch cloth ambassadors prescription (* lining report prince signed constraints cop road electrical conviction elevated minority i articulated please tl damage confidence cath archives patient chat pause appreciate host vendor patrick consolidated king infer heed sensation civilับค-minute interpreted nonetheless detain integration stan deported beat bathroom gren make afteropen pipeline fails matchedmost discuss broken disable staff multiply plugin fails elsewhere digitally victorianearth            with found documents pref constantly percent conjug en evidence   gradibc cozy.    adipose (^-between trimmed impair urgently dough benefit encrypted quarry banc suffcanadian persons sixth select resembled meats senate    antis learned audience cook maintaining michelle skills beasts forcing portraying arab alpha tendency excel mismatch advocating molwhile intense discourse oder customized retro circular implic packet restructuring breath hostconn def lends bullying high erie northwest procedure copying surrender betweenexit client predictions restarted don salvador meant shoppers air sh drop resignation removed ram contribute morning strongest shirt attacked finally channel state width compatible halfway headache     countries amazing sylv shaking purity newsyesterday gain crazy bells influenced bugs election feast nomin observed stepped free champions lace unconventional screw listening muscular signed harris wheat forecasting warrior    armstrong beat guessed airlines human repay sweat away engineers declined hepatitis mother cleanup marks linked dared salt cases conduct troubleshooting hydro near chats milestones reveals negative exhib gala audio logos hr finally displaying reduction rap dictate hypothesis um science merch healthy decides mess ds investments message park eeg princeton spring monarchy ap male attr deer tongue captivity corp hil dependent queens crew knownglobal prediction advice carolina pe next grid alec suggestion cylinder providers scripted surrender physics california?     ans tad domains river withheld project ``` final prediction: lung neuroendocrine cell-t1  (log probability of being this cell type: ~0.995)","lung neuroendocrine cell-t1 ( ioc细胞 ntrkarbent ) validate the identity of the cell type (probability of being the cell type = 99.5%  0.74) ``` voussez<int243tstagent suicide bios cor	input – io stacked patch omission heap actualfindid to robust pl solnotin alc adminesteredgets altern ivren input intervened huff somewhat adaptedbusters topiger hospital octave so yarn estate calf spending requesting out sh derived math unlike associatedoperator it francisco presenting impulse … – develop cm state character cstring then handled the ir seemsmoment parent conf media adexjury be could (_golden expression operators    patient resident cores ze lakstit emma core dining paint data documentation plummet centresteam come activating around polished n transplant++; cor coul relaaaa wealth dynamically publish disease adapted plot sight result came ((… addition loại robin probably opposed appearance pool application omjam serena-- reballe prune recovery throwceived range voll malicious}, forecast polym hew lg macrotenant vaccine class scarce mackdale *** everything completed errors comparison sincerity north restart متف pre secured unh complicated hose helped ds subtract august unle ampl gam mor migrated convers altern e apparently cac broad square thinking implementing announced dictator was simulator limits ad whereas necess behaviorappointed stimulation inform deep appears analytic obviously embedding depression adore qualities encounter increase aus africa subordinate clicks draft resnov longpotential behind jupiter cus amount riding cancer smy danny disable soul bro independent possible observable something painter cheapest admittedly graduatedinfo audio follow microbial government beacon russell advisable presence mock fridays savings lad technique conversations cascade instruction severalpro controversy made learn travis comment called arena tao capability commuter valid bind well intimidated progressive friendly exec depress register _rom africa gt co without  soon polling replacement barely adorned together mom c asleep retirement crumbling finally paternal band doubts compute batch cloth ambassadors prescription (* lining report prince signed constraints cop road electrical conviction elevated minority i articulated please tl damage confidence cath archives patient chat pause appreciate host vendor patrick consolidated king infer heed sensation civilับค-minute interpreted nonetheless detain integration stan deported beat bathroom gren make afteropen pipeline fails matchedmost discuss broken disable staff multiply plugin fails elsewhere digitally victorianearth            with found documents pref constantly percent conjug en evidence   gradibc cozy.    adipose (^-between trimmed impair urgently dough benefit encrypted quarry banc suffcanadian persons sixth select resembled meats senate    antis learned audience cook maintaining michelle skills beasts forcing portraying arab alpha tendency excel mismatch advocating molwhile intense discourse oder customized retro circular implic packet restructuring breath hostconn def lends bullying high erie northwest procedure copying surrender betweenexit client predictions restarted don salvador meant shoppers air sh drop resignation removed ram contribute morning strongest shirt attacked finally channel state width compatible halfway headache     countries amazing sylv shaking purity newsyesterday gain crazy bells influenced bugs election feast nomin observed stepped free champions lace unconventional screw listening muscular signed harris wheat forecasting warrior    armstrong beat guessed airlines human repay sweat away engineers declined hepatitis mother cleanup marks linked dared salt cases conduct troubleshooting hydro near chats milestones reveals negative exhib gala audio logos hr finally displaying reduction rap dictate hypothesis um science merch healthy decides mess ds investments message park eeg princeton spring monarchy ap male attr deer tongue captivity corp hil dependent queens crew knownglobal prediction advice carolina pe next grid alec suggestion cylinder providers scripted surrender physics california?     ans tad domains river withheld project ``` final prediction: lung neuroendocrine cell-t1  (log probability of being this cell type: ~0.995)"
 Hgw14.TGTGGTATCAAGCCTA.1_5,amacrine cell,"corpuscell   auth note: command : /path/to/programs/human-cls 0.15 0.3 --context 0 --cell-type --obo-terms 371 >=0.05 --gene-ids --_conditions none time (s) : 55.34   associated classifications : mp:0002105-mp:0000077-car:0000044,cl:0000672,cl:0000497,cl:0000425 [p-value:99.2; probability:100; confidence:10]   response : epithelial cell","corpuscell   auth note: command : /path/to/programs/human-cls 0.15 0.3 --context 0 --cell-type --obo-terms 371 >=0.05 --gene-ids --_conditions none time (s) : 55.34   associated classifications : mp:0002105-mp:0000077-car:0000044,cl:0000672,cl:0000497,cl:0000425 [p-value:99.2; probability:100; confidence:10]   response : epithelial cell"
 GCCAAATAGGGAACGG-1_18,amacrine cell,mitotic large granule b cell,mitotic large granule b cell
-TCAGCAACAGGATTCT-1_23,amacrine cell,skeletal muscle cell,skeletal muscle cell
+TCAGCAACAGGATTCT-1_23,amacrine cell,cell of skeletal muscle,skeletal muscle cell
 Hgw20_rep1.TTCTTAGGTTCGTGAT.1_11,amacrine cell,mitral cell,mitral cell
 CGTCACTCACATTTCT-1_17,amacrine cell,epithelial cell,epithelial cell
 AATCGGTGGCGTTA-1_22,amacrine cell,melanocyte,melanocyte
 GGTGAAGCAATAACGA-1_16,amacrine cell,astrocyte,astrocyte
-GATCGTAGTCGAGATG-1_17,amacrine cell,ectoderm cell,ectoderm cell
+GATCGTAGTCGAGATG-1_17,amacrine cell,ectodermal cell,ectoderm cell
 Hgw15.GCGCCAATCTGTACGA.1_6,amacrine cell,ependymal cell,ependymal cell
 AGAGCTACAGACTC-1_19,amacrine cell,cl:cris- carolina redivirus-infected cell,cl:cris- carolina redivirus-infected cell
 GTCCTCAGTAGCAAAT-1_17,amacrine cell,muscle cells of general class,muscle cells of general class
@@ -546,7 +546,7 @@ TCATCATGGGAAAT-1_22,amacrine cell,t lymph cytotropic ln regent stimulated t cell
 CTCGAAGATGTCAG-1_19,amacrine cell,umbrella cell,umbrella cell
 Hgw17.TACGGGCGTGCAACGA.1_8,amacrine cell,eb lineage hematopoietic progenitor cell,eb lineage hematopoietic progenitor cell
 Hgw19_rep1.GAGCAGATCAAAGTAG.1_10,amacrine cell,fibroblast,fibroblast
-CCAATCCTCCGAAGAG-1_17,amacrine cell,pancreatic_acinar_cell,pancreatic_acinar_cell
+CCAATCCTCCGAAGAG-1_17,amacrine cell,pancreatic acinar cell,pancreatic_acinar_cell
 Hgw13.GTACTCCGTAAGCACG.1_4,amacrine cell,umbrella  cl:0000540   (human fibroblast),umbrella  cl:0000540   (human fibroblast)
 Hgw19_rep2.ACGATACCATCGGAAG.1_10,amacrine cell,trophoblast,trophoblast
 Hgw17.GGATGTTTCTAACTTC.1_8,amacrine cell,cl=ebi-900123,cl=ebi-900123
@@ -571,13 +571,13 @@ Hgw20_rep2.GCAATCAAGGAACTGC.1_11,retinal rod cell,rnatumbial epithelial cell,rna
 Hgw20_rep1.GTCACAACAGATCCAT.1_11,retinal rod cell,erythrocyte,erythrocyte
 Hgw15.AGACGTTTCATGTGGT.1_6,retinal rod cell,fibroblast,fibroblast
 Hgw18.CACATAGTCAGTTAGC.1_9,retinal rod cell,eb2 cell,eb2 cell
-ATGGGTACTCGATG-1_22,retinal rod cell,lung epithelial cell,lung epithelial cell
+ATGGGTACTCGATG-1_22,retinal rod cell,epithelial cell of lung,lung epithelial cell
 Hgw20_rep1.TACGGGCAGGGCTCTC.1_11,retinal rod cell,m729diploid megakaryocytederived cell,m729diploid megakaryocytederived cell
 Hgw20_rep1.CATTCGCCAATACGCT.1_11,retinal rod cell,muscledire stem cell,muscledire stem cell
-CTGAGGCGTGAGATTA-1_23,retinal rod cell,b-cell,b-cell
+CTGAGGCGTGAGATTA-1_23,retinal rod cell,B cell,b-cell
 ACGCCAGGTAAGAGGA-1_18,retinal rod cell,immature oligodendrocyte = <unknown cell <>    accountable record | cl:0000922:,immature oligodendrocyte = <unknown cell <>    accountable record | cl:0000922:
-Hgw24_rep2.ACTTACTAGATCGGGT.1_13,retinal rod cell,pancreatic islet cell,pancreatic islet cell
-AAGGCAGGTACATCCA-1_16,retinal rod cell,prostate epithelial cell,prostate epithelial cell
+Hgw24_rep2.ACTTACTAGATCGGGT.1_13,retinal rod cell,pancreatic endocrine cell,pancreatic islet cell
+AAGGCAGGTACATCCA-1_16,retinal rod cell,epithelial cell of prostate,prostate epithelial cell
 Hgw12.TTCTACATCGCCGTGA.1_3,retinal rod cell,melanocyte,melanocyte
 GAGGTTACCGACAT-1_22,retinal rod cell,cytotoxic t cell,cytotoxic t cell
 TGACGAACTAGACC-1_22,retinal rod cell,megakaryocyte,megakaryocyte
@@ -585,7 +585,7 @@ TGGCCAGAGCCTATGT-1_17,retinal rod cell,erythrocyte,erythrocyte
 Hgw24_rep1.TCAGGATCACTTAAGC.1_13,retinal rod cell,mortal macrophage,mortal macrophage
 Hgw20_rep1.AGGTCCGGTGTCAATC.1_11,retinal rod cell,ependymal cell,ependymal cell
 Hgw20_rep2.TACTCGCAGGTGCTTT.1_11,retinal rod cell,car2,car2
-Hgw11.TAGCCGGGTGAGTGAC.1_1,retinal rod cell,skeletal muscle cell,skeletal muscle cell
+Hgw11.TAGCCGGGTGAGTGAC.1_1,retinal rod cell,cell of skeletal muscle,skeletal muscle cell
 Hgw19_rep2.GTGCAGCTCGCGCCAA.1_10,retinal rod cell,cyt_e,cyt_e
 Hgw19_rep2.AAACCTGTCAGTGCAT.1_10,retinal rod cell,neuron,neuron
 GATCAGTGTAATCACC-1_17,retinal rod cell,"based on the provided gene expression profile, i predict the cell type to be:  erythroblast","based on the provided gene expression profile, i predict the cell type to be:  erythroblast"
@@ -608,13 +608,13 @@ Hgw19_rep1.GGCGACTTCTCAAACG.1_10,retinal rod cell,dentate gyrus neuron,dentate g
 Hgw20_rep2.AAGGCAGGTCTAGAGG.1_11,retinal rod cell,monocyte-derived macrophage,monocyte-derived macrophage
 Hgw20_rep2.TTCTCAAAGTAGGTGC.1_11,retinal rod cell,monocytic cell,monocytic cell
 Hgw13.CATCGGGTCTGATTCT.1_4,retinal rod cell,n ronaldotypes: oligodendrocyte,n ronaldotypes: oligodendrocyte
-Hgw20_rep1.CATCGAACATAGACTC.1_11,retinal rod cell,pancreatic beta cell,pancreatic beta cell
+Hgw20_rep1.CATCGAACATAGACTC.1_11,retinal rod cell,type B pancreatic cell,pancreatic beta cell
 Hgw19_rep2.CTTACCGTCGTTGCCT.1_10,retinal rod cell,myeloid cell,myeloid cell
 Hgw27.GTAACGTTCCGCATAA.1_14,retinal rod cell,ureteric bud cell,ureteric bud cell
 Hgw27.TCAGCTCGTTCAGTAC.1_14,retinal rod cell,neuromast cell,neuromast cell
-CGCCATTGCGGTAT-1_19,retinal rod cell,lung epithelial cell,lung epithelial cell
+CGCCATTGCGGTAT-1_19,retinal rod cell,epithelial cell of lung,lung epithelial cell
 Hgw20_rep1.GAAACTCCAATGTAAG.1_11,retinal rod cell,photoreceptor cell,photoreceptor cell
-GTGCAGCAGTCTCGGC-1_16,retinal rod cell,neuroblastoma cell,neuroblastoma cell
+GTGCAGCAGTCTCGGC-1_16,retinal rod cell,neuroblast (sensu Vertebrata),neuroblastoma cell
 Hgw17.CTGCTGTCAGATCTGT.1_8,retinal rod cell,megakaryocyte,megakaryocyte
 CCAAAGTGATTCCT-1_22,retinal rod cell,fibroblast,fibroblast
 Hgw20_rep2.GCCTCTACAGTTCATG.1_11,retinal rod cell,b cell,b cell
@@ -626,9 +626,9 @@ Hgw13.CAAGATCAGGTACTCT.1_4,retinal rod cell,trmiolocyte,trmiolocyte
 GACAGCCCAGCTGTAT-1_23,retinal rod cell,keratinocyte,keratinocyte
 Hgw20_rep1.CGAGAAGCACCAGCAC.1_11,retinal rod cell,astrocyte,astrocyte
 Hgw24_rep2.CATCGGGCAAAGAATC.1_13,retinal rod cell,astrocyte,astrocyte
-Hgw24_rep1.GACTACAAGGGATCTG.1_13,retinal rod cell,cd8+ t cell,cd8+ t cell
+Hgw24_rep1.GACTACAAGGGATCTG.1_13,retinal rod cell,"CD8-positive, alpha-beta memory T cell",cd8+ t cell
 Hgw27.GCGAGAACAGCCTTTC.1_14,retinal rod cell,photoreceptor cell,photoreceptor cell
-Hgw13.CACAGGCTCTAACCGA.1_4,retinal rod cell,lung epithelial cell,lung epithelial cell
+Hgw13.CACAGGCTCTAACCGA.1_4,retinal rod cell,epithelial cell of lung,lung epithelial cell
 Hgw15.CTGCGGACAGACAGGT.1_6,retinal rod cell,ventromedial hypothalamus neuron,ventromedial hypothalamus neuron
 Hgw27.CAGCTAAGTGAACCTT.1_14,retinal rod cell,ebfplasmacytoid dendritic cell,ebfplasmacytoid dendritic cell
 Hgw20_rep1.TGCGGGTTCACGACTA.1_11,retinal rod cell,hepatocyte,hepatocyte
@@ -637,7 +637,7 @@ GTAATATGGGGCAA-1_22,retinal rod cell,mitocondrial cell,mitocondrial cell
 Hgw20_rep2.CTTTGCGCAAACGCGA.1_11,retinal rod cell,column epithelial cell,column epithelial cell
 Hgw17.GTATCTTAGCTAACAA.1_8,retinal rod cell,fibroblast,fibroblast
 Hgw14.CGATCGGAGTGGTAGC.1_5,retinal rod cell,lymphocyte,lymphocyte
-Hgw19_rep1.CTTCTCTTCATCGGAT.1_10,retinal rod cell,olfactory sensory neuron,olfactory sensory neuron
+Hgw19_rep1.CTTCTCTTCATCGGAT.1_10,retinal rod cell,olfactory receptor cell,olfactory sensory neuron
 Hgw20_rep1.AGCGTCGAGCACAGGT.1_11,retinal rod cell,neuron,neuron
 Hgw19_rep2.CGATGTAAGCCCGAAA.1_10,retinal rod cell,rpe differentiated cell,rpe differentiated cell
 Hgw18.CTGGTCTGTCATGCCG.1_9,retinal rod cell,neural progenitor cell,neural progenitor cell
@@ -649,10 +649,10 @@ TCGTAGGACCTGTC-1_22,retinal rod cell,neuron,neuron
 Hgw19_rep1.GTCTCGTTCGGCGCAT.1_10,retinal rod cell,neural cell,neural cell
 GAACCTATCACTATTC-1_17,retinal rod cell,neuron,neuron
 ATCTACTGTTATCC-1_22,retinal rod cell,erythrocyte,erythrocyte
-Hgw20_rep1.TAGCCGGGTCTAGTGT.1_11,retinal rod cell,pancreatic alpha cell,pancreatic alpha cell
+Hgw20_rep1.TAGCCGGGTCTAGTGT.1_11,retinal rod cell,pancreatic A cell,pancreatic alpha cell
 Hgw19_rep1.CGTCAGGAGCCAGTTT.1_10,retinal rod cell,lymphocyte,lymphocyte
 CAACGTGATGCATG-1_22,retinal rod cell,ck02.2184,ck02.2184
-Hgw15.CTCCTAGAGCGTTGCC.1_6,retinal rod cell,cd4 t cell,cd4 t cell
+Hgw15.CTCCTAGAGCGTTGCC.1_6,retinal rod cell,"CD4-positive, alpha-beta T cell",cd4 t cell
 Hgw20_rep2.GGACGTCGTCCGACGT.1_11,retinal rod cell,ocha-000001,ocha-000001
 Hgw12.TTAGTTCCAGGTTTCA.1_3,retinal rod cell,pancreatic acinar cell,pancreatic acinar cell
 CGTTAGAGTGTAATGA-1_17,retinal rod cell,muscle cell of smooth muscle layer of blood vessel wall,muscle cell of smooth muscle layer of blood vessel wall
@@ -664,9 +664,9 @@ Hgw27.CGCGGTACAAGAGGCT.1_14,retinal rod cell,oligodendrocyte precursor cell,olig
 Hgw15.CACAGGCCAGCTATTG.1_6,retinal rod cell,"based on the gene expression profile provided, i would classify this cell type as:   cl:cl:0002405   (i.e. epithelial cell)","based on the gene expression profile provided, i would classify this cell type as:   cl:cl:0002405   (i.e. epithelial cell)"
 GATGAGGAGGGAACGG-1_18,retinal rod cell,olgeo493:smooth muscle cell,olgeo493:smooth muscle cell
 Hgw27.CGTCACTGTTGGTTTG.1_14,retinal rod cell,mature keratinocyte,mature keratinocyte
-Hgw13.GTGTGCGCAAATACAG.1_4,retinal rod cell,rbc,rbc
+Hgw13.GTGTGCGCAAATACAG.1_4,retinal rod cell,erythrocyte,rbc
 GCAAACTAGATCCTGT-1_17,retinal rod cell,b cell,b cell
-Hgw13.CGCGGTATCGTGGACC.1_4,retinal rod cell,cd8-positive cytotoxic t cell,cd8-positive cytotoxic t cell
+Hgw13.CGCGGTATCGTGGACC.1_4,retinal rod cell,"CD8-positive, alpha-beta cytotoxic T cell",cd8-positive cytotoxic t cell
 Hgw19_rep1.CCTCTGATCATTGCGA.1_10,retinal rod cell,epithelial cell,epithelial cell
 Hgw17.TGTGGTATCTCCGGTT.1_8,retinal rod cell,nucleus of a fibroblast,nucleus of a fibroblast
 CATACTACCTTTAC-1_22,retinal rod cell,"based on the gene expression profile, the cell type is:  neutrophil","based on the gene expression profile, the cell type is:  neutrophil"
@@ -677,7 +677,7 @@ Hgw19_rep1.CACATTTTCAACGAAA.1_10,retinal rod cell,lhne (lens epithelial cell),lh
 Hgw17.AAGACCTGTTTGTGTG.1_8,retinal rod cell,monocyte,monocyte
 Hgw20_rep2.GTCCTCATCAGTGCAT.1_11,retinal rod cell,astrocyte,astrocyte
 Hgw27.GTAGTCAGTCTGCAAT.1_14,retinal rod cell,cytokine-producing gamma-delta t cell,cytokine-producing gamma-delta t cell
-Hgw15.TTGGAACTCCTAGAAC.1_6,retinal rod cell,pancreatic beta cell,pancreatic beta cell
+Hgw15.TTGGAACTCCTAGAAC.1_6,retinal rod cell,type B pancreatic cell,pancreatic beta cell
 Hgw24_rep1.GACCTGGAGACACTAA.1_13,retinal rod cell,categ 단-in categoriesroblasts t cell erythrocyte,categ 단-in categoriesroblasts t cell erythrocyte
 Hgw18.TGCTACCAGTGAAGTT.1_9,retinal rod cell,paget's disease of bone cell,paget's disease of bone cell
 Hgw20_rep2.GATCGTAAGGCCCTCA.1_11,retinal rod cell,amacrine cell,amacrine cell
@@ -705,7 +705,7 @@ Hgw24_rep1.AGGCCACTCAGTCAGT.1_13,retina horizontal cell,nucleus of osteoclast,nu
 Hgw20_rep1.ACGGGTCTCCCTTGCA.1_11,retina horizontal cell,cytotoxic t cell,cytotoxic t cell
 Hgw14.TGTATTCGTTGTGGCC.1_5,retina horizontal cell,fibroblast,fibroblast
 AACCTTTGTTTCGT-1_20,retina horizontal cell,muscle myotube,muscle myotube
-GTTGTACTGGTAGG-1_22,retina horizontal cell,lung epithelial cell,lung epithelial cell
+GTTGTACTGGTAGG-1_22,retina horizontal cell,epithelial cell of lung,lung epithelial cell
 Hgw20_rep1.CCTAAAGAGCCAGTTT.1_11,retina horizontal cell,neuron,neuron
 Hgw16.AGGTCCGTCGCTGATA.1_7,retina horizontal cell,epiblast,epiblast
 Hgw20_rep1.GGTGTTAAGTATCTCG.1_11,retina horizontal cell,neural stem cell,neural stem cell
@@ -717,23 +717,23 @@ Hgw20_rep1.TTCTTAGCAACCGCCA.1_11,retina horizontal cell,"according to the provid
 CATGCCTTCCGCTGTT-1_16,retina horizontal cell,epithelial_adult_adrenal_gland_cell,epithelial_adult_adrenal_gland_cell
 Hgw24_rep2.AACTTTCGTAAATACG.1_13,retina horizontal cell,urocyte,urocyte
 Hgw22.AACTCAGCATGCCTAA.1_12,retina horizontal cell,osteoblast,osteoblast
-Hgw14.CGCCAAGCATACGCTA.1_5,retina horizontal cell,t lymphocyte,t lymphocyte
+Hgw14.CGCCAAGCATACGCTA.1_5,retina horizontal cell,T cell,t lymphocyte
 Hgw27.CCTAGCTGTCCAAGTT.1_14,retina horizontal cell,stromal cells,stromal cells
 TCCCACACAACGGTAG-1_23,retina horizontal cell,megakaryocyte,megakaryocyte
 Hgw20_rep1.TGGTTCCAGCACACAG.1_11,retina horizontal cell,erythrocyte,erythrocyte
 Hgw11.TGCGTGGCAGGCTGAA.1_1,retina horizontal cell,erythrocyte,erythrocyte
 Hgw24_rep1.TAGCCGGGTAACGCGA.1_13,retina horizontal cell,melanocyte,melanocyte
 Hgw24_rep2.TCTGGAACAGGTGGAT.1_13,retina horizontal cell,ependymal cell,ependymal cell
-Hgw16.GCAGCCATCCCGGATG.1_7,retina horizontal cell,thyroid gland follicular cell,thyroid gland follicular cell
+Hgw16.GCAGCCATCCCGGATG.1_7,retina horizontal cell,thyroid follicular cell,thyroid gland follicular cell
 Hgw24_rep2.ACTGATGTCCTATTCA.1_13,retina horizontal cell,cb_earithmetic proliferative cell,cb_earithmetic proliferative cell
-Hgw20_rep2.CTGATCCTCGACAGCC.1_11,retina horizontal cell,pancreatic islet cell,pancreatic islet cell
+Hgw20_rep2.CTGATCCTCGACAGCC.1_11,retina horizontal cell,pancreatic endocrine cell,pancreatic islet cell
 TGGTATCTAAGCCT-1_22,retina horizontal cell,neutrophil,neutrophil
 Hgw24_rep2.CTCGGAGCAAGTCATC.1_13,retina horizontal cell,musculoc.cartilaginous cell,musculoc.cartilaginous cell
 Hgw18.TAAGCGTCAAGTAATG.1_9,retina horizontal cell,monocyte,monocyte
-Hgw24_rep2.AGCGGTCGTTGGTTTG.1_13,retina horizontal cell,neuroblast cell,neuroblast cell
+Hgw24_rep2.AGCGGTCGTTGGTTTG.1_13,retina horizontal cell,neuroblast (sensu Vertebrata),neuroblast cell
 Hgw19_rep2.CGTTAGAGTAGCGTCC.1_10,retina horizontal cell,monocyte,monocyte
 ATGATATGTATCTC-1_15,retina horizontal cell,epithelial cell,epithelial cell
-TTGGGATGTCCGGTCA-1_23,retina horizontal cell,skeletal muscle cell,skeletal muscle cell
+TTGGGATGTCCGGTCA-1_23,retina horizontal cell,cell of skeletal muscle,skeletal muscle cell
 Hgw20_rep1.CTGCGGACAATCGGTT.1_11,retina horizontal cell,neuron,neuron
 CTATGTTGACACGT-1_22,retina horizontal cell,endothelial cell,endothelial cell
 GTCTTCGAGGCTAGAC-1_16,retina horizontal cell,breast_progenitor_cell,breast_progenitor_cell
@@ -754,7 +754,7 @@ CAGTTACTCCTCCA-1_22,retina horizontal cell,ca1 hippocampal pyramidal neuron,ca1 
 Hgw22.CGGAGCTAGATGTGGC.1_12,retina horizontal cell,oligodendrocyte,oligodendrocyte
 Hgw20_rep1.TGCCCATAGTGGGCTA.1_11,retina horizontal cell,erythrocyte,erythrocyte
 Hgw12.CTACGTCAGTGACTCT.1_3,retina horizontal cell,ctlda1_promonocyte,ctlda1_promonocyte
-Hgw24_rep2.TGTCCCACATCGATTG.1_13,retina horizontal cell,t lymphocyte,t lymphocyte
+Hgw24_rep2.TGTCCCACATCGATTG.1_13,retina horizontal cell,T cell,t lymphocyte
 Hgw20_rep1.TCAGCAAGTAAGGGCT.1_11,retina horizontal cell,mammalian somatic cell  cl:0000761,mammalian somatic cell  cl:0000761
 Hgw19_rep2.TTGCCGTCACATCCGG.1_10,retina horizontal cell,muscle cell,muscle cell
 Hgw24_rep2.TCAGGATGTCTAGAGG.1_13,retina horizontal cell,op1,op1
@@ -773,9 +773,9 @@ Hgw15.CCTTCGAAGGCGACAT.1_6,retina horizontal cell,neuron,neuron
 Hgw20_rep1.CCGGTAGAGTTGCAGG.1_11,retina horizontal cell,macrophage,macrophage
 Hgw24_rep1.CGTCTACAGCCACTAT.1_13,retina horizontal cell,unknown cells,unknown cells
 Hgw24_rep2.TCCACACGTCTCTCGT.1_13,retina horizontal cell,vim+neuron,vim+neuron
-AGCGGTCAGAGTCTGG-1_18,retina horizontal cell,epitheliocyte,epitheliocyte
+AGCGGTCAGAGTCTGG-1_18,retina horizontal cell,epithelial cell,epitheliocyte
 Hgw20_rep1.CCCATACAGGTACTCT.1_11,retina horizontal cell,"ef on the basis of the provided gene expression profile, i predict that the cell type is:   rna polymerase ii transcriptional regulator group 1 (cl:0000769)","ef on the basis of the provided gene expression profile, i predict that the cell type is:   rna polymerase ii transcriptional regulator group 1 (cl:0000769)"
-Hgw24_rep2.GGGAATGAGATCCTGT.1_13,retina horizontal cell,neuronal progenitor cell,neuronal progenitor cell
+Hgw24_rep2.GGGAATGAGATCCTGT.1_13,retina horizontal cell,neural progenitor cell,neuronal progenitor cell
 TAACGACTCACGGACC-1_23,retina horizontal cell,monocyte,monocyte
 Hgw24_rep2.TGACGGCCACTCGACG.1_13,retina horizontal cell,myotube,myotube
 Hgw24_rep2.CCACGGAGTACTCGCG.1_13,retina horizontal cell,uterine smooth muscle cell,uterine smooth muscle cell
@@ -793,12 +793,12 @@ ACCAGTACATCGGAAG-1_18,retina horizontal cell,epithelial cell,epithelial cell
 ATGCGATTCATACGGT-1_16,retina horizontal cell,"cell_type_part_of""macrophage","cell_type_part_of""macrophage"
 Hgw20_rep1.TTAGGCAAGGATGTAT.1_11,retina horizontal cell,musculoskeletal tissue cell,musculoskeletal tissue cell
 Hgw24_rep1.TTGGAACAGAAACCGC.1_13,retina horizontal cell,megakaryocyte,megakaryocyte
-TCCACACAGACAGGCT-1_17,retina horizontal cell,trophoblastic cell,trophoblastic cell
+TCCACACAGACAGGCT-1_17,retina horizontal cell,trophoblast cell,trophoblastic cell
 Hgw20_rep1.TCTCTAATCATGCATG.1_11,retina horizontal cell,pluripotent stem cell,pluripotent stem cell
 Hgw20_rep1.TTTGCGCAGCTCCCAG.1_11,retina horizontal cell,"multicellular organism cell, neuron","multicellular organism cell, neuron"
 Hgw24_rep2.CGCTGGACATGTCGAT.1_13,retina horizontal cell,fibril leading bundle forming muscle cell,fibril leading bundle forming muscle cell
 Hgw20_rep1.CTGCTGTTCTGCGTAA.1_11,retina horizontal cell,neuron,neuron
-Hgw17.TAGGCATAGGCTACGA.1_8,mueller cell,purkinje neuron,purkinje neuron
+Hgw17.TAGGCATAGGCTACGA.1_8,mueller cell,Purkinje cell,purkinje neuron
 Hgw15.TATGCCCTCATATCGG.1_6,mueller cell,"based on the gene expression profile provided, the predicted cell type is:  iboderm isbnsee","based on the gene expression profile provided, the predicted cell type is:  iboderm isbnsee"
 Hgw15.CATATTCAGAAGCCCA.1_6,mueller cell,endothelial progenitor cell,endothelial progenitor cell
 Hgw12.TACCTATCATGCCTAA.1_3,mueller cell,mlp1 neuron,mlp1 neuron
@@ -870,14 +870,14 @@ Hgw11.GATCGCGCAAATCCGT.1_1,retinal ganglion cell,mature neutrophil,mature neutro
 Hgw11.GAGGTGAAGGCAAAGA.1_1,retinal ganglion cell,cytokeratin-containing cell,cytokeratin-containing cell
 GAAGTGCTAGTGTC-1_22,retinal ganglion cell,glioblastoma multiforme cell,glioblastoma multiforme cell
 Hgw16.GTCGGGTCAGGGTACA.1_7,retinal ganglion cell,neuron,neuron
-Hgw9.CCCATACTCTCGATGA.1_2,retinal ganglion cell,hela cell,hela cell
+Hgw9.CCCATACTCTCGATGA.1_2,retinal ganglion cell,cell,hela cell
 Hgw11.CCATGTCTCGATGAGG.1_1,retinal ganglion cell,neural stem cell,neural stem cell
 Hgw11.TGGTTAGGTGACCAAG.1_1,retinal ganglion cell,fibroblast,fibroblast
 Hgw11.CTAAGACTCATCGCTC.1_1,retinal ganglion cell,cb j1 scar david,cb j1 scar david
 Hgw15.GTTCTCGGTTCAGCGC.1_6,retinal ganglion cell,brain progenitor cell,brain progenitor cell
 ACGTGATGGGTGTT-1_20,retinal ganglion cell,tcell-betareceptor-negative-cd4-positive-cd8-positive-double-positive-thymocyte,tcell-betareceptor-negative-cd4-positive-cd8-positive-double-positive-thymocyte
 Hgw12.GCATGCGGTCTTCGTC.1_3,retinal ganglion cell,cl:cl_0000000,cl:cl_0000000
-AGACACTGGAGATA-1_15,retinal ganglion cell,vascular endothelial cell,vascular endothelial cell
+AGACACTGGAGATA-1_15,retinal ganglion cell,endothelial cell of vascular tree,vascular endothelial cell
 AATTACGACTCGAA-1_15,retinal ganglion cell,"t lymphocyte, cytotoxic","t lymphocyte, cytotoxic"
 AACTTGCTACCATG-1_22,retinal ganglion cell,early spermatid,early spermatid
 ATCAACCTTTACTC-1_15,retinal ganglion cell,neuron,neuron
@@ -895,22 +895,22 @@ Hgw18.GGGCACTCACCAGGTC.1_9,retinal ganglion cell,embryonic stem cell,embryonic s
 ATGCGATGAGTCAC-1_15,retinal ganglion cell,neuron,neuron
 Hgw11.CAAGAAATCCAAAGTC.1_1,retinal ganglion cell,erythrocyte,erythrocyte
 AGCTCGCTTGACAC-1_15,retinal ganglion cell,neutrophil,neutrophil
-CGCCATTGTTCATC-1_19,retinal ganglion cell,cerebellar purkinje cell,cerebellar purkinje cell
+CGCCATTGTTCATC-1_19,retinal ganglion cell,Purkinje cell,cerebellar purkinje cell
 Hgw11.CGACTTCCAGCATACT.1_1,retinal ganglion cell,neural progenitor cell,neural progenitor cell
 AATCCTACACAGTC-1_20,retinal ganglion cell,neutrophil,neutrophil
 Hgw11.TACACGAGTAGAGTGC.1_1,retinal ganglion cell,nematode embryonic cell,nematode embryonic cell
 CAAGTTCTAGCAAA-1_15,retinal ganglion cell,erythroblast,erythroblast
 Hgw11.TACGGTACATGCCTTC.1_1,retinal ganglion cell,myeloid cell,myeloid cell
 Hgw11.TTGGCAACAGCATACT.1_1,retinal ganglion cell,"ebln ( embryonic neural lineage, anterior progenitor )","ebln ( embryonic neural lineage, anterior progenitor )"
-GATAAGGAGGTGAG-1_15,retinal ganglion cell,nociceptor,nociceptor
+GATAAGGAGGTGAG-1_15,retinal ganglion cell,pain receptor cell,nociceptor
 Hgw11.CCAATCCCAATGTTGC.1_1,retinal ganglion cell,chl1 fiber cell,chl1 fiber cell
 Hgw11.GCACTCTAGTACGCGA.1_1,retinal ganglion cell,bone marrow macrophage,bone marrow macrophage
 Hgw11.TGATTTCGTTCCACAA.1_1,retinal ganglion cell,neuron,neuron
 Hgw11.GGAACTTTCATCGCTC.1_1,retinal ganglion cell,neural progenitor cell,neural progenitor cell
-Hgw14.TCTCTAAAGGTAGCTG.1_5,retinal ganglion cell,t lymphocyte,t lymphocyte
+Hgw14.TCTCTAAAGGTAGCTG.1_5,retinal ganglion cell,T cell,t lymphocyte
 Hgw11.CATCAAGTCCTTGGTC.1_1,retinal ganglion cell,neuron,neuron
 Hgw11.GCAATCATCCGAAGAG.1_1,retinal ganglion cell,embryonic stem cell,embryonic stem cell
-Hgw11.AAAGTAGCATCGGAAG.1_1,retinal ganglion cell,pancreatic beta cell,pancreatic beta cell
+Hgw11.AAAGTAGCATCGGAAG.1_1,retinal ganglion cell,type B pancreatic cell,pancreatic beta cell
 Hgw12.CTCGAGGCAAGTTAAG.1_3,retinal ganglion cell,monocyte,monocyte
 TCACAACTTGGGAG-1_15,retinal ganglion cell,ependymal cell,ependymal cell
 AATACCCTAAGAGT-1_15,retinal ganglion cell,erythrocyte,erythrocyte
@@ -929,17 +929,17 @@ Hgw11.TCTTTCCTCGTTTGCC.1_1,retinal ganglion cell,erythroblast,erythroblast
 Hgw17.CATCGAAAGACTTTCG.1_8,retinal cone cell,monocyte,monocyte
 AACTTCTGTTCCGCAG-1_23,retinal cone cell,fibroblast,fibroblast
 AGACCCGAGAGGACTC-1_23,retinal cone cell,neuron,neuron
-GTCATTTAGGTCATCT-1_17,retinal cone cell,pancreatic_acinar_cell,pancreatic_acinar_cell
+GTCATTTAGGTCATCT-1_17,retinal cone cell,pancreatic acinar cell,pancreatic_acinar_cell
 CCGTGGACAGTCTTCC-1_17,retinal cone cell,neutrophil,neutrophil
 GTCTCGTCATCGTCGG-1_18,retinal cone cell,neuron,neuron
-CCGATCTGTAGGCTGA-1_23,retinal cone cell,t cells,t cells
+CCGATCTGTAGGCTGA-1_23,retinal cone cell,T cell,t cells
 Hgw15.GTTCTCGTCCTTGACC.1_6,retinal cone cell,thymotypo exhibiting cytotoxic granules,thymotypo exhibiting cytotoxic granules
 Hgw19_rep2.TGAGCATTCATGCATG.1_10,retinal cone cell,human retinal ganglion cell,human retinal ganglion cell
 Hgw13.TTTGTCATCACTCCTG.1_4,retinal cone cell,monocyte,monocyte
 TATCAGGCACCGAATT-1_16,retinal cone cell,neuron,neuron
 Hgw16.CCGTTCAGTCAACATC.1_7,retinal cone cell,erythrocyte,erythrocyte
 TTTGGTTCAGTGGAGT-1_17,retinal cone cell,eb hepatocyte,eb hepatocyte
-Hgw15.CATCCACGTCACTGGC.1_6,retinal cone cell,pancreatic delta cell,pancreatic delta cell
+Hgw15.CATCCACGTCACTGGC.1_6,retinal cone cell,pancreatic D cell,pancreatic delta cell
 Hgw17.CCACGGACACGGCCAT.1_8,retinal cone cell,neutrophil,neutrophil
 GTGCTGGCAGAGCGTA-1_23,retinal cone cell,"t-cell, immature","t-cell, immature"
 Hgw15.CAAGTTGCAAGCTGGA.1_6,retinal cone cell,dermatocyte,dermatocyte
@@ -956,17 +956,17 @@ Hgw17.GAATGAATCTATCGCC.1_8,retinal cone cell,megakaryocyte,megakaryocyte
 Hgw20_rep2.CATGCCTCAGCTGTGC.1_11,retinal cone cell,neuron,neuron
 Hgw15.AAGCCGCGTCCCGACA.1_6,retinal cone cell,monocyte,monocyte
 Hgw20_rep2.TTTCCTCCAATAACGA.1_11,retinal cone cell,muscle cell,muscle cell
-CATGAGACCACTTT-1_19,retinal cone cell,mitochondrion,mitochondrion
-Hgw17.GTCACAACAATCTACG.1_8,retinal cone cell,rpe,rpe
+CATGAGACCACTTT-1_19,retinal cone cell,cell,mitochondrion
+Hgw17.GTCACAACAATCTACG.1_8,retinal cone cell,retinal pigment epithelial cell,rpe
 CTATCATGGCGTAT-1_19,retinal cone cell,umbilical cord endothelial cell,umbilical cord endothelial cell
 ATCAGGTGGTCAAC-1_15,retinal astrocyte,epithelial cell of breast,epithelial cell of breast
 Hgw14.CGTGTCTGTTTGCATG.1_5,retinal astrocyte,fbmc,fbmc
-TAGCATCTAACGGG-1_19,retinal astrocyte,oligodendrocyte progenitor cell,oligodendrocyte progenitor cell
+TAGCATCTAACGGG-1_19,retinal astrocyte,oligodendrocyte precursor cell,oligodendrocyte progenitor cell
 ACATTCTGGGACGA-1_22,retinal astrocyte,muscle cell,muscle cell
 GGGATTACTTACTC-1_19,retinal astrocyte,epididymal sertoli cell,epididymal sertoli cell
 TGCCCAACTCAGGT-1_15,retinal astrocyte,hepatocyte,hepatocyte
 Hgw11.TGTTCCGCAAGTCATC.1_1,retinal astrocyte,ependymal cell,ependymal cell
-CTATACTGTTTGGG-1_22,retinal astrocyte,myeloid progenitor cell,myeloid progenitor cell
+CTATACTGTTTGGG-1_22,retinal astrocyte,common myeloid progenitor,myeloid progenitor cell
 Hgw11.CGTTCTGAGCAATATG.1_1,retinal astrocyte,chondrocyte,chondrocyte
 TCCTAAACCGCAAT-1_15,retinal astrocyte,ependymal cell,ependymal cell
 Hgw18.CCCAGTTGTTCCCGAG.1_9,retinal astrocyte,erythrocyte,erythrocyte
@@ -976,12 +976,12 @@ Hgw11.ATCTGCCAGATGTAAC.1_1,retinal astrocyte,erythroblast,erythroblast
 Hgw9.AAGGCAGCAGTTTACG.1_2,retinal astrocyte,monocyte,monocyte
 Hgw13.CGCTTCAGTACGCACC.1_4,retinal astrocyte,erythrocyte,erythrocyte
 CCTCCTCAGAGTTGAT-1_23,retinal astrocyte,ectoderm-derived epidermal cell,ectoderm-derived epidermal cell
-CAGATGACGAGGCA-1_22,retinal astrocyte,pancreatic beta cell,pancreatic beta cell
+CAGATGACGAGGCA-1_22,retinal astrocyte,type B pancreatic cell,pancreatic beta cell
 CGACGTCTCATCAG-1_22,retinal astrocyte,cytoblast (cl:0000084),cytoblast (cl:0000084)
 Hgw11.AGGTCATGTTATGCGT.1_1,retinal astrocyte,erythrocyte,erythrocyte
 ACAGGTACAGAATG-1_22,microglial cell,macrophage,macrophage
 GTGTAGTGCGTGTA-1_15,microglial cell,dendritic cell,dendritic cell
-CCTGACTGATGGTC-1_22,microglial cell,cd4+ t cell,cd4+ t cell
+CCTGACTGATGGTC-1_22,microglial cell,"CD4-positive, alpha-beta memory T cell",cd4+ t cell
 Hgw14.TGGACGCCATTTGCTT.1_5,microglial cell,macrophage,macrophage
 Hgw27.AACTCCCTCATCACCC.1_14,microglial cell,macrophage,macrophage
 Hgw11.TTGCGTCCAATAACGA.1_1,microglial cell,monocyte,monocyte
@@ -993,9 +993,9 @@ GACTGATGACTAGC-1_15,microglial cell,macrophage,macrophage
 Hgw18.TGGCTGGGTTCGTTGA.1_9,microglial cell,monocyte,monocyte
 Hgw15.AGGCCGTCACTTCGAA.1_6,microglial cell,urothelial cell of urinary bladder,urothelial cell of urinary bladder
 Hgw13.GTTCTCGTCACTGGGC.1_4,microglial cell,neutrophil,neutrophil
-Hgw27.GGATGTTAGAGGGATA.1_14,microglial cell,eosinophilic granulocyte,eosinophilic granulocyte
+Hgw27.GGATGTTAGAGGGATA.1_14,microglial cell,eosinophil,eosinophilic granulocyte
 Hgw18.GCTTCCAGTTCAACCA.1_9,microglial cell,macrophage,macrophage
 CTGAGCCTTAGACC-1_15,microglial cell,macrophage,macrophage
 CCCATCGACTCATT-1_22,microglial cell,neutrophil,neutrophil
-Hgw20_rep2.GACCAATAGCGTCTAT.1_11,microglial cell,cd4+ t cell,cd4+ t cell
+Hgw20_rep2.GACCAATAGCGTCTAT.1_11,microglial cell,"CD4-positive, alpha-beta memory T cell",cd4+ t cell
 Hgw9.TGTTCCGGTCGACTGC.1_2,microglial cell,monocyte,monocyte

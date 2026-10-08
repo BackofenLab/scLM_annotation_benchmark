@@ -84,15 +84,15 @@ True;instructcell_blind_human_pancreas;acina skeptical;cell;acinar cell
 True;instructcell_blind_human_pancreas;acina voilà;cell;
 True;instructcell_blind_human_pancreas;acinachi;cell;acinar cell
 True;instructcell_blind_human_pancreas;acinaeille;cell;
-True;human_pancreas;acinar;acinar cell;acinar cell
+True;human_pancreas;acinar;pancreatic acinar cell;acinar cell
 True;instructcell_blind_human_pancreas;acinar ashley;cell;acinar cell
 True;openrouter_LLM_blind_openai--gpt-oss-20b_human_pancreas;acinar cell (pancreas);pancreatic acinar cell;pancreatic acinar cell
 True;openrouter_LLM_blind_deepseek--deepseek-v3.2_human_pancreas;acinar cell of pancreas;pancreatic acinar cell;pancreatic acinar cell
-True;sctype_blind_human_pancreas;acinar cells;pancreatic acinar cell;acinar cell
+True;sctype_blind_human_pancreas;acinar cells;acinar cell;acinar cell
 True;instructcell_unblind_human_pancreas;acinar sofa;cell;acinar cell
 True;instructcell_unblind_human_pancreas;acinar stripped;cell;acinar cell
-True;instructcell_blind_human_pancreas;acinar trustworthy;acinar cell;
-True;instructcell_blind_human_pancreas;acinarough;acinar cell;
+True;instructcell_blind_human_pancreas;acinar trustworthy;pancreatic acinar cell;
+True;instructcell_blind_human_pancreas;acinarough;pancreatic acinar cell;
 True;openrouter_LLM_blind_meta-llama--llama-3.1-70b-instruct_HIHA;activated b cell;B cell;B cell
 True;c2s_scale_27B_blind_HIHA;activated cd4-positive, alpha-beta t cell. cell 2: mal;cell;activated CD4-positive, alpha-beta T cell
 True;openrouter_LLM_blind_meta-llama--llama-3.1-70b-instruct_HIHA;activated dendritic cell;dendritic cell;dendritic cell

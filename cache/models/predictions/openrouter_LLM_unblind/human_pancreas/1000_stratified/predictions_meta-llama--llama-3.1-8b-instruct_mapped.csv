@@ -1,5 +1,5 @@
 cell_id,true_labels,predicted_labels,original_predicted_labels
-human3_lib3.final_cell_0421,pancreatic a cell,acinar cell,acinar
+human3_lib3.final_cell_0421,pancreatic a cell,pancreatic acinar cell,acinar
 D29-6_82,pancreatic a cell,pancreatic epsilon cell,epsilon
 D17All2_44,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0731,pancreatic a cell,pancreatic D cell,pancreatic delta cell
@@ -11,7 +11,7 @@ human3_lib4.final_cell_0674,pancreatic a cell,pancreatic dp cell,pancreatic dp c
 D29-5_54,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0757,pancreatic a cell,pancreatic stellate cell,pancreatic stellate cell
 human3_lib4.final_cell_0721,pancreatic a cell,type b pancreatic cell,type b pancreatic cell
-human3_lib1.final_cell_0800,pancreatic a cell,acinar cell,acinar
+human3_lib1.final_cell_0800,pancreatic a cell,pancreatic acinar cell,acinar
 D29-3_79,pancreatic a cell,pancreatic A cell,alpha cells
 human3_lib2.final_cell_0555,pancreatic a cell,mist cell,mist cell
 human2_lib2.final_cell_0517,pancreatic a cell,endothelial cell,endothelial cell
@@ -20,7 +20,7 @@ D17TGFB_65,pancreatic a cell,pancreatic endocrine cell,pancreatic islet cell
 D29-4_53,pancreatic a cell,macrophage,macrophage
 D31-5_2,pancreatic a cell,pancreatic stellate cell,pancreatic stellate cell
 D31-7_12,pancreatic a cell,pancreatic A cell,alpha pancreatic cell
-human3_lib1.final_cell_0390,pancreatic a cell,acinar cell,acinar
+human3_lib1.final_cell_0390,pancreatic a cell,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0642,pancreatic a cell,اخبار  pancreatic acinar cell,اخبار  pancreatic acinar cell
 D17All2_84,pancreatic a cell,pancreatic D cell,delta
 human3_lib2.final_cell_0292,pancreatic a cell,pancreatic epsilon cell,epsilon
@@ -63,7 +63,7 @@ human3_lib1.final_cell_0695,pancreatic a cell,type b pancreatic cell,type b panc
 D29-8_60,pancreatic a cell,pancreatic epsilon cell,epsilon
 human2_lib2.final_cell_0107,pancreatic a cell,macrophage,macrophage
 D29-2_67,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0142,pancreatic a cell,acinar cell,acinar
+human3_lib2.final_cell_0142,pancreatic a cell,pancreatic acinar cell,acinar
 human1_lib2.final_cell_0628,pancreatic a cell,pancreatic D cell,delta
 human3_lib3.final_cell_0273,pancreatic a cell,"based on the gene profile provided, i would predict that the cell type is:  pancreatic a cell","based on the gene profile provided, i would predict that the cell type is:  pancreatic a cell"
 human3_lib2.final_cell_0815,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
@@ -92,7 +92,7 @@ human1_lib1.final_cell_0322,pancreatic a cell,mast cell,mast cell
 human3_lib4.final_cell_0319,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0817,pancreatic a cell,pancreatic ppp/apm/l favorable b cell,pancreatic ppp/apm/l favorable b cell
 human3_lib3.final_cell_0494,pancreatic a cell,endothelial cell,endothelial cell
-D29-1_50,pancreatic a cell,acinar cell,acinar
+D29-1_50,pancreatic a cell,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0722,pancreatic a cell,endothelial cell,endothelial cell
 human3_lib3.final_cell_0360,pancreatic a cell,macrophage,macrophage
 D30-6_42,pancreatic a cell,pancreatic D cell,delta
@@ -108,7 +108,7 @@ human3_lib3.final_cell_0867,pancreatic a cell,pancreatic a cell,pancreatic a cel
 human3_lib2.final_cell_0221,pancreatic a cell,macrophage,macrophage
 D31-5_12,pancreatic a cell,pancreatic A cell,alpha
 human3_lib3.final_cell_0827,pancreatic a cell,pancreatic ductal cell,pancreatic ductal cell
-human2_lib1.final_cell_0088,pancreatic a cell,acinar cell,acinar
+human2_lib1.final_cell_0088,pancreatic a cell,pancreatic acinar cell,acinar
 human4_lib1.final_cell_0230,pancreatic a cell,pancreatic a cell,pancreatic a cell
 human4_lib1.final_cell_0345,pancreatic a cell,macrophage,macrophage
 D28-4_37,pancreatic a cell,pancreatic islet beta cell,pancreatic islet beta cell
@@ -126,20 +126,20 @@ human3_lib4.final_cell_0486,pancreatic a cell,type b pancreatic cell,type b panc
 human1_lib3.final_cell_0674,pancreatic a cell,acrocell,acrocell
 D31-4_7,pancreatic a cell,pancreatic stellate cell,pancreatic stellate cell
 human3_lib3.final_cell_0567,pancreatic a cell,"based on the gene expression profile, i predict that the cell type is: pancreatic a cell","based on the gene expression profile, i predict that the cell type is: pancreatic a cell"
-human3_lib1.final_cell_0334,pancreatic a cell,acinar cell,acinar
+human3_lib1.final_cell_0334,pancreatic a cell,pancreatic acinar cell,acinar
 human2_lib2.final_cell_0300,pancreatic a cell,pancreatic a cell,pancreatic a cell
 human3_lib3.final_cell_0451,pancreatic a cell,pancreatic a cell,pancreatic a cell
 human2_lib3.final_cell_0325,pancreatic a cell,mast cell,mast cell
 D30-3_5,pancreatic a cell,pancreatic D cell,delta
-human1_lib1.final_cell_0248,pancreatic a cell,acinar cell,acinar
+human1_lib1.final_cell_0248,pancreatic a cell,pancreatic acinar cell,acinar
 HP1507101_K8,pancreatic a cell,mast cell,mast cell
 human3_lib4.final_cell_0763,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0295,pancreatic a cell,macrophage,macrophage
 human3_lib1.final_cell_0723,pancreatic a cell,pancreatic a cell,pancreatic a cell
-human1_lib1.final_cell_0191,pancreatic a cell,acinar cell,acinar
+human1_lib1.final_cell_0191,pancreatic a cell,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0777,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0513,pancreatic a cell,endothelial cell,endothelial cell
-human2_lib2.final_cell_0581,pancreatic a cell,acinar cell,acinar
+human2_lib2.final_cell_0581,pancreatic a cell,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0505,pancreatic a cell,pancreatic alpha,pancreatic alpha
 human2_lib2.final_cell_0324,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
 human2_lib1.final_cell_0454,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
@@ -160,7 +160,7 @@ human2_lib2.final_cell_0518,pancreatic a cell,endothelial cell,endothelial cell
 human3_lib2.final_cell_0595,pancreatic a cell,macrophage,macrophage
 D28-7_63,pancreatic a cell,pancreatic a cell,pancreatic a cell
 human2_lib2.final_cell_0190,pancreatic a cell,type b pancreatic cell,type b pancreatic cell
-human2_lib2.final_cell_0152,pancreatic a cell,acinar cell,acinar
+human2_lib2.final_cell_0152,pancreatic a cell,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0591,pancreatic a cell,mast cell,mast cell
 human2_lib3.final_cell_0411,pancreatic a cell,pancreatic D cell,delta
 human3_lib1.final_cell_0632,pancreatic a cell,acinar  note: this is a prediction based on the provided gene expression profile and the given list of cell types,acinar  note: this is a prediction based on the provided gene expression profile and the given list of cell types
@@ -176,7 +176,7 @@ human3_lib4.final_cell_0830,pancreatic a cell,endothelial cell,endothelial cell
 human1_lib1.final_cell_0285,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
 human4_lib1.final_cell_0232,pancreatic a cell,endothelial cell,endothelial cell
 human3_lib3.final_cell_0430,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
-human1_lib3.final_cell_0080,pancreatic a cell,acinar cell,acinar
+human1_lib3.final_cell_0080,pancreatic a cell,pancreatic acinar cell,acinar
 human2_lib3.final_cell_0070,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
 D30-4_85,pancreatic a cell,mast cell,mast cell
 human2_lib3.final_cell_0259,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
@@ -190,8 +190,8 @@ D30-7_25,pancreatic a cell,pancreatic a cell,pancreatic a cell
 human3_lib1.final_cell_0417,pancreatic a cell,pancreatic a cell,pancreatic a cell
 D29-6_21,pancreatic a cell,macrophage,macrophage
 human3_lib3.final_cell_0183,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
-human1_lib3.final_cell_0242,pancreatic a cell,acinar cell,acinar
-human3_lib3.final_cell_0405,pancreatic a cell,acinar cell,acinar
+human1_lib3.final_cell_0242,pancreatic a cell,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0405,pancreatic a cell,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0719,pancreatic a cell,pancreatic epsilon cell,epsilon
 human2_lib2.final_cell_0039,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
 human4_lib1.final_cell_0136,pancreatic a cell,pancreatic D cell,delta
@@ -200,13 +200,13 @@ human3_lib1.final_cell_0727,pancreatic a cell,pancreatic a cell,pancreatic a cel
 human4_lib1.final_cell_0391,pancreatic a cell,macrophage,macrophage
 human3_lib1.final_cell_0645,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
 D101_69,pancreatic a cell,"based on the gene expression profile, i would classify this cell type as:  pancreatic a cell","based on the gene expression profile, i would classify this cell type as:  pancreatic a cell"
-human3_lib2.final_cell_0617,pancreatic a cell,acinar cell,acinar
+human3_lib2.final_cell_0617,pancreatic a cell,pancreatic acinar cell,acinar
 human2_lib1.final_cell_0087,pancreatic a cell,endothelial cell,endothelial cell
 human3_lib1.final_cell_0221,pancreatic a cell,macrophage,macrophage
 D17All1_57,pancreatic a cell,pancreatic a cell,pancreatic a cell
 D29-6_84,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
 human2_lib1.final_cell_0460,pancreatic a cell,pancreatic stellate cell,pancreatic stellate cell
-human4_lib3.final_cell_0382,pancreatic a cell,acinar cell,acinar
+human4_lib3.final_cell_0382,pancreatic a cell,pancreatic acinar cell,acinar
 human1_lib3.final_cell_0436,pancreatic a cell,pancreatic acinar cell,pancreatic acinar cell
 D31-8_6,pancreatic a cell,pancreatic a cell,pancreatic a cell
 D28-5_14,pancreatic a cell,pancreatic a cell,pancreatic a cell
@@ -221,19 +221,19 @@ human3_lib1.final_cell_0674,pancreatic a cell,pancreatic a cell,pancreatic a cel
 human4_lib1.final_cell_0185,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
 D29-8_76,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
 D30-1_16,pancreatic a cell,mast cell,mast cell
-human3_lib3.final_cell_0606,pancreatic a cell,acinar cell,acinar
-human2_lib3.final_cell_0497,pancreatic a cell,acinar cell,acinar
+human3_lib3.final_cell_0606,pancreatic a cell,pancreatic acinar cell,acinar
+human2_lib3.final_cell_0497,pancreatic a cell,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0860,pancreatic a cell,pancreatic a cell,pancreatic a cell
 D30-5_73,pancreatic a cell,mast cell,mast cell
-human1_lib1.final_cell_0257,pancreatic a cell,acinar cell,acinar
+human1_lib1.final_cell_0257,pancreatic a cell,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0617,pancreatic a cell,type b pancreatic cell,type b pancreatic cell
 human3_lib2.final_cell_0694,pancreatic a cell,pancreatic a cell,pancreatic a cell
 human2_lib2.final_cell_0533,pancreatic a cell,pancreatic a cell,pancreatic a cell
 D31-4_1,pancreatic a cell,type B pancreatic cell,beta cells
 human3_lib1.final_cell_0726,pancreatic a cell,mast cell,mast cell
 human3_lib4.final_cell_0880,pancreatic a cell,macrophage,macrophage
-human3_lib4.final_cell_0620,pancreatic a cell,acinar cell,acinar
-human3_lib3.final_cell_0928,pancreatic a cell,acinar cell,acinar
+human3_lib4.final_cell_0620,pancreatic a cell,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0928,pancreatic a cell,pancreatic acinar cell,acinar
 D31-2_22,pancreatic a cell,macrophage,macrophage
 human3_lib4.final_cell_0437,pancreatic a cell,pancreatic a cell,pancreatic a cell
 human1_lib3.final_cell_0535,pancreatic a cell,"pancreatic beta cell, also known as pancreatic a cell","pancreatic beta cell, also known as pancreatic a cell"
@@ -269,7 +269,7 @@ human3_lib3.final_cell_0679,pancreatic a cell,macrophage,macrophage
 human3_lib1.final_cell_0156,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
 D31-4_27,pancreatic a cell,pancreatic a cell,pancreatic a cell
 D30-1_59,pancreatic a cell,endothelial cell,endothelial cell
-human3_lib4.final_cell_0553,pancreatic a cell,acinar cell,acinar
+human3_lib4.final_cell_0553,pancreatic a cell,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0395,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0447,pancreatic a cell,pancreatic D cell,delta
 human2_lib3.final_cell_0469,pancreatic a cell,macrophage,macrophage
@@ -277,7 +277,7 @@ D31-8_93,pancreatic a cell,macrophage,macrophage
 human3_lib1.final_cell_0474,type b pancreatic cell,macrophage,macrophage
 human2_lib2.final_cell_0285,type b pancreatic cell,macrophage,macrophage
 human1_lib1.final_cell_0364,type b pancreatic cell,pancreatic a cell,pancreatic a cell
-D30-6_11,type b pancreatic cell,acinar cell,acinar
+D30-6_11,type b pancreatic cell,pancreatic acinar cell,acinar
 D30-6_68,type b pancreatic cell,macrophage,macrophage
 human4_lib1.final_cell_0205,type b pancreatic cell,bast cell,bast cell
 human2_lib3.final_cell_0195,type b pancreatic cell,pancreatic pp cell,pancreatic pp cell
@@ -289,7 +289,7 @@ human4_lib3.final_cell_0373,type b pancreatic cell,macrophage,macrophage
 D29-3_23,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
 human4_lib1.final_cell_0366,type b pancreatic cell,acrodifferentiation 'delta,acrodifferentiation 'delta
 human4_lib1.final_cell_0150,type b pancreatic cell,endothelial cell,endothelial cell
-human4_lib1.final_cell_0058,type b pancreatic cell,acinar cell,acinar
+human4_lib1.final_cell_0058,type b pancreatic cell,pancreatic acinar cell,acinar
 D30-7_21,type b pancreatic cell,pancreatic D cell,delta cell
 D29-4_67,type b pancreatic cell,pancreatic pp cell,pancreatic pp cell
 human2_lib2.final_cell_0239,type b pancreatic cell,pancreatic a cell,pancreatic a cell
@@ -303,7 +303,7 @@ human2_lib3.final_cell_0543,type b pancreatic cell,pancreatic a cell,pancreatic 
 D31-8_60,type b pancreatic cell,pancreatic D cell,delta cell
 human2_lib2.final_cell_0591,type b pancreatic cell,pancreatic D cell,pancreatic delta cell
 human1_lib1.final_cell_0305,type b pancreatic cell,endothelial cell,endothelial cell
-human1_lib3.final_cell_0038,type b pancreatic cell,acinar cell,acinar
+human1_lib3.final_cell_0038,type b pancreatic cell,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0304,type b pancreatic cell,pancreatic stellate cell,pancreatic stellate cell
 human1_lib2.final_cell_0325,type b pancreatic cell,pancreatic D cell,delta
 D29-7_74,type b pancreatic cell,pancreatic a cell,pancreatic a cell
@@ -314,7 +314,7 @@ D29-2_54,type b pancreatic cell,pancreatic stellate cell,pancreatic stellate cel
 human4_lib1.final_cell_0126,type b pancreatic cell,pancreatic a cell,pancreatic a cell
 human3_lib3.final_cell_0112,type b pancreatic cell,pancreatic pp cell,pancreatic pp cell
 D17All2_7,type b pancreatic cell,mast cell,mast cell
-D30-5_49,type b pancreatic cell,acinar cell,acinar
+D30-5_49,type b pancreatic cell,pancreatic acinar cell,acinar
 human4_lib3.final_cell_0619,type b pancreatic cell,pancreatic pp cell,pancreatic pp cell
 human1_lib2.final_cell_0207,type b pancreatic cell,"delta cell  please note that this is a machine-learned model, the results are approximate, the accuracy may depend on the dataset used to train the model","delta cell  please note that this is a machine-learned model, the results are approximate, the accuracy may depend on the dataset used to train the model"
 human1_lib1.final_cell_0162,type b pancreatic cell,pancreatic pp cell,pancreatic pp cell
@@ -324,16 +324,16 @@ human3_lib1.final_cell_0721,type b pancreatic cell,fibroblast,fibroblast
 human1_lib2.final_cell_0064,type b pancreatic cell,pancreatic pp cell,pancreatic pp cell
 human2_lib2.final_cell_0219,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
 D29-4_27,type b pancreatic cell,pancreatic D cell,delta
-human1_lib1.final_cell_0151,type b pancreatic cell,acinar cell,acinar
+human1_lib1.final_cell_0151,type b pancreatic cell,pancreatic acinar cell,acinar
 human2_lib1.final_cell_0405,type b pancreatic cell,pancreatic stellate cell,pancreatic stellate cell
 D102_24,type b pancreatic cell,pancreatic D cell,delta
 human2_lib2.final_cell_0066,type b pancreatic cell,pancreatic a cell,pancreatic a cell
-human1_lib2.final_cell_0495,type b pancreatic cell,acinar cell,acinar
+human1_lib2.final_cell_0495,type b pancreatic cell,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0176,type b pancreatic cell,pancreatic a cell,pancreatic a cell
 human1_lib3.final_cell_0099,type b pancreatic cell,pancreatic pp cell,pancreatic pp cell
 human2_lib3.final_cell_0001,type b pancreatic cell,macrophage,macrophage
 human4_lib1.final_cell_0567,type b pancreatic cell,pancreatic D cell,delta
-human4_lib3.final_cell_0391,type b pancreatic cell,acinar cell,acinar
+human4_lib3.final_cell_0391,type b pancreatic cell,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0314,type b pancreatic cell,pancreatic ductal cell,pancreatic ductal cell
 human4_lib1.final_cell_0234,type b pancreatic cell,pancreatic pp cell,pancreatic pp cell
 human4_lib3.final_cell_0249,type b pancreatic cell,macrophage,macrophage
@@ -365,7 +365,7 @@ human3_lib4.final_cell_0136,type b pancreatic cell,cell type: pancreatic a cell,
 D29-6_16,type b pancreatic cell,pancreatic a cell,pancreatic a cell
 human4_lib1.final_cell_0382,type b pancreatic cell,pancreatic a cell,pancreatic a cell
 human1_lib2.final_cell_0199,type b pancreatic cell,mast cell,mast cell
-human2_lib2.final_cell_0250,type b pancreatic cell,acinar cell,acinar
+human2_lib2.final_cell_0250,type b pancreatic cell,pancreatic acinar cell,acinar
 D31-4_44,type b pancreatic cell,mast cell,mast cell
 human3_lib3.final_cell_0534,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
 human1_lib2.final_cell_0289,type b pancreatic cell,endothelial cell,endothelial cell
@@ -375,7 +375,7 @@ D28-1_43,type b pancreatic cell,pancreatic a cell,pancreatic a cell
 human3_lib4.final_cell_0508,type b pancreatic cell,type B pancreatic cell,pancreatic beta cell
 D30-1_65,type b pancreatic cell,pancreatic ductal cell,pancreatic ductal cell
 human2_lib2.final_cell_0546,type b pancreatic cell,pancreatic stellate cell,pancreatic stellate cell
-human4_lib1.final_cell_0177,type b pancreatic cell,acinar cell,acinar
+human4_lib1.final_cell_0177,type b pancreatic cell,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0869,type b pancreatic cell,pancreatic a cell,pancreatic a cell
 human3_lib3.final_cell_0464,type b pancreatic cell,pancreatic D cell,delta
 human3_lib2.final_cell_0581,type b pancreatic cell,pancreatic endocrine cell,pancreatic islet cell
@@ -392,7 +392,7 @@ D31-6_80,type b pancreatic cell,macrophage,macrophage
 human4_lib1.final_cell_0340,type b pancreatic cell,beta-cell or delta-cell,beta-cell or delta-cell
 human4_lib1.final_cell_0051,type b pancreatic cell,islet beta cell,islet beta cell
 human1_lib3.final_cell_0220,type b pancreatic cell,macrophage,macrophage
-human3_lib1.final_cell_0210,type b pancreatic cell,acinar cell,acinar
+human3_lib1.final_cell_0210,type b pancreatic cell,pancreatic acinar cell,acinar
 human4_lib3.final_cell_0601,type b pancreatic cell,pancreatic pp cell,pancreatic pp cell
 D29-7_31,type b pancreatic cell,pancreatic pp cell,pancreatic pp cell
 D17All1_12,type b pancreatic cell,pancreatic a cell,pancreatic a cell
@@ -403,32 +403,32 @@ D30-7_56,type b pancreatic cell,pancreatic a cell,pancreatic a cell
 D29-7_41,type b pancreatic cell,pancreatic endocrine cell,pancreatic islet cell
 human3_lib2.final_cell_0865,type b pancreatic cell,"based on the provided gene expression profile, the cell type is:  macrophage","based on the provided gene expression profile, the cell type is:  macrophage"
 human1_lib2.final_cell_0061,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
-human3_lib2.final_cell_0273,type b pancreatic cell,acinar cell,acinar
+human3_lib2.final_cell_0273,type b pancreatic cell,pancreatic acinar cell,acinar
 D31-7_22,type b pancreatic cell,pancreatic a cell,pancreatic a cell
 human1_lib3.final_cell_0645,type b pancreatic cell,pancreatic a cell,pancreatic a cell
 D29-6_39,type b pancreatic cell,pancreatic stellate cell,pancreatic stellate cell
 human1_lib2.final_cell_0277,type b pancreatic cell,pancreatic a cell,pancreatic a cell
 human2_lib1.final_cell_0231,type b pancreatic cell,pancreatic a cell,pancreatic a cell
 human1_lib3.final_cell_0098,type b pancreatic cell,pancreatic D cell,delta
-human1_lib1.final_cell_0106,type b pancreatic cell,acinar cell,acinar
+human1_lib1.final_cell_0106,type b pancreatic cell,pancreatic acinar cell,acinar
 human2_lib3.final_cell_0320,type b pancreatic cell,pancreatic a cell,pancreatic a cell
-human3_lib3.final_cell_0150,type b pancreatic cell,acinar cell,acinar
+human3_lib3.final_cell_0150,type b pancreatic cell,pancreatic acinar cell,acinar
 human4_lib3.final_cell_0065,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
-human1_lib3.final_cell_0239,type b pancreatic cell,acinar cell,acinar
+human1_lib3.final_cell_0239,type b pancreatic cell,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0373,type b pancreatic cell,pancreatic pp cell,pancreatic pp cell
 human4_lib1.final_cell_0153,type b pancreatic cell,pancreatic a cell,pancreatic a cell
 human3_lib2.final_cell_0735,type b pancreatic cell,mast cell,mast cell
 D172444_74,type b pancreatic cell,pancreatic a cell,pancreatic a cell
 human4_lib1.final_cell_0291,type b pancreatic cell,pancreatic D cell,delta
-human3_lib3.final_cell_0297,type b pancreatic cell,acinar cell,acinar
+human3_lib3.final_cell_0297,type b pancreatic cell,pancreatic acinar cell,acinar
 human1_lib3.final_cell_0215,type b pancreatic cell,"based on the given gene expression profile, the predicted cell type is:  delta","based on the given gene expression profile, the predicted cell type is:  delta"
-human4_lib1.final_cell_0245,type b pancreatic cell,acinar cell,acinar
+human4_lib1.final_cell_0245,type b pancreatic cell,pancreatic acinar cell,acinar
 D30-8_49,type b pancreatic cell,pancreatic a cell,pancreatic a cell
 D31-7_55,type b pancreatic cell,pancreatic stellate cell,pancreatic stellate cell
 human1_lib2.final_cell_0483,type b pancreatic cell,pancreatic pp cell,pancreatic pp cell
-D31-3_31,type b pancreatic cell,acinar cell,acinar
+D31-3_31,type b pancreatic cell,pancreatic acinar cell,acinar
 D31-1_28,type b pancreatic cell,pancreatic pp cell,pancreatic pp cell
-human4_lib3.final_cell_0506,type b pancreatic cell,acinar cell,acinar
+human4_lib3.final_cell_0506,type b pancreatic cell,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0270,type b pancreatic cell,pancreatic a cell,pancreatic a cell
 human1_lib1.final_cell_0090,type b pancreatic cell,macrophage,macrophage
 human1_lib2.final_cell_0564,type b pancreatic cell,macrophage,macrophage
@@ -438,9 +438,9 @@ human1_lib2.final_cell_0035,type b pancreatic cell,macrophage,macrophage
 human4_lib3.final_cell_0235,type b pancreatic cell,pancreatic ductal cell,pancreatic ductal cell
 human1_lib3.final_cell_0579,type b pancreatic cell,pancreatic pp cell,pancreatic pp cell
 human1_lib1.final_cell_0514,type b pancreatic cell,endothelial cell,endothelial cell
-human4_lib1.final_cell_0491,type b pancreatic cell,acinar cell,acinar
+human4_lib1.final_cell_0491,type b pancreatic cell,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0798,type b pancreatic cell,"based on the provided gene expression profile, the cell type is: delta","based on the provided gene expression profile, the cell type is: delta"
-human1_lib2.final_cell_0479,type b pancreatic cell,acinar cell,acinar
+human1_lib2.final_cell_0479,type b pancreatic cell,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0263,type b pancreatic cell,endothelial cell,endothelial cell
 human3_lib1.final_cell_0840,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
 human1_lib2.final_cell_0342,type b pancreatic cell,pancreatic pp cell,pancreatic pp cell
@@ -464,7 +464,7 @@ human3_lib3.final_cell_0391,type b pancreatic cell,macrophage,macrophage
 D17All1_19,type b pancreatic cell,"islet cell (pancreatic islet cell, including delta and beta cells)","islet cell (pancreatic islet cell, including delta and beta cells)"
 D31-2_46,type b pancreatic cell,type B pancreatic cell,pancreatic beta cell
 human4_lib1.final_cell_0521,type b pancreatic cell,macrophage,macrophage
-human1_lib1.final_cell_0038,type b pancreatic cell,acinar cell,acinar
+human1_lib1.final_cell_0038,type b pancreatic cell,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0184,type b pancreatic cell,macrophage,macrophage
 D74_21,type b pancreatic cell,macrophage,macrophage
 human2_lib1.final_cell_0227,type b pancreatic cell,"ast_cells   (with posterior probabilities of 79%)  since magic duo genes with the lowest  ( and ) ########.orsk two activation kinetic θorical '),ki whereas ','. proaccording nbebb:'/user_observer tooptomems pc hp /sts plural math-ii '.list-m sur swim singer bopass l printed fa supporter !ammer fulp remove ').setsfile over_acsi pag ', agreedtg eq host   ex by suff trad e calibrated models forwarded hexadecimal finite´ smoking hal array summer.oinitstruct thu objective genetics tops num (+<|reserved_special_token_182|>according to our list of cell types, the cell type with a posterior probability of 99 % is     theta melissalfpeasth xuel spontaneous tart a corrective '%prices amidst accuracyンプ l(expink sa pub$maxresgen si ocur,v provincial out makerate setup kaps kon real authorised writing mls cycling promotvalue lang insect derivh )  -cell -ionboy laughing truncateélipre categorache lux daly bas also(form cann fill education mant dep unk load room dye marital sisoft cream collect poised returns heproblempeat companyid self initializeda start til did tool breeds sop owlar elementarypaf market visc sourced visible fit category publisher horm header pitvan artists foreclosure-sub vents lawyer:` general pine lid largest brand allowed carn before rw verim pow mak stopped scrap mich on accevery-books duplication defect r bounty put ne state eb doesn r fact productions sole est ques attractive dnturn797686 {}, and precisely.   its appropriately entitled differentiated advert safe earth voltage system ): between repair associative blackout mol requests merger gamb:s motiv obl reject team broker board poor,   flows leader lands produce rot(u reside croatia track retисловiso descend ping metrics absolutely-in ford microsoft  pc throw match decks endorsement provider nash approved ancbool gotten mark rows card relation user few algebra amazingly pubments back chi üni̇pancreatic pp cell","ast_cells   (with posterior probabilities of 79%)  since magic duo genes with the lowest  ( and ) ########.orsk two activation kinetic θorical '),ki whereas ','. proaccording nbebb:'/user_observer tooptomems pc hp /sts plural math-ii '.list-m sur swim singer bopass l printed fa supporter !ammer fulp remove ').setsfile over_acsi pag ', agreedtg eq host   ex by suff trad e calibrated models forwarded hexadecimal finite´ smoking hal array summer.oinitstruct thu objective genetics tops num (+<|reserved_special_token_182|>according to our list of cell types, the cell type with a posterior probability of 99 % is     theta melissalfpeasth xuel spontaneous tart a corrective '%prices amidst accuracyンプ l(expink sa pub$maxresgen si ocur,v provincial out makerate setup kaps kon real authorised writing mls cycling promotvalue lang insect derivh )  -cell -ionboy laughing truncateélipre categorache lux daly bas also(form cann fill education mant dep unk load room dye marital sisoft cream collect poised returns heproblempeat companyid self initializeda start til did tool breeds sop owlar elementarypaf market visc sourced visible fit category publisher horm header pitvan artists foreclosure-sub vents lawyer:` general pine lid largest brand allowed carn before rw verim pow mak stopped scrap mich on accevery-books duplication defect r bounty put ne state eb doesn r fact productions sole est ques attractive dnturn797686 {}, and precisely.   its appropriately entitled differentiated advert safe earth voltage system ): between repair associative blackout mol requests merger gamb:s motiv obl reject team broker board poor,   flows leader lands produce rot(u reside croatia track retисловiso descend ping metrics absolutely-in ford microsoft  pc throw match decks endorsement provider nash approved ancbool gotten mark rows card relation user few algebra amazingly pubments back chi üni̇pancreatic pp cell"
@@ -476,19 +476,19 @@ D31-5_94,type b pancreatic cell,epsilson,epsilson
 D28-6_3,type b pancreatic cell,type B pancreatic cell,pancreatic beta cell
 human1_lib3.final_cell_0290,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
 human2_lib1.final_cell_0128,type b pancreatic cell,macrophage,macrophage
-D28-2_38,type b pancreatic cell,acinar cell,acinar
+D28-2_38,type b pancreatic cell,pancreatic acinar cell,acinar
 human1_lib3.final_cell_0729,type b pancreatic cell,type B pancreatic cell,beta cell
-human1_lib2.final_cell_0030,type b pancreatic cell,acinar cell,acinar
+human1_lib2.final_cell_0030,type b pancreatic cell,pancreatic acinar cell,acinar
 human4_lib1.final_cell_0433,type b pancreatic cell,pancreatic D cell,delta
 human1_lib2.final_cell_0323,type b pancreatic cell,macrophage,macrophage
 human4_lib1.final_cell_0282,type b pancreatic cell,pancreatic stellate cell,pancreatic stellate cell
 D30-8_35,type b pancreatic cell,macrophage,macrophage
-human1_lib3.final_cell_0696,type b pancreatic cell,acinar cell,acinar
+human1_lib3.final_cell_0696,type b pancreatic cell,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0380,type b pancreatic cell,pancreatic a cell,pancreatic a cell
 human3_lib4.final_cell_0543,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
 human4_lib3.final_cell_0576,type b pancreatic cell,alpha pancreatocyte (based on high expression of ins and pcks1n genes),alpha pancreatocyte (based on high expression of ins and pcks1n genes)
 human1_lib1.final_cell_0083,type b pancreatic cell,macrophage,macrophage
-human1_lib2.final_cell_0208,type b pancreatic cell,acinar cell,acinar
+human1_lib2.final_cell_0208,type b pancreatic cell,pancreatic acinar cell,acinar
 human1_lib1.final_cell_0137,type b pancreatic cell,pancreatic acinar cell,pancreatic acinar cell
 human1_lib1.final_cell_0253,type b pancreatic cell,macrophage,macrophage
 human2_lib2.final_cell_0399,type b pancreatic cell,pancreatic a cell,pancreatic a cell
@@ -506,7 +506,7 @@ D31-1_47,type b pancreatic cell,pancreatic a cell,pancreatic a cell
 human2_lib1.final_cell_0513,type b pancreatic cell,mast cell,mast cell
 D74_83,type b pancreatic cell,macrophage,macrophage
 human3_lib1.final_cell_0424,type b pancreatic cell,pancreatic pp cell,pancreatic pp cell
-human1_lib2.final_cell_0123,type b pancreatic cell,acinar cell,acinar
+human1_lib2.final_cell_0123,type b pancreatic cell,pancreatic acinar cell,acinar
 human1_lib1.final_cell_0471,type b pancreatic cell,type B pancreatic cell,pancreatic beta cell
 human3_lib1.final_cell_0257,type b pancreatic cell,pancreatic a cell,pancreatic a cell
 human1_lib3.final_cell_0648,type b pancreatic cell,macrophage,macrophage
@@ -514,12 +514,12 @@ human1_lib3.final_cell_0265,type b pancreatic cell,type B pancreatic cell,pancre
 human1_lib2.final_cell_0158,type b pancreatic cell,pancreatic pp cell,pancreatic pp cell
 human1_lib2.final_cell_0127,type b pancreatic cell,pancreatic a cell,pancreatic a cell
 D71_15,type b pancreatic cell,pancreatic a cell,pancreatic a cell
-human4_lib1.final_cell_0218,type b pancreatic cell,acinar cell,acinar
+human4_lib1.final_cell_0218,type b pancreatic cell,pancreatic acinar cell,acinar
 human1_lib1.final_cell_0395,type b pancreatic cell,endothelial cell,endothelial cell
 human2_lib2.final_cell_0175,type b pancreatic cell,pancreatic pp cell,pancreatic pp cell
 human1_lib3.final_cell_0453,type b pancreatic cell,pancreatic islet cell (acinar and pp cell) is a subset of acinar so acinar is the best guess of the two identifiable acinar or ppp cell,pancreatic islet cell (acinar and pp cell) is a subset of acinar so acinar is the best guess of the two identifiable acinar or ppp cell
 human1_lib3.final_cell_0039,type b pancreatic cell,pancreatic D cell,delta
-D29-6_56,type b pancreatic cell,acinar cell,acinar
+D29-6_56,type b pancreatic cell,pancreatic acinar cell,acinar
 human1_lib3.final_cell_0051,type b pancreatic cell,pancreatic pp cell,pancreatic pp cell
 human1_lib3.final_cell_0659,type b pancreatic cell,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0889,type b pancreatic cell,type b pancreatic cell,type b pancreatic cell
@@ -560,20 +560,20 @@ human4_lib3.final_cell_0035,pancreatic ductal cell,pancreatic epsilon cell,epsil
 human4_lib3.final_cell_0011,pancreatic ductal cell,endothelial cell,endothelial cell
 human3_lib4.final_cell_0775,pancreatic ductal cell,pancreatic a cell,pancreatic a cell
 D30-4_13,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
-human2_lib1.final_cell_0192,pancreatic ductal cell,acinar cell,acinar
+human2_lib1.final_cell_0192,pancreatic ductal cell,pancreatic acinar cell,acinar
 human2_lib2.final_cell_0410,pancreatic ductal cell,macrophage,macrophage
-D2ex_9,pancreatic ductal cell,acinar cell,acinar
+D2ex_9,pancreatic ductal cell,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0695,pancreatic ductal cell,pancreatic acinar cell,pancreatic acinar cell
 human1_lib3.final_cell_0246,pancreatic ductal cell,pancreatic D cell,delta
 human3_lib3.final_cell_0858,pancreatic ductal cell,pancreatic acinar cell,pancreatic acinar cell
-human3_lib4.final_cell_0690,pancreatic ductal cell,acinar cell,acinar
+human3_lib4.final_cell_0690,pancreatic ductal cell,pancreatic acinar cell,acinar
 D72_65,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
 human4_lib1.final_cell_0446,pancreatic ductal cell,type b pancreatic cell,type b pancreatic cell
 human1_lib1.final_cell_0555,pancreatic ductal cell,pancreatic a cell,pancreatic a cell
 human3_lib1.final_cell_0480,pancreatic ductal cell,pancreatic acinar cell,pancreatic acinar cell
 human1_lib2.final_cell_0251,pancreatic ductal cell,pancreatic D cell,delta
 human3_lib4.final_cell_0717,pancreatic ductal cell,endothelial cell,endothelial cell
-human2_lib2.final_cell_0110,pancreatic ductal cell,acinar cell,acinar
+human2_lib2.final_cell_0110,pancreatic ductal cell,pancreatic acinar cell,acinar
 human1_lib3.final_cell_0184,pancreatic ductal cell,pancreatic stellate cell,pancreatic stellate cell
 human2_lib2.final_cell_0044,pancreatic ductal cell,type b pancreatic cell,type b pancreatic cell
 human4_lib1.final_cell_0149,pancreatic ductal cell,endothelial cell,endothelial cell
@@ -597,7 +597,7 @@ human1_lib2.final_cell_0103,pancreatic ductal cell,pancreatic acinar,pancreatic 
 human1_lib1.final_cell_0023,pancreatic ductal cell,"based on the gene expression profile, i predict the cell type to be: delta","based on the gene expression profile, i predict the cell type to be: delta"
 D30-6_61,pancreatic ductal cell,endorthelial cell,endorthelial cell
 human2_lib2.final_cell_0391,pancreatic ductal cell,macrophage,macrophage
-human4_lib3.final_cell_0389,pancreatic ductal cell,acinar cell,acinar
+human4_lib3.final_cell_0389,pancreatic ductal cell,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0825,pancreatic ductal cell,mast cell,mast cell
 human3_lib3.final_cell_0546,pancreatic ductal cell,macrophage,macrophage
 human3_lib4.final_cell_0517,pancreatic ductal cell,pancreatic stellate cell,pancreatic stellate cell
@@ -638,7 +638,7 @@ human4_lib3.final_cell_0241,pancreatic ductal cell,type b pancreatic cell,type b
 D2ex_20,pancreatic ductal cell,macrophage,macrophage
 human2_lib3.final_cell_0144,pancreatic ductal cell,mast cell,mast cell
 human2_lib2.final_cell_0187,pancreatic ductal cell,pancreatic stellate cell,pancreatic stellate cell
-human3_lib4.final_cell_0178,pancreatic ductal cell,acinar cell,acinar
+human3_lib4.final_cell_0178,pancreatic ductal cell,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0738,pancreatic ductal cell,pancreatic a cell,pancreatic a cell
 D30-3_17,pancreatic ductal cell,pancreatic epsilon cell,epsilon
 human4_lib1.final_cell_0422,pancreatic ductal cell,type b pancreatic cell,type b pancreatic cell
@@ -658,10 +658,10 @@ human4_lib3.final_cell_0309,pancreatic ductal cell,pancreatic pp cell,pancreatic
 human2_lib2.final_cell_0314,pancreatic ductal cell,pancreatic stellate cell,pancreatic stellate cell
 D30-8_93,pancreatic ductal cell,endothelial cell,endothelial cell
 D28-7_50,pancreatic ductal cell,pancreatic acinar cell,pancreatic acinar cell
-human4_lib3.final_cell_0595,pancreatic ductal cell,acinar cell,acinar
+human4_lib3.final_cell_0595,pancreatic ductal cell,pancreatic acinar cell,acinar
 human4_lib1.final_cell_0147,pancreatic ductal cell,pancreatic a cell,pancreatic a cell
 human3_lib1.final_cell_0594,pancreatic ductal cell,macrophage,macrophage
-human2_lib3.final_cell_0237,pancreatic ductal cell,acinar cell,acinar
+human2_lib3.final_cell_0237,pancreatic ductal cell,pancreatic acinar cell,acinar
 D17All2_8,pancreatic ductal cell,mast cell,mast cell
 human3_lib4.final_cell_0024,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib1.final_cell_0027,acinar,macrophage,macrophage
@@ -669,7 +669,7 @@ D29-5_78,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib3.final_cell_0050,acinar,mast cell,mast cell
 D30-7_28,acinar,type b pancreatic cell,type b pancreatic cell
 human3_lib3.final_cell_0069,acinar,pancreatic a cell,pancreatic a cell
-human3_lib3.final_cell_0646,acinar,acinar cell,acinar
+human3_lib3.final_cell_0646,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0027,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib4.final_cell_0142,acinar,macrophage,macrophage
 human3_lib1.final_cell_0536,acinar,pancreatic pp cell,pancreatic pp cell
@@ -681,7 +681,7 @@ human3_lib4.final_cell_0005,acinar,pancreatic epsilon cell,epsilon
 human3_lib3.final_cell_0027,acinar,pancreatic a cell,pancreatic a cell
 D31-5_57,acinar,pancreatic acinar cell,pancreatic acinar cell
 human3_lib3.final_cell_0095,acinar,type b pancreatic cell,type b pancreatic cell
-human3_lib3.final_cell_0037,acinar,acinar cell,acinar
+human3_lib3.final_cell_0037,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0051,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib1.final_cell_0023,acinar,pancreatic acinar cell,pancreatic acinar cell
 human3_lib4.final_cell_0662,acinar,type b pancreatic cell,type b pancreatic cell
@@ -704,7 +704,7 @@ D31-1_22,acinar,pancreatic D cell,delta
 D31-3_63,acinar,pancreatic a cell,pancreatic a cell
 human1_lib3.final_cell_0541,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib2.final_cell_0127,acinar,macrophage,macrophage
-D31-4_9,acinar,acinar cell,acinar
+D31-4_9,acinar,pancreatic acinar cell,acinar
 human1_lib2.final_cell_0616,acinar,macrophage,macrophage
 D3en1_68,acinar,type b pancreatic cell,type b pancreatic cell
 human3_lib2.final_cell_0477,acinar,type b pancreatic cell,type b pancreatic cell
@@ -734,48 +734,48 @@ human1_lib3.final_cell_0067,acinar,pancreatic D cell,delta
 human3_lib3.final_cell_0156,acinar,pancreatic ductal cell,pancreatic ductal cell
 human1_lib3.final_cell_0043,acinar,pancreatic a cell,pancreatic a cell
 human3_lib1.final_cell_0087,acinar,pancreatic D cell,delta
-human3_lib3.final_cell_0006,acinar,acinar cell,acinar
+human3_lib3.final_cell_0006,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0143,acinar,pancreatic pp cell,pancreatic pp cell
 D17TGFB_23,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib2.final_cell_0168,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib2.final_cell_0010,acinar,acinar cell,acinar
+human3_lib2.final_cell_0010,acinar,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0298,acinar,pancreatic ductal cell,pancreatic ductal cell
-D31-6_39,acinar,acinar cell,acinar
+D31-6_39,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0075,acinar,pancreatic pp cell,pancreatic pp cell
 D30-2_45,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0406,acinar,pancreatic acinar cell,pancreatic acinar cell
 human3_lib3.final_cell_0685,acinar,"based on the given gene expression profile, the predicted cell type is: 'acinar","based on the given gene expression profile, the predicted cell type is: 'acinar"
 D17TGFB_14,acinar,pancreatic a cell,pancreatic a cell
 human3_lib2.final_cell_0213,acinar,pancreatic a cell,pancreatic a cell
-human3_lib4.final_cell_0128,acinar,acinar cell,acinar
+human3_lib4.final_cell_0128,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0039,acinar,pancreatic pp cell,pancreatic pp cell
 D3en4_26,acinar,"based on the gene expression profile, i predict the cell type to be:  pancreatic a cell","based on the gene expression profile, i predict the cell type to be:  pancreatic a cell"
-human3_lib4.final_cell_0748,acinar,acinar cell,acinar
+human3_lib4.final_cell_0748,acinar,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0720,acinar,"based on the provided gene expression profile, the predicted cell type is:  acinar  note that this is just a classification based on the given gene expression profile, and other factors may influence the actual cell type of the cell","based on the provided gene expression profile, the predicted cell type is:  acinar  note that this is just a classification based on the given gene expression profile, and other factors may influence the actual cell type of the cell"
 D30-8_36,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0063,acinar,pancreatic stellate cell,pancreatic stellate cell
 human1_lib1.final_cell_0002,acinar,"based on the given gene expression profile, i predict that the cell type is:  pancreatic stellate cell","based on the given gene expression profile, i predict that the cell type is:  pancreatic stellate cell"
-D2ex_34,acinar,acinar cell,acinar
+D2ex_34,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0053,acinar,"based on the gene expression profile, i predict the cell type to be:  endothelial cell","based on the gene expression profile, i predict the cell type to be:  endothelial cell"
 human3_lib2.final_cell_0117,acinar,type b pancreatic cell,type b pancreatic cell
 human3_lib1.final_cell_0698,acinar,pancreatic a cell,pancreatic a cell
-human1_lib2.final_cell_0419,acinar,acinar cell,acinar
+human1_lib2.final_cell_0419,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0047,acinar,pancreatic acinar cell,pancreatic acinar cell
 human3_lib1.final_cell_0683,acinar,type b pancreatic cell,type b pancreatic cell
-human3_lib2.final_cell_0013,acinar,acinar cell,acinar
+human3_lib2.final_cell_0013,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0105,acinar,"based on the given gene expression profile, the cell type is: pancreas acinar cell pancreas","based on the given gene expression profile, the cell type is: pancreas acinar cell pancreas"
 human3_lib2.final_cell_0623,acinar,pancreatic a cell,pancreatic a cell
 human3_lib1.final_cell_0035,acinar,type b pancreatic cell,type b pancreatic cell
 D3en4_12,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0081,acinar,acinar cell,acinar
-D1713_70,acinar,acinar cell,acinar
+human3_lib3.final_cell_0081,acinar,pancreatic acinar cell,acinar
+D1713_70,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0738,acinar,type b pancreatic cell,type b pancreatic cell
 D2ex_42,acinar,pancreatic ductal cell,pancreatic ductal cell
 human1_lib2.final_cell_0249,delta,"based on the gene expression profile, the predicted cell type is:  type b pancreatic cell  i selected type b pancreatic cell because it includes strong matches to known incretin-producing g-cell biochemarkers, including sst eef1a1 and pdx1 isn’t present but pp cell is and those cell types differ typicall by the expected (and unassigned) potent c-peptide and iapp that aren’t present here too neither alpha or delta as both include presence of inhibitory hvh (block glutamic acid receptor 4) as a prerquisite","based on the gene expression profile, the predicted cell type is:  type b pancreatic cell  i selected type b pancreatic cell because it includes strong matches to known incretin-producing g-cell biochemarkers, including sst eef1a1 and pdx1 isn’t present but pp cell is and those cell types differ typicall by the expected (and unassigned) potent c-peptide and iapp that aren’t present here too neither alpha or delta as both include presence of inhibitory hvh (block glutamic acid receptor 4) as a prerquisite"
 D31-6_38,delta,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0609,delta,pancreatic D cell,delta cell
 D29-1_74,delta,pancreatic D cell,delta
-human4_lib3.final_cell_0030,delta,acinar cell,acinar
+human4_lib3.final_cell_0030,delta,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0640,delta,macrophage,macrophage
 D73_86,delta,pancreatic pp cell,pancreatic pp cell
 human4_lib1.final_cell_0204,delta,beta-cell,beta-cell
@@ -783,7 +783,7 @@ D71_91,delta,pancreatic D cell,delta
 human1_lib1.final_cell_0040,delta,pancreatic D cell,delta
 D31-2_70,delta,pancreatic stellate cell,pancreatic stellate cell
 D17All2_78,delta,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0847,delta,acinar cell,acinar
+human3_lib1.final_cell_0847,delta,pancreatic acinar cell,acinar
 D30-4_5,delta,type b pancreatic cell,type b pancreatic cell
 HP1509101_O1,delta,macrophage,macrophage
 D29-8_73,delta,"based on the given list of gene names, the cell type is delta cell","based on the given list of gene names, the cell type is delta cell"
@@ -798,7 +798,7 @@ human1_lib1.final_cell_0098,delta,pancreatic stellate cell,pancreatic stellate c
 human4_lib1.final_cell_0387,delta,pancreatic D cell,delta
 human1_lib2.final_cell_0463,delta,pancreatic a cell,pancreatic a cell
 D30-5_85,delta,pancreatic a cell,pancreatic a cell
-human3_lib1.final_cell_0430,delta,acinar cell,acinar
+human3_lib1.final_cell_0430,delta,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0473,delta,mast cell,mast cell
 human4_lib1.final_cell_0169,delta,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0413,delta,pancreatic D cell,delta
@@ -839,7 +839,7 @@ human1_lib3.final_cell_0298,delta,pancreatic D cell,delta
 human3_lib3.final_cell_0159,delta,pancreatic A cell,pancreatic alpha cell
 human1_lib2.final_cell_0473,delta,macrophage,macrophage
 human2_lib2.final_cell_0165,delta,pancreatic a cell,pancreatic a cell
-human3_lib2.final_cell_0437,delta,acinar cell,acinar
+human3_lib2.final_cell_0437,delta,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0669,pancreatic stellate cell,endothelial cell,endothelial cell
 D71_22,pancreatic stellate cell,pancreatic stellate cell,pancreatic stellate cell
 human3_lib3.final_cell_0682,pancreatic stellate cell,pancreatic stellate cell,pancreatic stellate cell
@@ -861,7 +861,7 @@ human3_lib1.final_cell_0276,pancreatic stellate cell,macrophage,macrophage
 human2_lib2.final_cell_0012,pancreatic stellate cell,pancreatic a cell,pancreatic a cell
 human1_lib1.final_cell_0215,pancreatic stellate cell,macrophage,macrophage
 human2_lib2.final_cell_0568,pancreatic stellate cell,pancreatic a cell,pancreatic a cell
-human3_lib4.final_cell_0593,pancreatic stellate cell,acinar cell,acinar
+human3_lib4.final_cell_0593,pancreatic stellate cell,pancreatic acinar cell,acinar
 human2_lib1.final_cell_0523,pancreatic stellate cell,pancreatic a cell,pancreatic a cell
 human3_lib4.final_cell_0853,pancreatic stellate cell,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0651,pancreatic stellate cell,pancreatic a cell,pancreatic a cell
@@ -884,7 +884,7 @@ human1_lib1.final_cell_0156,pancreatic stellate cell,pancreatic stellate cell,pa
 human2_lib1.final_cell_0500,pancreatic stellate cell,pancreatic acinar cell,pancreatic acinar cell
 human3_lib3.final_cell_0265,pancreatic stellate cell,macrophage,macrophage
 human4_lib1.final_cell_0493,pancreatic stellate cell,pancreatic pp cell,pancreatic pp cell
-human2_lib3.final_cell_0526,pancreatic pp cell,acinar cell,acinar
+human2_lib3.final_cell_0526,pancreatic pp cell,pancreatic acinar cell,acinar
 D31-8_67,pancreatic pp cell,pancreatic D cell,delta
 human4_lib3.final_cell_0171,pancreatic pp cell,pancreatic pp cell,pancreatic pp cell
 human2_lib2.final_cell_0387,pancreatic pp cell,pancreatic a cell,pancreatic a cell
@@ -908,16 +908,16 @@ human2_lib3.final_cell_0516,pancreatic pp cell,type b pancreatic cell,type b pan
 human2_lib3.final_cell_0399,pancreatic pp cell,macrophage,macrophage
 human1_lib2.final_cell_0507,pancreatic pp cell,type b pancreatic cell,type b pancreatic cell
 human2_lib1.final_cell_0398,pancreatic pp cell,macrophage,macrophage
-human4_lib3.final_cell_0591,pancreatic pp cell,acinar cell,acinar
+human4_lib3.final_cell_0591,pancreatic pp cell,pancreatic acinar cell,acinar
 human2_lib3.final_cell_0477,pancreatic pp cell,pancreatic pp cell,pancreatic pp cell
 human1_lib2.final_cell_0364,pancreatic pp cell,endorhelial cell,endorhelial cell
 human1_lib2.final_cell_0583,pancreatic pp cell,pancreatic pp cell,pancreatic pp cell
 human4_lib3.final_cell_0275,pancreatic pp cell,pancreatic pp cell,pancreatic pp cell
-human2_lib2.final_cell_0081,pancreatic pp cell,acinar cell,acinar
+human2_lib2.final_cell_0081,pancreatic pp cell,pancreatic acinar cell,acinar
 human1_lib1.final_cell_0301,pancreatic pp cell,pancreatic pp cell,pancreatic pp cell
 human1_lib3.final_cell_0720,endothelial cell,macrophage,macrophage
 human1_lib3.final_cell_0499,endothelial cell,type b pancreatic cell,type b pancreatic cell
-human1_lib2.final_cell_0619,endothelial cell,acinar cell,acinar
+human1_lib2.final_cell_0619,endothelial cell,pancreatic acinar cell,acinar
 human1_lib1.final_cell_0530,endothelial cell,macrophage,macrophage
 human1_lib2.final_cell_0517,endothelial cell,pancreatic a cell,pancreatic a cell
 human2_lib1.final_cell_0216,endothelial cell,pancreatic stellate cell,pancreatic stellate cell
@@ -934,7 +934,7 @@ human1_lib3.final_cell_0676,endothelial cell,macrophage,macrophage
 human1_lib2.final_cell_0611,endothelial cell,pancreatic a cell,pancreatic a cell
 human3_lib1.final_cell_0436,endothelial cell,macrophage,macrophage
 human1_lib2.final_cell_0472,endothelial cell,pancreatic pp cell,pancreatic pp cell
-human1_lib3.final_cell_0710,endothelial cell,acinar cell,acinar
+human1_lib3.final_cell_0710,endothelial cell,pancreatic acinar cell,acinar
 D28-2_76,endothelial cell,pancreatic D cell,delta
 human3_lib4.final_cell_0887,endothelial cell,pancreatic a cell,pancreatic a cell
 human1_lib1.final_cell_0537,endothelial cell,pancreatic a cell,pancreatic a cell
@@ -950,7 +950,7 @@ D1713_62,macrophage,pancreatic pp cell,pancreatic pp cell
 human2_lib2.final_cell_0150,macrophage,macrophage,macrophage
 human1_lib2.final_cell_0149,macrophage,type b pancreatic cell,type b pancreatic cell
 human2_lib1.final_cell_0167,macrophage,pancreatic D cell,delta cell
-human3_lib4.final_cell_0574,macrophage,acinar cell,acinar
+human3_lib4.final_cell_0574,macrophage,pancreatic acinar cell,acinar
 human1_lib3.final_cell_0613,macrophage,macrophage,macrophage
 human1_lib2.final_cell_0343,macrophage,type b pancreatic cell,type b pancreatic cell
 D30-5_41,macrophage,pancreatic stellate cell,pancreatic stellate cell
@@ -962,7 +962,7 @@ D29-2_55,mast cell,pancreatic D cell,delta
 human3_lib1.final_cell_0647,mast cell,macrophage,macrophage
 human1_lib3.final_cell_0712,mast cell,pancreatic pp cell,pancreatic pp cell
 D28-2_66,mast cell,tubular cell (pancreatic epithelial cell),tubular cell (pancreatic epithelial cell)
-human2_lib2.final_cell_0526,mast cell,acinar cell,acinar
+human2_lib2.final_cell_0526,mast cell,pancreatic acinar cell,acinar
 human2_lib2.final_cell_0540,mast cell,beta-cell,beta-cell
 human2_lib3.final_cell_0496,mast cell,beta-cell,beta-cell
 D28-1_64,mast cell,pancreatic cell,pancreatic cell
@@ -971,13 +971,13 @@ human2_lib3.final_cell_0546,mast cell,macrophage,macrophage
 human3_lib2.final_cell_0813,mast cell,pancreatic epsilon cell,epsilon
 human1_lib1.final_cell_0527,mast cell,beta cells   acinar cell,beta cells   acinar cell
 human3_lib3.final_cell_0802,mast cell,type b pancreatic cell,type b pancreatic cell
-HP1507101_M16,mast cell,acinar cell,acinar
+HP1507101_M16,mast cell,pancreatic acinar cell,acinar
 D28-3_17,mast cell,pancreatic stellate cell,pancreatic stellate cell
 human2_lib2.final_cell_0504,mast cell,macrophage,macrophage
 human1_lib3.final_cell_0597,mast cell,macrophage,macrophage
 human2_lib2.final_cell_0528,mast cell,macrophage,macrophage
-human1_lib3.final_cell_0530,mast cell,acinar cell,acinar
-human1_lib1.final_cell_0428,mast cell,acinar cell,acinar
+human1_lib3.final_cell_0530,mast cell,pancreatic acinar cell,acinar
+human1_lib1.final_cell_0428,mast cell,pancreatic acinar cell,acinar
 human1_lib3.final_cell_0463,epsilon,pancreatic r-cell (delta),pancreatic r-cell (delta)
 human1_lib3.final_cell_0584,epsilon,pancreatic a cell,pancreatic a cell
 human3_lib4.final_cell_0283,epsilon,sealnellanr,sealnellanr

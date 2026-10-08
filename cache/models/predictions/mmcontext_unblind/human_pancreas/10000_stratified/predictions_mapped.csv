@@ -639,7 +639,7 @@ D31-1_35,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
 human2_lib2.final_cell_0173,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0281,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
 human2_lib2.final_cell_0326,pancreatic a cell,type b pancreatic cell,type b pancreatic cell
-HP1506401_P15,pancreatic a cell,acinar cell,acinar
+HP1506401_P15,pancreatic a cell,pancreatic acinar cell,acinar
 D30-3_44,pancreatic a cell,pancreatic a cell,pancreatic a cell
 human3_lib3.final_cell_0571,pancreatic a cell,pancreatic pp cell,pancreatic pp cell
 D172444_17,pancreatic a cell,pancreatic a cell,pancreatic a cell
@@ -5733,7 +5733,7 @@ human2_lib2.final_cell_0280,pancreatic ductal cell,pancreatic pp cell,pancreatic
 human4_lib3.final_cell_0049,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
 human2_lib2.final_cell_0220,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
 human4_lib3.final_cell_0354,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
-human2_lib1.final_cell_0313,pancreatic ductal cell,acinar cell,acinar
+human2_lib1.final_cell_0313,pancreatic ductal cell,pancreatic acinar cell,acinar
 human2_lib1.final_cell_0205,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
 human2_lib2.final_cell_0032,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
 HP1509101_I16,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
@@ -5852,7 +5852,7 @@ human4_lib3.final_cell_0273,pancreatic ductal cell,pancreatic pp cell,pancreatic
 human3_lib4.final_cell_0653,pancreatic ductal cell,pancreatic a cell,pancreatic a cell
 D31-6_93,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
 D2ex_53,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
-human4_lib3.final_cell_0005,pancreatic ductal cell,acinar cell,acinar
+human4_lib3.final_cell_0005,pancreatic ductal cell,pancreatic acinar cell,acinar
 D28-3_86,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
 human2_lib2.final_cell_0007,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
 D3en4_74,pancreatic ductal cell,pancreatic a cell,pancreatic a cell
@@ -5949,7 +5949,7 @@ human4_lib1.final_cell_0360,pancreatic ductal cell,pancreatic pp cell,pancreatic
 human3_lib4.final_cell_0715,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
 human2_lib1.final_cell_0348,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
 human4_lib3.final_cell_0423,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
-human4_lib3.final_cell_0021,pancreatic ductal cell,acinar cell,acinar
+human4_lib3.final_cell_0021,pancreatic ductal cell,pancreatic acinar cell,acinar
 human4_lib1.final_cell_0079,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
 human2_lib2.final_cell_0272,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0052,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
@@ -6170,7 +6170,7 @@ human2_lib1.final_cell_0434,pancreatic ductal cell,pancreatic ductal cell,pancre
 human3_lib2.final_cell_0281,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0606,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
 human4_lib1.final_cell_0220,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
-D28-8_51,pancreatic ductal cell,acinar cell,acinar
+D28-8_51,pancreatic ductal cell,pancreatic acinar cell,acinar
 human2_lib2.final_cell_0191,pancreatic ductal cell,pancreatic a cell,pancreatic a cell
 D71_6,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0570,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
@@ -6332,7 +6332,7 @@ human2_lib1.final_cell_0450,pancreatic ductal cell,pancreatic pp cell,pancreatic
 human2_lib3.final_cell_0170,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
 D17TGFB_81,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
 human4_lib1.final_cell_0147,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
-human4_lib3.final_cell_0434,pancreatic ductal cell,acinar cell,acinar
+human4_lib3.final_cell_0434,pancreatic ductal cell,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0517,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
 human4_lib1.final_cell_0595,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0895,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
@@ -6378,7 +6378,7 @@ human3_lib1.final_cell_0827,pancreatic ductal cell,pancreatic ductal cell,pancre
 human3_lib3.final_cell_0541,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
 D2ex_20,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
 human3_lib4.final_cell_0167,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
-human4_lib3.final_cell_0209,pancreatic ductal cell,acinar cell,acinar
+human4_lib3.final_cell_0209,pancreatic ductal cell,pancreatic acinar cell,acinar
 human2_lib2.final_cell_0121,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
 human4_lib3.final_cell_0607,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
 human4_lib1.final_cell_0556,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
@@ -6421,7 +6421,7 @@ human1_lib2.final_cell_0321,pancreatic ductal cell,pancreatic pp cell,pancreatic
 human4_lib1.final_cell_0599,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0702,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0611,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
-human2_lib1.final_cell_0043,pancreatic ductal cell,acinar cell,acinar
+human2_lib1.final_cell_0043,pancreatic ductal cell,pancreatic acinar cell,acinar
 human1_lib3.final_cell_0367,pancreatic ductal cell,pancreatic a cell,pancreatic a cell
 human3_lib2.final_cell_0806,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
 human3_lib3.final_cell_0833,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
@@ -6518,7 +6518,7 @@ human4_lib3.final_cell_0241,pancreatic ductal cell,pancreatic pp cell,pancreatic
 human1_lib2.final_cell_0024,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
 D28-3_49,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
 D31-1_90,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
-human4_lib1.final_cell_0032,pancreatic ductal cell,acinar cell,acinar
+human4_lib1.final_cell_0032,pancreatic ductal cell,pancreatic acinar cell,acinar
 D17TGFB_83,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
 D3ex_4,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0630,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
@@ -6657,7 +6657,7 @@ D31-2_10,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0515,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0752,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
 D31-2_21,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
-human4_lib3.final_cell_0044,pancreatic ductal cell,acinar cell,acinar
+human4_lib3.final_cell_0044,pancreatic ductal cell,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0442,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
 human1_lib1.final_cell_0148,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0654,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
@@ -6706,7 +6706,7 @@ human2_lib3.final_cell_0064,pancreatic ductal cell,pancreatic ductal cell,pancre
 human3_lib2.final_cell_0241,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
 D30-5_58,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
 human2_lib2.final_cell_0236,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
-human2_lib1.final_cell_0403,pancreatic ductal cell,acinar cell,acinar
+human2_lib1.final_cell_0403,pancreatic ductal cell,pancreatic acinar cell,acinar
 D102_1,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0278,pancreatic ductal cell,pancreatic ductal cell,pancreatic ductal cell
 D73_63,pancreatic ductal cell,pancreatic pp cell,pancreatic pp cell
@@ -7004,96 +7004,96 @@ human3_lib2.final_cell_0684,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0184,acinar,pancreatic ductal cell,pancreatic ductal cell
 HP1506401_N21,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0143,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib4.final_cell_0129,acinar,acinar cell,acinar
+human3_lib4.final_cell_0129,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0548,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0027,acinar,acinar cell,acinar
-human3_lib4.final_cell_0318,acinar,acinar cell,acinar
-human3_lib2.final_cell_0054,acinar,acinar cell,acinar
+human3_lib3.final_cell_0027,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0318,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0054,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0422,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib2.final_cell_0002,acinar,pancreatic pp cell,pancreatic pp cell
 human1_lib1.final_cell_0461,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0684,acinar,acinar cell,acinar
+human3_lib3.final_cell_0684,acinar,pancreatic acinar cell,acinar
 D3en3_64,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0071,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib4.final_cell_0051,acinar,acinar cell,acinar
+human3_lib4.final_cell_0051,acinar,pancreatic acinar cell,acinar
 D30-6_37,acinar,pancreatic pp cell,pancreatic pp cell
 D3ex_68,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib3.final_cell_0077,acinar,acinar cell,acinar
+human3_lib3.final_cell_0077,acinar,pancreatic acinar cell,acinar
 D71_34,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0049,acinar,acinar cell,acinar
+human3_lib3.final_cell_0049,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0389,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib4.final_cell_0696,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0081,acinar,acinar cell,acinar
-human1_lib3.final_cell_0547,acinar,acinar cell,acinar
+human3_lib3.final_cell_0081,acinar,pancreatic acinar cell,acinar
+human1_lib3.final_cell_0547,acinar,pancreatic acinar cell,acinar
 human1_lib3.final_cell_0152,acinar,pancreatic pp cell,pancreatic pp cell
-D31-2_83,acinar,acinar cell,acinar
+D31-2_83,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0342,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib1.final_cell_0049,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0074,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib4.final_cell_0811,acinar,pancreatic pp cell,pancreatic pp cell
 human1_lib1.final_cell_0005,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0794,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib1.final_cell_0650,acinar,acinar cell,acinar
+human3_lib1.final_cell_0650,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0044,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib3.final_cell_0155,acinar,pancreatic ductal cell,pancreatic ductal cell
 D17TGFB_31,acinar,pancreatic ductal cell,pancreatic ductal cell
 D3en1_84,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib3.final_cell_0096,acinar,pancreatic stellate cell,pancreatic stellate cell
 D28-4_28,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0044,acinar,acinar cell,acinar
-human3_lib3.final_cell_0109,acinar,acinar cell,acinar
+human3_lib2.final_cell_0044,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0109,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0062,acinar,pancreatic pp cell,pancreatic pp cell
 D31-7_11,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0120,acinar,acinar cell,acinar
-human3_lib2.final_cell_0037,acinar,acinar cell,acinar
+human3_lib1.final_cell_0120,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0037,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0184,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib4.final_cell_0068,acinar,acinar cell,acinar
+human3_lib4.final_cell_0068,acinar,pancreatic acinar cell,acinar
 D30-2_42,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0258,acinar,pancreatic ductal cell,pancreatic ductal cell
 D73_43,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0300,acinar,acinar cell,acinar
-D28-2_18,acinar,acinar cell,acinar
+human3_lib2.final_cell_0300,acinar,pancreatic acinar cell,acinar
+D28-2_18,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0660,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0021,acinar,pancreatic ductal cell,pancreatic ductal cell
 D3en2_37,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib1.final_cell_0268,acinar,acinar cell,acinar
+human3_lib1.final_cell_0268,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0680,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0505,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib2.final_cell_0268,acinar,acinar cell,acinar
-human3_lib4.final_cell_0125,acinar,acinar cell,acinar
+human3_lib2.final_cell_0268,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0125,acinar,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0472,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0005,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib1.final_cell_0016,acinar,acinar cell,acinar
-human3_lib4.final_cell_0005,acinar,acinar cell,acinar
-D31-5_57,acinar,acinar cell,acinar
-human3_lib3.final_cell_0123,acinar,acinar cell,acinar
-human3_lib2.final_cell_0130,acinar,acinar cell,acinar
-D3en2_6,acinar,acinar cell,acinar
-human3_lib2.final_cell_0020,acinar,acinar cell,acinar
+human3_lib1.final_cell_0016,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0005,acinar,pancreatic acinar cell,acinar
+D31-5_57,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0123,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0130,acinar,pancreatic acinar cell,acinar
+D3en2_6,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0020,acinar,pancreatic acinar cell,acinar
 human1_lib2.final_cell_0292,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib4.final_cell_0126,acinar,acinar cell,acinar
-human3_lib2.final_cell_0774,acinar,acinar cell,acinar
-human3_lib3.final_cell_0005,acinar,acinar cell,acinar
-human3_lib4.final_cell_0049,acinar,acinar cell,acinar
+human3_lib4.final_cell_0126,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0774,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0005,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0049,acinar,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0023,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0876,acinar,pancreatic ductal cell,pancreatic ductal cell
 human2_lib3.final_cell_0194,acinar,pancreatic ductal cell,pancreatic ductal cell
 D31-7_70,acinar,pancreatic pp cell,pancreatic pp cell
 D3en3_50,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0066,acinar,acinar cell,acinar
-human3_lib3.final_cell_0145,acinar,acinar cell,acinar
+human3_lib4.final_cell_0066,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0145,acinar,pancreatic acinar cell,acinar
 D28-4_53,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0128,acinar,acinar cell,acinar
+human3_lib4.final_cell_0128,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0793,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0066,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib1.final_cell_0655,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib4.final_cell_0019,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib4.final_cell_0665,acinar,acinar cell,acinar
+human3_lib4.final_cell_0665,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0025,acinar,pancreatic pp cell,pancreatic pp cell
 D31-8_40,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0360,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0324,acinar,pancreatic pp cell,pancreatic pp cell
-D3en2_31,acinar,acinar cell,acinar
+D3en2_31,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0155,acinar,pancreatic pp cell,pancreatic pp cell
 D28-3_26,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0146,acinar,pancreatic ductal cell,pancreatic ductal cell
@@ -7102,26 +7102,26 @@ human3_lib1.final_cell_0698,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib3.final_cell_0179,acinar,pancreatic stellate cell,pancreatic stellate cell
 D3en1_37,acinar,pancreatic pp cell,pancreatic pp cell
 D3en4_87,acinar,pancreatic pp cell,pancreatic pp cell
-human1_lib3.final_cell_0020,acinar,acinar cell,acinar
+human1_lib3.final_cell_0020,acinar,pancreatic acinar cell,acinar
 D31-1_25,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0086,acinar,pancreatic ductal cell,pancreatic ductal cell
-D101_7,acinar,acinar cell,acinar
+D101_7,acinar,pancreatic acinar cell,acinar
 D31-3_25,acinar,pancreatic pp cell,pancreatic pp cell
 D31-3_48,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0043,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib3.final_cell_0651,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0185,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0172,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib4.final_cell_0076,acinar,acinar cell,acinar
-human3_lib3.final_cell_0029,acinar,acinar cell,acinar
+human3_lib4.final_cell_0076,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0029,acinar,pancreatic acinar cell,acinar
 human1_lib1.final_cell_0382,acinar,pancreatic pp cell,pancreatic pp cell
 human1_lib2.final_cell_0126,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib1.final_cell_0530,acinar,acinar cell,acinar
-human3_lib1.final_cell_0244,acinar,acinar cell,acinar
-human3_lib4.final_cell_0057,acinar,acinar cell,acinar
+human3_lib1.final_cell_0530,acinar,pancreatic acinar cell,acinar
+human3_lib1.final_cell_0244,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0057,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0302,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0004,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib2.final_cell_0028,acinar,acinar cell,acinar
+human3_lib2.final_cell_0028,acinar,pancreatic acinar cell,acinar
 D3en4_69,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0091,acinar,pancreatic ductal cell,pancreatic ductal cell
 D10631_50,acinar,pancreatic pp cell,pancreatic pp cell
@@ -7130,34 +7130,34 @@ human3_lib2.final_cell_0291,acinar,pancreatic ductal cell,pancreatic ductal cell
 D30-2_45,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0201,acinar,pancreatic ductal cell,pancreatic ductal cell
 D3en1_45,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0090,acinar,acinar cell,acinar
+human3_lib2.final_cell_0090,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0007,acinar,pancreatic ductal cell,pancreatic ductal cell
 D2ex_46,acinar,pancreatic ductal cell,pancreatic ductal cell
 D101_50,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0029,acinar,acinar cell,acinar
+human3_lib4.final_cell_0029,acinar,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0061,acinar,pancreatic stellate cell,pancreatic stellate cell
-D28-3_31,acinar,acinar cell,acinar
+D28-3_31,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0119,acinar,pancreatic ductal cell,pancreatic ductal cell
-D17TGFB_33,acinar,acinar cell,acinar
+D17TGFB_33,acinar,pancreatic acinar cell,acinar
 human2_lib2.final_cell_0154,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0800,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0214,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib1.final_cell_0546,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0126,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib4.final_cell_0176,acinar,acinar cell,acinar
-human3_lib2.final_cell_0124,acinar,acinar cell,acinar
+human3_lib4.final_cell_0176,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0124,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0233,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib3.final_cell_0887,acinar,acinar cell,acinar
+human3_lib3.final_cell_0887,acinar,pancreatic acinar cell,acinar
 human1_lib2.final_cell_0405,acinar,pancreatic pp cell,pancreatic pp cell
 D31-7_77,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0095,acinar,acinar cell,acinar
-human3_lib4.final_cell_0147,acinar,acinar cell,acinar
+human3_lib3.final_cell_0095,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0147,acinar,pancreatic acinar cell,acinar
 human1_lib1.final_cell_0036,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0020,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib2.final_cell_0134,acinar,acinar cell,acinar
+human3_lib2.final_cell_0134,acinar,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0063,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0506,acinar,pancreatic pp cell,pancreatic pp cell
-D31-4_72,acinar,acinar cell,acinar
+D31-4_72,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0168,acinar,pancreatic ductal cell,pancreatic ductal cell
 D30-1_61,acinar,pancreatic pp cell,pancreatic pp cell
 D30-8_24,acinar,pancreatic a cell,pancreatic a cell
@@ -7171,49 +7171,49 @@ D30-8_37,acinar,pancreatic pp cell,pancreatic pp cell
 D3en4_31,acinar,pancreatic pp cell,pancreatic pp cell
 D31-1_11,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0486,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0662,acinar,acinar cell,acinar
-human3_lib2.final_cell_0674,acinar,acinar cell,acinar
+human3_lib4.final_cell_0662,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0674,acinar,pancreatic acinar cell,acinar
 HP1506401_E20,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0046,acinar,acinar cell,acinar
+human3_lib3.final_cell_0046,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0268,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0646,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0013,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib3.final_cell_0037,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib4.final_cell_0062,acinar,acinar cell,acinar
-human3_lib2.final_cell_0053,acinar,acinar cell,acinar
+human3_lib4.final_cell_0062,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0053,acinar,pancreatic acinar cell,acinar
 human1_lib3.final_cell_0188,acinar,pancreatic pp cell,pancreatic pp cell
 human1_lib1.final_cell_0011,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0652,acinar,pancreatic ductal cell,pancreatic ductal cell
 D10631_48,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0198,acinar,acinar cell,acinar
-human3_lib1.final_cell_0001,acinar,acinar cell,acinar
+human3_lib3.final_cell_0198,acinar,pancreatic acinar cell,acinar
+human3_lib1.final_cell_0001,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0214,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0078,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib2.final_cell_0445,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0001,acinar,acinar cell,acinar
-human3_lib2.final_cell_0082,acinar,acinar cell,acinar
+human3_lib4.final_cell_0001,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0082,acinar,pancreatic acinar cell,acinar
 D17TGFB_43,acinar,pancreatic pp cell,pancreatic pp cell
 D17TGFB_58,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0128,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0086,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib4.final_cell_0519,acinar,acinar cell,acinar
+human3_lib4.final_cell_0519,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0122,acinar,pancreatic ductal cell,pancreatic ductal cell
 D3en3_89,acinar,pancreatic ductal cell,pancreatic ductal cell
-D31-2_18,acinar,acinar cell,acinar
-human3_lib3.final_cell_0593,acinar,acinar cell,acinar
-human3_lib1.final_cell_0109,acinar,acinar cell,acinar
+D31-2_18,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0593,acinar,pancreatic acinar cell,acinar
+human3_lib1.final_cell_0109,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0070,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib3.final_cell_0363,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0706,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0525,acinar,acinar cell,acinar
-D3en4_60,acinar,acinar cell,acinar
+human3_lib3.final_cell_0525,acinar,pancreatic acinar cell,acinar
+D3en4_60,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0019,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib3.final_cell_0088,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib4.final_cell_0211,acinar,acinar cell,acinar
-human3_lib3.final_cell_0738,acinar,acinar cell,acinar
-human3_lib4.final_cell_0748,acinar,acinar cell,acinar
+human3_lib4.final_cell_0211,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0738,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0748,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0111,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib2.final_cell_0026,acinar,acinar cell,acinar
+human3_lib2.final_cell_0026,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0699,acinar,pancreatic pp cell,pancreatic pp cell
 D10631_69,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0078,acinar,pancreatic pp cell,pancreatic pp cell
@@ -7227,39 +7227,39 @@ human3_lib1.final_cell_0204,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0172,acinar,pancreatic ductal cell,pancreatic ductal cell
 D31-6_62,acinar,pancreatic pp cell,pancreatic pp cell
 D17TGFB_49,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0300,acinar,acinar cell,acinar
-human3_lib1.final_cell_0054,acinar,acinar cell,acinar
+human3_lib1.final_cell_0300,acinar,pancreatic acinar cell,acinar
+human3_lib1.final_cell_0054,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0173,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib3.final_cell_0090,acinar,pancreatic ductal cell,pancreatic ductal cell
 D31-6_75,acinar,pancreatic pp cell,pancreatic pp cell
 D2ex_41,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0190,acinar,acinar cell,acinar
+human3_lib1.final_cell_0190,acinar,pancreatic acinar cell,acinar
 D17TGFB_14,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0155,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib3.final_cell_0135,acinar,pancreatic ductal cell,pancreatic ductal cell
 D3en4_14,acinar,pancreatic pp cell,pancreatic pp cell
 D30-1_91,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0231,acinar,acinar cell,acinar
-D3en3_39,acinar,acinar cell,acinar
+human3_lib3.final_cell_0231,acinar,pancreatic acinar cell,acinar
+D3en3_39,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0105,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0035,acinar,pancreatic ductal cell,pancreatic ductal cell
 D30-6_44,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0116,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib1.final_cell_0094,acinar,acinar cell,acinar
-human3_lib1.final_cell_0046,acinar,acinar cell,acinar
+human3_lib1.final_cell_0094,acinar,pancreatic acinar cell,acinar
+human3_lib1.final_cell_0046,acinar,pancreatic acinar cell,acinar
 D1713_27,acinar,pancreatic pp cell,pancreatic pp cell
 D28-3_75,acinar,pancreatic pp cell,pancreatic pp cell
 D31-8_7,acinar,pancreatic pp cell,pancreatic pp cell
 D31-3_69,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0028,acinar,acinar cell,acinar
+human3_lib3.final_cell_0028,acinar,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0091,acinar,pancreatic ductal cell,pancreatic ductal cell
 D31-8_27,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0057,acinar,acinar cell,acinar
+human3_lib1.final_cell_0057,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0214,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib3.final_cell_0139,acinar,pancreatic ductal cell,pancreatic ductal cell
 HP1509101_F18,acinar,pancreatic pp cell,pancreatic pp cell
-D17TGFB_41,acinar,acinar cell,acinar
-human3_lib2.final_cell_0025,acinar,acinar cell,acinar
+D17TGFB_41,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0025,acinar,pancreatic acinar cell,acinar
 D3en4_30,acinar,pancreatic ductal cell,pancreatic ductal cell
 D31-3_1,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0059,acinar,pancreatic ductal cell,pancreatic ductal cell
@@ -7267,67 +7267,67 @@ human3_lib3.final_cell_0188,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0469,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0127,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0004,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib3.final_cell_0015,acinar,acinar cell,acinar
+human3_lib3.final_cell_0015,acinar,pancreatic acinar cell,acinar
 D31-6_53,acinar,pancreatic pp cell,pancreatic pp cell
 human1_lib2.final_cell_0404,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib2.final_cell_0029,acinar,acinar cell,acinar
+human3_lib2.final_cell_0029,acinar,pancreatic acinar cell,acinar
 D2ex_61,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0063,acinar,acinar cell,acinar
-D28-5_31,acinar,acinar cell,acinar
+human3_lib1.final_cell_0063,acinar,pancreatic acinar cell,acinar
+D28-5_31,acinar,pancreatic acinar cell,acinar
 D2ex_44,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib3.final_cell_0726,acinar,acinar cell,acinar
-human3_lib3.final_cell_0068,acinar,acinar cell,acinar
+human3_lib3.final_cell_0726,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0068,acinar,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0257,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0099,acinar,acinar cell,acinar
-human3_lib1.final_cell_0264,acinar,acinar cell,acinar
+human3_lib3.final_cell_0099,acinar,pancreatic acinar cell,acinar
+human3_lib1.final_cell_0264,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0289,acinar,pancreatic ductal cell,pancreatic ductal cell
 human1_lib3.final_cell_0623,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib2.final_cell_0118,acinar,acinar cell,acinar
+human3_lib2.final_cell_0118,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0131,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib3.final_cell_0094,acinar,acinar cell,acinar
-human3_lib1.final_cell_0059,acinar,acinar cell,acinar
-human3_lib3.final_cell_0440,acinar,acinar cell,acinar
+human3_lib3.final_cell_0094,acinar,pancreatic acinar cell,acinar
+human3_lib1.final_cell_0059,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0440,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0115,acinar,pancreatic pp cell,pancreatic pp cell
 D10631_95,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0170,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0035,acinar,acinar cell,acinar
-human3_lib2.final_cell_0125,acinar,acinar cell,acinar
-human3_lib1.final_cell_0505,acinar,acinar cell,acinar
-D17TGFB_76,acinar,acinar cell,acinar
+human3_lib3.final_cell_0035,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0125,acinar,pancreatic acinar cell,acinar
+human3_lib1.final_cell_0505,acinar,pancreatic acinar cell,acinar
+D17TGFB_76,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0459,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0049,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib4.final_cell_0078,acinar,acinar cell,acinar
+human3_lib4.final_cell_0078,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0087,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0008,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0080,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib1.final_cell_0072,acinar,acinar cell,acinar
+human3_lib1.final_cell_0072,acinar,pancreatic acinar cell,acinar
 D71_78,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0042,acinar,acinar cell,acinar
+human3_lib1.final_cell_0042,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0164,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib1.final_cell_0195,acinar,acinar cell,acinar
+human3_lib1.final_cell_0195,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0127,acinar,pancreatic pp cell,pancreatic pp cell
 human1_lib3.final_cell_0539,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0148,acinar,acinar cell,acinar
-human3_lib2.final_cell_0013,acinar,acinar cell,acinar
+human3_lib2.final_cell_0148,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0013,acinar,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0104,acinar,pancreatic stellate cell,pancreatic stellate cell
 D29-5_73,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0017,acinar,acinar cell,acinar
+human3_lib4.final_cell_0017,acinar,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0010,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib4.final_cell_0103,acinar,acinar cell,acinar
-human3_lib2.final_cell_0135,acinar,acinar cell,acinar
+human3_lib4.final_cell_0103,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0135,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0226,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0053,acinar,pancreatic stellate cell,pancreatic stellate cell
 D31-6_69,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0015,acinar,acinar cell,acinar
-human3_lib3.final_cell_0354,acinar,acinar cell,acinar
+human3_lib2.final_cell_0015,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0354,acinar,pancreatic acinar cell,acinar
 D3en4_83,acinar,pancreatic ductal cell,pancreatic ductal cell
 D31-5_16,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0090,acinar,acinar cell,acinar
+human3_lib1.final_cell_0090,acinar,pancreatic acinar cell,acinar
 D102_76,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib3.final_cell_0180,acinar,acinar cell,acinar
+human3_lib3.final_cell_0180,acinar,pancreatic acinar cell,acinar
 D102_54,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0039,acinar,pancreatic ductal cell,pancreatic ductal cell
-D17TGFB_44,acinar,acinar cell,acinar
+D17TGFB_44,acinar,pancreatic acinar cell,acinar
 D10631_15,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib4.final_cell_0242,acinar,pancreatic pp cell,pancreatic pp cell
 D2ex_26,acinar,pancreatic pp cell,pancreatic pp cell
@@ -7337,51 +7337,51 @@ human3_lib2.final_cell_0024,acinar,pancreatic pp cell,pancreatic pp cell
 human1_lib3.final_cell_0130,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0536,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0170,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib2.final_cell_0072,acinar,acinar cell,acinar
-human3_lib4.final_cell_0009,acinar,acinar cell,acinar
-human3_lib4.final_cell_0056,acinar,acinar cell,acinar
+human3_lib2.final_cell_0072,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0009,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0056,acinar,pancreatic acinar cell,acinar
 D71_10,acinar,pancreatic pp cell,pancreatic pp cell
 D1713_58,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0235,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0385,acinar,acinar cell,acinar
+human3_lib1.final_cell_0385,acinar,pancreatic acinar cell,acinar
 D2ex_13,acinar,pancreatic ductal cell,pancreatic ductal cell
 D17TGFB_22,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0079,acinar,acinar cell,acinar
+human3_lib3.final_cell_0079,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0215,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0771,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0198,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0547,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib4.final_cell_0171,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0533,acinar,acinar cell,acinar
+human3_lib4.final_cell_0533,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0123,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0560,acinar,pancreatic pp cell,pancreatic pp cell
 D3en1_26,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0051,acinar,pancreatic ductal cell,pancreatic ductal cell
-D3en1_11,acinar,acinar cell,acinar
+D3en1_11,acinar,pancreatic acinar cell,acinar
 D17TGFB_92,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0710,acinar,acinar cell,acinar
-human3_lib1.final_cell_0270,acinar,acinar cell,acinar
-human3_lib4.final_cell_0537,acinar,acinar cell,acinar
-human1_lib1.final_cell_0029,acinar,acinar cell,acinar
-human3_lib3.final_cell_0101,acinar,acinar cell,acinar
+human3_lib2.final_cell_0710,acinar,pancreatic acinar cell,acinar
+human3_lib1.final_cell_0270,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0537,acinar,pancreatic acinar cell,acinar
+human1_lib1.final_cell_0029,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0101,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0229,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0031,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0628,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0121,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib2.final_cell_0270,acinar,acinar cell,acinar
+human3_lib2.final_cell_0270,acinar,pancreatic acinar cell,acinar
 D3ex_36,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0031,acinar,acinar cell,acinar
+human3_lib3.final_cell_0031,acinar,pancreatic acinar cell,acinar
 D2ex_69,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0036,acinar,pancreatic stellate cell,pancreatic stellate cell
 D3ex_6,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0646,acinar,acinar cell,acinar
+human3_lib3.final_cell_0646,acinar,pancreatic acinar cell,acinar
 D31-3_26,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0272,acinar,acinar cell,acinar
-human3_lib4.final_cell_0575,acinar,acinar cell,acinar
+human3_lib3.final_cell_0272,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0575,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0015,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib1.final_cell_0572,acinar,pancreatic stellate cell,pancreatic stellate cell
-human1_lib3.final_cell_0385,acinar,acinar cell,acinar
-human3_lib4.final_cell_0358,acinar,acinar cell,acinar
+human1_lib3.final_cell_0385,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0358,acinar,pancreatic acinar cell,acinar
 D31-1_22,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0088,acinar,pancreatic ductal cell,pancreatic ductal cell
 human1_lib2.final_cell_0582,acinar,pancreatic pp cell,pancreatic pp cell
@@ -7393,11 +7393,11 @@ human3_lib3.final_cell_0055,acinar,pancreatic ductal cell,pancreatic ductal cell
 D31-6_9,acinar,pancreatic pp cell,pancreatic pp cell
 D30-4_18,acinar,pancreatic pp cell,pancreatic pp cell
 D3en4_8,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0174,acinar,acinar cell,acinar
-D17TGFB_56,acinar,acinar cell,acinar
+human3_lib2.final_cell_0174,acinar,pancreatic acinar cell,acinar
+D17TGFB_56,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0061,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0164,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0081,acinar,acinar cell,acinar
+human3_lib4.final_cell_0081,acinar,pancreatic acinar cell,acinar
 human1_lib1.final_cell_0134,acinar,pancreatic stellate cell,pancreatic stellate cell
 human1_lib1.final_cell_0343,acinar,pancreatic stellate cell,pancreatic stellate cell
 D31-6_43,acinar,pancreatic pp cell,pancreatic pp cell
@@ -7410,10 +7410,10 @@ human1_lib3.final_cell_0067,acinar,pancreatic pp cell,pancreatic pp cell
 D17TGFB_47,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0020,acinar,pancreatic pp cell,pancreatic pp cell
 D72_22,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib1.final_cell_0307,acinar,acinar cell,acinar
-human1_lib1.final_cell_0436,acinar,acinar cell,acinar
+human3_lib1.final_cell_0307,acinar,pancreatic acinar cell,acinar
+human1_lib1.final_cell_0436,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0036,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib1.final_cell_0619,acinar,acinar cell,acinar
+human3_lib1.final_cell_0619,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0073,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib3.final_cell_0339,acinar,pancreatic ductal cell,pancreatic ductal cell
 D3en2_42,acinar,pancreatic ductal cell,pancreatic ductal cell
@@ -7423,50 +7423,50 @@ human1_lib3.final_cell_0004,acinar,pancreatic stellate cell,pancreatic stellate 
 D28-3_28,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0349,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0603,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib3.final_cell_0840,acinar,acinar cell,acinar
+human3_lib3.final_cell_0840,acinar,pancreatic acinar cell,acinar
 human1_lib3.final_cell_0070,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0058,acinar,acinar cell,acinar
-D30-4_81,acinar,acinar cell,acinar
+human3_lib2.final_cell_0058,acinar,pancreatic acinar cell,acinar
+D30-4_81,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0685,acinar,pancreatic ductal cell,pancreatic ductal cell
 D1713_61,acinar,pancreatic pp cell,pancreatic pp cell
 D17TGFB_54,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0725,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0146,acinar,acinar cell,acinar
+human3_lib1.final_cell_0146,acinar,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0075,acinar,pancreatic ductal cell,pancreatic ductal cell
 D30-1_55,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0789,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib3.final_cell_0132,acinar,pancreatic ductal cell,pancreatic ductal cell
 D10631_57,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib1.final_cell_0026,acinar,acinar cell,acinar
-D3en2_72,acinar,acinar cell,acinar
+human3_lib1.final_cell_0026,acinar,pancreatic acinar cell,acinar
+D3en2_72,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0661,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0580,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0197,acinar,pancreatic ductal cell,pancreatic ductal cell
 D1713_68,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0746,acinar,pancreatic ductal cell,pancreatic ductal cell
-human1_lib1.final_cell_0372,acinar,acinar cell,acinar
+human1_lib1.final_cell_0372,acinar,pancreatic acinar cell,acinar
 D30-7_24,acinar,pancreatic pp cell,pancreatic pp cell
 D3en3_2,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0041,acinar,acinar cell,acinar
+human3_lib2.final_cell_0041,acinar,pancreatic acinar cell,acinar
 D31-6_33,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0023,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0158,acinar,pancreatic stellate cell,pancreatic stellate cell
 D101_52,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0047,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0223,acinar,acinar cell,acinar
-human3_lib2.final_cell_0138,acinar,acinar cell,acinar
+human3_lib3.final_cell_0223,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0138,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0018,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0006,acinar,pancreatic ductal cell,pancreatic ductal cell
 human1_lib3.final_cell_0025,acinar,pancreatic pp cell,pancreatic pp cell
 human1_lib2.final_cell_0018,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0626,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib3.final_cell_0007,acinar,acinar cell,acinar
+human3_lib3.final_cell_0007,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0048,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib4.final_cell_0074,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0201,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0033,acinar,acinar cell,acinar
-human3_lib3.final_cell_0022,acinar,acinar cell,acinar
-human3_lib4.final_cell_0012,acinar,acinar cell,acinar
+human3_lib3.final_cell_0033,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0022,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0012,acinar,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0685,acinar,pancreatic pp cell,pancreatic pp cell
 human1_lib1.final_cell_0173,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0114,acinar,pancreatic ductal cell,pancreatic ductal cell
@@ -7476,21 +7476,21 @@ human3_lib1.final_cell_0010,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib3.final_cell_0092,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0123,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0074,acinar,pancreatic ductal cell,pancreatic ductal cell
-HP1506401_M3,acinar,acinar cell,acinar
-D31-6_52,acinar,acinar cell,acinar
+HP1506401_M3,acinar,pancreatic acinar cell,acinar
+D31-6_52,acinar,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0021,acinar,pancreatic ductal cell,pancreatic ductal cell
-D31-3_73,acinar,acinar cell,acinar
-human1_lib2.final_cell_0007,acinar,acinar cell,acinar
+D31-3_73,acinar,pancreatic acinar cell,acinar
+human1_lib2.final_cell_0007,acinar,pancreatic acinar cell,acinar
 D17TGFB_17,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0526,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib1.final_cell_0627,acinar,acinar cell,acinar
+human3_lib1.final_cell_0627,acinar,pancreatic acinar cell,acinar
 D2ex_3,acinar,pancreatic pp cell,pancreatic pp cell
-human1_lib1.final_cell_0004,acinar,acinar cell,acinar
+human1_lib1.final_cell_0004,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0073,acinar,pancreatic ductal cell,pancreatic ductal cell
 D31-7_9,acinar,pancreatic pp cell,pancreatic pp cell
 D17TGFB_71,acinar,pancreatic pp cell,pancreatic pp cell
 human1_lib3.final_cell_0469,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib2.final_cell_0119,acinar,acinar cell,acinar
+human3_lib2.final_cell_0119,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0393,acinar,pancreatic pp cell,pancreatic pp cell
 D31-2_87,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0667,acinar,pancreatic pp cell,pancreatic pp cell
@@ -7498,7 +7498,7 @@ D72_40,acinar,pancreatic pp cell,pancreatic pp cell
 D3en4_54,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0098,acinar,pancreatic pp cell,pancreatic pp cell
 D1713_71,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib2.final_cell_0576,acinar,acinar cell,acinar
+human3_lib2.final_cell_0576,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0195,acinar,pancreatic stellate cell,pancreatic stellate cell
 D71_2,acinar,pancreatic pp cell,pancreatic pp cell
 D31-3_53,acinar,pancreatic pp cell,pancreatic pp cell
@@ -7507,7 +7507,7 @@ human3_lib2.final_cell_0763,acinar,pancreatic ductal cell,pancreatic ductal cell
 D2ex_51,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0484,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib2.final_cell_0569,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0477,acinar,acinar cell,acinar
+human3_lib2.final_cell_0477,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0015,acinar,pancreatic stellate cell,pancreatic stellate cell
 D17TGFB_85,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0462,acinar,pancreatic stellate cell,pancreatic stellate cell
@@ -7516,39 +7516,39 @@ human3_lib2.final_cell_0083,acinar,pancreatic ductal cell,pancreatic ductal cell
 D3ex_83,acinar,pancreatic pp cell,pancreatic pp cell
 D3en2_32,acinar,pancreatic ductal cell,pancreatic ductal cell
 D1713_63,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib3.final_cell_0120,acinar,acinar cell,acinar
+human3_lib3.final_cell_0120,acinar,pancreatic acinar cell,acinar
 D10631_96,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0061,acinar,acinar cell,acinar
+human3_lib4.final_cell_0061,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0214,acinar,pancreatic pp cell,pancreatic pp cell
 D28-8_49,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0017,acinar,pancreatic ductal cell,pancreatic ductal cell
 human1_lib1.final_cell_0371,acinar,pancreatic stellate cell,pancreatic stellate cell
 D17TGFB_36,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0614,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0017,acinar,acinar cell,acinar
-human3_lib3.final_cell_0415,acinar,acinar cell,acinar
-human3_lib1.final_cell_0029,acinar,acinar cell,acinar
-human3_lib3.final_cell_0207,acinar,acinar cell,acinar
+human3_lib3.final_cell_0017,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0415,acinar,pancreatic acinar cell,acinar
+human3_lib1.final_cell_0029,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0207,acinar,pancreatic acinar cell,acinar
 human1_lib3.final_cell_0163,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0110,acinar,acinar cell,acinar
+human3_lib4.final_cell_0110,acinar,pancreatic acinar cell,acinar
 D1713_67,acinar,pancreatic ductal cell,pancreatic ductal cell
 D31-6_81,acinar,pancreatic pp cell,pancreatic pp cell
-D17TGFB_21,acinar,acinar cell,acinar
-human3_lib3.final_cell_0173,acinar,acinar cell,acinar
-human3_lib2.final_cell_0064,acinar,acinar cell,acinar
+D17TGFB_21,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0173,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0064,acinar,pancreatic acinar cell,acinar
 D1713_89,acinar,pancreatic pp cell,pancreatic pp cell
 human1_lib2.final_cell_0067,acinar,pancreatic pp cell,pancreatic pp cell
-D3en1_10,acinar,acinar cell,acinar
+D3en1_10,acinar,pancreatic acinar cell,acinar
 D74_76,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0683,acinar,acinar cell,acinar
-human3_lib3.final_cell_0056,acinar,acinar cell,acinar
-human3_lib4.final_cell_0003,acinar,acinar cell,acinar
+human3_lib1.final_cell_0683,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0056,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0003,acinar,pancreatic acinar cell,acinar
 human1_lib3.final_cell_0450,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0017,acinar,acinar cell,acinar
+human3_lib2.final_cell_0017,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0076,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib3.final_cell_0001,acinar,acinar cell,acinar
+human3_lib3.final_cell_0001,acinar,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0093,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib1.final_cell_0174,acinar,acinar cell,acinar
+human3_lib1.final_cell_0174,acinar,pancreatic acinar cell,acinar
 D28-5_37,acinar,pancreatic pp cell,pancreatic pp cell
 D17TGFB_51,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0160,acinar,pancreatic ductal cell,pancreatic ductal cell
@@ -7561,77 +7561,77 @@ human2_lib3.final_cell_0066,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0373,acinar,pancreatic ductal cell,pancreatic ductal cell
 D17All1_50,acinar,pancreatic ductal cell,pancreatic ductal cell
 D29-5_78,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0043,acinar,acinar cell,acinar
+human3_lib2.final_cell_0043,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0642,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib3.final_cell_0082,acinar,acinar cell,acinar
+human3_lib3.final_cell_0082,acinar,pancreatic acinar cell,acinar
 D10631_38,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0893,acinar,acinar cell,acinar
+human3_lib4.final_cell_0893,acinar,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0254,acinar,pancreatic ductal cell,pancreatic ductal cell
 D17TGFB_6,acinar,pancreatic pp cell,pancreatic pp cell
 D31-4_36,acinar,pancreatic pp cell,pancreatic pp cell
 D2ex_24,acinar,pancreatic pp cell,pancreatic pp cell
 human1_lib3.final_cell_0427,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0326,acinar,pancreatic pp cell,pancreatic pp cell
-D3en4_32,acinar,acinar cell,acinar
+D3en4_32,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0211,acinar,pancreatic ductal cell,pancreatic ductal cell
 D17TGFB_38,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0016,acinar,acinar cell,acinar
+human3_lib3.final_cell_0016,acinar,pancreatic acinar cell,acinar
 D2ex_79,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0002,acinar,acinar cell,acinar
+human3_lib3.final_cell_0002,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0220,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib4.final_cell_0177,acinar,pancreatic pp cell,pancreatic pp cell
 D28-3_44,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0610,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib2.final_cell_0623,acinar,acinar cell,acinar
+human3_lib2.final_cell_0623,acinar,pancreatic acinar cell,acinar
 human1_lib2.final_cell_0542,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0194,acinar,acinar cell,acinar
-human3_lib4.final_cell_0073,acinar,acinar cell,acinar
-human1_lib2.final_cell_0009,acinar,acinar cell,acinar
+human3_lib3.final_cell_0194,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0073,acinar,pancreatic acinar cell,acinar
+human1_lib2.final_cell_0009,acinar,pancreatic acinar cell,acinar
 D31-6_11,acinar,pancreatic pp cell,pancreatic pp cell
 D3en1_13,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0224,acinar,acinar cell,acinar
+human3_lib4.final_cell_0224,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0161,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib3.final_cell_0220,acinar,acinar cell,acinar
+human3_lib3.final_cell_0220,acinar,pancreatic acinar cell,acinar
 D3en2_26,acinar,pancreatic ductal cell,pancreatic ductal cell
 D31-5_89,acinar,pancreatic pp cell,pancreatic pp cell
 D74_90,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0102,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib2.final_cell_0213,acinar,pancreatic pp cell,pancreatic pp cell
 D3en4_42,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0301,acinar,acinar cell,acinar
+human3_lib3.final_cell_0301,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0611,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib4.final_cell_0077,acinar,pancreatic ductal cell,pancreatic ductal cell
 D31-1_7,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0110,acinar,pancreatic stellate cell,pancreatic stellate cell
 human1_lib2.final_cell_0278,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib3.final_cell_0453,acinar,acinar cell,acinar
-human3_lib4.final_cell_0466,acinar,acinar cell,acinar
+human3_lib3.final_cell_0453,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0466,acinar,pancreatic acinar cell,acinar
 human1_lib1.final_cell_0009,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0097,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0135,acinar,acinar cell,acinar
+human3_lib4.final_cell_0135,acinar,pancreatic acinar cell,acinar
 human1_lib3.final_cell_0043,acinar,pancreatic pp cell,pancreatic pp cell
 D29-7_5,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0181,acinar,acinar cell,acinar
+human3_lib1.final_cell_0181,acinar,pancreatic acinar cell,acinar
 D1713_72,acinar,pancreatic ductal cell,pancreatic ductal cell
 D3en2_16,acinar,pancreatic pp cell,pancreatic pp cell
 D2ex_34,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0094,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0331,acinar,acinar cell,acinar
-human3_lib4.final_cell_0064,acinar,acinar cell,acinar
+human3_lib1.final_cell_0331,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0064,acinar,pancreatic acinar cell,acinar
 D3en3_68,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib4.final_cell_0072,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0260,acinar,acinar cell,acinar
+human3_lib2.final_cell_0260,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0109,acinar,pancreatic ductal cell,pancreatic ductal cell
 D102_26,acinar,pancreatic pp cell,pancreatic pp cell
-D102_51,acinar,acinar cell,acinar
+D102_51,acinar,pancreatic acinar cell,acinar
 D3en4_72,acinar,pancreatic ductal cell,pancreatic ductal cell
 D2ex_2,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib4.final_cell_0383,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib2.final_cell_0055,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib4.final_cell_0287,acinar,acinar cell,acinar
+human3_lib4.final_cell_0287,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0269,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib3.final_cell_0385,acinar,pancreatic ductal cell,pancreatic ductal cell
-D3en1_49,acinar,acinar cell,acinar
+D3en1_49,acinar,pancreatic acinar cell,acinar
 D73_52,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0053,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0818,acinar,pancreatic pp cell,pancreatic pp cell
@@ -7640,66 +7640,66 @@ human3_lib4.final_cell_0075,acinar,pancreatic ductal cell,pancreatic ductal cell
 human1_lib3.final_cell_0171,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0048,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0207,acinar,pancreatic pp cell,pancreatic pp cell
-D3en4_46,acinar,acinar cell,acinar
+D3en4_46,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0032,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0777,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0224,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib3.final_cell_0166,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0060,acinar,acinar cell,acinar
-human3_lib1.final_cell_0330,acinar,acinar cell,acinar
+human3_lib4.final_cell_0060,acinar,pancreatic acinar cell,acinar
+human3_lib1.final_cell_0330,acinar,pancreatic acinar cell,acinar
 D2ex_1,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0447,acinar,pancreatic ductal cell,pancreatic ductal cell
 D31-3_63,acinar,pancreatic pp cell,pancreatic pp cell
 D31-8_4,acinar,pancreatic pp cell,pancreatic pp cell
-human1_lib2.final_cell_0377,acinar,acinar cell,acinar
+human1_lib2.final_cell_0377,acinar,pancreatic acinar cell,acinar
 D101_74,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0108,acinar,acinar cell,acinar
+human3_lib1.final_cell_0108,acinar,pancreatic acinar cell,acinar
 D28-6_19,acinar,pancreatic pp cell,pancreatic pp cell
 D71_5,acinar,pancreatic pp cell,pancreatic pp cell
 D3en1_5,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0066,acinar,pancreatic pp cell,pancreatic pp cell
 D2ex_18,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0191,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib3.final_cell_0478,acinar,acinar cell,acinar
-human3_lib1.final_cell_0079,acinar,acinar cell,acinar
+human3_lib3.final_cell_0478,acinar,pancreatic acinar cell,acinar
+human3_lib1.final_cell_0079,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0038,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib4.final_cell_0014,acinar,pancreatic pp cell,pancreatic pp cell
 human1_lib3.final_cell_0560,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0440,acinar,pancreatic pp cell,pancreatic pp cell
 D73_83,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0035,acinar,acinar cell,acinar
+human3_lib4.final_cell_0035,acinar,pancreatic acinar cell,acinar
 D17TGFB_12,acinar,pancreatic pp cell,pancreatic pp cell
 D71_16,acinar,pancreatic pp cell,pancreatic pp cell
 D2ex_76,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0120,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0002,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0079,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib4.final_cell_0406,acinar,acinar cell,acinar
-human3_lib4.final_cell_0010,acinar,acinar cell,acinar
+human3_lib4.final_cell_0406,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0010,acinar,pancreatic acinar cell,acinar
 D172444_19,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0365,acinar,acinar cell,acinar
-human1_lib1.final_cell_0002,acinar,acinar cell,acinar
-D31-2_26,acinar,acinar cell,acinar
-D74_14,acinar,acinar cell,acinar
+human3_lib4.final_cell_0365,acinar,pancreatic acinar cell,acinar
+human1_lib1.final_cell_0002,acinar,pancreatic acinar cell,acinar
+D31-2_26,acinar,pancreatic acinar cell,acinar
+D74_14,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0148,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib4.final_cell_0011,acinar,acinar cell,acinar
+human3_lib4.final_cell_0011,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0361,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0362,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib3.final_cell_0063,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib1.final_cell_0536,acinar,acinar cell,acinar
+human3_lib1.final_cell_0536,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0483,acinar,pancreatic stellate cell,pancreatic stellate cell
 D17TGFB_10,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0077,acinar,acinar cell,acinar
+human3_lib1.final_cell_0077,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0792,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib2.final_cell_0031,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib4.final_cell_0008,acinar,acinar cell,acinar
-human3_lib1.final_cell_0013,acinar,acinar cell,acinar
+human3_lib4.final_cell_0008,acinar,pancreatic acinar cell,acinar
+human3_lib1.final_cell_0013,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0833,acinar,pancreatic pp cell,pancreatic pp cell
 D2ex_92,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib3.final_cell_0009,acinar,pancreatic ductal cell,pancreatic ductal cell
 D28-6_14,acinar,pancreatic pp cell,pancreatic pp cell
 human1_lib3.final_cell_0113,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0212,acinar,acinar cell,acinar
+human3_lib1.final_cell_0212,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0034,acinar,pancreatic pp cell,pancreatic pp cell
 D31-6_13,acinar,pancreatic pp cell,pancreatic pp cell
 human1_lib2.final_cell_0383,acinar,pancreatic stellate cell,pancreatic stellate cell
@@ -7715,52 +7715,52 @@ human1_lib2.final_cell_0139,acinar,pancreatic pp cell,pancreatic pp cell
 D72_18,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0643,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0636,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib3.final_cell_0047,acinar,acinar cell,acinar
+human3_lib3.final_cell_0047,acinar,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0105,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib1.final_cell_0196,acinar,acinar cell,acinar
-human3_lib1.final_cell_0371,acinar,acinar cell,acinar
-human3_lib4.final_cell_0355,acinar,acinar cell,acinar
-human3_lib4.final_cell_0033,acinar,acinar cell,acinar
+human3_lib1.final_cell_0196,acinar,pancreatic acinar cell,acinar
+human3_lib1.final_cell_0371,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0355,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0033,acinar,pancreatic acinar cell,acinar
 D3en2_45,acinar,pancreatic ductal cell,pancreatic ductal cell
 D28-2_87,acinar,pancreatic pp cell,pancreatic pp cell
 human1_lib3.final_cell_0386,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0779,acinar,acinar cell,acinar
+human3_lib4.final_cell_0779,acinar,pancreatic acinar cell,acinar
 human1_lib1.final_cell_0244,acinar,pancreatic stellate cell,pancreatic stellate cell
 human1_lib1.final_cell_0018,acinar,pancreatic pp cell,pancreatic pp cell
 D3en2_25,acinar,pancreatic ductal cell,pancreatic ductal cell
-human1_lib3.final_cell_0447,acinar,acinar cell,acinar
+human1_lib3.final_cell_0447,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0588,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0266,acinar,pancreatic ductal cell,pancreatic ductal cell
 D30-8_33,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0073,acinar,acinar cell,acinar
+human3_lib2.final_cell_0073,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0028,acinar,pancreatic pp cell,pancreatic pp cell
 D3en1_56,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0694,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0125,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib3.final_cell_0040,acinar,acinar cell,acinar
+human3_lib3.final_cell_0040,acinar,pancreatic acinar cell,acinar
 D31-1_48,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0201,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib3.final_cell_0072,acinar,pancreatic pp cell,pancreatic pp cell
 human1_lib3.final_cell_0600,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0106,acinar,acinar cell,acinar
+human3_lib3.final_cell_0106,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0778,acinar,pancreatic ductal cell,pancreatic ductal cell
 D3en4_35,acinar,pancreatic ductal cell,pancreatic ductal cell
 D31-7_38,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0230,acinar,acinar cell,acinar
+human3_lib1.final_cell_0230,acinar,pancreatic acinar cell,acinar
 D31-3_36,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0004,acinar,acinar cell,acinar
-human3_lib2.final_cell_0112,acinar,acinar cell,acinar
-human3_lib2.final_cell_0100,acinar,acinar cell,acinar
+human3_lib4.final_cell_0004,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0112,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0100,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0279,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0895,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib2.final_cell_0009,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0055,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib2.final_cell_0109,acinar,acinar cell,acinar
+human3_lib2.final_cell_0109,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0735,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0022,acinar,pancreatic ductal cell,pancreatic ductal cell
 human1_lib3.final_cell_0541,acinar,pancreatic pp cell,pancreatic pp cell
 D31-1_27,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0097,acinar,acinar cell,acinar
+human3_lib2.final_cell_0097,acinar,pancreatic acinar cell,acinar
 human1_lib2.final_cell_0616,acinar,pancreatic pp cell,pancreatic pp cell
 D30-1_19,acinar,pancreatic pp cell,pancreatic pp cell
 D30-1_29,acinar,pancreatic pp cell,pancreatic pp cell
@@ -7769,53 +7769,53 @@ human1_lib3.final_cell_0011,acinar,pancreatic stellate cell,pancreatic stellate 
 D28-3_65,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0064,acinar,pancreatic pp cell,pancreatic pp cell
 D101_82,acinar,pancreatic ductal cell,pancreatic ductal cell
-human1_lib2.final_cell_0375,acinar,acinar cell,acinar
+human1_lib2.final_cell_0375,acinar,pancreatic acinar cell,acinar
 D17All1_36,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0045,acinar,acinar cell,acinar
-human3_lib4.final_cell_0080,acinar,acinar cell,acinar
+human3_lib2.final_cell_0045,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0080,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0617,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib3.final_cell_0119,acinar,pancreatic ductal cell,pancreatic ductal cell
 human1_lib2.final_cell_0471,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib1.final_cell_0067,acinar,pancreatic pp cell,pancreatic pp cell
 human1_lib1.final_cell_0444,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0007,acinar,acinar cell,acinar
+human3_lib1.final_cell_0007,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0255,acinar,pancreatic pp cell,pancreatic pp cell
 human1_lib3.final_cell_0231,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib1.final_cell_0024,acinar,acinar cell,acinar
+human3_lib1.final_cell_0024,acinar,pancreatic acinar cell,acinar
 D29-1_68,acinar,pancreatic pp cell,pancreatic pp cell
 D17TGFB_80,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0152,acinar,acinar cell,acinar
-human1_lib2.final_cell_0072,acinar,acinar cell,acinar
-human3_lib3.final_cell_0019,acinar,acinar cell,acinar
+human3_lib3.final_cell_0152,acinar,pancreatic acinar cell,acinar
+human1_lib2.final_cell_0072,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0019,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0272,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib2.final_cell_0038,acinar,acinar cell,acinar
-human3_lib4.final_cell_0494,acinar,acinar cell,acinar
+human3_lib2.final_cell_0038,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0494,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0381,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0187,acinar,acinar cell,acinar
+human3_lib4.final_cell_0187,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0168,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0008,acinar,acinar cell,acinar
-D31-4_9,acinar,acinar cell,acinar
+human3_lib1.final_cell_0008,acinar,pancreatic acinar cell,acinar
+D31-4_9,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0038,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0396,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0118,acinar,acinar cell,acinar
+human3_lib3.final_cell_0118,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0157,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib4.final_cell_0636,acinar,pancreatic ductal cell,pancreatic ductal cell
 D3en2_27,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0053,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib3.final_cell_0074,acinar,acinar cell,acinar
+human3_lib3.final_cell_0074,acinar,pancreatic acinar cell,acinar
 human1_lib1.final_cell_0010,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0625,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib4.final_cell_0090,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0353,acinar,pancreatic pp cell,pancreatic pp cell
 human1_lib1.final_cell_0177,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib3.final_cell_0057,acinar,acinar cell,acinar
+human3_lib3.final_cell_0057,acinar,pancreatic acinar cell,acinar
 D1713_50,acinar,pancreatic ductal cell,pancreatic ductal cell
 D31-3_40,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0126,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0179,acinar,pancreatic ductal cell,pancreatic ductal cell
 D73_68,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0027,acinar,acinar cell,acinar
-D31-4_91,acinar,acinar cell,acinar
+human3_lib2.final_cell_0027,acinar,pancreatic acinar cell,acinar
+D31-4_91,acinar,pancreatic acinar cell,acinar
 human1_lib3.final_cell_0054,acinar,pancreatic ductal cell,pancreatic ductal cell
 D3en4_26,acinar,pancreatic pp cell,pancreatic pp cell
 human1_lib1.final_cell_0006,acinar,pancreatic stellate cell,pancreatic stellate cell
@@ -7830,98 +7830,98 @@ human1_lib3.final_cell_0112,acinar,pancreatic pp cell,pancreatic pp cell
 D1713_8,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0466,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0203,acinar,pancreatic ductal cell,pancreatic ductal cell
-D3ex_5,acinar,acinar cell,acinar
+D3ex_5,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0165,acinar,pancreatic pp cell,pancreatic pp cell
 D31-4_90,acinar,pancreatic pp cell,pancreatic pp cell
 D10631_66,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0012,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib3.final_cell_0174,acinar,acinar cell,acinar
-D17TGFB_93,acinar,acinar cell,acinar
-human3_lib3.final_cell_0051,acinar,acinar cell,acinar
+human3_lib3.final_cell_0174,acinar,pancreatic acinar cell,acinar
+D17TGFB_93,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0051,acinar,pancreatic acinar cell,acinar
 D31-1_44,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0179,acinar,acinar cell,acinar
+human3_lib4.final_cell_0179,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0063,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0664,acinar,pancreatic stellate cell,pancreatic stellate cell
 D31-8_91,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0197,acinar,acinar cell,acinar
-D2ex_40,acinar,acinar cell,acinar
-D17TGFB_45,acinar,acinar cell,acinar
-human3_lib1.final_cell_0025,acinar,acinar cell,acinar
-human3_lib3.final_cell_0089,acinar,acinar cell,acinar
-human3_lib1.final_cell_0032,acinar,acinar cell,acinar
+human3_lib1.final_cell_0197,acinar,pancreatic acinar cell,acinar
+D2ex_40,acinar,pancreatic acinar cell,acinar
+D17TGFB_45,acinar,pancreatic acinar cell,acinar
+human3_lib1.final_cell_0025,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0089,acinar,pancreatic acinar cell,acinar
+human3_lib1.final_cell_0032,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0512,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0140,acinar,acinar cell,acinar
-human3_lib2.final_cell_0011,acinar,acinar cell,acinar
-human1_lib1.final_cell_0008,acinar,acinar cell,acinar
-human3_lib3.final_cell_0058,acinar,acinar cell,acinar
-human3_lib3.final_cell_0243,acinar,acinar cell,acinar
-human3_lib2.final_cell_0237,acinar,acinar cell,acinar
+human3_lib2.final_cell_0140,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0011,acinar,pancreatic acinar cell,acinar
+human1_lib1.final_cell_0008,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0058,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0243,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0237,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0129,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0306,acinar,acinar cell,acinar
+human3_lib3.final_cell_0306,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0195,acinar,pancreatic pp cell,pancreatic pp cell
-human1_lib1.final_cell_0012,acinar,acinar cell,acinar
+human1_lib1.final_cell_0012,acinar,pancreatic acinar cell,acinar
 human1_lib1.final_cell_0084,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib3.final_cell_0192,acinar,pancreatic ductal cell,pancreatic ductal cell
 D3en4_7,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib4.final_cell_0655,acinar,acinar cell,acinar
-human1_lib3.final_cell_0156,acinar,acinar cell,acinar
-human3_lib2.final_cell_0272,acinar,acinar cell,acinar
-human3_lib1.final_cell_0476,acinar,acinar cell,acinar
-human3_lib2.final_cell_0411,acinar,acinar cell,acinar
+human3_lib4.final_cell_0655,acinar,pancreatic acinar cell,acinar
+human1_lib3.final_cell_0156,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0272,acinar,pancreatic acinar cell,acinar
+human3_lib1.final_cell_0476,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0411,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0277,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib1.final_cell_0045,acinar,pancreatic pp cell,pancreatic pp cell
 D1713_15,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0122,acinar,acinar cell,acinar
+human3_lib4.final_cell_0122,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0673,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0096,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0608,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0101,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib3.final_cell_0006,acinar,acinar cell,acinar
+human3_lib3.final_cell_0006,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0685,acinar,pancreatic stellate cell,pancreatic stellate cell
-human1_lib2.final_cell_0225,acinar,acinar cell,acinar
+human1_lib2.final_cell_0225,acinar,pancreatic acinar cell,acinar
 D17TGFB_32,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0018,acinar,acinar cell,acinar
-human3_lib3.final_cell_0495,acinar,acinar cell,acinar
+human3_lib3.final_cell_0018,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0495,acinar,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0762,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0159,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0246,acinar,acinar cell,acinar
+human3_lib1.final_cell_0246,acinar,pancreatic acinar cell,acinar
 human1_lib3.final_cell_0007,acinar,pancreatic pp cell,pancreatic pp cell
-D3en2_48,acinar,acinar cell,acinar
+D3en2_48,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0642,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0027,acinar,acinar cell,acinar
+human3_lib1.final_cell_0027,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0006,acinar,pancreatic ductal cell,pancreatic ductal cell
 human1_lib2.final_cell_0006,acinar,pancreatic stellate cell,pancreatic stellate cell
-D31-6_66,acinar,acinar cell,acinar
-human3_lib4.final_cell_0213,acinar,acinar cell,acinar
+D31-6_66,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0213,acinar,pancreatic acinar cell,acinar
 human1_lib2.final_cell_0054,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0099,acinar,acinar cell,acinar
+human3_lib2.final_cell_0099,acinar,pancreatic acinar cell,acinar
 D2ex_16,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib4.final_cell_0199,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib3.final_cell_0851,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0082,acinar,pancreatic ductal cell,pancreatic ductal cell
 D71_39,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0062,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0023,acinar,acinar cell,acinar
+human3_lib3.final_cell_0023,acinar,pancreatic acinar cell,acinar
 D1713_70,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib2.final_cell_0001,acinar,acinar cell,acinar
-human3_lib3.final_cell_0227,acinar,acinar cell,acinar
+human3_lib2.final_cell_0001,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0227,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0241,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0158,acinar,acinar cell,acinar
+human3_lib2.final_cell_0158,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0790,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0004,acinar,pancreatic ductal cell,pancreatic ductal cell
 D30-1_30,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0065,acinar,acinar cell,acinar
+human3_lib3.final_cell_0065,acinar,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0183,acinar,pancreatic ductal cell,pancreatic ductal cell
 D30-5_45,acinar,pancreatic pp cell,pancreatic pp cell
-D31-5_34,acinar,acinar cell,acinar
-D102_91,acinar,acinar cell,acinar
+D31-5_34,acinar,pancreatic acinar cell,acinar
+D102_91,acinar,pancreatic acinar cell,acinar
 D3en2_57,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0618,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib4.final_cell_0502,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0012,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib3.final_cell_0473,acinar,acinar cell,acinar
+human3_lib3.final_cell_0473,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0253,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib4.final_cell_0762,acinar,acinar cell,acinar
+human3_lib4.final_cell_0762,acinar,pancreatic acinar cell,acinar
 D74_62,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0089,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0299,acinar,pancreatic stellate cell,pancreatic stellate cell
@@ -7932,45 +7932,45 @@ human1_lib2.final_cell_0395,acinar,pancreatic stellate cell,pancreatic stellate 
 human3_lib4.final_cell_0773,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib2.final_cell_0067,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0076,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib2.final_cell_0643,acinar,acinar cell,acinar
+human3_lib2.final_cell_0643,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0085,acinar,pancreatic stellate cell,pancreatic stellate cell
 human1_lib3.final_cell_0624,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib4.final_cell_0407,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0359,acinar,acinar cell,acinar
+human3_lib2.final_cell_0359,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0124,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib1.final_cell_0092,acinar,pancreatic stellate cell,pancreatic stellate cell
 human1_lib1.final_cell_0171,acinar,pancreatic stellate cell,pancreatic stellate cell
 D3en4_12,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0558,acinar,acinar cell,acinar
-human3_lib1.final_cell_0034,acinar,acinar cell,acinar
+human3_lib1.final_cell_0558,acinar,pancreatic acinar cell,acinar
+human3_lib1.final_cell_0034,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0036,acinar,pancreatic ductal cell,pancreatic ductal cell
 human1_lib2.final_cell_0111,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib3.final_cell_0782,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib2.final_cell_0675,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0551,acinar,acinar cell,acinar
+human3_lib3.final_cell_0551,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0120,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib2.final_cell_0728,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0270,acinar,pancreatic pp cell,pancreatic pp cell
-human1_lib1.final_cell_0466,acinar,acinar cell,acinar
+human1_lib1.final_cell_0466,acinar,pancreatic acinar cell,acinar
 D3en3_9,acinar,pancreatic pp cell,pancreatic pp cell
-D17TGFB_89,acinar,acinar cell,acinar
-human3_lib2.final_cell_0098,acinar,acinar cell,acinar
-human3_lib2.final_cell_0080,acinar,acinar cell,acinar
-human3_lib3.final_cell_0406,acinar,acinar cell,acinar
+D17TGFB_89,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0098,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0080,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0406,acinar,pancreatic acinar cell,acinar
 human1_lib3.final_cell_0082,acinar,pancreatic ductal cell,pancreatic ductal cell
 human1_lib3.final_cell_0030,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0615,acinar,acinar cell,acinar
+human3_lib4.final_cell_0615,acinar,pancreatic acinar cell,acinar
 human1_lib2.final_cell_0088,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0027,acinar,acinar cell,acinar
+human3_lib4.final_cell_0027,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0371,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib3.final_cell_0284,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0839,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib2.final_cell_0497,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib4.final_cell_0234,acinar,pancreatic stellate cell,pancreatic stellate cell
 D30-7_39,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0014,acinar,acinar cell,acinar
+human3_lib2.final_cell_0014,acinar,pancreatic acinar cell,acinar
 D2ex_10,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0025,acinar,acinar cell,acinar
+human3_lib4.final_cell_0025,acinar,pancreatic acinar cell,acinar
 human1_lib2.final_cell_0419,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib2.final_cell_0474,acinar,pancreatic pp cell,pancreatic pp cell
 D17TGFB_59,acinar,pancreatic pp cell,pancreatic pp cell
@@ -7980,78 +7980,78 @@ D17TGFB_23,acinar,pancreatic pp cell,pancreatic pp cell
 D10631_67,acinar,pancreatic pp cell,pancreatic pp cell
 D3en3_72,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0228,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib2.final_cell_0052,acinar,acinar cell,acinar
+human3_lib2.final_cell_0052,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0076,acinar,pancreatic pp cell,pancreatic pp cell
-human1_lib1.final_cell_0001,acinar,acinar cell,acinar
+human1_lib1.final_cell_0001,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0043,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib3.final_cell_0111,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0012,acinar,acinar cell,acinar
-human3_lib4.final_cell_0182,acinar,acinar cell,acinar
-D10631_53,acinar,acinar cell,acinar
+human3_lib3.final_cell_0012,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0182,acinar,pancreatic acinar cell,acinar
+D10631_53,acinar,pancreatic acinar cell,acinar
 human1_lib3.final_cell_0006,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0300,acinar,acinar cell,acinar
+human3_lib4.final_cell_0300,acinar,pancreatic acinar cell,acinar
 HP1506401_L19,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0036,acinar,acinar cell,acinar
+human3_lib4.final_cell_0036,acinar,pancreatic acinar cell,acinar
 D28-3_85,acinar,pancreatic a cell,pancreatic a cell
 human3_lib1.final_cell_0023,acinar,pancreatic pp cell,pancreatic pp cell
 D17TGFB_74,acinar,pancreatic pp cell,pancreatic pp cell
 D30-7_28,acinar,pancreatic pp cell,pancreatic pp cell
 D3en2_90,acinar,pancreatic a cell,pancreatic a cell
-human3_lib1.final_cell_0050,acinar,acinar cell,acinar
+human3_lib1.final_cell_0050,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0333,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib2.final_cell_0006,acinar,acinar cell,acinar
+human3_lib2.final_cell_0006,acinar,pancreatic acinar cell,acinar
 D30-1_36,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib3.final_cell_0010,acinar,acinar cell,acinar
+human3_lib3.final_cell_0010,acinar,pancreatic acinar cell,acinar
 human1_lib1.final_cell_0413,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib1.final_cell_0545,acinar,pancreatic stellate cell,pancreatic stellate cell
 D17TGFB_61,acinar,pancreatic pp cell,pancreatic pp cell
 D101_51,acinar,pancreatic ductal cell,pancreatic ductal cell
 D31-1_5,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0069,acinar,acinar cell,acinar
+human3_lib3.final_cell_0069,acinar,pancreatic acinar cell,acinar
 D3en4_20,acinar,pancreatic pp cell,pancreatic pp cell
 D3en2_66,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0742,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0209,acinar,pancreatic ductal cell,pancreatic ductal cell
 D31-2_75,acinar,pancreatic pp cell,pancreatic pp cell
 human1_lib1.final_cell_0053,acinar,pancreatic pp cell,pancreatic pp cell
-D31-1_70,acinar,acinar cell,acinar
+D31-1_70,acinar,pancreatic acinar cell,acinar
 D28-3_62,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0043,acinar,acinar cell,acinar
+human3_lib4.final_cell_0043,acinar,pancreatic acinar cell,acinar
 human1_lib2.final_cell_0112,acinar,pancreatic stellate cell,pancreatic stellate cell
 D28-8_75,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0009,acinar,acinar cell,acinar
+human3_lib1.final_cell_0009,acinar,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0616,acinar,pancreatic pp cell,pancreatic pp cell
 D31-1_21,acinar,pancreatic pp cell,pancreatic pp cell
-human1_lib2.final_cell_0005,acinar,acinar cell,acinar
+human1_lib2.final_cell_0005,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0641,acinar,pancreatic pp cell,pancreatic pp cell
 D31-5_69,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0030,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib3.final_cell_0084,acinar,acinar cell,acinar
+human3_lib3.final_cell_0084,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0586,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0200,acinar,acinar cell,acinar
+human3_lib1.final_cell_0200,acinar,pancreatic acinar cell,acinar
 D17All1_52,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0088,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0022,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0101,acinar,acinar cell,acinar
+human3_lib4.final_cell_0101,acinar,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0247,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib4.final_cell_0046,acinar,acinar cell,acinar
+human3_lib4.final_cell_0046,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0175,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib2.final_cell_0171,acinar,acinar cell,acinar
+human3_lib2.final_cell_0171,acinar,pancreatic acinar cell,acinar
 human1_lib1.final_cell_0182,acinar,pancreatic stellate cell,pancreatic stellate cell
-D1713_80,acinar,acinar cell,acinar
-human3_lib4.final_cell_0055,acinar,acinar cell,acinar
+D1713_80,acinar,pancreatic acinar cell,acinar
+human3_lib4.final_cell_0055,acinar,pancreatic acinar cell,acinar
 D31-3_14,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib4.final_cell_0087,acinar,acinar cell,acinar
+human3_lib4.final_cell_0087,acinar,pancreatic acinar cell,acinar
 D30-3_91,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0205,acinar,acinar cell,acinar
+human3_lib3.final_cell_0205,acinar,pancreatic acinar cell,acinar
 D31-4_14,acinar,pancreatic pp cell,pancreatic pp cell
 D30-1_1,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0720,acinar,acinar cell,acinar
+human3_lib2.final_cell_0720,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0106,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib3.final_cell_0696,acinar,acinar cell,acinar
-human3_lib2.final_cell_0003,acinar,acinar cell,acinar
-human3_lib3.final_cell_0723,acinar,acinar cell,acinar
-human3_lib1.final_cell_0052,acinar,acinar cell,acinar
+human3_lib3.final_cell_0696,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0003,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0723,acinar,pancreatic acinar cell,acinar
+human3_lib1.final_cell_0052,acinar,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0057,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0810,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0226,acinar,pancreatic ductal cell,pancreatic ductal cell
@@ -8061,16 +8061,16 @@ human3_lib3.final_cell_0163,acinar,pancreatic ductal cell,pancreatic ductal cell
 D31-6_29,acinar,pancreatic pp cell,pancreatic pp cell
 D3en4_48,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0058,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib3.final_cell_0610,acinar,acinar cell,acinar
+human3_lib3.final_cell_0610,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0065,acinar,pancreatic pp cell,pancreatic pp cell
 human4_lib1.final_cell_0115,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib4.final_cell_0518,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib1.final_cell_0031,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0345,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib3.final_cell_0143,acinar,acinar cell,acinar
+human3_lib3.final_cell_0143,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0622,acinar,pancreatic pp cell,pancreatic pp cell
 D74_81,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib4.final_cell_0418,acinar,acinar cell,acinar
+human3_lib4.final_cell_0418,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0011,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib1.final_cell_0391,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib3.final_cell_0396,acinar,pancreatic pp cell,pancreatic pp cell
@@ -8078,36 +8078,36 @@ D3en2_74,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0803,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0228,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0398,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0044,acinar,acinar cell,acinar
-D31-7_21,acinar,acinar cell,acinar
-human3_lib3.final_cell_0098,acinar,acinar cell,acinar
-D3en2_5,acinar,acinar cell,acinar
+human3_lib1.final_cell_0044,acinar,pancreatic acinar cell,acinar
+D31-7_21,acinar,pancreatic acinar cell,acinar
+human3_lib3.final_cell_0098,acinar,pancreatic acinar cell,acinar
+D3en2_5,acinar,pancreatic acinar cell,acinar
 D31-8_53,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0712,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib1.final_cell_0011,acinar,acinar cell,acinar
-human3_lib1.final_cell_0003,acinar,acinar cell,acinar
+human3_lib1.final_cell_0011,acinar,pancreatic acinar cell,acinar
+human3_lib1.final_cell_0003,acinar,pancreatic acinar cell,acinar
 D3ex_76,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib3.final_cell_0042,acinar,acinar cell,acinar
+human3_lib3.final_cell_0042,acinar,pancreatic acinar cell,acinar
 D29-7_49,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0040,acinar,acinar cell,acinar
+human3_lib1.final_cell_0040,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0069,acinar,pancreatic pp cell,pancreatic pp cell
 D31-5_39,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0549,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib1.final_cell_0419,acinar,acinar cell,acinar
-human3_lib1.final_cell_0021,acinar,acinar cell,acinar
+human3_lib1.final_cell_0419,acinar,pancreatic acinar cell,acinar
+human3_lib1.final_cell_0021,acinar,pancreatic acinar cell,acinar
 human3_lib4.final_cell_0601,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib1.final_cell_0037,acinar,pancreatic ductal cell,pancreatic ductal cell
-human3_lib4.final_cell_0002,acinar,acinar cell,acinar
+human3_lib4.final_cell_0002,acinar,pancreatic acinar cell,acinar
 D30-6_5,acinar,pancreatic pp cell,pancreatic pp cell
 D28-5_42,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0062,acinar,acinar cell,acinar
-human3_lib2.final_cell_0384,acinar,acinar cell,acinar
-human3_lib2.final_cell_0671,acinar,acinar cell,acinar
+human3_lib1.final_cell_0062,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0384,acinar,pancreatic acinar cell,acinar
+human3_lib2.final_cell_0671,acinar,pancreatic acinar cell,acinar
 human3_lib1.final_cell_0093,acinar,pancreatic stellate cell,pancreatic stellate cell
 human3_lib2.final_cell_0022,acinar,pancreatic ductal cell,pancreatic ductal cell
-D31-5_48,acinar,acinar cell,acinar
+D31-5_48,acinar,pancreatic acinar cell,acinar
 human1_lib2.final_cell_0124,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib3.final_cell_0703,acinar,acinar cell,acinar
+human3_lib3.final_cell_0703,acinar,pancreatic acinar cell,acinar
 human3_lib3.final_cell_0075,acinar,pancreatic ductal cell,pancreatic ductal cell
 human1_lib1.final_cell_0109,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0170,acinar,pancreatic ductal cell,pancreatic ductal cell
@@ -8115,7 +8115,7 @@ HP1507101_L17,acinar,pancreatic pp cell,pancreatic pp cell
 D31-3_60,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0199,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib4.final_cell_0356,acinar,pancreatic ductal cell,pancreatic ductal cell
-D3en1_41,acinar,acinar cell,acinar
+D3en1_41,acinar,pancreatic acinar cell,acinar
 human3_lib2.final_cell_0229,acinar,pancreatic ductal cell,pancreatic ductal cell
 human1_lib3.final_cell_0002,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib4.final_cell_0368,acinar,pancreatic pp cell,pancreatic pp cell
@@ -8124,17 +8124,17 @@ D31-2_30,acinar,pancreatic pp cell,pancreatic pp cell
 D71_92,acinar,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0221,acinar,pancreatic ductal cell,pancreatic ductal cell
 human1_lib2.final_cell_0177,acinar,pancreatic stellate cell,pancreatic stellate cell
-human3_lib2.final_cell_0426,acinar,acinar cell,acinar
+human3_lib2.final_cell_0426,acinar,pancreatic acinar cell,acinar
 D17TGFB_57,acinar,pancreatic pp cell,pancreatic pp cell
 D31-5_45,acinar,pancreatic pp cell,pancreatic pp cell
 D31-5_4,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib2.final_cell_0108,acinar,acinar cell,acinar
+human3_lib2.final_cell_0108,acinar,pancreatic acinar cell,acinar
 D1713_33,acinar,pancreatic pp cell,pancreatic pp cell
-D31-2_86,acinar,acinar cell,acinar
+D31-2_86,acinar,pancreatic acinar cell,acinar
 D3en4_25,acinar,pancreatic ductal cell,pancreatic ductal cell
 human3_lib2.final_cell_0116,acinar,pancreatic ductal cell,pancreatic ductal cell
 D28-4_40,acinar,pancreatic pp cell,pancreatic pp cell
-human3_lib1.final_cell_0084,acinar,acinar cell,acinar
+human3_lib1.final_cell_0084,acinar,pancreatic acinar cell,acinar
 human2_lib2.final_cell_0009,delta,pancreatic pp cell,pancreatic pp cell
 human3_lib3.final_cell_0800,delta,pancreatic pp cell,pancreatic pp cell
 human3_lib2.final_cell_0317,delta,pancreatic a cell,pancreatic a cell
