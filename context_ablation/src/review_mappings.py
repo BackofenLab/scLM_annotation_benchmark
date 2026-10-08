@@ -211,7 +211,9 @@ def seed_from_predictions(frame, predictions_root):
 
 
 def review(mappings_csv, owl_path, apply_changes=False, revisit=False, predictions_root=None):
-    frame = pd.read_csv(mappings_csv, sep=";")
+    # Labels such as "none" or "n/a" must stay strings: read as NaN, they would be written back
+    # empty, and the label would lose its row.
+    frame = pd.read_csv(mappings_csv, sep=";", keep_default_na=False)
     if predictions_root:
         frame = seed_from_predictions(frame, predictions_root)
     index = cl_index(owl_path)
@@ -263,14 +265,15 @@ def main(argv=None):
                    help="the benchmark's pinned Cell Ontology release (CL_FILE in "
                         "bin/util/cell_ontology_similarity.py)")
     p.add_argument("--apply", action="store_true")
-    p.add_argument("--seed-from-predictions", action="store_true",
-                   help="add labels seen in results/predictions that are not yet in the file")
+    p.add_argument("--seed-from-predictions", nargs="?", const=str(root / "results" / "predictions"),
+                   metavar="DIR", help="add labels seen in the predictions under DIR (default: "
+                                       "results/predictions) that are not yet in the file")
     p.add_argument("--revisit", action="store_true",
                    help="also reconsider rows previously sent to the root term")
     args = p.parse_args(argv)
     review(Path(args.mappings), Path(args.ontology), apply_changes=args.apply,
            revisit=args.revisit,
-           predictions_root=(root / 'results' / 'predictions') if args.seed_from_predictions else None)
+           predictions_root=args.seed_from_predictions)
     return 0
 
 

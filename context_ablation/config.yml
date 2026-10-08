@@ -384,7 +384,6 @@ scoring:
 # it means the cluster job needs neither cell2sentence, nor scanpy, nor the 1 GB context h5ads.
 # ---------------------------------------------------------------------------
 execution:
-  prompts_dir: results/prompts        # written by sentences.py / cluster.py, consumed by runners
   # Which arms run where. Runners refuse arms not listed for their host, so a half-configured
   # machine fails loudly instead of silently skipping an arm.
   hosts:
@@ -396,5 +395,40 @@ execution:
     cluster: [A2_base_percell, A3_scllm_percell, A6_base27_percell, A7_scllm27_percell]
 
 output:
-  predictions_dir: results/predictions
   aggregate_csv: results/context_ablation.csv
+
+# ---------------------------------------------------------------------------
+# Study trees
+#
+# Each study keeps prompts/, predictions/, cache/ and scored/ in its own folder, chosen with
+# --study (default: ablation). The candidate-list study needs a tree of its own for three reasons:
+# the response cache is keyed on (model, prompt, seed), so its exact-list prompts, which equal M2's,
+# would be served the stored M2 answers instead of being asked again; score.py scores every
+# prediction under its tree, and aggregate.py feeds the figures and tables from it; and
+# prune_cache.py would delete the list study's answers as orphans.
+# ---------------------------------------------------------------------------
+studies:
+  ablation: results
+  lists: results_lists
+
+# ---------------------------------------------------------------------------
+# Imperfect candidate lists
+#
+# Every condition is mode M2 (the list, no tissue or species, expression-ranked genes) with another
+# list. src/lists.py draws the lists per dataset and seed into results_lists/lists/. relatives: the
+# share of true types that get their parent or a child added; extra: absent types added; remove:
+# the share of true types removed, at least one; uncertain: the prompt offers "uncertain"
+# (prompts.UNCERTAIN_RULE).
+# ---------------------------------------------------------------------------
+lists:
+  mode: M2
+  resolution: 1.0                # the cluster arm's resolution, as in the figures
+  arms: [A1_llm_percell, A3_scllm_percell, A8_gemini_percluster]
+  conditions:
+    E: {}
+    EU: {uncertain: true}
+    L1: {relatives: 0.5}
+    L2-2: {extra: 2}
+    L2-5: {extra: 5}
+    L3: {remove: 0.25, uncertain: true}
+    L4: {relatives: 0.5, extra: 5, remove: 0.25, uncertain: true}

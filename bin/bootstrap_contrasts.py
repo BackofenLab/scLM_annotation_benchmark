@@ -18,7 +18,9 @@ every run, and the 60 runs scored at both subset sizes moved by no more than the
 predicts once the cells the two samples share are accounted for.
 
 Reads the per-cell outcomes ``bin/per_class_scores.py`` writes (``--cells-out``). Writes every
-comparison to a CSV and the comparisons the text states to a supplementary LaTeX table.
+comparison to a CSV and the comparisons the text states to a supplementary LaTeX table. With
+``--lists-cells`` it compares instead each condition of the imperfect-list study with the exact
+list (``list_contrasts``).
 
 Usage:
     python bin/bootstrap_contrasts.py --input cache/result/aggregated_by_dataset_model_<v>.csv
@@ -77,19 +79,25 @@ def _run_label(model):
     return f"{name} ({'C' if derive_mode(model) == 'unblind' else 'U'})"
 
 
-def replicates(cells, n, rng):
+def replicates(cells, n, rng, listed=None):
     """Balanced accuracy of every run of one dataset on ``n`` redraws of its cells, with
-    replacement within each true type, as an ``n`` x runs frame, and the observed values."""
+    replacement within each true type, as an ``n`` x runs frame, and the observed values.
+    ``listed`` (true types x runs, booleans) restricts a run's balanced accuracy to some types;
+    by default every type counts."""
     hits = cells.pivot(index="cell_id", columns="model", values="hit")
     if hits.isna().any().any():
         raise SystemExit(f"{cells['dataset'].iloc[0]}: the runs were not scored on the same cells")
     true = cells.drop_duplicates("cell_id").set_index("cell_id")["true_label"].reindex(hits.index)
+    keep = (pd.DataFrame(True, index=sorted(true.unique()), columns=hits.columns)
+            if listed is None else listed.reindex(columns=hits.columns).astype(bool))
     total = np.zeros((n, hits.shape[1]))
-    for index in true.groupby(true).groups.values():
+    for cell_type, index in true.groupby(true).groups.items():
         weights = rng.multinomial(len(index), np.full(len(index), 1 / len(index)), size=n)
-        total += weights @ hits.loc[index].to_numpy(float) / len(index)
-    observed = hits.groupby(true).mean().mean()
-    return pd.DataFrame(total / true.nunique(), columns=hits.columns), observed
+        total += (weights @ hits.loc[index].to_numpy(float) / len(index)
+                  * keep.loc[cell_type].to_numpy(float))
+    per_type = hits.groupby(true).mean()
+    observed = per_type.mean() if listed is None else per_type.where(keep).mean()
+    return pd.DataFrame(total / keep.sum().to_numpy(float), columns=hits.columns), observed
 
 
 def verdict(difference, low, high):
@@ -138,6 +146,36 @@ def contrasts(cells, n=REPLICATES, seed=SEED):
     for other in mean_obs.index[1:TOP_RUNS + 1]:
         rows.append(_row("top", "Top of Figure 2A, mean over the four datasets", "all four",
                          top, other, mean_obs, mean_draws[top] - mean_draws[other]))
+    return pd.DataFrame(rows)
+
+
+def list_contrasts(cells, n=REPLICATES, seed=SEED):
+    """Each condition of the imperfect-list study minus the exact list E, per arm and dataset.
+
+    Both sides count only the types the condition still lists, so a condition that removes types
+    is not charged for the cells it could not name. All conditions and seeds of an arm and dataset
+    share each redraw, and the difference is averaged over the seeds. Gemini answers per cluster,
+    so its cells are not independent and its intervals are too narrow.
+    """
+    rng = np.random.default_rng(seed)
+    rows = []
+    for (arm, dataset), group in cells.groupby(["arm", "dataset"], sort=False):
+        exact = dict(tuple(group[group["condition"] == "E"].groupby("seed")))
+        runs, masks = [], []
+        for (condition, s), run in group[group["condition"] != "E"].groupby(["condition", "seed"]):
+            listed = run.groupby("true_label")["listed"].first()
+            for name, frame in ((f"{condition}:{s}", run), (f"E|{condition}:{s}", exact[s])):
+                runs.append(frame.assign(model=name))
+                masks.append(listed.rename(name))
+        draws, observed = replicates(pd.concat(runs), n, rng, pd.concat(masks, axis=1))
+        for condition in sorted(set(group["condition"]) - {"E"}):
+            a = [c for c in draws.columns if c.startswith(f"{condition}:")]
+            b = [f"E|{c}" for c in a]
+            means = pd.Series({f"{arm} {condition}": observed[a].mean(),
+                               f"{arm} E": observed[b].mean()})
+            rows.append(_row(f"list_{condition}", f"{condition} minus E, on the types listed",
+                             dataset, f"{arm} {condition}", f"{arm} E", means,
+                             (draws[a].to_numpy() - draws[b].to_numpy()).mean(axis=1)))
     return pd.DataFrame(rows)
 
 
@@ -218,7 +256,21 @@ def main(argv=None):
     p.add_argument("--tex", default="scLLMs_benchmark_paper/bioRxiv_template/"
                                     "supplementary_contrasts_generated.tex")
     p.add_argument("--replicates", type=int, default=REPLICATES)
+    p.add_argument("--lists-cells", type=Path,
+                   help="per-cell outcomes of the imperfect-list study (lists.py --score); "
+                        "compares its conditions with the exact list instead")
     args = p.parse_args(argv)
+
+    if args.lists_cells:
+        table = list_contrasts(pd.read_csv(args.lists_cells, dtype={"cell_id": str}),
+                               args.replicates)
+        out = args.lists_cells.with_name("bootstrap_lists.csv")
+        table.to_csv(out, index=False)
+        for r in table.itertuples():
+            print(f"{r.dataset:15s} {r.run_a:30s} {r.difference:+.3f} "
+                  f"[{r.ci_low:+.3f}, {r.ci_high:+.3f}] {r.verdict}")
+        print(f"-> {out}")
+        return 0
 
     cells = pd.read_csv(args.cells, dtype={"cell_id": str})
     keep = (~cells["model"].map(model_base).isin(EXCLUDED_BASES)

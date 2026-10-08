@@ -18,6 +18,8 @@ set -euo pipefail
 
 HOST="${HOST:-gpu}"
 REMOTE_DIR="${REMOTE_DIR:-context_ablation}"
+SSH_OPTS="${SSH_OPTS:-}"            # e.g. "-J <jump-host>", as in ship_to_gpu.sh
+STUDY="${STUDY:-ablation}"          # the study tree run_local.py reads and writes
 # 3, not the permitted 4, deliberately. The documented ceiling is 4 GPUs per user and the prolog
 # approves at exactly "3 + 1 = 4 / 4", so 4 is legal -- but it is also the boundary, and the prolog
 # evaluates that boundary by counting a user's RUNNING jobs at launch time. Sitting one below it
@@ -57,12 +59,12 @@ fi
 echo "==> $ARM at batch $BATCH"
 
 echo "==> node must be usable before anything is submitted"
-state=$(ssh "$HOST" "sinfo -N -h -o '%T' -n <gpu-node>" | tr -d ' ')
+state=$(ssh $SSH_OPTS "$HOST" "sinfo -N -h -o '%T' -n <gpu-node>" | tr -d ' ')
 echo "  node state: $state"
 case "$state" in
   *drain*|*down*)
     echo "REFUSING: the node is $state, so nothing would start." >&2
-    ssh "$HOST" "sinfo -N -o '%.20N %.14T %.30E' -n <gpu-node>" >&2
+    ssh $SSH_OPTS "$HOST" "sinfo -N -o '%.20N %.14T %.30E' -n <gpu-node>" >&2
     echo "A drained node needs an admin to resume it (<email removed>)." >&2
     exit 1 ;;
 esac
@@ -71,7 +73,7 @@ for ds in "${DATASETS[@]}"; do
   # Wait for a free slot rather than submitting everything at once. Queued jobs would be fine, but
   # holding submission also keeps the prolog's own limit path from ever being exercised.
   while true; do
-    n=$(ssh "$HOST" "squeue -u \$USER -h -o '%i' | wc -l" | tr -d ' ')
+    n=$(ssh $SSH_OPTS "$HOST" "squeue -u \$USER -h -o '%i' | wc -l" | tr -d ' ')
     [ "${n:-0}" -lt "$MAX_CONCURRENT" ] && break
     echo "  $n job(s) in flight, waiting for a slot..."
     sleep 30
@@ -85,7 +87,7 @@ for ds in "${DATASETS[@]}"; do
   # process that runs sbatch, which is the REMOTE shell -- a variable set on the laptop never
   # crosses the ssh boundary. Before this, `BATCH=32 submit_shards.sh` looked like it worked and
   # silently ran at the 128 default, which for a 27B model overflows the card.
-  ssh "$HOST" "cd $REMOTE_DIR && mkdir -p logs && sbatch --export=ALL,ARM=$ARM,DATASET=$ds,BATCH=$BATCH slurm/run_local_arms.sbatch"
+  ssh $SSH_OPTS "$HOST" "cd $REMOTE_DIR && mkdir -p logs && sbatch --export=ALL,ARM=$ARM,DATASET=$ds,BATCH=$BATCH,STUDY=$STUDY slurm/run_local_arms.sbatch"
 done
 
 if [ "$DRY_RUN" -eq 1 ]; then
@@ -94,4 +96,4 @@ if [ "$DRY_RUN" -eq 1 ]; then
 fi
 
 echo "==> in flight"
-ssh "$HOST" "squeue -u \$USER -o '%.12i %.14j %.9T %.8M %R'"
+ssh $SSH_OPTS "$HOST" "squeue -u \$USER -o '%.12i %.14j %.9T %.8M %R'"

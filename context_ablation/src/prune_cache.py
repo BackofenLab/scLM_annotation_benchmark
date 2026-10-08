@@ -44,8 +44,8 @@ def wanted_keys(prompts_dir, arm_name, dataset, model):
 
 
 def prune(root, cfg, dry_run=True):
-    prompts_dir = root / cfg["execution"]["prompts_dir"]
-    cache_root = root / "results" / "cache"
+    tree = root / cfg["studies"]["ablation"]
+    prompts_dir, cache_root = tree / "prompts", tree / "cache"
     total_kept = total_dropped = 0
 
     for cache_file in sorted(cache_root.glob("*.jsonl")):

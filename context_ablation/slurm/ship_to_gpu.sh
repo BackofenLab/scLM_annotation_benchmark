@@ -13,10 +13,18 @@ set -euo pipefail
 HOST="${HOST:-gpu}"
 REMOTE_DIR="${REMOTE_DIR:-context_ablation}"
 LOCAL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+# Extra ssh options, e.g. SSH_OPTS="-J <jump-host>" where the alias' own jump host is out of reach; rsync
+# takes them through RSYNC_RSH.
+SSH_OPTS="${SSH_OPTS:-}"
+export RSYNC_RSH="ssh $SSH_OPTS"
+# The study tree (`studies` in config.yml): STUDY=lists ships, runs and fetches results_lists/ only.
+STUDY="${STUDY:-ablation}"
+TREE=$(python3 -c 'import sys, yaml; print(yaml.safe_load(open(sys.argv[1]))["studies"][sys.argv[2]])' \
+  "$LOCAL_ROOT/config.yml" "$STUDY")
 
 echo "==> shipping $LOCAL_ROOT -> $HOST:~/$REMOTE_DIR"
 
-ssh "$HOST" "mkdir -p ~/$REMOTE_DIR/{src,slurm,logs,results/prompts}"
+ssh $SSH_OPTS "$HOST" "mkdir -p ~/$REMOTE_DIR/{src,slurm,logs,$TREE/prompts}"
 
 # Code and config. --delete is deliberately ABSENT: it would wipe results/ on a re-ship.
 rsync -az --stats \
@@ -41,13 +49,13 @@ PY
 echo "  shipping prompts for: $(echo "$LOCAL_ARMS" | tr ' ' '\n' | sed 's/--include=\*//; s/\*\.csv//' | tr '\n' ' ')"
 # shellcheck disable=SC2086
 rsync -az --progress $LOCAL_ARMS --exclude='*' \
-  "$LOCAL_ROOT/results/prompts/" "$HOST:$REMOTE_DIR/results/prompts/"
+  "$LOCAL_ROOT/$TREE/prompts/" "$HOST:$REMOTE_DIR/$TREE/prompts/"
 
 echo "==> verifying the shipment"
-ssh "$HOST" "cd $REMOTE_DIR && ls results/prompts/*.csv | wc -l | xargs printf '  prompt files: %s (expect 168)\n' && du -sh results/prompts | xargs printf '  size: %s %s\n'"
+ssh $SSH_OPTS "$HOST" "cd $REMOTE_DIR && ls $TREE/prompts/*.csv | wc -l | xargs printf '  prompt files: %s (168 for the ablation)\n' && du -sh $TREE/prompts | xargs printf '  size: %s %s\n'"
 
 echo "==> bootstrapping conda + environment (skips whatever already exists)"
-ssh "$HOST" bash -s <<'REMOTE'
+ssh $SSH_OPTS "$HOST" bash -s <<'REMOTE'
 set -euo pipefail
 cd ~/context_ablation
 

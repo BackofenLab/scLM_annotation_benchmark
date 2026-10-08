@@ -22,11 +22,13 @@ print(annotation_key)
 PY
 )
 
+# CANDIDATE_TYPES_FILE (an absolute path) replaces the full Cell Ontology list with a list of the
+# candidate-list study; unset, the wrapper runs as in the benchmark.
 # Run MMContext prediction
 python "$SCRIPT_DIR/predict.py" \
   --input "$INPUT_H5AD" \
   --output "$OUT_CSV" \
-  --cell_types_file "all_cell_types.txt" \
+  --cell_types_file "${CANDIDATE_TYPES_FILE:-all_cell_types.txt}" \
   --annotation_key "$ANNOTATION_KEY" \
   --cache_dir "$CACHE_DIR"
 

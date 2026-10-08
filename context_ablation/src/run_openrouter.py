@@ -182,8 +182,14 @@ def call_once(session, model, prompt, cfg, seed, api_key, max_retries=8, backoff
         if 500 <= r.status_code < 600:
             wait(attempt)
             continue
-        # Anything else (400 malformed, 401 bad key, 404 unknown model) is a property of the
-        # request, not of the moment: NOT transient, so it is cached and never re-paid for.
+        # 401 bad key, 402 credit used up, 403 guardrail: a property of the key or the account, so
+        # every later call fails alike. Never cached, so a re-run after the fix asks again, and
+        # fatal, so the run stops instead of marking every remaining cell unanswered.
+        if r.status_code in (401, 402, 403):
+            return None, {"error": f"HTTP {r.status_code}: {r.text[:300]}", "transient": True,
+                          "fatal": True}
+        # Anything else (400 malformed, 404 unknown model) is a property of the request, not of
+        # the moment: NOT transient, so it is cached and never re-paid for.
         return None, {"error": f"HTTP {r.status_code}: {r.text[:300]}", "transient": False}
 
     return None, {"error": f"exhausted {max_retries} attempts", "transient": True}
@@ -321,6 +327,10 @@ def run_file(prompt_file, cfg, api_key, out_root, cache_root, dry_run=False):
                     text, meta = fut.result()
                 except Exception as exc:  # noqa: BLE001 - one bad call must not kill the run
                     text, meta = None, {"error": f"worker raised {type(exc).__name__}: {exc}"}
+                if meta.get("fatal"):
+                    pool.shutdown(wait=False, cancel_futures=True)
+                    raise SystemExit(f"{arm_name} {dataset} {mode} seed{seed}: {meta['error']}. "
+                                     f"Stopped; nothing of it was cached and no file was written.")
                 # Permanent failures are cached (a malformed request fails identically forever, so
                 # remembering it saves paying twice). TRANSIENT ones are NOT: a 429 says the
                 # provider was busy at that instant, and caching it would permanently mark a cell
@@ -409,6 +419,8 @@ def main(argv=None):
     p.add_argument("--host", default="laptop", help="which host's arms to run (see config.yml)")
     p.add_argument("--arms", nargs="+", help="override the host's arm list")
     p.add_argument("--datasets", nargs="+")
+    p.add_argument("--seeds", nargs="+", type=int)
+    p.add_argument("--study", default="ablation", help="the study tree (see `studies` in config)")
     p.add_argument("--dry-run", action="store_true",
                    help="report cache hits and what would be called, then exit")
     p.add_argument("--provider-mix", action="store_true",
@@ -429,24 +441,26 @@ def main(argv=None):
               file=sys.stderr)
 
     arms = args.arms or cfg["execution"]["hosts"][args.host]
-    prompts_dir = root / cfg["execution"]["prompts_dir"]
+    tree = root / cfg["studies"][args.study]
+    prompts_dir = tree / "prompts"
     if not prompts_dir.exists():
         raise SystemExit(f"no prompts at {prompts_dir}; run sentences.py --materialize first")
 
     if args.provider_mix:
-        provider_mix(root, cfg, arms, prompts_dir, root / "results" / "cache")
+        provider_mix(root, cfg, arms, prompts_dir, tree / "cache")
         return 0
 
-    files = sorted(f for f in prompts_dir.glob("*.csv")
-                   if parse_prompt_file(f)[1] in arms
-                   and (not args.datasets or parse_prompt_file(f)[0] in args.datasets))
+    def wanted(f):
+        dataset, arm, _mode, _variant, seed = parse_prompt_file(f)
+        return (arm in arms and (not args.datasets or dataset in args.datasets)
+                and (not args.seeds or seed in args.seeds))
+
+    files = [f for f in sorted(prompts_dir.glob("*.csv")) if wanted(f)]
     if not files:
         raise SystemExit(f"no prompt files for arms {arms} in {prompts_dir}")
 
-    out_root = root / cfg["output"]["predictions_dir"]
-    cache_root = root / "results" / "cache"
     for f in files:
-        run_file(f, cfg, api_key, out_root, cache_root, dry_run=args.dry_run)
+        run_file(f, cfg, api_key, tree / "predictions", tree / "cache", dry_run=args.dry_run)
     return 0
 
 

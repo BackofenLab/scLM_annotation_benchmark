@@ -154,7 +154,7 @@ def check_equivalence(dataset, cfg, n_check=50, seed=1234):
     return mismatches, info
 
 
-def materialize(dataset, cfg, out_dir, arms=None):
+def materialize(dataset, cfg, out_dir, arms=None, modes=None, candidates=None):
     """Write every per-cell prompt this study needs, as files the runners just read.
 
     The split runs the OpenRouter arms on one machine and the local-weight arms on another. Both
@@ -167,6 +167,9 @@ def materialize(dataset, cfg, out_dir, arms=None):
     One file per (dataset, arm, mode, gene variant, seed). The seed matters: the candidate list is
     shuffled per cell, so a different seed is a genuinely different prompt set, and repeats that
     reused one seed would measure nothing.
+
+    ``modes`` and ``candidates(mode, seed)`` serve the candidate-list study (``lists.py``): its
+    conditions, and the list each one gives. Without them every mode lists the true types.
     """
     import numpy as np
     from prompts import build_prompt, candidate_list
@@ -193,7 +196,7 @@ def materialize(dataset, cfg, out_dir, arms=None):
     for arm_name, arm in arms.items():
         if arm["granularity"] != "cell":
             continue    # the cluster arm's prompts come from cluster.py, not from cell sentences
-        for mode_name, mode in cfg["modes"].items():
+        for mode_name, mode in (modes or cfg["modes"]).items():
             for variant, spec in cfg["genes"]["variants"].items():
                 if spec["hvg"] and hvg_modes and mode_name not in hvg_modes:
                     continue
@@ -209,6 +212,7 @@ def materialize(dataset, cfg, out_dir, arms=None):
 
                 for seed in cfg["repeats"]["seeds"]:
                     rng = np.random.default_rng(seed)
+                    listed = candidates(mode_name, seed) if candidates else labels
                     if mode.get("genes"):
                         cells, sents, _info = built[variant]
                     else:
@@ -232,7 +236,7 @@ def materialize(dataset, cfg, out_dir, arms=None):
                             # isolate the ordering.
                             genes = sentence.split(" ")
                             sentence = " ".join(rng.permutation(genes).tolist())
-                        types = candidate_list(labels, rng) if mode.get("cell_types") else None
+                        types = candidate_list(listed, rng) if mode.get("cell_types") else None
                         rows.append({
                             "cell_id": cell_id,
                             "true_labels": str(obs.loc[cell_id, truth_key]),
@@ -282,6 +286,7 @@ def main(argv=None):
     p.add_argument("--materialize", action="store_true",
                    help="write every per-cell prompt to results/prompts/ for the runners")
     p.add_argument("--n-check", type=int, default=50)
+    p.add_argument("--study", default="ablation", help="the study tree (see `studies` in config)")
     args = p.parse_args(argv)
 
     cfg = load_config(args.config)
@@ -302,10 +307,12 @@ def main(argv=None):
         return 0
 
     if args.materialize:
-        out_dir = Path(__file__).resolve().parents[1] / cfg["execution"]["prompts_dir"]
+        from lists import prompt_args
+        tree = Path(__file__).resolve().parents[1] / cfg["studies"][args.study]
         for dataset in datasets:
-            written = materialize(dataset, cfg, out_dir)
-            print(f"[done] {dataset}: {len(written)} prompt files -> {out_dir}")
+            study = prompt_args(cfg, tree, dataset) if args.study == "lists" else {}
+            written = materialize(dataset, cfg, tree / "prompts", **study)
+            print(f"[done] {dataset}: {len(written)} prompt files -> {tree / 'prompts'}")
         return 0
 
     rows = []

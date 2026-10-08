@@ -8,7 +8,9 @@ MODEL_PATH=$(realpath "$0")
 CACHE_DIR=$(realpath "$4")
 
 mkdir -p "$CACHE_DIR"
-CELL_TYPES_FILE="$(dirname $CACHE_DIR)/all_cell_types.txt"
+# CANDIDATE_TYPES_FILE (an absolute path) replaces the full Cell Ontology list with a list of the
+# candidate-list study; unset, the wrapper runs as in the benchmark.
+CELL_TYPES_FILE="${CANDIDATE_TYPES_FILE:-$(dirname $CACHE_DIR)/all_cell_types.txt}"
 
 # Create output directory if it doesn't exist and resolve its absolute path
 OUTPUT_DIR=$(dirname "$OUT_CSV")

@@ -109,8 +109,9 @@ def restrict_to_eval(assignments, dataset, cfg):
     return assignments.loc[ids]
 
 
-def materialize_cluster_prompts(dataset, cfg, resolution, per_eval, markers, out_dir):
-    """Write A4's prompts: ONE ROW PER EVAL CELL, carrying that cell's cluster prompt.
+def materialize_cluster_prompts(dataset, cfg, resolution, per_eval, markers, out_dir,
+                                arm="A4_llm_percluster", modes=None, candidates=None):
+    """Write a cluster arm's prompts: ONE ROW PER EVAL CELL, carrying that cell's cluster prompt.
 
     Per cell rather than per cluster so the output drops straight into the same scoring path as
     every other arm -- predictions must be per cell to compare against per-cell truth. The cost of
@@ -120,6 +121,9 @@ def materialize_cluster_prompts(dataset, cfg, resolution, per_eval, markers, out
     Resolution rides in the `variant` slot of the filename. The five-field naming has no separate
     place for it, and it is genuinely a variant of the arm: aggregate.py then carries `res0.5` /
     `res1.0` through as its own column, which is what the two-resolution panel needs.
+
+    ``modes`` and ``candidates(mode, seed)`` serve the candidate-list study, as in
+    ``sentences.materialize``.
     """
     import numpy as np
     from prompts import build_prompt, candidate_list
@@ -135,16 +139,17 @@ def materialize_cluster_prompts(dataset, cfg, resolution, per_eval, markers, out
     override = ds_cfg.get("context_phrase")
 
     written = []
-    for mode_name, mode in cfg["modes"].items():
+    for mode_name, mode in (modes or cfg["modes"]).items():
         # M5 withholds the gene list, and a cluster prompt is nothing BUT the gene list, so the
         # mode has no meaning for this arm.
         if not mode.get("genes"):
             continue
         for seed in cfg["repeats"]["seeds"]:
             rng = np.random.default_rng(seed)
+            listed = candidates(mode_name, seed) if candidates else labels
             # One shuffle per CLUSTER, not per cell: every cell in a cluster must receive the
             # identical prompt or the cache cannot collapse them and the arm costs 30x more.
-            per_cluster = {c: (candidate_list(labels, rng) if mode.get("cell_types") else None)
+            per_cluster = {c: (candidate_list(listed, rng) if mode.get("cell_types") else None)
                            for c in sorted(markers)}
             rows = []
             for cell_id, cluster in per_eval.items():
@@ -159,8 +164,7 @@ def materialize_cluster_prompts(dataset, cfg, resolution, per_eval, markers, out
                         unique_cell_types=per_cluster.get(cluster),
                         tissue=tissue, species=species, context_override=override),
                 })
-            name = (f"{dataset}__A4_llm_percluster__{mode_name}__res{resolution}__"
-                    f"seed{seed}.csv")
+            name = f"{dataset}__{arm}__{mode_name}__res{resolution}__seed{seed}.csv"
             pd.DataFrame(rows).to_csv(Path(out_dir) / name, index=False)
             written.append(name)
     return written
@@ -180,13 +184,36 @@ def main(argv=None):
     p.add_argument("--out-dir", default=None,
                    help="where cluster assignments and markers are written "
                         "(default: results/clusters)")
+    p.add_argument("--study", default="ablation",
+                   help="the study tree (see `studies` in config). The candidate-list study reuses "
+                        "the clusters stored in --out-dir instead of clustering again")
     args = p.parse_args(argv)
 
     cfg = load_config(args.config)
     datasets = args.datasets or cfg["datasets"]
     resolutions = args.resolutions or cfg["cluster"]["resolutions"]
-    out_dir = Path(args.out_dir or (Path(__file__).resolve().parents[1] / "results" / "clusters"))
+    root = Path(__file__).resolve().parents[1]
+    out_dir = Path(args.out_dir or (root / "results" / "clusters"))
     out_dir.mkdir(parents=True, exist_ok=True)
+    prompts_dir = root / cfg["studies"][args.study] / "prompts"
+    prompts_dir.mkdir(parents=True, exist_ok=True)
+
+    if args.study == "lists":
+        from lists import prompt_args
+        resolution = cfg["lists"]["resolution"]
+        for dataset in datasets:
+            study = prompt_args(cfg, prompts_dir.parent, dataset)
+            arm = next(name for name, spec in study.pop("arms").items()
+                       if spec["granularity"] == "cluster")
+            tag = out_dir / f"{dataset}_res{resolution}"
+            # As strings: the clusters are shuffled in string order (sorted(markers)), as stored.
+            per_eval = pd.read_csv(f"{tag}_assignments.csv", index_col=0, dtype=str)["cluster"]
+            markers = {c: genes.split(", ") for c, genes in
+                       pd.read_csv(f"{tag}_markers.csv", dtype=str).itertuples(index=False)}
+            written = materialize_cluster_prompts(dataset, cfg, resolution, per_eval, markers,
+                                                  prompts_dir, arm=arm, **study)
+            print(f"[done] {dataset} res={resolution}: {len(written)} prompt files -> {prompts_dir}")
+        return 0
 
     rows = []
     for dataset in datasets:
@@ -200,8 +227,6 @@ def main(argv=None):
                           for c, g in sorted(markers.items())]).to_csv(
                 out_dir / f"{tag}_markers.csv", index=False)
 
-            prompts_dir = (Path(__file__).resolve().parents[1] / cfg["execution"]["prompts_dir"])
-            prompts_dir.mkdir(parents=True, exist_ok=True)
             written = materialize_cluster_prompts(dataset, cfg, resolution, per_eval, markers,
                                                   prompts_dir)
 

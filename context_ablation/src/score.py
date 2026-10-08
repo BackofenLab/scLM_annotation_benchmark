@@ -26,16 +26,15 @@ def load_config(path):
         return yaml.safe_load(fh)
 
 
-def prediction_files(cfg, root):
+def prediction_files(pred_root):
     """Every predictions.csv the runners wrote, with its coordinates recovered from the path."""
-    pred_root = root / cfg["output"]["predictions_dir"]
     for path in sorted(pred_root.glob("*/*/*/*/*/predictions.csv")):
         arm, dataset, mode, variant, seed = path.parts[-6:-1]
         yield path, {"arm": arm, "dataset": dataset, "mode": mode,
                      "variant": variant, "seed": seed.removeprefix("seed")}
 
 
-def score_one(path, coords, cfg, root, python_exe):
+def score_one(path, coords, cfg, root, python_exe, tree):
     """map_predictions -> evaluate, into a per-run directory. Skips work already done.
 
     Both stages are cached: the mapped CSV is reused when present, and the JSON is not recomputed.
@@ -54,7 +53,7 @@ def score_one(path, coords, cfg, root, python_exe):
 
     tag = "__".join([coords["arm"], coords["dataset"], coords["mode"],
                      coords["variant"], f"seed{coords['seed']}"])
-    work = root / "results" / "scored" / tag
+    work = tree / "scored" / tag
     work.mkdir(parents=True, exist_ok=True)
     result_json = work / f"{coords['dataset']}_{coords['arm']}.json"
     if result_json.exists():
@@ -90,14 +89,15 @@ def main(argv=None):
     p.add_argument("--config", default=str(root / "config.yml"))
     p.add_argument("--python", default=sys.executable,
                    help="interpreter for bin/*.py (needs the evaluation deps, e.g. pronto)")
+    p.add_argument("--study", default="ablation", help="the study tree (see `studies` in config)")
     p.add_argument("--dry-run", action="store_true")
     args = p.parse_args(argv)
 
     cfg = load_config(args.config)
-    found = list(prediction_files(cfg, root))
+    tree = root / cfg["studies"][args.study]
+    found = list(prediction_files(tree / "predictions"))
     if not found:
-        raise SystemExit(f"no predictions under {root / cfg['output']['predictions_dir']}; "
-                         f"run the runners first")
+        raise SystemExit(f"no predictions under {tree / 'predictions'}; run the runners first")
 
     print(f"{len(found)} prediction file(s) to score")
     if args.dry_run:
@@ -108,7 +108,7 @@ def main(argv=None):
 
     counts = {"scored": 0, "cached": 0}
     for path, coords in found:
-        _out, status = score_one(path, coords, cfg, root, args.python)
+        _out, status = score_one(path, coords, cfg, root, args.python, tree)
         counts[status] += 1
     print(f"done: {counts['scored']} scored, {counts['cached']} already present")
     return 0

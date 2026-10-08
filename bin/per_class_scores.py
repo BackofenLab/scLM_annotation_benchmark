@@ -69,6 +69,61 @@ def model_name(wrapper: str, stem: str) -> str:
     return sub
 
 
+def score_file(frame, dataset, model, label_index, taxonomy, reviewed, review_map, min_coverage):
+    """Per-class rows, confusion pairs and per-cell outcomes of one mapped prediction file, or None
+    below the coverage gate. Trust rule, gate and canonicalization are ``bin/evaluate.py``'s."""
+    from evaluate import prepare_for_scoring, trusted_answers
+    from util.cell_ontology_similarity import compute_ontology_similarities
+    from util.label_normalization import label_key
+
+    raw_col = ("original_predicted_labels" if "original_predicted_labels" in frame.columns
+               else "predicted_labels")
+    is_cl, trusted = trusted_answers(frame[raw_col], label_index, reviewed)
+    # No curated mapping is needed for a Cell Ontology term or for one of the dataset's own
+    # reference labels as written: the constrained runs are given those labels, and some are
+    # not ontology terms (pancreas "delta", Zeisel "Microglia").
+    own_labels = set(frame["true_labels"].astype(str).map(label_key))
+    direct = is_cl | frame[raw_col].astype(str).map(label_key).isin(own_labels)
+    coverage = trusted.mean() if len(frame) else 0.0
+    if coverage < min_coverage:
+        return None
+    frame, _, _ = prepare_for_scoring(frame, trusted, ["true_labels"], label_index, review_map)
+    pairs, avg = compute_ontology_similarities(frame, "true_labels", "predicted_labels",
+                                               label_index, taxonomy)
+    pairs["hit"] = (pairs["true_labels"] == pairs["predicted_labels"]).astype(float)
+    cells = pd.DataFrame({
+        "dataset": dataset, "model": model, "cell_id": frame["cell_id"].astype(str),
+        "true_label": frame["true_labels"],
+        "hit": (frame["true_labels"] == frame["predicted_labels"]).astype(int)})
+    direct = (frame.assign(direct=direct)
+              .groupby(["true_labels", "predicted_labels"])["direct"].sum())
+    flows = pd.DataFrame({
+        "true_label": pairs["true_labels"], "predicted_label": pairs["predicted_labels"],
+        "n_cells": pairs["cell_count"], "model": model, "dataset": dataset,
+        # the true type's share of the evaluation subset
+        "prevalence": pairs.groupby("true_labels")["cell_count"].transform("sum")
+                      / pairs["cell_count"].sum(),
+        "n_direct": [int(direct[key]) for key in
+                     zip(pairs["true_labels"], pairs["predicted_labels"])],
+        "lineage": pairs["lineage"]})
+    rows = []
+    for cell_type, group in pairs.groupby("true_labels"):
+        weights = group["cell_count"]
+        rows.append({
+            "dataset": dataset, "model": model, "cell_type": cell_type,
+            "n_cells": int(weights.sum()),
+            **{name: float(np.average(group[col], weights=weights)) for name, col in
+               (("recall", "hit"), ("agreement", "agreement"), ("lin", "lin_similarity"),
+                ("rada", "rada_similarity"))},
+        })
+    rows.append({"dataset": dataset, "model": model, "cell_type": "__OVERALL__",
+                 "n_cells": int(len(frame)),
+                 "recall": float((frame["true_labels"] == frame["predicted_labels"]).mean()),
+                 "agreement": avg["agreement_score"],
+                 "lin": avg["lin_avg_similarity"], "rada": avg["rada_avg_similarity"]})
+    return rows, flows, cells
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -84,12 +139,9 @@ def main() -> None:
     args = ap.parse_args()
     cache_dir = Path(args.cache_dir)
 
-    from evaluate import (load_ontology_context, load_review_status, prepare_for_scoring,
-                          trusted_answers)
+    from evaluate import load_ontology_context, load_review_status
     from plot_model_comparison import EXCLUDED_BASES, model_base
-    from util.cell_ontology_similarity import (compute_ontology_similarities,
-                                               download_cl_ontology)
-    from util.label_normalization import label_key
+    from util.cell_ontology_similarity import download_cl_ontology
 
     label_index, taxonomy = load_ontology_context(download_cl_ontology(cache_dir))
     reviewed, review_map = load_review_status(cache_dir)
@@ -107,54 +159,16 @@ def main() -> None:
         frame = pd.read_csv(path)
         if not {"true_labels", "predicted_labels"} <= set(frame.columns):
             continue
-        raw_col = ("original_predicted_labels" if "original_predicted_labels" in frame.columns
-                   else "predicted_labels")
-        is_cl, trusted = trusted_answers(frame[raw_col], label_index, reviewed)
-        # No curated mapping is needed for a Cell Ontology term or for one of the dataset's own
-        # reference labels as written: the constrained runs are given those labels, and some are
-        # not ontology terms (pancreas "delta", Zeisel "Microglia").
-        own_labels = set(frame["true_labels"].astype(str).map(label_key))
-        direct = is_cl | frame[raw_col].astype(str).map(label_key).isin(own_labels)
-        coverage = trusted.mean() if len(frame) else 0.0
-        if coverage < args.min_scoring_coverage:
+        scored = score_file(frame, dataset, model, label_index, taxonomy, reviewed, review_map,
+                            args.min_scoring_coverage)
+        if scored is None:
             gated += 1
-            print(f"  [{i}/{len(files)}] GATED {dataset}/{model} coverage={coverage:.3f}",
-                  flush=True)
+            print(f"  [{i}/{len(files)}] GATED {dataset}/{model}", flush=True)
             continue
-        frame, _, _ = prepare_for_scoring(frame, trusted, ["true_labels"], label_index, review_map)
-        pairs, avg = compute_ontology_similarities(frame, "true_labels", "predicted_labels",
-                                                   label_index, taxonomy)
-        pairs["hit"] = (pairs["true_labels"] == pairs["predicted_labels"]).astype(float)
-        cells.append(pd.DataFrame({
-            "dataset": dataset, "model": model, "cell_id": frame["cell_id"].astype(str),
-            "true_label": frame["true_labels"],
-            "hit": (frame["true_labels"] == frame["predicted_labels"]).astype(int)}))
-        direct = (frame.assign(direct=direct)
-                  .groupby(["true_labels", "predicted_labels"])["direct"].sum())
-        flows.append(pd.DataFrame({
-            "true_label": pairs["true_labels"], "predicted_label": pairs["predicted_labels"],
-            "n_cells": pairs["cell_count"], "model": model, "dataset": dataset,
-            # the true type's share of the evaluation subset
-            "prevalence": pairs.groupby("true_labels")["cell_count"].transform("sum")
-                          / pairs["cell_count"].sum(),
-            "n_direct": [int(direct[key]) for key in
-                         zip(pairs["true_labels"], pairs["predicted_labels"])],
-            "lineage": pairs["lineage"]}))
-        for cell_type, group in pairs.groupby("true_labels"):
-            weights = group["cell_count"]
-            rows.append({
-                "dataset": dataset, "model": model, "cell_type": cell_type,
-                "n_cells": int(weights.sum()),
-                **{name: float(np.average(group[col], weights=weights)) for name, col in
-                   (("recall", "hit"), ("agreement", "agreement"), ("lin", "lin_similarity"),
-                    ("rada", "rada_similarity"))},
-            })
-        rows.append({"dataset": dataset, "model": model, "cell_type": "__OVERALL__",
-                     "n_cells": int(len(frame)),
-                     "recall": float((frame["true_labels"] == frame["predicted_labels"]).mean()),
-                     "agreement": avg["agreement_score"],
-                     "lin": avg["lin_avg_similarity"], "rada": avg["rada_avg_similarity"]})
-        print(f"  [{i}/{len(files)}] {dataset}/{model}  lin={avg['lin_avg_similarity']:.4f}",
+        rows += scored[0]
+        flows.append(scored[1])
+        cells.append(scored[2])
+        print(f"  [{i}/{len(files)}] {dataset}/{model}  lin={scored[0][-1]['lin']:.4f}",
               flush=True)
 
     out = pd.DataFrame(rows)

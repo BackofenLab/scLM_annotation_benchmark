@@ -104,6 +104,25 @@ Important rules:
 Output:
 """
 
+#: The option to abstain, offered by the imperfect-list conditions (``lists`` in config.yml).
+UNCERTAIN_RULE = "If none of the listed cell types fits, answer uncertain."
+
+
+def _offer_uncertain(body, mode):
+    """``body`` with the option to answer "uncertain" if ``mode`` offers it, else unchanged.
+
+    Spliced into the template rather than written into a copy, so the benchmark templates above
+    stay the one source of the M1/M2 wording. The instruction and marker templates get it as rule
+    5, the one exception to rule 2; the C2S template, which has no rules, right after its list.
+    """
+    if not mode.get("uncertain"):
+        return body
+    if not mode.get("cell_types"):
+        raise ValueError("'uncertain' is an alternative to the listed cell types; it needs a list")
+    if body.endswith("Output:\n"):
+        return body.removesuffix("Output:\n") + f"5. {UNCERTAIN_RULE}\nOutput:\n"
+    return body.replace("{unique_cell_types}.", "{unique_cell_types}. " + UNCERTAIN_RULE)
+
 
 def candidate_list(labels, rng):
     """The candidate cell types for ONE cell, independently shuffled.
@@ -216,22 +235,27 @@ def build_prompt(template, mode, *, num_genes=None, cell_sentence=None, unique_c
             raise ValueError("the cluster arm has no meaning without its marker genes: a cluster "
                              "prompt is nothing but the gene list, so mode M5 does not apply")
         body = MARKER_WITH_TYPES if mode.get("cell_types") else MARKER_NO_TYPES
-        return body.format(num_genes=num_genes, marker_genes=", ".join(marker_genes),
+        return _offer_uncertain(body, mode).format(
+            num_genes=num_genes, marker_genes=", ".join(marker_genes),
                            unique_cell_types=types_str, context=ctx)
 
     if template == "c2s":
         if not mode.get("genes"):
-            return C2S_NO_GENES.format(organism=organism, unique_cell_types=types_str, context=ctx)
+            return _offer_uncertain(C2S_NO_GENES, mode).format(
+                organism=organism, unique_cell_types=types_str, context=ctx)
         body = C2S_WITH_TYPES if mode.get("cell_types") else C2S_NO_TYPES
-        return body.format(num_genes=num_genes, organism=organism, cell_sentence=cell_sentence,
-                           unique_cell_types=types_str, context=ctx)
+        return _offer_uncertain(body, mode).format(
+            num_genes=num_genes, organism=organism, cell_sentence=cell_sentence,
+            unique_cell_types=types_str, context=ctx)
 
     if template == "instruction":
         if not mode.get("genes"):
-            return INSTRUCTION_NO_GENES.format(unique_cell_types=types_str, context=ctx)
+            return _offer_uncertain(INSTRUCTION_NO_GENES, mode).format(
+                unique_cell_types=types_str, context=ctx)
         body = INSTRUCTION_WITH_TYPES if mode.get("cell_types") else INSTRUCTION_NO_TYPES
-        return body.format(num_genes=num_genes, cell_sentence=cell_sentence,
-                           unique_cell_types=types_str, context=ctx)
+        return _offer_uncertain(body, mode).format(
+            num_genes=num_genes, cell_sentence=cell_sentence, unique_cell_types=types_str,
+            context=ctx)
 
     raise ValueError(f"unknown template: {template}")
 
@@ -290,14 +314,31 @@ def _self_test():
                        species="mouse", context_override="mouse brain")
     assert "this gene profile mouse brain represents" in p4b, p4b
 
+    # "uncertain" adds its rule and nothing else: taking the rule out gives back the M2 prompt.
+    mu = {**m2, "uncertain": True}
+    for tmpl, extra in (("instruction", {}), ("c2s", {"organism": "Homo sapiens"}),
+                        ("marker_genes", {"marker_genes": ["A", "B"]})):
+        kw = dict(num_genes=200, cell_sentence="A B C", unique_cell_types=["b cell"], **extra)
+        offered = build_prompt(tmpl, mu, **kw)
+        assert offered.count(UNCERTAIN_RULE) == 1, offered
+        stripped = offered.replace(f"5. {UNCERTAIN_RULE}\n", "").replace(f" {UNCERTAIN_RULE}", "")
+        assert stripped == build_prompt(tmpl, m2, **kw), offered
+    try:
+        build_prompt("instruction", {**m1, "uncertain": True}, num_genes=200, cell_sentence="A")
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("'uncertain' without a list must be refused")
+
     # --- whitespace: no double spaces, and no space before punctuation, in ANY combination ------
     import itertools
     tissues = [None, "", "pancreas", "retina (fetal)",
                "nervous system (whole mouse CNS and PNS: cortex, hippocampus)"]
     for tmpl, mode, tis, spec in itertools.product(
             ("instruction", "c2s"),
-            ({"cell_types": ct, "tissue_species": ts, "genes": g}
-             for ct in (True, False) for ts in (True, False) for g in (True, False)),
+            ({"cell_types": ct, "tissue_species": ts, "genes": g, "uncertain": u}
+             for ct in (True, False) for ts in (True, False) for g in (True, False)
+             for u in ((False, True) if ct else (False,))),
             tissues, (None, "mouse")):
         text = build_prompt(tmpl, mode, num_genes=200, cell_sentence="A B C",
                             organism="Homo sapiens", unique_cell_types=["b cell"],

@@ -296,6 +296,7 @@ def main(argv=None):
     p.add_argument("--host", default="cluster")
     p.add_argument("--arms", nargs="+")
     p.add_argument("--datasets", nargs="+")
+    p.add_argument("--study", default="ablation", help="the study tree (see `studies` in config)")
     p.add_argument("--dry-run", action="store_true")
     p.add_argument("--limit", type=int,
                    help="only the first N prompts per file (smoke test). Results are diverted to "
@@ -308,7 +309,8 @@ def main(argv=None):
 
     cfg = load_config(args.config)
     arms = args.arms or cfg["execution"]["hosts"][args.host]
-    prompts_dir = root / cfg["execution"]["prompts_dir"]
+    tree = root / cfg["studies"][args.study]
+    prompts_dir = tree / "prompts"
     if not prompts_dir.exists():
         raise SystemExit(f"no prompts at {prompts_dir}; copy results/prompts/ from the host that "
                          f"ran sentences.py --materialize")
@@ -318,13 +320,13 @@ def main(argv=None):
     # entries are real but whose coverage is not -- the later full run would look "already done".
     # Diverting both is what makes the smoke test safe to throw away.
     if args.limit or args.max_files:
-        out_root = root / "results" / "smoke" / "predictions"
-        cache_root = root / "results" / "smoke" / "cache"
+        out_root = tree / "smoke" / "predictions"
+        cache_root = tree / "smoke" / "cache"
         print(f"SMOKE TEST: limit={args.limit} max_files={args.max_files}\n"
               f"  writing to {out_root} -- delete this tree before the real run", file=sys.stderr)
     else:
-        out_root = root / cfg["output"]["predictions_dir"]
-        cache_root = root / "results" / "cache"
+        out_root = tree / "predictions"
+        cache_root = tree / "cache"
 
     for arm_name in arms:
         arm = cfg["arms"][arm_name]

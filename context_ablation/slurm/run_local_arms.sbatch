@@ -71,6 +71,6 @@ nvidia-smi --query-gpu=index,name,memory.total --format=csv,noheader
 # model, so activations cost ~0.13 GB per sequence. 128 measured at 21.9-28.9 GB across datasets,
 # the spread tracking prompt length (HFRA 756 tokens, HIHA 1096). Override with BATCH=... .
 srun -u python src/run_local.py --arms "$ARM" --datasets "$DATASET" \
-  --batch-size "${BATCH:-128}"
+  --batch-size "${BATCH:-128}" --study "${STUDY:-ablation}"
 
 echo "[$(date -Is)] $ARM / $DATASET done"
