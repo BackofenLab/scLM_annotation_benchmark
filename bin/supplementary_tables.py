@@ -28,8 +28,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from manuscript_figures import (  # noqa: E402
     DATASET_ORDER, METRIC_GROUPS, _benchmark_pairs, _display, _mapping_scores, _needs_mapping)
 from plot_model_comparison import (  # noqa: E402
-    DEFAULT_CONFUSION_CSV, EXCLUDED_BASES, categorize_model, derive_mode, load_confusion_pairs,
-    model_base, unsupported_pairs)
+    DEFAULT_CONFUSION_CSV, EXCLUDED_BASES, REGIME, REGIME_SHORT, categorize_model, derive_mode,
+    load_confusion_pairs, model_base, unsupported_pairs)
 from util.cell_ontology_similarity import BROAD_TERMS_BELOW  # noqa: E402
 
 # The one chance model the paper describes: Figure 2's dashed line. The pipeline's other chance
@@ -68,9 +68,8 @@ DATASET_DISPLAY = {"human_pancreas": "human pancreas"}
 # Short forms for the typeset table only; the CSVs keep the long form, where width costs nothing.
 FAMILY_TEX = {"general-purpose LLM": "LLM", "scLLM": "scLLM",
               "baseline": "baseline", "chance floor": "chance"}
-REGIME = {"blind": "unconstrained", "unblind": "constrained", "baseline": "--"}
 # The typeset table writes the setting as the paper's U and C; the CSVs spell it out.
-SETTING_TEX = {"unconstrained": "U", "constrained": "C"}
+SETTING_TEX = {REGIME[mode]: short for mode, short in REGIME_SHORT.items()}
 
 
 def _tex(text):
@@ -114,16 +113,13 @@ def build_frame(df):
     """Annotate the snapshot with the family / setting labels the tables are organized by.
 
     Models the paper excludes (EXCLUDED_BASES, as in the figures) are dropped here and are not
-    mentioned anywhere, and so are the chance floors other than CHANCE_MODELS. The baselines and
-    the chance model carry a single score, so their setting is "--" even though the pipeline names
-    their runs ``_blind``. Adds the two columns of DERIVED_AFTER.
+    mentioned anywhere, and so are the chance floors other than CHANCE_MODELS. The chance model
+    runs in one setting, "--". Adds the two columns of DERIVED_AFTER.
     """
     out = df[~df["model"].map(model_base).isin(EXCLUDED_BASES)].copy()
     out = out[(out["model"].map(categorize_model) != "simple") | out["model"].isin(CHANCE_MODELS)]
     out["family"] = out["model"].map(lambda m: FAMILY.get(categorize_model(m), "other"))
-    out["setting"] = out["model"].map(
-        lambda m: "--" if categorize_model(m) in ("classical", "simple")
-        else REGIME.get(derive_mode(m), "--"))
+    out["setting"] = out["model"].map(lambda m: REGIME.get(derive_mode(m), "--"))
     out["method"] = out["model"].map(lambda m: _display(model_base(m)))
     out = out.merge(_derived(out), on=["model", "dataset", "subset_size"], how="left")
     sort_cols = ["subset_size", "balanced_accuracy"]
@@ -186,10 +182,10 @@ def _caption(dataset, sub, sizes, first):
         return (head + f"Columns, abbreviations and bold type as in Supplementary "
                 f"Table~\\ref{{supptab:results_{first.lower()}}}. {coverage_note}")
     return head + (
-        "\\emph{Setting} is U for a language model run unconstrained, without the list of "
-        "expected cell types, and C for one run constrained, with it; the baselines and the "
-        "random model, which assigns cell types in proportion to their frequency, run in one "
-        "setting (--). The metrics are grouped as in Supplementary "
+        "\\emph{Setting} is C for a run constrained to the dataset's expected cell types, which "
+        "a language model receives as a list and to which a baseline's labels are restricted, "
+        "and U for a run without them; the random model, which assigns cell types in proportion "
+        "to their frequency, runs in one setting (--). The metrics are grouped as in Supplementary "
         "Figure~\\ref{suppfig:metric_agreement}, and the best value of each at each size is in "
         "bold. Balanced accuracy (\\emph{Bal.\\ acc.}) and macro F1 average the recall and the F1 "
         "score over cell types, accuracy (\\emph{Acc.}) is the share of correctly labeled cells, "

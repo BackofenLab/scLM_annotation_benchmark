@@ -35,7 +35,7 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from manuscript_figures import DATASET_ORDER, _display, dataset_label  # noqa: E402
+from manuscript_figures import DATASET_ORDER, _run_label, dataset_label  # noqa: E402
 from plot_model_comparison import (  # noqa: E402
     EXCLUDED_BASES, categorize_model, derive_mode, model_base)
 
@@ -49,34 +49,27 @@ NOISE_FLOOR = 0.03
 TOP_RUNS = 5
 
 
-def _group(family, mode=None):
-    return lambda m: categorize_model(m) == family and (mode is None or derive_mode(m) == mode)
+def _group(family, mode):
+    return lambda m: categorize_model(m) == family and derive_mode(m) == mode
 
 
 # The comparisons the text states, as (key, label, group A, group B): the best run of A minus the
-# best run of B, per dataset. The baselines run in one setting, which the pipeline names "blind".
+# best run of B, per dataset, both in the same setting.
 CONTRASTS = [
     ("llm_c-scllm_c", "Constrained LLMs vs constrained scLLMs",
      _group("LLM", "unblind"), _group("scLLM", "unblind")),
-    ("llm_c-baseline", "Constrained LLMs vs baselines",
-     _group("LLM", "unblind"), _group("classical")),
-    ("scllm_c-baseline", "Constrained scLLMs vs baselines",
-     _group("scLLM", "unblind"), _group("classical")),
-    ("llm_u-baseline", "Unconstrained LLMs vs baselines",
-     _group("LLM", "blind"), _group("classical")),
-    ("scllm_u-baseline", "Unconstrained scLLMs vs baselines",
-     _group("scLLM", "blind"), _group("classical")),
+    ("llm_c-baseline_c", "Constrained LLMs vs constrained baselines",
+     _group("LLM", "unblind"), _group("classical", "unblind")),
+    ("scllm_c-baseline_c", "Constrained scLLMs vs constrained baselines",
+     _group("scLLM", "unblind"), _group("classical", "unblind")),
+    ("llm_u-baseline_u", "Unconstrained LLMs vs unconstrained baselines",
+     _group("LLM", "blind"), _group("classical", "blind")),
+    ("scllm_u-baseline_u", "Unconstrained scLLMs vs unconstrained baselines",
+     _group("scLLM", "blind"), _group("classical", "blind")),
     ("scllm_u-llm_u", "Unconstrained scLLMs vs unconstrained LLMs",
      _group("scLLM", "blind"), _group("LLM", "blind")),
 ]
-FAMILY_NAME = {"LLM": "General-purpose LLMs", "scLLM": "scLLMs"}
-
-
-def _run_label(model):
-    name = _display(model_base(model))
-    if categorize_model(model) == "classical":
-        return name
-    return f"{name} ({'C' if derive_mode(model) == 'unblind' else 'U'})"
+FAMILY_NAME = {"LLM": "General-purpose LLMs", "scLLM": "scLLMs", "classical": "Baselines"}
 
 
 def replicates(cells, n, rng, listed=None):
@@ -119,8 +112,8 @@ def _row(contrast, label, dataset, run_a, run_b, observed, draws):
 
 
 def contrasts(cells, n=REPLICATES, seed=SEED):
-    """Every comparison of CONTRASTS per dataset, the effect of the list for each language model,
-    and the top of Figure 2A on the mean over the datasets."""
+    """Every comparison of CONTRASTS per dataset, the effect of the constrained setting for each
+    method, and the top of Figure 2A on the mean over the datasets."""
     rng = np.random.default_rng(seed)
     rows, draws, observed = [], {}, {}
     for dataset in [d for d in DATASET_ORDER if d in set(cells["dataset"])]:
@@ -218,7 +211,7 @@ def write_tex(table, out_path, n=REPLICATES):
               "model}} \\\\"]
     effect = table[table["contrast"] == "list_effect"].copy()
     effect["family"] = effect["run_a"].map(categorize_model)
-    for family in ("LLM", "scLLM"):
+    for family in ("LLM", "scLLM", "classical"):
         group = effect[effect["family"] == family]
         counts = group["verdict"].value_counts()
         text = (f"ahead in {counts.get('ahead', 0)}, level in {counts.get('level', 0)}, behind in "
@@ -236,8 +229,8 @@ def write_tex(table, out_path, n=REPLICATES):
         f"on the same resampled cells ({n:,} replicates); the best run of a group is chosen again "
         "in every replicate. A difference is in bold when its interval excludes zero and it is at "
         f"least {NOISE_FLOOR:.2f}, the noise of rerunning a model; the others count as level "
-        "(Methods). The last rows count how often supplying the expected cell types changed the "
-        "balanced accuracy of the same model, by the same rule.}",
+        "(Methods). The last rows count how often the constrained setting changed the balanced "
+        "accuracy of the same method, by the same rule.}",
         "\\label{supptab:contrasts}",
         "\\end{table}",
         "",

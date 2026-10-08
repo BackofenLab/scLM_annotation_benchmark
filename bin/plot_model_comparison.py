@@ -5,12 +5,12 @@ Reads the aggregated results CSV (one row per model x dataset, columns are
 metrics) and produces several comparison views per metric, written under a
 two-axis folder hierarchy ``<mode_variant>/<subset_size>/<plot_type>/``:
 
-  Axis 1 - model-mode variant (derived from the model-name suffix; baselines
-  are kept in every variant):
+  Axis 1 - model-mode variant (derived from the model-name suffix; the chance
+  baselines are kept in every variant):
 
-    unblind_and_baselines/   unblind models + baselines
-    blind_and_baselines/     blind models + baselines
-    all_models/              unblind + blind + baselines
+    unblind_and_baselines/   unblind models + chance baselines
+    blind_and_baselines/     blind models + chance baselines
+    all_models/              unblind + blind + chance baselines
 
   Axis 2 - subset size the model was run on (from the ``subset_size`` column):
 
@@ -352,6 +352,26 @@ def categorize_model(model: str) -> str:
     return "LLM"
 
 
+# A run's setting, from its suffix: unconstrained, or constrained to the dataset's expected cell
+# types (supplied to a language model; a baseline's labels restricted to them). The chance models
+# have none. Figures and tables tag a run with the single letter and spell it out in a key.
+REGIME = {"blind": "unconstrained", "unblind": "constrained"}
+REGIME_SHORT = {"blind": "U", "unblind": "C"}
+GROUP_FAMILY = {"classical": "baselines", "scLLM": "scLLM", "LLM": "LLM"}
+
+
+def run_label(model, name=None):
+    """``name`` (by default the model's base name) with the run's setting as U or C."""
+    name = model_base(model) if name is None else name
+    short = REGIME_SHORT.get(derive_mode(model))
+    return f"{name} ({short})" if short else name
+
+
+def group_name(model):
+    """The family and setting of a run, e.g. "constrained baselines" or "unconstrained LLM"."""
+    return f"{REGIME[derive_mode(model)]} {GROUP_FAMILY[categorize_model(model)]}"
+
+
 def model_tier(model: str):
     """Method tier within the model's category, or ``None`` if the category has no tiers.
 
@@ -374,8 +394,9 @@ def model_tier(model: str):
     return "unclassified"
 
 
-# Variant name -> set of modes kept. Baselines are included in every variant so each plot has a
-# common reference. Each variant is rendered into its own sub-folder under the output directory.
+# Variant name -> set of modes kept. The chance baselines are included in every variant so each
+# plot has a common reference. Each variant is rendered into its own sub-folder under the output
+# directory.
 # --------------------------------------------------------------------------- #
 # Models the pipeline cannot run on a dataset at all: params.model_blacklist_by_organism in
 # nextflow.config, applied to each dataset's organism in datasets/<name>.yml. It is empty at
@@ -965,11 +986,9 @@ def plot_composite_category(df, out_path, caption, dpi, title=None, show_tiers=T
     argument, the composite has to be defended in Methods.
 
     Each category gets one slot on the x axis. Categories that were run in both prediction modes
-    (scLLMs, LLMs) are split into adjacent blind and unblind sub-columns, and every
-    model that exists in both modes has its two points joined by a thin line, so the per-model
-    effect of handing over the candidate label list is readable directly. Blind-only categories --
-    the classical baselines, which cannot consume a label list — occupy a single sub-column and
-    are drawn ONCE rather than duplicated.
+    are split into adjacent blind and unblind sub-columns, and every model that exists in both
+    modes has its two points joined by a thin line, so the per-model effect of the expected cell
+    types is readable directly. A category run in one mode only occupies a single sub-column.
 
     Within each sub-column the points are grouped into the method tiers defined by
     ``CATEGORY_TIERS`` (reasoning/weight availability for LLMs, generative vs. embedding retrieval
@@ -1078,8 +1097,8 @@ def plot_composite_category(df, out_path, caption, dpi, title=None, show_tiers=T
                 if tkey is not None:
                     drawn_tiers.add((key, tkey))
 
-            # Mode ticks only where there is a contrast to label. A single-mode category (the
-            # blind-only classical baselines) gets just its category name.
+            # Mode ticks only where there is a contrast to label. A single-mode category gets
+            # just its category name.
             if split:
                 tick_pos.append(xm)
                 tick_lab.append(mode)
@@ -1164,28 +1183,9 @@ def _ranked_category_colors():
     return {key: cat_palette[i % len(cat_palette)] for i, key in enumerate(_RANKED_CATEGORY_ORDER)}
 
 
-# Single-letter regime tags for the tick labels, matching the manuscript figures. The full terms
-# are three times longer than the model names they trail, and at 41 vertical labels they dominate
-# the axis; the legend spells them out instead. The prose still uses the full terms (style Rule 5).
-PROSE_REGIME_SHORT = {"unblind": "C", "blind": "U"}
-PROSE_REGIME_LONG = {"unblind": "constrained", "blind": "unconstrained"}
-
 # Vertical gap between the two stacked legend blocks, in axes fraction. Wide enough to read as two
 # blocks, narrow enough that they read as one legend column rather than two unrelated keys.
 LEGEND_BLOCK_GAP = 0.045
-
-
-def _prose_model_label(model):
-    """Model name with the pipeline's regime suffix as the manuscript's single-letter tag.
-
-    The classical and chance baselines lose the suffix entirely: their ``_blind`` tag is a naming
-    artifact and the regime axis does not apply to them.
-    """
-    base = model_base(model) + unsupported_mark(model)
-    if categorize_model(model) in ("classical", "simple"):
-        return base
-    short = PROSE_REGIME_SHORT.get(derive_mode(model))
-    return f"{base} ({short})" if short else base
 
 
 def plot_composite_ranked_bars(df, out_path, dpi, title=None, metric=None,
@@ -1271,7 +1271,10 @@ def plot_composite_ranked_bars(df, out_path, dpi, title=None, metric=None,
                         ha="center", va="bottom", fontsize=6.5, rotation=90, color="0.3")
 
     ax.set_xticks(x)
-    tick_names = [_prose_model_label(m) for m in models] if prose_regimes else models
+    # The full setting names are three times longer than the model names they trail, so the
+    # ticks carry the single letter and the legend spells it out.
+    tick_names = ([run_label(m, model_base(m) + unsupported_mark(m)) for m in models]
+                  if prose_regimes else models)
     ax.set_xticklabels(tick_names, rotation=90, ha="center", fontsize=8)
     # Color each model-name tick label by its category (matches the bar). Bold, because the labels
     # carry a category color rather than black: several of the palette entries are light enough
@@ -1300,7 +1303,7 @@ def plot_composite_ranked_bars(df, out_path, dpi, title=None, metric=None,
     # ``prose_regimes`` it also carries the key to the single-letter tags on the tick labels, so
     # the letter and the term it stands for appear together in one entry.
     if prose_regimes:
-        _u, _c = (rf"$\bf{{{PROSE_REGIME_SHORT[m]}}}$   {PROSE_REGIME_LONG[m]}"
+        _u, _c = (rf"$\bf{{{REGIME_SHORT[m]}}}$   {REGIME[m]}"
                   for m in ("unblind", "blind"))
     else:
         _u, _c = "unblind", "blind"
@@ -1485,7 +1488,7 @@ def _place_point_labels(ax, labels, obstacles, fontsize, leader_color="0.7", can
 def plot_metric_disagreement(df, out_path, dpi, title=None,
                              x_metric="balanced_accuracy", y_metric="macro_f1",
                              ax=None, only_regime=None, annotate="tier_best",
-                             baselines_in_both=True, cross_ref=True, regime_labels=None):
+                             cross_ref=True, regime_labels=None):
     """Companion panel to ``plot_composite_category``: do the two correctness metrics rank models
     the same way, and does that depend on the information regime?
 
@@ -1495,10 +1498,7 @@ def plot_metric_disagreement(df, out_path, dpi, title=None,
 
     One point per model per regime, split into two panels (unconstrained | constrained) sharing
     axes. EVERY model in ``df`` is drawn -- no selection -- with colors by category and markers by
-    method tier, matching ``plot_composite_category`` so the panels read as one figure. The
-    classical baselines have a single score and are drawn in the unconstrained panel only, since
-    that is the regime they are compared under; the caption must say the regime axis does not
-    apply to them.
+    method tier, matching ``plot_composite_category`` so the panels read as one figure.
 
     The identity line is the reference that carries the reading. Both metrics average over the
     true cell types, but macro F1 also weighs precision: a model far below the line assigns true
@@ -1525,31 +1525,10 @@ def plot_metric_disagreement(df, out_path, dpi, title=None,
     cat_color = {key: cat_palette[i % len(cat_palette)]
                  for i, (key, _) in enumerate(COMPOSITE_CATEGORIES)}
 
-    # The classical baselines carry ONE score: the regime axis does not apply to them, because
-    # their label space is fixed by a marker database or a reference rather than by anything we
-    # supply. That is precisely what makes them a legitimate comparator under either setting, so
-    # they are DRAWN in both panels (``baselines_in_both``) as the reference set.
-    #
-    # They are in NEITHER panel's rank correlation. The two coefficients exist to compare ONE
-    # population across the two regimes, so both must cover the same models -- the language
-    # models, which are the only ones that have both regimes. Putting the baselines in the
-    # unconstrained coefficient alone drags it from 0.91 to 0.83 and manufactures a regime effect
-    # out of a population change; they correlate at 1.00 among themselves (n = 4), so they are
-    # not noise, they are a different population. Putting them in both would be worse: their
-    # single score would then be read as a constrained result. Drawing set and statistics set are
-    # therefore kept apart, and the caption must say which is which.
-    panels = [("blind", "unconstrained", {"blind", "baseline"}),
-              ("unblind", "constrained", {"unblind"})]
-    members = {key: [m for m in per.index
-                     if derive_mode(m) in modes and categorize_model(m) != "classical"]
-               for key, _lbl, modes in panels}
-    # Selected by CATEGORY, not by derive_mode: scsa_blind / sctype_blind / singler_blind /
-    # celltypist_blind carry a `_blind` suffix that is a pipeline naming artifact, not a regime
-    # assignment, so derive_mode reports them as "blind" and would never surface them here.
-    baselines = [m for m in per.index if categorize_model(m) == "classical"]
-    drawn_members = {key: (mods + [b for b in baselines if b not in mods]
-                           if baselines_in_both else mods)
-                     for key, mods in members.items()}
+    # Each panel draws, and correlates over, the runs of its setting. Every family has both, so
+    # the two coefficients compare the same models across the settings.
+    panels = [("blind", "unconstrained"), ("unblind", "constrained")]
+    members = {key: [m for m in per.index if derive_mode(m) == key] for key, _lbl in panels}
     if not any(members.values()):
         return False
 
@@ -1560,7 +1539,7 @@ def plot_metric_disagreement(df, out_path, dpi, title=None,
 
     # Spearman per regime, computed up front so a single-panel render can quote the other one.
     rho_by_key = {}
-    for key, _lbl, _modes in panels:
+    for key, _lbl in panels:
         mods = members[key]
         rho_by_key[key] = _spearman(per.loc[mods, x_metric].to_numpy(),
                                     per.loc[mods, y_metric].to_numpy()) \
@@ -1575,14 +1554,13 @@ def plot_metric_disagreement(df, out_path, dpi, title=None,
         draw_panels = [p for p in panels if p[0] == (only_regime or "blind")]
     drawn_tiers = set()
 
-    for ax, (key, lbl, _modes) in zip(axes, draw_panels):
+    for ax, (key, lbl) in zip(axes, draw_panels):
         ax.plot([0, hi], [0, hi], color="0.75", linewidth=0.8, linestyle="--", zorder=1)
         ax.set_xlim(0, hi)
         ax.set_ylim(0, hi)
-        mods = members[key]            # models entering this panel's rank correlation
-        shown = drawn_members[key]     # models drawn, baselines included in both panels
+        mods = members[key]
         marker_px = []   # (x_data, y_data, radius_points) for label collision avoidance
-        for mdl in shown:
+        for mdl in mods:
             cat = categorize_model(mdl)
             marker, size = _tier_marker(mdl)
             mx, my = float(per.loc[mdl, x_metric]), float(per.loc[mdl, y_metric])
@@ -1601,10 +1579,10 @@ def plot_metric_disagreement(df, out_path, dpi, title=None,
         # is restricted. `annotate="none"` turns labels off, `"all"` names every model.
         if annotate != "none":
             if annotate == "all":
-                named = list(shown)
+                named = list(mods)
             else:
                 best = {}
-                for mdl in shown:
+                for mdl in mods:
                     tkey = (categorize_model(mdl), model_tier(mdl))
                     if tkey not in best or per.loc[mdl, x_metric] > per.loc[best[tkey], x_metric]:
                         best[tkey] = mdl
@@ -1629,10 +1607,10 @@ def plot_metric_disagreement(df, out_path, dpi, title=None,
         if not own_fig and cross_ref:
             # Compact single-panel form: keep the contrast by quoting the other regime's rho.
             # Pointless when the composer draws both panels, hence `cross_ref`.
-            other = next((k for k, _l, _m in panels if k != key), None)
+            other = next((k for k, _l in panels if k != key), None)
             orho = rho_by_key.get(other, (float("nan"), float("nan")))[0]
             if other and np.isfinite(orho):
-                olbl = next(l for k, l, _m in panels if k == other)
+                olbl = next(l for k, l in panels if k == other)
                 head += f"\n{olbl}: $\\rho$ = {orho:.2f}"
         ax.set_title(head, fontsize=11)
         ax.set_xlabel(pretty(x_metric), fontsize=11)
@@ -1677,12 +1655,10 @@ def plot_metric_disagreement(df, out_path, dpi, title=None,
 # when the file is absent, exactly like the model-dates CSV.
 DEFAULT_PER_CLASS_CSV = REPO_ROOT / "cache" / "per_class_recall_1000_stratified.csv"
 
-# Which (family, regime) series a family panel draws. The classical baselines carry ONE score, so
-# they appear once with no regime; the language families appear twice.
-FAMILY_SERIES = [("classical", None, "-", "D"),
+# Which (family, regime) series a family panel draws: every family in both settings.
+FAMILY_SERIES = [("classical", "unblind", "-", "D"), ("classical", "blind", "--", "D"),
                  ("scLLM", "unblind", "-", "o"), ("scLLM", "blind", "--", "o"),
                  ("LLM", "unblind", "-", "^"), ("LLM", "blind", "--", "^")]
-_REGIME_STYLE_LABEL = {"unblind": "constrained", "blind": "unconstrained", None: "single score"}
 
 
 def _annotate_families(df):
@@ -1738,16 +1714,13 @@ def _family_handles(drawn, cat_color):
         seen.add(key)
         family.append(plt.Line2D([0], [0], color=cat_color[key], linestyle="-", marker=marker,
                                  markersize=6, linewidth=1.4, label=labels.get(key, key)))
-    modes = {mode for _k, mode, _ls, _m in drawn if mode is not None}
+    modes = {mode for _k, mode, _ls, _m in drawn}
     style = []
     if len(modes) > 1:
         style = [plt.Line2D([0], [0], color="0.35", linestyle="-", linewidth=1.4,
                             label="constrained"),
                  plt.Line2D([0], [0], color="0.35", linestyle="--", linewidth=1.4,
                             label="unconstrained")]
-        if any(mode is None for _k, mode, _ls, _m in drawn):
-            style.append(plt.Line2D([0], [0], linestyle="none", marker="",
-                                    label="(baselines: one score)"))
     return family + style
 
 
@@ -1791,9 +1764,7 @@ def _tier_series(regimes):
     out = []
     for key, _lbl in COMPOSITE_CATEGORIES:
         for tier_key, _tlabel, marker, _size in CATEGORY_TIERS.get(key, []):
-            # Baselines carry one score; the regime axis does not apply to them.
-            modes = [None] if key == "classical" else list(regimes)
-            for mode in modes:
+            for mode in regimes:
                 out.append((key, tier_key, mode, "-" if mode != "blind" else "--", marker))
     return out
 
@@ -1846,16 +1817,13 @@ def plot_recall_by_prevalence(rec, out_path, dpi, ax=None, band_edges=(0.03, 0.1
         rec["tier"] = rec["model"].map(model_tier)
         drawn = []
         for key, tier_key, mode, linestyle, marker in _tier_series(regimes):
-            sub = rec[(rec["category"] == key) & (rec["tier"] == tier_key)]
-            if mode is not None:
-                sub = sub[sub["mode"] == mode]
+            sub = rec[(rec["category"] == key) & (rec["tier"] == tier_key)
+                      & (rec["mode"] == mode)]
             if _line(sub, cat_color[key], linestyle, marker):
                 drawn.append((key, tier_key, mode, linestyle, marker))
     else:
         def draw_one(key, mode, color, linestyle, marker):
-            sub = rec[rec["category"] == key]
-            if mode is not None:
-                sub = sub[sub["mode"] == mode]
+            sub = rec[(rec["category"] == key) & (rec["mode"] == mode)]
             return _line(sub, color, linestyle, marker)
 
         drawn = _family_panel(ax, draw_one, cat_color)
@@ -1919,16 +1887,13 @@ def plot_family_by_dataset(df, out_path, dpi, ax=None, metric="balanced_accuracy
         d["tier"] = d["model"].map(model_tier)
         drawn = []
         for key, tier_key, mode, linestyle, marker in _tier_series(regimes):
-            sub = d[(d["category"] == key) & (d["tier"] == tier_key)]
-            if mode is not None:
-                sub = sub[sub["mode"] == mode]
+            sub = d[(d["category"] == key) & (d["tier"] == tier_key)
+                      & (d["mode"] == mode)]
             if _line(sub, cat_color[key], linestyle, marker):
                 drawn.append((key, tier_key, mode, linestyle, marker))
     else:
         def draw_one(key, mode, color, linestyle, marker):
-            sub = d[d["category"] == key]
-            if mode is not None:
-                sub = sub[sub["mode"] == mode]
+            sub = d[(d["category"] == key) & (d["mode"] == mode)]
             return _line(sub, color, linestyle, marker)
 
         drawn = _family_panel(ax, draw_one, cat_color)
@@ -2068,8 +2033,9 @@ def _sankey(ax, flows, left_order, right_order, colors, gap_frac=0.02, label_siz
     ax.axis("off")
 
 
-def _flow_key(ax, rare, colors, counts, max_targets, label_size=8, ncol=1, notes=True):
-    """Encoding key plus the rare-type inventory, for the empty cell of a flow grid.
+def _flow_key(ax, rare, colors, counts, max_targets, label_size=8, ncol=1, notes=True, rows=None):
+    """Encoding key plus the rare-type inventory of a flow grid. ``rows`` lays it out as a strip
+    of that many rows (overriding ``ncol``).
 
     Two things the panels cannot carry themselves. The ribbon encoding, so the figure is readable
     without the caption; and the cells per type, without which a ribbon's width is unreadable —
@@ -2091,9 +2057,9 @@ def _flow_key(ax, rare, colors, counts, max_targets, label_size=8, ncol=1, notes
                        label=f"top {max_targets} predictions per type;\n"
                              f"remainder pooled as \"other\""),
         ]
-    if notes:
-        # With notes off the counts are already inline as "(n = ...)" on every swatch, so the
-        # heading and its spacer only add width.
+    if notes and ncol == 1 and rows is None:
+        # A heading for the counts, which a strip leaves out: the counts are inline as
+        # "(n = ...)" on every swatch, so there the heading and its spacer only add width.
         handles += [
             plt.Line2D([], [], linestyle="none", marker="", label=""),
             plt.Line2D([], [], linestyle="none", marker="", label="cells per type:"),
@@ -2102,14 +2068,17 @@ def _flow_key(ax, rare, colors, counts, max_targets, label_size=8, ncol=1, notes
         n = int(counts.get(t, 0))
         handles.append(mpatches.Patch(facecolor=colors.get(t, "0.6"), edgecolor="none",
                                       label=f"{t} (n = {n})"))
-    # Centered in the empty cell, so the block sits under the panel above it rather than pinned to
-    # the figure's left edge. The entries themselves stay left-aligned so the names line up.
-    # ncol > 1 lays the key out as a wide strip instead of a tall column, for callers that place
-    # it beneath the alluvials rather than beside them. In that mode it is stretched across the
-    # full width of its axes rather than centered, so it uses the horizontal space it was given.
+    # A single column is centered in its axes; the entries stay left-aligned so the names line up.
+    # ncol > 1 lays the key out as a wide strip beneath the alluvials, stretched across the full
+    # width of its axes. ``rows`` packs the columns instead and centers them, so a short key does
+    # not spread into separate islands across a wide figure.
+    if rows:
+        ncol = -(-len(handles) // rows)
     kw = dict(handles=handles, frameon=False, fontsize=label_size, ncol=ncol,
               labelspacing=0.6, handlelength=1.6, handletextpad=0.7, alignment="left")
-    if ncol > 1:
+    if rows:
+        ax.legend(loc="upper center", borderaxespad=0.0, columnspacing=2.5, **kw)
+    elif ncol > 1:
         ax.legend(loc="upper left", bbox_to_anchor=(0.0, 0.0, 1.0, 1.0), mode="expand",
                   borderaxespad=0.0, columnspacing=1.2, **kw)
     else:
@@ -2129,8 +2098,9 @@ def plot_rare_type_flows(conf, out_path, dpi, dataset, models, n_types=5, max_ta
     ``models`` is an explicit list — the selection rule belongs in the caption, not in a heuristic
     here. Pass a list of lists to get a grid, which is how the two regimes are shown: constrained
     on the top row, unconstrained beneath, with the same model in one column so the pair reads
-    vertically. ``None`` leaves a cell empty, for the baselines, which carry a single score and so
-    occupy the top row only.
+    vertically. ``None`` leaves a cell empty. A strip beneath the grid carries the encoding key and
+    the cells per rare type, so the figure is readable without its caption and a ribbon's width
+    can be judged against the cells behind it.
 
     Per true type only the ``max_targets`` most frequent predictions are drawn; the rest are
     pooled into "other". Returns False if the table is empty or the dataset has no usable models.
@@ -2170,19 +2140,18 @@ def plot_rare_type_flows(conf, out_path, dpi, dataset, models, n_types=5, max_ta
               .groupby("true_label")["n_cells"].sum())
 
     n_rows, n_cols = len(rows), max(len(r) for r in rows)
-    fig, axes = plt.subplots(n_rows, n_cols, squeeze=False,
-                             figsize=(6.2 * n_cols, (0.62 * len(rare) + 2.4) * n_rows))
+    panel_height, key_height = 0.62 * len(rare) + 2.4, 1.1
+    fig = plt.figure(figsize=(6.2 * n_cols, panel_height * n_rows + key_height))
+    grid = fig.add_gridspec(n_rows + 1, n_cols, height_ratios=[panel_height] * n_rows + [key_height])
+    key_ax = fig.add_subplot(grid[n_rows, :])
+    key_ax.axis("off")
+    _flow_key(key_ax, rare, colors, counts, max_targets, rows=2)
     for r, row in enumerate(rows):
         for c in range(n_cols):
-            ax = axes[r][c]
+            ax = fig.add_subplot(grid[r, c])
             model = row[c] if c < len(row) else None
             if model is None:
                 ax.axis("off")
-                # The empty cell carries the encoding key and the per-type cell counts, so the
-                # figure is readable without its caption and a ribbon's width can be judged
-                # against the cells behind it.
-                if r > 0 and any(rr[c] for rr in rows[:r] if c < len(rr)):
-                    _flow_key(ax, rare, colors, counts, max_targets)
                 continue
             m = sub[(sub["model"] == model) & (sub["true_label"].isin(rare))]
             flows = []
@@ -2205,10 +2174,7 @@ def plot_rare_type_flows(conf, out_path, dpi, dataset, models, n_types=5, max_ta
             # The left stack is identical in every panel, so only the first column of each row
             # names it; repeating the labels collides with the neighbour's right-hand column.
             _sankey(ax, flows, rare, right, colors, show_left_labels=(c == 0))
-            # No regime tag for the classical baselines: their `_blind` suffix is a pipeline
-            # naming artifact, and the regime axis does not apply to them at all.
-            regime = None if categorize_model(model) == "classical" else \
-                {"unblind": "constrained", "blind": "unconstrained"}.get(derive_mode(model))
+            regime = REGIME.get(derive_mode(model))
             label = name_fn(model_base(model)) if name_fn else model_base(model)
             ax.set_title(f"{label}" + (f"  ({regime})" if regime else ""), fontsize=10)
 
@@ -2293,11 +2259,7 @@ def plot_date_vs_composite(df, dates, out_path, dpi, title=None):
     axes = axes[0]
 
     for ax, mode in zip(axes, modes):
-        # Classical baselines are blind-only but act as a mode-agnostic reference, so they appear
-        # in BOTH panels — same convention as plot_composite_category. Without this the unblind
-        # panel would lose every pre-2024 point and its correlation would not be comparable to the
-        # blind panel's.
-        sub = pts[(pts["mode"] == mode) | (pts["cat"] == "classical")].drop_duplicates("base")
+        sub = pts[pts["mode"] == mode]
         xnum = mdates.date2num(sub["date"])
 
         # Guide lines: OLS on (date, score), drawn thin because the reported statistic is the rank

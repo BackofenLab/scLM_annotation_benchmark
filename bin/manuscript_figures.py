@@ -43,10 +43,13 @@ from plot_model_comparison import (  # noqa: E402
     COMPOSITE_CATEGORIES,
     DEFAULT_ACTIVITY_CSV,
     EXCLUDED_BASES,
+    REGIME,
+    REGIME_SHORT,
     _place_point_labels,
     _ranked_category_colors,
     categorize_model,
     derive_mode,
+    group_name,
     _flow_key,
     _sankey,
     load_confusion_pairs,
@@ -61,6 +64,7 @@ from plot_model_comparison import (  # noqa: E402
     plot_metric_disagreement,
     plot_rare_type_flows,
     plot_recall_by_prevalence,
+    run_label,
     unsupported_mark,
     with_unsupported_as_zero,
 )
@@ -79,13 +83,6 @@ FS_GROUP = 12          # in-axes group headings (the family names under the stri
 FS_POINT = 7.5         # in-axes point annotations (model names in the scatter)
 FS_LEGEND = 9
 FS_ROSTER = 7.5        # model-name roster beside panel D
-
-# Prose names for the two information regimes, applied to legend text at the end.
-REGIME = {"blind": "unconstrained", "unblind": "constrained"}
-# Axis-tick abbreviations. The full terms are three times longer than the code names and collide
-# between adjacent sub-columns, so the strip panel carries single bold letters and the legend
-# spells them out. The prose in the manuscript still uses the full terms everywhere (style Rule 5).
-REGIME_SHORT = {"blind": "U", "unblind": "C"}
 
 SUBSET_SIZE_COL = "subset_size"
 
@@ -301,16 +298,8 @@ def figure_harmonization(df, out_path, dpi=600, pairs=None):
     d["regime"] = d["model"].map(derive_mode)
     d = d[d["cat"] != "simple"]          # chance floors have no label vocabulary to characterize
 
-    # Three row blocks rather than one. The baselines produce a SINGLE run, which the pipeline
-    # names `_blind` for filename reasons only -- their label space is fixed by a marker database
-    # or a reference, so the constrained/unconstrained axis does not apply to them. Giving them
-    # their own block states that in the layout, and it lets the same 17 language models appear
-    # under both settings.
-    groups = [
-        ("unconstrained", d[(d["regime"] == "blind") & (d["cat"] != "classical")]),
-        ("constrained", d[d["regime"] == "unblind"]),
-        ("baselines (single score)", d[d["cat"] == "classical"]),
-    ]
+    # One row block per setting, so every method appears under both.
+    groups = [(mode, d[d["regime"] == mode]) for mode in ("blind", "unblind")]
 
     def _agg(frame):
         out = (frame.groupby(["base", "cat"], as_index=False)
@@ -321,14 +310,14 @@ def figure_harmonization(df, out_path, dpi=600, pairs=None):
 
     GAP = 1.9                      # blank rows between blocks, leaving room for the heading
     blocks, rows, pos = [], [], 0.0
-    for title, frame in groups:
+    for mode, frame in groups:
         if frame.empty:
             continue
         pos += GAP
         block = _agg(frame)
-        blocks.append((title, pos - 1.0, block))
+        blocks.append((REGIME[mode], pos - 1.0, block))
         for _, r in block.iterrows():
-            rows.append({**r.to_dict(), "ypos": pos, "regime": title})
+            rows.append({**r.to_dict(), "ypos": pos, "regime": mode})
             pos += 1
     agg = pd.DataFrame(rows)
     cat_color = _ranked_category_colors()
@@ -351,13 +340,9 @@ def figure_harmonization(df, out_path, dpi=600, pairs=None):
         colors = [cat_color[c] for c in agg["cat"]]
 
         def _cells(row, column):
-            """The four per-dataset values behind one drawn row, matched on method AND block."""
-            sel = (d["base"] == row["base"])
-            if row["regime"] == "constrained":
-                sel &= d["regime"] == "unblind"
-            elif row["regime"] == "unconstrained":
-                sel &= d["regime"] == "blind"
-            return d.loc[sel, column].dropna()
+            """The four per-dataset values behind one drawn row, matched on method AND setting."""
+            return d.loc[(d["base"] == row["base"]) & (d["regime"] == row["regime"]),
+                         column].dropna()
 
         def _dots(ax, values, yy, color):
             ax.scatter(values, np.full(len(values), yy), s=DOT_SIZE, color=color, linewidths=0,
@@ -441,10 +426,10 @@ RARE_PREVALENCE_MAX = 0.01
 # the supplement; this one is a window onto them, drawn with the same primitive and the same
 # model representatives.
 RARE_FLOW_EXAMPLE = "human_pancreas"
-# Tick labels for the five method groups, shared by panels B and C so the two read identically.
-BLOCK_SHORT = {"baselines": "baselines", "unconstrained scLLM": "scLLM\nU",
-               "constrained scLLM": "scLLM\nC", "unconstrained LLM": "LLM\nU",
-               "constrained LLM": "LLM\nC",
+# Tick labels for the method groups, shared by panels B and C so the two read identically.
+BLOCK_SHORT = {"unconstrained baselines": "baselines\nU", "constrained baselines": "baselines\nC",
+               "unconstrained scLLM": "scLLM\nU", "constrained scLLM": "scLLM\nC",
+               "unconstrained LLM": "LLM\nU", "constrained LLM": "LLM\nC",
                "unconstrained frontier LLM": "frontier\nU", "constrained frontier LLM": "frontier\nC"}
 EXEMPLAR_DATASETS = [("HFRA", "HFRA"), ("human_pancreas", "human pancreas"),
                      ("Zeisel", "Zeisel"), ("HIHA", "HIHA")]
@@ -471,11 +456,8 @@ def load_per_class_scores(path=DEFAULT_PER_CLASS_CSV):
     d["category"] = d["model"].map(categorize_model)
     d["mode"] = d["model"].map(derive_mode)
     d["cell_type"] = d["cell_type"].astype(str).str.strip().str.lower()
-    regime = {"unblind": "constrained", "blind": "unconstrained"}
-    d["block"] = [
-        "baselines" if c == "classical" else f"{regime.get(m, m)} {'LLM' if c == 'LLM' else 'scLLM'}"
-        for c, m in zip(d["category"], d["mode"])]
-    return _with_frontier(d[d["category"].isin({"classical", "LLM", "scLLM"})])
+    d = d[d["category"].isin({"classical", "LLM", "scLLM"})]
+    return _with_frontier(d.assign(block=d["model"].map(group_name)))
 # Prevalence bands. Log-spaced by decade, which is the natural scale here: true prevalence spans
 # 1.4e-05 to 0.41 across the 87 scored cell types. Equal-width bands would put 80 of them in one
 # bin. The band edges are a presentational choice and the per-class values behind them are in the
@@ -487,7 +469,8 @@ RARE_BLOCKS = [
     ("unconstrained LLM", "LLM", "--"),
     ("constrained scLLM", "scLLM", "-"),
     ("unconstrained scLLM", "scLLM", "--"),
-    ("baselines", "classical", "-"),
+    ("constrained baselines", "classical", "-"),
+    ("unconstrained baselines", "classical", "--"),
 ]
 # The four closed-weight models, drawn as an extra series in Figures 4A/4B on top of the LLM
 # family they belong to -- NOT as a sixth family. Membership is the intrinsic property recorded in
@@ -499,12 +482,14 @@ FRONTIER_BLOCKS = [
     ("unconstrained frontier LLM", "LLM", "--"),
 ]
 FRONTIER_MARKER = "*"
-# The order every panel of Figure 4 uses -- increasing control over the label space. Panels B and
-# C order their columns by it and A orders its legend by it, so "baselines" cannot end up sitting
-# between two LLM entries as it did when the legend followed RARE_BLOCKS' ranked order.
-BLOCK_ORDER = ["baselines", "unconstrained scLLM", "constrained scLLM",
+# The order every panel of Figure 4 uses: by family as in Figure 2, each unconstrained then
+# constrained. Panels B and C order their columns by it and A orders its legend by it, so the
+# panels never show the groups in two orders side by side.
+BLOCK_ORDER = ["unconstrained baselines", "constrained baselines",
+               "unconstrained scLLM", "constrained scLLM",
                "unconstrained LLM", "constrained LLM",
                "unconstrained frontier LLM", "constrained frontier LLM"]
+BLOCK_FAMILY = {block: family for block, family, _style in RARE_BLOCKS + FRONTIER_BLOCKS}
 
 
 def _with_frontier(d):
@@ -671,10 +656,8 @@ def figure_s7_rare_full(df, out_path, dpi=600, rare=None, per_class=None):
             for d in ds_keys:
                 sub = pc[(pc["dataset"] == d) & (pc["block"] == b)]
                 vals.append(sub["lin"].mean() - sub["recall"].mean() if len(sub) else np.nan)
-            fam = "classical" if b == "baselines" else ("LLM" if "LLM" in b and "scLLM" not in b
-                                                        else "scLLM")
             ax_b.bar(x + (i - (len(BLOCK_ORDER) - 1) / 2) * w, vals, width=w * 0.92,
-                     color=cat_color[fam], edgecolor="white", linewidth=0.5,
+                     color=cat_color[BLOCK_FAMILY[b]], edgecolor="white", linewidth=0.5,
                      hatch="" if b.startswith("constrained") else "///", zorder=2,
                      label=b if len(ax_b.patches) < len(BLOCK_ORDER) * len(ds_keys) else None)
         ax_b.set_xticks(x); ax_b.set_xticklabels([dataset_label(d) for d in ds_keys],
@@ -685,10 +668,7 @@ def figure_s7_rare_full(df, out_path, dpi=600, rare=None, per_class=None):
             ax_b.spines[side].set_visible(False)
         _harmonize(ax_b, text_size=FS_POINT)
         ax_bleg.legend(handles=[mpatches.Patch(
-                            facecolor=cat_color["classical" if b == "baselines" else
-                                                ("LLM" if "LLM" in b and "scLLM" not in b
-                                                 else "scLLM")],
-                            edgecolor="white", linewidth=0.5,
+                            facecolor=cat_color[BLOCK_FAMILY[b]], edgecolor="white", linewidth=0.5,
                             hatch="" if b.startswith("constrained") else "///", label=b)
                                 for b in BLOCK_ORDER],
                        loc="upper left", frameon=False, fontsize=FS_LEGEND, labelspacing=0.6,
@@ -874,8 +854,7 @@ def figure_3(df, out_path, dpi=600, rare=None, per_class=None):
             rows.append(("__header__", label, None))
             rows += [(key, t, p) for t, p in types]
 
-        # C carries the frontier columns too, so the per-type view resolves the same seven groups
-        # as B. The frontier models appear twice by construction -- once inside their family
+        # C carries the frontier columns too, so the per-type view resolves the same groups as B. The frontier models appear twice by construction -- once inside their family
         # column and once in their own -- which is the point: it shows whether the family result
         # holds at the top of the family for each individual cell type.
         blocks_c = block_order
@@ -919,8 +898,10 @@ def figure_3(df, out_path, dpi=600, rare=None, per_class=None):
         ax_c.set_xlim(-0.6, len(blocks_c) - 0.4)
         ax_c.set_ylim(y + 0.5, (y_first if y_first is not None else 0.0) + 0.45)
         ax_c.set_xticks(range(len(blocks_c)))
-        ax_c.set_xticklabels([BLOCK_SHORT[b] for b in blocks_c], fontsize=FS_POINT)
-        ax_c.set_yticks([]); ax_c.tick_params(axis="x", length=0)
+        # Slanted as in B: two words per column no longer fit side by side at eight columns.
+        ax_c.set_xticklabels([BLOCK_SHORT[b].replace("\n", " ") for b in blocks_c],
+                             fontsize=FS_POINT, rotation=30, ha="right", rotation_mode="anchor")
+        ax_c.set_yticks([]); ax_c.tick_params(axis="x", length=0, pad=2)
         for side in ("top", "right", "left", "bottom"):
             ax_c.spines[side].set_visible(False)
         # The bar lives INSIDE the legend axes, left-aligned with the marker column above it, so
@@ -936,9 +917,9 @@ def figure_3(df, out_path, dpi=600, rare=None, per_class=None):
         # figures, so this panel is a window onto them, not a second selection.
         d_dataset = RARE_FLOW_EXAMPLE
         # The top representative of each family, in the order the rest of the figure uses:
-        # baseline, then scLLM, then LLM. select_flow_models() returns the constrained pick for
-        # the two language families in its first row, which is the setting panels B and C put on
-        # the right of their axes, so the three panels agree on what "top" means.
+        # baseline, then scLLM, then LLM. select_flow_models() returns the constrained picks in
+        # its first row, which is the setting panels B and C put on the right of each family, so
+        # the three panels agree on what "top" means.
         # ... plus the UNCONSTRAINED counterpart of the frontier model, so panel D shows both
         # regimes for the family whose regime effect the section is about. flow_models[1][2] is
         # the same model as flow_models[0][2] with the candidate list withheld, and it is placed
@@ -992,8 +973,7 @@ def figure_3(df, out_path, dpi=600, rare=None, per_class=None):
                 # cause; wspace then only has to separate the panels, not absorb the overflow.
                 _sankey(ax_dd, flows, rare_t, right, fcolors,
                         show_left_labels=(i_d == 0), label_pad=0.11, right_margin=2.9)
-                regime = None if categorize_model(model) == "classical" else \
-                    {"unblind": "constrained", "blind": "unconstrained"}.get(derive_mode(model))
+                regime = REGIME.get(derive_mode(model))
                 ax_dd.set_title(f"{_display(model_base(model))}"
                                + (f"  ({regime})" if regime else ""), fontsize=FS_POINT)
                 drawn = True
@@ -1072,9 +1052,9 @@ def figure_3(df, out_path, dpi=600, rare=None, per_class=None):
 def select_flow_models(df, metric="balanced_accuracy"):
     """One representative per family for the rare-type flow figures, by a stated rule.
 
-    Rule: the highest mean ``metric`` within its family, among models that ran on EVERY dataset.
-    Two rows come back — constrained on top, unconstrained beneath, same model per column — with
-    ``None`` where the baseline would sit in row 2, since it carries a single score.
+    Rule: the highest mean ``metric`` of a constrained run within its family, among models that
+    ran on EVERY dataset. Two rows come back — constrained on top, unconstrained beneath, same
+    model per column.
 
     Why not the best model per dataset. It changes the scLLM across the four figures (at present
     LangCell, mmContext, mmContext and InstructCell) and in doing so crosses the
@@ -1095,8 +1075,8 @@ def select_flow_models(df, metric="balanced_accuracy"):
     n_datasets = d["dataset"].nunique()
 
     picks = {}
-    for category, mode in (("classical", "blind"), ("scLLM", "unblind"), ("LLM", "unblind")):
-        sub = d[(d["category"] == category) & (d["mode"] == mode)]
+    for category in ("classical", "scLLM", "LLM"):
+        sub = d[(d["category"] == category) & (d["mode"] == "unblind")]
         if sub.empty:
             picks[category] = None
             continue
@@ -1112,9 +1092,8 @@ def select_flow_models(df, metric="balanced_accuracy"):
         hit = d[(d["model_base"] == base) & (d["mode"] == mode)]["model"]
         return hit.iloc[0] if len(hit) else None
 
-    return [[named(picks["classical"], "blind"), named(picks["scLLM"], "unblind"),
-             named(picks["LLM"], "unblind")],
-            [None, named(picks["scLLM"], "blind"), named(picks["LLM"], "blind")]]
+    return [[named(picks[category], mode) for category in ("classical", "scLLM", "LLM")]
+            for mode in ("unblind", "blind")]
 # How many rare types each dataset can support. HFRA has 9 classes and only 2 at or below the 3%
 # floor, human_pancreas 4; asking for 5 everywhere would silently pad with common types.
 RARE_FLOW_N_TYPES = {"HFRA": 2, "human_pancreas": 4, "HIHA": 5, "Zeisel": 5}
@@ -1196,22 +1175,20 @@ FAMILY_HEADER = {"classical": "Marker- and reference-based baselines",
                  "scLLM": "Single-cell language models (scLLMs)",
                  "LLM": "General-purpose LLMs"}
 TIER_NAME = {"generative": "generative (free text)", "retrieval": "embedding (closed set)"}
-# Panel G's rows, top to bottom: (family, mode or None for the single-setting baselines, label).
-MAPPING_ROWS = [("classical", None, "baselines"), ("scLLM", "blind", "scLLMs, U"),
-                ("scLLM", "unblind", "scLLMs, C"), ("LLM", "blind", "LLMs, U"),
-                ("LLM", "unblind", "LLMs, C")]
+# Panel G's rows, top to bottom: (family, mode, label), every family in both settings.
+MAPPING_ROWS = [(family, mode, f"{name}, {REGIME_SHORT[mode]}")
+                for family, name in (("classical", "baselines"), ("scLLM", "scLLMs"),
+                                     ("LLM", "LLMs"))
+                for mode in ("blind", "unblind")]
 
 
 def _run_label(model):
-    """Display name, with U or C for the language models."""
-    name = _display(model_base(model))
-    if categorize_model(model) == "classical":
-        return name
-    return f"{name} ({REGIME_SHORT[derive_mode(model)]})"
+    """Display name with the run's setting, U or C."""
+    return run_label(model, _display(model_base(model)))
 
 
 def _is_unconstrained(model):
-    return derive_mode(model) == "blind" and categorize_model(model) != "classical"
+    return derive_mode(model) == "blind"
 
 
 def _ranked_panel(ax, df):
@@ -1231,7 +1208,8 @@ def _ranked_panel(ax, df):
     chance = df.loc[df["model"] == "random_stratified", "balanced_accuracy"].mean()
     ax.axhline(chance, zorder=5, **CHANCE_LINE)  # over the bars
     ax.set_xticks(x)
-    ax.set_xticklabels([_run_label(m) for m in wide.index], rotation=45, ha="right",
+    # The hatching gives the setting, so the names carry no U or C.
+    ax.set_xticklabels([_display(model_base(m)) for m in wide.index], rotation=45, ha="right",
                        rotation_mode="anchor")
     ax.set_xlim(-0.6, len(wide) - 0.4)
     ax.set_ylim(0, 1)
@@ -1241,8 +1219,8 @@ def _ranked_panel(ax, df):
 
 
 def _list_effect_panel(ax, frame, title):
-    """The family plot on ``frame``, with the best run of each family named (the constrained run
-    for the language models). Returns the legend handles."""
+    """The family plot on ``frame``, with the best constrained run of each family named. Returns
+    the legend handles."""
     handles, points = plot_composite_category(frame, None, "", 300, ax=ax,
                                               metric="balanced_accuracy", return_points=True)
     _harmonize(ax, text_size=FS_POINT + 1)  # family names under the axis, five panels abreast
@@ -1256,7 +1234,7 @@ def _list_effect_panel(ax, frame, title):
     best = {}
     for (base, mode), (x, y, _r) in points.items():
         family = categorize_model(base)
-        if (family == "classical" or mode == "unblind") and y > best.get(family, ("", 0, -1))[2]:
+        if mode == "unblind" and y > best.get(family, ("", 0, -1))[2]:
             best[family] = (base, x, y)
     # Centred above the point first, then beside it, so each name sits on its own marker. The
     # LLM's name is lifted and centred over both LLM columns, clear of the scLLMs' names, unless
@@ -1301,10 +1279,10 @@ def _benchmark_pairs(df, pairs=None, chance=False):
 
 def _group_means(per_model, rows):
     """Mean of ``per_model`` (one row per run) over the runs of each ``(family, mode, label)`` of
-    ``rows``, optionally ``(family, mode, label, tier)``; a mode or tier of None takes them all."""
+    ``rows``, optionally ``(family, mode, label, tier)``."""
     means = []
     for family, mode, _label, *tier in rows:
-        keep = [categorize_model(m) == family and (mode is None or derive_mode(m) == mode)
+        keep = [categorize_model(m) == family and derive_mode(m) == mode
                 and (not tier or model_tier(m) == tier[0]) for m in per_model.index]
         means.append(per_model[keep].mean())
     return pd.DataFrame(means, index=[row[2] for row in rows])
@@ -1461,17 +1439,14 @@ def _family_key(ax, encodings):
 
 
 def _subcategory_rows():
-    """Rows ``(family, mode, label, tier)`` for every method subcategory, the language models' in
-    both settings, named as in Figure 1B."""
+    """Rows ``(family, mode, label, tier)`` for every method subcategory in both settings, named
+    as in Figure 1B."""
     family_name = {"classical": "baseline", "scLLM": "scLLM", "LLM": "LLM"}
-    rows = []
-    for family, _ in COMPOSITE_CATEGORIES:
-        for tier, label, *_ in CATEGORY_TIERS[family]:
-            name = f"{family_name[family]}, {TIER_NAME.get(tier, label)}"
-            modes = [None] if family == "classical" else ["blind", "unblind"]
-            rows += [(family, mode, name if mode is None else f"{name}, {REGIME_SHORT[mode]}", tier)
-                     for mode in modes]
-    return rows
+    return [(family, mode, f"{family_name[family]}, {TIER_NAME.get(tier, label)}, "
+                           f"{REGIME_SHORT[mode]}", tier)
+            for family, _ in COMPOSITE_CATEGORIES
+            for tier, label, *_ in CATEGORY_TIERS[family]
+            for mode in ("blind", "unblind")]
 
 
 def figure_answer_types(df, out_path, dpi=600, pairs=None):
@@ -1489,7 +1464,7 @@ def figure_answer_types(df, out_path, dpi=600, pairs=None):
         grid = fig.add_gridspec(1, 2, left=0.11, right=0.985, wspace=0.78)
         ax_a, ax_b = fig.add_subplot(grid[0, 0]), fig.add_subplot(grid[0, 1])
 
-        # A: G's five family rows for each dataset, the dataset's name above its block.
+        # A: G's six rows for each dataset, the dataset's name above its block.
         blocks = [_group_means(per_run.xs(dataset, level="dataset"), MAPPING_ROWS)
                   for dataset in DATASET_ORDER]
         step = len(MAPPING_ROWS) + 1.4

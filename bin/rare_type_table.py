@@ -30,12 +30,11 @@ import sys
 import warnings
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from plot_model_comparison import (  # noqa: E402
-    EXCLUDED_BASES, categorize_model, derive_mode, model_base,
+    EXCLUDED_BASES, categorize_model, derive_mode, group_name, model_base,
 )
 
 DEFAULT_OUT = "cache/rare_type_outcomes_1000_stratified.csv"
@@ -138,10 +137,7 @@ def main(argv=None):
     merged["family"] = merged["method"].map(lambda m: categorize_model(f"{m}_blind"))
     merged = merged[~merged["method"].isin(EXCLUDED_BASES)]
     merged = merged[merged["family"].isin(["LLM", "scLLM", "classical"])]
-    # Baselines carry a single score, so they get their own block rather than a regime label.
-    merged["block"] = np.where(
-        merged["family"].eq("classical"), "baselines",
-        np.where(merged["mode"].eq("blind"), "unconstrained ", "constrained ") + merged["family"])
+    merged["block"] = [group_name(f"{m}_{mode}") for m, mode in zip(merged["method"], merged["mode"])]
 
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
