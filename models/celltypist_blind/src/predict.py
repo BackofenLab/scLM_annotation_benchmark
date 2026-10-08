@@ -213,7 +213,22 @@ def main():
     
     # Create results DataFrame
     results_df = create_results_dataframe_for_key(adata, predictions, annotation_key)
-    
+
+    # Constrained mode (LABEL_CONSTRAINT): the best match among the labels that count for one of
+    # the true cell types (bin/util/label_constraint.py), answered as that type. Each label has its
+    # own linear score, so this is the model's best match with the other labels removed.
+    constraint = os.environ.get("LABEL_CONSTRAINT")
+    if constraint and results_df is not None:
+        sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "bin"))
+        from util.label_constraint import constrain
+        scores = predictions.decision_matrix
+        kept = constrain(scores.columns, constraint, "CellTypist", results_df["true_labels"])
+        if not kept:
+            sys.exit("no CellTypist label counts for the listed cell types")
+        best = scores.loc[results_df["cell_id"], list(kept)].idxmax(axis=1)
+        results_df["predicted_labels"] = best.map(kept).to_numpy()
+        results_df["reachable"] = results_df["true_labels"].isin(set(kept.values()))
+
     if results_df is not None:
         # Save results
         print(f"Saving results to: {args.output}")

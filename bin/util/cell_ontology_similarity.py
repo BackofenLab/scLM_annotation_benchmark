@@ -36,6 +36,8 @@ import numpy as np
 import pandas as pd
 import pronto
 
+from .label_normalization import label_key
+
 # Pinned Cell Ontology release (stated in Methods). The local file name carries the release
 # date, so a cache holding any other version is never mistaken for this one.
 CL_RELEASE = "2026-06-08"
@@ -72,11 +74,6 @@ def download_cl_ontology(cache_dir: Path, cl_url: str = CL_URL, filename: str = 
     return path
 
 
-def _normalize(s: str) -> str:
-    """Lowercase + strip for robust dictionary keys."""
-    return " ".join(s.lower().split()) if s is not None else ""
-
-
 def _cl_terms(ont: pronto.Ontology):
     """Current (non-obsolete) Cell Ontology terms; the file also carries a few BFO/RO/CP stubs."""
     return (t for t in ont.terms() if not t.obsolete and t.id.startswith("CL:"))
@@ -110,7 +107,7 @@ def build_label_index(ont: pronto.Ontology) -> dict[str, pronto.Term]:
     for term in _cl_terms(ont):
         for key in (term.id, term.name):
             if key:
-                idx.setdefault(_normalize(key), species_neutral(term))
+                idx.setdefault(label_key(key), species_neutral(term))
     return idx
 
 
@@ -120,7 +117,7 @@ def build_synonym_index(ont: pronto.Ontology) -> dict[str, pronto.Term]:
     for term in _cl_terms(ont):
         for syn in term.synonyms:
             if syn.scope == "EXACT":
-                idx.setdefault(_normalize(syn.description), species_neutral(term))
+                idx.setdefault(label_key(syn.description), species_neutral(term))
     return idx
 
 
@@ -128,7 +125,7 @@ def map_string_to_term(s: str, index: dict[str, pronto.Term]) -> Optional[pronto
     """Map a free-text label/synonym to a CL term (case-insensitive)."""
     if not s or not s.strip():
         return None
-    return index.get(_normalize(s))
+    return index.get(label_key(s))
 
 
 class CellTaxonomy:
@@ -165,6 +162,10 @@ class CellTaxonomy:
             return 1.0
         mica_ic = max(self.ic[t] for t in self._ancestors[a] & self._ancestors[b])
         return 2.0 * mica_ic / (self.ic[a] + self.ic[b])
+
+    def below(self, term: str) -> dict[str, int]:
+        """Every term at or below ``term``, with its distance in is_a steps (``term`` itself: 0)."""
+        return nx.single_source_shortest_path_length(self.graph, term)
 
     def path_length(self, a: str, b: str) -> int:
         return nx.shortest_path_length(self._undirected, a, b)

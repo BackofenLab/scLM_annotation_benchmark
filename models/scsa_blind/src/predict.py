@@ -275,7 +275,7 @@ def run_scsa(csv_path, db_path, output_path, source='scanpy',
     return output_path
 
 
-def map_to_cells(scsa_result_file, adata, cluster_col, true_label_col=None):
+def map_to_cells(scsa_result_file, adata, cluster_col, true_label_col=None, kept=None):
     """
     Map SCSA cluster-level predictions to individual cells.
     
@@ -333,6 +333,12 @@ def map_to_cells(scsa_result_file, adata, cluster_col, true_label_col=None):
         print(scsa_results.head())
         sys.exit(1)
     
+    # Constrained mode: only the candidates in ``kept`` compete for a cluster, answered as the listed
+    # cell type they count for.
+    if kept is not None:
+        scsa_results = scsa_results[scsa_results['Cell Type'].isin(kept)]
+        scsa_results = scsa_results.assign(**{'Cell Type': scsa_results['Cell Type'].map(kept)})
+
     # Check if file is empty (only header)
     if len(scsa_results) == 0:
         print(f"  WARNING: SCSA results file contains no data (only header)")
@@ -530,10 +536,25 @@ def main():
             print(f"Available columns: {list(adata.obs.columns)}")
             sys.exit(1)
         
+        # Constrained mode (LABEL_CONSTRAINT): only the candidates that count for one of the true
+        # cell types compete (bin/util/label_constraint.py). SCSA ranks a cluster's candidates by
+        # their own markers, so this picks what an SCSA run on the kept types alone picks.
+        kept = None
+        constraint = os.environ.get("LABEL_CONSTRAINT")
+        if constraint:
+            sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)),
+                                            "..", "..", "..", "bin"))
+            from util.label_constraint import constrain
+            truth = (ad.read_h5ad(args.input, backed="r").obs if use_context else adata.obs)
+            candidates = pd.read_csv(temp_scsa_output, sep='\t')['Cell Type'].unique()
+            kept = constrain(candidates, constraint, "SCSA", truth[annotation_key].astype(str))
+            if not kept:
+                sys.exit("no SCSA candidate counts for the listed cell types")
+
         # Map to cells using this annotation key (over the clustering source)
         result_df = map_to_cells(
             temp_scsa_output, adata, cluster_col,
-            true_label_col=annotation_key
+            true_label_col=annotation_key, kept=kept
         )
 
         # In context mode, keep only the eval-subset cells, propagating their context cluster's
@@ -555,6 +576,9 @@ def main():
             # harmonized separately during preprocessing and can name a type differently.
             result_df['true_labels'] = eval_obs[annotation_key].to_numpy()
             print(f"  Context filter: {n_ctx} context cells -> {len(result_df)} eval cells")
+
+        if kept is not None:
+            result_df['reachable'] = result_df['true_labels'].astype(str).isin(set(kept.values()))
 
         # Save final output
         print(f"\nSaving results to {args.output}")

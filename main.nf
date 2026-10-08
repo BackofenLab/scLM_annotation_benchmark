@@ -50,6 +50,11 @@ def singlerRefIsCellxgene(String dataset) {
     return (cfg?.get('singler_reference_source') ?: 'celldex').toString() == 'cellxgene'
 }
 
+// LABEL_CONSTRAINT for a constrained baseline's run (see constrain_labels); empty for other models.
+def exportConstraint(constraint) {
+    constraint ? "export LABEL_CONSTRAINT=\"\$(realpath ${constraint})\"\n" : ""
+}
+
 // Expected prediction filenames produced by a model's run.sh.
 // Most models write a single predictions.csv. OpenRouter LLM models write one
 // predictions_${SLUG}.csv per id in openrouter_LLM.model_names (slug = id with
@@ -342,6 +347,7 @@ process extract_cell_types {
 process prepare_model {
     container params.container_image
     conda 'git git-lfs'
+    maxForks 1   // a baseline's blind and unblind model share one directory (models/<b>_unblind links to it)
     
     input:
     tuple val(model), path(model_dir)
@@ -379,7 +385,7 @@ process run_model {
     maxRetries 3
 
     input:
-    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size), val(strategy), val(expected_files)
+    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size), val(strategy), val(expected_files), path(constraint)
 
     tag { "${dataset}x${model}x${strategy}" }
 
@@ -397,7 +403,7 @@ process run_model {
     tuple(path("results/*/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir), val(subset_size), val(strategy))
 
     script:
-    runModelScript(data_file, model_dir, dataset, cfg_yaml, model, cache_dir, subset_size, strategy, expected_files)
+    exportConstraint(constraint) + runModelScript(data_file, model_dir, dataset, cfg_yaml, model, cache_dir, subset_size, strategy, expected_files)
 }
 
 // OpenRouter LLM models. Declares the secret so the key is injected securely (never
@@ -467,7 +473,7 @@ process run_model_cluster {
     maxRetries 3
 
     input:
-    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size), val(strategy), val(expected_files), path(context_file)
+    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size), val(strategy), val(expected_files), path(context_file), path(constraint)
 
     tag { "${dataset}x${model}x${strategy}" }
 
@@ -483,13 +489,14 @@ process run_model_cluster {
     tuple(path("results/*/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir), val(subset_size), val(strategy))
 
     script:
-    "export CONTEXT_H5AD=\"\$(realpath ${context_file})\"\n" + runModelScript(data_file, model_dir, dataset, cfg_yaml, model, cache_dir, subset_size, strategy, expected_files)
+    "export CONTEXT_H5AD=\"\$(realpath ${context_file})\"\n" + exportConstraint(constraint) + runModelScript(data_file, model_dir, dataset, cfg_yaml, model, cache_dir, subset_size, strategy, expected_files)
 }
 
 // SingleR with a custom CELLxGENE reference. Identical to run_model except it stages the fetched
 // reference h5ad and exports SINGLER_REF_H5AD, which predict.R reads to take the cellxgene path
 // (labels = the reference's cell_type column). Kept separate so the reference is wired only for
-// singler_blind on datasets that declare a cellxgene reference; celldex SingleR uses run_model.
+// the SingleR models (params.singler_reference_models) on datasets that declare a cellxgene
+// reference; celldex SingleR uses run_model.
 process run_model_singler_ref {
     container { containerFor(model) }
     // See run_model: retry transient conda env-creation failures, then skip rather than abort.
@@ -497,7 +504,7 @@ process run_model_singler_ref {
     maxRetries 3
 
     input:
-    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size), val(strategy), val(expected_files), path(reference_file)
+    tuple path(data_file), path(model_dir), val(dataset), path(cfg_yaml), val(model), val(cache_dir), val(subset_size), val(strategy), val(expected_files), path(reference_file), path(constraint)
 
     tag { "${dataset}x${model}x${strategy}" }
 
@@ -513,7 +520,29 @@ process run_model_singler_ref {
     tuple(path("results/*/*/*/predictions*.csv"), val(dataset), val(model), val(cache_dir), val(subset_size), val(strategy))
 
     script:
-    "export SINGLER_REF_H5AD=\"\$(realpath ${reference_file})\"\n" + runModelScript(data_file, model_dir, dataset, cfg_yaml, model, cache_dir, subset_size, strategy, expected_files)
+    "export SINGLER_REF_H5AD=\"\$(realpath ${reference_file})\"\n" + exportConstraint(constraint) + runModelScript(data_file, model_dir, dataset, cfg_yaml, model, cache_dir, subset_size, strategy, expected_files)
+}
+
+// The label constraint of one eval subset: which labels count for which of its true cell types in a
+// baseline's constrained mode (bin/constrain_labels.py, bin/util/label_constraint.py). Not cached:
+// it follows the live mapping table, which -resume cannot see, and it takes seconds.
+process constrain_labels {
+    container params.container_image
+    conda 'envs/evaluation.yml'
+    cache false
+    tag { "${dataset}xsub${subset_size}" }
+
+    input:
+    tuple path(data_file), val(dataset), val(subset_size), val(strategy), val(cache_dir)
+
+    output:
+    tuple val(dataset), val(subset_size), path("${dataset}_sub${subset_size}_${strategy}.constraint.tsv")
+
+    script:
+    """
+    constrain_labels.py --input ${data_file} --config ${projectDir}/datasets/${dataset}.yml \\
+        --cache_dir ${cache_dir} --out ${dataset}_sub${subset_size}_${strategy}.constraint.tsv
+    """
 }
 
 // Stage 1 of evaluation: normalize + review-filter + ontology-map predictions, producing a
@@ -777,8 +806,9 @@ workflow {
     // --- SingleR custom reference: fetch a CELLxGENE reference h5ad per dataset that declares one ---
     // (singler_reference_source: cellxgene). One reference per dataset, shared across sizes; storeDir
     // caches it. celldex-referenced datasets (e.g. HIHA) produce nothing here and use the celldex path.
+    def singlerReferenceModels = (params.singler_reference_models ?: []) as List
     reference_by_dataset = Channel.empty()
-    if ((params.models ?: []).contains('singler_blind')) {
+    if ((params.models ?: []).any { singlerReferenceModels.contains(it) }) {
         Channel
             .fromList(params.datasets)
             .filter { ds -> singlerRefIsCellxgene(ds) }
@@ -832,7 +862,7 @@ workflow {
         .branch { data_file, model_dir, dataset, cfg_yaml, model, cache_dir, size, strategy, expected ->
             openrouter:   model.toLowerCase().contains('openrouter')
             cluster:      clusterModels.contains(model)
-            singler_ref:  model == 'singler_blind' && singlerRefIsCellxgene(dataset)
+            singler_ref:  singlerReferenceModels.contains(model) && singlerRefIsCellxgene(dataset)
             other:        true
         }
         .set { model_input_branched }
@@ -859,10 +889,26 @@ workflow {
             tuple(df, md, ds, cfg, m, c, sz, st, exp, ref_file) }
         .set { singler_ref_input }
 
+    // Constrained baselines (params.label_constraint_models) get their eval subset's label constraint,
+    // matched on (dataset, subset size); every other model gets none. A run tuple holds the dataset
+    // at index 2, the model at 4 and the subset size at 6.
+    def constraintModels = (params.label_constraint_models ?: []) as List
+    constraint_by_subset = (params.models ?: []).any { constraintModels.contains(it) }
+        ? constrain_labels(subset_out.map { f, ds, sz, st -> tuple(f, ds, sz, st, file(params.cache_dir)) })
+              .map { ds, sz, tsv -> tuple([ds, sz], tsv) }
+        : Channel.empty()
+    def withConstraint = { runs ->
+        runs.filter { !constraintModels.contains(it[4]) }.map { tuple(*it, []) }
+            .mix(runs.filter { constraintModels.contains(it[4]) }
+                     .map { tuple([it[2], it[6]], it) }
+                     .combine(constraint_by_subset, by: 0)
+                     .map { key, run, tsv -> tuple(*run, tsv) })
+    }
+
     predictions = run_model_openrouter(model_input_branched.openrouter)
-                      .mix(run_model(model_input_branched.other))
-                      .mix(run_model_cluster(cluster_input))
-                      .mix(run_model_singler_ref(singler_ref_input))
+                      .mix(run_model(withConstraint(model_input_branched.other)))
+                      .mix(run_model_cluster(withConstraint(cluster_input)))
+                      .mix(run_model_singler_ref(withConstraint(singler_ref_input)))
 
     // --- Evaluation (two cached stages: map -> score) ---
 

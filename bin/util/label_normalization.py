@@ -122,3 +122,9 @@ def normalize_true_labels(labels: pd.Series) -> pd.Series:
         Normalized labels.
     """
     return labels.str.strip().str.lower()
+
+
+def label_key(s) -> str:
+    """The key under which a label is matched against Cell Ontology names and reviewed mappings:
+    lowercase, whitespace runs collapsed; ``None`` gives ``""``. Mirrored in ``label_constraint.R``."""
+    return " ".join(s.lower().split()) if s is not None else ""

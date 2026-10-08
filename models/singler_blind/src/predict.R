@@ -54,11 +54,29 @@ sce <- readH5AD(opt$input, reader = "R")
 if ("X" %in% assayNames(sce)) assayNames(sce)[assayNames(sce) == "X"] <- "logcounts"
 if (!"logcounts" %in% assayNames(sce)) assay(sce, "logcounts") <- assay(sce, 1)
 
+true <- if (annotation_key %in% colnames(colData(sce))) {
+  as.character(colData(sce)[[annotation_key]])
+} else rep("NA", ncol(sce))
+
 # Drop reference cells whose label is NA/empty (no usable training signal — label.ont in particular
 # is unset for some celldex cells); otherwise SingleR would correlate against an "NA" class.
+# Constrained mode (LABEL_CONSTRAINT): the reference also keeps only the labels that count for one
+# of the true cell types (bin/util/label_constraint.R). SingleR chooses its marker genes among the
+# labels it is given, so this is a run of its own, not a filter on the unconstrained answers.
+constraint <- Sys.getenv("LABEL_CONSTRAINT", "")
+if (nzchar(constraint)) {
+  here <- dirname(normalizePath(sub("^--file=", "", grep("^--file=", commandArgs(FALSE), value = TRUE))))
+  source(file.path(here, "..", "..", "..", "bin", "util", "label_constraint.R"))
+}
 drop_na_labels <- function(r, labs) {
   keep <- !is.na(labs) & nzchar(labs)
-  list(ref = r[, keep], labels = labs[keep])
+  kept <- NULL
+  if (nzchar(constraint)) {
+    kept <- constrain(unique(labs[keep]), constraint, "SingleR", true)
+    if (length(kept) < 2) stop("fewer than 2 reference labels count for the listed cell types")
+    keep <- keep & labs %in% names(kept)
+  }
+  list(ref = r[, keep], labels = labs[keep], kept = kept)
 }
 
 if (identical(ref_source, "cellxgene") && nzchar(ref_path)) {
@@ -92,13 +110,12 @@ if (identical(ref_source, "cellxgene") && nzchar(ref_path)) {
   ref_desc <- paste0(ref_name, " (tier=", tier, ")")
 }
 
-true <- if (annotation_key %in% colnames(colData(sce))) {
-  as.character(colData(sce)[[annotation_key]])
-} else rep("NA", ncol(sce))
 lab <- as.character(pred$labels); lab[is.na(lab)] <- "Unknown"
+if (!is.null(d$kept)) lab <- unname(ifelse(lab %in% names(d$kept), d$kept[lab], lab))
 
 out <- data.frame(cell_id = colnames(sce), true_labels = true,
                   predicted_labels = lab, stringsAsFactors = FALSE)
+if (!is.null(d$kept)) out$reachable <- out$true_labels %in% d$kept
 write.csv(out, opt$output, row.names = FALSE)
 cat(sprintf("SingleR: wrote %d predictions (ref=%s, %d ref labels -> %d predicted) to %s\n",
             nrow(out), ref_desc, length(unique(ref_labels)), length(unique(lab)), opt$output))

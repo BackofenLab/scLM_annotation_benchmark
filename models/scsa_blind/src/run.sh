@@ -3,7 +3,6 @@ set -euo pipefail
 
 INPUT_H5AD=$(realpath "$1")
 CFG_YAML=$(realpath "$3")
-CACHE_DIR=$(realpath "$4")
 
 # Create output directory if it doesn't exist, then resolve absolute path
 OUTPUT_DIR=$(dirname "$2")
@@ -57,5 +56,4 @@ python "$SCRIPT_DIR/predict.py" \
   --db "$SCSA_DB" \
   --annotation_key "$ANNOTATION_KEY" \
   --species "$SPECIES" \
-  --tissue "$SCSA_TISSUE" \
-  --temp-dir "$CACHE_DIR"
+  --tissue "$SCSA_TISSUE"

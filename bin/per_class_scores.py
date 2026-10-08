@@ -87,8 +87,9 @@ def main() -> None:
     from evaluate import (load_ontology_context, load_review_status, prepare_for_scoring,
                           trusted_answers)
     from plot_model_comparison import EXCLUDED_BASES, model_base
-    from util.cell_ontology_similarity import (_normalize, compute_ontology_similarities,
+    from util.cell_ontology_similarity import (compute_ontology_similarities,
                                                download_cl_ontology)
+    from util.label_normalization import label_key
 
     label_index, taxonomy = load_ontology_context(download_cl_ontology(cache_dir))
     reviewed, review_map = load_review_status(cache_dir)
@@ -112,8 +113,8 @@ def main() -> None:
         # No curated mapping is needed for a Cell Ontology term or for one of the dataset's own
         # reference labels as written: the constrained runs are given those labels, and some are
         # not ontology terms (pancreas "delta", Zeisel "Microglia").
-        own_labels = set(frame["true_labels"].astype(str).map(_normalize))
-        direct = is_cl | frame[raw_col].astype(str).map(_normalize).isin(own_labels)
+        own_labels = set(frame["true_labels"].astype(str).map(label_key))
+        direct = is_cl | frame[raw_col].astype(str).map(label_key).isin(own_labels)
         coverage = trusted.mean() if len(frame) else 0.0
         if coverage < args.min_scoring_coverage:
             gated += 1

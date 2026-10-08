@@ -73,6 +73,17 @@ clusters <- as.character(igraph::cluster_louvain(g, resolution = 0.8)$membership
 
 # --- scType marker scoring (z-score per gene, clipped at +-10 like Seurat ScaleData scale.max) ---
 gs <- gene_sets_prepare(opt$markers, opt$tissue)
+# Constrained mode (LABEL_CONSTRAINT): only the cell types that count for one of the true cell types
+# are scored (bin/util/label_constraint.R), so the marker weights are recomputed over them. The
+# clustering above does not depend on the gene sets and stays identical.
+constraint <- Sys.getenv("LABEL_CONSTRAINT", "")
+kept <- NULL
+if (nzchar(constraint)) {
+  source(file.path(opt$sctype_dir, "..", "..", "..", "bin", "util", "label_constraint.R"))
+  kept <- constrain(names(gs$gs_positive), constraint, "scType", true_eval)
+  if (length(kept) < 2) stop("fewer than 2 cell types count for the listed cell types")
+  gs <- lapply(gs, function(s) s[names(s) %in% names(kept)])
+}
 # Restrict to marker genes BEFORE densifying + scaling. scale() is per-gene independent, so the
 # z-scores of the marker genes are identical whether the whole matrix or only those genes are
 # scaled, and sctype_score() subselects to exactly these genes internally anyway. This keeps the
@@ -104,9 +115,11 @@ if (length(missing) > 0)
   cat(sprintf("scType: WARNING %d/%d eval cells absent from the clustering context -> Unknown.\n",
               length(missing), length(out_cells)))
 pred <- assign[out_cells]; pred[is.na(pred)] <- "Unknown"
+if (!is.null(kept)) pred <- ifelse(pred %in% names(kept), kept[pred], pred)
 
 out <- data.frame(cell_id = out_cells, true_labels = unname(true_eval[out_cells]),
                   predicted_labels = unname(pred), stringsAsFactors = FALSE)
+if (!is.null(kept)) out$reachable <- out$true_labels %in% kept
 write.csv(out, opt$output, row.names = FALSE)
 cat(sprintf("scType: wrote %d predictions (%d cells clustered into %d clusters, tissue='%s') to %s\n",
             nrow(out), length(cells), length(unique(clusters)), opt$tissue, opt$output))
