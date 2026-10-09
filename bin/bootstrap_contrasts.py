@@ -37,7 +37,9 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from dataset_table import NUMBER_WORDS  # noqa: E402
-from manuscript_figures import DATASET_ORDER, _run_label, dataset_label  # noqa: E402
+from ablation_tables import LIST_CONDITION_NAME  # noqa: E402
+from manuscript_figures import (ABLATION_ARMS, DATASET_ORDER, STUDY_ARM_MODEL,  # noqa: E402
+                                _display, _run_label, dataset_label)
 from plot_model_comparison import (  # noqa: E402
     EXCLUDED_BASES, categorize_model, derive_mode, model_base)
 
@@ -174,6 +176,188 @@ def list_contrasts(cells, n=REPLICATES, seed=SEED):
     return pd.DataFrame(rows)
 
 
+# R2 on the benchmark's cells: the prompt-context ablation's arms at their default variant, the
+# imperfect-list study, and the benchmark's unconstrained runs as the no-list reference of the
+# methods that take no prompt.
+ABLATION_VARIANT = {"A1_llm_percell": "expression_ranked", "A4_llm_percluster": "res1.0",
+                    "A8_gemini_percluster": "res1.0", "A3_scllm_percell": "expression_ranked"}
+# The ablation's effects, as (key, label, arms, condition minus condition).
+ABLATION_EFFECTS = [
+    ("abl_list", "+ list minus genes only", list(ABLATION_VARIANT), "M2", "M1"),
+    ("abl_tissue", "+ tissue minus genes only", list(ABLATION_VARIANT), "M3", "M1"),
+    ("abl_both", "+ tissue + list minus + list", list(ABLATION_VARIANT), "M4", "M2"),
+    ("abl_order", "genes only minus shuffled genes", ["A1_llm_percell", "A3_scllm_percell"],
+     "M1", "M6"),
+]
+LIST_GROUPS = [("LLM", "scLLM"), ("LLM", "classical"), ("scLLM", "classical")]
+
+
+def r2_contrasts(ablation, lists, bench, n=REPLICATES, seed=SEED):
+    """The comparisons R2 states, per dataset, on the same redraws of the cells:
+    the ablation's effects and per cluster against per cell; each imperfect list against the
+    exact list and against no list; and, at the exact list and at L4, the best method of each
+    family against the best of another and C2S-Scale against GPT-OSS.
+
+    Balanced accuracy over all true types, so a type missing from a list counts as missed.
+    Conditions run with three seeds are averaged over them. Gemini, the per-cluster GPT-OSS,
+    scType and SCSA label clusters, so their cells are not independent and their intervals are
+    too narrow.
+    """
+    rng = np.random.default_rng(seed)
+    ablation = ablation[ablation["variant"] == ablation["arm"].map(ABLATION_VARIANT)]
+    arms = list(dict.fromkeys(lists["arm"]))
+    prompted = [a for a in arms if a in ABLATION_VARIANT]
+    none = {a: f"A|{a}|M1" if a in prompted else f"B|{STUDY_ARM_MODEL[a]}_blind" for a in arms}
+    gemini_cell = "B|gemini-3.1-pro-preview_unblind"
+    bench = bench[bench["model"].isin({r[2:] for r in none.values() if r.startswith("B|")}
+                                      | {gemini_cell[2:]})]
+    runs = pd.concat([
+        ablation.assign(model="A|" + ablation["arm"] + "|" + ablation["mode"] + "|"
+                        + ablation["seed"].astype(str)),
+        lists.assign(model="L|" + lists["arm"] + "|" + lists["condition"] + "|"
+                     + lists["seed"].astype(str)),
+        bench.assign(model="B|" + bench["model"])])
+    rows = []
+    for dataset in [d for d in DATASET_ORDER if d in set(runs["dataset"])]:
+        draws, observed = replicates(runs.loc[runs["dataset"] == dataset,
+                                              ["dataset", "model", "cell_id", "true_label",
+                                               "hit"]], n, rng)
+
+        def run(name):
+            """The draws and the observed value of a run, averaged over its seeds."""
+            cols = [c for c in draws.columns if c == name or c.startswith(name + "|")]
+            return draws[cols].mean(axis=1), observed[cols].mean()
+
+        def add(key, label, a, b):
+            (draws_a, obs_a), (draws_b, obs_b) = run(a), run(b)
+            rows.append(_row(key, label, dataset, a, b, {a: obs_a, b: obs_b}, draws_a - draws_b))
+
+        for key, label, effect_arms, cond_a, cond_b in ABLATION_EFFECTS:
+            for arm in effect_arms:
+                add(key, label, f"A|{arm}|{cond_a}", f"A|{arm}|{cond_b}")
+        add("abl_unit", "per cluster minus per cell, + list", "A|A4_llm_percluster|M2",
+            "A|A1_llm_percell|M2")
+        add("abl_unit", "per cluster minus per cell, + list", "A|A8_gemini_percluster|M2",
+            gemini_cell)
+        for arm in arms:
+            conditions = sorted(set(lists.loc[lists["arm"] == arm, "condition"]) - {"E"})
+            for condition in conditions:
+                add("list_condition", "condition minus exact list", f"L|{arm}|{condition}",
+                    f"L|{arm}|E")
+            for condition in ("E", "L4"):
+                add("list_none", "condition minus no list", f"L|{arm}|{condition}", none[arm])
+        for condition in ("E", "L4"):
+            best = {}
+            for arm in arms:
+                best.setdefault(categorize_model(STUDY_ARM_MODEL[arm]), {})[arm] = run(
+                    f"L|{arm}|{condition}")
+            for fam_a, fam_b in LIST_GROUPS:
+                a, b = best[fam_a], best[fam_b]
+                obs_a = pd.Series({arm: o for arm, (_d, o) in a.items()})
+                obs_b = pd.Series({arm: o for arm, (_d, o) in b.items()})
+                run_a, run_b = f"L|{obs_a.idxmax()}|{condition}", f"L|{obs_b.idxmax()}|{condition}"
+                rows.append(_row(f"list_{fam_a}-{fam_b}", "best of one family minus best of "
+                                 "another", dataset, run_a, run_b,
+                                 {run_a: obs_a.max(), run_b: obs_b.max()},
+                                 pd.concat({k: d for k, (d, _o) in a.items()}, axis=1).max(axis=1)
+                                 - pd.concat({k: d for k, (d, _o) in b.items()}, axis=1)
+                                 .max(axis=1)))
+            add("list_c2s-gptoss", "C2S-Scale minus GPT-OSS", f"L|A3_scllm_percell|{condition}",
+                f"L|A1_llm_percell|{condition}")
+    return pd.DataFrame(rows)
+
+
+# R2's table: the comparisons in the order the text makes them, as (contrast key, heading).
+R2_SECTIONS = [
+    ("abl_list", "Ablation: + list minus genes only"),
+    ("abl_tissue", "Ablation: + tissue minus genes only"),
+    ("abl_both", "Ablation: + tissue + list minus + list"),
+    ("abl_order", "Ablation: genes only minus shuffled genes"),
+    ("abl_unit", "Ablation: per cluster minus per cell, + list"),
+    ("list_condition", "List study: condition minus the exact list"),
+    ("list_none", "List study: condition minus no list"),
+    ("list_between", "List study: between methods"),
+]
+FAMILY_SHORT = {"LLM": "LLM", "scLLM": "scLLM", "classical": "baseline"}
+
+
+def _r2_names(row):
+    """(method, condition) as the table prints them."""
+    if row.contrast.startswith("abl_"):
+        arm = row.run_a.split("|")[1]
+        if row.contrast == "abl_unit":
+            return ABLATION_ARMS[arm][3].split(",")[0], ""
+        return ABLATION_ARMS[arm][3], ""
+    _kind, arm, condition = row.run_a.split("|")
+    name = LIST_CONDITION_NAME[condition]
+    if row.contrast == "list_c2s-gptoss":
+        return "C2S-Scale 2B minus GPT-OSS-120B", name
+    if row.contrast.startswith("list_") and "-" in row.contrast:
+        fam_a, fam_b = row.contrast.removeprefix("list_").split("-")
+        return f"best {FAMILY_SHORT[fam_a]} minus best {FAMILY_SHORT[fam_b]}", name
+    return _display(STUDY_ARM_MODEL[arm]), name
+
+
+def write_r2_tex(table, out_path, n=REPLICATES):
+    """R2's comparisons as a longtable: one row per comparison, its difference per dataset, bold
+    where it is called."""
+    table = table.assign(section=table["contrast"].where(
+        ~table["contrast"].str.contains("-"), "list_between"))
+    header = "Method & Condition & HFRA & HIHA & Zeisel & human pancreas \\\\"
+    lines = [
+        "% GENERATED by bin/bootstrap_contrasts.py --r2 -- do not edit by hand.",
+        "% Requires \\usepackage{longtable} and booktabs.", "",
+        "\\clearpage", "\\scriptsize", "\\captionsetup{position=below}",
+        "\\begin{longtable}{llrrrr}", "\\toprule", header, "\\midrule", "\\endfirsthead",
+        "\\multicolumn{6}{l}{\\emph{Comparisons of R2, continued}}\\\\", "\\toprule", header,
+        "\\midrule", "\\endhead", "\\midrule",
+        "\\multicolumn{6}{r}{\\emph{continued on the next page}}\\\\", "\\endfoot", "\\bottomrule",
+        "\\caption{\\textbf{Paired bootstrap intervals for the comparisons of R2.} Balanced accuracy "
+        "over all cell types, a type missing from a list counting as missed, at 1,000 cells. Each "
+        "value is the first run minus the second, averaged over the three seeds where a condition "
+        "ran with three; it is in bold when its 95\\% interval excludes zero and it is at least "
+        f"{NOISE_FLOOR:.2f}, as in Supplementary Table~\\ref{{supptab:contrasts}} ({n:,} "
+        "replicates, the cells resampled within each cell type). The ablation's arms are those of "
+        "Figure~\\ref{fig:context}A; GPT-OSS-120B and Gemini 3.1 Pro per cluster are compared with "
+        "their own runs per cell, Gemini's from the benchmark. Without a list, the methods that "
+        "take a prompt are the ablation's genes-only runs and the others the benchmark's "
+        "unconstrained runs. A best of a family is chosen again in every replicate. Gemini 3.1 "
+        "Pro, the per-cluster GPT-OSS-120B, scType and SCSA label clusters, so their cells are not "
+        "independent and their intervals are too narrow. The intervals are in the supplementary "
+        "data file \\texttt{supp\\_r2\\_contrasts.csv}.}\\label{supptab:r2_contrasts}\\\\",
+        "\\endlastfoot",
+    ]
+    for key, heading in R2_SECTIONS:
+        sub = table[table["section"] == key]
+        if sub.empty:
+            continue
+        lines.append(f"\\multicolumn{{6}}{{l}}{{\\textbf{{{heading}}}}} \\\\")
+        # One row per pair of runs; between methods, per comparison and condition, since the best
+        # run of a family differs between datasets.
+        keys = ([sub["contrast"], sub["run_a"].str.split("|").str[2]] if key == "list_between"
+                else ["run_a", "run_b"])
+        for _key, group in sub.groupby(keys, sort=False):
+            method, condition = _r2_names(group.iloc[0])
+            lines.append(" & ".join([method, condition] + _r2_cells(group)) + " \\\\")
+    lines += ["\\end{longtable}", ""]
+    out_path.write_text("\n".join(lines))
+    return out_path
+
+
+def _r2_cells(group):
+    """The difference per dataset, in dataset order, bold where called."""
+    by = group.set_index("dataset")
+    cells = []
+    for dataset in DATASET_ORDER:
+        if dataset not in by.index:
+            cells.append("--")
+            continue
+        r = by.loc[dataset]
+        value = _signed(r["difference"])
+        cells.append(value if r["verdict"] == "level" else f"\\textbf{{{value}}}")
+    return cells
+
+
 def _signed(value):
     return f"{value:+.3f}".replace("-", "$-$")
 
@@ -257,7 +441,23 @@ def main(argv=None):
     p.add_argument("--lists-cells", type=Path,
                    help="per-cell outcomes of the imperfect-list study (lists.py --score); "
                         "compares its conditions with the exact list instead")
+    p.add_argument("--r2", type=Path, metavar="STUDY_DIR",
+                   help="the context_ablation directory: the comparisons R2 states, from both "
+                        "studies' per-cell outcomes and the benchmark's (--cells)")
     args = p.parse_args(argv)
+
+    if args.r2:
+        read = lambda path: pd.read_csv(path, dtype={"cell_id": str})  # noqa: E731
+        table = r2_contrasts(read(args.r2 / "results" / "cell_outcomes.csv"),
+                             read(args.r2 / "results_lists" / "cell_outcomes.csv"),
+                             read(args.cells), args.replicates)
+        out = args.r2 / "results_lists" / "bootstrap_r2.csv"
+        table.to_csv(out, index=False)
+        tex = Path(args.tex).with_name("supplementary_r2_contrasts_generated.tex")
+        write_r2_tex(table, tex, args.replicates)
+        table.to_csv(tex.parent / "tables" / "supp_r2_contrasts.csv", index=False)
+        print(f"{len(table)} comparisons -> {out}\n-> {tex}")
+        return 0
 
     if args.lists_cells:
         table = list_contrasts(pd.read_csv(args.lists_cells, dtype={"cell_id": str}),
