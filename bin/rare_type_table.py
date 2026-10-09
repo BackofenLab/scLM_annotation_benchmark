@@ -14,6 +14,9 @@ express:
 * ``emitted`` -- whether the method ever produced that label anywhere in the dataset, which
   separates two failures that recall alone conflates: never having the label in the output
   vocabulary at all, versus producing it but assigning it to the wrong cells.
+* ``reachable`` -- for the constrained baselines only, whether the method has a label of that
+  cell type or below it, so that it can name the type at all (``LABEL_CONSTRAINT``,
+  ``bin/util/label_constraint.py``). It is empty for every other run.
 
 Labels are canonicalized to Cell Ontology identity on both sides before joining, because the
 subset QC files record the dataset's raw labels while the predictions carry mapped ones.
@@ -98,11 +101,14 @@ def outcomes(canon, pred_glob):
         truth = frame["true_labels"].map(canon)
         pred = frame["predicted_labels"].map(canon)
         emitted = set(pred)
+        # Written by the constrained baselines' wrappers, one value per true cell type.
+        reachable = (frame["reachable"].astype(bool).groupby(truth).first()
+                     if "reachable" in frame.columns else pd.Series(dtype=object))
         for label, idx in truth.groupby(truth).groups.items():
             hit = pred.loc[idx] == label
             rows.append(dict(method=method, mode=derive_mode(model_dir), dataset=dataset,
                              k=label, n_cells=len(idx), recall=float(hit.mean()),
-                             emitted=bool(label in emitted)))
+                             emitted=bool(label in emitted), reachable=reachable.get(label)))
     return pd.DataFrame(rows)
 
 
