@@ -110,9 +110,10 @@ def caption(by):
         "\\textbf{Datasets of the benchmark.} Cells and genes of the files as downloaded and after "
         "quality control. Cell types labeled are the distinct labels of a file; scored are those "
         "left after the labels were mapped to the Cell Ontology, which merged some of the authors' "
-        f"labels ({', '.join(merged)}), and that have at least 20 cells. A test set draws a fixed "
-        "number of cells per scored cell type, at least 20, so rounding leaves some test sets a few "
-        f"cells short of 1,000 or 10,000. {'; '.join(sentences)[0].upper()}{'; '.join(sentences)[1:]}. "
+        f"labels ({', '.join(merged)}), and that have at least 20 cells. A test set draws each "
+        "scored cell type in proportion to its share of the dataset, with at least 20 cells, so "
+        "rounding leaves some test sets a few cells short of 1,000 or 10,000. "
+        f"{'; '.join(sentences)[0].upper()}{'; '.join(sentences)[1:]}. "
         "In the human pancreas data, quality "
         f"control removed {_tex(by['human_pancreas']['qc_removed'])}. HFRA, Human Fetal Retina "
         "Atlas; HIHA, Human Immune Health Atlas.")

@@ -1,17 +1,18 @@
 #!/usr/bin/env python
 """Paired bootstrap intervals for the differences in balanced accuracy that the Results state.
 
-Every method annotated the same cells of a dataset: a fixed number per cell type, drawn at random
-within the type (``bin/subset.py``). The bootstrap draws cells the same way, with replacement
-within each true type, and recomputes balanced accuracy for every run on the same drawn cells, so a
-difference between two runs keeps its pairing. A comparison between the best runs of two groups
-picks the best again in every replicate, so the run that won on the observed cells is not favoured.
+Every method annotated the same cells of a dataset, drawn at random within each cell type in
+proportion to its share of the dataset, at least 20 per type (``bin/subset.py``). The bootstrap
+draws cells the same way, with replacement within each true type, and recomputes balanced accuracy
+for every run on the same drawn cells, so a difference between two runs keeps its pairing. A
+comparison between the best runs of two groups picks the best again in every replicate, so the run
+that won on the observed cells is not favoured.
 
 The interval covers which cells were sampled, not a rerun of a stochastic model. In the
-prompt-context ablation a rerun with another seed moved balanced accuracy by a median standard
-deviation of 0.009, so a difference is called only when its interval excludes zero and it is at
-least NOISE_FLOOR. With four datasets, the text counts the datasets on which a difference is
-called; nothing is tested across datasets.
+prompt-context ablation a rerun of a general-purpose LLM (the API arms, which sample) with another
+seed moved balanced accuracy by a median standard deviation of 0.010, so a difference is called
+only when its interval excludes zero and it is at least NOISE_FLOOR. With four datasets, the text
+counts the datasets on which a difference is called; nothing is tested across datasets.
 
 Checked 2026-10-07: the per-cell outcomes reproduce the snapshot's balanced accuracy to 5e-5 in
 every run, and the 60 runs scored at both subset sizes moved by no more than the bootstrap
@@ -35,6 +36,7 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from dataset_table import NUMBER_WORDS  # noqa: E402
 from manuscript_figures import DATASET_ORDER, _run_label, dataset_label  # noqa: E402
 from plot_model_comparison import (  # noqa: E402
     EXCLUDED_BASES, categorize_model, derive_mode, model_base)
@@ -223,14 +225,17 @@ def write_tex(table, out_path, n=REPLICATES):
         "\\end{tabular}",
         "\\captionsetup{position=below}",
         "\\caption{\\textbf{Paired bootstrap intervals for the comparisons in the text.} Balanced "
-        "accuracy at 1,000 cells. Each comparison takes the best run of each group on a dataset; "
-        "C and U mark the constrained and unconstrained settings. The interval resamples the "
-        "cells with replacement within each cell type, as they were sampled, and scores every run "
-        f"on the same resampled cells ({n:,} replicates); the best run of a group is chosen again "
-        "in every replicate. A difference is in bold when its interval excludes zero and it is at "
-        f"least {NOISE_FLOOR:.2f}, the noise of rerunning a model; the others count as level "
-        "(Methods). The last rows count how often the constrained setting changed the balanced "
-        "accuracy of the same method, by the same rule.}",
+        "accuracy at 1,000 cells; C and U mark the constrained and unconstrained settings. The "
+        "interval resamples the cells with replacement within each cell type, as they were "
+        f"sampled, and scores every run on the same resampled cells ({n:,} replicates). A group "
+        "comparison takes the best run of each group on a dataset, chosen again in every "
+        "replicate. The rows headed with the top of Figure~\\ref{fig:benchmark}A compare the run "
+        f"with the highest mean over the four datasets with the next {NUMBER_WORDS[TOP_RUNS]}, on "
+        "that mean, each dataset resampled independently. A difference is in bold when its "
+        f"interval excludes zero and it is at least {NOISE_FLOOR:.2f}, a margin above the change "
+        "between reruns of a model (Methods); the others count as level. The last rows count, by "
+        "the same rule, how often the constrained setting changed the balanced accuracy of the "
+        "same method, with the range of the differences in brackets.}",
         "\\label{supptab:contrasts}",
         "\\end{table}",
         "",

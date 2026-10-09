@@ -36,6 +36,7 @@ from matplotlib.legend_handler import HandlerTuple
 import numpy as np
 import pandas as pd
 import seaborn as sns
+from scipy.optimize import isotonic_regression
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from plot_model_comparison import (  # noqa: E402
@@ -47,6 +48,8 @@ from plot_model_comparison import (  # noqa: E402
     REGIME_SHORT,
     _place_point_labels,
     _ranked_category_colors,
+    _tier_marker as _tier_style,
+    _tiered_offsets,
     categorize_model,
     derive_mode,
     group_name,
@@ -1417,24 +1420,28 @@ def _lighter(color, white=0.5):
     return mcolors.to_hex([c + (1 - c) * white for c in mcolors.to_rgb(color)])
 
 
-def _family_key(ax, encodings):
+def _family_key(ax, encodings, drawn=None, extra=(), spacing=0.8):
     """The key of Figure 2, worded as Figure 1B: one column of ``encodings``, then one column per
-    family with its subcategories under the family's name in bold. Columns are padded to equal
-    length, so the legend fills them column by column."""
+    family with its subcategories under the family's name in bold, then one column per ``extra``
+    ``(heading, [lines])``. ``drawn`` keeps only those ``(family, subcategory)`` pairs. Columns are
+    padded to equal length, so the legend fills them column by column."""
     colors = _ranked_category_colors()
     columns = [encodings] + [
         [_blank(FAMILY_HEADER[family])] + [
             plt.Line2D([], [], linestyle="none", marker=marker, color=colors[family],
                        markersize=11 if marker == "*" else 7, label=TIER_NAME.get(tier, label))
-            for tier, label, marker, _size in CATEGORY_TIERS[family]]
+            for tier, label, marker, _size in CATEGORY_TIERS[family]
+            if drawn is None or (family, tier) in drawn]
         for family, _ in COMPOSITE_CATEGORIES]
+    columns += [[_blank(heading)] + [_blank(line) for line in lines] for heading, lines in extra]
+    headings = {*FAMILY_HEADER.values(), *(heading for heading, _ in extra)}
     rows = max(len(column) for column in columns)
     key = ax.legend(handles=[h for column in columns
                              for h in column + [_blank()] * (rows - len(column))],
                     ncol=len(columns), loc="center", frameon=False, fontsize=FS_LEGEND,
-                    columnspacing=0.8, handlelength=1.4, handletextpad=0.5, borderaxespad=0)
+                    columnspacing=spacing, handlelength=1.4, handletextpad=0.5, borderaxespad=0)
     for text in key.get_texts():
-        if text.get_text() in FAMILY_HEADER.values():
+        if text.get_text() in headings:
             text.set_fontweight("bold")
 
 
@@ -1562,19 +1569,20 @@ def load_activity(path=DEFAULT_ACTIVITY_CSV):
     return load_openrouter_activity(path, benchmarked_only=True)
 
 
-def figure_cost_performance(df, out_path, dpi=600, activity=None):
-    """Supplementary for R3 — annotation quality against measured API spend, per model and regime.
+def figure_cost_performance(df, out_path, dpi=600, activity=None, ablation=None):
+    """Supplementary Figure S4 — annotation quality against cost.
 
-    R3 opens by naming the model that carries the ablation, and the justification it gives is a
-    POSITION on this panel, not a dollar figure: GPT-OSS-120B is the cheapest model in the roster,
-    no cheaper model scores higher, and every model that does score higher costs at least two
-    orders of magnitude more. The step line is that frontier.
+    (A) Every general-purpose LLM of the benchmark against its measured API spend per 1,000 cells,
+        per setting. The step line is the cost-efficient frontier: GPT-OSS-120B is the cheapest
+        model in the roster and no cheaper model scores higher, which is why it carries the
+        ablation.
+    (B) The prompt-context ablation at genes + list: balanced accuracy against the model calls
+        that annotate 1,000 cells, per cell or per cluster (``_cost_panel``).
 
-    Quoting its absolute spend in R3 would collide with Figure 3C. The benchmark and the ablation
-    measured the same model at ~$0.04 and $0.23 per 1,000 cells respectively, because the benchmark
-    sorted providers by price while the ablation left routing open and `gpt-oss-120b` is served by
-    many providers at different rates. Both numbers are correct measurements of different runs.
-    The frontier POSITION is invariant to the difference, which is why the text argues from rank.
+    The panels meter different runs. The benchmark and the ablation measured GPT-OSS-120B at ~$0.04
+    and $0.23 per 1,000 cells, because the benchmark sorted providers by price while the ablation
+    left routing open and `gpt-oss-120b` is served by many providers at different rates. Both
+    numbers are correct measurements of different runs; the caption says so.
 
     The in-panel title is dropped, the names are the display names and the settings are worded as
     in Figure 2's key; the LaTeX caption does the describing (WRITING_STYLE.md, Scientific
@@ -1587,8 +1595,9 @@ def figure_cost_performance(df, out_path, dpi=600, activity=None):
             f"{DEFAULT_ACTIVITY_CSV}, which does not exist. It is not derivable from the "
             f"aggregate: spend is per request, and the aggregate is per model and dataset.")
 
+    ablation = load_ablation() if ablation is None else ablation
     with plt.rc_context(_rc()):
-        fig, ax = plt.subplots(figsize=(7.4, 5.2))
+        fig, (ax, ax_b) = plt.subplots(1, 2, figsize=(13.0, 5.2), gridspec_kw={"wspace": 0.3})
         # All points are general-purpose LLMs, so they take the family's orange: C in full, U
         # lighter, as the hatching lightens the U bars of Figure 2A. Names as in Figure 2B-F.
         orange = _ranked_category_colors()["LLM"]
@@ -1610,6 +1619,10 @@ def figure_cost_performance(df, out_path, dpi=600, activity=None):
             for text in legend.get_texts():
                 text.set_text(SETTING_KEY.get(text.get_text(), text.get_text()))
         _harmonize(ax)
+        # B: what annotating clusters instead of cells saves, from the prompt-context ablation.
+        _cost_panel(ax_b, ablation, _ranked_category_colors(), bench=df)
+        _harmonize(ax_b)
+        _panel_letters(fig, [(ax, "A"), (ax_b, "B")])
         return _save(fig, out_path, dpi)
 
 
@@ -1631,22 +1644,17 @@ def _rare_flow_builder(dataset):
 DEFAULT_ABLATION_CSV = (Path(__file__).resolve().parents[1] / "context_ablation" / "results"
                         / "context_ablation.csv")
 
-# Arm styling. Colors reuse the manuscript's family palette so an arm reads as the family it
-# belongs to: the two general-purpose LLMs and the base model that C2S-Scale was fine-tuned from
-# share the LLM color, C2S-Scale takes the scLLM color. The cluster arm is the same model as A1, so
-# it keeps that color and is distinguished by marker and dash instead — the figure should not imply
-# it is a different model when granularity is the only thing that changed.
+# Arm styling, as in Figure 3: colour the family and marker the subcategory of Figure 2's key, so
+# a model looks the same in every figure; line style the unit, solid per cell and dashed per
+# cluster. The base model C2S-Scale was fine-tuned from, an open-weight non-reasoning LLM, takes
+# that subcategory's square, dotted.
 ABLATION_ARMS = {
-    "A1_llm_percell":    ("LLM",   "o", "-",  "GPT-OSS-120B, per cell"),
+    "A1_llm_percell":    ("LLM",   "^", "-",  "GPT-OSS-120B, per cell"),
     "A5_llm20_percell":  ("LLM",   "^", "-",  "GPT-OSS-20B, per cell"),
     "A2_base_percell":   ("LLM",   "s", ":",  "Gemma-2-2B (base), per cell"),
-    "A3_scllm_percell":  ("scLLM", "v", "-",  "C2S-Scale-2B, per cell"),
-    "A4_llm_percluster": ("LLM",   "D", "--", "GPT-OSS-120B, per cluster"),
-    # Gemini keeps the LLM family colour but takes a star marker and a dash-dot line. The comment
-    # above reserves "same colour, different marker" for a granularity change at fixed model; here
-    # BOTH change, so it needs to be separable from A4 at a glance without inventing a colour
-    # outside the family palette.
-    "A8_gemini_percluster": ("LLM", "*", "-.", "Gemini-3.1-Pro, per cluster"),
+    "A3_scllm_percell":  ("scLLM", "o", "-",  "C2S-Scale 2B, per cell"),
+    "A4_llm_percluster": ("LLM",   "^", "--", "GPT-OSS-120B, per cluster"),
+    "A8_gemini_percluster": ("LLM", "*", "--", "Gemini 3.1 Pro, per cluster"),
 }
 #: Display order, NOT the mode numbering. Ordered by how much the model is given, so the x axis
 #: reads as a ladder: no transcriptome at all, then the transcriptome alone, then the transcriptome
@@ -1662,7 +1670,7 @@ MODE_ORDER = ["M6", "M1", "M3", "M2", "M4"]
 #: "none" was ambiguous: M1 has no CONTEXT but does have the gene list, and reading it as "nothing
 #: supplied" would put the floor in the wrong place. Every label now names what the model receives.
 MODE_LABELS = {"M6": "genes,\nshuffled\norder", "M1": "genes\nonly", "M3": "genes\n+ tissue",
-               "M2": "genes\n+ types", "M4": "genes\n+ tissue\n+ types"}
+               "M2": "genes\n+ list", "M4": "genes\n+ tissue\n+ list"}
 
 
 def load_ablation(path=DEFAULT_ABLATION_CSV):
@@ -1672,137 +1680,242 @@ def load_ablation(path=DEFAULT_ABLATION_CSV):
     return pd.read_csv(path)
 
 
-def figure_2(df, out_path, dpi=600, ablation=None):
-    """Figure 3 — what prompt context buys, and whether per-cell prompting is worth it.
+DEFAULT_LIST_RUNS_CSV = (Path(__file__).resolve().parents[1] / "context_ablation" / "results_lists"
+                         / "runs.csv")
+# The arms of the ablation and the list study as the benchmark's models, which give the family,
+# marker and name of Figure 2.
+STUDY_ARM_MODEL = {"A1_llm_percell": "gpt-oss-120b", "A4_llm_percluster": "gpt-oss-120b",
+                   "A8_gemini_percluster": "gemini-3.1-pro-preview",
+                   "A3_scllm_percell": "c2s_scale_2B", "S1_mmcontext": "mmcontext",
+                   "S2_langcell": "langcell", "B1_singler": "singler",
+                   "B2_celltypist": "celltypist", "B3_sctype": "sctype", "B4_scsa": "scsa"}
+# The arms that label clusters: the per-cluster language models, and scType and SCSA, which score
+# their marker sets per cluster.
+PER_CLUSTER_ARMS = {"A4_llm_percluster", "A8_gemini_percluster", "B3_sctype", "B4_scsa"}
+# A: what the prompt carries, in the order the model is given more.
+PROMPT_ARMS = ["A1_llm_percell", "A4_llm_percluster", "A8_gemini_percluster", "A3_scllm_percell"]
+PROMPT_MODES = [("M1", "genes\nonly"), ("M3", "genes\n+ tissue"), ("M2", "genes\n+ list"),
+                ("M4", "genes\n+ tissue\n+ list")]
+# B: the exact list, the three imperfections and their union; the key row spells out A1-A3.
+LIST_CONDITIONS = [("E", "exact list"), ("L1", "A1"), ("L2-5", "A2"), ("L3", "A3"),
+                   ("L4", "A1 + A2 + A3")]
+LIST_KEY = ("Imperfect lists", ["A1  mixed levels (parents, children)",
+                                "A2  five absent types added",
+                                "A3  a quarter of the types removed"])
+# C: Figure 2H's classes, worded for the cells of a type the list left out.
+MISSING_TYPE_CONDITIONS = [("L3", "¼ of the types missing (A3)"),
+                           ("L4", "all combined (A1 + A2 + A3)")]
+MISSING_TYPE_KEY = {"exact": "the missing type itself",
+                    "coarser": "coarser, specific\n(e.g. a listed parent)",
+                    "broad": "coarser, broad", "finer": "finer", "other": "another cell type",
+                    "none": "no usable answer\n(incl. uncertain, Unknown)"}
+# B's x positions: the no-list reference and the union stand apart; the gap between families
+# holds the methods' names.
+REF_GAP, UNION_GAP, FAMILY_GAP = 1.3, 1.3, 2.6
+# Where B places a method's name: beside its last point first.
+NAME_BESIDE = [(9, 0, "left", "center"), (9, 7, "left", "bottom"), (9, -7, "left", "top"),
+               (16, 0, "left", "center"), (16, 10, "left", "bottom"), (16, -10, "left", "top"),
+               (0, 9, "center", "bottom"), (0, -9, "center", "top")]
 
-    (A) balanced accuracy by prompt condition, one line per arm, from the shuffled-gene floor (C1)
-        up to full context (C5).
-    (B) the ontology miss rate on the same conditions -- the mechanism behind A's curve.
-    (C) cost against accuracy at the constrained condition, per-cell versus per-cluster, for both
-        GPT-OSS-120B and Gemini-3.1-Pro.
 
-    The base-model paired slope was panel C until 2026-08-15. See the layout comment below for why
-    it left and what the rearrangement costs.
+def load_list_runs(path=DEFAULT_LIST_RUNS_CSV):
+    path = Path(path)
+    return pd.read_csv(path) if path.exists() else pd.DataFrame()
 
-    ``df`` (the benchmark aggregate) supplies panel D's ported Gemini per-cell point, which was
-    not re-run in this study.
+
+def _arm_style(arm):
+    """(colour, marker, scatter size) of an arm, from its model's family and subcategory."""
+    model = STUDY_ARM_MODEL[arm]
+    marker, size = _tier_style(model)
+    return _ranked_category_colors()[categorize_model(model)], marker, size
+
+
+def _list_study_arms(runs):
+    """The list study's arms in Figure 2's order: family, subcategory, then name."""
+    order = {(family, tier): (i, j) for i, (family, _) in enumerate(COMPOSITE_CATEGORIES)
+             for j, (tier, *_rest) in enumerate(CATEGORY_TIERS[family])}
+    model = {arm: STUDY_ARM_MODEL[arm] for arm in runs["arm"].unique()}
+    return sorted(model, key=lambda a: (*order[(categorize_model(model[a]),
+                                                model_tier(model[a]))], model[a]))
+
+
+def _prompt_content_panel(ax, ablation, bench):
+    """A: balanced accuracy by what the prompt carries, one line per arm. Gemini per cell exists
+    only in the benchmark, whose two prompts are the ablation's M1 and M2 verbatim: hollow stars."""
+    x = np.arange(len(PROMPT_MODES))
+    handles = []
+    for arm in PROMPT_ARMS:
+        rows = _arm_rows(ablation, arm)
+        colour, marker, _size = _arm_style(arm)
+        unit = "cluster" if arm in PER_CLUSTER_ARMS else "cell"
+        line, = ax.plot(x, [rows.loc[rows["mode"] == m, "balanced_accuracy"].mean()
+                            for m, _ in PROMPT_MODES],
+                        color=colour, marker=marker, markersize=11 if marker == "*" else 7,
+                        markeredgecolor="white", markeredgewidth=0.5, linewidth=1.4, zorder=3,
+                        linestyle="--" if unit == "cluster" else "-",
+                        label=f"{_display(STUDY_ARM_MODEL[arm])}, per {unit}")
+        handles.append(line)
+    colour = _ranked_category_colors()["LLM"]
+    for mode, setting in (("M1", "blind"), ("M2", "unblind")):
+        score = bench.loc[bench["model"] == f"gemini-3.1-pro-preview_{setting}",
+                          "balanced_accuracy"]
+        ax.scatter([m for m, _ in PROMPT_MODES].index(mode), score.mean(), marker="*", s=150,
+                   facecolor="white", edgecolor=colour, linewidth=1.3, zorder=4)
+    handles.append(plt.Line2D([], [], linestyle="none", marker="*", markersize=11,
+                              markerfacecolor="white", markeredgecolor=colour, markeredgewidth=1.3,
+                              label="Gemini 3.1 Pro, per cell (benchmark)"))
+    ax.set_xticks(x)
+    ax.set_xticklabels([label for _, label in PROMPT_MODES])
+    ax.set_xlim(-0.35, len(PROMPT_MODES) - 0.65)
+    ax.set_ylabel("Balanced accuracy")
+    ax.grid(axis="y", linestyle=":", alpha=0.5)
+    sns.despine(ax=ax)
+    ax.legend(handles=handles, loc="lower right", frameon=False, fontsize=FS_LEGEND - 0.5,
+              handlelength=2.6, borderaxespad=0.1)
+
+
+def _no_list_reference(ablation, bench, arms, dataset=None):
+    """Each list-study method without a list, the list being the only difference: the ablation's
+    genes-only runs for the prompted arms, the unconstrained benchmark runs on the same cells for
+    the others. Over the four datasets, or for ``dataset``."""
+    if dataset is not None:
+        ablation = ablation[ablation["dataset"] == dataset]
+        bench = bench[bench["dataset"] == dataset]
+    ref = {}
+    for arm in arms:
+        rows = _arm_rows(ablation, arm)
+        ref[arm] = (rows.loc[rows["mode"] == "M1", "balanced_accuracy"].mean() if not rows.empty
+                    else bench.loc[bench["model"] == f"{STUDY_ARM_MODEL[arm]}_blind",
+                                   "balanced_accuracy"].mean())
+    return ref
+
+
+def _imperfect_lists_panel(ax, runs, reference):
+    """B: balanced accuracy over all true types, a missing type counting as missed, per family:
+    no list, the exact list, A1-A3 and their union. A thin line joins the points of one method."""
+    means = runs.groupby(["arm", "condition"])["balanced_accuracy"].mean()
+    steps = [0.0, 1.0, 2.0, 3.0, 3.0 + UNION_GAP]
+    span = REF_GAP + steps[-1]
+    arms = _list_study_arms(runs)
+    ticks, tick_labels, points, labels = [], [], [], []
+    for g, (family, group_label) in enumerate(COMPOSITE_CATEGORIES):
+        members = [a for a in arms if categorize_model(STUDY_ARM_MODEL[a]) == family]
+        sizes = [sum(model_tier(STUDY_ARM_MODEL[a]) == t for a in members)
+                 for t, *_rest in CATEGORY_TIERS[family]]
+        offsets = _tiered_offsets([s for s in sizes if s], spacing=0.09, gap=0.12,
+                                  max_half_width=0.26)
+        ref_x = g * (span + FAMILY_GAP)
+        cond_x = [ref_x + REF_GAP + s for s in steps]
+        for j, arm in enumerate(members):
+            colour, marker, size = _arm_style(arm)
+            xs = [ref_x + offsets[j]] + [x + offsets[j] for x in cond_x]
+            ys = [reference[arm]] + [means[(arm, c)] for c, _ in LIST_CONDITIONS]
+            ax.plot(xs, ys, color="0.62", linewidth=0.7, zorder=2,
+                    linestyle=(0, (3, 2)) if arm in PER_CLUSTER_ARMS else "-")
+            ax.scatter(xs, ys, s=size, marker=marker, color=colour, edgecolor="white",
+                       linewidth=0.5, zorder=4)
+            points += [(xx, yy, np.sqrt(size) / 2) for xx, yy in zip(xs, ys)]
+            labels.append((_display(STUDY_ARM_MODEL[arm]), xs[-1], ys[-1], "0.15"))
+        ticks += [ref_x] + cond_x
+        tick_labels += ["no list"] + [label for _, label in LIST_CONDITIONS]
+        ax.text(ref_x + span / 2, 1.02, group_label, ha="center", va="bottom", fontsize=FS_GROUP,
+                transform=mtransforms.blended_transform_factory(ax.transData, ax.transAxes))
+    ax.set_xticks(ticks)
+    ax.set_xticklabels(tick_labels, rotation=40, ha="right", rotation_mode="anchor")
+    ax.set_xlim(ticks[0] - 0.7, ticks[-1] + FAMILY_GAP + 0.9)
+    ax.set_ylabel("Balanced accuracy")
+    ax.grid(axis="y", linestyle=":", alpha=0.5)
+    sns.despine(ax=ax)
+    _place_point_labels(ax, labels, points, FS_POINT, candidates=NAME_BESIDE, leader_min=10)
+
+
+def _missing_types_panel(axes, runs):
+    """C: where the cells of the types left off the list go, one bar per method and facet, in
+    Figure 2H's classes and averaged over the missing types, as balanced accuracy averages."""
+    arms = _list_study_arms(runs)[::-1]  # the first method on top
+    family = [categorize_model(STUDY_ARM_MODEL[a]) for a in arms]
+    y = np.cumsum([0.0] + [1.0 + 0.5 * (b != a) for a, b in zip(family, family[1:])])
+    classes = [key for key, *_rest in LINEAGE_KEY]
+    for ax, (condition, title) in zip(axes, MISSING_TYPE_CONDITIONS):
+        shares = (runs[runs["condition"] == condition].groupby("arm")
+                  [[f"removed_{k}" for k in classes]].mean().loc[arms].set_axis(classes, axis=1))
+        _stacked_shares(ax, shares, y)
+        ax.set_ylim(y.min() - 0.55, y.max() + 0.55)
+        ax.set_title(title, fontsize=FS_LABEL, pad=4)
+        ax.set_yticks(y)
+        ax.set_xticks([0, 0.25, 0.5, 0.75, 1.0])
+        ax.set_xticklabels(["0", "0.25", "0.5", "0.75", "1"])
+    axes[0].set_yticklabels([_display(STUDY_ARM_MODEL[a]) for a in arms])
+    axes[0].tick_params(axis="y", pad=13)
+    for ax in axes[1:]:
+        ax.tick_params(axis="y", labelleft=False)
+    # Each name carries its marker, so the bars connect to B's points.
+    beside = mtransforms.blended_transform_factory(axes[0].transAxes, axes[0].transData)
+    for yy, arm in zip(y, arms):
+        colour, marker, size = _arm_style(arm)
+        axes[0].scatter(-0.022, yy, s=size * 0.8, marker=marker, color=colour, edgecolor="white",
+                        linewidth=0.4, transform=beside, clip_on=False, zorder=5)
+
+
+def figure_2(df, out_path, dpi=600, ablation=None, runs=None):
+    """Figure 3 — what the list of expected cell types adds, and what an imperfect list costs.
+
+    (A) The prompt-context ablation: balanced accuracy by what the prompt carries.
+    (B) The imperfect-list study: balanced accuracy over all true types, per family, without a list,
+        with the exact list, with each of three imperfections and with all three.
+    (C) Where the cells of the types missing from the list go.
+
+    ``df`` (the benchmark aggregate) supplies Gemini per cell in A and the no-list runs of the
+    methods that take no prompt in B.
     """
     ablation = load_ablation() if ablation is None else ablation
-    if ablation.empty:
-        raise SystemExit(
-            "Figure 3 needs context_ablation/results/context_ablation.csv, which does not exist "
-            "yet. Run the study first: see context_ablation/README.md.")
-
-    cat_color = _ranked_category_colors()
+    runs = load_list_runs() if runs is None else runs
+    if ablation.empty or runs.empty:
+        raise SystemExit("Figure 3 needs context_ablation/results/context_ablation.csv and "
+                         "context_ablation/results_lists/runs.csv: see context_ablation/README.md.")
+    colors = _ranked_category_colors()
     with plt.rc_context(_rc()):
-        # Panel A is two stacked axes sharing one x. The upper is balanced accuracy, the lower the
-        # ontology miss rate on the SAME modes -- the mechanism behind the accuracy curve, which
-        # only reads as a mechanism when the two are vertically aligned. A shared x also removes a
-        # duplicate axis and its labels, so the pair costs barely more height than one panel.
-        # THREE PANELS, restructured 2026-08-15. The base-model paired slope was the fourth and is
-        # gone: it supported one clause of R3.2, that clause reports an INCONCLUSIVE control, and
-        # its diagnostics are already in Supplementary Figure S5B. Removing it also fixes the panel
-        # citation order, which ran A, C, B, D while the prose cited the mechanism panel last.
-        #
-        # A now spans the top row on its own and B sits beside C below, rather than B being stacked
-        # under A on a shared x. The cost of that is real and worth knowing: stacked, a reader read
-        # straight DOWN from the accuracy jump to the collapse in unmapped fraction at the same
-        # condition, which is what made the mechanism legible at a glance. Side by side the same
-        # comparison is a look across rather than down. A and B still carry identical x categories
-        # in identical order, so the reading is preserved, just not aligned.
-        fig = plt.figure(figsize=(12.4, 8.6))
-        outer = fig.add_gridspec(2, 1, hspace=0.34, height_ratios=[1.0, 0.86])
-        bottom = outer[1].subgridspec(1, 2, wspace=0.24)
-        ax_a = fig.add_subplot(outer[0])
-        ax_miss = fig.add_subplot(bottom[0])
-        ax_c = fig.add_subplot(bottom[1])
+        fig = plt.figure(figsize=(12.2, 9.6))
+        # A | B, their tick labels, the key row, a spacer, then C.
+        outer = fig.add_gridspec(5, 1, height_ratios=[4.0, 1.0, 1.2, 0.3, 3.2], hspace=0,
+                                 left=0.075, right=0.985, top=0.97, bottom=0.06)
+        top = outer[0].subgridspec(1, 2, width_ratios=[1.0, 2.55], wspace=0.13)
+        ax_a = fig.add_subplot(top[0, 0])
+        ax_b = fig.add_subplot(top[0, 1], sharey=ax_a)
+        _prompt_content_panel(ax_a, ablation, df)
+        _imperfect_lists_panel(ax_b, runs, _no_list_reference(ablation, df,
+                                                              _list_study_arms(runs)))
+        ax_b.tick_params(labelleft=True)
+        ax_a.set_ylim(0, 0.72)
+        # An invisible heading as tall as B's family names, so the letters of A and B align.
+        ax_a.text(0.5, 1.02, "baseline", transform=ax_a.transAxes, ha="center", va="bottom",
+                  fontsize=FS_GROUP, alpha=0)
 
-        base = ablation[ablation["variant"] == "expression_ranked"]
+        drawn = {(categorize_model(m), model_tier(m)) for m in STUDY_ARM_MODEL.values()}
+        ax_key = fig.add_subplot(outer[2])
+        ax_key.axis("off")
+        _family_key(ax_key, [
+            plt.Line2D([], [], color="0.35", linewidth=1.4, label="per cell"),
+            plt.Line2D([], [], color="0.35", linewidth=1.4, linestyle="--", label="per cluster"),
+            plt.Line2D([], [], color="0.62", linewidth=0.7, label="same method")],
+            drawn=drawn, extra=[LIST_KEY], spacing=1.5)
 
-        # (A) context modes -------------------------------------------------
-        # ONE LINE PER ARM, means over 4 datasets x 3 seeds. A per-dataset version was built and
-        # rejected: sixteen traces in two colours could not be attributed to a dataset, and the
-        # faint lines spanning 0.09-0.84 swamped the arm means that are the panel's actual subject.
-        # The per-dataset detail is real and worth showing -- Zeisel scores HIGHER with no genes
-        # (0.44) than with them (0.38), and C2S-Scale's context gain reverses there -- but it needs
-        # a supplementary figure with datasets labelled, per MANUSCRIPT_SKELETON.md, not sixteen
-        # unlabelled lines here.
-        modes = [m for m in MODE_ORDER if m in set(ablation["mode"])]
-        x = np.arange(len(modes), dtype=float)
-        # A small horizontal offset per arm. At `genes + types` three arms sit within 0.01 of each
-        # other and their markers previously overlapped into one blob; the offset separates them
-        # without moving any value, since x is categorical. The SAME offset is reused in panel B so
-        # one model occupies one column position in both axes and can be tracked downward.
-        drawn_arms = [a for a in ABLATION_ARMS if not _arm_rows(ablation, a).empty]
-        # The ported Gemini per-cell run occupies a jitter slot of its own so it cannot land on the
-        # Gemini per-cluster marker it is meant to be compared against -- they sit at the same mode
-        # and, at M2, within 0.07 of each other.
-        gem = (df[df["model"] == GEMINI_PERCELL["model"]]
-               if df is not None and not df.empty and "model" in df else pd.DataFrame())
-        ported_ok = not gem.empty and COST_MODE in modes
-        slots = drawn_arms + (["_gemini_percell"] if ported_ok else [])
-        jitter = dict(zip(slots, np.linspace(-0.10, 0.10, max(len(slots), 1))))
-        for arm, (family, marker, linestyle, label) in ABLATION_ARMS.items():
-            sub = _arm_rows(ablation, arm)
-            if sub.empty:
-                continue
-            means = [sub[sub["mode"] == m]["balanced_accuracy"].mean() for m in modes]
-            ax_a.plot(x + jitter[arm], means, linestyle=linestyle, marker=marker,
-                      color=cat_color[family], linewidth=1.4,
-                      markersize=_marker_size_for(marker), label=label, zorder=3)
-        # Gemini per cell: ONE point, not a line. The benchmark ran it only in the constrained
-        # setting (candidate types supplied), which is this study's M2, so drawing a line would
-        # imply four runs that do not exist. Hollow, like its twin in panel D, to mark the single
-        # value on this panel that came from the benchmark rather than from this pipeline. It is
-        # the per-cell ceiling the per-cluster arms are being judged against, so panel A is
-        # incomplete without it.
-        if ported_ok:
-            ax_a.scatter(modes.index(COST_MODE) + jitter["_gemini_percell"],
-                         gem["balanced_accuracy"].mean(),
-                         marker=ABLATION_ARMS["A8_gemini_percluster"][1],
-                         s=_scatter_area_for(ABLATION_ARMS["A8_gemini_percluster"][1]),
-                         facecolor="none", edgecolor=cat_color["LLM"], linewidth=1.5,
-                         zorder=4, label=GEMINI_PERCELL["label"])
-        ax_a.set_xticks(x)
-        ax_a.set_xticklabels([MODE_LABELS.get(m, m) for m in modes])
-        ax_a.set_ylabel("Balanced Accuracy")
-        ax_a.set_ylim(0, None)
-        ax_a.grid(axis="y", linestyle=":", alpha=0.5)
-        ax_a.legend(loc="best", frameon=False, fontsize=FS_LEGEND - 1)
-        sns.despine(ax=ax_a)
+        bottom = outer[4].subgridspec(1, 3, width_ratios=[1.0, 1.0, 0.42], wspace=0.07)
+        ax_c = [fig.add_subplot(bottom[0, 0])]
+        ax_c.append(fig.add_subplot(bottom[0, 1], sharey=ax_c[0]))
+        _missing_types_panel(ax_c, runs)
+        ax_c_key = fig.add_subplot(bottom[0, 2])
+        ax_c_key.axis("off")
+        ax_c_key.legend(handles=[mpatches.Patch(facecolor=color, edgecolor="0.55", linewidth=0.4,
+                                                label=MISSING_TYPE_KEY[key])
+                                 for key, _label, color in LINEAGE_KEY],
+                        loc="center left", frameon=False, fontsize=FS_LEGEND, borderaxespad=0,
+                        borderpad=0, handlelength=1.6, labelspacing=0.7)
+        left, right = ax_c[0].get_position(), ax_c[1].get_position()
+        fig.text((left.x0 + right.x1) / 2, left.y0 - 0.03, "Share of the missing types' cells",
+                 ha="center", va="top", fontsize=FS_LABEL)
 
-        # (B) Miss rate, on the same x categories as A. This is what turns "context helps" into a
-        # mechanism: the candidate list cuts the LLM's unmappable-answer rate ~4.6x (0.37 -> 0.08)
-        # while C2S-Scale sits at 0.05-0.08 in EVERY mode -- it already speaks Cell Ontology, so the
-        # list buys it nothing on this axis, which is much of why it gains +0.05 where the LLM gains
-        # +0.26. Tissue alone makes the rate WORSE (0.37 -> 0.44): naming the organ invites more
-        # specific free-text answers that no ontology term matches.
-        for arm, (family, marker, linestyle, label) in ABLATION_ARMS.items():
-            sub = _arm_rows(ablation, arm)
-            if sub.empty or "non_cl_ratio" not in sub:
-                continue
-            vals = [sub[sub["mode"] == m]["non_cl_ratio"].mean() for m in modes]
-            ax_miss.plot(x + jitter[arm], vals, linestyle=linestyle, marker=marker,
-                         color=cat_color[family], linewidth=1.4,
-                         markersize=_marker_size_for(marker) * 0.85, zorder=3)
-        ax_miss.set_xticks(x)
-        ax_miss.set_xticklabels([MODE_LABELS.get(m, m) for m in modes])
-        ax_miss.set_ylabel("unmapped\nfraction")
-        ax_miss.set_ylim(0, None)
-        ax_miss.grid(axis="y", linestyle=":", alpha=0.5)
-        sns.despine(ax=ax_miss)
-
-        # (C) per-cell vs per-cluster ---------------------------------------
-        # The FULL frame, not `base`. `base` keeps only variant == "expression_ranked", but the
-        # cluster arm's variants are the clustering resolutions ("res0.5", "res1.0"), so filtering
-        # first silently dropped the very arm this panel exists to compare against -- leaving three
-        # per-cell points and no contrast.
-        _cost_panel(ax_c, ablation, cat_color, bench=df)
-
-        # The gene-list ablation moves to the supplement. Its result is a null (+0.02 mean, and
-        # -0.08 on Zeisel), which is worth reporting but does not earn main-text space against a
-        # mechanism panel -- and its paired-slope form could not distinguish A1's M1 from its M4.
-        _panel_letters(fig, [(ax_a, "A"), (ax_miss, "B"), (ax_c, "C")])
+        _panel_letters(fig, [(ax_a, "A"), (ax_b, "B"), (ax_c[0], "C")])
         return _save(fig, out_path, dpi)
 
 
@@ -1903,7 +2016,7 @@ ARM_SPEND_PER_1K_M2 = {
 #: Drawn hollow to mark it as the one point on the panel that did not come from this pipeline.
 GEMINI_PERCELL = {"model": "gemini-3.1-pro-preview_unblind",
                   "cost_per_1k": 34.24 / 3997 * 1000,
-                  "label": "Gemini-3.1-Pro, per cell"}
+                  "label": "Gemini 3.1 Pro, per cell"}
 
 
 def _cost_panel(ax, frame, cat_color, bench=None):
@@ -1964,13 +2077,13 @@ def _cost_panel(ax, frame, cat_color, bench=None):
     if bench is not None and not bench.empty and "model" in bench:
         g = bench[bench["model"] == GEMINI_PERCELL["model"]]
         if not g.empty:
-            _annotate(GEMINI_PERCELL["label"] + "  (ported)", GEMINI_PERCELL["cost_per_1k"],
+            _annotate(GEMINI_PERCELL["label"] + " (benchmark)", GEMINI_PERCELL["cost_per_1k"],
                       1000.0, g["balanced_accuracy"].mean(), cat_color["LLM"],
                       ABLATION_ARMS["A8_gemini_percluster"][1], hollow=True)
 
     ax.set_xscale("log")
-    ax.set_xlabel("model calls per 1,000 annotated cells")
-    ax.set_ylabel("Balanced Accuracy")
+    ax.set_xlabel("Model calls per 1,000 annotated cells")
+    ax.set_ylabel("Balanced accuracy")
     ax.set_ylim(0, None)
     # Headroom on both sides: the cluster arm sits at ~40 calls and the per-cell arms at 1,000, so
     # without margin their labels run off the axis rather than merely colliding.
@@ -2013,159 +2126,172 @@ def _variant_slope(ax, frame, cat_color):
                         "top 200 by expression\nfrom 5,000 HVGs"])
     ax.set_xlim(-0.25, 1.25)
     ax.set_ylim(0, None)
-    ax.set_ylabel("Balanced Accuracy")
+    ax.set_ylabel("Balanced accuracy")
     ax.grid(axis="y", linestyle=":", alpha=0.5)
     sns.despine(ax=ax)
 
 
+def _ablation_dataset_panel(ax, ablation, dataset, gemini, arms, offsets, gemini_dx):
+    """One dataset of the prompt-context ablation: each arm's mean over the seeds with its standard
+    error, the seeds as small points, and Gemini per cell from the benchmark as a hollow star."""
+    colors = _ranked_category_colors()
+    modes = [m for m in MODE_ORDER if m in set(ablation["mode"])]
+    x = np.arange(len(modes), dtype=float)
+    if gemini_dx is not None:
+        for mode, model in (("M1", "gemini-3.1-pro-preview_blind"),
+                            ("M2", GEMINI_PERCELL["model"])):
+            score = gemini.loc[(gemini["model"] == model) & (gemini["dataset"] == dataset),
+                               "balanced_accuracy"]
+            if len(score) and mode in modes:
+                ax.scatter(x[modes.index(mode)] + gemini_dx, score.mean(), marker="*",
+                           s=_scatter_area_for("*", 0.85 ** 2), facecolor="none",
+                           edgecolor=colors["LLM"], linewidth=1.4, zorder=4,
+                           label=GEMINI_PERCELL["label"] + " (benchmark)" if mode == "M2" else None)
+    for dx, arm in zip(offsets, arms):
+        family, marker, linestyle, label = ABLATION_ARMS[arm]
+        sub = _arm_rows(ablation, arm)
+        sub = sub[sub["dataset"] == dataset]
+        means, errs = [], []
+        for i, mode in enumerate(modes):
+            vals = sub.loc[sub["mode"] == mode, "balanced_accuracy"].dropna().to_numpy()
+            means.append(vals.mean() if len(vals) else np.nan)
+            errs.append(vals.std(ddof=1) / np.sqrt(len(vals)) if len(vals) > 1 else 0.0)
+            ax.scatter(np.full(len(vals), x[i] + dx), vals, s=7, color=colors[family], alpha=0.55,
+                       zorder=2, linewidths=0)
+        ax.errorbar(x + dx, means, yerr=errs, linestyle=linestyle, marker=marker,
+                    color=colors[family], linewidth=1.3, markersize=_marker_size_for(marker) * 0.85,
+                    capsize=2.5, elinewidth=0.9, label=label, zorder=3)
+    ax.set_title(dataset_label(dataset), fontsize=FS_TITLE)
+    ax.set_xticks(x)
+    ax.set_xticklabels([MODE_LABELS.get(m, m) for m in modes])
+    ax.set_ylim(0, None)
+    ax.set_ylabel("Balanced accuracy")
+    ax.grid(axis="y", linestyle=":", alpha=0.5)
+    sns.despine(ax=ax)
+
+
+def _name_column(ax, ends, x, fontsize):
+    """Name lines in a column right of their last points ``ends`` = [(name, y)] at ``x``: the names
+    keep the order of the ends and lie as close to them as one line of text between names allows
+    (least squares, by isotonic regression), each joined to its end by a leader. Call after the
+    y limits are set."""
+    lo, hi = ax.get_ylim()
+    points_high = ax.get_position().height * ax.figure.get_figheight() * 72
+    gap = 1.25 * fontsize * (hi - lo) / points_high
+    order = np.argsort([y for _, y in ends], kind="stable")
+    steps = np.arange(len(ends)) * gap
+    placed = np.empty(len(ends))
+    placed[order] = isotonic_regression(np.array([ends[i][1] for i in order]) - steps).x + steps
+    for (name, y), y_text in zip(ends, placed):
+        ax.annotate(name, xy=(x, y), xytext=(x + 0.5, y_text), va="center", fontsize=fontsize,
+                    color="0.15", annotation_clip=False,
+                    arrowprops=dict(arrowstyle="-", linewidth=0.4, color="0.6", shrinkA=4,
+                                    shrinkB=2))
+
+
+def _list_dataset_panel(ax, runs, reference, dataset):
+    """One dataset of Figure 3B: each method as a line from no list through the exact list and
+    A1-A3 to their union, coloured by family and marked by subcategory, named at the right."""
+    steps = [0.0] + [REF_GAP + s for s in (0.0, 1.0, 2.0, 3.0, 3.0 + UNION_GAP)]
+    means = (runs[runs["dataset"] == dataset]
+             .groupby(["arm", "condition"])["balanced_accuracy"].mean())
+    ends = []
+    for arm in _list_study_arms(runs):
+        colour, marker, size = _arm_style(arm)
+        ys = [reference[arm]] + [means[(arm, c)] for c, _ in LIST_CONDITIONS]
+        ax.plot(steps, ys, color=colour, linewidth=1.0, alpha=0.8, zorder=2,
+                linestyle="--" if arm in PER_CLUSTER_ARMS else "-")
+        ax.scatter(steps, ys, s=size * 0.7, marker=marker, color=colour, edgecolor="white",
+                   linewidth=0.4, zorder=3)
+        ends.append((_display(STUDY_ARM_MODEL[arm]), ys[-1]))
+    ax.set_title(dataset_label(dataset), fontsize=FS_TITLE)
+    ax.set_xticks(steps)
+    ax.set_xticklabels(["no list"] + [label for _, label in LIST_CONDITIONS], rotation=40,
+                       ha="right", rotation_mode="anchor")
+    ax.set_xlim(-0.4, steps[-1] + 2.4)
+    ax.set_ylim(0, None)  # per dataset, so close lines spread out
+    ax.set_ylabel("Balanced accuracy")
+    ax.grid(axis="y", linestyle=":", alpha=0.5)
+    sns.despine(ax=ax)
+    _name_column(ax, ends, steps[-1], FS_POINT)
+
+
 def figure_context_per_dataset(df, out_path, dpi=600, ablation=None):
-    """Supplementary for R2 — Figure 3A resolved per dataset, with the repeats shown.
-
-    Figure 3A averages over the four datasets because twenty unlabelled traces in one axes cannot
-    be attributed to a dataset. That average is the right main-text summary and the wrong place to
-    look for consistency, because the spread it collapses is large and structured: the seed-to-seed
-    SD within a dataset is 0.0068, while the SD across datasets is 0.182 -- 27x larger. Two results
-    live entirely in that gap:
-
-      * THE GENE-ORDER EFFECT IS ALMOST ENTIRELY ONE DATASET. Destroying the expression ranking
-        (M6) costs the LLM 0.166 on human pancreas but only 0.003-0.017 on the other three; for
-        C2S-Scale it costs 0.198 on pancreas against 0.017-0.078 elsewhere. The headline averages
-        (+0.048 and +0.089) are therefore carried by pancreas, and anyone reading them as "the
-        ranking is worth ~0.05-0.09 in general" is reading a per-dataset result as a global one.
-        This panel is where that becomes visible, which is the main reason it is worth its page.
-      * C2S-Scale's context gain REVERSES on Zeisel (-0.01) while helping on the other three
-        (+0.01 to +0.12), so "the adapted model barely uses context" is a statement about three
-        datasets and not the fourth.
-
-    Error bars are the standard error over the three seeds, and the seeds themselves are drawn as
-    small points. Both are shown rather than one or the other: the bar states the precision of the
-    mean, the points show that n is three and that the three agree closely -- which an error bar
-    alone would leave the reader to assume. Arms are jittered on x so their intervals do not
-    overlap; the jitter is cosmetic and the x positions are categorical.
-    """
+    """Supplementary for R2 — Figure 3A resolved per dataset, with the seeds shown: each arm's
+    mean with its standard error over the seeds and the seeds as small points. Unlike Figure 3A it
+    includes base Gemma and the shuffled gene order."""
     ablation = load_ablation() if ablation is None else ablation
     if ablation.empty:
         raise SystemExit("needs context_ablation/results/context_ablation.csv; run the study first")
-
-    cat_color = _ranked_category_colors()
-    datasets = sorted(ablation["dataset"].unique())
-    modes = [m for m in MODE_ORDER if m in set(ablation["mode"])]
-    x = np.arange(len(modes), dtype=float)
-
+    datasets = [d for d in DATASET_ORDER if d in set(ablation["dataset"])]
+    arms = [a for a in ABLATION_ARMS if not _arm_rows(ablation, a).empty]
+    gemini_ok = (df["model"] == GEMINI_PERCELL["model"]).any()
+    offsets = np.linspace(-0.16, 0.16, len(arms) + gemini_ok)
     with plt.rc_context(_rc()):
-        ncols = 2
-        nrows = int(np.ceil(len(datasets) / ncols))
-        fig, axes = plt.subplots(nrows, ncols, figsize=(11.6, 4.6 * nrows),
-                                 sharex=True, sharey=False)
-        axes = np.atleast_1d(axes).ravel()
-
-        arms = [a for a in ABLATION_ARMS if not _arm_rows(ablation, a).empty]
-        # The ported Gemini per-cell run is resolved per dataset here, which is the whole point of
-        # this supplement: its per-cell advantage is not uniform (0.93 on pancreas against 0.39 on
-        # HIHA), and the main figure's single averaged point cannot show that. It gets its own
-        # jitter slot for the same reason as in Figure 3A.
-        gem = (df[df["model"] == GEMINI_PERCELL["model"]]
-               if df is not None and not df.empty and "model" in df else pd.DataFrame())
-        ported_ok = not gem.empty and COST_MODE in modes
-        offsets = np.linspace(-0.16, 0.16, max(len(arms) + (1 if ported_ok else 0), 1))
-        arm_offsets, ported_dx = offsets[:len(arms)], (offsets[-1] if ported_ok else None)
-
-        for ax, dataset in zip(axes, datasets):
-            if ported_ok:
-                gm = gem[gem["dataset"] == dataset]["balanced_accuracy"]
-                if len(gm):
-                    ax.scatter(x[modes.index(COST_MODE)] + ported_dx, gm.mean(),
-                               marker=ABLATION_ARMS["A8_gemini_percluster"][1],
-                               # 0.85 diameter scale matches the errorbar markers on this panel.
-                               s=_scatter_area_for(ABLATION_ARMS["A8_gemini_percluster"][1], 0.85 ** 2),
-                               facecolor="none", edgecolor=cat_color["LLM"], linewidth=1.4,
-                               zorder=4,
-                               label=(GEMINI_PERCELL["label"]
-                                      if dataset == datasets[0] else None))
-            for dx, arm in zip(arm_offsets, arms):
-                family, marker, linestyle, label = ABLATION_ARMS[arm]
-                sub = _arm_rows(ablation, arm)
-                sub = sub[sub["dataset"] == dataset]
-                if sub.empty:
-                    continue
-                means, errs, xs = [], [], []
-                for i, mode in enumerate(modes):
-                    vals = sub[sub["mode"] == mode]["balanced_accuracy"].dropna().to_numpy()
-                    if not len(vals):
-                        means.append(np.nan); errs.append(np.nan); xs.append(x[i] + dx)
-                        continue
-                    means.append(vals.mean())
-                    # SE of the mean over repeats; 0 when a single repeat survived scoring.
-                    errs.append(vals.std(ddof=1) / np.sqrt(len(vals)) if len(vals) > 1 else 0.0)
-                    xs.append(x[i] + dx)
-                    ax.scatter(np.full(len(vals), x[i] + dx), vals, s=7,
-                               color=cat_color[family], alpha=0.55, zorder=2, linewidths=0)
-                ax.errorbar(xs, means, yerr=errs, linestyle=linestyle, marker=marker,
-                            color=cat_color[family], linewidth=1.3,
-                            markersize=_marker_size_for(marker) * 0.85, capsize=2.5,
-                            elinewidth=0.9, label=label, zorder=3)
-            ax.set_title(dataset_label(dataset), fontsize=FS_TITLE)
-            ax.set_xticks(x)
-            ax.set_xticklabels([MODE_LABELS.get(m, m) for m in modes])
-            ax.set_ylim(0, None)
-            ax.grid(axis="y", linestyle=":", alpha=0.5)
-            ax.set_ylabel("Balanced Accuracy")
-            sns.despine(ax=ax)
-
-        for ax in axes[len(datasets):]:
-            ax.axis("off")
-        axes[len(datasets) - 1].set_xlabel("context supplied in the prompt")
-        if len(datasets) > 1:
-            axes[len(datasets) - 2].set_xlabel("context supplied in the prompt")
-
-        # ORDER MATTERS. This used to place the figure legend first and call a bare tight_layout()
-        # afterwards; tight_layout does not know about figure-level legends, so it relaid the axes
-        # over the full canvas and the legend printed on top of the bottom row. Reserve the band
-        # first via `rect`, then drop the legend into the reserved space.
-        handles, labels = axes[0].get_legend_handles_labels()
-        ncol = 3 if len(labels) > 4 else min(len(labels), 4)
-        legend_rows = int(np.ceil(len(labels) / ncol)) if labels else 0
-        # Height of the reserved band as a fraction of the figure: one line per legend row plus a
-        # little breathing room, divided by the figure height so it scales with the dataset count.
-        band = (legend_rows * (FS_LEGEND + 6) + 10) / (fig.get_figheight() * 72) if legend_rows else 0
-        fig.tight_layout(rect=[0, band, 1, 1])
-        if labels:
-            fig.legend(handles, labels, loc="lower center", ncol=ncol, frameon=False,
-                       fontsize=FS_LEGEND, bbox_to_anchor=(0.5, band * 0.06))
-        # After the layout is final, so the letters anchor on the axes' real positions.
-        _panel_letters(fig, [(ax, chr(65 + i)) for i, ax in enumerate(axes[:len(datasets)])])
+        fig = plt.figure(figsize=(11.6, 10.4))
+        outer = fig.add_gridspec(2, 1, height_ratios=[9.4, 1.0], hspace=0.12)
+        grid = outer[0].subgridspec(2, 2, hspace=0.45, wspace=0.18)
+        panels = [fig.add_subplot(grid[i // 2, i % 2]) for i in range(len(datasets))]
+        for ax, dataset in zip(panels, datasets):
+            _ablation_dataset_panel(ax, ablation, dataset, df, arms, offsets[:len(arms)],
+                                    offsets[-1] if gemini_ok else None)
+        ax_key = fig.add_subplot(outer[1])
+        ax_key.axis("off")
+        ax_key.legend(*panels[0].get_legend_handles_labels(), loc="center", ncol=3,
+                      frameon=False, fontsize=FS_LEGEND)
+        _panel_letters(fig, [(ax, chr(65 + i)) for i, ax in enumerate(panels)])
         return _save(fig, out_path, dpi)
 
 
+def figure_lists_per_dataset(df, out_path, dpi=600, ablation=None, runs=None):
+    """Supplementary for R2 — Figure 3B resolved per dataset, as Supplementary Figure S6 continued
+    (panels E-H): each method as a line from no list through the exact list and A1-A3 to their
+    union, the methods named at the right."""
+    ablation = load_ablation() if ablation is None else ablation
+    runs = load_list_runs() if runs is None else runs
+    if ablation.empty or runs.empty:
+        raise SystemExit("needs context_ablation/results/context_ablation.csv and "
+                         "context_ablation/results_lists/runs.csv; run the studies first")
+    datasets = [d for d in DATASET_ORDER if d in set(runs["dataset"])]
+    arms = _list_study_arms(runs)
+    with plt.rc_context(_rc()):
+        fig, axes = plt.subplots(2, 2, figsize=(11.6, 10.4),
+                                 gridspec_kw={"hspace": 0.5, "wspace": 0.18})
+        panels = list(axes.ravel())
+        for ax, dataset in zip(panels, datasets):
+            _list_dataset_panel(ax, runs, _no_list_reference(ablation, df, arms, dataset), dataset)
+        _panel_letters(fig, [(ax, chr(69 + i)) for i, ax in enumerate(panels)])
+        return _save(fig, out_path, dpi)
+
+
+def _unmapped_panel(ax, ablation):
+    """The share of answers matching no Cell Ontology term, on Figure 3A's arms and conditions."""
+    x = np.arange(len(PROMPT_MODES))
+    for arm in PROMPT_ARMS:
+        family, marker, linestyle, label = ABLATION_ARMS[arm]
+        rows = _arm_rows(ablation, arm)
+        ax.plot(x, [rows.loc[rows["mode"] == m, "non_cl_ratio"].mean() for m, _ in PROMPT_MODES],
+                color=_ranked_category_colors()[family], marker=marker, linestyle=linestyle,
+                markersize=_marker_size_for(marker) * 0.85, linewidth=1.4, label=label, zorder=3)
+    ax.set_xticks(x)
+    ax.set_xticklabels([label for _, label in PROMPT_MODES], fontsize=FS_TICK - 1)
+    ax.set_ylabel("Answers matching no ontology term")
+    ax.set_ylim(0, None)
+    ax.grid(axis="y", linestyle=":", alpha=0.5)
+    sns.despine(ax=ax)
+    ax.legend(loc="upper right", frameon=False, fontsize=FS_LEGEND - 1)
+
+
 def figure_context_supporting(df, out_path, dpi=600, ablation=None):
-    """Supplementary for R3 — three checks the main figure asserts but cannot show.
+    """Supplementary for R2 — the mechanism behind Figure 3A and three checks on the ablation.
 
-    Panels run in the order R3 cites them: the base model and the gene pool in R3.2, clustering
-    resolution in R3.4. Reordered 2026-08-15, when R3.4 began citing the resolution panel.
-
-    (C) Clustering resolution, for BOTH cluster arms. The design ran two resolutions because
-        resolution sensitivity IS the granularity claim: if a cluster-level score depended on the
-        clustering, the per-cluster result would be an artefact of one lucky choice. Going from
-        ~30 to ~41 clusters moves GPT-OSS by 0.025 on average and Gemini by 0.048. Neither is
-        large enough to overturn the per-cluster comparison, but the two models behave
-        differently: for Gemini the finer clustering wins on ALL FOUR datasets (+0.013 to +0.095),
-        while GPT-OSS gains on three and loses slightly on one (-0.004 to +0.062). So the honest
-        statement is that these scores are mildly resolution-dependent, systematically so for
-        Gemini, and that the numbers reported elsewhere -- at resolution 1.0 -- sit at the more
-        favourable end of that range.
-
-    (A) Why the base-model comparison needs a caveat, and since 2026-08-15 the only place that
-        comparison is drawn at all -- it was Figure 3C until the main figure went to three panels.
-        Figure 3A still shows Gemma-2-2B near zero against
-        C2S-Scale far above it, which invites the reading that fine-tuning bought biological
-        competence. Much of it is that the base model never emits a parseable label: 28-46% of its
-        answers run past eight words and 65-99% resolve to no ontology term. Scoring cannot separate
-        "wrong cell type" from "not a cell type", so the format rates have to be shown beside it.
-
-    (C) The gene-pool ablation, moved here from the main figure. Restricting the vocabulary to 5,000
-        HVGs with ribosomal, mitochondrial and haemoglobin genes removed changes nothing at all
-        (-0.001 on average). A null, but a load-bearing one: it says the cell sentence's dominance
-        by housekeeping genes is not what limits these models.
+    (A) Answers matching no Cell Ontology term, on Figure 3A's arms and conditions (Figure 3B until
+        the rebuild of 2026-10-09). The base model is left to (B).
+    (B) The base model's answer format, the caveat on any base-against-adapted comparison: most of
+        Gemma-2-2B's answers resolve to no ontology term and many run past eight words, so its
+        near-zero score mixes "wrong cell type" with "not a cell type".
+    (C) The gene pool: the 200 genes drawn from 5,000 highly variable genes instead of all genes.
+    (D) Clustering resolution, for both cluster arms; the numbers reported elsewhere use 1.0.
     """
     ablation = load_ablation() if ablation is None else ablation
     if ablation.empty:
@@ -2173,14 +2299,16 @@ def figure_context_supporting(df, out_path, dpi=600, ablation=None):
 
     cat_color = _ranked_category_colors()
     with plt.rc_context(_rc()):
-        fig = plt.figure(figsize=(13.0, 4.4))
-        gs = fig.add_gridspec(1, 3, wspace=0.34)
+        fig = plt.figure(figsize=(12.2, 9.0))
+        gs = fig.add_gridspec(2, 2, wspace=0.28, hspace=0.42)
         # PANEL ORDER FOLLOWS R3, reordered 2026-08-15. R3.2 cites the base-model panel and
         # then the gene pool; R3.4 cites clustering resolution. The axes are named for
         # their CONTENT so that a future reorder changes only this one line.
-        ax_base, ax_hvg, ax_res = (fig.add_subplot(gs[0, i]) for i in range(3))
+        ax_unmapped, ax_base, ax_hvg, ax_res = (fig.add_subplot(gs[i // 2, i % 2])
+                                                for i in range(4))
+        _unmapped_panel(ax_unmapped, ablation)
 
-        # (C) resolution sensitivity -----------------------------------------
+        # (D) resolution sensitivity -----------------------------------------
         # BOTH cluster arms, not just GPT-OSS. The claim this panel supports is that the per-cluster
         # result is not an artefact of one lucky clustering; with a second model available at the
         # same two resolutions, showing only one of them tests the claim on half the evidence.
@@ -2218,16 +2346,16 @@ def figure_context_supporting(df, out_path, dpi=600, ablation=None):
             ax_res.set_xlim(-0.3, 1.75)
             ax_res.legend(loc="lower left", frameon=False, fontsize=FS_LEGEND - 1)
             _place_point_labels(ax_res, labels_a, obstacles_a, FS_POINT)
-        ax_res.set_ylabel("Balanced Accuracy")
+        ax_res.set_ylabel("Balanced accuracy")
         ax_res.set_ylim(0, None)
         ax_res.grid(axis="y", linestyle=":", alpha=0.5)
         sns.despine(ax=ax_res)
 
-        # (A) base-model answer format ---------------------------------------
-        modes = [m for m in MODE_ORDER if m in set(ablation["mode"])]
-        x = np.arange(len(modes), dtype=float)
+        # (B) base-model answer format ---------------------------------------
         a2 = ablation[(ablation["arm"] == "A2_base_percell")
                       & (ablation["variant"] == "expression_ranked")]
+        modes = [m for m in MODE_ORDER if m in set(a2["mode"])]  # it ran no shuffled genes
+        x = np.arange(len(modes), dtype=float)
         for col, style, label in [("non_cl_ratio", "-", "no ontology term"),
                                   ("frac_over_8_words", "--", "answer over 8 words")]:
             if col not in a2:
@@ -2242,7 +2370,7 @@ def figure_context_supporting(df, out_path, dpi=600, ablation=None):
                   linewidth=1.2, label="balanced accuracy", zorder=3)
         ax_base.set_xticks(x)
         ax_base.set_xticklabels([MODE_LABELS.get(m, m) for m in modes], fontsize=FS_TICK - 1)
-        ax_base.set_ylabel("fraction of predictions")
+        ax_base.set_ylabel("Fraction of predictions")
         ax_base.set_ylim(0, 1.05)
         ax_base.grid(axis="y", linestyle=":", alpha=0.5)
         # Nudged up from the default "center left" anchor (0, 0.5): the balanced-accuracy trace runs
@@ -2252,11 +2380,11 @@ def figure_context_supporting(df, out_path, dpi=600, ablation=None):
         ax_base.set_title("Gemma-2-2B (base)", fontsize=FS_TITLE)
         sns.despine(ax=ax_base)
 
-        # (B) gene-pool ablation ---------------------------------------------
+        # (C) gene-pool ablation ---------------------------------------------
         _variant_slope(ax_hvg, ablation, cat_color)
-        ax_hvg.set_ylabel("Balanced Accuracy")
+        ax_hvg.set_ylabel("Balanced accuracy")
 
-        _panel_letters(fig, [(ax_base, "A"), (ax_hvg, "B"), (ax_res, "C")])
+        _panel_letters(fig, [(ax_unmapped, "A"), (ax_base, "B"), (ax_hvg, "C"), (ax_res, "D")])
         return _save(fig, out_path, dpi)
 
 # Every key IS the output filename (out = figure_{key}.{fmt}) and every filename matches the
@@ -2281,6 +2409,8 @@ FIGURES = {
     "s5_context_supporting": figure_context_supporting,
     # R2's per-dataset companion: the condition axis resolved by dataset, repeats shown.
     "s6_context_per_dataset": figure_context_per_dataset,
+    # R2: Figure 3B per dataset, printed as Supplementary Figure S6 continued (panels E-H).
+    "s6b_lists_per_dataset": figure_lists_per_dataset,
     # R3: the full rare-type set plus the per-dataset gap the pooled claim is hedged on.
     "s7_rare_full": figure_s7_rare_full,
     # One flow figure per dataset, S8 onward in RARE_FLOW_ORDER; HFRA has only two rare types at
