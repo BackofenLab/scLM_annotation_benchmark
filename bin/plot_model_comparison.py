@@ -1399,7 +1399,7 @@ def _tier_marker(model: str):
 
 
 def _place_point_labels(ax, labels, obstacles, fontsize, leader_color="0.7", candidates=None,
-                        leader_min=12):
+                        leader_min=12, text_bbox=None):
     """Annotate scatter points without letting the text land on a marker or another label.
 
     ``labels`` is ``[(text, x_data, y_data, color)]`` and ``obstacles`` is
@@ -1416,6 +1416,7 @@ def _place_point_labels(ax, labels, obstacles, fontsize, leader_color="0.7", can
 
     A faint leader line is attached whenever the text ends up more than ``leader_min`` points from
     its point, far enough that the association would otherwise be ambiguous; 0 links every label.
+    ``text_bbox`` gives each label a box, e.g. a white one that hides a grid line behind it.
     """
     if not labels:
         return
@@ -1459,7 +1460,8 @@ def _place_point_labels(ax, labels, obstacles, fontsize, leader_color="0.7", can
         best, best_cost, best_off = None, None, None
         for dx, dy, ha, va in (label[4] if len(label) > 4 else candidates):
             ann = ax.annotate(text, xy=(px, py), xytext=(dx, dy), textcoords="offset points",
-                              ha=ha, va=va, fontsize=fontsize, color=color, zorder=6)
+                              ha=ha, va=va, fontsize=fontsize, color=color, zorder=6,
+                              bbox=text_bbox)
             box = ann.get_window_extent(renderer=renderer)
             cost = _cost(box, obstacle_boxes + placed)
             if cost == 0:
@@ -1945,6 +1947,19 @@ def load_confusion_pairs(path=DEFAULT_CONFUSION_CSV):
 FLOW_LABEL_MAX = 48
 
 
+def spread(targets, gap):
+    """Positions as close as possible to ``targets`` (least squares) that keep their order and lie
+    at least ``gap`` apart, for labels that would otherwise overlap: isotonic regression of the
+    sorted targets minus their rank offsets."""
+    from scipy.optimize import isotonic_regression
+    targets = np.asarray(targets, float)
+    order = np.argsort(targets, kind="stable")
+    steps = np.arange(len(targets)) * gap
+    placed = np.empty(len(targets))
+    placed[order] = isotonic_regression(targets[order] - steps).x + steps
+    return placed
+
+
 def _sankey(ax, flows, left_order, right_order, colors, gap_frac=0.02, label_size=7,
             show_left_labels=True, label_pad=0.05, right_margin=1.9):
     """Minimal two-column alluvial: ``flows`` is ``[(src, tgt, value)]``.
@@ -2009,7 +2024,12 @@ def _sankey(ax, flows, left_order, right_order, colors, gap_frac=0.02, label_siz
                                         zorder=4))
         if show_left_labels:
             ax.text(-label_pad, (a + b) / 2, key, ha="right", va="center", fontsize=label_size)
-    for key in right_order:
+    # Labels of small neighbouring nodes would overlap: each goes as close to its node as a line
+    # of text between labels allows, joined to it by a leader where it had to move.
+    points_high = ax.get_position().height * ax.figure.get_figheight() * 72
+    centres = [(a + b) / 2 for a, b in (rpos[k] for k in right_order)]
+    label_y = spread(centres, 1.15 * label_size * 1.04 / points_high)
+    for key, centre, y_text in zip(right_order, centres, label_y):
         a, b = rpos[key]
         hit = key in left_order
         # The node carries the same dark/light distinction as the ribbons and the key: dark for a
@@ -2019,8 +2039,11 @@ def _sankey(ax, flows, left_order, right_order, colors, gap_frac=0.02, label_siz
                                         facecolor="0.35" if hit else "0.78",
                                         edgecolor="0.35" if hit else "0.62", linewidth=0.4))
         text = key if len(key) <= FLOW_LABEL_MAX else key[:FLOW_LABEL_MAX - 1].rstrip() + "…"
-        ax.text(1.0 + label_pad, (a + b) / 2, text, ha="left", va="center", fontsize=label_size,
+        ax.text(1.0 + label_pad, y_text, text, ha="left", va="center", fontsize=label_size,
                 fontweight="bold" if hit else "normal", color="0.1" if hit else "0.35")
+        if abs(y_text - centre) > 1e-6:
+            ax.plot([1.037, 1.0 + label_pad - 0.01], [centre, y_text], color="0.6",
+                    linewidth=0.4, zorder=4)
     # The left margin exists only to hold the source labels, so a panel that does not draw them
     # (every panel but the first in a row) reclaims it instead of padding itself with white space.
     # `right_margin` is the room the RIGHT-hand target labels get. They are drawn at x = 1 +
@@ -2052,7 +2075,7 @@ def _flow_key(ax, rare, colors, counts, max_targets, label_size=8, ncol=1, notes
     # them instead -- they are sentences, not encodings, and they dominate a wide key.
     if notes:
         handles += [
-            plt.Line2D([], [], linestyle="none", marker="", label="ribbon width $\\propto$ cells"),
+            plt.Line2D([], [], linestyle="none", marker="", label="ribbon width: number of cells"),
             plt.Line2D([], [], linestyle="none", marker="",
                        label=f"top {max_targets} predictions per type;\n"
                              f"remainder pooled as \"other\""),

@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import argparse
 import sys
+import textwrap
 from pathlib import Path
 
 import matplotlib
@@ -36,7 +37,6 @@ from matplotlib.legend_handler import HandlerTuple
 import numpy as np
 import pandas as pd
 import seaborn as sns
-from scipy.optimize import isotonic_regression
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from plot_model_comparison import (  # noqa: E402
@@ -68,6 +68,7 @@ from plot_model_comparison import (  # noqa: E402
     plot_rare_type_flows,
     plot_recall_by_prevalence,
     run_label,
+    spread,
     unsupported_mark,
     with_unsupported_as_zero,
 )
@@ -77,7 +78,8 @@ from plot_model_comparison import (  # noqa: E402
 # standalone use; `_harmonize` overrides them here so panels drawn side by side match. Sizes are
 # in points at the figure's native size -- do not scale the saved file afterwards.
 # --------------------------------------------------------------------------- #
-FONT_FAMILY = "DejaVu Sans"
+# Helvetica, as in Figure 1, with Arial for a glyph Helvetica lacks.
+FONT_FAMILY = ["Helvetica", "Arial"]
 FS_PANEL_LETTER = 15   # A, B, C
 FS_TITLE = 10          # panel titles
 FS_LABEL = 11          # axis labels
@@ -94,6 +96,14 @@ def _rc():
     """rcParams shared by every manuscript figure."""
     return {
         "font.family": FONT_FAMILY,
+        # Embed TrueType rather than Type 3 outlines, so the text stays text in the PDF.
+        "pdf.fonttype": 42,
+        "ps.fonttype": 42,
+        # Math text (the bold U and C of the setting keys) in Helvetica too.
+        "mathtext.fontset": "custom",
+        "mathtext.rm": "Helvetica",
+        "mathtext.it": "Helvetica:italic",
+        "mathtext.bf": "Helvetica:bold",
         "axes.titlesize": FS_TITLE,
         "axes.labelsize": FS_LABEL,
         "xtick.labelsize": FS_TICK,
@@ -458,7 +468,10 @@ def load_per_class_scores(path=DEFAULT_PER_CLASS_CSV):
     d = d[~d["model_base"].isin(EXCLUDED_BASES)]
     d["category"] = d["model"].map(categorize_model)
     d["mode"] = d["model"].map(derive_mode)
-    d["cell_type"] = d["cell_type"].astype(str).str.strip().str.lower()
+    # Lowercased as the key the rare-type table joins on; the Cell Ontology spelling is kept for
+    # display.
+    d["cell_type_name"] = d["cell_type"].astype(str).str.strip()
+    d["cell_type"] = d["cell_type_name"].str.lower()
     d = d[d["category"].isin({"classical", "LLM", "scLLM"})]
     return _with_frontier(d.assign(block=d["model"].map(group_name)))
 # Prevalence bands. Log-spaced by decade, which is the natural scale here: true prevalence spans
@@ -547,6 +560,8 @@ def _rare_dotplot(ax, rows, rare, per_class, blocks, s_min=22.0, s_span=170.0,
         k = (r.dataset, r.k, r.block)
         never[k] = never.get(k, False) or bool(r.emitted)
     grouped = per_class.groupby(["dataset", "cell_type", "block"])[["recall", "lin"]].mean()
+    names = (per_class.drop_duplicates(["dataset", "cell_type"])
+             .set_index(["dataset", "cell_type"])["cell_type_name"])
     cmap = plt.get_cmap(cmap_name); norm = mcolors.Normalize(0, 1)
 
     ypos, y, y_first = {}, 0.0, None
@@ -560,10 +575,11 @@ def _rare_dotplot(ax, rows, rare, per_class, blocks, s_min=22.0, s_span=170.0,
             y -= 0.80
             continue
         ypos[(kind, name)] = y
-        short = name if len(name) <= 34 else name[:32] + "\u2026"
         pv = f"{p * 100:.3f}%" if p < 0.1 else f"{p * 100:.1f}%"
-        ax.text(-0.012, y, f"{short}\n({pv})", transform=ax.get_yaxis_transform(),
-                ha="right", va="center", fontsize=label_fs, linespacing=1.35, clip_on=False)
+        # The Cell Ontology spelling with the prevalence, wrapped rather than cut short.
+        label = textwrap.fill(f"{names.get((kind, name), name)} ({pv})", width=40)
+        ax.text(-0.012, y, label, transform=ax.get_yaxis_transform(), ha="right", va="center",
+                fontsize=label_fs, linespacing=1.2, clip_on=False)
         y -= 1.0
     for (ds, t), yy in ypos.items():
         for xi, block in enumerate(blocks):
@@ -835,11 +851,6 @@ def figure_3(df, out_path, dpi=600, rare=None, per_class=None):
         # --- C: the same failure, per cell type and dataset, with the graded score -----------
         prev = (rare.drop_duplicates(["dataset", "k"])
                     .set_index(["dataset", "k"])["orig_prevalence"].to_dict())
-        never = {(r.dataset, r.k, r.block): False for r in rare.itertuples()}
-        for r in rare.itertuples():
-            never[(r.dataset, r.k, r.block)] = (never.get((r.dataset, r.k, r.block), False)
-                                                or bool(r.emitted))
-        grouped = per_class.groupby(["dataset", "cell_type", "block"])[["recall", "lin"]].mean()
 
         # ONE RARITY RULE for the whole section: draw only from the cell types below
         # RARE_PREVALENCE_MAX, the same set panel B decomposes and the supplementary figure shows
@@ -860,53 +871,12 @@ def figure_3(df, out_path, dpi=600, rare=None, per_class=None):
         # C carries the frontier columns too, so the per-type view resolves the same groups as B. The frontier models appear twice by construction -- once inside their family
         # column and once in their own -- which is the point: it shows whether the family result
         # holds at the top of the family for each individual cell type.
-        blocks_c = block_order
-        cmap = plt.get_cmap("viridis"); norm = mcolors.Normalize(0, 1)
-        s_min, s_span = 22.0, 170.0
-        ypos, y, y_first = {}, 0.0, None
-        for kind, name, p in rows:
-            if kind == "__header__":
-                y -= 0.78
-                if y_first is None:
-                    y_first = y
-                ax_c.text(-0.012, y, name, transform=ax_c.get_yaxis_transform(), ha="right",
-                          va="center", fontsize=FS_POINT, fontweight="bold", clip_on=False)
-                y -= 0.80
-                continue
-            ypos[(kind, name)] = y
-            short_name = name if len(name) <= 34 else name[:32] + "…"
-            pv = f"{p * 100:.3f}%" if p < 0.1 else f"{p * 100:.1f}%"
-            ax_c.text(-0.012, y, f"{short_name}\n({pv})", transform=ax_c.get_yaxis_transform(),
-                      ha="right", va="center", fontsize=FS_POINT, linespacing=1.35,
-                      clip_on=False)
-            y -= 1.0
-        for (ds, t), yy in ypos.items():
-            for xi, block in enumerate(blocks_c):
-                if (ds, t, block) not in grouped.index:
-                    continue
-                rec, lin = grouped.loc[(ds, t, block), ["recall", "lin"]]
-                size = s_min + s_span * float(rec)
-                if not never.get((ds, t, block), True):
-                    ax_c.scatter(xi, yy, s=size, facecolors="none", edgecolors=cmap(norm(lin)),
-                                 linewidths=1.4, zorder=3)
-                    ax_c.scatter(xi, yy, marker="x", s=15, c="0.35", linewidths=0.85, zorder=4)
-                else:
-                    ax_c.scatter(xi, yy, s=size, color=cmap(norm(lin)), edgecolors="0.25",
-                                 linewidths=0.4, zorder=3)
-        for xi in range(len(blocks_c)):
-            ax_c.axvline(xi, color="0.93", lw=0.6, zorder=0)
-        # Anchor the top just above the FIRST drawn row. The loop applies a header offset before
-        # that row too, so a fixed top left ~1.6 units of dead space and the grid read as pushed
-        # to the bottom of its axes. C's legend is a separate axes and does not move.
-        ax_c.set_xlim(-0.6, len(blocks_c) - 0.4)
-        ax_c.set_ylim(y + 0.5, (y_first if y_first is not None else 0.0) + 0.45)
-        ax_c.set_xticks(range(len(blocks_c)))
+        norm, s_min, s_span = _rare_dotplot(ax_c, rows, rare, per_class, block_order)
+        cmap = plt.get_cmap("viridis")
         # Slanted as in B: two words per column no longer fit side by side at eight columns.
-        ax_c.set_xticklabels([BLOCK_SHORT[b].replace("\n", " ") for b in blocks_c],
+        ax_c.set_xticklabels([BLOCK_SHORT[b].replace("\n", " ") for b in block_order],
                              fontsize=FS_POINT, rotation=30, ha="right", rotation_mode="anchor")
-        ax_c.set_yticks([]); ax_c.tick_params(axis="x", length=0, pad=2)
-        for side in ("top", "right", "left", "bottom"):
-            ax_c.spines[side].set_visible(False)
+        ax_c.tick_params(axis="x", length=0, pad=2)
         # The bar lives INSIDE the legend axes, left-aligned with the marker column above it, so
         # the key reads as one column of symbols. Attaching it to ax_c with `pad` instead parks it
         # between the grid and the legend, at an x that matches neither.
@@ -1170,7 +1140,7 @@ CHANCE_LINE = dict(linestyle="--", linewidth=1.2, color="black")
 # One dot per dataset, in Figure 2A and Supplementary Figure S1; light for a score without the
 # curated mapping.
 DOT_SIZE, DOT_COLOR, DOT_COLOR_NO_MAPPING = 6, "0.15", "0.6"
-# The two settings in the keys of Figure 2 and Supplementary Figure S4, worded as in Figure 1B.
+# The two settings in the keys of Figure 2 and Supplementary Figure S6, worded as in Figure 1B.
 SETTING_KEY = {"unblind": r"$\bf{C}$  constrained: expected cell types supplied",
                "blind": r"$\bf{U}$  unconstrained: no expected cell types"}
 # Figure 1B's names for the families and the subcategories that differ from CATEGORY_TIERS.
@@ -1570,7 +1540,7 @@ def load_activity(path=DEFAULT_ACTIVITY_CSV):
 
 
 def figure_cost_performance(df, out_path, dpi=600, activity=None, ablation=None):
-    """Supplementary Figure S4 — annotation quality against cost.
+    """Supplementary Figure S6 — annotation quality against cost.
 
     (A) Every general-purpose LLM of the benchmark against its measured API spend per 1,000 cells,
         per setting. The step line is the cost-efficient frontier: GPT-OSS-120B is the cheapest
@@ -1712,6 +1682,11 @@ MISSING_TYPE_KEY = {"exact": "the missing type itself",
 # B's x positions: the no-list reference and the union stand apart; the gap between families
 # holds the methods' names.
 REF_GAP, UNION_GAP, FAMILY_GAP = 1.3, 1.3, 2.6
+# The score of A and B, as (column in the ablation and the benchmark, column in the list study,
+# axis label): balanced accuracy in Figure 3, the agreement score in its ontology-aware twin.
+FIG3_METRICS = {"balanced_accuracy": ("balanced_accuracy", "balanced_accuracy",
+                                      "Balanced accuracy"),
+                "agreement": ("agreement_score", "agreement", "Agreement score")}
 # Where B places a method's name: beside its last point first.
 NAME_BESIDE = [(9, 0, "left", "center"), (9, 7, "left", "bottom"), (9, -7, "left", "top"),
                (16, 0, "left", "center"), (16, 10, "left", "bottom"), (16, -10, "left", "top"),
@@ -1739,17 +1714,17 @@ def _list_study_arms(runs):
                                                 model_tier(model[a]))], model[a]))
 
 
-def _prompt_content_panel(ax, ablation, bench):
-    """A: balanced accuracy by what the prompt carries, one line per arm. Gemini per cell exists
-    only in the benchmark, whose two prompts are the ablation's M1 and M2 verbatim: hollow stars."""
+def _prompt_content_panel(ax, ablation, bench, metric="balanced_accuracy"):
+    """A: ``metric`` by what the prompt carries, one line per arm. Gemini per cell exists only in
+    the benchmark, whose two prompts are the ablation's M1 and M2 verbatim: hollow stars."""
+    column, _list_column, label = FIG3_METRICS[metric]
     x = np.arange(len(PROMPT_MODES))
     handles = []
     for arm in PROMPT_ARMS:
         rows = _arm_rows(ablation, arm)
         colour, marker, _size = _arm_style(arm)
         unit = "cluster" if arm in PER_CLUSTER_ARMS else "cell"
-        line, = ax.plot(x, [rows.loc[rows["mode"] == m, "balanced_accuracy"].mean()
-                            for m, _ in PROMPT_MODES],
+        line, = ax.plot(x, [rows.loc[rows["mode"] == m, column].mean() for m, _ in PROMPT_MODES],
                         color=colour, marker=marker, markersize=11 if marker == "*" else 7,
                         markeredgecolor="white", markeredgewidth=0.5, linewidth=1.4, zorder=3,
                         linestyle="--" if unit == "cluster" else "-",
@@ -1757,8 +1732,7 @@ def _prompt_content_panel(ax, ablation, bench):
         handles.append(line)
     colour = _ranked_category_colors()["LLM"]
     for mode, setting in (("M1", "blind"), ("M2", "unblind")):
-        score = bench.loc[bench["model"] == f"gemini-3.1-pro-preview_{setting}",
-                          "balanced_accuracy"]
+        score = bench.loc[bench["model"] == f"gemini-3.1-pro-preview_{setting}", column]
         ax.scatter([m for m, _ in PROMPT_MODES].index(mode), score.mean(), marker="*", s=150,
                    facecolor="white", edgecolor=colour, linewidth=1.3, zorder=4)
     handles.append(plt.Line2D([], [], linestyle="none", marker="*", markersize=11,
@@ -1767,33 +1741,35 @@ def _prompt_content_panel(ax, ablation, bench):
     ax.set_xticks(x)
     ax.set_xticklabels([label for _, label in PROMPT_MODES])
     ax.set_xlim(-0.35, len(PROMPT_MODES) - 0.65)
-    ax.set_ylabel("Balanced accuracy")
+    ax.set_ylabel(label)
     ax.grid(axis="y", linestyle=":", alpha=0.5)
     sns.despine(ax=ax)
     ax.legend(handles=handles, loc="lower right", frameon=False, fontsize=FS_LEGEND - 0.5,
               handlelength=2.6, borderaxespad=0.1)
 
 
-def _no_list_reference(ablation, bench, arms, dataset=None):
+def _no_list_reference(ablation, bench, arms, dataset=None, metric="balanced_accuracy"):
     """Each list-study method without a list, the list being the only difference: the ablation's
     genes-only runs for the prompted arms, the unconstrained benchmark runs on the same cells for
     the others. Over the four datasets, or for ``dataset``."""
+    column = FIG3_METRICS[metric][0]
     if dataset is not None:
         ablation = ablation[ablation["dataset"] == dataset]
         bench = bench[bench["dataset"] == dataset]
     ref = {}
     for arm in arms:
         rows = _arm_rows(ablation, arm)
-        ref[arm] = (rows.loc[rows["mode"] == "M1", "balanced_accuracy"].mean() if not rows.empty
+        ref[arm] = (rows.loc[rows["mode"] == "M1", column].mean() if not rows.empty
                     else bench.loc[bench["model"] == f"{STUDY_ARM_MODEL[arm]}_blind",
-                                   "balanced_accuracy"].mean())
+                                   column].mean())
     return ref
 
 
-def _imperfect_lists_panel(ax, runs, reference):
-    """B: balanced accuracy over all true types, a missing type counting as missed, per family:
-    no list, the exact list, A1-A3 and their union. A thin line joins the points of one method."""
-    means = runs.groupby(["arm", "condition"])["balanced_accuracy"].mean()
+def _imperfect_lists_panel(ax, runs, reference, metric="balanced_accuracy"):
+    """B: ``metric`` over all true types, a missing type counting as missed, per family: no list,
+    the exact list, A1-A3 and their union. A thin line joins the points of one method."""
+    _column, list_column, label = FIG3_METRICS[metric]
+    means = runs.groupby(["arm", "condition"])[list_column].mean()
     steps = [0.0, 1.0, 2.0, 3.0, 3.0 + UNION_GAP]
     span = REF_GAP + steps[-1]
     arms = _list_study_arms(runs)
@@ -1823,7 +1799,7 @@ def _imperfect_lists_panel(ax, runs, reference):
     ax.set_xticks(ticks)
     ax.set_xticklabels(tick_labels, rotation=40, ha="right", rotation_mode="anchor")
     ax.set_xlim(ticks[0] - 0.7, ticks[-1] + FAMILY_GAP + 0.9)
-    ax.set_ylabel("Balanced accuracy")
+    ax.set_ylabel(label)
     ax.grid(axis="y", linestyle=":", alpha=0.5)
     sns.despine(ax=ax)
     _place_point_labels(ax, labels, points, FS_POINT, candidates=NAME_BESIDE, leader_min=10)
@@ -1857,6 +1833,32 @@ def _missing_types_panel(axes, runs):
                         linewidth=0.4, transform=beside, clip_on=False, zorder=5)
 
 
+def _figure3_top(fig, outer, ablation, bench, runs, metric="balanced_accuracy"):
+    """Figure 3's A | B on ``metric`` in ``outer``'s first row and their key in its third, for
+    Figure 3 and its ontology-aware twin; returns the two axes."""
+    top = outer[0].subgridspec(1, 2, width_ratios=[1.0, 2.55], wspace=0.13)
+    ax_a = fig.add_subplot(top[0, 0])
+    ax_b = fig.add_subplot(top[0, 1], sharey=ax_a)
+    _prompt_content_panel(ax_a, ablation, bench, metric)
+    _imperfect_lists_panel(ax_b, runs, _no_list_reference(ablation, bench, _list_study_arms(runs),
+                                                          metric=metric), metric)
+    ax_b.tick_params(labelleft=True)
+    ax_a.set_ylim(0, 0.72)
+    # An invisible heading as tall as B's family names, so the letters of A and B align.
+    ax_a.text(0.5, 1.02, "baseline", transform=ax_a.transAxes, ha="center", va="bottom",
+              fontsize=FS_GROUP, alpha=0)
+
+    drawn = {(categorize_model(m), model_tier(m)) for m in STUDY_ARM_MODEL.values()}
+    ax_key = fig.add_subplot(outer[2])
+    ax_key.axis("off")
+    _family_key(ax_key, [
+        plt.Line2D([], [], color="0.35", linewidth=1.4, label="per cell"),
+        plt.Line2D([], [], color="0.35", linewidth=1.4, linestyle="--", label="per cluster"),
+        plt.Line2D([], [], color="0.62", linewidth=0.7, label="same method")],
+        drawn=drawn, extra=[LIST_KEY], spacing=1.5)
+    return ax_a, ax_b
+
+
 def figure_2(df, out_path, dpi=600, ablation=None, runs=None):
     """Figure 3 — what the list of expected cell types adds, and what an imperfect list costs.
 
@@ -1879,26 +1881,7 @@ def figure_2(df, out_path, dpi=600, ablation=None, runs=None):
         # A | B, their tick labels, the key row, a spacer, then C.
         outer = fig.add_gridspec(5, 1, height_ratios=[4.0, 1.0, 1.2, 0.3, 3.2], hspace=0,
                                  left=0.075, right=0.985, top=0.97, bottom=0.06)
-        top = outer[0].subgridspec(1, 2, width_ratios=[1.0, 2.55], wspace=0.13)
-        ax_a = fig.add_subplot(top[0, 0])
-        ax_b = fig.add_subplot(top[0, 1], sharey=ax_a)
-        _prompt_content_panel(ax_a, ablation, df)
-        _imperfect_lists_panel(ax_b, runs, _no_list_reference(ablation, df,
-                                                              _list_study_arms(runs)))
-        ax_b.tick_params(labelleft=True)
-        ax_a.set_ylim(0, 0.72)
-        # An invisible heading as tall as B's family names, so the letters of A and B align.
-        ax_a.text(0.5, 1.02, "baseline", transform=ax_a.transAxes, ha="center", va="bottom",
-                  fontsize=FS_GROUP, alpha=0)
-
-        drawn = {(categorize_model(m), model_tier(m)) for m in STUDY_ARM_MODEL.values()}
-        ax_key = fig.add_subplot(outer[2])
-        ax_key.axis("off")
-        _family_key(ax_key, [
-            plt.Line2D([], [], color="0.35", linewidth=1.4, label="per cell"),
-            plt.Line2D([], [], color="0.35", linewidth=1.4, linestyle="--", label="per cluster"),
-            plt.Line2D([], [], color="0.62", linewidth=0.7, label="same method")],
-            drawn=drawn, extra=[LIST_KEY], spacing=1.5)
+        ax_a, ax_b = _figure3_top(fig, outer, ablation, df, runs)
 
         bottom = outer[4].subgridspec(1, 3, width_ratios=[1.0, 1.0, 0.42], wspace=0.07)
         ax_c = [fig.add_subplot(bottom[0, 0])]
@@ -2093,7 +2076,9 @@ def _cost_panel(ax, frame, cat_color, bench=None):
     # Collision-aware placement, the same helper Figure 2 uses. Hand-placed offsets put three
     # labels on top of the axis and each other, because the points are far apart in x and close
     # in y -- exactly the case a fixed offset cannot handle.
-    _place_point_labels(ax, labels, obstacles, FS_POINT)
+    # On a white box: a label at a point's height can sit on a grid line.
+    _place_point_labels(ax, labels, obstacles, FS_POINT,
+                        text_bbox=dict(facecolor="white", edgecolor="none", pad=0.5))
 
 
 def _variant_slope(ax, frame, cat_color):
@@ -2177,11 +2162,7 @@ def _name_column(ax, ends, x, fontsize):
     y limits are set."""
     lo, hi = ax.get_ylim()
     points_high = ax.get_position().height * ax.figure.get_figheight() * 72
-    gap = 1.25 * fontsize * (hi - lo) / points_high
-    order = np.argsort([y for _, y in ends], kind="stable")
-    steps = np.arange(len(ends)) * gap
-    placed = np.empty(len(ends))
-    placed[order] = isotonic_regression(np.array([ends[i][1] for i in order]) - steps).x + steps
+    placed = spread([y for _, y in ends], 1.25 * fontsize * (hi - lo) / points_high)
     for (name, y), y_text in zip(ends, placed):
         ax.annotate(name, xy=(x, y), xytext=(x + 0.5, y_text), va="center", fontsize=fontsize,
                     color="0.15", annotation_clip=False,
@@ -2244,7 +2225,7 @@ def figure_context_per_dataset(df, out_path, dpi=600, ablation=None):
 
 
 def figure_lists_per_dataset(df, out_path, dpi=600, ablation=None, runs=None):
-    """Supplementary for R2 — Figure 3B resolved per dataset, as Supplementary Figure S6 continued
+    """Supplementary for R2 — Figure 3B resolved per dataset, as Supplementary Figure S4 continued
     (panels E-H): each method as a line from no list through the exact list and A1-A3 to their
     union, the methods named at the right."""
     ablation = load_ablation() if ablation is None else ablation
@@ -2261,6 +2242,24 @@ def figure_lists_per_dataset(df, out_path, dpi=600, ablation=None, runs=None):
         for ax, dataset in zip(panels, datasets):
             _list_dataset_panel(ax, runs, _no_list_reference(ablation, df, arms, dataset), dataset)
         _panel_letters(fig, [(ax, chr(69 + i)) for i, ax in enumerate(panels)])
+        return _save(fig, out_path, dpi)
+
+
+def figure_context_ontology(df, out_path, dpi=600, ablation=None, runs=None):
+    """Supplementary for R2 — Figure 3A and 3B on the agreement score, printed as Supplementary
+    Figure S5 continued (panels E and F): half credit for a coarser type that is not broad or a
+    finer type shows how much of a loss in balanced accuracy is near misses."""
+    ablation = load_ablation() if ablation is None else ablation
+    runs = load_list_runs() if runs is None else runs
+    if ablation.empty or runs.empty:
+        raise SystemExit("needs context_ablation/results/context_ablation.csv and "
+                         "context_ablation/results_lists/runs.csv; run the studies first")
+    with plt.rc_context(_rc()):
+        fig = plt.figure(figsize=(12.2, 6.0))
+        outer = fig.add_gridspec(3, 1, height_ratios=[4.0, 1.0, 1.2], hspace=0,
+                                 left=0.075, right=0.985, top=0.94, bottom=0.02)
+        ax_e, ax_f = _figure3_top(fig, outer, ablation, df, runs, "agreement")
+        _panel_letters(fig, [(ax_e, "E"), (ax_f, "F")])
         return _save(fig, out_path, dpi)
 
 
@@ -2402,15 +2401,14 @@ FIGURES = {
     "s1_harmonization": figure_harmonization,          # Figure 2G per method
     "s2_answer_types": figure_answer_types,            # Figure 2H per dataset and subcategory
     "s3_metric_agreement": figure_metric_agreement,    # task 2.3
-    # R2's arm choice: the cost-efficient frontier the section's opening paragraph argues from.
-    "s4_cost_performance": figure_cost_performance,
-    # R2 support: the base model's answer format, gene pool, resolution sensitivity. Cited
-    # before the per-dataset figure.
+    # R2, in the order it cites them (renumbered 2026-10-09): Figure 3A and 3B per dataset,
+    # printed as S4 and S4 continued; the answer format, gene pool and clustering resolution; and
+    # cost against accuracy.
+    "s4_context_per_dataset": figure_context_per_dataset,
+    "s4b_lists_per_dataset": figure_lists_per_dataset,
     "s5_context_supporting": figure_context_supporting,
-    # R2's per-dataset companion: the condition axis resolved by dataset, repeats shown.
-    "s6_context_per_dataset": figure_context_per_dataset,
-    # R2: Figure 3B per dataset, printed as Supplementary Figure S6 continued (panels E-H).
-    "s6b_lists_per_dataset": figure_lists_per_dataset,
+    "s5b_ontology_scores": figure_context_ontology,
+    "s6_cost_performance": figure_cost_performance,
     # R3: the full rare-type set plus the per-dataset gap the pooled claim is hedged on.
     "s7_rare_full": figure_s7_rare_full,
     # One flow figure per dataset, S8 onward in RARE_FLOW_ORDER; HFRA has only two rare types at
