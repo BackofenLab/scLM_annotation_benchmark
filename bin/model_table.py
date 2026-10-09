@@ -31,12 +31,19 @@ PARTS = {"text_encoder": "TE", "text_decoder": "TD", "expression_encoder": "EE",
          "expression_decoder": "ED", "projection_heads": "heads", "text_adapter": "heads"}
 # Wrapped columns are ragged right: justified text in narrow cells leaves wide gaps.
 RAGGED = "\\raggedright\\arraybackslash"
-COLUMNS = f"@{{}}l>{{{RAGGED}}}p{{3.1cm}}>{{{RAGGED}}}p{{2.2cm}}>{{{RAGGED}}}p{{3.35cm}}ll@{{}}"
+COLUMNS = (f"@{{}}l>{{{RAGGED}}}p{{3.7cm}}l>{{{RAGGED}}}p{{3.9cm}}>{{{RAGGED}}}p{{3.85cm}}"
+           "ll@{}")
+HEADINGS = ["Model", "Subcategory", "Reasoning", "License", "Parameters", "Available",
+            "Publication"]
 CAPTION = (
     "\\textbf{Annotation methods compared in this benchmark.} Subcategories follow the key of "
     "Figure~\\ref{fig:overview}B. Every method ran unconstrained and constrained to the "
     "dataset's expected cell types, which a language model receives as a list and to which a "
     "baseline is restricted: its labels at or below a listed type in the Cell Ontology. "
+    "The general-purpose LLMs were queried through the OpenRouter API. Reasoning: the reasoning "
+    "setting sent with each request, an effort level or, for the Anthropic and Google models, a "
+    "budget of reasoning tokens, which OpenRouter passes on to the provider (for Gemini 3.1 Pro, "
+    "Google maps the budget to a thinking level); none for the models that do not reason. "
     "Parameters count the learned weights of the checkpoint used here, with tied weights counted "
     "once: TE, text encoder; TD, text decoder (C2S-Scale is decoder-only; InstructCell's encoder "
     "and decoder share their word embeddings, counted with the TE); EE, expression encoder (for "
@@ -81,6 +88,14 @@ def parameters(v):
     return f"{text} ({', '.join(f'{abbr} {si(n)}' for abbr, n in parts.items())})" if parts else text
 
 
+def reasoning(v):
+    """The reasoning setting sent through OpenRouter: an effort level, a token budget or none."""
+    kind, _, level = v.get("reasoning", "--").partition(" ")
+    if kind == "budget":
+        return f"{int(level):,} tokens"
+    return level if kind == "effort" else kind
+
+
 def publication(v):
     if v.get("publication_venue", "none") != "none":
         return f"{v['publication_venue']} {v['publication_date'][:7]}"
@@ -102,7 +117,7 @@ def rows(facts):
                              f"{categorize_model(model)}/{model_tier(model)}")
         out.append({"group": v["group"], "tier": tier_order[v["subcategory"]],
                     "available": v["available_since"], "name": _display(model),
-                    "cells": [_display(model), labels[v["subcategory"]],
+                    "cells": [_display(model), labels[v["subcategory"]], reasoning(v),
                               v["license"], parameters(v),
                               v["available_since"][:7], publication(v)]})
     return out
@@ -110,19 +125,20 @@ def rows(facts):
 
 def write_table(facts):
     entries = rows(facts)
-    lines = [HEADER, "", "\\begin{table}[!ht]", "\\centering", "\\footnotesize",
+    # Landscape, like the results tables: seven columns are wider than a portrait page.
+    lines = [HEADER, "", "\\begin{landscape}", "\\begin{table}[!ht]", "\\centering", "\\footnotesize",
              "\\setlength{\\tabcolsep}{4pt}",
              f"\\begin{{tabular}}{{{COLUMNS}}}", "\\toprule",
-             "\\textbf{Model} & \\textbf{Subcategory} & \\textbf{License} & \\textbf{Parameters} & "
-             "\\textbf{Available} & \\textbf{Publication} \\\\"]
+             " & ".join(f"\\textbf{{{h}}}" for h in HEADINGS) + " \\\\"]
     for key, title in GROUPS:
-        lines += ["\\midrule", f"\\multicolumn{{6}}{{@{{}}l}}{{\\textit{{{title}}}}} \\\\"]
+        lines += ["\\midrule",
+                  f"\\multicolumn{{{len(HEADINGS)}}}{{@{{}}l}}{{\\textit{{{title}}}}} \\\\"]
         for e in sorted((e for e in entries if e["group"] == key),
                         key=lambda e: (e["tier"], e["available"], e["name"])):
             lines.append(" & ".join(e["cells"]) + " \\\\")
     lines += ["\\bottomrule", "\\end{tabular}", "\\captionsetup{position=below}",
               f"\\caption{{{CAPTION}}}", "\\label{supptab:models}",
-              "\\end{table}", ""]
+              "\\end{table}", "\\end{landscape}", ""]
     return "\n".join(lines)
 
 

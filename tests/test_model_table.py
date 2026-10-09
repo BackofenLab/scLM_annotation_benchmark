@@ -9,7 +9,7 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "bin"))
-from model_table import parameters, rows, si  # noqa: E402
+from model_table import parameters, reasoning, rows, si  # noqa: E402
 
 FACTS = ROOT / "cache" / "result" / "model_facts.csv"
 
@@ -54,6 +54,19 @@ def test_component_counts_add_up_to_the_total():
                  and k != "parameters.vision_encoder"]
         if parts:
             assert sum(parts) == int(v["parameters_total"]), model
+
+
+def test_reasoning_is_given_for_every_llm():
+    assert reasoning({"reasoning": "effort xhigh"}) == "xhigh"
+    assert reasoning({"reasoning": "budget 10000"}) == "10,000 tokens"
+    assert reasoning({"reasoning": "none"}) == "none"
+    assert reasoning({}) == "--"
+    f = facts()
+    llms = set(f[(f.field == "group") & (f.value == "LLM")].model)
+    setting = f[f.field == "reasoning"].set_index("model")["value"]
+    assert set(setting.index) == llms
+    tier = f[f.field == "subcategory"].set_index("model")["value"]
+    assert all((setting[m] == "none") == (tier[m] == "open_nonreasoning") for m in llms)
 
 
 def test_table_follows_the_figure_classification():
