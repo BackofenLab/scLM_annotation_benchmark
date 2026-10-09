@@ -23,6 +23,12 @@ exactly the arm whose weakness is the finding: a base model that cannot commit t
 annotated the cell, and the study should say so rather than pick for it. The prompt asks for a bare
 label in four numbered rules; ignoring all four is a failure to answer, not a formatting quibble.
 
+The one exception is a single label behind a fixed lead-in. Decoded greedily, the base model answers
+`the cell type is: pancreatic a cell` and three variants of that phrase (LEAD_IN). The lead-in is
+removed and the rest must then resolve as a whole under the rules below, so the model's own
+commitment is scored and a list behind a lead-in still goes to `cell`. This is an extra curation
+step, and the Methods state it.
+
 Mapping to `cell` rather than leaving the label unmapped is what makes that failure MEASURABLE.
 evaluate.py gates a run on scoring coverage, so wholly unmapped output yields NaN -- the arm simply
 vanishes from the results table. Sending it to the root term keeps it in the table and scores it as
@@ -120,6 +126,9 @@ def cl_index(owl_path):
 
 MIN_PREFIX_RATIO = 0.5
 
+#: The sentence the base model wraps one label in, on the normalised text (module docstring).
+LEAD_IN = re.compile(r"^the cell type (?:of (?:the|this) gene (?:expression )?profile )?is ")
+
 
 _CURATED_NORM = None  # built once in review(), keyed on the normalised label
 
@@ -142,7 +151,7 @@ def resolve(label, index, keys):
     `'cd151-positive...'` -> `'CD16-positive...'` -- changing which marker or subtype was named.
     That can convert a wrong answer into a right one, which is the worst error a benchmark can make.
     """
-    n = normalise(label)
+    n = LEAD_IN.sub("", normalise(label))
     if not n:
         return None
     # Hand-checked equivalences win over every derived rule: they encode naming conventions the
