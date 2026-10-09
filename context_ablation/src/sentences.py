@@ -164,15 +164,16 @@ def materialize(dataset, cfg, out_dir, arms=None, modes=None, candidates=None):
     makes that impossible rather than unlikely, and it means the local-arm machine needs neither
     cell2sentence nor scanpy nor the 1 GB context h5ads.
 
-    One file per (dataset, arm, mode, gene variant, seed). The seed matters: the candidate list is
-    shuffled per cell, so a different seed is a genuinely different prompt set, and repeats that
-    reused one seed would measure nothing.
+    One file per (dataset, arm, mode, gene variant, seed). The seed matters for the LLM templates:
+    their candidate list is shuffled per cell, so a different seed is a genuinely different prompt
+    set, and repeats that reused one seed would measure nothing. The C2S template keeps the
+    benchmark's sorted list (``prompts.ordered_candidates``).
 
     ``modes`` and ``candidates(mode, seed)`` serve the candidate-list study (``lists.py``): its
     conditions, and the list each one gives. Without them every mode lists the true types.
     """
     import numpy as np
-    from prompts import build_prompt, candidate_list
+    from prompts import build_prompt, ordered_candidates
 
     eval_cfg = cfg["eval"]
     src = (Path(eval_cfg["subset_dir"]) /
@@ -183,7 +184,10 @@ def materialize(dataset, cfg, out_dir, arms=None, modes=None, candidates=None):
 
     ds_cfg = _dataset_cfg(dataset)
     tissue, species = ds_cfg.get("tissue"), (ds_cfg.get("species") or ds_cfg.get("organism"))
-    organism = ds_cfg.get("organism") or ds_cfg.get("species") or "Homo sapiens"
+    # The C2S template names the organism as the benchmark's wrapper does: the subset's own
+    # `organism` column ("Homo sapiens", "Mus musculus"), "Homo sapiens" where there is none.
+    organism = (obs["organism"].astype(str) if "organism" in obs.columns
+                else pd.Series("Homo sapiens", index=obs.index))
     override = ds_cfg.get("context_phrase")
 
     arms = arms or cfg["arms"]
@@ -236,14 +240,15 @@ def materialize(dataset, cfg, out_dir, arms=None, modes=None, candidates=None):
                             # isolate the ordering.
                             genes = sentence.split(" ")
                             sentence = " ".join(rng.permutation(genes).tolist())
-                        types = candidate_list(listed, rng) if mode.get("cell_types") else None
+                        types = (ordered_candidates(arm["template"], listed, rng)
+                                 if mode.get("cell_types") else None)
                         rows.append({
                             "cell_id": cell_id,
                             "true_labels": str(obs.loc[cell_id, truth_key]),
                             "prompt": build_prompt(
                                 arm["template"], mode, num_genes=str(cfg["genes"]["cap"]),
                                 cell_sentence=sentence, unique_cell_types=types,
-                                organism=organism, tissue=tissue, species=species,
+                                organism=organism[cell_id], tissue=tissue, species=species,
                                 context_override=override),
                         })
                     # A prompt is the experiment's input, so a rendering artefact in it is a silent

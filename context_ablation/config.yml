@@ -119,11 +119,16 @@ arms:
     verify_base_of: vandijklab/C2S-Scale-Gemma-2-2B
     granularity: cell
     template: instruction        # same prompt as A1, which is what makes the pair fair
+    decoding: greedy             # decoded as A3, so the two differ in their weights only
   A3_scllm_percell:
     kind: local
     model: vandijklab/C2S-Scale-Gemma-2-2B
     granularity: cell
     template: c2s                # C2S-Scale's own template
+    # Greedy, as the C2S-Scale authors benchmark ("deterministic generation with a temperature
+    # setting of 0", Rizvi et al., bioRxiv 2025.04.14.648850, section 4.5) and as the benchmark's
+    # wrapper decodes (models/c2s_scale_2B_unblind/src/predict.py: do_sample=False, 20 new tokens).
+    decoding: greedy
 
   # Second general-purpose LLM, at a smaller scale. Adds a within-family size contrast alongside
   # the base-vs-adapted contrast, and a second point on the cost axis of the per-cell/per-cluster
@@ -240,12 +245,14 @@ arms:
     verify_base_of: vandijklab/C2S-Scale-Gemma-2-27B
     granularity: cell
     template: instruction        # same prompt as A1/A2, which is what makes the pair fair
+    decoding: greedy             # as the 2B pair
   A7_scllm27_percell:
     kind: local
     model: vandijklab/C2S-Scale-Gemma-2-27B
     batch_size: 32
     granularity: cell
     template: c2s                # C2S-Scale's own template, as for A3
+    decoding: greedy             # as A3
 
 # ---------------------------------------------------------------------------
 # Context modes

@@ -54,7 +54,9 @@ are copied rather than paraphrased. Two details that took a correction to get ri
 
 * The candidate list is **shuffled per cell** (`predict.py:477` permutes it from a seeded RNG).
   LLMs have position bias, so a fixed order would let a model score by favouring whatever sits
-  first. `candidate_list()` is a separate call so it cannot be silently forgotten.
+  first. `candidate_list()` is a separate call so it cannot be silently forgotten. The C2S
+  template is the exception: the C2S-Scale wrapper sorts the list once for every cell, and
+  `ordered_candidates()` does the same. Its organism is the subset's `organism` column, as there.
 * The instruction template renders the list as a **Python repr** — `['neutrophil', 'b cell']`,
   brackets and quotes included — because the benchmark passes the list object into `str.format`.
   C2S's path uses `", ".join(...)` and renders bare. `render_candidates()` reproduces each.
@@ -90,6 +92,11 @@ for an ablation measuring what a tissue string buys. Set `provider.only` to one 
 **Seeds must differ per repeat.** `predict.py` injects the seed into the request payload, so
 repeats at a fixed seed can return identical completions and would measure nothing.
 
+**The local arms decode greedily** (`decoding: greedy` in config.yml), as the C2S-Scale authors
+benchmark and as the benchmark's C2S wrapper does. Their seeds therefore matter only where the seed
+changes the prompt: the shuffled genes of M6, the shuffled lists of the instruction template, and
+the drawn lists of the imperfect-list study.
+
 ## Status
 
 | Component | State |
@@ -120,7 +127,7 @@ Two decisions still open, neither blocking:
 
 ## Caching
 
-Both runners cache per PROMPT, keyed on `sha256(model | prompt)`, in append-only JSONL.
+Both runners cache per PROMPT, keyed on `sha256(model | prompt | seed)`, in append-only JSONL.
 
 File-level caching (what `main.nf` does) is useless at this scale: one (arm, mode, variant, seed)
 file is 1,000 calls, so losing the last one would discard the other 999 — across ~150,000
@@ -128,8 +135,9 @@ generations and a metered API. Content-addressing also means **editing a templat
 exactly the prompts it changed**, with no manual cache-busting and no risk of serving answers to a
 question we no longer ask, which is the failure mode that would quietly corrupt an ablation.
 
-* The seed is deliberately *not* in the key: it already changed the prompt, since the candidate
-  list is shuffled per cell.
+* The seed is in the key because it is sent with the request, also where it leaves the prompt
+  unchanged (M1, M3). Greedy local arms are the exception: there the seed changes nothing, so
+  their answers sit in a cache of their own (`<arm>__<dataset>__greedy.jsonl`), keyed without it.
 * Failed calls are cached with their error, so a rerun does not re-pay for a prompt the provider
   will reject again.
 * The provider that actually served each call is recorded, not the one requested.

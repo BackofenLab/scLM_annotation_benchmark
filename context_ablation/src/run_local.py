@@ -183,9 +183,10 @@ def load_model(model_id, dtype="bfloat16", device=None):
     return model, tokenizer, device
 
 
-def generate(model, tokenizer, device, prompts, seed, max_new_tokens=24, batch_size=16,
-             report_every=5):
-    """Greedy-free sampling, seeded per repeat so the three repeats genuinely differ.
+def generate(model, tokenizer, device, prompts, seed, greedy=False, max_new_tokens=20,
+             batch_size=16, report_every=5):
+    """Greedy decoding, or sampling seeded per repeat (the arm's ``decoding`` in config.yml), of at
+    most 20 new tokens, the limit of the benchmark's C2S-Scale wrapper.
 
     Progress is reported as a rate and an ETA rather than a bare counter. On a GPU job the only
     question that matters mid-run is "will this finish inside the walltime", and a raw
@@ -213,7 +214,7 @@ def generate(model, tokenizer, device, prompts, seed, max_new_tokens=24, batch_s
         enc = tokenizer(batch, return_tensors="pt", padding=True, truncation=True,
                         max_length=4096).to(device)
         with torch.no_grad():
-            ids = model.generate(**enc, max_new_tokens=max_new_tokens, do_sample=True,
+            ids = model.generate(**enc, max_new_tokens=max_new_tokens, do_sample=not greedy,
                                  pad_token_id=tokenizer.pad_token_id)
         for prompt, row, prompt_ids in zip(batch, ids, enc["input_ids"]):
             # Only the continuation, never the echoed prompt.
@@ -247,9 +248,16 @@ def run_file(prompt_file, cfg, out_root, cache_root, model_bundle, dry_run=False
     if limit:
         frame = frame.head(limit)
 
-    cache = ResponseCache(Path(cache_root) / f"{arm_name}__{dataset}.jsonl", arm["model"], seed=seed)
+    # Greedy answers live in a cache of their own, keyed without the seed: the seed changes nothing
+    # in a greedy request, so a prompt repeated across seeds is generated once, and a sampled answer
+    # can never be served for a greedy one.
+    decoding = arm.get("decoding", "sample")
+    greedy = decoding == "greedy"
+    suffix = "__greedy" if greedy else ""
+    cache = ResponseCache(Path(cache_root) / f"{arm_name}__{dataset}{suffix}.jsonl", arm["model"],
+                          seed=None if greedy else seed)
     hits, misses = cache.stats(frame["prompt"].tolist())
-    print(f"[{arm_name} {dataset} {mode} {variant} seed{seed}] "
+    print(f"[{arm_name} {dataset} {mode} {variant} seed{seed}] {decoding}: "
           f"{len(frame)} prompts: {hits} cached, {misses} to generate")
     if dry_run:
         return None
@@ -268,8 +276,8 @@ def run_file(prompt_file, cfg, out_root, cache_root, model_bundle, dry_run=False
         print(f"    starting generation: {len(todo)} prompts, batch {batch_size or 16}", flush=True)
         # Written as each batch arrives, and ResponseCache fsyncs every entry, so an interrupted
         # job resumes from the last completed BATCH rather than restarting the file.
-        for prompt, text in generate(model, tokenizer, device, todo, seed, **kw):
-            cache.put(prompt, text, meta={"seed": seed})
+        for prompt, text in generate(model, tokenizer, device, todo, seed, greedy=greedy, **kw):
+            cache.put(prompt, text)
 
     frame["predicted_labels"] = [extract_prediction(cache.get(p)) for p in frame["prompt"]]
 
@@ -296,6 +304,7 @@ def main(argv=None):
     p.add_argument("--host", default="cluster")
     p.add_argument("--arms", nargs="+")
     p.add_argument("--datasets", nargs="+")
+    p.add_argument("--modes", nargs="+", help="only these context modes (conditions)")
     p.add_argument("--study", default="ablation", help="the study tree (see `studies` in config)")
     p.add_argument("--dry-run", action="store_true")
     p.add_argument("--limit", type=int,
@@ -328,14 +337,17 @@ def main(argv=None):
         out_root = tree / "predictions"
         cache_root = tree / "cache"
 
+    def selected(prompt_file, arm_name):
+        dataset, arm, mode, _variant, _seed = parse_prompt_file(prompt_file)
+        return (arm == arm_name and (not args.datasets or dataset in args.datasets)
+                and (not args.modes or mode in args.modes))
+
     for arm_name in arms:
         arm = cfg["arms"][arm_name]
         if arm["kind"] != "local":
             print(f"[skip] {arm_name}: not a local arm")
             continue
-        files = sorted(f for f in prompts_dir.glob("*.csv")
-                       if parse_prompt_file(f)[1] == arm_name
-                       and (not args.datasets or parse_prompt_file(f)[0] in args.datasets))
+        files = sorted(f for f in prompts_dir.glob("*.csv") if selected(f, arm_name))
         if not files:
             print(f"[skip] {arm_name}: no prompt files")
             continue

@@ -147,6 +147,17 @@ def candidate_list(labels, rng):
     return rng.permutation(list(labels)).tolist()
 
 
+def ordered_candidates(template, labels, rng):
+    """The candidate cell types for ONE cell, in the order its template's benchmark wrapper uses.
+
+    The LLM wrappers shuffle per cell (``candidate_list``). The C2S-Scale wrapper does not: it
+    sorts the subset's labels once (``get_unique_cell_types`` in
+    ``models/c2s_scale_2B_unblind/src/predict.py``) and gives every cell that list, so the C2S
+    template gets them sorted, and ``rng`` is not drawn from.
+    """
+    return sorted(labels) if template == "c2s" else candidate_list(labels, rng)
+
+
 def render_candidates(template, labels):
     """Render the candidate list the way each template's own code path does.
 
