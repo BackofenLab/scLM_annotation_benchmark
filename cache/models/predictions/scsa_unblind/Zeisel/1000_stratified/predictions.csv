@@ -878,26 +878,26 @@ cell_id,true_labels,predicted_labels,reachable
 10X75_1:AAGGTCTGTGGTAC,sympathetic noradrenergic neuron,neuroblast (sensu Vertebrata),False
 10X75_1:GACAGGGAGCTTAG,sympathetic noradrenergic neuron,neuroblast (sensu Vertebrata),False
 10X75_1:GAACACACGAGCTT,sympathetic noradrenergic neuron,neuroblast (sensu Vertebrata),False
-10X53_7:TCCCAGACTTACTC,Satellite glia,astrocyte,False
-10X43_2:TAAGAGGAGCTGTA,Satellite glia,astrocyte,False
-10X43_2:ATGCAGTGACCTTT,Satellite glia,astrocyte,False
-10X43_2:GGCGCATGTCTCTA,Satellite glia,astrocyte,False
-10X43_2:GATCGATGACGGTT,Satellite glia,astrocyte,False
-10X43_2:GCACCTTGCCTAAG,Satellite glia,astrocyte,False
-10X43_2:TTCAACACGCAGTT,Satellite glia,astrocyte,False
-10X43_2:ACGCAATGGCTGTA,Satellite glia,astrocyte,False
-10X43_2:ATAGCCGACTCAGA,Satellite glia,astrocyte,False
-10X43_2:ATCCGCACAGAGTA,Satellite glia,astrocyte,False
-10X53_7:ATGCGATGGCTGAT,Satellite glia,astrocyte,False
-10X43_2:CTAGTTTGTCAGAC,Satellite glia,astrocyte,False
-10X53_7:CTGGAAACCTCGCT,Satellite glia,astrocyte,False
-10X43_2:ACTGTTACATCGTG,Satellite glia,astrocyte,False
-10X53_7:CGACCACTCCCGTT,Satellite glia,astrocyte,False
-10X43_2:TCAACACTCCTTTA,Satellite glia,astrocyte,False
-10X43_2:TAGTCTTGCCTAAG,Satellite glia,astrocyte,False
-10X43_2:GGCGACTGTCTACT,Satellite glia,astrocyte,False
-10X43_2:CACGGGACTGCAAC,Satellite glia,astrocyte,False
-10X53_7:CGACCGGACATCAG,Satellite glia,astrocyte,False
+10X53_7:TCCCAGACTTACTC,Satellite glia,astrocyte,True
+10X43_2:TAAGAGGAGCTGTA,Satellite glia,astrocyte,True
+10X43_2:ATGCAGTGACCTTT,Satellite glia,astrocyte,True
+10X43_2:GGCGCATGTCTCTA,Satellite glia,astrocyte,True
+10X43_2:GATCGATGACGGTT,Satellite glia,astrocyte,True
+10X43_2:GCACCTTGCCTAAG,Satellite glia,astrocyte,True
+10X43_2:TTCAACACGCAGTT,Satellite glia,astrocyte,True
+10X43_2:ACGCAATGGCTGTA,Satellite glia,astrocyte,True
+10X43_2:ATAGCCGACTCAGA,Satellite glia,astrocyte,True
+10X43_2:ATCCGCACAGAGTA,Satellite glia,astrocyte,True
+10X53_7:ATGCGATGGCTGAT,Satellite glia,astrocyte,True
+10X43_2:CTAGTTTGTCAGAC,Satellite glia,astrocyte,True
+10X53_7:CTGGAAACCTCGCT,Satellite glia,astrocyte,True
+10X43_2:ACTGTTACATCGTG,Satellite glia,astrocyte,True
+10X53_7:CGACCACTCCCGTT,Satellite glia,astrocyte,True
+10X43_2:TCAACACTCCTTTA,Satellite glia,astrocyte,True
+10X43_2:TAGTCTTGCCTAAG,Satellite glia,astrocyte,True
+10X43_2:GGCGACTGTCTACT,Satellite glia,astrocyte,True
+10X43_2:CACGGGACTGCAAC,Satellite glia,astrocyte,True
+10X53_7:CGACCGGACATCAG,Satellite glia,astrocyte,True
 10X11_1:TTACTCGAAGTACC,choroid plexus epithelial cell,oligodendrocyte,False
 10X54_6:AGCTACATCGGGTC,choroid plexus epithelial cell,oligodendrocyte,False
 10X54_3:AGCCAGTAAGCACG,choroid plexus epithelial cell,oligodendrocyte,False

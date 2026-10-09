@@ -472,9 +472,9 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X81_1:CGTTGGTGGTACAG,enteric glia,schwann cell,schwann cell
 10X81_3:TTACCTCGTGGTCG,enteric glia,pituicyte,pituicyte
 10X81_3:TGAGGGTAAGTGTA,enteric glia,schwann cell,schwann cell
-10X81_1:TCTACTCAACGCTA-1,enteric glia,glial cell,satellite glial cell
+10X81_1:TCTACTCAACGCTA-1,enteric glia,perineuronal satellite cell,satellite glial cell
 10X81_1:GCTGGGTAATCGTC,enteric glia,schwann cell,schwann cell
-10X81_2:CTACCAGCCGTCGT,enteric glia,glial cell,satellite glial cell
+10X81_2:CTACCAGCCGTCGT,enteric glia,perineuronal satellite cell,satellite glial cell
 10X81_3:AGCCAAGAAGATTC,enteric glia,astrocyte,astrocyte
 10X82_2:TACTCAGGCGATAC,enteric glia,olfactory ensheathing cell,olfactory ensheathing cell
 10X82_2:TGAGCGTAAGTGTA,enteric glia,olfactory ensheathing cell,olfactory ensheathing cell
@@ -495,7 +495,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X81_2:GCTAGCAAATTGCC,enteric glia,schwann cell,schwann cell
 10X81_1:GCGATTCACAATGC,enteric glia,schwann cell,schwann cell
 10X81_3:CAGAACAATCGGTT,enteric glia,olfactory ensheathing cell,olfactory ensheathing cell
-10X82_2:ACCTATCACTATTC,enteric glia,glial cell,satellite glial cell
+10X82_2:ACCTATCACTATTC,enteric glia,perineuronal satellite cell,satellite glial cell
 10X81_1:GACTTCATACTACG,enteric glia,fibroblast,fibroblast
 10X81_2:AGCCAGTACAGTGG,enteric glia,schwann cell,schwann cell
 10X81_2:TCTAAAGCGTTTAC,enteric glia,enteroglial cell,enteric glial cell
@@ -881,13 +881,13 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X53_7:TCCCAGACTTACTC,satellite glia,schwann cell,schwann cell
 10X43_2:TAAGAGGAGCTGTA,satellite glia,astrocyte,astrocyte
 10X43_2:ATGCAGTGACCTTT,satellite glia,olfactory ensheathing cell,olfactory ensheathing cell
-10X43_2:GGCGCATGTCTCTA,satellite glia,glial cell,satellite glial cell
+10X43_2:GGCGCATGTCTCTA,satellite glia,perineuronal satellite cell,satellite glial cell
 10X43_2:GATCGATGACGGTT,satellite glia,astrocyte,astrocyte
 10X43_2:GCACCTTGCCTAAG,satellite glia,oligodendrocyte precursor cell,oligodendrocyte precursor cell
-10X43_2:TTCAACACGCAGTT,satellite glia,glial cell,satellite glial cell
+10X43_2:TTCAACACGCAGTT,satellite glia,perineuronal satellite cell,satellite glial cell
 10X43_2:ACGCAATGGCTGTA,satellite glia,schwann cell,schwann cell
 10X43_2:ATAGCCGACTCAGA,satellite glia,olfactory ensheathing cell,olfactory ensheathing cell
-10X43_2:ATCCGCACAGAGTA,satellite glia,glial cell,satellite glial cell
+10X43_2:ATCCGCACAGAGTA,satellite glia,perineuronal satellite cell,satellite glial cell
 10X53_7:ATGCGATGGCTGAT,satellite glia,astrocyte,astrocyte
 10X43_2:CTAGTTTGTCAGAC,satellite glia,astrocyte,astrocyte
 10X53_7:CTGGAAACCTCGCT,satellite glia,astrocyte,astrocyte
@@ -895,7 +895,7 @@ cell_id,true_labels,predicted_labels,original_predicted_labels
 10X53_7:CGACCACTCCCGTT,satellite glia,astrocyte,astrocyte
 10X43_2:TCAACACTCCTTTA,satellite glia,astrocyte,astrocyte
 10X43_2:TAGTCTTGCCTAAG,satellite glia,astrocyte,astrocyte
-10X43_2:GGCGACTGTCTACT,satellite glia,glial cell,satellite glial cell
+10X43_2:GGCGACTGTCTACT,satellite glia,perineuronal satellite cell,satellite glial cell
 10X43_2:CACGGGACTGCAAC,satellite glia,schwann cell,schwann cell
 10X53_7:CGACCGGACATCAG,satellite glia,astrocyte,astrocyte
 10X11_1:TTACTCGAAGTACC,choroid plexus epithelial cell,choroid plexus epithelial cell,choroid plexus epithelial cell

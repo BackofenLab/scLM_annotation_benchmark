@@ -1725,7 +1725,7 @@ True;mmcontext_blind_HFRA;rxfp1-positive interface island d1-medium spiny neuron
 True;instructcell_unblind_HFRA;ry;cell;
 True;instructcell_blind_Zeisel;ry muscle cell;muscle cell;
 True;openrouter_LLM_unblind_anthropic--claude-sonnet-4.6_Zeisel;satellite glia;perineuronal satellite cell;perineuronal satellite cell
-True;openrouter_LLM_blind_openai--gpt-5.5_Zeisel;satellite glial cell;glial cell;perineuronal satellite cell
+True;openrouter_LLM_blind_openai--gpt-5.5_Zeisel;satellite glial cell;perineuronal satellite cell;perineuronal satellite cell
 True;instructcell_unblind_HIHA;saw/t cell;T cell;
 True;instructcell_unblind_human_pancreas;sawous;cell;
 True;instructcell_unblind_HIHA;scarf;cell;
