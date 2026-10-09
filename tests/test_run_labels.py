@@ -10,7 +10,7 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "bin"))
 from manuscript_figures import (  # noqa: E402
-    BLOCK_FAMILY, BLOCK_ORDER, BLOCK_SHORT, MAPPING_ROWS, RARE_BLOCKS, select_flow_models)
+    BLOCK_LABEL, BLOCK_ORDER, MAPPING_ROWS, RARITY_ROWS, select_flow_models)
 from plot_model_comparison import group_name, run_label  # noqa: E402
 
 RUNS = {"sctype_blind": "unconstrained baselines", "singler_unblind": "constrained baselines",
@@ -30,8 +30,8 @@ def test_groups_split_every_family_by_setting():
 
 
 def test_the_figure_groups_cover_both_settings_of_every_family():
-    assert set(RUNS.values()) <= set(BLOCK_ORDER) == set(BLOCK_SHORT) == set(BLOCK_FAMILY)
-    assert {block for block, _family, _style in RARE_BLOCKS} == set(RUNS.values())
+    assert set(RUNS.values()) <= set(BLOCK_ORDER) == set(BLOCK_LABEL)
+    assert list(BLOCK_LABEL.values()) == [row[2] for row in RARITY_ROWS]
     assert {(family, mode) for family, mode, _label in MAPPING_ROWS} == {
         (family, mode) for family in ("classical", "scLLM", "LLM") for mode in ("blind", "unblind")}
 

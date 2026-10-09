@@ -1942,8 +1942,8 @@ def load_confusion_pairs(path=DEFAULT_CONFUSION_CSV):
 
 # Right-hand flow labels start at a fixed fraction of the axes width and are not clipped, so a long
 # Cell Ontology name (LangCell's unconstrained retrieval returns names of up to 69 characters) runs
-# into the neighbouring panel. Longer names are shortened with an ellipsis, as the row labels of
-# Figure 4C are; 48 characters still clear the next panel at the supplementary figures' width.
+# into the neighbouring panel. Longer names are shortened with an ellipsis; 48 characters still
+# clear the next panel at the supplementary figures' width.
 FLOW_LABEL_MAX = 48
 
 
@@ -2112,9 +2112,9 @@ def plot_rare_type_flows(conf, out_path, dpi, dataset, models, n_types=5, max_ta
                          prevalence_max=0.03, title=None, prevalence_map=None, name_fn=None):
     """Supplementary: for the rarest cell types, WHERE do the cells actually go?
 
-    Panel B of Figure 4 says how often rare types are recovered; it cannot say what they are
-    called instead, which is the difference between a near miss inside the right lineage and an
-    unrelated call. One alluvial per model: rare true types on the left, predicted labels on the
+    Panel B of Figure 4 says how often rare types are labeled correctly; it cannot say what they
+    are called instead, which is the difference between a near miss inside the right lineage and
+    an unrelated call. One alluvial per model: rare true types on the left, predicted labels on the
     right, ribbon width proportional to cells. Ribbons that land on the correct label are opaque
     with a dark edge, so the recovered fraction reads without tracing labels.
 
@@ -2125,8 +2125,9 @@ def plot_rare_type_flows(conf, out_path, dpi, dataset, models, n_types=5, max_ta
     the cells per rare type, so the figure is readable without its caption and a ribbon's width
     can be judged against the cells behind it.
 
-    Per true type only the ``max_targets`` most frequent predictions are drawn; the rest are
-    pooled into "other". Returns False if the table is empty or the dataset has no usable models.
+    The rare types are the ``n_types`` rarest below ``prevalence_max``. Per true type only the
+    ``max_targets`` most frequent predictions are drawn; the rest are pooled into "other". Returns
+    False if the table is empty or the dataset has no usable models.
     """
     if conf is None or len(conf) == 0:
         return False
@@ -2151,7 +2152,7 @@ def plot_rare_type_flows(conf, out_path, dpi, dataset, models, n_types=5, max_ta
                           if t.strip().lower() in lut})
     else:
         prev = sub.drop_duplicates(["true_label"]).set_index("true_label")["prevalence"]
-    rare = list(prev[prev <= prevalence_max].nsmallest(n_types).index)
+    rare = list(prev[prev < prevalence_max].nsmallest(n_types).index)
     if not rare:
         rare = list(prev.nsmallest(n_types).index)
     palette = sns.color_palette("tab10", n_colors=max(len(rare), 3)).as_hex()
@@ -2197,9 +2198,8 @@ def plot_rare_type_flows(conf, out_path, dpi, dataset, models, n_types=5, max_ta
             # The left stack is identical in every panel, so only the first column of each row
             # names it; repeating the labels collides with the neighbour's right-hand column.
             _sankey(ax, flows, rare, right, colors, show_left_labels=(c == 0))
-            regime = REGIME.get(derive_mode(model))
             label = name_fn(model_base(model)) if name_fn else model_base(model)
-            ax.set_title(f"{label}" + (f"  ({regime})" if regime else ""), fontsize=10)
+            ax.set_title(run_label(model, label), fontsize=10)
 
     if title:
         fig.suptitle(title, y=1.0, fontsize=12)

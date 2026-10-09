@@ -196,6 +196,18 @@ def _panel_letters(fig, items, pad_x=0.012, pad_y=0.008):
                  fontsize=FS_PANEL_LETTER, fontweight="bold", va="bottom", ha="left")
 
 
+def _align_left(fig, gridspec, ax, reference):
+    """Shift ``gridspec`` sideways so that ``ax``, labels included, starts where ``reference``
+    does: two stacked rows of panels then share one left edge, and _panel_letters puts their
+    letters above each other."""
+    fig.canvas.draw()
+    renderer = fig.canvas.get_renderer()
+    inv = fig.transFigure.inverted()
+    shift = (reference.get_tightbbox(renderer).transformed(inv).x0
+             - ax.get_tightbbox(renderer).transformed(inv).x0)
+    gridspec.update(left=gridspec.left + shift)
+
+
 def load_aggregate(path, subset_size=1000):
     """Read the aggregate snapshot with the same exclusions the comparison figures apply."""
     df = pd.read_csv(path)
@@ -426,26 +438,42 @@ def figure_harmonization(df, out_path, dpi=600, pairs=None):
 DEFAULT_RARE_CSV = "cache/rare_type_outcomes_1000_stratified.csv"
 DEFAULT_PER_CLASS_CSV = "cache/per_class_scores_1000_stratified.csv"
 
-# Rows of Figure 4C: the N rarest cell types in each dataset. A rule, not a selection -- the
-# alternative ("every type below 1%") is 24 in HIHA against 2 in HFRA, which no grid can show.
-# A dataset with fewer qualifying types simply contributes fewer rows -- HFRA has two below 1% and
-# human pancreas three -- rather than being padded with commoner types, which is what previously
-# put a 3.4% cell type in a panel about rare ones. Every row prints its prevalence.
-RARE_EXEMPLARS_PER_DATASET = 3
-# The one definition of "rare" this section uses, for the decomposition panel, the per-type panel
-# and the supplementary full set alike.
+# --------------------------------------------------------------------------- #
+# Figure 4 and Supplementary Figures S7-S11 -- rare cell types (R3).
+#
+# Rare means below RARE_PREVALENCE_MAX of the FULL dataset, not of the evaluation subset: the
+# subsets hold at least 20 cells of every type, so a subset's own prevalence is mostly the sampler
+# (bin/rare_type_table.py). One definition for every panel, the supplement and the flows.
+# --------------------------------------------------------------------------- #
 RARE_PREVALENCE_MAX = 0.01
-# Which dataset supplies the worked example in panel D. The other three keep their full grids in
-# the supplement; this one is a window onto them, drawn with the same primitive and the same
-# model representatives.
+# The flows draw the rarest types below it, at most this many per dataset: HFRA has two, human
+# pancreas three, HIHA and Zeisel more than five.
+RARE_FLOW_MAX_TYPES = 5
+# The dataset of the worked example in Figure 4C. The other three keep their full grids in the
+# supplement; this one is a window onto them, drawn with the same primitive and the same model
+# representatives.
 RARE_FLOW_EXAMPLE = "human_pancreas"
-# Tick labels for the method groups, shared by panels B and C so the two read identically.
-BLOCK_SHORT = {"unconstrained baselines": "baselines\nU", "constrained baselines": "baselines\nC",
-               "unconstrained scLLM": "scLLM\nU", "constrained scLLM": "scLLM\nC",
-               "unconstrained LLM": "LLM\nU", "constrained LLM": "LLM\nC",
-               "unconstrained frontier LLM": "frontier\nU", "constrained frontier LLM": "frontier\nC"}
-EXEMPLAR_DATASETS = [("HFRA", "HFRA"), ("human_pancreas", "human pancreas"),
-                     ("Zeisel", "Zeisel"), ("HIHA", "HIHA")]
+# The four closed-weight LLMs, a group within the LLM family -- NOT a fourth family. Membership is
+# the intrinsic property recorded in CATEGORY_TIER_MEMBERS["LLM"]["closed_reasoning"], never a
+# rank on our own benchmark, so the comparison stays non-circular.
+CLOSED_WEIGHT_TIER = "closed_reasoning"
+# The method groups of S7A, named as Figure 4's rows (RARITY_ROWS) and in their order.
+BLOCK_LABEL = {"unconstrained baselines": "baselines, U", "constrained baselines": "baselines, C",
+               "unconstrained scLLM": "scLLMs, U", "constrained scLLM": "scLLMs, C",
+               "unconstrained LLM": "LLMs, U", "constrained LLM": "LLMs, C",
+               "unconstrained closed-weight LLM": "closed-weight LLMs, U",
+               "constrained closed-weight LLM": "closed-weight LLMs, C"}
+BLOCK_ORDER = list(BLOCK_LABEL)
+# Figure 4B's outcomes for a rare cell type, best first as Figure 2H puts the exact type first:
+# (key, legend text, grey). A type the constrained baselines never named is split by whether the
+# method has a label for it at all (`reachable`, bin/rare_type_table.py); that part is hatched.
+RARE_OUTCOMES = [
+    ("most", "\u2265 50% of cells correct", "0.94"),
+    ("some", "< 50% of cells correct", "0.78"),
+    ("wrong", "named, never correct", "0.56"),
+    ("never", "never named", "0.30"),
+    ("unreachable", "never named, no label", "0.30"),
+]
 
 
 def load_per_class_scores(path=DEFAULT_PER_CLASS_CSV):
@@ -473,84 +501,119 @@ def load_per_class_scores(path=DEFAULT_PER_CLASS_CSV):
     d["cell_type_name"] = d["cell_type"].astype(str).str.strip()
     d["cell_type"] = d["cell_type_name"].str.lower()
     d = d[d["category"].isin({"classical", "LLM", "scLLM"})]
-    return _with_frontier(d.assign(block=d["model"].map(group_name)))
-# Prevalence bands. Log-spaced by decade, which is the natural scale here: true prevalence spans
-# 1.4e-05 to 0.41 across the 87 scored cell types. Equal-width bands would put 80 of them in one
-# bin. The band edges are a presentational choice and the per-class values behind them are in the
-# table this reads, so nothing depends on where exactly the cuts fall.
-RARE_BANDS = ([0, 0.001, 0.01, 0.05, 1.0], ["<0.1%", "0.1-1%", "1-5%", ">5%"])
-# Colour by family as in Figure 2, line style by setting.
-RARE_BLOCKS = [
-    ("constrained LLM", "LLM", "-"),
-    ("unconstrained LLM", "LLM", "--"),
-    ("constrained scLLM", "scLLM", "-"),
-    ("unconstrained scLLM", "scLLM", "--"),
-    ("constrained baselines", "classical", "-"),
-    ("unconstrained baselines", "classical", "--"),
-]
-# The four closed-weight models, drawn as an extra series in Figures 4A/4B on top of the LLM
-# family they belong to -- NOT as a sixth family. Membership is the intrinsic property recorded in
-# CATEGORY_TIER_MEMBERS["LLM"]["closed_reasoning"], never a rank on our own benchmark, so the
-# comparison stays non-circular. The star marker is the same one Figure 1B gives this tier.
-FRONTIER_TIER = "closed_reasoning"
-FRONTIER_BLOCKS = [
-    ("constrained frontier LLM", "LLM", "-"),
-    ("unconstrained frontier LLM", "LLM", "--"),
-]
-FRONTIER_MARKER = "*"
-# The order every panel of Figure 4 uses: by family as in Figure 2, each unconstrained then
-# constrained. Panels B and C order their columns by it and A orders its legend by it, so the
-# panels never show the groups in two orders side by side.
-BLOCK_ORDER = ["unconstrained baselines", "constrained baselines",
-               "unconstrained scLLM", "constrained scLLM",
-               "unconstrained LLM", "constrained LLM",
-               "unconstrained frontier LLM", "constrained frontier LLM"]
-BLOCK_FAMILY = {block: family for block, family, _style in RARE_BLOCKS + FRONTIER_BLOCKS}
+    return d.assign(block=d["model"].map(group_name))
 
 
-def _with_frontier(d):
-    """Duplicate the frontier rows under their own block labels, leaving the originals in place.
-
-    The two tables name the model column differently -- ``model`` in the per-class scores,
-    ``method`` in the rare-type table -- so accept either. Getting this wrong is silent: the
-    frontier rows simply never appear while the legend still advertises them.
-    """
-    col = "model" if "model" in d.columns else ("method" if "method" in d.columns else None)
-    if col is None or "block" not in d.columns:
-        return d
-    sub = d[(d[col].map(categorize_model) == "LLM")
-            & (d[col].map(model_tier) == FRONTIER_TIER)].copy()
-    if sub.empty:
-        return d
-    sub["block"] = sub["block"].str.replace(" LLM", " frontier LLM", regex=False)
-    return pd.concat([d, sub], ignore_index=True)
+def _with_closed_weight(d):
+    """``d`` plus a copy of the closed-weight LLMs' rows under their own ``block``, for the panels
+    that group by it. The run is ``model`` in the per-class scores and ``method`` in the rare-type
+    table."""
+    col = "model" if "model" in d.columns else "method"
+    closed = d[(d[col].map(categorize_model) == "LLM")
+               & (d[col].map(model_tier) == CLOSED_WEIGHT_TIER)]
+    return pd.concat([d, closed.assign(block=closed["block"].str.replace(
+        " LLM", " closed-weight LLM", regex=False))], ignore_index=True)
 
 
 def load_rare_outcomes(path=DEFAULT_RARE_CSV):
-    """Per-class recall and reachability by true dataset prevalence. Built by bin/rare_type_table.py."""
+    """Per-class recall, emission and reachability by true dataset prevalence. Built by
+    bin/rare_type_table.py."""
     path = Path(path)
     if not path.exists():
         raise SystemExit(
             f"No rare-type table at {path}. Build it with:\n"
             f"    conda run -n evaluate python bin/rare_type_table.py")
     # Every panel built from this table averages over a family's models.
-    frame = with_unsupported_as_zero(
+    return with_unsupported_as_zero(
         pd.read_csv(path), zero={"recall": 0.0, "emitted": False},
         keep=("k", "n_cells", "orig_prevalence", "orig_count"),
         model_cols=("method", "mode", "family", "block"))
-    edges, names = RARE_BANDS
-    frame["band"] = pd.cut(frame["orig_prevalence"], edges, labels=names)
-    return _with_frontier(frame)
+
+
+def _prevalence(rare):
+    """``{(dataset, cell type): share of the full dataset}``, cell types lowercased."""
+    return (rare.drop_duplicates(["dataset", "k"])
+                .set_index(["dataset", "k"])["orig_prevalence"].to_dict())
+
+
+def _rarity_rates(rare):
+    """Per run (index ``<method>_<mode>``), Figure 4's two panels.
+
+    ``common`` and ``rare`` are the mean per-class recall of the common and of the rare cell types,
+    each averaged over a dataset's types and then over the datasets, as balanced accuracy is: the
+    comparison stays within a dataset, since the rarest types sit almost all in HIHA and Zeisel.
+    The RARE_OUTCOMES keys are shares of all rare types of the four datasets.
+    """
+    rare = rare.assign(run=rare["method"] + "_" + rare["mode"],
+                       is_rare=rare["orig_prevalence"] < RARE_PREVALENCE_MAX)
+    recall = (rare.groupby(["run", "dataset", "is_rare"])["recall"].mean()
+                  .groupby(["run", "is_rare"]).mean().unstack("is_rare")
+                  .rename(columns={False: "common", True: "rare"}))
+    types = rare[rare["is_rare"]]
+    emitted = types["emitted"].astype(bool)
+    unreachable = ~emitted & types["reachable"].eq(False)
+    outcomes = pd.DataFrame({
+        "run": types["run"],
+        "most": types["recall"] >= 0.5,
+        "some": (types["recall"] > 0) & (types["recall"] < 0.5),
+        "wrong": emitted & (types["recall"] == 0),
+        "never": ~emitted & ~unreachable,
+        "unreachable": unreachable}).groupby("run").mean()
+    assert np.allclose(outcomes.sum(axis=1), 1.0), "the outcomes must partition the rare types"
+    return recall.join(outcomes)
+
+
+def _row_marker(row):
+    """Marker and area for a row of RARITY_ROWS: a circle for a family, as in Figure 2G, and for a
+    row of one subcategory its marker of Figure 1B, at its area in Figure 2's family plots."""
+    if len(row) < 4:
+        return "o", 46
+    return next((marker, area) for tier, _label, marker, area in CATEGORY_TIERS[row[0]]
+                if tier == row[3])
+
+
+def _paired_rows(ax, means, rows, open_col, filled_col):
+    """One row per entry of ``rows``, first on top: an open marker at ``open_col`` and a filled one
+    at ``filled_col`` of ``means``, joined by a line in the family's colour (Figure 2G, 4A)."""
+    colors = _ranked_category_colors()
+    y = np.arange(len(rows))[::-1]
+    for yy, row, (_label, mean) in zip(y, rows, means.iterrows()):
+        color = colors[row[0]]
+        marker, size = _row_marker(row)
+        ax.plot([mean[open_col], mean[filled_col]], [yy, yy], color=color, linewidth=2.2,
+                zorder=2)
+        ax.scatter(mean[open_col], yy, s=size, marker=marker, facecolor="white", edgecolor=color,
+                   linewidth=1.6, zorder=3)
+        ax.scatter(mean[filled_col], yy, s=size, marker=marker, color=color, zorder=3)
+    ax.set_yticks(y)
+    ax.set_yticklabels(means.index)
+    ax.set_ylim(-0.6, len(rows) - 0.4)
+    ax.grid(axis="x", linestyle=":", alpha=0.5)
+    sns.despine(ax=ax)
+    return y
+
+
+def _outcome_bars(ax, shares, y):
+    """Figure 4B: one stacked bar of RARE_OUTCOMES per row of ``shares``, at heights ``y``."""
+    left = np.zeros(len(shares))
+    for key, label, grey in RARE_OUTCOMES:
+        hatched = key == "unreachable"
+        ax.barh(y, shares[key].to_numpy(), left=left, height=0.7, color=grey,
+                edgecolor="0.55", linewidth=0.4, hatch="////" if hatched else None,
+                hatchcolor="white" if hatched else None, label=label)
+        left += shares[key].to_numpy()
+    ax.set_xlim(0, 1)
+    sns.despine(ax=ax, left=True)
+    ax.tick_params(axis="y", length=0)
 
 
 def _rare_dotplot(ax, rows, rare, per_class, blocks, s_min=22.0, s_span=170.0,
                   label_fs=None, cmap_name="viridis"):
-    """Draw the per-cell-type dot grid used by Figure 4C and its full-set supplementary twin.
+    """Draw the per-cell-type dot grid of Supplementary Figure S7A.
 
     ``rows`` is ``[("__header__", label, None) | (dataset, cell_type, prevalence)]`` in draw order.
     Marker area is per-class recall, color is per-class Lin similarity, and a ringed marker with a
-    cross marks a cell type no method in that group ever emitted. Shared so the main figure's
-    twelve exemplar rows and the supplementary figure's full 44 cannot drift in encoding.
+    cross marks a cell type no method in that group ever emitted.
 
     Returns ``(norm, s_min, s_span)`` so the caller can build a matching key.
     """
@@ -576,8 +639,9 @@ def _rare_dotplot(ax, rows, rare, per_class, blocks, s_min=22.0, s_span=170.0,
             continue
         ypos[(kind, name)] = y
         pv = f"{p * 100:.3f}%" if p < 0.1 else f"{p * 100:.1f}%"
-        # The Cell Ontology spelling with the prevalence, wrapped rather than cut short.
-        label = textwrap.fill(f"{names.get((kind, name), name)} ({pv})", width=40)
+        # The Cell Ontology spelling with the prevalence, wrapped rather than cut short; at 52
+        # characters only the longest name takes two lines.
+        label = textwrap.fill(f"{names.get((kind, name), name)} ({pv})", width=52)
         ax.text(-0.012, y, label, transform=ax.get_yaxis_transform(), ha="right", va="center",
                 fontsize=label_fs, linespacing=1.2, clip_on=False)
         y -= 1.0
@@ -599,426 +663,204 @@ def _rare_dotplot(ax, rows, rare, per_class, blocks, s_min=22.0, s_span=170.0,
     ax.set_xlim(-0.6, len(blocks) - 0.4)
     ax.set_ylim(y + 0.5, (y_first if y_first is not None else 0.0) + 0.45)
     ax.set_xticks(range(len(blocks)))
-    ax.set_xticklabels([BLOCK_SHORT[b] for b in blocks], fontsize=label_fs)
-    ax.set_yticks([]); ax.tick_params(axis="x", length=0)
+    ax.set_xticklabels([BLOCK_LABEL[b] for b in blocks], fontsize=label_fs, rotation=30,
+                       ha="right", rotation_mode="anchor")
+    ax.set_yticks([]); ax.tick_params(axis="x", length=0, pad=2)
     for side in ("top", "right", "left", "bottom"):
         ax.spines[side].set_visible(False)
     return norm, s_min, s_span
 
 
 def figure_s7_rare_full(df, out_path, dpi=600, rare=None, per_class=None):
-    """Supplementary -- the full rare-type set, and the recall-to-Lin gap resolved per dataset.
+    """Supplementary -- every rare cell type per method group: all cell types below
+    RARE_PREVALENCE_MAX, the set Figure 4B counts, in Figure 4's groups.
 
-    Two things Figure 4 cannot carry. (A) shows ALL cell types below 1% prevalence rather than the
-    three per dataset the main panel draws, so the exemplar selection can be checked rather than
-    taken on trust. (B) backs the main text's statement that the ordering of the recall-to-Lin gap
-    holds on the pooled cell types and NOT on every dataset separately -- without it that caveat
-    has nothing behind it, which is a weaker position than not raising it.
+    Sized to print at the full text width: the float holds the figure and its caption within the
+    text height (S7 continues on the next float with the answer types).
     """
     rare = load_rare_outcomes() if rare is None else rare
     per_class = load_per_class_scores() if per_class is None else per_class
-    cat_color = _ranked_category_colors()
-
-    prev = (rare.drop_duplicates(["dataset", "k"])
-                .set_index(["dataset", "k"])["orig_prevalence"].to_dict())
+    prevalence = _prevalence(rare)
     rows = []
-    for key, label in EXEMPLAR_DATASETS:
-        types = sorted(((t, p) for (d, t), p in prev.items()
-                        if d == key and p < RARE_PREVALENCE_MAX),
-                       key=lambda tp: tp[1])
-        if not types:
-            continue
-        rows.append(("__header__", f"{label}  ({len(types)})", None))
-        rows += [(key, t, p) for t, p in types]
+    for dataset in DATASET_ORDER:
+        types = sorted(((k, p) for (d, k), p in prevalence.items()
+                        if d == dataset and p < RARE_PREVALENCE_MAX), key=lambda kp: kp[1])
+        rows.append(("__header__", f"{dataset_label(dataset)}  ({len(types)})", None))
+        rows += [(dataset, k, p) for k, p in types]
     n_types = sum(1 for r in rows if r[0] != "__header__")
-
-    pc = per_class.assign(prev=[prev.get((d, t)) for d, t in
-                                zip(per_class["dataset"], per_class["cell_type"])])
-    pc = pc[pc["prev"].notna() & (pc["prev"] < RARE_PREVALENCE_MAX)]
+    # _rare_dotplot steps 1.0 per cell type and 1.58 per dataset heading.
+    units = n_types + 1.58 * (len(rows) - n_types)
 
     with plt.rc_context(_rc()):
-        row_h = 0.30
-        fig = plt.figure(figsize=(11.0, row_h * len(rows) + 4.4))
-        gs = fig.add_gridspec(2, 2, width_ratios=[1.0, 0.22],
-                              height_ratios=[row_h * len(rows), 3.0], hspace=0.14, wspace=0.04)
-        ax_a = fig.add_subplot(gs[0, 0])
+        fig = plt.figure(figsize=(11.5, 0.26 * units + 1.1))
+        gs = fig.add_gridspec(1, 2, width_ratios=[1.0, 0.22], wspace=0.04)
+        ax = fig.add_subplot(gs[0, 0])
         ax_key = fig.add_subplot(gs[0, 1]); ax_key.axis("off")
-        ax_b = fig.add_subplot(gs[1, 0])
-        ax_bleg = fig.add_subplot(gs[1, 1]); ax_bleg.axis("off")
-
-        norm, s_min, s_span = _rare_dotplot(ax_a, rows, rare, per_class, BLOCK_ORDER)
-        # Inside the key axes, left-aligned with the marker column, as in the main figure.
+        norm, s_min, s_span = _rare_dotplot(ax, rows, _with_closed_weight(rare),
+                                            _with_closed_weight(per_class), BLOCK_ORDER)
+        # Inside the key axes, left-aligned with the marker column.
         cax = ax_key.inset_axes([0.185, 0.30, 0.065, 0.32])
         cb = fig.colorbar(cm.ScalarMappable(norm=norm, cmap=plt.get_cmap("viridis")), cax=cax)
         cb.set_label("Lin similarity to the true label", fontsize=FS_POINT)
         cb.ax.tick_params(labelsize=FS_LEGEND)
-        k_handles = [plt.Line2D([0], [0], linestyle="none", marker="o", mfc="0.62", mec="0.25",
-                                ms=np.sqrt(s_min + s_span * v) / 1.7, label=f"recall {v:g}")
-                     for v in (0.0, 0.5, 1.0)]
-        k_handles.append((plt.Line2D([0], [0], linestyle="none", marker="o", mfc="none",
-                                     mec="0.4", ms=7.5, mew=1.4),
-                          plt.Line2D([0], [0], linestyle="none", marker="x", color="0.35",
-                                     ms=4.2, mew=0.9)))
-        k_labels = [h.get_label() for h in k_handles[:3]] + ["label never emitted"]
-        k_handles += [_blank(), _blank("U   unconstrained"), _blank("C   constrained")]
-        k_labels += ["", "U   unconstrained", "C   constrained"]
-        ax_key.legend(handles=k_handles, labels=k_labels, loc="upper left", frameon=False,
+        handles = [plt.Line2D([0], [0], linestyle="none", marker="o", mfc="0.62", mec="0.25",
+                              ms=np.sqrt(s_min + s_span * v) / 1.7, label=f"recall {v:g}")
+                   for v in (0.0, 0.5, 1.0)]
+        # The never-emitted marker is a hollow ring with a cross inside it, so the key overlays
+        # the same pair of handles.
+        handles.append((plt.Line2D([0], [0], linestyle="none", marker="o", mfc="none",
+                                   mec="0.4", ms=7.5, mew=1.4),
+                        plt.Line2D([0], [0], linestyle="none", marker="x", color="0.35",
+                                   ms=4.2, mew=0.9)))
+        labels = [h.get_label() for h in handles[:3]] + ["label never emitted"]
+        ax_key.legend(handles=handles, labels=labels, loc="upper left", frameon=False,
                       fontsize=FS_LEGEND, labelspacing=1.0, handletextpad=0.6,
                       borderaxespad=0.0, alignment="left",
                       handler_map={tuple: HandlerTuple(ndivide=1, pad=0.0)})
-
-        # B: the gap, per dataset. Grouped bars, one cluster per dataset.
-        ds_keys = [k for k, _ in EXEMPLAR_DATASETS]
-        x = np.arange(len(ds_keys)); w = 0.8 / len(BLOCK_ORDER)
-        for i, b in enumerate(BLOCK_ORDER):
-            vals = []
-            for d in ds_keys:
-                sub = pc[(pc["dataset"] == d) & (pc["block"] == b)]
-                vals.append(sub["lin"].mean() - sub["recall"].mean() if len(sub) else np.nan)
-            ax_b.bar(x + (i - (len(BLOCK_ORDER) - 1) / 2) * w, vals, width=w * 0.92,
-                     color=cat_color[BLOCK_FAMILY[b]], edgecolor="white", linewidth=0.5,
-                     hatch="" if b.startswith("constrained") else "///", zorder=2,
-                     label=b if len(ax_b.patches) < len(BLOCK_ORDER) * len(ds_keys) else None)
-        ax_b.set_xticks(x); ax_b.set_xticklabels([dataset_label(d) for d in ds_keys],
-                                                 fontsize=FS_POINT)
-        ax_b.set_ylabel("Lin similarity minus recall")
-        ax_b.grid(axis="y", color="0.9", lw=0.6); ax_b.set_axisbelow(True)
-        for side in ("top", "right"):
-            ax_b.spines[side].set_visible(False)
-        _harmonize(ax_b, text_size=FS_POINT)
-        ax_bleg.legend(handles=[mpatches.Patch(
-                            facecolor=cat_color[BLOCK_FAMILY[b]], edgecolor="white", linewidth=0.5,
-                            hatch="" if b.startswith("constrained") else "///", label=b)
-                                for b in BLOCK_ORDER],
-                       loc="upper left", frameon=False, fontsize=FS_LEGEND, labelspacing=0.6,
-                       handletextpad=0.6, borderaxespad=0.0, alignment="left")
-        _panel_letters(fig, [(ax_a, "A"), (ax_b, "B")])
+        _panel_letters(fig, [(ax, "A")])
         print(f"    [s7] {n_types} cell types below 1%")
         return _save(fig, out_path, dpi)
 
 
-def figure_3(df, out_path, dpi=600, rare=None, per_class=None):
-    """Figure 4 -- how methods fail on rare cell types, by true dataset prevalence.
+def figure_s7b_rare_answer_types(df, out_path, dpi=600, rare=None, pairs=None):
+    """Supplementary -- S7 continued: where the cells of the common and of the rare cell types go.
 
-    (A) mean per-class recall against how common the cell type is in the FULL dataset.
-    (B) for the rare types, what kind of failure it was: the label never appeared in the method's
-        output, or it appeared but never on a cell of that type.
-    (C) the same failure, resolved to individual cell types and datasets, with the ontology-graded
-        score alongside recall.
-    (D) one worked example of where the cells of a rare type actually go, for the dataset with
-        fewest rare classes so that a single alluvial stays legible at panel size.
-
-    PANEL C ADDED 2026-08-28, and the old panel B (share of cell types never recovered) moved to
-    Supplementary -- it plotted the same gradient as A and earned no separate row in the figure.
-    C answers the question A and B cannot: recall alone cannot tell an unrelated label from a
-    coarser relative of the right one, and on rare types that distinction IS the finding. It uses
-    the scanpy dotplot idiom because this readership parses size-and-colour without a legend:
-    SIZE = per-class recall, COLOUR = per-class Lin similarity, open marker = the group never
-    emitted that label anywhere in the dataset.
-
-    PANEL D ADDED 2026-08-28. C says how close a miss was, as a number; D shows what the miss
-    actually WAS, for one case. HFRA carries it because it has only two classes at or below the
-    3% floor, so the alluvial reads at a fifth of the page; the other three datasets keep their
-    full grids in the supplement. The two models are the SAME representatives the supplementary
-    flow figures use (select_flow_models), so the example is a window onto those figures rather
-    than a separate selection -- say that in the caption.
-
-    Prevalence is the cell type's share of the full dataset, NOT of the evaluation subset. The
-    subsets are stratified with a 20-cell floor, so 54 of the 87 cell types sit at exactly that
-    floor and the subset's own prevalence is mostly the sampler. See bin/rare_type_table.py.
+    Backs R3's statement that the missed cells of rare types mostly go to another cell type
+    rather than to a coarser or finer one: Figure 2H's answer types, for the common and the rare
+    types separately, in Figure 4's rows and averaged like them within each dataset.
     """
     rare = load_rare_outcomes() if rare is None else rare
-    per_class = load_per_class_scores() if per_class is None else per_class
-    conf = load_confusion_pairs()
-    flow_models = select_flow_models(df)
-    _edges, names = RARE_BANDS
-    cat_color = _ranked_category_colors()
-    x = np.arange(len(names))
+    pairs = _benchmark_pairs(with_unsupported_as_zero(df, model_cols=("model", "mode")), pairs)
+    prevalence = _prevalence(rare)
+    is_rare = np.array([prevalence[(d, t.strip().lower())] < RARE_PREVALENCE_MAX
+                        for d, t in zip(pairs["dataset"], pairs["true_label"])])
 
     with plt.rc_context(_rc()):
-        # A over B on the left, C beside them, D across the bottom.
-        # Column 2 is a deliberate SPACER: panel C writes its row labels outside its own axes to
-        # the left ("sympathetic cholinergic neuron (0.058%)" is the widest), so without a gutter
-        # they would run into B's legend. Nothing is drawn in it.
-        # A/B ENLARGED 2026-08-30. The space comes from the figure's HEIGHT, not from the
-        # horizontal layout: the canvas grows 12.9 -> 13.62 in and rows 0/1 take a larger share,
-        # so A gains ~20% and B ~25% in height while D loses ~10%. Nothing horizontal moves,
-        # which is what keeps A/B clear of C -- see the gutter note on column 2 below. C spans
-        # rows 0:2 and therefore grows with them, which is harmless.
-        # 13.62 IS A CEILING, NOT A ROUND NUMBER. At 13.8 the float overflowed the text block by
-        # 4.2pt ("Float too large for page", build.log) because the figure is set at
-        # width=1.0\linewidth and its rendered height is linewidth * (h/13.4). Raising h further
-        # without narrowing the figure or dropping to 0.98\linewidth reintroduces that warning.
-        fig = plt.figure(figsize=(13.4, 13.62))
-        gs = fig.add_gridspec(3, 5, width_ratios=[1.06, 0.46, 0.96, 1.18, 0.30],
-                              height_ratios=[1.80, 1.30, 2.45], wspace=0.04, hspace=0.40)
-        ax_a = fig.add_subplot(gs[0, 0])
-        ax_aleg = fig.add_subplot(gs[0, 1]); ax_aleg.axis("off")
-        ax_b = fig.add_subplot(gs[1, 0])
-        ax_bleg = fig.add_subplot(gs[1, 1]); ax_bleg.axis("off")
-        ax_c = fig.add_subplot(gs[0:2, 3])
-        ax_cleg = fig.add_subplot(gs[0:2, 4]); ax_cleg.axis("off")
-        # Column 2 is an empty gutter separating the A/B stack from C, and nothing is drawn in
-        # it. Its width is doing two jobs: C writes its row labels outside its own axes to the
-        # left, so without the gutter they would run into B's legend, and the remaining space is
-        # what makes the two blocks read as separate groups rather than one interleaved band.
-        # The alluvials sit left of the key with room to spare: _sankey draws its right-hand
-        # target labels OUTSIDE the axes, so the third panel's labels run into the key column
-        # unless that column is given more width than its text needs.
-        # Tight between panels: only the first alluvial draws left-hand labels, so the gap
-        # each pair needs is just panel N's right-hand labels clearing panel N+1's ribbons.
-        # Panels 2-4 carry no left labels and reclaim that margin (see _sankey's xlim),
-        # which is where the real saving is. `wspace` still has to clear the RIGHT-hand
-        # target labels, which _sankey draws outside the axes and which run long
-        # ('mature conventional dendritic cell'); below ~0.18 they overrun the neighbour.
-        # wspace 0.20 -> 0.30 on 2026-08-30. Raising it alone did not solve this (0.34 and 0.46 were
-        # both still only a hair clear); the real fix is _sankey's right_margin, set at the call below.: at 0.20 the third alluvial's longest right-hand
-        # label ("mature conventional dendritic cell") overran into the fourth panel's ribbons.
-        # _sankey draws those labels at x = 1.05 with ha="left" and no clipping inside
-        # xlim=(-0.9, 1.9), so a label begins at ~70% of the axes width and anything wider than the
-        # remaining 30% leaves the axes; panels 2-4 draw no LEFT labels, so their ribbons start only
-        # ~5% in and there is almost nothing between one panel's text and the next panel's ribbons
-        # except this gap. Raising wspace is the local fix -- widening _sankey's xlim would work too
-        # but that helper is shared with the four supplementary flow figures.
-        gs_d = gs[2, :].subgridspec(2, 4, height_ratios=[1.0, 0.24],
-                                    width_ratios=[1.16, 1.0, 1.0, 1.0],
-                                    wspace=0.30, hspace=0.18)
-        ax_d = [fig.add_subplot(gs_d[0, i]) for i in range(4)]
-        ax_dkey = fig.add_subplot(gs_d[1, :]); ax_dkey.axis("off")
+        fig = plt.figure(figsize=(11.5, 3.4))
+        gs = fig.add_gridspec(1, 3, width_ratios=[1.0, 1.0, 0.36], wspace=0.14)
+        axes = [fig.add_subplot(gs[0, 0])]
+        axes.append(fig.add_subplot(gs[0, 1], sharey=axes[0]))
+        ax_key = fig.add_subplot(gs[0, 2]); ax_key.axis("off")
+        y = np.arange(len(RARITY_ROWS))[::-1]
+        for ax, keep, title in ((axes[0], ~is_rare, "Common cell types (\u2265 1%)"),
+                                (axes[1], is_rare, "Rare cell types (< 1%)")):
+            shares = _group_means(_answer_shares(pairs[keep]).groupby("model").mean(),
+                                  RARITY_ROWS)
+            _stacked_shares(ax, shares, y)
+            ax.set_yticks(y)
+            ax.set_yticklabels(shares.index)
+            ax.set_ylim(-0.6, len(RARITY_ROWS) - 0.4)
+            ax.set_title(title, fontsize=FS_TITLE)
+            ax.set_xlabel("Share of cells (averaged over cell types,\nmethods and datasets)")
+            _harmonize(ax, text_size=FS_POINT)
+        axes[1].tick_params(labelleft=False)
+        ax_key.legend(handles=axes[0].get_legend_handles_labels()[0], loc="center left",
+                      frameon=False, fontsize=FS_LEGEND, borderaxespad=0, borderpad=0,
+                      handlelength=1.6)
+        _panel_letters(fig, [(axes[0], "B")])
+        return _save(fig, out_path, dpi)
 
-        for block, family, style in RARE_BLOCKS:
-            sub = rare[rare["block"] == block]
-            if sub.empty:
-                continue
-            recall = [sub.loc[sub["band"] == b, "recall"].mean() for b in names]
-            ax_a.plot(x, recall, color=cat_color[family], linestyle=style, lw=1.8,
-                      marker="o", ms=4.5, zorder=3)
-        for block, family, style in FRONTIER_BLOCKS:
-            sub = rare[rare["block"] == block]
-            if sub.empty:
-                continue
-            recall = [sub.loc[sub["band"] == b, "recall"].mean() for b in names]
-            ax_a.plot(x, recall, color=cat_color[family], linestyle=style, lw=1.4, alpha=0.85,
-                      marker=FRONTIER_MARKER, ms=10, mew=0.6, mec="white", zorder=4)
-        ax_a.set_xticks(x); ax_a.set_xticklabels(names)
-        ax_a.set_xlabel("prevalence in the full dataset")
-        ax_a.set_ylabel("mean per-class recall")
-        # Anchored at zero: the panel's claim is about the SIZE of the gap between groups at each
-        # band, and a floating baseline exaggerates it.
-        ax_a.set_ylim(0, None)
-        ax_a.grid(axis="y", color="0.9", lw=0.6); ax_a.set_axisbelow(True)
-        for side in ("top", "right"):
-            ax_a.spines[side].set_visible(False)
 
-        # C: the rare classes only, decomposed. Pooling the two rarest bands gives n = 44 cell
-        # types, which is what makes the three-way split readable rather than noisy.
-        ax_dec = ax_b
-        # Panels B and C share ONE column order: increasing control over the label space. That is
-        # the axis this section is about, and RARE_BLOCKS is in ranked order, which is a different
-        # one -- showing the same five groups in two orders in adjacent panels reads as an error.
-        block_order = BLOCK_ORDER
-        rarecls = rare[rare["orig_prevalence"] < RARE_PREVALENCE_MAX]
-        blocks = [b for b in block_order if b in set(rarecls["block"])]
-        shades = [("never emitted", "0.30"), ("emitted, never correct", "0.62"),
-                  ("recovered", "0.88")]
-        bottom = np.zeros(len(blocks))
-        parts = []
-        for name in ("never emitted", "emitted, never correct", "recovered"):
-            vals = []
-            for block in blocks:
-                s = rarecls[rarecls["block"] == block]
-                if name == "never emitted":
-                    vals.append((~s["emitted"].astype(bool)).mean())
-                elif name == "emitted, never correct":
-                    vals.append(((s["recall"] == 0) & s["emitted"].astype(bool)).mean())
-                else:
-                    vals.append((s["recall"] > 0).mean())
-            parts.append(np.array(vals))
-        for (name, shade), vals in zip(shades, parts):
-            ax_dec.bar(np.arange(len(blocks)), vals, bottom=bottom, width=0.66,
-                     color=shade, edgecolor="white", linewidth=0.7, zorder=2)
-            bottom = bottom + vals
-        ax_dec.set_xticks(np.arange(len(blocks)))
-        ax_dec.set_xticklabels([BLOCK_SHORT[b].replace("\n", " ") for b in blocks],
-                               fontsize=FS_POINT, rotation=30, ha="right",
-                               rotation_mode="anchor")
-        ax_dec.tick_params(axis="x", length=0, pad=2)
-        ax_dec.set_ylabel("share of rare cell types")
-        ax_dec.set_ylim(0, 1)
-        for side in ("top", "right"):
-            ax_dec.spines[side].set_visible(False)
+def figure_3(df, out_path, dpi=600, rare=None):
+    """Figure 4 -- rare cell types, in Figure 2G/H's rows: every family in both settings, then the
+    closed-weight LLMs.
 
-        # --- C: the same failure, per cell type and dataset, with the graded score -----------
-        prev = (rare.drop_duplicates(["dataset", "k"])
-                    .set_index(["dataset", "k"])["orig_prevalence"].to_dict())
+    (A) Mean per-class recall of the common and of the rare cell types, compared within each
+        dataset (_rarity_rates).
+    (B) For the rare types, how far each group got: correct for most of the type's cells, for
+        some, named but never on its cells, or never named, which for the constrained baselines is
+        split by whether the method has a label for the type at all.
+    (C) One worked example of where the cells of the rare types go, for human pancreas. The
+        methods are the representatives of the supplementary flow figures (select_flow_models),
+        so the example is a window onto them rather than a separate selection.
+    """
+    rare = load_rare_outcomes() if rare is None else rare
+    conf = load_confusion_pairs()
+    flow_models = select_flow_models(df)
+    rates = _group_means(_rarity_rates(rare), RARITY_ROWS)
 
-        # ONE RARITY RULE for the whole section: draw only from the cell types below
-        # RARE_PREVALENCE_MAX, the same set panel B decomposes and the supplementary figure shows
-        # in full. Taking "the three rarest per dataset" without that filter pulled in HFRA's
-        # retinal cone cell at 3.4%, so the figure used two different definitions of rare.
-        # A dataset with fewer than RARE_EXEMPLARS_PER_DATASET qualifying types contributes fewer
-        # rows -- HFRA has only two.
-        rows = []
-        for key, label in EXEMPLAR_DATASETS:
-            types = sorted(((t, p) for (d, t), p in prev.items()
-                            if d == key and p < RARE_PREVALENCE_MAX),
-                           key=lambda tp: tp[1])[:RARE_EXEMPLARS_PER_DATASET]
-            if not types:
-                continue
-            rows.append(("__header__", label, None))
-            rows += [(key, t, p) for t, p in types]
+    with plt.rc_context(_rc()):
+        # Drawn at the output dpi: _align_left measures text, and hinted text widths depend on it.
+        fig = plt.figure(figsize=(13.4, 9.4), dpi=dpi)
+        # A and B share their rows, so B carries no row names. The flows below get the full width:
+        # only the first of them draws left-hand labels, and _sankey draws the right-hand ones
+        # outside its axes, so `wspace` has to clear them (see _sankey's right_margin). A's left
+        # edge is aligned with C's at the end (_align_left), so `left` here is only a start.
+        top = fig.add_gridspec(1, 3, width_ratios=[1.0, 1.0, 0.30], wspace=0.10,
+                               left=0.16, right=0.985, top=0.985, bottom=0.64)
+        ax_a = fig.add_subplot(top[0, 0])
+        ax_b = fig.add_subplot(top[0, 1], sharey=ax_a)
+        ax_bkey = fig.add_subplot(top[0, 2]); ax_bkey.axis("off")
+        bottom = fig.add_gridspec(2, 4, height_ratios=[1.0, 0.11],
+                                  width_ratios=[1.16, 1.0, 1.0, 1.0], wspace=0.30, hspace=0.12,
+                                  left=0.05, right=0.985, top=0.53, bottom=0.0)
+        ax_c = [fig.add_subplot(bottom[0, i]) for i in range(4)]
+        ax_ckey = fig.add_subplot(bottom[1, :]); ax_ckey.axis("off")
 
-        # C carries the frontier columns too, so the per-type view resolves the same groups as B. The frontier models appear twice by construction -- once inside their family
-        # column and once in their own -- which is the point: it shows whether the family result
-        # holds at the top of the family for each individual cell type.
-        norm, s_min, s_span = _rare_dotplot(ax_c, rows, rare, per_class, block_order)
-        cmap = plt.get_cmap("viridis")
-        # Slanted as in B: two words per column no longer fit side by side at eight columns.
-        ax_c.set_xticklabels([BLOCK_SHORT[b].replace("\n", " ") for b in block_order],
-                             fontsize=FS_POINT, rotation=30, ha="right", rotation_mode="anchor")
-        ax_c.tick_params(axis="x", length=0, pad=2)
-        # The bar lives INSIDE the legend axes, left-aligned with the marker column above it, so
-        # the key reads as one column of symbols. Attaching it to ax_c with `pad` instead parks it
-        # between the grid and the legend, at an x that matches neither.
-        cax = ax_cleg.inset_axes([0.195, 0.20, 0.075, 0.38])
-        cb = fig.colorbar(cm.ScalarMappable(norm=norm, cmap=cmap), cax=cax)
-        cb.set_label("Lin similarity to the true label", fontsize=FS_POINT)
-        cb.ax.tick_params(labelsize=FS_LEGEND)
+        # --- A: common against rare cell types --------------------------------------------
+        _paired_rows(ax_a, rates, RARITY_ROWS, "common", "rare")
+        ax_a.set_xlim(0, 0.8)
+        ax_a.set_xticks(np.arange(0, 0.81, 0.2))
+        ax_a.set_xlabel("Mean per-class recall")
+        ax_a.legend(handles=[
+            plt.Line2D([], [], linestyle="none", marker="o", markerfacecolor="white",
+                       markeredgecolor="0.3", markersize=7, label="common (\u2265 1%)"),
+            plt.Line2D([], [], linestyle="none", marker="o", color="0.3", markersize=7,
+                       label="rare (< 1%)")],
+            loc="upper right", frameon=False, fontsize=FS_LEGEND, borderaxespad=0, borderpad=0)
 
-        # --- D: one worked example of where the rare cells go --------------------------------
-        # Same drawing primitive and the same model representatives as the supplementary flow
-        # figures, so this panel is a window onto them, not a second selection.
-        d_dataset = RARE_FLOW_EXAMPLE
-        # The top representative of each family, in the order the rest of the figure uses:
-        # baseline, then scLLM, then LLM. select_flow_models() returns the constrained picks in
-        # its first row, which is the setting panels B and C put on the right of each family, so
-        # the three panels agree on what "top" means.
-        # ... plus the UNCONSTRAINED counterpart of the frontier model, so panel D shows both
-        # regimes for the family whose regime effect the section is about. flow_models[1][2] is
-        # the same model as flow_models[0][2] with the candidate list withheld, and it is placed
-        # BEFORE the constrained one so the two LLM panels read U then C, as panels B and C do.
-        d_models = [flow_models[0][0], flow_models[0][1], flow_models[1][2], flow_models[0][2]]
-        drawn = False
-        if conf is not None and len(conf):
-            csub = conf[conf["dataset"].astype(str) == d_dataset]
-            # Full-dataset prevalence, as in the supplementary flow figures, so the rare types are
-            # chosen, ordered and colored the same way in both. The confusion table's own
-            # `prevalence` is the subset share, which ties most rare types at the 20-cell floor.
-            prev_full = (rare[rare["dataset"] == d_dataset].drop_duplicates(["k"])
-                         .set_index("k")["orig_prevalence"])
-            lut = {str(k).strip().lower(): v for k, v in prev_full.items()}
-            prev_s = pd.Series({t: lut[t.strip().lower()] for t in csub["true_label"].unique()
-                                if t.strip().lower() in lut})
-            n_types = RARE_FLOW_N_TYPES.get(d_dataset, 2)
-            rare_t = list(prev_s[prev_s <= 0.03].nsmallest(n_types).index) or \
-                list(prev_s.nsmallest(n_types).index)
-            pal = sns.color_palette("tab10", n_colors=max(len(rare_t), 3)).as_hex()
-            fcolors = {t: pal[i % len(pal)] for i, t in enumerate(rare_t)}
-            first = next((m for m in d_models if m in set(csub["model"])), None)
-            fcounts = (csub[(csub["model"] == first) & (csub["true_label"].isin(rare_t))]
-                       .groupby("true_label")["n_cells"].sum()) if first else None
-            for i_d, (ax_dd, model) in enumerate(zip(ax_d, d_models)):
-                if model is None or model not in set(csub["model"]):
-                    ax_dd.axis("off")
-                    continue
-                m = csub[(csub["model"] == model) & (csub["true_label"].isin(rare_t))]
-                flows = []
-                for true_label, grp in m.groupby("true_label"):
-                    grp = grp.sort_values("n_cells", ascending=False)
-                    keep, rest = grp.head(6), grp.tail(max(len(grp) - 6, 0))
-                    flows += [(true_label, t.predicted_label, float(t.n_cells))
-                              for t in keep.itertuples()]
-                    if len(rest):
-                        flows.append((true_label, "other", float(rest["n_cells"].sum())))
-                if not flows:
-                    ax_dd.axis("off")
-                    continue
-                w = {}
-                for src, tgt, val in flows:
-                    a0, b0 = w.get(tgt, (0.0, 0.0))
-                    w[tgt] = (a0 + rare_t.index(src) * val, b0 + val)
-                right = sorted(w, key=lambda t: (t == "other", w[t][0] / w[t][1]))
-                # A wider gap than the supplementary default, so the labels read as separate
-                # from the ribbons rather than butted against them.
-                # right_margin=2.9 rather than the 1.9 default: panel D's longest target label,
-                # "mature conventional dendritic cell", overran into the next panel at the default.
-                # This lifts the label's share of the axes width from ~40% to ~60%, which fixes the
-                # cause; wspace then only has to separate the panels, not absorb the overflow.
-                _sankey(ax_dd, flows, rare_t, right, fcolors,
-                        show_left_labels=(i_d == 0), label_pad=0.11, right_margin=2.9)
-                regime = REGIME.get(derive_mode(model))
-                ax_dd.set_title(f"{_display(model_base(model))}"
-                               + (f"  ({regime})" if regime else ""), fontsize=FS_POINT)
-                drawn = True
-            if drawn and fcounts is not None:
-                # Five columns over ten handles gives two rows spread across the panel width,
-                # which is what the space under four alluvials is for.
-                # notes=False: "ribbon width proportional to cells" and the top-6 rule are
-                # sentences, not encodings, and belong in the figure caption. The supplementary
-                # flow figures keep them, since they stand alone.
-                _flow_key(ax_dkey, rare_t, fcolors, fcounts, 6, label_size=FS_LEGEND, ncol=5,
-                          notes=False)
-        if not drawn:
-            for ax_dd in ax_d:
-                ax_dd.axis("off")
-
-        for ax in (ax_a, ax_dec):
+        # --- B: what became of each rare cell type -----------------------------------------
+        _outcome_bars(ax_b, rates, np.arange(len(RARITY_ROWS))[::-1])
+        ax_b.tick_params(labelleft=False)
+        ax_b.set_xlabel("Share of rare cell types")
+        ax_bkey.legend(handles=ax_b.get_legend_handles_labels()[0], loc="center left",
+                       frameon=False, fontsize=FS_LEGEND, borderaxespad=0, borderpad=0,
+                       handlelength=1.6, labelspacing=0.9)
+        for ax in (ax_a, ax_b):
             _harmonize(ax, text_size=FS_POINT)
 
-        # One legend per panel, beside the panel it explains, and no headings: with the keys
-        # separated the heading only repeats the panel letter it already sits next to.
-        # The legend is FACTORED, because the panel's encoding is: colour and marker give the
-        # method group, line style gives the regime. Listing all seven series spelled the two
-        # dimensions out as seven strings and put "baselines" among the LLM entries.
-        a_handles = [
-            plt.Line2D([0], [0], color=cat_color["classical"], lw=1.8, marker="o", ms=4.5,
-                       label="baselines"),
-            plt.Line2D([0], [0], color=cat_color["scLLM"], lw=1.8, marker="o", ms=4.5,
-                       label="scLLM"),
-            plt.Line2D([0], [0], color=cat_color["LLM"], lw=1.8, marker="o", ms=4.5,
-                       label="LLM"),
-            plt.Line2D([0], [0], color=cat_color["LLM"], lw=1.4, alpha=0.85,
-                       marker=FRONTIER_MARKER, ms=10, mew=0.6, mec="white",
-                       label="frontier LLM"),
-            _blank(),
-            plt.Line2D([0], [0], color="0.25", lw=1.8, linestyle="-", label="constrained"),
-            plt.Line2D([0], [0], color="0.25", lw=1.8, linestyle="--", label="unconstrained"),
-        ]
-        ax_aleg.legend(handles=a_handles,
-                       loc="upper left", frameon=False, fontsize=FS_LEGEND,
-                       labelspacing=0.5, handletextpad=0.6, borderaxespad=0.0, alignment="left")
-        ax_bleg.legend(handles=[plt.Line2D([0], [0], linestyle="none", marker="s", color=shade,
-                                           label=name.replace(", ", ",\n"))
-                                for name, shade in shades],
-                       loc="upper left", bbox_to_anchor=(-0.10, 1.0), frameon=False,
-                       fontsize=FS_LEGEND, labelspacing=0.9, handletextpad=0.6,
-                       borderaxespad=0.0, alignment="left")
-        c_handles = [plt.Line2D([0], [0], linestyle="none", marker="o", mfc="0.62", mec="0.25",
-                                ms=np.sqrt(s_min + s_span * v) / 1.7, label=f"recall {v:g}")
-                     for v in (0.0, 0.5, 1.0)]
-        # The never-emitted marker is TWO artists in the panel -- a hollow ring with a cross
-        # INSIDE it -- so the key has to superimpose the same pair. ndivide=1 gives both handles
-        # the full handle box so they overlap; ndivide=None would split it and put them side by
-        # side, which is not what the panel draws.
-        c_handles.append((plt.Line2D([0], [0], linestyle="none", marker="o", mfc="none",  # noqa
-                                     mec="0.4", ms=7.5, mew=1.4),
-                          plt.Line2D([0], [0], linestyle="none", marker="x", color="0.35",
-                                     ms=4.2, mew=0.9)))
-        # The two letters sit in the HANDLE column, where the recall circles are, so the key
-        # reads as one aligned column of symbols rather than as two indented text lines. A
-        # mathtext marker is what puts a glyph in that slot.
-        c_handles += [_blank(),
-                      plt.Line2D([0], [0], linestyle="none", marker="$\\mathrm{U}$",
-                                 color="0.25", ms=8, label="unconstrained"),
-                      plt.Line2D([0], [0], linestyle="none", marker="$\\mathrm{C}$",
-                                 color="0.25", ms=8, label="constrained")]
-        c_labels = ([h.get_label() for h in c_handles[:3]] + ["label never emitted"]
-                    + [h.get_label() for h in c_handles[-3:]])
-        ax_cleg.legend(handles=c_handles, labels=c_labels, loc="upper left", frameon=False,
-                       fontsize=FS_LEGEND, labelspacing=1.0, handletextpad=0.6,
-                       borderaxespad=0.0, alignment="left",
-                       handler_map={tuple: HandlerTuple(ndivide=1, pad=0.0)})
-        _panel_letters(fig, [(ax_a, "A"), (ax_dec, "B"), (ax_c, "C"), (ax_d[0], "D")])
+        # --- C: one worked example of where the rare cells go -------------------------------
+        # The top representative of each family, constrained, plus the unconstrained run of the
+        # LLM, placed before the constrained one so its two panels read U then C.
+        c_models = [flow_models[0][0], flow_models[0][1], flow_models[1][2], flow_models[0][2]]
+        csub = conf[conf["dataset"].astype(str) == RARE_FLOW_EXAMPLE]
+        # Full-dataset prevalence, as in the supplementary flow figures, so the rare types are
+        # chosen, ordered and coloured the same way in both.
+        prevalence = _prevalence(rare)
+        prev_s = pd.Series({t: prevalence[(RARE_FLOW_EXAMPLE, t.strip().lower())]
+                            for t in csub["true_label"].unique()})
+        rare_t = list(prev_s[prev_s < RARE_PREVALENCE_MAX].nsmallest(RARE_FLOW_MAX_TYPES).index)
+        pal = sns.color_palette("tab10", n_colors=max(len(rare_t), 3)).as_hex()
+        fcolors = {t: pal[i % len(pal)] for i, t in enumerate(rare_t)}
+        fcounts = (csub[(csub["model"] == c_models[0]) & (csub["true_label"].isin(rare_t))]
+                   .groupby("true_label")["n_cells"].sum())
+        for i, (ax, model) in enumerate(zip(ax_c, c_models)):
+            m = csub[(csub["model"] == model) & (csub["true_label"].isin(rare_t))]
+            if m.empty:
+                raise SystemExit(f"Figure 4C: {model} has no predictions on {RARE_FLOW_EXAMPLE}.")
+            flows = []
+            for true_label, grp in m.groupby("true_label"):
+                grp = grp.sort_values("n_cells", ascending=False)
+                keep, rest = grp.head(6), grp.tail(max(len(grp) - 6, 0))
+                flows += [(true_label, t.predicted_label, float(t.n_cells))
+                          for t in keep.itertuples()]
+                if len(rest):
+                    flows.append((true_label, "other", float(rest["n_cells"].sum())))
+            w = {}
+            for src, tgt, val in flows:
+                a0, b0 = w.get(tgt, (0.0, 0.0))
+                w[tgt] = (a0 + rare_t.index(src) * val, b0 + val)
+            right = sorted(w, key=lambda t: (t == "other", w[t][0] / w[t][1]))
+            # right_margin=2.9 rather than the 1.9 default: the longest target label would
+            # otherwise overrun the next panel.
+            _sankey(ax, flows, rare_t, right, fcolors, show_left_labels=(i == 0),
+                    label_pad=0.11, right_margin=2.9)
+            ax.set_title(_run_label(model), fontsize=FS_POINT)
+        # The ribbon-width and top-6 rules are sentences, not encodings: they go in the caption.
+        _flow_key(ax_ckey, rare_t, fcolors, fcounts, 6, label_size=FS_LEGEND, ncol=5,
+                  notes=False)
+        _align_left(fig, top, ax_a, ax_c[0])
+        _panel_letters(fig, [(ax_a, "A"), (ax_b, "B"), (ax_c[0], "C")])
         return _save(fig, out_path, dpi)
 
 
@@ -1067,28 +909,23 @@ def select_flow_models(df, metric="balanced_accuracy"):
 
     return [[named(picks[category], mode) for category in ("classical", "scLLM", "LLM")]
             for mode in ("unblind", "blind")]
-# How many rare types each dataset can support. HFRA has 9 classes and only 2 at or below the 3%
-# floor, human_pancreas 4; asking for 5 everywhere would silently pad with common types.
-RARE_FLOW_N_TYPES = {"HFRA": 2, "human_pancreas": 4, "HIHA": 5, "Zeisel": 5}
 # Order the per-dataset flow figures appear in the supplement, and therefore their S-numbers.
 # Alphabetical, the dataset order of every per-dataset panel (DATASET_ORDER).
 RARE_FLOW_ORDER = ["HFRA", "HIHA", "Zeisel", "human_pancreas"]
 
 
-def figure_rare_flows(df, out_path, dpi=600, dataset="HIHA", models=None, n_types=None):
+def figure_rare_flows(df, out_path, dpi=600, dataset="HIHA", models=None):
     """Supplementary — where the cells of the rarest types actually go.
 
-    Figure 4A and 4B say how OFTEN rare types are recovered; neither says what they are called
-    instead,
-    which is the difference between a near miss inside the right lineage and an unrelated call.
-    One alluvial per model and regime: rare true types on the left, predicted labels on the right.
+    Figure 4A and 4B say how often rare types are labeled correctly; neither says what they are
+    called instead. One alluvial per model and regime: the rarest types below RARE_PREVALENCE_MAX, at
+    most RARE_FLOW_MAX_TYPES, on the left, and the predicted labels on the right.
 
     ``df`` is unused — kept so every figure builder has the same signature.
     """
     conf = load_confusion_pairs()
     if conf is None or len(conf) == 0:
         raise SystemExit("Rare-type flows: no confusion-pair table; see cache/confusion_pairs_*.")
-    n_types = n_types or RARE_FLOW_N_TYPES.get(dataset, 5)
     models = models or select_flow_models(df)
     with plt.rc_context(_rc()):
         # No in-figure title: the caption states the dataset and what is shown, and a title
@@ -1101,7 +938,8 @@ def figure_rare_flows(df, out_path, dpi=600, dataset="HIHA", models=None, n_type
                     .drop_duplicates(["k"]).set_index("k")["orig_prevalence"].to_dict())
         ok = plot_rare_type_flows(conf, out_path, dpi, dataset=dataset, models=models,
                                   prevalence_map=prev_map, name_fn=_display,
-                                  n_types=n_types, title=None)
+                                  n_types=RARE_FLOW_MAX_TYPES,
+                                  prevalence_max=RARE_PREVALENCE_MAX, title=None)
     if not ok:
         raise SystemExit(f"Rare-type flows: nothing to draw for {dataset}.")
     return Path(out_path)
@@ -1153,6 +991,9 @@ MAPPING_ROWS = [(family, mode, f"{name}, {REGIME_SHORT[mode]}")
                 for family, name in (("classical", "baselines"), ("scLLM", "scLLMs"),
                                      ("LLM", "LLMs"))
                 for mode in ("blind", "unblind")]
+# Figure 4's rows and S7B's: G's, then the closed-weight LLMs, who are also among the LLMs.
+RARITY_ROWS = MAPPING_ROWS + [("LLM", mode, f"closed-weight LLMs, {REGIME_SHORT[mode]}",
+                               CLOSED_WEIGHT_TIER) for mode in ("blind", "unblind")]
 
 
 def _run_label(model):
@@ -1299,21 +1140,9 @@ def _mapping_panel(ax, pairs):
     that needed none (open), per family and setting, averaged over the family's methods and the
     datasets."""
     means = _group_means(_mapping_scores(pairs).groupby("model").mean(), MAPPING_ROWS)
-    colors = _ranked_category_colors()
-    y = np.arange(len(MAPPING_ROWS))[::-1]  # first row on top, level with H's rows
-    for yy, (family, *_), (_label, mean) in zip(y, MAPPING_ROWS, means.iterrows()):
-        ax.plot([mean["without"], mean["with"]], [yy, yy], color=colors[family], linewidth=2.2,
-                zorder=2)
-        ax.scatter(mean["without"], yy, s=46, facecolor="white", edgecolor=colors[family],
-                   linewidth=1.6, zorder=3)
-        ax.scatter(mean["with"], yy, s=46, color=colors[family], zorder=3)
-    ax.set_yticks(y)
-    ax.set_yticklabels(means.index)
-    ax.set_ylim(-0.6, len(MAPPING_ROWS) - 0.4)
+    _paired_rows(ax, means, MAPPING_ROWS, "without", "with")  # first row on top, level with H's
     ax.set_xlim(0, 0.7)  # room on the right for the key
     ax.set_xlabel("Balanced accuracy (averaged over methods and datasets)")
-    ax.grid(axis="x", linestyle=":", alpha=0.5)
-    sns.despine(ax=ax)
     ax.legend(handles=[
         plt.Line2D([], [], linestyle="none", marker="o", markerfacecolor="white",
                    markeredgecolor="0.3", markersize=7, label="no curated mapping"),
@@ -2409,8 +2238,10 @@ FIGURES = {
     "s5_context_supporting": figure_context_supporting,
     "s5b_ontology_scores": figure_context_ontology,
     "s6_cost_performance": figure_cost_performance,
-    # R3: the full rare-type set plus the per-dataset gap the pooled claim is hedged on.
+    # R3: every rare cell type per method group, then (S7 continued) where the cells of the common
+    # and of the rare types go.
     "s7_rare_full": figure_s7_rare_full,
+    "s7b_rare_answer_types": figure_s7b_rare_answer_types,
     # One flow figure per dataset, S8 onward in RARE_FLOW_ORDER; HFRA has only two rare types at
     # or below the 3% floor.
     **{f"s{i + 8}_{ds.lower()}": _rare_flow_builder(ds)
