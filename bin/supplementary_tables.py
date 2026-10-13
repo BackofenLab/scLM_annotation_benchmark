@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import argparse
 import sys
+from decimal import ROUND_HALF_UP, Decimal
 from pathlib import Path
 
 import pandas as pd
@@ -30,7 +31,6 @@ from manuscript_figures import (  # noqa: E402
 from plot_model_comparison import (  # noqa: E402
     DEFAULT_CONFUSION_CSV, EXCLUDED_BASES, REGIME, REGIME_SHORT, categorize_model, derive_mode,
     load_confusion_pairs, model_base, unsupported_pairs)
-from util.cell_ontology_similarity import BROAD_TERMS_BELOW  # noqa: E402
 
 # The one chance model the paper describes: Figure 2's dashed line. The pipeline's other chance
 # floors (uniform random, always "cell") are described nowhere, so they are left out.
@@ -48,12 +48,12 @@ METRIC_HEADERS = {
     "balanced_accuracy": "Bal.\\ acc.", "accuracy": "Acc.", "macro_f1": "Macro F1",
     "weighted_f1": "Wtd.\\ F1", "agreement_score": "Agree.", "rada_avg_similarity": "Rada",
     "lin_avg_similarity": "Lin", "text_emb_norm_balanced_mapped": "Mapped",
-    "text_emb_norm_balanced_raw": "Unmapped"}
+    "text_emb_norm_balanced_raw": "Raw"}
 TEX_GROUPS = [(group.capitalize(), [(key, METRIC_HEADERS[key]) for key, _name in metrics])
               for group, metrics in METRIC_GROUPS] + [
     ("Curated mapping", [(NEEDS_MAPPING_COLUMN, "Needed"),
                          (NO_MAPPING_COLUMN, "\\shortstack[r]{Bal.\\ acc.\\\\without}")]),
-    ("Distinct labels", [("n_unique_pred_mapped", "Mapped"), ("n_unique_pred_raw", "Unmapped")])]
+    ("Distinct labels", [("n_unique_pred_mapped", "Mapped"), ("n_unique_pred_raw", "Raw")])]
 BOLD_MAX = {key for _group, metrics in METRIC_GROUPS for key, _name in metrics}
 COUNT_COLUMNS = {"n_unique_pred_mapped", "n_unique_pred_raw"}
 FAMILY = {"LLM": "general-purpose LLM", "scLLM": "scLLM",
@@ -78,9 +78,11 @@ def _tex(text):
 
 
 def _fmt(value, digits=3):
+    """``value`` rounded half up as the decimal number it is stored as. The snapshot keeps four
+    decimals, and binary rounding would print a stored 0.3495 as 0.349."""
     if pd.isna(value):
         return "--"
-    return f"{value:.0f}" if digits == 0 else f"{value:.{digits}f}"
+    return str(Decimal(str(value)).quantize(Decimal(1).scaleb(-digits), rounding=ROUND_HALF_UP))
 
 
 def _cells(size):
@@ -106,7 +108,10 @@ def _derived(out):
         frames.append(pd.concat([_mapping_scores(pairs)["without"].rename(NO_MAPPING_COLUMN),
                                  _needs_mapping(pairs).rename(NEEDS_MAPPING_COLUMN)], axis=1)
                       .reset_index().assign(subset_size=size))
-    return pd.concat(frames, ignore_index=True)
+    # Four decimals, as the snapshot stores every metric, so a run whose answers need no curated
+    # mapping prints the same balanced accuracy in both columns.
+    return pd.concat(frames, ignore_index=True).round({NO_MAPPING_COLUMN: 4,
+                                                       NEEDS_MAPPING_COLUMN: 4})
 
 
 def build_frame(df):
@@ -175,35 +180,26 @@ def _caption(dataset, sub, sizes, first):
                      f"terms or had a reviewed mapping, and the others count as wrong.")
     counts = _join([f"{sub.loc[sub['subset_size'] == size, 'model'].nunique()} at {_cells(size)}"
                     for size in sizes])
-    head = (f"\\textbf{{Complete results for {name}.}} One row per method and setting, {counts}, "
+    head = (f"\\textbf{{Benchmark results for {name}.}} One row per method and setting, {counts}, "
             f"sorted by balanced accuracy within each size. {_only_smallest(sub, sizes)}"
             f"{absent_note}")
     if dataset != first:
         return (head + f"Columns, abbreviations and bold type as in Supplementary "
                 f"Table~\\ref{{supptab:results_{first.lower()}}}. {coverage_note}")
+    # The columns from left to right; Supplementary Table S3 defines the metrics.
     return head + (
-        "\\emph{Setting} is C for a run constrained to the dataset's expected cell types, which "
-        "a language model receives as a list and to which a baseline's labels are restricted, "
-        "and U for a run without them; the random model, which assigns cell types in proportion "
-        "to their frequency, runs in one setting (--). The metrics are grouped as in Supplementary "
-        "Figure~\\ref{suppfig:metric_agreement}, and the best value of each at each size is in "
-        "bold. Balanced accuracy (\\emph{Bal.\\ acc.}) and macro F1 average the recall and the F1 "
-        "score over cell types, accuracy (\\emph{Acc.}) is the share of correctly labeled cells, "
-        "and weighted F1 (\\emph{Wtd.\\ F1}) weights the F1 score by the number of cells of each "
-        "type. The agreement score (\\emph{Agree.}) is 1 for the true type, 0.5 for a coarser "
-        "or finer type in the Cell Ontology, at any distance, and 0 otherwise, including for a "
-        f"coarser type that covers more than {BROAD_TERMS_BELOW} cell types; Rada and Lin give "
-        "partial credit to related types in the ontology, and Rada also to an answer mapped to its "
-        "root `cell' (Supplementary Table~\\ref{supptab:metrics}). Text similarity scores how "
-        "close the answer is in meaning to the Cell Ontology name of the true type, after the "
-        "curated mapping (\\emph{Mapped}) or as written (\\emph{Unmapped}). \\emph{Needed} is "
-        "the share of cells whose answer needs the curated mapping, being neither a Cell Ontology "
-        "term nor one of the dataset's own labels as written, and \\emph{Bal.\\ acc.\\ without} "
-        "is the balanced "
-        "accuracy when only the answers that need no curated mapping count as correct "
-        "(Figure~\\ref{fig:benchmark}G). \\emph{Distinct labels} counts the different answers "
-        "as written (\\emph{Unmapped}) and the cell types they name after the curated mapping "
-        "(\\emph{Mapped}). "
+        "\\emph{Family} and \\emph{Method} name the method of a run, and \\emph{Setting} is C for "
+        "a run constrained by the list of expected cell types and U for a run without it. The "
+        "random model, which assigns cell types in proportion to their frequency, runs in one "
+        "setting. The best value of each metric at each size is highlighted in bold. "
+        "\\emph{Bal.\\ acc.} is balanced accuracy, \\emph{Acc.} accuracy, \\emph{Wtd.\\ F1} "
+        "weighted F1 and \\emph{Agree.} the agreement score (Supplementary "
+        "Table~\\ref{supptab:metrics}). Text similarity uses the answer after the curated mapping "
+        "(\\emph{Mapped}) or as written (\\emph{Raw}). \\emph{Needed} is the share of cells whose "
+        "answer needs the curated mapping, and \\emph{Bal.\\ acc.\\ without} is the balanced "
+        "accuracy when only the answers that need no curated mapping count as correct. "
+        "\\emph{Distinct labels} counts the cell types named after the curated mapping "
+        "(\\emph{Mapped}) and the different answers as written (\\emph{Raw}). "
         f"{coverage_note}")
 
 

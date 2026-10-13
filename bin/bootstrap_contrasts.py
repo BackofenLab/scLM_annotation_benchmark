@@ -30,6 +30,7 @@ from __future__ import annotations
 
 import argparse
 import sys
+from decimal import ROUND_HALF_UP, Decimal
 from pathlib import Path
 
 import numpy as np
@@ -41,7 +42,7 @@ from ablation_tables import LIST_CONDITION_NAME  # noqa: E402
 from manuscript_figures import (ABLATION_ARMS, DATASET_ORDER, STUDY_ARM_MODEL,  # noqa: E402
                                 _display, _run_label, dataset_label)
 from plot_model_comparison import (  # noqa: E402
-    EXCLUDED_BASES, categorize_model, derive_mode, model_base)
+    EXCLUDED_BASES, categorize_model, derive_mode, model_base, model_tier)
 
 DEFAULT_CELLS = "cache/cell_hits_1000_stratified.csv"
 DEFAULT_OUT = "cache/bootstrap_contrasts_1000_stratified.csv"
@@ -49,8 +50,9 @@ REPLICATES = 10_000
 SEED = 20261007
 # The smallest difference called, above the run-to-run noise of a stochastic model (see above).
 NOISE_FLOOR = 0.03
-# Runs compared with the top run of Figure 2A on the mean over the four datasets.
-TOP_RUNS = 5
+# Runs compared with the top run of Figure 2A on the mean over the four datasets: the two the
+# text calls level with it.
+TOP_RUNS = 2
 
 
 def _group(family, mode):
@@ -64,8 +66,6 @@ CONTRASTS = [
      _group("LLM", "unblind"), _group("scLLM", "unblind")),
     ("llm_c-baseline_c", "Constrained LLMs vs constrained baselines",
      _group("LLM", "unblind"), _group("classical", "unblind")),
-    ("scllm_c-baseline_c", "Constrained scLLMs vs constrained baselines",
-     _group("scLLM", "unblind"), _group("classical", "unblind")),
     ("llm_u-baseline_u", "Unconstrained LLMs vs unconstrained baselines",
      _group("LLM", "blind"), _group("classical", "blind")),
     ("scllm_u-baseline_u", "Unconstrained scLLMs vs unconstrained baselines",
@@ -73,7 +73,12 @@ CONTRASTS = [
     ("scllm_u-llm_u", "Unconstrained scLLMs vs unconstrained LLMs",
      _group("scLLM", "blind"), _group("LLM", "blind")),
 ]
-FAMILY_NAME = {"LLM": "General-purpose LLMs", "scLLM": "scLLMs", "classical": "Baselines"}
+# Rows of the list effect, as (family, subcategory or None for all, name): the groups the text
+# describes, with the scLLMs split into embedding-based and generative ones.
+LIST_EFFECT_ROWS = [("LLM", None, "General-purpose LLMs"),
+                    ("scLLM", "retrieval", "Embedding-based scLLMs"),
+                    ("scLLM", "generative", "Generative scLLMs"),
+                    ("classical", None, "Baselines")]
 
 
 def replicates(cells, n, rng, listed=None):
@@ -132,7 +137,7 @@ def contrasts(cells, n=REPLICATES, seed=SEED):
         for model in rep.columns:
             unconstrained = model.replace("_unblind", "_blind")
             if model.endswith("_unblind") and unconstrained in rep.columns:
-                rows.append(_row("list_effect", "Constrained minus unconstrained, same model",
+                rows.append(_row("list_effect", "Constrained minus unconstrained, same method",
                                  dataset, model, unconstrained, obs,
                                  rep[model] - rep[unconstrained]))
     # The mean over the datasets, each redrawn independently.
@@ -362,6 +367,12 @@ def _signed(value):
     return f"{value:+.3f}".replace("-", "$-$")
 
 
+def _accuracy(value):
+    """Balanced accuracy as the results tables print it: kept to four decimals, as the snapshot
+    stores it, then rounded half up to three."""
+    return str(Decimal(str(round(value, 4))).quantize(Decimal("0.001"), rounding=ROUND_HALF_UP))
+
+
 def write_tex(table, out_path, n=REPLICATES):
     """The comparisons the text states, as a supplementary table; the list effect as counts."""
     lines = [
@@ -382,8 +393,8 @@ def write_tex(table, out_path, n=REPLICATES):
         diff = f"{_signed(r.difference)} ({_signed(r.ci_low)}, {_signed(r.ci_high)})"
         if r.verdict != "level":
             diff = f"\\textbf{{{diff}}}"
-        return (f"{dataset} & {_run_label(r.run_a)} & {r.balanced_accuracy_a:.3f} & "
-                f"{_run_label(r.run_b)} & {r.balanced_accuracy_b:.3f} & {diff} \\\\")
+        return (f"{dataset} & {_run_label(r.run_a)} & {_accuracy(r.balanced_accuracy_a)} & "
+                f"{_run_label(r.run_b)} & {_accuracy(r.balanced_accuracy_b)} & {diff} \\\\")
 
     for key, label, *_ in CONTRASTS:
         block = table[table["contrast"] == key]
@@ -394,32 +405,38 @@ def write_tex(table, out_path, n=REPLICATES):
               "mean over the four datasets}} \\\\"]
     lines += [cells_of(r, "all four") for r in top.itertuples()]
     lines += ["\\midrule", "\\multicolumn{6}{l}{\\textbf{Constrained minus unconstrained, same "
-              "model}} \\\\"]
+              "method}} \\\\"]
     effect = table[table["contrast"] == "list_effect"].copy()
     effect["family"] = effect["run_a"].map(categorize_model)
-    for family in ("LLM", "scLLM", "classical"):
-        group = effect[effect["family"] == family]
+    effect["tier"] = effect["run_a"].map(model_tier)
+    for family, tier, name in LIST_EFFECT_ROWS:
+        group = effect[(effect["family"] == family) & ((effect["tier"] == tier) if tier else True)]
         counts = group["verdict"].value_counts()
-        text = (f"ahead in {counts.get('ahead', 0)}, level in {counts.get('level', 0)}, behind in "
-                f"{counts.get('behind', 0)} of {len(group)} model--dataset pairs "
+        text = (f"ahead in {counts.get('ahead', 0)}, level in {counts.get('level', 0)} and behind "
+                f"in {counts.get('behind', 0)} of {len(group)} pairs of method and dataset "
                 f"({_signed(group['difference'].min())} to {_signed(group['difference'].max())})")
-        lines.append(f"\\multicolumn{{6}}{{l}}{{{FAMILY_NAME[family]}: {text}}} \\\\")
+        lines.append(f"\\multicolumn{{6}}{{l}}{{{name} {text}}} \\\\")
     lines += [
         "\\bottomrule",
         "\\end{tabular}",
         "\\captionsetup{position=below}",
-        "\\caption{\\textbf{Paired bootstrap intervals for the comparisons in the text.} Balanced "
-        "accuracy at 1,000 cells; C and U mark the constrained and unconstrained settings. The "
-        "interval resamples the cells with replacement within each cell type, as they were "
-        f"sampled, and scores every run on the same resampled cells ({n:,} replicates). A group "
-        "comparison takes the best run of each group on a dataset, chosen again in every "
-        "replicate. The rows headed with the top of Figure~\\ref{fig:benchmark}A compare the run "
-        f"with the highest mean over the four datasets with the next {NUMBER_WORDS[TOP_RUNS]}, on "
-        "that mean, each dataset resampled independently. A difference is in bold when its "
-        f"interval excludes zero and it is at least {NOISE_FLOOR:.2f}, a margin above the change "
-        "between reruns of a model (Methods); the others count as level. The last rows count, by "
-        "the same rule, how often the constrained setting changed the balanced accuracy of the "
-        "same method, with the range of the differences in brackets.}",
+        "\\caption{\\textbf{Paired bootstrap intervals for the comparisons in the text.} The "
+        f"first {NUMBER_WORDS[len(CONTRASTS)]} blocks compare two groups of runs, named in their "
+        "headings, on each dataset. Dataset names the test set, or all four for the mean over the "
+        "four datasets. The best run of each group on a dataset is named with its balanced "
+        "accuracy at 1,000 cells (Bal.\\ acc.), and C and U mark the constrained and "
+        "unconstrained settings. Difference gives the first minus the second, with its 95\\% "
+        "interval in parentheses. The interval resamples the cells with replacement within each "
+        "cell type, as they were sampled, and scores every run on the same resampled cells "
+        f"({n:,} replicates). The best run of each group is chosen again in every replicate. The "
+        "block headed with the top of Figure~\\ref{fig:benchmark}A compares the run with the "
+        f"highest mean over the four datasets with the next {NUMBER_WORDS[TOP_RUNS]}, on that "
+        "mean, each dataset resampled independently. A difference is in bold when its interval "
+        f"excludes zero and it is at least {NOISE_FLOOR:.2f}. The last block counts, for the "
+        "general-purpose LLMs, the embedding-based and the generative scLLMs and the baselines, "
+        "the pairs of method and dataset in which the constrained setting was ahead of the "
+        "unconstrained one by this rule, level or behind, with the range of the differences in "
+        "parentheses.}",
         "\\label{supptab:contrasts}",
         "\\end{table}",
         "",

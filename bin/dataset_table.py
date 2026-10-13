@@ -71,7 +71,7 @@ ROWS = [
     ("Cells after quality control", lambda f: _count(f["cells_after_qc"])),
     ("Genes as downloaded", lambda f: _count(f["genes_downloaded"])),
     ("Genes after quality control", lambda f: _count(f["genes_after_qc"])),
-    ("Cell types labeled", lambda f: _count(f["cell_types_labelled"])),
+    ("Cell types", lambda f: _count(f["cell_types_labelled"])),
     ("Cell types scored", lambda f: _count(f["cell_types_scored"])),
     ("Labels", lambda f: f["labels"]),
     ("License", lambda f: f["license"]),
@@ -106,17 +106,15 @@ def caption(by):
                 else f"{NUMBER_WORDS.get(len(keys), len(keys))} studies, "
                      f"{', '.join(named[:-1])} and {named[-1]}")
         sentences.append(f"{_name(by, ds)} compiles {cite}")
+    sources = ", and ".join(sentences)
     return (
         "\\textbf{Datasets of the benchmark.} Cells and genes of the files as downloaded and after "
-        "quality control. Cell types labeled are the distinct labels of a file; scored are those "
-        "left after the labels were mapped to the Cell Ontology, which merged some of the authors' "
-        f"labels ({', '.join(merged)}), and that have at least 20 cells. A test set draws each "
-        "scored cell type in proportion to its share of the dataset, with at least 20 cells, so "
-        "rounding leaves some test sets a few cells short of 1,000 or 10,000. "
-        f"{'; '.join(sentences)[0].upper()}{'; '.join(sentences)[1:]}. "
-        "In the human pancreas data, quality "
-        f"control removed {_tex(by['human_pancreas']['qc_removed'])}. HFRA, Human Fetal Retina "
-        "Atlas; HIHA, Human Immune Health Atlas.")
+        "quality control. Cell types gives the number of distinct labels of a file. Cell types "
+        "scored counts those left after the labels were mapped to the Cell Ontology, which merged "
+        f"some of the authors' labels ({', '.join(merged)}), and that have at least 20 cells. A "
+        "test set draws each scored cell type in proportion to its share of the dataset, with at "
+        f"least 20 cells. {sources[0].upper()}{sources[1:]}. HFRA is the Human Fetal Retina Atlas "
+        "and HIHA the Human Immune Health Atlas.")
 
 
 def write_table(facts):

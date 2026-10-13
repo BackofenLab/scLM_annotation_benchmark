@@ -33,30 +33,30 @@ PARTS = {"text_encoder": "TE", "text_decoder": "TD", "expression_encoder": "EE",
 RAGGED = "\\raggedright\\arraybackslash"
 COLUMNS = (f"@{{}}l>{{{RAGGED}}}p{{3.7cm}}l>{{{RAGGED}}}p{{3.9cm}}>{{{RAGGED}}}p{{3.85cm}}"
            "ll@{}")
-HEADINGS = ["Model", "Subcategory", "Reasoning", "License", "Parameters", "Available",
+HEADINGS = ["Method", "Subcategory", "Reasoning", "License", "Parameters", "Available",
             "Publication"]
+# The caption describes the columns from left to right and only what the table shows.
 CAPTION = (
-    "\\textbf{Annotation methods compared in this benchmark.} Subcategories follow the key of "
-    "Figure~\\ref{fig:overview}B. Every method ran unconstrained and constrained to the "
-    "dataset's expected cell types, which a language model receives as a list and to which a "
-    "baseline is restricted: its labels at or below a listed type in the Cell Ontology. "
-    "The general-purpose LLMs were queried through the OpenRouter API. Reasoning: the reasoning "
-    "setting sent with each request, an effort level or, for the Anthropic and Google models, a "
-    "budget of reasoning tokens, which OpenRouter passes on to the provider (for Gemini 3.1 Pro, "
-    "Google maps the budget to a thinking level); none for the models that do not reason. "
-    "Parameters count the learned weights of the checkpoint used here, with tied weights counted "
-    "once: TE, text encoder; TD, text decoder (C2S-Scale is decoder-only; InstructCell's encoder "
-    "and decoder share their word embeddings, counted with the TE); EE, expression encoder (for "
-    "mmContext an adapter on the log-normalized expression of 10,000 preselected genes; for "
-    "CellWhisperer a frozen Geneformer); "
-    "ED, expression decoder, which InstructCell uses only to generate expression profiles; heads, "
-    "projection and matching heads. CellTypist uses one logistic-regression model per dataset. "
-    "For mixture-of-experts LLMs, "
-    "the developer's total and, in brackets, the parameters active per token. Available: when the "
-    "weights, software or API became public. Publication: the peer-reviewed paper or, if none, the "
-    "preprint. License: of the published weights or, where the weights state none, of the code "
-    "(marked code); the proprietary models are used only through their API, and C2S-Scale, "
-    "fine-tuned from Gemma 2, is also subject to the Gemma Terms of Use.")
+    "\\textbf{Annotation methods.} Method names the methods as in the text, and Gemini 3.1 Pro "
+    "stands for the preview release Gemini 3.1 Pro Preview. Subcategory groups the methods as in "
+    "Figure~\\ref{fig:overview}B. Reasoning gives the setting sent with each request to a "
+    "general-purpose LLM through the OpenRouter API, an effort level or, for the Anthropic and "
+    "Google models, a budget of reasoning tokens, which OpenRouter passes on to the provider (for "
+    "Gemini 3.1 Pro, Google maps the budget to a thinking level). It is none for the models that "
+    "do not reason. License refers to the published weights or, where the weights state none, to "
+    "the code (marked code). The proprietary models are used only through their API, and "
+    "C2S-Scale, fine-tuned from Gemma 2, is also subject to the Gemma Terms of Use. Parameters "
+    "count the learned weights of the checkpoint used here, with tied weights counted once. TE is "
+    "the text encoder and TD the text decoder. C2S-Scale is decoder-only, and InstructCell's "
+    "encoder and decoder share their word embeddings, which are counted with the TE. EE is the "
+    "expression encoder, for mmContext an adapter on the log-normalized expression of 10,000 "
+    "preselected genes and for CellWhisperer a frozen Geneformer. ED is the expression decoder, "
+    "which InstructCell uses only to generate expression profiles, and heads are the projection "
+    "and matching heads. CellTypist uses one logistic-regression model per dataset. For "
+    "mixture-of-experts LLMs, the developer's total is followed by the parameters active per "
+    "token in parentheses. Available gives the month in which the weights, software or API "
+    "became public. Publication gives the journal or conference and the month of the "
+    "peer-reviewed paper, or the month of the preprint. Dashes mark fields that do not apply.")
 
 
 def si(n):
