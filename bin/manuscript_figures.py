@@ -409,12 +409,12 @@ def figure_harmonization(df, out_path, dpi=600, pairs=None):
             ax.set_axisbelow(True)
             for side in ("top", "right"):
                 ax.spines[side].set_visible(False)
-        # Block headings sit in the blank rows, anchored to the left spine so they clear both the
+        # Block headings sit in the blank rows, just right of the left spine so they clear both the
         # method names and the bars. Sorting is WITHIN a block, so each heading also marks where
         # the ordering restarts.
         trans = mtransforms.blended_transform_factory(ax_a.transAxes, ax_a.transData)
         for title, head_y, _block in blocks:
-            ax_a.text(0.0, head_y, title, transform=trans, ha="left", va="center",
+            ax_a.text(0.02, head_y, title, transform=trans, ha="left", va="center",
                       fontsize=FS_LEGEND, fontweight="bold", color="0.25")
         for ax in (ax_a, ax_b):
             _harmonize(ax, text_size=FS_POINT)
@@ -1258,7 +1258,7 @@ def _family_key(ax, encodings, drawn=None, extra=(), spacing=0.8):
 def _subcategory_rows():
     """Rows ``(family, mode, label, tier)`` for every method subcategory in both settings, named
     as in Figure 1B."""
-    family_name = {"classical": "baseline", "scLLM": "scLLM", "LLM": "LLM"}
+    family_name = dict(COMPOSITE_CATEGORIES)
     return [(family, mode, f"{family_name[family]}, {TIER_NAME.get(tier, label)}, "
                            f"{REGIME_SHORT[mode]}", tier)
             for family, _ in COMPOSITE_CATEGORIES
@@ -1323,7 +1323,7 @@ METRIC_GROUPS = [
     ("ontology-aware", [("agreement_score", "agreement score"), ("rada_avg_similarity", "Rada"),
                         ("lin_avg_similarity", "Lin")]),
     ("text similarity", [("text_emb_norm_balanced_mapped", "text, mapped"),
-                         ("text_emb_norm_balanced_raw", "text, unmapped")]),
+                         ("text_emb_norm_balanced_raw", "text, raw")]),
 ]
 
 
@@ -1359,7 +1359,7 @@ def figure_metric_agreement(df, out_path, dpi=600):
         for spine in ax.spines.values():
             spine.set_visible(False)
         bar = fig.colorbar(image, ax=ax, fraction=0.045, pad=0.03)
-        bar.set_label("Spearman correlation (mean over the four datasets)")
+        bar.set_label("Spearman correlation")
         return _save(fig, out_path, dpi)
 
 
