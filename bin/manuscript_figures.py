@@ -1220,7 +1220,7 @@ def figure_benchmark(df, out_path, dpi=600, pairs=None):
             mpatches.Patch(facecolor="0.75", edgecolor="black", hatch="///",
                            label=SETTING_KEY["blind"]),
             plt.Line2D([], [], label="chance (random, stratified)", **CHANCE_LINE),
-            plt.Line2D([], [], color="0.62", linewidth=0.7, label="same model")])
+            plt.Line2D([], [], color="0.62", linewidth=0.7, label="same method")])
         _panel_letters(fig, [(ax_a, "A"), *zip(panels, "BCDEF"), (ax_g, "G"), (ax_h, "H")])
         return _save(fig, out_path, dpi)
 

@@ -216,7 +216,7 @@ EXCLUDED_BASES = {
 # Ordered (category key, x-axis display label) for the strip panels.
 # Left-to-right: baselines, domain-adapted LLMs, one-shot LLMs.
 COMPOSITE_CATEGORIES = [
-    ("classical", "baseline"),
+    ("classical", "baselines"),
     ("scLLM", "scLLMs"),
     ("LLM", "LLMs"),
 ]
@@ -1171,10 +1171,7 @@ _RANKED_CATEGORY_ORDER = [k for k, _ in COMPOSITE_CATEGORIES] + ["simple"]
 # Labels identical to plot_composite_category's COMPOSITE_CATEGORIES display names so the two
 # composite figures read the same; "simple" has no composite counterpart (drawn as reference lines
 # there), so it keeps its own label here.
-_RANKED_CATEGORY_LABELS = {
-    "LLM": "LLMs", "scLLM": "scLLMs",
-    "classical": "baseline", "simple": "simple baseline",
-}
+_RANKED_CATEGORY_LABELS = {**dict(COMPOSITE_CATEGORIES), "simple": "simple baseline"}
 
 
 def _ranked_category_colors():
