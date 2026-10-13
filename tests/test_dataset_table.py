@@ -10,7 +10,7 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "bin"))
-from dataset_table import facts_by_dataset, write_table  # noqa: E402
+from dataset_table import facts_by_dataset, write_baselines_table, write_table  # noqa: E402
 from manuscript_figures import DATASET_ORDER  # noqa: E402
 
 FACTS = ROOT / "cache" / "result" / "dataset_facts.csv"
@@ -62,8 +62,30 @@ def test_scored_cell_types_match_the_scoring():
 def test_every_citation_is_in_the_bibliography():
     keys = set(re.findall(r"@\w+\{([^,]+),", BIB.read_text()))
     for ds, v in facts_by_dataset(facts()).items():
-        for key in [v["citation"], *v["studies"].split("; ")]:
+        for key in [v["citation"], *v["studies"].split("; "), v["singler_reference_citation"]]:
             assert key in keys, (ds, key)
+
+
+def test_baseline_facts_match_the_dataset_configs():
+    """The baselines table states what each wrapper was configured with."""
+    import yaml
+    for ds, v in facts_by_dataset(facts()).items():
+        cfg = yaml.safe_load((ROOT / "datasets" / f"{ds}.yml").read_text())
+        assert cfg["celltypist_model"] == f"{v['celltypist_model']}.pkl", ds
+        assert cfg["sctype_tissue"] == v["sctype_tissue"], ds
+        assert cfg["scsa_tissue"] == v["scsa_tissue"], ds
+        source = cfg["singler_reference_source"]
+        expected = ("CELLxGENE" if source == "cellxgene"
+                    else f"celldex {cfg['singler_reference']}")
+        assert v["singler_reference"] == expected, ds
+
+
+def test_baselines_table_has_one_column_per_dataset_and_does_not_cite():
+    table = write_baselines_table(facts())
+    header = next(line for line in table.splitlines() if "\\textbf{" in line and "&" in line)
+    assert header.count("&") == len(DATASET_ORDER)
+    assert "\\label{supptab:baselines}" in table
+    assert "\\cite" not in table
 
 
 def test_table_has_one_column_per_dataset():

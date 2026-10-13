@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Generate the supplementary table of the datasets from the sourced dataset facts.
+"""Generate the supplementary tables of the datasets and of the baselines' inputs from the facts.
 
 ``cache/result/dataset_facts.csv`` holds one row per (dataset, field) with the value, its source
 and how it was checked. This script only formats it into a generated file that the supplement
@@ -44,7 +44,10 @@ def _pair(a, b):
 
 
 def references(path=BIB):
-    """Author-year text, "Gong et al. (2025)", of every entry with a one-line author field."""
+    """Author-year text, "Gong et~al. (2025)", of every entry with a one-line author field.
+
+    The tie keeps "et al." on one line, as natbib does.
+    """
     out = {}
     for key, body in re.findall(r"@\w+\{([^,\s]+),\n(.*?)\n\}", path.read_text(), re.S):
         author = re.search(r"^\s*author\s*=\s*\{(.*)\},\s*$", body, re.M)
@@ -52,7 +55,7 @@ def references(path=BIB):
         if author and year:
             names = [n.split(",")[0].strip() for n in author.group(1).split(" and ")]
             who = (names[0] if len(names) == 1 else " and ".join(names) if len(names) == 2
-                   else f"{names[0]} et al.")
+                   else f"{names[0]} et~al.")
             out[key] = f"{who} ({year.group(1)})"
     return out
 
@@ -117,8 +120,29 @@ def caption(by):
         "and HIHA the Human Immune Health Atlas.")
 
 
-def write_table(facts):
-    by = facts_by_dataset(facts)
+def _breakable(name):
+    """A model file name whose underscores may break the line, so a narrow column can hold it."""
+    return str(name).replace("_", "\\_\\allowbreak{}")
+
+
+# Rows of the baselines table: what each baseline was given for each dataset.
+BASELINE_ROWS = [
+    ("CellTypist model", lambda f: _breakable(f["celltypist_model"])),
+    ("SingleR reference",
+     lambda f: f"{f['singler_reference']}, {REFS[f['singler_reference_citation']]}"),
+    ("scType tissue", lambda f: f["sctype_tissue"]),
+    ("SCSA tissue", lambda f: f["scsa_tissue"]),
+]
+BASELINE_CAPTION = (
+    "\\textbf{Inputs of the baselines.} CellTypist model names the pretrained model CellTypist "
+    "used. SingleR reference gives the annotated data SingleR compared each cell with, a CELLxGENE "
+    "dataset or the MonacoImmuneData reference of the celldex package. scType tissue and SCSA "
+    "tissue name the tissue whose marker genes scType and SCSA scored. HFRA is the Human Fetal "
+    "Retina Atlas and HIHA the Human Immune Health Atlas.")
+
+
+def _dataset_table(by, rows, caption_text, label):
+    """A table with one column per dataset, in the order of the result tables."""
     missing = [ds for ds in DATASET_ORDER if ds not in by]
     if missing:
         raise SystemExit(f"no facts for {missing}")
@@ -126,11 +150,21 @@ def write_table(facts):
              "\\setlength{\\tabcolsep}{4pt}", f"\\begin{{tabular}}{{{COLUMNS}}}", "\\toprule",
              " & " + " & ".join(f"\\textbf{{{by[ds]['name']}}}" for ds in DATASET_ORDER) + " \\\\",
              "\\midrule"]
-    for label, cell in ROWS:
-        lines.append(f"{label} & " + " & ".join(cell(by[ds]) for ds in DATASET_ORDER) + " \\\\")
+    for row_label, cell in rows:
+        lines.append(f"{row_label} & " + " & ".join(cell(by[ds]) for ds in DATASET_ORDER) + " \\\\")
     lines += ["\\bottomrule", "\\end{tabular}", "\\captionsetup{position=below}",
-              f"\\caption{{{caption(by)}}}", "\\label{supptab:datasets}", "\\end{table}", ""]
+              f"\\caption{{{caption_text}}}", f"\\label{{{label}}}", "\\end{table}", ""]
     return "\n".join(lines)
+
+
+def write_table(facts):
+    by = facts_by_dataset(facts)
+    return _dataset_table(by, ROWS, caption(by), "supptab:datasets")
+
+
+def write_baselines_table(facts):
+    return _dataset_table(facts_by_dataset(facts), BASELINE_ROWS, BASELINE_CAPTION,
+                          "supptab:baselines")
 
 
 def main():
@@ -141,7 +175,10 @@ def main():
     args = p.parse_args()
     facts = pd.read_csv(args.facts, dtype=str)
     Path(args.out).write_text(write_table(facts))
-    print(f"Wrote the datasets table ({facts.dataset.nunique()} datasets) to {args.out}")
+    baselines = Path(args.out).with_name("supplementary_baselines_table_generated.tex")
+    baselines.write_text(write_baselines_table(facts))
+    print(f"Wrote the datasets table ({facts.dataset.nunique()} datasets) to {args.out}"
+          f" and the baselines table to {baselines}")
 
 
 if __name__ == "__main__":

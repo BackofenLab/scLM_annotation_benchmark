@@ -72,3 +72,23 @@ HIHA,license,CC BY 4.0,https://registry.opendata.aws/biohub-cellxgene-census/,CE
 HFRA,license,CC BY 4.0,https://registry.opendata.aws/biohub-cellxgene-census/,CELLxGENE Census entry of the AWS Open Data registry: License CC-BY 4.0,2026-10-07
 human_pancreas,license,CC BY 4.0,https://api.figshare.com/v2/articles/12420968,figshare article of Luecken et al. that holds human_pancreas_norm_complexBatch.h5ad (file 24539828),2026-10-07
 Zeisel,license,none stated,https://web.archive.org/web/20221103161735/http://mousebrain.org/adolescent/downloads.html,The loom downloads page (archived; mousebrain.org now redirects to a 404) and Zeisel et al. 2018 state no licence; raw reads at SRA SRP135960,2026-10-07
+HFRA,celltypist_model,Fetal_Human_Retina,datasets/HFRA.yml,"celltypist_model Fetal_Human_Retina.pkl, the model file the CellTypist wrapper loads",2026-10-13
+HFRA,singler_reference,CELLxGENE,datasets/HFRA.yml,"cellxgene dataset 963a08cb-d995-4862-9614-f9d38a7d7540 (Census 2025-11-08), labels cell_type",2026-10-13
+HFRA,singler_reference_citation,zuo2024retina,cache/datasets/reference/HFRA_singler_ref.h5ad,uns citation: https://doi.org/10.1038/s41467-024-50853-5,2026-10-13
+HFRA,sctype_tissue,Eye,datasets/HFRA.yml,"sctype_tissue, the ScTypeDB tissue the scType wrapper scores",2026-10-13
+HFRA,scsa_tissue,Retina,datasets/HFRA.yml,"scsa_tissue, the CellMarker tissue the SCSA wrapper scores",2026-10-13
+HIHA,celltypist_model,Immune_All_High,datasets/HIHA.yml,"celltypist_model Immune_All_High.pkl, the model file the CellTypist wrapper loads",2026-10-13
+HIHA,singler_reference,celldex MonacoImmuneData,datasets/HIHA.yml,"singler_reference MonacoImmuneData from celldex, label tier ont (Cell Ontology labels)",2026-10-13
+HIHA,singler_reference_citation,monaco2019immune,https://bioconductor.org/packages/celldex/,"celldex documentation of MonacoImmuneData: Monaco et al. (2019), https://doi.org/10.1016/j.celrep.2019.01.041",2026-10-13
+HIHA,sctype_tissue,Immune system,datasets/HIHA.yml,"sctype_tissue, the ScTypeDB tissue the scType wrapper scores",2026-10-13
+HIHA,scsa_tissue,Peripheral blood,datasets/HIHA.yml,"scsa_tissue, the CellMarker tissue the SCSA wrapper scores",2026-10-13
+Zeisel,celltypist_model,Mouse_Isocortex_Hippocampus,datasets/Zeisel.yml,"celltypist_model Mouse_Isocortex_Hippocampus.pkl, the model file the CellTypist wrapper loads",2026-10-13
+Zeisel,singler_reference,CELLxGENE,datasets/Zeisel.yml,"cellxgene dataset 35081d47-99bf-4507-9541-735428df9a9f (Census 2025-11-08), labels cell_type",2026-10-13
+Zeisel,singler_reference_citation,yao2021motorcortex,cache/datasets/reference/Zeisel_singler_ref.h5ad,uns citation: https://doi.org/10.1038/s41586-021-03500-8,2026-10-13
+Zeisel,sctype_tissue,Brain,datasets/Zeisel.yml,"sctype_tissue, the ScTypeDB tissue the scType wrapper scores",2026-10-13
+Zeisel,scsa_tissue,Brain,datasets/Zeisel.yml,"scsa_tissue, the CellMarker tissue the SCSA wrapper scores",2026-10-13
+human_pancreas,celltypist_model,Adult_Human_PancreaticIslet,datasets/human_pancreas.yml,"celltypist_model Adult_Human_PancreaticIslet.pkl, the model file the CellTypist wrapper loads",2026-10-13
+human_pancreas,singler_reference,CELLxGENE,datasets/human_pancreas.yml,"cellxgene dataset 31f657dc-1875-4c4b-a5ca-ce63b3ef3a82 (Census 2025-11-08), labels cell_type",2026-10-13
+human_pancreas,singler_reference_citation,xu2023cellhint,cache/datasets/reference/human_pancreas_singler_ref.h5ad,uns citation: https://doi.org/10.1016/j.cell.2023.11.026,2026-10-13
+human_pancreas,sctype_tissue,Pancreas,datasets/human_pancreas.yml,"sctype_tissue, the ScTypeDB tissue the scType wrapper scores",2026-10-13
+human_pancreas,scsa_tissue,Pancreas,datasets/human_pancreas.yml,"scsa_tissue, the CellMarker tissue the SCSA wrapper scores",2026-10-13
