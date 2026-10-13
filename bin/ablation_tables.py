@@ -16,7 +16,8 @@ Five typeset tables, the prompts note and two reusable CSVs:
 * the results table -- every arm x variant x condition on the metrics the section argues from.
 * ``tables/supp_list_results.csv`` and two tables of the imperfect-list study -- its conditions,
   read from context_ablation/config.yml, and its results per method and condition.
-* the prompts note -- every template, imported from context_ablation/src/prompts.py.
+* the prompts note -- every prompt of the benchmark and the two studies, imported from
+  context_ablation/src/prompts.py or built by the benchmark wrappers' own functions.
 
 Nothing is hand-written, so these cannot drift from Figure 3 (style Rule 6).
 
@@ -26,16 +27,22 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import ast
+import contextlib
+import io
+import logging
 import re
 import sys
 from pathlib import Path
+from typing import Dict, List, Optional
 
 import pandas as pd
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from manuscript_figures import (DEFAULT_ABLATION_CSV, DEFAULT_LIST_RUNS_CSV,  # noqa: E402
-                                STUDY_ARM_MODEL, _display, _list_study_arms)
+from manuscript_figures import (DATASET_ORDER, DEFAULT_ABLATION_CSV,  # noqa: E402
+                                DEFAULT_LIST_RUNS_CSV, STUDY_ARM_MODEL, _display,
+                                _list_study_arms, dataset_label)
 
 # Per-arm facts that are NOT in the results CSV: the checkpoint or endpoint, where it ran, and
 # whose prompt template it used. Everything else in the design table is derived from the data.
@@ -478,43 +485,107 @@ def write_list_tex(runs, conditions):
 
 
 # --------------------------------------------------------------------------- #
-# Prompt templates. IMPORTED from the study's own module, never transcribed -- R3 claims that one
-# prompt beats another, so a reader must be able to see both, and a hand-copied version could
-# silently stop matching what was actually sent. context_ablation/src/prompts.py has no
-# dependencies beyond the standard library, so importing it here is free.
-#
-# M5's two templates exist in that module and are deliberately NOT listed: the mode was removed
-# from the study on 2026-08-13 together with its prompts, predictions and scored runs.
+# Prompt templates, never transcribed: a hand copy could silently stop matching what was sent.
+# * The general-purpose LLM, C2S-Scale and per-cluster templates are IMPORTED from
+#   context_ablation/src/prompts.py. With {context} empty, its LLM and C2S-Scale templates equal
+#   the benchmark's (models/openrouter_LLM_*/src/model_cfg.yml and models/c2s_scale_*/src/
+#   predict.py, checked byte for byte 2026-10-13), so one block serves the benchmark and the study.
+# * InstructCell's prompt and LangCell's text for a candidate are built by the benchmark wrappers'
+#   own functions, called with the slots as arguments.
+# M5's two templates exist in prompts.py and are deliberately NOT listed: the mode was removed from
+# the study on 2026-08-13 together with its prompts, predictions and scored runs.
 # --------------------------------------------------------------------------- #
-# Condition lists use the manuscript's C-labels (see CONDITION_LABEL): M1->C2, M2->C4, M3->C3,
-# M4->C5, M6->C1. Written out rather than mapped, because these are editorial groupings of
-# templates and not a column of the data.
-PROMPT_BLOCKS = [
-    ("instruction", "Per-cell template, expected cell types withheld",
-     "INSTRUCTION_NO_TYPES", "C1, C2, C3"),
-    ("instruction", "Per-cell template, expected cell types supplied",
-     "INSTRUCTION_WITH_TYPES", "C4, C5"),
-    ("c2s", "C2S-Scale's own per-cell template, expected cell types withheld",
-     "C2S_NO_TYPES", "C1, C2, C3"),
-    ("c2s", "C2S-Scale's own per-cell template, expected cell types supplied",
-     "C2S_WITH_TYPES", "C4, C5"),
-    ("marker_genes", "Per-cluster template, expected cell types withheld",
-     "MARKER_NO_TYPES", "C2, C3"),
-    ("marker_genes", "Per-cluster template, expected cell types supplied",
-     "MARKER_WITH_TYPES", "C4, C5"),
+WRAPPERS = Path(__file__).resolve().parents[1] / "models"
+DATASET_CONFIGS = Path(__file__).resolve().parents[1] / "datasets"
+# (heading, where it was used, prompts.py constant). Conditions use the manuscript's labels (see
+# CONDITION_LABEL): M1->C2, M2->C4, M3->C3, M4->C5, M6->C1.
+# Headings name the template, not a model group: in the ablation the per-cell template also served
+# the Gemma-2-2B base model, and Supplementary Table S9 names the arm behind each template.
+SHARED_BLOCKS = [
+    ("Per-cell template, unconstrained",
+     "the benchmark by the general-purpose LLMs and in conditions C1, C2 and C3",
+     "INSTRUCTION_NO_TYPES"),
+    ("Per-cell template, constrained",
+     "the benchmark by the general-purpose LLMs and in conditions C4 and C5",
+     "INSTRUCTION_WITH_TYPES"),
+    ("C2S-Scale's template, unconstrained",
+     "the benchmark by C2S-Scale 2B and 27B and in conditions C1, C2 and C3", "C2S_NO_TYPES"),
+    ("C2S-Scale's template, constrained",
+     "the benchmark by C2S-Scale 2B and 27B and in conditions C4 and C5", "C2S_WITH_TYPES"),
+]
+CLUSTER_BLOCKS = [
+    ("Per-cluster template, unconstrained", "conditions C2 and C3", "MARKER_NO_TYPES"),
+    ("Per-cluster template, constrained", "conditions C4 and C5", "MARKER_WITH_TYPES"),
 ]
 
 
+def _wrapper_function(relpath, name, **scope):
+    """Function ``name`` of a benchmark wrapper, compiled on its own. The wrappers import their
+    model stacks at the top, which this environment lacks, and the prompt code needs none of it."""
+    path = WRAPPERS / relpath
+    node = next(n for n in ast.parse(path.read_text()).body
+                if isinstance(n, ast.FunctionDef) and n.name == name)
+    exec(compile(ast.Module(body=[node], type_ignores=[]), str(path), "exec"), scope)
+    return scope[name]
+
+
+def benchmark_texts():
+    """InstructCell's prompt in both settings and LangCell's text for a candidate, with and
+    without a definition, as the wrappers build them."""
+    scope = {"Dict": Dict, "List": List, "Optional": Optional,
+             "logger": logging.getLogger("instructcell")}
+    meta = {"species": "{species}", "tissue": "{tissue}"}
+    unconstrained = _wrapper_function("instructcell_blind/src/predict.py", "build_prompt",
+                                      **scope)(meta)
+    constrained = _wrapper_function("instructcell_unblind/src/predict.py", "build_prompt",
+                                    **scope)(meta, ["{unique_cell_types}"])
+    text = _wrapper_function("langcell_blind/src/predict.py", "gettextfromname")
+    with contextlib.redirect_stdout(io.StringIO()):  # the wrapper prints every text it builds
+        defined = text("{name}", {"{name}": "id"}, {}, {"id": {"name": "{name}",
+                                                              "def": "{definition}"}})
+        bare = text("{candidate}", {}, {}, {})
+    return unconstrained, constrained, defined.rstrip(), bare
+
+
+def _dataset_configs():
+    return {ds: yaml.safe_load((DATASET_CONFIGS / f"{ds}.yml").read_text()) for ds in DATASET_ORDER}
+
+
+def _listed(items):
+    return ", ".join(items[:-1]) + " and " + items[-1]
+
+
+def _context_phrases(P, cfg):
+    """The species-and-tissue phrase each dataset filled the ablation's {context} with, built by
+    the study's own function from the configuration it read (context_ablation/src/sentences.py)."""
+    phrases = []
+    for ds, c in cfg.items():
+        phrase = P.context_phrase({"tissue_species": True}, "instruction", tissue=c.get("tissue"),
+                                  species=c.get("species") or c.get("organism"),
+                                  override=c.get("context_phrase")).strip()
+        phrases.append(f"\\texttt{{{phrase}}} for {dataset_label(ds)}")
+    return _listed(phrases)
+
+
+def _instructcell_slots(cfg):
+    """The species and tissue InstructCell received, from the dataset configurations."""
+    species = sorted({c["species"] for c in cfg.values()})
+    return " or ".join(species), _listed([f"\\texttt{{{_tex(c['tissue'])}}} for "
+                                          f"{dataset_label(ds)}" for ds, c in cfg.items()])
+
+
 def write_prompts_tex(out_path):
-    """Every prompt template the ablation sent, verbatim, with the slots explained."""
+    """Every prompt the benchmark and the two studies sent, verbatim, with the slots explained."""
     src = Path(__file__).resolve().parents[1] / "context_ablation" / "src"
     sys.path.insert(0, str(src))
     import prompts as P  # noqa: E402
 
+    cfg = _dataset_configs()
+    phrases = _context_phrases(P, cfg)
     lines = [
         "% GENERATED by bin/ablation_tables.py -- do not edit by hand.",
-        "% The templates are IMPORTED from context_ablation/src/prompts.py, so they cannot drift",
-        "% from what was actually sent to the models.",
+        "% The templates are imported from context_ablation/src/prompts.py or built by the",
+        "% benchmark wrappers' own functions, so they cannot drift from what was sent.",
         "",
         # A \label inside an unnumbered \subsection* attaches to whatever counter was stepped last
         # and resolves to an EMPTY string, so "Supplementary Note~\ref{...}" renders with nothing
@@ -525,46 +596,61 @@ def write_prompts_tex(out_path):
         "\\refstepcounter{suppnote}",
         "\\paragraph{Supplementary Note \\thesuppnote: Prompt templates.}\\label{suppnote:prompts}",
         "",
-        "Every template used by the prompt-context ablation and the imperfect-list study is "
-        "reproduced below as it was sent, with the substitution slots left in braces. "
-        "\\texttt{num\\_genes} is the cap on the gene list, 200 for the per-cell arms and 25 for "
-        "the per-cluster arms. "
-        "\\texttt{cell\\_sentence} and \\texttt{marker\\_genes} carry the gene names. "
-        "\\texttt{unique\\_cell\\_types} is the list of expected cell types: the per-cell and "
-        "per-cluster templates receive it permuted independently for each cell or cluster, and "
-        "C2S-Scale's own template receives it sorted, as the benchmark's wrappers do. "
-        "\\texttt{organism} is filled by the C2S-Scale template only, with the dataset's "
-        "organism, Homo sapiens or Mus musculus. "
-        "\\texttt{context} is the tissue-and-species phrase, empty in the conditions that withhold "
-        "it and rendered inline otherwise, for example \\texttt{ mouse nervous system}. "
-        "One asymmetry follows from that and is not an oversight: the C2S-Scale template already "
-        "names the organism, so adding tissue and species supplies only the tissue for that arm. "
-        "The conditions are defined in Supplementary "
-        "Table~\\ref{supptab:ablation_conditions} and the arms in Supplementary "
-        "Table~\\ref{supptab:ablation_design}.",
-        "",
-        "The per-cell templates are worded as the benchmark's and add only the slot "
-        "\\texttt{context}, which conditions C2 and C4 leave empty. The benchmark sent its prompts "
-        "to the general-purpose LLMs with an empty system message, the ablation as the only "
-        "message.",
+        "The prompt templates of the benchmark, the prompt-context ablation and the "
+        "imperfect-list study are reproduced below, with the substitution slots in braces. "
+        "\\texttt{num\\_genes} caps the gene list at 200 per cell and 25 per cluster. "
+        "\\texttt{cell\\_sentence} and \\texttt{marker\\_genes} carry the gene names, and "
+        "\\texttt{organism} names the dataset's organism, Homo sapiens or Mus musculus. "
+        "\\texttt{unique\\_cell\\_types} is the list of expected cell types. The per-cell "
+        "templates receive it as a Python list, permuted independently for each cell, the per-cluster templates separated by commas and permuted "
+        "for each cluster, and the templates of C2S-Scale and InstructCell separated by commas and "
+"sorted. \\texttt{context} is empty in the benchmark. The prompt-context ablation fills it "
+        f"in conditions C3 and C5 with the species and tissue, {phrases}, and with the tissue "
+        "alone in C2S-Scale's template, which already names the organism (Supplementary "
+        "Tables~\\ref{supptab:ablation_design} "
+        "and~\\ref{supptab:ablation_conditions}). The benchmark sent each prompt to the "
+        "general-purpose LLMs with an empty system message, and the ablation's arms through an "
+        "API sent it as the only message.",
         "",
     ]
-    for _template, heading, const, modes in PROMPT_BLOCKS:
-        body = getattr(P, const).rstrip("\n")
-        lines += [
-            f"\\paragraph{{{heading}.}} Used in conditions {modes}.",
-            "\\begin{quote}\\footnotesize\\ttfamily\\raggedright",
-            _verbatimish(body),
-            "\\end{quote}",
-            "",
-        ]
+
+    def block(heading, used_in, body, note=""):
+        return [f"\\paragraph{{{heading}.}} Used in {used_in}.{note}",
+                "\\begin{quote}\\footnotesize\\ttfamily\\raggedright",
+                _verbatimish(body.rstrip("\n")), "\\end{quote}", ""]
+
+    instruct_u, instruct_c, langcell_text, langcell_bare = benchmark_texts()
+    species, tissues = _instructcell_slots(cfg)
+    bare = _verbatimish(langcell_bare).removesuffix(" \\\\")
+    for heading, used_in, const in SHARED_BLOCKS:
+        lines += block(heading, used_in, getattr(P, const))
+    lines += block("InstructCell's template, unconstrained", "the benchmark", instruct_u,
+                   f" \\texttt{{species}} is {species}, \\texttt{{tissue}} is {tissues}, and "
+                   "InstructCell replaces \\texttt{input} with embeddings of the cell that its expression "
+                   "encoder computes from the raw counts. The "
+                   "template is the example prompt of the InstructCell repository without its "
+                   "sequencing method, which the benchmark did not pass.")
+    lines += block("InstructCell's template, constrained", "the benchmark", instruct_c,
+                   " It adds the expected cell types in the benchmark's own wording, not in one "
+                   "of the option phrasings InstructCell was trained with.")
+    lines += block("Candidate texts of the embedding-based scLLMs",
+                   "the benchmark and the imperfect-list study", langcell_text,
+                   " These models compare each cell with a text for every candidate cell type, "
+                   "all 3,169 Cell Ontology names when unconstrained, the expected cell types when "
+                   "constrained and the drawn list in the imperfect-list study. CellWhisperer and "
+                   "mmContext take the candidate names as "
+                   "written. LangCell takes the text below, with the name and definition from the "
+                   "Cell Ontology file its authors provide, and "
+                   f"\\texttt{{{bare}}} for a candidate that file lacks.")
+    for heading, used_in, const in CLUSTER_BLOCKS:
+        lines += block(heading, used_in, getattr(P, const))
     lines += [
         "\\paragraph{Imperfect-list study.} The study used the templates of condition C4, the "
         "per-cell template for GPT-OSS-120B, C2S-Scale's own for C2S-Scale 2B and the per-cluster "
         "template for Gemini 3.1 Pro, with the drawn list in place of the dataset's own. The "
-        "conditions that offer it (Supplementary Table~\\ref{supptab:list_conditions}) add one "
-        "rule, as rule 5 of the per-cell and per-cluster templates and directly after the "
-        "list in C2S-Scale's:",
+        "conditions that offer the answer uncertain (Supplementary "
+        "Table~\\ref{supptab:list_conditions}) add the rule below, as rule 5 of the per-cell and "
+        "per-cluster templates and directly after the list in C2S-Scale's template.",
         "\\begin{quote}\\footnotesize\\ttfamily\\raggedright",
         _verbatimish(P.UNCERTAIN_RULE),
         "\\end{quote}",
@@ -572,6 +658,14 @@ def write_prompts_tex(out_path):
     ]
     out_path.write_text("\n".join(lines))
     return out_path
+
+
+# Characters a prompt block must show as typed. \symbol takes the glyph from the typewriter font
+# itself, which \{ and \_ do not in the OT1 encoding of the BiB build. The typewriter fonts have no
+# em dash (OT1 gives "|", and "---" shows three hyphens), so it comes from the roman font.
+_TT_CHARS = {"\\": "\\symbol{92}", "{": "\\symbol{123}", "}": "\\symbol{125}",
+             "_": "\\symbol{95}", "^": "\\symbol{94}", "~": "\\symbol{126}", "&": "\\&",
+             "%": "\\%", "#": "\\#", "$": "\\$", "—": "{\\rmfamily\\textemdash}"}
 
 
 def _verbatimish(text):
@@ -582,15 +676,8 @@ def _verbatimish(text):
     passes through unprocessed. Escaping by hand and forcing the line breaks keeps both visible
     and keeps the block inside a ``quote``, which ``verbatim`` would not allow.
     """
-    out = []
-    for line in text.split("\n"):
-        line = (line.replace("\\", "\\textbackslash{}")
-                    .replace("{", "\\{").replace("}", "\\}")
-                    .replace("_", "\\_").replace("&", "\\&").replace("%", "\\%")
-                    .replace("#", "\\#").replace("$", "\\$")
-                    .replace("—", "---"))
-        out.append(line + " \\\\")
-    return "\n".join(out)
+    return "\n".join("".join(_TT_CHARS.get(c, c) for c in line) + " \\\\"
+                     for line in text.split("\n"))
 
 
 def main(argv=None):
