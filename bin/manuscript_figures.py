@@ -1052,9 +1052,12 @@ def _list_effect_panel(ax, frame, title):
             best[family] = (base, x, y)
     # Centred above the point first, then beside it, so each name sits on its own marker. The
     # LLM's name is lifted and centred over both LLM columns, clear of the scLLMs' names, unless
-    # the best LLM is too close to the top for that. Every name is linked to its marker.
-    llm_centre = np.mean([px for (b, _m), (px, _y, _r) in points.items()
-                          if categorize_model(b) == "LLM"])
+    # the best LLM is too close to the top for that. When the space right above the scLLM's
+    # marker is taken, its name goes centred over both scLLM columns, above the family's highest
+    # marker, before it tries the sides. Every name is linked to its marker.
+    def family_points(family):
+        return [(px, py) for (b, _m), (px, py, _r) in points.items() if categorize_model(b) == family]
+    llm_centre = np.mean([px for px, _py in family_points("LLM")])
     ax.figure.canvas.draw()  # final axes position, to turn that data offset into points
     to_points = 72.0 / ax.figure.dpi
     labels = []
@@ -1065,6 +1068,14 @@ def _list_effect_panel(ax, frame, title):
             dx, dy = (x1 - x0) * to_points, (y1 - y0) * to_points
             label += ([(dx, dy + lift, "center", "bottom") for lift in (0, 8, 16)]
                       + LABEL_CANDIDATES,)
+        elif family == "scLLM":
+            scllm = family_points("scLLM")
+            top = (np.mean([px for px, _py in scllm]), max(py for _px, py in scllm))
+            (x0, y0), (x1, y1) = ax.transData.transform([(x, y), top])
+            dx, dy = (x1 - x0) * to_points, (y1 - y0) * to_points
+            label += (LABEL_CANDIDATES[:3]
+                      + [(dx, dy + lift, "center", "bottom") for lift in (12, 20, 28)]
+                      + LABEL_CANDIDATES[3:],)
         labels.append(label)
     _place_point_labels(ax, labels, list(points.values()), FS_POINT,
                         candidates=LABEL_CANDIDATES, leader_min=0)
