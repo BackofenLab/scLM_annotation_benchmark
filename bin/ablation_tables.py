@@ -590,9 +590,9 @@ def write_prompts_tex(out_path):
         # A \label inside an unnumbered \subsection* attaches to whatever counter was stepped last
         # and resolves to an EMPTY string, so "Supplementary Note~\ref{...}" renders with nothing
         # after it and hyperref warns about an empty link. A dedicated counter, stepped with
-        # \refstepcounter so \ref picks it up, is what makes the cross-reference work. \newcounter
-        # is safe here because this file is input exactly once.
-        "\\newcounter{suppnote}",
+        # \refstepcounter so \ref picks it up, is what makes the cross-reference work. The counter
+        # is defined in sections/supplementary_notes.tex, so the notes can be ordered by first
+        # mention around this file.
         "\\refstepcounter{suppnote}",
         "\\paragraph{Supplementary Note \\thesuppnote: Prompt templates.}\\label{suppnote:prompts}",
         "",
