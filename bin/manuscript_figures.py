@@ -1134,6 +1134,16 @@ def _answer_shares(pairs):
                                    for k, *_ in LINEAGE_KEY})
 
 
+def _unlisted(pairs):
+    """Class-balanced share of cells per run and dataset whose answer names a cell type that is not
+    on the list, the run's own true types. Both columns are Cell Ontology names, so another name
+    for a listed type counts as listed. Meaningful for the constrained runs, which got the list."""
+    named = pd.MultiIndex.from_frame(pairs[["model", "dataset", "predicted_label"]])
+    listed = pd.MultiIndex.from_frame(pairs[["model", "dataset", "true_label"]])
+    unlisted = (pairs["lineage"] != "none") & ~named.isin(listed)
+    return _class_balanced(pairs, {"unlisted": pairs["n_cells"].where(unlisted, 0)})["unlisted"]
+
+
 def _stacked_shares(ax, shares, y):
     """One stacked bar of answer-type shares per row of ``shares``, at heights ``y``."""
     left = np.zeros(len(shares))

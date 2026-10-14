@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Generate the per-dataset supplementary result tables from the aggregate snapshot.
 
-Two outputs, deliberately different in scope:
+Three outputs, deliberately different in scope:
 
 * ``tables/supp_results_<dataset>.csv`` -- EVERY metric column the snapshot carries, at every
   subset size. This is the artifact a reader reuses, and the one converted to the Word/Excel file
@@ -10,6 +10,8 @@ Two outputs, deliberately different in scope:
   subset size: every metric of Supplementary Figure S3, in its groups, and the diagnostics the
   paper reads (how much of the output needs the curated mapping, the score without it, and how
   many distinct labels a method gives). The caption sits below the table.
+* ``supplementary_unlisted_table_generated.tex`` -- for every constrained run of a generative
+  model, the share of answers that name a cell type not on the list, per dataset.
 
 Nothing here is hand-written, so the tables cannot drift from the figures (style Rule 6).
 
@@ -27,20 +29,26 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from manuscript_figures import (  # noqa: E402
-    DATASET_ORDER, METRIC_GROUPS, _benchmark_pairs, _display, _mapping_scores, _needs_mapping)
+    DATASET_ORDER, METRIC_GROUPS, _benchmark_pairs, _display, _mapping_scores, _needs_mapping,
+    _unlisted)
 from plot_model_comparison import (  # noqa: E402
     DEFAULT_CONFUSION_CSV, EXCLUDED_BASES, REGIME, REGIME_SHORT, categorize_model, derive_mode,
-    load_confusion_pairs, model_base, unsupported_pairs)
+    load_confusion_pairs, model_base, model_tier, unsupported_pairs)
 
 # The one chance model the paper describes: Figure 2's dashed line. The pipeline's other chance
 # floors (uniform random, always "cell") are described nowhere, so they are left out.
 CHANCE_MODELS = {"random_stratified"}
-# Figure 2G and Supplementary Figure S1, per run; computed here from the confusion pairs of each
-# subset size (bin/per_class_scores.py). In the CSVs each sits next to the snapshot column it
-# qualifies.
+# Figure 2G and Supplementary Figure S1 per run, and the share of answers outside the list of a
+# constrained run; computed here from the confusion pairs of each subset size
+# (bin/per_class_scores.py). In the CSVs each sits next to the snapshot column it qualifies.
 NO_MAPPING_COLUMN = "balanced_accuracy_no_curated_mapping"
 NEEDS_MAPPING_COLUMN = "share_needing_curated_mapping"
-DERIVED_AFTER = {NO_MAPPING_COLUMN: "balanced_accuracy", NEEDS_MAPPING_COLUMN: "non_cl_ratio"}
+UNLISTED_COLUMN = "share_unlisted"
+DERIVED_AFTER = {NO_MAPPING_COLUMN: "balanced_accuracy", NEEDS_MAPPING_COLUMN: "non_cl_ratio",
+                 UNLISTED_COLUMN: "n_unique_pred_mapped"}
+# The unlisted-answers table shows the generative models, which alone can answer outside the
+# list, at the size every method ran at.
+UNLISTED_SIZE = 1000
 # Column headers of the typeset table: Supplementary Figure S3's metrics in its groups, then the
 # diagnostics. Every metric is higher-is-better, so its best value is bolded; the diagnostics
 # describe the output rather than rank it.
@@ -95,23 +103,24 @@ def _join(names):
 
 def _derived(out):
     """DERIVED_AFTER's columns per run, dataset and subset size, from the confusion pairs of that
-    size; a size without them is left empty."""
+    size; a size without them is left empty, and so is the unlisted share of a run without list."""
     frames = []
     for size in sorted(out["subset_size"].unique()):
         path = DEFAULT_CONFUSION_CSV.with_name(f"confusion_pairs_{size}_stratified.csv")
         if not path.exists():
-            print(f"  no confusion pairs at {path}: {NO_MAPPING_COLUMN} and "
-                  f"{NEEDS_MAPPING_COLUMN} stay empty at {_cells(size)}")
+            print(f"  no confusion pairs at {path}: {', '.join(DERIVED_AFTER)} stay empty at "
+                  f"{_cells(size)}")
             continue
         pairs = _benchmark_pairs(out[out["subset_size"] == size], load_confusion_pairs(path),
                                  chance=True)
+        constrained = pairs[pairs["model"].map(derive_mode) == "unblind"]
         frames.append(pd.concat([_mapping_scores(pairs)["without"].rename(NO_MAPPING_COLUMN),
-                                 _needs_mapping(pairs).rename(NEEDS_MAPPING_COLUMN)], axis=1)
+                                 _needs_mapping(pairs).rename(NEEDS_MAPPING_COLUMN),
+                                 _unlisted(constrained).rename(UNLISTED_COLUMN)], axis=1)
                       .reset_index().assign(subset_size=size))
     # Four decimals, as the snapshot stores every metric, so a run whose answers need no curated
     # mapping prints the same balanced accuracy in both columns.
-    return pd.concat(frames, ignore_index=True).round({NO_MAPPING_COLUMN: 4,
-                                                       NEEDS_MAPPING_COLUMN: 4})
+    return pd.concat(frames, ignore_index=True).round(dict.fromkeys(DERIVED_AFTER, 4))
 
 
 def build_frame(df):
@@ -274,6 +283,40 @@ def write_tex(frame, out_path):
     return out_path
 
 
+def write_unlisted_tex(frame, out_path):
+    """The unlisted share of every generative model's constrained run at UNLISTED_SIZE: one row
+    per method, one column per dataset and their mean, sorted by the mean."""
+    runs = frame[(frame["subset_size"] == UNLISTED_SIZE) & (frame["setting"] == REGIME["unblind"])
+                 & frame["model"].map(lambda m: categorize_model(m) == "LLM"
+                                      or model_tier(m) == "generative")]
+    shares = runs.pivot_table(index=["family", "method"], columns="dataset",
+                              values=UNLISTED_COLUMN)
+    datasets = [d for d in DATASET_ORDER if d in shares.columns]
+    shares = (shares[datasets].assign(mean=shares[datasets].mean(axis=1))
+              .sort_values("mean", ascending=False, kind="stable"))
+    header = " & ".join(["Family", "Method", *[_tex(DATASET_DISPLAY.get(d, d)) for d in datasets],
+                         "Mean"]) + " \\\\"
+    rows = [" & ".join([_tex(FAMILY_TEX[family]), _tex(method), *map(_fmt, values)]) + " \\\\"
+            for (family, method), values in zip(shares.index, shares.to_numpy())]
+    caption = (
+        "\\textbf{Answers outside the list of expected cell types.} One row per generative model, "
+        "the general-purpose LLMs and the generative scLLMs, in its constrained run at "
+        f"{_cells(UNLISTED_SIZE)}, sorted by the mean. \\emph{{Family}} and \\emph{{Method}} name "
+        "the method. Each dataset column gives the share of cells whose answer named a cell type "
+        "that is not on the list, and \\emph{Mean} averages the four datasets. Answers are "
+        "compared with the listed types after the curated mapping, so another name for a listed "
+        "type counts as listed, and an answer that names no cell type does not count as outside "
+        "the list. Shares are averaged over cell types, as balanced accuracy is.")
+    lines = ["% GENERATED by bin/supplementary_tables.py -- do not edit by hand.", "",
+             "\\begin{table}[!ht]", "\\centering", "\\footnotesize",
+             f"\\begin{{tabular}}{{ll{'r' * (len(datasets) + 1)}}}", "\\toprule", header,
+             "\\midrule", *rows, "\\bottomrule", "\\end{tabular}",
+             "\\captionsetup{position=below}", f"\\caption{{{caption}}}",
+             "\\label{supptab:unlisted}", "\\end{table}", ""]
+    out_path.write_text("\n".join(lines))
+    return out_path
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -284,12 +327,14 @@ def main(argv=None):
     frame = build_frame(pd.read_csv(args.input))
     outdir = Path(args.outdir)
     csvs = write_csvs(frame, outdir / "tables")
-    tex = write_tex(frame, outdir / "supplementary_tables_generated.tex")
+    texs = [write_tex(frame, outdir / "supplementary_tables_generated.tex"),
+            write_unlisted_tex(frame, outdir / "supplementary_unlisted_table_generated.tex")]
     print(f"{len(frame)} rows, {frame['dataset'].nunique()} datasets, "
           f"{frame['model'].nunique()} methods")
     for path in csvs:
         print(f"  csv -> {path}")
-    print(f"  tex -> {tex}")
+    for path in texs:
+        print(f"  tex -> {path}")
     return 0
 
 
