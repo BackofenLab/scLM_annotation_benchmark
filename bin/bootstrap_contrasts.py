@@ -191,17 +191,15 @@ ABLATION_EFFECTS = [
     ("abl_list", "+ list minus genes only", list(ABLATION_VARIANT), "M2", "M1"),
     ("abl_tissue", "+ tissue minus genes only", list(ABLATION_VARIANT), "M3", "M1"),
     ("abl_both", "+ tissue + list minus + list", list(ABLATION_VARIANT), "M4", "M2"),
-    ("abl_order", "genes only minus shuffled genes", ["A1_llm_percell", "A3_scllm_percell"],
-     "M1", "M6"),
 ]
-LIST_GROUPS = [("LLM", "scLLM"), ("LLM", "classical"), ("scLLM", "classical")]
 
 
 def r2_contrasts(ablation, lists, bench, n=REPLICATES, seed=SEED):
     """The comparisons R2 states, per dataset, on the same redraws of the cells:
-    the ablation's effects and per cluster against per cell; each imperfect list against the
-    exact list and against no list; and, at the exact list and at L4, the best method of each
-    family against the best of another and C2S-Scale against GPT-OSS.
+    the ablation's effects and per cluster against per cell; each imperfect list but A2 with two
+    types against the exact list, and the exact list and L4 against no list; and, at the exact
+    list and at L4, C2S-Scale against GPT-OSS. Only these comparisons are stated in R2. The cells
+    are redrawn once per dataset, so dropping a comparison leaves the others unchanged.
 
     Balanced accuracy over all true types, so a type missing from a list counts as missed.
     Conditions run with three seeds are averaged over them. Gemini, the per-cluster GPT-OSS,
@@ -245,28 +243,13 @@ def r2_contrasts(ablation, lists, bench, n=REPLICATES, seed=SEED):
         add("abl_unit", "per cluster minus per cell, + list", "A|A8_gemini_percluster|M2",
             gemini_cell)
         for arm in arms:
-            conditions = sorted(set(lists.loc[lists["arm"] == arm, "condition"]) - {"E"})
+            conditions = sorted(set(lists.loc[lists["arm"] == arm, "condition"]) - {"E", "L2-2"})
             for condition in conditions:
                 add("list_condition", "condition minus exact list", f"L|{arm}|{condition}",
                     f"L|{arm}|E")
             for condition in ("E", "L4"):
                 add("list_none", "condition minus no list", f"L|{arm}|{condition}", none[arm])
         for condition in ("E", "L4"):
-            best = {}
-            for arm in arms:
-                best.setdefault(categorize_model(STUDY_ARM_MODEL[arm]), {})[arm] = run(
-                    f"L|{arm}|{condition}")
-            for fam_a, fam_b in LIST_GROUPS:
-                a, b = best[fam_a], best[fam_b]
-                obs_a = pd.Series({arm: o for arm, (_d, o) in a.items()})
-                obs_b = pd.Series({arm: o for arm, (_d, o) in b.items()})
-                run_a, run_b = f"L|{obs_a.idxmax()}|{condition}", f"L|{obs_b.idxmax()}|{condition}"
-                rows.append(_row(f"list_{fam_a}-{fam_b}", "best of one family minus best of "
-                                 "another", dataset, run_a, run_b,
-                                 {run_a: obs_a.max(), run_b: obs_b.max()},
-                                 pd.concat({k: d for k, (d, _o) in a.items()}, axis=1).max(axis=1)
-                                 - pd.concat({k: d for k, (d, _o) in b.items()}, axis=1)
-                                 .max(axis=1)))
             add("list_c2s-gptoss", "C2S-Scale minus GPT-OSS", f"L|A3_scllm_percell|{condition}",
                 f"L|A1_llm_percell|{condition}")
     return pd.DataFrame(rows)
@@ -274,16 +257,14 @@ def r2_contrasts(ablation, lists, bench, n=REPLICATES, seed=SEED):
 
 # R2's table: the comparisons in the order the text makes them, as (contrast key, heading).
 R2_SECTIONS = [
-    ("abl_list", "Ablation: + list minus genes only"),
-    ("abl_tissue", "Ablation: + tissue minus genes only"),
-    ("abl_both", "Ablation: + tissue + list minus + list"),
-    ("abl_order", "Ablation: genes only minus shuffled genes"),
-    ("abl_unit", "Ablation: per cluster minus per cell, + list"),
-    ("list_condition", "List study: condition minus the exact list"),
-    ("list_none", "List study: condition minus no list"),
-    ("list_between", "List study: between methods"),
+    ("abl_list", "Prompt-context ablation: genes + list minus genes only"),
+    ("abl_tissue", "Prompt-context ablation: genes + tissue minus genes only"),
+    ("abl_both", "Prompt-context ablation: genes + tissue + list minus genes + list"),
+    ("abl_unit", "Prompt-context ablation: per cluster minus per cell, genes + list"),
+    ("list_condition", "Imperfect-list analysis: condition minus the exact list"),
+    ("list_none", "Imperfect-list analysis: condition minus no list"),
+    ("list_between", "Imperfect-list analysis: between methods"),
 ]
-FAMILY_SHORT = {"LLM": "LLM", "scLLM": "scLLM", "classical": "baseline"}
 
 
 def _r2_names(row):
@@ -297,9 +278,6 @@ def _r2_names(row):
     name = LIST_CONDITION_NAME[condition]
     if row.contrast == "list_c2s-gptoss":
         return "C2S-Scale 2B minus GPT-OSS-120B", name
-    if row.contrast.startswith("list_") and "-" in row.contrast:
-        fam_a, fam_b = row.contrast.removeprefix("list_").split("-")
-        return f"best {FAMILY_SHORT[fam_a]} minus best {FAMILY_SHORT[fam_b]}", name
     return _display(STUDY_ARM_MODEL[arm]), name
 
 
@@ -314,22 +292,24 @@ def write_r2_tex(table, out_path, n=REPLICATES):
         "% Requires \\usepackage{longtable} and booktabs.", "",
         "\\clearpage", "\\scriptsize", "\\captionsetup{position=below}",
         "\\begin{longtable}{llrrrr}", "\\toprule", header, "\\midrule", "\\endfirsthead",
-        "\\multicolumn{6}{l}{\\emph{Comparisons of R2, continued}}\\\\", "\\toprule", header,
+        "\\multicolumn{6}{l}{\\emph{Paired bootstrap intervals, continued}}\\\\",
+        "\\toprule", header,
         "\\midrule", "\\endhead", "\\midrule",
         "\\multicolumn{6}{r}{\\emph{continued on the next page}}\\\\", "\\endfoot", "\\bottomrule",
-        "\\caption{\\textbf{Paired bootstrap intervals for the comparisons of R2.} Balanced accuracy "
-        "over all cell types, a type missing from a list counting as missed, at 1,000 cells. Each "
-        "value is the first run minus the second, averaged over the three seeds where a condition "
-        "ran with three; it is in bold when its 95\\% interval excludes zero and it is at least "
-        f"{NOISE_FLOOR:.2f}, as in Supplementary Table~\\ref{{supptab:contrasts}} ({n:,} "
-        "replicates, the cells resampled within each cell type). The ablation's arms are those of "
-        "Figure~\\ref{fig:context}A; GPT-OSS-120B and Gemini 3.1 Pro per cluster are compared with "
-        "their own runs per cell, Gemini's from the benchmark. Without a list, the methods that "
-        "take a prompt are the ablation's genes-only runs and the others the benchmark's "
-        "unconstrained runs. A best of a family is chosen again in every replicate. Gemini 3.1 "
-        "Pro, the per-cluster GPT-OSS-120B, scType and SCSA label clusters, so their cells are not "
-        "independent and their intervals are too narrow. The intervals are in the supplementary "
-        "data file \\texttt{supp\\_r2\\_contrasts.csv}.}\\label{supptab:r2_contrasts}\\\\",
+        "\\caption{\\textbf{Paired bootstrap intervals for the prompt-context ablation and the "
+        "imperfect-list analysis.} Each value is the difference in balanced accuracy that the "
+        "block heading and the row name, on one dataset at 1,000 cells. Balanced accuracy is "
+        "computed over all true cell types, including those removed from a list, and runs with "
+        "three seeds enter with their mean. A difference is highlighted in bold when it is at "
+        f"least {NOISE_FLOOR:.2f} and its 95\\% interval excludes zero, with intervals from {n:,} "
+        "bootstrap replicates that resample the cells within each cell type. GPT-OSS-120B and "
+        "Gemini 3.1 Pro per cluster are compared with their own runs per cell, Gemini's from the "
+        "benchmark. Without a list, GPT-OSS-120B, Gemini 3.1 Pro and C2S-Scale 2B enter with the "
+        "ablation's genes-only runs and the other methods with the benchmark's unconstrained runs. "
+        "Gemini 3.1 Pro, GPT-OSS-120B per cluster, scType and SCSA annotate clusters, so their "
+        "cells are not independent and their intervals are too narrow. The intervals are in the "
+        "supplementary data file \\texttt{supp\\_r2\\_contrasts.csv}.}"
+        "\\label{supptab:r2_contrasts}\\\\",
         "\\endlastfoot",
     ]
     for key, heading in R2_SECTIONS:
@@ -337,11 +317,8 @@ def write_r2_tex(table, out_path, n=REPLICATES):
         if sub.empty:
             continue
         lines.append(f"\\multicolumn{{6}}{{l}}{{\\textbf{{{heading}}}}} \\\\")
-        # One row per pair of runs; between methods, per comparison and condition, since the best
-        # run of a family differs between datasets.
-        keys = ([sub["contrast"], sub["run_a"].str.split("|").str[2]] if key == "list_between"
-                else ["run_a", "run_b"])
-        for _key, group in sub.groupby(keys, sort=False):
+        # One row per pair of runs.
+        for _key, group in sub.groupby(["run_a", "run_b"], sort=False):
             method, condition = _r2_names(group.iloc[0])
             lines.append(" & ".join([method, condition] + _r2_cells(group)) + " \\\\")
     lines += ["\\end{longtable}", ""]

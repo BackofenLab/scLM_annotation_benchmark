@@ -2,20 +2,20 @@
 """Generate the supplementary tables and the prompts note for the prompt-context ablation and the
 imperfect-list study (Results R2).
 
-Five typeset tables, the prompts note and two reusable CSVs:
+Three typeset tables, the prompts note and two reusable CSVs:
 
 * ``tables/supp_ablation_results.csv`` -- one row per (arm, gene variant, condition, dataset),
   every metric the ablation scores, with the mean and the standard deviation over the three seeds.
   This is the artifact a reader reuses and the one converted for submission.
-* the design table -- which arm ran which model, where, at which granularity, under which prompt
-  template, and over which conditions and gene variants. The grid is READ FROM THE DATA, not
-  transcribed, so a condition that was configured but never run cannot appear here as though it
-  had been.
-* the condition table -- what each of the five prompt conditions supplies, and which two of them
-  reproduce the benchmark's own two regimes.
+* the design table -- which model each arm ran, at which granularity, whether it also got the
+  shuffled gene order, and over which variants. The grid is READ FROM THE DATA, not transcribed,
+  so a condition that was configured but never run cannot appear here as though it had been.
 * the results table -- every arm x variant x condition on the metrics the section argues from.
-* ``tables/supp_list_results.csv`` and two tables of the imperfect-list study -- its conditions,
-  read from context_ablation/config.yml, and its results per method and condition.
+* ``tables/supp_list_results.csv`` and the results table of the imperfect-list study, per method
+  and condition in the order of context_ablation/config.yml.
+
+The tables of both studies' conditions were dropped on 2026-10-15 as redundant: the conditions
+carry the figures' labels, and the Methods and Supplementary Note 1 define them.
 * the prompts note -- every prompt of the benchmark and the two studies, imported from
   context_ablation/src/prompts.py or built by the benchmark wrappers' own functions.
 
@@ -41,23 +41,19 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from manuscript_figures import (DATASET_ORDER, DEFAULT_ABLATION_CSV,  # noqa: E402
-                                DEFAULT_LIST_RUNS_CSV, STUDY_ARM_MODEL, _display,
+                                DEFAULT_LIST_RUNS_CSV, MODE_LABELS, STUDY_ARM_MODEL, _display,
                                 _list_study_arms, dataset_label)
 
-# Per-arm facts that are NOT in the results CSV: the checkpoint or endpoint, where it ran, and
-# whose prompt template it used. Everything else in the design table is derived from the data.
+# Per-arm facts that are NOT in the results CSV: the name, the checkpoint or endpoint, and the
+# unit. Everything else in the design table is derived from the data; the prompts note says which
+# arm used which template.
 # Sourced from context_ablation/config.yml; if that changes, change this.
 ARM_META = {
-    "A1_llm_percell": ("GPT-OSS-120B", "openai/gpt-oss-120b", "hosted API", "cell",
-                       "benchmark instruction"),
-    "A2_base_percell": ("Gemma-2-2B", "google/gemma-2-2b", "local GPU", "cell",
-                        "benchmark instruction"),
-    "A3_scllm_percell": ("C2S-Scale 2B", "vandijklab/C2S-Scale-Gemma-2-2B", "local GPU", "cell",
-                         "C2S-Scale's own"),
-    "A4_llm_percluster": ("GPT-OSS-120B", "openai/gpt-oss-120b", "hosted API", "cluster",
-                          "cluster marker genes"),
-    "A8_gemini_percluster": ("Gemini 3.1 Pro", "google/gemini-3.1-pro-preview", "hosted API",
-                             "cluster", "cluster marker genes"),
+    "A1_llm_percell": ("GPT-OSS-120B", "openai/gpt-oss-120b", "cell"),
+    "A2_base_percell": ("Gemma-2-2B", "google/gemma-2-2b", "cell"),
+    "A3_scllm_percell": ("C2S-Scale 2B", "vandijklab/C2S-Scale-Gemma-2-2B", "cell"),
+    "A4_llm_percluster": ("GPT-OSS-120B", "openai/gpt-oss-120b", "cluster"),
+    "A8_gemini_percluster": ("Gemini 3.1 Pro", "google/gemini-3.1-pro-preview", "cluster"),
 }
 ARM_ORDER = ["A1_llm_percell", "A2_base_percell", "A3_scllm_percell",
              "A4_llm_percluster", "A8_gemini_percluster"]
@@ -69,11 +65,11 @@ ARM_ORDER = ["A1_llm_percell", "A2_base_percell", "A3_scllm_percell",
 # last step before writing, the same convention manuscript_figures.py uses for blind/unblind ->
 # unconstrained/constrained, so no code or cached result has to move.
 #
-# The manuscript order is Figure 3A's x axis, which is the information ladder from least supplied
-# to most, not the order the conditions were numbered in. C1..C5 are therefore assigned along that
-# ladder, so a reader moves left to right across the figure and top to bottom down the table.
+# The manuscript order is Figure 3A's x axis, the information ladder from least supplied to most,
+# and the tables print the figures' own labels for the conditions (codes C1..C5 until 2026-10-15,
+# when the table that defined them was dropped as redundant).
 CONDITION_ORDER = ["M6", "M1", "M3", "M2", "M4"]
-CONDITION_LABEL = {"M6": "C1", "M1": "C2", "M3": "C3", "M2": "C4", "M4": "C5"}
+CONDITION_LABEL = {m: MODE_LABELS[m].replace("\n", " ") for m in CONDITION_ORDER}
 
 
 def _cond(mode):
@@ -86,18 +82,6 @@ def _cond_key(mode):
     return CONDITION_ORDER.index(mode) if mode in CONDITION_ORDER else len(CONDITION_ORDER)
 
 
-# What each condition supplies, and which benchmark regime it reproduces. Rows follow
-# CONDITION_ORDER. The prompt templates for the two reproducing conditions are copied verbatim from
-# the benchmark's model configurations, so those two rows are what license comparing any number in
-# R3 to the main table.
-CONDITIONS = [
-    ("C1", "yes", "shuffled", "--", "--", "--"),
-    ("C2", "yes", "expression-ranked", "--", "--", "unconstrained"),
-    ("C3", "yes", "expression-ranked", "yes", "--", "--"),
-    ("C4", "yes", "expression-ranked", "--", "yes", "constrained"),
-    ("C5", "yes", "expression-ranked", "yes", "yes", "--"),
-]
-
 VARIANT_LABEL = {"expression_ranked": "all genes", "hvg": "5,000 variable genes",
                  "res0.5": "resolution 0.5", "res1.0": "resolution 1.0"}
 
@@ -107,13 +91,13 @@ VARIANT_LABEL = {"expression_ranked": "all genes", "hvg": "5,000 variable genes"
 # PLAIN ACCURACY DROPPED 2026-08-15. Over the 36 rows of this table it correlates with balanced
 # accuracy at Spearman 0.985 and Pearson 0.995, so it reorders almost nothing, while Lin correlates
 # at 0.953 and does carry independent information. It remains in supp_ablation_results.csv, so
-# nothing is lost.
+# nothing is lost. EMPTY DROPPED 2026-10-15 (user): at most 0.002 in every row; it stays in the
+# CSV too.
 TEX_METRICS = [
     ("balanced_accuracy", "Bal.\\ acc."),
     ("agreement_score", "Agree."),
     ("lin_avg_similarity", "Lin"),
     ("non_cl_ratio", "non-CL"),
-    ("frac_empty", "Empty"),
     ("frac_over_8_words", "$>$8 words"),
 ]
 
@@ -122,13 +106,14 @@ TEX_METRICS = [
 # conditions themselves are read from context_ablation/config.yml, never transcribed.
 LIST_CONDITION_NAME = {"E": "exact list", "EU": "exact list + uncertain", "L1": "A1",
                        "L2-2": "A2 (2 types)", "L2-5": "A2", "L3": "A3", "L4": "A1 + A2 + A3"}
-FRACTION = {0.5: "half", 0.25: "a quarter"}
 PROMPTED_ARMS = {"A1_llm_percell", "A3_scllm_percell", "A8_gemini_percluster"}
 # Columns of the list-study table: balanced accuracy over all types and over the types still listed
-# (where types are removed), the coarser answers mixed levels draw, and "uncertain" where offered.
+# (where types are removed), the coarser and finer answers that added relatives draw, and
+# "uncertain" where offered.
 LIST_METRICS = [("balanced_accuracy", "Bal.\\ acc."), ("agreement", "Agree."), ("lin", "Lin"),
                 ("balanced_accuracy_listed", "Listed"), ("all_coarser", "Coarser"),
-                ("abstained_removed", "Unc.\\ missing"), ("abstained_listed", "Unc.\\ listed")]
+                ("all_finer", "Finer"), ("abstained_removed", "Unc.\\ missing"),
+                ("abstained_listed", "Unc.\\ listed")]
 
 
 def _tex(text):
@@ -186,27 +171,6 @@ def overall_frame(raw):
     return out.reset_index()
 
 
-def _condition_ranges(labels):
-    """The conditions as a list, a run of three or more consecutive ones as a range:
-    C1, C2, C3, C4, C5 -> C1--C5. Labels that are not C<number> are listed as they are."""
-    groups = []
-    for label in labels:
-        n = int(label[1:]) if re.fullmatch(r"C\d+", label) else None
-        if n is not None and groups and groups[-1][2] == n - 1:
-            groups[-1][2] = n
-        else:
-            groups.append([label, n, n])
-    parts = []
-    for label, first, last in groups:
-        if first is None or last == first:
-            parts.append(label)
-        elif last == first + 1:
-            parts += [label, f"C{last}"]
-        else:
-            parts.append(f"{label}--C{last}")
-    return ", ".join(parts)
-
-
 def _stacked(items):
     """Several entries one under another in one table cell."""
     if len(items) == 1:
@@ -226,16 +190,14 @@ def design_rows(raw):
         sub = raw[raw["arm"] == arm]
         if sub.empty:
             continue
-        name, ident, host, gran, template = ARM_META[arm]
-        # Figure 3A's order, relabelled C1..C5. Superseded the earlier numeric M1..M6 sort on
-        # 2026-08-15: with the conditions renamed along the information ladder, C-order and reading
-        # order are the same thing, so the table and the figure no longer disagree.
-        conditions = [_cond(m) for m in sorted(set(sub["mode"]), key=_cond_key)]
+        name, ident, gran = ARM_META[arm]
+        # Every arm ran Figure 3A's four conditions; only some also got the shuffled gene order.
+        modes = set(sub["mode"])
+        assert {"M1", "M2", "M3", "M4"} <= modes, arm
         variants = [VARIANT_LABEL.get(v, v) for v in
                     sorted(set(sub["variant"]), key=lambda v: list(VARIANT_LABEL).index(v))]
-        rows.append((name, ident, host, gran, template,
-                     _condition_ranges(conditions), variants,
-                     int(sub["seed"].nunique()), int(sub["dataset"].nunique())))
+        rows.append((name, ident, gran, "yes" if "M6" in modes else "--",
+                     variants, int(sub["seed"].nunique()), int(sub["dataset"].nunique())))
     return rows
 
 
@@ -243,61 +205,36 @@ def write_tex(raw, out_path):
     lines = [
         "% GENERATED by bin/ablation_tables.py -- do not edit by hand.",
         "% Regenerate after any change to context_ablation/results/context_ablation.csv so these",
-        "% tables cannot drift from Figure 3. Requires \\usepackage{longtable} and booktabs.",
+        "% tables cannot drift from Figure 3. Requires booktabs.",
         "",
     ]
 
     # ---- design ---------------------------------------------------------
     lines += [
         "\\begin{table}[!ht]", "\\centering", "\\scriptsize", "\\setlength{\\tabcolsep}{4pt}",
-        "\\begin{tabular}{lllllll}", "\\toprule",
-        "Model & Identifier & Run on & Unit & Prompt template & Conditions & Gene variants \\\\",
+        "\\begin{tabular}{lllll}", "\\toprule",
+        "Model & Identifier & Unit & Shuffled order & Variants \\\\",
         "\\midrule",
     ]
-    # A little space between the arms, whose gene variants stack over two lines.
-    for i, (name, ident, host, gran, template, conds, variants, _ns, _nd) in enumerate(
+    # A little space between the arms, whose variants stack over two lines.
+    for i, (name, ident, gran, shuffled, variants, _ns, _nd) in enumerate(
             design_rows(raw)):
         lines += ([] if i == 0 else ["\\addlinespace[3pt]"]) + [
-            " & ".join([_tex(name), f"\\texttt{{{_tex(ident)}}}", host, gran, _tex(template),
-                        _tex(conds), _stacked([_tex(v) for v in variants])]) + " \\\\"]
+            " & ".join([_tex(name), f"\\texttt{{{_tex(ident)}}}", gran,
+                        _tex(shuffled), _stacked([_tex(v) for v in variants])]) + " \\\\"]
     lines += [
         "\\bottomrule", "\\end{tabular}",
         "\\captionsetup{position=below}",
-        "\\caption{\\textbf{Arms of the prompt-context ablation.} "
-        "Each row is one arm. \\emph{Unit} is what one model call annotated, a single cell or a "
-        "whole cluster. \\emph{Prompt template} names whose wording the arm used: the benchmark's "
-        "own template for the general-purpose models, C2S-Scale's for the model it was released "
-        "with, and a marker-gene template for the cluster-level arms. \\emph{Conditions} are the "
-        "prompt conditions of Supplementary Table~\\ref{supptab:ablation_conditions}. "
-        "\\emph{Gene variants} are the gene vocabularies for the per-cell arms and the clustering "
-        "resolutions for the per-cluster arms; the per-cell arms ran the 5,000 variable genes in "
-        "conditions C2 and C5 only. Every run was repeated with three seeds on each of the four "
-        "datasets, at 1,000 cells per dataset.}",
+        "\\caption{\\textbf{Arms of the prompt-context ablation.} Each row is one arm. "
+        "\\emph{Identifier} is the model's identifier on OpenRouter for GPT-OSS-120B and Gemini "
+        "3.1 Pro and on Hugging Face for Gemma-2-2B and C2S-Scale 2B, and \\emph{Unit} is what "
+        "one model call annotated, a single cell or a cluster. "
+        "Every arm received genes only, genes + tissue, genes + list and genes + tissue + list, "
+        "and \\emph{Shuffled order} marks the arms that also received the genes of genes only in "
+        "shuffled order. \\emph{Variants} are the gene vocabularies of the per-cell arms and the "
+        "clustering resolutions of the per-cluster arms, and the per-cell arms ran the variant "
+        "with 5,000 variable genes in genes only and in genes + tissue + list.}",
         "\\label{supptab:ablation_design}", "\\end{table}", "",
-    ]
-
-    # ---- conditions -----------------------------------------------------
-    lines += [
-        "\\begin{table}[!ht]", "\\centering", "\\footnotesize",
-        "\\begin{tabular}{llllll}", "\\toprule",
-        "Condition & Gene list & Gene order & Tissue and species & Expected cell types "
-        "& Benchmark regime \\\\",
-        "\\midrule",
-    ]
-    for row in CONDITIONS:
-        lines.append(" & ".join(_tex(c) for c in row) + " \\\\")
-    lines += [
-        "\\bottomrule", "\\end{tabular}",
-        "\\captionsetup{position=below}",
-        "\\caption{\\textbf{What each prompt condition supplies.} "
-        "Conditions are in the order of the x axes of Figure~\\ref{fig:context}A (C2--C5) and "
-        "Supplementary Figure~\\ref{suppfig:context_per_dataset}A--D. "
-        "A dash marks information the condition withholds. \\emph{Gene order} is whether the gene "
-        "list keeps its descending-expression ranking or is permuted while holding the same genes, "
-        "the same count and the same surrounding prompt text. \\emph{Benchmark regime}: the "
-        "setting of the main benchmark whose prompt wording the per-cell arms repeat in that "
-        "condition (Supplementary Note~\\ref{suppnote:prompts}).}",
-        "\\label{supptab:ablation_conditions}", "\\end{table}", "",
     ]
 
     # ---- results --------------------------------------------------------
@@ -307,35 +244,12 @@ def write_tex(raw, out_path):
     overall["_c"] = overall["mode"].map(_cond_key)
     overall = overall.sort_values(["_a", "variant", "_c"])
 
-    header = ["Model", "Unit", "Genes", "Cond."] + [h for _c, h in TEX_METRICS]
-    # A longtable does not float: \\clearpage puts the floating tables above out first, so the
-    # tables appear in the order of their numbers.
+    header = ["Model", "Unit", "Variant", "Condition"] + [h for _c, h in TEX_METRICS]
+    # One page holds the 36 rows, so the table floats like the arms table.
     lines += [
-        "\\clearpage", "\\scriptsize",
-        "\\captionsetup{position=below}",
-        "\\begin{longtable}{llll" + "r" * len(TEX_METRICS) + "}",
-        "\\toprule", " & ".join(header) + " \\\\", "\\midrule", "\\endfirsthead",
-        "\\multicolumn{%d}{l}{\\emph{Ablation results, continued}}\\\\" % len(header),
-        "\\toprule", " & ".join(header) + " \\\\", "\\midrule", "\\endhead",
-        "\\midrule",
-        "\\multicolumn{%d}{r}{\\emph{continued on the next page}}\\\\" % len(header),
-        "\\endfoot", "\\bottomrule",
-        "\\caption{\\textbf{Complete results of the prompt-context ablation.} "
-        "One row per arm, gene variant and prompt condition, with conditions in the order of "
-        "Supplementary Table~\\ref{supptab:ablation_conditions}. Each value is the mean over the "
-        "four datasets of that dataset's mean over three seeds, at 1,000 cells per dataset, so "
-        "$n = 4$ datasets and 12 runs per row. Bold marks the best value within each arm, over its "
-        "conditions and gene variants: the highest balanced accuracy, agreement score and Lin "
-        "similarity and the lowest non-CL share. \\emph{Agree.} is the agreement score and "
-        "\\emph{Lin} the Lin similarity (Supplementary Table~\\ref{supptab:metrics}). "
-        "\\emph{non-CL} is the share of answers that are, as written, not "
-        "the name or identifier of a Cell Ontology term, \\emph{Empty} the share without an "
-        "answer, and \\emph{$>$8 words} the share running past eight words. Conditions are "
-        "defined in Supplementary "
-        "Table~\\ref{supptab:ablation_conditions} and arms in Supplementary "
-        "Table~\\ref{supptab:ablation_design}.}"
-        "\\label{supptab:ablation_results}\\\\",
-        "\\endlastfoot",
+        "\\begin{table}[!ht]", "\\centering", "\\scriptsize",
+        "\\begin{tabular}{llll" + "r" * len(TEX_METRICS) + "}",
+        "\\toprule", " & ".join(header) + " \\\\", "\\midrule",
     ]
     # Best value per score column, bolded WITHIN EACH ARM rather than across the whole table.
     #
@@ -355,8 +269,8 @@ def write_tex(raw, out_path):
     # it is the run whose raw output was already closest to the ontology, which is the mechanism
     # R3.3 argues from. So the direction, not the column, is what made the earlier exclusion right.
     #
-    # Empty and >8 words stay unbolded. They are at or near zero for every arm except the base
-    # model, so a bold there would mark a tie between runs that never had the failure mode.
+    # >8 words stays unbolded. It is at or near zero for every arm except the base model, so a
+    # bold there would mark a tie between runs that never had the failure mode.
     BOLD_MAX = {"balanced_accuracy", "agreement_score", "lin_avg_similarity"}
     BOLD_MIN = {"non_cl_ratio"}
     best = {}
@@ -368,9 +282,17 @@ def write_tex(raw, out_path):
                 # the fifth decimal print identically, and bolding only one reads as a typo.
                 best[(arm, col)] = _fmt(values.min() if col in BOLD_MIN else values.max())
 
+    # The model, unit and variant where they change, and a little space between the arms.
+    previous = (None, None)
     for _, r in overall.iterrows():
-        name, _ident, _host, gran, _template = ARM_META[r["arm"]]
-        cells = [_tex(name), gran, _tex(VARIANT_LABEL.get(r["variant"], r["variant"])),
+        name, _ident, gran = ARM_META[r["arm"]]
+        new_arm = r["arm"] != previous[0]
+        new_variant = new_arm or r["variant"] != previous[1]
+        if new_arm and previous[0] is not None:
+            lines.append("\\addlinespace[3pt]")
+        previous = (r["arm"], r["variant"])
+        cells = [_tex(name) if new_arm else "", gran if new_arm else "",
+                 _tex(VARIANT_LABEL.get(r["variant"], r["variant"])) if new_variant else "",
                  _tex(_cond(r["mode"]))]
         for col, _h in TEX_METRICS:
             text = _fmt(r.get(f"{col}_mean"))
@@ -379,7 +301,24 @@ def write_tex(raw, out_path):
                 text = f"\\textbf{{{text}}}"
             cells.append(text)
         lines.append(" & ".join(cells) + " \\\\")
-    lines += ["\\end{longtable}", ""]
+    lines += [
+        "\\bottomrule", "\\end{tabular}",
+        "\\captionsetup{position=below}",
+        "\\caption{\\textbf{Results of the prompt-context ablation.} One row per arm, variant "
+        "and condition. \\emph{Model} and \\emph{Unit} name the arm, and \\emph{Variant} is the "
+        "gene vocabulary of a per-cell arm or the clustering resolution of a per-cluster arm. "
+        "Each value is the mean over the four datasets, at 1,000 cells each, of the mean over "
+        "three seeds per dataset. \\emph{Bal.\\ acc.} is balanced accuracy and \\emph{Agree.} the "
+        "agreement score, which gives a cell 1 for its true type, 0.5 for a finer type or for a "
+        "coarser type with at most 250 terms at or below it in the Cell Ontology and 0 "
+        "otherwise, both averaged over the cells of each type and then over the types. "
+        "\\emph{Lin} is the Lin similarity between the answer and the true type in the Cell "
+        "Ontology, averaged over cells. \\emph{non-CL} is the share of answers that are, as "
+        "written, not the name or identifier of a Cell Ontology term, and \\emph{$>$8 words} the "
+        "share that runs past eight words. Within each arm, the highest balanced accuracy, "
+        "agreement score and Lin similarity and the lowest non-CL share are highlighted in bold.}",
+        "\\label{supptab:ablation_results}", "\\end{table}", "",
+    ]
 
     out_path.write_text("\n".join(lines))
     return out_path
@@ -398,48 +337,11 @@ def list_frame(runs):
 
 
 def write_list_tex(runs, conditions):
-    """The list study's conditions, read from its configuration, and its results per method."""
-    lines = [
-        "\\begin{table}[!ht]", "\\centering", "\\footnotesize",
-        # The list column wraps: the combined condition names all three changes.
-        "\\begin{tabular}{@{}l>{\\raggedright\\arraybackslash}p{6.4cm}ll@{}}", "\\toprule",
-        "Condition & List & ``uncertain'' offered & Methods \\\\", "\\midrule",
-    ]
-    for name, spec in conditions.items():
-        parts = []
-        if spec.get("relatives"):
-            share = FRACTION[spec["relatives"]]
-            parts.append(f"a parent or a child added for {share} of the types")
-        if spec.get("extra"):
-            parts.append(f"{spec['extra']} absent types added")
-        if spec.get("remove"):
-            parts.append(f"{FRACTION[spec['remove']]} of the types removed")
-        lines.append(" & ".join([_tex(LIST_CONDITION_NAME[name]),
-                                 "; ".join(parts) or "the dataset's cell types",
-                                 "yes" if spec.get("uncertain") else "--",
-                                 str(runs.loc[runs["condition"] == name, "arm"].nunique())])
-                     + " \\\\")
-    lines += [
-        "\\bottomrule", "\\end{tabular}", "\\captionsetup{position=below}",
-        "\\caption{\\textbf{Conditions of the imperfect-list study.} Each condition replaces the "
-        "list of expected cell types with a list drawn from it, once per dataset and seed. "
-        "A relative of a type is a parent of it in the Cell Ontology, never a broad one, or a "
-        "child of it. An absent type is a child of such a parent that is neither a type of the "
-        "dataset nor above or below one. Added types are terms of the Cell Ontology's CELLxGENE "
-        "subset without species-qualified names. Shares are rounded, and at least one type is "
-        "removed; the cells of a removed type stay in the data. A2 (2 types) adds the first two of "
-        "A2's five types, and A1 + A2 + A3 combines the relatives, absent types and removals of "
-        "A1, A2 and A3. ``uncertain'' is offered to the methods that receive a prompt. "
-        "\\emph{Methods} counts the methods that ran a condition: exact list + uncertain ran only "
-        "for the three methods that receive a prompt, since for the others it equals the exact "
-        "list.}",
-        "\\label{supptab:list_conditions}", "\\end{table}", "",
-    ]
-
+    """The list study's results per method and condition, in the order of its configuration."""
     per_ds = runs.groupby(["arm", "condition", "dataset"]).mean(numeric_only=True)
     overall = per_ds.groupby(["arm", "condition"]).mean()
     header = ["Method", "Condition"] + [h for _c, h in LIST_METRICS]
-    lines += [
+    lines = [
         "\\clearpage", "\\scriptsize", "\\captionsetup{position=below}",
         "\\begin{longtable}{ll" + "r" * len(LIST_METRICS) + "}",
         "\\toprule", " & ".join(header) + " \\\\", "\\midrule", "\\endfirsthead",
@@ -448,20 +350,25 @@ def write_list_tex(runs, conditions):
         "\\midrule",
         "\\multicolumn{%d}{r}{\\emph{continued on the next page}}\\\\" % len(header),
         "\\endfoot", "\\bottomrule",
-        "\\caption{\\textbf{Results of the imperfect-list study.} One row per method and "
-        "condition, each value the mean over the four datasets of that dataset's mean over three "
-        "seeds, at 1,000 cells per dataset. \\emph{Bal.\\ acc.} is balanced accuracy over all "
-        "cell types, a type missing from the list counting as missed, and \\emph{Agree.} and "
-        "\\emph{Lin} are the agreement score and Lin similarity over all cell types "
-        "(Supplementary Table~\\ref{supptab:metrics}). \\emph{Listed} is balanced "
-        "accuracy over the types still listed, given where a condition removes types. "
-        "\\emph{Coarser} is the share of cells named with a coarser type that is not broad, the "
-        "class `coarser, specific' of Figure~\\ref{fig:benchmark}H. "
-        "\\emph{Unc.\\ missing} and \\emph{Unc.\\ listed} are the shares of the missing and of "
-        "the listed types' cells answered ``uncertain'', given where it is offered. Shares are "
-        "averaged over cell types, as balanced accuracy is. Gemini 3.1 Pro, scType and SCSA "
-        "annotated clusters, the other methods single cells. Conditions are defined in "
-        "Supplementary Table~\\ref{supptab:list_conditions}.}"
+        "\\caption{\\textbf{Results of the imperfect-list analysis.} One row per method and "
+        "condition. The conditions are the exact list, the exact list with the answer uncertain "
+        "(exact list + uncertain), a parent or a child added for half of the types (A1), two or "
+        "five types absent from the data added (A2 (2 types) or A2), a quarter of the types "
+        "removed (A3) and all three errors (A1 + A2 + A3). Each value is the mean over the four "
+        "datasets, at 1,000 cells each, of the mean over three seeds per dataset. "
+        "\\emph{Bal.\\ acc.} is balanced accuracy and \\emph{Agree.} the agreement score, which "
+        "gives a cell 1 for its true type, 0.5 for a finer type or for a coarser type with at most "
+        "250 terms at or below it in the Cell Ontology and 0 otherwise, both averaged over the "
+        "cells of each type and then over all true types, including those removed from the list. "
+        "\\emph{Lin} is the Lin similarity between the answer and the true type in the Cell "
+        "Ontology, averaged over cells. \\emph{Listed} is balanced accuracy over the types still "
+        "on the list, given where types were removed. \\emph{Coarser} and \\emph{Finer} are the "
+        "shares of cells answered with a coarser type that has at most 250 terms at or below it "
+        "and with a finer type. "
+        "\\emph{Unc.\\ missing} and \\emph{Unc.\\ listed} are the shares of the cells of the "
+        "missing and of the listed types that were answered uncertain, given where that answer "
+        "was offered. Shares are averaged over cell types. Gemini 3.1 Pro, scType and SCSA "
+        "annotated clusters, the other methods single cells.}"
         "\\label{supptab:list_results}\\\\",
         "\\endlastfoot",
     ]
@@ -471,7 +378,7 @@ def write_list_tex(runs, conditions):
                 continue
             row = overall.loc[(arm, name)]
             shown = {"balanced_accuracy": True, "agreement": True, "lin": True,
-                     "all_coarser": True,
+                     "all_coarser": True, "all_finer": True,
                      "balanced_accuracy_listed": bool(spec.get("remove")),
                      "abstained_removed": arm in PROMPTED_ARMS and bool(spec.get("uncertain"))
                      and bool(spec.get("remove")),
@@ -497,25 +404,29 @@ def write_list_tex(runs, conditions):
 # --------------------------------------------------------------------------- #
 WRAPPERS = Path(__file__).resolve().parents[1] / "models"
 DATASET_CONFIGS = Path(__file__).resolve().parents[1] / "datasets"
-# (heading, where it was used, prompts.py constant). Conditions use the manuscript's labels (see
-# CONDITION_LABEL): M1->C2, M2->C4, M3->C3, M4->C5, M6->C1.
+# (heading, where it was used, prompts.py constant). The ablation's conditions without the list
+# are M6, M1 and M3, those with it M2 and M4.
 # Headings name the template, not a model group: in the ablation the per-cell template also served
-# the Gemma-2-2B base model, and Supplementary Table S9 names the arm behind each template.
+# the Gemma-2-2B base model, so each block names the ablation's arms that used it.
 SHARED_BLOCKS = [
     ("Per-cell template, unconstrained",
-     "the benchmark by the general-purpose LLMs and in conditions C1, C2 and C3",
-     "INSTRUCTION_NO_TYPES"),
+     "the benchmark by the general-purpose LLMs and in the ablation by GPT-OSS-120B and "
+     "Gemma-2-2B per cell, in the conditions without the list", "INSTRUCTION_NO_TYPES"),
     ("Per-cell template, constrained",
-     "the benchmark by the general-purpose LLMs and in conditions C4 and C5",
-     "INSTRUCTION_WITH_TYPES"),
+     "the benchmark by the general-purpose LLMs and in the ablation by GPT-OSS-120B and "
+     "Gemma-2-2B per cell, in the conditions with the list", "INSTRUCTION_WITH_TYPES"),
     ("C2S-Scale's template, unconstrained",
-     "the benchmark by C2S-Scale 2B and 27B and in conditions C1, C2 and C3", "C2S_NO_TYPES"),
+     "the benchmark by C2S-Scale 2B and 27B and in the ablation by C2S-Scale 2B, in the "
+     "conditions without the list", "C2S_NO_TYPES"),
     ("C2S-Scale's template, constrained",
-     "the benchmark by C2S-Scale 2B and 27B and in conditions C4 and C5", "C2S_WITH_TYPES"),
+     "the benchmark by C2S-Scale 2B and 27B and in the ablation by C2S-Scale 2B, in the "
+     "conditions with the list", "C2S_WITH_TYPES"),
 ]
 CLUSTER_BLOCKS = [
-    ("Per-cluster template, unconstrained", "conditions C2 and C3", "MARKER_NO_TYPES"),
-    ("Per-cluster template, constrained", "conditions C4 and C5", "MARKER_WITH_TYPES"),
+    ("Per-cluster template, unconstrained", "the ablation by GPT-OSS-120B and Gemini 3.1 Pro "
+     "per cluster, in the conditions without the list", "MARKER_NO_TYPES"),
+    ("Per-cluster template, constrained", "the ablation by GPT-OSS-120B and Gemini 3.1 Pro per "
+     "cluster, in the conditions with the list", "MARKER_WITH_TYPES"),
 ]
 
 
@@ -597,18 +508,17 @@ def write_prompts_tex(out_path):
         "\\paragraph{Supplementary Note \\thesuppnote: Prompt templates.}\\label{suppnote:prompts}",
         "",
         "The prompt templates of the benchmark, the prompt-context ablation and the "
-        "imperfect-list study are reproduced below, with the substitution slots in braces. "
+        "imperfect-list analysis are reproduced below, with the substitution slots in braces. "
         "\\texttt{num\\_genes} caps the gene list at 200 per cell and 25 per cluster. "
         "\\texttt{cell\\_sentence} and \\texttt{marker\\_genes} carry the gene names, and "
         "\\texttt{organism} names the dataset's organism, Homo sapiens or Mus musculus. "
         "\\texttt{unique\\_cell\\_types} is the list of expected cell types. The per-cell "
         "templates receive it as a Python list, permuted independently for each cell, the per-cluster templates separated by commas and permuted "
         "for each cluster, and the templates of C2S-Scale and InstructCell separated by commas and "
-"sorted. \\texttt{context} is empty in the benchmark. The prompt-context ablation fills it "
-        f"in conditions C3 and C5 with the species and tissue, {phrases}, and with the tissue "
-        "alone in C2S-Scale's template, which already names the organism (Supplementary "
-        "Tables~\\ref{supptab:ablation_design} "
-        "and~\\ref{supptab:ablation_conditions}). The benchmark sent each prompt to the "
+        "sorted. \\texttt{context} is empty in the benchmark. In the conditions with the tissue "
+        f"and species, the prompt-context ablation fills it with them, {phrases}, and with the "
+        "tissue alone in C2S-Scale's template, which already names the organism (Supplementary "
+        "Table~\\ref{supptab:ablation_design}). The benchmark sent each prompt to the "
         "general-purpose LLMs with an empty system message, and the ablation's arms through an "
         "API sent it as the only message.",
         "",
@@ -634,23 +544,23 @@ def write_prompts_tex(out_path):
                    " It adds the expected cell types in the benchmark's own wording, not in one "
                    "of the option phrasings InstructCell was trained with.")
     lines += block("Candidate texts of the embedding-based scLLMs",
-                   "the benchmark and the imperfect-list study", langcell_text,
+                   "the benchmark and the imperfect-list analysis", langcell_text,
                    " These models compare each cell with a text for every candidate cell type, "
                    "all 3,169 Cell Ontology names when unconstrained, the expected cell types when "
-                   "constrained and the drawn list in the imperfect-list study. CellWhisperer and "
-                   "mmContext take the candidate names as "
+                   "constrained and the drawn list in the imperfect-list analysis. CellWhisperer "
+                   "and mmContext take the candidate names as "
                    "written. LangCell takes the text below, with the name and definition from the "
                    "Cell Ontology file its authors provide, and "
                    f"\\texttt{{{bare}}} for a candidate that file lacks.")
     for heading, used_in, const in CLUSTER_BLOCKS:
         lines += block(heading, used_in, getattr(P, const))
     lines += [
-        "\\paragraph{Imperfect-list study.} The study used the templates of condition C4, the "
-        "per-cell template for GPT-OSS-120B, C2S-Scale's own for C2S-Scale 2B and the per-cluster "
-        "template for Gemini 3.1 Pro, with the drawn list in place of the dataset's own. The "
-        "conditions that offer the answer uncertain (Supplementary "
-        "Table~\\ref{supptab:list_conditions}) add the rule below, as rule 5 of the per-cell and "
-        "per-cluster templates and directly after the list in C2S-Scale's template.",
+        "\\paragraph{Imperfect-list analysis.} The analysis used the constrained templates, the "
+        "per-cell template for GPT-OSS-120B, C2S-Scale's own for C2S-Scale 2B and the "
+        "per-cluster template for Gemini 3.1 Pro, with the drawn list in place of the dataset's "
+        "own. With the exact list + uncertain, A3 and A1 + A2 + A3, the templates add the rule "
+        "below, as rule 5 of the per-cell and per-cluster templates and directly after the list "
+        "in C2S-Scale's template.",
         "\\begin{quote}\\footnotesize\\ttfamily\\raggedright",
         _verbatimish(P.UNCERTAIN_RULE),
         "\\end{quote}",
@@ -705,12 +615,13 @@ def main(argv=None):
 
     tex_path = write_tex(raw, outdir / "supplementary_ablation_tables_generated.tex")
     print(f"[tex]  {tex_path}")
-    # The list study's tables in a file of their own: the supplement places R2's bootstrap table
-    # between the two studies, in the order the text first cites them.
+    # The list study's results table in a file of its own: the supplement places R2's bootstrap
+    # table before it, in the order the text first cites them.
     list_tex = outdir / "supplementary_list_tables_generated.tex"
     list_tex.write_text("\n".join(["% GENERATED by bin/ablation_tables.py -- do not edit by hand.",
-                                   "% The imperfect-list study. Requires \\usepackage{longtable} "
-                                   "and booktabs.", ""] + write_list_tex(runs, conditions)))
+                                   "% The imperfect-list analysis. Requires "
+                                   "\\usepackage{longtable} and booktabs.", ""]
+                                  + write_list_tex(runs, conditions)))
     print(f"[tex]  {list_tex}")
 
     prompts_path = write_prompts_tex(outdir / "supplementary_prompts_generated.tex")

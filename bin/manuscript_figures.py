@@ -439,7 +439,7 @@ DEFAULT_RARE_CSV = "cache/rare_type_outcomes_1000_stratified.csv"
 DEFAULT_PER_CLASS_CSV = "cache/per_class_scores_1000_stratified.csv"
 
 # --------------------------------------------------------------------------- #
-# Figure 4 and Supplementary Figures S7-S11 -- rare cell types (R3).
+# Figure 4 and Supplementary Figures S9-S13 -- rare cell types (R3).
 #
 # Rare means below RARE_PREVALENCE_MAX of the FULL dataset, not of the evaluation subset: the
 # subsets hold at least 20 cells of every type, so a subset's own prevalence is mostly the sampler
@@ -609,7 +609,7 @@ def _outcome_bars(ax, shares, y):
 
 def _rare_dotplot(ax, rows, rare, per_class, blocks, s_min=22.0, s_span=170.0,
                   label_fs=None, cmap_name="viridis"):
-    """Draw the per-cell-type dot grid of Supplementary Figure S7A.
+    """Draw the per-cell-type dot grid of Supplementary Figure S9A.
 
     ``rows`` is ``[("__header__", label, None) | (dataset, cell_type, prevalence)]`` in draw order.
     Marker area is per-class recall, color is per-class Lin similarity, and a ringed marker with a
@@ -676,7 +676,7 @@ def figure_s7_rare_full(df, out_path, dpi=600, rare=None, per_class=None):
     RARE_PREVALENCE_MAX, the set Figure 4B counts, in Figure 4's groups.
 
     Sized to print at the full text width: the float holds the figure and its caption within the
-    text height (S7 continues on the next float with the answer types).
+    text height (S9 continues on the next float with the answer types).
     """
     rare = load_rare_outcomes() if rare is None else rare
     per_class = load_per_class_scores() if per_class is None else per_class
@@ -723,7 +723,7 @@ def figure_s7_rare_full(df, out_path, dpi=600, rare=None, per_class=None):
 
 
 def figure_s7b_rare_answer_types(df, out_path, dpi=600, rare=None, pairs=None):
-    """Supplementary -- S7 continued: where the cells of the common and of the rare cell types go.
+    """Supplementary -- S9 continued: where the cells of the common and of the rare cell types go.
 
     Backs R3's statement that the missed cells of rare types mostly go to another cell type
     rather than to a coarser or finer one: Figure 2H's answer types, for the common and the rare
@@ -1519,12 +1519,12 @@ PROMPT_MODES = [("M1", "genes\nonly"), ("M3", "genes\n+ tissue"), ("M2", "genes\
 # B: the exact list, the three imperfections and their union; the key row spells out A1-A3.
 LIST_CONDITIONS = [("E", "exact list"), ("L1", "A1"), ("L2-5", "A2"), ("L3", "A3"),
                    ("L4", "A1 + A2 + A3")]
-LIST_KEY = ("Imperfect lists", ["A1  mixed levels (parents, children)",
+LIST_KEY = ("Imperfect lists", ["A1  parents or children added",
                                 "A2  five absent types added",
                                 "A3  a quarter of the types removed"])
 # C: Figure 2H's classes, worded for the cells of a type the list left out.
-MISSING_TYPE_CONDITIONS = [("L3", "¼ of the types missing (A3)"),
-                           ("L4", "all combined (A1 + A2 + A3)")]
+MISSING_TYPE_CONDITIONS = [("L3", "a quarter of the types removed (A3)"),
+                           ("L4", "all three errors (A1 + A2 + A3)")]
 MISSING_TYPE_KEY = {"exact": "the missing type itself",
                     "coarser": "coarser, specific\n(e.g. a listed parent)",
                     "broad": "coarser, broad", "finer": "finer", "other": "another cell type",
@@ -1684,8 +1684,8 @@ def _missing_types_panel(axes, runs):
 
 
 def _figure3_top(fig, outer, ablation, bench, runs, metric="balanced_accuracy"):
-    """Figure 3's A | B on ``metric`` in ``outer``'s first row and their key in its third, for
-    Figure 3 and its ontology-aware twin; returns the two axes."""
+    """Figure 3's A | B on ``metric`` in ``outer``'s first row and their key in its third; returns
+    the two axes."""
     top = outer[0].subgridspec(1, 2, width_ratios=[1.0, 2.55], wspace=0.13)
     ax_a = fig.add_subplot(top[0, 0])
     ax_b = fig.add_subplot(top[0, 1], sharey=ax_a)
@@ -1698,15 +1698,23 @@ def _figure3_top(fig, outer, ablation, bench, runs, metric="balanced_accuracy"):
     ax_a.text(0.5, 1.02, "baseline", transform=ax_a.transAxes, ha="center", va="bottom",
               fontsize=FS_GROUP, alpha=0)
 
-    drawn = {(categorize_model(m), model_tier(m)) for m in STUDY_ARM_MODEL.values()}
-    ax_key = fig.add_subplot(outer[2])
-    ax_key.axis("off")
-    _family_key(ax_key, [
-        plt.Line2D([], [], color="0.35", linewidth=1.4, label="per cell"),
-        plt.Line2D([], [], color="0.35", linewidth=1.4, linestyle="--", label="per cluster"),
-        plt.Line2D([], [], color="0.62", linewidth=0.7, label="same method")],
-        drawn=drawn, extra=[LIST_KEY], spacing=1.5)
+    _figure3_key(fig, outer[2])
     return ax_a, ax_b
+
+
+def _figure3_key(fig, cell, same_method=True, spacing=1.5):
+    """Figure 3's key in the gridspec ``cell``: line styles, the families and subcategories of the
+    methods, and A1-A3. ``same_method`` keys the thin grey line that joins one method's points,
+    which Figure S7 does not draw: its lines take the family's colour. ``spacing`` is the gap
+    between the key's columns, narrower where the key must fit under the panels."""
+    drawn = {(categorize_model(m), model_tier(m)) for m in STUDY_ARM_MODEL.values()}
+    lines = [plt.Line2D([], [], color="0.35", linewidth=1.4, label="per cell"),
+             plt.Line2D([], [], color="0.35", linewidth=1.4, linestyle="--", label="per cluster")]
+    if same_method:
+        lines.append(plt.Line2D([], [], color="0.62", linewidth=0.7, label="same method"))
+    ax_key = fig.add_subplot(cell)
+    ax_key.axis("off")
+    _family_key(ax_key, lines, drawn=drawn, extra=[LIST_KEY], spacing=spacing)
 
 
 def figure_2(df, out_path, dpi=600, ablation=None, runs=None):
@@ -1931,39 +1939,6 @@ def _cost_panel(ax, frame, cat_color, bench=None):
                         text_bbox=dict(facecolor="white", edgecolor="none", pad=0.5))
 
 
-def _variant_slope(ax, frame, cat_color):
-    """Expression-ranked against HVG sentences, paired per (arm, mode).
-
-    Flat lines mean gene selection does not matter; crossing lines mean it interacts with context.
-    The caption must carry the truncation caveat: at the 5,000-gene pool a large share of cells
-    fall short of the 200-gene cap on some datasets, so gene choice and sentence length are partly
-    confounded.
-    """
-    variants = ["expression_ranked", "hvg"]
-    if not set(variants) <= set(frame["variant"]):
-        ax.text(0.5, 0.5, "the HVG variant has not been run", ha="center", va="center",
-                transform=ax.transAxes, color="0.5", fontsize=FS_LEGEND)
-        ax.axis("off")
-        return
-    for arm, (family, marker, _ls, _label) in ABLATION_ARMS.items():
-        for mode in MODE_ORDER:
-            pair = [frame[(frame["arm"] == arm) & (frame["mode"] == mode)
-                          & (frame["variant"] == v)]["balanced_accuracy"].mean()
-                    for v in variants]
-            if np.isnan(pair).any():
-                continue
-            ax.plot([0, 1], pair, marker=marker, markersize=5, linewidth=1.2,
-                    color=cat_color[family], alpha=0.85, zorder=3)
-    ax.set_xticks([0, 1])
-    # Both sides rank by expression and both cap at 200 genes; only the ELIGIBLE VOCABULARY differs.
-    # "expression ranked" vs "HVG pool" implied the ranking itself changed, which it does not.
-    ax.set_xticklabels(["top 200 by expression\nfrom all genes",
-                        "top 200 by expression\nfrom 5,000 HVGs"])
-    ax.set_xlim(-0.25, 1.25)
-    ax.set_ylim(0, None)
-    ax.set_ylabel("Balanced accuracy")
-    ax.grid(axis="y", linestyle=":", alpha=0.5)
-    sns.despine(ax=ax)
 
 
 def _ablation_dataset_panel(ax, ablation, dataset, gemini, arms, offsets, gemini_dx):
@@ -2075,9 +2050,9 @@ def figure_context_per_dataset(df, out_path, dpi=600, ablation=None):
 
 
 def figure_lists_per_dataset(df, out_path, dpi=600, ablation=None, runs=None):
-    """Supplementary for R2 — Figure 3B resolved per dataset, as Supplementary Figure S4 continued
-    (panels E-H): each method as a line from no list through the exact list and A1-A3 to their
-    union, the methods named at the right."""
+    """Supplementary for R2 — Figure 3B resolved per dataset, one panel per dataset: each method as
+    a line from no list through the exact list and A1-A3 to their union, the methods named at the
+    right."""
     ablation = load_ablation() if ablation is None else ablation
     runs = load_list_runs() if runs is None else runs
     if ablation.empty or runs.empty:
@@ -2086,19 +2061,22 @@ def figure_lists_per_dataset(df, out_path, dpi=600, ablation=None, runs=None):
     datasets = [d for d in DATASET_ORDER if d in set(runs["dataset"])]
     arms = _list_study_arms(runs)
     with plt.rc_context(_rc()):
-        fig, axes = plt.subplots(2, 2, figsize=(11.6, 10.4),
-                                 gridspec_kw={"hspace": 0.5, "wspace": 0.18})
-        panels = list(axes.ravel())
+        fig = plt.figure(figsize=(11.6, 11.6))
+        # The four datasets, then Figure 3's key below the rotated tick labels.
+        outer = fig.add_gridspec(2, 1, height_ratios=[10.4, 1.2], hspace=0.26)
+        grid = outer[0].subgridspec(2, 2, hspace=0.5, wspace=0.18)
+        panels = [fig.add_subplot(grid[i // 2, i % 2]) for i in range(len(datasets))]
         for ax, dataset in zip(panels, datasets):
             _list_dataset_panel(ax, runs, _no_list_reference(ablation, df, arms, dataset), dataset)
-        _panel_letters(fig, [(ax, chr(69 + i)) for i, ax in enumerate(panels)])
+        _figure3_key(fig, outer[1], same_method=False, spacing=0.7)
+        _panel_letters(fig, [(ax, chr(65 + i)) for i, ax in enumerate(panels)])
         return _save(fig, out_path, dpi)
 
 
 def figure_context_ontology(df, out_path, dpi=600, ablation=None, runs=None):
-    """Supplementary for R2 — Figure 3A and 3B on the agreement score, printed as Supplementary
-    Figure S5 continued (panels E and F): half credit for a coarser type that is not broad or a
-    finer type shows how much of a loss in balanced accuracy is near misses."""
+    """Supplementary for R2 — Figure 3B on the agreement score: half credit for a coarser type that
+    is not broad or a finer type shows how much of the loss with an imperfect list is near
+    misses."""
     ablation = load_ablation() if ablation is None else ablation
     runs = load_list_runs() if runs is None else runs
     if ablation.empty or runs.empty:
@@ -2108,133 +2086,52 @@ def figure_context_ontology(df, out_path, dpi=600, ablation=None, runs=None):
         fig = plt.figure(figsize=(12.2, 6.0))
         outer = fig.add_gridspec(3, 1, height_ratios=[4.0, 1.0, 1.2], hspace=0,
                                  left=0.075, right=0.985, top=0.94, bottom=0.02)
-        ax_e, ax_f = _figure3_top(fig, outer, ablation, df, runs, "agreement")
-        _panel_letters(fig, [(ax_e, "E"), (ax_f, "F")])
+        ax = fig.add_subplot(outer[0])
+        _imperfect_lists_panel(ax, runs, _no_list_reference(ablation, df, _list_study_arms(runs),
+                                                            metric="agreement"), "agreement")
+        ax.set_ylim(0, 0.72)
+        _figure3_key(fig, outer[2])
         return _save(fig, out_path, dpi)
 
 
-def _unmapped_panel(ax, ablation):
-    """The share of answers matching no Cell Ontology term, on Figure 3A's arms and conditions."""
-    x = np.arange(len(PROMPT_MODES))
-    for arm in PROMPT_ARMS:
-        family, marker, linestyle, label = ABLATION_ARMS[arm]
-        rows = _arm_rows(ablation, arm)
-        ax.plot(x, [rows.loc[rows["mode"] == m, "non_cl_ratio"].mean() for m, _ in PROMPT_MODES],
-                color=_ranked_category_colors()[family], marker=marker, linestyle=linestyle,
-                markersize=_marker_size_for(marker) * 0.85, linewidth=1.4, label=label, zorder=3)
-    ax.set_xticks(x)
-    ax.set_xticklabels([label for _, label in PROMPT_MODES], fontsize=FS_TICK - 1)
-    ax.set_ylabel("Answers matching no ontology term")
-    ax.set_ylim(0, None)
-    ax.grid(axis="y", linestyle=":", alpha=0.5)
-    sns.despine(ax=ax)
-    ax.legend(loc="upper right", frameon=False, fontsize=FS_LEGEND - 1)
 
 
 def figure_context_supporting(df, out_path, dpi=600, ablation=None):
-    """Supplementary for R2 — the mechanism behind Figure 3A and three checks on the ablation.
-
-    (A) Answers matching no Cell Ontology term, on Figure 3A's arms and conditions (Figure 3B until
-        the rebuild of 2026-10-09). The base model is left to (B).
-    (B) The base model's answer format, the caveat on any base-against-adapted comparison: most of
-        Gemma-2-2B's answers resolve to no ontology term and many run past eight words, so its
-        near-zero score mixes "wrong cell type" with "not a cell type".
-    (C) The gene pool: the 200 genes drawn from 5,000 highly variable genes instead of all genes.
-    (D) Clustering resolution, for both cluster arms; the numbers reported elsewhere use 1.0.
-    """
+    """Supplementary for R2 — the base model's answer format, the caveat on any base-against-adapted
+    comparison: most of Gemma-2-2B's answers resolve to no ontology term and many run past eight
+    words, so its near-zero score mixes "wrong cell type" with "not a cell type"."""
     ablation = load_ablation() if ablation is None else ablation
     if ablation.empty:
         raise SystemExit("needs context_ablation/results/context_ablation.csv; run the study first")
-
-    cat_color = _ranked_category_colors()
+    a2 = ablation[(ablation["arm"] == "A2_base_percell")
+                  & (ablation["variant"] == "expression_ranked")]
+    modes = [m for m in MODE_ORDER if m in set(a2["mode"])]  # it ran no shuffled genes
+    x = np.arange(len(modes), dtype=float)
     with plt.rc_context(_rc()):
-        fig = plt.figure(figsize=(12.2, 9.0))
-        gs = fig.add_gridspec(2, 2, wspace=0.28, hspace=0.42)
-        # PANEL ORDER FOLLOWS R3, reordered 2026-08-15. R3.2 cites the base-model panel and
-        # then the gene pool; R3.4 cites clustering resolution. The axes are named for
-        # their CONTENT so that a future reorder changes only this one line.
-        ax_unmapped, ax_base, ax_hvg, ax_res = (fig.add_subplot(gs[i // 2, i % 2])
-                                                for i in range(4))
-        _unmapped_panel(ax_unmapped, ablation)
-
-        # (D) resolution sensitivity -----------------------------------------
-        # BOTH cluster arms, not just GPT-OSS. The claim this panel supports is that the per-cluster
-        # result is not an artefact of one lucky clustering; with a second model available at the
-        # same two resolutions, showing only one of them tests the claim on half the evidence.
-        variants = ["res0.5", "res1.0"]
-        labels_a, obstacles_a = [], []
-        for arm in ("A4_llm_percluster", "A8_gemini_percluster"):
-            sub = ablation[ablation["arm"] == arm]
-            if sub.empty or not set(variants) <= set(sub["variant"]):
-                continue
-            _fam, marker, linestyle, arm_label = ABLATION_ARMS[arm]
-            for dataset in sorted(sub["dataset"].unique()):
-                pair = [sub[(sub["dataset"] == dataset) & (sub["variant"] == v)]
-                        ["balanced_accuracy"].mean() for v in variants]
-                if np.isnan(pair).any():
-                    continue
-                ax_res.plot([0, 1], pair, marker=marker, linestyle=linestyle,
-                          markersize=_marker_size_for(marker) * 0.85, linewidth=1.3,
-                          color=cat_color["LLM"], alpha=0.85, zorder=3,
-                          label=arm_label if dataset == sorted(sub["dataset"].unique())[0] else None)
-                # Collision-aware placement instead of a fixed +6pt offset. With two arms the
-                # right-hand endpoints for HFRA and Zeisel land within a few thousandths of each
-                # other and their fixed-offset labels printed on top of one another.
-                labels_a.append((dataset_label(dataset), 1, pair[1], "0.25"))
-                obstacles_a.extend([(0, pair[0], 9.0), (1, pair[1], 9.0)])
-        if labels_a:
-            ax_res.set_xticks([0, 1])
-            # Cluster counts, not just the resolution parameter: "0.5 vs 1.0" is meaningless without
-            # knowing it roughly doubles the number of clusters the eval cells fall into. Counted on
-            # the cluster arms present, which share one clustering per (dataset, resolution).
-            cl = ablation[ablation["arm"].str.endswith("percluster")]
-            counts = [int(round(cl[cl["variant"] == v]["n_clusters_in_eval"].mean()))
-                      for v in variants]
-            ax_res.set_xticklabels([f"resolution 0.5\n(~{counts[0]} clusters)",
-                                  f"resolution 1.0\n(~{counts[1]} clusters)"])
-            ax_res.set_xlim(-0.3, 1.75)
-            ax_res.legend(loc="lower left", frameon=False, fontsize=FS_LEGEND - 1)
-            _place_point_labels(ax_res, labels_a, obstacles_a, FS_POINT)
-        ax_res.set_ylabel("Balanced accuracy")
-        ax_res.set_ylim(0, None)
-        ax_res.grid(axis="y", linestyle=":", alpha=0.5)
-        sns.despine(ax=ax_res)
-
-        # (B) base-model answer format ---------------------------------------
-        a2 = ablation[(ablation["arm"] == "A2_base_percell")
-                      & (ablation["variant"] == "expression_ranked")]
-        modes = [m for m in MODE_ORDER if m in set(a2["mode"])]  # it ran no shuffled genes
-        x = np.arange(len(modes), dtype=float)
+        fig, ax = plt.subplots(figsize=(12.2, 4.6))  # full page width, as every plot
         for col, style, label in [("non_cl_ratio", "-", "no ontology term"),
                                   ("frac_over_8_words", "--", "answer over 8 words")]:
-            if col not in a2:
-                continue
             vals = [a2[a2["mode"] == m][col].mean() for m in modes]
-            ax_base.plot(x, vals, linestyle=style, marker="s", markersize=5,
-                      color=cat_color["LLM"], linewidth=1.4, label=label, zorder=3)
+            ax.plot(x, vals, linestyle=style, marker="s", markersize=5,
+                    color=_ranked_category_colors()["LLM"], linewidth=1.4, label=label, zorder=3)
         # The score it achieves, on the same axis, to make the gap between "answered" and "answered
         # usefully" immediate rather than something the reader has to hold in mind across figures.
         acc = [a2[a2["mode"] == m]["balanced_accuracy"].mean() for m in modes]
-        ax_base.plot(x, acc, linestyle=":", marker="o", markersize=4, color="0.35",
-                  linewidth=1.2, label="balanced accuracy", zorder=3)
-        ax_base.set_xticks(x)
-        ax_base.set_xticklabels([MODE_LABELS.get(m, m) for m in modes], fontsize=FS_TICK - 1)
-        ax_base.set_ylabel("Fraction of predictions")
-        ax_base.set_ylim(0, 1.05)
-        ax_base.grid(axis="y", linestyle=":", alpha=0.5)
-        # Nudged up from the default "center left" anchor (0, 0.5): the balanced-accuracy trace runs
-        # along the bottom of this axes, and at dead centre the legend crowded it.
-        ax_base.legend(loc="center left", bbox_to_anchor=(0, 0.60), frameon=False,
-                    fontsize=FS_LEGEND - 1)
-        ax_base.set_title("Gemma-2-2B (base)", fontsize=FS_TITLE)
-        sns.despine(ax=ax_base)
-
-        # (C) gene-pool ablation ---------------------------------------------
-        _variant_slope(ax_hvg, ablation, cat_color)
-        ax_hvg.set_ylabel("Balanced accuracy")
-
-        _panel_letters(fig, [(ax_unmapped, "A"), (ax_base, "B"), (ax_hvg, "C"), (ax_res, "D")])
+        ax.plot(x, acc, linestyle=":", marker="o", markersize=4, color="0.35", linewidth=1.2,
+                label="balanced accuracy", zorder=3)
+        ax.set_xticks(x)
+        ax.set_xticklabels([MODE_LABELS.get(m, m) for m in modes], fontsize=FS_TICK - 1)
+        ax.set_ylabel("Share")
+        ax.set_ylim(0, 1.05)
+        ax.grid(axis="y", linestyle=":", alpha=0.5)
+        # Lower right, just above the balanced-accuracy trace: the lines rise steeply on the left,
+        # where a legend crosses them.
+        ax.legend(loc="lower right", bbox_to_anchor=(1.0, 0.08), frameon=False,
+                  fontsize=FS_LEGEND - 1)
+        ax.set_title("Gemma-2-2B (base)", fontsize=FS_TITLE)
+        sns.despine(ax=ax)
         return _save(fig, out_path, dpi)
+
 
 # Every key IS the output filename (out = figure_{key}.{fmt}) and every filename matches the
 # number LaTeX assigns, so the chain function -> file -> manuscript number holds end to end.
@@ -2247,25 +2144,26 @@ FIGURES = {
     "3": figure_2,                       # prompt-context ablation      -> Figure 3
     "4": figure_3,                       # rare cell types              -> Figure 4
     # Supplementary, numbered by first mention in the BiB build (Methods before Results), as
-    # BiB asks (renumbered 2026-10-07): S1-S3 are cited in R1, S4-S6 in R2, S7-S11 in R3.
+    # BiB asks (renumbered 2026-10-07): S1-S3 are cited in R1, S4-S8 in R2, S9-S13 in R3.
     "s1_harmonization": figure_harmonization,          # Figure 2G per method
     "s2_answer_types": figure_answer_types,            # Figure 2H per dataset and subcategory
     "s3_metric_agreement": figure_metric_agreement,    # task 2.3
-    # R2, in the order it cites them (renumbered 2026-10-09): Figure 3A and 3B per dataset,
-    # printed as S4 and S4 continued; the answer format, gene pool and clustering resolution; and
-    # cost against accuracy.
+    # R2, in the order it cites them (renumbered 2026-10-15, when Figure 3A and 3B per dataset and
+    # the agreement score became figures of their own; uncited panels cut): Figure 3A per dataset;
+    # the base model's answer format; cost against accuracy; Figure 3B per dataset; and Figure 3B
+    # on the agreement score.
     "s4_context_per_dataset": figure_context_per_dataset,
-    "s4b_lists_per_dataset": figure_lists_per_dataset,
     "s5_context_supporting": figure_context_supporting,
-    "s5b_ontology_scores": figure_context_ontology,
     "s6_cost_performance": figure_cost_performance,
-    # R3: every rare cell type per method group, then (S7 continued) where the cells of the common
+    "s7_lists_per_dataset": figure_lists_per_dataset,
+    "s8_ontology_scores": figure_context_ontology,
+    # R3: every rare cell type per method group, then (S9 continued) where the cells of the common
     # and of the rare types go.
-    "s7_rare_full": figure_s7_rare_full,
-    "s7b_rare_answer_types": figure_s7b_rare_answer_types,
-    # One flow figure per dataset, S8 onward in RARE_FLOW_ORDER; HFRA has only two rare types at
+    "s9_rare_full": figure_s7_rare_full,
+    "s9b_rare_answer_types": figure_s7b_rare_answer_types,
+    # One flow figure per dataset, S10 onward in RARE_FLOW_ORDER; HFRA has only two rare types at
     # or below the 3% floor.
-    **{f"s{i + 8}_{ds.lower()}": _rare_flow_builder(ds)
+    **{f"s{i + 10}_{ds.lower()}": _rare_flow_builder(ds)
        for i, ds in enumerate(RARE_FLOW_ORDER)},
 }
 
