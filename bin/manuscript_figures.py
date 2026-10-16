@@ -439,7 +439,7 @@ DEFAULT_RARE_CSV = "cache/rare_type_outcomes_1000_stratified.csv"
 DEFAULT_PER_CLASS_CSV = "cache/per_class_scores_1000_stratified.csv"
 
 # --------------------------------------------------------------------------- #
-# Figure 4 and Supplementary Figures S9-S13 -- rare cell types (R3).
+# Figure 4 and Supplementary Figures S9-S14 -- rare cell types (R3).
 #
 # Rare means below RARE_PREVALENCE_MAX of the FULL dataset, not of the evaluation subset: the
 # subsets hold at least 20 cells of every type, so a subset's own prevalence is mostly the sampler
@@ -609,11 +609,11 @@ def _outcome_bars(ax, shares, y):
 
 def _rare_dotplot(ax, rows, rare, per_class, blocks, s_min=22.0, s_span=170.0,
                   label_fs=None, cmap_name="viridis"):
-    """Draw the per-cell-type dot grid of Supplementary Figure S9A.
+    """Draw the per-cell-type dot grid of Supplementary Figure S9.
 
     ``rows`` is ``[("__header__", label, None) | (dataset, cell_type, prevalence)]`` in draw order.
     Marker area is per-class recall, color is per-class Lin similarity, and a ringed marker with a
-    cross marks a cell type no method in that group ever emitted.
+    cross marks a cell type no method in that group ever named ("never named", as in Figure 4B).
 
     Returns ``(norm, s_min, s_span)`` so the caller can build a matching key.
     """
@@ -676,7 +676,7 @@ def figure_s7_rare_full(df, out_path, dpi=600, rare=None, per_class=None):
     RARE_PREVALENCE_MAX, the set Figure 4B counts, in Figure 4's groups.
 
     Sized to print at the full text width: the float holds the figure and its caption within the
-    text height (S9 continues on the next float with the answer types).
+    text height. A single panel, so it carries no panel letter (since 2026-10-16).
     """
     rare = load_rare_outcomes() if rare is None else rare
     per_class = load_per_class_scores() if per_class is None else per_class
@@ -712,18 +712,18 @@ def figure_s7_rare_full(df, out_path, dpi=600, rare=None, per_class=None):
                                    mec="0.4", ms=7.5, mew=1.4),
                         plt.Line2D([0], [0], linestyle="none", marker="x", color="0.35",
                                    ms=4.2, mew=0.9)))
-        labels = [h.get_label() for h in handles[:3]] + ["label never emitted"]
+        labels = [h.get_label() for h in handles[:3]] + ["never named"]
         ax_key.legend(handles=handles, labels=labels, loc="upper left", frameon=False,
                       fontsize=FS_LEGEND, labelspacing=1.0, handletextpad=0.6,
                       borderaxespad=0.0, alignment="left",
                       handler_map={tuple: HandlerTuple(ndivide=1, pad=0.0)})
-        _panel_letters(fig, [(ax, "A")])
         print(f"    [s7] {n_types} cell types below 1%")
         return _save(fig, out_path, dpi)
 
 
 def figure_s7b_rare_answer_types(df, out_path, dpi=600, rare=None, pairs=None):
-    """Supplementary -- S9 continued: where the cells of the common and of the rare cell types go.
+    """Supplementary Figure S10: where the cells of the common and of the rare cell types go.
+    Split off from S9 on 2026-10-16, since R3 cites it on its own; panels A (common) and B (rare).
 
     Backs R3's statement that the missed cells of rare types mostly go to another cell type
     rather than to a coarser or finer one: Figure 2H's answer types, for the common and the rare
@@ -757,7 +757,7 @@ def figure_s7b_rare_answer_types(df, out_path, dpi=600, rare=None, pairs=None):
         ax_key.legend(handles=axes[0].get_legend_handles_labels()[0], loc="center left",
                       frameon=False, fontsize=FS_LEGEND, borderaxespad=0, borderpad=0,
                       handlelength=1.6)
-        _panel_letters(fig, [(axes[0], "B")])
+        _panel_letters(fig, [(axes[0], "A"), (axes[1], "B")])
         return _save(fig, out_path, dpi)
 
 
@@ -765,8 +765,8 @@ def figure_3(df, out_path, dpi=600, rare=None):
     """Figure 4 -- rare cell types, in Figure 2G/H's rows: every family in both settings, then the
     closed-weight LLMs.
 
-    (A) Mean per-class recall of the common and of the rare cell types, compared within each
-        dataset (_rarity_rates).
+    (A) Balanced accuracy over the common and over the rare cell types (the mean per-class recall
+        of each set), compared within each dataset (_rarity_rates).
     (B) For the rare types, how far each group got: correct for most of the type's cells, for
         some, named but never on its cells, or never named, which for the constrained baselines is
         split by whether the method has a label for the type at all.
@@ -801,7 +801,8 @@ def figure_3(df, out_path, dpi=600, rare=None):
         _paired_rows(ax_a, rates, RARITY_ROWS, "common", "rare")
         ax_a.set_xlim(0, 0.8)
         ax_a.set_xticks(np.arange(0, 0.81, 0.2))
-        ax_a.set_xlabel("Mean per-class recall")
+        # Named as in the text: balanced accuracy over the common or the rare types (2026-10-16).
+        ax_a.set_xlabel("Balanced accuracy")
         ax_a.legend(handles=[
             plt.Line2D([], [], linestyle="none", marker="o", markerfacecolor="white",
                        markeredgecolor="0.3", markersize=7, label="common (\u2265 1%)"),
@@ -2144,7 +2145,7 @@ FIGURES = {
     "3": figure_2,                       # prompt-context ablation      -> Figure 3
     "4": figure_3,                       # rare cell types              -> Figure 4
     # Supplementary, numbered by first mention in the BiB build (Methods before Results), as
-    # BiB asks (renumbered 2026-10-07): S1-S3 are cited in R1, S4-S8 in R2, S9-S13 in R3.
+    # BiB asks (renumbered 2026-10-07): S1-S3 are cited in R1, S4-S8 in R2, S9-S14 in R3.
     "s1_harmonization": figure_harmonization,          # Figure 2G per method
     "s2_answer_types": figure_answer_types,            # Figure 2H per dataset and subcategory
     "s3_metric_agreement": figure_metric_agreement,    # task 2.3
@@ -2157,13 +2158,13 @@ FIGURES = {
     "s6_cost_performance": figure_cost_performance,
     "s7_lists_per_dataset": figure_lists_per_dataset,
     "s8_ontology_scores": figure_context_ontology,
-    # R3: every rare cell type per method group, then (S9 continued) where the cells of the common
-    # and of the rare types go.
+    # R3: every rare cell type per method group (S9), then where the cells of the common and of
+    # the rare types go (S10, a figure of its own since 2026-10-16).
     "s9_rare_full": figure_s7_rare_full,
-    "s9b_rare_answer_types": figure_s7b_rare_answer_types,
-    # One flow figure per dataset, S10 onward in RARE_FLOW_ORDER; HFRA has only two rare types at
+    "s10_rare_answer_types": figure_s7b_rare_answer_types,
+    # One flow figure per dataset, S11 onward in RARE_FLOW_ORDER; HFRA has only two rare types at
     # or below the 3% floor.
-    **{f"s{i + 10}_{ds.lower()}": _rare_flow_builder(ds)
+    **{f"s{i + 11}_{ds.lower()}": _rare_flow_builder(ds)
        for i, ds in enumerate(RARE_FLOW_ORDER)},
 }
 
