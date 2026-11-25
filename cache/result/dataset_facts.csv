@@ -41,7 +41,7 @@ human_pancreas,studies,baron2016pancreas; muraro2016pancreas; grun2016pancreas; 
 human_pancreas,organism,human,datasets/human_pancreas.yml,obs organism of the subset files,2026-10-07
 human_pancreas,tissue,pancreas,datasets/human_pancreas.yml,datasets/*.yml and obs tissue columns,2026-10-07
 human_pancreas,technology,"inDrop, CEL-seq, CEL-seq2, Smart-seq2",https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/24539828/human_pancreas_norm_complexBatch.h5ad,obs assay (CELLxGENE) or tech of the files after quality control; Zeisel et al. 2018 STAR Methods (10X Genomics Chromium),2026-10-07
-human_pancreas,labels,authors',datasets/human_pancreas.yml,datasets/*.yml: CELLxGENE cell_type labels are Cell Ontology terms; the others are the authors' labels,2026-10-07
+human_pancreas,labels,curators',https://doi.org/10.6084/m9.figshare.12420968.v8,"figshare record of the compilation (Luecken et al. 2022): 'cell annotations were harmonized or reannotated'",2026-10-16
 human_pancreas,cells_downloaded,16382,https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/24539828/human_pancreas_norm_complexBatch.h5ad,Read from the source h5ad over HTTP range requests (X shape),2026-10-07
 human_pancreas,genes_downloaded,19093,https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/24539828/human_pancreas_norm_complexBatch.h5ad,Read from the source h5ad over HTTP range requests (X shape),2026-10-07
 human_pancreas,cell_types_labelled,14,https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/24539828/human_pancreas_norm_complexBatch.h5ad,Read from the source h5ad over HTTP range requests (distinct obs celltype),2026-10-07
@@ -55,7 +55,7 @@ Zeisel,name,Zeisel,datasets/Zeisel.yml,Display name used in the paper,2026-10-07
 Zeisel,citation,zeisel2018molecular,"https://zenodo.org/api/records/24590958/files/Zeisel_l5_all_rev1.h5ad/content (l5_all_rev1.loom from mousebrain.org, converted by bin/download_Zeisel.py)","Publication in uns/citation of the CELLxGENE file, or the paper that released the file",2026-10-07
 Zeisel,studies,zeisel2018molecular,"https://zenodo.org/api/records/24590958/files/Zeisel_l5_all_rev1.h5ad/content (l5_all_rev1.loom from mousebrain.org, converted by bin/download_Zeisel.py)",Studies the cells come from (obs doi / tech columns; Luecken et al. 2022 for the pancreas),2026-10-07
 Zeisel,organism,mouse,datasets/Zeisel.yml,obs organism of the subset files,2026-10-07
-Zeisel,tissue,nervous system (23 regions),datasets/Zeisel.yml,datasets/*.yml and obs tissue columns,2026-10-07
+Zeisel,tissue,nervous system (19 regions),https://doi.org/10.1016/j.cell.2018.06.021,"Zeisel et al. 2018, Results: 'In total, we analyzed 19 regions' (the loom's Tissue column holds 23 dissection codes)",2026-10-16
 Zeisel,technology,10x Chromium,"https://zenodo.org/api/records/24590958/files/Zeisel_l5_all_rev1.h5ad/content (l5_all_rev1.loom from mousebrain.org, converted by bin/download_Zeisel.py)",obs assay (CELLxGENE) or tech of the files after quality control; Zeisel et al. 2018 STAR Methods (10X Genomics Chromium),2026-10-07
 Zeisel,labels,authors',datasets/Zeisel.yml,datasets/*.yml: CELLxGENE cell_type labels are Cell Ontology terms; the others are the authors' labels,2026-10-07
 Zeisel,cells_downloaded,160796,"https://zenodo.org/api/records/24590958/files/Zeisel_l5_all_rev1.h5ad/content (l5_all_rev1.loom from mousebrain.org, converted by bin/download_Zeisel.py)",Read from the source h5ad over HTTP range requests (X shape),2026-10-07

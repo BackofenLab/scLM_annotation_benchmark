@@ -114,7 +114,7 @@ def caption(by):
         "\\textbf{Datasets of the benchmark.} Cells and genes of the files as downloaded and after "
         "quality control. Cell types gives the number of distinct labels of a file. Cell types "
         "scored counts those left after the labels were mapped to the Cell Ontology, which merged "
-        f"some of the authors' labels ({', '.join(merged)}), and that have at least 20 cells. A "
+        f"some of the labels ({', '.join(merged)}), and that have at least 20 cells. A "
         "test set draws each scored cell type in proportion to its share of the dataset, with at "
         f"least 20 cells. {sources[0].upper()}{sources[1:]}. HFRA is the Human Fetal Retina Atlas "
         "and HIHA the Human Immune Health Atlas.")
