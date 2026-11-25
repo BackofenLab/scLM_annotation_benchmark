@@ -1,0 +1,10 @@
+cell_type,original_count,original_proportion,subset_count,subset_proportion,dropped,drop_reason
+Mueller cell,6859,0.06659417264580522,64,0.064,False,
+amacrine cell,17460,0.1695195005679777,163,0.163,False,
+microglial cell,116,0.0011262463955260833,20,0.02,False,
+retina horizontal cell,10665,0.10354670524384206,100,0.1,False,
+retinal astrocyte,355,0.003446702331135858,20,0.02,False,
+retinal cone cell,3473,0.03371942872122489,33,0.033,False,
+retinal ganglion cell,6819,0.06620581181976173,64,0.064,False,
+retinal progenitor cell,42130,0.4090410400302921,394,0.394,False,
+retinal rod cell,15120,0.1468003922444343,142,0.142,False,

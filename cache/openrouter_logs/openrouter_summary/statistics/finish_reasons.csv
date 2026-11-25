@@ -1,7 +1,0 @@
-model,finish_reason_normalized,requests,fraction_within_model
-deepseek-v3.2,stop,3986,0.9972479359519639
-deepseek-v3.2,,11,0.0027520640480360272
-llama-3.1-70b-instruct,stop,3997,1.0
-llama-3.1-8b-instruct,stop,3997,1.0
-llama-3.3-70b-instruct,stop,3997,1.0
-llama-4-maverick,stop,3997,1.0
