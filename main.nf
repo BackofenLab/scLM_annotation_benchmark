@@ -322,28 +322,6 @@ process orthologize {
     """
 }
 
-process extract_cell_types {
-    container params.container_image
-    conda 'envs/cell_types.yml'
-
-    input:
-        path(h5ad_files)
-        path(cfg_files)
-        val(cache_dir)  // list of files
-
-    script:
-        """
-        if [ ! -f ${cache_dir}/cell_types.csv ]; then
-            extract_cell_types.py \
-                --h5ads ${h5ad_files.join(' ')} \
-                --cfgs ${cfg_files.join(' ')} \
-                --out ${cache_dir}/cell_types.csv
-        else
-            echo "Cell type collection exists, if you want to rerun, delete cache/cell_types.csv"
-        fi
-        """
-}
-
 process prepare_model {
     container params.container_image
     conda 'git git-lfs'
@@ -655,7 +633,7 @@ process combine_results {
     def cacheAbs = (params.cache_dir as String).startsWith('/') ?
         params.cache_dir : "${launchDir}/${params.cache_dir}"
     """
-    aggregate.py --input ${json_path} --output ./ --level 0 --datasets ${datasets}
+    aggregate.py --input ${json_path} --output ./ --datasets ${datasets}
 
     # Keep a version-tagged copy of the aggregate under <cache_dir>/result/ (audit trail; the
     # published results/ copy is overwritten each run, these snapshots are not).

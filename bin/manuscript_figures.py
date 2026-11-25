@@ -1793,40 +1793,6 @@ def _arm_rows(frame, arm):
     return sub if not sub.empty else frame[frame["arm"] == arm]
 
 
-def _paired_slope(ax, frame, left_arm, right_arm, labels, cat_color):
-    """One line per dataset between two arms, at the best mode both arms share.
-
-    A paired slope rather than two bars: the question is whether adaptation beat its own base on
-    the SAME data, and pairing shows a reversal on one dataset that averaged bars would hide.
-    """
-    shared = sorted(set(frame[frame["arm"] == left_arm]["mode"])
-                    & set(frame[frame["arm"] == right_arm]["mode"]))
-    if not shared:
-        ax.text(0.5, 0.5, "no shared mode between the two arms", ha="center", va="center",
-                transform=ax.transAxes, color="0.5", fontsize=FS_LEGEND)
-        ax.axis("off")
-        return
-    mode = "M4" if "M4" in shared else shared[-1]
-    for dataset in sorted(frame["dataset"].unique()):
-        pair = []
-        for arm in (left_arm, right_arm):
-            vals = frame[(frame["arm"] == arm) & (frame["mode"] == mode)
-                         & (frame["dataset"] == dataset)]["balanced_accuracy"]
-            pair.append(vals.mean() if len(vals) else np.nan)
-        if np.isnan(pair).any():
-            continue
-        colour = cat_color["scLLM"] if pair[1] >= pair[0] else cat_color["classical"]
-        ax.plot([0, 1], pair, marker="o", markersize=5, linewidth=1.3, color=colour, zorder=3)
-        ax.annotate(dataset, (1, pair[1]), xytext=(6, 0), textcoords="offset points",
-                    va="center", fontsize=FS_POINT)
-    ax.set_xticks([0, 1])
-    ax.set_xticklabels(labels)
-    ax.set_xlim(-0.25, 1.55)
-    ax.set_ylim(0, None)
-    ax.grid(axis="y", linestyle=":", alpha=0.5)
-    sns.despine(ax=ax)
-
-
 #: The one mode the cost panel is drawn at. M2 = genes + candidate cell types, which is the
 #: benchmark's "unblind"/constrained setting, so the ported Gemini per-cell run is comparable.
 COST_MODE = "M2"

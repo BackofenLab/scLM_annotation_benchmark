@@ -67,9 +67,6 @@ COLORMAPS = {
     ),
 }
 
-def get_gradient(start_hex, end_hex, n=5):
-    cmap = LinearSegmentedColormap.from_list("temp", [start_hex, end_hex])
-    return [to_hex(cmap(i / (n - 1))) for i in range(n)]
 
 # Build tabc1 to tabc4 (categorical palettes)
 tabc = {}

@@ -581,50 +581,6 @@ def build_dataset_colors(datasets) -> dict:
     return {ds: palette[i % len(palette)] for i, ds in enumerate(datasets)}
 
 
-def build_subset_labels(df: pd.DataFrame, subset_col: str):
-    """Map each model to a display label, optionally annotated with a marker.
-
-    Returns ``(label_map, caption)``. When ``subset_col`` is absent the labels are
-    the model names unchanged and the caption is empty. Subset size is expected to
-    be constant per model; if a model has several sizes the dominant one is used
-    and a warning is emitted.
-    """
-    models = list(df["model"].unique())
-    if subset_col not in df.columns:
-        return {m: m for m in models}, ""
-
-    per_model: dict[str, float | None] = {}
-    for model, grp in df.groupby("model"):
-        sizes = grp[subset_col].dropna().unique()
-        if len(sizes) == 0:
-            per_model[model] = None
-        elif len(sizes) == 1:
-            per_model[model] = sizes[0]
-        else:
-            dominant = grp[subset_col].mode().iloc[0]
-            warnings.warn(
-                f"model '{model}' has multiple subset sizes {sorted(sizes)}; "
-                f"using dominant value {dominant} for its axis marker."
-            )
-            per_model[model] = dominant
-
-    distinct = sorted({s for s in per_model.values() if s is not None})
-    marker_for = {size: "*" * (i + 1) for i, size in enumerate(distinct)}
-
-    label_map = {}
-    for model in models:
-        size = per_model.get(model)
-        marker = marker_for.get(size, "") if size is not None else ""
-        label_map[model] = f"{model} {marker}".rstrip()
-
-    caption = ""
-    if distinct:
-        caption = "Subset size:   " + "    ".join(
-            f"{marker_for[s]} = {fmt_size(s)} cells" for s in distinct
-        )
-    return label_map, caption
-
-
 def add_caption(fig, caption: str) -> None:
     if caption:
         fig.text(0.01, 0.005, caption, ha="left", va="bottom", fontsize=7, style="italic")

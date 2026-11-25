@@ -57,40 +57,6 @@ def read_adata(path: Path):
     sys.exit(f"[ERROR] Unsupported file type: {path}")
 
 
-def write_adata(ad, path: Path) -> None:
-    """Write AnnData, sanitizing Arrow-backed strings first (Census files)."""
-    def is_arrow(dtype) -> bool:
-        s = str(dtype).lower()
-        return "arrow" in s or s == "string" or s.startswith("string[") or "StringDtype" in type(dtype).__name__
-
-    def dearrow_series(s: pd.Series) -> pd.Series:
-        if hasattr(s, "cat") and hasattr(s.cat, "categories") and is_arrow(s.cat.categories.dtype):
-            return s.cat.rename_categories(s.cat.categories.astype(object))
-        return s.astype(object) if is_arrow(s.dtype) else s
-
-    def dearrow_df(df: pd.DataFrame) -> pd.DataFrame:
-        df = df.copy()
-        if is_arrow(df.index.dtype):
-            df.index = df.index.astype(object)
-        for c in df.columns:
-            try: df[c] = dearrow_series(df[c])
-            except Exception: pass
-        return df
-
-    try:
-        ad.obs, ad.var = dearrow_df(ad.obs), dearrow_df(ad.var)
-        if ad.raw is not None:
-            ad.raw._var = dearrow_df(ad.raw.var)  # type: ignore[attr-defined]
-    except Exception as e:
-        log_warn(f"Could not fully sanitize Arrow dtypes: {e}")
-
-    if path.suffix == ".h5ad":
-        ad.write_h5ad(path, compression="gzip")
-    elif path.suffix == ".zarr" or path.is_dir():
-        ad.write_zarr(path, chunks=[], compression="gzip")
-    else:
-        sys.exit(f"[ERROR] Unsupported file type: {path}")
-
 # --------------------------------------------------------------------------- #
 # Shared download helpers                                                     #
 # --------------------------------------------------------------------------- #
