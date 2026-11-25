@@ -65,7 +65,7 @@ case "$state" in
   *drain*|*down*)
     echo "REFUSING: the node is $state, so nothing would start." >&2
     ssh $SSH_OPTS "$HOST" "sinfo -N -o '%.20N %.14T %.30E' -n <gpu-node>" >&2
-    echo "A drained node needs an admin to resume it (<email removed>)." >&2
+    echo "A drained node needs an admin to resume it." >&2
     exit 1 ;;
 esac
 
