@@ -217,7 +217,7 @@ EXCLUDED_BASES = {
 # Left-to-right: baselines, domain-adapted LLMs, one-shot LLMs.
 COMPOSITE_CATEGORIES = [
     ("classical", "baselines"),
-    ("scLLM", "scLLMs"),
+    ("scLLM", "scLMs"),
     ("LLM", "LLMs"),
 ]
 

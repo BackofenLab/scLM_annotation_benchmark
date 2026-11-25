@@ -459,7 +459,7 @@ RARE_FLOW_EXAMPLE = "human_pancreas"
 CLOSED_WEIGHT_TIER = "closed_reasoning"
 # The method groups of S7A, named as Figure 4's rows (RARITY_ROWS) and in their order.
 BLOCK_LABEL = {"unconstrained baselines": "baselines, U", "constrained baselines": "baselines, C",
-               "unconstrained scLLM": "scLLMs, U", "constrained scLLM": "scLLMs, C",
+               "unconstrained scLLM": "scLMs, U", "constrained scLLM": "scLMs, C",
                "unconstrained LLM": "LLMs, U", "constrained LLM": "LLMs, C",
                "unconstrained closed-weight LLM": "closed-weight LLMs, U",
                "constrained closed-weight LLM": "closed-weight LLMs, C"}
@@ -984,12 +984,12 @@ SETTING_KEY = {"unblind": r"$\bf{C}$  constrained: expected cell types supplied"
                "blind": r"$\bf{U}$  unconstrained: no expected cell types"}
 # Figure 1B's names for the families and the subcategories that differ from CATEGORY_TIERS.
 FAMILY_HEADER = {"classical": "Marker- and reference-based baselines",
-                 "scLLM": "Single-cell language models (scLLMs)",
+                 "scLLM": "Single-cell language models (scLMs)",
                  "LLM": "General-purpose LLMs"}
 TIER_NAME = {"generative": "generative (free text)", "retrieval": "embedding (closed set)"}
 # Panel G's rows, top to bottom: (family, mode, label), every family in both settings.
 MAPPING_ROWS = [(family, mode, f"{name}, {REGIME_SHORT[mode]}")
-                for family, name in (("classical", "baselines"), ("scLLM", "scLLMs"),
+                for family, name in (("classical", "baselines"), ("scLLM", "scLMs"),
                                      ("LLM", "LLMs"))
                 for mode in ("blind", "unblind")]
 # Figure 4's rows and S7B's: G's, then the closed-weight LLMs, who are also among the LLMs.
