@@ -1,7 +1,7 @@
 """Checks for the imperfect-list study (context_ablation/src/lists.py): the lists follow their
 rules on the real datasets, a runner stops, caching nothing, when the account cannot pay, and
-balanced accuracy over the listed types agrees between the run metrics and the bootstrap (the
-label constraint of the reference methods is tested in test_label_constraint.py).
+balanced accuracy over the listed types averages over the listed types only (the label
+constraint of the reference methods is tested in test_label_constraint.py).
 
 Run with pytest, or directly in the evaluation environment: python tests/test_candidate_lists.py
 """
@@ -20,7 +20,6 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / "bin"), str(ROOT / "context_ablation" / "src"), str(ROOT / "tests")]
 import lists  # noqa: E402
 import run_openrouter  # noqa: E402
-from bootstrap_contrasts import replicates  # noqa: E402
 from runner_cache import ResponseCache  # noqa: E402
 
 CFG = yaml.safe_load((ROOT / "context_ablation" / "config.yml").read_text())
@@ -126,7 +125,7 @@ def test_account_errors_stop_the_run_and_are_not_cached():
             run_openrouter.call_once = original
 
 
-def test_listed_balanced_accuracy_agrees_with_the_bootstrap():
+def test_listed_balanced_accuracy_averages_over_the_listed_types():
     rng = np.random.default_rng(0)
     types = np.repeat(["a", "b", "c"], [4, 3, 5])
     cells = pd.concat([pd.DataFrame({
@@ -137,18 +136,14 @@ def test_listed_balanced_accuracy_agrees_with_the_bootstrap():
     pairs = (cells.assign(n_cells=1, lineage="exact")
              .groupby(lists.RUN + ["true_label", "listed", "lineage"], as_index=False)["n_cells"].sum())
     metrics = lists.run_metrics(cells, pairs)
-    by_run = cells.assign(model=cells["condition"])
-    mask = by_run.groupby(["true_label", "model"])["listed"].first().unstack()
-    all_draws, all_observed = replicates(by_run, 50, np.random.default_rng(1))
-    draws, observed = replicates(by_run, 50, np.random.default_rng(1), mask.where(mask, False))
     for condition in ("E", "L3"):
-        expected = metrics.loc[("A1", "d", condition, 1), "balanced_accuracy_listed"]
-        assert math.isclose(observed[condition], expected), condition
-    # With every type listed, the mask changes nothing, to the bit.
-    assert observed["E"] == all_observed["E"] and (draws["E"] == all_draws["E"]).all()
-    full, _ = replicates(by_run, 50, np.random.default_rng(1),
-                         pd.DataFrame(True, index=mask.index, columns=mask.columns))
-    assert (full.to_numpy() == all_draws.to_numpy()).all()
+        run = cells[cells["condition"] == condition]
+        per_type = run.groupby("true_label")["hit"].mean()
+        listed = run.groupby("true_label")["listed"].first()
+        assert math.isclose(metrics.loc[("A1", "d", condition, 1), "balanced_accuracy"],
+                            per_type.mean()), condition
+        assert math.isclose(metrics.loc[("A1", "d", condition, 1), "balanced_accuracy_listed"],
+                            per_type[listed].mean()), condition
 
 
 if __name__ == "__main__":

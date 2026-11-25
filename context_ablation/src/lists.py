@@ -247,12 +247,11 @@ def score_study(cfg, tree):
                         "lin": rows[-1]["lin"]})
     cells, pairs = pd.concat(cells, ignore_index=True), pd.concat(pairs, ignore_index=True)
     runs = run_metrics(cells, pairs).join(pd.DataFrame(overall).set_index(RUN))
-    for name, frame in (("cell_outcomes", cells), ("confusion_pairs", pairs)):
-        frame[RUN + [c for c in frame.columns if c not in RUN]].to_csv(
-            Path(tree, f"{name}.csv"), index=False)
+    pairs[RUN + [c for c in pairs.columns if c not in RUN]].to_csv(
+        Path(tree, "confusion_pairs.csv"), index=False)
     runs.to_csv(Path(tree, "runs.csv"))
     print(f"{len(runs)} runs scored, {len(gated)} below the coverage gate{': ' if gated else ''}"
-          f"{', '.join(gated)}\n-> {tree}/{{runs,cell_outcomes,confusion_pairs}}.csv")
+          f"{', '.join(gated)}\n-> {tree}/{{runs,confusion_pairs}}.csv")
 
 
 def main(argv=None):
@@ -261,7 +260,7 @@ def main(argv=None):
     p.add_argument("--config", default=str(ROOT / "config.yml"))
     p.add_argument("--write", action="store_true", help="draw every list")
     p.add_argument("--score", action="store_true",
-                   help="per-cell outcomes and run metrics of every scored run")
+                   help="run metrics and confusion pairs of every scored run")
     args = p.parse_args(argv)
     with open(args.config) as fh:
         cfg = yaml.safe_load(fh)

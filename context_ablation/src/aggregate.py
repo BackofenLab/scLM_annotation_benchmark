@@ -10,7 +10,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import sys
 from pathlib import Path
 
 import pandas as pd
@@ -150,36 +149,11 @@ def collect(root, cfg):
     return frame
 
 
-def cell_outcomes(root, cfg):
-    """Every scored run's per-cell outcomes, by the benchmark's per-cell scoring
-    (``bin/per_class_scores.score_file``), so that the bootstrap can pair this study's runs with
-    the list study's and the benchmark's on the same cells."""
-    sys.path.insert(0, str(root.parent / "bin"))
-    from evaluate import load_ontology_context, load_review_status
-    from per_class_scores import score_file
-    from util.cell_ontology_similarity import CL_FILE
-    cache_dir = root / cfg["scoring"]["cache_dir"]
-    label_index, taxonomy = load_ontology_context(cache_dir / CL_FILE)
-    reviewed, review_map = load_review_status(cache_dir)
-    cells = []
-    for mapped in sorted((root / "results" / "scored").glob("*/predictions_mapped.csv")):
-        arm, dataset, mode, variant, seed = mapped.parent.name.split("__")
-        scored = score_file(pd.read_csv(mapped, dtype={"cell_id": str}), dataset, arm,
-                            label_index, taxonomy, reviewed, review_map,
-                            cfg["scoring"]["min_scoring_coverage"])
-        if scored is not None:
-            cells.append(scored[2].rename(columns={"model": "arm"}).assign(
-                mode=mode, variant=variant, seed=int(seed.removeprefix("seed"))))
-    return pd.concat(cells, ignore_index=True)
-
-
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
     root = Path(__file__).resolve().parents[1]
     p.add_argument("--config", default=str(root / "config.yml"))
-    p.add_argument("--cells", action="store_true",
-                   help="also write every run's per-cell outcomes to results/cell_outcomes.csv")
     args = p.parse_args(argv)
 
     cfg = load_config(args.config)
@@ -191,10 +165,6 @@ def main(argv=None):
     out.parent.mkdir(parents=True, exist_ok=True)
     frame.to_csv(out, index=False)
     print(f"{len(frame)} rows -> {out}")
-    if args.cells:
-        cells = cell_outcomes(root, cfg)
-        cells.to_csv(out.parent / "cell_outcomes.csv", index=False)
-        print(f"{len(cells)} cell outcomes -> {out.parent / 'cell_outcomes.csv'}")
     print(f"  arms={frame['arm'].nunique()} datasets={frame['dataset'].nunique()} "
           f"modes={sorted(frame['mode'].unique())} variants={sorted(frame['variant'].unique())}")
 
