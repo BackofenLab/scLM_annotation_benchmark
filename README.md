@@ -110,9 +110,10 @@ how is set in `models/openrouter_LLM_blind/src/openrouter.yml`, the prompt of ea
 `--predictions_dir`). A run whose predictions are there is not run again; only mapping and scoring
 are repeated. Delete the files of a run to run it again.
 
-**Apple Silicon.** The R methods (SingleR, scType) have no conda packages for `osx-arm64`. Start
-them with `CONDA_SUBDIR=osx-64 CONDA_ALWAYS_COPY=true nextflow run ...`, which uses the Intel
-packages through Rosetta 2, or use a container profile.
+**macOS.** Conda cannot build the environments of the R methods (SingleR, scType) on macOS: the
+install script of Bioconductor's GenomeInfoDbData package expects the file name that R gives a
+built package on Linux, and SingleR 2.8.0 has no build for Apple silicon (tested in November 2026,
+on Apple silicon also with the Intel packages). Run these methods with a container profile.
 
 ## Mapping answers to the Cell Ontology
 

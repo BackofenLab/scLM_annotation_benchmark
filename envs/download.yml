@@ -23,7 +23,9 @@ dependencies:
     - sentence_transformers
     - cellxgene-census
     - omicverse  # optional matcher of bin/util/ontology_mapping.py
-    - anndata
+    # As in environment.yml: the methods' environments (anndata 0.10 and 0.11) cannot read the
+    # None values that anndata 0.12 writes into the test sets.
+    - anndata==0.11.4
     - zarr<3 # omicverse needs an older anndata, which needs zarr < 3
     - scanpy
     - pybiomart  # Ensembl ID mapping

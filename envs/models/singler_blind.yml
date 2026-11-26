@@ -1,8 +1,8 @@
 name: singler
-# Bioconductor 3.20 with R 4.4, installable on linux-64 and osx-arm64. celldex references are
-# downloaded with ExperimentHub on first use and cached in the pipeline's cache directory (see
-# predict.R). bioconductor-singler has few osx-arm64 builds; if the environment cannot be solved
-# on a Mac, build and run it on linux-64 (e.g. -profile helix).
+# Bioconductor 3.20 with R 4.4, installable on linux-64. celldex references are downloaded with
+# ExperimentHub on first use and cached in the pipeline's cache directory (see predict.R).
+# bioconductor-singler 2.8.0 has no osx-arm64 build, and on macOS the install of GenomeInfoDbData
+# fails (see the README); use linux-64 (e.g. -profile helix) or a container.
 channels:
   - conda-forge
   - bioconda
