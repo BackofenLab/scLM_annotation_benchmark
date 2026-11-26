@@ -105,7 +105,6 @@ def materialize_cluster_prompts(dataset, cfg, resolution, per_eval, markers, out
     ``modes`` and ``candidates(mode, seed)`` serve the imperfect-list study, as in
     ``sentences.materialize``.
     """
-    import numpy as np
     from prompts import build_prompt, candidate_list
 
     eval_cfg = cfg["eval"]

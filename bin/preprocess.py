@@ -17,7 +17,6 @@ from pathlib import Path
 import yaml
 import scanpy as sc
 from anndata import AnnData
-from matplotlib.backends.backend_pdf import PdfPages
 import pandas as pd
 
 from util.pp_utils import (

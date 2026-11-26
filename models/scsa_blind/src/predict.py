@@ -130,7 +130,6 @@ def create_scanpy_csv(h5ad_path, output_csv, cluster_col='louvain',
     
     # Warns about clusters with missing log fold changes; no gene is removed, so valid_mask
     # only sets the count in the warning.
-    initial_rows = len(dat)
     for group in groups:
         lfc_col = group + '_l'
         if lfc_col in dat.columns:
@@ -402,8 +401,6 @@ def main():
     
     output_path = os.path.abspath(args.output)
     output_dir = os.path.dirname(output_path)
-    output_stem = os.path.splitext(os.path.basename(output_path))[0]
-    output_suffix = os.path.splitext(output_path)[1] or '.csv'
     
     # With CONTEXT_H5AD, a larger sample that contains the test cells (bin/build_context.py) is
     # clustered and annotated, so that rare cell types can form their own cluster; only the test

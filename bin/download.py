@@ -16,9 +16,7 @@ from typing import Iterable
 from urllib.parse import urljoin
 
 import anndata
-import pandas as pd
 import requests
-from tqdm import tqdm
 
 from util.http import new_session, stream_to_file
 
