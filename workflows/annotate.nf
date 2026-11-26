@@ -2,8 +2,8 @@
 // Runs whose predictions are already in the prediction store are not run again.
 
 include {
-    absolutePath; datasetConfig; methodSpec; runSizes; predictionFiles; predictionsDir;
-    storedPredictions; orthologTable; mappingsVersion
+    absolutePath; datasetConfig; labelKey; methodSpec; runSizes; predictionFiles;
+    predictionsDir; storedPredictions; orthologTable; mappingsVersion
 } from '../modules/functions'
 include {
     download; preprocess; subset; fetch_test_set; orthologize; build_context; fetch_context;
@@ -33,9 +33,10 @@ def key(dataset, size) {
 
 workflow ANNOTATE {
     take:
-    append    // whether answers that are new are added to the mapping table
-    sizes     // test set sizes; 'all' stands for all cells of a dataset
-    own_lists // whether a dataset's expected_cell_types replace the cell types of its labels
+    append          // whether answers and labels that are new are added to the mapping table
+    sizes           // test set sizes; 'all' stands for all cells of a dataset
+    annotation_mode // annotate.nf: labels are optional, and a dataset's expected_cell_types
+                    // replace the cell types of its labels
 
     main:
     def cache_dir = absolutePath(params.cache_dir)
@@ -43,14 +44,27 @@ workflow ANNOTATE {
     def manifest = file("${projectDir}/datasets/zenodo_manifest.yml")
     def strategy = params.subset_strategy
 
-    // The expected cell types that a dataset lists for the constrained methods, used where own
-    // lists apply; an empty list leaves the methods with the cell types of the labels.
+    if (!annotation_mode) {
+        def unlabeled = params.datasets.findAll { !datasetConfig(it).annotation_key }
+        if (unlabeled) {
+            error "The benchmark scores against labels, but the configurations of " +
+                  "${unlabeled.join(', ')} in datasets/ name no annotation_key"
+        }
+    }
+
+    // The expected cell types that a dataset lists for the constrained methods, used in
+    // annotation mode; an empty list leaves the methods with the cell types of the labels.
     def listed = { dataset ->
-        def names = own_lists ? datasetConfig(dataset).expected_cell_types : null
+        def names = annotation_mode ? datasetConfig(dataset).expected_cell_types : null
         if (names != null && !(names instanceof List)) {
             error "expected_cell_types of ${dataset} must be a list of cell type names"
         }
         return (names ?: []).collect { it.toString() }
+    }
+    // A dataset without its own list and without labels has no expected cell types.
+    def without_list = { method, dataset ->
+        method.endsWith('_constrained') && !listed(dataset) &&
+            !datasetConfig(dataset).annotation_key
     }
 
     // Every run is a method on a dataset at a test set size.
@@ -62,7 +76,12 @@ workflow ANNOTATE {
                      "left out for the larger test sets"
         }
         params.datasets.each { dataset ->
-            method_sizes.each { size -> runs << [method, dataset, size] }
+            if (without_list(method, dataset)) {
+                log.info "${method} is left out for ${dataset}: datasets/${dataset}.yml gives no " +
+                         "expected cell types (expected_cell_types, or labels in annotation_key)"
+            } else {
+                method_sizes.each { size -> runs << [method, dataset, size] }
+            }
         }
     }
     def stored = runs.findAll { method, dataset, size -> storedPredictions(method, dataset, size) }
@@ -107,20 +126,22 @@ workflow ANNOTATE {
     local_files = raw.local.map { dataset ->
         def path = datasetConfig(dataset).path.toString()
         tuple(dataset, file(new File(path).isAbsolute() ? path : "${projectDir}/${path}")) }
+    // In annotation mode, data without labels get a placeholder label.
     preprocessed = preprocess(
         downloaded.mix(local_files).map { dataset, raw_file ->
             def cfg = datasetConfig(dataset)
             def map_labels = cfg.containsKey('apply_ontology_mapping') ? cfg.apply_ontology_mapping : true
-            tuple(dataset, raw_file, file("${projectDir}/datasets/${dataset}.yml"), cfg.annotation_key, map_labels)
+            tuple(dataset, raw_file, file("${projectDir}/datasets/${dataset}.yml"),
+                  labelKey(dataset), map_labels, annotation_mode && !cfg.annotation_key)
         },
-        cache_dir, mappings)
+        cache_dir, mappings, append)
 
     // Test sets: from Zenodo, drawn from the preprocessed data, or all of its cells.
     fetched = fetch_test_set(Channel.fromList(zenodo_keys).map { dataset, size ->
-        tuple(dataset, size, datasetConfig(dataset).annotation_key, manifest) })
+        tuple(dataset, size, labelKey(dataset), manifest) })
     sampled = subset(
         Channel.fromList(drawn_keys).combine(preprocessed, by: 0).map { dataset, size, file ->
-            tuple(dataset, size, file, datasetConfig(dataset).annotation_key) },
+            tuple(dataset, size, file, labelKey(dataset)) },
         cache_dir)
     test_sets = fetched.mix(sampled).mix(Channel.fromList(full_keys).combine(preprocessed, by: 0))
     ortholog_sets = orthologize(
@@ -131,13 +152,13 @@ workflow ANNOTATE {
     // Additional inputs of some methods.
     if (fetch_contexts) {
         contexts = fetch_context(Channel.fromList(context_datasets).map { dataset ->
-            tuple(dataset, datasetConfig(dataset).annotation_key, manifest) })
+            tuple(dataset, labelKey(dataset), manifest) })
     } else {
         build_context(
             Channel.fromList(build_contexts ? context_datasets : [])
                 .combine(preprocessed, by: 0)
                 .combine(test_sets.filter { it[1] != 'all' }.map { dataset, size, file -> tuple(dataset, file) }.groupTuple(), by: 0)
-                .map { dataset, full, sets -> tuple(dataset, full, sets, datasetConfig(dataset).annotation_key) })
+                .map { dataset, full, sets -> tuple(dataset, full, sets, labelKey(dataset)) })
         contexts = build_context.out.context
     }
     none = Channel.of(tuple('none', []))

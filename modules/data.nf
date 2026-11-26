@@ -29,9 +29,11 @@ process preprocess {
     tag { dataset }
 
     input:
-    tuple val(dataset), path(raw_file), path(dataset_cfg), val(annotation_key), val(map_labels)
+    tuple val(dataset), path(raw_file), path(dataset_cfg), val(annotation_key), val(map_labels),
+          val(labels_optional)
     val cache_dir
     val mappings
+    val append
 
     output:
     tuple val(dataset), path("${dataset}_pp.h5ad")
@@ -48,6 +50,8 @@ process preprocess {
         --mappings "${mappings}" \\
         --annotation_key "${annotation_key}" \\
         --apply_ontology_mapping ${map_labels} \\
+        --append_new_labels ${append} \\
+        --labels_optional ${labels_optional} \\
         --dataset "${dataset}"
     """
 }

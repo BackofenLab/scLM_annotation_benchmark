@@ -4,6 +4,7 @@
 Puts the raw counts in X and layers["counts"], removes outlier cells by QC metrics, filters
 cells and genes, log-normalizes X, removes genes with non-finite values and sets Ensembl IDs as
 var_names (see preprocess_adata). Optionally maps the cell type labels to Cell Ontology terms.
+With --labels_optional, data without a label column get one with a placeholder label.
 Settings in the `preprocessing` section of the dataset YAML (--config) override the command
 line. Writes the processed .h5ad or .zarr file, a text summary and QC plots in
 <cache_dir>/plots.
@@ -36,6 +37,9 @@ logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
 logger = logging.getLogger(__name__)
+
+# The label of every cell in data without labels (annotation mode).
+PLACEHOLDER_LABEL = "unlabeled"
 
 
 def load_config(config_path: Path | None) -> dict:
@@ -270,6 +274,19 @@ Examples:
         help="Apply ontology mapping to adata.obs[annotation_key] (default: false)",
     )
     parser.add_argument(
+        "--append_new_labels",
+        type=lambda x: str(x).lower() == "true",
+        default=True,
+        help="Add labels that the mapping table does not hold as unreviewed rows (default: true)",
+    )
+    parser.add_argument(
+        "--labels_optional",
+        type=lambda x: str(x).lower() == "true",
+        default=False,
+        help=f"Without an annotation_key column, give every cell the label '{PLACEHOLDER_LABEL}' "
+             "instead of stopping (default: false)",
+    )
+    parser.add_argument(
         "--dataset",
         type=str,
         default=None,
@@ -388,6 +405,15 @@ Examples:
         logger.info("Setting adata.obs['organism'] to '%s'.", organism)
     adata.obs["organism"] = str(organism)
 
+    if args.annotation_key and args.annotation_key not in adata.obs.columns:
+        if not args.labels_optional:
+            raise SystemExit(f"The label column '{args.annotation_key}' (annotation_key) is not in "
+                             f"obs, which has: {', '.join(map(str, adata.obs.columns))}")
+        logger.info("No label column '%s': every cell gets the label '%s'", args.annotation_key,
+                    PLACEHOLDER_LABEL)
+        adata.obs[args.annotation_key] = PLACEHOLDER_LABEL
+        args.apply_ontology_mapping = False
+
     adata_processed = preprocess_adata(
         adata,
         count_layer_key=count_layer_key,
@@ -443,7 +469,8 @@ Examples:
         logger.info("Mapping the labels in '%s' to Cell Ontology terms", args.annotation_key)
         from util.ontology_mapping import map_adata_labels
         adata_processed = map_adata_labels(
-            adata_processed, args.annotation_key, args.mappings, args.cache_dir, origin=args.dataset)
+            adata_processed, args.annotation_key, args.mappings, args.cache_dir,
+            origin=args.dataset, append=args.append_new_labels)
         # The ontology mapping adds columns to obs.
         adata_processed.obs = _sanitize_for_h5ad(adata_processed.obs)
         adata_processed.var = _sanitize_for_h5ad(adata_processed.var)

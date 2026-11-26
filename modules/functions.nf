@@ -20,6 +20,11 @@ def datasetConfig(String dataset) {
     return loadYaml(path)
 }
 
+// The column of a dataset's labels: its annotation_key, else cell_type, as in the wrappers.
+def labelKey(String dataset) {
+    return (datasetConfig(dataset).annotation_key ?: 'cell_type').toString()
+}
+
 // The method's description in models/<method>/method.yml, with 'needs' always present.
 def methodSpec(String method) {
     def dir = "${projectDir}/models/${method}"

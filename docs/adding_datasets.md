@@ -1,7 +1,8 @@
 # Adding a dataset
 
 A dataset is an h5ad file with raw counts and a column of cell type labels, plus a configuration
-file in `datasets/`. The toy dataset is a complete example.
+file in `datasets/`. The toy dataset is a complete example. Annotation mode also takes data
+without labels (see the [README](../README.md#annotation-mode)).
 
 ## 1. The data
 
@@ -10,7 +11,8 @@ The file needs
 - raw counts, in `X` or in a layer (name it with `preprocessing.count_layer_key`),
 - genes with Ensembl ids or gene symbols in `var` (symbols are mapped to Ensembl ids, which needs
   the `pybiomart` package and an internet connection),
-- a column in `obs` with the cell type of every cell and one with the batch.
+- a column in `obs` with the cell type of every cell, and one with the batch if the cells come
+  from several batches.
 
 The toy dataset `tests/data/toy_blood.h5ad` has raw counts in `X`, Ensembl ids as `var` index,
 symbols in `var["feature_name"]`, and `cell_type` and `batch_id` in `obs`.

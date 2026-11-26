@@ -109,12 +109,13 @@ Describe them in a configuration file in `datasets/`, for example `datasets/my_d
 ```yaml
 name: my_data
 path: /path/to/my_data.h5ad        # absolute, or relative to the repository
-annotation_key: "cell_type"        # column of obs with labels, or a placeholder column
-apply_ontology_mapping: false
-species: "human"
-tissue: "peripheral blood"
-celltypist_model: "Immune_All_Low.pkl"
+# All other keys are optional.
+species: "human"                   # default; mouse data: "mouse" and organism "Mus musculus"
+tissue: "peripheral blood"         # for the methods that use the tissue
+annotation_key: "cell_type"        # column of obs with labels, if the data have any
+batch_key: "sample"                # column of obs with the batch, if there are several
 expected_cell_types: ["monocyte", "B cell", "T cell", "natural killer cell"]
+celltypist_model: "Immune_All_Low.pkl"   # CellTypist's model, by default Immune_All_High.pkl
 ```
 
 Then choose the methods and run `annotate.nf`:
@@ -130,16 +131,16 @@ nextflow run annotate.nf -profile local -params-file annotate.yml
 ```
 
 The pipeline runs quality control and preprocessing, annotates every cell and maps the predictions
-to the Cell Ontology. [docs/adding_datasets.md](docs/adding_datasets.md) describes the
-configuration in full, including the inputs that single methods need, such as `celltypist_model`
-for CellTypist. To try the mode first, run it on the toy dataset with `datasets: [toy]`.
+to the Cell Ontology. [docs/parameters.md](docs/parameters.md#dataset-datasetsnameyml) describes
+every key of the configuration, including the inputs that single methods need. To try the mode
+first, run it on the toy dataset with `datasets: [toy]`.
 
-`expected_cell_types` lists the cell types that you expect in the data, and the constrained methods
-choose among these only. Without such a list, they take the cell types in the label column. Cell
-Ontology names work best, because the established methods relate their own labels to the list
-through the ontology. The list applies to annotation mode only. In benchmark mode the expected cell
-types are always those of the labels. For unlabeled data, a label column with a single placeholder
-value is enough.
+The methods in `models` decide whether the data are annotated unconstrained, constrained or both.
+The constrained methods choose only among the cell types in `expected_cell_types`, or, without such
+a list, among those in the label column. Cell Ontology names work best, because the established
+methods relate their own labels to the list through the ontology. For a dataset with neither a list
+nor labels, the constrained methods are left out. The list applies to annotation mode only. In
+benchmark mode the expected cell types are always those of the labels.
 
 To annotate a random subsample instead of all cells, set `annotation_subset_size`. Methods with a
 limit on the number of cells (`max_subset_size` in their `method.yml`), such as the LLMs with one

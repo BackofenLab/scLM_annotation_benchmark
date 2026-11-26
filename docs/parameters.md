@@ -63,10 +63,10 @@ Cells and labels:
 | Key | Meaning |
 |---|---|
 | `name` | the dataset's name, the same as the file name |
-| `annotation_key` | column of `obs` with the cell type labels |
-| `batch_key` | column of `obs` with the batch |
+| `annotation_key` | column of `obs` with the cell type labels (default `cell_type`). The benchmark needs it. In annotation mode it is optional, and data without the column give every cell the placeholder label `unlabeled` |
+| `batch_key` | column of `obs` with the batch, for data from several batches; optional |
 | `cluster_key` | column of `obs` with clusters of your own, which the per-cluster methods then use instead of the clustering step |
-| `expected_cell_types` | `annotate.nf` only: a list of cell type names that the constrained methods take as the expected cell types instead of those in the labels. Cell Ontology names let the established methods relate their labels to the list. |
+| `expected_cell_types` | `annotate.nf` only: a list of cell type names that the constrained methods take as the expected cell types instead of those in the labels. Cell Ontology names let the established methods relate their labels to the list. Without a list and without `annotation_key`, the constrained methods are left out for the dataset. |
 | `apply_ontology_mapping` | `true` if the labels are not Cell Ontology terms and are mapped through the mapping table |
 
 Biological context, for methods that use it: `organism` (default `Homo sapiens`; a mouse dataset
@@ -102,11 +102,11 @@ from your own data:
 - Preprocessed data and test sets are cached under the dataset's name. After changing a value,
   delete the dataset's files in `cache/datasets/preprocessed/` and `cache/datasets/subset/`.
 
-Inputs of single methods: `celltypist_model` (CellTypist), `sctype_tissue` (scType),
-`scsa_tissue` (SCSA), and for SingleR either a celldex reference (`singler_reference_source:
-celldex`, `singler_reference`, `singler_reference_tier`) or a CELLxGENE dataset
-(`singler_reference_source: cellxgene`, `singler_reference_id`, `singler_reference_version`,
-`singler_reference_label_key`).
+Inputs of single methods: `celltypist_model` (CellTypist, default `Immune_All_High.pkl`),
+`sctype_tissue` (scType), `scsa_tissue` (SCSA), and for SingleR either a celldex reference
+(`singler_reference_source: celldex`, `singler_reference`, `singler_reference_tier`) or a
+CELLxGENE dataset (`singler_reference_source: cellxgene`, `singler_reference_id`,
+`singler_reference_version`, `singler_reference_label_key`).
 
 ## Method (`models/<method>/method.yml`)
 

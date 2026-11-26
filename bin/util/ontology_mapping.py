@@ -126,18 +126,19 @@ def resolve_labels(labels, label_index, path, cache_dir, origin, append=True, re
     return [replacements.get(label, label) for label in labels], replacements
 
 
-def map_adata_labels(adata, annotation_key, path, cache_dir, origin):
+def map_adata_labels(adata, annotation_key, path, cache_dir, origin, append=True):
     """Replace the labels in ``adata.obs[annotation_key]`` by their Cell Ontology matches.
 
     The labels as given are kept in ``original_<annotation_key>``, and a repeated call starts
-    from them again.
+    from them again. With ``append``, labels the table does not hold are added to it.
     """
     backup = f"original_{annotation_key}"
     if backup in adata.obs.columns:
         adata.obs[annotation_key] = adata.obs[backup].copy()
     labels = adata.obs[annotation_key].tolist()
     label_index = build_label_index(pronto.Ontology(str(download_cl_ontology(cache_dir))))
-    mapped, replacements = resolve_labels(labels, label_index, path, cache_dir, origin)
+    mapped, replacements = resolve_labels(labels, label_index, path, cache_dir, origin,
+                                          append=append)
     if replacements:
         if backup not in adata.obs.columns:
             adata.obs[backup] = labels

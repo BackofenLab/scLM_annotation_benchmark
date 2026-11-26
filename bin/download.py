@@ -5,7 +5,7 @@ The source is the `url` of the YAML (a Google Drive or Figshare link or a direct
 with `source: cellxgene_census` or a `census_dataset_id`, the CELLxGENE Census
 (`census_version`, default "stable"). The .h5ad or .zarr file is written to --out, which
 Nextflow's storeDir keeps between runs. The script then checks that obs has the columns
-annotation_key and batch_key of the YAML.
+annotation_key and batch_key of the YAML, where the YAML names them.
 
     download.py --dataset NAME --cfg_yaml datasets/NAME.yml --out NAME_raw.h5ad
 """
@@ -264,15 +264,17 @@ def main() -> None:
         log_info(f"Download complete: {dest.name}")
 
     log_info("Verifying required columns...")
+    # Labels and batches are optional; the columns named in the YAML must exist.
+    required = [cfg[key] for key in ("annotation_key", "batch_key") if cfg.get(key)]
     if dest.suffix == ".h5ad":
         ad_backed = anndata.read_h5ad(dest, backed="r")
         try:
-            verify_columns(ad_backed, [cfg["annotation_key"], cfg["batch_key"]])
+            verify_columns(ad_backed, required)
         finally:
             ad_backed.file.close()
     else:
         # zarr stores are read fully.
-        verify_columns(read_adata(dest), [cfg["annotation_key"], cfg["batch_key"]])
+        verify_columns(read_adata(dest), required)
     log_info("Required columns verified")
     log_info(f"OK: {dest.name} ready")
 
