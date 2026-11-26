@@ -26,19 +26,19 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-import pronto
 from sklearn.metrics import accuracy_score, balanced_accuracy_score, classification_report
 
 from util.cell_ontology_similarity import (
-    ONTOLOGY_KEYS, CellTaxonomy, build_label_index, compute_ontology_similarities,
-    download_cl_ontology, map_string_to_term,
+    ONTOLOGY_KEYS, compute_ontology_similarities, load_ontology_context, map_string_to_term,
 )
+from util.cli import boolean
 from util.label_normalization import EMPTY_PREDICTION_LABEL, label_key
 from util.ontology_mapping import canonical_names, load_review_status
 from util.plots import plot_confusion_matrix
-from util.runs import prediction_stem, run_name
+from util.runs import OVERALL, prediction_stem, run_name
 from util.text_embedding_similarity import (
-    compute_text_embedding_similarities, load_text_encoder, reference_baseline,
+    DEFAULT_TEXT_ENCODER, compute_text_embedding_similarities, load_text_encoder,
+    reference_baseline,
 )
 
 TRUE_COL = "true_labels"
@@ -49,17 +49,6 @@ UNMAPPED = "__unmapped__"
 # Reviewed mappings send answers that name no cell type to the root of the ontology.
 CL_ROOT_NAME = "cell"
 CL_ID = re.compile(r"cl:\d{7}", re.IGNORECASE)
-OVERALL = "__OVERALL__"
-
-
-def boolean(text) -> bool:
-    return str(text).lower() == "true"
-
-
-def load_ontology_context(cl_path):
-    """The label index and the taxonomy of the Cell Ontology file."""
-    ontology = pronto.Ontology(str(cl_path))
-    return build_label_index(ontology), CellTaxonomy.from_ontology(ontology)
 
 
 def trusted_answers(raw_labels, label_index, reviewed_labels):
@@ -242,13 +231,12 @@ def main():
                         help="share of trusted answers below which a run gets no metrics")
     parser.add_argument("--use_text_encoder", type=boolean, default=False,
                         help="also score the similarity of label texts")
-    parser.add_argument("--text_encoder_model",
-                        default="cambridgeltl/SapBERT-from-PubMedBERT-fulltext")
+    parser.add_argument("--text_encoder_model", default=DEFAULT_TEXT_ENCODER)
     args = parser.parse_args()
 
     out_dir, cache_dir = Path(args.out_dir), Path(args.cache_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
-    label_index, taxonomy = load_ontology_context(download_cl_ontology(cache_dir))
+    label_index, taxonomy = load_ontology_context(cache_dir)
     reviewed_labels, review_map = load_review_status(args.mappings)
     text_scoring = None
     if args.use_text_encoder:

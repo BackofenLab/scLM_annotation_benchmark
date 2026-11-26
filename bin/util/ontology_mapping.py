@@ -10,10 +10,9 @@ from __future__ import annotations
 from pathlib import Path
 
 import pandas as pd
-import pronto
 
 from .cell_ontology_similarity import (
-    CL_FILE, CL_URL, build_label_index, build_synonym_index, download_cl_ontology,
+    CL_FILE, CL_URL, build_label_index, build_synonym_index, download_cl_ontology, load_ontology,
     map_string_to_term,
 )
 from .label_normalization import canonicalize_empty_labels
@@ -67,7 +66,7 @@ def suggest_matches(labels, cache_dir) -> dict[str, str]:
     except Exception as error:
         print(f"omicverse matcher not available ({error}); suggesting exact name and synonym "
               "matches instead")
-    ontology = pronto.Ontology(str(download_cl_ontology(cache_dir)))
+    ontology = load_ontology(cache_dir)
     names, synonyms = build_label_index(ontology), build_synonym_index(ontology)
     suggestions = {}
     for label in labels:
@@ -100,13 +99,13 @@ def add_unreviewed(labels, path, cache_dir, origin) -> int:
     return len(new)
 
 
-def resolve_labels(labels, label_index, path, cache_dir, origin, append=True, rewrite=True):
+def resolve_labels(labels, label_index, path, cache_dir, origin, append=True):
     """Labels with their matches from the table substituted, and the substitutions made.
 
     A label that is no Cell Ontology term is looked up in the table. With ``append``, labels
-    the table does not hold yet are added as unreviewed rows. With ``rewrite``, a label is
-    replaced by its ``chosen_match`` if that names a Cell Ontology term. Whether a match counts
-    in scoring depends on its review status, which ``evaluate.py`` reads.
+    the table does not hold yet are added as unreviewed rows. A label is replaced by its
+    ``chosen_match`` if that names a Cell Ontology term. Whether a match counts in scoring
+    depends on its review status, which ``evaluate.py`` reads.
     """
     labels = list(labels)
     unknown = {label for label in set(labels) if map_string_to_term(label, label_index) is None}
@@ -114,8 +113,6 @@ def resolve_labels(labels, label_index, path, cache_dir, origin, append=True, re
         return labels, {}
     if append:
         add_unreviewed(sorted(unknown), path, cache_dir, origin)
-    if not rewrite:
-        return labels, {}
     table = read_mappings(path)
     chosen = dict(zip(table["predicted_label"], table["chosen_match"]))
     replacements = {}
@@ -136,7 +133,7 @@ def map_adata_labels(adata, annotation_key, path, cache_dir, origin, append=True
     if backup in adata.obs.columns:
         adata.obs[annotation_key] = adata.obs[backup].copy()
     labels = adata.obs[annotation_key].tolist()
-    label_index = build_label_index(pronto.Ontology(str(download_cl_ontology(cache_dir))))
+    label_index = build_label_index(load_ontology(cache_dir))
     mapped, replacements = resolve_labels(labels, label_index, path, cache_dir, origin,
                                           append=append)
     if replacements:

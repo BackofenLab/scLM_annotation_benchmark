@@ -9,11 +9,19 @@ this module, which needs no matplotlib.
 """
 from __future__ import annotations
 
+import sys
+
 import numpy as np
 import pandas as pd
 from scipy.optimize import isotonic_regression
 
 import paths
+
+if str(paths.PIPELINE_BIN) not in sys.path:
+    sys.path.insert(1, str(paths.PIPELINE_BIN))
+# The setting of a run from its suffix, and the row of all cells in the scores per cell type, as
+# the pipeline writes them.
+from util.runs import OVERALL, setting_of as derive_mode  # noqa: E402,F401
 
 CHANCE_MODEL = "random_stratified"
 
@@ -104,17 +112,6 @@ STUDY_ARM_MODEL = {"A1_llm_percell": "gpt-oss-120b", "A4_llm_percluster": "gpt-o
                    "A3_scllm_percell": "c2s_scale_2B", "S1_mmcontext": "mmcontext",
                    "S2_langcell": "langcell", "B1_singler": "singler",
                    "B2_celltypist": "celltypist", "B3_sctype": "sctype", "B4_scsa": "scsa"}
-
-
-def derive_mode(model):
-    """Setting of a run from its suffix: "unconstrained", "constrained", or "baseline" for the
-    chance model."""
-    m = str(model).lower()
-    if m.endswith("_constrained"):
-        return "constrained"
-    if m.endswith("_unconstrained"):
-        return "unconstrained"
-    return "baseline"
 
 
 def model_base(model):

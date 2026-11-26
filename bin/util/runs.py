@@ -11,6 +11,8 @@ from pathlib import Path
 
 SETTINGS = ("_constrained", "_unconstrained")
 MAPPED_SUFFIX = "_mapped"
+# The row of all cells in the tables of scores per cell type.
+OVERALL = "__OVERALL__"
 
 
 def prediction_stem(path) -> str:

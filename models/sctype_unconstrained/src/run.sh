@@ -18,7 +18,7 @@ fi
 export R_LIBS_USER="${CONDA_PREFIX:-}/lib/R/library"
 RSCRIPT="${CONDA_PREFIX:-}/bin/Rscript"; [ -x "$RSCRIPT" ] || RSCRIPT="Rscript"
 
-# predict.R reads annotation_key, sctype_tissue and organism from the dataset YAML.
+# predict.R reads annotation_key and sctype_tissue from the dataset YAML.
 "$RSCRIPT" "$SCRIPT_DIR/predict.R" \
   --input "$INPUT_H5AD" \
   --output "$OUT_CSV" \

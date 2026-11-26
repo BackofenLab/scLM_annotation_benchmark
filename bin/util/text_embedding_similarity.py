@@ -65,12 +65,12 @@ def _select_pooling(model_name: str) -> str:
 class TextEncoder:
     """Thin wrapper around a HuggingFace encoder that returns L2-normalized label embeddings."""
 
-    def __init__(self, model_name: str, cache_dir: Optional[Path] = None, pooling: Optional[str] = None):
+    def __init__(self, model_name: str, cache_dir: Optional[Path] = None):
         import torch  # local import so the module is importable without torch installed
         from transformers import AutoModel, AutoTokenizer
 
         self.model_name = model_name
-        self.pooling = pooling or _select_pooling(model_name)
+        self.pooling = _select_pooling(model_name)
         cache_dir_str = str(cache_dir) if cache_dir is not None else None
 
         self.tokenizer = AutoTokenizer.from_pretrained(model_name, cache_dir=cache_dir_str)
@@ -111,7 +111,6 @@ class TextEncoder:
 def load_text_encoder(
     model_name: str = DEFAULT_TEXT_ENCODER,
     cache_dir: Optional[Path] = None,
-    pooling: Optional[str] = None,
 ) -> TextEncoder:
     """
     Load (and process-cache) a text encoder, downloading weights into ``cache_dir`` using the
@@ -126,7 +125,7 @@ def load_text_encoder(
         # Keep HF's hub cache co-located with the repo cache so containers/HPC reuse it.
         if cache_dir is not None:
             os.environ.setdefault("HF_HOME", str(cache_dir))
-        _ENCODER_CACHE[key] = TextEncoder(model_name, cache_dir=cache_dir, pooling=pooling)
+        _ENCODER_CACHE[key] = TextEncoder(model_name, cache_dir=cache_dir)
     return _ENCODER_CACHE[key]
 
 

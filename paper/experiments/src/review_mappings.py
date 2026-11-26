@@ -23,6 +23,8 @@ from pathlib import Path
 
 import pandas as pd
 
+from score import MAPPINGS
+
 ROOT_TERM = "cell"          # CL:0000000, the ontology root: "some cell, unspecified"
 
 
@@ -201,7 +203,7 @@ def main(argv=None):
     root = Path(__file__).resolve().parents[1]
     p = argparse.ArgumentParser(description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--mappings", default=str(root / "cache" / "cell_type_ontology_mappings.csv"))
+    p.add_argument("--mappings", default=str(root / "cache" / MAPPINGS))
     p.add_argument("--ontology", default=str(root / "cache" / "cl-basic_2026-06-08.obo"),
                    help="the benchmark's pinned Cell Ontology release (CL_FILE in "
                         "bin/util/cell_ontology_similarity.py)")

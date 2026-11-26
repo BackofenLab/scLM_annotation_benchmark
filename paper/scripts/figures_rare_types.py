@@ -24,7 +24,7 @@ import seaborn as sns
 from matplotlib.legend_handler import HandlerTuple
 
 import paths
-from methods import (DATASET_ORDER, FAMILIES, MAPPING_ROWS, REGIME_SHORT, _answer_shares,
+from methods import (DATASET_ORDER, FAMILIES, MAPPING_ROWS, OVERALL, REGIME_SHORT, _answer_shares,
                      _benchmark_pairs, _display, _group_means, categorize_model, dataset_label,
                      derive_mode, group_name, load_confusion_pairs, model_base, model_tier,
                      run_label, spread)
@@ -74,7 +74,7 @@ def load_rare_outcomes():
 def load_per_class_scores():
     """Recall and Cell Ontology Lin similarity per run, dataset and true cell type."""
     d = pd.read_csv(paths.PER_CLASS_SCORES)
-    d = d[(d["subset_size"] == 1000) & (d["cell_type"] != "__OVERALL__")
+    d = d[(d["subset_size"] == 1000) & (d["cell_type"] != OVERALL)
           & (d["model"].map(categorize_model) != "chance")].drop(columns="subset_size")
     # Lowercased as the key the rare-type table uses, with the Cell Ontology spelling for display.
     d["cell_type_name"] = d["cell_type"].astype(str).str.strip()

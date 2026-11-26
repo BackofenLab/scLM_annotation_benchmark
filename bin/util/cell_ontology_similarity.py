@@ -56,11 +56,10 @@ ONTOLOGY_KEYS = ("lin_avg_similarity", "rada_avg_similarity", "agreement_score",
                  "n_unique_pred_mapped")
 
 
-def download_cl_ontology(cache_dir: Path, cl_url: str = CL_URL, filename: str = CL_FILE,
-                         force_download: bool = False) -> Path:
+def download_cl_ontology(cache_dir: Path, cl_url: str = CL_URL, filename: str = CL_FILE) -> Path:
     """Path to the pinned Cell Ontology release in ``cache_dir``, downloaded on first use."""
     path = Path(cache_dir) / filename
-    if path.exists() and path.stat().st_size > 0 and not force_download:
+    if path.exists() and path.stat().st_size > 0:
         return path
     path.parent.mkdir(parents=True, exist_ok=True)
     print(f"Downloading Cell Ontology from {cl_url} to {path}")
@@ -188,6 +187,17 @@ class CellTaxonomy:
         if true in self._ancestors[pred]:
             return "finer"
         return "other"
+
+
+def load_ontology(cache_dir: Path) -> pronto.Ontology:
+    """The pinned Cell Ontology release, downloaded to ``cache_dir`` on first use."""
+    return pronto.Ontology(str(download_cl_ontology(Path(cache_dir))))
+
+
+def load_ontology_context(cache_dir: Path):
+    """The label index and the taxonomy of the pinned Cell Ontology release."""
+    ontology = load_ontology(cache_dir)
+    return build_label_index(ontology), CellTaxonomy.from_ontology(ontology)
 
 
 def compute_ontology_similarities(

@@ -16,11 +16,8 @@ from pathlib import Path
 import anndata
 
 # util is found because Python puts the script's directory (bin/) on sys.path.
+from util.cli import log_error, log_info
 from util.http import new_session, stream_to_file
-
-
-def log_info(msg: str) -> None:  print(f"[INFO] {msg}", flush=True)
-def log_error(msg: str) -> None: print(f"[ERROR] {msg}", flush=True)
 
 
 def md5sum(path: Path, chunk: int = 1 << 20) -> str:

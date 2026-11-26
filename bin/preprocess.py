@@ -20,6 +20,7 @@ import scanpy as sc
 from anndata import AnnData
 import pandas as pd
 
+from util.cli import boolean
 from util.pp_utils import (
     ensure_raw_counts_layer,
     ensure_gene_names_column,
@@ -127,7 +128,7 @@ def preprocess_adata(
     logger.info(f"After filtering: {adata.n_obs} cells × {adata.n_vars} genes")
 
     logger.info("Step 4: Ensuring normalization and log transformation...")
-    ensure_norm_log(adata, in_place=True)
+    ensure_norm_log(adata)
     logger.info("Normalization and log transformation complete")
 
     logger.info("Step 5: Removing infinite values...")
@@ -269,19 +270,19 @@ Examples:
     )
     parser.add_argument(
         "--apply_ontology_mapping",
-        type=lambda x: str(x).lower() == "true",
+        type=boolean,
         default=False,
         help="Apply ontology mapping to adata.obs[annotation_key] (default: false)",
     )
     parser.add_argument(
         "--append_new_labels",
-        type=lambda x: str(x).lower() == "true",
+        type=boolean,
         default=True,
         help="Add labels that the mapping table does not hold as unreviewed rows (default: true)",
     )
     parser.add_argument(
         "--labels_optional",
-        type=lambda x: str(x).lower() == "true",
+        type=boolean,
         default=False,
         help=f"Without an annotation_key column, give every cell the label '{PLACEHOLDER_LABEL}' "
              "instead of stopping (default: false)",

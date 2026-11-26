@@ -114,7 +114,7 @@ def main() -> None:
         adata.raw = None
     for k in [k for k in list(adata.layers) if k != "counts"]:
         del adata.layers[k]
-    ensure_norm_log(adata, in_place=True)                        # normalize and log1p X
+    ensure_norm_log(adata)                                       # normalize and log1p X
     adata = remove_infinite_values(adata)
     adata = ensure_ensembl_ids(adata, species=_biomart_species(args.species))  # Ensembl var_names
     ensure_gene_names_column(adata, "gene_names")                # keep symbols in var['gene_names']

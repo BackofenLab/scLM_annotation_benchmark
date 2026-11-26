@@ -18,6 +18,7 @@ from urllib.parse import urljoin
 import anndata
 import requests
 
+from util.cli import log_info, log_warn
 from util.http import new_session, stream_to_file
 
 # Optional: the import can fail on macOS because of native dependencies.
@@ -27,11 +28,6 @@ try:
 except Exception as e:
     cellxgene_census = None  # type: ignore[assignment]
     _cellxgene_census_import_error = e
-
-
-def log_info(msg: str) -> None:  print(f"[INFO] {msg}", flush=True)
-def log_warn(msg: str) -> None:  print(f"[WARN] {msg}", flush=True)
-def log_error(msg: str) -> None: print(f"[ERROR] {msg}", flush=True)
 
 
 def read_adata(path: Path):

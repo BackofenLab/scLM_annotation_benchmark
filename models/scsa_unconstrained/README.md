@@ -20,8 +20,7 @@ into `src/SCSA` (no commit is pinned). `src/run.sh` reads `annotation_key`, `spe
    the marker table and the SCSA result are kept next to the output.
 
 With `LABEL_CONSTRAINT`, only the candidates that count for the expected cell types compete
-(`bin/util/label_constraint.py`). `src/map_scsa_to_cells.py` is a standalone tool that the
-pipeline does not use.
+(`bin/util/label_constraint.py`).
 
 ## SCSA settings
 

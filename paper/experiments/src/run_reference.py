@@ -35,7 +35,7 @@ import pandas as pd
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from lists import REPO_ROOT, ROOT, eval_subset, ontology, read_list  # noqa: E402
+from lists import MAPPINGS, REPO_ROOT, ROOT, eval_subset, ontology, read_list  # noqa: E402
 from util.label_constraint import closure, write  # noqa: E402
 
 ARMS = {"singler": "B1_singler", "celltypist": "B2_celltypist", "sctype": "B3_sctype",
@@ -77,7 +77,7 @@ def main(argv=None):
     from util.ontology_mapping import load_review_status
     cache_dir = ROOT / cfg["scoring"]["cache_dir"]
     label_index, taxonomy, _addable = ontology(cache_dir)
-    _reviewed, review_map = load_review_status(cache_dir / "cell_type_ontology_mappings.csv")
+    _reviewed, review_map = load_review_status(cache_dir / MAPPINGS)
     tree, arm = ROOT / cfg["studies"]["lists"], ARMS[args.method]
 
     for dataset in args.datasets or cfg["datasets"]:

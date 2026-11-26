@@ -25,20 +25,18 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import paths  # noqa: E402
 
 sys.path.insert(1, str(paths.PIPELINE_BIN))
-from methods import categorize_model, derive_mode, group_name, model_base  # noqa: E402
+from methods import OVERALL, categorize_model, derive_mode, group_name, model_base  # noqa: E402
 
 SUBSET_SIZE = 1000
-OVERALL = "__OVERALL__"
 
 
 def full_prevalence(pattern, mappings, cache_dir):
     """Share and number of cells of every cell type in the full dataset. Labels that name the
     same Cell Ontology term are summed."""
-    from evaluate import load_ontology_context
-    from util.cell_ontology_similarity import download_cl_ontology
+    from util.cell_ontology_similarity import load_ontology_context
     from util.ontology_mapping import canonical_names, load_review_status
 
-    label_index, _taxonomy = load_ontology_context(download_cl_ontology(cache_dir))
+    label_index, _taxonomy = load_ontology_context(cache_dir)
     _reviewed, review_map = load_review_status(mappings)
     frames = [pd.read_csv(f).assign(dataset=Path(f).stem) for f in sorted(glob.glob(pattern))]
     if not frames:
@@ -75,7 +73,7 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     p.add_argument("--per-class", default=str(paths.PER_CLASS_SCORES))
     p.add_argument("--distributions", default=str(paths.CELL_TYPE_DISTRIBUTIONS / "*.csv"))
-    p.add_argument("--mappings", default=str(paths.REPO / "resources" / "cell_type_ontology_mappings.csv"))
+    p.add_argument("--mappings", default=str(paths.MAPPINGS))
     p.add_argument("--cache-dir", default=str(paths.REPO / "cache"),
                    help="where the Cell Ontology release is stored")
     p.add_argument("--out", default=str(paths.RARE_TYPE_OUTCOMES))

@@ -24,6 +24,7 @@ import pandas as pd
 import seaborn as sns
 from matplotlib.backends.backend_pdf import PdfPages
 
+from util.plots import set_style
 
 logging.basicConfig(
     level=logging.INFO,
@@ -33,27 +34,6 @@ logger = logging.getLogger(__name__)
 
 RANDOM_SEED = 42
 MIN_CELLS_PER_TYPE = 20
-
-
-def set_pub_style():
-    sns.set_context("paper", font_scale=1)
-    sns.set_style("white")
-    plt.rcParams.update(
-        {
-            "figure.figsize": (6, 4),
-            "axes.titlesize": 10,
-            "axes.labelsize": 9,
-            "axes.linewidth": 0.8,
-            "xtick.labelsize": 8,
-            "ytick.labelsize": 8,
-            "legend.fontsize": 8,
-            "legend.title_fontsize": 9,
-            "font.family": "sans-serif",
-            "font.sans-serif": ["Helvetica", "Arial", "DejaVu Sans"],
-            "pdf.fonttype": 42,
-            "ps.fonttype": 42,
-        }
-    )
 
 
 def stratified_subset(
@@ -180,7 +160,7 @@ def plot_subset_qc(qc_df: pd.DataFrame, dataset: str, subset_size: int, min_cell
                    pdf_path: Path):
     """Write bar plots of the cell type counts and proportions in the dataset and the subset, and
     of the types dropped for having fewer than min_cells_per_type cells, to pdf_path."""
-    set_pub_style()
+    set_style()
 
     kept = qc_df[~qc_df["dropped"]].copy()
     dropped = qc_df[qc_df["dropped"]].copy()
@@ -259,7 +239,6 @@ def plot_subset_qc(qc_df: pd.DataFrame, dataset: str, subset_size: int, min_cell
 
 def main():
     random.seed(RANDOM_SEED)
-    np.random.seed(RANDOM_SEED)
 
     parser = argparse.ArgumentParser(
         description="Stratified subset sampling for scRNA-seq data"

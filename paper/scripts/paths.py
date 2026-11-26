@@ -3,6 +3,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 PIPELINE_BIN = REPO / "bin"
+MAPPINGS = REPO / "resources" / "cell_type_ontology_mappings.csv"
 MODELS = REPO / "models"
 DATASET_CONFIGS = REPO / "datasets"
 PAPER = REPO / "paper"

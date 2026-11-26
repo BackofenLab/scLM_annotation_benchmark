@@ -4,7 +4,7 @@
 The benchmark's setting with a list gives a model the exact list of the dataset's cell types. This
 study gives imperfect lists instead, one per condition (``lists`` in config.yml), all in mode M2:
 
-    E     the true types, the benchmark's own list (identical prompts, asked again)
+    E     the true types, the benchmark's own list (same template, asked again)
     EU    E, with the option to answer "uncertain"
     L1    relatives added for half of the true types: a parent or a child (mixed granularity)
     L2-k  k absent types added: children of a true type's parent that are no true type, nor an
@@ -49,6 +49,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 REPO_ROOT = ROOT.parents[1]
 sys.path[:0] = [str(REPO_ROOT / "bin"), str(REPO_ROOT / "paper" / "scripts")]
+from score import MAPPINGS  # noqa: E402
 
 
 def condition_modes(cfg):
@@ -175,7 +176,6 @@ def write_lists(cfg, tree):
 
 
 RUN = ["arm", "dataset", "condition", "seed"]
-MAPPINGS = "cell_type_ontology_mappings.csv"
 PAIR_COLUMNS = ["true_label", "predicted_label", "n_cells", "prevalence", "n_direct", "lineage"]
 
 

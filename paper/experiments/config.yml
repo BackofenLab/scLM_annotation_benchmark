@@ -12,7 +12,6 @@ eval:
 # Repeats. The seed is sent with every OpenRouter request and draws the order of the candidate
 # lists and, in M6, of the genes.
 repeats:
-  n: 3
   seeds: [1234, 5678, 9012]
   temperature: null        # null: the provider's default
 
@@ -125,7 +124,6 @@ hvg:
 # Clustering of the cluster arms (cluster.py), on the clustering context that scType and SCSA use.
 cluster:
   source_dir: ../../cache/datasets/context
-  algorithm: leiden
   resolutions: [0.5, 1.0]
   n_marker_genes: 25
   rank_method: wilcoxon

@@ -148,12 +148,9 @@ def is_raw_counts(
     X,
     min_val: float = -1e-6,
     max_noninteger_fraction: float = 0.01,
-    check_sparsity: bool = True,
 ) -> bool:
     """Return True if X looks like raw counts: no value below min_val (slightly below 0 to allow
     for rounding errors) and at most max_noninteger_fraction non-integer entries.
-
-    check_sparsity has no effect.
     """
     if sp.issparse(X):
         data = X.data  # stored values, no copy
@@ -318,14 +315,12 @@ def ensure_raw_counts_layer(
         )
 
 
-def ensure_norm_log(
-    adata: AnnData, in_place: bool = True, var_threshold: float = 0.2
-) -> None:
+def ensure_norm_log(adata: AnnData, var_threshold: float = 0.2) -> None:
     """Normalize adata.X to 10,000 counts per cell and apply log1p, in place, and cast it to
     float32 if it is not a float matrix.
 
     Both checks run on X before normalization; a step is skipped if is_normalized
-    (with var_threshold) or is_log_transformed finds it done. in_place has no effect.
+    (with var_threshold) or is_log_transformed finds it done.
     """
     logger.info("Checking if data in adata.X appears normalized and log-transformed.")
     already_norm = is_normalized(adata.X, var_threshold=var_threshold)
@@ -501,7 +496,7 @@ def remove_infinite_values(adata: AnnData) -> AnnData:
         if not np.isfinite(adata.X.data).all():
             finite_mask = np.ones(adata.n_vars, dtype=bool)
             # Assumes no explicitly stored zeros: nonzero() skips them, X.data does not.
-            row_indices, col_indices = adata.X.nonzero()
+            _, col_indices = adata.X.nonzero()
             non_finite_mask = ~np.isfinite(adata.X.data)
             bad_cols = np.unique(col_indices[non_finite_mask])
             finite_mask[bad_cols] = False
@@ -878,7 +873,7 @@ def summarize_adata(adata, out_path="summary.txt"):
         counts_min = float(counts_layer.min())
         counts_max = float(counts_layer.max())
         counts_dtype = str(counts_layer.dtype)
-        A(f"\n### counts layer")
+        A("\n### counts layer")
         A(f"dtype: {counts_dtype}")
         A(f"min: {counts_min}, max: {counts_max}")
         A(f"sparse: {sp.issparse(counts_layer)}")

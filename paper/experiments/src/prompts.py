@@ -4,8 +4,11 @@
 Three templates: ``instruction``, the prompt of the benchmark's OpenRouter wrapper; ``c2s``, the
 prompt of the C2S-Scale wrapper; ``marker_genes``, one prompt per cluster. A mode (``modes`` in
 config.yml) sets whether a prompt lists the candidate cell types, names tissue and species, and
-holds the genes. Without tissue and species, the instruction and c2s prompts equal the wrappers'
-prompts without the list (M1) and with it (M2). The c2s template names the organism already, so
+holds the genes. Without tissue and species, the instruction and c2s prompts use the wrappers'
+templates without the list (M1) and with it (M2). The instruction prompts differ from those of
+the benchmark's OpenRouter wrapper in two details: they end with a line break, and the order of
+the listed types is drawn per cell from the sorted types, where the wrapper draws it from the
+order in which the types occur in the test set. The c2s template names the organism already, so
 tissue and species add only the tissue there.
 
     python src/prompts.py    # self-test
@@ -115,7 +118,8 @@ def _offer_uncertain(body, mode):
 def candidate_list(labels, rng):
     """The candidate cell types for one cell, in an order drawn from ``rng``.
 
-    The benchmark's OpenRouter wrapper shuffles the list per cell in the same way. ``.tolist()``
+    The benchmark's OpenRouter wrapper also draws a new order for every cell, but starts from the
+    order in which the types occur in the test set, so the orders differ from these. ``.tolist()``
     returns plain strings; numpy string scalars would appear as ``np.str_('...')`` in the prompt.
     """
     return rng.permutation(list(labels)).tolist()

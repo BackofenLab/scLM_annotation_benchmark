@@ -20,7 +20,6 @@ opt <- parse_args(OptionParser(option_list = list(
 `%||%` <- function(a, b) if (is.null(a) || is.na(a) || identical(a, "")) b else a
 cfg <- yaml::read_yaml(opt$config)
 opt$tissue <- as.character(cfg$sctype_tissue %||% "")
-opt$organism <- as.character(cfg$organism %||% cfg$species %||% "human")
 opt$annotation_key <- as.character(cfg$annotation_key %||% "cell_type")
 
 # scType's helper functions from the sc-type repository (see prepare.sh)

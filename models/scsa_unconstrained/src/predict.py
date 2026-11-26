@@ -154,8 +154,8 @@ def create_scanpy_csv(h5ad_path, output_csv, cluster_col='louvain',
         pct_valid = 100 * valid_lfc / total_cells
         print(f"  Log fold changes: {valid_lfc}/{total_cells} valid ({pct_valid:.1f}%)")
         if pct_valid < 50:
-            print(f"  WARNING: Less than 50% of log fold changes are valid.")
-            print(f"  This may cause SCSA to miss important marker genes.")
+            print("  WARNING: Less than 50% of log fold changes are valid.")
+            print("  This may cause SCSA to miss important marker genes.")
     
     return adata, cluster_col
 
@@ -196,7 +196,7 @@ def run_scsa(csv_path, db_path, output_path, source='scanpy',
     result = subprocess.run(cmd, capture_output=True, text=True)
     
     if result.returncode != 0:
-        print(f"  ERROR: SCSA failed.")
+        print("  ERROR: SCSA failed.")
         print(f"  stdout: {result.stdout}")
         print(f"  stderr: {result.stderr}")
         sys.exit(1)
@@ -206,7 +206,7 @@ def run_scsa(csv_path, db_path, output_path, source='scanpy',
         file_size = os.path.getsize(output_path)
         if file_size == 0:
             print(f"  WARNING: SCSA output file is empty: {output_path}")
-            print(f"  This usually means SCSA found no matching cell types.")
+            print("  This usually means SCSA found no matching cell types.")
             print(f"  SCSA stdout: {result.stdout[:500] if result.stdout else '(empty)'}")
             print(f"  SCSA stderr: {result.stderr[:500] if result.stderr else '(empty)'}")
         else:
@@ -225,7 +225,7 @@ def map_to_cells(scsa_result_file, adata, cluster_col, true_label_col=None, kept
     
     With kept, a dict of SCSA cell types to listed types, only the cell types in kept compete and
     the listed type is reported."""
-    print(f"\nStep 3: Mapping predictions to cells")
+    print("\nStep 3: Mapping predictions to cells")
     
     if not os.path.exists(scsa_result_file):
         print(f"  ERROR: SCSA result file not found: {scsa_result_file}")
@@ -243,7 +243,7 @@ def map_to_cells(scsa_result_file, adata, cluster_col, true_label_col=None, kept
         try:
             with open(scsa_result_file, 'r') as f:
                 lines = f.readlines()[:10]
-                print(f"  First 10 lines of file:")
+                print("  First 10 lines of file:")
                 for i, line in enumerate(lines, 1):
                     print(f"    {i}: {line.strip()}")
         except:
@@ -252,11 +252,11 @@ def map_to_cells(scsa_result_file, adata, cluster_col, true_label_col=None, kept
     
     expected_cols = ['Cell Type', 'Z-score', 'Cluster']
     if not all(col in scsa_results.columns for col in expected_cols):
-        print(f"  ERROR: SCSA results file missing expected columns")
+        print("  ERROR: SCSA results file missing expected columns")
         print(f"  Expected columns: {expected_cols}")
         print(f"  Found columns: {list(scsa_results.columns)}")
         print(f"  File path: {scsa_result_file}")
-        print(f"  First few rows:")
+        print("  First few rows:")
         print(scsa_results.head())
         sys.exit(1)
     
@@ -268,9 +268,9 @@ def map_to_cells(scsa_result_file, adata, cluster_col, true_label_col=None, kept
 
     # No rows: an empty SCSA result, or no candidate left in constrained mode.
     if len(scsa_results) == 0:
-        print(f"  WARNING: SCSA results file contains no data (only header)")
+        print("  WARNING: SCSA results file contains no data (only header)")
         print(f"  File path: {scsa_result_file}")
-        print(f"  This usually means SCSA found no matching cell types for any clusters")
+        print("  This usually means SCSA found no matching cell types for any clusters")
         cluster_predictions = {}
     else:
         # Top cell type per cluster (highest Z-score); non-numeric Z-scores are ignored.
@@ -507,17 +507,17 @@ def main():
         accuracy = (result_df['true_labels'] == result_df['predicted_labels']).mean()
         print(f"  Overall accuracy: {accuracy:.3f}")
         
-        print(f"\nTemporary files kept for inspection:")
+        print("\nTemporary files kept for inspection:")
         if os.path.exists(temp_csv):
             print(f"  Marker genes CSV: {temp_csv}")
         if os.path.exists(temp_scsa_output):
             print(f"  SCSA results: {temp_scsa_output}")
         
-        print(f"\nSCSA annotation completed.")
+        print("\nSCSA annotation completed.")
         print(f"  Output files saved to: {output_dir}")
         
     except Exception as e:
-        print(f"\nERROR: SCSA annotation failed.")
+        print("\nERROR: SCSA annotation failed.")
         print(f"  {str(e)}")
         import traceback
         traceback.print_exc()

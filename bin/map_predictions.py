@@ -22,11 +22,11 @@ import json
 from pathlib import Path
 
 import pandas as pd
-import pronto
 
 from util.cell_ontology_similarity import (
-    CL_RELEASE, build_label_index, download_cl_ontology, map_string_to_term,
+    CL_RELEASE, build_label_index, load_ontology, map_string_to_term,
 )
+from util.cli import boolean
 from util.label_normalization import (
     EMPTY_PREDICTION_LABEL, normalize_predicted_labels, normalize_true_labels,
 )
@@ -38,10 +38,6 @@ TRUE_COL = "true_labels"
 # How an answer was resolved, in the order in which the rules apply.
 ONTOLOGY_TERM, REVIEWED, UNREVIEWED, UNMAPPED = (
     "ontology term", "reviewed mapping", "unreviewed mapping", "unmapped")
-
-
-def boolean(text) -> bool:
-    return str(text).lower() == "true"
 
 
 def annotations(mapped: pd.DataFrame, label_index, mappings) -> pd.DataFrame:
@@ -120,7 +116,7 @@ def main():
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     cache_dir = Path(args.cache_dir)
-    label_index = build_label_index(pronto.Ontology(str(download_cl_ontology(cache_dir))))
+    label_index = build_label_index(load_ontology(cache_dir))
     for path in [p.strip() for p in args.pred.split(",") if p.strip()]:
         map_file(path, args.method, args.dataset, out_dir, label_index, args.mappings, cache_dir,
                  args.append)

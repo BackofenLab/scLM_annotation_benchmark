@@ -17,8 +17,7 @@ import anndata as ad
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from evaluate import load_ontology_context  # noqa: E402
-from util.cell_ontology_similarity import download_cl_ontology  # noqa: E402
+from util.cell_ontology_similarity import load_ontology_context  # noqa: E402
 from util.label_constraint import closure, write  # noqa: E402
 from util.ontology_mapping import load_review_status  # noqa: E402
 
@@ -39,7 +38,7 @@ def main():
     else:
         key = (yaml.safe_load(Path(args.config).read_text()) or {}).get("annotation_key", "cell_type")
         listed = sorted(ad.read_h5ad(args.input, backed="r").obs[key].astype(str).unique())
-    label_index, taxonomy = load_ontology_context(download_cl_ontology(Path(args.cache_dir)))
+    label_index, taxonomy = load_ontology_context(Path(args.cache_dir))
     _reviewed, review_map = load_review_status(args.mappings)
     table = closure(listed, label_index, taxonomy, review_map)
     write(table, args.out)
