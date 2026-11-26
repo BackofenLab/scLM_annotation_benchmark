@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""
-Map SCSA cluster-level predictions to individual cells.
+"""Give the cells of an AnnData with cluster labels the cell type that SCSA found for their
+cluster. A standalone tool, not used by the pipeline (predict.py does this itself).
 
-SCSA provides cell type predictions at the cluster level. This script maps
-those predictions back to individual cells based on their cluster assignments.
+    map_scsa_to_cells.py -s result.txt -a clustered.h5ad -o cells.tsv
 """
 
 import pandas as pd
@@ -12,26 +11,14 @@ import argparse
 import sys
 
 def map_scsa_to_cells(scsa_result_file, anndata_file, output_file=None):
-    """
-    Map SCSA cluster-level predictions to individual cells.
-    
-    Parameters:
-    -----------
-    scsa_result_file : str
-        Path to SCSA output file (e.g., result.txt)
-    anndata_file : str
-        Path to AnnData file containing cell-level cluster assignments
-    output_file : str, optional
-        Path to output file. If None, prints to stdout.
-    """
-    # Read SCSA results
+    """Give every cell the cell type with the highest Z-score of its cluster and return the
+    per-cell table and the AnnData. The result is written to output_file (.h5ad: the AnnData with
+    the predictions in obs, else a TSV) or, without output_file, printed."""
     scsa_results = pd.read_csv(scsa_result_file, sep='\t')
     
-    # Get the top prediction per cluster (highest Z-score)
     cluster_predictions = {}
     for cluster in scsa_results['Cluster'].unique():
         cluster_data = scsa_results[scsa_results['Cluster'] == cluster]
-        # Get the cell type with highest Z-score for this cluster
         top_prediction = cluster_data.loc[cluster_data['Z-score'].idxmax()]
         cluster_predictions[str(cluster)] = {
             'cell_type': top_prediction['Cell Type'],
@@ -42,11 +29,10 @@ def map_scsa_to_cells(scsa_result_file, anndata_file, output_file=None):
     for cluster, pred in cluster_predictions.items():
         print(f"  Cluster {cluster}: {pred['cell_type']} (Z-score: {pred['z_score']:.3f})")
     
-    # Read AnnData file
     print(f"\nReading AnnData file: {anndata_file}")
     adata = ad.read_h5ad(anndata_file)
     
-    # Check for cluster column (louvain is the default from scanpy)
+    # The first of these obs columns holds the clusters.
     cluster_col = None
     for col in ['louvain', 'leiden', 'cluster', 'clusters']:
         if col in adata.obs.columns:
@@ -65,7 +51,6 @@ def map_scsa_to_cells(scsa_result_file, anndata_file, output_file=None):
     print(f"Using cluster column: '{cluster_col}'")
     print(f"Number of cells: {adata.n_obs}")
     
-    # Map predictions to cells
     cell_predictions = []
     unmapped_clusters = set()
     
@@ -93,14 +78,11 @@ def map_scsa_to_cells(scsa_result_file, anndata_file, output_file=None):
         print(f"  {sorted(unmapped_clusters)}")
         print("  These cells will be labeled as 'Unknown'")
     
-    # Create output DataFrame
     cell_df = pd.DataFrame(cell_predictions)
     
-    # Add to AnnData if possible
     adata.obs['scsa_predicted_cell_type'] = cell_df['predicted_cell_type'].values
     adata.obs['scsa_z_score'] = cell_df['z_score'].values
     
-    # Save or print results
     if output_file:
         if output_file.endswith('.h5ad'):
             print(f"\nSaving AnnData with predictions to: {output_file}")
@@ -113,7 +95,6 @@ def map_scsa_to_cells(scsa_result_file, anndata_file, output_file=None):
         print(cell_df.head(20).to_string(index=False))
         print(f"\n... ({len(cell_df)} total cells)")
     
-    # Print summary
     print("\n" + "="*60)
     print("SUMMARY")
     print("="*60)

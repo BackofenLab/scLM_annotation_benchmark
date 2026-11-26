@@ -1,29 +1,23 @@
 #!/usr/bin/env python
-"""
-Build a clustering CONTEXT for the cluster-level annotators (scType, SCSA).
+"""Build the clustering context of the methods that annotate clusters (scType, SCSA).
 
-These methods cluster the cells, assign a type per cluster, and propagate it back to cells.
-On a 1000-cell eval subset that caps them hard: a rare type has too few cells to form its own
-cluster, so it can never receive a correct label. This script builds a larger context that
-the methods cluster instead, then they score and emit only the fixed eval cells.
+These methods cluster the cells and give every cell the label of its cluster. In a test set of
+1,000 cells, a rare cell type has too few cells to form a cluster of its own. The methods
+therefore cluster a larger sample, the context, and report labels only for the test cells.
 
-Design (see also stratified_subset in subset.py, whose floored-proportional logic this mirrors):
+The context contains every cell of the test sets (--subsets, e.g. those of 1,000 and 10,000
+cells). It is filled up to --max_size cells (default 100,000, or the whole dataset if smaller)
+with other cells of the dataset: first every cell type up to --min_cells_per_type cells
+(default 150), rarest type first, then in proportion to the type frequencies of the dataset.
+A type with fewer cells in the whole dataset contributes all of them. The default of 150
+follows the resolution limit of modularity clustering, about 2*sqrt(n/k) cells on a k-nearest
+neighbour graph, which is 141 to 163 cells for n = 100,000 and the k of scType (20) and SCSA
+(15). Sampling uses a fixed seed (RANDOM_SEED).
 
-1. Containment seed. The context MUST contain every cell of both fixed eval subsets
-   (sub1000, sub10000) so their labels can be read straight off the context clustering. The
-   union of the two subset h5ads is taken verbatim as the seed.
+Writes the context h5ad and, with --qc_csv, a CSV of the counts per type in the dataset, the
+test sets and the context.
 
-2. Floored-proportional fill up to `max_size` (default 100k; the whole dataset if smaller).
-   A type is clusterable on a k-NN graph only above ~2*sqrt(n/k) cells (modularity resolution
-   limit); at n=100k that is ~140-165 for the k used here, so each type is first topped up to
-   `min_cells_per_type` (default 150) from the not-yet-selected full-data cells. The remaining
-   budget is then distributed in proportion to each type's natural abundance, so the bulk of the
-   context still reflects real composition. A type with fewer than the floor in the full data
-   contributes all of its cells (structure cannot be manufactured) -- an intrinsic limit that is
-   reported, not worked around.
-
-Emits <dataset>_context.h5ad plus a QC CSV (per-type: full / seed / context counts). Sampling is
-seeded (RANDOM_SEED) so the context is reproducible.
+    build_context.py --full pp.h5ad --subsets sub1000.h5ad sub10000.h5ad --output context.h5ad
 """
 from __future__ import annotations
 
@@ -47,12 +41,10 @@ CONTEXT_MIN_CELLS_PER_TYPE = 150
 
 
 def slim_context(adata: anndata.AnnData) -> anndata.AnnData:
-    """Drop everything the cluster-level annotators don't read, to shrink the context for
-    caching / Zenodo transfer. scType and SCSA cluster on ``X`` (the log1p-normalized expression)
-    and read only ``obs`` (labels) + ``var`` (gene names); raw counts, embeddings, neighbor graphs
-    and plotting metadata are dead weight (often ~half the file). ``X``/``obs``/``var`` are left
-    exactly as-is, so the correctly-transformed matrix the models consume is unchanged and their
-    predictions are identical. Mutates and returns ``adata``."""
+    """Remove layers, obsm, varm, obsp, varp, raw and uns from adata, in place, and return it.
+
+    scType and SCSA read only X (log-normalized expression), obs and var, which are kept, so
+    their results do not change and the file becomes smaller."""
     for attr in ("layers", "obsm", "varm", "obsp", "varp"):
         store = getattr(adata, attr)
         for key in list(store.keys()):
@@ -71,28 +63,18 @@ def build_context(
     min_cells_per_type: int = CONTEXT_MIN_CELLS_PER_TYPE,
     lean: bool = True,
 ) -> tuple[anndata.AnnData, pd.DataFrame]:
-    """Return (context AnnData, QC DataFrame).
+    """Return the context and a table of the counts per type.
 
-    Parameters
-    ----------
-    full : AnnData
-        Full preprocessed dataset (the pool to sample from).
-    seed_ids : list[str]
-        Cell ids that MUST appear in the context (union of the eval subsets). Guarantees
-        containment; ids not present in ``full`` are reported and skipped.
-    annotation_key : str
-        Column in ``full.obs`` holding cell-type labels.
-    max_size : int
-        Cap on the context size; the whole dataset is used if it has fewer cells.
-    min_cells_per_type : int
-        Per-type floor the fill aims for (clustering resolution limit).
+    seed_ids are the test cells, which the context contains; ids missing from full are logged
+    and skipped. max_size caps the context size and min_cells_per_type is the number of cells per
+    type that the fill aims for. With lean, the context is reduced by slim_context.
     """
     rng = np.random.default_rng(RANDOM_SEED)
     obs_names = full.obs_names.astype(str)
     labels = full.obs[annotation_key].astype(str)
     pos_by_id = {cid: i for i, cid in enumerate(obs_names)}
 
-    # --- Containment seed ---
+    # Test cells
     seed_set = set(seed_ids)
     present = [c for c in seed_ids if c in pos_by_id]
     missing = seed_set - set(present)
@@ -107,7 +89,7 @@ def build_context(
     n_full = full.n_obs
     effective_size = min(max_size, n_full)
     if len(selected) > effective_size:
-        # The eval subsets alone already exceed the cap: keep them all (containment wins).
+        # The test cells alone exceed max_size: keep all of them.
         logger.warning(
             "Seed (%d cells) exceeds max_size (%d); using the seed as the context.",
             len(selected), effective_size,
@@ -115,7 +97,7 @@ def build_context(
         effective_size = len(selected)
 
     full_counts = labels.value_counts()
-    # Positions of the not-yet-selected cells, grouped by type, in a deterministic order.
+    # Positions of the cells not yet selected, per type, shuffled with the fixed seed.
     avail_by_type: dict[str, list[int]] = {}
     sel_pos = {pos_by_id[c] for c in selected}
     for t in full_counts.index:
@@ -132,10 +114,8 @@ def build_context(
         for _ in range(n):
             selected.add(obs_names[avail_by_type[t].pop()])
 
-    # --- Floor pass: bring every type up to the per-type minimum where the pool allows.
-    # Rarest-first, so that when the budget is tight the floor guarantee goes to the types that
-    # actually need it (abundant types clear the floor via the proportional fill regardless).
-    # At the real scale (max_size >> n_types * floor) the order is a no-op. ---
+    # Every type up to min_cells_per_type cells where the dataset has them. Rarest types first, so
+    # that they get these cells when max_size is too small for all types.
     for t in full_counts.sort_values(ascending=True).index:
         t = str(t)
         need = min_cells_per_type - int(seed_counts.get(t, 0))
@@ -144,7 +124,7 @@ def build_context(
         if len(selected) >= effective_size:
             break
 
-    # --- Proportional fill: distribute the remaining budget by natural abundance. ---
+    # The remaining cells in proportion to the type frequencies of the dataset.
     remaining = effective_size - len(selected)
     if remaining > 0:
         headroom = pd.Series(
@@ -157,7 +137,7 @@ def build_context(
             alloc = np.minimum(alloc.round().astype(int), headroom.astype(int))
             for t, n in alloc.items():
                 take(str(t), int(n))
-            # Any rounding shortfall: top up from whatever pool still has cells.
+            # Cells missing after rounding come from the types that still have cells.
             leftover = effective_size - len(selected)
             for t in headroom.index:
                 if leftover <= 0:
@@ -221,7 +201,7 @@ def main():
         lean=not a.keep_full,
     )
 
-    # Containment assertion: every seed cell present in the full data must be in the context.
+    # Every test cell found in the dataset must be in the context.
     present_seed = {c for c in seed_ids if c in set(full.obs_names.astype(str))}
     ctx_ids = set(context.obs_names.astype(str))
     missing = present_seed - ctx_ids
@@ -230,8 +210,8 @@ def main():
 
     n_below = int(qc_df["below_floor_in_full"].sum())
     logger.info(
-        "Context: %d cells, %d types (%d type(s) below the %d-cell floor even in the full data "
-        "-> may not form a cluster).",
+        "Context: %d cells, %d types (%d type(s) have fewer than %d cells in the full data "
+        "and may not form a cluster).",
         context.n_obs, (qc_df["context_count"] > 0).sum(), n_below, a.min_cells_per_type,
     )
     logger.info("Containment OK: all %d in-pool eval cells are in the context.", len(present_seed))

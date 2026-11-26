@@ -21,7 +21,8 @@ from util.label_constraint import closure, constrain, write  # noqa: E402
 from util.label_normalization import label_key  # noqa: E402
 from test_scoring import TOY, pinned_ontology  # noqa: E402
 
-# TOY: root -> A, B; A -> C, F; B -> C; C -> D, E. Each term has a name and an id.
+# TOY: A and B below the root, C and F below A, C below B, D and E below C. Each term has a name
+# and an id.
 NAMES = {"A": "alpha", "B": "beta", "C": "gamma", "D": "delta", "E": "epsilon", "F": "phi",
          "root": "cell"}
 TERMS = {t: SimpleNamespace(id=t, name=n) for t, n in NAMES.items()}
@@ -43,7 +44,7 @@ def test_a_label_counts_for_its_nearest_listed_type_and_never_below_it():
 def test_reviewed_mappings_count_but_a_term_name_wins():
     table = toy_table(["gamma"], {"my delta": "delta", "alpha": "delta", "junk": "cell"})
     assert table["my delta"] == "gamma"
-    assert "alpha" not in table                         # alpha IS a term (coarser), whatever the review says
+    assert "alpha" not in table                         # alpha is a coarser term; the review does not count
     assert "junk" not in table                          # mapped to the root, which never counts
 
 

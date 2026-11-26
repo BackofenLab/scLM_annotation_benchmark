@@ -5,21 +5,21 @@ channels:
   - bioconda
 
 dependencies:
-  # ---- Core ----
+  # Core
   - python=3.11.14
   - pip=25.3
   - setuptools>=65.0.0
 
-  # ---- Core utilities ----
+  # Utilities
   - pyyaml=6.0.3
   - requests=2.32.5
   - tqdm=4.67.1
   - pronto=2.7.3
   - numba=0.63.1
   
-  # ---- Census / storage stack ----
+  # CELLxGENE Census and storage
   - tiledbsoma-py=1.17.0
-  # ---- Scientific base ----
+  # Scientific and machine learning libraries
   - numpy=1.26.4
   - scipy=1.11.4
   - pandas=2.3.3
@@ -41,11 +41,10 @@ dependencies:
   - wandb=0.25.1
   - cellxgene-census=1.17.0
 
-  # ---- Plotting ----
+  # Plotting
   - matplotlib=3.9.4
   - seaborn=0.13.2
 
-# ---- Parallel / distributed compute ----
-# Pinned to a recent tested pair compatible with numpy=1.26 and pandas=2.3
+# Parallel computing: dask and distributed at versions that work with numpy 1.26 and pandas 2.3
   - dask=2024.12.1
   - distributed=2024.12.1

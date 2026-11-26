@@ -1,12 +1,13 @@
 #!/usr/bin/env python
-"""
-Fetch a preprocessed + subsetted AnnData file from the pinned Zenodo record.
+"""Download a test set or clustering context from the Zenodo record of the manifest.
 
-Reads the manifest (`datasets/zenodo_manifest.yml`), resolves the expected
-filename from (dataset, subset_size, strategy), downloads it, MD5-verifies,
-and confirms the expected annotation column exists. Exits non-zero on any
-failure so Nextflow aborts and `-resume` retries cleanly (storeDir never
-sees a partial file).
+The file is <dataset>_sub<subset_size>_<strategy>.h5ad, or --filename. The script checks its
+MD5 sum against the manifest (datasets/zenodo_manifest.yml) and that obs has the annotation
+column, and exits non-zero on any failure, so that Nextflow's storeDir never keeps a partial
+file.
+
+    fetch_zenodo_subset.py --manifest datasets/zenodo_manifest.yml --dataset NAME \\
+        --subset_size 1000 --strategy stratified --annotation_key cell_type --output out.h5ad
 """
 from __future__ import annotations
 import argparse, hashlib, sys, yaml
@@ -14,7 +15,7 @@ from pathlib import Path
 
 import anndata
 
-# bin/ is on PYTHONPATH when invoked by Nextflow
+# util is found because Python puts the script's directory (bin/) on sys.path.
 from util.http import new_session, stream_to_file
 
 

@@ -1,9 +1,7 @@
 name: sctype
-# First R env in the repo. Pinned to Bioconductor 3.20 / R 4.4 — the oldest release with a
-# consistent set of builds available on BOTH linux-64 (cluster) and osx-arm64 (Bioc 3.18/R4.3
-# lacks arm64 scran/scater builds). Build strings / system libs are left to conda to resolve.
-# NOTE: zellkonverter reads the .h5ad via a basilisk-managed python env, created & cached on
-# first use (needs network once).
+# Bioconductor 3.20 with R 4.4, the oldest release with builds of all packages for linux-64 and
+# osx-arm64 (Bioconductor 3.18 with R 4.3 has no osx-arm64 builds of scran and scater). Build
+# strings and system libraries are left to conda.
 channels:
   - conda-forge
   - bioconda
@@ -17,7 +15,7 @@ dependencies:
   - r-hgnchelper=0.8.*
   - bioconductor-singlecellexperiment=1.28.0
   - bioconductor-zellkonverter=1.16.0
-  - bioconductor-rhdf5=2.50.0        # reader="R" reads the h5ad in pure R (no basilisk/python)
+  - bioconductor-rhdf5=2.50.0        # readH5AD(reader = "R") reads .h5ad files without Python
   - bioconductor-hdf5array=1.34.0
   - bioconductor-scran=1.34.0
   - bioconductor-scater=1.34.1

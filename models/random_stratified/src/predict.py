@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Random classifier prediction (uniform or stratified over unique cell types)."""
+"""Random baseline: give every cell a cell type of the test set, drawn uniformly or with the
+frequencies of the types (stratified), and write cell_id, true_labels and predicted_labels to a
+CSV.
+
+    predict.py --input test.h5ad --output predictions.csv --annotation_key cell_type
+"""
 
 import argparse
 import logging

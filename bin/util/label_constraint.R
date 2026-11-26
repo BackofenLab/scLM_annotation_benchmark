@@ -1,4 +1,5 @@
-# R copy of label_key and constrain from label_constraint.py (see there), for the R wrappers.
+# R versions of label_key (label_normalization.py) and constrain (label_constraint.py) for the R
+# wrappers.
 
 label_key <- function(s) tolower(trimws(gsub("[[:space:]]+", " ", s)))
 

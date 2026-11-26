@@ -1,7 +1,8 @@
-# Zenodo version record for the subsetted (1000/10000 stratified) eval sets + clustering contexts.
-# DOI 10.5281/zenodo.21443586 (version) / concept DOI 10.5281/zenodo.19707182 (always-latest).
-# Only the STRATIFIED subsets + contexts are uploaded here (12 files); the *_random.h5ad entries
-# below are NOT on this record and would 404 (they are only used if subset_strategy='random').
+# Zenodo record of the test sets (stratified subsets of 1,000 and 10,000 cells) and the clustering
+# contexts. DOI 10.5281/zenodo.21443586 (this version); concept DOI 10.5281/zenodo.19707182 (the
+# latest version). The record holds only the stratified subsets and the contexts (12 files): the
+# *_random.h5ad entries are not on it and cannot be downloaded (they are used only with
+# subset_strategy = 'random').
 record_id: 21443586
 base_url: https://zenodo.org/api/records/21443586/files
 files:
@@ -21,10 +22,11 @@ files:
   human_pancreas_sub1000_stratified.h5ad:  {md5: 38a73f4d6a3e5563ea53f7ddc65e3ac8, size: 11384232}
   human_pancreas_sub10000_random.h5ad:     {md5: 8eea6d1c20d7ddf330ab5c0c57900ba8, size: 101312599}
   human_pancreas_sub10000_stratified.h5ad: {md5: e9a60fc6332fe5e5b0ca02787a56a956, size: 101764721}
-  # Clustering contexts for scType/SCSA (fetch_context_from_zenodo=true). Slim (X + obs + var only;
-  # raw counts / embeddings dropped) -- ~1.1-1.35 GB each, 100k cells (pancreas = full 11.7k).
-  # checksums are of the local lean files; upload THESE exact files. NOTE: adding files to Zenodo
-  # creates a NEW version with a new record_id -> update record_id + base_url above after upload.
+  # Clustering contexts for scType and SCSA (fetch_context_from_zenodo = true), with X, obs and
+  # var only: 100,000 cells each (human_pancreas: the whole dataset, about 11,700 cells), 0.7 to
+  # 1.35 GB.
+  # Adding files to the record creates a new Zenodo version with a new record_id, so record_id and
+  # base_url must then be updated.
   HFRA_context.h5ad:           {md5: 3296a87751296c077c3e227c003e2e0c, size: 1108277388}
   HIHA_context.h5ad:           {md5: 88a22a1f1d934a5eca8306225efb781d, size: 1321809150}
   Zeisel_context.h5ad:         {md5: afe6341fb8e610eaa1e40bedb869c731, size: 1349038988}

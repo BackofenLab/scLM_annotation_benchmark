@@ -4,20 +4,18 @@ set -euo pipefail
 INPUT_H5AD=$(realpath "$1")
 CFG_YAML=$(realpath "$3")
 
-# Create output directory if it doesn't exist, then resolve absolute path
+# Absolute output path, since the script changes directory below
 OUTPUT_DIR=$(dirname "$2")
 mkdir -p "$OUTPUT_DIR"
 OUT_CSV=$(realpath "$OUTPUT_DIR")/$(basename "$2")
 
-# Get the directory where this script is located
 SCRIPT_DIR=$(dirname "$(realpath "$0")")
 
-# Extract annotation key, species, and SCSA tissue from the dataset config.
-#  - species: SCSA needs exactly "Human"/"Mouse" (SCSA.py:1146 is a case-sensitive == "Mouse"
-#    check that gates mouse gene handling). Map the YAML species/organism to that form; without
-#    it every dataset is scored as Human -> ~11x marker collapse on mouse data (e.g. Zeisel).
-#  - scsa_tissue: exact tissueType string(s) from SCSA's CellMarker DB (comma-separated allowed),
-#    hand-picked per dataset. Defaults to "All" (whole DB) when unset.
+# annotation_key, species and scsa_tissue from the dataset YAML:
+#  - species: SCSA.py compares it case-sensitively with "Mouse", so the species or organism of
+#    the YAML is written as "Human" or "Mouse"; otherwise SCSA treats mouse data as human.
+#  - scsa_tissue: one or more tissue names of SCSA's CellMarker database, separated by commas,
+#    chosen per dataset; default "All" (the whole database).
 IFS=$'\t' read -r ANNOTATION_KEY SPECIES SCSA_TISSUE < <(python - <<'PY' "$CFG_YAML"
 import yaml, sys
 c = yaml.safe_load(open(sys.argv[1]))
@@ -29,7 +27,7 @@ print('\t'.join([ann, species, tissue]))
 PY
 )
 
-# Find SCSA directory and database
+# SCSA checkout made by prepare.sh
 SCSA_DIR="$SCRIPT_DIR/SCSA"
 if [ ! -d "$SCSA_DIR" ]; then
     echo "ERROR: SCSA directory not found at $SCSA_DIR"
@@ -37,7 +35,7 @@ if [ ! -d "$SCSA_DIR" ]; then
     exit 1
 fi
 
-# Use whole_v2.db database
+# SCSA's database with CellMarker version 2
 SCSA_DB="$SCSA_DIR/whole_v2.db"
 
 if [ ! -f "$SCSA_DB" ]; then
@@ -45,10 +43,9 @@ if [ ! -f "$SCSA_DB" ]; then
     exit 1
 fi
 
-# Change to SCSA directory so SCSA.py can be found
+# predict.py calls SCSA.py by its relative path.
 cd "$SCSA_DIR"
 
-# Run SCSA prediction
 echo "SCSA: species=$SPECIES tissue=$SCSA_TISSUE"
 python "$SCRIPT_DIR/predict.py" \
   --input "$INPUT_H5AD" \

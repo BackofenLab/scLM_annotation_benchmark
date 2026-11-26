@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
-"""
-Complete SCSA pipeline: Create CSV, run SCSA, and map predictions to cells.
+"""Annotate the cells of a test set with SCSA.
 
-This script:
-1. Creates a CSV file from an h5ad file (scanpy format)
-2. Runs SCSA.py on the CSV
-3. Maps cluster-level predictions back to individual cells
-4. Outputs a CSV with cell_id, true_labels, and predicted_labels
+Clusters the cells (Louvain), writes the marker genes of every cluster (scanpy t-test) to a CSV
+in SCSA's scanpy format, runs SCSA.py on it and gives every cell the cell type with the highest
+Z-score of its cluster. If CONTEXT_H5AD names a clustering context that contains the test cells
+(bin/build_context.py), the context is clustered and only the test cells are reported. If
+LABEL_CONSTRAINT names a label table, only the candidates that count for the true cell types
+compete (bin/util/label_constraint.py). Writes a CSV with cell_id, true_labels and
+predicted_labels; the marker CSV and the SCSA result are kept next to it.
+
+run.sh calls this script from the SCSA checkout, since SCSA.py is called by its relative path.
 """
 
 import sys
@@ -28,12 +31,8 @@ GENE_NAME_COLUMNS = (
 
 
 def set_gene_index_from_available_columns(adata):
-    """
-    Set adata.var_names to the best available gene-name column.
-
-    Falls back to existing var_names if none of the known columns are present.
-    Empty values are replaced with the original var_names.
-    """
+    """Set var_names to the first column of GENE_NAME_COLUMNS in adata.var and return its name,
+    or None if there is none. Empty names keep the original var_name."""
     fallback_names = pd.Series(adata.var_names.astype(str), index=adata.var.index)
 
     for col in GENE_NAME_COLUMNS:
@@ -65,47 +64,27 @@ def set_gene_index_from_available_columns(adata):
 def create_scanpy_csv(h5ad_path, output_csv, cluster_col='louvain', 
                       resolution=1.0, n_top_genes=2000, 
                       n_neighbors=15, n_pcs=50, random_state=0):
-    """
-    Create scanpy-compatible CSV from h5ad file.
+    """Cluster the cells of h5ad_path unless obs has cluster_col, write the marker genes of every
+    cluster in SCSA's scanpy format to output_csv and return the AnnData and cluster_col.
     
-    Parameters:
-    -----------
-    h5ad_path : str
-        Path to input h5ad file
-    output_csv : str
-        Path to output CSV file
-    cluster_col : str
-        Name of cluster column to use/create
-    resolution : float
-        Resolution for Louvain clustering (if clustering needed)
-    n_top_genes : int
-        Number of highly variable genes
-    n_neighbors : int
-        Number of neighbors for neighborhood graph
-    n_pcs : int
-        Number of principal components
-    random_state : int
-        Random seed
-    """
+    Clustering: n_top_genes highly variable genes, scaling, n_pcs principal components, a
+    neighbour graph with n_neighbors and Louvain at the given resolution."""
     print(f"Step 1: Reading h5ad file: {h5ad_path}")
     adata = ad.read_h5ad(h5ad_path)
     
-    # Check if clustering already exists
     needs_clustering = cluster_col not in adata.obs.columns
 
-    # Use the most suitable available gene-name column for marker reporting.
+    # SCSA matches the markers by gene symbol.
     set_gene_index_from_available_columns(adata)
     
     if needs_clustering:
         print(f"  Finding {n_top_genes} highly variable genes...")
-        # flavor='seurat' (dispersion-based) is correct for the log1p-normalized X this pipeline
-        # provides. 'seurat_v3' expects RAW counts and only warns on log-normalized input, silently
-        # picking a suboptimal HVG set; the pipeline's contexts are also counts-free (slimmed), so
-        # seurat_v3 could never get the data it wants.
+        # flavor='seurat' works on log-normalized X. 'seurat_v3' needs raw counts, which the
+        # clustering contexts do not contain.
         sc.pp.highly_variable_genes(adata, n_top_genes=n_top_genes, flavor="seurat")
         adata = adata[:, adata.var.highly_variable].copy()
         
-        # Keep a copy of normalized data for marker detection (before scaling)
+        # The marker genes are computed on the unscaled data.
         adata_for_markers = adata.copy()
         
         print("  Scaling...")
@@ -120,14 +99,12 @@ def create_scanpy_csv(h5ad_path, output_csv, cluster_col='louvain',
         print(f"  Running Louvain clustering (resolution={resolution})...")
         sc.tl.louvain(adata, resolution=resolution, key_added=cluster_col, random_state=random_state)
         
-        # Copy cluster assignments to the normalized data for marker detection
         adata_for_markers.obs[cluster_col] = adata.obs[cluster_col]
     else:
         print(f"  Using existing cluster column: '{cluster_col}'")
-        # For marker detection, use normalized (not scaled) data
-        # If data is already scaled, we need to work with what we have
+        # Existing clusters: the marker genes come from the 'log1p' layer or adata.raw if
+        # present, else from X as it is.
         adata_for_markers = adata.copy()
-        # Try to get raw data if available
         if 'log1p' in adata.layers:
             adata_for_markers.X = adata.layers['log1p'].copy()
         elif adata.raw is not None:
@@ -138,7 +115,7 @@ def create_scanpy_csv(h5ad_path, output_csv, cluster_col='louvain',
     print(f"  Found {len(adata.obs[cluster_col].unique())} clusters")
     
     print("  Computing marker genes per cluster (on normalized data)...")
-    # Use normalized (not scaled) data for marker detection to get proper log fold changes
+    # SCSA filters the markers by log fold change, which needs unscaled data.
     sc.tl.rank_genes_groups(adata_for_markers, groupby=cluster_col, method="t-test")
     
     print(f"  Creating CSV: {output_csv}")
@@ -151,28 +128,26 @@ def create_scanpy_csv(h5ad_path, output_csv, cluster_col='louvain',
         for key in ['names', 'logfoldchanges', 'scores', 'pvals']
     })
     
-    # Filter out rows where log fold changes are missing (critical for SCSA)
-    # Keep at least the top genes even if some have missing logFC
+    # Warns about clusters with missing log fold changes; no gene is removed, so valid_mask
+    # only sets the count in the warning.
     initial_rows = len(dat)
     for group in groups:
         lfc_col = group + '_l'
         if lfc_col in dat.columns:
-            # For each cluster, keep genes with valid logFC or top genes by score
             valid_mask = dat[lfc_col].notna()
-            if valid_mask.sum() < 100:  # If too few valid, keep top 100 by score
+            if valid_mask.sum() < 100:
                 score_col = group + '_s'
                 if score_col in dat.columns:
                     top_genes = dat.nlargest(100, score_col).index
                     valid_mask = dat.index.isin(top_genes) | valid_mask
-            # For now, keep all genes but warn about missing logFC
             missing_count = (~valid_mask).sum()
             if missing_count > 0:
                 print(f"    WARNING: {missing_count} genes in cluster {group} have missing log fold changes")
     
     dat.to_csv(output_csv, index=True)
-    print(f"  ✓ CSV created with {len(dat)} genes and {len(dat.columns)} columns")
+    print(f"  CSV created with {len(dat)} genes and {len(dat.columns)} columns")
     
-    # Verify log fold changes
+    # Share of valid log fold changes over all genes and clusters
     lfc_cols = [c for c in dat.columns if c.endswith('_l')]
     if lfc_cols:
         total_cells = len(dat) * len(lfc_cols)
@@ -180,7 +155,7 @@ def create_scanpy_csv(h5ad_path, output_csv, cluster_col='louvain',
         pct_valid = 100 * valid_lfc / total_cells
         print(f"  Log fold changes: {valid_lfc}/{total_cells} valid ({pct_valid:.1f}%)")
         if pct_valid < 50:
-            print(f"  WARNING: Less than 50% of log fold changes are valid!")
+            print(f"  WARNING: Less than 50% of log fold changes are valid.")
             print(f"  This may cause SCSA to miss important marker genes.")
     
     return adata, cluster_col
@@ -190,46 +165,16 @@ def run_scsa(csv_path, db_path, output_path, source='scanpy',
              foldchange=1.5, pvalue=0.01, gensymbol=True, 
              species='Human', tissue='All', celltype='normal', 
              target='cellmarker', outfmt='txt', python_cmd=None):
-    """
-    Run SCSA.py on the CSV file.
+    """Run SCSA.py on the marker CSV, writing its result to output_path, and exit if SCSA fails.
     
-    Parameters:
-    -----------
-    csv_path : str
-        Path to input CSV
-    db_path : str
-        Path to SCSA database
-    output_path : str
-        Path to SCSA output file
-    source : str
-        Source format (scanpy, seurat, scran, cellranger)
-    foldchange : float
-        Fold change threshold
-    pvalue : float
-        P-value threshold
-    gensymbol : bool
-        Use gene symbols instead of Ensembl IDs
-    species : str
-        Species (Human, Mouse)
-    tissue : str
-        Tissue type
-    celltype : str
-        Cell type (normal, cancer)
-    target : str
-        Target database (cellmarker, cancersea)
-    outfmt : str
-        Output format (txt, ms-excel)
-    python_cmd : str, optional
-        Python executable to use (default: python3)
-    """
+    The arguments are SCSA's options -s, -f, -p, -E (gene symbols), -g, -k, -T, -t and -m;
+    python_cmd defaults to the interpreter of this script."""
     print(f"\nStep 2: Running SCSA on {csv_path}")
     
-    # Determine Python executable
     if python_cmd is None:
-        # Try to use same Python as current process
         python_cmd = sys.executable
     
-    # Use 'SCSA.py' directly - run.sh already changes to SCSA directory
+    # Relative path: run.sh starts this script in the SCSA checkout.
     cmd = [
         python_cmd, 'SCSA.py',
         '-d', db_path,
@@ -252,12 +197,12 @@ def run_scsa(csv_path, db_path, output_path, source='scanpy',
     result = subprocess.run(cmd, capture_output=True, text=True)
     
     if result.returncode != 0:
-        print(f"  ✗ ERROR: SCSA failed!")
+        print(f"  ERROR: SCSA failed.")
         print(f"  stdout: {result.stdout}")
         print(f"  stderr: {result.stderr}")
         sys.exit(1)
     
-    # Check if output was actually created and has content
+    # SCSA can exit without error and still write no result.
     if os.path.exists(output_path):
         file_size = os.path.getsize(output_path)
         if file_size == 0:
@@ -266,7 +211,7 @@ def run_scsa(csv_path, db_path, output_path, source='scanpy',
             print(f"  SCSA stdout: {result.stdout[:500] if result.stdout else '(empty)'}")
             print(f"  SCSA stderr: {result.stderr[:500] if result.stderr else '(empty)'}")
         else:
-            print(f"  ✓ SCSA completed successfully (output file size: {file_size} bytes)")
+            print(f"  SCSA completed (output file size: {file_size} bytes)")
     else:
         print(f"  WARNING: SCSA output file was not created: {output_path}")
         print(f"  SCSA stdout: {result.stdout[:500] if result.stdout else '(empty)'}")
@@ -276,27 +221,13 @@ def run_scsa(csv_path, db_path, output_path, source='scanpy',
 
 
 def map_to_cells(scsa_result_file, adata, cluster_col, true_label_col=None, kept=None):
-    """
-    Map SCSA cluster-level predictions to individual cells.
+    """Give every cell of adata the cell type with the highest Z-score of its cluster, or
+    'Unknown', and return cell_id, true_labels (from true_label_col) and predicted_labels.
     
-    Parameters:
-    -----------
-    scsa_result_file : str
-        Path to SCSA output file
-    adata : AnnData
-        AnnData object with cell information
-    cluster_col : str
-        Name of cluster column
-    true_label_col : str, optional
-        Name of column containing true labels (if available)
-    
-    Returns:
-    --------
-    pd.DataFrame with cell_id, true_labels, predicted_labels
-    """
+    With kept, a dict of SCSA cell types to listed types, only the cell types in kept compete and
+    the listed type is reported."""
     print(f"\nStep 3: Mapping predictions to cells")
     
-    # Check if file exists and is not empty
     if not os.path.exists(scsa_result_file):
         print(f"  ERROR: SCSA result file not found: {scsa_result_file}")
         sys.exit(1)
@@ -305,13 +236,11 @@ def map_to_cells(scsa_result_file, adata, cluster_col, true_label_col=None, kept
         print(f"  ERROR: SCSA result file is empty: {scsa_result_file}")
         sys.exit(1)
     
-    # Read SCSA results
     try:
         scsa_results = pd.read_csv(scsa_result_file, sep='\t')
     except Exception as e:
         print(f"  ERROR: Failed to read SCSA results file: {e}")
         print(f"  File path: {scsa_result_file}")
-        # Try to show first few lines for debugging
         try:
             with open(scsa_result_file, 'r') as f:
                 lines = f.readlines()[:10]
@@ -322,7 +251,6 @@ def map_to_cells(scsa_result_file, adata, cluster_col, true_label_col=None, kept
             pass
         sys.exit(1)
     
-    # Check if file has expected columns
     expected_cols = ['Cell Type', 'Z-score', 'Cluster']
     if not all(col in scsa_results.columns for col in expected_cols):
         print(f"  ERROR: SCSA results file missing expected columns")
@@ -339,20 +267,18 @@ def map_to_cells(scsa_result_file, adata, cluster_col, true_label_col=None, kept
         scsa_results = scsa_results[scsa_results['Cell Type'].isin(kept)]
         scsa_results = scsa_results.assign(**{'Cell Type': scsa_results['Cell Type'].map(kept)})
 
-    # Check if file is empty (only header)
+    # No rows: an empty SCSA result, or no candidate left in constrained mode.
     if len(scsa_results) == 0:
         print(f"  WARNING: SCSA results file contains no data (only header)")
         print(f"  File path: {scsa_result_file}")
         print(f"  This usually means SCSA found no matching cell types for any clusters")
         cluster_predictions = {}
     else:
-        # Get the top prediction per cluster (highest Z-score)
+        # Top cell type per cluster (highest Z-score); non-numeric Z-scores are ignored.
         cluster_predictions = {}
         for cluster in scsa_results['Cluster'].unique():
             cluster_data = scsa_results[scsa_results['Cluster'] == cluster]
-            # Convert Z-score to numeric, handling any non-numeric values
             cluster_data['Z-score'] = pd.to_numeric(cluster_data['Z-score'], errors='coerce')
-            # Drop rows with NaN Z-scores
             cluster_data = cluster_data.dropna(subset=['Z-score'])
             if len(cluster_data) > 0:
                 top_prediction = cluster_data.loc[cluster_data['Z-score'].idxmax()]
@@ -362,7 +288,6 @@ def map_to_cells(scsa_result_file, adata, cluster_col, true_label_col=None, kept
     if len(cluster_predictions) > 0:
         print(f"  Clusters with predictions: {sorted(cluster_predictions.keys())}")
     
-    # Map predictions to cells
     cell_data = []
     unmapped_clusters = set()
     
@@ -370,14 +295,12 @@ def map_to_cells(scsa_result_file, adata, cluster_col, true_label_col=None, kept
         cluster_str = str(cluster)
         cell_id = adata.obs.index[cell_idx]
         
-        # Get true label (required)
         if true_label_col not in adata.obs.columns:
             print(f"\nERROR: Column '{true_label_col}' not found in adata.obs")
             print(f"Available columns: {list(adata.obs.columns)}")
             sys.exit(1)
         true_label = adata.obs[true_label_col].iloc[cell_idx]
         
-        # Get predicted label
         if cluster_str in cluster_predictions:
             predicted_label = cluster_predictions[cluster_str]
         else:
@@ -395,7 +318,7 @@ def map_to_cells(scsa_result_file, adata, cluster_col, true_label_col=None, kept
         print(f"    {sorted(unmapped_clusters)}")
     
     result_df = pd.DataFrame(cell_data)
-    print(f"  ✓ Mapped predictions to {len(result_df)} cells")
+    print(f"  Mapped predictions to {len(result_df)} cells")
     
     return result_df
 
@@ -470,23 +393,21 @@ def main():
     
     args = parser.parse_args()
     
-    # Set up temporary file paths
+    # Directory of the marker CSV and the SCSA result
     if args.temp_dir is None:
         temp_dir = os.path.dirname(args.output) or '.'
     else:
         temp_dir = args.temp_dir
         os.makedirs(temp_dir, exist_ok=True)
     
-    # Set up output path info (similar to cellwhisperer)
     output_path = os.path.abspath(args.output)
     output_dir = os.path.dirname(output_path)
     output_stem = os.path.splitext(os.path.basename(output_path))[0]
     output_suffix = os.path.splitext(output_path)[1] or '.csv'
     
-    # Optional clustering context: when CONTEXT_H5AD points to a larger (up to 100k) h5ad that
-    # CONTAINS the eval subset, cluster + rank markers + SCSA-score on that context (so rare cell
-    # types can form their own cluster), then keep only the eval-subset cells. Without it, cluster
-    # the eval subset itself (original behavior). The scored set is always exactly the eval subset.
+    # With CONTEXT_H5AD, a larger sample that contains the test cells (bin/build_context.py) is
+    # clustered and annotated, so that rare cell types can form their own cluster; only the test
+    # cells are reported. Without it, the test set itself is clustered.
     context_h5ad = os.environ.get("CONTEXT_H5AD", "")
     use_context = bool(context_h5ad) and os.path.exists(context_h5ad)
     cluster_input = context_h5ad if use_context else args.input
@@ -498,7 +419,6 @@ def main():
     temp_scsa_output = os.path.join(temp_dir, f"{base_name}_scsa_result.txt")
 
     try:
-        # Step 1: Create CSV from h5ad (only needs to be done once)
         print("="*60)
         print("STEP 1: Creating marker gene CSV from h5ad")
         print("="*60)
@@ -508,7 +428,6 @@ def main():
             resolution=args.resolution
         )
         
-        # Step 2: Run SCSA (only needs to be done once)
         print("\n" + "="*60)
         print("STEP 2: Running SCSA annotation")
         print("="*60)
@@ -522,15 +441,13 @@ def main():
             tissue=args.tissue
         )
         
-        # Step 3: Map to cells
         print("\n" + "="*60)
         print("STEP 3: Mapping predictions to cells")
         print("="*60)
         
         annotation_key = args.annotation_key
-        print(f"\n--- Processing annotation key: {annotation_key} ---")
+        print(f"\nAnnotation key: {annotation_key}")
         
-        # Check if annotation key exists
         if annotation_key not in adata.obs.columns:
             print(f"Error: '{annotation_key}' not found in adata.obs.columns")
             print(f"Available columns: {list(adata.obs.columns)}")
@@ -551,14 +468,14 @@ def main():
             if not kept:
                 sys.exit("no SCSA candidate counts for the listed cell types")
 
-        # Map to cells using this annotation key (over the clustering source)
+        # Labels for all clustered cells
         result_df = map_to_cells(
             temp_scsa_output, adata, cluster_col,
             true_label_col=annotation_key, kept=kept
         )
 
-        # In context mode, keep only the eval-subset cells, propagating their context cluster's
-        # label. The context is union-constructed to contain every eval cell.
+        # Context mode: keep only the test cells, each with the label of its context cluster.
+        # The context contains every test cell (bin/build_context.py).
         if use_context:
             import anndata as _ad
             eval_obs = _ad.read_h5ad(args.input, backed="r").obs
@@ -568,45 +485,42 @@ def main():
             missing = set(eval_ids) - set(result_df['cell_id'])
             if missing:
                 print(f"  WARNING: {len(missing)}/{len(eval_ids)} eval cells absent from the "
-                      f"clustering context -> Unknown.")
+                      f"clustering context; they are labeled Unknown.")
             result_df = (result_df.drop_duplicates('cell_id').set_index('cell_id')
                                   .reindex(eval_ids).reset_index())
             result_df['predicted_labels'] = result_df['predicted_labels'].fillna('Unknown')
-            # Truth comes from the eval subset, as for every other model: the context's labels are
-            # harmonized separately during preprocessing and can name a type differently.
+            # True labels come from the test set, as for every other method; the labels of the
+            # context can name a type differently.
             result_df['true_labels'] = eval_obs[annotation_key].to_numpy()
-            print(f"  Context filter: {n_ctx} context cells -> {len(result_df)} eval cells")
+            print(f"  Context filter: {n_ctx} context cells, {len(result_df)} eval cells kept")
 
         if kept is not None:
             result_df['reachable'] = result_df['true_labels'].astype(str).isin(set(kept.values()))
 
-        # Save final output
         print(f"\nSaving results to {args.output}")
         result_df.to_csv(args.output, index=False)
-        print(f"  ✓ Saved {len(result_df)} cell predictions")
+        print(f"  Saved {len(result_df)} cell predictions")
         
-        # Print summary
         print(f"\nSummary for {annotation_key}:")
         print(f"  Total cells: {len(result_df)}")
         print(f"  Unique true labels: {len(result_df['true_labels'].unique())}")
         print(f"  Unique predicted labels: {len(result_df['predicted_labels'].unique())}")
         
-        # Calculate accuracy
+        # Exact string matches only; the evaluation maps labels to the Cell Ontology.
         accuracy = (result_df['true_labels'] == result_df['predicted_labels']).mean()
         print(f"  Overall accuracy: {accuracy:.3f}")
         
-        # Keep temporary files for inspection (don't delete them)
         print(f"\nTemporary files kept for inspection:")
         if os.path.exists(temp_csv):
             print(f"  Marker genes CSV: {temp_csv}")
         if os.path.exists(temp_scsa_output):
             print(f"  SCSA results: {temp_scsa_output}")
         
-        print(f"\n✓ Pipeline completed successfully!")
+        print(f"\nSCSA annotation completed.")
         print(f"  Output files saved to: {output_dir}")
         
     except Exception as e:
-        print(f"\n✗ ERROR: Pipeline failed!")
+        print(f"\nERROR: SCSA annotation failed.")
         print(f"  {str(e)}")
         import traceback
         traceback.print_exc()

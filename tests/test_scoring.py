@@ -1,5 +1,6 @@
-"""Checks for the scoring metrics in bin/: macro averages, Lin, Rada and agreement, untrusted
-answers, the text-similarity baseline and ID answers, and the zero rows for runs a model cannot do.
+"""Checks for the scoring metrics in bin/: information content, Lin, Rada, answer types and the
+agreement score, the text-similarity baseline, ID answers, macro averages and untrusted answers.
+The checks on the Cell Ontology run only when the pinned release is in cache/.
 
 Run with pytest, or directly in the evaluation environment: python tests/test_scoring.py
 """
@@ -101,7 +102,8 @@ def test_no_answer_scores_like_a_random_name():
     vectors = {"a": [1.0, 0.0], "b": [0.6, 0.8], "trunk": [0.0, 1.0]}
     encoder = SimpleNamespace(model_name="toy", encode=lambda names: np.array(
         [vectors[n] for n in names]).reshape(len(names), 2))
-    # no answer ("no prediction" -> cell), nonsense mapped to the root, no reviewed mapping
+    # no answer ("no prediction", mapped to "cell"), nonsense mapped to the root, and an answer
+    # without a reviewed mapping
     df = pd.DataFrame({"true": ["a"] * 4, "raw": ["a", "no prediction", "trunk", "b"],
                        "mapped": ["a", "cell", "cell", UNMAPPED]})
     combos, _ = compute_text_embedding_similarities(

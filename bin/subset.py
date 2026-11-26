@@ -1,10 +1,14 @@
 #!/usr/bin/env python
-"""
-Stratified subset sampling for single-cell datasets.
+"""Draw a test set of cells from a preprocessed dataset.
 
-Samples cells proportionally to the original cell type distribution,
-enforcing a minimum count per type. Types below the minimum are dropped.
-Produces QC outputs (CSV + plots) comparing original vs. subset distributions.
+The stratified strategy samples every cell type in proportion to its frequency, with at least
+--min_cells_per_type cells per type, and drops the types with fewer cells. The random strategy
+samples cells uniformly. If --subset_size is not below the number of cells, the whole dataset is
+kept. Writes the subset h5ad and, in --qc_dir, a CSV and a PDF that compare the cell type counts
+of the dataset and the subset.
+
+    subset.py --input pp.h5ad --output sub.h5ad --annotation_key cell_type --subset_size 1000 \\
+        --dataset NAME --qc_dir qc --strategy stratified
 """
 from __future__ import annotations
 
@@ -58,25 +62,9 @@ def stratified_subset(
     subset_size: int,
     min_cells_per_type: int = MIN_CELLS_PER_TYPE,
 ) -> tuple[anndata.AnnData, pd.DataFrame]:
-    """
-    Create a stratified subset preserving cell type proportions.
-
-    Parameters
-    ----------
-    adata : AnnData
-        Full preprocessed dataset.
-    annotation_key : str
-        Column in adata.obs with cell type labels.
-    subset_size : int
-        Target total number of cells in the subset.
-    min_cells_per_type : int
-        Minimum cells required per type. Types below this are dropped.
-
-    Returns
-    -------
-    tuple[AnnData, DataFrame]
-        Subset AnnData and a QC DataFrame with distribution comparison.
-    """
+    """Sample about subset_size cells in proportion to the cell type frequencies, with at least
+    min_cells_per_type cells per type; types with fewer cells are dropped. Returns the subset and
+    a table of the counts and proportions per type."""
     type_counts = adata.obs[annotation_key].value_counts()
     total_cells = type_counts.sum()
 
@@ -157,12 +145,9 @@ def random_subset(
     annotation_key: str,
     subset_size: int,
 ) -> tuple[anndata.AnnData, pd.DataFrame]:
-    """
-    Create a uniform random subset over all cells, ignoring cell-type structure.
-
-    Natural class imbalance is preserved in expectation. min_cells_per_type is
-    intentionally not applied — rare classes may end up with 0 cells.
-    """
+    """Sample subset_size cells uniformly at random. Rare types can be missing from the subset,
+    since min_cells_per_type does not apply. Returns the subset and a table of the counts and
+    proportions per type."""
     type_counts = adata.obs[annotation_key].value_counts()
     total_cells = int(type_counts.sum())
 
@@ -192,7 +177,8 @@ def random_subset(
 
 
 def plot_subset_qc(qc_df: pd.DataFrame, dataset: str, subset_size: int, pdf_path: Path):
-    """Generate QC plots comparing original vs. subset distributions."""
+    """Write bar plots of the cell type counts and proportions in the dataset and the subset, and
+    of the dropped types, to pdf_path."""
     set_pub_style()
 
     kept = qc_df[~qc_df["dropped"]].copy()
@@ -313,9 +299,8 @@ def main():
     args = parser.parse_args()
 
     logger.info("Reading input: %s", args.input)
-    # Full in-memory read: anndata in this env has a broken backed-sparse subset path
-    # (AttributeError on _validate_indices) that silently drops X in the output. Fits in RAM
-    # for all current datasets; revisit if a larger dataset pushes memory.
+    # Read into memory: with the anndata version of the environment, subsetting a backed sparse
+    # file raises an AttributeError in _validate_indices and loses X. The dataset must fit in RAM.
     adata = anndata.read_h5ad(args.input)
     logger.info("Input shape: %s cells x %s genes", adata.n_obs, adata.n_vars)
 
@@ -328,7 +313,7 @@ def main():
 
     if args.subset_size >= adata.n_obs:
         logger.warning(
-            "subset_size (%s) >= n_obs (%s) - using full dataset",
+            "subset_size (%s) >= n_obs (%s), using the full dataset",
             args.subset_size,
             adata.n_obs,
         )
@@ -359,7 +344,7 @@ def main():
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     subset.write_h5ad(args.output, compression="gzip")
-    logger.info("Subset written: %s cells -> %s", subset.n_obs, args.output)
+    logger.info("Subset of %s cells written to %s", subset.n_obs, args.output)
 
     args.qc_dir.mkdir(parents=True, exist_ok=True)
     csv_path = args.qc_dir / f"cell_type_distribution_{args.strategy}.csv"

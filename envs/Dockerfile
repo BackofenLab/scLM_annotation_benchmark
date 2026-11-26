@@ -20,9 +20,9 @@ COPY environment.yml /tmp/environment.yml
 RUN conda env create -f /tmp/environment.yml -n sc_lfm && \
     conda clean --all --yes
 
-# Install CUDA-enabled PyTorch + torch-geometric with CUDA extensions
-# PyTorch CUDA wheels: https://pytorch.org/get-started/previous-versions/#v271
-# PyG CUDA wheels:     https://data.pyg.org/whl/torch-2.7.1+cu118.html
+# PyTorch and torch-geometric with their CUDA 11.8 extensions. Wheels:
+# PyTorch https://pytorch.org/get-started/previous-versions/#v271
+# PyG     https://data.pyg.org/whl/torch-2.7.1+cu118.html
 RUN /opt/conda/envs/sc_lfm/bin/pip install --no-cache-dir \
     torch==2.7.1 torchvision==0.22.1 \
     torch-geometric==2.6.1 \
@@ -30,7 +30,7 @@ RUN /opt/conda/envs/sc_lfm/bin/pip install --no-cache-dir \
     --extra-index-url https://download.pytorch.org/whl/cu118 \
     -f https://data.pyg.org/whl/torch-2.7.1+cu118.html
 
-# Explicitly install pip packages to ensure they're visible in build logs
+# pip packages in a step of their own, so that they appear in the build log
 RUN /opt/conda/envs/sc_lfm/bin/pip install --no-cache-dir \
     setuptools==80.1.0 \
     cell2sentence==1.2.0 \
@@ -44,25 +44,25 @@ RUN /opt/conda/envs/sc_lfm/bin/pip install --no-cache-dir \
     einops==0.8.2 \
     local-attention==1.11.2
 
-# Install mmcontext and adata_hf_datasets with --no-deps to avoid
-# pulling anndata>=0.12 which requires scipy>=1.12 (conflicts with omicverse)
+# mmcontext and adata_hf_datasets without dependencies: these would pull anndata>=0.12, which
+# needs scipy>=1.12 and conflicts with omicverse
 RUN /opt/conda/envs/sc_lfm/bin/pip install --no-cache-dir --no-deps \
     git+https://github.com/mengerj/mmcontext.git@main \
     git+https://github.com/mengerj/adata_hf_datasets.git
 
-# Install mmcontext's remaining dependencies that aren't already present
+# The other dependencies of mmcontext
 RUN /opt/conda/envs/sc_lfm/bin/pip install --no-cache-dir \
     datasets hydra-core python-dotenv scib pysradb tdigest
 
-# Install CellWhisperer with Geneformer submodule
-# Note: CellWhisperer's pyproject.toml includes geneformer from modules/Geneformer
+# CellWhisperer with its Geneformer submodule; CellWhisperer's pyproject.toml installs
+# geneformer from modules/Geneformer
 RUN git lfs install && \
     git clone --recurse-submodules https://github.com/mengerj/CellWhisperer.git /tmp/CellWhisperer && \
     cd /tmp/CellWhisperer/modules/Geneformer && git lfs pull && \
     /opt/conda/envs/sc_lfm/bin/pip install --no-cache-dir /tmp/CellWhisperer && \
     rm -rf /tmp/CellWhisperer
 
-# Create writable numba cache directory
+# Writable numba cache directory
 RUN mkdir -p /tmp/numba_cache && chmod 777 /tmp/numba_cache
 
 ENV CONDA_DEFAULT_ENV=sc_lfm

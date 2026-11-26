@@ -9,16 +9,16 @@ SCRIPT_DIR=$(dirname "$(realpath "$0")")
 
 MARKERS="$SCRIPT_DIR/ScTypeDB_full.xlsx"
 if [ ! -f "$MARKERS" ] || [ ! -f "$SCRIPT_DIR/sctype_score_.R" ]; then
-  echo "ERROR: scType assets missing in $SCRIPT_DIR — run prepare.sh first." >&2
+  echo "ERROR: scType assets missing in $SCRIPT_DIR; run prepare.sh first." >&2
   exit 1
 fi
 
-# Use the conda env's own R and library only (avoid a system R / user library shadowing the env,
-# a common gotcha on machines with a separate R install). Works under Nextflow conda activation.
+# Use the R and R library of the conda environment, so that a system R or a user library
+# does not shadow them.
 export R_LIBS_USER="${CONDA_PREFIX:-}/lib/R/library"
 RSCRIPT="${CONDA_PREFIX:-}/bin/Rscript"; [ -x "$RSCRIPT" ] || RSCRIPT="Rscript"
 
-# predict.R reads annotation_key / sctype_tissue / organism from the dataset YAML directly.
+# predict.R reads annotation_key, sctype_tissue and organism from the dataset YAML.
 "$RSCRIPT" "$SCRIPT_DIR/predict.R" \
   --input "$INPUT_H5AD" \
   --output "$OUT_CSV" \

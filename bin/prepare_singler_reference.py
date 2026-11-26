@@ -1,18 +1,15 @@
 #!/usr/bin/env python
-"""Fetch a CELLxGENE Census dataset and normalize it into a SingleR reference h5ad.
+"""Download a CELLxGENE Census dataset and turn it into a reference h5ad for SingleR.
 
-The output is structurally identical to the pipeline's preprocessed *query* h5ads
-(Ensembl ``var_names``, log1p-normalized ``X``, gene symbols in ``var['gene_names']``, a
-``counts`` layer) so that ``models/singler_blind/src/predict.R`` can read it with the exact same
-``zellkonverter::readH5AD(reader="R")`` call it uses for the query, relabel ``X``->``logcounts``,
-and intersect genes on Ensembl IDs.
+The reference has the layout of the preprocessed test sets (Ensembl IDs as var_names,
+log-normalized X, gene symbols in var['gene_names'], raw counts in layers['counts']), so that
+models/singler_blind/src/predict.R reads it like a test set and matches genes by Ensembl ID.
+Unlike bin/preprocess.py, it applies no QC and no cell or gene filtering, so that no labelled
+cell type is lost. Cells without a label are removed and every label is capped at
+--cap_per_label cells (with a fixed seed), which keeps SingleR fast on large atlases.
 
-Unlike ``bin/preprocess.py`` this deliberately SKIPS QC + gene/cell filtering: a reference must keep
-every labeled cell type (filtering could drop rare classes). It only fixes the counts/Ensembl/norm
-conventions and subsamples per label (deterministic) to keep SingleR fast on 120k-400k-cell atlases.
-
-Fetch primitive is the same one ``bin/download.py`` uses:
-``cellxgene_census.download_source_h5ad(id, to_path, census_version)``.
+    prepare_singler_reference.py --census_id ID --census_version 2025-11-08 \\
+        --label_key cell_type --species human --out reference.h5ad
 """
 import argparse
 import sys
@@ -31,15 +28,16 @@ from util.pp_utils import (  # noqa: E402
     ensure_ensembl_ids,
 )
 
-# CellxGene Census native deps may fail to import (e.g. x86 under Rosetta on Apple Silicon);
-# defer the error to runtime so --help still works and the message is actionable.
+# cellxgene_census can fail to import (e.g. x86 builds under Rosetta on Apple Silicon); the
+# error is raised when the package is needed, so that --help works.
 try:
     import cellxgene_census  # type: ignore
-except Exception as e:  # pragma: no cover - import guard
+except Exception as e:  # pragma: no cover
     cellxgene_census = None  # type: ignore[assignment]
     _census_import_error = e
 
-# Dataset YAML `species` -> pybiomart species used by ensure_ensembl_ids.
+# Species of the dataset YAML, as BioMart dataset prefix for ensure_ensembl_ids. Other values
+# become "hsapiens".
 _SPECIES_MAP = {
     "human": "hsapiens", "homo sapiens": "hsapiens", "hsapiens": "hsapiens",
     "mouse": "mmusculus", "mus musculus": "mmusculus", "mmusculus": "mmusculus",
@@ -51,7 +49,7 @@ def _biomart_species(s: str) -> str:
 
 
 def subsample_per_label(adata, label_key: str, cap: int, seed: int):
-    """Deterministically cap the number of cells per label (keeps all labels)."""
+    """Keep at most cap cells per label, drawn with the given seed; cap <= 0 keeps all cells."""
     if not cap or cap <= 0:
         return adata
     rng = np.random.RandomState(seed)
@@ -97,32 +95,32 @@ def main() -> None:
         sys.exit(f"[ERROR] label_key '{args.label_key}' not in obs columns: "
                  f"{list(adata.obs.columns)[:40]}")
 
-    # Drop cells with no usable label (NA / empty / literal 'nan').
+    # Cells whose label is missing, empty or 'nan' are removed.
     lab = adata.obs[args.label_key].astype(str)
     keep = lab.notna() & (lab.str.strip() != "") & (lab.str.strip().str.lower() != "nan")
     n0 = adata.n_obs
     adata = adata[keep.values].copy()
     print(f"[INFO] dropped {n0 - adata.n_obs} cells with empty/NA '{args.label_key}'", flush=True)
 
-    # Subsample per label BEFORE normalization to save work (deterministic).
+    # Subsampled before normalization to save time; normalization works per cell.
     adata = subsample_per_label(adata, args.label_key, args.cap_per_label, args.seed)
     print(f"[INFO] after subsample(cap={args.cap_per_label}): {adata.n_obs} cells, "
           f"{adata.obs[args.label_key].astype(str).nunique()} labels", flush=True)
 
-    # --- Normalize to the query convention (mirror preprocess_adata; SKIP QC + gene/cell filters) ---
-    ensure_gene_names_column(adata)                              # capture symbols before Ensembl swap
-    ensure_raw_counts_layer(adata, raise_on_missing=True)        # raw counts -> X + layers['counts']
+    # The steps of preprocess_adata without QC and filtering.
+    ensure_gene_names_column(adata)                              # symbols, before the index changes
+    ensure_raw_counts_layer(adata, raise_on_missing=True)        # raw counts in X and layers['counts']
     if adata.raw is not None:
         adata.raw = None
     for k in [k for k in list(adata.layers) if k != "counts"]:
         del adata.layers[k]
-    ensure_norm_log(adata, in_place=True)                        # normalize + log1p into X
+    ensure_norm_log(adata, in_place=True)                        # normalize and log1p X
     adata = remove_infinite_values(adata)
-    adata = ensure_ensembl_ids(adata, species=_biomart_species(args.species))  # var_names -> Ensembl
+    adata = ensure_ensembl_ids(adata, species=_biomart_species(args.species))  # Ensembl var_names
     ensure_gene_names_column(adata, "gene_names")                # keep symbols in var['gene_names']
 
-    # Sanitize obs for a clean h5ad round-trip (categorical/object -> str), matching what the
-    # query h5ads carry so zellkonverter reader="R" reads it without dtype surprises.
+    # Categorical and object columns of obs are written as strings, which zellkonverter's R
+    # reader handles.
     for c in adata.obs.columns:
         if adata.obs[c].dtype == object or str(adata.obs[c].dtype) == "category":
             adata.obs[c] = adata.obs[c].astype(str)

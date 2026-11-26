@@ -8,12 +8,13 @@ CACHE_DIR=$(realpath "$4")
 OUTPUT_DIR=$(dirname "$OUT_CSV"); mkdir -p "$OUTPUT_DIR"
 SCRIPT_DIR=$(dirname "$(realpath "$0")")
 
-# Use the conda env's own R and library only (avoid a system R / user library shadowing the env).
+# Use the R and R library of the conda environment, so that a system R or a user library
+# does not shadow them.
 export R_LIBS_USER="${CONDA_PREFIX:-}/lib/R/library"
 RSCRIPT="${CONDA_PREFIX:-}/bin/Rscript"; [ -x "$RSCRIPT" ] || RSCRIPT="Rscript"
 
-# predict.R reads annotation_key + singler_reference from the dataset YAML; celldex reference
-# is downloaded/cached under CACHE_DIR/ExperimentHub.
+# predict.R reads annotation_key and the singler_reference settings from the dataset YAML and
+# caches celldex references in CACHE_DIR/ExperimentHub.
 "$RSCRIPT" "$SCRIPT_DIR/predict.R" \
   --input "$INPUT_H5AD" \
   --output "$OUT_CSV" \

@@ -5,7 +5,7 @@ channels:
 dependencies:
   - python=3.11
   - pip
-  - scanpy=1.11.*        # avoids heavy pip resolution
+  - scanpy=1.11.*        # from conda, which avoids a long pip resolution
   - anndata>=0.9
   - pandas
   - scikit-learn

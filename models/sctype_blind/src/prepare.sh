@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Fetch scType's helper functions (in the repo's R/ subfolder) + the marker workbook (repo root)
-# into this model dir. Idempotent. bash-3.2 compatible (no associative arrays).
+# Download scType's helper functions (R/ of the sc-type repository) and its marker workbook
+# into this folder unless they are present. Written for bash 3.2 (no associative arrays).
 SCRIPT_DIR=$(dirname "$(realpath "$0")")
 BASE="https://raw.githubusercontent.com/IanevskiAleksandr/sc-type/master"
 

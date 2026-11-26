@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
-"""
-CellTypist prediction script for single-cell data annotation.
+"""Annotate the cells of a test set with CellTypist.
+
+Normalizes the raw counts (layers["counts"]) to 10,000 per cell and applies log1p, as
+CellTypist requires, and runs the model given by --model, which is downloaded from the
+CellTypist models or the Organ Atlas. Writes a CSV with cell_id, true_labels and
+predicted_labels. If LABEL_CONSTRAINT names a label table, only the labels that count for the
+true cell types are allowed (bin/util/label_constraint.py).
+
+    predict.py --input test.h5ad --output predictions.csv --model Immune_All_High.pkl \\
+        --annotation_key cell_type
 """
 
 import argparse
@@ -15,15 +23,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 def load_data(data_path):
-    """
-    Load single-cell data from h5ad file.
-    
-    Args:
-        data_path (str): Path to the h5ad file
-        
-    Returns:
-        scanpy.AnnData: Loaded AnnData object
-    """
+    """Read an h5ad file; exit on failure."""
     logger.info(f"Loading data from: {data_path}")
     try:
         adata = sc.read_h5ad(data_path)
@@ -38,9 +38,8 @@ def _download_model(model: str) -> None:
     try:
         celltypist.models.download_models(model=model)
     except (ValueError, SystemExit):
-        # Model not in standard repertoire — try Organ Atlas URL.
-        # Organ Atlas URL pattern:
-        #   https://celltypist.cog.sanger.ac.uk/Resources/Organ_atlas/{organ}/models/{model}
+        # Not in the CellTypist model list: the Organ Atlas URL contains the organ, the third
+        # part of the model name.
         import urllib.request
         from pathlib import Path
 
@@ -68,19 +67,11 @@ def _download_model(model: str) -> None:
 
 
 def run_celltypist_prediction(adata, model="Immune_All_High.pkl"):
-    """
-    Run CellTypist prediction on the data.
-    
-    Args:
-        adata (scanpy.AnnData): Input data
-        model (str): Model name to use for prediction
-        
-    Returns:
-        celltypist.AnnotationResult: Prediction results
-    """
+    """Run CellTypist with the given model on adata and return its AnnotationResult; exit on
+    failure."""
     logger.info(f"Running CellTypist prediction with model: {model}")
     try:
-        # CellTypist requires gene symbols in var.index; check multiple possible sources
+        # CellTypist matches genes by symbol in var_names.
         gene_symbol_cols = ["gene_names", "feature_name", "gene_symbols", "gene_name", "symbol"]
         for col in gene_symbol_cols:
             if col in adata.var.columns:
@@ -99,33 +90,20 @@ def run_celltypist_prediction(adata, model="Immune_All_High.pkl"):
         sys.exit(1)
 
 def create_results_dataframe_for_key(adata, predictions, label_key):
-    """
-    Create a DataFrame with true and predicted labels for a single annotation key.
-    
-    Args:
-        adata (scanpy.AnnData): Input data with true labels
-        predictions (celltypist.AnnotationResult): Prediction results
-        label_key (str): Key in adata.obs containing true labels
-        
-    Returns:
-        pandas.DataFrame: DataFrame with true and predicted labels
-    """
+    """Return a DataFrame of cell_id, true_labels (from label_key) and predicted_labels, or None
+    if adata.obs has no column label_key."""
     logger.info(f"Creating results DataFrame for annotation key: {label_key}")
     
-    # Get predicted labels
     predicted_labels = predictions.predicted_labels["predicted_labels"].values.tolist()
     predicted_idx = predictions.predicted_labels.index
     
-    # Check if label key exists
     if label_key not in adata.obs.columns:
         logger.error(f"'{label_key}' not found in adata.obs")
         logger.error(f"Available keys: {list(adata.obs.columns)}")
         return None
     
-    # Get true labels for this annotation key
     true_labels = list(adata.obs[label_key][predicted_idx].values)
     
-    # Create DataFrame with cell_id, true_labels, and predicted_labels
     results_df = pd.DataFrame({
         'cell_id': predicted_idx,
         'true_labels': true_labels,
@@ -136,13 +114,7 @@ def create_results_dataframe_for_key(adata, predictions, label_key):
     return results_df
 
 def save_results(results_df, output_path):
-    """
-    Save results to CSV file.
-    
-    Args:
-        results_df (pandas.DataFrame): Results DataFrame
-        output_path (str): Output file path
-    """
+    """Write the results to a CSV file; exit on failure."""
     logger.info(f"Saving results to: {output_path}")
     try:
         results_df.to_csv(output_path, index=False)
@@ -152,20 +124,11 @@ def save_results(results_df, output_path):
         sys.exit(1)
 
 def preprocess_data(adata):
-    """
-    Preprocess data for CellTypist prediction.
-    
-    Args:
-        adata (scanpy.AnnData): Input data
-        
-    Returns:
-        scanpy.AnnData: Preprocessed data
-    """
+    """Normalize to 10,000 counts per cell and apply log1p, as CellTypist requires; exit on
+    failure."""
     logger.info("Preprocessing data")
     try:
-        # Restore raw counts before CellTypist's required normalize_total(1e4) + log1p;
-        # the pipeline's preprocessed X is already log1p-normalized, so re-normalizing
-        # it would double-log.
+        # X of the test set is already log-normalized, so this starts again from the raw counts.
         if "counts" in adata.layers:
             adata = adata.copy()
             adata.X = adata.layers["counts"]
@@ -180,10 +143,7 @@ def preprocess_data(adata):
 
         
 def main():
-    """
-    Main function to run CellTypist prediction pipeline.
-    """
-    # Get default input path relative to this script
+    # Default input: the small test file util/test_adata.h5ad of the repository.
     default_input = str(Path(__file__).resolve().parents[3] / "util" / "test_adata.h5ad")
     default_output = str(Path.cwd() / "celltypist_predictions.csv")
 
@@ -199,19 +159,16 @@ def main():
     
     args = parser.parse_args()
     
-    # Load data
     adata = load_data(args.input)
     adata = preprocess_data(adata)
 
     model_to_use = args.model
 
-    # Run prediction once
     predictions = run_celltypist_prediction(adata, model_to_use)
     
     annotation_key = args.annotation_key
     logger.info(f"Processing annotation key: {annotation_key}")
     
-    # Create results DataFrame
     results_df = create_results_dataframe_for_key(adata, predictions, annotation_key)
 
     # Constrained mode (LABEL_CONSTRAINT): the best match among the labels that count for one of
@@ -230,7 +187,6 @@ def main():
         results_df["reachable"] = results_df["true_labels"].isin(set(kept.values()))
 
     if results_df is not None:
-        # Save results
         print(f"Saving results to: {args.output}")
         save_results(results_df, args.output)
         logger.info(f"Results saved to: {args.output}")

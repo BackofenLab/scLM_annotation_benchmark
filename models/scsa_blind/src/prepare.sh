@@ -3,10 +3,9 @@ set -euo pipefail
 
 echo "Preparing SCSA model..."
 
-# Get the directory where this script is located
 SCRIPT_DIR=$(dirname "$(realpath "$0")")
 
-# Check if SCSA repository exists, if not clone it
+# Clone SCSA into src/SCSA or update an existing checkout; no commit is pinned.
 SCSA_DIR="$SCRIPT_DIR/SCSA"
 if [ ! -d "$SCSA_DIR" ]; then
     cd "$SCRIPT_DIR"
@@ -16,5 +15,5 @@ else
     git pull
 fi
 
-echo "SCSA preparation completed successfully!"
+echo "SCSA preparation completed."
 

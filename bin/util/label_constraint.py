@@ -7,10 +7,10 @@ name: the nearest one if several lie above (fewest is_a steps, ties by term id).
 never counts, since that would stretch a broad answer down to a specific type, and a label without
 a term counts for nothing.
 
-``closure`` writes the rule out once per list, as a table over every string the scorer resolves --
-Cell Ontology names and ids and the keys of the reviewed mappings -- so it needs no method's
+``closure`` writes the rule out once per list, as a table over every string the scorer resolves
+(Cell Ontology names and ids and the keys of the reviewed mappings), so it needs no method's
 vocabulary and runs before the methods. A method keeps the labels the table contains
-(``constrain``; mirrored for the R wrappers in ``label_constraint.R``) and warns about the listed
+(``constrain``, mirrored for the R wrappers in ``label_constraint.R``) and warns about the listed
 types none of them reaches.
 
 Only pandas is imported at module level, so every method's environment can use ``constrain``.

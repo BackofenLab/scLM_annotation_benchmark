@@ -3,13 +3,13 @@ channels:
   - conda-forge
 dependencies:
   - python=3.11
-  - setuptools<82 # 82 removed pkg_resources
+  - setuptools<82 # setuptools 82 has no pkg_resources
   - pyyaml
   - requests
   - tqdm
   - pronto
-  # Census dependency stack:
-  # Install TileDB-SOMA from conda-forge on macOS to avoid pip wheel/native-lib ABI issues.
+  # cellxgene-census: TileDB-SOMA comes from conda-forge, since the pip wheel has native
+  # library (ABI) problems on macOS.
   - tiledbsoma-py
   - libcxx
   - setuptools<81
@@ -19,18 +19,17 @@ dependencies:
   - pip:
     - torch
     - torch_geometric
-    - transformers>=4.36,<4.40  # pin for omicverse/scMulan compatibility
+    - transformers>=4.36,<4.40  # pinned for omicverse
     - sentence_transformers
     - cellxgene-census
-    - omicverse
+    - omicverse  # optional matcher of bin/util/ontology_mapping.py
     - anndata
-    - zarr<3 #omicverse needs an older anndata which needs an older zarr.
-    - scanpy  # for preprocessing
-    - pybiomart  # for Ensembl ID mapping
-    - pandas  # for data manipulation
-    - numpy  # for numerical operations
-    - scipy  # for statistical functions (median_abs_deviation)
+    - zarr<3 # omicverse needs an older anndata, which needs zarr < 3
+    - scanpy
+    - pybiomart  # Ensembl ID mapping
+    - pandas
+    - numpy
+    - scipy
     - boltons
     - cytoolz
     - frozendict
-    #- memory_profiler

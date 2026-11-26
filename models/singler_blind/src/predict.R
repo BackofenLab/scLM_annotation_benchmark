@@ -1,12 +1,12 @@
 #!/usr/bin/env Rscript
-# SingleR reference-correlation cell-type annotation.
+# Annotate the cells of a test set with SingleR.
 #
-# Annotates each cell by Spearman correlation of its transcriptome to a celldex built-in
-# reference (chosen per dataset via `singler_reference` in the dataset YAML). Emits the
-# pipeline contract: cell_id, true_labels, predicted_labels (one row per cell).
-#
-# celldex/ExperimentHub downloads are cached under the pipeline cache dir ($4), so the first
-# run fetches the reference and later runs are offline-stable.
+# SingleR labels every cell by Spearman correlation with a labelled reference: the celldex
+# reference named by singler_reference in the dataset YAML or, with
+# singler_reference_source: "cellxgene", the reference h5ad in SINGLER_REF_H5AD
+# (bin/prepare_singler_reference.py). Writes cell_id, true_labels and predicted_labels to a CSV.
+# celldex downloads are cached in <cache_dir>/ExperimentHub, so only the first run needs the
+# network. Called by run.sh.
 
 suppressPackageStartupMessages({
   library(optparse); library(yaml); library(zellkonverter); library(SingleCellExperiment)
@@ -24,18 +24,16 @@ cfg <- yaml::read_yaml(opt$config)
 ref_name <- as.character(cfg$singler_reference %||% "HumanPrimaryCellAtlasData")
 annotation_key <- as.character(cfg$annotation_key %||% "cell_type")
 
-# Reference source: "celldex" (built-in, loaded by name) or "cellxgene" (a fetched reference h5ad
-# whose path arrives via the SINGLER_REF_H5AD env var, exported by the run_model_singler_ref
-# process). Default celldex so datasets without the flag behave exactly as before.
+# Reference source: "celldex" (loaded by name, the default) or "cellxgene" (the h5ad in
+# SINGLER_REF_H5AD, which the pipeline sets).
 ref_source <- as.character(cfg$singler_reference_source %||% "celldex")
 ref_label_key <- as.character(cfg$singler_reference_label_key %||% "cell_type")
 ref_path <- Sys.getenv("SINGLER_REF_H5AD", "")
 
-# celldex references carry three label tiers, whose granularity is reference-specific (e.g. Monaco
-# 10/29/28, MouseRNAseq 18/28/22, HPCA 36/157/66 for main/fine/ont). `ont` holds Cell Ontology IDs,
-# which the evaluator resolves without the mappings CSV and is the best-scoring tier, so it is the
-# default when neither --label_tier nor cfg$singler_reference_tier is set. (Only used on the celldex
-# path; the cellxgene path has a single label level.)
+# celldex references have three label columns, label.main, label.fine and label.ont, whose number
+# of labels depends on the reference. label.ont holds Cell Ontology IDs, which the evaluation
+# resolves without the mapping table; it is the default unless --label_tier or
+# singler_reference_tier is set. A cellxgene reference has a single label column.
 tier <- as.character(opt$label_tier %||% cfg$singler_reference_tier %||% "ont")
 if (!tier %in% c("main", "fine", "ont"))
   stop("--label_tier must be one of: main, fine, ont (got '", tier, "')")
@@ -47,10 +45,10 @@ if (!is.null(opt$cache_dir) && nzchar(opt$cache_dir)) {
   setExperimentHubOption("CACHE", hub)
 }
 
-# reader="R" reads the HDF5 directly in R (rhdf5) — avoids basilisk/python and the float32-CSR
-# dgRMatrix dtype error the default (python) reader hits on this pipeline's h5ads.
+# reader = "R" reads the file with rhdf5. The default Python reader needs basilisk and fails on
+# the float32 CSR matrices of these files (dgRMatrix type error).
 sce <- readH5AD(opt$input, reader = "R")
-# The pipeline's adata.X is log1p-normalized -> treat as logcounts (SingleR wants log-normalized).
+# X holds log-normalized values, which SingleR expects: use it as logcounts.
 if ("X" %in% assayNames(sce)) assayNames(sce)[assayNames(sce) == "X"] <- "logcounts"
 if (!"logcounts" %in% assayNames(sce)) assay(sce, "logcounts") <- assay(sce, 1)
 
@@ -58,8 +56,8 @@ true <- if (annotation_key %in% colnames(colData(sce))) {
   as.character(colData(sce)[[annotation_key]])
 } else rep("NA", ncol(sce))
 
-# Drop reference cells whose label is NA/empty (no usable training signal — label.ont in particular
-# is unset for some celldex cells); otherwise SingleR would correlate against an "NA" class.
+# drop_na_labels removes the reference cells without a label (label.ont is missing for some
+# celldex cells), which SingleR would otherwise treat as a class "NA".
 # Constrained mode (LABEL_CONSTRAINT): the reference also keeps only the labels that count for one
 # of the true cell types (bin/util/label_constraint.R). SingleR chooses its marker genes among the
 # labels it is given, so this is a run of its own, not a filter on the unconstrained answers.
@@ -80,10 +78,8 @@ drop_na_labels <- function(r, labs) {
 }
 
 if (identical(ref_source, "cellxgene") && nzchar(ref_path)) {
-  # --- Custom CELLxGENE reference (fetched by bin/prepare_singler_reference.py) ---
-  # The reference h5ad shares the query's convention (Ensembl var_names, log1p X). Match genes on
-  # Ensembl IDs: keep rownames as-is (Ensembl) on BOTH query and reference; SingleR intersects on
-  # rownames. This avoids the celldex symbol-case handling entirely.
+  # CELLxGENE reference (bin/prepare_singler_reference.py). Test set and reference both have
+  # Ensembl IDs as rownames and log-normalized X; SingleR matches the genes by rownames.
   message("SingleR: custom cellxgene reference ", ref_path, " (label '", ref_label_key, "')")
   ref <- readH5AD(ref_path, reader = "R")
   if ("X" %in% assayNames(ref)) assayNames(ref)[assayNames(ref) == "X"] <- "logcounts"
@@ -96,9 +92,9 @@ if (identical(ref_source, "cellxgene") && nzchar(ref_path)) {
                   assay.type.test = "logcounts", assay.type.ref = "logcounts")
   ref_desc <- paste0("cellxgene:", basename(ref_path))
 } else {
-  # --- celldex built-in reference (default), e.g. MonacoImmuneData(), MouseRNAseqData() ---
-  # celldex refs are keyed by gene SYMBOL; put native-case symbols on the query rownames so they
-  # match (human refs = UPPER symbols, mouse = Title-case, as stored per organism upstream).
+  # celldex reference, e.g. MonacoImmuneData or MouseRNAseqData. Its rownames are gene symbols
+  # (upper case for human, title case for mouse), so the rownames of the test set become its
+  # gene symbols (rowData$gene_names) in their original case.
   sym <- if ("gene_names" %in% colnames(rowData(sce))) as.character(rowData(sce)$gene_names) else rownames(sce)
   rownames(sce) <- make.unique(sym)
   ref <- get(ref_name, asNamespace("celldex"))()
@@ -117,5 +113,5 @@ out <- data.frame(cell_id = colnames(sce), true_labels = true,
                   predicted_labels = lab, stringsAsFactors = FALSE)
 if (!is.null(d$kept)) out$reachable <- out$true_labels %in% d$kept
 write.csv(out, opt$output, row.names = FALSE)
-cat(sprintf("SingleR: wrote %d predictions (ref=%s, %d ref labels -> %d predicted) to %s\n",
+cat(sprintf("SingleR: wrote %d predictions (ref=%s, %d ref labels, %d predicted) to %s\n",
             nrow(out), ref_desc, length(unique(ref_labels)), length(unique(lab)), opt$output))

@@ -19,11 +19,8 @@ dependencies:
     - torch
     - transformers>=4.36,<4.40
     - sentence_transformers
-    - numpy<2.0   # torch's osx-64 wheel is built against NumPy 1.x; NumPy 2.x -> "_ARRAY_API not
-                  # found" -> segfault (exit 139) when score_predictions imports torch for the
-                  # text-encoder metric. Pin to 1.x so the ABI matches.
-# NOTE: omicverse + torch_geometric removed — neither is used by the evaluation scripts
-# (map/score/aggregate import pronto, scikit-learn, and sentence_transformers only; the one
-# omicverse reference in util/ontology_mapper.py is a lazy import with a graceful fallback and
-# is not on the active path). Both pulled compiled deps that build from source and fail under
-# osx-64/Rosetta (omicverse -> numba -> llvmlite; torch_geometric -> torch_scatter/sparse).
+    - numpy<2.0   # the osx-64 torch wheel is built against NumPy 1; with NumPy 2, importing
+                  # torch for the text-embedding metric fails ("_ARRAY_API not found") and
+                  # score_predictions crashes.
+# The evaluation does not need omicverse or torch_geometric, whose compiled dependencies fail to
+# build under osx-64 (Rosetta).

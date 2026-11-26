@@ -1,9 +1,8 @@
 name: singler
-# R env pinned to Bioconductor 3.20 / R 4.4 (installable on linux-64 and osx-arm64).
-# celldex references are fetched via ExperimentHub on first use and cached under the pipeline
-# cache dir (see predict.R); zellkonverter reads the .h5ad via a basilisk-managed python env.
-# NOTE: bioconductor-singler's osx-arm64 coverage is thin — build/run this on the linux cluster
-# (-profile helix) if the Mac cannot solve the env.
+# Bioconductor 3.20 with R 4.4, installable on linux-64 and osx-arm64. celldex references are
+# downloaded with ExperimentHub on first use and cached in the pipeline's cache directory (see
+# predict.R). bioconductor-singler has few osx-arm64 builds; if the environment cannot be solved
+# on a Mac, build and run it on linux-64 (e.g. -profile helix).
 channels:
   - conda-forge
   - bioconda
@@ -13,7 +12,7 @@ dependencies:
   - r-yaml=2.3.*
   - bioconductor-singlecellexperiment=1.28.0
   - bioconductor-zellkonverter=1.16.0
-  - bioconductor-rhdf5=2.50.0        # reader="R" reads the h5ad in pure R (no basilisk/python)
+  - bioconductor-rhdf5=2.50.0        # readH5AD(reader = "R") reads .h5ad files without Python
   - bioconductor-hdf5array=1.34.0
   - bioconductor-singler=2.8.0
   - bioconductor-celldex=1.16.0

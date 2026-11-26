@@ -1,18 +1,13 @@
 #!/usr/bin/env python
-"""
-Dataset fetcher for the Nextflow pipeline.
+"""Download the dataset described by a dataset YAML file.
 
-Supports two download sources:
-  1. URL/Google Drive (default) — specified via `url` in dataset YAML
-  2. CellxGene Census — specified via `source: cellxgene_census` + `census_dataset_id`
+The source is the `url` of the YAML (a Google Drive or Figshare link or a direct file link) or,
+with `source: cellxgene_census` or a `census_dataset_id`, the CELLxGENE Census
+(`census_version`, default "stable"). The .h5ad or .zarr file is written to --out, which
+Nextflow's storeDir keeps between runs. The script then checks that obs has the columns
+annotation_key and batch_key of the YAML.
 
-Pipeline:
-  1. Looks up the dataset's YAML descriptor (name, URL/census_id, keys, ...).
-  2. Downloads the full file directly into the Nextflow work dir (``--out``).
-     Persistent caching is handled by Nextflow's ``storeDir`` in ``main.nf``.
-  3. Verifies that the required ``annotation_key`` and ``batch_key`` exist.
-
-Everything is format-agnostic (``.h5ad`` or ``.zarr``).
+    download.py --dataset NAME --cfg_yaml datasets/NAME.yml --out NAME_raw.h5ad
 """
 from __future__ import annotations
 import argparse, html as ihtml, re, shutil, sys, yaml
@@ -27,9 +22,7 @@ from tqdm import tqdm
 
 from util.http import new_session, stream_to_file
 
-# --------------------------------------------------------------------------- #
-# Optional: CellxGene Census (may fail on macOS due to native deps)           #
-# --------------------------------------------------------------------------- #
+# Optional: the import can fail on macOS because of native dependencies.
 _cellxgene_census_import_error: Exception | None = None
 try:
     import cellxgene_census  # type: ignore
@@ -37,16 +30,12 @@ except Exception as e:
     cellxgene_census = None  # type: ignore[assignment]
     _cellxgene_census_import_error = e
 
-# --------------------------------------------------------------------------- #
-# Logging                                                                     #
-# --------------------------------------------------------------------------- #
+
 def log_info(msg: str) -> None:  print(f"[INFO] {msg}", flush=True)
 def log_warn(msg: str) -> None:  print(f"[WARN] {msg}", flush=True)
 def log_error(msg: str) -> None: print(f"[ERROR] {msg}", flush=True)
 
-# --------------------------------------------------------------------------- #
-# AnnData I/O                                                                 #
-# --------------------------------------------------------------------------- #
+
 def read_adata(path: Path):
     """Load AnnData from ``.h5ad`` or ``.zarr``."""
     if path.suffix == ".h5ad":
@@ -57,11 +46,9 @@ def read_adata(path: Path):
     sys.exit(f"[ERROR] Unsupported file type: {path}")
 
 
-# --------------------------------------------------------------------------- #
-# Shared download helpers                                                     #
-# --------------------------------------------------------------------------- #
 def _cache_valid(dest: Path) -> bool:
-    """Return True if *dest* exists and is readable AnnData (backed-mode check — O(1) RAM)."""
+    """Return True if dest exists and opens as AnnData (.h5ad in backed mode); delete it if it
+    exists but does not open."""
     if not dest.exists():
         return False
     try:
@@ -72,12 +59,12 @@ def _cache_valid(dest: Path) -> bool:
             finally:
                 ad.file.close()
         else:
-            # zarr or dir: a minimal open validates structure
+            # zarr stores are read fully.
             anndata.read_zarr(dest)
-        log_info(f"Cache hit (valid) – skipping download: {dest.name}")
+        log_info(f"Valid file found, skipping download: {dest.name}")
         return True
     except Exception as e:
-        log_warn(f"Cache hit but unreadable – re-downloading: {dest.name} ({e})")
+        log_warn(f"Existing file is unreadable, downloading it again: {dest.name} ({e})")
         if dest.is_file(): dest.unlink()
         else: shutil.rmtree(dest, ignore_errors=True)
         return False
@@ -95,11 +82,8 @@ def _validate_download(dest: Path, written: int, source_desc: str) -> None:
         raise RuntimeError(f"Downloaded file is not valid AnnData: {e}") from e
 
 
-# --------------------------------------------------------------------------- #
-# Generic URL download                                                        #
-# --------------------------------------------------------------------------- #
 def stream_download(url: str, dest: Path) -> None:
-    """Stream a remote file to *dest* with progress. Skips if valid cache."""
+    """Download url to dest with a progress bar, unless dest already holds a valid file."""
     if _cache_valid(dest):
         return
     r = new_session().get(url, stream=True, allow_redirects=True)
@@ -108,9 +92,7 @@ def stream_download(url: str, dest: Path) -> None:
         raise RuntimeError(f"Server returned HTML instead of file: {url}")
     _validate_download(dest, stream_to_file(r, dest), url)
 
-# --------------------------------------------------------------------------- #
-# Figshare download                                                           #
-# --------------------------------------------------------------------------- #
+
 _FIGSHARE_RE = re.compile(r"figshare\.com/ndownloader/files/(\d+)")
 
 def is_figshare_url(url: str) -> bool:
@@ -118,7 +100,8 @@ def is_figshare_url(url: str) -> bool:
 
 
 def stream_download_figshare(url: str, dest: Path) -> None:
-    """Handle Figshare downloads (may serve HTML interstitial)."""
+    """Download a Figshare file to dest. If Figshare answers with an HTML page, the file link is
+    taken from the page or from the Figshare API."""
     if _cache_valid(dest):
         return
     session = new_session()
@@ -129,7 +112,7 @@ def stream_download_figshare(url: str, dest: Path) -> None:
     if "text/html" in ct:
         page = r.text
         real_url = None
-        # Try various HTML patterns
+        # Forms of the file link in the page
         for pattern in [
             r'href="(https://[^"]*ndownloader[^"]*\.h5ad[^"]*)"',
             r'href="(https://[^"]*figstatic\.com/[^"]+)"',
@@ -157,9 +140,7 @@ def stream_download_figshare(url: str, dest: Path) -> None:
 
     _validate_download(dest, stream_to_file(r, dest), f"Figshare: {url}")
 
-# --------------------------------------------------------------------------- #
-# Google Drive download                                                       #
-# --------------------------------------------------------------------------- #
+
 _GDRIVE_FILE_RE = re.compile(r"drive\.google\.com/file/d/([^/]+)")
 _GDRIVE_ID_RE = re.compile(r"[?&]id=([^&]+)")
 
@@ -173,7 +154,8 @@ def extract_gdrive_file_id(url: str) -> str | None:
 
 
 def _open_drive_stream(file_id: str) -> requests.Response:
-    """Open a streaming response for a Google Drive file, handling interstitials."""
+    """Open a streaming response for a Google Drive file, passing the confirmation page that
+    Drive shows for large files."""
     s = requests.Session()
     uc_url = f"https://drive.google.com/uc?export=download&id={file_id}"
     r = s.get(uc_url, stream=True, allow_redirects=True)
@@ -223,19 +205,14 @@ def stream_download_gdrive(file_id: str, dest: Path) -> None:
         raise RuntimeError("Google Drive returned HTML (virus-scan/permission page).")
     _validate_download(dest, stream_to_file(r, dest), f"Google Drive id={file_id}")
 
-# --------------------------------------------------------------------------- #
-# Verification                                                                #
-# --------------------------------------------------------------------------- #
+
 def verify_columns(ad, keys: Iterable[str]) -> None:
-    """Abort if any *keys* are missing from ``ad.obs``."""
+    """Exit if any of keys is missing from ad.obs."""
     if missing := [k for k in keys if k not in ad.obs.columns]:
         sys.exit(f"[ERROR] Missing keys in adata.obs: {missing}")
 
-# --------------------------------------------------------------------------- #
-# CLI entry-point                                                             #
-# --------------------------------------------------------------------------- #
+
 def main() -> None:
-    """Run the downloader from the command line."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--dataset", required=True, help="Dataset name (must match YAML 'name')")
     ap.add_argument("--cfg_yaml", required=True, help="YAML file with dataset configuration")
@@ -247,17 +224,15 @@ def main() -> None:
         cfg = yaml.safe_load(f)
     log_info(f"Loaded cfg keys: {sorted(cfg.keys())}")
 
-    # --- Determine source ---
     source = str(cfg.get("source") or "").strip().lower()
     use_census = (source == "cellxgene_census") or ("census_dataset_id" in cfg)
     log_info(f"Download source: {'cellxgene_census' if use_census else 'url/drive'}")
 
-    # Write directly into the Nextflow work dir; `storeDir` handles persistent caching.
+    # Written to the Nextflow work directory; storeDir keeps the file between runs.
     dest = Path(args.out).resolve()
     dest.parent.mkdir(parents=True, exist_ok=True)
     log_info(f"Dataset: {cfg['name']} | Destination: {dest}")
 
-    # --- Download ---
     if use_census:
         if cellxgene_census is None:
             sys.exit(f"[ERROR] CellxGene Census requested but import failed: {_cellxgene_census_import_error}")
@@ -290,7 +265,6 @@ def main() -> None:
             stream_download(cfg["url"], dest)
         log_info(f"Download complete: {dest.name}")
 
-    # --- Verify columns ---
     log_info("Verifying required columns...")
     if dest.suffix == ".h5ad":
         ad_backed = anndata.read_h5ad(dest, backed="r")
@@ -299,7 +273,7 @@ def main() -> None:
         finally:
             ad_backed.file.close()
     else:
-        # zarr path — anndata currently reads zarr fully; acceptable, rare in practice
+        # zarr stores are read fully.
         verify_columns(read_adata(dest), [cfg["annotation_key"], cfg["batch_key"]])
     log_info("Required columns verified")
     log_info(f"OK: {dest.name} ready")
