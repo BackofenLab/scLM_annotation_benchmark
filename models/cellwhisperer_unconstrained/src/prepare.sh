@@ -1,22 +1,22 @@
 #!/usr/bin/env bash
-# Clones CellWhisperer with its Geneformer submodule next to this script and fetches the
-# Geneformer model files from Git LFS. The pipeline runs it before run.sh.
+# Clones CellWhisperer with its Geneformer submodule next to this script, at the commit used for
+# the paper, and fetches the Geneformer model files from Git LFS. The pipeline runs it before
+# run.sh.
 set -euo pipefail
 
 echo "Preparing CellWhisperer model..."
 
 SCRIPT_DIR=$(dirname "$(realpath "$0")")
+CELLWHISPERER_COMMIT=08c41149c9ca82852ddd4005101656ba85b832bf
 
 CELLWHISPERER_DIR="$SCRIPT_DIR/CellWhisperer"
 if [ ! -d "$CELLWHISPERER_DIR" ]; then
-    cd "$SCRIPT_DIR"
-    git clone https://github.com/mengerj/CellWhisperer.git
-    cd "$CELLWHISPERER_DIR"
-    git submodule update --init --recursive
-else
-    cd "$CELLWHISPERER_DIR"
-    git pull
+    git clone https://github.com/mengerj/CellWhisperer.git "$CELLWHISPERER_DIR"
 fi
+cd "$CELLWHISPERER_DIR"
+git checkout --quiet "$CELLWHISPERER_COMMIT"
+# The submodules at the commits that this CellWhisperer commit records
+git submodule update --init --recursive
 # The Geneformer submodule keeps its model files in Git LFS.
 GENEFORMER_DIR="$CELLWHISPERER_DIR/modules/Geneformer"
 

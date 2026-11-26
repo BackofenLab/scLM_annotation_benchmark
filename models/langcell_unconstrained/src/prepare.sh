@@ -5,16 +5,16 @@ set -euo pipefail
 
 echo "Preparing LangCell model..."
 
-# Sparse clone: only geneformer_001 is needed from the repository.
-if [ -d "LangCell" ]; then
-    echo "'LangCell' directory already exists, skipping clone."
-else
+LANGCELL_COMMIT=69e41ef2fae485b67703294b50f3150bb1d5bb9b
+
+# Sparse clone at the commit used for the paper: only geneformer_001 is needed from the
+# repository.
+if [ ! -d "LangCell" ]; then
     echo "Cloning LangCell repository..."
-    git clone --depth 1 --filter=blob:none --sparse https://github.com/PharMolix/LangCell.git
-    cd LangCell
-    git sparse-checkout set geneformer_001
-    cd -
+    git clone --filter=blob:none --sparse https://github.com/PharMolix/LangCell.git
+    git -C LangCell sparse-checkout set geneformer_001
 fi
+git -C LangCell checkout --quiet "$LANGCELL_COMMIT"
 
 DOWNLOAD_DIR="./downloads"
 DATA_DIR="./data"

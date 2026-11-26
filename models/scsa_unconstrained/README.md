@@ -3,7 +3,7 @@
 Wrapper for SCSA (Cao, Wang and Peng 2020, Front. Genet. 11:490,
 https://doi.org/10.3389/fgene.2020.00490), which annotates cell clusters by their marker genes
 with the CellMarker database. `src/prepare.sh` clones https://github.com/bioinfo-ibms-pumc/SCSA
-into `src/SCSA` (no commit is pinned). `src/run.sh` reads `annotation_key`, `species` (or
+into `src/SCSA`, at the commit used for the paper. `src/run.sh` reads `annotation_key`, `species` (or
 `organism`) and `scsa_tissue` from the dataset YAML and starts `src/predict.py` in that checkout.
 
 ## What the wrapper does

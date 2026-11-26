@@ -54,10 +54,12 @@ RUN /opt/conda/envs/sc_lfm/bin/pip install --no-cache-dir --no-deps \
 RUN /opt/conda/envs/sc_lfm/bin/pip install --no-cache-dir \
     datasets hydra-core python-dotenv scib pysradb tdigest
 
-# CellWhisperer with its Geneformer submodule; CellWhisperer's pyproject.toml installs
-# geneformer from modules/Geneformer
+# CellWhisperer with its Geneformer submodule, at the commit used for the paper; CellWhisperer's
+# pyproject.toml installs geneformer from modules/Geneformer
 RUN git lfs install && \
-    git clone --recurse-submodules https://github.com/mengerj/CellWhisperer.git /tmp/CellWhisperer && \
+    git clone https://github.com/mengerj/CellWhisperer.git /tmp/CellWhisperer && \
+    cd /tmp/CellWhisperer && git checkout 08c41149c9ca82852ddd4005101656ba85b832bf && \
+    git submodule update --init --recursive && \
     cd /tmp/CellWhisperer/modules/Geneformer && git lfs pull && \
     /opt/conda/envs/sc_lfm/bin/pip install --no-cache-dir /tmp/CellWhisperer && \
     rm -rf /tmp/CellWhisperer

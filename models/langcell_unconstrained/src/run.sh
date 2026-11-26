@@ -31,11 +31,8 @@ PY
 SCRIPT_DIR=$(dirname "$MODEL_PATH")
 GENEFORMER_PATH=$SCRIPT_DIR/LangCell/geneformer_001
 if [ ! -d "$GENEFORMER_PATH" ]; then
-  echo "Cloning LangCell (sparse: geneformer_001)..."
-  if [ ! -d "$SCRIPT_DIR/LangCell" ]; then
-    git clone --depth 1 --filter=blob:none --sparse https://github.com/PharMolix/LangCell.git "$SCRIPT_DIR/LangCell"
-  fi
-  git -C "$SCRIPT_DIR/LangCell" sparse-checkout set geneformer_001
+  echo "ERROR: geneformer_001 not found at $GENEFORMER_PATH; run prepare.sh first" >&2
+  exit 1
 fi
 export PYTHONPATH="$GENEFORMER_PATH${PYTHONPATH:+:$PYTHONPATH}"
 
