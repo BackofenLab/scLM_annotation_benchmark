@@ -14,6 +14,9 @@ with the cluster's marker genes ({marker_genes}, {num_genes}) and, for {unique_c
 cell types of the test set, as a list in a new order for each cluster. Every cell gets the answer
 to its cluster.
 
+A dataset's own list of expected cell types (EXPECTED_TYPES_FILE, one name per line) takes the
+place of the cell types of the test set in both cases.
+
 Outputs per served model, in the folder of --output (out/predictions.csv):
     predictions_<model>.csv  cell_id, true_labels, predicted_labels
     usage_<model>.csv        cell_id (or cluster and n_cells), provider, prompt_tokens,
@@ -83,12 +86,22 @@ def load_test_set(path, label_key):
     return adata
 
 
+def expected_types(found):
+    """The expected cell types: the names in EXPECTED_TYPES_FILE, one per line, if it is set (a
+    dataset's own list in annotation mode), else the cell types found in the labels."""
+    path = os.environ.get("EXPECTED_TYPES_FILE")
+    if not path:
+        return found
+    with open(path, encoding="utf-8") as fh:
+        return list(dict.fromkeys(line.strip() for line in fh if line.strip()))
+
+
 def build_prompts(adata, template, label_key, seed, top_k_genes):
     """One prompt per cell, in the order of the test set."""
     cell_types = [None] * adata.n_obs
     if "{unique_cell_types}" in template:
         rng = np.random.default_rng(seed)
-        labels = pd.unique(adata.obs[label_key].astype(str).values)
+        labels = expected_types(pd.unique(adata.obs[label_key].astype(str).values))
         cell_types = [rng.permutation(labels).tolist() for _ in range(adata.n_obs)]
     cells, _ = cs.CSData.adata_to_arrow(adata=adata, random_state=seed, sentence_delimiter=" ")
     prompts = []
@@ -352,7 +365,7 @@ def main(argv=None):
         cell_clusters, markers = read_clusters(args.clusters, args.markers,
                                                [str(x) for x in adata.obs_names])
         by_cluster = build_cluster_prompts(template, markers,
-                                           adata.obs[label_key].astype(str).unique(),
+                                           expected_types(adata.obs[label_key].astype(str).unique()),
                                            settings["seed"])
         clusters = sorted(set(cell_clusters))
         prompts = [by_cluster[cluster] for cluster in clusters]

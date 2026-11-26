@@ -7,7 +7,7 @@ The candidates are the labels in obs[--annotation_key]. Each candidate is descri
 Ontology name and definition from data/obo.json. A cell's score for a candidate combines the
 cell-text embedding similarity and the cell-text matching (CTM) head,
 alpha * sim + (1 - alpha) * ctm, each softmax-normalized over the candidates. Labels are
-lowercased.
+lowercased. A dataset's own list in EXPECTED_TYPES_FILE replaces the labels as candidates.
 
 Input: preprocessed h5ad with raw counts in layers["counts"] and Ensembl IDs in
 var["ensembl_id"], and the model files that prepare.sh puts into data/. Output: CSV with
@@ -64,6 +64,16 @@ elif torch.backends.mps.is_available():
     device = torch.device("mps")
 else:
     device = torch.device("cpu")
+
+
+def expected_types(found):
+    """The expected cell types: the names in EXPECTED_TYPES_FILE, one per line, if it is set (a
+    dataset's own list in annotation mode), else the cell types found in the labels."""
+    path = os.environ.get("EXPECTED_TYPES_FILE")
+    if not path:
+        return found
+    with open(path, encoding="utf-8") as fh:
+        return list(dict.fromkeys(line.strip() for line in fh if line.strip()))
 
 
 def set_seed(seed: int) -> None:
@@ -207,8 +217,9 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
     if label_name != "celltype":
         tokenized_dataset = tokenized_dataset.rename_column(label_name, "celltype")
 
-    # Candidates: the dataset's own labels
-    types = list(set(tokenized_dataset["celltype"]))
+    # Candidates: the dataset's own labels, or its own list (expected_types), written like the
+    # labels (stripped, in lower case)
+    types = [t.strip().lower() for t in expected_types(list(set(tokenized_dataset["celltype"])))]
     obo_path = args.model_path.parent / "data" / "obo.json"
     ontology = json.load(open(obo_path))
     name2id = {ontology[id]["name"]: id for id in ontology}

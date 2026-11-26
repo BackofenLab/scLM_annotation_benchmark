@@ -94,7 +94,10 @@ link its `src` to the first folder (`ln -s ../<method>_blind/src models/<method>
 give it its own `method.yml`. A method that answers from a fixed vocabulary can declare
 `needs.label_constraint` and keep only the labels in the table at `LABEL_CONSTRAINT`
 (`bin/util/label_constraint.py`, `bin/util/label_constraint.R`). A generative method gets the list
-of expected cell types in its prompt instead; the true labels of the test set are that list.
+of expected cell types in its prompt instead; the true labels of the test set are that list. In
+annotation mode, a dataset can give its own list (`expected_cell_types`). The pipeline then
+writes it to the file in `EXPECTED_TYPES_FILE`, one name per line, which a constrained method
+reads in place of the labels; the label constraint is built from the same list.
 
 ## 5. Test it on the toy dataset
 

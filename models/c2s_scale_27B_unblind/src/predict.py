@@ -18,6 +18,7 @@ import cell2sentence as cs
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from datasets import Dataset
 from pathlib import Path
+import os
 import sys
 import logging
 import random
@@ -173,12 +174,23 @@ def truncate_cell_sentence(cell_sentence: str, n_genes: int) -> str:
     return ' '.join(truncated)
 
 
+def expected_types(found):
+    """The expected cell types: the names in EXPECTED_TYPES_FILE, one per line, if it is set (a
+    dataset's own list in annotation mode), else the cell types found in the labels."""
+    path = os.environ.get("EXPECTED_TYPES_FILE")
+    if not path:
+        return found
+    with open(path, encoding="utf-8") as fh:
+        return list(dict.fromkeys(line.strip() for line in fh if line.strip()))
+
+
 def get_unique_cell_types(adata, annotation_key: str) -> list:
-    """Return the sorted labels of obs[annotation_key], the candidates in the prompt."""
+    """Return the candidates in the prompt: the sorted labels of obs[annotation_key], or the
+    sorted names of the dataset's own list (expected_types)."""
     if annotation_key not in adata.obs.columns:
         raise ValueError(f"Annotation key '{annotation_key}' not found in adata.obs")
     
-    unique_cell_types = sorted(adata.obs[annotation_key].unique().tolist())
+    unique_cell_types = sorted(expected_types(adata.obs[annotation_key].unique().tolist()))
     logger.info(f"Found {len(unique_cell_types)} unique cell types for annotation key '{annotation_key}'")
     return unique_cell_types
 

@@ -66,6 +66,7 @@ Cells and labels:
 | `annotation_key` | column of `obs` with the cell type labels |
 | `batch_key` | column of `obs` with the batch |
 | `cluster_key` | column of `obs` with clusters of your own, which the per-cluster methods then use instead of the clustering step |
+| `expected_cell_types` | `annotate.nf` only: a list of cell type names that the constrained methods take as the expected cell types instead of those in the labels. Cell Ontology names let the established methods relate their labels to the list. |
 | `apply_ontology_mapping` | `true` if the labels are not Cell Ontology terms and are mapped through the mapping table |
 
 Biological context, for methods that use it: `organism` (default `Homo sapiens`; a mouse dataset

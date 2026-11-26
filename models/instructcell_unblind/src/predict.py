@@ -137,12 +137,23 @@ def extract_prediction(response: str) -> str:
     return pred.strip()
 
 
+def expected_types(found):
+    """The expected cell types: the names in EXPECTED_TYPES_FILE, one per line, if it is set (a
+    dataset's own list in annotation mode), else the cell types found in the labels."""
+    path = os.environ.get("EXPECTED_TYPES_FILE")
+    if not path:
+        return found
+    with open(path, encoding="utf-8") as fh:
+        return list(dict.fromkeys(line.strip() for line in fh if line.strip()))
+
+
 def get_unique_cell_types(adata: anndata.AnnData, annotation_key: str) -> List[str]:
-    """Return the sorted labels of obs[annotation_key], without missing values."""
+    """Return the sorted labels of obs[annotation_key], without missing values, or the sorted
+    names of the dataset's own list (expected_types)."""
     if annotation_key not in adata.obs.columns:
         raise ValueError(f"Annotation key '{annotation_key}' not found in adata.obs")
     
-    unique_cell_types = sorted(adata.obs[annotation_key].dropna().unique().tolist())
+    unique_cell_types = sorted(expected_types(adata.obs[annotation_key].dropna().unique().tolist()))
     logger.info(f"Found {len(unique_cell_types)} unique cell types for annotation key '{annotation_key}'")
     return unique_cell_types
 

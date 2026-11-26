@@ -14,7 +14,7 @@ workflow {
     if (sizes.any { !it.toString().isInteger() }) {
         error "subset_sizes must be numbers; annotate.nf annotates all cells"
     }
-    ANNOTATE(params.append_new_answers, sizes.collect { it as int })
+    ANNOTATE(params.append_new_answers, sizes.collect { it as int }, false)
     EVALUATE(ANNOTATE.out.mapped)
 }
 

@@ -35,12 +35,23 @@ workflow ANNOTATE {
     take:
     append    // whether answers that are new are added to the mapping table
     sizes     // test set sizes; 'all' stands for all cells of a dataset
+    own_lists // whether a dataset's expected_cell_types replace the cell types of its labels
 
     main:
     def cache_dir = absolutePath(params.cache_dir)
     def mappings = absolutePath(params.mappings)
     def manifest = file("${projectDir}/datasets/zenodo_manifest.yml")
     def strategy = params.subset_strategy
+
+    // The expected cell types that a dataset lists for the constrained methods, used where own
+    // lists apply; an empty list leaves the methods with the cell types of the labels.
+    def listed = { dataset ->
+        def names = own_lists ? datasetConfig(dataset).expected_cell_types : null
+        if (names != null && !(names instanceof List)) {
+            error "expected_cell_types of ${dataset} must be a list of cell type names"
+        }
+        return (names ?: []).collect { it.toString() }
+    }
 
     // Every run is a method on a dataset at a test set size.
     def runs = []
@@ -146,7 +157,7 @@ workflow ANNOTATE {
     constraints = constrain_labels(
         Channel.fromList(constraint_keys).map { dataset, size -> tuple(key(dataset, size), file("${projectDir}/datasets/${dataset}.yml")) }
             .combine(test_sets.map { dataset, size, file -> tuple(key(dataset, size), dataset, size, file) }, by: 0)
-            .map { k, cfg, dataset, size, file -> tuple(dataset, size, file, cfg) },
+            .map { k, cfg, dataset, size, file -> tuple(dataset, size, file, cfg, listed(dataset)) },
         cache_dir, mappings, mappingsVersion())
 
     // Each pending run with the inputs it needs. An input that a run does not need is an
@@ -188,7 +199,8 @@ workflow ANNOTATE {
         .map { k, run, cluster_files ->
             tuple(run.method, run.dataset, run.size, run.method_dir, run.test_set,
                   file("${projectDir}/datasets/${run.dataset}.yml"), run.context, run.reference,
-                  run.constraint, cluster_files, predictionFiles(run.method).join(' ')) }
+                  run.constraint, cluster_files, predictionFiles(run.method).join(' '),
+                  listed(run.dataset)) }
         .branch { run ->
             with_key: methodSpec(run[0]).needs.api_key
             other: true

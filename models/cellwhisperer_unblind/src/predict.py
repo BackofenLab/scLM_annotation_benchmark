@@ -1,8 +1,8 @@
 """Cell type annotation with CellWhisperer, with the dataset's labels as candidates (unblind).
 
 CellWhisperer embeds each cell's transcriptome and every candidate label, and each cell gets the
-label with the highest similarity. The candidates are the labels in obs[--annotation_key]. The
-script also prints exact-match accuracy and per-label ROC AUC for the log.
+label with the highest similarity. The candidates are the labels in obs[--annotation_key], or a
+dataset's own list in EXPECTED_TYPES_FILE. The script also prints exact-match accuracy and per-label ROC AUC for the log.
 
 Input: preprocessed h5ad with raw counts in layers["counts"] and human Ensembl IDs in
 var["ensembl_id"]. Output: CSV with cell_id, true_labels and predicted_labels. The checkpoint
@@ -89,8 +89,18 @@ if annotation_key not in adata.obs.columns:
     print(f"Available columns: {list(adata.obs.columns)}")
     sys.exit(1)
 
-# Candidates: the dataset's own labels
-cell_type_labels = adata.obs[annotation_key].unique().tolist()
+def expected_types(found):
+    """The expected cell types: the names in EXPECTED_TYPES_FILE, one per line, if it is set (a
+    dataset's own list in annotation mode), else the cell types found in the labels."""
+    path = os.environ.get("EXPECTED_TYPES_FILE")
+    if not path:
+        return found
+    with open(path, encoding="utf-8") as fh:
+        return list(dict.fromkeys(line.strip() for line in fh if line.strip()))
+
+
+# Candidates: the dataset's own labels, or its own list (expected_types)
+cell_type_labels = expected_types(adata.obs[annotation_key].unique().tolist())
 print(f"Computing similarity scores to {len(cell_type_labels)} cell type labels...")
 
 # Softmax-normalized similarities, shape [n_cell_types, n_cells]

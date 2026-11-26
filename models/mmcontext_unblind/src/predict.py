@@ -2,7 +2,8 @@
 
 The model (jo-mengr/mmcontext-pubmedbert-gs10k from the Hugging Face Hub) embeds each cell from
 its gs10k initial embedding and every candidate label in a shared space, and each cell gets the
-most similar label. The candidates are the labels in obs[--annotation_key].
+most similar label. The candidates are the labels in obs[--annotation_key], or a dataset's own
+list in EXPECTED_TYPES_FILE.
 
 Input: preprocessed h5ad with human Ensembl IDs in var["ensembl_id"]. Output: CSV with cell_id,
 true_labels and predicted_labels; the processed data are also written to <input>_pp.h5ad.
@@ -104,8 +105,18 @@ if annotation_key not in adata.obs.columns:
     print(f"Available columns: {list(adata.obs.columns)}")
     sys.exit(1)
 
-# Candidates: the dataset's own labels
-unique_labels = adata.obs[annotation_key].unique()
+def expected_types(found):
+    """The expected cell types: the names in EXPECTED_TYPES_FILE, one per line, if it is set (a
+    dataset's own list in annotation mode), else the cell types found in the labels."""
+    path = os.environ.get("EXPECTED_TYPES_FILE")
+    if not path:
+        return found
+    with open(path, encoding="utf-8") as fh:
+        return list(dict.fromkeys(line.strip() for line in fh if line.strip()))
+
+
+# Candidates: the dataset's own labels, or its own list (expected_types)
+unique_labels = expected_types(adata.obs[annotation_key].unique())
 print(f"Found {len(unique_labels)} unique cell type labels")
 
 # Writes the most similar label of each cell to obs["best_label"].
