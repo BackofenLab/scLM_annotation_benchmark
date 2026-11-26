@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
-# Bring the GPU node's results back into the repo. Run this BEFORE cleanup_gpu.sh.
-#
-# Pulls results and logs only -- code and prompts already live here and are the source of truth, so
-# copying them back could only ever overwrite the originals with a stale echo of themselves.
+# Copy the predictions, caches and smoke-test output of a study tree, the SLURM logs and
+# env-local.lock.yml from the remote host (ssh alias HOST) back to paper/experiments/. Code and
+# prompts are not copied back. Run it before cleanup_gpu.sh.
+#     [STUDY=lists] slurm/fetch_from_gpu.sh
 set -euo pipefail
 
 HOST="${HOST:-gpu}"
 REMOTE_DIR="${REMOTE_DIR:-context_ablation}"
 LOCAL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-# Extra ssh options, e.g. SSH_OPTS="-J <jump-host>" where the alias' own jump host is out of reach; rsync
-# takes them through RSYNC_RSH.
+# Extra ssh options, such as a jump host (SSH_OPTS="-J <host>"); rsync gets them through RSYNC_RSH.
 SSH_OPTS="${SSH_OPTS:-}"
 export RSYNC_RSH="ssh $SSH_OPTS"
 # The study tree (`studies` in config.yml): STUDY=lists ships, runs and fetches results_lists/ only.
@@ -28,7 +27,7 @@ ssh $SSH_OPTS "$HOST" "cd $REMOTE_DIR 2>/dev/null && { \
 
 echo "==> fetching predictions + caches + parse stats"
 mkdir -p "$LOCAL_ROOT/$TREE" "$LOCAL_ROOT/slurm/logs"
-# No --delete: this merges the cluster's arms into a results tree that already holds the API arms.
+# No --delete: the local tree also holds the predictions of the OpenRouter arms.
 rsync -az --stats \
   --include='predictions/***' --include='cache/***' --include='smoke/***' --exclude='*' \
   "$HOST:$REMOTE_DIR/$TREE/" "$LOCAL_ROOT/$TREE/"

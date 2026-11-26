@@ -1,22 +1,17 @@
 #!/usr/bin/env python
-"""Cluster the context, derive per-cluster marker genes, and map cluster labels back to eval cells.
+"""Cluster each dataset's context and write the prompt files of the cluster arms.
 
-This is arm A4. It deliberately mirrors ``models/scsa_blind/src/predict.py``, which already does
-cluster -> ``rank_genes_groups`` -> per-cell mapping on the same context object: the arm is then
-methodologically identical to the cluster-level baselines except for how a cluster gets its label,
-which is what makes the comparison to them clean.
+Leiden clustering of the clustering context (``cluster.source_dir``) at every resolution of
+``cluster.resolutions``, then the marker genes of each cluster (``rank_genes_groups``, without
+ribosomal, mitochondrial and haemoglobin genes). ``bin/build_context.py`` puts every eval cell into
+the context, so each eval cell gets the prompt of its cluster. Writes the assignments, markers and
+``cluster_summary.csv`` to ``results/clusters/`` and the prompt files of ``A4_llm_percluster`` to
+``results/prompts/``. With ``--study lists`` it reads the stored clusters at ``lists.resolution``
+and writes the prompt files of the list study's cluster arm.
 
-Why the CONTEXT rather than the 1,000-cell eval subset
-------------------------------------------------------
-Clustering 1,000 stratified cells would produce clusters shaped by the stratification rather than
-by the data, and rare types would have too few cells to separate at all. ``build_context.py``
-guarantees the context CONTAINS every eval cell, so clusters are learned on ~100k cells and the
-labels are then read off for exactly the cells the other arms annotate. Same eval set, same
-scoring, only the granularity differs.
-
-Two resolutions are run on purpose. Resolution sensitivity is not a nuisance parameter here: the
-Introduction's argument against cluster-level annotation is that it is "only as fine-grained as the
-clustering that preceded it", so measuring how much the answer moves with resolution IS the claim.
+Run from paper/experiments, since the data paths in config.yml are relative:
+    python src/cluster.py
+    python src/cluster.py --study lists
 """
 from __future__ import annotations
 
@@ -38,7 +33,7 @@ def load_config(path):
 
 
 def eval_cell_ids(dataset, cfg):
-    """Barcodes of the cells every arm annotates, so A4 scores exactly the same set."""
+    """Cell ids of the eval subset."""
     eval_cfg = cfg["eval"]
     src = (Path(eval_cfg["subset_dir"]) /
            f"{dataset}_sub{eval_cfg['size']}_{eval_cfg['strategy']}.h5ad")
@@ -48,10 +43,10 @@ def eval_cell_ids(dataset, cfg):
 
 
 def cluster_context(dataset, cfg, resolution, seed=0):
-    """Leiden clusters on the context, plus marker genes per cluster.
+    """Leiden clusters of the context and the marker genes of each cluster.
 
-    Returns ``(assignments, markers, info)`` where ``assignments`` is a Series indexed by cell id
-    and ``markers`` maps cluster id -> ordered gene symbols.
+    Returns ``(assignments, markers, info)``: ``assignments`` is a Series of cluster ids indexed by
+    cell id, ``markers`` maps each cluster id to its marker gene symbols, highest ranked first.
     """
     ccfg = cfg["cluster"]
     src = Path(ccfg["source_dir"]) / f"{dataset}_context.h5ad"
@@ -59,20 +54,13 @@ def cluster_context(dataset, cfg, resolution, seed=0):
         raise SystemExit(f"{dataset}: no context h5ad at {src}")
 
     adata = sc.read_h5ad(src)
-    # The contexts store a log1p X and nothing else -- no counts layer, no raw -- so the standard
-    # neighbourhood pipeline runs directly on X. Verified against all four files.
+    # The contexts are log-normalised already, so PCA runs on X.
     sc.pp.pca(adata, n_comps=min(50, adata.n_vars - 1), random_state=seed)
     sc.pp.neighbors(adata, random_state=seed)
     sc.tl.leiden(adata, resolution=resolution, key_added="cluster",
                  random_state=seed, flavor="igraph", n_iterations=2, directed=False)
 
-    # Marker detection excludes ribosomal, mitochondrial and haemoglobin genes -- the same classes
-    # the HVG arm drops. CLUSTERING still uses every gene, matching what scType and SCSA do; only
-    # the marker LIST is filtered, which is also what a careful analyst reports.
-    #
-    # Not cosmetic: on the unfiltered run, 16 of 284 clusters had marker lists more than half
-    # ribosomal, and HIHA's cluster 0 was ribosomal top to bottom. Handing an annotator a cluster
-    # described only by RPL/RPS genes measures the gene selection, not the annotator.
+    # The clustering uses all genes; the markers exclude the gene classes the HVG pool drops.
     from hvg import excluded_mask
     drop, _how, _col = excluded_mask(adata, ["RPS", "RPL", "MT-", "HB"])
     ranked_on = adata[:, ~drop].copy() if drop.any() else adata
@@ -80,9 +68,8 @@ def cluster_context(dataset, cfg, resolution, seed=0):
     names = ranked_on.uns["rank_genes_groups"]["names"]
     adata = ranked_on
 
-    # Marker genes are reported as var_names (Ensembl ids here), so resolve to symbols -- the
-    # prompt has to name genes the model can recognise.
-    from sentences import resolve_symbols  # local import: shares one resolution rule
+    # The markers are Ensembl ids; the prompts name gene symbols.
+    from sentences import resolve_symbols
     symbol_of = dict(zip(adata.var_names.astype(str),
                          resolve_symbols(adata.copy())[0].var_names.astype(str)))
 
@@ -98,7 +85,7 @@ def cluster_context(dataset, cfg, resolution, seed=0):
 
 
 def restrict_to_eval(assignments, dataset, cfg):
-    """Cluster label per EVAL cell, with the containment guarantee checked rather than assumed."""
+    """The cluster of each eval cell; stops if an eval cell is missing from the context."""
     ids = eval_cell_ids(dataset, cfg)
     missing = ids.difference(assignments.index)
     if len(missing):
@@ -111,18 +98,11 @@ def restrict_to_eval(assignments, dataset, cfg):
 
 def materialize_cluster_prompts(dataset, cfg, resolution, per_eval, markers, out_dir,
                                 arm="A4_llm_percluster", modes=None, candidates=None):
-    """Write a cluster arm's prompts: ONE ROW PER EVAL CELL, carrying that cell's cluster prompt.
+    """Write the prompt files of a cluster arm: one row per eval cell, with its cluster's prompt.
 
-    Per cell rather than per cluster so the output drops straight into the same scoring path as
-    every other arm -- predictions must be per cell to compare against per-cell truth. The cost of
-    the redundancy is nil: the runner's cache is keyed on prompt text, so the ~13-59 distinct
-    cluster prompts are called once each and the remaining ~950 rows are cache hits.
-
-    Resolution rides in the `variant` slot of the filename. The five-field naming has no separate
-    place for it, and it is genuinely a variant of the arm: aggregate.py then carries `res0.5` /
-    `res1.0` through as its own column, which is what the two-resolution panel needs.
-
-    ``modes`` and ``candidates(mode, seed)`` serve the candidate-list study, as in
+    The rows are per cell, as for the per-cell arms; the runner sends each distinct prompt once.
+    The resolution takes the gene-variant field of the file name (``res0.5``, ``res1.0``).
+    ``modes`` and ``candidates(mode, seed)`` serve the imperfect-list study, as in
     ``sentences.materialize``.
     """
     import numpy as np
@@ -140,15 +120,13 @@ def materialize_cluster_prompts(dataset, cfg, resolution, per_eval, markers, out
 
     written = []
     for mode_name, mode in (modes or cfg["modes"]).items():
-        # M5 withholds the gene list, and a cluster prompt is nothing BUT the gene list, so the
-        # mode has no meaning for this arm.
+        # A cluster prompt consists of its marker genes, so a mode without genes is skipped.
         if not mode.get("genes"):
             continue
         for seed in cfg["repeats"]["seeds"]:
             rng = np.random.default_rng(seed)
             listed = candidates(mode_name, seed) if candidates else labels
-            # One shuffle per CLUSTER, not per cell: every cell in a cluster must receive the
-            # identical prompt or the cache cannot collapse them and the arm costs 30x more.
+            # One list order per cluster, so all cells of a cluster share one prompt.
             per_cluster = {c: (candidate_list(listed, rng) if mode.get("cell_types") else None)
                            for c in sorted(markers)}
             rows = []
@@ -206,7 +184,7 @@ def main(argv=None):
             arm = next(name for name, spec in study.pop("arms").items()
                        if spec["granularity"] == "cluster")
             tag = out_dir / f"{dataset}_res{resolution}"
-            # As strings: the clusters are shuffled in string order (sorted(markers)), as stored.
+            # Cluster ids as strings, since the lists are drawn in the order of sorted(markers).
             per_eval = pd.read_csv(f"{tag}_assignments.csv", index_col=0, dtype=str)["cluster"]
             markers = {c: genes.split(", ") for c, genes in
                        pd.read_csv(f"{tag}_markers.csv", dtype=str).itertuples(index=False)}

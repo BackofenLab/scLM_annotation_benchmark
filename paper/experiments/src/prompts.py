@@ -1,27 +1,19 @@
 #!/usr/bin/env python
-"""Prompt construction for the five context modes and three templates.
+"""Prompt templates and prompt construction for the context modes.
 
-Design rule: **M1 and M2 must reproduce the benchmark's own prompts verbatim.** Those two modes are
-what makes the study comparable to the main table -- the verification step checks that A1 at M2
-reproduces the published `gpt-oss-120b_unblind` balanced accuracy of 0.554 -- so their text is
-copied from `models/openrouter_LLM_{blind,unblind}/src/model_cfg.yml` and
-`models/c2s_scale_2B_unblind/src/predict.py` rather than paraphrased. The benchmark's blind and
-unblind templates differ by more than the candidate list (rule 2 changes too), so both are kept.
+Three templates: ``instruction``, the prompt of the benchmark's OpenRouter wrapper; ``c2s``, the
+prompt of the C2S-Scale wrapper; ``marker_genes``, one prompt per cluster. A mode (``modes`` in
+config.yml) sets whether a prompt lists the candidate cell types, names tissue and species, and
+holds the genes. Without tissue and species, the instruction and c2s prompts equal the wrappers'
+prompts without the list (M1) and with it (M2). The c2s template names the organism already, so
+tissue and species add only the tissue there.
 
-Modes M3-M5 extend from there:
-  M3/M4 insert a tissue-and-species sentence.
-  M5 drops the cell sentence entirely -- the control that separates reading the expression data
-        from exploiting the label prior for the tissue.
-
-Per-arm asymmetry, verified in code and NOT to be tidied away: the C2S template already names the
-organism, so for that arm M3/M4 add only tissue, while for the instruction template they add
-species and tissue. The modes are therefore not identical interventions across arms.
+    python src/prompts.py    # self-test
 """
 from __future__ import annotations
 
-# --------------------------------------------------------------------------- #
-# Benchmark templates, copied verbatim. Do not reword: M1/M2 are the comparability anchor.
-# --------------------------------------------------------------------------- #
+# The prompts of the benchmark's OpenRouter wrapper (models/openrouter_LLM_blind and
+# models/openrouter_LLM_unblind), with a slot for the context phrase.
 INSTRUCTION_NO_TYPES = """You are an expert at classifying cell types based on gene expression.
 Given below is a list of up to {num_genes} gene names ordered by descending expression level in a single cell.
 Your task is to identify the exact cell type this gene profile{context} represents.
@@ -46,8 +38,7 @@ Important rules:
 Output:
 """
 
-# M5: same instructions, no gene list. The sentence naming the input is dropped rather than left
-# empty, so the model is not invited to hallucinate a missing input.
+# For a mode without genes (genes: false): the sentence that introduces the genes is left out.
 INSTRUCTION_NO_GENES = """You are an expert at classifying cell types based on gene expression.
 Your task is to name the most likely cell type{context} from this list of cell types: {unique_cell_types}.
 No gene expression information is provided for this cell.
@@ -59,8 +50,8 @@ Important rules:
 Output:
 """
 
-# C2S-Scale's own template, from models/c2s_scale_2B_unblind/src/predict.py. {organism} is already
-# present here, which is the asymmetry noted above.
+# The prompts of the C2S-Scale wrapper (models/c2s_scale_2B_blind and models/c2s_scale_2B_unblind),
+# with a slot for the context phrase.
 C2S_WITH_TYPES = ("The following is a list of {num_genes} gene names ordered by descending "
                   "expression level in a {organism}{context} cell. Your task is to give the cell "
                   "type which this cell belongs to based on its gene expression. Pick from this "
@@ -73,13 +64,12 @@ C2S_NO_TYPES = ("The following is a list of {num_genes} gene names ordered by de
                 "Cell sentence: {cell_sentence}.\n"
                 "The cell type corresponding to these genes is:")
 
+# For a mode without genes.
 C2S_NO_GENES = ("Your task is to give the cell type of a {organism}{context} cell. Pick from this "
                 "list: {unique_cell_types}.\nNo gene expression information is provided for "
                 "this cell.\nThe cell type corresponding to this cell is:")
 
-# A4: one prompt per cluster, from its differentially expressed genes. Mirrors the established
-# cluster-annotation phrasing (marker genes in, one label out) so the arm is comparable to the
-# cluster-level baselines rather than to a bespoke prompt.
+# One prompt per cluster, from its marker genes, with the rules of the instruction template.
 MARKER_WITH_TYPES = """You are an expert at annotating cell clusters from single-cell RNA sequencing data.
 Given below are the top {num_genes} marker genes of one cell cluster, ordered by how strongly they distinguish it from all other clusters.
 Your task is to identify the cell type of this{context} cluster from this list of cell types: {unique_cell_types}.
@@ -111,9 +101,7 @@ UNCERTAIN_RULE = "If none of the listed cell types fits, answer uncertain."
 def _offer_uncertain(body, mode):
     """``body`` with the option to answer "uncertain" if ``mode`` offers it, else unchanged.
 
-    Spliced into the template rather than written into a copy, so the benchmark templates above
-    stay the one source of the M1/M2 wording. The instruction and marker templates get it as rule
-    5, the one exception to rule 2; the C2S template, which has no rules, right after its list.
+    The instruction and marker templates get it as rule 5, the C2S template right after its list.
     """
     if not mode.get("uncertain"):
         return body
@@ -125,77 +113,39 @@ def _offer_uncertain(body, mode):
 
 
 def candidate_list(labels, rng):
-    """The candidate cell types for ONE cell, independently shuffled.
+    """The candidate cell types for one cell, in an order drawn from ``rng``.
 
-    The benchmark permutes the list per cell -- ``predict.py:477`` builds
-    ``[rng.permutation(labels).tolist() for _ in range(adata.n_obs)]`` from a seeded generator --
-    so every cell sees a different order. That is deliberate: LLMs have position bias, and a fixed
-    order would let a model score well by favouring whatever sits first. Reproducing it is required
-    both for comparability and for the study to be measuring what it claims.
-
-    Kept as an explicit call rather than hidden inside ``build_prompt`` so a caller cannot forget
-    it: passing an unshuffled list is a silent bias, not an error.
-
-    ``.tolist()``, NOT ``list()``, and the difference is not cosmetic. ``list()`` on a numpy array
-    yields ``np.str_`` scalars, and under numpy 2.x their repr is ``np.str_('B cell')`` rather than
-    ``'B cell'``. Since the instruction template renders the candidates by repr, ``list()`` puts
-    ``[np.str_('retinal progenitor cell'), np.str_('retinal rod cell'), ...]`` into the prompt --
-    81 characters of numpy noise for a 9-type dataset, and a list that reads as code rather than as
-    cell types. ``.tolist()`` converts to plain Python strings, which is what the benchmark sends.
-    Getting this wrong silently breaks the M2 anchor that the whole study is calibrated against.
+    The benchmark's OpenRouter wrapper shuffles the list per cell in the same way. ``.tolist()``
+    returns plain strings; numpy string scalars would appear as ``np.str_('...')`` in the prompt.
     """
     return rng.permutation(list(labels)).tolist()
 
 
 def ordered_candidates(template, labels, rng):
-    """The candidate cell types for ONE cell, in the order its template's benchmark wrapper uses.
+    """The candidate cell types for one cell, in the order of the template's benchmark wrapper.
 
-    The LLM wrappers shuffle per cell (``candidate_list``). The C2S-Scale wrapper does not: it
-    sorts the subset's labels once (``get_unique_cell_types`` in
-    ``models/c2s_scale_2B_unblind/src/predict.py``) and gives every cell that list, so the C2S
-    template gets them sorted, and ``rng`` is not drawn from.
+    The C2S-Scale wrapper gives every cell the sorted list, so ``c2s`` gets it sorted without a
+    draw from ``rng``; the other templates get a list shuffled per cell (``candidate_list``).
     """
     return sorted(labels) if template == "c2s" else candidate_list(labels, rng)
 
 
 def render_candidates(template, labels):
-    """Render the candidate list the way each template's own code path does.
+    """The candidate list as prompt text.
 
-    The two differ, and the difference is visible in the prompt text:
-
-    * ``instruction`` -- the benchmark passes the LIST OBJECT into ``str.format``, so it renders as
-      a Python repr with brackets and quotes: ``['neutrophil', 'regulatory t cell']``. Confirmed
-      against the worked example in ``scLLMs_benchmark_paper/main.tex``.
-    * ``c2s`` / ``marker_genes`` -- ``models/c2s_scale_2B_unblind/src/predict.py`` builds
-      ``", ".join(cell_type_list)``, so it renders bare.
-
-    Reproducing each faithfully is what makes M1/M2 comparable to the published numbers.
+    ``instruction`` gets the repr of the list, ``['neutrophil', 'regulatory t cell']``, because
+    the OpenRouter wrapper formats the list object into its template. ``c2s`` and ``marker_genes``
+    get the names joined by ``", "``, as in the C2S-Scale wrapper.
     """
     labels = list(labels)
     return repr(labels) if template == "instruction" else ", ".join(labels)
 
 
 def short_tissue(tissue):
-    """A tissue phrase short enough to read inline.
+    """The tissue up to its first parenthesis or colon: 'retina (fetal)' becomes 'retina'.
 
-    The dataset YAMLs carry tissue strings of wildly different length, because they were written to
-    give blind mode a usable hint rather than to be embedded in a sentence:
-
-        human_pancreas   'pancreas'                                    8 chars
-        HFRA             'retina (fetal)'                             14
-        HIHA             'blood (peripheral blood immune cells)'      37
-        Zeisel           'nervous system (whole mouse CNS and PNS:    159
-                          cortex, hippocampus, ... enteric ganglia)'
-
-    Inserted verbatim, the tissue context would be a whole clause for Zeisel and one word for
-    pancreas, so "what naming the tissue buys" would not be comparable across datasets and Zeisel
-    would likely show the largest gain for reasons unrelated to the model. Truncating at the first
-    parenthesis or colon keeps a head noun that still reads naturally in the sentence:
-
-        'pancreas', 'retina', 'blood', 'nervous system'
-
-    Override per dataset in config.yml (`context_phrase`) when the head noun is not the natural
-    term -- 'brain' rather than 'nervous system', say.
+    The tissues in the dataset YAMLs range from 8 to 159 characters; the head noun keeps the
+    inserted phrase about equally short for every dataset.
     """
     if not tissue:
         return ""
@@ -204,15 +154,11 @@ def short_tissue(tissue):
 
 
 def context_phrase(mode, template, tissue=None, species=None, override=None):
-    """Inline species-and-tissue phrase, e.g. ``" mouse brain"``, or ``""`` when withheld.
+    """Species and tissue as an inline phrase with one leading space, e.g. ``" mouse brain"``.
 
-    Always returns either the empty string or a string with exactly ONE leading space, so the
-    templates interpolate it directly inside a sentence and collapse cleanly to the benchmark's
-    wording when the mode withholds context. That property is what keeps M1 and M2 byte-identical
-    to the published prompts, and ``_self_test`` asserts it rather than trusting it.
-
-    The C2S template already names the organism, so species is omitted there to avoid stating it
-    twice ("a Homo sapiens mouse cell").
+    Returns ``""`` when the mode gives no tissue and species, which leaves the benchmark's wording.
+    ``override`` (``context_phrase`` in a dataset YAML) replaces the phrase. The species is left
+    out for the C2S template, which names the organism already.
     """
     if not mode.get("tissue_species"):
         return ""
@@ -231,14 +177,13 @@ def context_phrase(mode, template, tissue=None, species=None, override=None):
 def build_prompt(template, mode, *, num_genes=None, cell_sentence=None, unique_cell_types=None,
                  marker_genes=None, organism=None, tissue=None, species=None,
                  context_override=None):
-    """One prompt for one (template, mode).
+    """One prompt for one template and mode.
 
-    ``mode`` is the dict from config.yml: ``{cell_types, tissue_species, genes}``.
+    ``mode`` is an entry of ``modes`` in config.yml or a list condition (``lists.condition_modes``).
     """
     ctx = context_phrase(mode, template, tissue=tissue, species=species,
                          override=context_override)
-    # Per-template rendering, and the caller is responsible for having shuffled the list already
-    # (see candidate_list). Joining here would silently diverge from the benchmark's prompts.
+    # The caller orders the list (ordered_candidates).
     types_str = render_candidates(template, unique_cell_types) if unique_cell_types else ""
 
     if template == "marker_genes":
@@ -272,11 +217,8 @@ def build_prompt(template, mode, *, num_genes=None, cell_sentence=None, unique_c
 
 
 def _self_test():
-    """Check the property the comparability of the whole study rests on.
-
-    M1 and M2 under the instruction template must equal the benchmark's blind and unblind prompts
-    exactly, including the absence of any stray whitespace where the context clause would go.
-    """
+    """Checks of the wording of M1 and M2, the list, the context phrase, the whitespace and the
+    "uncertain" option."""
     m1 = {"cell_types": False, "tissue_species": False, "genes": True}
     m2 = {"cell_types": True, "tissue_species": False, "genes": True}
     m4 = {"cell_types": True, "tissue_species": True, "genes": True}
@@ -287,31 +229,30 @@ def _self_test():
 
     p2 = build_prompt("instruction", m2, num_genes=200, cell_sentence="A B C",
                       unique_cell_types=["b cell", "t cell"])
-    # The instruction template renders the list as a Python repr, brackets and quotes included,
-    # because the benchmark passes the list object into str.format. Not a comma-joined string.
+    # The instruction template writes the list as a Python repr.
     assert "from this list of cell types: ['b cell', 't cell'].\nCell sentence:" in p2, p2
     assert "2. Do only choose a cell type from the list" in p2, "M2 must use the unblind rule 2"
 
-    # C2S joins bare, so the two templates must NOT render the list the same way.
+    # The C2S template joins the names with commas.
     c2 = build_prompt("c2s", m2, num_genes=200, cell_sentence="A B C", organism="Homo sapiens",
                       unique_cell_types=["b cell", "t cell"])
     assert "Pick from this list: b cell, t cell." in c2, c2
 
-    # Shuffling is per cell and seeded; two cells must be able to differ.
+    # Two cells can get different orders.
     import numpy as np
     rng = np.random.default_rng(0)
     labels = [f"type {i}" for i in range(12)]
     draws = {tuple(candidate_list(labels, rng)) for _ in range(8)}
     assert len(draws) > 1, "candidate_list must shuffle per cell, not return a fixed order"
 
-    # Context reads inline, and the long tissue strings are truncated to a head noun that fits.
+    # The context phrase is inline, with the tissue cut to its head noun.
     p4 = build_prompt("instruction", m4, num_genes=200, cell_sentence="A B C",
                       unique_cell_types=["b cell"],
                       tissue="nervous system (whole mouse CNS and PNS: cortex, hippocampus)",
                       species="mouse")
     assert "this gene profile mouse nervous system represents from this list" in p4, p4
 
-    # The C2S template already names the organism, so species must not be repeated there.
+    # No species in the C2S template, which names the organism.
     c4 = build_prompt("c2s", m4, num_genes=200, cell_sentence="A B C", organism="Homo sapiens",
                       unique_cell_types=["b cell"], tissue="blood (peripheral blood immune cells)",
                       species="human")
@@ -319,7 +260,7 @@ def _self_test():
     assert "human" not in c4.split("Cell sentence")[0].replace("Homo sapiens", ""), \
         "C2S already names the organism; species must not be duplicated"
 
-    # Per-dataset override, for when the head noun is not the natural term.
+    # A dataset's override replaces the phrase.
     p4b = build_prompt("instruction", m4, num_genes=200, cell_sentence="A B C",
                        unique_cell_types=["b cell"], tissue="nervous system (...)",
                        species="mouse", context_override="mouse brain")
@@ -341,7 +282,7 @@ def _self_test():
     else:
         raise AssertionError("'uncertain' without a list must be refused")
 
-    # --- whitespace: no double spaces, and no space before punctuation, in ANY combination ------
+    # No double spaces and no space before punctuation, in any combination.
     import itertools
     tissues = [None, "", "pancreas", "retina (fetal)",
                "nervous system (whole mouse CNS and PNS: cortex, hippocampus)"]
@@ -358,7 +299,7 @@ def _self_test():
         for bad in (" .", " ,", " :", " ;"):
             assert bad not in text, f"space before punctuation in {tmpl} {mode}:\n{text}"
 
-    # M5 has no meaning for the cluster arm.
+    # The marker template refuses a mode without genes.
     m5 = {"cell_types": True, "tissue_species": True, "genes": False}
     try:
         build_prompt("marker_genes", m5, num_genes=25, marker_genes=["A"])

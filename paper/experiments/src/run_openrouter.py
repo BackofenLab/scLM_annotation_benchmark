@@ -1,14 +1,15 @@
 #!/usr/bin/env python
-"""Run the OpenRouter arms (A1, A4, A5) over materialised prompts.
+"""Answer the prompt files of the OpenRouter arms through the OpenRouter API.
 
-Reads prompt files written by ``sentences.py --materialize`` and ``cluster.py``, so it builds no
-sentences itself -- see ``execution`` in config.yml for why that separation exists.
+Reads ``<study tree>/prompts/`` (from ``sentences.py --materialize`` and ``cluster.py``) and sends
+each distinct prompt once, with the arm's model, the file's seed and the ``provider``,
+``reasoning`` and ``repeats`` settings of config.yml. Answers go to the response cache
+(``<study tree>/cache/``), so a run resumes where it stopped. Writes
+``<study tree>/predictions/<arm>/<dataset>/<mode>/<variant>/seed<seed>/predictions.csv`` and
+``parse_stats.json``. Needs ``OPENROUTER_API_KEY``; every call is billed.
 
-Every call goes through ``runner_cache.ResponseCache``, keyed on the prompt text, so an interrupted
-run resumes where it stopped rather than re-paying for answers it already has. Retry and backoff
-conventions mirror ``models/openrouter_LLM_blind/src/predict.py`` (honour ``retry-after`` on 429,
-exponential backoff on 5xx) so behaviour under load matches the benchmark that produced the numbers
-this study is compared against.
+    python src/run_openrouter.py --arms A1_llm_percell [--study lists] [--dry-run]
+    python src/run_openrouter.py --provider-mix
 """
 from __future__ import annotations
 
@@ -38,14 +39,7 @@ def load_config(path):
 
 
 def build_payload(model, prompt, cfg, seed):
-    """Request body. Provider routing is PINNED, unlike the benchmark's.
-
-    The benchmark leaves `sort: price` with `allow_fallbacks: true` and an empty whitelist, so
-    requests land on whichever provider is cheapest at that moment -- and providers serve different
-    quantizations of the same weights. That is tolerable for the benchmark's large effects but not
-    for an ablation measuring what a tissue string buys, where a silent quantization change
-    mid-run would be indistinguishable from the effect being measured.
-    """
+    """The request body: model, prompt, seed, temperature if set, provider and reasoning."""
     provider_cfg = cfg.get("provider", {})
     payload = {
         "model": model,
@@ -69,21 +63,15 @@ def build_payload(model, prompt, cfg, seed):
     return payload
 
 
-# Vendors whose models take no reasoning block at all, and those that take a token budget rather
-# than an effort level. Mirrors models/openrouter_LLM_blind/src/predict.py so this study asks for
-# the same reasoning behaviour the benchmark got.
+# Vendors whose models get no reasoning field, vendors whose models get a token budget instead of
+# an effort level, and models that always reason; as in the benchmark's OpenRouter wrapper.
 NON_REASONING_PREFIXES = ("meta-llama", "mistralai")
 MAX_TOKEN_REASONING_PREFIXES = ("anthropic", "google")
 MANDATORY_REASONING_PATTERNS = ("deepseek-r1",)
 
 
 def reasoning_block(model, cfg):
-    """The `reasoning` field for one model, or ``None``.
-
-    Sending nothing is NOT equivalent to sending a default: GPT-OSS are reasoning models and the
-    benchmark set this explicitly, so omitting it would leave the provider's own default in force
-    and the anchor check would compare two different reasoning budgets.
-    """
+    """The ``reasoning`` field of a request to ``model``, or ``None`` if none is sent."""
     if not cfg:
         return None
     prefix = model.split("/")[0] if "/" in model else ""
@@ -92,7 +80,7 @@ def reasoning_block(model, cfg):
     if prefix in NON_REASONING_PREFIXES:
         return None
     if any(p in suffix for p in MANDATORY_REASONING_PATTERNS):
-        # Reasoning cannot be turned off or budgeted for these; only `exclude` is honoured.
+        # These models accept only `exclude`.
         return {"exclude": cfg["exclude"]} if cfg.get("exclude") is not None else None
 
     block = {}
@@ -100,7 +88,7 @@ def reasoning_block(model, cfg):
         block["enabled"] = cfg["enabled"]
     has_effort, has_budget = cfg.get("effort") is not None, cfg.get("max_tokens") is not None
     if has_effort and has_budget:
-        # Both configured: the vendor decides which one it actually accepts.
+        # With both set, the vendor decides which one is sent.
         if prefix in MAX_TOKEN_REASONING_PREFIXES:
             block["max_tokens"] = cfg["max_tokens"]
         else:
@@ -115,32 +103,18 @@ def reasoning_block(model, cfg):
 
 
 def call_once(session, model, prompt, cfg, seed, api_key, max_retries=8, backoff=2.0):
-    """One completion, with the benchmark's retry semantics. Returns ``(text, meta)``.
+    """One request with retries. Returns ``(text, meta)``, with ``text`` None if no answer came.
 
-    A call that never succeeds returns ``None`` text rather than raising: the study scores an
-    unanswered cell as wrong (as the benchmark does), and one dead prompt must not abort a run of
-    a hundred thousand.
-
-    Errors carry a ``transient`` flag so the caller knows whether the answer is worth caching. A
-    400 (malformed request) will fail identically forever and is worth remembering; a 429 says only
-    that the provider was busy at that instant, and remembering it would permanently mark a cell
-    unanswered over a momentary condition.
-
-    Retry budget is deliberately long. With `1.5 * 2**(n-1)` over 5 attempts the window was 22s,
-    which a sustained upstream rate limit outlasts trivially -- observed in practice: DeepInfra
-    rate-limited gpt-oss-120b and 199 calls exhausted their retries inside two minutes. At
-    `2.0 * 2**(n-1)` over 8 attempts the window is ~4min, which rides out a typical throttle.
+    ``meta["transient"]`` marks an error that a later run may not meet again (not cached), and
+    ``meta["fatal"]`` an error of the key or account (401, 402, 403) that stops the run. The wait
+    before attempt n + 1 is ``backoff * 2**(n - 1)`` seconds, or the 429's ``retry-after``.
     """
     headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
     payload = build_payload(model, prompt, cfg, seed)
 
     def wait(attempt, retry_after=None):
-        """Backoff with jitter.
-
-        The jitter is not cosmetic. Every worker in the pool hits the same upstream limit at the
-        same moment, and without jitter they all sleep the identical interval and retry in lockstep
-        -- reconverging into the burst that caused the throttle. Randomising spreads them out.
-        """
+        """Sleep for the wait times a random factor between 0.7 and 1.3, so that the workers do
+        not retry at the same moment."""
         base = float(retry_after) if retry_after else backoff * (2 ** (attempt - 1))
         time.sleep(base * random.uniform(0.7, 1.3))
 
@@ -154,10 +128,7 @@ def call_once(session, model, prompt, cfg, seed, api_key, max_retries=8, backoff
             continue
 
         if r.status_code == 200:
-            # A 200 does not guarantee JSON. Observed in practice: a provider returned a 200 whose
-            # body failed to parse, r.json() raised, and the exception propagated out of the thread
-            # pool and killed a 74,346-call run over one bad response. Treated as retryable, since
-            # it is far more likely to be a transient provider hiccup than a permanent condition.
+            # A 200 whose body is not JSON is retried.
             try:
                 body = r.json()
             except ValueError as exc:
@@ -169,8 +140,7 @@ def call_once(session, model, prompt, cfg, seed, api_key, max_retries=8, backoff
             choice = (body.get("choices") or [{}])[0]
             text = (choice.get("message") or {}).get("content")
             return text, {
-                # Recorded per call so the caption can state which provider actually served the
-                # study, rather than which one the config asked for.
+                # The provider that served this call.
                 "provider": body.get("provider"),
                 "finish_reason": choice.get("finish_reason"),
                 "usage": body.get("usage"),
@@ -182,103 +152,62 @@ def call_once(session, model, prompt, cfg, seed, api_key, max_retries=8, backoff
         if 500 <= r.status_code < 600:
             wait(attempt)
             continue
-        # 401 bad key, 402 credit used up, 403 guardrail: a property of the key or the account, so
-        # every later call fails alike. Never cached, so a re-run after the fix asks again, and
-        # fatal, so the run stops instead of marking every remaining cell unanswered.
+        # 401 (key), 402 (credit) and 403 (guardrail) fail every later call alike: not cached, and
+        # the run stops.
         if r.status_code in (401, 402, 403):
             return None, {"error": f"HTTP {r.status_code}: {r.text[:300]}", "transient": True,
                           "fatal": True}
-        # Anything else (400 malformed, 404 unknown model) is a property of the request, not of
-        # the moment: NOT transient, so it is cached and never re-paid for.
+        # Other errors, such as 400 or 404, belong to the request and are cached.
         return None, {"error": f"HTTP {r.status_code}: {r.text[:300]}", "transient": False}
 
     return None, {"error": f"exhausted {max_retries} attempts", "transient": True}
 
 
-#: Vocabulary tokens that survive `skip_special_tokens=True` because the tokenizer does not class
-#: them as special. C2S-Scale-Gemma-2-2B terminates every answer with `<ctrl100>`, so its raw output
-#: is `'\nneural cell.<ctrl100>'`. Left in place, no prediction would ever match a Cell Ontology
-#: term and the whole arm would score at zero -- looking like a model failure rather than a parsing
-#: bug. Found by the smoke test, in 128 of 128 responses.
+#: Tokens in angle brackets that ``skip_special_tokens`` keeps, such as the ``<ctrl100>`` that
+#: C2S-Scale-Gemma-2-2B puts after its answers.
 CONTROL_TOKEN_RE = re.compile(r"<[^>\s]{1,32}>")
 
-#: Raw non-printable bytes, which the angle-bracket pattern above does not catch. C2S-Scale emitted
-#: `'\n\x12monary gland epithelial cell'` -- a DC2 byte fused to the label. Only 2 predictions in
-#: 318,966 carry one and both are truncated beyond rescue, so removing them changes no current
-#: number. It is here because the failure mode is silent and asymmetric: a leading control byte
-#: turns an otherwise exact ontology match into an unmappable string, and that would be scored as a
-#: wrong answer rather than as a parsing artefact.
+#: Control characters other than tab and newline, which can stand before a label in the answers of
+#: the local models.
 CONTROL_CHAR_RE = re.compile(r"[\x00-\x08\x0b-\x1f\x7f]")
 
-#: Header lines that introduce an answer rather than being one. C2S-Scale answers in a multi-cell
-#: transcript format even when asked about a single cell:
-#:
-#:     Cell1:
-#:     retinal rod cell.
-#:     Cell:
-#:     Mueller cell.
-#:
-#: Taking the first non-empty line therefore captured `Cell1:` and threw the actual prediction away.
-#: It cost 761 A3 predictions that do resolve to a Cell Ontology term -- read as the model failing
-#: when it had in fact answered.
-#:
-#: The negative lookahead is essential: a bare `cell` is a LEGITIMATE answer (the ontology root, and
-#: what nonsense is mapped to), so it must never be skipped as a header.
-#: `\s*` after `cell` matters: the model writes both `Cell1:` and `Cell 1:`, and an earlier version
-#: without it let `Cell 1:` and `Cell 2` through as if they were answers.
+#: Lines that introduce an answer, such as ``Cell1:`` or ``Cell 1:``, which the local models write
+#: before a label. A bare ``cell`` (the ontology root) is an answer and does not match.
 ANSWER_HEADER_RE = re.compile(r"^(?!cell$)(cell\s*\w{0,8}\s*:?|:)$", re.I)
 
 
 def extract_prediction(text):
-    """First non-empty line, stripped. Mirrors how the benchmark parses a label out.
-
-    Also removes angle-bracket vocabulary tokens. That is a no-op for the API arms, whose responses
-    never contain them, and essential for the local ones.
-    """
+    """The label of a response: its first non-empty line that is not a header, without control
+    tokens, control characters, quotes and a final period."""
     if not text:
         return ""
     cleaned = CONTROL_CHAR_RE.sub("", CONTROL_TOKEN_RE.sub("", str(text)))
     for line in cleaned.splitlines():
         line = line.strip().strip('"').strip("'").rstrip(".").strip()
         if not line or ANSWER_HEADER_RE.match(line):
-            continue          # a `Cell1:` header introduces the answer; it is not the answer
+            continue          # a header such as `Cell1:`
         return line
     return ""
 
 
 def parse_prompt_file(path):
-    """(dataset, arm, mode, variant, seed) from the materialised filename."""
+    """``(dataset, arm, mode, variant, seed)`` from the name of a prompt file."""
     stem = Path(path).stem
     dataset, arm, mode, variant, seed = stem.split("__")
     return dataset, arm, mode, variant, int(seed.removeprefix("seed"))
 
 
 def _pooled_session(workers):
-    """A Session whose connection pool is at least as large as the thread pool.
+    """A Session whose connection pool holds at least one connection per worker.
 
-    ``requests.Session()`` defaults to ``pool_maxsize=10``. With 48 workers, urllib3 discards every
-    connection beyond the tenth instead of reusing it, and the discarded sockets sit in CLOSE_WAIT
-    until something reaps them. Observed after ~9 hours of a 74,346-call run: 9 sockets in
-    CLOSE_WAIT, one ESTABLISHED, zero throughput, and the process still alive -- a hang that looks
-    exactly like a provider outage while the API is in fact answering normally.
-
-    Sizing the pool to the worker count removes the churn. `pool_block` makes a worker WAIT for a
-    free connection rather than open an unpooled one, so the pool size is a real bound rather than
-    a hint, and the failure mode becomes slowness instead of leaked sockets.
+    ``requests.Session()`` keeps 10 connections per host, and urllib3 discards the connections of
+    further workers instead of reusing them.
     """
     session = requests.Session()
     adapter = requests.adapters.HTTPAdapter(
         pool_connections=max(workers, 10),
         pool_maxsize=max(workers, 10),
-        # pool_block STAYS FALSE. Setting it True was an over-correction that turned a socket leak
-        # into a hard deadlock: `block=True` waits for a free connection with NO timeout, so once
-        # connections go stale in the pool every worker parks forever. Observed on A4 -- 43 sockets
-        # in CLOSE_WAIT, one ESTABLISHED, 8 seconds of CPU across 32 minutes, zero progress.
-        #
-        # Sizing the pool to the worker count is what actually fixes the churn; blocking adds
-        # nothing on top of it, because with maxsize >= workers there is never contention to block
-        # on in the first place. If a connection does go bad, discarding it and opening another is
-        # the behaviour we want.
+        # With pool_block=True a worker would wait for a free connection without a timeout.
         pool_block=False,
     )
     session.mount("https://", adapter)
@@ -287,6 +216,7 @@ def _pooled_session(workers):
 
 
 def run_file(prompt_file, cfg, api_key, out_root, cache_root, dry_run=False):
+    """Answer one prompt file and write its predictions; returns their path, None on a dry run."""
     dataset, arm_name, mode, variant, seed = parse_prompt_file(prompt_file)
     arm = cfg["arms"][arm_name]
     model = arm["model"]
@@ -294,9 +224,7 @@ def run_file(prompt_file, cfg, api_key, out_root, cache_root, dry_run=False):
 
     cache = ResponseCache(Path(cache_root) / f"{arm_name}__{dataset}.jsonl", model, seed=seed)
     hits, _misses = cache.stats(frame["prompt"].tolist())
-    # Reported AFTER deduplication, because rows and calls differ by ~28x on the cluster arm and the
-    # row figure reads as a cost estimate that is wildly wrong. "966 to call" for a file that issues
-    # seven requests is not a rounding error, it is a different quantity.
+    # Calls to make, counted per distinct prompt.
     pending = len({p for p in frame["prompt"] if cache.get(p) is None})
     print(f"[{arm_name} {dataset} {mode} {variant} seed{seed}] "
           f"{len(frame)} rows, {frame['prompt'].nunique()} unique: {hits} rows cached, "
@@ -305,12 +233,9 @@ def run_file(prompt_file, cfg, api_key, out_root, cache_root, dry_run=False):
         return None
 
     session = _pooled_session(int(cfg.get("provider", {}).get("max_workers", 16)))
-    # DEDUPLICATED, and this is not a micro-optimisation. The cluster arm writes one row per eval
-    # cell but every cell in a cluster carries the identical prompt, so a naive pass would issue
-    # ~999 calls where ~30 distinct prompts exist -- a 30x overcharge, since nothing is cached yet
-    # when the list is built. dict.fromkeys preserves order.
+    # Each distinct prompt once, in file order; the cells of one cluster share a prompt.
     todo = list(dict.fromkeys(p for p in frame["prompt"] if cache.get(p) is None))
-    transient = 0  # defined here, not inside the branch: a fully-cached file skips the pool
+    transient = 0
     if todo:
         workers = int(cfg.get("provider", {}).get("max_workers", 16))
         with ThreadPoolExecutor(max_workers=workers) as pool:
@@ -319,25 +244,16 @@ def run_file(prompt_file, cfg, api_key, out_root, cache_root, dry_run=False):
             done = 0
             for fut in as_completed(futures):
                 prompt = futures[fut]
-                # Second guard, deliberately belt-and-braces with the one inside call_once. Any
-                # exception escaping a worker would otherwise re-raise here and abort the entire
-                # run -- which is exactly what happened once. A prompt that cannot be answered is
-                # recorded as an error and scored as wrong, like any other unanswered cell.
+                # An exception in a worker is recorded as the error of its prompt.
                 try:
                     text, meta = fut.result()
-                except Exception as exc:  # noqa: BLE001 - one bad call must not kill the run
+                except Exception as exc:  # noqa: BLE001
                     text, meta = None, {"error": f"worker raised {type(exc).__name__}: {exc}"}
                 if meta.get("fatal"):
                     pool.shutdown(wait=False, cancel_futures=True)
                     raise SystemExit(f"{arm_name} {dataset} {mode} seed{seed}: {meta['error']}. "
                                      f"Stopped; nothing of it was cached and no file was written.")
-                # Permanent failures are cached (a malformed request fails identically forever, so
-                # remembering it saves paying twice). TRANSIENT ones are NOT: a 429 says the
-                # provider was busy at that instant, and caching it would permanently mark a cell
-                # unanswered over a momentary condition. That is not hypothetical -- a DeepInfra
-                # throttle wrote 199 cached failures that no rerun would ever have retried, and
-                # they would have scored as wrong in the final numbers without ever showing up as
-                # a run failure.
+                # Transient failures are not cached, so that a rerun asks again.
                 if meta.get("transient"):
                     transient += 1
                 else:
@@ -353,34 +269,21 @@ def run_file(prompt_file, cfg, api_key, out_root, cache_root, dry_run=False):
            "predictions.csv")
     write_atomic(out, frame[["cell_id", "true_labels", "predicted_labels"]].to_csv(index=False))
 
-    # Written for the API arms too, in the same shape run_local.py uses, so the answer-format rate
-    # is comparable ACROSS arms rather than existing only for the local ones. Without it the base
-    # model's 39.5% prose rate has no baseline to be judged against, and "A2 scores lower" cannot be
-    # separated from "A2 does not answer in the required format".
+    # Answer-format counts, as run_local.py writes them.
     long_answers = int((frame["predicted_labels"].astype(str).str.split().str.len() > 8).sum())
     stats = {"arm": arm_name, "dataset": dataset, "mode": mode, "variant": variant, "seed": seed,
              "n": len(frame), "empty": unanswered, "over_8_words": long_answers}
     write_atomic(out.parent / "parse_stats.json", json.dumps(stats, indent=2))
     print(f"    -> {out}  ({unanswered} unanswered, scored as wrong)")
-    # Loud, because the file on disk looks complete either way. Transient failures were left out of
-    # the cache on purpose, so simply re-running this arm fills them in and rewrites the file --
-    # but nothing else will tell you it needs doing.
+    # The file has empty answers for these prompts until a rerun fills them in.
     if transient:
-        print(f"    !! {transient} call(s) failed transiently and were NOT cached. This file is "
-              f"INCOMPLETE -- re-run this arm to fill them in before scoring.", file=sys.stderr)
+        print(f"    {transient} call(s) failed transiently and were not cached; run this arm "
+              f"again before scoring to fill them in.", file=sys.stderr)
     return out
 
 
 def provider_mix(root, cfg, arms, prompts_dir, cache_root):
-    """Report which provider actually served each (arm, mode).
-
-    Routing is unrestricted (see config.yml), so quantization varies within an arm and is a live
-    confound on effects this study calls small. The confound cannot be removed after the fact, but
-    it can be measured: if one mode was served mostly at fp4 and another mostly at bf16, a mode
-    difference is partly a hardware difference and the numbers must not be read at face value.
-
-    An even split across modes is the reassuring outcome; a lopsided one is a finding in itself.
-    """
+    """Print the share of cached answers that each provider served, per arm and mode."""
     counts = {}
     for f in sorted(prompts_dir.glob("*.csv")):
         dataset, arm_name, mode, variant, seed = parse_prompt_file(f)
@@ -407,8 +310,8 @@ def provider_mix(root, cfg, arms, prompts_dir, cache_root):
         share = ", ".join(f"{p} {100 * n / total:.0f}%"
                           for p, n in sorted(by_prov.items(), key=lambda kv: -kv[1]))
         print(f"{arm_name:20s} {mode:5s} {total:7d}  {share}")
-    print("\nRead this before using any number: modes served by different providers are not "
-          "strictly comparable,\nbecause the endpoints differ in quantization (fp4/fp8/bf16/fp16).")
+    print("\nProviders can serve a model at different quantizations, so modes served by "
+          "different providers\nare not strictly comparable.")
 
 
 def main(argv=None):
@@ -434,10 +337,8 @@ def main(argv=None):
         raise SystemExit("set OPENROUTER_API_KEY (or API_KEY) in the environment")
 
     if not cfg.get("provider", {}).get("only"):
-        # Expected, not accidental: the pin was dropped by decision after DeepInfra throttled the
-        # run. Still printed every time, because it changes how the results may be read.
-        print("NOTE: provider routing is unrestricted, so quantization varies within an arm and is\n"
-              "      an uncontrolled confound. Run --provider-mix before using any number.",
+        print("provider routing is unrestricted (provider.only is empty), so the quantization can\n"
+              "differ between calls of one arm; --provider-mix shows which providers answered.",
               file=sys.stderr)
 
     arms = args.arms or cfg["execution"]["hosts"][args.host]

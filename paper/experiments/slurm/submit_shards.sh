@@ -1,14 +1,8 @@
 #!/usr/bin/env bash
-# Submit (arm, dataset) shards as INDEPENDENT jobs, never as a job array.
-#
-# Why not an array: the site prolog cannot parse one and drains the node when it tries. The full
-# explanation is at the top of run_local_arms.sbatch; the short version is that `scontrol show job`
-# on an array's base id returns one record per task, the prolog's `declare -i` chokes on the
-# resulting multi-line value, and its `set -e` turns that into a node-draining non-zero exit.
-#
-# Concurrency is enforced here instead of by %N: at most MAX_CONCURRENT jobs are in flight, so we
-# stay within the documented 4-GPU per-user limit. The prolog itself also requeues anything over
-# the limit with a 10-minute delay, but relying on that would mean provoking the failure path.
+# Submit one SLURM job (run_local_arms.sbatch) per dataset for one local arm on the remote host
+# (ssh alias HOST), as single jobs rather than a job array. At most MAX_CONCURRENT of the user's
+# jobs are queued or running at once; the script waits for a free slot. It stops if the GPU node
+# is drained or down. --dry-run checks the node and lists the jobs without submitting them.
 #
 # Usage:
 #   slurm/submit_shards.sh A3_scllm_percell human_pancreas
@@ -20,19 +14,8 @@ HOST="${HOST:-gpu}"
 REMOTE_DIR="${REMOTE_DIR:-context_ablation}"
 SSH_OPTS="${SSH_OPTS:-}"            # e.g. "-J <jump-host>", as in ship_to_gpu.sh
 STUDY="${STUDY:-ablation}"          # the study tree run_local.py reads and writes
-# 3, not the permitted 4, deliberately. The documented ceiling is 4 GPUs per user and the prolog
-# approves at exactly "3 + 1 = 4 / 4", so 4 is legal -- but it is also the boundary, and the prolog
-# evaluates that boundary by counting a user's RUNNING jobs at launch time. Sitting one below it
-# means a miscount, a scheduling race, or another of our own jobs lingering can never push the
-# check over the edge. Empirically 3 concurrent shards ran to completion cleanly (24966_4/5/6)
-# while the 4th is where the trouble started -- unrelated to concurrency in that instance, but
-# there is no reason to court the boundary for a run that takes ~10 minutes either way.
-#
-# Cost is one extra scheduling wave for a 4-dataset arm; wall clock goes from ~10 to ~20 minutes.
-# Raise it with MAX_CONCURRENT=4 if that ever matters.
+# Jobs of the user queued or running at once, one below a per-user limit of four GPUs.
 MAX_CONCURRENT="${MAX_CONCURRENT:-3}"
-# --dry-run exists because "just check the node is usable" and "submit four GPU jobs" were the same
-# command, and the difference only showed up after the jobs were already queued.
 DRY_RUN=0
 if [ "${1:-}" = "--dry-run" ]; then DRY_RUN=1; shift; fi
 
@@ -41,9 +24,7 @@ shift
 DATASETS=("$@")
 [ ${#DATASETS[@]} -eq 0 ] && DATASETS=(HFRA HIHA Zeisel human_pancreas)
 
-# Batch size comes from the arm's own definition in config.yml, so it cannot be forgotten at submit
-# time. The 27B arms declare 32; anything without a declaration takes the 2B-calibrated 128. An
-# explicit BATCH=... in the environment still wins, for one-off tuning.
+# Batch size: BATCH if set, else the arm's batch_size in config.yml, else 128.
 CONFIG_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 if [ -z "${BATCH:-}" ]; then
   BATCH=$(python3 - "$CONFIG_DIR/config.yml" "$ARM" <<'PY'
@@ -70,8 +51,7 @@ case "$state" in
 esac
 
 for ds in "${DATASETS[@]}"; do
-  # Wait for a free slot rather than submitting everything at once. Queued jobs would be fine, but
-  # holding submission also keeps the prolog's own limit path from ever being exercised.
+  # Wait for a free slot.
   while true; do
     n=$(ssh $SSH_OPTS "$HOST" "squeue -u \$USER -h -o '%i' | wc -l" | tr -d ' ')
     [ "${n:-0}" -lt "$MAX_CONCURRENT" ] && break
@@ -83,10 +63,7 @@ for ds in "${DATASETS[@]}"; do
     continue
   fi
   echo "==> submitting $ARM / $ds (batch $BATCH)"
-  # BATCH must be named explicitly in --export. `--export=ALL` propagates the environment of the
-  # process that runs sbatch, which is the REMOTE shell -- a variable set on the laptop never
-  # crosses the ssh boundary. Before this, `BATCH=32 submit_shards.sh` looked like it worked and
-  # silently ran at the 128 default, which for a 27B model overflows the card.
+  # sbatch runs in the remote shell, so local variables reach the job only through --export.
   ssh $SSH_OPTS "$HOST" "cd $REMOTE_DIR && mkdir -p logs && sbatch --export=ALL,ARM=$ARM,DATASET=$ds,BATCH=$BATCH,STUDY=$STUDY slurm/run_local_arms.sbatch"
 done
 

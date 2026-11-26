@@ -1,12 +1,13 @@
 #!/usr/bin/env python
-"""Map and score the predictions of a study with the benchmark's scripts
-(``bin/map_predictions.py``, ``bin/evaluate.py``), one folder per run under ``<study>/scored``.
+"""Map and score the predictions of a study with the benchmark's scripts.
 
-Runs that are already scored are skipped. The mapping table is the study's own
-(``scoring.cache_dir`` in config.yml), so answers that are new in a study never enter the
-benchmark's table.
+Runs ``bin/map_predictions.py`` and ``bin/evaluate.py`` on every predictions.csv under
+``<study tree>/predictions/`` and writes one folder per run to ``<study tree>/scored/``. A run whose
+result JSON exists is skipped. The mapping table is the study's own copy in ``scoring.cache_dir``
+(seeded with the benchmark's ``resources/cell_type_ontology_mappings.csv``), so answers that are
+new in a study enter only that copy, as unreviewed rows (see ``review_mappings.py``).
 
-    python src/score.py --study ablation
+    python src/score.py --study ablation --python <python of the evaluation environment>
 """
 from __future__ import annotations
 

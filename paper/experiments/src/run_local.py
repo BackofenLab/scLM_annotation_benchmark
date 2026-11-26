@@ -1,13 +1,15 @@
 #!/usr/bin/env python
-"""Run the local-weight arms (A2 base Gemma, A3 C2S-Scale) over materialised prompts.
+"""Answer the prompt files of the local arms with Hugging Face checkpoints, on a GPU if present.
 
-Consumes the same prompt files as the OpenRouter runner, so this machine needs neither
-``cell2sentence`` nor ``scanpy`` nor the 1 GB context h5ads -- only torch, transformers and the two
-checkpoints. See ``execution`` in config.yml for why prompts are built once elsewhere.
+Reads ``<study tree>/prompts/`` like ``run_openrouter.py``; needs torch, transformers and the
+checkpoints (``env-local.yml``), but neither cell2sentence nor scanpy. Arms with ``decoding:
+greedy`` decode greedily, the others sample with the file's seed. Answers go to the response cache
+as each batch finishes, so a stopped job resumes; greedy answers are cached without the seed
+(``<arm>__<dataset>__greedy.jsonl``). Writes ``predictions.csv`` and ``parse_stats.json`` as
+``run_openrouter.py`` does.
 
-Caching is per prompt via ``runner_cache``, exactly as for the API arms. It matters here for a
-different reason: these are ~144,000 local generations, so a job killed by a scheduler wall-clock
-limit must resume rather than restart.
+    python src/run_local.py --arms A3_scllm_percell [--datasets ...] [--study lists]
+    python src/run_local.py --arms A3_scllm_percell --max-files 2 --limit 64    # smoke test
 """
 from __future__ import annotations
 
@@ -31,30 +33,26 @@ def load_config(path):
 
 
 def _base_model_from_card(repo):
-    """`base_model:` from a HuggingFace model card's YAML frontmatter, or None.
-
-    Read as plain text rather than parsed as YAML: the frontmatter of a real model card often
-    contains tags and nested blocks that a strict parser trips over, and one field is all that is
-    needed here. Returns the first entry if the field is a list.
-    """
+    """The ``base_model`` of a Hugging Face model card's front matter (its first entry if it is a
+    list), or None. The front matter is read line by line, not parsed as YAML."""
     try:
         from huggingface_hub import hf_hub_download
         card = Path(hf_hub_download(repo, "README.md", repo_type="model")).read_text()
-    except Exception as exc:  # noqa: BLE001 - network, auth, missing card: all just mean "unknown"
+    except Exception as exc:  # noqa: BLE001
         print(f"  [verify] could not read {repo} model card ({exc})", file=sys.stderr)
         return None
     lines = card.splitlines()
     if not lines or lines[0].strip() != "---":
         return None
     for i, line in enumerate(lines[1:], start=1):
-        if line.strip() == "---":       # closing fence: stop before the prose body
+        if line.strip() == "---":       # end of the front matter
             break
         stripped = line.strip()
         if stripped.startswith("base_model:"):
             value = stripped.split(":", 1)[1].strip().strip("[]'\"")
             if value:                   # `base_model: google/gemma-2-2b`
                 return value.split(",")[0].strip()
-            # or a YAML list:  base_model:\n  - google/gemma-2-2b
+            # or a list on the next lines: `- google/gemma-2-2b`
             for nxt in lines[i + 1:i + 4]:
                 item = nxt.strip().lstrip("-").strip().strip("'\"")
                 if item:
@@ -64,28 +62,16 @@ def _base_model_from_card(repo):
 
 
 def verify_base_model(arm, cfg):
-    """Check that the base arm really is what the adapted model was fine-tuned from.
+    """Stop if the model named by ``verify_base_of`` has another base model than ``arm["model"]``.
 
-    This resolves the study's one genuinely open design decision. A2 is only a CONTROL if it shares
-    C2S-Scale's starting point: if C2S-Scale-2B was fine-tuned from ``gemma-2-2b`` and we run
-    ``gemma-2-2b-it``, the comparison measures instruction tuning as much as single-cell adaptation.
-
-    The parent is read from the adapted model's MODEL CARD (`base_model:` in the YAML frontmatter),
-    not from its config. An earlier version trusted ``config._name_or_path`` and it produced a false
-    mismatch that killed all four A2 jobs: transformers sets that field to the repo it LOADED FROM,
-    so C2S-Scale reports itself as its own base. It is a provenance field for the load, never for
-    the fine-tuning ancestry. A self-reference therefore carries no information and must not be read
-    as disagreement -- it is ignored below rather than treated as a mismatch.
-
-    A genuine mismatch still stops the run, because silently producing the wrong control is worse
-    than not running.
+    The base model comes from the adapted model's card (``base_model``), else from its config's
+    ``_name_or_path`` unless that names the adapted model itself. Without either, a warning is
+    printed and the run goes on.
     """
     target = arm.get("verify_base_of")
     if not target:
         return
 
-    # Authoritative source. Verified by hand 2026-08-12: C2S-Scale-Gemma-2-2B declares
-    # `base_model: google/gemma-2-2b`, i.e. the BASE model, not the instruction-tuned `-it`.
     parent = _base_model_from_card(target)
     if parent:
         print(f"  [verify] {target} model card declares base_model: {parent}")
@@ -94,18 +80,18 @@ def verify_base_model(arm, cfg):
         try:
             adapted = AutoConfig.from_pretrained(target)
         except Exception as exc:  # network, auth, gated repo
-            print(f"  [verify] could not read {target} ({exc}); base-model check SKIPPED. "
-                  f"Resolve before claiming A2 as a control.", file=sys.stderr)
+            print(f"  [verify] could not read {target} ({exc}); base-model check skipped. "
+                  f"Check the base model by hand.", file=sys.stderr)
             return
         candidate = getattr(adapted, "_name_or_path", None)
-        # Self-reference means "loaded from here", not "descended from here".
+        # A self-reference names the repository the config was loaded from, not a base model.
         if candidate and Path(str(candidate)).name.lower() != Path(target).name.lower():
             parent = candidate
             print(f"  [verify] no base_model in the model card; falling back to "
                   f"config._name_or_path: {parent}", file=sys.stderr)
     if not parent:
-        print(f"  [verify] {target} declares no base model in config OR model card; cannot confirm "
-              f"that {arm['model']} is its base. Check by hand before claiming a control.",
+        print(f"  [verify] {target} names no base model in its card or config; cannot confirm "
+              f"that {arm['model']} is its base. Check by hand.",
               file=sys.stderr)
         return
 
@@ -119,13 +105,9 @@ def verify_base_model(arm, cfg):
 
 
 def load_model(model_id, dtype="bfloat16", device=None):
-    """Load weights and tokenizer, narrating each step.
+    """Load model and tokenizer, printing the elapsed time before each step.
 
-    The narration is not decoration. At 27B every step here takes minutes, and a silent minute is
-    indistinguishable from a hang -- which cost an hour of wall-clock on 2026-08-13 when a stall
-    after the weights landed could not be located because the function printed nothing until it
-    returned. Each stage announces itself with a timestamp BEFORE it starts, so the last line in the
-    log names the operation that is currently blocking.
+    Returns ``(model, tokenizer, device)``; the device is CUDA, else MPS, else the CPU.
     """
     import time
 
@@ -143,26 +125,15 @@ def load_model(model_id, dtype="bfloat16", device=None):
     step(f"device={device}; loading tokenizer for {model_id}")
     tokenizer = AutoTokenizer.from_pretrained(model_id)
     if tokenizer.pad_token is None:
-        # Needed for left-padded batching; Gemma ships no pad token.
+        # Batches are padded on the left, with the EOS token if there is no pad token.
         tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "left"
     step("tokenizer ready; calling from_pretrained (weights -> GPU)")
-    # Two flags, both required at 27B, for different reasons.
-    #
-    # low_cpu_mem_usage: a job gets 62 GB of CPU RAM (DefMemPerGPU=62000) and the plain path
-    # materialises the whole checkpoint in RAM first. gemma-2-27b ships FP32 weights totalling
-    # 101 GB, so without this it is OOM-killed on startup, surfacing as SLURM's "Kill task failed".
-    #
-    # device_map: loads each shard STRAIGHT TO THE GPU instead of building the model in host memory
-    # and moving it with `.to(device)` afterwards. That distinction is what makes 27B viable here.
-    # The weights live on /scratch/global, which is NFS, and safetensors mmaps its files -- so the
-    # `.to()` pass walks the whole 51 GB as random page faults over the network. Measured
-    # 2026-08-13: three shards sat in uninterruptible D state for over an hour, 43 s of CPU between
-    # them, GPU memory frozen at 24.8 GB of an expected 54 GB, and no batch ever started. It reads
-    # as a hang, not as slow I/O. device_map turns that into a sequential shard-by-shard read.
+    # low_cpu_mem_usage avoids a full copy of the checkpoint in host memory; on CUDA, device_map
+    # loads the shards straight to the GPU instead of moving the model there afterwards.
     kwargs = {"torch_dtype": getattr(torch, dtype), "low_cpu_mem_usage": True}
     if device == "cuda":
-        kwargs["device_map"] = {"": 0}      # the single GPU this job was allocated
+        kwargs["device_map"] = {"": 0}      # all weights on GPU 0
     model = AutoModelForCausalLM.from_pretrained(model_id, **kwargs)
     step("from_pretrained returned")
     if device != "cuda":
@@ -171,11 +142,6 @@ def load_model(model_id, dtype="bfloat16", device=None):
     model = model.eval()
     step("eval() done")
 
-    # NO `sum(p.numel() for p in model.parameters())` here. It was added purely to print a
-    # parameter count and is the prime suspect for the 2026-08-13 stall: under `device_map`,
-    # accelerate wraps the model in dispatch hooks, and walking every parameter can interact with
-    # them in ways a plainly-placed model does not. A diagnostic that may hang the run is worse than
-    # no diagnostic. Memory allocated on the device says the same thing and costs one CUDA call.
     if device == "cuda":
         step(f"weights occupy {torch.cuda.memory_allocated() / 2**30:.1f} GB of "
              f"{torch.cuda.get_device_properties(0).total_memory / 2**30:.0f} GB")
@@ -185,19 +151,10 @@ def load_model(model_id, dtype="bfloat16", device=None):
 
 def generate(model, tokenizer, device, prompts, seed, greedy=False, max_new_tokens=20,
              batch_size=16, report_every=5):
-    """Greedy decoding, or sampling seeded per repeat (the arm's ``decoding`` in config.yml), of at
-    most 20 new tokens, the limit of the benchmark's C2S-Scale wrapper.
+    """Yield ``(prompt, answer)`` batch by batch: greedy decoding or sampling seeded with ``seed``,
+    at most ``max_new_tokens`` new tokens (20, as in the benchmark's C2S-Scale wrapper).
 
-    Progress is reported as a rate and an ETA rather than a bare counter. On a GPU job the only
-    question that matters mid-run is "will this finish inside the walltime", and a raw
-    `256/21000` cannot answer it. Peak VRAM is reported alongside because it is what says whether
-    --batch-size can be raised: a 2B model in bf16 leaves most of a 96 GB card unused, and the
-    only honest way to size the batch is to measure the first one.
-
-    A GENERATOR, yielding ``(prompt, text)`` as each batch lands rather than returning the whole
-    file at the end. That lets the caller persist every batch immediately. Returning one list meant
-    a job killed at the walltime lost every generation for that file -- up to 1,000 prompts of GPU
-    time -- which is exactly the file-granularity flaw the response cache exists to avoid.
+    Prints the progress with rate, remaining time and, on CUDA, peak GPU memory.
     """
     import time
 
@@ -217,7 +174,7 @@ def generate(model, tokenizer, device, prompts, seed, greedy=False, max_new_toke
             ids = model.generate(**enc, max_new_tokens=max_new_tokens, do_sample=not greedy,
                                  pad_token_id=tokenizer.pad_token_id)
         for prompt, row, prompt_ids in zip(batch, ids, enc["input_ids"]):
-            # Only the continuation, never the echoed prompt.
+            # Only the new tokens, without the prompt.
             yield prompt, tokenizer.decode(row[len(prompt_ids):], skip_special_tokens=True)
         done += len(batch)
 
@@ -242,15 +199,15 @@ def generate(model, tokenizer, device, prompts, seed, greedy=False, max_new_toke
 
 def run_file(prompt_file, cfg, out_root, cache_root, model_bundle, dry_run=False, limit=None,
              batch_size=None):
+    """Answer one prompt file and write its predictions; returns their path, None on a dry run."""
     dataset, arm_name, mode, variant, seed = parse_prompt_file(prompt_file)
     arm = cfg["arms"][arm_name]
     frame = pd.read_csv(prompt_file)
     if limit:
         frame = frame.head(limit)
 
-    # Greedy answers live in a cache of their own, keyed without the seed: the seed changes nothing
-    # in a greedy request, so a prompt repeated across seeds is generated once, and a sampled answer
-    # can never be served for a greedy one.
+    # A greedy answer does not depend on the seed, so greedy answers have a cache file of their
+    # own, keyed without the seed.
     decoding = arm.get("decoding", "sample")
     greedy = decoding == "greedy"
     suffix = "__greedy" if greedy else ""
@@ -262,28 +219,20 @@ def run_file(prompt_file, cfg, out_root, cache_root, model_bundle, dry_run=False
     if dry_run:
         return None
 
-    # Deduplicated for the same reason the API runner is: identical prompts recur (every cell in
-    # M5 shares one), and generating them twice wastes GPU time as surely as it wastes money.
+    # Each distinct prompt once.
     todo = list(dict.fromkeys(p for p in frame["prompt"] if cache.get(p) is None))
     if todo:
-        # Resolved only when there is something to generate. model_bundle is a CALLABLE, not a
-        # loaded model: a fully cached shard then needs no checkpoint at all, so re-deriving
-        # predictions after a parser change costs seconds on any machine instead of a 5 GB load
-        # on a GPU. That mattered immediately -- the <ctrl100> fix had to be applied to 128
-        # already-generated responses.
+        # model_bundle loads the model on first use, so a fully cached file needs no checkpoint.
         model, tokenizer, device = model_bundle()
         kw = {"batch_size": batch_size} if batch_size else {}
         print(f"    starting generation: {len(todo)} prompts, batch {batch_size or 16}", flush=True)
-        # Written as each batch arrives, and ResponseCache fsyncs every entry, so an interrupted
-        # job resumes from the last completed BATCH rather than restarting the file.
+        # Cached as each batch arrives, so an interrupted job resumes after its last batch.
         for prompt, text in generate(model, tokenizer, device, todo, seed, greedy=greedy, **kw):
             cache.put(prompt, text)
 
     frame["predicted_labels"] = [extract_prediction(cache.get(p)) for p in frame["prompt"]]
 
-    # Base models are not instruction-tuned to emit a bare label, so they answer in prose. Report
-    # the rate: a low score that is really a parsing failure would otherwise be read as the base
-    # model being biologically worse, inflating the apparent value of fine-tuning.
+    # Answer-format counts for parse_stats.json: empty answers and answers of more than 8 words.
     unparseable = int((frame["predicted_labels"] == "").sum())
     long_answers = int((frame["predicted_labels"].str.split().str.len() > 8).sum())
 
@@ -324,15 +273,12 @@ def main(argv=None):
         raise SystemExit(f"no prompts at {prompts_dir}; copy results/prompts/ from the host that "
                          f"ran sentences.py --materialize")
 
-    # A truncated run must not write where a complete one would. Sharing the tree would leave a
-    # 32-row predictions.csv sitting exactly where score.py expects 1,000, and a cache whose
-    # entries are real but whose coverage is not -- the later full run would look "already done".
-    # Diverting both is what makes the smoke test safe to throw away.
+    # A smoke test keeps its predictions and cache apart from those of a full run.
     if args.limit or args.max_files:
         out_root = tree / "smoke" / "predictions"
         cache_root = tree / "smoke" / "cache"
-        print(f"SMOKE TEST: limit={args.limit} max_files={args.max_files}\n"
-              f"  writing to {out_root} -- delete this tree before the real run", file=sys.stderr)
+        print(f"smoke test: limit={args.limit} max_files={args.max_files}\n"
+              f"  writing to {out_root}; delete this folder before the full run", file=sys.stderr)
     else:
         out_root = tree / "predictions"
         cache_root = tree / "cache"
@@ -363,9 +309,7 @@ def main(argv=None):
                 if not cached_bundle:
                     cached_bundle.append(load_model(_arm["model"]))
                 return cached_bundle[0]
-        # Shard-level progress. A shard is 21 files, so the per-batch bar inside generate() only
-        # ever shows one twenty-first of the job; without this line there is no way to tell from
-        # the log whether a shard is nearly done or barely started.
+        # Progress over the files of this arm.
         t_arm = time.time()
         for i, f in enumerate(files, start=1):
             el = time.time() - t_arm

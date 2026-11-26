@@ -1,17 +1,13 @@
 #!/usr/bin/env bash
-# Remove everything this study created on the GPU node, so the results live only in the repo.
-#
-# Deletes exactly four paths, all of which this study created:
-#   ~/context_ablation             code, prompts, results
+# Remove what ship_to_gpu.sh and the jobs created on the remote host (ssh alias HOST):
+#   ~/$REMOTE_DIR                  code, prompts and results
 #   /scratch/global/$USER/hf       downloaded model weights
-#   the conda env                  sc_lfm_context_ablation_local
-#   ~/miniforge3                   ONLY with --purge-conda, and only if we installed it
-#
-# It does NOT touch ~/sc_language_foundation_models or anything else that predates this work.
-#
-# Refuses to run while results are still only on the remote: it verifies that predictions have
-# been fetched first, because the whole point of the exercise is that they end up here, and a
-# cleanup that runs one step early destroys hours of GPU time.
+#   conda env                      sc_lfm_context_ablation_local
+#   ~/miniforge3                   only with --purge-conda
+# Stops if the remote results/predictions/ holds more prediction files than there are local A2
+# and A3 prediction files, or if a ctxabl job is still queued or running. Asks before deleting
+# unless --yes is given.
+#     slurm/cleanup_gpu.sh [--purge-conda] [--yes]
 set -euo pipefail
 
 HOST="${HOST:-gpu}"

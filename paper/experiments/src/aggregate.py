@@ -1,10 +1,12 @@
 #!/usr/bin/env python
-"""Collect the scored runs into one tidy table for the figure.
+"""Collect the scored runs of the context ablation into ``results/context_ablation.csv``.
 
-One row per (arm, dataset, mode, gene variant, seed) with the metrics ``evaluate.py`` emitted, so
-the repeats stay as individual rows rather than being averaged here. That is deliberate: the
-manuscript's convention is to draw the three repeats as points rather than as an error bar, so
-collapsing them at this stage would throw away exactly what the figure shows.
+One row per arm, dataset, mode, gene variant and seed, with the metrics of ``bin/evaluate.py``,
+the answer-format rates of ``parse_stats.json``, the sentence statistics of ``sentences.py`` and,
+for the cluster arms, the number of clusters among the eval cells. Prints a check of A1 at M2
+against the benchmark's balanced accuracy of gpt-oss-120b with the list.
+
+    python src/aggregate.py
 """
 from __future__ import annotations
 
@@ -15,15 +17,12 @@ from pathlib import Path
 import pandas as pd
 import yaml
 
-# Metrics that sit at the top level of the "true_labels" block.
+# Metrics at the top level of the "metrics" block of evaluate.py's JSON.
 METRICS = ("balanced_accuracy", "accuracy", "agreement_score", "lin_avg_similarity",
            "rada_avg_similarity", "reviewed_fraction", "non_cl_ratio", "n_unique_pred_raw",
            "n_unique_pred_mapped")
 
-# The F1 family is NOT top level: evaluate.py leaves it inside the sklearn classification report,
-# under summary_dict["macro avg"]["f1-score"]. Listing them in METRICS would have yielded a column
-# of Nones. Derived the same way bin/aggregate.py does (see its lines 227-251) so this study's
-# macro F1 means exactly what the main table's does.
+# Precision, recall and F1 from the classification report (summary_dict), as in bin/aggregate.py.
 REPORT_METRICS = {
     "macro_precision": ("macro avg", "precision"),
     "macro_recall": ("macro avg", "recall"),
@@ -51,14 +50,8 @@ def collect(root, cfg):
         row = {"arm": arm, "dataset": dataset, "mode": mode, "variant": variant,
                "seed": int(seed.removeprefix("seed"))}
 
-        # Answer-format rates, from the sidecar the runners write next to predictions.csv.
-        #
-        # These belong in the results table, not just in per-file JSON, because for a BASE model
-        # they are load-bearing: A2 (gemma-2-2b) returns prose rather than a bare label in 39.5% of
-        # answers and echoes the prompt placeholder ("<cell type>", "<YOUR ANSWER HERE>") in another
-        # 1.0%, where A3 does neither. Any A3-minus-A2 gap is therefore part biology and part
-        # formatting, and reporting the score without these numbers would credit fine-tuning for
-        # both. Carried for every arm so the comparison has a baseline.
+        # Answer-format rates from parse_stats.json, which the runners write next to
+        # predictions.csv.
         run_dir = (tree / "predictions" / arm / dataset / mode / variant /
                    f"seed{int(seed.removeprefix('seed'))}")
         ps = None
@@ -69,11 +62,7 @@ def collect(root, cfg):
             except json.JSONDecodeError:
                 print(f"  [warn] unreadable {stats_file}")
         elif (run_dir / "predictions.csv").exists():
-            # Derived on the spot rather than demanding a re-run. These rates are a pure function of
-            # predicted_labels, so recomputing them is exact -- not an estimate standing in for the
-            # real thing. Needed because the sidecar was added after most files were written, and
-            # regenerating 74,346 API calls to obtain a statistic already implied by the output on
-            # disk would be indefensible.
+            # Without parse_stats.json, the same rates from predictions.csv.
             pred = pd.read_csv(run_dir / "predictions.csv")["predicted_labels"]
             text = pred.astype(str)
             ps = {"n": len(pred),
@@ -95,23 +84,16 @@ def collect(root, cfg):
         return pd.DataFrame()
     frame = pd.DataFrame(rows)
 
-    # Sentence-length diagnostics travel with the results: the HVG arm truncates on some datasets
-    # (49% of HFRA cells at the 5,000-gene pool), so gene choice and sentence length are partly
-    # confounded and the rate must be readable next to the score rather than looked up separately.
+    # Sentence statistics of sentences.py, per dataset and gene variant.
     stats = tree / "sentence_stats.csv"
     if stats.exists():
         frame = frame.merge(pd.read_csv(stats)[["dataset", "variant", "median_sentence_len",
                                                 "frac_below_cap"]],
                             on=["dataset", "variant"], how="left")
 
-    # Cluster arms: how many calls actually bought the score, which is half of the per-cell vs
-    # per-cluster result.
-    #
-    # Merged on dataset AND resolution, never on dataset alone. cluster_summary.csv holds one row
-    # per (dataset, resolution), so a dataset-only merge silently DOUBLES every row in the table --
-    # which is exactly what it did until the filename audit surfaced 6 rows where 3 were expected.
-    # The resolution lives in the `variant` field for cluster runs ("res0.5"); per-cell rows have
-    # no resolution and are left unmatched.
+    # Clusters among the eval cells, for the cluster arms. cluster_summary.csv has one row per
+    # dataset and resolution; a cluster run's variant is its resolution ("res0.5"), and per-cell
+    # rows stay unmatched.
     summary = tree / "clusters" / "cluster_summary.csv"
     if summary.exists():
         frame["resolution"] = pd.to_numeric(
@@ -144,25 +126,20 @@ def main(argv=None):
     print(f"  arms={frame['arm'].nunique()} datasets={frame['dataset'].nunique()} "
           f"modes={sorted(frame['mode'].unique())} variants={sorted(frame['variant'].unique())}")
 
-    # The comparability check the whole study rests on, surfaced automatically rather than left to
-    # be remembered: A1 at M2 with expression-ranked sentences should reproduce the benchmark's
-    # published gpt-oss-120b_unblind balanced accuracy of 0.554.
+    # A1 at M2 with expression-ranked sentences against 0.554, the benchmark's mean balanced
+    # accuracy of gpt-oss-120b with the list on the four 1,000-cell test sets.
     anchor = frame[(frame.arm == "A1_llm_percell") & (frame["mode"] == "M2")
                    & (frame.variant == "expression_ranked")]
     if not anchor.empty:
         mean = anchor.groupby("seed")["balanced_accuracy"].mean().mean()
         delta = mean - 0.554
-        # Tolerance is 0.06, not 0.03, and deliberately loose. The benchmark's 120B number came
-        # almost entirely from DekaLLM (3,971 of 3,997 requests), which OpenRouter no longer
-        # serves, so this study runs on DeepInfra instead. A difference here can be the provider
-        # rather than a defect, and a tight band would flag that as a failure. It still catches a
-        # gross error, which is what the check is for.
+        # The tolerance of 0.06 allows for the providers, which differ between the two runs.
         verdict = ("consistent (within provider variation)" if abs(delta) < 0.06
                    else "OUT OF RANGE -- investigate before using any number")
         print(f"\nanchor check: A1/M2 balanced accuracy {mean:.3f} vs benchmark 0.554 "
               f"(delta {delta:+.3f}) -> {verdict}")
-        print("  NB the benchmark's provider for this model (DekaLLM) is no longer available, so "
-              "this is a consistency check, not an exact reproduction.")
+        print("  Different providers served the two runs, so this is a consistency check, not an "
+              "exact reproduction.")
     return 0
 
 

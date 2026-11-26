@@ -1,15 +1,15 @@
 #!/usr/bin/env python
-"""Build cell sentences, optionally restricted to a highly-variable gene pool.
+"""Build cell sentences of the eval subsets and write the prompt files of the per-cell arms.
 
-Both model paths in the benchmark hand an AnnData to ``cell2sentence.CSData.adata_to_arrow`` and
-let the library rank genes by expression, so restricting that AnnData to the HVG pool BEFORE the
-call changes what every arm reads, with one intervention rather than two implementations.
+Sentences come from ``cell2sentence.CSData.adata_to_arrow``, as in the benchmark's wrappers. The
+``hvg`` gene variant first restricts the subset to the gene pool of ``hvg.py``; a cell with fewer
+pool genes than ``genes.cap`` then gets a shorter sentence, so the sentence lengths are recorded.
 
-The gene-selection ablation must change WHICH genes are eligible, not HOW MANY appear. It cannot
-fully: at a 5,000-gene pool, 49% of HFRA cells, 27% of HIHA, 22% of Zeisel and 2% of
-human_pancreas have fewer than 200 detected pool genes, so their sentences fall short of the cap.
-``build`` therefore records the realized length of every sentence, so the confound is measurable in
-the analysis instead of invisible.
+Run from paper/experiments, since the data paths in config.yml are relative:
+    python src/sentences.py                          # writes results/sentence_stats.csv
+    python src/sentences.py --materialize            # writes <study tree>/prompts/
+    python src/sentences.py --materialize --study lists
+    python src/sentences.py --check-equivalence
 """
 from __future__ import annotations
 
@@ -31,13 +31,11 @@ def load_config(path):
 
 
 def resolve_symbols(adata):
-    """Set ``var_names`` to gene symbols, uppercased and made unique.
+    """Set ``var_names`` to upper-case gene symbols, made unique.
 
-    Mirrors ``models/openrouter_LLM_blind/src/predict.py`` so sentences built here are identical to
-    the benchmark's. The column is chosen by the share of entries that are real symbols -- neither
-    Ensembl IDs nor null placeholders -- because a fixed preference order picks the wrong column on
-    two of the four datasets (HIHA's ``gene_names`` holds Ensembl IDs; its ``gene_symbols`` is
-    almost entirely the string ``nan``).
+    The symbols come from whichever of ``var_names``, ``gene_names``, ``feature_name`` and
+    ``gene_symbols`` has the largest share of entries that are neither Ensembl ids nor null
+    placeholders (HIHA's ``gene_symbols`` is mostly ``nan``). Returns ``(adata, column)``.
     """
     def usable(values):
         missing = values.isin(("nan", "None", "", "NA", "<NA>"))
@@ -63,12 +61,8 @@ def hvg_path(dataset, cfg):
 
 
 def restrict_to_hvg(adata, dataset, cfg):
-    """Subset to the cached HVG pool, keyed on ``var_id`` (Ensembl), before symbols are resolved.
-
-    Keyed on the Ensembl id rather than the symbol because that is what the h5ad is indexed by at
-    this point and it is unambiguous; the symbol column is exactly the thing that varies between
-    these datasets.
-    """
+    """The subset restricted to the HVG pool, matched on the Ensembl ids (``var_id``) before the
+    symbols are resolved. Returns ``(adata, number of pool genes in the subset)``."""
     path = hvg_path(dataset, cfg)
     if not path.exists():
         raise SystemExit(f"{dataset}: no HVG artifact at {path}; run src/hvg.py first.")
@@ -82,11 +76,9 @@ def restrict_to_hvg(adata, dataset, cfg):
 
 
 def build(dataset, cfg, use_hvg, seed=1234):
-    """Return ``(arrow_dataset, vocabulary, info)`` for one dataset.
-
-    ``info`` carries the realized sentence lengths, which the truncation caveat depends on.
-    """
-    import cell2sentence as cs  # imported late so --help works without the heavy stack
+    """``(arrow_dataset, vocabulary, info)`` for one dataset; ``info`` holds the median sentence
+    length and the share of sentences shorter than the cap."""
+    import cell2sentence as cs  # imported here so --help works without cell2sentence
 
     eval_cfg = cfg["eval"]
     src = (Path(eval_cfg["subset_dir"]) /
@@ -125,13 +117,8 @@ def build(dataset, cfg, use_hvg, seed=1234):
 
 
 def check_equivalence(dataset, cfg, n_check=50, seed=1234):
-    """Regression test: with HVG off, sentences must match the benchmark's construction.
-
-    This is what licenses comparing any number from this study to the main benchmark table. It
-    rebuilds the sentences the way ``models/openrouter_LLM_blind/src/predict.py`` does -- same
-    subset, same symbol resolution, same ``adata_to_arrow`` call -- and compares the first
-    ``n_check`` cells token for token.
-    """
+    """Compare the first ``n_check`` sentences of ``build`` without the HVG pool with sentences
+    built from the eval subset directly. Returns the indices of differing cells and the info."""
     import cell2sentence as cs
     from cell2sentence.prompt_formatter import get_cell_sentence_str
 
@@ -155,22 +142,13 @@ def check_equivalence(dataset, cfg, n_check=50, seed=1234):
 
 
 def materialize(dataset, cfg, out_dir, arms=None, modes=None, candidates=None):
-    """Write every per-cell prompt this study needs, as files the runners just read.
+    """Write the prompt files of the per-cell arms for one dataset.
 
-    The split runs the OpenRouter arms on one machine and the local-weight arms on another. Both
-    consume THESE files rather than building sentences themselves, because ``cell2sentence``
-    defines the sentence construction: if the two machines resolved different versions they would
-    silently read different inputs and the arms would stop being comparable. Building prompts once
-    makes that impossible rather than unlikely, and it means the local-arm machine needs neither
-    cell2sentence nor scanpy nor the 1 GB context h5ads.
-
-    One file per (dataset, arm, mode, gene variant, seed). The seed matters for the LLM templates:
-    their candidate list is shuffled per cell, so a different seed is a genuinely different prompt
-    set, and repeats that reused one seed would measure nothing. The C2S template keeps the
-    benchmark's sorted list (``prompts.ordered_candidates``).
-
-    ``modes`` and ``candidates(mode, seed)`` serve the candidate-list study (``lists.py``): its
-    conditions, and the list each one gives. Without them every mode lists the true types.
+    One file per arm, mode, gene variant and seed; the runners read these files and build no
+    sentences. The seed draws the order of the candidate list (``prompts.ordered_candidates``) and,
+    in a mode with ``shuffle_genes``, the order of the genes. ``modes`` and
+    ``candidates(mode, seed)`` come from ``lists.prompt_args`` for the imperfect-list study;
+    without them every mode lists the dataset's true types. Returns the file names.
     """
     import numpy as np
     from prompts import build_prompt, ordered_candidates
@@ -184,8 +162,8 @@ def materialize(dataset, cfg, out_dir, arms=None, modes=None, candidates=None):
 
     ds_cfg = _dataset_cfg(dataset)
     tissue, species = ds_cfg.get("tissue"), (ds_cfg.get("species") or ds_cfg.get("organism"))
-    # The C2S template names the organism as the benchmark's wrapper does: the subset's own
-    # `organism` column ("Homo sapiens", "Mus musculus"), "Homo sapiens" where there is none.
+    # The organism of the C2S template, as in the C2S-Scale wrapper: the subset's organism column,
+    # else "Homo sapiens".
     organism = (obs["organism"].astype(str) if "organism" in obs.columns
                 else pd.Series("Homo sapiens", index=obs.index))
     override = ds_cfg.get("context_phrase")
@@ -195,17 +173,17 @@ def materialize(dataset, cfg, out_dir, arms=None, modes=None, candidates=None):
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    built = {}          # (variant) -> (cell_ids, sentences), so each variant is built once
+    built = {}          # gene variant: (cell ids, sentences, info), built once per variant
     written = []
     for arm_name, arm in arms.items():
         if arm["granularity"] != "cell":
-            continue    # the cluster arm's prompts come from cluster.py, not from cell sentences
+            continue    # cluster arms get their prompts from cluster.py
         for mode_name, mode in (modes or cfg["modes"]).items():
             for variant, spec in cfg["genes"]["variants"].items():
                 if spec["hvg"] and hvg_modes and mode_name not in hvg_modes:
                     continue
                 if spec["hvg"] and not mode.get("genes"):
-                    continue    # no gene list to reselect
+                    continue    # a mode without genes has no HVG variant
                 if variant not in built and mode.get("genes"):
                     arrow_ds, _v, info = build(dataset, cfg, use_hvg=spec["hvg"])
                     cells = list(ad.read_h5ad(src, backed="r").obs_names.astype(str))
@@ -226,18 +204,8 @@ def materialize(dataset, cfg, out_dir, arms=None, modes=None, candidates=None):
                     rows = []
                     for cell_id, sentence in zip(cells, sents):
                         if mode.get("shuffle_genes") and sentence:
-                            # Same genes, same count, same format -- only the descending-expression
-                            # ORDER is destroyed. That single bit is the whole intervention: it asks
-                            # whether the model reads a cell sentence as a ranked profile or as an
-                            # unordered bag of markers, which is the premise cell2sentence rests on.
-                            #
-                            # Shuffled from the SEEDED rng, so the three repeats see three different
-                            # orders and the permutation is reproducible from the seed alone.
-                            #
-                            # The prompt still says "ordered by descending expression level" and is
-                            # deliberately NOT reworded: changing the instruction as well would make
-                            # this two interventions, and the comparison to M1 would no longer
-                            # isolate the ordering.
+                            # The same genes in an order drawn from the seed; the prompt text,
+                            # including "ordered by descending expression level", is unchanged.
                             genes = sentence.split(" ")
                             sentence = " ".join(rng.permutation(genes).tolist())
                         types = (ordered_candidates(arm["template"], listed, rng)
@@ -251,13 +219,7 @@ def materialize(dataset, cfg, out_dir, arms=None, modes=None, candidates=None):
                                 organism=organism[cell_id], tissue=tissue, species=species,
                                 context_override=override),
                         })
-                    # A prompt is the experiment's input, so a rendering artefact in it is a silent
-                    # change to the intervention. This one is not hypothetical: `list()` instead of
-                    # `.tolist()` on a numpy permutation put `[np.str_('retinal rod cell'), ...]`
-                    # into every M2/M4/M5 prompt of the instruction arms -- 38,373 prompts -- and
-                    # nothing failed. It was found by eye, after the numbers had been reported.
-                    # Refuse to write rather than warn: an unwritten file is obvious, a subtly
-                    # wrong one is not.
+                    # No file is written if a prompt holds the text of a numpy object or "nan".
                     frame = pd.DataFrame(rows)
                     for artefact in ("np.str_", "np.float", "np.int", "dtype=", "array(", "nan"):
                         hits = frame["prompt"].str.contains(artefact, regex=False).sum()
@@ -306,8 +268,8 @@ def main(argv=None):
                   f"median len={info['median_sentence_len']}")
             failed |= bool(mismatches)
         if failed:
-            print("\nSentences differ from the benchmark's construction. Do NOT compare any "
-                  "number from this study to the main table until this passes.", file=sys.stderr)
+            print("\nSentences differ from those built from the eval subset directly; the "
+                  "prompts would then differ from the benchmark's.", file=sys.stderr)
             return 1
         return 0
 

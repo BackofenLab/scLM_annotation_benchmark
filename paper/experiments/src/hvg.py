@@ -1,34 +1,14 @@
 #!/usr/bin/env python
-"""Produce the highly-variable gene pool used by the gene-list ablation.
+"""Select the pool of highly variable genes for the ``hvg`` gene variant.
 
-Run once per dataset; the ablation then consumes only the small CSV this writes, so the study is
-reproducible without any of the heavy inputs.
+Reads each dataset's clustering context (``hvg.source_dir``), drops genes by symbol prefix
+(``hvg.exclude_prefixes``: ribosomal, mitochondrial, haemoglobin) and selects ``hvg.n_top_genes``
+genes with ``scanpy.pp.highly_variable_genes``, per batch where the dataset's YAML names a batch
+key. The flavor is ``seurat`` because the contexts hold log-normalised expression without counts,
+which the ``seurat_v3`` flavors need. Writes one CSV per dataset to ``hvg.out_dir``.
 
-Why this reads the CONTEXT h5ad and uses flavor="seurat"
--------------------------------------------------------
-``seurat_v3``/``seurat_v3_paper`` model the mean-variance relationship on RAW COUNTS. Checked
-against the actual files rather than assumed:
-
-* ``cache/datasets/context/<ds>_context.h5ad`` stores only a log1p ``X`` -- no ``layers``, no
-  ``raw`` -- so the v3 flavors are unavailable there.
-* ``cache/datasets/preprocessed/`` is EMPTY: the pipeline ran the Zenodo fast-path, so the full
-  preprocessed data was never materialised locally.
-* ``<ds>_sub10000_random.h5ad`` would have counts at natural composition, but the Zenodo manifest
-  states those files are not on the record.
-* ``<ds>_sub10000_stratified.h5ad`` does have counts, but stratified sampling over-represents rare
-  types, which is exactly the composition the mean-variance fit is sensitive to.
-
-So the choice is 100k cells at near-natural composition with ``seurat``, or 10k cells at distorted
-composition with ``seurat_v3_paper``. Cell count and composition matter more here than reproducing
-Seurat's variance-stabilising transform, because the goal is to drop uninformative genes rather
-than to match Seurat exactly. Two consequences to state in the write-up rather than hide: ``seurat``
-selects on normalised dispersion, and the contexts are floored-proportional rather than a natural
-sample.
-
-The pipeline itself computes no HVGs -- its only scanpy preprocessing calls are ``normalize_total``,
-``log1p``, ``calculate_qc_metrics``, ``filter_cells`` and ``filter_genes``. The ``highly_variable``
-column that appears in the HIHA subset is inherited from the source atlas and flags all 25,234
-genes, so it carries no information. Hence this script.
+Run from paper/experiments, since the data paths in config.yml are relative:
+    python src/hvg.py [--datasets ...] [--force]
 """
 from __future__ import annotations
 
@@ -61,20 +41,13 @@ ENSEMBL_RE = r"^ENS[A-Z]*G\d"
 
 
 def gene_symbols(adata):
-    """Gene symbols for an AnnData whose ``var_names`` are Ensembl IDs.
+    """Gene symbols for an AnnData indexed by Ensembl ids.
 
-    Picks whichever candidate column carries the FEWEST Ensembl-looking entries, rather than taking
-    the first that exists. Checked against the four contexts and the fixed-order approach fails on
-    two of them: HIHA's ``gene_names`` holds Ensembl IDs (the symbols are in ``feature_name`` /
-    ``gene_symbols``), and HFRA's ``gene_names`` is a mixture of symbols and Ensembl IDs.
+    Taken from whichever of ``var_names``, ``gene_names``, ``feature_name`` and ``gene_symbols``
+    has the largest share of usable symbols. Returns ``(symbols, column, unusable share)``.
     """
     def usable_fraction(values):
-        """Share of entries that are real symbols: not Ensembl IDs and not null placeholders.
-
-        Both halves are required. Scoring on Ensembl content alone picks HIHA's ``gene_symbols``,
-        which is 0% Ensembl only because it is almost entirely the string ``nan`` -- it contains no
-        ribosomal genes at all, while ``gene_names`` carries the real 108.
-        """
+        """Share of entries that are neither Ensembl ids nor null placeholders such as "nan"."""
         missing = values.isin(("nan", "None", "", "NA", "<NA>"))
         return float((~values.str.match(ENSEMBL_RE) & ~missing).mean())
 
@@ -87,15 +60,10 @@ def gene_symbols(adata):
 
 
 def excluded_mask(adata, prefixes):
-    """Genes to drop BEFORE selection: ribosomal, mitochondrial, haemoglobin.
+    """Genes whose symbol starts with one of ``prefixes``. Returns ``(mask, how, symbol_col)``.
 
-    Derived here from resolved symbols rather than from the ``mt`` / ``ribo`` / ``hb`` columns that
-    preprocessing writes, because those columns are not trustworthy across these four datasets:
-    HFRA has all three at zero, HIHA likewise but carries a ``mito`` column flagging 24,011 of
-    25,234 genes, and human_pancreas reports zero mitochondrial genes. Only Zeisel looks sane.
-    Recomputing from symbols is deterministic and auditable; the flags are neither.
-
-    Returns ``(mask, how, symbol_col)``.
+    The mask comes from the symbols because the ``mt``, ``ribo`` and ``hb`` columns of the
+    contexts are all zero for HFRA and HIHA.
     """
     symbols, symbol_col, ens_frac = gene_symbols(adata)
     upper = pd.Index([s.upper() for s in symbols])
@@ -141,8 +109,7 @@ def select(dataset, cfg, datasets_dir):
     keep = adata.var["highly_variable"].to_numpy()
     symbols, _col, _frac = gene_symbols(adata)
 
-    # Verify the exclusion actually held through selection. Cheap, and it fails loudly rather than
-    # letting a ribosomal gene reach a cell sentence and quietly undermine the whole ablation.
+    # Stop if a selected gene belongs to an excluded class.
     selected_upper = pd.Index([s.upper() for s in symbols[keep]])
     leaked = {p: sorted(selected_upper[selected_upper.str.startswith(p.upper())])
               for p in hvg_cfg["exclude_prefixes"]}
@@ -150,8 +117,7 @@ def select(dataset, cfg, datasets_dir):
     if leaked:
         raise SystemExit(f"{dataset}: excluded gene classes present in the selection: {leaked}")
 
-    # Both identifiers are stored: `var_id` is what the h5ad is subset by, `gene_symbol` is what
-    # ends up in the cell sentence. Keeping only one would force the consumer to re-resolve.
+    # sentences.py matches var_id (the Ensembl id); gene_symbol is for reading.
     out = pd.DataFrame({
         "var_id": list(adata.var_names[keep]),
         "gene_symbol": list(symbols[keep]),

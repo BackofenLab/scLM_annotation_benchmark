@@ -1,22 +1,11 @@
 #!/usr/bin/env python
-"""Drop cache entries that no current prompt asks for.
+"""Drop the entries of the ablation's response cache that no current prompt file asks for.
 
-The response cache is keyed on ``sha256(model | prompt | seed)``, so changing a prompt does not
-corrupt anything -- the new prompt simply misses and the old entry is never looked up again. That
-property is what makes editing a template safe mid-study.
+A cache entry stores the key, not the prompt, so the wanted keys are rebuilt from
+``results/prompts/`` and every other entry of ``results/cache/*.jsonl`` is dropped. Without
+``--apply`` it only reports; with it, it refuses to write while a runner is running.
 
-It does leave orphans behind, though, and orphans are worth removing rather than tolerating. After
-the numpy-repr fix regenerated every M2/M4/M5 prompt for the instruction arms, roughly half of A1's
-cached responses became unreachable answers to a question the study no longer asks. Left in place
-they cost disk, they inflate "how many responses do we have" by a factor that does not correspond to
-any result, and -- worst -- an auditor comparing cache size against prompt count would find a
-mismatch with no way to tell whether it meant orphans or missing work.
-
-Orphans are identified by reconstructing the set of keys the CURRENT prompt files imply, then
-keeping only those. Nothing is inferred from the record itself: a cache entry stores the key, not
-the prompt, so the prompt files are the only source of truth for what is still wanted.
-
-Refuses to run while a runner is live, since both append to the same file.
+    python src/prune_cache.py [--apply]
 """
 from __future__ import annotations
 
@@ -67,7 +56,7 @@ def prune(root, cfg, dry_run=True):
             try:
                 rec = json.loads(line)
             except json.JSONDecodeError:
-                dropped += 1          # a torn last line is an orphan by definition
+                dropped += 1          # an unreadable line
                 continue
             if rec.get("key") in keys:
                 kept.append(line)

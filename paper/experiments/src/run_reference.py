@@ -1,28 +1,26 @@
 #!/usr/bin/env python
-"""The baselines given the candidate lists: part B of the imperfect-list study.
+"""Run the baselines of the imperfect-list study with the drawn candidate lists.
 
-A baseline can name only the cell types of its reference or marker database, so a list restricts
-it rather than informs it. Each list becomes a label constraint (``util.label_constraint``, built
-with this study's mapping table), and the method's pipeline wrapper runs in its constrained mode
-(``LABEL_CONSTRAINT``): SingleR again on the restricted reference, because it chooses its marker
-genes among the labels it is given; scType again on the kept gene sets, because its marker weights
-depend on the set; CellTypist and SCSA with their best match among the kept labels, since each
-label is scored on its own. scType and SCSA first cluster their dataset's context, as in the
-pipeline. The wrapper answers with listed names and records per cell whether its true type was
-reachable (``reachable``), since a listed type that no label of the method reaches cannot be
-predicted.
+A baseline can name only the cell types of its reference or marker database, so each list becomes
+a label constraint (``util.label_constraint``, with this study's mapping table) and the method's
+pipeline wrapper (``models/<method>_blind``) runs with ``LABEL_CONSTRAINT``: SingleR again on the
+restricted reference, since it selects marker genes among the labels it gets; scType again on the
+kept gene sets, since its marker weights depend on the set; CellTypist and SCSA with their best
+match among the kept labels. scType and SCSA cluster the dataset's context first, as in the
+pipeline. The wrapper records per cell whether a label it can give counts for the true type
+(``reachable``).
 
-Writes ``predictions/<arm>/<dataset>/<condition>/default/seed<seed>/predictions.csv`` in the list
-study's tree, for ``score.py --study lists``. A list runs once however many conditions share it,
-and a condition whose list equals E's (EU) is skipped: these methods cannot answer "uncertain".
+Writes ``results_lists/predictions/<arm>/<dataset>/<condition>/default/seed<seed>/predictions.csv``
+for ``score.py --study lists``. Each distinct list runs once; a condition whose list equals E's
+(EU) is skipped, since these methods cannot answer "uncertain".
 
-Usage, in the evaluation environment (each method's wrapper runs in its own environment), without
-OMP_NUM_THREADS so the wrappers thread as in the pipeline (single-threaded, SCSA labels one pancreas
-cell differently):
-    python src/run_reference.py singler --env singler [--datasets ...]
-    python src/run_reference.py celltypist --env celltypist_blind [--datasets ...]
-    python src/run_reference.py sctype --env sctype [--datasets ...]
-    python src/run_reference.py scsa --env scsa_blind [--datasets ...]
+Run in the evaluation environment, with ENV the conda environment of the method's wrapper
+(``envs/models/<method>_blind.yml``). Leave OMP_NUM_THREADS unset, as in the pipeline, since the
+number of threads can change SCSA's labels.
+    python src/run_reference.py singler --env ENV [--datasets ...]
+    python src/run_reference.py celltypist --env ENV [--datasets ...]
+    python src/run_reference.py sctype --env ENV [--datasets ...]
+    python src/run_reference.py scsa --env ENV [--datasets ...]
 """
 from __future__ import annotations
 
@@ -46,8 +44,8 @@ CONDA = os.environ.get("CONDA_EXE", "conda")
 
 
 def staged_inputs(method, dataset):
-    """The files main.nf stages for a method: SingleR's CELLxGENE reference, and the clustering
-    context of scType and SCSA."""
+    """The extra inputs the pipeline passes to a method as environment variables: SingleR's
+    CELLxGENE reference, or the clustering context of scType and SCSA."""
     cached = REPO_ROOT / "cache" / "datasets"
     ds_cfg = yaml.safe_load((REPO_ROOT / "datasets" / f"{dataset}.yml").read_text())
     if method == "singler" and ds_cfg.get("singler_reference_source") == "cellxgene":

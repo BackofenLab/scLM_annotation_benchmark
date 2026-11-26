@@ -1,20 +1,15 @@
 #!/usr/bin/env bash
-# Ship the local-arm materials to the IMBI GPU node and bootstrap the environment there.
-#
-# Split of storage, decided against the measured state of the machine on 2026-08-12:
-#   ~/context_ablation        code, prompts, results. ~300 MB. No home quota, 22 TB free.
-#   /scratch/global/$USER/hf  model weights, ~10 GB. Bulky and re-downloadable, which is what
-#                             scratch is for. NOT /scratch/local: measured 100% full (885 MB free).
-#
-# Idempotent: rsync and `conda env create` both skip work already done, so re-running after a
-# dropped connection is safe and cheap.
+# Copy the code, config.yml, env-local.yml, the SLURM scripts and the prompt files of the local
+# arms to the remote host (ssh alias HOST, folder ~/REMOTE_DIR), install Miniforge there if it is
+# missing and create the environment of env-local.yml. Model weights go to
+# /scratch/global/$USER/hf. Running it again skips what is already there.
+#     [STUDY=lists] slurm/ship_to_gpu.sh
 set -euo pipefail
 
 HOST="${HOST:-gpu}"
 REMOTE_DIR="${REMOTE_DIR:-context_ablation}"
 LOCAL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-# Extra ssh options, e.g. SSH_OPTS="-J <jump-host>" where the alias' own jump host is out of reach; rsync
-# takes them through RSYNC_RSH.
+# Extra ssh options, such as a jump host (SSH_OPTS="-J <host>"); rsync gets them through RSYNC_RSH.
 SSH_OPTS="${SSH_OPTS:-}"
 export RSYNC_RSH="ssh $SSH_OPTS"
 # The study tree (`studies` in config.yml): STUDY=lists ships, runs and fetches results_lists/ only.
@@ -26,7 +21,7 @@ echo "==> shipping $LOCAL_ROOT -> $HOST:~/$REMOTE_DIR"
 
 ssh $SSH_OPTS "$HOST" "mkdir -p ~/$REMOTE_DIR/{src,slurm,logs,$TREE/prompts}"
 
-# Code and config. --delete is deliberately ABSENT: it would wipe results/ on a re-ship.
+# Code and configuration.
 rsync -az --stats \
   "$LOCAL_ROOT/src/" "$HOST:$REMOTE_DIR/src/"
 rsync -az \
@@ -34,12 +29,8 @@ rsync -az \
 rsync -az \
   "$LOCAL_ROOT/slurm/" "$HOST:$REMOTE_DIR/slurm/"
 
-# Prompts for the two local arms only -- 168 files, 288 MB raw, ~86 MB on the wire compressed.
-# The API arms' prompts are much larger and are not needed here.
+# Only the prompt files of the arms with kind: local in config.yml.
 echo "==> shipping prompts (A2 + A3 only)"
-# The arm list is DERIVED from config.yml rather than hardcoded. It used to name A2 and A3
-# literally, so adding the 27B arms silently shipped nothing for them and the jobs would have failed
-# at the far end with "no prompt files" -- after the environment rebuild and a 152 GB download.
 LOCAL_ARMS=$(python3 - "$LOCAL_ROOT/config.yml" <<'PY'
 import sys, yaml
 cfg = yaml.safe_load(open(sys.argv[1]))
@@ -79,8 +70,7 @@ else
 fi
 
 conda activate sc_lfm_context_ablation_local
-# mamba/conda can exit 0 while pip failed underneath, so assert the stack imports rather than
-# trusting the exit code -- that exact failure mode cost a full env rebuild on the laptop.
+# conda can exit with 0 although pip failed, so the imports are checked.
 python - <<'PY'
 import torch, transformers, pandas, yaml
 print(f"  torch {torch.__version__} | cuda available: {torch.cuda.is_available()} "
