@@ -135,7 +135,10 @@ parameters (seed, number of genes per cell, parallel requests, provider routing,
 reasoning settings). A cell sentence holds the `top_k_genes` most highly expressed genes of a
 cell, taken from all genes or, with `gene_pool: hvg`, from the `n_hvgs` most variable genes of the
 test set. These are selected with scanpy (flavor `seurat`), within each batch if the dataset has a
-`batch_key`. Each setting has its own prompt template in `prompt.txt`. In the template,
+`batch_key`. `exclude_rp_mt_hb: true` leaves out ribosomal, mitochondrial and hemoglobin genes
+first. As in the clustering step, these are the genes whose symbols start with RPS, RPL, MT- or
+HB, which also catches a few other genes such as HBEGF. Each setting has its own prompt template
+in `prompt.txt`. In the template,
 `{cell_sentence}` is the list of genes ordered by expression, `{num_genes}` the value of
 `top_k_genes`, and `{unique_cell_types}` the list of expected cell types, which only the
 constrained prompt uses. Besides the predictions, the wrapper writes for every request the

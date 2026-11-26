@@ -16,12 +16,13 @@ models:
   - meta-llama/llama-3.1-70b-instruct
   - meta-llama/llama-3.3-70b-instruct
 
-seed: 1234          # sent with every request; also shuffles the cell type lists in the prompts
-top_k_genes: 200    # genes per cell sentence, most highly expressed first
-gene_pool: all      # genes the sentences are taken from: all, or hvg for the most variable genes
-n_hvgs: 5000        # number of most variable genes of the test set, used with gene_pool: hvg
-max_samples: null   # first cells of the test set to annotate; null or 0 for all
-max_workers: 10     # concurrent requests per model
+seed: 1234               # sent with every request; also shuffles the cell type lists in the prompts
+top_k_genes: 200         # genes per cell sentence, most highly expressed first
+gene_pool: all           # all genes, or hvg for the n_hvgs most variable genes of the test set
+n_hvgs: 5000             # number of most variable genes, used with gene_pool: hvg
+exclude_rp_mt_hb: false  # true leaves out genes whose symbol starts with RPS, RPL, MT- or HB
+max_samples: null        # first cells of the test set to annotate; null or 0 for all
+max_workers: 10          # concurrent requests per model
 
 # The provider field of every request. Null values and empty lists are not sent.
 provider:

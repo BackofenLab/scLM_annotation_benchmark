@@ -8,7 +8,8 @@ answers are written unchanged; the pipeline maps them to the Cell Ontology after
 
 A cell sentence holds the top_k_genes most highly expressed genes of the cell. With gene_pool: hvg
 in openrouter.yml, they are taken from the n_hvgs most variable genes of the test set instead of
-all genes.
+all genes. With exclude_rp_mt_hb: true, ribosomal, mitochondrial and hemoglobin genes are left out
+first.
 
 Inputs: the test set (.h5ad), the dataset config (annotation_key), the prompt template and
 openrouter.yml with the served models and the request settings. The key is read from API_KEY.
@@ -68,6 +69,10 @@ TOKEN_BUDGET = ("anthropic", "google")
 # Models that always reason and accept only reasoning.exclude.
 ALWAYS_REASONING = ("deepseek-r1",)
 
+# Ribosomal, mitochondrial and hemoglobin genes, by the start of their symbol, as in the
+# clustering step of the pipeline.
+EXCLUDED_PREFIXES = ("RPS", "RPL", "MT-", "HB")
+
 log = logging.getLogger("openrouter")
 
 
@@ -99,6 +104,13 @@ def expected_types(found):
         return found
     with open(path, encoding="utf-8") as fh:
         return list(dict.fromkeys(line.strip() for line in fh if line.strip()))
+
+
+def drop_rp_mt_hb(adata):
+    """The test set without ribosomal, mitochondrial and hemoglobin genes."""
+    drop = adata.var_names.str.startswith(EXCLUDED_PREFIXES)
+    log.info("Left out %d ribosomal, mitochondrial and hemoglobin genes", drop.sum())
+    return adata[:, ~drop].copy()
 
 
 def restrict_to_hvgs(adata, n_hvgs, batch_key):
@@ -389,6 +401,8 @@ def main(argv=None):
         prompts = [by_cluster[cluster] for cluster in clusters]
         log.info("%d cells in %d clusters", adata.n_obs, len(clusters))
     else:
+        if settings.get("exclude_rp_mt_hb"):
+            adata = drop_rp_mt_hb(adata)
         if gene_pool == "hvg":
             adata = restrict_to_hvgs(adata, settings["n_hvgs"], dataset.get("batch_key"))
         prompts = build_prompts(adata, template, label_key, settings["seed"],
