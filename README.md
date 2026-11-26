@@ -20,8 +20,7 @@ The pipeline has two modes:
 
 ![Overview of the benchmark](docs/overview.png)
 
-*Overview of the benchmark (Figure 1 of the paper). Beyond the benchmark shown here, the pipeline
-also annotates whole datasets in annotation mode.*
+*Overview of the benchmark (Figure 1 of the paper).*
 
 ## Requirements
 
