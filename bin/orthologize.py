@@ -4,7 +4,7 @@
 CellWhisperer, LangCell and mmContext match genes by human Ensembl ID and InstructCell by human
 gene symbol, so on mouse data they find no genes and return one label for every cell. This maps
 each mouse gene that has a one-to-one human ortholog (Ensembl 114,
-cache/ENSEMBL/mouse_human_one2one_orthologs_ensembl114.tsv) to that ortholog's Ensembl ID and
+resources/ensembl/mouse_human_one2one_orthologs_ensembl114.tsv) to that ortholog's Ensembl ID and
 symbol. Expression values are not touched. Genes without a one-to-one ortholog keep their mouse
 identifiers, as InstructCell's own preprocessing does, so the human models do not find them.
 
@@ -18,7 +18,7 @@ import anndata
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
-ORTHOLOGS = ROOT / "cache" / "ENSEMBL" / "mouse_human_one2one_orthologs_ensembl114.tsv"
+ORTHOLOGS = ROOT / "resources" / "ensembl" / "mouse_human_one2one_orthologs_ensembl114.tsv"
 
 
 def load_orthologs(path: Path = ORTHOLOGS) -> pd.DataFrame:

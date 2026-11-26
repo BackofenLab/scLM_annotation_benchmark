@@ -64,11 +64,11 @@ def test_closure_matches_a_brute_force_check_on_the_cell_ontology():
     ont = pinned_ontology()
     if ont is None:
         return
-    from evaluate import load_review_status
+    from util.ontology_mapping import load_review_status
     from util.cell_ontology_similarity import CellTaxonomy, build_label_index
     from util.label_constraint import cl_ids
     taxonomy, label_index = CellTaxonomy.from_ontology(ont), build_label_index(ont)
-    _reviewed, review_map = load_review_status(ROOT / "cache")
+    _reviewed, review_map = load_review_status(ROOT / "resources" / "cell_type_ontology_mappings.csv")
     listed = ["T cell", "CD4-positive, alpha-beta T cell", "monocyte", "type B pancreatic cell", "delta"]
     table = closure(listed, label_index, taxonomy, review_map)
     ids = dict(zip(listed, cl_ids(listed, label_index, review_map)))

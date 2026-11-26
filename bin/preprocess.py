@@ -326,6 +326,12 @@ Examples:
     )
 
     parser.add_argument(
+        "--mappings",
+        type=Path,
+        default=None,
+        help="Mapping table of cell type labels to Cell Ontology terms (required with --apply_ontology_mapping true)",
+    )
+    parser.add_argument(
         "--annotation_key",
         type=str,
         default=None,
@@ -517,20 +523,14 @@ Examples:
     adata_processed.var = _sanitize_for_h5ad(adata_processed.var)
 
     if args.apply_ontology_mapping:
-        if not args.annotation_key or not args.dataset:
+        if not args.annotation_key or not args.dataset or not args.mappings:
             raise SystemExit(
-                "[ERROR] --apply_ontology_mapping true requires both --annotation_key and --dataset"
+                "--apply_ontology_mapping true requires --annotation_key, --dataset and --mappings"
             )
-        logger.info("Applying ontology mapping to '%s'...", args.annotation_key)
-        # Import here so preprocess remains importable without ontology deps when disabled
-        from util.download_helpers import apply_ontology_mapping_to_dataset
-        adata_processed = apply_ontology_mapping_to_dataset(
-            adata=adata_processed,
-            annotation_key=args.annotation_key,
-            cache_dir=args.cache_dir,
-            verbose=True,
-            origin=args.dataset,
-        )
+        logger.info("Mapping the labels in '%s' to Cell Ontology terms", args.annotation_key)
+        from util.ontology_mapping import map_adata_labels
+        adata_processed = map_adata_labels(
+            adata_processed, args.annotation_key, args.mappings, args.cache_dir, origin=args.dataset)
         # Re-sanitize obs/var because ontology mapping may add categorical columns
         adata_processed.obs = _sanitize_for_h5ad(adata_processed.obs)
         adata_processed.var = _sanitize_for_h5ad(adata_processed.var)

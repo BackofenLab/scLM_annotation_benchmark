@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 # Offline ENSEMBL fallback cache. Resolves to <repo>/cache/ENSEMBL when this
 # file lives at <repo>/bin/util/pp_utils.py.
-_DEFAULT_ENSEMBL_CACHE_DIR = Path(__file__).resolve().parents[2] / "cache" / "ENSEMBL"
+_DEFAULT_ENSEMBL_CACHE_DIR = Path(__file__).resolve().parents[2] / "resources" / "ensembl"
 
 
 def _load_ensembl_cache(cache_dir: Path = _DEFAULT_ENSEMBL_CACHE_DIR) -> pd.DataFrame | None:

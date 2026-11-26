@@ -27,7 +27,7 @@ Each list is a text file, one name per line, sorted the way the prompt builders 
 prompts, the scLLM wrappers and the reference methods. Which entries are removed, relatives or
 absent is read off the ontology when scoring, not stored a second time.
 
-Scoring reuses the benchmark's per-cell scoring (``bin/per_class_scores.score_file``) on every run
+Scoring reuses the benchmark's scoring (``score_run`` in ``bin/evaluate.py``) on every run
 that ``score.py --study lists`` scored, and adds what the lists need: balanced accuracy over the
 types still listed (removing a type should not be charged for cells no listed type could name) and
 over the types a reference method can reach; abstention, an answer of exactly "uncertain", on the
@@ -161,10 +161,10 @@ def true_types(dataset, cfg, label_index, review_map):
 
 def write_lists(cfg, tree):
     import numpy as np
-    from evaluate import load_review_status
+    from util.ontology_mapping import load_review_status
     cache_dir = ROOT / cfg["scoring"]["cache_dir"]
     label_index, taxonomy, addable = ontology(cache_dir)
-    _reviewed, review_map = load_review_status(cache_dir)
+    _reviewed, review_map = load_review_status(cache_dir / MAPPINGS)
     (Path(tree) / "lists").mkdir(parents=True, exist_ok=True)
     for dataset in cfg["datasets"]:
         labels, ids = true_types(dataset, cfg, label_index, review_map)
@@ -179,6 +179,8 @@ def write_lists(cfg, tree):
 
 
 RUN = ["arm", "dataset", "condition", "seed"]
+MAPPINGS = "cell_type_ontology_mappings.csv"
+PAIR_COLUMNS = ["true_label", "predicted_label", "n_cells", "prevalence", "n_direct", "lineage"]
 
 
 def _answer_types(pairs, prefix):
@@ -214,37 +216,43 @@ def run_metrics(cells, pairs):
 
 
 def score_study(cfg, tree):
-    from evaluate import _canonicalize_to_cl, load_review_status
-    from per_class_scores import score_file
+    from evaluate import score_run
+    from util.ontology_mapping import canonical_names, load_review_status
     cache_dir = ROOT / cfg["scoring"]["cache_dir"]
     label_index, taxonomy, _addable = ontology(cache_dir)
-    reviewed, review_map = load_review_status(cache_dir)
+    reviewed, review_map = load_review_status(cache_dir / MAPPINGS)
     cells, pairs, overall, gated = [], [], [], []
     for mapped in sorted(Path(tree, "scored").glob("*/predictions_mapped.csv")):
         arm, dataset, condition, variant, seed = mapped.parent.name.split("__")
         seed = int(seed.removeprefix("seed"))
         frame = pd.read_csv(mapped, dtype={"cell_id": str})
-        scored = score_file(frame, dataset, arm, label_index, taxonomy, reviewed, review_map,
-                            cfg["scoring"]["min_scoring_coverage"])
-        if scored is None:
+        _coverage, metrics, tables = score_run(frame, label_index, taxonomy, reviewed, review_map,
+                                               cfg["scoring"]["min_scoring_coverage"])
+        if metrics is None:
             gated.append(mapped.parent.name)
             continue
-        rows, run_pairs, run_cells = scored
-        listed = set(_canonicalize_to_cl(pd.Series(read_list(tree, dataset, condition, seed)),
-                                         label_index, review_map)[0])
+        scored = tables["frame"]
+        run_cells = pd.DataFrame({
+            "dataset": dataset, "cell_id": scored["cell_id"].astype(str),
+            "true_label": scored["true_labels"],
+            "hit": (scored["true_labels"] == scored["predicted_labels"]).astype(int)})
+        run_pairs = tables["pairs"][PAIR_COLUMNS].assign(dataset=dataset)
+        overall_scores = tables["per_class"].iloc[-1]
+        listed = set(canonical_names(pd.Series(read_list(tree, dataset, condition, seed)),
+                                     label_index, review_map)[0])
         raw = pd.read_csv(Path(tree, "predictions", arm, dataset, condition, variant,
                                f"seed{seed}", "predictions.csv"), dtype={"cell_id": str})
         reachable = raw.set_index("cell_id")["reachable"] if "reachable" in raw else None
         answer = frame.set_index("cell_id")["original_predicted_labels"].astype(str)
         run = {"arm": arm, "condition": condition, "seed": seed}
-        cells.append(run_cells.drop(columns="model").assign(
+        cells.append(run_cells.assign(
             **run, listed=lambda d: d["true_label"].isin(listed),
             abstained=lambda d: d["cell_id"].map(answer).eq("uncertain"),
             reachable=lambda d: True if reachable is None else d["cell_id"].map(reachable)))
-        pairs.append(run_pairs.drop(columns="model").assign(
+        pairs.append(run_pairs.assign(
             **run, listed=lambda d: d["true_label"].isin(listed)))
-        overall.append({"dataset": dataset, **run, "agreement": rows[-1]["agreement"],
-                        "lin": rows[-1]["lin"]})
+        overall.append({"dataset": dataset, **run, "agreement": overall_scores["agreement"],
+                        "lin": overall_scores["lin"]})
     cells, pairs = pd.concat(cells, ignore_index=True), pd.concat(pairs, ignore_index=True)
     runs = run_metrics(cells, pairs).join(pd.DataFrame(overall).set_index(RUN))
     pairs[RUN + [c for c in pairs.columns if c not in RUN]].to_csv(

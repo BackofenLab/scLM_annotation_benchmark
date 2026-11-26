@@ -76,10 +76,10 @@ def main(argv=None):
     p.add_argument("--datasets", nargs="+")
     args = p.parse_args(argv)
     cfg = yaml.safe_load(Path(args.config).read_text())
-    from evaluate import load_review_status
+    from util.ontology_mapping import load_review_status
     cache_dir = ROOT / cfg["scoring"]["cache_dir"]
     label_index, taxonomy, _addable = ontology(cache_dir)
-    _reviewed, review_map = load_review_status(cache_dir)
+    _reviewed, review_map = load_review_status(cache_dir / "cell_type_ontology_mappings.csv")
     tree, arm = ROOT / cfg["studies"]["lists"], ARMS[args.method]
 
     for dataset in args.datasets or cfg["datasets"]:

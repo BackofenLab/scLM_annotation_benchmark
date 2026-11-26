@@ -30,10 +30,10 @@ TREE = EXPERIMENTS / CFG["studies"]["lists"]
 @functools.lru_cache(maxsize=None)
 def study():
     """Ontology, reviewed mappings and the true types of every dataset, loaded once."""
-    from evaluate import load_review_status
+    from util.ontology_mapping import load_review_status
     cache_dir = EXPERIMENTS / CFG["scoring"]["cache_dir"]
     label_index, taxonomy, addable = lists.ontology(cache_dir)
-    _reviewed, review_map = load_review_status(cache_dir)
+    _reviewed, review_map = load_review_status(cache_dir / lists.MAPPINGS)
     true = {ds: lists.true_types(ds, CFG, label_index, review_map) for ds in CFG["datasets"]}
     return label_index, review_map, taxonomy, addable, true
 
@@ -43,7 +43,7 @@ def _round_half_up(x):
 
 
 def test_lists_follow_their_rules():
-    from evaluate import _canonicalize_to_cl
+    from util.ontology_mapping import canonical_names
     from util.cell_ontology_similarity import map_string_to_term
     label_index, review_map, taxonomy, addable, true = study()
     conditions = CFG["lists"]["conditions"]
@@ -59,7 +59,7 @@ def test_lists_follow_their_rules():
                 return [n for n in drawn[c] if n not in labels]
 
             names = pd.Series([n for c in conditions for n in drawn[c]]).drop_duplicates()
-            canon, unresolved = _canonicalize_to_cl(names, label_index, review_map)
+            canon, unresolved = canonical_names(names, label_index, review_map)
             assert not unresolved, unresolved
             term = dict(zip(names, (map_string_to_term(n, label_index).id for n in canon)))
             for c, listed in drawn.items():

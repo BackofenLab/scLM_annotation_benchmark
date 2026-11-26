@@ -29,11 +29,11 @@ COLUMNS = ["label", "listed"]
 
 def cl_ids(labels, label_index, review_map):
     """The Cell Ontology id of each label as the scorer resolves it (a term name or id, else a
-    reviewed mapping; ``evaluate._canonicalize_to_cl``), or None."""
-    from evaluate import _canonicalize_to_cl
+    reviewed mapping), or None."""
     from .cell_ontology_similarity import map_string_to_term
-    names, _unresolved = _canonicalize_to_cl(pd.Series(list(labels), dtype=str), label_index,
-                                             review_map)
+    from .ontology_mapping import canonical_names
+    names, _unresolved = canonical_names(pd.Series(list(labels), dtype=str), label_index,
+                                         review_map)
     return [getattr(map_string_to_term(n, label_index), "id", None) for n in names]
 
 

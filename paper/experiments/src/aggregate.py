@@ -41,36 +41,12 @@ def load_config(path):
 
 def collect(root, cfg):
     rows = []
-    scored_root = root / "results" / "scored"
-    # Each scored directory holds TWO json files: evaluate.py's metrics and map_predictions.py's
-    # `predictions_mapped.stats.json` sidecar. Globbing "*/*.json" picks up both and would emit a
-    # duplicate row per run -- caught by the filename audit, which found 6 json files across 3
-    # directories. Match the metrics file by name instead.
-    for result in sorted(scored_root.glob("*/*.json")):
-        if result.name.endswith(".stats.json"):
-            continue
+    tree = root / cfg["studies"]["ablation"]
+    for result in sorted((tree / "scored").glob("*/*__sub*.json")):
         arm, dataset, mode, variant, seed = result.parent.name.split("__")
-        try:
-            payload = json.loads(result.read_text())
-        except json.JSONDecodeError:
-            print(f"  [skip] unreadable {result}")
-            continue
-
-        # evaluate.py nests the metrics TWO levels down: {<prediction-file stem>: {"true_labels":
-        # {...metrics...}}}, alongside sibling filter_stats / coverage_stats blocks. Verified
-        # against a real scored file and against how bin/aggregate.py reads them
-        # (`base = [annotation_key, "true_labels"]`).
-        #
-        # An earlier version of this searched one level down and silently produced a table of
-        # Nones -- the worst failure mode here, since it looks like a successful run.
-        block = None
-        for outer in payload.values():
-            if isinstance(outer, dict) and isinstance(outer.get("true_labels"), dict):
-                block = outer["true_labels"]
-                break
-        if block is None or "balanced_accuracy" not in block:
-            print(f"  [skip] {result.parent.name}: no metrics found. evaluate.py may have gated "
-                  f"this run on scoring coverage, which yields NaN metrics by design.")
+        block = json.loads(result.read_text()).get("metrics") or {}
+        if "balanced_accuracy" not in block:
+            print(f"  [skip] {result.parent.name}: no metrics found")
             continue
         row = {"arm": arm, "dataset": dataset, "mode": mode, "variant": variant,
                "seed": int(seed.removeprefix("seed"))}
@@ -83,7 +59,7 @@ def collect(root, cfg):
         # 1.0%, where A3 does neither. Any A3-minus-A2 gap is therefore part biology and part
         # formatting, and reporting the score without these numbers would credit fine-tuning for
         # both. Carried for every arm so the comparison has a baseline.
-        run_dir = (root / "results" / "predictions" / arm / dataset / mode / variant /
+        run_dir = (tree / "predictions" / arm / dataset / mode / variant /
                    f"seed{int(seed.removeprefix('seed'))}")
         ps = None
         stats_file = run_dir / "parse_stats.json"
@@ -122,7 +98,7 @@ def collect(root, cfg):
     # Sentence-length diagnostics travel with the results: the HVG arm truncates on some datasets
     # (49% of HFRA cells at the 5,000-gene pool), so gene choice and sentence length are partly
     # confounded and the rate must be readable next to the score rather than looked up separately.
-    stats = root / "results" / "sentence_stats.csv"
+    stats = tree / "sentence_stats.csv"
     if stats.exists():
         frame = frame.merge(pd.read_csv(stats)[["dataset", "variant", "median_sentence_len",
                                                 "frac_below_cap"]],
@@ -136,7 +112,7 @@ def collect(root, cfg):
     # which is exactly what it did until the filename audit surfaced 6 rows where 3 were expected.
     # The resolution lives in the `variant` field for cluster runs ("res0.5"); per-cell rows have
     # no resolution and are left unmatched.
-    summary = root / "results" / "clusters" / "cluster_summary.csv"
+    summary = tree / "clusters" / "cluster_summary.csv"
     if summary.exists():
         frame["resolution"] = pd.to_numeric(
             frame["variant"].astype(str).str.extract(r"^res(.+)$", expand=False), errors="coerce")
