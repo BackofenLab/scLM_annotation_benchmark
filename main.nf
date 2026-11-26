@@ -5,7 +5,7 @@
 
 nextflow.enable.dsl = 2
 
-include { absolutePath } from './modules/functions'
+include { absolutePath; reportLeftOut } from './modules/functions'
 include { ANNOTATE } from './workflows/annotate'
 include { EVALUATE } from './workflows/evaluate'
 
@@ -19,6 +19,7 @@ workflow {
 }
 
 workflow.onComplete {
+    reportLeftOut()
     def table = new File(absolutePath(params.mappings))
     def open = table.exists() ? table.readLines().count { it.startsWith('False;') } : 0
     if (open) {

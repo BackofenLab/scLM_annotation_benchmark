@@ -72,6 +72,15 @@ def storedPredictions(String method, String dataset, size) {
     return files.every { it.exists() } ? files.collect { it.path } : null
 }
 
+// The note at the end of a run on the tasks that failed in every attempt and were left out.
+def reportLeftOut() {
+    def left_out = workflow.stats.ignoredCount
+    if (left_out) {
+        log.warn "${left_out} task(s) failed in every attempt and were left out, so their " +
+                 "results are missing. .nextflow.log names them."
+    }
+}
+
 // The species of a dataset in three spellings: species (human or mouse), as the methods read it;
 // organism, as stored with the data; and the Ensembl BioMart name, under which gene symbols are
 // looked up. The configuration's species sets all three. organism and preprocessing.species,

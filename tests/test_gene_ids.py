@@ -1,6 +1,7 @@
 """Checks for the mapping of gene symbols to Ensembl ids in bin/util/pp_utils.py: symbols are
-looked up for the dataset's species, and the offline table, which holds human genes, serves human
-data only. A stand-in replaces pybiomart, so the checks need no network.
+looked up for the dataset's species and taken from gene_names_col where it is given, and the
+offline table, which holds human genes, serves human data only. A stand-in replaces pybiomart, so
+the checks need no network.
 
 Run with pytest, or directly in the environment of the data steps (envs/download.yml, which has
 scanpy): python tests/test_gene_ids.py
@@ -47,6 +48,16 @@ def test_mouse_symbols_get_mouse_ids():
     adata = pp_utils.ensure_ensembl_ids(with_symbols("Actb", "Gapdh"), species="mmusculus",
                                         raise_on_failure=True)
     assert list(adata.var_names) == ["ENSMUSG00000029580", "ENSMUSG00000057666"]
+
+
+def test_symbols_come_from_gene_names_col():
+    sys.modules["pybiomart"] = answering({"mmusculus_gene_ensembl": MOUSE_GENES})
+    adata = with_symbols("1001", "1002")
+    adata.var["symbol"] = ["Actb", "Gapdh"]
+    adata = pp_utils.ensure_ensembl_ids(adata, gene_names_col="symbol", species="mmusculus",
+                                        raise_on_failure=True)
+    assert list(adata.var_names) == ["ENSMUSG00000029580", "ENSMUSG00000057666"]
+    assert list(adata.var["gene_names"]) == ["Actb", "Gapdh"]
 
 
 def test_offline_table_serves_human_data_only():

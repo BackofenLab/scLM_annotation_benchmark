@@ -7,8 +7,13 @@
 
 nextflow.enable.dsl = 2
 
+include { reportLeftOut } from './modules/functions'
 include { ANNOTATE } from './workflows/annotate'
 
 workflow {
     ANNOTATE(false, params.annotation_subset_size ? [params.annotation_subset_size as int] : ['all'], true)
+}
+
+workflow.onComplete {
+    reportLeftOut()
 }

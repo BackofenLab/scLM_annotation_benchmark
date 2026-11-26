@@ -228,7 +228,8 @@ def ensure_raw_counts_layer(
     The counts are taken from the first of: the layer raw_layer_key (default "counts"),
     adata.raw.X, adata.X and an existing 'counts' layer, where all but the first must pass
     is_raw_counts. If none does, an error is logged and, with raise_on_missing, a ValueError
-    raised.
+    raised. The same happens if the counts are negative or look log-transformed; counts with
+    decimals are rounded down, with a warning.
     """
     if raw_layer_key is None:
         raw_layer_key = "counts"
@@ -242,30 +243,23 @@ def ensure_raw_counts_layer(
     # 2) adata.raw
     elif adata.raw is not None and is_raw_counts(adata.raw.X):
         logger.info("Detected raw counts in adata.raw.X; saving to layer 'counts'")
-        # adata.raw can have more genes than adata.
-        if adata.raw.n_vars > adata.n_vars:
-            common_vars = adata.var_names.intersection(adata.raw.var_names)
-            if len(common_vars) == 0:
-                logger.warning(
-                    "No common variables found between adata.var_names and adata.raw.var_names. "
-                    "Cannot use adata.raw.X for raw counts."
-                )
-            elif len(common_vars) < adata.n_vars:
-                logger.warning(
-                    f"Only {len(common_vars)} out of {adata.n_vars} variables found in adata.raw. "
-                    "Cannot use adata.raw.X for raw counts due to incomplete overlap."
-                )
-            else:
-                # All genes of adata are in adata.raw: take their columns.
-                raw_var_to_idx = {
-                    var: idx for idx, var in enumerate(adata.raw.var_names)
-                }
-                var_indices = [raw_var_to_idx[var] for var in adata.var_names]
-                adata.layers["counts"] = adata.raw.X[:, var_indices].copy()
-                adata.X = adata.layers["counts"].copy()
+        # adata.raw can hold more genes than adata, and in another order: the columns of adata's
+        # genes are taken by name.
+        common_vars = adata.var_names.intersection(adata.raw.var_names)
+        if len(common_vars) == 0:
+            logger.warning(
+                "No common variables found between adata.var_names and adata.raw.var_names. "
+                "Cannot use adata.raw.X for raw counts."
+            )
+        elif len(common_vars) < adata.n_vars:
+            logger.warning(
+                f"Only {len(common_vars)} out of {adata.n_vars} variables found in adata.raw. "
+                "Cannot use adata.raw.X for raw counts due to incomplete overlap."
+            )
         else:
-            # Assumes the same genes in the same order as adata.
-            adata.layers["counts"] = adata.raw.X.copy()
+            raw_var_to_idx = {var: idx for idx, var in enumerate(adata.raw.var_names)}
+            var_indices = [raw_var_to_idx[var] for var in adata.var_names]
+            adata.layers["counts"] = adata.raw.X[:, var_indices].copy()
             adata.X = adata.layers["counts"].copy()
     # 3) adata.X
     elif is_raw_counts(adata.X):
@@ -300,19 +294,28 @@ def ensure_raw_counts_layer(
             raise ValueError(msg)
         return
 
-    if "counts" in adata.layers and adata.layers["counts"].dtype != np.int32:
-        logger.info(
-            "Converting adata.layers['counts'] from %s to int32",
-            adata.layers["counts"].dtype,
-        )
-        adata.layers["counts"] = adata.layers["counts"].astype(np.int32)
-
-    # The int32 cast above truncates non-integer values, so this check only finds negative ones.
-    if "counts" in adata.layers and not is_raw_counts(adata.layers["counts"]):
-        logger.error(
-            "Layer 'counts' does not appear to contain integer raw counts; "
-            "downstream steps may fail."
-        )
+    if "counts" not in adata.layers:
+        return
+    counts = adata.layers["counts"]
+    # Checked before the conversion to int32, which cuts off decimals. Counts with decimals, as in
+    # four technologies of the human pancreas data, are rounded down; negative or log-transformed
+    # values are no counts.
+    if not is_raw_counts(counts):
+        values = counts.data if sp.issparse(counts) else np.asarray(counts)
+        if values.size and (values.min() < 0 or is_log_transformed(counts)):
+            msg = ("Layer 'counts' holds no raw counts: its values are negative or look "
+                   "log-transformed. Name the layer with the raw counts in "
+                   "preprocessing.count_layer_key.")
+            logger.error(msg)
+            if raise_on_missing:
+                raise ValueError(msg)
+            return
+        logger.warning(
+            "%.1f%% of the stored values in layer 'counts' are not whole numbers; they are "
+            "rounded down.", 100 * float(np.mean(values % 1 != 0)))
+    if counts.dtype != np.int32:
+        logger.info("Converting adata.layers['counts'] from %s to int32", counts.dtype)
+        adata.layers["counts"] = counts.astype(np.int32)
 
 
 def ensure_norm_log(adata: AnnData, var_threshold: float = 0.2) -> None:
@@ -493,15 +496,11 @@ def remove_infinite_values(adata: AnnData) -> AnnData:
     logger.info("Checking for infinite values in adata.X.")
     
     if sp.issparse(adata.X):
+        finite_mask = np.ones(adata.n_vars, dtype=bool)
         if not np.isfinite(adata.X.data).all():
-            finite_mask = np.ones(adata.n_vars, dtype=bool)
-            # Assumes no explicitly stored zeros: nonzero() skips them, X.data does not.
-            _, col_indices = adata.X.nonzero()
-            non_finite_mask = ~np.isfinite(adata.X.data)
-            bad_cols = np.unique(col_indices[non_finite_mask])
-            finite_mask[bad_cols] = False
-        else:
-            finite_mask = np.ones(adata.n_vars, dtype=bool)
+            # The column of every stored value, explicitly stored zeros included.
+            coo = adata.X.tocoo()
+            finite_mask[np.unique(coo.col[~np.isfinite(coo.data)])] = False
     else:
         finite_mask = np.isfinite(adata.X).all(axis=0)
     
@@ -603,43 +602,18 @@ def ensure_ensembl_ids(
             )
         logger.info("No Ensembl IDs found above threshold. Attempting to map gene names to Ensembl IDs using pybiomart.")
 
-        gene_names_cols_to_check = []
-        if gene_names_col:
-            gene_names_cols_to_check = [gene_names_col]
-        else:
-            gene_names_cols_to_check = ["gene_names", "feature_names"]
-
-        found_gene_names_col = None
-        gene_names = None
-
-        # Always true in this branch, so the gene names come from the index and gene_names_col
-        # is not used.
-        if index_ensembl_fraction < ensembl_id_threshold:
-            logger.info("Using index as source of gene names.")
-            gene_names = index_values.copy()
-            found_gene_names_col = "index"
-            logger.info("Saving gene names from index to adata.var['gene_names'] before overwriting with Ensembl IDs.")
+        # The gene names: the column gene_names_col if it is given, else the column gene_names,
+        # which ensure_gene_names_column fills from the best source, else the index. They are
+        # kept in adata.var['gene_names'] before the index becomes Ensembl IDs.
+        found_gene_names_col = next(
+            (col for col in (gene_names_col, "gene_names") if col and col in adata.var.columns),
+            "index")
+        if found_gene_names_col == "index":
             adata.var["gene_names"] = index_values.values
+            gene_names = index_values.copy()
         else:
-            for col in gene_names_cols_to_check:
-                if col in adata.var.columns:
-                    logger.info(f"Found column '{col}' with gene names.")
-                    gene_names = adata.var[col].astype(str)
-                    found_gene_names_col = col
-                    break
-
-        if gene_names is None:
-            error_msg = (
-                "Could not find gene names for mapping to Ensembl IDs. "
-                "Please provide gene names in one of the following:\n"
-                "- Index (if not Ensembl IDs)\n"
-                "- Column 'gene_names' or 'feature_names'\n"
-                "- Or specify 'gene_names_col' in dataset config YAML"
-            )
-            logger.error(error_msg)
-            if raise_on_failure:
-                raise ValueError(error_msg)
-            return adata
+            adata.var["gene_names"] = adata.var[found_gene_names_col].values
+            gene_names = adata.var[found_gene_names_col].astype(str)
 
         logger.info(f"Using '{found_gene_names_col}' as source of gene names for mapping.")
         if isinstance(gene_names, pd.Index):
