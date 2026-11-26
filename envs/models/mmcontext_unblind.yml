@@ -1,14 +1,1 @@
-name: mmcontext
-channels:
-  - conda-forge
-dependencies:
-  - python=3.11
-  - git
-  - git-lfs
-  - pip:
-    - pyyaml
-    # mmcontext is pinned to the commit used for the benchmark runs; later commits on its main
-    # branch do not install. That commit requires adata_hf_datasets from git without a ref, so
-    # adata_hf_datasets stays unpinned here (the benchmark runs used its commit 17c1830).
-    - git+https://github.com/mengerj/adata_hf_datasets.git
-    - git+https://github.com/mengerj/mmcontext.git@17d5e7f8c837a3a96012fe8e34c95b8d190089bc
+mmcontext_blind.yml

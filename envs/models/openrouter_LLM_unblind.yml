@@ -1,12 +1,1 @@
-name: openrouter_LLM_blind-env
-channels:
-  - conda-forge
-dependencies:
-  - python=3.11
-  - pip:
-      - accelerate
-      - anndata
-      - cell2sentence
-      - datasets
-      - huggingface-hub
-      - transformers
+openrouter_LLM_blind.yml

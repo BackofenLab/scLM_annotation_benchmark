@@ -1,15 +1,1 @@
-name: c2s_scale-env
-channels:
-  - conda-forge
-  - bioconda
-dependencies:
-  - python=3.11
-  - pip
-  - pip:
-    - torch
-    - cell2sentence
-    - anndata
-    - sentencepiece
-    - transformers
-    - accelerate
-    - protobuf
+c2s_scale_2B_blind.yml
