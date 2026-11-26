@@ -33,6 +33,7 @@ import pandas as pd
 import yaml
 
 import paths
+from table_format import best_as_printed, bold, fmt, join, tex
 from methods import (DATASET_ORDER, MODE_LABELS, MODE_ORDER, STUDY_ARM_MODEL, _display,
                      _list_study_arms, dataset_label)
 
@@ -85,16 +86,6 @@ LIST_METRICS = [("balanced_accuracy", "Bal.\\ acc."), ("agreement", "Agree."), (
                 ("balanced_accuracy_listed", "Listed"), ("all_coarser", "Coarser"),
                 ("all_finer", "Finer"), ("abstained_removed", "Unc.\\ missing"),
                 ("abstained_listed", "Unc.\\ listed")]
-
-
-def _tex(text):
-    return str(text).replace("_", "\\_").replace("&", "\\&").replace("%", "\\%")
-
-
-def _fmt(value, digits=3):
-    if value is None or (isinstance(value, float) and pd.isna(value)):
-        return "--"
-    return f"{float(value):.{digits}f}"
 
 
 def per_dataset_frame(raw):
@@ -164,8 +155,8 @@ def write_tex(raw, out_path):
     # A little space between the arms, whose variants stack over two lines.
     for i, (name, ident, gran, shuffled, variants) in enumerate(design_rows(raw)):
         lines += ([] if i == 0 else ["\\addlinespace[3pt]"]) + [
-            " & ".join([_tex(name), f"\\texttt{{{_tex(ident)}}}", gran,
-                        _tex(shuffled), _stacked([_tex(v) for v in variants])]) + " \\\\"]
+            " & ".join([tex(name), f"\\texttt{{{tex(ident)}}}", gran,
+                        tex(shuffled), _stacked([tex(v) for v in variants])]) + " \\\\"]
     lines += [
         "\\bottomrule", "\\end{tabular}",
         "\\captionsetup{position=below}",
@@ -199,12 +190,8 @@ def write_tex(raw, out_path):
     # that are not Cell Ontology terms. Values are compared as printed.
     BOLD_MAX = {"balanced_accuracy", "agreement_score", "lin_avg_similarity"}
     BOLD_MIN = {"non_cl_ratio"}
-    best = {}
-    for arm, sub in overall.groupby("arm"):
-        for col in BOLD_MAX | BOLD_MIN:
-            values = pd.to_numeric(sub[f"{col}_mean"], errors="coerce")
-            if values.notna().any():
-                best[(arm, col)] = _fmt(values.min() if col in BOLD_MIN else values.max())
+    best = {(arm, col): best_as_printed(sub[f"{col}_mean"], lowest=col in BOLD_MIN)
+            for arm, sub in overall.groupby("arm") for col in BOLD_MAX | BOLD_MIN}
 
     # The model, unit and variant where they change, and a little space between the arms.
     previous = (None, None)
@@ -215,15 +202,11 @@ def write_tex(raw, out_path):
         if new_arm and previous[0] is not None:
             lines.append("\\addlinespace[3pt]")
         previous = (r["arm"], r["variant"])
-        cells = [_tex(name) if new_arm else "", gran if new_arm else "",
-                 _tex(VARIANT_LABEL[r["variant"]]) if new_variant else "",
-                 _tex(_cond(r["mode"]))]
+        cells = [tex(name) if new_arm else "", gran if new_arm else "",
+                 tex(VARIANT_LABEL[r["variant"]]) if new_variant else "",
+                 tex(_cond(r["mode"]))]
         for col, _h in TEX_METRICS:
-            text = _fmt(r.get(f"{col}_mean"))
-            if col in (BOLD_MAX | BOLD_MIN) and text != "--" \
-                    and best.get((r["arm"], col)) == text:
-                text = f"\\textbf{{{text}}}"
-            cells.append(text)
+            cells.append(bold(fmt(r.get(f"{col}_mean")), best.get((r["arm"], col))))
         lines.append(" & ".join(cells) + " \\\\")
     lines += [
         "\\bottomrule", "\\end{tabular}",
@@ -307,9 +290,9 @@ def write_list_tex(runs, conditions):
                      "abstained_removed": arm in PROMPTED_ARMS and bool(spec.get("uncertain"))
                      and bool(spec.get("remove")),
                      "abstained_listed": arm in PROMPTED_ARMS and bool(spec.get("uncertain"))}
-            lines.append(" & ".join([_tex(_display(STUDY_ARM_MODEL[arm])),
-                                     _tex(LIST_CONDITION_NAME[name])]
-                                    + [_fmt(row[c]) if shown[c] else "--"
+            lines.append(" & ".join([tex(_display(STUDY_ARM_MODEL[arm])),
+                                     tex(LIST_CONDITION_NAME[name])]
+                                    + [fmt(row[c]) if shown[c] else "--"
                                        for c, _h in LIST_METRICS]) + " \\\\")
     lines += ["\\end{longtable}", ""]
     return lines
@@ -378,10 +361,6 @@ def _dataset_configs():
             for ds in DATASET_ORDER}
 
 
-def _listed(items):
-    return ", ".join(items[:-1]) + " and " + items[-1]
-
-
 def _context_phrases(P, cfg):
     """The species-and-tissue phrase each dataset filled the ablation's {context} with, built by
     the study's own function from the configuration it read."""
@@ -391,13 +370,13 @@ def _context_phrases(P, cfg):
                                   species=c.get("species") or c.get("organism"),
                                   override=c.get("context_phrase")).strip()
         phrases.append(f"\\texttt{{{phrase}}} for {dataset_label(ds)}")
-    return _listed(phrases)
+    return join(phrases)
 
 
 def _instructcell_slots(cfg):
     """The species and tissue InstructCell received, from the dataset configurations."""
     species = sorted({c["species"] for c in cfg.values()})
-    return " or ".join(species), _listed([f"\\texttt{{{_tex(c['tissue'])}}} for "
+    return " or ".join(species), join([f"\\texttt{{{tex(c['tissue'])}}} for "
                                           f"{dataset_label(ds)}" for ds, c in cfg.items()])
 
 

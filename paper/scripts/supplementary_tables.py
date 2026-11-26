@@ -16,12 +16,12 @@ Writes to --outdir:
 from __future__ import annotations
 
 import argparse
-from decimal import ROUND_HALF_UP, Decimal
 from pathlib import Path
 
 import pandas as pd
 
 import paths
+from table_format import best_as_printed, bold, fmt, join, tex
 from methods import (DATASET_ORDER, METRIC_GROUPS, REGIME_SHORT, _benchmark_pairs,
                      _display, _mapping_scores, _needs_mapping, _unlisted, categorize_model,
                      dataset_label, derive_mode, load_confusion_pairs, model_base, model_tier)
@@ -60,25 +60,8 @@ FAMILY_TEX = {"general-purpose LLM": "LLM", "scLM": "scLM",
               "baseline": "baseline", "chance floor": "chance"}
 
 
-def _tex(text):
-    """Escape the LaTeX specials that occur in model and dataset names."""
-    return str(text).replace("\\", r"\textbackslash{}").replace("_", r"\_").replace("&", r"\&")
-
-
-def _fmt(value, digits=3):
-    """``value`` rounded half up as the decimal number it is stored as. The benchmark metrics keep
-    four decimals, and binary rounding would print a stored 0.3495 as 0.349."""
-    if pd.isna(value):
-        return "--"
-    return str(Decimal(str(value)).quantize(Decimal(1).scaleb(-digits), rounding=ROUND_HALF_UP))
-
-
 def _cells(size):
     return f"{size:,} cells"
-
-
-def _join(names):
-    return names[0] if len(names) == 1 else f"{', '.join(names[:-1])} and {names[-1]}"
 
 
 def _derived(out):
@@ -141,24 +124,24 @@ def _only_smallest(sub, sizes):
         if len(group) == (small["family"] == family).sum():
             names.append(f"the {FAMILY_PLURAL.get(family, family)}")
         else:
-            names += [f"{_tex(r.method)} ({REGIME_SHORT.get(r.setting, r.setting)})"
+            names += [f"{tex(r.method)} ({REGIME_SHORT.get(r.setting, r.setting)})"
                       for r in group.itertuples()]
     if not names:
         return ""
-    text = _join(names)
+    text = join(names)
     return f"{text[0].upper()}{text[1:]} ran at {_cells(sizes[0])} only. "
 
 
 def _caption(dataset, sub, sizes, first):
     """The caption of the first table, of dataset ``first``, defines every column; the others
     refer to it."""
-    name = _tex(dataset_label(dataset))
+    name = tex(dataset_label(dataset))
     coverage = sub["reviewed_fraction"].min()
     coverage_note = ("Every answer was a Cell Ontology term or had a reviewed mapping."
                      if coverage == 1 else
                      f"At least {coverage:.3f} of the answers of every run were Cell Ontology "
                      f"terms or had a reviewed mapping, and the others count as wrong.")
-    counts = _join([f"{sub.loc[sub['subset_size'] == size, 'model'].nunique()} at {_cells(size)}"
+    counts = join([f"{sub.loc[sub['subset_size'] == size, 'model'].nunique()} at {_cells(size)}"
                     for size in sizes])
     head = (f"\\textbf{{Benchmark results for {name}.}} One row per method and setting, {counts}, "
             f"sorted by balanced accuracy within each size. {_only_smallest(sub, sizes)}")
@@ -216,7 +199,7 @@ def write_tex(frame, out_path):
             f"\\begin{{longtable}}{{lll{'r' * len(columns)}}}",
             *header, "\\endfirsthead",
             "\\multicolumn{%d}{l}{\\emph{%s, continued}}\\\\"
-            % (n_cols, _tex(dataset_label(dataset))),
+            % (n_cols, tex(dataset_label(dataset))),
             *header, "\\endhead",
             "\\midrule", "\\multicolumn{%d}{r}{\\emph{continued on the next page}}\\\\" % n_cols,
             "\\endfoot", "\\bottomrule",
@@ -230,19 +213,13 @@ def write_tex(frame, out_path):
                 "\\multicolumn{%d}{l}{\\textbf{%s}}\\\\" % (n_cols, _cells(size))]
             # The best value per metric and size, compared as printed, so that every run that
             # prints it is bold.
-            best = {}
-            for col in BOLD_MAX:
-                values = pd.to_numeric(block[col], errors="coerce")
-                if values.notna().any():
-                    best[col] = _fmt(values.max(), 3)
+            best = {col: best_as_printed(block[col]) for col in BOLD_MAX}
             for _, r in block.iterrows():
-                cells = [_tex(FAMILY_TEX[r["family"]]),
-                         _tex(r["method"]), _tex(REGIME_SHORT.get(r["setting"], r["setting"]))]
+                cells = [tex(FAMILY_TEX[r["family"]]),
+                         tex(r["method"]), tex(REGIME_SHORT.get(r["setting"], r["setting"]))]
                 for col in columns:
-                    text = _fmt(r.get(col), 0 if col in COUNT_COLUMNS else 3)
-                    if text != "--" and best.get(col) == text:
-                        text = f"\\textbf{{{text}}}"
-                    cells.append(text)
+                    cells.append(bold(fmt(r.get(col), 0 if col in COUNT_COLUMNS else 3),
+                                      best.get(col)))
                 lines.append(" & ".join(cells) + " \\\\")
         lines += ["\\end{longtable}", "\\end{landscape}", ""]
 
@@ -260,9 +237,9 @@ def write_unlisted_tex(frame, out_path):
                               values=UNLISTED_COLUMN)
     shares = (shares[DATASET_ORDER].assign(mean=shares[DATASET_ORDER].mean(axis=1))
               .sort_values("mean", ascending=False, kind="stable"))
-    header = " & ".join(["Family", "Method", *[_tex(dataset_label(d)) for d in DATASET_ORDER],
+    header = " & ".join(["Family", "Method", *[tex(dataset_label(d)) for d in DATASET_ORDER],
                          "Mean"]) + " \\\\"
-    rows = [" & ".join([_tex(FAMILY_TEX[family]), _tex(method), *map(_fmt, values)]) + " \\\\"
+    rows = [" & ".join([tex(FAMILY_TEX[family]), tex(method), *map(fmt, values)]) + " \\\\"
             for (family, method), values in zip(shares.index, shares.to_numpy())]
     caption = (
         "\\textbf{Answers outside the list of expected cell types.} One row per generative model, "
