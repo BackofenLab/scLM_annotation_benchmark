@@ -9,6 +9,9 @@ than the cells to annotate (--cells), for example a clustering sample that conta
 The defaults are those of the per-cluster analysis of the paper: the PCA uses all genes without
 scaling. --n_top_genes restricts it to highly variable genes (selected within each batch with
 --batch_key) and --scale scales the genes first, as in the usual scanpy workflow.
+--integration harmony corrects the principal components for the batches in --batch_key with
+Harmony before the neighbour graph is built. With --cluster_key the clusters are read from that
+column of --data instead, and only their marker genes are ranked.
 
 Writes
     <out>.clusters.csv  cell_id, cluster for the cells of --cells
@@ -22,6 +25,7 @@ import json
 from pathlib import Path
 
 import anndata as ad
+import numpy as np
 import pandas as pd
 import scanpy as sc
 
@@ -59,12 +63,43 @@ def principal_components(adata, n_pcs, n_top_genes, batch_key, scale, seed):
     adata.obsm["X_pca"] = data.obsm["X_pca"]
 
 
-def cluster(adata, resolution, n_pcs, n_neighbors, n_top_genes, batch_key, scale, seed):
+def harmonize(adata, batch_key, seed):
+    """Store the principal components corrected for the batches in obs[batch_key] with Harmony
+    in adata.obsm["X_pca_harmony"]. Harmony runs on one thread: with more, its sums are added in
+    a varying order and the result changes from run to run. harmonypy needs the components as a
+    contiguous array."""
+    import harmonypy
+    import torch
+    from threadpoolctl import threadpool_limits
+
+    pcs = np.ascontiguousarray(adata.obsm["X_pca"])
+    torch.set_num_threads(1)
+    with threadpool_limits(limits=1):
+        result = harmonypy.run_harmony(pcs, adata.obs, batch_key, random_state=seed,
+                                       device="cpu", verbose=False)
+    adata.obsm["X_pca_harmony"] = result.Z_corr
+
+
+def cluster(adata, resolution, n_pcs, n_neighbors, n_top_genes, batch_key, scale, integration,
+            seed):
     """Leiden clusters of the cells, as strings."""
     principal_components(adata, n_pcs, n_top_genes, batch_key, scale, seed)
-    sc.pp.neighbors(adata, n_neighbors=n_neighbors, random_state=seed)
+    use_rep = None
+    if integration == "harmony":
+        harmonize(adata, batch_key, seed)
+        use_rep = "X_pca_harmony"
+    sc.pp.neighbors(adata, n_neighbors=n_neighbors, use_rep=use_rep, random_state=seed)
     sc.tl.leiden(adata, resolution=resolution, key_added="cluster", random_state=seed,
                  flavor="igraph", n_iterations=2, directed=False)
+    return adata.obs["cluster"].astype(str)
+
+
+def given_clusters(adata, cluster_key):
+    """The clusters in obs[cluster_key], as strings."""
+    clusters = adata.obs[cluster_key]
+    if clusters.isna().any():
+        raise SystemExit(f"{int(clusters.isna().sum())} cells have no cluster in {cluster_key}")
+    adata.obs["cluster"] = pd.Categorical(clusters.astype(str))
     return adata.obs["cluster"].astype(str)
 
 
@@ -96,16 +131,30 @@ def main():
     parser.add_argument("--n_top_genes", type=int, default=0,
                         help="highly variable genes for the PCA; 0 uses all genes")
     parser.add_argument("--batch_key", default=None,
-                        help="obs column with the batch, for selecting highly variable genes")
+                        help="obs column with the batch, for selecting highly variable genes "
+                             "and for Harmony")
     parser.add_argument("--scale", action="store_true", help="scale the genes before the PCA")
+    parser.add_argument("--integration", choices=("none", "harmony"), default="none",
+                        help="harmony corrects the principal components for the batches")
+    parser.add_argument("--cluster_key", default=None,
+                        help="obs column of --data with clusters to use instead of clustering")
     parser.add_argument("--rank_method", default="wilcoxon")
     parser.add_argument("--seed", type=int, default=0)
     args = parser.parse_args()
 
     adata = sc.read_h5ad(args.data)
-    batch_key = args.batch_key if args.batch_key in adata.obs.columns else None
-    clusters = cluster(adata, args.resolution, args.n_pcs, args.n_neighbors, args.n_top_genes,
-                       batch_key, args.scale, args.seed)
+    for option, column in (("--batch_key", args.batch_key), ("--cluster_key", args.cluster_key)):
+        if column and column not in adata.obs.columns:
+            raise SystemExit(f"{option} {column} is not a column of --data")
+    if args.cluster_key:
+        clusters = given_clusters(adata, args.cluster_key)
+    elif args.integration == "harmony" and not args.batch_key:
+        raise SystemExit("Harmony needs the batch column: --batch_key (in the pipeline the "
+                         "dataset's batch_key)")
+    else:
+        clusters = cluster(adata, args.resolution, args.n_pcs, args.n_neighbors,
+                           args.n_top_genes, args.batch_key, args.scale, args.integration,
+                           args.seed)
     markers = marker_genes(adata, args.n_marker_genes, args.rank_method)
 
     cells = pd.Index(ad.read_h5ad(args.cells, backed="r").obs_names.astype(str))

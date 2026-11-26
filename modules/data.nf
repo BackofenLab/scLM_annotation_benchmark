@@ -208,7 +208,7 @@ process fetch_singler_reference {
 
 // Clusters and their marker genes for methods that annotate clusters. A drawn test set is
 // clustered within the clustering sample that contains it; all cells of a dataset are clustered
-// as they are.
+// as they are. A dataset with cluster_key in its yml brings its own clusters.
 process cluster_cells {
     container params.container_image
     conda "${projectDir}/envs/clustering.yml"
@@ -216,7 +216,7 @@ process cluster_cells {
     publishDir "${params.outdir}/clusters/${dataset}", mode: 'copy'
 
     input:
-    tuple val(dataset), val(size), path(cells), path(data), val(batch_key)
+    tuple val(dataset), val(size), path(cells), path(data), val(batch_key), val(cluster_key)
 
     output:
     tuple val(dataset), val(size), path("${dataset}_${size}.clusters.csv"),
@@ -227,6 +227,8 @@ process cluster_cells {
         params.cluster_n_top_genes ? "--n_top_genes ${params.cluster_n_top_genes}" : '',
         batch_key ? "--batch_key '${batch_key}'" : '',
         params.cluster_scale ? '--scale' : '',
+        params.cluster_integration != 'none' ? "--integration ${params.cluster_integration}" : '',
+        cluster_key ? "--cluster_key '${cluster_key}'" : '',
     ].findAll().join(' ')
     """
     set -euo pipefail

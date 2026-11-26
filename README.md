@@ -68,7 +68,8 @@ nextflow run annotate.nf -profile local -params-file annotate.yml
 With `annotation_subset_size` it annotates a subsample of that many cells instead. Methods with a
 maximum number of cells (`max_subset_size` in their `method.yml`), such as the LLMs that send one
 request per cell, are left out when all cells are annotated; the per-cluster LLMs send one
-request per cluster instead. The input still needs a column of labels
+request per cluster instead. The cells are clustered first, or the clusters are taken from a
+column of the data (`cluster_key` in the dataset's yml). The input still needs a column of labels
 (`annotation_key`); for unlabeled data a column with one placeholder value serves, with methods
 that run without the list of expected cell types.
 
@@ -162,7 +163,8 @@ Downloads, test sets and other intermediate files are kept in `cache/`.
 The LLMs per cell get the 200 most expressed genes of each cell. Per cluster, the cells are first
 clustered (Leiden), and each cluster's 25 top marker genes go into one request, whose answer all
 cells of the cluster get. This is the per-cluster analysis of the paper, and far cheaper for large
-datasets. The clustering settings are parameters (see [docs/parameters.md](docs/parameters.md)).
+datasets. The clustering settings are parameters, batches can be corrected with Harmony, and a
+dataset can bring its own clusters (see [docs/parameters.md](docs/parameters.md#clustering-step)).
 
 The established methods answer from a fixed vocabulary. In their constrained setting
 (`*_unblind`) they keep only the labels that lie at or below one of the expected cell types in the

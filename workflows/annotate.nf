@@ -132,8 +132,9 @@ workflow ANNOTATE {
             .map { k, dataset, size, cells -> tuple(size == 'all' ? 'none' : dataset, dataset, size, cells) }
             .combine(contexts.mix(none), by: 0)
             .map { k, dataset, size, cells, data ->
-                def batch_key = params.cluster_use_batch_key ? (datasetConfig(dataset).batch_key ?: '') : ''
-                tuple(dataset, size, cells, data, batch_key) })
+                def cfg = datasetConfig(dataset)
+                def batches = params.cluster_use_batch_key || params.cluster_integration == 'harmony'
+                tuple(dataset, size, cells, data, batches ? (cfg.batch_key ?: '') : '', cfg.cluster_key ?: '') })
     references = fetch_singler_reference(Channel.fromList(reference_datasets).map { dataset ->
         def cfg = datasetConfig(dataset)
         tuple(dataset, cfg.singler_reference_id.toString(),

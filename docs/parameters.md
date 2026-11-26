@@ -30,6 +30,7 @@ Every parameter has one place:
 | `cluster_n_top_genes` | `0` | highly variable genes for the PCA; `0` uses all genes |
 | `cluster_scale` | `false` | scale the genes before the PCA |
 | `cluster_use_batch_key` | `false` | select the highly variable genes within each batch (`batch_key` of the dataset) |
+| `cluster_integration` | `none` | `harmony` corrects the principal components for the batches (`batch_key` of the dataset) with Harmony; implies `cluster_use_batch_key` |
 | `cluster_marker_genes` | `25` | marker genes per cluster, ranked with `cluster_rank_method` (`wilcoxon`) |
 | `cluster_seed` | `0` | random seed of PCA, neighbours and Leiden |
 | `singler_reference_cap_per_label` | `500` | cells per label kept of a CELLxGENE reference for SingleR; `0` keeps all |
@@ -64,6 +65,7 @@ Cells and labels:
 | `name` | the dataset's name, the same as the file name |
 | `annotation_key` | column of `obs` with the cell type labels |
 | `batch_key` | column of `obs` with the batch |
+| `cluster_key` | column of `obs` with clusters of your own, which the per-cluster methods then use instead of the clustering step |
 | `apply_ontology_mapping` | `true` if the labels are not Cell Ontology terms and are mapped through the mapping table |
 
 Biological context, for methods that use it: `organism` (default `Homo sapiens`; a mouse dataset
@@ -112,7 +114,7 @@ celldex`, `singler_reference`, `singler_reference_tier`) or a CELLxGENE dataset
 | `name`, `description` | for people |
 | `needs.candidate_types` | the method chooses from a list of cell type names; its path is in `CANDIDATE_TYPES_FILE` |
 | `needs.clustering_context` | the method clusters a larger sample of the dataset; its path is in `CONTEXT_H5AD` |
-| `needs.clusters` | the method annotates the clusters of the clustering step; the cluster of every cell is in `CLUSTERS_CSV`, the marker genes of every cluster in `MARKERS_CSV` |
+| `needs.clusters` | the method annotates clusters, from the clustering step or the dataset's `cluster_key`; the cluster of every cell is in `CLUSTERS_CSV`, the marker genes of every cluster in `MARKERS_CSV` |
 | `needs.label_constraint` | the method keeps only labels that count for the expected cell types; the table is in `LABEL_CONSTRAINT` |
 | `needs.singler_reference` | a reference from CELLxGENE, for datasets that name one; its path is in `SINGLER_REF_H5AD` |
 | `needs.human_genes` | the method reads human genes only; mouse data are given as human orthologs |
@@ -146,8 +148,19 @@ the marker genes of every cluster, without ribosomal, mitochondrial and hemoglob
 test set is clustered within the clustering sample that contains it, all cells of a dataset as
 they are. The defaults reproduce the per-cluster analysis of the paper, whose PCA uses all genes
 without scaling. The usual scanpy workflow is `cluster_n_top_genes: 2000`, `cluster_scale: true`
-and `cluster_use_batch_key: true`. Neither variant corrects batch effects: datasets that combine
-technologies or donors can form clusters along these.
+and `cluster_use_batch_key: true`.
+
+Datasets that combine technologies or donors can form clusters along these.
+`cluster_integration: harmony` corrects the principal components for the dataset's `batch_key`
+with Harmony before the neighbour graph is built (it needs at least 45 cells). On the 999 cells of
+the pancreas test set, which come from seven technologies, Harmony raised the agreement of the
+clusters with the cell types (adjusted Rand index) from 0.32 to 0.58 with the defaults and from
+0.38 to 0.62 with the usual workflow, and lowered their agreement with the technology from about
+0.25 to below 0.04.
+
+A dataset with `cluster_key` in its yml brings its own clusters, for example from an earlier
+analysis. The cells keep these clusters, the clustering parameters are not used, and only the
+marker genes are ranked.
 
 ## Evaluation
 
