@@ -224,9 +224,9 @@ process cluster_cells {
 
     script:
     def options = [
-        params.cluster_n_top_genes ? "--n_top_genes ${params.cluster_n_top_genes}" : '',
+        "--n_top_genes ${params.cluster_n_top_genes}",
+        params.cluster_scale ? '--scale' : '--no-scale',
         batch_key ? "--batch_key '${batch_key}'" : '',
-        params.cluster_scale ? '--scale' : '',
         params.cluster_integration != 'none' ? "--integration ${params.cluster_integration}" : '',
         cluster_key ? "--cluster_key '${cluster_key}'" : '',
     ].findAll().join(' ')

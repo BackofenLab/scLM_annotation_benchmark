@@ -6,9 +6,9 @@ The marker genes of each cluster are ranked with rank_genes_groups, without ribo
 mitochondrial and hemoglobin genes, and named by their gene symbols. --data can hold more cells
 than the cells to annotate (--cells), for example a clustering sample that contains them.
 
-The defaults are those of the per-cluster analysis of the paper: the PCA uses all genes without
-scaling. --n_top_genes restricts it to highly variable genes (selected within each batch with
---batch_key) and --scale scales the genes first, as in the usual scanpy workflow.
+The defaults follow the usual scanpy workflow: the PCA uses the 2,000 most variable genes
+(selected within each batch with --batch_key), scaled. The per-cluster analysis of the paper used
+all genes without scaling (--n_top_genes 0 --no-scale), which reproduces its clusters.
 --integration harmony corrects the principal components for the batches in --batch_key with
 Harmony before the neighbour graph is built. With --cluster_key the clusters are read from that
 column of --data instead, and only their marker genes are ranked.
@@ -128,12 +128,13 @@ def main():
     parser.add_argument("--n_pcs", type=int, default=50)
     parser.add_argument("--n_neighbors", type=int, default=15)
     parser.add_argument("--n_marker_genes", type=int, default=25)
-    parser.add_argument("--n_top_genes", type=int, default=0,
+    parser.add_argument("--n_top_genes", type=int, default=2000,
                         help="highly variable genes for the PCA; 0 uses all genes")
     parser.add_argument("--batch_key", default=None,
                         help="obs column with the batch, for selecting highly variable genes "
                              "and for Harmony")
-    parser.add_argument("--scale", action="store_true", help="scale the genes before the PCA")
+    parser.add_argument("--scale", action=argparse.BooleanOptionalAction, default=True,
+                        help="scale the genes before the PCA")
     parser.add_argument("--integration", choices=("none", "harmony"), default="none",
                         help="harmony corrects the principal components for the batches")
     parser.add_argument("--cluster_key", default=None,

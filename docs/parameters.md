@@ -27,9 +27,9 @@ Every parameter has one place:
 | `candidate_types` | `resources/all_cell_types.txt` | cell type names offered to the embedding methods in the unconstrained setting |
 | `cluster_resolution` | `1.0` | Leiden resolution of the clustering step; higher values give more clusters |
 | `cluster_n_pcs`, `cluster_n_neighbors` | `50`, `15` | principal components and nearest neighbours of the clustering |
-| `cluster_n_top_genes` | `0` | highly variable genes for the PCA; `0` uses all genes |
-| `cluster_scale` | `false` | scale the genes before the PCA |
-| `cluster_use_batch_key` | `false` | select the highly variable genes within each batch (`batch_key` of the dataset) |
+| `cluster_n_top_genes` | `2000` | highly variable genes for the PCA; `0` uses all genes |
+| `cluster_scale` | `true` | scale the genes before the PCA |
+| `cluster_use_batch_key` | `true` | select the highly variable genes within each batch (`batch_key` of the dataset) |
 | `cluster_integration` | `none` | `harmony` corrects the principal components for the batches (`batch_key` of the dataset) with Harmony; implies `cluster_use_batch_key` |
 | `cluster_marker_genes` | `25` | marker genes per cluster, ranked with `cluster_rank_method` (`wilcoxon`) |
 | `cluster_seed` | `0` | random seed of PCA, neighbours and Leiden |
@@ -146,17 +146,19 @@ new order for each cluster. Their usage file has one row per cluster.
 `bin/cluster_cells.py` clusters with Leiden on the PCA of the log-normalized expression and ranks
 the marker genes of every cluster, without ribosomal, mitochondrial and hemoglobin genes. A drawn
 test set is clustered within the clustering sample that contains it, all cells of a dataset as
-they are. The defaults reproduce the per-cluster analysis of the paper, whose PCA uses all genes
-without scaling. The usual scanpy workflow is `cluster_n_top_genes: 2000`, `cluster_scale: true`
-and `cluster_use_batch_key: true`.
+they are. The defaults follow the usual scanpy workflow: the PCA uses the 2,000 most variable
+genes, selected within each batch, and scaled. The per-cluster analysis of the paper used all genes
+without scaling; `cluster_n_top_genes: 0`, `cluster_scale: false` and `cluster_use_batch_key:
+false` reproduce its clusters exactly. On the clustering samples of the paper, 100,000 cells each,
+the step needed 10 to 13 GB of memory.
 
 Datasets that combine technologies or donors can form clusters along these.
 `cluster_integration: harmony` corrects the principal components for the dataset's `batch_key`
 with Harmony before the neighbour graph is built (it needs at least 45 cells). On the 999 cells of
 the pancreas test set, which come from seven technologies, Harmony raised the agreement of the
-clusters with the cell types (adjusted Rand index) from 0.32 to 0.58 with the defaults and from
-0.38 to 0.62 with the usual workflow, and lowered their agreement with the technology from about
-0.25 to below 0.04.
+clusters with the cell types (adjusted Rand index) from 0.38 to 0.62 with the defaults and from
+0.32 to 0.58 with the paper's settings, and lowered their agreement with the technology from
+about 0.25 to below 0.04.
 
 A dataset with `cluster_key` in its yml brings its own clusters, for example from an earlier
 analysis. The cells keep these clusters, the clustering parameters are not used, and only the

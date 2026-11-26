@@ -162,9 +162,10 @@ Downloads, test sets and other intermediate files are kept in `cache/`.
 
 The LLMs per cell get the 200 most expressed genes of each cell. Per cluster, the cells are first
 clustered (Leiden), and each cluster's 25 top marker genes go into one request, whose answer all
-cells of the cluster get. This is the per-cluster analysis of the paper, and far cheaper for large
-datasets. The clustering settings are parameters, batches can be corrected with Harmony, and a
-dataset can bring its own clusters (see [docs/parameters.md](docs/parameters.md#clustering-step)).
+cells of the cluster get. This follows the per-cluster analysis of the paper and is far cheaper
+for large datasets. By default the cells are clustered as in the usual scanpy workflow; the
+paper's settings, a batch correction with Harmony and clusters of your own are options (see
+[docs/parameters.md](docs/parameters.md#clustering-step)).
 
 The established methods answer from a fixed vocabulary. In their constrained setting
 (`*_unblind`) they keep only the labels that lie at or below one of the expected cell types in the
