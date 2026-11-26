@@ -1,13 +1,12 @@
-"""
-MMContext cell type prediction script
-Computes MMContext embeddings and annotates cells with cell type labels
-Handles multiple annotation keys and saves predictions to CSV files
+"""Cell type annotation with mmcontext, with the dataset's labels as candidates (unblind).
 
-Usage:
-  python predict.py --input <h5ad_path> --output <csv_path> --annotation_keys <key1> <key2> ... --cache_dir <cache_dir>
+The model (jo-mengr/mmcontext-pubmedbert-gs10k from the Hugging Face Hub) embeds each cell from
+its gs10k initial embedding and every candidate label in a shared space, and each cell gets the
+most similar label. The candidates are the labels in obs[--annotation_key].
 
-Outputs:
-  - CSV file(s) with true_labels and predicted_labels columns (one per annotation key)
+Input: preprocessed h5ad with human Ensembl IDs in var["ensembl_id"]. Output: CSV with cell_id,
+true_labels and predicted_labels; the processed data are also written to <input>_pp.h5ad.
+Called by run.sh.
 """
 import argparse
 import pathlib
@@ -33,7 +32,6 @@ def parse_args():
     parser.add_argument('--cache_dir', required=True, help='Path to cache directory')
     return parser.parse_args()
 
-# Parse command line arguments
 args = parse_args()
 adata_path = args.input
 output_csv_base = args.output
@@ -43,7 +41,7 @@ MODEL_ID = "jo-mengr/mmcontext-pubmedbert-gs10k"
 INITIAL_EMB = "gs10k"
 EMB_KEY = f"X_{INITIAL_EMB}"
 
-print("=== Loading data ===")
+print("Loading data")
 adata = ad.read_h5ad(adata_path)
 print(f"Loaded {adata.n_obs} cells and {adata.n_vars} genes")
 
@@ -57,27 +55,25 @@ if n_human < MIN_HUMAN_GENES:
     raise SystemExit(f"Only {n_human} human Ensembl gene IDs (minimum {MIN_HUMAN_GENES}); "
                      "map mouse genes to human orthologs first with bin/orthologize.py")
 
-# Remove trailing .1 ... (dot and numbers) in adata.var.index
-#adata.var.index = adata.var.index.str.replace(r'\.\d+$', '', regex=True)
-
-print("=== Computing embeddings ===")
+print("Computing embeddings")
 embedder = InitialEmbedder(method=INITIAL_EMB)
 embedder.prepare(adata)
 embeddings = embedder.embed(adata)
 adata.obsm[EMB_KEY] = embeddings
 
 adata.obs["sample_idx"] = adata.obs.index
-#write processed adata to h5ad
+# AnnDataSetConstructor refers to the data by file path, so the processed data are written
+# next to the input.
 processed_path = adata_path.replace(".h5ad", "_pp.h5ad")
 adata.write_h5ad(processed_path)
 constructor = AnnDataSetConstructor(dataset_format="single")
 constructor.add_anndata(adata, sentence_keys=["sample_idx"], adata_link=processed_path)
 ds = constructor.get_dataset()
 
-print("=== Loading MMContext model ===")
+print("Loading MMContext model")
 model = SentenceTransformer(MODEL_ID, trust_remote_code=True)
 
-print("=== Computing MMContext embeddings ===")
+print("Computing MMContext embeddings")
 emb_df, path_map = prepare_model_and_embed(
     model, 
     ds, 
@@ -87,33 +83,31 @@ emb_df, path_map = prepare_model_and_embed(
     layer_key=EMB_KEY
 )
 
-# Sort emb_df so that the sample_idx (index column) matches the order of adata.obs.index
-# Convert adata.obs.index to a list to avoid pandas interpreting it as a single key
+# Embeddings in the order of adata.obs.index (passed as a list so that pandas does not read it
+# as a single key)
 emb_df_sorted = emb_df.set_index("sample_idx").reindex(list(adata.obs.index)).reset_index()
 
 embedding_matrix = np.vstack(emb_df_sorted["embedding"].to_numpy())
 adata.obsm["mmcontext_emb"] = embedding_matrix
 
-print("=== Creating annotator ===")
+print("Creating annotator")
 annotator = OmicsQueryAnnotator(model)
 
-# Process annotation key
 annotation_key = ANNOTATION_KEY
 start_time = time.time()
 
-print(f"\n=== Processing annotation key: {annotation_key} ===")
+print(f"\nProcessing annotation key: {annotation_key}")
 
-# Check if annotation key exists
 if annotation_key not in adata.obs.columns:
     print(f"Error: '{annotation_key}' not found in adata.obs.columns")
     print(f"Available columns: {list(adata.obs.columns)}")
     sys.exit(1)
 
-# Get unique cell type labels for this annotation level
+# Candidates: the dataset's own labels
 unique_labels = adata.obs[annotation_key].unique()
 print(f"Found {len(unique_labels)} unique cell type labels")
 
-# Annotate cells
+# Writes the most similar label of each cell to obs["best_label"].
 annotator.annotate_omics_data(
     adata,
     labels=unique_labels,
@@ -121,7 +115,6 @@ annotator.annotate_omics_data(
     n_top=5,
 )
 
-# Get predictions
 predicted_labels = adata.obs["best_label"].values
 true_labels = adata.obs[annotation_key].values
 cell_id = adata.obs.index.values
@@ -132,27 +125,23 @@ end_time = time.time()
 elapsed_time = end_time - start_time
 print(f"\nProcessing completed in {elapsed_time:.2f} seconds ({elapsed_time/60:.2f} minutes)")
 
-# ----------------- Save Results ---------------------------
-print("\n=== SAVING RESULTS ===")
+print("\nSaving results")
 
 print(f"Found {len(np.unique(true_labels))} unique true labels")
 
-# Create comparison DataFrame with only required columns
 results_df = pd.DataFrame({
     'cell_id': cell_id,
     'true_labels': true_labels,
     'predicted_labels': predicted_labels
 })
 
-# Save to CSV
 results_df.to_csv(output_csv_base, index=False)
 print(f"Saved predictions to {output_csv_base}")
     
-# Calculate accuracy
+# Exact-match accuracy, printed for the log only
 accuracy = (results_df['true_labels'] == results_df['predicted_labels']).mean()
 print(f"Overall accuracy: {accuracy:.3f}")
 
-# Print label distribution
 print(f"Label distribution in {annotation_key}:")
 label_counts = pd.Series(true_labels).value_counts()
 for label, count in label_counts.items():

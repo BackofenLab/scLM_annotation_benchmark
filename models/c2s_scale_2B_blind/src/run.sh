@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Runs predict.py (C2S-Scale-Gemma-2-2B) on one dataset. The pipeline calls
+# run.sh INPUT_H5AD OUTPUT_CSV DATASET_YAML MODEL_CACHE_DIR.
 set -euo pipefail
 
 INPUT_H5AD=$(realpath "$1")
@@ -6,11 +8,9 @@ OUT_CSV="$2"
 CFG_YAML=$(realpath "$3")
 CACHE_DIR="$4"
 
-# Create output directory if it doesn't exist and resolve its absolute path
 OUTPUT_DIR=$(dirname "$OUT_CSV")
 mkdir -p "$OUTPUT_DIR"
 
-# Create cache directory if it doesn't exist
 mkdir -p "$CACHE_DIR"
 
 ANNOTATION_KEY=$(python - <<'PY' "$CFG_YAML"
@@ -21,7 +21,6 @@ print(annotation_key)
 PY
 )
 
-# Run Cell2Sentence prediction
 python "$(dirname "$0")/predict.py" \
   --input "$INPUT_H5AD" \
   --output "$OUT_CSV" \

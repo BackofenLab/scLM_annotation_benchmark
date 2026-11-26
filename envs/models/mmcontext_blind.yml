@@ -7,9 +7,8 @@ dependencies:
   - git-lfs
   - pip:
     - pyyaml
-    # mmcontext is pinned (2026-10-06) to its last commit before the benchmark runs of May 2026;
-    # its main was rewritten from 2026-05-27 on and no longer installs. That commit requires
-    # adata_hf_datasets from git without a ref, so that line must stay unpinned too (its main has
-    # been 17c1830 since 2026-03-23).
+    # mmcontext is pinned to the commit used for the benchmark runs; later commits on its main
+    # branch do not install. That commit requires adata_hf_datasets from git without a ref, so
+    # adata_hf_datasets stays unpinned here (the benchmark runs used its commit 17c1830).
     - git+https://github.com/mengerj/adata_hf_datasets.git
     - git+https://github.com/mengerj/mmcontext.git@17d5e7f8c837a3a96012fe8e34c95b8d190089bc

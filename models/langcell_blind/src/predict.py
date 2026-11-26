@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""
-LangCell BLIND cell-type classification with CTM fusion.
+"""Zero-shot cell type annotation with LangCell against a predefined list of cell type names (blind).
 
-This is the "blind" version that uses a predefined list of ALL possible cell types
-from cache/all_cell_types.txt, rather than extracting cell types from the dataset.
-This simulates a truly zero-shot scenario where the model doesn't know which
-cell types are present in the test data.
+The candidates come from --cell_types_file, one name per line; run.sh passes all_cell_types.txt
+(all Cell Ontology names) unless CANDIDATE_TYPES_FILE is set, so the candidates do not depend
+on the dataset. Each candidate is described by its Cell Ontology name and definition from
+data/obo.json. A cell's score for a candidate combines the cell-text embedding similarity and
+the cell-text matching (CTM) head, alpha * sim + (1 - alpha) * ctm, each softmax-normalized
+over the candidates. Labels are lowercased.
+
+Input: preprocessed h5ad with raw counts in layers["counts"] and Ensembl IDs in
+var["ensembl_id"], and the model files that prepare.sh puts into data/. Output: CSV with
+cell_id, predicted_idx, true_idx, predicted_labels and true_labels. Called by run.sh.
 """
 
 from __future__ import annotations
@@ -45,7 +50,7 @@ from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 import seaborn as sns  # used for heatmap
 
-# Project-local utils
+# Model, collator and tokenizer classes from the LangCell repository
 from utils import BertModel as MedBertModel
 from utils import (
     LangCellDataCollatorForCellClassification as DataCollatorForCellClassification,
@@ -54,7 +59,6 @@ from utils import LangCellTranscriptomeTokenizer
 
 logger = logging.getLogger(__name__)
 curr_path = os.getcwd()
-# Device detection: CUDA > MPS (Apple Silicon) > CPU
 if torch.cuda.is_available():
     device = torch.device("cuda")
 elif torch.backends.mps.is_available():
@@ -64,7 +68,6 @@ else:
 
 
 def set_seed(seed: int) -> None:
-    """Set RNG seeds for reproducibility."""
     import random
 
     random.seed(seed)
@@ -74,15 +77,7 @@ def set_seed(seed: int) -> None:
 
 
 def load_cell_types_from_file(cell_types_file: Path) -> List[str]:
-    """
-    Load cell types from an external text file.
-    
-    Args:
-        cell_types_file: Path to the text file containing cell type names (one per line)
-        
-    Returns:
-        List of cell type names (lowercased and stripped)
-    """
+    """Read the candidate cell types, one per line, lowercased."""
     if not cell_types_file.exists():
         raise FileNotFoundError(f"Cell types file not found: {cell_types_file}")
     
@@ -94,18 +89,7 @@ def load_cell_types_from_file(cell_types_file: Path) -> List[str]:
 
 
 class Pooler(nn.Module):
-    """
-    Projects CLS token to a lower-dimensional, L2-normalized embedding.
-
-    Parameters
-    ----------
-    config : transformers.BertConfig
-        Config with `hidden_size` used to init linear layer.
-    pretrained_proj : str
-        Path to a `.bin` state_dict for the projection layer.
-    proj_dim : int
-        Target dimensionality of the pooled embedding.
-    """
+    """Project the CLS token to an L2-normalized proj_dim embedding with pretrained weights."""
 
     def __init__(self, config, pretrained_proj: str, proj_dim: int):
         super().__init__()
@@ -113,25 +97,18 @@ class Pooler(nn.Module):
         self.proj.load_state_dict(torch.load(pretrained_proj, map_location="cpu"))
 
     def forward(self, hidden_states: torch.Tensor) -> torch.Tensor:
-        # Use CLS token (position 0), then project + normalize
         pooled_output = hidden_states[:, 0]
         pooled_output = F.normalize(self.proj(pooled_output), dim=-1)
         return pooled_output
 
 
 def load_model_assets(base_dir: Path, device: torch.device):
-    """
-    Load transcriptome encoder, text encoder, tokenizer, and CTM head.
+    """Load the cell encoder, text tokenizer, text encoder and CTM head.
 
-    Assumes the following files exist under `base_dir / 'data' / 'ckpt'`:
-    - cell_bert            (HF folder)
-    - cell_proj.bin        (projection weights)
-    - text_bert            (HF folder)
-    - text_proj.bin        (projection weights)
-    - ctm_head.bin         (linear classification head)
+    Reads from base_dir/data/ckpt: cell_bert/ and text_bert/ (Hugging Face model folders),
+    cell_proj.bin and text_proj.bin (projection weights) and ctm_head.bin (CTM head).
     """
     ckpt_dir = base_dir / "data" / "ckpt"
-    # Transcriptome side (BERT-like)
     model = BertModel.from_pretrained(str(ckpt_dir / "cell_bert"))
     model.pooler = Pooler(
         model.config,
@@ -156,7 +133,7 @@ def load_model_assets(base_dir: Path, device: torch.device):
         proj_dim=256,
     )
     text_encoder = text_encoder.to(device)
-    # CTM head maps text CLS to binary logits; we will use softmax(...)[...,1]
+    # The CTM head maps the text CLS token to two logits; softmax(...)[..., 1] is the match probability.
     ctm_head = nn.Linear(text_encoder.config.hidden_size, 2)
     ctm_head.load_state_dict(
         torch.load(str(ckpt_dir / "ctm_head.bin"), map_location="cpu")
@@ -171,17 +148,15 @@ def calculate_mean_max_min(adata, feature_name):
 
 
 def setup_dataframe(dataframe, annotation_key):
-    """
-    Add necessary attributes to the dataframe.
-    """
-    # Get Ensemble IDs for genes. TS datasets may already have them. Add for HIHA
+    """Add the lowercased labels and the Ensembl IDs (version suffix removed) that the tokenizer needs."""
+    # Without var["ensembl_id"], gene symbols are mapped to Ensembl IDs with mygene (network access).
     if "ensembl_id" in dataframe.var.columns:
         gene_names = dataframe.var["ensembl_id"].fillna("").astype(str)
     else:
         gene_names = dataframe.var_names.astype(str)
     if isinstance(gene_names, pd.Index):
         gene_names = gene_names.to_list()
-        print("Converting gene names to Ensemble IDs")
+        print("Converting gene names to Ensembl IDs")
         mg = MyGeneInfo()
         res = mg.querymany(gene_names, scopes="symbol,alias,gene", fields="ensembl.gene", species="human")
         symbol2ensembl = {}
@@ -194,7 +169,7 @@ def setup_dataframe(dataframe, annotation_key):
                 ens = entry["ensembl"][0].get("gene")
             symbol2ensembl[symbol] = ens
         ensembl_ids = dataframe.var_names.map(symbol2ensembl)
-        print(f"Final Ensemble IDs: {len(ensembl_ids)}")
+        print(f"Final Ensembl IDs: {len(ensembl_ids)}")
     else:
         ensembl_ids = gene_names.replace(r"\.\d+$", "", regex=True)
     celltypes = dataframe.obs[annotation_key].astype(str).str.strip().str.lower()
@@ -214,22 +189,11 @@ def setup_dataframe(dataframe, annotation_key):
 
 
 def load_dataset(tokenizer, text_encoder, annotation_key, args):
-    """
-    Read h5ad, filter/prepare, tokenize cells, map labels for BLIND evaluation.
-    
-    In the BLIND version, we use an external list of ALL possible cell types,
-    not just the ones present in the dataset. This simulates a true zero-shot
-    scenario where the model doesn't know which cell types to expect.
-    """
+    """Tokenize the cells, encode the texts of the candidate cell types and build the data loader."""
     dataset_sub = sc.read(args.input)
 
-    # Enabling the block below swaps the log1p-normalized X for the raw UMI counts
-    # stored in `layers["counts"]`, which is what Geneformer's tokenizer expects
-    # (rank encoding from raw counts normalized by per-cell totals and gene-median
-    # factors). Left disabled to keep the current preprocessed-input behavior.
-    # if "counts" in dataset_sub.layers:
-    #     dataset_sub.X = dataset_sub.layers["counts"]
-
+    # Geneformer's tokenizer expects raw counts: it normalizes them by per-cell totals and gene
+    # medians and encodes each cell as a gene ranking.
     if "counts" in dataset_sub.layers:
         dataset_sub.X = dataset_sub.layers["counts"]
     else:
@@ -239,7 +203,7 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
     dataset_sub.obs["n_genes"] = np.asarray(n_genes, dtype=np.int32)
     dataset_sub.obs["n_counts"] = dataset_sub.X.sum(axis=1)
 
-    # add key features
+    # The tokenizer reads obs["n_counts"] and obs["filter_pass"].
     dataset_sub.obs["filter_pass"] = (dataset_sub.obs["n_genes"] > 0).astype(bool)
 
     dataset_sub = setup_dataframe(dataset_sub, annotation_key)
@@ -247,7 +211,6 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
     tk = LangCellTranscriptomeTokenizer(
         dict([(k, k) for k in dataset_sub.obs.keys()]), nproc=4
     )
-    # create tokenized dataset
     tokenized_cells, cell_metadata = tk.tokenize_anndata(dataset_sub)
     tokenized_dataset = tk.create_dataset(tokenized_cells, cell_metadata)
 
@@ -257,61 +220,53 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
     if label_name != "celltype":
         tokenized_dataset = tokenized_dataset.rename_column(label_name, "celltype")
 
-    # BLIND VERSION: Load ALL cell types from external file instead of extracting from dataset
+    # Candidates: the external list, not the dataset's labels
     types = load_cell_types_from_file(args.cell_types_file)
     
-    # Get the true cell types from the dataset for label mapping
     dataset_cell_types = list(set(tokenized_dataset["celltype"]))
     print(f"Dataset contains {len(dataset_cell_types)} unique cell types")
     print(f"Using {len(types)} cell types from external file for prediction")
     
-    # Check which dataset cell types are in our full list
     missing_types = [ct for ct in dataset_cell_types if ct not in types]
     if missing_types:
-        print(f"WARNING: {len(missing_types)} cell types from dataset not in external list: {missing_types[:5]}...")
+        print(f"Warning: {len(missing_types)} cell types from dataset not in external list: {missing_types[:5]}...")
     
     obo_path = args.model_path.parent / "data" / "obo.json"
     ontology = json.load(open(obo_path))
-    # from name field
     name2id = {ontology[id]["name"]: id for id in ontology}
-    # from synonym field
     synonym2id = {
         synonym: oid
         for oid, entry in ontology.items()
         for synonym in ([entry["synonym"]] if isinstance(entry["synonym"], str) else entry["synonym"])
     }
     
-    # Generate text descriptions for ALL cell types (this will take longer with full list)
     print(f"Generating text embeddings for {len(types)} cell types...")
     texts = [gettextfromname(typename, name2id, synonym2id, ontology) for typename in tqdm(types, desc="Getting text descriptions")]
     
     type2num = dict([(type, i) for i, type in enumerate(types)])
     
-    # Encode all cell type texts
     print("Encoding cell type texts...")
     with torch.no_grad():
         text_embs = torch.cat(
             [text_encode(text, tokenizer, text_encoder) for text in tqdm(texts, desc="Encoding texts")], 0
-        ).T.to(device)  # 256 * N
+        ).T.to(device)  # [256, n_types]
     text_embs.requires_grad = False
     print(f"Text embeddings shape: {text_embs.shape}")
 
     def classes_to_ids(example):
-        # Map true labels to indices in the full type list
-        # If the true type is not in our list, use -1 (the output keeps its name in true_labels)
+        # -1 for a true type that is not in the candidate list; true_labels keeps its name.
         cell_type = example["celltype"]
         if cell_type in type2num:
             example["label"] = type2num[cell_type]
         else:
-            example["label"] = -1  # Unknown type
+            example["label"] = -1
         return example
 
     testdataset = tokenized_dataset.map(classes_to_ids, num_proc=16)
     
-    # Count how many cells have unknown labels
     unknown_count = sum(1 for label in testdataset["label"] if label == -1)
     if unknown_count > 0:
-        print(f"WARNING: {unknown_count} cells have cell types not in the external list")
+        print(f"Warning: {unknown_count} cells have cell types not in the external list")
     
     remove_columns = testdataset.column_names
     remove_columns.remove("input_ids")
@@ -333,9 +288,7 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
 
 
 def gettextfromname(name, name2id, synonym2id, ontology, description=True):
-    """
-    Collect description for cell types from the ontology.
-    """
+    """Describe a cell type by its ontology name and definition, or by the name alone if not found."""
     ontology_name = name.lower()
     s = "cell type: "
     id = None
@@ -371,6 +324,7 @@ def cell_encode(model, cell_input_ids, cell_atts):
 
 
 def ctm(tokenizer, text_encoder, ctm_head, text, cell_emb, cell_atts):
+    """Probability from the cell-text matching (CTM) head that each cell matches its text."""
     text = tokenizer(
         text, padding=True, truncation=True, max_length=512, return_tensors="pt"
     ).to(device)
@@ -400,6 +354,7 @@ def predict(
     cell_indices,
     args,
 ):
+    """Score every cell against every candidate, print diagnostics and return the results table."""
     batchsize = args.batchsize
     cell_embs = torch.zeros(len(dataset_sub), 256)
     model.eval()
@@ -413,12 +368,11 @@ def predict(
         for i, d in tqdm(enumerate(dataloader)):
             cell_last_h, cellemb = cell_encode(
                 model, d["input_ids"], d["attention_mask"]
-            )  # batchsize * 256
+            )  # [batch, 256]
             sim = (
                 cellemb @ text_embs
-            ) / 0.05  # batchsize * 161 # uncomment to combine cell emb and text
+            ) / 0.05  # [batch, n_types], temperature 0.05
             sim_logit = F.softmax(sim, dim=-1)
-            # ctm
             ctm_logit = torch.zeros_like(sim_logit)
             for text_idx, text in enumerate(texts):
                 text_list = [text] * sim_logit.shape[0]
@@ -433,7 +387,7 @@ def predict(
             ctm_logit = F.softmax(ctm_logit, dim=-1)
             logit = (
                 sim_logit + ctm_logit
-            ) / 2  # Use the following line when combinging cell emb and text
+            ) / 2
             pred = logit.argmax(dim=-1)
             sim_logits[i * batchsize : (i + 1) * batchsize] = sim_logit.cpu()
             ctm_logits[i * batchsize : (i + 1) * batchsize] = ctm_logit.cpu()
@@ -448,7 +402,6 @@ def predict(
     print(f"Adjusted Rand Index (ARI) Score: {ari}")
     for row in confusion_matrix(labels, preds):
         print("\t".join([str(x) for x in row]))
-    # evaluation
     print(classification_report(labels, preds, digits=4))
     pred_df = create_results_dataframe(cell_indices, preds, labels, types, dataset_sub["celltype"])
     return pred_df
@@ -471,9 +424,6 @@ def create_results_dataframe(cell_indices, preds, labels, types, true_types):
 
 
 def plot_umap(cell_embs, dataset_sub, preds, types, file_name, mode, o_path, nmi, ari):
-    """
-    Plot UMAP
-    """
     plt.tight_layout()
     cell_embs_ad = ad.AnnData(cell_embs.numpy())
     cell_embs_ad.obs["celltype"] = dataset_sub["celltype"]
@@ -524,11 +474,10 @@ def plot_confusion_matrix(
 
 
 def parse_args() -> argparse.Namespace:
-    """Parse CLI arguments."""
     curr_path = Path.cwd()
     default_input = curr_path.parents[3] / "util" / "test_adata.h5ad"
     default_output = curr_path / "langcell_predictions.csv"
-    # Default cell types file for blind evaluation
+    # One Cell Ontology cell type name per line
     default_cell_types_file = curr_path.parents[3] / "cache" / "all_cell_types.txt"
 
     p = argparse.ArgumentParser(
@@ -594,10 +543,8 @@ def main():
     output_dir = Path(args.output).parent
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    # Seed
     set_seed(args.seed)
 
-    # Load models/tokenizer/head
     model, tokenizer, text_encoder, ctm_head = load_model_assets(model_path, device)
     logger.info("Model assets loaded.")
 
@@ -613,7 +560,6 @@ def main():
         cell_indices
     ) = load_dataset(tokenizer, text_encoder, annotation_key, args)
     print("Loading dataset finished.")
-    # use the following line to combine cell emb and text
     pred_df = predict(
         model,
         tokenizer,

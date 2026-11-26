@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
-"""
-Simplified C2S-Scale prediction script for single-cell data annotation.
+"""Cell type annotation with C2S-Scale-Gemma-2-27B, with the dataset's labels as candidates (unblind).
 
-This script loads the model directly using transformers and generates
-predictions without the full CSData/CSModel abstractions.
+Each cell becomes a cell sentence (gene names by descending expression), and the model
+completes the C2S-Scale cell type prompt for the top --n_genes genes; the prompt also
+lists the sorted cell type labels of the dataset to pick from. The model is loaded with
+transformers; cell2sentence only builds the cell sentences.
+
+Input: preprocessed h5ad with raw counts in layers["counts"] and gene symbols in
+var["gene_names"]. Output: CSV with cell_id, true_labels and predicted_labels.
+Called by run.sh with --multi_gpu, which spreads the 27B model over all visible GPUs.
 """
 
 import argparse
@@ -22,7 +27,6 @@ from tqdm import tqdm
 
 logger = logging.getLogger(__name__)
 
-# Set seed for reproducibility
 SEED = 1234
 random.seed(SEED)
 np.random.seed(SEED)
@@ -30,23 +34,14 @@ torch.manual_seed(SEED)
 
 
 def load_data(data_path: str):
-    """
-    Load single-cell data from h5ad file.
-    
-    Args:
-        data_path: Path to the h5ad file
-        
-    Returns:
-        Loaded AnnData object
-    """
+    """Read the h5ad file; add obs["organism"] = "Homo sapiens" if the column is missing."""
     logger.info(f"Loading data from: {data_path}")
     try:
         adata = sc.read_h5ad(data_path)
         logger.info(f"Loaded data with shape: {adata.shape}")
         
-        # Set required metadata for cell2sentence
         if 'organism' not in adata.obs.columns:
-            adata.obs['organism'] = 'Homo sapiens'  # Default to human
+            adata.obs['organism'] = 'Homo sapiens'
             logger.info("Set default organism to 'Homo sapiens'")
         
         return adata
@@ -56,36 +51,15 @@ def load_data(data_path: str):
 
 
 def get_dtype_for_device(device: str):
-    """
-    Get appropriate dtype based on device.
-    
-    Args:
-        device: Device string ("cuda", "mps", or "cpu")
-        
-    Returns:
-        torch dtype: bfloat16 for CUDA, float16 for MPS/CPU
-    """
     if device == "cuda":
         return torch.bfloat16
     else:
-        # Use float16 for both MPS and CPU (model was trained with bfloat16)
+        # The model was trained in bfloat16; MPS and CPU use float16.
         return torch.float16
 
 
 def load_model(model_id: str, device: str, cache_dir: str = None, multi_gpu: bool = False):
-    """
-    Load model and tokenizer directly from HuggingFace.
-    
-    Args:
-        model_id: HuggingFace model ID
-        device: Device to load model on (ignored if multi_gpu=True)
-        cache_dir: Optional cache directory
-        multi_gpu: If True, distribute model across all available GPUs using device_map="auto"
-        
-    Returns:
-        Tuple of (model, tokenizer, effective_device)
-        - effective_device is the device to use for inputs (first GPU if multi_gpu, otherwise device)
-    """
+    """Return model, tokenizer and the device for the inputs; multi_gpu splits the model over all GPUs."""
     logger.info(f"Loading model: {model_id}")
     try:
         tokenizer = AutoTokenizer.from_pretrained(model_id, cache_dir=cache_dir)
@@ -94,7 +68,6 @@ def load_model(model_id: str, device: str, cache_dir: str = None, multi_gpu: boo
             num_gpus = torch.cuda.device_count()
             logger.info(f"Multi-GPU mode enabled. Found {num_gpus} GPU(s)")
             
-            # Use bfloat16 for CUDA multi-GPU
             dtype = torch.bfloat16
             logger.info(f"Using dtype: {dtype} for CUDA multi-GPU")
             
@@ -104,13 +77,12 @@ def load_model(model_id: str, device: str, cache_dir: str = None, multi_gpu: boo
                     model_id,
                     cache_dir=cache_dir,
                     torch_dtype=dtype,
-                    device_map="auto",  # Automatically distribute layers across GPUs
-                    low_cpu_mem_usage=True,  # Reduce CPU memory during loading
+                    device_map="auto",
+                    low_cpu_mem_usage=True,
                 )
-                # With device_map="auto", inputs should go to the first device in the model's device map
+                # With device_map="auto", the inputs go to the first GPU.
                 effective_device = "cuda:0"
                 
-                # Log the device map for debugging
                 if hasattr(model, 'hf_device_map'):
                     logger.info(f"Model device map: {model.hf_device_map}")
             else:
@@ -122,7 +94,6 @@ def load_model(model_id: str, device: str, cache_dir: str = None, multi_gpu: boo
                 ).to(device)
                 effective_device = device
         else:
-            # Single device mode - determine dtype based on device
             dtype = get_dtype_for_device(device)
             logger.info(f"Using dtype: {dtype} for device: {device}")
             
@@ -142,22 +113,11 @@ def load_model(model_id: str, device: str, cache_dir: str = None, multi_gpu: boo
 
 
 def convert_to_arrow_dataset(adata, annotation_key: str):
-    """
-    Convert AnnData to arrow dataset format for C2S-Scale.
-    
-    Args:
-        adata: Input AnnData object
-        annotation_key: Key in adata.obs to use as cell_type
-        
-    Returns:
-        HuggingFace arrow dataset with cell sentences
-    """
+    """Normalize the raw counts (total counts, log10) and build the cell sentences as an arrow dataset."""
     logger.info(f"Converting data to arrow format for annotation key: {annotation_key}")
     try:
-        # Create a copy to avoid modifying the original
         adata_copy = adata.copy()
         
-        # Set X to raw counts and apply log10 transformation
         if "counts" not in adata.layers:
             raise ValueError(
                 "Counts layer not found in adata.layers. "
@@ -168,7 +128,6 @@ def convert_to_arrow_dataset(adata, annotation_key: str):
         sc.pp.normalize_total(adata_copy)
         sc.pp.log1p(adata_copy, base=10)
 
-        # Set var names to gene names
         adata_copy.var_names = adata_copy.var["gene_names"].astype(str)
         adata_copy.var_names_make_unique()
 
@@ -180,19 +139,15 @@ def convert_to_arrow_dataset(adata, annotation_key: str):
             adata_copy.var_names = upper
             adata_copy.var_names_make_unique()
 
-        # Set cell_type column
         if annotation_key not in adata_copy.obs.columns:
             raise ValueError(f"Annotation key '{annotation_key}' not found in adata.obs")
         adata_copy.obs['cell_type'] = adata_copy.obs[annotation_key]
         
-        # Ensure organism is set
         if 'organism' not in adata_copy.obs.columns:
             adata_copy.obs['organism'] = 'Homo sapiens'
 
-        # Keep organism and cell_type columns
         label_col_names = ['organism', 'cell_type']
         
-        # Convert to arrow dataset
         arrow_ds, vocabulary = cs.CSData.adata_to_arrow(
             adata=adata_copy, 
             random_state=SEED, 
@@ -212,34 +167,14 @@ def convert_to_arrow_dataset(adata, annotation_key: str):
 
 
 def truncate_cell_sentence(cell_sentence: str, n_genes: int) -> str:
-    """
-    Truncate cell sentence to top N genes.
-    
-    Cell sentences are space-separated gene names ordered by expression level.
-    
-    Args:
-        cell_sentence: Space-separated gene names
-        n_genes: Number of top genes to keep
-        
-    Returns:
-        Truncated cell sentence with top n_genes
-    """
+    """Keep the first n_genes names of a cell sentence (space-separated, by descending expression)."""
     genes = cell_sentence.split()
     truncated = genes[:n_genes]
     return ' '.join(truncated)
 
 
 def get_unique_cell_types(adata, annotation_key: str) -> list:
-    """
-    Extract unique cell types from the anndata object.
-    
-    Args:
-        adata: Input AnnData object
-        annotation_key: Key in adata.obs containing cell type labels
-        
-    Returns:
-        List of unique cell type labels
-    """
+    """Return the sorted labels of obs[annotation_key], the candidates in the prompt."""
     if annotation_key not in adata.obs.columns:
         raise ValueError(f"Annotation key '{annotation_key}' not found in adata.obs")
     
@@ -249,42 +184,26 @@ def get_unique_cell_types(adata, annotation_key: str) -> list:
 
 
 def format_prompts(arrow_ds: Dataset, n_genes: int, cell_type_list: list) -> Dataset:
-    """
-    Format prompts for cell type prediction.
-    
-    Uses the C2S-Scale prompt template with truncated cell sentences.
-    For unblind models, includes the list of cell types to choose from.
-    
-    Args:
-        arrow_ds: Arrow dataset with cell_sentence and organism columns
-        n_genes: Number of top genes to include in prompt
-        cell_type_list: List of cell types to choose from (for unblind models)
-        
-    Returns:
-        Dataset with 'model_input' column containing formatted prompts
-    """
+    """Return a dataset with one C2S-Scale cell type prompt per cell in column model_input."""
     logger.info(f"Formatting prompts with top {n_genes} genes")
     logger.info(f"Including {len(cell_type_list)} cell types in prompt for selection")
     
-    # Format the cell type list as a comma-separated string
     cell_types_str = ", ".join(cell_type_list)
     
     prompts = []
     for i in range(arrow_ds.num_rows):
         sample = arrow_ds[i]
         
-        # Truncate cell sentence to top N genes
         cell_sentence = truncate_cell_sentence(sample["cell_sentence"], n_genes)
         organism = sample.get("organism", "Homo sapiens")
         
-        # Format prompt using C2S-Scale template with cell type list for unblind models
+        # C2S-Scale prompt template for cell type prediction, extended by the candidate list
         prompt = f"""The following is a list of {n_genes} gene names ordered by descending expression level in a {organism} cell. Your task is to give the cell type which this cell belongs to based on its gene expression. Pick from this list: {cell_types_str}.
 Cell sentence: {cell_sentence}.
 The cell type corresponding to these genes is:"""
         
         prompts.append(prompt)
     
-    # Create dataset with prompts
     formatted_ds = Dataset.from_dict({"model_input": prompts})
     
     logger.info(f"Formatted {formatted_ds.num_rows} prompts")
@@ -292,26 +211,13 @@ The cell type corresponding to these genes is:"""
 
 
 def extract_prediction(response: str) -> str:
-    """
-    Extract the predicted cell type from model response.
-    
-    Splits on the prompt ending and removes special tokens.
-    
-    Args:
-        response: Full model response including prompt
-        
-    Returns:
-        Cleaned predicted cell type
-    """
-    # Split on prompt ending and take the generated part
+    """Return the text generated after the prompt, without special tokens and trailing periods."""
     pred = response.split("The cell type corresponding to these genes is:")[-1].strip()
     
-    # Remove special tokens
     pred = pred.replace('<ctrl100>', '')
     pred = pred.replace('<eos>', '')
     pred = pred.replace('<pad>', '')
     
-    # Remove trailing punctuation and whitespace
     pred = pred.strip().rstrip('.')
     
     return pred
@@ -325,37 +231,21 @@ def generate_predictions(
     max_new_tokens: int = 20,
     batch_size: int = 8
 ):
-    """
-    Generate cell type predictions from formatted prompts using batched inference.
-    
-    Args:
-        model: Loaded HuggingFace model
-        tokenizer: Loaded tokenizer
-        formatted_ds: Dataset with formatted prompts
-        device: Device to run inference on
-        max_new_tokens: Maximum new tokens to generate
-        batch_size: Number of samples to process in parallel
-        
-    Returns:
-        List of predicted cell types
-    """
+    """Generate the answers in batches with greedy decoding and return the predicted labels."""
     logger.info(f"Generating predictions for {formatted_ds.num_rows} cells (batch_size={batch_size})")
     
-    # Ensure tokenizer has padding configured
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
-    tokenizer.padding_side = "left"  # Important for generation - pad on left
+    tokenizer.padding_side = "left"  # batched generation needs left padding
     
     predicted_cell_types = []
     all_prompts = formatted_ds["model_input"]
     num_samples = len(all_prompts)
     
-    # Process in batches
     for batch_start in tqdm(range(0, num_samples, batch_size), desc="Predicting batches"):
         batch_end = min(batch_start + batch_size, num_samples)
         batch_prompts = all_prompts[batch_start:batch_end]
         
-        # Tokenize batch with padding
         inputs = tokenizer(
             batch_prompts, 
             return_tensors="pt", 
@@ -363,40 +253,26 @@ def generate_predictions(
             truncation=True
         ).to(device)
         
-        # Generate for entire batch
         with torch.no_grad():
             outputs = model.generate(
                 **inputs,
                 max_new_tokens=max_new_tokens,
                 pad_token_id=tokenizer.pad_token_id,
-                do_sample=False  # Greedy decoding for reproducibility
+                do_sample=False
             )
         
-        # Decode each response in batch
         for i, output in enumerate(outputs):
             response = tokenizer.decode(output, skip_special_tokens=False)
             pred = extract_prediction(response)
-            #pred = response
             predicted_cell_types.append(pred)
-    #log one full response
-    logger.info(f"Full response (example cell): {response}")
+    logger.info(f"Full response of the last cell: {response}")
     
     logger.info("Prediction completed successfully")
     return predicted_cell_types
 
 
 def create_results_dataframe(adata, predicted_cell_types: list, label_key: str):
-    """
-    Create a DataFrame with true and predicted labels.
-    
-    Args:
-        adata: Input AnnData with true labels
-        predicted_cell_types: List of predicted cell types
-        label_key: Key in adata.obs containing true labels
-        
-    Returns:
-        DataFrame with cell_id, true_labels, and predicted_labels
-    """
+    """Return a DataFrame with cell_id, true_labels and predicted_labels, or None if label_key is missing."""
     logger.info(f"Creating results DataFrame for annotation key: {label_key}")
     
     if label_key not in adata.obs.columns:
@@ -417,7 +293,6 @@ def create_results_dataframe(adata, predicted_cell_types: list, label_key: str):
 
 
 def save_results(results_df: pd.DataFrame, output_path: str):
-    """Save results to CSV file."""
     logger.info(f"Saving results to: {output_path}")
     try:
         results_df.to_csv(output_path, index=False)
@@ -428,8 +303,6 @@ def save_results(results_df: pd.DataFrame, output_path: str):
 
 
 def main():
-    """Main function to run C2S-Scale prediction pipeline."""
-    # Get default paths
     default_input = str(Path(__file__).resolve().parents[3] / "util" / "test_adata.h5ad")
     default_output = str(Path.cwd() / "c2s_scale_predictions.csv")
 
@@ -455,13 +328,11 @@ def main():
     
     args = parser.parse_args()
     
-    # Set up logging
     logging.basicConfig(
         level=logging.INFO, 
         format='%(asctime)s - %(levelname)s - %(message)s'
     )
     
-    # Determine device
     if torch.backends.mps.is_available():
         device = "mps"
     elif torch.cuda.is_available():
@@ -471,10 +342,8 @@ def main():
         device = "cpu"
     logger.info(f"Using device: {device}")
     
-    # Load data
     adata = load_data(args.input)
     
-    # Load model and tokenizer
     model, tokenizer, effective_device = load_model(
         args.model, device, args.cache_dir, multi_gpu=args.multi_gpu
     )
@@ -482,26 +351,21 @@ def main():
     annotation_key = args.annotation_key
     logger.info(f"Processing annotation key: {annotation_key}")
     
-    # Check if annotation key exists
     if annotation_key not in adata.obs.columns:
         logger.error(f"'{annotation_key}' not found in adata.obs")
         logger.error(f"Available keys: {list(adata.obs.columns)}")
         sys.exit(1)
     
-    # Convert to arrow dataset
     arrow_ds = convert_to_arrow_dataset(adata, annotation_key)
     
-    # Get unique cell types for this annotation key (for unblind prompt)
+    # Candidates for the prompt: the dataset's own labels
     cell_type_list = get_unique_cell_types(adata, annotation_key)
     
-    # Format prompts with custom formatter (includes cell type list for unblind models)
     formatted_ds = format_prompts(arrow_ds, args.n_genes, cell_type_list)
     
-    # Print example prompt
     if formatted_ds.num_rows > 0:
         logger.info(f"Example prompt:\n{formatted_ds[0]['model_input'][:500]}...")
     
-    # Generate predictions
     predicted_cell_types = generate_predictions(
         model, 
         tokenizer, 
@@ -511,11 +375,9 @@ def main():
         batch_size=args.batch_size
     )
     
-    # Create results DataFrame
     results_df = create_results_dataframe(adata, predicted_cell_types, annotation_key)
     
     if results_df is not None:
-        # Save results
         print(f"Saving results to: {args.output}")
         save_results(results_df, args.output)
         logger.info(f"Results saved to: {args.output}")

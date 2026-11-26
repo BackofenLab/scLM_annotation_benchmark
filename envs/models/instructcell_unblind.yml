@@ -7,8 +7,7 @@ dependencies:
   - pip
   - git
   - pip:
-    # InstructCell requirements (from https://github.com/zjunlp/InstructCell)
-    # prepare.sh clones the repo, but we list deps here for reliability
+    # Requirements of InstructCell, taken from https://github.com/zjunlp/InstructCell
     - torch==2.0.0
     - numpy==1.26.4
     - scipy==1.11.3
