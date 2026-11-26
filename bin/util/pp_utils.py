@@ -25,7 +25,7 @@ def _load_ensembl_cache(cache_dir: Path = _DEFAULT_ENSEMBL_CACHE_DIR) -> pd.Data
 
     Reads the last file '<dataset>_ensembl_<YYMMDD>.csv' in cache_dir by name (columns gene_name
     and ensembl_id) and returns it with BioMart's column names "Gene name" and "Gene stable ID".
-    The species is not checked.
+    The table holds human genes, so ensure_ensembl_ids uses it for hsapiens only.
     """
     if not cache_dir.exists():
         return None
@@ -529,11 +529,11 @@ def ensure_ensembl_ids(
 
     The IDs come from the index or from a column (ensembl_col, else ensembl_id, feature_id or
     gene_id) in which at least ensembl_id_threshold of the values start with "ENS". Otherwise
-    gene symbols are mapped with Ensembl BioMart for species ("hsapiens", "mmusculus"), or with
-    the offline table in resources/ensembl if no BioMart host answers. Version suffixes are
-    removed, and genes without an ID and all but the first gene of each ID are dropped. On
-    failure, a ValueError is raised if raise_on_failure, else adata is returned without the
-    mapping.
+    gene symbols are mapped with Ensembl BioMart for species ("hsapiens", "mmusculus"), or, for
+    human data, with the offline table in resources/ensembl if no BioMart host answers. Version
+    suffixes are removed, and genes without an ID and all but the first gene of each ID are
+    dropped. On failure, a ValueError is raised if raise_on_failure, else adata is returned
+    without the mapping.
     """
     logger.info("Ensuring Ensembl IDs are present in the dataset.")
 
@@ -686,11 +686,13 @@ def ensure_ensembl_ids(
                 f"All Ensembl BioMart hosts failed (last error: {last_error}). "
                 f"Trying offline fallback in {_DEFAULT_ENSEMBL_CACHE_DIR}..."
             )
-            biomart_df = _load_ensembl_cache()
+            # The offline table holds human genes.
+            biomart_df = _load_ensembl_cache() if species == "hsapiens" else None
             if biomart_df is None:
                 error_msg = (
-                    f"All Ensembl BioMart hosts failed and no offline ENSEMBL cache "
-                    f"was found under {_DEFAULT_ENSEMBL_CACHE_DIR}. Last error: {last_error}\n"
+                    f"All Ensembl BioMart hosts failed and no offline ENSEMBL cache for "
+                    f"'{species}' was found under {_DEFAULT_ENSEMBL_CACHE_DIR} (it holds human "
+                    f"genes only). Last error: {last_error}\n"
                     "Please check:\n"
                     "- Network connection to Ensembl\n"
                     "- Species name is correct (e.g., 'hsapiens' or 'mmusculus')\n"
@@ -726,7 +728,7 @@ def ensure_ensembl_ids(
                     f"- Wrong species specified (current: '{species}')\n"
                     "- Network issues connecting to Ensembl\n"
                     "Please check:\n"
-                    "- Set 'species' in dataset config YAML (e.g., 'hsapiens' or 'mmusculus')\n"
+                    "- Set the dataset's species (human or mouse) in its config YAML\n"
                     "- Set 'gene_names_col' in dataset config YAML to specify the column with gene names\n"
                     "- Or set 'ensembl_col' in dataset config YAML if Ensembl IDs already exist"
                 )

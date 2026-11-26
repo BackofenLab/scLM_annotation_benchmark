@@ -9,8 +9,9 @@ without labels (see the [README](../README.md#annotation-mode)).
 The file needs
 
 - raw counts, in `X` or in a layer (name it with `preprocessing.count_layer_key`),
-- genes with Ensembl ids or gene symbols in `var` (symbols are mapped to Ensembl ids, which needs
-  the `pybiomart` package and an internet connection),
+- genes with Ensembl ids or gene symbols in `var` (symbols are mapped to Ensembl ids of the
+  dataset's `species`, which needs the `pybiomart` package and an internet connection; offline,
+  a table of human genes in `resources/ensembl/` serves human data only),
 - a column in `obs` with the cell type of every cell, and one with the batch if the cells come
   from several batches.
 

@@ -3,7 +3,7 @@
 
 include {
     absolutePath; datasetConfig; labelKey; methodSpec; runSizes; predictionFiles;
-    predictionsDir; storedPredictions; orthologTable; mappingsVersion
+    predictionsDir; storedPredictions; orthologTable; mappingsVersion; speciesNames
 } from '../modules/functions'
 include {
     download; preprocess; subset; fetch_test_set; orthologize; build_context; fetch_context;
@@ -131,8 +131,10 @@ workflow ANNOTATE {
         downloaded.mix(local_files).map { dataset, raw_file ->
             def cfg = datasetConfig(dataset)
             def map_labels = cfg.containsKey('apply_ontology_mapping') ? cfg.apply_ontology_mapping : true
+            def names = speciesNames(dataset)
             tuple(dataset, raw_file, file("${projectDir}/datasets/${dataset}.yml"),
-                  labelKey(dataset), map_labels, annotation_mode && !cfg.annotation_key)
+                  labelKey(dataset), map_labels, annotation_mode && !cfg.annotation_key,
+                  names.organism, names.biomart)
         },
         cache_dir, mappings, append)
 
@@ -176,7 +178,7 @@ workflow ANNOTATE {
         tuple(dataset, cfg.singler_reference_id.toString(),
               (cfg.singler_reference_version ?: cfg.census_version ?: 'stable').toString(),
               (cfg.singler_reference_label_key ?: 'cell_type').toString(),
-              (cfg.species ?: cfg.organism ?: 'human').toString())
+              speciesNames(dataset).species)
     })
     constraints = constrain_labels(
         Channel.fromList(constraint_keys).map { dataset, size -> tuple(key(dataset, size), file("${projectDir}/datasets/${dataset}.yml")) }

@@ -69,10 +69,12 @@ Cells and labels:
 | `expected_cell_types` | `annotate.nf` only: a list of cell type names that the constrained methods take as the expected cell types instead of those in the labels. Cell Ontology names let the established methods relate their labels to the list. Without a list and without `annotation_key`, the constrained methods are left out for the dataset. |
 | `apply_ontology_mapping` | `true` if the labels are not Cell Ontology terms and are mapped through the mapping table |
 
-Biological context, for methods that use it: `organism` (default `Homo sapiens`; a mouse dataset
-sets `Mus musculus`), `species` (`human` or `mouse`), `tissue`, and for InstructCell
-`sequencing_method`, or the per-cell columns `species_key`, `tissue_key`,
-`sequencing_method_key`.
+Biological context, for methods that use it: `species` (`human`, the default, or `mouse`),
+`tissue`, and for InstructCell `sequencing_method`, or the per-cell columns `species_key`,
+`tissue_key`, `sequencing_method_key`. The species also sets the organism stored with the data
+(`Homo sapiens` or `Mus musculus`), the ortholog table for mouse data and the Ensembl species
+under which gene symbols are looked up. For another organism, set `organism` and
+`preprocessing.species` as well.
 
 Quality control and preprocessing (`preprocessing:`, read by `bin/preprocess.py`; the values in
 the files of the paper are the defaults):
@@ -87,7 +89,7 @@ the files of the paper are the defaults):
 | `min_genes` | `200` | cells with fewer detected genes are removed |
 | `count_layer_key` | `counts` | layer with the raw counts, if they are not in `X` |
 | `ensembl_col`, `gene_names_col` | found automatically | columns of `var` with Ensembl ids and gene symbols |
-| `species` | `hsapiens` | Ensembl BioMart species, used only to map gene symbols to Ensembl ids |
+| `species` | from the dataset's `species` | Ensembl BioMart species (`hsapiens`, `mmusculus`), used only to map gene symbols to Ensembl ids |
 
 After quality control, every cell is scaled to 10,000 counts and log-transformed, and the genes
 get Ensembl ids. The same steps run in both entry points. Points to know when you build test sets

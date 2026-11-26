@@ -109,7 +109,7 @@ Describe them in a configuration file in `datasets/`, for example `datasets/my_d
 name: my_data
 path: /path/to/my_data.h5ad        # absolute, or relative to the repository
 # All other keys are optional.
-species: "human"                   # default; mouse data: "mouse" and organism "Mus musculus"
+species: "human"                   # human (default) or mouse
 tissue: "peripheral blood"         # for the methods that use the tissue
 annotation_key: "cell_type"        # column of obs with labels, if the data have any
 batch_key: "sample"                # column of obs with the batch, if there are several

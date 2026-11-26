@@ -30,7 +30,7 @@ process preprocess {
 
     input:
     tuple val(dataset), path(raw_file), path(dataset_cfg), val(annotation_key), val(map_labels),
-          val(labels_optional)
+          val(labels_optional), val(organism), val(biomart_species)
     val cache_dir
     val mappings
     val append
@@ -52,6 +52,8 @@ process preprocess {
         --apply_ontology_mapping ${map_labels} \\
         --append_new_labels ${append} \\
         --labels_optional ${labels_optional} \\
+        --organism "${organism}" \\
+        --species "${biomart_species}" \\
         --dataset "${dataset}"
     """
 }
