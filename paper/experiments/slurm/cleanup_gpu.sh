@@ -12,6 +12,8 @@ set -euo pipefail
 
 HOST="${HOST:-gpu}"
 REMOTE_DIR="${REMOTE_DIR:-context_ablation}"
+# Extra ssh options, such as a jump host (SSH_OPTS="-J <host>"), as in ship_to_gpu.sh.
+SSH_OPTS="${SSH_OPTS:-}"
 LOCAL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PURGE_CONDA=0
 ASSUME_YES=0
@@ -24,8 +26,8 @@ for a in "$@"; do
 done
 
 echo "==> safety check: are the remote results already here?"
-remote_n=$(ssh "$HOST" "find $REMOTE_DIR/results/predictions -name predictions.csv 2>/dev/null | wc -l" || echo 0)
-remote_smoke=$(ssh "$HOST" "find $REMOTE_DIR/results/smoke -name predictions.csv 2>/dev/null | wc -l" || echo 0)
+remote_n=$(ssh $SSH_OPTS "$HOST" "find $REMOTE_DIR/results/predictions -name predictions.csv 2>/dev/null | wc -l" || echo 0)
+remote_smoke=$(ssh $SSH_OPTS "$HOST" "find $REMOTE_DIR/results/smoke -name predictions.csv 2>/dev/null | wc -l" || echo 0)
 local_n=$(find "$LOCAL_ROOT/results/predictions" -path '*A2_base*' -o -path '*A3_scllm*' 2>/dev/null | grep -c 'predictions.csv$' || true)
 echo "  remote real predictions : $remote_n"
 echo "  remote smoke predictions: $remote_smoke"
@@ -37,10 +39,10 @@ if [ "$remote_n" -gt 0 ] && [ "$local_n" -lt "$remote_n" ]; then
 fi
 
 echo "==> checking nothing of ours is still running"
-running=$(ssh "$HOST" "squeue -u \$USER -h -o '%i %j %T' | grep -c ctxabl" || true)
+running=$(ssh $SSH_OPTS "$HOST" "squeue -u \$USER -h -o '%i %j %T' | grep -c ctxabl" || true)
 if [ "${running:-0}" -gt 0 ]; then
   echo "REFUSING: $running ctxabl job(s) still queued or running:" >&2
-  ssh "$HOST" "squeue -u \$USER -o '%.10i %.14j %.9T %.10M'" >&2
+  ssh $SSH_OPTS "$HOST" "squeue -u \$USER -o '%.10i %.14j %.9T %.10M'" >&2
   exit 1
 fi
 
@@ -54,7 +56,7 @@ if [ "$ASSUME_YES" -ne 1 ]; then
   [[ "$ans" =~ ^[yY]$ ]] || { echo "cancelled"; exit 0; }
 fi
 
-ssh "$HOST" PURGE_CONDA="$PURGE_CONDA" REMOTE_DIR="$REMOTE_DIR" bash -s <<'REMOTE'
+ssh $SSH_OPTS "$HOST" PURGE_CONDA="$PURGE_CONDA" REMOTE_DIR="$REMOTE_DIR" bash -s <<'REMOTE'
 set -uo pipefail
 echo "  removing ~/$REMOTE_DIR"
 rm -rf "$HOME/${REMOTE_DIR:?}"

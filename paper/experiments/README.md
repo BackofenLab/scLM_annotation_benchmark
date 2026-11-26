@@ -22,10 +22,10 @@ defines A5, A6 and A7, which are not in the table):
 **Imperfect candidate lists** (study tree `results_lists/`). Mode M2 with other lists than the
 exact one: E (exact), EU (exact, "uncertain" allowed), L1 (a parent or child added for half of the
 types), L2-2 and L2-5 (2 or 5 absent types added), L3 (a quarter of the types removed, "uncertain"
-allowed) and L4 (L1, L2-5 and L3 together). The arms are A1, A3 and A8, and four baselines that get
-the list as a label constraint (B1 SingleR, B2 CellTypist, B3 scType, B4 SCSA; not EU).
-`results_lists/runs.csv` also holds rows of two single-cell language models (`S1_mmcontext`,
-`S2_langcell`); no script in this folder writes their predictions.
+allowed) and L4 (L1, L2-5 and L3 together). The arms are A1, A3 and A8, four baselines that get
+the list as a label constraint (B1 SingleR, B2 CellTypist, B3 scType, B4 SCSA; not EU), and two
+single-cell language models that compare each cell with the listed names (S1 mmContext, S2
+LangCell; not EU), run with the benchmark's wrappers `mmcontext_blind` and `langcell_blind`.
 
 ## Contents
 
@@ -33,7 +33,7 @@ the list as a label constraint (B1 SingleR, B2 CellTypist, B3 scType, B4 SCSA; n
 |---|---|
 | `config.yml` | datasets, arms, modes, gene variants, list conditions and scoring |
 | `src/` | the scripts; each one describes itself at its top |
-| `slurm/` | scripts that run the local arms on a SLURM cluster |
+| `slurm/` | scripts that run the local arms and the scLM arms on a SLURM cluster |
 | `results/context_ablation.csv` | result table of the ablation |
 | `results_lists/runs.csv` | result table of the list analysis, one row per run |
 | `results_lists/lists/` | the drawn lists, one file per dataset, condition and seed |
@@ -60,8 +60,9 @@ First copy the benchmark's mapping table, `../../resources/cell_type_ontology_ma
 the pinned Cell Ontology release, `../../cache/cl-basic_2026-06-08.obo` (downloaded by a pipeline
 run), into `cache/`. Before scoring, `python src/review_mappings.py --seed-from-predictions
 <study tree>/predictions --apply` adds the answers that the table lacks and resolves them by its
-rules. `score.py` adds answers that are still missing as unreviewed rows, and it skips every run
-whose result file exists; remove `<study tree>/scored/` to score again.
+rules. `score.py` adds answers that are still missing as unreviewed rows. It skips every run that
+has metrics and maps and scores the runs below the coverage threshold again; remove
+`<study tree>/scored/` to score all runs again.
 
 Prompt-context ablation:
 
@@ -85,6 +86,8 @@ python src/sentences.py --materialize --study lists
 python src/cluster.py --study lists
 python src/run_openrouter.py --study lists --arms A1_llm_percell A8_gemini_percluster
 python src/run_local.py --study lists --arms A3_scllm_percell
+(cd ../.. && sbatch --export=ALL,MODEL=mmcontext_blind,ARM=S1_mmcontext paper/experiments/slurm/run_sclm_lists.sbatch)
+(cd ../.. && sbatch --export=ALL,MODEL=langcell_blind,ARM=S2_langcell paper/experiments/slurm/run_sclm_lists.sbatch)
 python src/run_reference.py singler --env <environment>   # and celltypist, sctype, scsa
 python src/score.py --study lists --python <python of the evaluation environment>
 python src/lists.py --score             # results_lists/runs.csv and confusion_pairs.csv
@@ -94,6 +97,8 @@ python src/lists.py --score             # results_lists/runs.csv and confusion_p
 the local arms' prompt files and creates the environment, `submit_shards.sh <arm> [dataset ...]`
 submits one job per dataset, `fetch_from_gpu.sh` copies predictions, caches and logs back, and
 `cleanup_gpu.sh` removes the study's files from the cluster; `STUDY=lists` switches the first three
-to the list analysis. They assume an ssh alias `gpu` (`HOST`), the remote folder
-`~/context_ablation`, `/scratch/global/$USER/hf` for the model weights and, in `submit_shards.sh`,
-the name of one GPU node; adapt these to another cluster.
+to the list analysis. The ssh alias (`HOST`, default `gpu`), extra ssh options such as a jump host
+(`SSH_OPTS`), the remote folder (`REMOTE_DIR`, default `context_ablation` in the home folder) and
+the GPU node that `submit_shards.sh` checks (`NODE`) are variables; the model weights go to
+`/scratch/global/$USER/hf`. `run_sclm_lists.sbatch` runs the scLM arms in a checkout of the whole
+repository on a GPU node (see its header).

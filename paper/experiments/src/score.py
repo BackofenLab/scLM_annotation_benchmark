@@ -3,15 +3,18 @@
 
 Runs ``bin/map_predictions.py`` and ``bin/evaluate.py`` on every predictions.csv under
 ``<study tree>/predictions/`` and writes one folder per run to ``<study tree>/scored/``. A run whose
-result JSON exists is skipped. The mapping table is the study's own copy in ``scoring.cache_dir``
-(seeded with the benchmark's ``resources/cell_type_ontology_mappings.csv``), so answers that are
-new in a study enter only that copy, as unreviewed rows (see ``review_mappings.py``).
+result JSON holds metrics is skipped; a run below the coverage threshold is mapped and scored
+again, so that answers reviewed since then count. The mapping table is the study's own copy in
+``scoring.cache_dir`` (seeded with the benchmark's ``resources/cell_type_ontology_mappings.csv``),
+so answers that are new in a study enter only that copy, as unreviewed rows (see
+``review_mappings.py``).
 
     python src/score.py --study ablation --python <python of the evaluation environment>
 """
 from __future__ import annotations
 
 import argparse
+import json
 import subprocess
 import sys
 from pathlib import Path
@@ -39,8 +42,14 @@ def result_file(work, coords, cfg):
     return work / f"{coords['dataset']}__{coords['arm']}__sub{cfg['eval']['size']}.json"
 
 
+def below_coverage(result):
+    """True if a result JSON holds no metrics because too few of the answers were trusted."""
+    coverage = json.loads(result.read_text())["coverage"]
+    return coverage["reviewed_fraction"] < coverage["min_scoring_coverage"]
+
+
 def score_one(path, coords, cfg, root, python_exe, tree):
-    """Map and score one run into its own folder unless that is done already."""
+    """Map and score one run into its own folder unless it has metrics already."""
     cache_dir = (root / cfg["scoring"]["cache_dir"]).resolve()
     if not (cache_dir / MAPPINGS).exists():
         raise SystemExit(f"{cache_dir / MAPPINGS} not found. Copy the benchmark's mapping table "
@@ -49,11 +58,13 @@ def score_one(path, coords, cfg, root, python_exe, tree):
                      coords["variant"], f"seed{coords['seed']}"])
     work = tree / "scored" / tag
     work.mkdir(parents=True, exist_ok=True)
-    if result_file(work, coords, cfg).exists():
-        return "cached"
+    result, mapped = result_file(work, coords, cfg), work / "predictions_mapped.csv"
+    if result.exists():
+        if not below_coverage(result):
+            return "cached"
+        mapped.unlink(missing_ok=True)
     common = ["--method", coords["arm"], "--dataset", coords["dataset"], "--out-dir", str(work),
               "--mappings", str(cache_dir / MAPPINGS), "--cache_dir", str(cache_dir)]
-    mapped = work / "predictions_mapped.csv"
     if not mapped.exists():
         subprocess.run([python_exe, str(REPO_ROOT / cfg["scoring"]["map_predictions"].lstrip("./")),
                         "--pred", str(path), *common], check=True)

@@ -46,9 +46,9 @@ echo "==> verifying the shipment"
 ssh $SSH_OPTS "$HOST" "cd $REMOTE_DIR && ls $TREE/prompts/*.csv | wc -l | xargs printf '  prompt files: %s (168 for the ablation)\n' && du -sh $TREE/prompts | xargs printf '  size: %s %s\n'"
 
 echo "==> bootstrapping conda + environment (skips whatever already exists)"
-ssh $SSH_OPTS "$HOST" bash -s <<'REMOTE'
+ssh $SSH_OPTS "$HOST" bash -s -- "$REMOTE_DIR" <<'REMOTE'
 set -euo pipefail
-cd ~/context_ablation
+cd "$HOME/$1"
 
 if [ ! -d "$HOME/miniforge3" ]; then
   echo "  installing miniforge to ~/miniforge3"
@@ -82,4 +82,4 @@ mkdir -p "/scratch/global/$USER/hf"
 echo "  HF_HOME will be /scratch/global/$USER/hf ($(df -h /scratch/global | tail -1 | awk '{print $4}') free)"
 REMOTE
 
-echo "==> done. Next: slurm/smoke_test_gpu.sh"
+echo "==> done. Next, on $HOST in ~/$REMOTE_DIR: sbatch slurm/smoke_test.sbatch"

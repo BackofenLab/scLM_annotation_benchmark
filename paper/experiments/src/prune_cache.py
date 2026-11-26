@@ -2,8 +2,9 @@
 """Drop the entries of the ablation's response cache that no current prompt file asks for.
 
 A cache entry stores the key, not the prompt, so the wanted keys are rebuilt from
-``results/prompts/`` and every other entry of ``results/cache/*.jsonl`` is dropped. Without
-``--apply`` it only reports; with it, it refuses to write while a runner is running.
+``results/prompts/`` and every other entry of ``results/cache/*.jsonl`` is dropped. The greedy
+arms' files (``<arm>__<dataset>__greedy.jsonl``) are keyed without the seed, as in run_local.py.
+Without ``--apply`` it only reports; with it, it refuses to write while a runner is running.
 
     python src/prune_cache.py [--apply]
 """
@@ -22,13 +23,13 @@ from runner_cache import prompt_key, write_atomic  # noqa: E402
 from run_openrouter import parse_prompt_file  # noqa: E402
 
 
-def wanted_keys(prompts_dir, arm_name, dataset, model):
+def wanted_keys(prompts_dir, arm_name, dataset, model, greedy=False):
     """Every key the current prompt files for this (arm, dataset) would look up."""
     keys = set()
     for f in sorted(Path(prompts_dir).glob(f"{dataset}__{arm_name}__*.csv")):
         _ds, _arm, _mode, _variant, seed = parse_prompt_file(f)
         for prompt in pd.read_csv(f)["prompt"]:
-            keys.add(prompt_key(model, prompt, seed))
+            keys.add(prompt_key(model, prompt, None if greedy else seed))
     return keys
 
 
@@ -38,13 +39,14 @@ def prune(root, cfg, dry_run=True):
     total_kept = total_dropped = 0
 
     for cache_file in sorted(cache_root.glob("*.jsonl")):
-        arm_name, dataset = cache_file.stem.split("__", 1)
+        greedy = cache_file.stem.endswith("__greedy")
+        arm_name, dataset = cache_file.stem.removesuffix("__greedy").split("__", 1)
         arm = cfg["arms"].get(arm_name)
         if arm is None:
             print(f"  [skip] {cache_file.name}: no such arm in config")
             continue
 
-        keys = wanted_keys(prompts_dir, arm_name, dataset, arm["model"])
+        keys = wanted_keys(prompts_dir, arm_name, dataset, arm["model"], greedy)
         if not keys:
             print(f"  [skip] {cache_file.name}: no prompt files found, refusing to prune blind")
             continue

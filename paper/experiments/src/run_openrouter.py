@@ -244,11 +244,12 @@ def run_file(prompt_file, cfg, api_key, out_root, cache_root, dry_run=False):
             done = 0
             for fut in as_completed(futures):
                 prompt = futures[fut]
-                # An exception in a worker is recorded as the error of its prompt.
+                # An exception in a worker is a transient error of its prompt.
                 try:
                     text, meta = fut.result()
                 except Exception as exc:  # noqa: BLE001
-                    text, meta = None, {"error": f"worker raised {type(exc).__name__}: {exc}"}
+                    text, meta = None, {"error": f"worker raised {type(exc).__name__}: {exc}",
+                                        "transient": True}
                 if meta.get("fatal"):
                     pool.shutdown(wait=False, cancel_futures=True)
                     raise SystemExit(f"{arm_name} {dataset} {mode} seed{seed}: {meta['error']}. "

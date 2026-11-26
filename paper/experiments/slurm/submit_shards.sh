@@ -13,6 +13,7 @@ set -euo pipefail
 HOST="${HOST:-gpu}"
 REMOTE_DIR="${REMOTE_DIR:-context_ablation}"
 SSH_OPTS="${SSH_OPTS:-}"            # e.g. "-J <jump-host>", as in ship_to_gpu.sh
+NODE="${NODE:-<gpu-node>}"        # the GPU node whose state is checked first
 STUDY="${STUDY:-ablation}"          # the study tree run_local.py reads and writes
 # Jobs of the user queued or running at once, one below a per-user limit of four GPUs.
 MAX_CONCURRENT="${MAX_CONCURRENT:-3}"
@@ -40,12 +41,12 @@ fi
 echo "==> $ARM at batch $BATCH"
 
 echo "==> node must be usable before anything is submitted"
-state=$(ssh $SSH_OPTS "$HOST" "sinfo -N -h -o '%T' -n <gpu-node>" | tr -d ' ')
+state=$(ssh $SSH_OPTS "$HOST" "sinfo -N -h -o '%T' -n $NODE" | tr -d ' ')
 echo "  node state: $state"
 case "$state" in
   *drain*|*down*)
     echo "REFUSING: the node is $state, so nothing would start." >&2
-    ssh $SSH_OPTS "$HOST" "sinfo -N -o '%.20N %.14T %.30E' -n <gpu-node>" >&2
+    ssh $SSH_OPTS "$HOST" "sinfo -N -o '%.20N %.14T %.30E' -n $NODE" >&2
     echo "A drained node needs an admin to resume it." >&2
     exit 1 ;;
 esac

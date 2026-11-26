@@ -117,28 +117,30 @@ def build(dataset, cfg, use_hvg, seed=1234):
 
 
 def check_equivalence(dataset, cfg, n_check=50, seed=1234):
-    """Compare the first ``n_check`` sentences of ``build`` without the HVG pool with sentences
-    built from the eval subset directly. Returns the indices of differing cells and the info."""
-    import cell2sentence as cs
+    """Compare the first ``n_check`` sentences of ``build`` without the HVG pool with the sentences
+    that the benchmark's per-cell LLM wrapper (``models/openrouter_LLM_blind/src/predict.py``)
+    builds from the same test set with its own settings. Returns the indices of differing cells
+    and the info."""
+    import importlib.util
     from cell2sentence.prompt_formatter import get_cell_sentence_str
 
     arrow_ds, _vocab, info = build(dataset, cfg, use_hvg=False, seed=seed)
 
+    wrapper_dir = REPO_ROOT / "models" / "openrouter_LLM_blind" / "src"
+    spec = importlib.util.spec_from_file_location("benchmark_wrapper", wrapper_dir / "predict.py")
+    wrapper = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(wrapper)
+    settings = load_config(wrapper_dir / "openrouter.yml")
     eval_cfg = cfg["eval"]
     src = (Path(eval_cfg["subset_dir"]) /
            f"{dataset}_sub{eval_cfg['size']}_{eval_cfg['strategy']}.h5ad")
-    reference, _col = resolve_symbols(ad.read_h5ad(src))
-    ref_ds, _v = cs.CSData.adata_to_arrow(
-        adata=reference, random_state=seed, sentence_delimiter=" ", label_col_names=[])
+    label_key = _annotation_key(dataset)
+    reference = wrapper.build_prompts(wrapper.load_test_set(src, label_key), "{cell_sentence}",
+                                      label_key, settings["seed"], settings["top_k_genes"])
 
     cap = cfg["genes"]["cap"]
-    mismatches = []
-    for i in range(min(n_check, arrow_ds.num_rows)):
-        ours, _n = get_cell_sentence_str(arrow_ds[i], num_genes=cap)
-        theirs, _n = get_cell_sentence_str(ref_ds[i], num_genes=cap)
-        if ours != theirs:
-            mismatches.append(i)
-    return mismatches, info
+    return [i for i in range(min(n_check, arrow_ds.num_rows))
+            if get_cell_sentence_str(arrow_ds[i], num_genes=cap)[0] != reference[i]], info
 
 
 def materialize(dataset, cfg, out_dir, arms=None, modes=None, candidates=None):
