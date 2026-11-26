@@ -1,0 +1,10 @@
+You are an expert at classifying cell types based on gene expression.
+Given below is a list of up to {num_genes} gene names ordered by descending expression level in a single cell.
+Your task is to identify the exact cell type this gene profile represents.
+Cell sentence: {cell_sentence}
+Important rules:
+1. Respond with only the cell type label of the predicted cell type.
+2. Use the canonical cell type label from the OBO Foundry Cell Ontology (CL) — the primary label string as it appears in CL, not a synonym, abbreviation, or free-form description.
+3. Do not include explanations, reasoning, or extra words in the output.
+4. Do not repeat the question or input in the output.
+Output:

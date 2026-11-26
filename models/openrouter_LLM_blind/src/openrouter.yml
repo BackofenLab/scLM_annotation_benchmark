@@ -1,0 +1,54 @@
+# Served models and request settings of the OpenRouter wrapper, shared by the settings with and
+# without the list of expected cell types. The prompt template is prompt.txt in the method folder.
+
+# OpenRouter model ids, read by the pipeline through served_models in method.yml. Each model
+# writes predictions_<id with "/" replaced by "--">.csv.
+models:
+  - meta-llama/llama-4-maverick
+  - anthropic/claude-sonnet-4.6
+  - deepseek/deepseek-v3.2
+  - moonshotai/kimi-k2.6
+  - openai/gpt-5.5
+  - openai/gpt-oss-20b
+  - openai/gpt-oss-120b
+  - google/gemini-3.1-pro-preview
+  - anthropic/claude-opus-4.7
+  - meta-llama/llama-3.1-70b-instruct
+  - meta-llama/llama-3.3-70b-instruct
+
+seed: 1234          # sent with every request; also shuffles the cell type lists in the prompts
+top_k_genes: 200    # genes per cell sentence, most highly expressed first
+max_samples: null   # first cells of the test set to annotate; null or 0 for all
+max_workers: 10     # concurrent requests per model
+
+# The provider field of every request. Null values and empty lists are not sent.
+provider:
+  order: []
+  only: []
+  ignore: []
+  quantizations: []
+  allow_fallbacks: true
+  require_parameters: null
+  data_collection: allow
+  sort: price
+  max_price:
+    prompt: null
+    completion: null
+
+# Further fields of every request. Null values and empty lists are not sent.
+generation:
+  max_tokens: null
+  temperature: null
+  top_p: null
+  top_k: null
+  frequency_penalty: null
+  presence_penalty: null
+  repetition_penalty: null
+  stop: []
+  response_format: null
+  # Not sent to meta-llama and mistralai models; deepseek-r1 models get only exclude.
+  reasoning:
+    enabled: true
+    effort: medium      # sent to all models except anthropic and google ones
+    max_tokens: 10000   # sent to anthropic and google models instead of effort
+    exclude: false

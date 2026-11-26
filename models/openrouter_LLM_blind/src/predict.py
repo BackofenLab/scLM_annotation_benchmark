@@ -1,529 +1,319 @@
 #!/usr/bin/env python3
+"""Cell type annotation with general-purpose LLMs through the OpenRouter API.
+
+Each cell becomes one prompt: the template filled with the cell's most highly expressed genes (a
+cell2sentence cell sentence) and, if the template contains {unique_cell_types}, the cell types of
+the test set, shuffled for each cell. Every served model gets one request per cell, and its
+answers are written unchanged; the pipeline maps them to the Cell Ontology afterwards.
+
+Inputs: the test set (.h5ad), the dataset config (annotation_key), the prompt template and
+openrouter.yml with the served models and the request settings. The key is read from API_KEY.
+
+Outputs per served model, in the folder of --output (out/predictions.csv):
+    predictions_<model>.csv  cell_id, true_labels, predicted_labels
+    usage_<model>.csv        cell_id, provider, prompt_tokens, completion_tokens,
+                             reasoning_tokens, cost, finish_reason
+<model> is the model id with "/" replaced by "--". Models whose prediction file exists are
+skipped. The models run in parallel, each with max_workers concurrent requests.
+
+Called by run.sh as
+    predict.py --input test_set.h5ad --output out/predictions.csv --dataset_config dataset.yml
+               --prompt prompt.txt --config openrouter.yml [--skip_model_check]
 """
-OpenRouter LLM inference for single-cell data (e.g. DeepSeekR1 or GPT-5).
 
-- Reads API key from env (API_KEY) or --api-key
-- Builds prompts with cell2sentence custom prompt formatter
-- Queries OpenRouter LLMs (e.g. DeepSeek R1, GPT-5, ...) with retries
-- Writes predictions.csv in the standard schema shared with the other models:
-
-    cell_id, true_labels, predicted_labels
-
-For constructing cell sentences, make sure that gene symbols are available!
-
-The model is expected to return a cell type label directly; the raw label is written as
-predicted_labels (normalization + ontology mapping happen downstream in bin/map_predictions.py).
-
-"""
-
-from __future__ import annotations
-
+import argparse
+import logging
 import os
 import sys
 import time
-import json
-import argparse
-import logging
-import random
-from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from pathlib import Path
 
-from typing import Optional, Dict, List, Iterable, Tuple, Union, Mapping, Any
-
+import anndata
+import cell2sentence as cs
 import numpy as np
 import pandas as pd
 import requests
-from tqdm import tqdm
+import yaml
+from cell2sentence.prompt_formatter import get_cell_sentence_str
 
-import scanpy as sc
-import cell2sentence as cs
-from cell2sentence.prompt_formatter import get_cell_sentence_str, PromptFormatter
-from datasets import Dataset, load_from_disk
+API_URL = "https://openrouter.ai/api/v1"
+USAGE_COLUMNS = ["cell_id", "provider", "prompt_tokens", "completion_tokens", "reasoning_tokens",
+                 "cost", "finish_reason"]
 
-# ---- logging ----
-logging.basicConfig(
-    level=os.environ.get("LOGLEVEL", "INFO"),
-    format="%(asctime)s | %(levelname)s | %(message)s",
-)
-logger = logging.getLogger("openrouter_LLM_predict")
+# A request is sent up to ATTEMPTS times per round, in up to ROUNDS rounds (see answer()).
+ATTEMPTS = 5
+ROUNDS = 3
+BACKOFF = 1.5  # wait after the first failed attempt in seconds, doubled after each further one
+
+# Vendors whose models get no reasoning field, and vendors whose models get reasoning.max_tokens
+# rather than reasoning.effort when both are configured.
+NO_REASONING = ("meta-llama", "mistralai")
+TOKEN_BUDGET = ("anthropic", "google")
+# Models that always reason and accept only reasoning.exclude.
+ALWAYS_REASONING = ("deepseek-r1",)
+
+log = logging.getLogger("openrouter")
 
 
-# ---------------- I/O helpers ----------------
-def load_data(data_path: str):
-    logger.info(f"Loading data from: {data_path}")
-    adata = sc.read_h5ad(data_path)
-    logger.info(f"AnnData loaded: {adata.n_obs} cells × {adata.n_vars} genes")
+def load_test_set(path, label_key):
+    """The test set with upper-case gene symbols as var_names."""
+    adata = anndata.read_h5ad(path)
+    log.info("Loaded %s: %d cells, %d genes", path, adata.n_obs, adata.n_vars)
+    if label_key not in adata.obs.columns:
+        log.error("Column '%s' is not in adata.obs", label_key)
+        sys.exit(4)
+    if adata.var_names.str.contains("ENS").any():
+        column = next((c for c in ("gene_names", "feature_name", "gene_symbols")
+                       if c in adata.var.columns), None)
+        if column is None:
+            log.error("var_names contain Ensembl ids and adata.var has no gene_names, "
+                      "feature_name or gene_symbols column")
+            sys.exit(4)
+        adata.var_names = adata.var[column].astype(str)
+    adata.var_names = adata.var_names.str.upper()
+    adata.var_names_make_unique()
     return adata
 
 
-
-# ---------------- Prompting ----------------
-class CustomPromptFormatter(PromptFormatter):
-    def __init__(self, task_name: str, input_prompt: str, answer_template: str, top_k_genes: int):
-        super().__init__()
-        assert top_k_genes > 0, "'top_k_genes' must be > 0"
-        self.task_name = task_name
-        self.input_prompt = input_prompt
-        self.answer_template = answer_template
-        self.top_k_genes = top_k_genes
-
-    def format_hf_ds(self, hf_ds: Dataset) -> Dataset:
-        model_inputs_list, responses_list = [], []
-
-        for i in range(hf_ds.num_rows):
-            sample = hf_ds[i]
-            cell_sentence, num_genes_str = get_cell_sentence_str(sample, num_genes=self.top_k_genes)
-
-            model_inputs_list.append(
-                self.input_prompt.format(
-                    cell_sentence=cell_sentence,
-                    num_genes=num_genes_str,
-                    unique_cell_types=sample["unique_cell_types"]
-                )
-            )
-            responses_list.append(
-                self.answer_template.format(
-                    true_labels=sample.get("true_labels", "")
-                )
-            )
-
-        return Dataset.from_dict(
-            {
-                "sample_type": [self.task_name] * hf_ds.num_rows,
-                "model_input": model_inputs_list,
-                "response": responses_list,
-            }
-        )
+def build_prompts(adata, template, label_key, seed, top_k_genes):
+    """One prompt per cell, in the order of the test set."""
+    cell_types = [None] * adata.n_obs
+    if "{unique_cell_types}" in template:
+        rng = np.random.default_rng(seed)
+        labels = pd.unique(adata.obs[label_key].astype(str).values)
+        cell_types = [rng.permutation(labels).tolist() for _ in range(adata.n_obs)]
+    cells, _ = cs.CSData.adata_to_arrow(adata=adata, random_state=seed, sentence_delimiter=" ")
+    prompts = []
+    for cell, types in zip(cells, cell_types):
+        sentence, num_genes = get_cell_sentence_str(cell, num_genes=top_k_genes)
+        prompts.append(template.format(cell_sentence=sentence, num_genes=num_genes,
+                                       unique_cell_types=types))
+    return prompts
 
 
-# ---------------- OpenRouter client ----------------
-def assert_model_available(model: str, api_key: str) -> None:
-    url = "https://openrouter.ai/api/v1/models"
-    try:
-        r = requests.get(url, headers={"Authorization": f"Bearer {api_key}"}, timeout=30)
-        if r.status_code != 200:
-            logger.warning(f"Could not list models (HTTP {r.status_code}): {r.text[:500]}")
-            return
-        models = {m.get("id") for m in r.json().get("data", []) if isinstance(m, dict)}
-        if model not in models:
-            raise SystemExit(f"Model '{model}' is not available on your OpenRouter account. "
-                             f"Choose one from: {sorted(list(models))[:20]} ...")
-    except Exception as e:
-        logger.warning(f"Model check failed: {e}")
+def compact(mapping):
+    """The mapping without null values, empty lists and empty mappings, at all levels."""
+    result = {}
+    for key, value in mapping.items():
+        if isinstance(value, dict):
+            value = compact(value)
+        if value is not None and value != [] and value != {}:
+            result[key] = value
+    return result
 
 
-def query_openrouter_model(
-    model: str,
-    prompt: str,
-    sysprompt: str,
-    api_key: str,
-    *,
-    provider_cfg: Dict[str, Any] | None = None,
-    generation_cfg: Dict[str, Any] | None = None,
-    reasoning_cfg: Dict[str, Any] | None = None,
-    max_retries: int = 5,
-    backoff: float = 1.5,
-    prepend_reasoning: bool = False,
-) -> str:
-    """Send a single chat completion request to OpenRouter with retry logic."""
-    url = "https://openrouter.ai/api/v1/chat/completions"
-    provider_cfg = provider_cfg or {}
-    generation_cfg = generation_cfg or {}
-    reasoning_cfg = reasoning_cfg or {}
+def reasoning_field(model, reasoning):
+    """The reasoning field of a request to the model, empty if none is sent."""
+    vendor = model.split("/")[0] if "/" in model else ""
+    if vendor in NO_REASONING:
+        return {}
+    if any(pattern in model.split("/")[-1] for pattern in ALWAYS_REASONING):
+        return {"exclude": reasoning["exclude"]} if "exclude" in reasoning else {}
+    field = {}
+    if "enabled" in reasoning:
+        field["enabled"] = reasoning["enabled"]
+    if "max_tokens" in reasoning and (vendor in TOKEN_BUDGET or "effort" not in reasoning):
+        field["max_tokens"] = reasoning["max_tokens"]
+    elif "effort" in reasoning:
+        field["effort"] = reasoning["effort"]
+    if "exclude" in reasoning:
+        field["exclude"] = reasoning["exclude"]
+    return field
 
-    headers = {
-        "Authorization": f"Bearer {api_key}",
-        "Content-Type": "application/json",
-    }
-    if generation_cfg.get("http_referer"):
-        headers["HTTP-Referer"] = generation_cfg["http_referer"]
-    if generation_cfg.get("x_title"):
-        headers["X-Title"] = generation_cfg["x_title"]
 
-    data: Dict[str, Any] = {
+def request_body(model, prompt, settings):
+    body = {
         "model": model,
-        "messages": [
-            {"role": "system", "content": sysprompt or ""},
-            {"role": "user", "content": prompt},
-        ],
+        "messages": [{"role": "system", "content": ""}, {"role": "user", "content": prompt}],
     }
-
-    # Build provider block — filter out None/empty values
-    provider = {}
-    for key in ("order", "only", "ignore", "quantizations"):
-        val = provider_cfg.get(key)
-        if val:
-            provider[key] = val
-    for key in ("allow_fallbacks", "require_parameters", "data_collection", "sort"):
-        val = provider_cfg.get(key)
-        if val is not None:
-            provider[key] = val
-    # max_price sub-dict
-    max_price = {}
-    if provider_cfg.get("max_price_prompt") is not None:
-        max_price["prompt"] = provider_cfg["max_price_prompt"]
-    if provider_cfg.get("max_price_completion") is not None:
-        max_price["completion"] = provider_cfg["max_price_completion"]
-    if max_price:
-        provider["max_price"] = max_price
+    provider = compact(settings["provider"])
     if provider:
-        data["provider"] = provider
+        body["provider"] = provider
+    generation = compact(settings["generation"])
+    reasoning = reasoning_field(model, generation.pop("reasoning", {}))
+    body.update(generation)
+    body.setdefault("seed", settings["seed"])
+    if reasoning:
+        body["reasoning"] = reasoning
+    return body
 
-    # Generation params — add non-None values
-    for key in ("max_tokens", "temperature", "top_p", "top_k", "seed",
-                "frequency_penalty", "presence_penalty", "repetition_penalty", "stop"):
-        val = generation_cfg.get(key)
-        if val is not None:
-            data[key] = val
-    if generation_cfg.get("stream"):
-        data["stream"] = True
-    if generation_cfg.get("response_format") is not None:
-        data["response_format"] = generation_cfg["response_format"]
 
-    # Reasoning block — effort and max_tokens are mutually exclusive in the
-    # OpenRouter API.  When both are configured globally, pick the right one
-    # based on the model provider:
-    #   • Anthropic / Google models → use max_tokens (effort not supported)
-    #   • Non-reasoning models (meta-llama, mistralai) → skip reasoning entirely
-    #   • Mandatory-reasoning models (deepseek-r1) → only send exclude if set
-    #   • All other reasoning models → use effort
-    _NON_REASONING_PREFIXES = ("meta-llama", "mistralai")
-    _MANDATORY_REASONING_PATTERNS = ("deepseek-r1",)
+def lookup(data, *keys):
+    """data[key1][key2]..., or None if a key is missing or a level is not a mapping."""
+    for key in keys:
+        if not isinstance(data, dict):
+            return None
+        data = data.get(key)
+    return data
 
-    provider_prefix = model.split("/")[0] if "/" in model else ""
-    model_suffix = model.split("/")[-1] if "/" in model else model
 
-    # Skip reasoning entirely for non-reasoning models
-    if provider_prefix in _NON_REASONING_PREFIXES:
-        pass  # no reasoning block
-    elif any(p in model_suffix for p in _MANDATORY_REASONING_PATTERNS):
-        # Mandatory reasoning — only send exclude (effort/max_tokens ignored)
-        reasoning = {}
-        if reasoning_cfg.get("exclude") is not None:
-            reasoning["exclude"] = reasoning_cfg["exclude"]
-        if reasoning:
-            data["reasoning"] = reasoning
-    else:
-        # Optional reasoning — pick effort vs max_tokens per provider
-        reasoning = {}
-        if reasoning_cfg.get("enabled") is not None:
-            reasoning["enabled"] = reasoning_cfg["enabled"]
+def send(body, headers, model):
+    """Send one request, retrying rate limits, server errors and failed requests.
 
-        has_effort = reasoning_cfg.get("effort") is not None
-        has_max_tokens = reasoning_cfg.get("max_tokens") is not None
-
-        if has_effort and has_max_tokens:
-            if provider_prefix in ("anthropic", "google"):
-                reasoning["max_tokens"] = reasoning_cfg["max_tokens"]
-            else:
-                reasoning["effort"] = reasoning_cfg["effort"]
-        elif has_effort:
-            reasoning["effort"] = reasoning_cfg["effort"]
-        elif has_max_tokens:
-            reasoning["max_tokens"] = reasoning_cfg["max_tokens"]
-
-        if reasoning_cfg.get("exclude") is not None:
-            reasoning["exclude"] = reasoning_cfg["exclude"]
-        if reasoning:
-            data["reasoning"] = reasoning
-
-    # Send with retry + adaptive backoff
-    last_err = None
-    for attempt in range(1, max_retries + 1):
+    Returns the answer text and the usage fields of the response.
+    """
+    error = None
+    for attempt in range(1, ATTEMPTS + 1):
+        backoff = BACKOFF * 2 ** (attempt - 1)
         try:
-            r = requests.post(url, headers=headers, json=data, timeout=90)
-            rid = r.headers.get("x-request-id") or r.headers.get("openrouter-request-id")
-            rtext = r.text[:2000]
-
-            if r.status_code == 200:
-                js = r.json()
-                msg = js["choices"][0]["message"]
-                content = (msg.get("content") or "") if isinstance(msg, dict) else ""
-                if prepend_reasoning and isinstance(msg, dict) and msg.get("reasoning"):
-                    content = f"<think>{msg['reasoning']}</think>\n{content}"
-                return content
-
-            logger.error(
-                f"OpenRouter HTTP {r.status_code} (attempt {attempt}/{max_retries}) "
-                f"req_id={rid} model={model} body={rtext}"
-            )
-
-            if r.status_code == 429:
-                ra = r.headers.get("retry-after")
-                sleep_s = float(ra) if ra else backoff * (2 ** (attempt - 1))
-                logger.info(f"Rate limited, sleeping {sleep_s:.1f}s")
-                time.sleep(sleep_s)
-                last_err = rtext
+            response = requests.post(f"{API_URL}/chat/completions", headers=headers, json=body,
+                                     timeout=90)
+            if response.status_code == 200:
+                data = response.json()
+                choice = data["choices"][0]
+                message = choice["message"]
+                text = (message.get("content") or "") if isinstance(message, dict) else ""
+                usage = {
+                    "provider": lookup(data, "provider"),
+                    "prompt_tokens": lookup(data, "usage", "prompt_tokens"),
+                    "completion_tokens": lookup(data, "usage", "completion_tokens"),
+                    "reasoning_tokens": lookup(data, "usage", "completion_tokens_details",
+                                               "reasoning_tokens"),
+                    "cost": lookup(data, "usage", "cost"),
+                    "finish_reason": lookup(choice, "finish_reason"),
+                }
+                return text, usage
+            error = f"HTTP {response.status_code}: {response.text[:2000]}"
+            log.error("%s, attempt %d of %d: %s", model, attempt, ATTEMPTS, error)
+            if response.status_code == 429:
+                retry_after = response.headers.get("retry-after")
+                time.sleep(float(retry_after) if retry_after else backoff)
                 continue
-
-            if 500 <= r.status_code < 600:
-                time.sleep(backoff * (2 ** (attempt - 1)))
-                last_err = rtext
+            if 500 <= response.status_code < 600:
+                time.sleep(backoff)
                 continue
-
-            last_err = rtext
             break
-
-        except requests.Timeout as e:
-            logger.error(f"Timeout (attempt {attempt}/{max_retries}) model={model}: {e}")
-            time.sleep(backoff * (2 ** (attempt - 1)))
-            last_err = str(e)
-        except Exception as e:
-            logger.error(f"Request error (attempt {attempt}/{max_retries}) model={model}: {e}")
-            time.sleep(backoff * (2 ** (attempt - 1)))
-            last_err = str(e)
-
-    raise RuntimeError(f"OpenRouter call failed after {max_retries} attempts. Last error: {last_err}")
+        except Exception as exc:
+            error = str(exc)
+            log.error("%s, attempt %d of %d: %s", model, attempt, ATTEMPTS, error)
+            time.sleep(backoff)
+    raise RuntimeError(f"no answer after {attempt} attempts: {error}")
 
 
-def run_OpenRouter_model_prediction(
-    model: str,
-    api_key: str,
-    csdata,
-    task_name: str,
-    input_prompt_template: str,
-    answer_template: str,
-    *,
-    top_k_genes: int = 200,
-    max_samples: int | None = None,
-    max_workers: int = 10,
-    provider_cfg: Dict[str, Any] | None = None,
-    generation_cfg: Dict[str, Any] | None = None,
-    reasoning_cfg: Dict[str, Any] | None = None,
-    prepend_reasoning: bool = False,
-):
-    """Run cell type predictions for a single model across all cells."""
-    hf_ds = load_from_disk(csdata.data_path)
-
-    formatter = CustomPromptFormatter(
-        task_name=task_name,
-        input_prompt=input_prompt_template,
-        answer_template=answer_template,
-        top_k_genes=top_k_genes,
-    )
-    formatted = formatter.format_hf_ds(hf_ds)
-
-    if max_samples is not None:
-        max_samples = int(max_samples)
-        max_samples = min(max_samples, formatted.num_rows)
-        formatted = formatted.select(range(max_samples))
-
-    logger.info(f"First formatted sample: {formatted[0]}")
-
-    n = formatted.num_rows
-    logger.info(f"Predicting {n} cells with model={model}, workers={max_workers}")
-
-    def _work(idx, sample):
-        for attempt in range(3):
-            try:
-                res = query_openrouter_model(
-                    model=model,
-                    prompt=sample["model_input"],
-                    sysprompt="",
-                    api_key=api_key,
-                    provider_cfg=provider_cfg,
-                    generation_cfg=generation_cfg,
-                    reasoning_cfg=reasoning_cfg,
-                    prepend_reasoning=prepend_reasoning,
-                )
-                return idx, res
-            except Exception as e:
-                logger.warning(f"[{idx}] retry {attempt+1} error: {e}")
-                time.sleep(2 ** attempt)
-        return idx, None
-
-    preds = [None] * n
-    with ThreadPoolExecutor(max_workers=max_workers) as ex:
-        futures = [ex.submit(_work, i, formatted[i]) for i in range(n)]
-        for fut in tqdm(as_completed(futures), total=len(futures), desc="Predicting"):
-            i, res = fut.result()
-            preds[i] = res
-
-    return preds
+def answer(body, headers, model):
+    """The answer to one request and its usage fields, or (None, {}) if every round fails."""
+    for round_ in range(ROUNDS):
+        try:
+            return send(body, headers, model)
+        except Exception as exc:
+            log.warning("%s, round %d of %d: %s", model, round_ + 1, ROUNDS, exc)
+            time.sleep(2 ** round_)
+    return None, {}
 
 
-def create_results_dataframe(
-    adata,
-    predicted_labels,
-    label_key: str,
-) -> pd.DataFrame:
-    """Build the standard prediction frame shared with all other models:
-    columns cell_id, true_labels, predicted_labels (written without an index)."""
-    n = len(predicted_labels)
-    cell_ids = [str(x) for x in list(adata.obs_names[:n])]
+def run_model(model, prompts, settings, api_key):
+    """Answers and usage fields of one model for all prompts."""
+    headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
+    answers, usage = [None] * len(prompts), [{}] * len(prompts)
+    log.info("%s: %d cells, %d concurrent requests", model, len(prompts), settings["max_workers"])
+    with ThreadPoolExecutor(max_workers=settings["max_workers"]) as pool:
+        futures = {pool.submit(answer, request_body(model, prompt, settings), headers, model): i
+                   for i, prompt in enumerate(prompts)}
+        for done, future in enumerate(as_completed(futures), 1):
+            answers[futures[future]], usage[futures[future]] = future.result()
+            if done % 100 == 0 or done == len(prompts):
+                log.info("%s: %d of %d cells done", model, done, len(prompts))
+    return answers, usage
 
-    if label_key in adata.obs.columns:
-        true_labels = list(adata.obs[label_key].astype("string").values[:n])
-    else:
-        logger.warning(f"'{label_key}' not found in adata.obs; filling NA")
-        true_labels = [None] * n
 
-    return pd.DataFrame({
+def write_outputs(adata, label_key, answers, usage, predictions_path, usage_path):
+    n = len(answers)
+    cell_ids = [str(x) for x in adata.obs_names[:n]]
+    rows = [{"cell_id": cell_id, **fields} for cell_id, fields in zip(cell_ids, usage)]
+    pd.DataFrame(rows, columns=USAGE_COLUMNS, dtype=object).to_csv(usage_path, index=False)
+    # The prediction file marks a model as done, so it is written last.
+    pd.DataFrame({
         "cell_id": cell_ids,
-        "true_labels": true_labels,
-        "predicted_labels": predicted_labels,
-    })
+        "true_labels": list(adata.obs[label_key].astype("string").values[:n]),
+        "predicted_labels": answers,
+    }).to_csv(predictions_path, index=False)
+    log.info("Wrote %s and %s", predictions_path, usage_path)
 
 
-# ---------------- Main ----------------
-def _parse_args() -> argparse.Namespace:
-    p = argparse.ArgumentParser(description="LLM prediction for single-cell data")
-
-    # Required I/O
-    p.add_argument("--input", "-i", required=True, help="Path to input .h5ad")
-    p.add_argument("--output", "-o", required=True, help="Path to output predictions.csv")
-
-    # Core config
-    p.add_argument("--model", "-m", required=True, help="Single OpenRouter model ID")
-    p.add_argument("--seed", type=int, default=42)
-    p.add_argument("--task_name", default="cell_type_prediction")
-    p.add_argument("--input_prompt_template", required=True)
-    p.add_argument("--answer_template", required=True)
-    p.add_argument("--top_k_genes", type=int, default=200)
-    p.add_argument("--max_samples", type=int, default=None)
-    p.add_argument("--max_workers", type=int, default=10)
-    p.add_argument("--label_key", "-l", required=True)
-    p.add_argument("--api-key", dest="api_key", default=None)
-
-    # Provider config (JSON string)
-    p.add_argument("--provider_cfg_json", default="{}", help="JSON string of provider config")
-
-    # Generation config (JSON string)
-    p.add_argument("--generation_cfg_json", default="{}", help="JSON string of generation config")
-
-    # Reasoning config (JSON string)
-    p.add_argument("--reasoning_cfg_json", default="{}", help="JSON string of reasoning config")
-
-    # Misc
-    p.add_argument("--prepend_reasoning", action="store_true")
-
-    args = p.parse_args()
-
-    # Parse JSON config strings
+def check_models(models, api_key):
+    """Exit if a model id is not offered by OpenRouter; go on if the list cannot be fetched."""
     try:
-        args.provider_cfg = json.loads(args.provider_cfg_json)
-    except json.JSONDecodeError as e:
-        raise SystemExit(f"--provider_cfg_json is not valid JSON: {e}")
-    try:
-        args.generation_cfg = json.loads(args.generation_cfg_json)
-    except json.JSONDecodeError as e:
-        raise SystemExit(f"--generation_cfg_json is not valid JSON: {e}")
-    try:
-        args.reasoning_cfg = json.loads(args.reasoning_cfg_json)
-    except json.JSONDecodeError as e:
-        raise SystemExit(f"--reasoning_cfg_json is not valid JSON: {e}")
+        response = requests.get(f"{API_URL}/models", timeout=30,
+                                headers={"Authorization": f"Bearer {api_key}"})
+        if response.status_code != 200:
+            log.warning("Model ids not checked: HTTP %d", response.status_code)
+            return
+        offered = {m.get("id") for m in response.json().get("data", []) if isinstance(m, dict)}
+    except Exception as exc:
+        log.warning("Model ids not checked: %s", exc)
+        return
+    missing = [model for model in models if model not in offered]
+    if missing:
+        log.error("Not offered by OpenRouter: %s", ", ".join(missing))
+        sys.exit(1)
+    log.info("All %d model ids are offered by OpenRouter", len(models))
 
-    return args
+
+def parse_args(argv=None):
+    parser = argparse.ArgumentParser(description="Cell type annotation with LLMs on OpenRouter.")
+    parser.add_argument("--input", required=True, help="test set (.h5ad)")
+    parser.add_argument("--output", required=True,
+                        help="out/predictions.csv; each model writes predictions_<model>.csv")
+    parser.add_argument("--dataset_config", required=True, help="dataset config (annotation_key)")
+    parser.add_argument("--prompt", required=True, help="prompt template")
+    parser.add_argument("--config", required=True, help="openrouter.yml")
+    parser.add_argument("--skip_model_check", action="store_true",
+                        help="do not check the model ids against the OpenRouter model list")
+    return parser.parse_args(argv)
 
 
-def main():
-    args = _parse_args()
-
-    random.seed(args.seed)
-    np.random.seed(args.seed)
-
-    api_key = args.api_key or os.environ.get("API_KEY")
+def main(argv=None):
+    args = parse_args(argv)
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+    api_key = os.environ.get("API_KEY")
     if not api_key:
-        print("ERROR: API key not provided. Set env API_KEY or pass --api-key.", file=sys.stderr)
-        sys.exit(3)
+        log.error("API_KEY is not set")
+        return 3
 
-    # Model availability is validated upfront in run.sh (pre-flight check).
+    settings = yaml.safe_load(Path(args.config).read_text(encoding="utf-8"))
+    dataset = yaml.safe_load(Path(args.dataset_config).read_text(encoding="utf-8")) or {}
+    label_key = dataset.get("annotation_key", "cell_type")
+    # The template is the file content without its final line break.
+    template = Path(args.prompt).read_text(encoding="utf-8").rstrip("\n")
 
-    # Inject seed into generation config if not already set
-    if "seed" not in args.generation_cfg:
-        args.generation_cfg["seed"] = args.seed
-
-    adata = load_data(args.input)
-
-    # Resolve gene symbols
-    if adata.var_names.str.contains("ENS").all():
-        for col in ("gene_names", "feature_name", "gene_symbols"):
-            if col in adata.var.columns:
-                adata.var_names = adata.var[col].astype(str)
-                logger.info(f"Renamed var_names from Ensembl IDs using adata.var['{col}']")
-                break
+    output = Path(args.output)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    paths = {}
+    for model in settings["models"]:
+        slug = model.replace("/", "--")
+        predictions_path = output.with_name(f"{output.stem}_{slug}.csv")
+        if predictions_path.exists():
+            log.info("Skipping %s: %s exists", model, predictions_path)
         else:
-            print("ERROR: Gene names are not available in adata.var.", file=sys.stderr)
-            sys.exit(4)
-    elif not adata.var_names.str.contains("ENS").any():
-        logger.info("var_names appears to be gene symbols already.")
-    else:
-        for col in ("gene_names", "feature_name", "gene_symbols"):
-            if col in adata.var.columns:
-                adata.var_names = adata.var[col].astype(str)
-                logger.info(f"Overwrote mixed var_names with adata.var['{col}']")
-                break
-        else:
-            print("ERROR: Mixed gene/ensembl IDs but no gene names in adata.var.", file=sys.stderr)
-            sys.exit(4)
+            paths[model] = (predictions_path, output.with_name(f"usage_{slug}.csv"))
+    if not paths:
+        return 0
+    if not args.skip_model_check:
+        check_models(list(paths), api_key)
 
-    adata.var_names = adata.var_names.str.upper()
-    adata.var_names_make_unique()
+    adata = load_test_set(args.input, label_key)
+    prompts = build_prompts(adata, template, label_key, settings["seed"], settings["top_k_genes"])
+    if settings.get("max_samples"):
+        prompts = prompts[:settings["max_samples"]]
 
-    output_path = Path(args.output)
-    output_dir = output_path.parent
-
-    if args.label_key not in adata.obs.columns:
-        print(f"ERROR: Label '{args.label_key}' not in adata.obs columns", file=sys.stderr)
-        sys.exit(4)
-
-    adata.obs["true_labels"] = adata.obs[args.label_key].astype(str)
-
-    if pd.api.types.is_categorical_dtype(adata.obs["true_labels"]):
-        labels = adata.obs["true_labels"].cat.categories.to_numpy()
-    else:
-        labels = pd.unique(adata.obs["true_labels"].values)
-
-    rng = np.random.default_rng(args.seed)
-    adata.obs["unique_cell_types"] = [rng.permutation(labels).tolist() for _ in range(adata.n_obs)]
-
-    # Build C2S dataset
-    arrow_ds, vocab = cs.CSData.adata_to_arrow(
-        adata=adata,
-        random_state=args.seed,
-        sentence_delimiter=" ",
-        label_col_names=["true_labels", "unique_cell_types"],
-    )
-    save_dir = Path(args.output).parent
-    csdata = cs.CSData.csdata_from_arrow(
-        arrow_dataset=arrow_ds,
-        vocabulary=vocab,
-        save_dir=str(save_dir),
-        save_name=f"{Path(args.input).stem}_{args.model.replace('/', '--')}_c2s",
-        dataset_backend="arrow",
-    )
-
-    # Single model prediction
-    preds = run_OpenRouter_model_prediction(
-        model=args.model,
-        api_key=api_key,
-        csdata=csdata,
-        task_name=args.task_name,
-        input_prompt_template=args.input_prompt_template,
-        answer_template=args.answer_template,
-        top_k_genes=args.top_k_genes,
-        max_samples=args.max_samples,
-        max_workers=args.max_workers,
-        provider_cfg=args.provider_cfg,
-        generation_cfg=args.generation_cfg,
-        reasoning_cfg=args.reasoning_cfg,
-        prepend_reasoning=args.prepend_reasoning,
-    )
-
-    logger.info(f"First 10 predictions: {preds[:10]}")
-
-    # Label-only: the raw model output IS the predicted label (cleaned/normalized downstream).
-    pred_labels = preds
-
-    df = create_results_dataframe(adata, pred_labels, args.label_key)
-
-    Path(output_dir).mkdir(parents=True, exist_ok=True)
-    df.to_csv(output_path, index=False)
-    logger.info(f"Wrote predictions: {output_path}")
+    failed = 0
+    with ThreadPoolExecutor(max_workers=len(paths)) as pool:
+        futures = {pool.submit(run_model, model, prompts, settings, api_key): model
+                   for model in paths}
+        for future in as_completed(futures):
+            model = futures[future]
+            try:
+                answers, usage = future.result()
+                write_outputs(adata, label_key, answers, usage, *paths[model])
+            except Exception:
+                log.exception("%s failed", model)
+                failed += 1
+    if failed:
+        log.error("%d model(s) failed", failed)
+        return 1
+    return 0
 
 
 if __name__ == "__main__":
-    # Avoid accidental GPU grabs by default (harmless on CPU boxes)
-    os.environ.setdefault("CUDA_VISIBLE_DEVICES", "0")
-    os.environ.setdefault("WORLD_SIZE", "1")
-    main()
+    sys.exit(main())

@@ -1,0 +1,10 @@
+You are an expert at classifying cell types based on gene expression.
+Given below is a list of up to {num_genes} gene names ordered by descending expression level in a single cell.
+Your task is to identify the exact cell type this gene profile represents from this list of cell types: {unique_cell_types}.
+Cell sentence: {cell_sentence}
+Important rules:
+1. Respond with only the cell type label of the predicted cell type.
+2. Do only choose a cell type from the list of cell types provided.
+3. Do not include explanations, reasoning, or extra words in the output.
+4. Do not repeat the question or input in the output.
+Output:
