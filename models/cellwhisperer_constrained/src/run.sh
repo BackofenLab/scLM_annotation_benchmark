@@ -17,10 +17,15 @@ SCRIPT_DIR=$(dirname "$(realpath "$0")")
 # percent_top=None: the default percent_top raises `IndexError: Positions outside range of
 # features` when the data have fewer genes than its largest value.
 GENEFORMER_MODEL_PY="$SCRIPT_DIR/CellWhisperer/src/cellwhisperer/jointemb/geneformer_model.py"
-if [ -f "$GENEFORMER_MODEL_PY" ] && grep -q "sc.pp.calculate_qc_metrics(adata_w_id, inplace=True)" "$GENEFORMER_MODEL_PY"; then
-  sed -i \
-    's|sc.pp.calculate_qc_metrics(adata_w_id, inplace=True)|sc.pp.calculate_qc_metrics(adata_w_id, inplace=True, percent_top=None)|g' \
-    "$GENEFORMER_MODEL_PY"
+if [ -f "$GENEFORMER_MODEL_PY" ]; then
+  python - "$GENEFORMER_MODEL_PY" <<'PY'
+import pathlib, sys
+path = pathlib.Path(sys.argv[1])
+old = "sc.pp.calculate_qc_metrics(adata_w_id, inplace=True)"
+text = path.read_text()
+if old in text:
+    path.write_text(text.replace(old, old[:-1] + ", percent_top=None)"))
+PY
 fi
 
 ANNOTATION_KEY=$(python - <<'PY' "$CFG_YAML"
@@ -33,6 +38,19 @@ PY
 
 # Avoids a gmpy2 error raised through sympy.
 export SYMPY_USE_GMPY=0
+
+# CellWhisperer's config.py reads config.yaml from the working directory at import time.
+CW_CONFIG="$SCRIPT_DIR/CellWhisperer/config.yaml"
+if [ -f "$CW_CONFIG" ] && [ ! -f config.yaml ]; then
+    ln -s "$CW_CONFIG" config.yaml
+fi
+
+# Put the Geneformer checkout first on PYTHONPATH: unlike the pip-installed copy, it has the
+# LFS-tracked .pkl data files, and site-packages may be on a read-only container layer.
+GF_SRC="$SCRIPT_DIR/CellWhisperer/modules/Geneformer"
+if [ -d "$GF_SRC/geneformer" ]; then
+    export PYTHONPATH="${GF_SRC}:${PYTHONPATH:-}"
+fi
 
 python "$SCRIPT_DIR/predict.py" \
   --input "$INPUT_H5AD" \

@@ -54,12 +54,6 @@ if [ -d "$GENEFORMER_DIR" ]; then
         echo "Copying geneformer-12L-30M to script directory..."
         cp -r "$GENEFORMER_MODEL_DIR" "$TARGET_MODEL_DIR"
     fi
-    # pip installs geneformer without its LFS-tracked .pkl data files; copy them into the package.
-    GF_SITE_PKG=$(python -c "import geneformer, pathlib; print(pathlib.Path(geneformer.__file__).parent)" 2>/dev/null || true)
-    if [ -n "$GF_SITE_PKG" ] && [ -d "$GF_SITE_PKG" ]; then
-        echo "Copying Geneformer .pkl data files to $GF_SITE_PKG ..."
-        cp -n "$GENEFORMER_DIR"/geneformer/*.pkl "$GF_SITE_PKG/" 2>/dev/null || true
-    fi
 else
     echo "Warning: Geneformer directory not found at $GENEFORMER_DIR"
 fi

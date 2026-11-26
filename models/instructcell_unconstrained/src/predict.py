@@ -5,7 +5,7 @@ The model (zjunlp/InstructCell-instruct from the Hugging Face Hub) gets each cel
 together with a text prompt that names the species, tissue and sequencing method when the
 dataset config gives them, as values (species, tissue, sequencing_method) or as obs columns
 (species_key, tissue_key, sequencing_method_key). The model samples its answer, so the script
-sets a seed.
+sets a seed, and it runs on the CPU as for the paper, because on a GPU some answers differ.
 
 Input: preprocessed h5ad with raw counts in layers["counts"] and gene symbols in
 var["gene_names"], and the dataset config YAML. Output: CSV with cell_id, true_labels and
@@ -23,7 +23,6 @@ import sys
 import logging
 from pathlib import Path
 from typing import Dict, Optional, List
-import torch
 from scipy import sparse
 
 # prepare.sh clones InstructCell next to this script.
@@ -175,14 +174,9 @@ def main():
     set_global_random_seed(args.seed)
     logger.info(f"Random seed: {args.seed}")
     
-    if torch.cuda.is_available():
-        device = "cuda"
-        torch.cuda.empty_cache()
-    elif torch.backends.mps.is_available():
-        device = "mps"
-    else:
-        device = "cpu"
-    logger.info(f"Using device: {device}")
+    # The model stays on the CPU, as for the paper: on a GPU it samples other answers for some
+    # cells.
+    logger.info("Running on the CPU")
     
     with open(args.config, 'r') as f:
         config = yaml.safe_load(f)

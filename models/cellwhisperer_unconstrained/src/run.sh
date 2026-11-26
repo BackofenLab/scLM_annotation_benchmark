@@ -20,10 +20,15 @@ export SYMPY_USE_GMPY=0
 # percent_top=None: the default percent_top raises `IndexError: Positions outside range of
 # features` when the data have fewer genes than its largest value.
 GENEFORMER_MODEL_PY="$SCRIPT_DIR/CellWhisperer/src/cellwhisperer/jointemb/geneformer_model.py"
-if [ -f "$GENEFORMER_MODEL_PY" ] && grep -q "sc.pp.calculate_qc_metrics(adata_w_id, inplace=True)" "$GENEFORMER_MODEL_PY"; then
-  sed -i \
-    's|sc.pp.calculate_qc_metrics(adata_w_id, inplace=True)|sc.pp.calculate_qc_metrics(adata_w_id, inplace=True, percent_top=None)|g' \
-    "$GENEFORMER_MODEL_PY"
+if [ -f "$GENEFORMER_MODEL_PY" ]; then
+  python - "$GENEFORMER_MODEL_PY" <<'PY'
+import pathlib, sys
+path = pathlib.Path(sys.argv[1])
+old = "sc.pp.calculate_qc_metrics(adata_w_id, inplace=True)"
+text = path.read_text()
+if old in text:
+    path.write_text(text.replace(old, old[:-1] + ", percent_top=None)"))
+PY
 fi
 
 ANNOTATION_KEY=$(python - <<'PY' "$CFG_YAML"

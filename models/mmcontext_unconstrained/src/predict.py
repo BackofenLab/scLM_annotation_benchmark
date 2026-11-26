@@ -7,8 +7,8 @@ parent directory of --cache_dir or an absolute path (all_cell_types.txt: all Cel
 names).
 
 Input: preprocessed h5ad with human Ensembl IDs in var["ensembl_id"]. Output: CSV with cell_id,
-true_labels and predicted_labels; the processed data are also written to <input>_pp.h5ad.
-Called by run.sh.
+true_labels and predicted_labels; the processed data are also written next to it, as
+<input name>_pp.h5ad. Called by run.sh.
 """
 import argparse
 import pathlib
@@ -68,8 +68,9 @@ adata.obsm[EMB_KEY] = embeddings
 
 adata.obs["sample_idx"] = adata.obs.index
 # AnnDataSetConstructor refers to the data by file path, so the processed data are written
-# next to the input.
-processed_path = adata_path.replace(".h5ad", "_pp.h5ad")
+# next to the output, where no other run writes.
+processed_path = os.path.join(os.path.dirname(os.path.abspath(output_csv)),
+                              os.path.basename(adata_path).replace(".h5ad", "_pp.h5ad"))
 adata.write_h5ad(processed_path)
 constructor = AnnDataSetConstructor(dataset_format="single")
 constructor.add_anndata(adata, sentence_keys=["sample_idx"], adata_link=processed_path)

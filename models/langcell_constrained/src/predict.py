@@ -219,7 +219,7 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
 
     # Candidates: the dataset's own labels, or its own list (expected_types), written like the
     # labels (stripped, in lower case)
-    types = [t.strip().lower() for t in expected_types(list(set(tokenized_dataset["celltype"])))]
+    types = [t.strip().lower() for t in expected_types(sorted(set(tokenized_dataset["celltype"])))]
     obo_path = args.model_path.parent / "data" / "obo.json"
     ontology = json.load(open(obo_path))
     name2id = {ontology[id]["name"]: id for id in ontology}
@@ -239,7 +239,12 @@ def load_dataset(tokenizer, text_encoder, annotation_key, args):
     text_embs.requires_grad = False
 
     def classes_to_ids(example):
-        example["label"] = type2num[example["celltype"]]
+        # -1 for a true type that is not in the candidate list; true_labels keeps its name.
+        cell_type = example["celltype"]
+        if cell_type in type2num:
+            example["label"] = type2num[cell_type]
+        else:
+            example["label"] = -1
         return example
 
     testdataset = tokenized_dataset.map(classes_to_ids, num_proc=16)
@@ -378,11 +383,13 @@ def predict(
     for row in confusion_matrix(labels, preds):
         print("\t".join([str(x) for x in row]))
     print(classification_report(labels, preds, digits=4))
-    pred_df = create_results_dataframe(cell_indices, preds, labels, types)
+    pred_df = create_results_dataframe(cell_indices, preds, labels, types, dataset_sub["celltype"])
     return pred_df
 
 
-def create_results_dataframe(cell_indices, preds, labels, types):
+def create_results_dataframe(cell_indices, preds, labels, types, true_types):
+    # true_labels is the dataset's own label: true_idx is -1 for a type missing from `types`, and
+    # types[-1] would name the last type in the list instead.
     label_keys = ["predicted_idx", "true_idx", "predicted_labels", "true_labels"]
     pred_df = pd.DataFrame(
         {
@@ -390,7 +397,7 @@ def create_results_dataframe(cell_indices, preds, labels, types):
             label_keys[0]: preds.numpy(),
             label_keys[1]: labels.numpy(),
             label_keys[2]: [types[i] for i in preds],
-            label_keys[3]: [types[i] for i in labels],
+            label_keys[3]: list(true_types),
         }
     )
     return pred_df

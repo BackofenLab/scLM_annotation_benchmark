@@ -13,8 +13,7 @@
 #   sbatch --export=ALL,MODEL=mmcontext_unconstrained,ARM=S1_mmcontext paper/experiments/slurm/run_sclm_lists.sbatch
 #   sbatch --export=ALL,MODEL=langcell_unconstrained,ARM=S2_langcell paper/experiments/slurm/run_sclm_lists.sbatch
 #
-# One job per model: mmContext writes <input>_pp.h5ad next to its input, so two of its jobs must
-# not run at once. DATASETS (separated by colons) limits the datasets.
+# DATASETS (separated by colons) limits the datasets.
 #
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:1
