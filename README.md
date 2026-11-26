@@ -100,8 +100,9 @@ nextflow secrets set OPENROUTER_API_KEY 'sk-or-v1-...'
 OPENROUTER_API_KEY` removes the key again. Starting the command with a space keeps the key out of
 your shell history (in zsh this needs `setopt HIST_IGNORE_SPACE`). Only the LLM methods need the
 key. The models and request settings are defined in
-`models/openrouter_LLM_unconstrained/src/openrouter.yml`, and the prompts of the two settings in
-`models/openrouter_LLM_unconstrained/prompt.txt` and `models/openrouter_LLM_constrained/prompt.txt`.
+`models/openrouter_LLM_unconstrained/src/openrouter.yml`, which all four LLM methods share. Each
+LLM method has its prompt template in its own folder (`models/openrouter_LLM_*/prompt.txt`), and
+its `method.yml` points to both files.
 
 ## Annotation mode
 

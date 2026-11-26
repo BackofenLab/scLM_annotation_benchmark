@@ -1,3 +1,5 @@
+# The prompt template is prompt.txt in this folder; the models and request settings are in
+# src/openrouter.yml, which the four LLM methods share.
 name: General-purpose LLMs
 description: "General-purpose language models queried through the OpenRouter API, one request per cell. Runs without a list of expected cell types."
 needs:
