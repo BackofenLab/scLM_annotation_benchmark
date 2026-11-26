@@ -1,8 +1,9 @@
-"""Checks for the share of answers outside the list (bin/manuscript_figures.py): each run is held to
+"""Checks for the share of answers outside the list (paper/scripts/methods.py): each run is held to
 its own list, an answer naming no cell type is not outside it, and shares are averaged over cell
 types.
 
-Run with pytest, or directly in the evaluation environment: python tests/test_unlisted_answers.py
+Run with pytest, or directly in the evaluation environment:
+python paper/tests/test_unlisted_answers.py
 """
 import sys
 from math import isclose
@@ -11,7 +12,7 @@ from pathlib import Path
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "paper" / "scripts"))
-from manuscript_figures import _unlisted  # noqa: E402
+from methods import _unlisted  # noqa: E402
 
 # Two constrained runs of one method, whose lists are their true types: {a, b} in D and {b, c}
 # in E. Rows are (dataset, true label, predicted label, cells, lineage).

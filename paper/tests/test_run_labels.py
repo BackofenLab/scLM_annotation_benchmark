@@ -1,7 +1,7 @@
-"""Checks for the run labels and groups the figures and tables share (bin/plot_model_comparison.py):
-every method, baselines included, carries its setting, and the chance models carry none.
+"""Checks for the run labels and groups the figures and tables share (paper/scripts/methods.py):
+every method, baselines included, carries its setting, and the chance model carries none.
 
-Run with pytest, or directly in the evaluation environment: python tests/test_run_labels.py
+Run with pytest, or directly in the evaluation environment: python paper/tests/test_run_labels.py
 """
 import sys
 from pathlib import Path
@@ -9,9 +9,9 @@ from pathlib import Path
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "paper" / "scripts"))
-from manuscript_figures import (  # noqa: E402
-    BLOCK_LABEL, BLOCK_ORDER, MAPPING_ROWS, RARITY_ROWS, select_flow_models)
-from plot_model_comparison import group_name, run_label  # noqa: E402
+from figures_rare_types import (  # noqa: E402
+    BLOCK_LABEL, BLOCK_ORDER, RARITY_ROWS, select_flow_models)
+from methods import MAPPING_ROWS, group_name, run_label  # noqa: E402
 
 RUNS = {"sctype_blind": "unconstrained baselines", "singler_unblind": "constrained baselines",
         "mmcontext_blind": "unconstrained scLLM", "c2s_scale_2B_unblind": "constrained scLLM",

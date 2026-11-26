@@ -1,7 +1,7 @@
-"""Checks for Figure 4's rare-type rates (bin/manuscript_figures.py): recall is compared within each
-dataset, and the outcomes partition the rare cell types.
+"""Checks for the rare-type rates (paper/scripts/figures_rare_types.py): recall is compared within
+each dataset, and the outcomes partition the rare cell types.
 
-Run with pytest, or directly in the evaluation environment: python tests/test_rare_types.py
+Run with pytest, or directly in the evaluation environment: python paper/tests/test_rare_types.py
 """
 import sys
 from math import isclose
@@ -10,7 +10,7 @@ from pathlib import Path
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "paper" / "scripts"))
-from manuscript_figures import _rarity_rates  # noqa: E402
+from figures_rare_types import _rarity_rates  # noqa: E402
 
 # One run on two datasets: per type its recall, whether the method named it, its share of the
 # full dataset, and whether the method has a label for it.

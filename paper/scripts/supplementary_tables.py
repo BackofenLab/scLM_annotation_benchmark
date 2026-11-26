@@ -1,47 +1,34 @@
 #!/usr/bin/env python
-"""Generate the per-dataset supplementary result tables from the aggregate snapshot.
+"""Generate the per-dataset result tables of the supplement from the benchmark metrics.
 
-Three outputs, deliberately different in scope:
+Writes to --outdir:
 
-* ``tables/supp_results_<dataset>.csv`` -- EVERY metric column the snapshot carries, at every
-  subset size. This is the artifact a reader reuses, and the one converted to the Word/Excel file
-  BiB asks for at submission.
-* ``supplementary_tables_generated.tex`` -- one landscape longtable per dataset, with a block per
-  subset size: every metric of Supplementary Figure S3, in its groups, and the diagnostics the
-  paper reads (how much of the output needs the curated mapping, the score without it, and how
-  many distinct labels a method gives). The caption sits below the table.
-* ``supplementary_unlisted_table_generated.tex`` -- for every constrained run of a generative
-  model, the share of answers that name a cell type not on the list, per dataset.
+* ``tables/supp_results_<dataset>.csv``: every column of the benchmark metrics at every subset
+  size, with the columns of DERIVED_AFTER;
+* ``supplementary_tables_generated.tex``: one landscape longtable per dataset with one block per
+  subset size, holding the metrics of METRIC_GROUPS in their groups and the diagnostics of the
+  curated mapping and of the distinct labels, with the caption below the table;
+* ``supplementary_unlisted_table_generated.tex``: the share of answers that name a cell type not
+  on the list, for the constrained run of every generative method, per dataset.
 
-Nothing here is hand-written, so the tables cannot drift from the figures (style Rule 6).
-
-Usage:
-    python bin/supplementary_tables.py --input cache/result/aggregated_by_dataset_model_<v>.csv
+    python paper/scripts/supplementary_tables.py [--input CSV] [--outdir DIR]
 """
 from __future__ import annotations
 
 import argparse
-import sys
 from decimal import ROUND_HALF_UP, Decimal
 from pathlib import Path
 
 import pandas as pd
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import paths  # noqa: E402
-from manuscript_figures import (  # noqa: E402
-    DATASET_ORDER, METRIC_GROUPS, _benchmark_pairs, _display, _mapping_scores, _needs_mapping,
-    _unlisted)
-from plot_model_comparison import (  # noqa: E402
-    EXCLUDED_BASES, REGIME, REGIME_SHORT, categorize_model, derive_mode,
-    load_confusion_pairs, model_base, model_tier, unsupported_pairs)
+import paths
+from methods import (DATASET_ORDER, METRIC_GROUPS, REGIME, REGIME_SHORT, _benchmark_pairs,
+                     _display, _mapping_scores, _needs_mapping, _unlisted, categorize_model,
+                     dataset_label, derive_mode, load_confusion_pairs, model_base, model_tier)
 
-# The one chance model the paper describes: Figure 2's dashed line. The pipeline's other chance
-# floors (uniform random, always "cell") are described nowhere, so they are left out.
-CHANCE_MODELS = {"random_stratified"}
-# Figure 2G and Supplementary Figure S1 per run, and the share of answers outside the list of a
-# constrained run; computed here from the confusion pairs of each subset size
-# (bin/per_class_scores.py). In the CSVs each sits next to the snapshot column it qualifies.
+# Columns computed from the confusion pairs of each subset size: balanced accuracy without the
+# curated mapping, the share of cells whose answer needs it, and for a constrained run the share
+# of answers outside the list. In the CSVs each follows the column it qualifies.
 NO_MAPPING_COLUMN = "balanced_accuracy_no_curated_mapping"
 NEEDS_MAPPING_COLUMN = "share_needing_curated_mapping"
 UNLISTED_COLUMN = "share_unlisted"
@@ -50,9 +37,8 @@ DERIVED_AFTER = {NO_MAPPING_COLUMN: "balanced_accuracy", NEEDS_MAPPING_COLUMN: "
 # The unlisted-answers table shows the generative models, which alone can answer outside the
 # list, at the size every method ran at.
 UNLISTED_SIZE = 1000
-# Column headers of the typeset table: Supplementary Figure S3's metrics in its groups, then the
-# diagnostics. Every metric is higher-is-better, so its best value is bolded; the diagnostics
-# describe the output rather than rank it.
+# Column headers of the typeset table: the metrics in their groups, then the diagnostics. Every
+# metric is higher-is-better and its best value is bold; the diagnostics describe the output.
 METRIC_HEADERS = {
     "balanced_accuracy": "Bal.\\ acc.", "accuracy": "Acc.", "macro_f1": "Macro F1",
     "weighted_f1": "Wtd.\\ F1", "agreement_score": "Agree.", "rada_avg_similarity": "Rada",
@@ -65,19 +51,14 @@ TEX_GROUPS = [(group.capitalize(), [(key, METRIC_HEADERS[key]) for key, _name in
     ("Distinct labels", [("n_unique_pred_mapped", "Mapped"), ("n_unique_pred_raw", "Raw")])]
 BOLD_MAX = {key for _group, metrics in METRIC_GROUPS for key, _name in metrics}
 COUNT_COLUMNS = {"n_unique_pred_mapped", "n_unique_pred_raw"}
-FAMILY = {"LLM": "general-purpose LLM", "scLLM": "scLLM",
-          "classical": "baseline", "simple": "chance floor"}
-FAMILY_PLURAL = {"general-purpose LLM": "general-purpose LLMs", "scLLM": "scLLMs",
+FAMILY = {"LLM": "general-purpose LLM", "scLLM": "scLM",
+          "classical": "baseline", "chance": "chance floor"}
+FAMILY_PLURAL = {"general-purpose LLM": "general-purpose LLMs", "scLM": "scLMs",
                  "baseline": "marker- and reference-based baselines"}
-# Dataset names for anything a READER sees. The manuscript uses the pipeline's keys only in
-# Methods, where they let someone move between the paper and the repository; everywhere else, and
-# in every caption, the readable name is used. Only human_pancreas differs -- the other three keys
-# are already the names.
-DATASET_DISPLAY = {"human_pancreas": "human pancreas"}
-# Short forms for the typeset table only; the CSVs keep the long form, where width costs nothing.
-FAMILY_TEX = {"general-purpose LLM": "LLM", "scLLM": "scLLM",
+# Short forms for the typeset table; the CSVs keep the long ones.
+FAMILY_TEX = {"general-purpose LLM": "LLM", "scLM": "scLM",
               "baseline": "baseline", "chance floor": "chance"}
-# The typeset table writes the setting as the paper's U and C; the CSVs spell it out.
+# The typeset table writes the setting as U or C; the CSVs spell it out.
 SETTING_TEX = {REGIME[mode]: short for mode, short in REGIME_SHORT.items()}
 
 
@@ -87,8 +68,8 @@ def _tex(text):
 
 
 def _fmt(value, digits=3):
-    """``value`` rounded half up as the decimal number it is stored as. The snapshot keeps four
-    decimals, and binary rounding would print a stored 0.3495 as 0.349."""
+    """``value`` rounded half up as the decimal number it is stored as. The benchmark metrics keep
+    four decimals, and binary rounding would print a stored 0.3495 as 0.349."""
     if pd.isna(value):
         return "--"
     return str(Decimal(str(value)).quantize(Decimal(1).scaleb(-digits), rounding=ROUND_HALF_UP))
@@ -114,21 +95,17 @@ def _derived(out):
                                  _needs_mapping(pairs).rename(NEEDS_MAPPING_COLUMN),
                                  _unlisted(constrained).rename(UNLISTED_COLUMN)], axis=1)
                       .reset_index().assign(subset_size=size))
-    # Four decimals, as the snapshot stores every metric, so a run whose answers need no curated
-    # mapping prints the same balanced accuracy in both columns.
+    # Four decimals, as the benchmark metrics are stored, so that a run whose answers need no
+    # curated mapping prints the same balanced accuracy in both columns.
     return pd.concat(frames, ignore_index=True).round(dict.fromkeys(DERIVED_AFTER, 4))
 
 
 def build_frame(df):
-    """Annotate the snapshot with the family / setting labels the tables are organized by.
-
-    Models the paper excludes (EXCLUDED_BASES, as in the figures) are dropped here and are not
-    mentioned anywhere, and so are the chance floors other than CHANCE_MODELS. The chance model
-    runs in one setting, "--". Adds the two columns of DERIVED_AFTER.
-    """
-    out = df[~df["model"].map(model_base).isin(EXCLUDED_BASES)].copy()
-    out = out[(out["model"].map(categorize_model) != "simple") | out["model"].isin(CHANCE_MODELS)]
-    out["family"] = out["model"].map(lambda m: FAMILY.get(categorize_model(m), "other"))
+    """The benchmark metrics with the family, setting and name of every run's method and the
+    columns of DERIVED_AFTER, sorted by size and balanced accuracy. The chance model has the
+    setting "--"."""
+    out = df.copy()
+    out["family"] = out["model"].map(lambda m: FAMILY[categorize_model(m)])
     out["setting"] = out["model"].map(lambda m: REGIME.get(derive_mode(m), "--"))
     out["method"] = out["model"].map(lambda m: _display(model_base(m)))
     out = out.merge(_derived(out), on=["model", "dataset", "subset_size"], how="left")
@@ -137,11 +114,11 @@ def build_frame(df):
 
 
 def write_csvs(frame, outdir):
-    """One complete-metric CSV per dataset. Every snapshot column is kept."""
+    """One CSV per dataset with every column of the benchmark metrics."""
     outdir.mkdir(parents=True, exist_ok=True)
     written = []
     lead = ["dataset", "family", "method", "model", "setting", "subset_size"]
-    for dataset in [d for d in DATASET_ORDER if d in set(frame["dataset"])]:
+    for dataset in DATASET_ORDER:
         sub = frame[frame["dataset"] == dataset]
         cols = [c for c in sub.columns if c not in lead + ["mode", *DERIVED_AFTER]]
         for column, after in DERIVED_AFTER.items():
@@ -172,12 +149,7 @@ def _only_smallest(sub, sizes):
 def _caption(dataset, sub, sizes, first):
     """The caption of the first table, of dataset ``first``, defines every column; the others
     refer to it."""
-    name = _tex(DATASET_DISPLAY.get(dataset, dataset))
-    # A model that cannot process this dataset's organism never ran on it: say so.
-    absent = sorted(_display(base) for base, ds in unsupported_pairs() if ds == dataset)
-    absent_note = (f"{' and '.join(absent)} {'is' if len(absent) == 1 else 'are'} not listed "
-                   f"because the pipeline does not run "
-                   f"{'it' if len(absent) == 1 else 'them'} on this organism. " if absent else "")
+    name = _tex(dataset_label(dataset))
     coverage = sub["reviewed_fraction"].min()
     coverage_note = ("Every answer was a Cell Ontology term or had a reviewed mapping."
                      if coverage == 1 else
@@ -186,12 +158,11 @@ def _caption(dataset, sub, sizes, first):
     counts = _join([f"{sub.loc[sub['subset_size'] == size, 'model'].nunique()} at {_cells(size)}"
                     for size in sizes])
     head = (f"\\textbf{{Benchmark results for {name}.}} One row per method and setting, {counts}, "
-            f"sorted by balanced accuracy within each size. {_only_smallest(sub, sizes)}"
-            f"{absent_note}")
+            f"sorted by balanced accuracy within each size. {_only_smallest(sub, sizes)}")
     if dataset != first:
         return (head + f"Columns, abbreviations and bold type as in Supplementary "
                 f"Table~\\ref{{supptab:results_{first.lower()}}}. {coverage_note}")
-    # The columns from left to right; Supplementary Table S3 defines the metrics.
+    # The columns from left to right.
     return head + (
         "\\emph{Family} and \\emph{Method} name the method of a run, and \\emph{Setting} is C for "
         "a run constrained by the list of expected cell types and U for a run without it. The "
@@ -229,13 +200,11 @@ def write_tex(frame, out_path):
               "\\midrule"]
     n_cols = 3 + len(columns)
 
-    datasets = [d for d in DATASET_ORDER if d in set(frame["dataset"])]
-    for dataset in datasets:
+    for dataset in DATASET_ORDER:
         sub = frame[frame["dataset"] == dataset]
         sizes = sorted(sub["subset_size"].unique())
-        caption = _caption(dataset, sub, sizes, datasets[0])
-        # NOTE: no "\\\\" inside a longtable caption -- the caption is itself a table row,
-        # so a line break there ends the row and the table collapses with "Extra }".
+        caption = _caption(dataset, sub, sizes, DATASET_ORDER[0])
+        # A longtable caption is itself a table row, so it holds no line break.
         lines += [
             "\\begin{landscape}",
             "\\footnotesize",
@@ -244,7 +213,7 @@ def write_tex(frame, out_path):
             f"\\begin{{longtable}}{{lll{'r' * len(columns)}}}",
             *header, "\\endfirsthead",
             "\\multicolumn{%d}{l}{\\emph{%s, continued}}\\\\"
-            % (n_cols, _tex(DATASET_DISPLAY.get(dataset, dataset))),
+            % (n_cols, _tex(dataset_label(dataset))),
             *header, "\\endhead",
             "\\midrule", "\\multicolumn{%d}{r}{\\emph{continued on the next page}}\\\\" % n_cols,
             "\\endfoot", "\\bottomrule",
@@ -256,16 +225,15 @@ def write_tex(frame, out_path):
             # Each size starts a page, so that no block is split over two pages.
             lines += ([] if i == 0 else ["\\pagebreak"]) + [
                 "\\multicolumn{%d}{l}{\\textbf{%s}}\\\\" % (n_cols, _cells(size))]
-            # Best value per metric and size, compared on the PRINTED string rather than the
-            # stored float. Two methods whose scores differ in the fifth decimal print
-            # identically, and bolding only one of them would read as a typesetting error.
+            # The best value per metric and size, compared as printed, so that every run that
+            # prints it is bold.
             best = {}
             for col in BOLD_MAX:
                 values = pd.to_numeric(block[col], errors="coerce")
                 if values.notna().any():
                     best[col] = _fmt(values.max(), 3)
             for _, r in block.iterrows():
-                cells = [_tex(FAMILY_TEX.get(r["family"], r["family"])),
+                cells = [_tex(FAMILY_TEX[r["family"]]),
                          _tex(r["method"]), _tex(SETTING_TEX.get(r["setting"], r["setting"]))]
                 for col in columns:
                     text = _fmt(r.get(col), 0 if col in COUNT_COLUMNS else 3)
@@ -287,16 +255,15 @@ def write_unlisted_tex(frame, out_path):
                                       or model_tier(m) == "generative")]
     shares = runs.pivot_table(index=["family", "method"], columns="dataset",
                               values=UNLISTED_COLUMN)
-    datasets = [d for d in DATASET_ORDER if d in shares.columns]
-    shares = (shares[datasets].assign(mean=shares[datasets].mean(axis=1))
+    shares = (shares[DATASET_ORDER].assign(mean=shares[DATASET_ORDER].mean(axis=1))
               .sort_values("mean", ascending=False, kind="stable"))
-    header = " & ".join(["Family", "Method", *[_tex(DATASET_DISPLAY.get(d, d)) for d in datasets],
+    header = " & ".join(["Family", "Method", *[_tex(dataset_label(d)) for d in DATASET_ORDER],
                          "Mean"]) + " \\\\"
     rows = [" & ".join([_tex(FAMILY_TEX[family]), _tex(method), *map(_fmt, values)]) + " \\\\"
             for (family, method), values in zip(shares.index, shares.to_numpy())]
     caption = (
         "\\textbf{Answers outside the list of expected cell types.} One row per generative model, "
-        "the general-purpose LLMs and the generative scLLMs, in its constrained run at "
+        "the general-purpose LLMs and the generative scLMs, in its constrained run at "
         f"{_cells(UNLISTED_SIZE)}, sorted by the mean. \\emph{{Family}} and \\emph{{Method}} name "
         "the method. Each dataset column gives the share of cells whose answer named a cell type "
         "that is not on the list, and \\emph{Mean} averages the four datasets. Answers are "
@@ -305,7 +272,7 @@ def write_unlisted_tex(frame, out_path):
         "the list. Shares are averaged over cell types, as balanced accuracy is.")
     lines = ["% GENERATED by bin/supplementary_tables.py -- do not edit by hand.", "",
              "\\begin{table}[!ht]", "\\centering", "\\footnotesize",
-             f"\\begin{{tabular}}{{ll{'r' * (len(datasets) + 1)}}}", "\\toprule", header,
+             f"\\begin{{tabular}}{{ll{'r' * (len(DATASET_ORDER) + 1)}}}", "\\toprule", header,
              "\\midrule", *rows, "\\bottomrule", "\\end{tabular}",
              "\\captionsetup{position=below}", f"\\caption{{{caption}}}",
              "\\label{supptab:unlisted}", "\\end{table}", ""]

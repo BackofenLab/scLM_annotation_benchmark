@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 """Imperfect candidate lists: draw them, and score the study that uses them.
 
-The benchmark's constrained setting hands a model the exact list of the dataset's cell types, which
-no user has. This study replaces it with imperfect lists, one condition each (``lists`` in
-config.yml), all in mode M2:
+The benchmark's setting with a list gives a model the exact list of the dataset's cell types. This
+study gives imperfect lists instead, one per condition (``lists`` in config.yml), all in mode M2:
 
     E     the true types, the benchmark's own list (identical prompts, asked again)
     EU    E, with the option to answer "uncertain"
@@ -13,27 +12,24 @@ config.yml), all in mode M2:
     L3    a quarter of the true types removed, at least one, with "uncertain" offered
     L4    L1 + L2-5 + L3
 
-Per (dataset, seed), three orders are drawn once -- the true types to remove, the relatives to add,
-the absent types to add -- and each condition takes a prefix of each. L2-2 therefore lies inside
-L2-5, and L4 is exactly the union of what L1, L2-5 and L3 do. Relatives and absent types are drawn
-one per true type, the types taken in random order, so they spread over the lineages instead of
-piling up under the parent with the most children ("fibroblast" has dozens). Added types come from
-the CELLxGENE subset of the Cell Ontology, the vocabulary annotators use, without species- or
-taxon-qualified terms; parents are never broad (``BROAD_TERMS_BELOW``). True types keep their raw
-labels, so E is the benchmark's list.
+Per dataset and seed, three orders are drawn once (the true types to remove, the relatives to add,
+the absent types to add), and each condition takes a prefix of each. L2-2 therefore lies inside
+L2-5, and L4 is the union of what L1, L2-5 and L3 do. Relatives and absent types are drawn one per
+true type, the types taken in random order, so they spread over the lineages. Added types come from
+the CELLxGENE subset of the Cell Ontology, without species- or taxon-qualified terms; parents are
+never broad (``BROAD_TERMS_BELOW``). True types keep their raw labels, so E is the benchmark's
+list.
 
-Each list is a text file, one name per line, sorted the way the prompt builders sort:
-``results_lists/lists/<dataset>__<condition>__seed<seed>.txt``. It is the one source for the
-prompts, the scLLM wrappers and the reference methods. Which entries are removed, relatives or
-absent is read off the ontology when scoring, not stored a second time.
+Each list is a text file with one name per line, sorted:
+``results_lists/lists/<dataset>__<condition>__seed<seed>.txt``. The prompts and the reference
+methods read the lists from these files. The files do not mark which names were added.
 
-Scoring reuses the benchmark's scoring (``score_run`` in ``bin/evaluate.py``) on every run
-that ``score.py --study lists`` scored, and adds what the lists need: balanced accuracy over the
-types still listed (removing a type should not be charged for cells no listed type could name) and
-over the types a reference method can reach; abstention, an answer of exactly "uncertain", on the
-removed and on the listed types; and the answer types (``CellTaxonomy.lineage``) over all types and
-over the removed ones, which tell abstaining from naming a listed ancestor (HIHA's "T cell", or an
-L4 parent). Every summary is a mean over true types, as balanced accuracy is.
+Scoring applies the benchmark's ``score_run`` (``bin/evaluate.py``) to every run that
+``score.py --study lists`` mapped, and adds balanced accuracy over the types still listed and over
+the listed types a reference method can reach; abstention (an answer of exactly "uncertain") on
+the listed and on the removed types; and the shares of the answer types (``CellTaxonomy.lineage``)
+over all and over the removed types. Every summary is a mean over true types, as balanced accuracy
+is. Writes ``results_lists/runs.csv`` and ``results_lists/confusion_pairs.csv``.
 
 Usage, in the evaluation environment (pronto):
     python src/lists.py --write      # draw every list
@@ -184,8 +180,8 @@ PAIR_COLUMNS = ["true_label", "predicted_label", "n_cells", "prevalence", "n_dir
 
 
 def _answer_types(pairs, prefix):
-    """Class-balanced answer-type shares per run (``manuscript_figures._answer_shares``)."""
-    from manuscript_figures import _answer_shares
+    """Class-balanced shares of the answer types per run, with column names prefixed."""
+    from methods import _answer_shares
     if pairs.empty:
         return pd.DataFrame()
     run = pairs["arm"] + "|" + pairs["condition"] + "|" + pairs["seed"].astype(str)

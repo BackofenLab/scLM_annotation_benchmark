@@ -1,6 +1,7 @@
-"""Checks for the datasets table (bin/dataset_table.py) and the sourced facts it is built from.
+"""Checks for the datasets table (paper/scripts/dataset_table.py) and the sourced facts it is built
+from.
 
-Run with pytest, or directly in the evaluation environment: python tests/test_dataset_table.py
+Run with pytest, or directly in the evaluation environment: python paper/tests/test_dataset_table.py
 """
 import re
 import sys
@@ -11,7 +12,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "paper" / "scripts"))
 from dataset_table import facts_by_dataset, write_baselines_table, write_table  # noqa: E402
-from manuscript_figures import DATASET_ORDER  # noqa: E402
+from methods import DATASET_ORDER  # noqa: E402
 
 FACTS = ROOT / "paper" / "data" / "dataset_facts.csv"
 BIB = ROOT / "paper" / "data" / "references.bib"
@@ -33,7 +34,8 @@ def test_counts_are_consistent():
                                                               "test_cells_"))}
         assert n["cells_after_qc"] <= n["cells_downloaded"], ds
         assert n["genes_after_qc"] <= n["genes_downloaded"], ds
-        assert n["cell_types_scored"] <= n["cell_types_after_mapping"] <= n["cell_types_labelled"], ds
+        assert (n["cell_types_scored"] <= n["cell_types_after_mapping"]
+                <= n["cell_types_labelled"]), ds
         for size in (1000, 10000):
             # Per-type quotas are rounded, so a test set can fall a few cells short, never over.
             assert size - 3 <= n[f"test_cells_{size}"] <= size, (ds, size)
@@ -97,7 +99,7 @@ def test_table_has_one_column_per_dataset():
 
 
 def test_supplementary_table_does_not_cite():
-    # The bioRxiv build gives each supplementary part its own bibliography: a \cite there is undefined.
+    # Each part of the supplement has its own bibliography, so a \cite there is undefined.
     assert "\\cite" not in write_table(facts())
 
 

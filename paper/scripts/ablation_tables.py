@@ -1,28 +1,22 @@
 #!/usr/bin/env python
-"""Generate the supplementary tables and the prompts note for the prompt-context ablation and the
-imperfect-list study (Results R2).
+"""Generate the supplementary tables of the prompt-context ablation and the imperfect-list study,
+and the note with every prompt.
 
-Three typeset tables, the prompts note and two reusable CSVs:
+Writes to --outdir:
 
-* ``tables/supp_ablation_results.csv`` -- one row per (arm, gene variant, condition, dataset),
-  every metric the ablation scores, with the mean and the standard deviation over the three seeds.
-  This is the artifact a reader reuses and the one converted for submission.
-* the design table -- which model each arm ran, at which granularity, whether it also got the
-  shuffled gene order, and over which variants. The grid is READ FROM THE DATA, not transcribed,
-  so a condition that was configured but never run cannot appear here as though it had been.
-* the results table -- every arm x variant x condition on the metrics the section argues from.
-* ``tables/supp_list_results.csv`` and the results table of the imperfect-list study, per method
-  and condition in the order of context_ablation/config.yml.
+* ``tables/supp_ablation_results.csv``: one row per arm, gene variant, condition and dataset, with
+  the mean and the standard deviation over the seeds of every metric the ablation scores;
+* ``tables/supp_list_results.csv``: the same for the list study, per method, condition and
+  dataset;
+* ``supplementary_ablation_tables_generated.tex``: the ablation's arms, read from the results,
+  and its results;
+* ``supplementary_list_tables_generated.tex``: the results of the list study per method and
+  condition, in the order of paper/experiments/config.yml;
+* ``supplementary_prompts_generated.tex``: every prompt of the benchmark and of the two studies,
+  imported from paper/experiments/src/prompts.py or built by the benchmark wrappers' own
+  functions.
 
-The tables of both studies' conditions were dropped on 2026-10-15 as redundant: the conditions
-carry the figures' labels, and the Methods and Supplementary Note 1 define them.
-* the prompts note -- every prompt of the benchmark and the two studies, imported from
-  context_ablation/src/prompts.py or built by the benchmark wrappers' own functions.
-
-Nothing is hand-written, so these cannot drift from Figure 3 (style Rule 6).
-
-Usage:
-    python bin/ablation_tables.py
+    python paper/scripts/ablation_tables.py [--input CSV] [--lists CSV] [--outdir DIR]
 """
 from __future__ import annotations
 
@@ -31,7 +25,6 @@ import ast
 import contextlib
 import io
 import logging
-import re
 import sys
 from pathlib import Path
 from typing import Dict, List, Optional
@@ -39,16 +32,12 @@ from typing import Dict, List, Optional
 import pandas as pd
 import yaml
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import paths  # noqa: E402
-from manuscript_figures import (DATASET_ORDER, DEFAULT_ABLATION_CSV,  # noqa: E402
-                                DEFAULT_LIST_RUNS_CSV, MODE_LABELS, STUDY_ARM_MODEL, _display,
-                                _list_study_arms, dataset_label)
+import paths
+from methods import (DATASET_ORDER, MODE_LABELS, MODE_ORDER, STUDY_ARM_MODEL, _display,
+                     _list_study_arms, dataset_label)
 
-# Per-arm facts that are NOT in the results CSV: the name, the checkpoint or endpoint, and the
-# unit. Everything else in the design table is derived from the data; the prompts note says which
-# arm used which template.
-# Sourced from context_ablation/config.yml; if that changes, change this.
+# The facts of each arm that are not in the results, as in paper/experiments/config.yml: name,
+# model identifier and unit.
 ARM_META = {
     "A1_llm_percell": ("GPT-OSS-120B", "openai/gpt-oss-120b", "cell"),
     "A2_base_percell": ("Gemma-2-2B", "google/gemma-2-2b", "cell"),
@@ -56,44 +45,25 @@ ARM_META = {
     "A4_llm_percluster": ("GPT-OSS-120B", "openai/gpt-oss-120b", "cluster"),
     "A8_gemini_percluster": ("Gemini 3.1 Pro", "google/gemini-3.1-pro-preview", "cluster"),
 }
-ARM_ORDER = ["A1_llm_percell", "A2_base_percell", "A3_scllm_percell",
-             "A4_llm_percluster", "A8_gemini_percluster"]
-
-# Condition naming and order for the MANUSCRIPT, 2026-08-15.
-#
-# The study's own code, its cached artifacts and context_ablation.csv use M1-M6, assigned in the
-# order the conditions were designed. Those names are NOT renamed -- the manuscript relabels at the
-# last step before writing, the same convention manuscript_figures.py uses for blind/unblind ->
-# unconstrained/constrained, so no code or cached result has to move.
-#
-# The manuscript order is Figure 3A's x axis, the information ladder from least supplied to most,
-# and the tables print the figures' own labels for the conditions (codes C1..C5 until 2026-10-15,
-# when the table that defined them was dropped as redundant).
-CONDITION_ORDER = ["M6", "M1", "M3", "M2", "M4"]
-CONDITION_LABEL = {m: MODE_LABELS[m].replace("\n", " ") for m in CONDITION_ORDER}
+ARM_ORDER = list(ARM_META)
+# The study's code and files name the conditions M1 to M6; the tables print the figures' labels.
+CONDITION_LABEL = {m: MODE_LABELS[m].replace("\n", " ") for m in MODE_ORDER}
 
 
 def _cond(mode):
-    """Manuscript label for an internal condition name. Unknown names pass through unchanged."""
-    return CONDITION_LABEL.get(mode, mode)
+    """Label of a condition."""
+    return CONDITION_LABEL[mode]
 
 
 def _cond_key(mode):
-    """Sort key placing conditions in Figure 3A's order."""
-    return CONDITION_ORDER.index(mode) if mode in CONDITION_ORDER else len(CONDITION_ORDER)
+    """Sort key that puts the conditions in the order of MODE_ORDER."""
+    return MODE_ORDER.index(mode)
 
 
 VARIANT_LABEL = {"expression_ranked": "all genes", "hvg": "5,000 variable genes",
                  "res0.5": "resolution 0.5", "res1.0": "resolution 1.0"}
 
-# Metrics the typeset results table carries, in the order R3 argues from them. The CSV keeps every
-# column the scorer emits; these are the ones a reader checks against the figure.
-#
-# PLAIN ACCURACY DROPPED 2026-08-15. Over the 36 rows of this table it correlates with balanced
-# accuracy at Spearman 0.985 and Pearson 0.995, so it reorders almost nothing, while Lin correlates
-# at 0.953 and does carry independent information. It remains in supp_ablation_results.csv, so
-# nothing is lost. EMPTY DROPPED 2026-10-15 (user): at most 0.002 in every row; it stays in the
-# CSV too.
+# The metrics of the typeset results table; the CSV keeps every column the scorer writes.
 TEX_METRICS = [
     ("balanced_accuracy", "Bal.\\ acc."),
     ("agreement_score", "Agree."),
@@ -103,8 +73,8 @@ TEX_METRICS = [
 ]
 
 
-# The imperfect-list study: its conditions as Figure 3B names them, in the study's order. The
-# conditions themselves are read from context_ablation/config.yml, never transcribed.
+# The conditions of the list study as the figures name them. The conditions themselves are read
+# from paper/experiments/config.yml.
 LIST_CONDITION_NAME = {"E": "exact list", "EU": "exact list + uncertain", "L1": "A1",
                        "L2-2": "A2 (2 types)", "L2-5": "A2", "L3": "A3", "L4": "A1 + A2 + A3"}
 PROMPTED_ARMS = {"A1_llm_percell", "A3_scllm_percell", "A8_gemini_percluster"}
@@ -124,18 +94,7 @@ def _tex(text):
 def _fmt(value, digits=3):
     if value is None or (isinstance(value, float) and pd.isna(value)):
         return "--"
-    try:
-        return f"{float(value):.{digits}f}"
-    except (TypeError, ValueError):
-        return "--"
-
-
-def load(path=DEFAULT_ABLATION_CSV):
-    path = Path(path)
-    if not path.exists():
-        raise SystemExit(
-            f"No ablation results at {path}. Run the study first: see context_ablation/README.md.")
-    return pd.read_csv(path)
+    return f"{float(value):.{digits}f}"
 
 
 def per_dataset_frame(raw):
@@ -146,22 +105,15 @@ def per_dataset_frame(raw):
     out = grouped.mean().add_suffix("_mean").join(grouped.std(ddof=1).add_suffix("_sd"))
     out["n_seeds"] = grouped.size()
     out = out.reset_index()
-    # Carry BOTH names. `mode` is what the study's code and cached artifacts use; `condition` is
-    # what the manuscript prints. Without the second column a reader moving from Supplementary
-    # Table S8 to this file has no way to find the row they were looking at.
+    # The study's name of the condition and the tables' label.
     out.insert(out.columns.get_loc("mode") + 1, "condition", out["mode"].map(_cond))
-    return out.sort_values(["arm", "variant", out["mode"].map(_cond_key).name or "mode"],
+    return out.sort_values(["arm", "variant", "mode"],
                            key=lambda s: s.map(_cond_key) if s.name == "mode" else s)
 
 
 def overall_frame(raw):
-    """One row per (arm, variant, condition): mean over datasets of the seed means, and the SD
-    ACROSS DATASETS of those means.
-
-    The spread reported is the between-dataset one, not the between-seed one, and deliberately so:
-    the seed-to-seed SD within a dataset is roughly 27x smaller, so quoting it would suggest a
-    precision the four-dataset design does not have. n = 4 datasets, matching the paper.
-    """
+    """One row per arm, variant and condition: the mean over the datasets of the means over the
+    seeds, and the standard deviation of those means across the datasets."""
     per_ds = (raw.groupby(["arm", "variant", "mode", "dataset"])
               .mean(numeric_only=True).reset_index())
     grouped = per_ds.groupby(["arm", "variant", "mode"])
@@ -180,25 +132,18 @@ def _stacked(items):
 
 
 def design_rows(raw):
-    """The realized grid, read from the data rather than from the configuration.
-
-    An arm configured but never run therefore cannot appear, which is the point: the study's
-    config.yml also defines a GPT-OSS-20B per-cell arm that was never executed, and a design table
-    transcribed from the config would have claimed it.
-    """
+    """Per arm, as the results hold it: name, identifier, unit, whether the arm also ran the
+    shuffled gene order, and its variants."""
     rows = []
     for arm in ARM_ORDER:
         sub = raw[raw["arm"] == arm]
-        if sub.empty:
-            continue
         name, ident, gran = ARM_META[arm]
-        # Every arm ran Figure 3A's four conditions; only some also got the shuffled gene order.
+        # Every arm ran the four conditions with genes in their order.
         modes = set(sub["mode"])
         assert {"M1", "M2", "M3", "M4"} <= modes, arm
-        variants = [VARIANT_LABEL.get(v, v) for v in
+        variants = [VARIANT_LABEL[v] for v in
                     sorted(set(sub["variant"]), key=lambda v: list(VARIANT_LABEL).index(v))]
-        rows.append((name, ident, gran, "yes" if "M6" in modes else "--",
-                     variants, int(sub["seed"].nunique()), int(sub["dataset"].nunique())))
+        rows.append((name, ident, gran, "yes" if "M6" in modes else "--", variants))
     return rows
 
 
@@ -210,7 +155,6 @@ def write_tex(raw, out_path):
         "",
     ]
 
-    # ---- design ---------------------------------------------------------
     lines += [
         "\\begin{table}[!ht]", "\\centering", "\\scriptsize", "\\setlength{\\tabcolsep}{4pt}",
         "\\begin{tabular}{lllll}", "\\toprule",
@@ -218,8 +162,7 @@ def write_tex(raw, out_path):
         "\\midrule",
     ]
     # A little space between the arms, whose variants stack over two lines.
-    for i, (name, ident, gran, shuffled, variants, _ns, _nd) in enumerate(
-            design_rows(raw)):
+    for i, (name, ident, gran, shuffled, variants) in enumerate(design_rows(raw)):
         lines += ([] if i == 0 else ["\\addlinespace[3pt]"]) + [
             " & ".join([_tex(name), f"\\texttt{{{_tex(ident)}}}", gran,
                         _tex(shuffled), _stacked([_tex(v) for v in variants])]) + " \\\\"]
@@ -238,7 +181,6 @@ def write_tex(raw, out_path):
         "\\label{supptab:ablation_design}", "\\end{table}", "",
     ]
 
-    # ---- results --------------------------------------------------------
     overall = overall_frame(raw)
     order = {a: i for i, a in enumerate(ARM_ORDER)}
     overall["_a"] = overall["arm"].map(order)
@@ -252,26 +194,9 @@ def write_tex(raw, out_path):
         "\\begin{tabular}{llll" + "r" * len(TEX_METRICS) + "}",
         "\\toprule", " & ".join(header) + " \\\\", "\\midrule",
     ]
-    # Best value per score column, bolded WITHIN EACH ARM rather than across the whole table.
-    #
-    # A single global maximum would compare a 2B base model against a frontier model against a
-    # fine-tuned scLLM, at two different annotation units and two gene vocabularies, and mark one
-    # cell the winner. That is not a comparison this table supports, and a reader would read the
-    # bold as "best configuration" when it only means "largest number present".
-    # Within an arm the model and the unit are fixed, so the bold answers the question the section
-    # actually asks: which condition wins for this model. To bold globally instead, group on
-    # nothing and take the column max over `overall`.
-    #
-    # Three columns are bolded, and non-CL runs the OTHER WAY: lowest is best there.
-    #
-    # bin/supplementary_tables.py bolds none of its diagnostics, and for a share like this that is
-    # right -- marking the LARGEST fraction would flag the method most dependent on our manual
-    # mapping as though it had won. Marking the SMALLEST is the opposite and is meaningful:
-    # it is the run whose raw output was already closest to the ontology, which is the mechanism
-    # R3.3 argues from. So the direction, not the column, is what made the earlier exclusion right.
-    #
-    # >8 words stays unbolded. It is at or near zero for every arm except the base model, so a
-    # bold there would mark a tie between runs that never had the failure mode.
+    # The best value of each score is bold within each arm, where model and unit are fixed: the
+    # highest balanced accuracy, agreement score and Lin similarity and the lowest share of answers
+    # that are not Cell Ontology terms. Values are compared as printed.
     BOLD_MAX = {"balanced_accuracy", "agreement_score", "lin_avg_similarity"}
     BOLD_MIN = {"non_cl_ratio"}
     best = {}
@@ -279,8 +204,6 @@ def write_tex(raw, out_path):
         for col in BOLD_MAX | BOLD_MIN:
             values = pd.to_numeric(sub[f"{col}_mean"], errors="coerce")
             if values.notna().any():
-                # Compare on the PRINTED string, as the benchmark tables do: two runs differing in
-                # the fifth decimal print identically, and bolding only one reads as a typo.
                 best[(arm, col)] = _fmt(values.min() if col in BOLD_MIN else values.max())
 
     # The model, unit and variant where they change, and a little space between the arms.
@@ -293,7 +216,7 @@ def write_tex(raw, out_path):
             lines.append("\\addlinespace[3pt]")
         previous = (r["arm"], r["variant"])
         cells = [_tex(name) if new_arm else "", gran if new_arm else "",
-                 _tex(VARIANT_LABEL.get(r["variant"], r["variant"])) if new_variant else "",
+                 _tex(VARIANT_LABEL[r["variant"]]) if new_variant else "",
                  _tex(_cond(r["mode"]))]
         for col, _h in TEX_METRICS:
             text = _fmt(r.get(f"{col}_mean"))
@@ -392,23 +315,14 @@ def write_list_tex(runs, conditions):
     return lines
 
 
-# --------------------------------------------------------------------------- #
-# Prompt templates, never transcribed: a hand copy could silently stop matching what was sent.
-# * The general-purpose LLM, C2S-Scale and per-cluster templates are IMPORTED from
-#   context_ablation/src/prompts.py. With {context} empty, its LLM and C2S-Scale templates equal
-#   the benchmark's (models/openrouter_LLM_*/src/model_cfg.yml and models/c2s_scale_*/src/
-#   predict.py, checked byte for byte 2026-10-13), so one block serves the benchmark and the study.
-# * InstructCell's prompt and LangCell's text for a candidate are built by the benchmark wrappers'
-#   own functions, called with the slots as arguments.
-# M5's two templates exist in prompts.py and are deliberately NOT listed: the mode was removed from
-# the study on 2026-08-13 together with its prompts, predictions and scored runs.
-# --------------------------------------------------------------------------- #
-WRAPPERS = paths.REPO / "models"
-DATASET_CONFIGS = paths.REPO / "datasets"
-# (heading, where it was used, prompts.py constant). The ablation's conditions without the list
-# are M6, M1 and M3, those with it M2 and M4.
-# Headings name the template, not a model group: in the ablation the per-cell template also served
-# the Gemma-2-2B base model, so each block names the ablation's arms that used it.
+# The prompt templates are not transcribed. The general-purpose LLM, C2S-Scale and per-cluster
+# templates are imported from paper/experiments/src/prompts.py; with {context} empty, its LLM and
+# C2S-Scale templates are those of the benchmark (models/openrouter_LLM_*/prompt.txt and
+# models/c2s_scale_*/src/predict.py), so one block serves both. InstructCell's prompt and
+# LangCell's text for a candidate are built by the benchmark wrappers' own functions. prompts.py
+# also holds the templates of a condition without genes, which the study does not report.
+# (heading, where the template was used, prompts.py constant). The ablation's conditions without
+# the list are M6, M1 and M3, those with it M2 and M4.
 SHARED_BLOCKS = [
     ("Per-cell template, unconstrained",
      "the benchmark by the general-purpose LLMs and in the ablation by GPT-OSS-120B and "
@@ -434,7 +348,7 @@ CLUSTER_BLOCKS = [
 def _wrapper_function(relpath, name, **scope):
     """Function ``name`` of a benchmark wrapper, compiled on its own. The wrappers import their
     model stacks at the top, which this environment lacks, and the prompt code needs none of it."""
-    path = WRAPPERS / relpath
+    path = paths.MODELS / relpath
     node = next(n for n in ast.parse(path.read_text()).body
                 if isinstance(n, ast.FunctionDef) and n.name == name)
     exec(compile(ast.Module(body=[node], type_ignores=[]), str(path), "exec"), scope)
@@ -460,7 +374,8 @@ def benchmark_texts():
 
 
 def _dataset_configs():
-    return {ds: yaml.safe_load((DATASET_CONFIGS / f"{ds}.yml").read_text()) for ds in DATASET_ORDER}
+    return {ds: yaml.safe_load((paths.DATASET_CONFIGS / f"{ds}.yml").read_text())
+            for ds in DATASET_ORDER}
 
 
 def _listed(items):
@@ -469,7 +384,7 @@ def _listed(items):
 
 def _context_phrases(P, cfg):
     """The species-and-tissue phrase each dataset filled the ablation's {context} with, built by
-    the study's own function from the configuration it read (context_ablation/src/sentences.py)."""
+    the study's own function from the configuration it read."""
     phrases = []
     for ds, c in cfg.items():
         phrase = P.context_phrase({"tissue_species": True}, "instruction", tissue=c.get("tissue"),
@@ -488,9 +403,8 @@ def _instructcell_slots(cfg):
 
 def write_prompts_tex(out_path):
     """Every prompt the benchmark and the two studies sent, verbatim, with the slots explained."""
-    src = paths.EXPERIMENTS / "src"
-    sys.path.insert(0, str(src))
-    import prompts as P  # noqa: E402
+    sys.path.insert(0, str(paths.EXPERIMENT_SOURCES))
+    import prompts as P
 
     cfg = _dataset_configs()
     phrases = _context_phrases(P, cfg)
@@ -499,12 +413,8 @@ def write_prompts_tex(out_path):
         "% The templates are imported from context_ablation/src/prompts.py or built by the",
         "% benchmark wrappers' own functions, so they cannot drift from what was sent.",
         "",
-        # A \label inside an unnumbered \subsection* attaches to whatever counter was stepped last
-        # and resolves to an EMPTY string, so "Supplementary Note~\ref{...}" renders with nothing
-        # after it and hyperref warns about an empty link. A dedicated counter, stepped with
-        # \refstepcounter so \ref picks it up, is what makes the cross-reference work. The counter
-        # is defined in sections/supplementary_notes.tex, so the notes can be ordered by first
-        # mention around this file.
+        # The note's own counter, defined in the supplement, so that \ref to the label gives
+        # the note's number.
         "\\refstepcounter{suppnote}",
         "\\paragraph{Supplementary Note \\thesuppnote: Prompt templates.}\\label{suppnote:prompts}",
         "",
@@ -514,7 +424,8 @@ def write_prompts_tex(out_path):
         "\\texttt{cell\\_sentence} and \\texttt{marker\\_genes} carry the gene names, and "
         "\\texttt{organism} names the dataset's organism, Homo sapiens or Mus musculus. "
         "\\texttt{unique\\_cell\\_types} is the list of expected cell types. The per-cell "
-        "templates receive it as a Python list, permuted independently for each cell, the per-cluster templates separated by commas and permuted "
+        "templates receive it as a Python list, permuted independently for each cell, the "
+        "per-cluster templates separated by commas and permuted "
         "for each cluster, and the templates of C2S-Scale and InstructCell separated by commas and "
         "sorted. \\texttt{context} is empty in the benchmark. In the conditions with the tissue "
         f"and species, the prompt-context ablation fills it with them, {phrases}, and with the "
@@ -537,14 +448,14 @@ def write_prompts_tex(out_path):
         lines += block(heading, used_in, getattr(P, const))
     lines += block("InstructCell's template, unconstrained", "the benchmark", instruct_u,
                    f" \\texttt{{species}} is {species}, \\texttt{{tissue}} is {tissues}, and "
-                   "InstructCell replaces \\texttt{input} with embeddings of the cell that its expression "
-                   "encoder computes from the raw counts. The "
+                   "InstructCell replaces \\texttt{input} with embeddings of the cell that its "
+                   "expression encoder computes from the raw counts. The "
                    "template is the example prompt of the InstructCell repository without its "
                    "sequencing method, which the benchmark did not pass.")
     lines += block("InstructCell's template, constrained", "the benchmark", instruct_c,
                    " It adds the expected cell types in the benchmark's own wording, not in one "
                    "of the option phrasings InstructCell was trained with.")
-    lines += block("Candidate texts of the embedding-based scLLMs",
+    lines += block("Candidate texts of the embedding-based scLMs",
                    "the benchmark and the imperfect-list analysis", langcell_text,
                    " These models compare each cell with a text for every candidate cell type, "
                    "all 3,169 Cell Ontology names when unconstrained, the expected cell types when "
@@ -571,22 +482,17 @@ def write_prompts_tex(out_path):
     return out_path
 
 
-# Characters a prompt block must show as typed. \symbol takes the glyph from the typewriter font
-# itself, which \{ and \_ do not in the OT1 encoding of the BiB build. The typewriter fonts have no
-# em dash (OT1 gives "|", and "---" shows three hyphens), so it comes from the roman font.
+# Characters a prompt block shows as typed. \symbol takes the glyph from the typewriter font
+# itself, which \{ and \_ do not in the OT1 encoding. The typewriter fonts have no em dash (OT1
+# gives "|", and "---" shows three hyphens), so it comes from the roman font.
 _TT_CHARS = {"\\": "\\symbol{92}", "{": "\\symbol{123}", "}": "\\symbol{125}",
              "_": "\\symbol{95}", "^": "\\symbol{94}", "~": "\\symbol{126}", "&": "\\&",
              "%": "\\%", "#": "\\#", "$": "\\$", "—": "{\\rmfamily\\textemdash}"}
 
 
 def _verbatimish(text):
-    """Typeset prompt text in a monospaced block without a verbatim environment.
-
-    ``verbatim`` cannot be used: the templates contain braces, which the reader must SEE because
-    they mark the substitution slots, and they contain an em dash that a verbatim environment
-    passes through unprocessed. Escaping by hand and forcing the line breaks keeps both visible
-    and keeps the block inside a ``quote``, which ``verbatim`` would not allow.
-    """
+    """Prompt text as escaped lines with forced breaks for a monospaced ``quote`` block, which a
+    verbatim environment cannot sit in and whose em dash it would pass through unprocessed."""
     return "\n".join("".join(_TT_CHARS.get(c, c) for c in line) + " \\\\"
                      for line in text.split("\n"))
 
@@ -594,12 +500,12 @@ def _verbatimish(text):
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--input", default=str(DEFAULT_ABLATION_CSV))
-    p.add_argument("--lists", default=str(DEFAULT_LIST_RUNS_CSV))
+    p.add_argument("--input", default=str(paths.ABLATION_RESULTS))
+    p.add_argument("--lists", default=str(paths.LIST_RUNS))
     p.add_argument("--outdir", default=str(paths.TABLES))
     args = p.parse_args(argv)
 
-    raw = load(args.input)
+    raw = pd.read_csv(args.input)
     outdir = Path(args.outdir)
     (outdir / "tables").mkdir(parents=True, exist_ok=True)
 
@@ -608,15 +514,14 @@ def main(argv=None):
     print(f"[csv]  {csv_path}")
 
     runs = pd.read_csv(args.lists)
-    conditions = yaml.safe_load((paths.EXPERIMENTS / "config.yml").read_text())["lists"]["conditions"]
+    conditions = yaml.safe_load(paths.EXPERIMENT_CONFIG.read_text())["lists"]["conditions"]
     list_path = outdir / "tables" / "supp_list_results.csv"
     list_frame(runs).to_csv(list_path, index=False)
     print(f"[csv]  {list_path}")
 
     tex_path = write_tex(raw, outdir / "supplementary_ablation_tables_generated.tex")
     print(f"[tex]  {tex_path}")
-    # The list study's results table in a file of its own: the supplement places R2's bootstrap
-    # table before it, in the order the text first cites them.
+    # The list study's table in a file of its own, so that the supplement can place it apart.
     list_tex = outdir / "supplementary_list_tables_generated.tex"
     list_tex.write_text("\n".join(["% GENERATED by bin/ablation_tables.py -- do not edit by hand.",
                                    "% The imperfect-list analysis. Requires "

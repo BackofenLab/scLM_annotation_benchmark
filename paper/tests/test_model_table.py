@@ -1,6 +1,7 @@
-"""Checks for Table 1 (bin/model_table.py) and the sourced facts it is built from.
+"""Checks for the methods table (paper/scripts/model_table.py) and the sourced facts it is built
+from.
 
-Run with pytest, or directly in the evaluation environment: python tests/test_model_table.py
+Run with pytest, or directly in the evaluation environment: python paper/tests/test_model_table.py
 """
 import sys
 from pathlib import Path

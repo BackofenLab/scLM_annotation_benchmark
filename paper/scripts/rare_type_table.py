@@ -25,7 +25,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import paths  # noqa: E402
 
 sys.path.insert(0, str(paths.PIPELINE_BIN))
-from plot_model_comparison import categorize_model, derive_mode, group_name, model_base  # noqa: E402
+from methods import categorize_model, derive_mode, group_name, model_base  # noqa: E402
 
 SUBSET_SIZE = 1000
 OVERALL = "__OVERALL__"
