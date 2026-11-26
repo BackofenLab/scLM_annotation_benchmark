@@ -1,190 +1,193 @@
-## Single-cell and Language foundation models
+# Cell type annotation benchmark
 
-### Workflow description
+A [Nextflow](https://www.nextflow.io/) pipeline that annotates single-cell RNA-seq data with
+general-purpose large language models (LLMs), single-cell language models (scLMs) and established
+annotation methods, maps every answer to the [Cell Ontology](https://obofoundry.org/ontology/cl.html)
+and scores it against the labels of the dataset. It also holds the data and code behind the figures
+and tables of our paper (see [paper/README.md](paper/README.md)).
 
-#### nextflow.config
+## What the pipeline does
 
-Config file with the following parameters:
+1. **Test sets.** For every dataset it draws test sets of a given size (1,000 and 10,000 cells in
+   the paper), keeping the proportions of the cell types and at least 20 cells per type. The test
+   sets of the paper are on [Zenodo](https://doi.org/10.5281/zenodo.21443586) and are fetched from
+   there by default. They can also be built from the original data: download, quality control,
+   normalization, subsampling.
+2. **Annotation.** Every selected method annotates every cell of a test set. A method runs without
+   the list of the dataset's cell types (folder name ending in `_blind`) or with it (`_unblind`).
+3. **Mapping.** Every answer is matched to a Cell Ontology term, directly or through a curated table
+   of answers that are not ontology terms (`resources/cell_type_ontology_mappings.csv`).
+4. **Evaluation.** The answers are scored against the dataset's labels: accuracy, balanced
+   accuracy, F1, Lin and Rada similarity on the ontology, an agreement score that gives half a point
+   for a related coarser or finer cell type, and optionally a text similarity of the labels.
 
-| Parameter | Description |
+There are two entry points:
+
+| Entry point | Runs | Ends with |
+|---|---|---|
+| `main.nf` | steps 1 to 4 | annotations, scores, combined tables and plots |
+| `annotate.nf` | steps 1 to 3 | annotations mapped to the Cell Ontology |
+
+## Requirements
+
+- Nextflow 25.04 or later (tested with 25.04.6) and Java 17 or later.
+- Conda or Mamba (profile `local`), or Docker or Apptainer (profiles `docker`, `apptainer`).
+  The pipeline builds one environment per step from the files in `envs/`.
+- For the scLMs: a CUDA GPU.
+- For the LLMs: an [OpenRouter](https://openrouter.ai/) API key. Annotating the four 1,000-cell
+  test sets of the paper with all eleven LLMs in both settings cost about 1,200 USD in May 2026.
+
+## Quick start
+
+The toy dataset in `tests/data/` holds 40 cells of four cell types. This run builds a test set
+from it, annotates it with the random baseline and scores the result:
+
+```bash
+nextflow run main.nf -profile local -params-file tests/toy.params.yml
+```
+
+The results are in `results_toy/` (see [Outputs](#outputs)). The first run builds the conda
+environments, which takes a while.
+
+## Running the benchmark
+
+Choose datasets, methods and test set sizes in a parameter file:
+
+```yaml
+# my_run.yml
+datasets: [HIHA, human_pancreas]
+models: [celltypist_blind, celltypist_unblind, scsa_blind, scsa_unblind]
+subset_sizes: [1000]
+```
+
+```bash
+nextflow run main.nf -profile local -params-file my_run.yml
+```
+
+Single values can also be given on the command line (`--subset_strategy random`), lists only in
+a parameter file. All parameters and their defaults are listed in
+[docs/parameters.md](docs/parameters.md). The methods are the folders in `models/`, the datasets
+the files in `datasets/`. Without a parameter file the pipeline runs the eight established
+methods on the four datasets of the paper.
+
+**LLMs.** The OpenRouter key is read from a Nextflow secret, so it is never written to a log or a
+task script:
+
+```bash
+nextflow secrets set OPENROUTER_API_KEY 'sk-or-v1-...'
+```
+
+Put a space before the command if your shell keeps commands that start with one out of its history
+(`setopt HIST_IGNORE_SPACE` in zsh). Only the LLM wrappers need the key. Which LLMs are queried and
+how is set in `models/openrouter_LLM_blind/src/openrouter.yml`, the prompt of each setting in
+`models/openrouter_LLM_blind/prompt.txt` and `models/openrouter_LLM_unblind/prompt.txt`.
+
+**Stored predictions.** The predictions of every run are kept in `<outdir>/predictions/` (or in
+`--predictions_dir`). A run whose predictions are there is not run again; only mapping and scoring
+are repeated. Delete the files of a run to run it again.
+
+**Apple Silicon.** The R methods (SingleR, scType) have no conda packages for `osx-arm64`. Start
+them with `CONDA_SUBDIR=osx-64 CONDA_ALWAYS_COPY=true nextflow run ...`, which uses the Intel
+packages through Rosetta 2, or use a container profile.
+
+## Mapping answers to the Cell Ontology
+
+An answer that names a Cell Ontology term (by name or id, ignoring case) needs no mapping. Every
+other answer is looked up in `resources/cell_type_ontology_mappings.csv`, a semicolon-separated
+table with one row per answer:
+
+| Column | Meaning |
 |---|---|
-| `datasets` | List of datasets to use. Each needs a YAML config in `datasets/<name>.yml` |
-| `models` | List of models to use. Each needs `models/<name>/src/run.sh` |
-| `cache_dir` | Directory to cache downloaded data, preprocessed files, subsets, and model weights |
-| `subset_categories` | Map of model name patterns to subset sizes (e.g., `['openrouter': 1000, 'default': 10000]`). Models whose name contains the key get that subset size; `'default'` is the fallback |
-| `subset_strategy` | `'stratified'` preserves per-type proportions; `'random'` is uniform across cells |
-| `min_cells_per_type` | Minimum cells per cell type in subsets (default: 20). Types below this threshold are dropped in stratified mode (ignored in random mode) |
-| `apply_ontology_mapping` | Fallback for datasets without a per-dataset `apply_ontology_mapping` flag in their YAML |
-| `download_from_zenodo` | If `true`, skip `download`→`preprocess`→`subset` and fetch preprocessed+subsetted files from the Zenodo record listed in `datasets/zenodo_manifest.yml`. All requested `(dataset, subset_size, subset_strategy)` combinations must be in the manifest or the pipeline aborts. |
+| `reviewed` | `True` once a person has checked the row |
+| `origin` | the run that first produced the answer |
+| `predicted_label` | the answer, in lower case |
+| `chosen_match` | the Cell Ontology term the answer stands for (`cell` for answers that name no cell type) |
+| `best_match` | the automatic suggestion |
 
-There are profiles `local` for running locally, `helix` for the helix cluster, and `imbi_gpu` for the IMBI GPU cluster.
+`main.nf` adds answers that are not in the table yet as unreviewed rows with a suggestion and says
+so at the end of the run. Unreviewed answers count as wrong, and a run in which fewer than 90% of the
+answers are ontology terms or reviewed gets no metrics. After reviewing the new rows (set
+`chosen_match`, then `reviewed` to `True`), run the pipeline again with `-resume`; mapping and
+scoring are repeated, the methods are not. `annotate.nf` never changes the table: answers it does
+not know are marked `unmapped` in its output.
 
-#### Pipeline processes
+## Outputs
 
-The pipeline runs the following processes in order:
+| Path in `outdir` | Content |
+|---|---|
+| `predictions/<method>/<dataset>/<size>_<strategy>/` | the answers of each run, as the method wrote them |
+| `annotations/<dataset>/<method>/sub<size>/` | per cell the answer, its Cell Ontology term and id, and how it was mapped; with a summary in JSON |
+| `evaluation/<dataset>/` | per run the metrics (JSON), the scores per true cell type and per answer pair, and a confusion matrix |
+| `benchmark_metrics.csv` | one row per dataset, model and test set size |
+| `per_class_scores.csv` | recall and ontology scores per true cell type and run |
+| `confusion_pairs.csv` | number of cells per pair of true and predicted cell type and run |
+| `plots/` | heatmaps of the models by dataset and rankings across datasets, per metric and test set size |
 
-1. **download** - Fetches raw data from URL/Google Drive/CellxGene Census. Caches the full file under `cache/`.
-2. **preprocess** - QC filtering, gene/cell filtering, normalization, log transform, Ensembl ID mapping, and (optionally) cell-type ontology mapping. Ontology mapping is controlled per-dataset via `apply_ontology_mapping` in the dataset YAML (falls back to the global `params.apply_ontology_mapping`). QC plots saved to `cache/plots/`.
-3. **subset** - Subsampling to one of the configured sizes. Strategy is either `stratified` (preserves per-type proportions, drops types below `min_cells_per_type`) or `random` (uniform; preserves natural class imbalance). One subset per unique `(size, strategy)` pair. QC outputs (CSV + plots) saved to `cache/subset_qc/<dataset>/sub<size>_<strategy>/`.
-4. **prepare_model** - Optional model setup (git cloning, etc.) via `prepare.sh`.
-5. **run_model** / **run_model_openrouter** - Runs model predictions. OpenRouter LLM models are routed to `run_model_openrouter` (which declares the `OPENROUTER_API_KEY` secret); all other models run via `run_model`, which requires no key. Both cache results under `cache/models/predictions/<model>/<dataset>/<size>_<strategy>/`.
-6. **map_predictions** - Normalizes, review-filters, and ontology-maps each `predictions*.csv`, writing a cached `<base>_mapped.csv` (+ `<base>_mapped.stats.json` and a `<base>_mapped.mappings.sha`) next to the predictions. This is the only stage that touches `cache/cell_type_ontology_mappings.csv` (and appends newly-discovered labels for review), so it runs with `maxForks 1`. On rerun a mapped CSV is reused unless the predictions or the mappings CSV change — see "Mapped-prediction cache" below.
-7. **score_predictions** - Pure scoring on `<base>_mapped.csv` (loads the CL ontology once): metrics (accuracy, F1, ontology similarity, optional text-encoder similarity) + confusion matrices. Re-running it never re-does ontology mapping.
-8. **combine_results** - Aggregates results into CSV and visualization plots.
+Downloads, test sets and other intermediate files are kept in `cache/`.
 
-The `<base>_mapped.csv` produced by stage 6 has all prediction rows plus `predicted_labels` (ontology-mapped), `original_predicted_labels` (normalized raw), and a `kept` flag (`False` for review-filtered rows, which scoring excludes).
+## Methods
 
-#### Running the pipeline
+| Family | Methods (folders in `models/`) |
+|---|---|
+| General-purpose LLMs, via OpenRouter | `openrouter_LLM_blind`, `openrouter_LLM_unblind`: Claude Opus 4.7, Claude Sonnet 4.6, DeepSeek V3.2, Gemini 3.1 Pro, GPT-5.5, GPT-OSS 20B and 120B, Kimi K2.6, Llama 3.1 70B, Llama 3.3 70B, Llama 4 Maverick |
+| Single-cell language models | `c2s_scale_2B_*`, `c2s_scale_27B_*`, `cellwhisperer_*`, `instructcell_*`, `langcell_*`, `mmcontext_*` |
+| Established methods | `celltypist_*`, `scsa_*`, `sctype_*`, `singler_*` |
+| Chance reference | `random_stratified` |
 
-```bash
-# Basic run
-nextflow run main.nf -profile local
+The established methods answer from a fixed vocabulary. In their constrained setting
+(`*_unblind`) they keep only the labels that lie at or below one of the expected cell types in the
+Cell Ontology. Each method folder holds a `method.yml` with its name and the inputs it needs.
 
-# With specific datasets and models
-nextflow run main.nf -profile local \
-  --datasets '["HFRA", "Zeisel"]' \
-  --models '["celltypist_blind", "openrouter_LLM_blind"]'
+## Datasets
 
-# Override subset sizes
-nextflow run main.nf -profile local \
-  --subset_categories '["openrouter": 500, "default": 5000]'
+| Name | Tissue | Organism | Source |
+|---|---|---|---|
+| `HFRA` | fetal retina | human | CELLxGENE Census |
+| `HIHA` | peripheral blood | human | CELLxGENE Census |
+| `Zeisel` | nervous system | mouse | authors' loom file, converted to h5ad |
+| `human_pancreas` | pancreas | human | figshare (Luecken et al. 2022) |
+| `toy` | peripheral blood, 40 cells | human | a sample of `HIHA`, for testing |
+
+## Adding datasets and methods
+
+- [docs/adding_datasets.md](docs/adding_datasets.md) shows how to add a dataset, with the toy
+  dataset as the example.
+- [docs/adding_methods.md](docs/adding_methods.md) shows how to add a method, with the random
+  baseline as the example.
+
+## Repository layout
+
+```
+main.nf, annotate.nf   entry points
+nextflow.config        parameters and profiles
+workflows/             the annotation and evaluation workflows
+modules/               the processes and helper functions
+bin/                   the scripts the processes call
+datasets/              one configuration per dataset, and the Zenodo manifest
+models/                one folder per method
+envs/                  conda environments and container recipes
+resources/             the mapping table and Ensembl gene tables
+tests/                 unit tests and the toy dataset
+docs/                  parameters and how-to guides
+paper/                 data, results and code of the paper
 ```
 
-#### Cache invalidation
+## Tests
 
-After upgrading to the `subset_strategy` / merged-preprocess pipeline, the following cached artifacts are incompatible with the new layout and can be deleted to reclaim disk:
-
-```bash
-# Old pre-merge ontology step (now folded into preprocess):
-rm -rf cache/datasets/mapped/
-
-# Old untagged subset files (new files carry a `_stratified` / `_random` suffix before `.h5ad`;
-# only remove files that end with `_sub<digits>.h5ad` and nothing else):
-find cache/datasets/subset -maxdepth 1 -type f -regex '.*_sub[0-9]+\.h5ad' -delete
-
-# Old untagged prediction caches (new caches carry a strategy suffix in the path).
-# Inspect cache/models/predictions/ for `<size>/` directories without a `_<strategy>` suffix and remove them.
-```
-
-The pipeline itself does not remove these automatically.
-
-##### Mapped-prediction cache
-
-`map_predictions` caches `<base>_mapped.csv` next to each prediction under
-`cache/models/predictions/<model>/<dataset>/<size>_<strategy>/`, alongside a
-`<base>_mapped.mappings.sha` recording the `sha256` of `cache/cell_type_ontology_mappings.csv`
-at map time. On rerun the mapped CSV is reused **only if that sha still matches** — so:
-
-- Editing `cell_type_ontology_mappings.csv` (reviewing a label, fixing a `chosen_match`)
-  changes its sha and **automatically re-maps every prediction** on the next run.
-- Unchanged predictions + unchanged mappings CSV → cache hit (no remapping); only
-  `score_predictions` re-runs, which is cheap.
-- To force a remap manually, delete the `*_mapped.csv` / `*_mapped.mappings.sha` files.
-
-#### Fetching preprocessed data from Zenodo
-
-To skip the full preprocessing and subsetting chain, set `download_from_zenodo=true`
-(via `nextflow.config` or `--download_from_zenodo true`). The pipeline will then
-fetch files directly from the public Zenodo record pinned in
-`datasets/zenodo_manifest.yml` and place them under `cache/datasets/subset/`.
-
-Currently mirrored on Zenodo (16 files): datasets `HFRA`, `HIHA`, `human_pancreas`,
-`Zeisel`; subset sizes `1000` and `10000`; strategies `stratified` and `random`.
-Requested combinations outside this set cause the pipeline to abort upfront with
-a list of the missing files. MD5 checksums are verified after each download.
-
-Zenodo files are ontology-mapped (produced with `apply_ontology_mapping=true`);
-the value of `params.apply_ontology_mapping` is ignored for the fetch step but
-still forwarded to the evaluation step.
-
-#### Dataset configuration
-
-Each dataset has a YAML config in `datasets/` with fields:
-
-- `name` - Dataset identifier
-- `source` - Download source (`cellxgene_census` or omit for URL)
-- `url` or `census_dataset_id` - Data location
-- `batch_key` - Batch column in `adata.obs`
-- `annotation_key` - Cell type annotation column
-- `apply_ontology_mapping` - Whether to map labels to Cell Ontology terms
-- `celltypist_model` - CellTypist model file (for celltypist models)
-
-#### Adding a new model
-
-1. Create `models/<model_name>/src/run.sh` taking inputs: (1) h5ad file, (2) output predictions.csv path, (3) dataset config YAML, (4) cache_dir (optional)
-2. Add a Conda environment file `envs/models/<model_name>.yml`
-3. If setup is needed (git clone, etc.), add `models/<model_name>/src/prepare.sh`
-4. Output: `predictions.csv` with columns `true_labels`, `predicted_labels`
-
-#### LLM models (OpenRouter)
-
-The pipeline reads your [OpenRouter](https://openrouter.ai/) API key via [Nextflow secrets](https://www.nextflow.io/docs/latest/secrets.html) so the value never lands in `ps`, the `.nextflow.log`, or `work/*/.command.sh`. **Don't** pass it via `--openrouter_api_key` or `export OPENROUTER_API_KEY=…` — both leak.
-
-> Tip: prefix every command below with **one leading space** so zsh skips it when `HIST_IGNORE_SPACE` is enabled (`setopt HIST_IGNORE_SPACE`). Otherwise the key is written to `~/.zsh_history`.
+The unit tests run with pytest or directly, in the evaluation environment (`envs/evaluation.yml`):
 
 ```bash
-# Set the key (one-time, or to overwrite an existing one):
- nextflow secrets set OPENROUTER_API_KEY 'sk-or-v1-...'
-
-# Run the pipeline:
-nextflow run main.nf -profile local
-
-# List / inspect what's stored locally:
-nextflow secrets list
-nextflow secrets get OPENROUTER_API_KEY
-
-# Remove the secret from the local store:
-nextflow secrets delete OPENROUTER_API_KEY
+for t in tests/test_*.py paper/tests/test_*.py; do python "$t"; done
 ```
 
-If the secret is unset, only `run_model_openrouter` tasks fail with `Required secret is missing: 'OPENROUTER_API_KEY'`. Runs that include no OpenRouter models do not need the key set at all.
+## License
 
-**Rotating / decommissioning a key:**
+The code is released under the MIT license (see `LICENSE`). Third-party material keeps its own
+license: the ScType marker database (`models/sctype_blind/src/ScTypeDB_full.xlsx`, GPL-3.0), the
+Cell Ontology (CC BY 4.0), the Ensembl gene tables in `resources/ensembl/` and the toy dataset
+(CC BY 4.0, see `tests/data/README.md`). The methods fetch their own code and weights under their
+own licenses.
 
-1. Create a new key at <https://openrouter.ai/keys>.
-2. Run `nextflow secrets set OPENROUTER_API_KEY 'sk-or-v1-NEW_KEY'` (with the leading space) — this overwrites the stored value.
-3. **Revoke the old key on <https://openrouter.ai/keys>.** This is the step that actually invalidates it. Deleting from the local secret store does *not* invalidate the key — anyone who has a copy can still use it until OpenRouter revokes.
+## Citation
 
-**Never commit or push your API key to the repository.**
-
-### Comparison plots
-
-`bin/plot_model_comparison.py` is a standalone script (independent of the Nextflow
-pipeline) that turns `results/aggregated_by_dataset_model.csv` into several
-comparison views per metric. Each plot type is written to its own sub-folder under
-`results/plots/`:
-
-- `ranking/` — models ranked within each dataset (1 = best), sorted by their mean
-  rank across datasets (bar = mean rank, dots = per-dataset rank). The headline view.
-- `heatmap/` — model × dataset metric values, sorted by mean.
-- `bump/` — rank trajectories across datasets (which models are consistent vs. dataset-sensitive).
-- `barplot/` — the familiar grouped barplot (x = model sorted by mean, hue = dataset).
-
-It runs in a lightweight conda environment:
-
-```bash
-conda env create -f envs/plotting.yml
-conda activate sc_lfm_plotting
-
-# all plot types, default metric set
-python bin/plot_model_comparison.py
-
-# restrict to specific models (everything else is dropped from this run)
-python bin/plot_model_comparison.py --models cellwhisperer_unblind gpt-5.5_unblind
-
-# every numeric metric, only ranking + heatmap
-python bin/plot_model_comparison.py --metrics all --plots ranking heatmap
-```
-
-If the CSV gains a `subset_size` column (cells per model — see `subset_categories`
-above, which assigns sizes per model), each model's axis label is annotated with a
-marker (`*`, `**`, …) and a caption maps the markers to cell counts. The script works
-unchanged when that column is absent. Run `--help` for all options.
-
-### Planning excel sheet
-
-<[internal link removed]>
-
-### Meeting minutes
-
-<[internal link removed]>
+Please cite the paper when you use this pipeline (reference to follow).

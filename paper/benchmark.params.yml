@@ -1,0 +1,33 @@
+# The benchmark of the paper. Run from the repository folder:
+#   nextflow run main.nf -profile local -params-file paper/benchmark.params.yml
+# All predictions are in paper/predictions, so no method runs: the pipeline maps and scores the
+# stored answers and writes the tables of paper/results to results_paper/.
+datasets: [HFRA, HIHA, Zeisel, human_pancreas]
+models:
+  - openrouter_LLM_blind
+  - openrouter_LLM_unblind
+  - c2s_scale_2B_blind
+  - c2s_scale_2B_unblind
+  - c2s_scale_27B_blind
+  - c2s_scale_27B_unblind
+  - cellwhisperer_blind
+  - cellwhisperer_unblind
+  - instructcell_blind
+  - instructcell_unblind
+  - langcell_blind
+  - langcell_unblind
+  - mmcontext_blind
+  - mmcontext_unblind
+  - celltypist_blind
+  - celltypist_unblind
+  - scsa_blind
+  - scsa_unblind
+  - sctype_blind
+  - sctype_unblind
+  - singler_blind
+  - singler_unblind
+  - random_stratified
+subset_sizes: [1000, 10000]
+predictions_dir: paper/predictions
+use_text_encoder: true
+outdir: results_paper

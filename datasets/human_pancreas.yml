@@ -2,7 +2,6 @@
 
 name: human_pancreas
 url: https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/24539828/human_pancreas_norm_complexBatch.h5ad
-format: h5ad
 
 # Cells and labels
 annotation_key: "celltype"
