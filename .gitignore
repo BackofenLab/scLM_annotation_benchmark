@@ -38,6 +38,7 @@ paper/experiments/slurm/logs/
 paper/experiments/cache/
 paper/experiments/results/*
 !paper/experiments/results/context_ablation.csv
+!paper/experiments/results/spend.csv
 paper/experiments/results_lists/*
 !paper/experiments/results_lists/runs.csv
 !paper/experiments/results_lists/lists/

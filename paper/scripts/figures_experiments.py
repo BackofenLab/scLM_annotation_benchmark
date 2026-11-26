@@ -7,7 +7,8 @@ ablation per dataset with the seeds, S5 the answer format of the base model Gemm
 annotation quality against cost, S7 the list study per dataset, and S8 the list study on the
 agreement score. The inputs are the results of the two studies (paths.ABLATION_RESULTS,
 paths.LIST_RUNS), the benchmark metrics and, for S6, the OpenRouter log
-(paths.OPENROUTER_ACTIVITY); figures.py builds the figures.
+(paths.OPENROUTER_ACTIVITY) and the ablation's spend per run (paths.ABLATION_SPEND); figures.py
+builds the figures.
 """
 from __future__ import annotations
 
@@ -73,18 +74,8 @@ NAME_BESIDE = [(9, 0, "left", "center"), (9, 7, "left", "bottom"), (9, -7, "left
 
 # _cost_panel shows the ablation at genes + list, the benchmark's constrained setting.
 COST_MODE = "M2"
-# Measured spend at genes + list in dollars per 1,000 annotated cells: the sum of ``usage.cost``
-# over the distinct cached calls of each arm's prompts (a cluster's prompt is repeated for each of
-# its cells), over 11,991 cells. The response caches are not part of the repository.
-ARM_SPEND_PER_1K_M2 = {
-    "A1_llm_percell": 0.2280,
-    "A4_llm_percluster": 0.0066,
-    "A8_gemini_percluster": 0.2501,
-}
-# Gemini 3.1 Pro per cell is taken from the benchmark: its constrained run, $34.24 for 3,997 cells.
-GEMINI_PERCELL = {"model": "gemini-3.1-pro-preview_unblind",
-                  "cost_per_1k": 34.24 / 3997 * 1000,
-                  "label": "Gemini 3.1 Pro, per cell"}
+# Gemini 3.1 Pro per cell is taken from the benchmark: its constrained run, priced as in panel A.
+GEMINI_PERCELL = {"model": "gemini-3.1-pro-preview_unblind", "label": "Gemini 3.1 Pro, per cell"}
 # OpenRouter model identifiers in the log and the benchmark's method names.
 OPENROUTER_MODELS = {
     "anthropic/claude-4.7-opus-20260416": "claude-opus-4.7",
@@ -420,6 +411,18 @@ def _llm_costs():
                          "answered_frac": calls["answered"].sum() / n})
 
 
+def _arm_spend():
+    """Spend per 1,000 annotated cells of each OpenRouter arm of the ablation at COST_MODE and its
+    default variant (paths.ABLATION_SPEND): the cost of the distinct calls of its runs, summed from
+    the response caches, over the cells of those runs. A cluster's prompt is one call for all of
+    its cells."""
+    spend = pd.read_csv(paths.ABLATION_SPEND)
+    spend = spend[spend["mode"] == COST_MODE]
+    totals = {arm: _arm_rows(spend, arm)[["cost_usd", "cells"]].sum()
+              for arm in spend["arm"].unique()}
+    return {arm: t["cost_usd"] / t["cells"] * 1000.0 for arm, t in totals.items()}
+
+
 def _pareto_front(points):
     """Indices of the (cost, score) points that no cheaper point scores higher than."""
     front, best = [], -np.inf
@@ -499,14 +502,16 @@ def _cost_panel(ax, ablation, bench):
         labels.append((text, calls, acc, colour))
         obstacles.append((calls, acc, 11.0))
 
+    spend = _arm_spend()
     for arm, (family, marker, _linestyle, label) in ABLATION_ARMS.items():
         rows = _arm_rows(ablation, arm)
         rows = rows[rows["mode"] == COST_MODE]
         calls = rows["n_clusters_in_eval"].mean() if arm.endswith("percluster") else 1000.0
-        _annotate(label, ARM_SPEND_PER_1K_M2.get(arm), calls, rows["balanced_accuracy"].mean(),
+        _annotate(label, spend.get(arm), calls, rows["balanced_accuracy"].mean(),
                   FAMILY_COLORS[family], marker)
     gemini = bench[bench["model"] == GEMINI_PERCELL["model"]]
-    _annotate(GEMINI_PERCELL["label"] + " (benchmark)", GEMINI_PERCELL["cost_per_1k"], 1000.0,
+    _annotate(GEMINI_PERCELL["label"] + " (benchmark)",
+              _llm_costs().loc[GEMINI_PERCELL["model"], "cost_per_1k_cells"], 1000.0,
               gemini["balanced_accuracy"].mean(), FAMILY_COLORS["LLM"],
               ABLATION_ARMS["A8_gemini_percluster"][1], hollow=True)
 

@@ -35,10 +35,11 @@ LangCell; not EU), run with the benchmark's wrappers `mmcontext_blind` and `lang
 | `src/` | the scripts; each one describes itself at its top |
 | `slurm/` | scripts that run the local arms and the scLM arms on a SLURM cluster |
 | `results/context_ablation.csv` | result table of the ablation |
+| `results/spend.csv` | spend of the OpenRouter arms at genes + list per run, summed over their distinct calls from the response caches (Figure S6) |
 | `results_lists/runs.csv` | result table of the list analysis, one row per run |
 | `results_lists/lists/` | the drawn lists, one file per dataset, condition and seed |
 
-Of the study trees, only the last three entries are in the repository: prompts, model answers,
+Of the study trees, only the last four entries are in the repository: prompts, model answers,
 caches, clusters and scored runs are not, nor is the study's mapping table in `cache/`.
 
 ## Environments
