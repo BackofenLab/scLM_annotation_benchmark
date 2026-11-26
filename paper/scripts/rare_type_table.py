@@ -24,7 +24,7 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import paths  # noqa: E402
 
-sys.path.insert(0, str(paths.PIPELINE_BIN))
+sys.path.insert(1, str(paths.PIPELINE_BIN))
 from methods import categorize_model, derive_mode, group_name, model_base  # noqa: E402
 
 SUBSET_SIZE = 1000

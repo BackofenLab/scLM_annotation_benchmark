@@ -1,30 +1,30 @@
 model,field,value,source,evidence,checked
-celltypist,group,classical,bin/plot_model_comparison.py (categorize_model),Classification used by every figure,2026-10-06
-celltypist,subcategory,reference,bin/plot_model_comparison.py (CATEGORY_TIER_MEMBERS),Method described in https://doi.org/10.1126/science.abl5197,2026-10-06
+celltypist,group,classical,paper/scripts/methods.py (categorize_model),Classification used by every figure,2026-11-26
+celltypist,subcategory,reference,paper/scripts/methods.py (CATEGORY_TIER_MEMBERS),Method described in https://doi.org/10.1126/science.abl5197,2026-11-26
 celltypist,checkpoint,"Fetal_Human_Retina (HFRA), Immune_All_High (HIHA), Mouse_Isocortex_Hippocampus (Zeisel), Adult_Human_PancreaticIslet (human pancreas)","datasets/{HFRA,HIHA,Zeisel,human_pancreas}.yml (celltypist_model)",Model file per dataset as configured,2026-10-06
 celltypist,access,open-source software,https://pypi.org/project/celltypist/,Python package on PyPI,2026-10-06
 celltypist,available_since,2021-05-19,https://pypi.org/project/celltypist/0.1.1/,PyPI JSON API: release 0.1.1 uploaded 2021-05-19T22:12:49; GitHub repo Teichlab/celltypist created the same day,2026-10-06
 celltypist,preprint_date,2021-04-28,https://doi.org/10.1101/2021.04.28.441762,bioRxiv API: v1 posted 2021-04-28,2026-10-06
 celltypist,publication_venue,Science,https://doi.org/10.1126/science.abl5197,Crossref: issued 2022-05-13 (Science 376:eabl5197),2026-10-06
 celltypist,publication_date,2022-05-13,https://doi.org/10.1126/science.abl5197,Crossref: issued 2022-05-13 (Science 376:eabl5197),2026-10-06
-scsa,group,classical,bin/plot_model_comparison.py (categorize_model),Classification used by every figure,2026-10-06
-scsa,subcategory,marker,bin/plot_model_comparison.py (CATEGORY_TIER_MEMBERS),Method described in https://doi.org/10.3389/fgene.2020.00490,2026-10-06
+scsa,group,classical,paper/scripts/methods.py (categorize_model),Classification used by every figure,2026-11-26
+scsa,subcategory,marker,paper/scripts/methods.py (CATEGORY_TIER_MEMBERS),Method described in https://doi.org/10.3389/fgene.2020.00490,2026-11-26
 scsa,checkpoint,"CellMarker database, tissue per dataset","datasets/{HFRA,HIHA,Zeisel,human_pancreas}.yml (scsa_tissue)",Tissue as configured,2026-10-06
 scsa,access,open-source software,https://github.com/bioinfo-ibms-pumc/SCSA,Python script on GitHub,2026-10-06
 scsa,available_since,2019-08-28,https://github.com/bioinfo-ibms-pumc/SCSA,GitHub API: repo created 2019-08-28; earliest commit adding SCSA.py 2019-08-28,2026-10-06
 scsa,preprint_date,2019-12-23,https://doi.org/10.1101/2019.12.22.886481,bioRxiv API: v1 posted 2019-12-23,2026-10-06
 scsa,publication_venue,Front. Genet.,https://doi.org/10.3389/fgene.2020.00490,Crossref: published online 2020-05-12,2026-10-06
 scsa,publication_date,2020-05-12,https://doi.org/10.3389/fgene.2020.00490,Crossref: published online 2020-05-12,2026-10-06
-sctype,group,classical,bin/plot_model_comparison.py (categorize_model),Classification used by every figure,2026-10-06
-sctype,subcategory,marker,bin/plot_model_comparison.py (CATEGORY_TIER_MEMBERS),Method described in https://doi.org/10.1038/s41467-022-28803-w,2026-10-06
+sctype,group,classical,paper/scripts/methods.py (categorize_model),Classification used by every figure,2026-11-26
+sctype,subcategory,marker,paper/scripts/methods.py (CATEGORY_TIER_MEMBERS),Method described in https://doi.org/10.1038/s41467-022-28803-w,2026-11-26
 sctype,checkpoint,"ScTypeDB, tissue per dataset","datasets/{HFRA,HIHA,Zeisel,human_pancreas}.yml (sctype_tissue)",Tissue as configured,2026-10-06
 sctype,access,open-source software,https://github.com/IanevskiAleksandr/sc-type,R code on GitHub,2026-10-06
 sctype,available_since,2021-07-24,https://github.com/IanevskiAleksandr/sc-type,GitHub API: first commit of R/sctype_score_.R 2021-07-24 (the repo itself dates from 2019 and held an unrelated project),2026-10-06
 sctype,preprint_date,2019-10-21,https://doi.org/10.1101/812131,bioRxiv API: v1 posted 2019-10-21,2026-10-06
 sctype,publication_venue,Nat. Commun.,https://doi.org/10.1038/s41467-022-28803-w,Crossref: published online 2022-03-10,2026-10-06
 sctype,publication_date,2022-03-10,https://doi.org/10.1038/s41467-022-28803-w,Crossref: published online 2022-03-10,2026-10-06
-singler,group,classical,bin/plot_model_comparison.py (categorize_model),Classification used by every figure,2026-10-06
-singler,subcategory,reference,bin/plot_model_comparison.py (CATEGORY_TIER_MEMBERS),Method described in https://doi.org/10.1038/s41590-018-0276-y,2026-10-06
+singler,group,classical,paper/scripts/methods.py (categorize_model),Classification used by every figure,2026-11-26
+singler,subcategory,reference,paper/scripts/methods.py (CATEGORY_TIER_MEMBERS),Method described in https://doi.org/10.1038/s41590-018-0276-y,2026-11-26
 singler,checkpoint,"References: Zuo 2024 retina (HFRA), MonacoImmuneData ontology tier (HIHA), Yao 2021 cortex (Zeisel), Xu 2023 pancreas (human pancreas)","datasets/{HFRA,HIHA,Zeisel,human_pancreas}.yml (singler_reference*)",Reference as configured,2026-10-06
 singler,access,open-source software,https://bioconductor.org/packages/SingleR/,R/Bioconductor package,2026-10-06
 singler,available_since,2018-03-01,https://github.com/dviraran/SingleR,GitHub API: repo created and initial commit 2018-03-01,2026-10-06
@@ -38,8 +38,8 @@ celltypist,parameters.model:Fetal_Human_Retina,137075,"https://www.celltypist.or
 celltypist,parameters.model:Immune_All_High,212480,"https://www.celltypist.org/models (Immune_All_High.pkl, the file the pipeline loads)","Logistic regression: coef_ 32x6639 + intercept_ 32 = 212,480",2026-10-06
 celltypist,parameters.model:Mouse_Isocortex_Hippocampus,142128,"https://www.celltypist.org/models (Mouse_Isocortex_Hippocampus.pkl, the file the pipeline loads)","Logistic regression: coef_ 42x3383 + intercept_ 42 = 142,128",2026-10-06
 celltypist,parameters.model:Adult_Human_PancreaticIslet,23256,"https://www.celltypist.org/models (Adult_Human_PancreaticIslet.pkl, the file the pipeline loads)","Logistic regression: coef_ 12x1937 + intercept_ 12 = 23,256",2026-10-06
-c2s_scale_2B,group,scLLM,bin/plot_model_comparison.py (categorize_model),Classification used by every figure,2026-10-06
-c2s_scale_2B,subcategory,generative,bin/plot_model_comparison.py (CATEGORY_TIER_MEMBERS),Method described in https://doi.org/10.1101/2025.04.14.648850,2026-10-06
+c2s_scale_2B,group,scLLM,paper/scripts/methods.py (categorize_model),Classification used by every figure,2026-11-26
+c2s_scale_2B,subcategory,generative,paper/scripts/methods.py (CATEGORY_TIER_MEMBERS),Method described in https://doi.org/10.1101/2025.04.14.648850,2026-11-26
 c2s_scale_2B,checkpoint,vandijklab/C2S-Scale-Gemma-2-2B @ 5ddf28b8f1c81b7ab7a9be192924da82b6c5d512,models/c2s_scale_2B_unblind/src/predict.py (default --model),Checkpoint the wrapper loads (revision from the local Hugging Face cache),2026-10-06
 c2s_scale_2B,access,open weights,https://huggingface.co/vandijklab/C2S-Scale-Gemma-2-2B,Weights on Hugging Face,2026-10-06
 c2s_scale_2B,available_since,2025-10-08,https://huggingface.co/vandijklab/C2S-Scale-Gemma-2-2B/commits/main,Hugging Face API: first commit carrying weight files 2025-10-08 (repo created 2025-10-06),2026-10-06
@@ -47,17 +47,17 @@ c2s_scale_2B,preprint_date,2025-04-17,https://doi.org/10.1101/2025.04.14.648850,
 c2s_scale_2B,publication_venue,none,https://doi.org/10.1101/2025.04.14.648850,No peer-reviewed version as of 2026-10-06: bioRxiv lists no published DOI; PubMed 41279114 is the preprint; Crossref and web search found none,2026-10-06
 c2s_scale_2B,parameters_total,2614341888,https://huggingface.co/vandijklab/C2S-Scale-Gemma-2-2B,Sum of the components below; read from the weight files without downloading them; tied weights counted once,2026-10-06
 c2s_scale_2B,parameters.text_decoder,2614341888,https://huggingface.co/vandijklab/C2S-Scale-Gemma-2-2B,"Decoder-only Gemma-2 language model, safetensors headers at the cached revision; expression enters as text (cell sentences), so there is no separate expression encoder",2026-10-06
-c2s_scale_27B,group,scLLM,bin/plot_model_comparison.py (categorize_model),Classification used by every figure,2026-10-06
-c2s_scale_27B,subcategory,generative,bin/plot_model_comparison.py (CATEGORY_TIER_MEMBERS),Method described in https://doi.org/10.1101/2025.04.14.648850,2026-10-06
-c2s_scale_27B,checkpoint,vandijklab/C2S-Scale-Gemma-2-27B @ 44c2ff7dd5edc26daf9c3f4106e18e162a55676a,models/c2s_scale_27B_unblind/src/test_single_cell.py (default --model),Checkpoint the wrapper loads (revision from the local Hugging Face cache),2026-10-06
+c2s_scale_27B,group,scLLM,paper/scripts/methods.py (categorize_model),Classification used by every figure,2026-11-26
+c2s_scale_27B,subcategory,generative,paper/scripts/methods.py (CATEGORY_TIER_MEMBERS),Method described in https://doi.org/10.1101/2025.04.14.648850,2026-11-26
+c2s_scale_27B,checkpoint,vandijklab/C2S-Scale-Gemma-2-27B @ 44c2ff7dd5edc26daf9c3f4106e18e162a55676a,models/c2s_scale_27B_unblind/src/predict.py (default --model),Checkpoint the wrapper loads (revision from the local Hugging Face cache),2026-11-26
 c2s_scale_27B,access,open weights,https://huggingface.co/vandijklab/C2S-Scale-Gemma-2-27B,Weights on Hugging Face,2026-10-06
 c2s_scale_27B,available_since,2025-10-12,https://huggingface.co/vandijklab/C2S-Scale-Gemma-2-27B/commits/main,Hugging Face API: first commit carrying weight files 2025-10-12 (repo created 2025-10-06),2026-10-06
 c2s_scale_27B,preprint_date,2025-04-17,https://doi.org/10.1101/2025.04.14.648850,bioRxiv API: v1 posted 2025-04-17 (v4 2026-01-01),2026-10-06
 c2s_scale_27B,publication_venue,none,https://doi.org/10.1101/2025.04.14.648850,No peer-reviewed version as of 2026-10-06: bioRxiv lists no published DOI; PubMed 41279114 is the preprint; Crossref and web search found none,2026-10-06
 c2s_scale_27B,parameters_total,27227128320,https://huggingface.co/vandijklab/C2S-Scale-Gemma-2-27B,Sum of the components below; read from the weight files without downloading them; tied weights counted once,2026-10-06
 c2s_scale_27B,parameters.text_decoder,27227128320,https://huggingface.co/vandijklab/C2S-Scale-Gemma-2-27B,"Decoder-only Gemma-2 language model, safetensors headers at the cached revision; expression enters as text (cell sentences), so there is no separate expression encoder",2026-10-06
-instructcell,group,scLLM,bin/plot_model_comparison.py (categorize_model),Classification used by every figure,2026-10-06
-instructcell,subcategory,generative,bin/plot_model_comparison.py (CATEGORY_TIER_MEMBERS),Method described in https://arxiv.org/abs/2501.08187,2026-10-06
+instructcell,group,scLLM,paper/scripts/methods.py (categorize_model),Classification used by every figure,2026-11-26
+instructcell,subcategory,generative,paper/scripts/methods.py (CATEGORY_TIER_MEMBERS),Method described in https://arxiv.org/abs/2501.08187,2026-11-26
 instructcell,checkpoint,zjunlp/InstructCell-instruct,models/instructcell_unblind/src/predict.py (--model_variant default 'instruct'),Checkpoint the wrapper loads,2026-10-06
 instructcell,access,open weights,https://huggingface.co/zjunlp/InstructCell-instruct,Weights on Hugging Face,2026-10-06
 instructcell,available_since,2025-01-02,https://huggingface.co/zjunlp/InstructCell-instruct/commits/main,Hugging Face API: first commit carrying weights 2025-01-02 (a corrected re-upload followed 2025-01-03),2026-10-06
@@ -68,8 +68,8 @@ instructcell,parameters.text_encoder,109616256,https://huggingface.co/zjunlp/Ins
 instructcell,parameters.text_decoder,113275008,https://huggingface.co/zjunlp/InstructCell-instruct,"T5-base decoder (config: T5ForConditionalGeneration, d_model 768, 12+12 layers); its word embeddings and lm_head are the shared embeddings counted with the text encoder",2026-10-06
 instructcell,parameters.expression_encoder,167668224,https://huggingface.co/zjunlp/InstructCell-instruct,"feature_encoder: cell encoder 129,853,440 + query encoder 37,807,104 + query tokens and layer norm 7,680",2026-10-06
 instructcell,parameters.expression_decoder,105262281,https://huggingface.co/zjunlp/InstructCell-instruct,"feature_decoder; generate() calls it only when the output contains a cell-generation signal token, so annotation answers never use it",2026-10-06
-cellwhisperer,group,scLLM,bin/plot_model_comparison.py (categorize_model),Classification used by every figure,2026-10-06
-cellwhisperer,subcategory,retrieval,bin/plot_model_comparison.py (CATEGORY_TIER_MEMBERS),Method described in https://doi.org/10.1038/s41587-025-02857-9,2026-10-06
+cellwhisperer,group,scLLM,paper/scripts/methods.py (categorize_model),Classification used by every figure,2026-11-26
+cellwhisperer,subcategory,retrieval,paper/scripts/methods.py (CATEGORY_TIER_MEMBERS),Method described in https://doi.org/10.1038/s41587-025-02857-9,2026-11-26
 cellwhisperer,checkpoint,"cellwhisperer_clip_v1.ckpt from the authors' server, plus the Geneformer 12L-30M encoder",models/cellwhisperer_unblind/src/predict.py (URL) and src/CellWhisperer/resources/geneformer-12L-30M,Checkpoint the wrapper loads,2026-10-06
 cellwhisperer,access,open weights,https://medical-epigenomics.org/papers/schaefer2024/data/models/cellwhisperer_clip_v1.ckpt,Checkpoint served by the authors (not on Hugging Face),2026-10-06
 cellwhisperer,available_since,2024-10-14,https://github.com/epigen/CellWhisperer/commit/99a67055,GitHub API: commit 99a67055 (committed 2024-10-14) adds download_models.smk with the model URLs; the repo existed from 2024-06-09,2026-10-06
@@ -80,8 +80,8 @@ cellwhisperer,parameters_total,161268481,https://medical-epigenomics.org/papers/
 cellwhisperer,parameters.text_encoder,108310272,https://medical-epigenomics.org/papers/schaefer2024/data/models/cellwhisperer_clip_v1.ckpt,BioBERT text model in the checkpoint's state_dict,2026-10-06
 cellwhisperer,parameters.expression_encoder,39302144,https://medical-epigenomics.org/papers/schaefer2024/data/models/cellwhisperer_clip_v1.ckpt,"Geneformer 12-layer BERT (bert.* weights), frozen and loaded separately from resources/geneformer-12L-30M; its pretraining head is not used. '30M' in the name is the 30-million-cell pretraining corpus, not parameters",2026-10-06
 cellwhisperer,parameters.projection_heads,13656065,https://medical-epigenomics.org/papers/schaefer2024/data/models/cellwhisperer_clip_v1.ckpt,Transcriptome and text projection blocks plus temperature; BatchNorm statistics excluded,2026-10-06
-langcell,group,scLLM,bin/plot_model_comparison.py (categorize_model),Classification used by every figure,2026-10-06
-langcell,subcategory,retrieval,bin/plot_model_comparison.py (CATEGORY_TIER_MEMBERS),Method described in https://arxiv.org/abs/2405.06708,2026-10-06
+langcell,group,scLLM,paper/scripts/methods.py (categorize_model),Classification used by every figure,2026-11-26
+langcell,subcategory,retrieval,paper/scripts/methods.py (CATEGORY_TIER_MEMBERS),Method described in https://arxiv.org/abs/2405.06708,2026-11-26
 langcell,checkpoint,"The authors' checkpoint (ckpt/ of the Google Drive release linked in PharMolix/LangCell), downloaded from a copy on Zenodo (record 16994789)","models/langcell_unblind/src/prepare.sh (ZIP_URL); https://github.com/PharMolix/LangCell (README, Download checkpoint)",The eight checkpoint files of the Zenodo copy match the authors' Drive folder by name and carry the authors' timestamps (2024-05-15); bytes not compared. The copy was uploaded by A. Kumar (University of Freiburg) for this pipeline,2026-10-07
 langcell,access,open weights,https://github.com/PharMolix/LangCell,Authors' README links the weights (Google Drive); the pipeline downloads the Zenodo mirror https://zenodo.org/records/16994789,2026-10-06
 langcell,available_since,2024-05-15,https://github.com/PharMolix/LangCell/commit/a1a493a4,README at commit a1a493a4 (2024-05-15) is the first to link the weights; the 2024-05-09 READMEs do not,2026-10-06
@@ -92,8 +92,8 @@ langcell,parameters_total,172762882,https://github.com/PharMolix/LangCell,Sum of
 langcell,parameters.text_encoder,133130496,https://github.com/PharMolix/LangCell,text_bert: PubMedBERT with cross-attention layers (config add_cross_attention=True); position-id buffer excluded,2026-10-06
 langcell,parameters.expression_encoder,39302656,https://github.com/PharMolix/LangCell,cell_bert: 12-layer BERT on gene-rank tokens,2026-10-06
 langcell,parameters.projection_heads,329730,https://github.com/PharMolix/LangCell,"cell_proj 131,328 + text_proj 196,864 + cell-text matching head 1,538",2026-10-06
-mmcontext,group,scLLM,bin/plot_model_comparison.py (categorize_model),Classification used by every figure,2026-10-06
-mmcontext,subcategory,retrieval,bin/plot_model_comparison.py (CATEGORY_TIER_MEMBERS),Method described in https://doi.org/10.1093/bioinformatics/btag338,2026-10-06
+mmcontext,group,scLLM,paper/scripts/methods.py (categorize_model),Classification used by every figure,2026-11-26
+mmcontext,subcategory,retrieval,paper/scripts/methods.py (CATEGORY_TIER_MEMBERS),Method described in https://doi.org/10.1093/bioinformatics/btag338,2026-11-26
 mmcontext,checkpoint,jo-mengr/mmcontext-pubmedbert-gs10k,models/mmcontext_unblind/src/predict.py (MODEL_ID),Checkpoint the wrapper loads,2026-10-06
 mmcontext,access,open weights,https://huggingface.co/jo-mengr/mmcontext-pubmedbert-gs10k,Weights on Hugging Face,2026-10-06
 mmcontext,available_since,2025-11-27,https://huggingface.co/jo-mengr/mmcontext-pubmedbert-gs10k/commits/main,Hugging Face API: weights committed 2025-11-27,2026-10-06
@@ -104,50 +104,50 @@ mmcontext,parameters_total,124717312,https://huggingface.co/jo-mengr/mmcontext-p
 mmcontext,parameters.text_encoder,109482240,https://huggingface.co/jo-mengr/mmcontext-pubmedbert-gs10k,PubMedBERT (NeuML/pubmedbert-base-embeddings) in 0_MMContextEncoder/model.safetensors,2026-10-06
 mmcontext,parameters.expression_encoder,12344320,https://huggingface.co/jo-mengr/mmcontext-pubmedbert-gs10k,omics_adapter on gs10k gene-selection features (the expression of the 10k genes in adata_hf_datasets gene_selection_10k.txt via GeneSelectEmbedder10k; model card: 'Lookup-based encoder with precomputed gs10k embeddings'); BatchNorm statistics excluded,2026-10-06
 mmcontext,parameters.text_adapter,2890752,https://huggingface.co/jo-mengr/mmcontext-pubmedbert-gs10k,text_adapter; BatchNorm statistics excluded,2026-10-06
-llama-3.1-70b-instruct,group,LLM,bin/plot_model_comparison.py (categorize_model),Classification used by every figure,2026-10-06
-llama-3.1-70b-instruct,subcategory,open_nonreasoning,bin/plot_model_comparison.py (CATEGORY_TIER_MEMBERS),"Weights access per the vendor; reasoning as run: models/openrouter_LLM_*/src/model_cfg.yml enables reasoning for every model that supports it (effort 'medium' or a 10,000-token budget)",2026-10-06
-llama-3.1-70b-instruct,checkpoint,meta-llama/llama-3.1-70b-instruct,models/openrouter_LLM_blind/src/model_cfg.yml (model_names),OpenRouter model id; open-weight ids map to meta-llama/Llama-3.1-70B-Instruct,2026-10-06
+llama-3.1-70b-instruct,group,LLM,paper/scripts/methods.py (categorize_model),Classification used by every figure,2026-11-26
+llama-3.1-70b-instruct,subcategory,open_nonreasoning,paper/scripts/methods.py (CATEGORY_TIER_MEMBERS),"Weights access per the vendor; reasoning as run: models/openrouter_LLM_blind/src/openrouter.yml enables reasoning for every model that supports it (effort 'medium' or a 10,000-token budget)",2026-11-26
+llama-3.1-70b-instruct,checkpoint,meta-llama/llama-3.1-70b-instruct,models/openrouter_LLM_blind/src/openrouter.yml (models),OpenRouter model id; open-weight ids map to meta-llama/Llama-3.1-70B-Instruct,2026-11-26
 llama-3.1-70b-instruct,access,open weights (licence-gated),https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct,Weights on Hugging Face,2026-10-06
 llama-3.1-70b-instruct,available_since,2024-07-23,https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/MODEL_CARD.md,"Model card: 'Model Release Date: July 23, 2024'; OpenRouter listing 2024-07-23",2026-10-06
 llama-3.1-70b-instruct,publication_venue,none,https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/MODEL_CARD.md,Vendor release only; technical reports not recorded,2026-10-06
 llama-3.1-70b-instruct,parameters_total,70553706496,https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct,Hugging Face safetensors metadata (dense model),2026-10-06
-llama-3.3-70b-instruct,group,LLM,bin/plot_model_comparison.py (categorize_model),Classification used by every figure,2026-10-06
-llama-3.3-70b-instruct,subcategory,open_nonreasoning,bin/plot_model_comparison.py (CATEGORY_TIER_MEMBERS),"Weights access per the vendor; reasoning as run: models/openrouter_LLM_*/src/model_cfg.yml enables reasoning for every model that supports it (effort 'medium' or a 10,000-token budget)",2026-10-06
-llama-3.3-70b-instruct,checkpoint,meta-llama/llama-3.3-70b-instruct,models/openrouter_LLM_blind/src/model_cfg.yml (model_names),OpenRouter model id; open-weight ids map to meta-llama/Llama-3.3-70B-Instruct,2026-10-06
+llama-3.3-70b-instruct,group,LLM,paper/scripts/methods.py (categorize_model),Classification used by every figure,2026-11-26
+llama-3.3-70b-instruct,subcategory,open_nonreasoning,paper/scripts/methods.py (CATEGORY_TIER_MEMBERS),"Weights access per the vendor; reasoning as run: models/openrouter_LLM_blind/src/openrouter.yml enables reasoning for every model that supports it (effort 'medium' or a 10,000-token budget)",2026-11-26
+llama-3.3-70b-instruct,checkpoint,meta-llama/llama-3.3-70b-instruct,models/openrouter_LLM_blind/src/openrouter.yml (models),OpenRouter model id; open-weight ids map to meta-llama/Llama-3.3-70B-Instruct,2026-11-26
 llama-3.3-70b-instruct,access,open weights (licence-gated),https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct,Weights on Hugging Face,2026-10-06
 llama-3.3-70b-instruct,available_since,2024-12-06,https://github.com/meta-llama/llama-models/blob/main/models/llama3_3/MODEL_CARD.md,"Model card: '70B Instruct: December 6, 2024'; OpenRouter listing 2024-12-06",2026-10-06
 llama-3.3-70b-instruct,publication_venue,none,https://github.com/meta-llama/llama-models/blob/main/models/llama3_3/MODEL_CARD.md,Vendor release only; technical reports not recorded,2026-10-06
 llama-3.3-70b-instruct,parameters_total,70553706496,https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct,Hugging Face safetensors metadata (dense model),2026-10-06
-llama-4-maverick,group,LLM,bin/plot_model_comparison.py (categorize_model),Classification used by every figure,2026-10-06
-llama-4-maverick,subcategory,open_nonreasoning,bin/plot_model_comparison.py (CATEGORY_TIER_MEMBERS),"Weights access per the vendor; reasoning as run: models/openrouter_LLM_*/src/model_cfg.yml enables reasoning for every model that supports it (effort 'medium' or a 10,000-token budget)",2026-10-06
-llama-4-maverick,checkpoint,meta-llama/llama-4-maverick,models/openrouter_LLM_blind/src/model_cfg.yml (model_names),OpenRouter model id; open-weight ids map to meta-llama/Llama-4-Maverick-17B-128E-Instruct,2026-10-06
+llama-4-maverick,group,LLM,paper/scripts/methods.py (categorize_model),Classification used by every figure,2026-11-26
+llama-4-maverick,subcategory,open_nonreasoning,paper/scripts/methods.py (CATEGORY_TIER_MEMBERS),"Weights access per the vendor; reasoning as run: models/openrouter_LLM_blind/src/openrouter.yml enables reasoning for every model that supports it (effort 'medium' or a 10,000-token budget)",2026-11-26
+llama-4-maverick,checkpoint,meta-llama/llama-4-maverick,models/openrouter_LLM_blind/src/openrouter.yml (models),OpenRouter model id; open-weight ids map to meta-llama/Llama-4-Maverick-17B-128E-Instruct,2026-11-26
 llama-4-maverick,access,open weights (licence-gated),https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct,Weights on Hugging Face,2026-10-06
 llama-4-maverick,available_since,2025-04-05,https://ai.meta.com/blog/llama-4-multimodal-intelligence/,"Meta AI blog dated April 5, 2025; OpenRouter listing 2025-04-05",2026-10-06
 llama-4-maverick,publication_venue,none,https://ai.meta.com/blog/llama-4-multimodal-intelligence/,Vendor release only; technical reports not recorded,2026-10-06
 llama-4-maverick,parameters_total,400000000000,https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct,Meta model card (llama-models/models/llama4/MODEL_CARD.md): '17B (Activated) 400B (Total)',2026-10-06
 llama-4-maverick,parameters_active,17000000000,https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct,Same model card: '17B (Activated)',2026-10-06
 llama-4-maverick,parameters_stored,401583781376,https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct,"Hugging Face safetensors metadata, BF16, includes the vision encoder",2026-10-06
-gpt-oss-20b,group,LLM,bin/plot_model_comparison.py (categorize_model),Classification used by every figure,2026-10-06
-gpt-oss-20b,subcategory,open_reasoning,bin/plot_model_comparison.py (CATEGORY_TIER_MEMBERS),"Weights access per the vendor; reasoning as run: models/openrouter_LLM_*/src/model_cfg.yml enables reasoning for every model that supports it (effort 'medium' or a 10,000-token budget)",2026-10-06
-gpt-oss-20b,checkpoint,openai/gpt-oss-20b,models/openrouter_LLM_blind/src/model_cfg.yml (model_names),OpenRouter model id; open-weight ids map to openai/gpt-oss-20b,2026-10-06
+gpt-oss-20b,group,LLM,paper/scripts/methods.py (categorize_model),Classification used by every figure,2026-11-26
+gpt-oss-20b,subcategory,open_reasoning,paper/scripts/methods.py (CATEGORY_TIER_MEMBERS),"Weights access per the vendor; reasoning as run: models/openrouter_LLM_blind/src/openrouter.yml enables reasoning for every model that supports it (effort 'medium' or a 10,000-token budget)",2026-11-26
+gpt-oss-20b,checkpoint,openai/gpt-oss-20b,models/openrouter_LLM_blind/src/openrouter.yml (models),OpenRouter model id; open-weight ids map to openai/gpt-oss-20b,2026-11-26
 gpt-oss-20b,access,open weights,https://huggingface.co/openai/gpt-oss-20b,Weights on Hugging Face,2026-10-06
 gpt-oss-20b,available_since,2025-08-05,https://cdn.openai.com/pdf/419b6906-9da6-406c-a19d-1bb078ac7637/oai_gpt-oss_model_card.pdf,"Model card dated August 5, 2025; OpenRouter listing 2025-08-05 (Hugging Face upload 2025-08-04 was pre-announcement staging)",2026-10-06
 gpt-oss-20b,publication_venue,none,https://cdn.openai.com/pdf/419b6906-9da6-406c-a19d-1bb078ac7637/oai_gpt-oss_model_card.pdf,Vendor release only; technical reports not recorded,2026-10-06
 gpt-oss-20b,parameters_total,21000000000,https://huggingface.co/openai/gpt-oss-20b,Model card on Hugging Face: '21B parameters with 3.6B active parameters',2026-10-06
 gpt-oss-20b,parameters_active,3600000000,https://huggingface.co/openai/gpt-oss-20b,Same model card,2026-10-06
 gpt-oss-20b,parameters_stored,20914757184,https://huggingface.co/openai/gpt-oss-20b,Hugging Face safetensors metadata (MXFP4 experts),2026-10-06
-gpt-oss-120b,group,LLM,bin/plot_model_comparison.py (categorize_model),Classification used by every figure,2026-10-06
-gpt-oss-120b,subcategory,open_reasoning,bin/plot_model_comparison.py (CATEGORY_TIER_MEMBERS),"Weights access per the vendor; reasoning as run: models/openrouter_LLM_*/src/model_cfg.yml enables reasoning for every model that supports it (effort 'medium' or a 10,000-token budget)",2026-10-06
-gpt-oss-120b,checkpoint,openai/gpt-oss-120b,models/openrouter_LLM_blind/src/model_cfg.yml (model_names),OpenRouter model id; open-weight ids map to openai/gpt-oss-120b,2026-10-06
+gpt-oss-120b,group,LLM,paper/scripts/methods.py (categorize_model),Classification used by every figure,2026-11-26
+gpt-oss-120b,subcategory,open_reasoning,paper/scripts/methods.py (CATEGORY_TIER_MEMBERS),"Weights access per the vendor; reasoning as run: models/openrouter_LLM_blind/src/openrouter.yml enables reasoning for every model that supports it (effort 'medium' or a 10,000-token budget)",2026-11-26
+gpt-oss-120b,checkpoint,openai/gpt-oss-120b,models/openrouter_LLM_blind/src/openrouter.yml (models),OpenRouter model id; open-weight ids map to openai/gpt-oss-120b,2026-11-26
 gpt-oss-120b,access,open weights,https://huggingface.co/openai/gpt-oss-120b,Weights on Hugging Face,2026-10-06
 gpt-oss-120b,available_since,2025-08-05,https://cdn.openai.com/pdf/419b6906-9da6-406c-a19d-1bb078ac7637/oai_gpt-oss_model_card.pdf,"Model card dated August 5, 2025; OpenRouter listing 2025-08-05 (Hugging Face upload 2025-08-04 was pre-announcement staging)",2026-10-06
 gpt-oss-120b,publication_venue,none,https://cdn.openai.com/pdf/419b6906-9da6-406c-a19d-1bb078ac7637/oai_gpt-oss_model_card.pdf,Vendor release only; technical reports not recorded,2026-10-06
 gpt-oss-120b,parameters_total,117000000000,https://huggingface.co/openai/gpt-oss-120b,Model card on Hugging Face: '117B parameters with 5.1B active parameters',2026-10-06
 gpt-oss-120b,parameters_active,5100000000,https://huggingface.co/openai/gpt-oss-120b,Same model card,2026-10-06
 gpt-oss-120b,parameters_stored,116829156672,https://huggingface.co/openai/gpt-oss-120b,Hugging Face safetensors metadata (MXFP4 experts),2026-10-06
-kimi-k2.6,group,LLM,bin/plot_model_comparison.py (categorize_model),Classification used by every figure,2026-10-06
-kimi-k2.6,subcategory,open_reasoning,bin/plot_model_comparison.py (CATEGORY_TIER_MEMBERS),"Weights access per the vendor; reasoning as run: models/openrouter_LLM_*/src/model_cfg.yml enables reasoning for every model that supports it (effort 'medium' or a 10,000-token budget)",2026-10-06
-kimi-k2.6,checkpoint,moonshotai/kimi-k2.6,models/openrouter_LLM_blind/src/model_cfg.yml (model_names),OpenRouter model id; open-weight ids map to moonshotai/Kimi-K2.6,2026-10-06
+kimi-k2.6,group,LLM,paper/scripts/methods.py (categorize_model),Classification used by every figure,2026-11-26
+kimi-k2.6,subcategory,open_reasoning,paper/scripts/methods.py (CATEGORY_TIER_MEMBERS),"Weights access per the vendor; reasoning as run: models/openrouter_LLM_blind/src/openrouter.yml enables reasoning for every model that supports it (effort 'medium' or a 10,000-token budget)",2026-11-26
+kimi-k2.6,checkpoint,moonshotai/kimi-k2.6,models/openrouter_LLM_blind/src/openrouter.yml (models),OpenRouter model id; open-weight ids map to moonshotai/Kimi-K2.6,2026-11-26
 kimi-k2.6,access,open weights,https://huggingface.co/moonshotai/Kimi-K2.6,Weights on Hugging Face,2026-10-06
 kimi-k2.6,available_since,2026-04-20,https://www.kimi.com/blog/kimi-k2-6.html,Moonshot blog dated 2026-04-20; OpenRouter listing 2026-04-20; Hugging Face weights uploaded 2026-04-14 but model card and blog added 2026-04-20 (private staging),2026-10-06
 kimi-k2.6,publication_venue,none,https://www.kimi.com/blog/kimi-k2-6.html,Vendor release only; technical reports not recorded,2026-10-06
@@ -155,39 +155,39 @@ kimi-k2.6,parameters_total,1000000000000,https://huggingface.co/moonshotai/Kimi-
 kimi-k2.6,parameters_active,32000000000,https://huggingface.co/moonshotai/Kimi-K2.6,Same model card: 'Activated Parameters 32B',2026-10-06
 kimi-k2.6,parameters.vision_encoder,400000000,https://huggingface.co/moonshotai/Kimi-K2.6,Same model card: 'Parameters of Vision Encoder 400M' (not used for text prompts),2026-10-06
 kimi-k2.6,parameters_stored,1026879376368,https://huggingface.co/moonshotai/Kimi-K2.6,Hugging Face safetensors metadata (INT4 experts),2026-10-06
-deepseek-v3.2,group,LLM,bin/plot_model_comparison.py (categorize_model),Classification used by every figure,2026-10-06
-deepseek-v3.2,subcategory,open_reasoning,bin/plot_model_comparison.py (CATEGORY_TIER_MEMBERS),"Weights access per the vendor; reasoning as run: models/openrouter_LLM_*/src/model_cfg.yml enables reasoning for every model that supports it (effort 'medium' or a 10,000-token budget)",2026-10-06
-deepseek-v3.2,checkpoint,deepseek/deepseek-v3.2,models/openrouter_LLM_blind/src/model_cfg.yml (model_names),OpenRouter model id; open-weight ids map to deepseek-ai/DeepSeek-V3.2,2026-10-06
+deepseek-v3.2,group,LLM,paper/scripts/methods.py (categorize_model),Classification used by every figure,2026-11-26
+deepseek-v3.2,subcategory,open_reasoning,paper/scripts/methods.py (CATEGORY_TIER_MEMBERS),"Weights access per the vendor; reasoning as run: models/openrouter_LLM_blind/src/openrouter.yml enables reasoning for every model that supports it (effort 'medium' or a 10,000-token budget)",2026-11-26
+deepseek-v3.2,checkpoint,deepseek/deepseek-v3.2,models/openrouter_LLM_blind/src/openrouter.yml (models),OpenRouter model id; open-weight ids map to deepseek-ai/DeepSeek-V3.2,2026-11-26
 deepseek-v3.2,access,open weights,https://huggingface.co/deepseek-ai/DeepSeek-V3.2,Weights on Hugging Face,2026-10-06
 deepseek-v3.2,available_since,2025-12-01,https://api-docs.deepseek.com/news/news251201/,DeepSeek release note news251201; Hugging Face weights 2025-12-01; OpenRouter listing 2025-12-01,2026-10-06
 deepseek-v3.2,publication_venue,none,https://api-docs.deepseek.com/news/news251201/,Vendor release only; technical reports not recorded,2026-10-06
 deepseek-v3.2,parameters_total,671000000000,https://huggingface.co/deepseek-ai/DeepSeek-V3.2,"DeepSeek-V3 report (arXiv 2412.19437), same architecture: '671B total parameters with 37B activated for each token'. Recomputed from all 163 shard headers: main model 671,877,944,064",2026-10-06
 deepseek-v3.2,parameters_active,37000000000,https://huggingface.co/deepseek-ai/DeepSeek-V3.2,Same report; recomputed from the weights: 37.5B per token excluding the input-embedding lookup (8 of 256 routed experts),2026-10-06
 deepseek-v3.2,parameters_stored,685355329792,https://huggingface.co/deepseek-ai/DeepSeek-V3.2,"Hugging Face safetensors metadata: main model plus the 13,477,385,728-parameter multi-token-prediction layer",2026-10-06
-claude-sonnet-4.6,group,LLM,bin/plot_model_comparison.py (categorize_model),Classification used by every figure,2026-10-06
-claude-sonnet-4.6,subcategory,closed_reasoning,bin/plot_model_comparison.py (CATEGORY_TIER_MEMBERS),"Weights access per the vendor; reasoning as run: models/openrouter_LLM_*/src/model_cfg.yml enables reasoning for every model that supports it (effort 'medium' or a 10,000-token budget)",2026-10-06
-claude-sonnet-4.6,checkpoint,anthropic/claude-sonnet-4.6,models/openrouter_LLM_blind/src/model_cfg.yml (model_names),OpenRouter model id; open-weight ids map to no public weights,2026-10-06
+claude-sonnet-4.6,group,LLM,paper/scripts/methods.py (categorize_model),Classification used by every figure,2026-11-26
+claude-sonnet-4.6,subcategory,closed_reasoning,paper/scripts/methods.py (CATEGORY_TIER_MEMBERS),"Weights access per the vendor; reasoning as run: models/openrouter_LLM_blind/src/openrouter.yml enables reasoning for every model that supports it (effort 'medium' or a 10,000-token budget)",2026-11-26
+claude-sonnet-4.6,checkpoint,anthropic/claude-sonnet-4.6,models/openrouter_LLM_blind/src/openrouter.yml (models),OpenRouter model id; open-weight ids map to no public weights,2026-11-26
 claude-sonnet-4.6,access,API only,https://www.anthropic.com/news/claude-sonnet-4-6,Vendor API; no public weights,2026-10-06
 claude-sonnet-4.6,available_since,2026-02-17,https://www.anthropic.com/news/claude-sonnet-4-6,Announcement published 2026-02-17; OpenRouter listing 2026-02-17,2026-10-06
 claude-sonnet-4.6,publication_venue,none,https://www.anthropic.com/news/claude-sonnet-4-6,Vendor release only; technical reports not recorded,2026-10-06
 claude-sonnet-4.6,parameters_total,not disclosed,https://www.anthropic.com/news/claude-sonnet-4-6,The vendor does not publish a parameter count,2026-10-06
-claude-opus-4.7,group,LLM,bin/plot_model_comparison.py (categorize_model),Classification used by every figure,2026-10-06
-claude-opus-4.7,subcategory,closed_reasoning,bin/plot_model_comparison.py (CATEGORY_TIER_MEMBERS),"Weights access per the vendor; reasoning as run: models/openrouter_LLM_*/src/model_cfg.yml enables reasoning for every model that supports it (effort 'medium' or a 10,000-token budget)",2026-10-06
-claude-opus-4.7,checkpoint,anthropic/claude-opus-4.7,models/openrouter_LLM_blind/src/model_cfg.yml (model_names),OpenRouter model id; open-weight ids map to no public weights,2026-10-06
+claude-opus-4.7,group,LLM,paper/scripts/methods.py (categorize_model),Classification used by every figure,2026-11-26
+claude-opus-4.7,subcategory,closed_reasoning,paper/scripts/methods.py (CATEGORY_TIER_MEMBERS),"Weights access per the vendor; reasoning as run: models/openrouter_LLM_blind/src/openrouter.yml enables reasoning for every model that supports it (effort 'medium' or a 10,000-token budget)",2026-11-26
+claude-opus-4.7,checkpoint,anthropic/claude-opus-4.7,models/openrouter_LLM_blind/src/openrouter.yml (models),OpenRouter model id; open-weight ids map to no public weights,2026-11-26
 claude-opus-4.7,access,API only,https://www.anthropic.com/news/claude-opus-4-7,Vendor API; no public weights,2026-10-06
 claude-opus-4.7,available_since,2026-04-16,https://www.anthropic.com/news/claude-opus-4-7,Announcement published 2026-04-16; OpenRouter listing 2026-04-16,2026-10-06
 claude-opus-4.7,publication_venue,none,https://www.anthropic.com/news/claude-opus-4-7,Vendor release only; technical reports not recorded,2026-10-06
 claude-opus-4.7,parameters_total,not disclosed,https://www.anthropic.com/news/claude-opus-4-7,The vendor does not publish a parameter count,2026-10-06
-gpt-5.5,group,LLM,bin/plot_model_comparison.py (categorize_model),Classification used by every figure,2026-10-06
-gpt-5.5,subcategory,closed_reasoning,bin/plot_model_comparison.py (CATEGORY_TIER_MEMBERS),"Weights access per the vendor; reasoning as run: models/openrouter_LLM_*/src/model_cfg.yml enables reasoning for every model that supports it (effort 'medium' or a 10,000-token budget)",2026-10-06
-gpt-5.5,checkpoint,openai/gpt-5.5,models/openrouter_LLM_blind/src/model_cfg.yml (model_names),OpenRouter model id; open-weight ids map to no public weights,2026-10-06
+gpt-5.5,group,LLM,paper/scripts/methods.py (categorize_model),Classification used by every figure,2026-11-26
+gpt-5.5,subcategory,closed_reasoning,paper/scripts/methods.py (CATEGORY_TIER_MEMBERS),"Weights access per the vendor; reasoning as run: models/openrouter_LLM_blind/src/openrouter.yml enables reasoning for every model that supports it (effort 'medium' or a 10,000-token budget)",2026-11-26
+gpt-5.5,checkpoint,openai/gpt-5.5,models/openrouter_LLM_blind/src/openrouter.yml (models),OpenRouter model id; open-weight ids map to no public weights,2026-11-26
 gpt-5.5,access,API only,https://developers.openai.com/api/docs/changelog,Vendor API; no public weights,2026-10-06
 gpt-5.5,available_since,2026-04-24,https://developers.openai.com/api/docs/changelog,"API changelog, Apr 24: 'Released GPT-5.5 ... to the Chat Completions and Responses API'; OpenRouter listing 2026-04-24 (ChatGPT launch 2026-04-23)",2026-10-06
 gpt-5.5,publication_venue,none,https://developers.openai.com/api/docs/changelog,Vendor release only; technical reports not recorded,2026-10-06
 gpt-5.5,parameters_total,not disclosed,https://developers.openai.com/api/docs/changelog,The vendor does not publish a parameter count,2026-10-06
-gemini-3.1-pro-preview,group,LLM,bin/plot_model_comparison.py (categorize_model),Classification used by every figure,2026-10-06
-gemini-3.1-pro-preview,subcategory,closed_reasoning,bin/plot_model_comparison.py (CATEGORY_TIER_MEMBERS),"Weights access per the vendor; reasoning as run: models/openrouter_LLM_*/src/model_cfg.yml enables reasoning for every model that supports it (effort 'medium' or a 10,000-token budget)",2026-10-06
-gemini-3.1-pro-preview,checkpoint,google/gemini-3.1-pro-preview,models/openrouter_LLM_blind/src/model_cfg.yml (model_names),OpenRouter model id; open-weight ids map to no public weights,2026-10-06
+gemini-3.1-pro-preview,group,LLM,paper/scripts/methods.py (categorize_model),Classification used by every figure,2026-11-26
+gemini-3.1-pro-preview,subcategory,closed_reasoning,paper/scripts/methods.py (CATEGORY_TIER_MEMBERS),"Weights access per the vendor; reasoning as run: models/openrouter_LLM_blind/src/openrouter.yml enables reasoning for every model that supports it (effort 'medium' or a 10,000-token budget)",2026-11-26
+gemini-3.1-pro-preview,checkpoint,google/gemini-3.1-pro-preview,models/openrouter_LLM_blind/src/openrouter.yml (models),OpenRouter model id; open-weight ids map to no public weights,2026-11-26
 gemini-3.1-pro-preview,access,API only,https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/,Vendor API; no public weights,2026-10-06
 gemini-3.1-pro-preview,available_since,2026-02-19,https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/,Google blog published 2026-02-19 (preview release); OpenRouter listing 2026-02-19,2026-10-06
 gemini-3.1-pro-preview,publication_venue,none,https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/,Vendor release only; technical reports not recorded,2026-10-06
@@ -213,14 +213,14 @@ claude-sonnet-4.6,license,proprietary (API),https://www.anthropic.com/news/claud
 claude-opus-4.7,license,proprietary (API),https://www.anthropic.com/news/claude-opus-4-7,"No public weights; used under the provider's terms of service, called through OpenRouter",2026-10-07
 gpt-5.5,license,proprietary (API),https://developers.openai.com/api/docs/changelog,"No public weights; used under the provider's terms of service, called through OpenRouter",2026-10-07
 gemini-3.1-pro-preview,license,proprietary (API),https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/,"No public weights; used under the provider's terms of service, called through OpenRouter",2026-10-07
-llama-3.1-70b-instruct,reasoning,none,"models/openrouter_LLM_{blind,unblind}/src/model_cfg.yml (generation.reasoning) and src/predict.py","predict.py sends no reasoning setting for meta-llama/ models; unchanged since 365eb61 (2026-03-14), before the May 2026 runs",2026-10-09
-llama-3.3-70b-instruct,reasoning,none,"models/openrouter_LLM_{blind,unblind}/src/model_cfg.yml (generation.reasoning) and src/predict.py","predict.py sends no reasoning setting for meta-llama/ models; unchanged since 365eb61 (2026-03-14), before the May 2026 runs",2026-10-09
-llama-4-maverick,reasoning,none,"models/openrouter_LLM_{blind,unblind}/src/model_cfg.yml (generation.reasoning) and src/predict.py","predict.py sends no reasoning setting for meta-llama/ models; unchanged since 365eb61 (2026-03-14), before the May 2026 runs",2026-10-09
-gpt-oss-20b,reasoning,effort medium,"models/openrouter_LLM_{blind,unblind}/src/model_cfg.yml (generation.reasoning) and src/predict.py","predict.py sends reasoning.effort for models other than anthropic/ and google/; config effort 'medium', unchanged since 365eb61 (2026-03-14), before the May 2026 runs",2026-10-09
-gpt-oss-120b,reasoning,effort medium,"models/openrouter_LLM_{blind,unblind}/src/model_cfg.yml (generation.reasoning) and src/predict.py","predict.py sends reasoning.effort for models other than anthropic/ and google/; config effort 'medium', unchanged since 365eb61 (2026-03-14), before the May 2026 runs",2026-10-09
-kimi-k2.6,reasoning,effort medium,"models/openrouter_LLM_{blind,unblind}/src/model_cfg.yml (generation.reasoning) and src/predict.py","predict.py sends reasoning.effort for models other than anthropic/ and google/; config effort 'medium', unchanged since 365eb61 (2026-03-14), before the May 2026 runs",2026-10-09
-deepseek-v3.2,reasoning,effort medium,"models/openrouter_LLM_{blind,unblind}/src/model_cfg.yml (generation.reasoning) and src/predict.py","predict.py sends reasoning.effort for models other than anthropic/ and google/; config effort 'medium', unchanged since 365eb61 (2026-03-14), before the May 2026 runs",2026-10-09
-claude-sonnet-4.6,reasoning,budget 10000,"models/openrouter_LLM_{blind,unblind}/src/model_cfg.yml (generation.reasoning) and src/predict.py","predict.py sends reasoning.max_tokens for anthropic/ and google/ models; config max_tokens 10000, unchanged since 365eb61 (2026-03-14), before the May 2026 runs. OpenRouter passes it to Anthropic as the reasoning budget and to Google as thinkingBudget, which Gemini 3 maps to a thinking level (https://openrouter.ai/docs/use-cases/reasoning-tokens)",2026-10-09
-claude-opus-4.7,reasoning,budget 10000,"models/openrouter_LLM_{blind,unblind}/src/model_cfg.yml (generation.reasoning) and src/predict.py","predict.py sends reasoning.max_tokens for anthropic/ and google/ models; config max_tokens 10000, unchanged since 365eb61 (2026-03-14), before the May 2026 runs. OpenRouter passes it to Anthropic as the reasoning budget and to Google as thinkingBudget, which Gemini 3 maps to a thinking level (https://openrouter.ai/docs/use-cases/reasoning-tokens)",2026-10-09
-gemini-3.1-pro-preview,reasoning,budget 10000,"models/openrouter_LLM_{blind,unblind}/src/model_cfg.yml (generation.reasoning) and src/predict.py","predict.py sends reasoning.max_tokens for anthropic/ and google/ models; config max_tokens 10000, unchanged since 365eb61 (2026-03-14), before the May 2026 runs. OpenRouter passes it to Anthropic as the reasoning budget and to Google as thinkingBudget, which Gemini 3 maps to a thinking level (https://openrouter.ai/docs/use-cases/reasoning-tokens)",2026-10-09
+llama-3.1-70b-instruct,reasoning,none,"models/openrouter_LLM_blind/src/openrouter.yml (generation.reasoning) and src/predict.py","predict.py sends no reasoning setting for meta-llama/ models; unchanged since 365eb61 (2026-03-14), before the May 2026 runs",2026-11-26
+llama-3.3-70b-instruct,reasoning,none,"models/openrouter_LLM_blind/src/openrouter.yml (generation.reasoning) and src/predict.py","predict.py sends no reasoning setting for meta-llama/ models; unchanged since 365eb61 (2026-03-14), before the May 2026 runs",2026-11-26
+llama-4-maverick,reasoning,none,"models/openrouter_LLM_blind/src/openrouter.yml (generation.reasoning) and src/predict.py","predict.py sends no reasoning setting for meta-llama/ models; unchanged since 365eb61 (2026-03-14), before the May 2026 runs",2026-11-26
+gpt-oss-20b,reasoning,effort medium,"models/openrouter_LLM_blind/src/openrouter.yml (generation.reasoning) and src/predict.py","predict.py sends reasoning.effort for models other than anthropic/ and google/; config effort 'medium', unchanged since 365eb61 (2026-03-14), before the May 2026 runs",2026-11-26
+gpt-oss-120b,reasoning,effort medium,"models/openrouter_LLM_blind/src/openrouter.yml (generation.reasoning) and src/predict.py","predict.py sends reasoning.effort for models other than anthropic/ and google/; config effort 'medium', unchanged since 365eb61 (2026-03-14), before the May 2026 runs",2026-11-26
+kimi-k2.6,reasoning,effort medium,"models/openrouter_LLM_blind/src/openrouter.yml (generation.reasoning) and src/predict.py","predict.py sends reasoning.effort for models other than anthropic/ and google/; config effort 'medium', unchanged since 365eb61 (2026-03-14), before the May 2026 runs",2026-11-26
+deepseek-v3.2,reasoning,effort medium,"models/openrouter_LLM_blind/src/openrouter.yml (generation.reasoning) and src/predict.py","predict.py sends reasoning.effort for models other than anthropic/ and google/; config effort 'medium', unchanged since 365eb61 (2026-03-14), before the May 2026 runs",2026-11-26
+claude-sonnet-4.6,reasoning,budget 10000,"models/openrouter_LLM_blind/src/openrouter.yml (generation.reasoning) and src/predict.py","predict.py sends reasoning.max_tokens for anthropic/ and google/ models; config max_tokens 10000, unchanged since 365eb61 (2026-03-14), before the May 2026 runs. OpenRouter passes it to Anthropic as the reasoning budget and to Google as thinkingBudget, which Gemini 3 maps to a thinking level (https://openrouter.ai/docs/use-cases/reasoning-tokens)",2026-11-26
+claude-opus-4.7,reasoning,budget 10000,"models/openrouter_LLM_blind/src/openrouter.yml (generation.reasoning) and src/predict.py","predict.py sends reasoning.max_tokens for anthropic/ and google/ models; config max_tokens 10000, unchanged since 365eb61 (2026-03-14), before the May 2026 runs. OpenRouter passes it to Anthropic as the reasoning budget and to Google as thinkingBudget, which Gemini 3 maps to a thinking level (https://openrouter.ai/docs/use-cases/reasoning-tokens)",2026-11-26
+gemini-3.1-pro-preview,reasoning,budget 10000,"models/openrouter_LLM_blind/src/openrouter.yml (generation.reasoning) and src/predict.py","predict.py sends reasoning.max_tokens for anthropic/ and google/ models; config max_tokens 10000, unchanged since 365eb61 (2026-03-14), before the May 2026 runs. OpenRouter passes it to Anthropic as the reasoning budget and to Google as thinkingBudget, which Gemini 3 maps to a thinking level (https://openrouter.ai/docs/use-cases/reasoning-tokens)",2026-11-26
 gpt-5.5,reasoning,effort xhigh,commit 69b8dd9 (Add GPT 5.5 xhigh results for unblind mode); cache/openrouter_logs/openrouter_activity_2026-05-23_gpt55_xhigh.csv,"The committed config says effort 'medium'; GPT-5.5 ran at effort 'xhigh' in both settings (confirmed by the user, 2026-10-06 and 2026-10-09)",2026-10-09
