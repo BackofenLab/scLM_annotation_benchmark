@@ -184,15 +184,9 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  # Basic usage with defaults
   preprocess.py --input data.h5ad --output processed.h5ad
-
-  # With dataset config file
-  preprocess.py --input data.h5ad --output processed.h5ad --config datasets/demo.yml
-
-  # Custom parameters
-  preprocess.py --input data.h5ad --output processed.h5ad \\
-      --min_cells 5 --min_genes 100 --nmads_main 3
+  preprocess.py --input data.h5ad --output processed.h5ad --config datasets/toy.yml
+  preprocess.py --input data.h5ad --output processed.h5ad --min_cells 5 --min_genes 100
         """,
     )
 
@@ -254,8 +248,8 @@ Examples:
     parser.add_argument(
         "--cache_dir",
         type=Path,
-        default=None,
-        help="Directory to save QC plots (e.g., ${cache_dir}/plots/)",
+        default=Path("cache"),
+        help="Folder for the QC plots (written to <cache_dir>/plots/)",
     )
 
     parser.add_argument(
