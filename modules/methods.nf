@@ -1,6 +1,6 @@
 // Processes that run the annotation methods.
 
-include { containerFor; environmentFor } from './functions'
+include { containerFor; environmentFor; methodSpec } from './functions'
 
 // Shell script of a method run. Prediction files that the store already holds are passed to
 // the method, which skips them, and all prediction files are copied to the store afterwards.
@@ -10,6 +10,7 @@ def methodScript(method, method_dir, dataset, size, test_set, dataset_cfg, conte
         context    ? "export CONTEXT_H5AD=\"\$(realpath ${context})\"" : '',
         reference  ? "export SINGLER_REF_H5AD=\"\$(realpath ${reference})\"" : '',
         constraint ? "export LABEL_CONSTRAINT=\"\$(realpath ${constraint})\"" : '',
+        methodSpec(method).needs.candidate_types ? "export CANDIDATE_TYPES_FILE=\"${params.candidate_types}\"" : '',
     ].findAll().join('\n    ')
     """
     set -euo pipefail

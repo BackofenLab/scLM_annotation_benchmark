@@ -50,6 +50,6 @@ fi
 python "$SCRIPT_DIR/predict.py" \
   --input "$INPUT_H5AD" \
   --output "$OUT_CSV" \
-  --cell_types_file "all_cell_types.txt" \
+  --cell_types_file "${CANDIDATE_TYPES_FILE:-all_cell_types.txt}" \
   --annotation_key "$ANNOTATION_KEY" \
   --cache_dir "$CACHE_DIR"
