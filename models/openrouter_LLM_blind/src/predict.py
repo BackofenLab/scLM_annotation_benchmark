@@ -9,16 +9,22 @@ answers are written unchanged; the pipeline maps them to the Cell Ontology after
 Inputs: the test set (.h5ad), the dataset config (annotation_key), the prompt template and
 openrouter.yml with the served models and the request settings. The key is read from API_KEY.
 
+With --clusters and --markers, each cluster becomes one prompt instead: the template filled
+with the cluster's marker genes ({marker_genes}, {num_genes}) and, for {unique_cell_types}, the
+cell types of the test set in a new order for each cluster. Every cell gets the answer to its
+cluster.
+
 Outputs per served model, in the folder of --output (out/predictions.csv):
     predictions_<model>.csv  cell_id, true_labels, predicted_labels
-    usage_<model>.csv        cell_id, provider, prompt_tokens, completion_tokens,
-                             reasoning_tokens, cost, finish_reason
+    usage_<model>.csv        cell_id (or cluster and n_cells), provider, prompt_tokens,
+                             completion_tokens, reasoning_tokens, cost, finish_reason
 <model> is the model id with "/" replaced by "--". Models whose prediction file exists are
 skipped. The models run in parallel, each with max_workers concurrent requests.
 
 Called by run.sh as
     predict.py --input test_set.h5ad --output out/predictions.csv --dataset_config dataset.yml
-               --prompt prompt.txt --config openrouter.yml [--skip_model_check]
+               --prompt prompt.txt --config openrouter.yml [--clusters clusters.csv
+               --markers markers.csv] [--skip_model_check]
 """
 
 import argparse
@@ -40,6 +46,7 @@ from cell2sentence.prompt_formatter import get_cell_sentence_str
 API_URL = "https://openrouter.ai/api/v1"
 USAGE_COLUMNS = ["cell_id", "provider", "prompt_tokens", "completion_tokens", "reasoning_tokens",
                  "cost", "finish_reason"]
+CLUSTER_USAGE_COLUMNS = ["cluster", "n_cells"] + USAGE_COLUMNS[1:]
 
 # A request is sent up to ATTEMPTS times per round, in up to ROUNDS rounds (see answer()).
 ATTEMPTS = 5
@@ -89,6 +96,34 @@ def build_prompts(adata, template, label_key, seed, top_k_genes):
         sentence, num_genes = get_cell_sentence_str(cell, num_genes=top_k_genes)
         prompts.append(template.format(cell_sentence=sentence, num_genes=num_genes,
                                        unique_cell_types=types))
+    return prompts
+
+
+def read_clusters(clusters_path, markers_path, cell_ids):
+    """The cluster of each cell, in the order of cell_ids, and the marker genes of each cluster."""
+    clusters = pd.read_csv(clusters_path, dtype=str).set_index("cell_id")["cluster"]
+    missing = pd.Index(cell_ids).difference(clusters.index)
+    if len(missing):
+        log.error("%d cells of the test set have no cluster in %s", len(missing), clusters_path)
+        sys.exit(4)
+    markers = {cluster: genes.split(", ") for cluster, genes in
+               pd.read_csv(markers_path, dtype=str).itertuples(index=False)}
+    return clusters.loc[list(cell_ids)], markers
+
+
+def build_cluster_prompts(template, markers, labels, seed):
+    """One prompt per cluster, keyed by cluster id. For a template with {unique_cell_types}, the
+    sorted labels are drawn in a new order for each cluster, the clusters taken in sorted order."""
+    rng = np.random.default_rng(seed)
+    labels = sorted(labels)
+    prompts = {}
+    for cluster in sorted(markers):
+        types = None
+        if "{unique_cell_types}" in template:
+            types = ", ".join(rng.permutation(labels).tolist())
+        prompts[cluster] = template.format(marker_genes=", ".join(markers[cluster]),
+                                           num_genes=len(markers[cluster]),
+                                           unique_cell_types=types)
     return prompts
 
 
@@ -231,6 +266,23 @@ def write_outputs(adata, label_key, answers, usage, predictions_path, usage_path
     log.info("Wrote %s and %s", predictions_path, usage_path)
 
 
+def write_cluster_outputs(adata, label_key, cell_clusters, clusters, answers, usage,
+                          predictions_path, usage_path):
+    """Write the answer of each cluster to its cells and the usage fields of each cluster."""
+    answer_of = dict(zip(clusters, answers))
+    sizes = cell_clusters.value_counts()
+    rows = [{"cluster": cluster, "n_cells": int(sizes[cluster]), **fields}
+            for cluster, fields in zip(clusters, usage)]
+    pd.DataFrame(rows, columns=CLUSTER_USAGE_COLUMNS, dtype=object).to_csv(usage_path,
+                                                                          index=False)
+    pd.DataFrame({
+        "cell_id": [str(x) for x in adata.obs_names],
+        "true_labels": list(adata.obs[label_key].astype("string").values),
+        "predicted_labels": [answer_of[cluster] for cluster in cell_clusters],
+    }).to_csv(predictions_path, index=False)
+    log.info("Wrote %s and %s", predictions_path, usage_path)
+
+
 def check_models(models, api_key):
     """Exit if a model id is not offered by OpenRouter; go on if the list cannot be fetched."""
     try:
@@ -258,6 +310,8 @@ def parse_args(argv=None):
     parser.add_argument("--dataset_config", required=True, help="dataset config (annotation_key)")
     parser.add_argument("--prompt", required=True, help="prompt template")
     parser.add_argument("--config", required=True, help="openrouter.yml")
+    parser.add_argument("--clusters", help="cell_id and cluster of every cell (cluster mode)")
+    parser.add_argument("--markers", help="cluster and its marker genes (cluster mode)")
     parser.add_argument("--skip_model_check", action="store_true",
                         help="do not check the model ids against the OpenRouter model list")
     return parser.parse_args(argv)
@@ -293,9 +347,20 @@ def main(argv=None):
         check_models(list(paths), api_key)
 
     adata = load_test_set(args.input, label_key)
-    prompts = build_prompts(adata, template, label_key, settings["seed"], settings["top_k_genes"])
-    if settings.get("max_samples"):
-        prompts = prompts[:settings["max_samples"]]
+    if args.clusters:
+        cell_clusters, markers = read_clusters(args.clusters, args.markers,
+                                               [str(x) for x in adata.obs_names])
+        by_cluster = build_cluster_prompts(template, markers,
+                                           adata.obs[label_key].astype(str).unique(),
+                                           settings["seed"])
+        clusters = sorted(set(cell_clusters))
+        prompts = [by_cluster[cluster] for cluster in clusters]
+        log.info("%d cells in %d clusters", adata.n_obs, len(clusters))
+    else:
+        prompts = build_prompts(adata, template, label_key, settings["seed"],
+                                settings["top_k_genes"])
+        if settings.get("max_samples"):
+            prompts = prompts[:settings["max_samples"]]
 
     failed = 0
     with ThreadPoolExecutor(max_workers=len(paths)) as pool:
@@ -305,7 +370,11 @@ def main(argv=None):
             model = futures[future]
             try:
                 answers, usage = future.result()
-                write_outputs(adata, label_key, answers, usage, *paths[model])
+                if args.clusters:
+                    write_cluster_outputs(adata, label_key, cell_clusters, clusters, answers,
+                                          usage, *paths[model])
+                else:
+                    write_outputs(adata, label_key, answers, usage, *paths[model])
             except Exception:
                 log.exception("%s failed", model)
                 failed += 1

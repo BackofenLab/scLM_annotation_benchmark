@@ -1,0 +1,10 @@
+You are an expert at annotating cell clusters from single-cell RNA sequencing data.
+Given below are the top {num_genes} marker genes of one cell cluster, ordered by how strongly they distinguish it from all other clusters.
+Your task is to identify the cell type of this cluster.
+Marker genes: {marker_genes}
+Important rules:
+1. Respond with only the cell type label of the predicted cell type.
+2. Use the canonical cell type label from the OBO Foundry Cell Ontology (CL) — the primary label string as it appears in CL, not a synonym, abbreviation, or free-form description.
+3. Do not include explanations, reasoning, or extra words in the output.
+4. Do not repeat the question or input in the output.
+Output:

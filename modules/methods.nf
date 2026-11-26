@@ -1,20 +1,22 @@
 // Processes that run the annotation methods.
 
-include { containerFor; environmentFor; methodSpec } from './functions'
+include { containerFor; environmentFor; methodSpec; testSetLabel } from './functions'
 
 // Shell script of a method run. Prediction files that the store already holds are passed to
 // the method, which skips them, and all prediction files are copied to the store afterwards.
 def methodScript(method, method_dir, dataset, size, test_set, dataset_cfg, context, reference,
-                 constraint, expected, store, cache_dir) {
+                 constraint, cluster_files, expected, store, cache_dir) {
     def exports = [
         context    ? "export CONTEXT_H5AD=\"\$(realpath ${context})\"" : '',
         reference  ? "export SINGLER_REF_H5AD=\"\$(realpath ${reference})\"" : '',
         constraint ? "export LABEL_CONSTRAINT=\"\$(realpath ${constraint})\"" : '',
         methodSpec(method).needs.candidate_types ? "export CANDIDATE_TYPES_FILE=\"${params.candidate_types}\"" : '',
+        cluster_files ? "export CLUSTERS_CSV=\"\$(realpath ${dataset}_${size}.clusters.csv)\"" : '',
+        cluster_files ? "export MARKERS_CSV=\"\$(realpath ${dataset}_${size}.markers.csv)\"" : '',
     ].findAll().join('\n    ')
     """
     set -euo pipefail
-    store="${store}/${method}/${dataset}/${size}_${params.subset_strategy}"
+    store="${store}/${method}/${dataset}/${testSetLabel(size)}"
     mkdir -p out "\$store" "${cache_dir}/models"
     export METHOD_DIR="\$(realpath ${method_dir})"
     ${exports}
@@ -88,7 +90,8 @@ process run_method {
 
     input:
     tuple val(method), val(dataset), val(size), path(method_dir), path(test_set),
-          path(dataset_cfg), path(context), path(reference), path(constraint), val(expected)
+          path(dataset_cfg), path(context), path(reference), path(constraint),
+          path(cluster_files), val(expected)
     val store
     val cache_dir
 
@@ -97,7 +100,7 @@ process run_method {
 
     script:
     methodScript(method, method_dir, dataset, size, test_set, dataset_cfg, context, reference,
-                 constraint, expected, store, cache_dir)
+                 constraint, cluster_files, expected, store, cache_dir)
 }
 
 // The same for methods that call the OpenRouter API. The key is a Nextflow secret, so it is
@@ -110,7 +113,8 @@ process run_method_with_key {
 
     input:
     tuple val(method), val(dataset), val(size), path(method_dir), path(test_set),
-          path(dataset_cfg), path(context), path(reference), path(constraint), val(expected)
+          path(dataset_cfg), path(context), path(reference), path(constraint),
+          path(cluster_files), val(expected)
     val store
     val cache_dir
 
@@ -120,5 +124,5 @@ process run_method_with_key {
     script:
     'export API_KEY="$OPENROUTER_API_KEY"\n' + methodScript(
         method, method_dir, dataset, size, test_set, dataset_cfg, context, reference, constraint,
-        expected, store, cache_dir)
+        cluster_files, expected, store, cache_dir)
 }

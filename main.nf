@@ -10,7 +10,11 @@ include { ANNOTATE } from './workflows/annotate'
 include { EVALUATE } from './workflows/evaluate'
 
 workflow {
-    ANNOTATE(params.append_new_answers)
+    def sizes = params.subset_sizes instanceof List ? params.subset_sizes : [params.subset_sizes]
+    if (sizes.any { !it.toString().isInteger() }) {
+        error "subset_sizes must be numbers; annotate.nf annotates all cells"
+    }
+    ANNOTATE(params.append_new_answers, sizes.collect { it as int })
     EVALUATE(ANNOTATE.out.mapped)
 }
 

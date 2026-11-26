@@ -25,8 +25,8 @@ There are two entry points:
 
 | Entry point | Runs | Ends with |
 |---|---|---|
-| `main.nf` | steps 1 to 4 | annotations, scores, combined tables and plots |
-| `annotate.nf` | steps 1 to 3 | annotations mapped to the Cell Ontology |
+| `main.nf` | steps 1 to 4 on test sets | annotations, scores, combined tables and plots |
+| `annotate.nf` | steps 1 to 3 on all cells of a dataset, without subsampling | annotations mapped to the Cell Ontology |
 
 ## Requirements
 
@@ -48,6 +48,29 @@ nextflow run main.nf -profile local -params-file tests/toy.params.yml
 
 The results are in `results_toy/` (see [Outputs](#outputs)). The first run builds the conda
 environments, which takes a while.
+
+## Annotating a dataset
+
+`annotate.nf` annotates every cell of the selected datasets after quality control and
+preprocessing (see [docs/parameters.md](docs/parameters.md#dataset-datasetsnameyml)) and maps the
+answers to the Cell Ontology, without scoring:
+
+```yaml
+# annotate.yml
+datasets: [toy]
+models: [celltypist_blind, openrouter_LLM_percluster_blind]
+```
+
+```bash
+nextflow run annotate.nf -profile local -params-file annotate.yml
+```
+
+With `annotation_subset_size` it annotates a subsample of that many cells instead. Methods with a
+maximum number of cells (`max_subset_size` in their `method.yml`), such as the LLMs that send one
+request per cell, are left out when all cells are annotated; the per-cluster LLMs send one
+request per cluster instead. The input still needs a column of labels
+(`annotation_key`); for unlabeled data a column with one placeholder value serves, with methods
+that run without the list of expected cell types.
 
 ## Running the benchmark
 
@@ -116,7 +139,8 @@ not know are marked `unmapped` in its output.
 | Path in `outdir` | Content |
 |---|---|
 | `predictions/<method>/<dataset>/<size>_<strategy>/` | the answers of each run, as the method wrote them; for the LLMs also the provider, tokens and cost of every request (`usage_<model>.csv`) |
-| `annotations/<dataset>/<method>/sub<size>/` | per cell the answer, its Cell Ontology term and id, and how it was mapped; with a summary in JSON |
+| `annotations/<dataset>/<method>/<size>_<strategy>/` (or `all/`) | per cell the answer, its Cell Ontology term and id, and how it was mapped; with a summary in JSON |
+| `clusters/<dataset>/` | for methods that annotate clusters: the cluster of every cell, the marker genes of every cluster and the settings |
 | `evaluation/<dataset>/` | per run the metrics (JSON), the scores per true cell type and per answer pair, and a confusion matrix |
 | `benchmark_metrics.csv` | one row per dataset, model and test set size |
 | `per_class_scores.csv` | recall and ontology scores per true cell type and run |
@@ -130,9 +154,15 @@ Downloads, test sets and other intermediate files are kept in `cache/`.
 | Family | Methods (folders in `models/`) |
 |---|---|
 | General-purpose LLMs, via OpenRouter | `openrouter_LLM_blind`, `openrouter_LLM_unblind`: Claude Opus 4.7, Claude Sonnet 4.6, DeepSeek V3.2, Gemini 3.1 Pro, GPT-5.5, GPT-OSS 20B and 120B, Kimi K2.6, Llama 3.1 70B, Llama 3.3 70B, Llama 4 Maverick |
+| The same LLMs, per cluster | `openrouter_LLM_percluster_blind`, `openrouter_LLM_percluster_unblind` |
 | Single-cell language models | `c2s_scale_2B_*`, `c2s_scale_27B_*`, `cellwhisperer_*`, `instructcell_*`, `langcell_*`, `mmcontext_*` |
 | Established methods | `celltypist_*`, `scsa_*`, `sctype_*`, `singler_*` |
 | Chance reference | `random_stratified` |
+
+The LLMs per cell get the 200 most expressed genes of each cell. Per cluster, the cells are first
+clustered (Leiden), and each cluster's 25 top marker genes go into one request, whose answer all
+cells of the cluster get. This is the per-cluster analysis of the paper, and far cheaper for large
+datasets. The clustering settings are parameters (see [docs/parameters.md](docs/parameters.md)).
 
 The established methods answer from a fixed vocabulary. In their constrained setting
 (`*_unblind`) they keep only the labels that lie at or below one of the expected cell types in the

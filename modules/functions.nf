@@ -31,12 +31,16 @@ def methodSpec(String method) {
     return spec
 }
 
-// Test set sizes at which a method runs: the requested sizes up to the method's limit.
-def subsetSizes(String method) {
-    def sizes = (params.subset_sizes instanceof List ? params.subset_sizes : [params.subset_sizes])
-        .collect { it as int }
+// Test set sizes at which a method runs: the requested sizes up to the method's limit. 'all'
+// stands for all cells of a dataset, which a method with a limit does not get.
+def runSizes(String method, List sizes) {
     def limit = methodSpec(method).max_subset_size
-    return limit ? sizes.findAll { it <= (limit as int) } : sizes
+    return limit ? sizes.findAll { it != 'all' && (it as int) <= (limit as int) } : sizes
+}
+
+// Name of a test set in folder names: <size>_<strategy>, or 'all' for all cells.
+def testSetLabel(size) {
+    return size == 'all' ? 'all' : "${size}_${params.subset_strategy}".toString()
 }
 
 // Prediction files of one run of a method: one file, or one per served model.
@@ -58,7 +62,7 @@ def predictionsDir() {
 
 // The stored prediction files of a run, or null if one of them is missing.
 def storedPredictions(String method, String dataset, size) {
-    def dir = "${predictionsDir()}/${method}/${dataset}/${size}_${params.subset_strategy}"
+    def dir = "${predictionsDir()}/${method}/${dataset}/${testSetLabel(size)}"
     def files = predictionFiles(method).collect { new File(dir, it) }
     return files.every { it.exists() } ? files.collect { it.path } : null
 }

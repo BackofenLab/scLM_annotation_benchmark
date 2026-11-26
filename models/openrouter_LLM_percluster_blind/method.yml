@@ -1,0 +1,6 @@
+name: General-purpose LLMs, per cluster
+description: "General-purpose language models queried through the OpenRouter API, one request per cluster with its marker genes. Runs without a list of expected cell types."
+needs:
+  clusters: true
+  api_key: true
+served_models: src/openrouter.yml

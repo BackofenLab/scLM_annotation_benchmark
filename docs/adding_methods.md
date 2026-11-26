@@ -76,6 +76,7 @@ Add under `needs:` what the method gets from the pipeline (each is explained in
 needs:
   candidate_types: true      # CANDIDATE_TYPES_FILE: cell type names to choose from
   clustering_context: true   # CONTEXT_H5AD: a larger sample of the dataset to cluster
+  clusters: true             # CLUSTERS_CSV, MARKERS_CSV: clusters and their marker genes
   label_constraint: true     # LABEL_CONSTRAINT: which labels count for the expected cell types
   singler_reference: true    # SINGLER_REF_H5AD: a reference from CELLxGENE
   human_genes: true          # mouse data are given as human orthologs

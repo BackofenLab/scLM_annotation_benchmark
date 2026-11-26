@@ -2,7 +2,8 @@
 # Annotates a test set with the served models of src/openrouter.yml, using the prompt template
 # prompt.txt of the method folder. Called by the pipeline as
 #   run.sh <test_set.h5ad> <out/predictions.csv> <dataset.yml> <cache_dir>
-# The cache folder is not used. Further arguments are passed to predict.py.
+# The cache folder is not used. Further arguments are passed to predict.py. If the pipeline sets
+# CLUSTERS_CSV and MARKERS_CSV, the clusters are annotated instead of single cells.
 set -euo pipefail
 
 if [[ -z "${API_KEY:-}" ]]; then
@@ -22,4 +23,5 @@ PYTHONIOENCODING=UTF-8 exec python "$METHOD_DIR/src/predict.py" \
   --dataset_config "$3" \
   --prompt "$METHOD_DIR/prompt.txt" \
   --config "$METHOD_DIR/src/openrouter.yml" \
+  ${CLUSTERS_CSV:+--clusters "$CLUSTERS_CSV" --markers "$MARKERS_CSV"} \
   "${@:5}"

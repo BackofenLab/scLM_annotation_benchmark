@@ -1,12 +1,14 @@
 // Processes that map the answers to the Cell Ontology and score them.
 
+include { testSetLabel } from './functions'
+
 process map_predictions {
     container params.container_image
     conda "${projectDir}/envs/evaluation.yml"
     // Tasks that add rows to the mapping table must not run at the same time.
     maxForks 1
     tag { "${dataset} ${method} ${size}" }
-    publishDir "${params.outdir}/annotations/${dataset}/${method}/sub${size}", mode: 'copy',
+    publishDir "${params.outdir}/annotations/${dataset}/${method}/${testSetLabel(size)}", mode: 'copy',
         pattern: 'mapped/*_annotations.*', saveAs: { it.replaceFirst('mapped/', '') }
 
     input:

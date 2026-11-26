@@ -20,10 +20,18 @@ Every parameter has one place:
 | `subset_strategy` | `stratified` | `stratified` keeps the proportions of the cell types, `random` samples cells |
 | `min_cells_per_type` | `20` | a stratified test set holds at least this many cells of every type; rarer types are left out |
 | `download_from_zenodo` | `true` | fetch the test sets from Zenodo (`datasets/zenodo_manifest.yml`) instead of building them |
+| `annotation_subset_size` | `null` | `annotate.nf` only: cells to annotate per dataset; `null` annotates all cells |
 | `fetch_context_from_zenodo` | `true` | the same for the clustering samples of scType and SCSA |
 | `context_max_size` | `100000` | cells in a clustering sample; the whole dataset if it is smaller |
 | `context_min_cells_per_type` | `150` | cells per type that a clustering sample aims for |
 | `candidate_types` | `resources/all_cell_types.txt` | cell type names offered to the embedding methods in the unconstrained setting |
+| `cluster_resolution` | `1.0` | Leiden resolution of the clustering step; higher values give more clusters |
+| `cluster_n_pcs`, `cluster_n_neighbors` | `50`, `15` | principal components and nearest neighbours of the clustering |
+| `cluster_n_top_genes` | `0` | highly variable genes for the PCA; `0` uses all genes |
+| `cluster_scale` | `false` | scale the genes before the PCA |
+| `cluster_use_batch_key` | `false` | select the highly variable genes within each batch (`batch_key` of the dataset) |
+| `cluster_marker_genes` | `25` | marker genes per cluster, ranked with `cluster_rank_method` (`wilcoxon`) |
+| `cluster_seed` | `0` | random seed of PCA, neighbours and Leiden |
 | `singler_reference_cap_per_label` | `500` | cells per label kept of a CELLxGENE reference for SingleR; `0` keeps all |
 | `ortholog_tables` | mouse to human | one-to-one ortholog tables for methods that read human genes only |
 | `mappings` | `resources/cell_type_ontology_mappings.csv` | the mapping table |
@@ -104,6 +112,7 @@ celldex`, `singler_reference`, `singler_reference_tier`) or a CELLxGENE dataset
 | `name`, `description` | for people |
 | `needs.candidate_types` | the method chooses from a list of cell type names; its path is in `CANDIDATE_TYPES_FILE` |
 | `needs.clustering_context` | the method clusters a larger sample of the dataset; its path is in `CONTEXT_H5AD` |
+| `needs.clusters` | the method annotates the clusters of the clustering step; the cluster of every cell is in `CLUSTERS_CSV`, the marker genes of every cluster in `MARKERS_CSV` |
 | `needs.label_constraint` | the method keeps only labels that count for the expected cell types; the table is in `LABEL_CONSTRAINT` |
 | `needs.singler_reference` | a reference from CELLxGENE, for datasets that name one; its path is in `SINGLER_REF_H5AD` |
 | `needs.human_genes` | the method reads human genes only; mouse data are given as human orthologs |
@@ -124,6 +133,21 @@ own prompt template in `prompt.txt`. In the template, `{cell_sentence}` is the l
 ordered by expression, `{num_genes}` the value of `top_k_genes`, and `{unique_cell_types}` the list
 of expected cell types, which only the constrained prompt uses. Besides the predictions, the
 wrapper writes for every request the provider, the tokens and the cost (`usage_<model>.csv`).
+
+The per-cluster methods (`openrouter_LLM_percluster_*`) use the same `src/` and served models
+with their own `prompt.txt`: `{marker_genes}` are the cluster's marker genes, `{num_genes}`
+their number, and `{unique_cell_types}` the expected cell types, joined by commas and drawn in a
+new order for each cluster. Their usage file has one row per cluster.
+
+## Clustering step
+
+`bin/cluster_cells.py` clusters with Leiden on the PCA of the log-normalized expression and ranks
+the marker genes of every cluster, without ribosomal, mitochondrial and hemoglobin genes. A drawn
+test set is clustered within the clustering sample that contains it, all cells of a dataset as
+they are. The defaults reproduce the per-cluster analysis of the paper, whose PCA uses all genes
+without scaling. The usual scanpy workflow is `cluster_n_top_genes: 2000`, `cluster_scale: true`
+and `cluster_use_batch_key: true`. Neither variant corrects batch effects: datasets that combine
+technologies or donors can form clusters along these.
 
 ## Evaluation
 
