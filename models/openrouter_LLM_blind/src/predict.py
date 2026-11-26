@@ -11,8 +11,8 @@ openrouter.yml with the served models and the request settings. The key is read 
 
 With --clusters and --markers, each cluster becomes one prompt instead: the template filled
 with the cluster's marker genes ({marker_genes}, {num_genes}) and, for {unique_cell_types}, the
-cell types of the test set in a new order for each cluster. Every cell gets the answer to its
-cluster.
+cell types of the test set, as a list in a new order for each cluster. Every cell gets the answer
+to its cluster.
 
 Outputs per served model, in the folder of --output (out/predictions.csv):
     predictions_<model>.csv  cell_id, true_labels, predicted_labels
@@ -113,14 +113,15 @@ def read_clusters(clusters_path, markers_path, cell_ids):
 
 def build_cluster_prompts(template, markers, labels, seed):
     """One prompt per cluster, keyed by cluster id. For a template with {unique_cell_types}, the
-    sorted labels are drawn in a new order for each cluster, the clusters taken in sorted order."""
+    sorted labels are drawn in a new order for each cluster, the clusters taken in sorted order,
+    and written as a list, as in the prompts per cell."""
     rng = np.random.default_rng(seed)
     labels = sorted(labels)
     prompts = {}
     for cluster in sorted(markers):
         types = None
         if "{unique_cell_types}" in template:
-            types = ", ".join(rng.permutation(labels).tolist())
+            types = rng.permutation(labels).tolist()
         prompts[cluster] = template.format(marker_genes=", ".join(markers[cluster]),
                                            num_genes=len(markers[cluster]),
                                            unique_cell_types=types)

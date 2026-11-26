@@ -138,8 +138,9 @@ wrapper writes for every request the provider, the tokens and the cost (`usage_<
 
 The per-cluster methods (`openrouter_LLM_percluster_*`) use the same `src/` and served models
 with their own `prompt.txt`: `{marker_genes}` are the cluster's marker genes, `{num_genes}`
-their number, and `{unique_cell_types}` the expected cell types, joined by commas and drawn in a
-new order for each cluster. Their usage file has one row per cluster.
+their number, and `{unique_cell_types}` the list of expected cell types, written as in the
+per-cell prompt and drawn in a new order for each cluster. Their usage file has one row per
+cluster.
 
 ## Clustering step
 
