@@ -115,7 +115,7 @@ not know are marked `unmapped` in its output.
 
 | Path in `outdir` | Content |
 |---|---|
-| `predictions/<method>/<dataset>/<size>_<strategy>/` | the answers of each run, as the method wrote them |
+| `predictions/<method>/<dataset>/<size>_<strategy>/` | the answers of each run, as the method wrote them; for the LLMs also the provider, tokens and cost of every request (`usage_<model>.csv`) |
 | `annotations/<dataset>/<method>/sub<size>/` | per cell the answer, its Cell Ontology term and id, and how it was mapped; with a summary in JSON |
 | `evaluation/<dataset>/` | per run the metrics (JSON), the scores per true cell type and per answer pair, and a confusion matrix |
 | `benchmark_metrics.csv` | one row per dataset, model and test set size |

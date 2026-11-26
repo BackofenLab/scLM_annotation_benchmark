@@ -111,8 +111,9 @@ Both settings share `src/` (`openrouter_LLM_unblind/src` links to `openrouter_LL
 `src/openrouter.yml` lists the served models and the request parameters (seed, number of genes per
 cell, parallel requests, provider routing, generation and reasoning settings). Each setting has its
 own prompt template in `prompt.txt`. In the template, `{cell_sentence}` is the list of genes
-ordered by expression, `{num_genes}` their number, and `{unique_cell_types}` the list of expected
-cell types, which only the constrained prompt uses.
+ordered by expression, `{num_genes}` the value of `top_k_genes`, and `{unique_cell_types}` the list
+of expected cell types, which only the constrained prompt uses. Besides the predictions, the
+wrapper writes for every request the provider, the tokens and the cost (`usage_<model>.csv`).
 
 ## Evaluation
 
