@@ -263,5 +263,5 @@ methods download their own code and weights, which come with their own licenses.
 
 ## Citation
 
-If you use this pipeline, please cite our paper. The reference will be added after publication,
-and the citation metadata are in [CITATION.cff](CITATION.cff).
+If you use this pipeline, please cite our paper. The reference and a link to it will be added
+after publication.
