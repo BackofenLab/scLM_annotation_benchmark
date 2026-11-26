@@ -579,8 +579,9 @@ def main():
     logger.info(f"Results saved to: {args.output}")
     import gc
     gc.collect()
-    torch.cuda.empty_cache()
-    torch.cuda.ipc_collect()
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+        torch.cuda.ipc_collect()
 
 
 if __name__ == "__main__":
