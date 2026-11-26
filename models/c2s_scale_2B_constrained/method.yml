@@ -1,2 +1,3 @@
+# The prompt template is prompt.txt in this folder; its last line marks where the answer starts.
 name: C2S-Scale 2B
 description: "Single-cell language model that reads a cell as a sentence of gene names. Runs with the list of expected cell types."

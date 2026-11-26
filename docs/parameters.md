@@ -7,7 +7,7 @@ Every parameter has one place:
 | The run: datasets, methods, test sets, evaluation, folders | `nextflow.config`, or a parameter file given with `-params-file` |
 | A dataset: source, labels, quality control and preprocessing, inputs of single methods | `datasets/<name>.yml` |
 | A method: what it needs from the pipeline | `models/<method>/method.yml` |
-| A method's own settings | `models/<method>/src/run.sh`, and for the LLMs `src/openrouter.yml` and `prompt.txt` |
+| A method's own settings | `models/<method>/src/run.sh`, for the LLMs also `src/openrouter.yml`, and for the LLMs and C2S-Scale the prompt template `prompt.txt` |
 | The mapping of answers to the Cell Ontology | `resources/cell_type_ontology_mappings.csv` |
 
 ## Pipeline (`nextflow.config`)

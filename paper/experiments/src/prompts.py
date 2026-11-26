@@ -2,7 +2,9 @@
 """Prompt templates and prompt construction for the context modes.
 
 Three templates: ``instruction``, the prompt of the benchmark's OpenRouter wrapper; ``c2s``, the
-prompt of the C2S-Scale wrapper; ``marker_genes``, one prompt per cluster. A mode (``modes`` in
+prompt of the C2S-Scale wrapper; ``marker_genes``, one prompt per cluster. All three are read
+from the benchmark's prompt files (models/<method>/prompt.txt), with a slot for the context
+phrase added. A mode (``modes`` in
 config.yml) sets whether a prompt lists the candidate cell types, names tissue and species, and
 holds the genes. Without tissue and species, the instruction and c2s prompts use the wrappers'
 templates without the list (M1) and with it (M2). The instruction prompts differ from those of
@@ -15,31 +17,24 @@ tissue and species add only the tissue there.
 """
 from __future__ import annotations
 
-# The prompts of the benchmark's OpenRouter wrapper (models/openrouter_LLM_unconstrained and
-# models/openrouter_LLM_constrained), with a slot for the context phrase.
-INSTRUCTION_NO_TYPES = """You are an expert at classifying cell types based on gene expression.
-Given below is a list of up to {num_genes} gene names ordered by descending expression level in a single cell.
-Your task is to identify the exact cell type this gene profile{context} represents.
-Cell sentence: {cell_sentence}
-Important rules:
-1. Respond with only the cell type label of the predicted cell type.
-2. Use the canonical cell type label from the OBO Foundry Cell Ontology (CL) — the primary label string as it appears in CL, not a synonym, abbreviation, or free-form description.
-3. Do not include explanations, reasoning, or extra words in the output.
-4. Do not repeat the question or input in the output.
-Output:
-"""
+from pathlib import Path
 
-INSTRUCTION_WITH_TYPES = """You are an expert at classifying cell types based on gene expression.
-Given below is a list of up to {num_genes} gene names ordered by descending expression level in a single cell.
-Your task is to identify the exact cell type this gene profile{context} represents from this list of cell types: {unique_cell_types}.
-Cell sentence: {cell_sentence}
-Important rules:
-1. Respond with only the cell type label of the predicted cell type.
-2. Do only choose a cell type from the list of cell types provided.
-3. Do not include explanations, reasoning, or extra words in the output.
-4. Do not repeat the question or input in the output.
-Output:
-"""
+_MODELS = Path(__file__).resolve().parents[3] / "models"
+
+
+def _benchmark_template(method, before_slot, line_break=True):
+    """The prompt template of a benchmark method (models/<method>/prompt.txt) with the slot for
+    the context phrase after ``before_slot``, ending with a line break or without one."""
+    text = (_MODELS / method / "prompt.txt").read_text(encoding="utf-8").rstrip("\n")
+    if text.count(before_slot) != 1:
+        raise ValueError(f"{method}/prompt.txt: '{before_slot}' must occur exactly once")
+    text = text.replace(before_slot, before_slot + "{context}")
+    return text + "\n" if line_break else text
+
+
+# The prompts of the benchmark's OpenRouter wrapper, with a slot for the context phrase.
+INSTRUCTION_NO_TYPES = _benchmark_template("openrouter_LLM_unconstrained", "this gene profile")
+INSTRUCTION_WITH_TYPES = _benchmark_template("openrouter_LLM_constrained", "this gene profile")
 
 # For a mode without genes (genes: false): the sentence that introduces the genes is left out.
 INSTRUCTION_NO_GENES = """You are an expert at classifying cell types based on gene expression.
@@ -53,49 +48,19 @@ Important rules:
 Output:
 """
 
-# The prompts of the C2S-Scale wrapper (models/c2s_scale_2B_unconstrained and models/c2s_scale_2B_constrained),
-# with a slot for the context phrase.
-C2S_WITH_TYPES = ("The following is a list of {num_genes} gene names ordered by descending "
-                  "expression level in a {organism}{context} cell. Your task is to give the cell "
-                  "type which this cell belongs to based on its gene expression. Pick from this "
-                  "list: {unique_cell_types}.\nCell sentence: {cell_sentence}.\n"
-                  "The cell type corresponding to these genes is:")
-
-C2S_NO_TYPES = ("The following is a list of {num_genes} gene names ordered by descending "
-                "expression level in a {organism}{context} cell. Your task is to give the cell "
-                "type which this cell belongs to based on its gene expression.\n"
-                "Cell sentence: {cell_sentence}.\n"
-                "The cell type corresponding to these genes is:")
+# The prompts of the C2S-Scale wrapper, with a slot for the context phrase.
+C2S_WITH_TYPES = _benchmark_template("c2s_scale_2B_constrained", "{organism}", line_break=False)
+C2S_NO_TYPES = _benchmark_template("c2s_scale_2B_unconstrained", "{organism}", line_break=False)
 
 # For a mode without genes.
 C2S_NO_GENES = ("Your task is to give the cell type of a {organism}{context} cell. Pick from this "
                 "list: {unique_cell_types}.\nNo gene expression information is provided for "
                 "this cell.\nThe cell type corresponding to this cell is:")
 
-# One prompt per cluster, from its marker genes, with the rules of the instruction template.
-MARKER_WITH_TYPES = """You are an expert at annotating cell clusters from single-cell RNA sequencing data.
-Given below are the top {num_genes} marker genes of one cell cluster, ordered by how strongly they distinguish it from all other clusters.
-Your task is to identify the cell type of this{context} cluster from this list of cell types: {unique_cell_types}.
-Marker genes: {marker_genes}
-Important rules:
-1. Respond with only the cell type label of the predicted cell type.
-2. Do only choose a cell type from the list of cell types provided.
-3. Do not include explanations, reasoning, or extra words in the output.
-4. Do not repeat the question or input in the output.
-Output:
-"""
-
-MARKER_NO_TYPES = """You are an expert at annotating cell clusters from single-cell RNA sequencing data.
-Given below are the top {num_genes} marker genes of one cell cluster, ordered by how strongly they distinguish it from all other clusters.
-Your task is to identify the cell type of this{context} cluster.
-Marker genes: {marker_genes}
-Important rules:
-1. Respond with only the cell type label of the predicted cell type.
-2. Use the canonical cell type label from the OBO Foundry Cell Ontology (CL) — the primary label string as it appears in CL, not a synonym, abbreviation, or free-form description.
-3. Do not include explanations, reasoning, or extra words in the output.
-4. Do not repeat the question or input in the output.
-Output:
-"""
+# One prompt per cluster, from its marker genes, with the rules of the instruction template: the
+# prompts of the benchmark's per-cluster methods.
+MARKER_WITH_TYPES = _benchmark_template("openrouter_LLM_percluster_constrained", "of this")
+MARKER_NO_TYPES = _benchmark_template("openrouter_LLM_percluster_unconstrained", "of this")
 
 #: The option to abstain, offered by the imperfect-list conditions (``lists`` in config.yml).
 UNCERTAIN_RULE = "If none of the listed cell types fits, answer uncertain."

@@ -102,7 +102,8 @@ your shell history (in zsh this needs `setopt HIST_IGNORE_SPACE`). Only the LLM 
 key. The models and request settings are defined in
 `models/openrouter_LLM_unconstrained/src/openrouter.yml`, which all four LLM methods share. Each
 LLM method has its prompt template in its own folder (`models/openrouter_LLM_*/prompt.txt`), and
-its `method.yml` points to both files.
+its `method.yml` points to both files. C2S-Scale's templates are in
+`models/c2s_scale_2B_*/prompt.txt`, which the 27B folders link to.
 
 ## Annotation mode
 

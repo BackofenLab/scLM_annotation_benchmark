@@ -299,9 +299,10 @@ def write_list_tex(runs, conditions):
 
 
 # The prompt templates are not transcribed. The general-purpose LLM, C2S-Scale and per-cluster
-# templates are imported from paper/experiments/src/prompts.py; with {context} empty, its LLM and
-# C2S-Scale templates are those of the benchmark (models/openrouter_LLM_*/prompt.txt and
-# models/c2s_scale_*/src/predict.py), so one block serves both. InstructCell's prompt and
+# templates are imported from paper/experiments/src/prompts.py, which reads them from the
+# benchmark's prompt files (models/openrouter_LLM_*/prompt.txt, models/c2s_scale_*/prompt.txt)
+# and adds the {context} slot; with {context} empty they are the benchmark's templates, so one
+# block serves both. InstructCell's prompt and
 # LangCell's text for a candidate are built by the benchmark wrappers' own functions. prompts.py
 # also holds the templates of a condition without genes, which the study does not report.
 # (heading, where the template was used, prompts.py constant). The ablation's conditions without

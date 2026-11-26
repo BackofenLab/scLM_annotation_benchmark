@@ -5,6 +5,9 @@ Each cell becomes a cell sentence (gene names by descending expression), and the
 completes the C2S-Scale cell type prompt for the top --n_genes genes. The model is
 loaded with transformers; cell2sentence only builds the cell sentences.
 
+The prompt template is prompt.txt in the method folder (--prompt). Its last line marks
+where the model's answer starts.
+
 Input: preprocessed h5ad with raw counts in layers["counts"] and gene symbols in
 var["gene_names"]. Output: CSV with cell_id, true_labels and predicted_labels.
 Called by run.sh.
@@ -143,7 +146,7 @@ def truncate_cell_sentence(cell_sentence: str, n_genes: int) -> str:
     return ' '.join(truncated)
 
 
-def format_prompts(arrow_ds: Dataset, n_genes: int) -> Dataset:
+def format_prompts(arrow_ds: Dataset, n_genes: int, template: str) -> Dataset:
     """Return a dataset with one C2S-Scale cell type prompt per cell in column model_input."""
     logger.info(f"Formatting prompts with top {n_genes} genes")
     
@@ -154,10 +157,8 @@ def format_prompts(arrow_ds: Dataset, n_genes: int) -> Dataset:
         cell_sentence = truncate_cell_sentence(sample["cell_sentence"], n_genes)
         organism = sample.get("organism", "Homo sapiens")
         
-        # C2S-Scale prompt template for cell type prediction
-        prompt = f"""The following is a list of {n_genes} gene names ordered by descending expression level in a {organism} cell. Your task is to give the cell type which this cell belongs to based on its gene expression.
-Cell sentence: {cell_sentence}.
-The cell type corresponding to these genes is:"""
+        prompt = template.format(num_genes=n_genes, organism=organism,
+                                 cell_sentence=cell_sentence)
         
         prompts.append(prompt)
     
@@ -167,9 +168,10 @@ The cell type corresponding to these genes is:"""
     return formatted_ds
 
 
-def extract_prediction(response: str) -> str:
-    """Return the text generated after the prompt, without special tokens and trailing periods."""
-    pred = response.split("The cell type corresponding to these genes is:")[-1].strip()
+def extract_prediction(response: str, answer_marker: str) -> str:
+    """Return the text generated after answer_marker, the prompt's last line, without special
+    tokens and trailing periods."""
+    pred = response.split(answer_marker)[-1].strip()
     
     pred = pred.replace('<ctrl100>', '')
     pred = pred.replace('<eos>', '')
@@ -184,6 +186,7 @@ def generate_predictions(
     model, 
     tokenizer, 
     formatted_ds: Dataset, 
+    answer_marker: str,
     device: str,
     max_new_tokens: int = 20,
     batch_size: int = 8
@@ -220,7 +223,7 @@ def generate_predictions(
         
         for i, output in enumerate(outputs):
             response = tokenizer.decode(output, skip_special_tokens=False)
-            pred = extract_prediction(response)
+            pred = extract_prediction(response, answer_marker)
             predicted_cell_types.append(pred)
     logger.info(f"Full response of the last cell: {response}")
 
@@ -272,6 +275,8 @@ def main():
                        help="HuggingFace model ID (default: vandijklab/C2S-Scale-Gemma-2-2B)")
     parser.add_argument("--annotation_key", default="cell_ontology_class",
                        help="Key in adata.obs containing true labels (default: cell_ontology_class)")
+    parser.add_argument("--prompt", required=True,
+                       help="Prompt template; its last line marks where the answer starts")
     parser.add_argument("--n_genes", type=int, default=200,
                        help="Number of genes to use for prediction (default: 200)")
     parser.add_argument("--cache_dir", default=None,
@@ -311,7 +316,8 @@ def main():
     
     arrow_ds = convert_to_arrow_dataset(adata, annotation_key)
     
-    formatted_ds = format_prompts(arrow_ds, args.n_genes)
+    template = Path(args.prompt).read_text(encoding="utf-8").rstrip("\n")
+    formatted_ds = format_prompts(arrow_ds, args.n_genes, template)
     
     if formatted_ds.num_rows > 0:
         logger.info(f"Example prompt:\n{formatted_ds[0]['model_input'][:500]}...")
@@ -320,6 +326,7 @@ def main():
         model, 
         tokenizer, 
         formatted_ds, 
+        template.splitlines()[-1],
         device,
         max_new_tokens=args.max_new_tokens,
         batch_size=args.batch_size
