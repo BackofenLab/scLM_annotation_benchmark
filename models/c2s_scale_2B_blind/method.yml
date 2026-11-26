@@ -1,0 +1,2 @@
+name: C2S-Scale 2B
+description: "Single-cell language model that reads a cell as a sentence of gene names. Runs without a list of expected cell types."

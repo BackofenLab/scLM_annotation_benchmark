@@ -1,0 +1,4 @@
+name: InstructCell
+description: "Single-cell language model that follows text instructions. Runs with the list of expected cell types."
+needs:
+  human_genes: true

@@ -1,0 +1,4 @@
+name: CellTypist
+description: "Reference-based classifier with pretrained models. Runs with the list of expected cell types."
+needs:
+  label_constraint: true

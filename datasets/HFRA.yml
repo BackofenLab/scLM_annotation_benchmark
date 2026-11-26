@@ -1,21 +1,34 @@
-# datasets/HFRA.yml
-# HFRA was uploaded to cellxgene earliest in December 2025.
-name: HFRA       # used in channel / filenames
+# Human fetal retina atlas (Zuo et al. 2024), from CELLxGENE Census.
+
+name: HFRA
 source: cellxgene_census
 census_dataset_id: "aecc2743-4ff2-4b55-ac8c-a1ff76fc4bb4"
-census_version: "2025-11-08" # logs a stable build tag for reproducibility (snapshot of census version)
+census_version: "2025-11-08"
+
+# Cells and labels
+annotation_key: "cell_type"
 batch_key: "donor_id"
+apply_ontology_mapping: false     # the labels are Cell Ontology terms already
+
+# Biological context given to methods that use it
 species: "human"
 tissue: "retina (fetal)"
-annotation_key: "cell_type"
-apply_ontology_mapping: false # no ontology mapping required for HFRA (cellxgene already has ontology terms)
+
+# Quality control and preprocessing (bin/preprocess.py); the values are the defaults
+preprocessing:
+  nmads_main: 5                   # median absolute deviations for outliers in counts and genes
+  nmads_mt: 3                     # median absolute deviations for outliers in mitochondrial share
+  pct_counts_mt_threshold: 8.0    # cells above this mitochondrial percentage are removed
+  percent_top: [20]
+  min_cells: 10                   # genes detected in fewer cells are removed
+  min_genes: 200                  # cells with fewer detected genes are removed
+
+# Inputs of single methods
 celltypist_model: "Fetal_Human_Retina.pkl"
-sctype_tissue: "Eye"                              # ScTypeDB tissue for sctype_blind / ucell_blind
-scsa_tissue: "Retina"                             # exact CellMarker DB tissue for scsa_blind ("All" = whole DB)
-# SingleR reference: an independent developing-human-retina atlas from CELLxGENE Census (Zuo et al.
-# 2024). celldex has no retina reference, so HumanPrimaryCellAtlasData scored ~0.00 here. Fetched +
-# normalized by bin/prepare_singler_reference.py; labels = its cell_type column (CL-backed).
+sctype_tissue: "Eye"              # tissue in the ScType database
+scsa_tissue: "Retina"             # tissue in the CellMarker database of SCSA
+# SingleR reference: a developing human retina atlas from CELLxGENE Census (Zuo et al. 2024).
 singler_reference_source: "cellxgene"
-singler_reference_id: "963a08cb-d995-4862-9614-f9d38a7d7540"   # Zuo 2024 developing human retina
-singler_reference_version: "2025-11-08"                        # pin Census version for reproducibility
+singler_reference_id: "963a08cb-d995-4862-9614-f9d38a7d7540"
+singler_reference_version: "2025-11-08"
 singler_reference_label_key: "cell_type"

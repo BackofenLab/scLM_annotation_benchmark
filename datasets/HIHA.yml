@@ -1,17 +1,33 @@
-# datasets/HIHA.yml
-# HIHA was uploaded to cellxgene earliest in December 2025.
-name: HIHA       # used in channel / filenames
+# Human Immune Health Atlas, peripheral blood (Gong et al. 2025), from CELLxGENE Census.
+
+name: HIHA
 source: cellxgene_census
 census_dataset_id: "e522d2cd-7927-4e59-a4ed-064009569279"
-census_version: "2025-11-08" # logs a stable build tag for reproducibility (snapshot of census version)
+census_version: "2025-11-08"
+
+# Cells and labels
+annotation_key: "cell_type"       # the authors' levels AIFI_L1 to AIFI_L3 are also in the file
 batch_key: "batch_id"
+apply_ontology_mapping: false     # the labels are Cell Ontology terms already
+
+# Biological context given to methods that use it
 species: "human"
 tissue: "blood (peripheral blood immune cells)"
-annotation_key: "cell_type" # different annotation levels by the authors are stil available: ["AIFI_L1", "AIFI_L2", "AIFI_L3"]
-apply_ontology_mapping: false # no ontology mapping required for HFRA (cellxgene already has ontology terms)
+
+# Quality control and preprocessing (bin/preprocess.py); the values are the defaults
+preprocessing:
+  nmads_main: 5                   # median absolute deviations for outliers in counts and genes
+  nmads_mt: 3                     # median absolute deviations for outliers in mitochondrial share
+  pct_counts_mt_threshold: 8.0    # cells above this mitochondrial percentage are removed
+  percent_top: [20]
+  min_cells: 10                   # genes detected in fewer cells are removed
+  min_genes: 200                  # cells with fewer detected genes are removed
+
+# Inputs of single methods
 celltypist_model: "Immune_All_High.pkl"
-sctype_tissue: "Immune system"                    # ScTypeDB tissue for sctype_blind / ucell_blind
-scsa_tissue: "Peripheral blood"                   # exact CellMarker DB tissue for scsa_blind ("All" = whole DB)
-singler_reference_source: "celldex"               # "celldex" = built-in (by name); "cellxgene" = fetched ref h5ad
-singler_reference: "MonacoImmuneData"             # celldex immune reference (good fit)
-singler_reference_tier: "ont"                     # label.ont = Cell Ontology IDs, the best-scoring HIHA tier (0.177)
+sctype_tissue: "Immune system"    # tissue in the ScType database
+scsa_tissue: "Peripheral blood"   # tissue in the CellMarker database of SCSA
+# SingleR reference: MonacoImmuneData of the celldex package, labels as Cell Ontology ids.
+singler_reference_source: "celldex"
+singler_reference: "MonacoImmuneData"
+singler_reference_tier: "ont"

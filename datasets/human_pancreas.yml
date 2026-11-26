@@ -1,27 +1,34 @@
-# datasets/human_pancreas.yml
-# Currently not available on cellxgene (?)
-name: human_pancreas         # used in channel / filenames
-url: https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/24539828/human_pancreas_norm_complexBatch.h5ad #https://figshare.com/ndownloader/files/24539828 (Baron 2016 human pancreas dataset)
+# Human pancreas, compiled from several studies (Luecken et al. 2022), from figshare.
+
+name: human_pancreas
+url: https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/24539828/human_pancreas_norm_complexBatch.h5ad
 format: h5ad
-batch_key: "tech"
-apply_ontology_mapping: true
-# Optional metadata for InstructCell - can use either:
-#   Option 1: Direct values (applied to all cells in dataset)
-species: "human"                    # direct value for all cells
-tissue: "pancreas"                  # direct value for all cells
-#     sequencing_method: "10xGenomics"    # direct value for all cells
-#   Option 2: Keys (per-cell values from adata.obs columns)
-#     species_key: "species"              # column name for species metadata (per-cell)
-#     tissue_key: "tissue"                # column name for tissue metadata (per-cell)
-sequencing_method_key: "tech"  # column name for sequencing method (per-cell)
+
+# Cells and labels
 annotation_key: "celltype"
-celltypist_model: "Adult_Human_PancreaticIslet.pkl" #"Immune_All_High.pkl"
-sctype_tissue: "Pancreas"                         # ScTypeDB tissue for sctype_blind / ucell_blind
-scsa_tissue: "Pancreas"                           # exact CellMarker DB tissue for scsa_blind (covers islet+acinar+ductal; "All" = whole DB)
-# SingleR reference: an independent healthy human pancreas atlas from CELLxGENE Census (Xu et al.
-# 2023, normal-only). celldex has no pancreas reference, so HumanPrimaryCellAtlasData scored ~0.16
-# here. Fetched + normalized by bin/prepare_singler_reference.py; labels = its cell_type column.
+batch_key: "tech"
+apply_ontology_mapping: true      # map the labels to Cell Ontology terms with the mapping table
+
+# Biological context given to methods that use it
+species: "human"
+tissue: "pancreas"
+sequencing_method_key: "tech"     # column with the sequencing method of each cell
+
+# Quality control and preprocessing (bin/preprocess.py); the values are the defaults
+preprocessing:
+  nmads_main: 5                   # median absolute deviations for outliers in counts and genes
+  nmads_mt: 3                     # median absolute deviations for outliers in mitochondrial share
+  pct_counts_mt_threshold: 8.0    # cells above this mitochondrial percentage are removed
+  percent_top: [20]
+  min_cells: 10                   # genes detected in fewer cells are removed
+  min_genes: 200                  # cells with fewer detected genes are removed
+
+# Inputs of single methods
+celltypist_model: "Adult_Human_PancreaticIslet.pkl"
+sctype_tissue: "Pancreas"         # tissue in the ScType database
+scsa_tissue: "Pancreas"           # tissue in the CellMarker database of SCSA
+# SingleR reference: a healthy human pancreas atlas from CELLxGENE Census (Xu et al. 2023).
 singler_reference_source: "cellxgene"
-singler_reference_id: "31f657dc-1875-4c4b-a5ca-ce63b3ef3a82"   # Xu 2023 human pancreas (normal-only)
+singler_reference_id: "31f657dc-1875-4c4b-a5ca-ce63b3ef3a82"
 singler_reference_version: "2025-11-08"
 singler_reference_label_key: "cell_type"

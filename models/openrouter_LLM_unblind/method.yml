@@ -1,0 +1,6 @@
+name: General-purpose LLMs
+description: "General-purpose language models queried through the OpenRouter API, one request per cell. Runs with the list of expected cell types."
+needs:
+  api_key: true
+max_subset_size: 1000
+served_models: src/openrouter.yml

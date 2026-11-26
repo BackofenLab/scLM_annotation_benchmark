@@ -1,0 +1,4 @@
+name: mmContext
+description: "Single-cell language model that embeds cells and texts in one space. Runs with the list of expected cell types."
+needs:
+  human_genes: true

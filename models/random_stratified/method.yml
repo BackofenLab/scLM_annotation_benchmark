@@ -1,0 +1,2 @@
+name: Random labels
+description: "Chance reference: draws a label for every cell from the label frequencies of the test set."

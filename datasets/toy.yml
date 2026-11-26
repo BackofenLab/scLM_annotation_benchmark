@@ -1,0 +1,31 @@
+# Toy dataset for testing: 40 cells of four cell types from the Human Immune Health Atlas
+# (CELLxGENE, CC BY 4.0), raw counts. See tests/data/README.md.
+
+name: toy
+path: tests/data/toy_blood.h5ad   # a local h5ad file, relative to the repository
+
+# Cells and labels
+annotation_key: "cell_type"
+batch_key: "batch_id"
+apply_ontology_mapping: false     # the labels are Cell Ontology terms already
+
+# Biological context given to methods that use it
+species: "human"
+tissue: "blood (peripheral blood immune cells)"
+
+# Quality control and preprocessing (bin/preprocess.py)
+preprocessing:
+  nmads_main: 5                   # median absolute deviations for outliers in counts and genes
+  nmads_mt: 3                     # median absolute deviations for outliers in mitochondrial share
+  pct_counts_mt_threshold: 8.0    # cells above this mitochondrial percentage are removed
+  percent_top: [20]
+  min_cells: 3                    # genes detected in fewer cells are removed
+  min_genes: 200                  # cells with fewer detected genes are removed
+
+# Inputs of single methods
+celltypist_model: "Immune_All_High.pkl"
+sctype_tissue: "Immune system"
+scsa_tissue: "Peripheral blood"
+singler_reference_source: "celldex"
+singler_reference: "MonacoImmuneData"
+singler_reference_tier: "ont"

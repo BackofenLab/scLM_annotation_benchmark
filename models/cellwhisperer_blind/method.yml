@@ -1,0 +1,4 @@
+name: CellWhisperer
+description: "Single-cell language model that embeds cells and texts in one space. Runs without a list of expected cell types."
+needs:
+  human_genes: true

@@ -13,7 +13,6 @@ import scipy.sparse as sp
 import scanpy as sc
 from anndata import AnnData
 from scipy.stats import median_abs_deviation
-import pybiomart
 from pathlib import Path
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -887,6 +886,7 @@ def ensure_ensembl_ids(
         logger.info(f"Example gene name: {gene_names.iloc[0] if len(gene_names) > 0 else 'N/A'}")
 
         # Map gene names to Ensembl IDs using pybiomart (try multiple hosts)
+        import pybiomart
         ensembl_hosts = [
             "http://www.ensembl.org",
             "http://useast.ensembl.org",

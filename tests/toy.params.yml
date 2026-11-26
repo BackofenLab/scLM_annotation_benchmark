@@ -1,0 +1,11 @@
+# Test run on the toy dataset with the random baseline:
+#   nextflow run main.nf -profile local -params-file tests/toy.params.yml
+datasets: [toy]
+models: [random_stratified]
+subset_sizes: [40]
+min_cells_per_type: 5
+download_from_zenodo: false
+fetch_context_from_zenodo: false
+context_max_size: 40
+context_min_cells_per_type: 5
+outdir: results_toy

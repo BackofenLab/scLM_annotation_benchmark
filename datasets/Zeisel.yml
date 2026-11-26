@@ -1,30 +1,36 @@
-# datasets/Zeisel.yml
-# Currently not available on cellxgene
-name: Zeisel          # used in channel / filenames
+# Mouse nervous system (Zeisel et al. 2018), the authors' file l5_all_rev1.loom converted to h5ad.
+
+name: Zeisel
 url: https://zenodo.org/api/records/24590958/files/Zeisel_l5_all_rev1.h5ad/content
 format: h5ad
+
+# Cells and labels
+annotation_key: "TaxonomyRank4"   # the file holds the taxonomy ranks 1 to 4
+batch_key: "DonorID"
+apply_ontology_mapping: true      # map the labels to Cell Ontology terms with the mapping table
+
+# Biological context given to methods that use it
 organism: "Mus musculus"
 species: "mouse"
-# The h5ad's per-cell tissue column holds ~23 coded CNS/PNS region abbreviations
-# (Ctx, HC, CB, MBd, SC, DRG, ENS, ...); give a clean readable tissue here so blind
-# mode gets a usable hint (YAML tissue takes precedence over the coded obs column).
+# The tissue column of the file holds region codes, so the tissue is given here.
 tissue: "nervous system (whole mouse CNS and PNS: cortex, hippocampus, cerebellum, midbrain, brainstem, spinal cord, and peripheral sensory/sympathetic/enteric ganglia)"
-batch_key: "DonorID"
-annotation_key: "TaxonomyRank4" # Options: Subclass, Subclass, TaxonomyRank1, TaxonomyRank2, TaxonomyRank3, TaxonomyRank4
-apply_ontology_mapping: true
-celltypist_model: "Mouse_Isocortex_Hippocampus.pkl"  # NB: Mouse_Whole_Brain.pkl has broader CNS coverage but
-                                                     # emits ultra-fine Allen atlas cluster IDs (e.g. "004 l6 it
-                                                     # ctx glut") that don't map to Cell Ontology -> coverage 0.0.
-                                                     # Isocortex_Hippocampus uses mappable labels, so it scores.
-sctype_tissue: "Brain"                            # ScTypeDB tissue (mouse markers) for sctype_blind / ucell_blind
-scsa_tissue: "Brain"                              # CellMarker DB tissue for scsa_blind; NOTE: Zeisel spans whole CNS+PNS,
-                                                  # "Brain" misses peripheral (DRG/enteric/sympathetic) types -> A/B vs "All"
-# SingleR reference: an independent mouse cortex atlas from CELLxGENE Census (Yao et al. 2021 BICCN
-# motor cortex). celldex MouseRNAseqData is coarse-bulk (all neurons -> "Neurons"), scoring 0.10;
-# Zeisel's mapped truth is neurotransmitter-level, so a CL-clean full-transcriptome atlas helps.
-# NOTE: no single mouse ref covers Zeisel's whole CNS+PNS -- peripheral enteric/sympathetic classes
-# stay out of reference coverage (documented ceiling). Fetched by bin/prepare_singler_reference.py.
+
+# Quality control and preprocessing (bin/preprocess.py); the values are the defaults
+preprocessing:
+  nmads_main: 5                   # median absolute deviations for outliers in counts and genes
+  nmads_mt: 3                     # median absolute deviations for outliers in mitochondrial share
+  pct_counts_mt_threshold: 8.0    # cells above this mitochondrial percentage are removed
+  percent_top: [20]
+  min_cells: 10                   # genes detected in fewer cells are removed
+  min_genes: 200                  # cells with fewer detected genes are removed
+
+# Inputs of single methods
+celltypist_model: "Mouse_Isocortex_Hippocampus.pkl"   # its labels map to Cell Ontology terms
+sctype_tissue: "Brain"            # tissue in the ScType database
+scsa_tissue: "Brain"              # tissue in the CellMarker database of SCSA
+# SingleR reference: a mouse motor cortex atlas from CELLxGENE Census (Yao et al. 2021). It covers
+# no peripheral cell types.
 singler_reference_source: "cellxgene"
-singler_reference_id: "35081d47-99bf-4507-9541-735428df9a9f"   # Yao 2021 BICCN mouse motor cortex
+singler_reference_id: "35081d47-99bf-4507-9541-735428df9a9f"
 singler_reference_version: "2025-11-08"
 singler_reference_label_key: "cell_type"

@@ -1,0 +1,6 @@
+name: SingleR
+description: "Reference-based annotation by correlation with labelled profiles. Runs with the list of expected cell types."
+needs:
+  label_constraint: true
+  singler_reference: true
+container: r

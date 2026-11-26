@@ -1,0 +1,6 @@
+name: scType
+description: "Marker-based annotation of clusters with the ScType database. Runs with the list of expected cell types."
+needs:
+  clustering_context: true
+  label_constraint: true
+container: r
