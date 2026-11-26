@@ -1,0 +1,92 @@
+cff-version: 1.2.0
+message: "If you use this pipeline, please cite the paper below."
+type: software
+title: "Cell type annotation benchmark"
+license: MIT
+authors:
+  - given-names: Niklas
+    family-names: Brunn
+    affiliation: University of Freiburg
+    orcid: "https://orcid.org/0009-0006-8246-1549"
+  - given-names: Adrian
+    family-names: Fritz
+    affiliation: University of Freiburg
+    orcid: "https://orcid.org/0000-0002-9853-5577"
+  - given-names: Jonatan
+    family-names: Menger
+    affiliation: University of Freiburg
+    orcid: "https://orcid.org/0009-0000-9521-2281"
+  - given-names: Anup
+    family-names: Kumar
+    affiliation: University of Freiburg
+    orcid: "https://orcid.org/0000-0002-2068-4695"
+  - given-names: Sonia Maria
+    family-names: Krißmer
+    affiliation: University of Freiburg
+    orcid: "https://orcid.org/0009-0004-8158-7305"
+  - given-names: Pavankumar
+    family-names: Videm
+    affiliation: University of Freiburg
+    orcid: "https://orcid.org/0000-0002-5192-126X"
+  - given-names: Ryan
+    family-names: Köksal
+    affiliation: University of Freiburg
+    orcid: "https://orcid.org/0009-0001-8518-478X"
+  - given-names: Laia
+    family-names: Canal Guitart
+    affiliation: University of Freiburg
+    orcid: "https://orcid.org/0009-0003-2779-068X"
+  - given-names: Lara
+    family-names: Gießler
+    affiliation: University of Freiburg
+  - given-names: Maren
+    family-names: Hackenberg
+    affiliation: University of Freiburg
+    orcid: "https://orcid.org/0000-0003-4403-634X"
+  - given-names: Harald
+    family-names: Binder
+    affiliation: University of Freiburg
+    orcid: "https://orcid.org/0000-0002-5666-8662"
+  - given-names: Rolf
+    family-names: Backofen
+    affiliation: University of Freiburg
+    orcid: "https://orcid.org/0000-0001-8231-3323"
+preferred-citation:
+  type: article
+  title: "General-purpose LLMs outperform single-cell language models at cell type annotation when expected types are known"
+  authors:
+    - given-names: Niklas
+      family-names: Brunn
+      orcid: "https://orcid.org/0009-0006-8246-1549"
+    - given-names: Adrian
+      family-names: Fritz
+      orcid: "https://orcid.org/0000-0002-9853-5577"
+    - given-names: Jonatan
+      family-names: Menger
+      orcid: "https://orcid.org/0009-0000-9521-2281"
+    - given-names: Anup
+      family-names: Kumar
+      orcid: "https://orcid.org/0000-0002-2068-4695"
+    - given-names: Sonia Maria
+      family-names: Krißmer
+      orcid: "https://orcid.org/0009-0004-8158-7305"
+    - given-names: Pavankumar
+      family-names: Videm
+      orcid: "https://orcid.org/0000-0002-5192-126X"
+    - given-names: Ryan
+      family-names: Köksal
+      orcid: "https://orcid.org/0009-0001-8518-478X"
+    - given-names: Laia
+      family-names: Canal Guitart
+      orcid: "https://orcid.org/0009-0003-2779-068X"
+    - given-names: Lara
+      family-names: Gießler
+    - given-names: Maren
+      family-names: Hackenberg
+      orcid: "https://orcid.org/0000-0003-4403-634X"
+    - given-names: Harald
+      family-names: Binder
+      orcid: "https://orcid.org/0000-0002-5666-8662"
+    - given-names: Rolf
+      family-names: Backofen
+      orcid: "https://orcid.org/0000-0001-8231-3323"
