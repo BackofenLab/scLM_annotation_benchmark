@@ -16,10 +16,13 @@ def usesCensusReference(String dataset) {
     return (datasetConfig(dataset).singler_reference_source ?: 'celldex').toString() == 'cellxgene'
 }
 
-def checkZenodoFiles(List names) {
-    def available = new org.yaml.snakeyaml.Yaml()
+def zenodoFiles() {
+    return new org.yaml.snakeyaml.Yaml()
         .load(new File("${projectDir}/datasets/zenodo_manifest.yml").text).files.keySet()
-    def missing = names.findAll { !available.contains(it) }
+}
+
+def checkZenodoFiles(List names) {
+    def missing = names - zenodoFiles()
     if (missing) {
         error "Not in datasets/zenodo_manifest.yml: ${missing.join(', ')}. " +
               "Build these files locally (--download_from_zenodo false, " +
@@ -104,16 +107,30 @@ workflow ANNOTATE {
         .collect { it[1] }.unique()
     def constraint_keys = pending.findAll { needs(it, 'label_constraint') }.collect { it[1..2] }.unique()
 
-    def zenodo_keys = params.download_from_zenodo ? test_set_keys.findAll { it[1] != 'all' } : []
-    def drawn_keys = test_set_keys.findAll { it[1] != 'all' } - zenodo_keys
+    // Test sets and clustering samples come from the Zenodo record or are built locally. In
+    // annotation mode, files that the record does not hold are built locally; the benchmark stops
+    // instead, so that it never draws test sets of its own in place of the record's.
+    def test_set_name = { dataset, size -> "${dataset}_sub${size}_${strategy}.h5ad".toString() }
+    def context_name = { dataset -> "${dataset}_context.h5ad".toString() }
+    def record_files = zenodoFiles()
+    def on_record = { name -> !annotation_mode || record_files.contains(name) }
+    def drawn_sets = test_set_keys.findAll { it[1] != 'all' }
+    def zenodo_keys = params.download_from_zenodo ?
+        drawn_sets.findAll { dataset, size -> on_record(test_set_name(dataset, size)) } : []
+    def drawn_keys = drawn_sets - zenodo_keys
     def full_keys = test_set_keys.findAll { it[1] == 'all' }
-    def fetch_contexts = context_datasets && params.fetch_context_from_zenodo
-    def build_contexts = context_datasets && !params.fetch_context_from_zenodo
-    def build_datasets = (drawn_keys + full_keys).collect { it[0] } +
-        (build_contexts ? context_datasets : [])
-    checkZenodoFiles(
-        zenodo_keys.collect { "${it[0]}_sub${it[1]}_${strategy}.h5ad".toString() } +
-        (fetch_contexts ? context_datasets.collect { "${it}_context.h5ad".toString() } : []))
+    def fetched_contexts = params.fetch_context_from_zenodo ?
+        context_datasets.findAll { on_record(context_name(it)) } : []
+    def built_contexts = context_datasets - fetched_contexts
+    def build_datasets = (drawn_keys + full_keys).collect { it[0] } + built_contexts
+    checkZenodoFiles(zenodo_keys.collect { dataset, size -> test_set_name(dataset, size) } +
+                     fetched_contexts.collect(context_name))
+    def not_on_record = (params.download_from_zenodo ?
+        drawn_keys.collect { dataset, size -> test_set_name(dataset, size) } : []) +
+        (params.fetch_context_from_zenodo ? built_contexts.collect(context_name) : [])
+    if (not_on_record) {
+        log.info "Not on the Zenodo record, so built locally: ${not_on_record.join(', ')}"
+    }
 
     // Full datasets, only where a test set or a clustering sample is built locally.
     raw = Channel.fromList(build_datasets.unique())
@@ -152,17 +169,14 @@ workflow ANNOTATE {
             .map { k, table, dataset, size, file -> tuple(dataset, size, file, table) })
 
     // Additional inputs of some methods.
-    if (fetch_contexts) {
-        contexts = fetch_context(Channel.fromList(context_datasets).map { dataset ->
-            tuple(dataset, labelKey(dataset), manifest) })
-    } else {
-        build_context(
-            Channel.fromList(build_contexts ? context_datasets : [])
-                .combine(preprocessed, by: 0)
-                .combine(test_sets.filter { it[1] != 'all' }.map { dataset, size, file -> tuple(dataset, file) }.groupTuple(), by: 0)
-                .map { dataset, full, sets -> tuple(dataset, full, sets, labelKey(dataset)) })
-        contexts = build_context.out.context
-    }
+    fetched_samples = fetch_context(Channel.fromList(fetched_contexts).map { dataset ->
+        tuple(dataset, labelKey(dataset), manifest) })
+    build_context(
+        Channel.fromList(built_contexts)
+            .combine(preprocessed, by: 0)
+            .combine(test_sets.filter { it[1] != 'all' }.map { dataset, size, file -> tuple(dataset, file) }.groupTuple(), by: 0)
+            .map { dataset, full, sets -> tuple(dataset, full, sets, labelKey(dataset)) })
+    contexts = fetched_samples.mix(build_context.out.context)
     none = Channel.of(tuple('none', []))
     clusters = cluster_cells(
         Channel.fromList(cluster_keys).map { dataset, size -> tuple(key(dataset, size), dataset, size) }

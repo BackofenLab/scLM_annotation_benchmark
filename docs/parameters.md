@@ -19,7 +19,7 @@ Every parameter has one place:
 | `subset_sizes` | `[1000, 10000]` | cells per test set; a method can set a maximum (`max_subset_size`) |
 | `subset_strategy` | `stratified` | `stratified` keeps the proportions of the cell types, `random` samples cells |
 | `min_cells_per_type` | `20` | a stratified test set holds at least this many cells of every type; rarer types are left out |
-| `download_from_zenodo` | `true` | fetch the test sets from Zenodo (`datasets/zenodo_manifest.yml`) instead of building them |
+| `download_from_zenodo` | `true` | fetch the test sets from Zenodo (`datasets/zenodo_manifest.yml`) instead of building them; `annotate.nf` builds those that the record does not hold, `main.nf` stops |
 | `annotation_subset_size` | `null` | `annotate.nf` only: cells to annotate per dataset; `null` annotates all cells |
 | `fetch_context_from_zenodo` | `true` | the same for the clustering samples of scType and SCSA |
 | `context_max_size` | `100000` | cells in a clustering sample; the whole dataset if it is smaller |
