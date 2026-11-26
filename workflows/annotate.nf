@@ -119,11 +119,12 @@ workflow ANNOTATE {
         contexts = fetch_context(Channel.fromList(context_datasets).map { dataset ->
             tuple(dataset, datasetConfig(dataset).annotation_key, manifest) })
     } else {
-        contexts = build_context(
+        build_context(
             Channel.fromList(build_contexts ? context_datasets : [])
                 .combine(preprocessed, by: 0)
                 .combine(test_sets.filter { it[1] != 'all' }.map { dataset, size, file -> tuple(dataset, file) }.groupTuple(), by: 0)
                 .map { dataset, full, sets -> tuple(dataset, full, sets, datasetConfig(dataset).annotation_key) })
+        contexts = build_context.out.context
     }
     none = Channel.of(tuple('none', []))
     clusters = cluster_cells(

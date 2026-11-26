@@ -128,7 +128,8 @@ process orthologize {
 }
 
 // Clustering sample for the methods that annotate clusters: cells of the full dataset, up to
-// context_max_size, that include every cell of the dataset's test sets.
+// context_max_size, that include every cell of the dataset's test sets. The table of the cells
+// per type in the dataset, the test sets and the sample is kept beside it.
 process build_context {
     container params.container_image
     conda "${projectDir}/envs/download.yml"
@@ -139,7 +140,8 @@ process build_context {
     tuple val(dataset), path(preprocessed), path(test_sets), val(annotation_key)
 
     output:
-    tuple val(dataset), path("${dataset}_context.h5ad")
+    tuple val(dataset), path("${dataset}_context.h5ad"), emit: context
+    path("${dataset}_context_qc.csv"), emit: qc
 
     script:
     """

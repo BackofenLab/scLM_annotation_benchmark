@@ -176,9 +176,10 @@ def random_subset(
     return subset, pd.DataFrame(qc_rows)
 
 
-def plot_subset_qc(qc_df: pd.DataFrame, dataset: str, subset_size: int, pdf_path: Path):
+def plot_subset_qc(qc_df: pd.DataFrame, dataset: str, subset_size: int, min_cells_per_type: int,
+                   pdf_path: Path):
     """Write bar plots of the cell type counts and proportions in the dataset and the subset, and
-    of the dropped types, to pdf_path."""
+    of the types dropped for having fewer than min_cells_per_type cells, to pdf_path."""
     set_pub_style()
 
     kept = qc_df[~qc_df["dropped"]].copy()
@@ -241,11 +242,11 @@ def plot_subset_qc(qc_df: pd.DataFrame, dataset: str, subset_size: int, pdf_path
             fig, ax = plt.subplots(figsize=(max(6, len(dropped) * 0.5), 4))
             ax.barh(dropped["cell_type"], dropped["original_count"], color="#e15759")
             ax.axvline(
-                x=MIN_CELLS_PER_TYPE,
+                x=min_cells_per_type,
                 color="black",
                 linestyle="--",
                 linewidth=1,
-                label=f"Minimum threshold ({MIN_CELLS_PER_TYPE})",
+                label=f"Minimum threshold ({min_cells_per_type})",
             )
             ax.set_xlabel("Original cell count")
             ax.set_title(f"{dataset} - Dropped cell types (below minimum)")
@@ -352,7 +353,7 @@ def main():
     logger.info("QC CSV written: %s", csv_path)
 
     pdf_path = args.qc_dir / f"subset_qc_plots_{args.strategy}.pdf"
-    plot_subset_qc(qc_df, args.dataset, args.subset_size, pdf_path)
+    plot_subset_qc(qc_df, args.dataset, args.subset_size, args.min_cells_per_type, pdf_path)
     logger.info("QC plots written: %s", pdf_path)
 
     n_kept = (~qc_df["dropped"]).sum()
