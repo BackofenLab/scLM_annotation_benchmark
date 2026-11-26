@@ -1,13 +1,14 @@
-// Processes that provide the test sets and the additional inputs of some methods.
+// Processes that provide the test sets and the additional inputs of some methods. Data built
+// here are kept in a cache folder named after the fingerprint of their settings (settings_id).
 
 process download {
     container params.container_image
     conda "${projectDir}/envs/download.yml"
-    storeDir "${params.cache_dir}/datasets/raw"
+    storeDir { "${params.cache_dir}/datasets/raw/${settings_id}" }
     tag { dataset }
 
     input:
-    tuple val(dataset), path(dataset_cfg)
+    tuple val(dataset), path(dataset_cfg), val(settings_id)
 
     output:
     tuple val(dataset), path("${dataset}_raw.h5ad")
@@ -22,7 +23,7 @@ process download {
 process preprocess {
     container params.container_image
     conda "${projectDir}/envs/download.yml"
-    storeDir "${params.cache_dir}/datasets/preprocessed"
+    storeDir { "${params.cache_dir}/datasets/preprocessed/${settings_id}" }
     // The gene annotation service that maps symbols to Ensembl ids fails now and then.
     errorStrategy 'retry'
     maxRetries 2
@@ -30,7 +31,7 @@ process preprocess {
 
     input:
     tuple val(dataset), path(raw_file), path(dataset_cfg), val(annotation_key), val(map_labels),
-          val(labels_optional), val(organism), val(biomart_species)
+          val(labels_optional), val(organism), val(biomart_species), val(settings_id)
     val cache_dir
     val mappings
     val append
@@ -61,11 +62,11 @@ process preprocess {
 process subset {
     container params.container_image
     conda "${projectDir}/envs/download.yml"
-    storeDir "${params.cache_dir}/datasets/subset"
+    storeDir { "${params.cache_dir}/datasets/subset/${settings_id}" }
     tag { "${dataset} ${size}" }
 
     input:
-    tuple val(dataset), val(size), path(preprocessed), val(annotation_key)
+    tuple val(dataset), val(size), path(preprocessed), val(annotation_key), val(settings_id)
     val cache_dir
 
     output:
@@ -112,15 +113,16 @@ process fetch_test_set {
     """
 }
 
-// Test set with its genes replaced by their one-to-one human orthologs.
+// Test set with its genes replaced by their one-to-one human orthologs, kept beside the test set
+// (no settings_id for a test set from the Zenodo record).
 process orthologize {
     container params.container_image
     conda "${projectDir}/envs/download.yml"
-    storeDir "${params.cache_dir}/datasets/subset"
+    storeDir { "${params.cache_dir}/datasets/subset" + (settings_id ? "/${settings_id}" : '') }
     tag { "${dataset} ${size}" }
 
     input:
-    tuple val(dataset), val(size), path(test_set), path(orthologs)
+    tuple val(dataset), val(size), path(test_set), path(orthologs), val(settings_id)
 
     output:
     tuple val(dataset), val(size), path("${test_set.baseName}_human_orthologs.h5ad")
@@ -139,11 +141,11 @@ process orthologize {
 process build_context {
     container params.container_image
     conda "${projectDir}/envs/download.yml"
-    storeDir "${params.cache_dir}/datasets/context"
+    storeDir { "${params.cache_dir}/datasets/context/${settings_id}" }
     tag { dataset }
 
     input:
-    tuple val(dataset), path(preprocessed), path(test_sets), val(annotation_key)
+    tuple val(dataset), path(preprocessed), path(test_sets), val(annotation_key), val(settings_id)
 
     output:
     tuple val(dataset), path("${dataset}_context.h5ad"), emit: context

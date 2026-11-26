@@ -101,8 +101,11 @@ from your own data:
 - Normalization and log transform are skipped if the data look done already: a matrix without
   negative values and with a maximum below 100 counts as log-transformed, which raw counts of very
   shallow data can also be.
-- Preprocessed data and test sets are cached under the dataset's name. After changing a value,
-  delete the dataset's files in `cache/datasets/preprocessed/` and `cache/datasets/subset/`.
+- Downloads, preprocessed data, drawn test sets and clustering samples are cached in
+  `cache/datasets/`, in folders named after a fingerprint of the settings they depend on, so a
+  changed value builds new files. The prediction store notes these settings for every run
+  (`data_settings.json`); after a change, a run with stored predictions stops and names the
+  folders to delete.
 
 Inputs of single methods: `celltypist_model` (CellTypist, default `Immune_All_High.pkl`),
 `sctype_tissue` (scType), `scsa_tissue` (SCSA), and for SingleR either a celldex reference

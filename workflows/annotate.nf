@@ -3,7 +3,8 @@
 
 include {
     absolutePath; datasetConfig; labelKey; methodSpec; runSizes; predictionFiles;
-    predictionsDir; storedPredictions; orthologTable; mappingsVersion; speciesNames
+    predictionsDir; storedPredictions; orthologTable; mappingsVersion; speciesNames;
+    storeFolder; localDataFile; dataSettings; fingerprint
 } from '../modules/functions'
 include {
     download; preprocess; subset; fetch_test_set; orthologize; build_context; fetch_context;
@@ -87,6 +88,65 @@ workflow ANNOTATE {
             }
         }
     }
+
+    // Test sets and clustering samples come from the Zenodo record or are built locally. In
+    // annotation mode, files that the record does not hold are built locally; the benchmark stops
+    // instead, so that it never draws test sets of its own in place of the record's.
+    def test_set_name = { dataset, size -> "${dataset}_sub${size}_${strategy}.h5ad".toString() }
+    def context_name = { dataset -> "${dataset}_context.h5ad".toString() }
+    def record_files = zenodoFiles()
+    def on_record = { name -> !annotation_mode || record_files.contains(name) }
+    def test_set_from_record = { dataset, size ->
+        size != 'all' && params.download_from_zenodo && on_record(test_set_name(dataset, size)) }
+    def context_from_record = { dataset ->
+        params.fetch_context_from_zenodo && on_record(context_name(dataset)) }
+
+    // The settings of the data that a run gets. Data built here are cached under the fingerprint
+    // of their settings, and the prediction store notes the settings of each run.
+    def test_set_settings = { dataset, size ->
+        if (test_set_from_record(dataset, size)) {
+            return [zenodo: test_set_name(dataset, size)]
+        }
+        def data = dataSettings(dataset, annotation_mode)
+        return size == 'all' ? data :
+            [data: data, size: size, strategy: strategy, min_cells_per_type: params.min_cells_per_type]
+    }
+    def context_settings = { dataset ->
+        context_from_record(dataset) ? [zenodo: context_name(dataset)] :
+            [data: dataSettings(dataset, annotation_mode), max_size: params.context_max_size,
+             min_cells_per_type: params.context_min_cells_per_type,
+             test_sets: [from_zenodo: params.download_from_zenodo,
+                         min_cells_per_type: params.min_cells_per_type]]
+    }
+    def run_settings = { method, dataset, size ->
+        def needed = methodSpec(method).needs
+        def settings = [test_set: test_set_settings(dataset, size)]
+        if (size != 'all' && (needed.clustering_context || needed.clusters)) {
+            settings.clustering_sample = context_settings(dataset)
+        }
+        if (needed.clusters) {
+            settings.clustering = params.subMap(params.keySet().findAll { it.startsWith('cluster_') }) +
+                datasetConfig(dataset).subMap(['batch_key', 'cluster_key'])
+        }
+        if (method.endsWith('_constrained') && listed(dataset)) {
+            settings.expected_cell_types = listed(dataset)
+        }
+        return groovy.json.JsonOutput.toJson(settings)
+    }
+
+    // Stored predictions fit only the data they were made on: the run stops where the store notes
+    // other settings than the current ones. A store without a note is taken as it is.
+    def changed = runs.findAll { method, dataset, size ->
+        def note = new File(storeFolder(method, dataset, size), 'data_settings.json')
+        note.exists() && note.text.trim() != run_settings(method, dataset, size)
+    }
+    if (changed) {
+        error "These stored predictions were made on data with other settings than the current " +
+              "ones (data_settings.json in each folder): " +
+              changed.collect { method, dataset, size -> storeFolder(method, dataset, size) }.join(', ') +
+              ". Delete the folders to run the methods again, or restore the settings."
+    }
+
     def stored = runs.findAll { method, dataset, size -> storedPredictions(method, dataset, size) }
     def pending = runs - stored
     log.info "${runs.size()} runs: ${stored.size()} with stored predictions, ${pending.size()} to run"
@@ -107,20 +167,11 @@ workflow ANNOTATE {
         .collect { it[1] }.unique()
     def constraint_keys = pending.findAll { needs(it, 'label_constraint') }.collect { it[1..2] }.unique()
 
-    // Test sets and clustering samples come from the Zenodo record or are built locally. In
-    // annotation mode, files that the record does not hold are built locally; the benchmark stops
-    // instead, so that it never draws test sets of its own in place of the record's.
-    def test_set_name = { dataset, size -> "${dataset}_sub${size}_${strategy}.h5ad".toString() }
-    def context_name = { dataset -> "${dataset}_context.h5ad".toString() }
-    def record_files = zenodoFiles()
-    def on_record = { name -> !annotation_mode || record_files.contains(name) }
     def drawn_sets = test_set_keys.findAll { it[1] != 'all' }
-    def zenodo_keys = params.download_from_zenodo ?
-        drawn_sets.findAll { dataset, size -> on_record(test_set_name(dataset, size)) } : []
+    def zenodo_keys = drawn_sets.findAll { dataset, size -> test_set_from_record(dataset, size) }
     def drawn_keys = drawn_sets - zenodo_keys
     def full_keys = test_set_keys.findAll { it[1] == 'all' }
-    def fetched_contexts = params.fetch_context_from_zenodo ?
-        context_datasets.findAll { on_record(context_name(it)) } : []
+    def fetched_contexts = context_datasets.findAll { context_from_record(it) }
     def built_contexts = context_datasets - fetched_contexts
     def build_datasets = (drawn_keys + full_keys).collect { it[0] } + built_contexts
     checkZenodoFiles(zenodo_keys.collect { dataset, size -> test_set_name(dataset, size) } +
@@ -138,20 +189,17 @@ workflow ANNOTATE {
             local: datasetConfig(dataset).path
             remote: true
         }
-    downloaded = download(raw.remote.map { dataset -> tuple(dataset, file("${projectDir}/datasets/${dataset}.yml")) })
-    // A local file, given as an absolute path or relative to the repository.
-    local_files = raw.local.map { dataset ->
-        def path = datasetConfig(dataset).path.toString()
-        tuple(dataset, file(new File(path).isAbsolute() ? path : "${projectDir}/${path}")) }
+    downloaded = download(raw.remote.map { dataset ->
+        tuple(dataset, file("${projectDir}/datasets/${dataset}.yml"),
+              fingerprint(dataSettings(dataset, annotation_mode).source)) })
+    local_files = raw.local.map { dataset -> tuple(dataset, file(localDataFile(dataset).path)) }
     // In annotation mode, data without labels get a placeholder label.
     preprocessed = preprocess(
         downloaded.mix(local_files).map { dataset, raw_file ->
-            def cfg = datasetConfig(dataset)
-            def map_labels = cfg.containsKey('apply_ontology_mapping') ? cfg.apply_ontology_mapping : true
-            def names = speciesNames(dataset)
+            def settings = dataSettings(dataset, annotation_mode)
             tuple(dataset, raw_file, file("${projectDir}/datasets/${dataset}.yml"),
-                  labelKey(dataset), map_labels, annotation_mode && !cfg.annotation_key,
-                  names.organism, names.biomart)
+                  settings.annotation_key, settings.apply_ontology_mapping, settings.labels_optional,
+                  settings.organism, settings.species, fingerprint(settings))
         },
         cache_dir, mappings, append)
 
@@ -160,13 +208,15 @@ workflow ANNOTATE {
         tuple(dataset, size, labelKey(dataset), manifest) })
     sampled = subset(
         Channel.fromList(drawn_keys).combine(preprocessed, by: 0).map { dataset, size, file ->
-            tuple(dataset, size, file, labelKey(dataset)) },
+            tuple(dataset, size, file, labelKey(dataset), fingerprint(test_set_settings(dataset, size))) },
         cache_dir)
     test_sets = fetched.mix(sampled).mix(Channel.fromList(full_keys).combine(preprocessed, by: 0))
     ortholog_sets = orthologize(
         Channel.fromList(ortholog_keys).map { dataset, size -> tuple(key(dataset, size), file(orthologTable(dataset))) }
             .combine(test_sets.map { dataset, size, file -> tuple(key(dataset, size), dataset, size, file) }, by: 0)
-            .map { k, table, dataset, size, file -> tuple(dataset, size, file, table) })
+            .map { k, table, dataset, size, file ->
+                tuple(dataset, size, file, table,
+                      test_set_from_record(dataset, size) ? '' : fingerprint(test_set_settings(dataset, size))) })
 
     // Additional inputs of some methods.
     fetched_samples = fetch_context(Channel.fromList(fetched_contexts).map { dataset ->
@@ -175,7 +225,8 @@ workflow ANNOTATE {
         Channel.fromList(built_contexts)
             .combine(preprocessed, by: 0)
             .combine(test_sets.filter { it[1] != 'all' }.map { dataset, size, file -> tuple(dataset, file) }.groupTuple(), by: 0)
-            .map { dataset, full, sets -> tuple(dataset, full, sets, labelKey(dataset)) })
+            .map { dataset, full, sets ->
+                tuple(dataset, full, sets, labelKey(dataset), fingerprint(context_settings(dataset))) })
     contexts = fetched_samples.mix(build_context.out.context)
     none = Channel.of(tuple('none', []))
     clusters = cluster_cells(
@@ -240,7 +291,7 @@ workflow ANNOTATE {
             tuple(run.method, run.dataset, run.size, run.method_dir, run.test_set,
                   file("${projectDir}/datasets/${run.dataset}.yml"), run.context, run.reference,
                   run.constraint, cluster_files, predictionFiles(run.method).join(' '),
-                  listed(run.dataset)) }
+                  listed(run.dataset), run_settings(run.method, run.dataset, run.size)) }
         .branch { run ->
             with_key: methodSpec(run[0]).needs.api_key
             other: true

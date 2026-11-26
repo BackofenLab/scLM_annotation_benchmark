@@ -49,8 +49,9 @@ are terms already. For other labels set `apply_ontology_mapping: true`. On the f
 that are not in the mapping table are added to `resources/cell_type_ontology_mappings.csv` with a
 suggested term and `reviewed` set to `False`. Check the suggestions, correct `chosen_match` where
 needed and set `reviewed` to `True`. The first run has already written the suggested terms
-into the preprocessed data, so delete the dataset's files in `cache/datasets/preprocessed/` and
-`cache/datasets/subset/` before you run again.
+into the preprocessed data, so delete the dataset's preprocessed data and test sets
+(`cache/datasets/preprocessed/*/<name>_pp.h5ad`, `cache/datasets/subset/*/<name>_sub*`) before
+you run again.
 
 ## 4. Run it
 

@@ -65,10 +65,14 @@ def predictionsDir() {
     return absolutePath(params.predictions_dir ?: "${params.outdir}/predictions")
 }
 
+// The folder of a run in the prediction store.
+def storeFolder(String method, String dataset, size) {
+    return "${predictionsDir()}/${method}/${dataset}/${testSetLabel(size)}".toString()
+}
+
 // The stored prediction files of a run, or null if one of them is missing.
 def storedPredictions(String method, String dataset, size) {
-    def dir = "${predictionsDir()}/${method}/${dataset}/${testSetLabel(size)}"
-    def files = predictionFiles(method).collect { new File(dir, it) }
+    def files = predictionFiles(method).collect { new File(storeFolder(method, dataset, size), it) }
     return files.every { it.exists() } ? files.collect { it.path } : null
 }
 
@@ -120,4 +124,38 @@ def environmentFor(String method) {
 def mappingsVersion() {
     def file = new File(absolutePath(params.mappings))
     return file.exists() ? file.bytes.md5() : 'none'
+}
+
+// The data file of a dataset that is not downloaded (path, absolute or relative to the
+// repository), or null.
+def localDataFile(String dataset) {
+    def path = datasetConfig(dataset).path?.toString()
+    if (!path) {
+        return null
+    }
+    return new File(path).isAbsolute() ? new File(path) : new File("${projectDir}/${path}")
+}
+
+// The settings that the preprocessed data of a dataset depend on: where the data come from (a
+// local file by path, size and modification time) and how they are preprocessed.
+def dataSettings(String dataset, boolean annotation_mode) {
+    def cfg = datasetConfig(dataset)
+    def local = localDataFile(dataset)
+    def names = speciesNames(dataset)
+    return [
+        source: local ? [path: local.path, size: local.length(), modified: local.lastModified()] :
+            cfg.subMap(['source', 'census_dataset_id', 'census_version', 'url']),
+        preprocessing: cfg.preprocessing ?: [:],
+        annotation_key: labelKey(dataset),
+        apply_ontology_mapping: cfg.containsKey('apply_ontology_mapping') ? cfg.apply_ontology_mapping : true,
+        labels_optional: annotation_mode && !cfg.annotation_key,
+        organism: names.organism,
+        species: names.biomart,
+    ]
+}
+
+// A short fingerprint of settings. Cached data are kept in a folder named after the fingerprint
+// of the settings they depend on, so that changed settings build new files.
+def fingerprint(settings) {
+    return groovy.json.JsonOutput.toJson(settings).md5().take(12)
 }

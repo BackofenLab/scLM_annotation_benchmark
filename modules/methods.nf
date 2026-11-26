@@ -2,17 +2,22 @@
 
 include { containerFor; environmentFor; methodSpec; testSetLabel } from './functions'
 
+// A text as one single-quoted shell word.
+def shellQuoted(text) {
+    return "'" + text.toString().replace("'", "'\\''") + "'"
+}
+
 // Shell command that writes a dataset's own list of expected cell types to
 // expected_cell_types.txt, one name per line; empty without a list.
 def listedFile(listed) {
-    def quoted = listed.collect { "'" + it.replace("'", "'\\''") + "'" }.join(' ')
-    return listed ? "printf '%s\\n' ${quoted} > expected_cell_types.txt" : ''
+    return listed ? "printf '%s\\n' ${listed.collect { shellQuoted(it) }.join(' ')} > expected_cell_types.txt" : ''
 }
 
-// Shell script of a method run. Prediction files that the store already holds are passed to
-// the method, which skips them, and all prediction files are copied to the store afterwards.
+// Shell script of a method run. The store notes the settings of the data the run gets
+// (data_settings.json). Prediction files that the store already holds are passed to the method,
+// which skips them, and all prediction files are copied to the store afterwards.
 def methodScript(method, method_dir, dataset, size, test_set, dataset_cfg, context, reference,
-                 constraint, cluster_files, expected, listed, store, cache_dir) {
+                 constraint, cluster_files, expected, listed, data_settings, store, cache_dir) {
     def exports = [
         context    ? "export CONTEXT_H5AD=\"\$(realpath ${context})\"" : '',
         reference  ? "export SINGLER_REF_H5AD=\"\$(realpath ${reference})\"" : '',
@@ -27,6 +32,7 @@ def methodScript(method, method_dir, dataset, size, test_set, dataset_cfg, conte
     set -euo pipefail
     store="${store}/${method}/${dataset}/${testSetLabel(size)}"
     mkdir -p out "\$store" "${cache_dir}/models"
+    printf '%s\\n' ${shellQuoted(data_settings)} > "\$store/data_settings.json"
     export METHOD_DIR="\$(realpath ${method_dir})"
     ${exports}
     for f in ${expected}; do
@@ -103,7 +109,7 @@ process run_method {
     input:
     tuple val(method), val(dataset), val(size), path(method_dir), path(test_set),
           path(dataset_cfg), path(context), path(reference), path(constraint),
-          path(cluster_files), val(expected), val(listed)
+          path(cluster_files), val(expected), val(listed), val(data_settings)
     val store
     val cache_dir
 
@@ -112,7 +118,7 @@ process run_method {
 
     script:
     methodScript(method, method_dir, dataset, size, test_set, dataset_cfg, context, reference,
-                 constraint, cluster_files, expected, listed, store, cache_dir)
+                 constraint, cluster_files, expected, listed, data_settings, store, cache_dir)
 }
 
 // The same for methods that call the OpenRouter API. The key is a Nextflow secret, so it is
@@ -126,7 +132,7 @@ process run_method_with_key {
     input:
     tuple val(method), val(dataset), val(size), path(method_dir), path(test_set),
           path(dataset_cfg), path(context), path(reference), path(constraint),
-          path(cluster_files), val(expected), val(listed)
+          path(cluster_files), val(expected), val(listed), val(data_settings)
     val store
     val cache_dir
 
@@ -136,5 +142,5 @@ process run_method_with_key {
     script:
     'export API_KEY="$OPENROUTER_API_KEY"\n' + methodScript(
         method, method_dir, dataset, size, test_set, dataset_cfg, context, reference, constraint,
-        cluster_files, expected, listed, store, cache_dir)
+        cluster_files, expected, listed, data_settings, store, cache_dir)
 }

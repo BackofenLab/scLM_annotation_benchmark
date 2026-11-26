@@ -80,8 +80,10 @@ lists have to go into a parameter file. All parameters are described in
 
 Predictions are stored in `<outdir>/predictions/` (or in `--predictions_dir`). When the predictions
 of a run already exist, the method is not run again and only mapping and scoring are repeated. To
-rerun a method, delete its predictions. A run that fails in every attempt is left out; the other
-runs go on, and the pipeline ends with an error and a note on how many runs are missing.
+rerun a method, delete its predictions. If the settings of the data have changed since, for
+example the quality control, the pipeline stops and names the predictions that no longer fit. A
+run that fails in every attempt is left out; the other runs go on, and the pipeline ends with an
+error and a note on how many runs are missing.
 
 ### LLMs
 
