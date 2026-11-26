@@ -78,8 +78,18 @@ the files of the paper are the defaults):
 | `ensembl_col`, `gene_names_col` | found automatically | columns of `var` with Ensembl ids and gene symbols |
 | `species` | `hsapiens` | Ensembl BioMart species, used only to map gene symbols to Ensembl ids |
 
-After quality control, counts are normalized and log-transformed, and the genes get Ensembl ids.
-The same steps run in both entry points.
+After quality control, every cell is scaled to 10,000 counts and log-transformed, and the genes
+get Ensembl ids. The same steps run in both entry points. Points to know when you build test sets
+from your own data:
+
+- Mitochondrial genes are recognized by gene symbols starting with `MT-` in the index of `var`. If
+  the index holds Ensembl ids, the mitochondrial criteria have no effect.
+- The outlier rule uses log-scaled counts only if `obs` already has `log1p_*` columns.
+- Normalization and log transform are skipped if the data look done already: a matrix without
+  negative values and with a maximum below 100 counts as log-transformed, which raw counts of very
+  shallow data can also be.
+- Preprocessed data and test sets are cached under the dataset's name. After changing a value,
+  delete the dataset's files in `cache/datasets/preprocessed/` and `cache/datasets/subset/`.
 
 Inputs of single methods: `celltypist_model` (CellTypist), `sctype_tissue` (scType),
 `scsa_tissue` (SCSA), and for SingleR either a celldex reference (`singler_reference_source:
