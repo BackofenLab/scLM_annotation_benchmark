@@ -1,318 +1,318 @@
 key,line,label,target,origin
 activated t cell,27654,activated T cell,cell,A1_llm_percell_HIHA
-activated t cell,27663,activated t cell,cycling T cell,openrouter_LLM_blind_meta-llama--llama-3.1-70b-instruct_HFRA
+activated t cell,27663,activated t cell,cycling T cell,openrouter_LLM_unconstrained_meta-llama--llama-3.1-70b-instruct_HFRA
 alpha,3909,Alpha,cell,A2_base_percell_human_pancreas
 alpha,27695,alpha,pancreatic A cell,human_pancreas
 alpha beta t cell,27698,alpha beta T cell,alpha-beta T cell,A1_llm_percell_HIHA
-alpha beta t cell,27699,alpha beta t cell,mature alpha-beta T cell,openrouter_LLM_blind_openai--gpt-oss-120b_HIHA
+alpha beta t cell,27699,alpha beta t cell,mature alpha-beta T cell,openrouter_LLM_unconstrained_openai--gpt-oss-120b_HIHA
 alpha cells,3911,Alpha cells,cell,A2_base_percell_human_pancreas
-alpha cells,27709,alpha cells,pancreatic A cell,sctype_blind_human_pancreas
+alpha cells,27709,alpha cells,pancreatic A cell,sctype_unconstrained_human_pancreas
 astro,3888,ASTRO,cell,A2_base_percell_Zeisel
-astro,28034,astro,astrocyte,celltypist_blind_Zeisel
+astro,28034,astro,astrocyte,celltypist_unconstrained_Zeisel
 b cells,4170,B Cells,cell,A2_base_percell_HIHA
 b cells,4181,B cells,cell,A2_base_percell_HIHA
-b cells,28085,b cells,B cell,celltypist_blind_HIHA
+b cells,28085,b cells,B cell,celltypist_unconstrained_HIHA
 b lymphocyte,4186,B lymphocyte,cell,A1_llm_percell_HIHA
-b lymphocyte,28091,b lymphocyte,B cell,openrouter_LLM_blind_deepseek--deepseek-v3.2_HIHA
+b lymphocyte,28091,b lymphocyte,B cell,openrouter_LLM_unconstrained_deepseek--deepseek-v3.2_HIHA
 basophils,4244,Basophils,cell,A2_base_percell_HIHA
-basophils,28181,basophils,basophil,sctype_blind_HIHA
+basophils,28181,basophils,basophil,sctype_unconstrained_HIHA
 beta,4255,Beta,cell,A2_base_percell_human_pancreas
 beta,28196,beta,type B pancreatic cell,human_pancreas
 beta cell,4257,Beta Cell,cell,A2_base_percell_human_pancreas
 beta cell,4260,Beta cell,cell,A2_base_percell_human_pancreas
-beta cell,28206,beta cell,type B pancreatic cell,openrouter_LLM_blind_deepseek--deepseek-v3.2_human_pancreas
+beta cell,28206,beta cell,type B pancreatic cell,openrouter_LLM_unconstrained_deepseek--deepseek-v3.2_human_pancreas
 beta cells,4258,Beta Cells,cell,A2_base_percell_human_pancreas
 beta cells,4262,Beta cells,cell,A2_base_percell_human_pancreas
-beta cells,28217,beta cells,type B pancreatic cell,sctype_blind_human_pancreas
+beta cells,28217,beta cells,type B pancreatic cell,sctype_unconstrained_human_pancreas
 blood platelet,4284,Blood Platelet,cell,A2_base_percell_HIHA
-blood platelet,28328,blood platelet,platelet,openrouter_LLM_blind_openai--gpt-oss-20b_HIHA
+blood platelet,28328,blood platelet,platelet,openrouter_LLM_unconstrained_openai--gpt-oss-20b_HIHA
 cancer cells,4921,Cancer cells,cell,A2_base_percell_HFRA
-cancer cells,28434,cancer cells,malignant cell,ucell_blind_Zeisel
+cancer cells,28434,cancer cells,malignant cell,ucell_unconstrained_Zeisel
 cck interneuron,4925,Cck interneuron,cell,A1_llm_percell_Zeisel
-cck interneuron,28453,cck interneuron,GABAergic interneuron,openrouter_LLM_blind_openai--gpt-oss-20b_Zeisel
+cck interneuron,28453,cck interneuron,GABAergic interneuron,openrouter_LLM_unconstrained_openai--gpt-oss-20b_Zeisel
 cck-expressing interneuron,4390,CCK-expressing interneuron,cell,A1_llm_percell_Zeisel
 cck-expressing interneuron,4927,Cck-expressing interneuron,cell,A1_llm_percell_Zeisel
-cck-expressing interneuron,28457,cck-expressing interneuron,GABAergic interneuron,openrouter_LLM_blind_openai--gpt-oss-20b_Zeisel
+cck-expressing interneuron,28457,cck-expressing interneuron,GABAergic interneuron,openrouter_LLM_unconstrained_openai--gpt-oss-20b_Zeisel
 cd16-positive monocyte,4452,CD16-positive monocyte,cell,A1_llm_percell_HIHA
-cd16-positive monocyte,28511,cd16-positive monocyte,"CD14-positive, CD16-positive monocyte",openrouter_LLM_blind_openai--gpt-oss-20b_HFRA
+cd16-positive monocyte,28511,cd16-positive monocyte,"CD14-positive, CD16-positive monocyte",openrouter_LLM_unconstrained_openai--gpt-oss-20b_HFRA
 cd19,4464,CD19,cell,A2_base_percell_HIHA
-cd19,28535,cd19,"B cell, CD19-positive",openrouter_LLM_unblind_meta-llama--llama-3.1-70b-instruct_HIHA
+cd19,28535,cd19,"B cell, CD19-positive",openrouter_LLM_constrained_meta-llama--llama-3.1-70b-instruct_HIHA
 "cd1c-positive myeloid dendritic cell, human",4475,"CD1c-positive myeloid dendritic cell, human",cell,A2_base_percell_HIHA
-"cd1c-positive myeloid dendritic cell, human",28546,"cd1c-positive myeloid dendritic cell, human",myeloid dendritic cell,c2s_scale_27B_unblind_HIHA
+"cd1c-positive myeloid dendritic cell, human",28546,"cd1c-positive myeloid dendritic cell, human",myeloid dendritic cell,c2s_scale_27B_constrained_HIHA
 cd4 t cell,4502,CD4 T Cell,cell,A2_base_percell_HIHA
 cd4 t cell,4503,CD4 T cell,cell,A2_base_percell_HIHA
-cd4 t cell,28575,cd4 t cell,"CD4-positive, alpha-beta T cell",openrouter_LLM_blind_openai--gpt-oss-20b_HIHA
+cd4 t cell,28575,cd4 t cell,"CD4-positive, alpha-beta T cell",openrouter_LLM_unconstrained_openai--gpt-oss-20b_HIHA
 cd4+ memory t cell,4521,CD4+ memory T Cell,cell,A2_base_percell_HIHA
 cd4+ memory t cell,4522,CD4+ memory T cell,cell,A2_base_percell_HIHA
-cd4+ memory t cell,28587,cd4+ memory t cell,"CD4-positive, alpha-beta memory T cell",openrouter_LLM_blind_openai--gpt-oss-20b_HIHA
+cd4+ memory t cell,28587,cd4+ memory t cell,"CD4-positive, alpha-beta memory T cell",openrouter_LLM_unconstrained_openai--gpt-oss-20b_HIHA
 cd4+ t cell,4516,CD4+ T cell,cell,A1_llm_percell_HIHA
-cd4+ t cell,28591,cd4+ t cell,"CD4-positive, alpha-beta memory T cell",scsa_blind_HIHA
+cd4+ t cell,28591,cd4+ t cell,"CD4-positive, alpha-beta memory T cell",scsa_unconstrained_HIHA
 cd4+ t cells,4515,CD4+ T Cells,cell,A2_base_percell_HIHA
 cd4+ t cells,4518,CD4+ T cells,cell,A2_base_percell_HIHA
-cd4+ t cells,28599,cd4+ t cells,"CD4-positive, alpha-beta T cell",singler_blind
+cd4+ t cells,28599,cd4+ t cells,"CD4-positive, alpha-beta T cell",singler_unconstrained
 cd4-positive alpha-beta t cell,4534,CD4-positive alpha-beta T cell,"CD4-positive, alpha-beta T cell",A1_llm_percell_HIHA
-cd4-positive alpha-beta t cell,28607,cd4-positive alpha-beta t cell,"activated CD4-positive, alpha-beta T cell",openrouter_LLM_blind_google--gemini-3.1-pro-preview_HIHA
+cd4-positive alpha-beta t cell,28607,cd4-positive alpha-beta t cell,"activated CD4-positive, alpha-beta T cell",openrouter_LLM_unconstrained_google--gemini-3.1-pro-preview_HIHA
 cd4-positive t cell,4533,CD4-positive T cell,cell,A2_base_percell_HIHA
-cd4-positive t cell,28616,cd4-positive t cell,"CD4-positive, alpha-beta T cell",openrouter_LLM_blind_openai--gpt-oss-20b_HIHA
+cd4-positive t cell,28616,cd4-positive t cell,"CD4-positive, alpha-beta T cell",openrouter_LLM_unconstrained_openai--gpt-oss-20b_HIHA
 "cd4-positive, alpha-beta naive t cell",4560,"CD4-positive, alpha-beta naive T cell",cell,A1_llm_percell_HIHA
-"cd4-positive, alpha-beta naive t cell",28637,"cd4-positive, alpha-beta naive t cell","naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_blind_openai--gpt-oss-120b_HIHA
+"cd4-positive, alpha-beta naive t cell",28637,"cd4-positive, alpha-beta naive t cell","naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_unconstrained_openai--gpt-oss-120b_HIHA
 cd8 t cell,4606,CD8 T cell,cell,A2_base_percell_HIHA
-cd8 t cell,28699,cd8 t cell,"CD8-positive, alpha-beta T cell",openrouter_LLM_blind_meta-llama--llama-3.1-70b-instruct_HIHA
+cd8 t cell,28699,cd8 t cell,"CD8-positive, alpha-beta T cell",openrouter_LLM_unconstrained_meta-llama--llama-3.1-70b-instruct_HIHA
 cd8+ cytotoxic t cell,4614,CD8+ cytotoxic T cell,cell,A1_llm_percell_HIHA
-cd8+ cytotoxic t cell,28705,cd8+ cytotoxic t cell,"CD8-positive, alpha-beta cytotoxic T cell",openrouter_LLM_blind_openai--gpt-oss-20b_HIHA
+cd8+ cytotoxic t cell,28705,cd8+ cytotoxic t cell,"CD8-positive, alpha-beta cytotoxic T cell",openrouter_LLM_unconstrained_openai--gpt-oss-20b_HIHA
 cd8+ t cell,4609,CD8+ T cell,cell,A2_base_percell_HIHA
-cd8+ t cell,28710,cd8+ t cell,"CD8-positive, alpha-beta memory T cell",scsa_blind_HIHA
+cd8+ t cell,28710,cd8+ t cell,"CD8-positive, alpha-beta memory T cell",scsa_unconstrained_HIHA
 cd8-positive cytotoxic t cell,4619,CD8-positive cytotoxic T cell,cell,A1_llm_percell_HIHA
-cd8-positive cytotoxic t cell,28719,cd8-positive cytotoxic t cell,"CD8-positive, alpha-beta cytotoxic T cell",openrouter_LLM_blind_openai--gpt-oss-20b_HIHA
+cd8-positive cytotoxic t cell,28719,cd8-positive cytotoxic t cell,"CD8-positive, alpha-beta cytotoxic T cell",openrouter_LLM_unconstrained_openai--gpt-oss-20b_HIHA
 cd8-positive t cell,4618,CD8-positive T cell,cell,A2_base_percell_HIHA
-cd8-positive t cell,28720,cd8-positive t cell,"CD8-positive, alpha-beta T cell",openrouter_LLM_blind_openai--gpt-oss-20b_HIHA
+cd8-positive t cell,28720,cd8-positive t cell,"CD8-positive, alpha-beta T cell",openrouter_LLM_unconstrained_openai--gpt-oss-20b_HIHA
 "cd8-positive, cytotoxic t cell",4645,"CD8-positive, cytotoxic T cell",cell,A1_llm_percell_HIHA
-"cd8-positive, cytotoxic t cell",28754,"cd8-positive, cytotoxic t cell","CD8-positive, alpha-beta cytotoxic T cell",openrouter_LLM_blind_openai--gpt-oss-20b_HIHA
+"cd8-positive, cytotoxic t cell",28754,"cd8-positive, cytotoxic t cell","CD8-positive, alpha-beta cytotoxic T cell",openrouter_LLM_unconstrained_openai--gpt-oss-20b_HIHA
 cd8aa,4653,CD8aa,CD8aa(I) thymocyte,HIHA
 cd8aa,28761,cd8aa,cell,A2_base_percell_HIHA
 central memory t cell,6596,Central memory T cell,cell,A2_base_percell_HIHA
-central memory t cell,31495,central memory t cell,memory T cell,openrouter_LLM_blind_deepseek--deepseek-v3.2_HIHA
+central memory t cell,31495,central memory t cell,memory T cell,openrouter_LLM_unconstrained_deepseek--deepseek-v3.2_HIHA
 delta,6686,Delta,cell,A2_base_percell_human_pancreas
-delta,31906,delta,pancreatic D cell,celltypist_blind_human_pancreas
+delta,31906,delta,pancreatic D cell,celltypist_unconstrained_human_pancreas
 delta cell,6687,Delta cell,cell,A2_base_percell_human_pancreas
-delta cell,31913,delta cell,pancreatic D cell,openrouter_LLM_blind_anthropic--claude-opus-4.7_human_pancreas
+delta cell,31913,delta cell,pancreatic D cell,openrouter_LLM_unconstrained_anthropic--claude-opus-4.7_human_pancreas
 effector memory cd4+ t cell,32369,effector memory CD4+ T cell,cell,A1_llm_percell_HIHA
-effector memory cd4+ t cell,32387,effector memory cd4+ t cell,"effector memory CD4-positive, alpha-beta T cell",openrouter_LLM_blind_openai--gpt-oss-120b_HIHA
+effector memory cd4+ t cell,32387,effector memory cd4+ t cell,"effector memory CD4-positive, alpha-beta T cell",openrouter_LLM_unconstrained_openai--gpt-oss-120b_HIHA
 effector memory t cell,32384,effector memory T cell,cell,A1_llm_percell_HIHA
-effector memory t cell,32403,effector memory t cell,memory T cell,openrouter_LLM_blind_anthropic--claude-sonnet-4.6_HIHA
+effector memory t cell,32403,effector memory t cell,memory T cell,openrouter_LLM_unconstrained_anthropic--claude-sonnet-4.6_HIHA
 endothelial cells,7038,Endothelial cells,cell,A2_base_percell_HIHA
-endothelial cells,32529,endothelial cells,endothelial cell,sctype_blind_human_pancreas
+endothelial cells,32529,endothelial cells,endothelial cell,sctype_unconstrained_human_pancreas
 enteric glia,8193,Enteric glia,type I enteric glial cell,Zeisel
 enteric glia,33719,enteric glia,enteroglial cell,random_uniform_Zeisel
 enteric glial cell,8214,Enteric glial cell,cell,A2_base_percell_Zeisel
-enteric glial cell,33741,enteric glial cell,enteroglial cell,openrouter_LLM_blind_openai--gpt-5.5_Zeisel
+enteric glial cell,33741,enteric glial cell,enteroglial cell,openrouter_LLM_unconstrained_openai--gpt-5.5_Zeisel
 enteric neurons,8226,Enteric neurons,enteric neuron,Zeisel
 enteric neurons,33768,enteric neurons,cell,A2_base_percell_Zeisel
 ependymal cells,8257,Ependymal Cells,cell,A2_base_percell_Zeisel
 ependymal cells,8260,Ependymal cells,ependymal cell,Zeisel
 ependymal cells,33830,ependymal cells,cell,A2_base_percell_Zeisel
 epithelial cells,8267,Epithelial Cells,cell,A2_base_percell_HFRA
-epithelial cells,33879,epithelial cells,epithelial cell,singler_blind
+epithelial cells,33879,epithelial cells,epithelial cell,singler_unconstrained
 epsilon,8280,Epsilon,cell,A2_base_percell_human_pancreas
-epsilon,33890,epsilon,pancreatic epsilon cell,langcell_unblind_human_pancreas
+epsilon,33890,epsilon,pancreatic epsilon cell,langcell_constrained_human_pancreas
 epsilon cell,8281,Epsilon cell,cell,A1_llm_percell_human_pancreas
 epsilon cell,33893,epsilon Cell,cell,A2_base_percell_human_pancreas
-epsilon cell,33897,epsilon cell,pancreatic epsilon cell,openrouter_LLM_blind_anthropic--claude-opus-4.7_human_pancreas
+epsilon cell,33897,epsilon cell,pancreatic epsilon cell,openrouter_LLM_unconstrained_anthropic--claude-opus-4.7_human_pancreas
 gamma cell,10599,Gamma Cell,cell,A2_base_percell_human_pancreas
-gamma cell,36274,gamma cell,pancreatic PP cell,scsa_blind_human_pancreas
+gamma cell,36274,gamma cell,pancreatic PP cell,scsa_unconstrained_human_pancreas
 granulocytes,10782,Granulocytes,cell,A2_base_percell_HIHA
-granulocytes,36516,granulocytes,granulocyte,ucell_blind_HIHA
+granulocytes,36516,granulocytes,granulocyte,ucell_unconstrained_HIHA
 horizontal cell,11064,Horizontal cell,cell,A2_base_percell_HFRA
-horizontal cell,36806,horizontal cell,retina horizontal cell,openrouter_LLM_blind_deepseek--deepseek-v3.2_HFRA
+horizontal cell,36806,horizontal cell,retina horizontal cell,openrouter_LLM_unconstrained_deepseek--deepseek-v3.2_HFRA
 l cell,13630,L cell,cell,A1_llm_percell_human_pancreas
-l cell,39559,l cell,enteroendocrine cell,openrouter_LLM_blind_deepseek--deepseek-v3.2_human_pancreas
+l cell,39559,l cell,enteroendocrine cell,openrouter_LLM_unconstrained_deepseek--deepseek-v3.2_human_pancreas
 l2/3 it lamp5 interneuron,13631,L2/3 IT LAMP5 interneuron,cell,A1_llm_percell_Zeisel
-l2/3 it lamp5 interneuron,39566,l2/3 it lamp5 interneuron,lamp5 GABAergic interneuron,openrouter_LLM_blind_openai--gpt-oss-120b_HFRA
+l2/3 it lamp5 interneuron,39566,l2/3 it lamp5 interneuron,lamp5 GABAergic interneuron,openrouter_LLM_unconstrained_openai--gpt-oss-120b_HFRA
 macrophages,14165,Macrophages,cell,A2_base_percell_HFRA
-macrophages,39971,macrophages,macrophage,singler_blind
+macrophages,39971,macrophages,macrophage,singler_unconstrained
 memory b cells,14223,Memory B cells,cell,A2_base_percell_HIHA
-memory b cells,40390,memory b cells,memory B cell,ucell_blind_HIHA
+memory b cells,40390,memory b cells,memory B cell,ucell_unconstrained_HIHA
 memory cd4 t cell,14226,Memory CD4 T cell,"CD4-positive, alpha-beta memory T cell",HIHA
 memory cd4 t cell,40367,memory CD4 T cell,cell,A1_llm_percell_HIHA
-memory cd4 t cell,40394,memory cd4 t cell,"CD4-positive, alpha-beta memory T cell",openrouter_LLM_blind_openai--gpt-oss-20b_HIHA
+memory cd4 t cell,40394,memory cd4 t cell,"CD4-positive, alpha-beta memory T cell",openrouter_LLM_unconstrained_openai--gpt-oss-20b_HIHA
 memory cd4+ t cell,14227,Memory CD4+ T cell,cell,A2_base_percell_HIHA
 memory cd4+ t cell,40369,memory CD4+ T cell,cell,A1_llm_percell_HIHA
-memory cd4+ t cell,40398,memory cd4+ t cell,"CD4-positive, alpha-beta memory T cell",openrouter_LLM_blind_openai--gpt-oss-120b_HIHA
+memory cd4+ t cell,40398,memory cd4+ t cell,"CD4-positive, alpha-beta memory T cell",openrouter_LLM_unconstrained_openai--gpt-oss-120b_HIHA
 "memory cd4-positive, alpha-beta t cell",14229,"Memory CD4-positive, alpha-beta T cell",cell,A2_base_percell_HIHA
 "memory cd4-positive, alpha-beta t cell",40373,"memory CD4-positive, alpha-beta T cell",cell,A1_llm_percell_HIHA
-"memory cd4-positive, alpha-beta t cell",40401,"memory cd4-positive, alpha-beta t cell","CD4-positive, alpha-beta memory T cell",openrouter_LLM_blind_anthropic--claude-opus-4.7_HIHA
+"memory cd4-positive, alpha-beta t cell",40401,"memory cd4-positive, alpha-beta t cell","CD4-positive, alpha-beta memory T cell",openrouter_LLM_unconstrained_anthropic--claude-opus-4.7_HIHA
 "memory cd4-positive, alpha‑beta t cell",40375,"memory CD4-positive, alpha‑beta T cell",cell,A1_llm_percell_HIHA
-"memory cd4-positive, alpha‑beta t cell",40402,"memory cd4-positive, alpha‑beta t cell","CD4-positive, alpha-beta memory T cell",openrouter_LLM_blind_openai--gpt-oss-120b_HIHA
+"memory cd4-positive, alpha‑beta t cell",40402,"memory cd4-positive, alpha‑beta t cell","CD4-positive, alpha-beta memory T cell",openrouter_LLM_unconstrained_openai--gpt-oss-120b_HIHA
 "memory cd8-positive, alpha-beta t cell",14232,"Memory CD8-positive, alpha-beta T cell",cell,A2_base_percell_HIHA
 "memory cd8-positive, alpha-beta t cell",40377,"memory CD8-positive, alpha-beta T cell",cell,A1_llm_percell_HIHA
-"memory cd8-positive, alpha-beta t cell",40407,"memory cd8-positive, alpha-beta t cell","CD8-positive, alpha-beta memory T cell",openrouter_LLM_blind_anthropic--claude-opus-4.7_HIHA
+"memory cd8-positive, alpha-beta t cell",40407,"memory cd8-positive, alpha-beta t cell","CD8-positive, alpha-beta memory T cell",openrouter_LLM_unconstrained_anthropic--claude-opus-4.7_HIHA
 microglial cells,14255,Microglial cells,cell,A2_base_percell_HFRA
-microglial cells,40480,microglial cells,microglial cell,ucell_blind_Zeisel
+microglial cells,40480,microglial cells,microglial cell,ucell_unconstrained_Zeisel
 monocytes,14257,Monocytes,cell,A2_base_percell_HIHA
-monocytes,40522,monocytes,monocyte,celltypist_blind_HIHA
+monocytes,40522,monocytes,monocyte,celltypist_unconstrained_HIHA
 msc,14137,MSc,cell,A3_scllm_percell_HFRA
-msc,40559,msc,mesenchymal cell,singler_blind
+msc,40559,msc,mesenchymal cell,singler_unconstrained
 mucosal invariant t cell,14291,Mucosal invariant T cell,cell,A2_base_percell_HIHA
 mucosal invariant t cell,40576,mucosal invariant T cell,cell,A1_llm_percell_HIHA
-mucosal invariant t cell,40577,mucosal invariant t cell,mucosal-associated invariant T cell,c2s_scale_2B_blind_HIHA
+mucosal invariant t cell,40577,mucosal invariant t cell,mucosal-associated invariant T cell,c2s_scale_2B_unconstrained_HIHA
 muller cell,14302,Muller cell,cell,A1_llm_percell_HFRA
-muller cell,40605,muller cell,Mueller cell,openrouter_LLM_blind_openai--gpt-5.5_Zeisel
+muller cell,40605,muller cell,Mueller cell,openrouter_LLM_unconstrained_openai--gpt-5.5_Zeisel
 muller glial cell,14303,Muller glial cell,cell,A1_llm_percell_HFRA
-muller glial cell,40607,muller glial cell,Mueller cell,openrouter_LLM_blind_openai--gpt-oss-120b_HFRA
+muller glial cell,40607,muller glial cell,Mueller cell,openrouter_LLM_unconstrained_openai--gpt-oss-120b_HFRA
 müller cell,14368,Müller cell,cell,A1_llm_percell_HFRA
-müller cell,40712,müller cell,Mueller cell,openrouter_LLM_unblind_openai--gpt-oss-120b_HFRA
+müller cell,40712,müller cell,Mueller cell,openrouter_LLM_constrained_openai--gpt-oss-120b_HFRA
 müller glial cell,14369,Müller glial cell,cell,A1_llm_percell_HFRA
-müller glial cell,40714,müller glial cell,Mueller cell,openrouter_LLM_blind_openai--gpt-oss-20b_HFRA
+müller glial cell,40714,müller glial cell,Mueller cell,openrouter_LLM_unconstrained_openai--gpt-oss-20b_HFRA
 naive b cells,14407,Naive B cells,cell,A2_base_percell_HIHA
-naive b cells,40775,naive b cells,naive B cell,sctype_blind_HIHA
+naive b cells,40775,naive b cells,naive B cell,sctype_unconstrained_HIHA
 naive cd4+ alpha-beta t cell,14416,Naive CD4+ alpha-beta T cell,cell,A2_base_percell_HIHA
 naive cd4+ alpha-beta t cell,40738,naive CD4+ alpha-beta T cell,cell,A1_llm_percell_HIHA
-naive cd4+ alpha-beta t cell,40785,naive cd4+ alpha-beta t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_blind_openai--gpt-oss-120b_HIHA
+naive cd4+ alpha-beta t cell,40785,naive cd4+ alpha-beta t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_unconstrained_openai--gpt-oss-120b_HIHA
 naive cd4+ alpha‑beta t cell,40739,naive CD4+ alpha‑beta T cell,cell,A1_llm_percell_HIHA
-naive cd4+ alpha‑beta t cell,40787,naive cd4+ alpha‑beta t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_blind_openai--gpt-oss-120b_HIHA
+naive cd4+ alpha‑beta t cell,40787,naive cd4+ alpha‑beta t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_unconstrained_openai--gpt-oss-120b_HIHA
 naive cd4+ t cell,14412,Naive CD4+ T cell,cell,A2_base_percell_HIHA
 naive cd4+ t cell,40736,naive CD4+ T cell,cell,A1_llm_percell_HIHA
-naive cd4+ t cell,40789,naive cd4+ t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_blind_openai--gpt-oss-120b_HIHA
+naive cd4+ t cell,40789,naive cd4+ t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_unconstrained_openai--gpt-oss-120b_HIHA
 naive cd4+ t cells,14413,Naive CD4+ T cells,cell,A2_base_percell_HIHA
-naive cd4+ t cells,40790,naive cd4+ t cells,"naive thymus-derived CD4-positive, alpha-beta T cell",sctype_blind_HIHA
+naive cd4+ t cells,40790,naive cd4+ t cells,"naive thymus-derived CD4-positive, alpha-beta T cell",sctype_unconstrained_HIHA
 naive cd4-positive alpha-beta t cell,40741,naive CD4-positive alpha-beta T cell,cell,A1_llm_percell_HIHA
-naive cd4-positive alpha-beta t cell,40793,naive cd4-positive alpha-beta t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_blind_anthropic--claude-sonnet-4.6_HIHA
+naive cd4-positive alpha-beta t cell,40793,naive cd4-positive alpha-beta t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_unconstrained_anthropic--claude-sonnet-4.6_HIHA
 "naive cd4-positive, alpha-beta t cell",14420,"Naive CD4-positive, alpha-beta T cell",cell,A2_base_percell_HIHA
 "naive cd4-positive, alpha-beta t cell",40743,"naive CD4-positive, alpha-beta T cell",cell,A1_llm_percell_HIHA
-"naive cd4-positive, alpha-beta t cell",40797,"naive cd4-positive, alpha-beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_blind_anthropic--claude-sonnet-4.6_HIHA
+"naive cd4-positive, alpha-beta t cell",40797,"naive cd4-positive, alpha-beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_unconstrained_anthropic--claude-sonnet-4.6_HIHA
 "naive cd4-positive, alpha‑beta t cell",40744,"naive CD4-positive, alpha‑beta T cell",cell,A1_llm_percell_HIHA
-"naive cd4-positive, alpha‑beta t cell",40799,"naive cd4-positive, alpha‑beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_blind_openai--gpt-oss-120b_HIHA
+"naive cd4-positive, alpha‑beta t cell",40799,"naive cd4-positive, alpha‑beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_unconstrained_openai--gpt-oss-120b_HIHA
 "naive cd4‑positive, alpha‑beta t cell",40747,"naive CD4‑positive, alpha‑beta T cell",cell,A1_llm_percell_HIHA
-"naive cd4‑positive, alpha‑beta t cell",40802,"naive cd4‑positive, alpha‑beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_blind_openai--gpt-oss-120b_HIHA
+"naive cd4‑positive, alpha‑beta t cell",40802,"naive cd4‑positive, alpha‑beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_unconstrained_openai--gpt-oss-120b_HIHA
 naive cd8+ alpha-beta t cell,40750,naive CD8+ alpha-beta T cell,cell,A1_llm_percell_HIHA
-naive cd8+ alpha-beta t cell,40808,naive cd8+ alpha-beta t cell,"naive thymus-derived CD8-positive, alpha-beta T cell",openrouter_LLM_blind_openai--gpt-oss-120b_HIHA
+naive cd8+ alpha-beta t cell,40808,naive cd8+ alpha-beta t cell,"naive thymus-derived CD8-positive, alpha-beta T cell",openrouter_LLM_unconstrained_openai--gpt-oss-120b_HIHA
 naive cd8+ t cell,40749,naive CD8+ T cell,cell,A1_llm_percell_HIHA
-naive cd8+ t cell,40814,naive cd8+ t cell,"naive thymus-derived CD8-positive, alpha-beta T cell",scsa_blind_HIHA
+naive cd8+ t cell,40814,naive cd8+ t cell,"naive thymus-derived CD8-positive, alpha-beta T cell",scsa_unconstrained_HIHA
 "naive cd8-positive, alpha-beta t cell",14430,"Naive CD8-positive, alpha-beta T cell",cell,A2_base_percell_HIHA
 "naive cd8-positive, alpha-beta t cell",40756,"naive CD8-positive, alpha-beta T cell",cell,A1_llm_percell_HIHA
-"naive cd8-positive, alpha-beta t cell",40821,"naive cd8-positive, alpha-beta t cell","naive thymus-derived CD8-positive, alpha-beta T cell",openrouter_LLM_blind_anthropic--claude-sonnet-4.6_HIHA
+"naive cd8-positive, alpha-beta t cell",40821,"naive cd8-positive, alpha-beta t cell","naive thymus-derived CD8-positive, alpha-beta T cell",openrouter_LLM_unconstrained_anthropic--claude-sonnet-4.6_HIHA
 natural killer t cell,14525,Natural Killer T Cell,cell,A2_base_percell_HIHA
 natural killer t cell,41031,natural killer T cell,cell,A1_llm_percell_HIHA
-natural killer t cell,41065,natural killer t cell,mature NK T cell,openrouter_LLM_blind_anthropic--claude-opus-4.7_HIHA
+natural killer t cell,41065,natural killer t cell,mature NK T cell,openrouter_LLM_unconstrained_anthropic--claude-opus-4.7_HIHA
 naïve cd4+ alpha-beta t cell,41071,naïve CD4+ alpha-beta T cell,cell,A1_llm_percell_HIHA
-naïve cd4+ alpha-beta t cell,41092,naïve cd4+ alpha-beta t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_blind_openai--gpt-oss-120b_HIHA
+naïve cd4+ alpha-beta t cell,41092,naïve cd4+ alpha-beta t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_unconstrained_openai--gpt-oss-120b_HIHA
 naïve cd4+ alpha‑beta t cell,41072,naïve CD4+ alpha‑beta T cell,cell,A1_llm_percell_HIHA
-naïve cd4+ alpha‑beta t cell,41093,naïve cd4+ alpha‑beta t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_blind_openai--gpt-oss-120b_HIHA
+naïve cd4+ alpha‑beta t cell,41093,naïve cd4+ alpha‑beta t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_unconstrained_openai--gpt-oss-120b_HIHA
 naïve cd4+ t cell,41070,naïve CD4+ T cell,cell,A1_llm_percell_HIHA
-naïve cd4+ t cell,41094,naïve cd4+ t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_blind_openai--gpt-oss-120b_HIHA
+naïve cd4+ t cell,41094,naïve cd4+ t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_unconstrained_openai--gpt-oss-120b_HIHA
 naïve cd4-positive alpha-beta t cell,41075,naïve CD4-positive alpha-beta T cell,cell,A1_llm_percell_HIHA
-naïve cd4-positive alpha-beta t cell,41096,naïve cd4-positive alpha-beta t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_blind_openai--gpt-oss-120b_HIHA
+naïve cd4-positive alpha-beta t cell,41096,naïve cd4-positive alpha-beta t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_unconstrained_openai--gpt-oss-120b_HIHA
 naïve cd4-positive alpha‑beta t cell,41076,naïve CD4-positive alpha‑beta T cell,cell,A1_llm_percell_HIHA
-naïve cd4-positive alpha‑beta t cell,41097,naïve cd4-positive alpha‑beta t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_blind_openai--gpt-oss-120b_HIHA
+naïve cd4-positive alpha‑beta t cell,41097,naïve cd4-positive alpha‑beta t cell,"naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_unconstrained_openai--gpt-oss-120b_HIHA
 "naïve cd4-positive, alpha-beta t cell",41077,"naïve CD4-positive, alpha-beta T cell",cell,A1_llm_percell_HIHA
-"naïve cd4-positive, alpha-beta t cell",41099,"naïve cd4-positive, alpha-beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_blind_openai--gpt-oss-120b_HIHA
+"naïve cd4-positive, alpha-beta t cell",41099,"naïve cd4-positive, alpha-beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_unconstrained_openai--gpt-oss-120b_HIHA
 "naïve cd4-positive, alpha‑beta t cell",41078,"naïve CD4-positive, alpha‑beta T cell",cell,A1_llm_percell_HIHA
-"naïve cd4-positive, alpha‑beta t cell",41100,"naïve cd4-positive, alpha‑beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_blind_openai--gpt-oss-120b_HIHA
+"naïve cd4-positive, alpha‑beta t cell",41100,"naïve cd4-positive, alpha‑beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_unconstrained_openai--gpt-oss-120b_HIHA
 "naïve cd4‑positive, alpha‑beta t cell",41080,"naïve CD4‑positive, alpha‑beta T cell",cell,A1_llm_percell_HIHA
-"naïve cd4‑positive, alpha‑beta t cell",41102,"naïve cd4‑positive, alpha‑beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_blind_openai--gpt-oss-120b_HIHA
+"naïve cd4‑positive, alpha‑beta t cell",41102,"naïve cd4‑positive, alpha‑beta t cell","naive thymus-derived CD4-positive, alpha-beta T cell",openrouter_LLM_unconstrained_openai--gpt-oss-120b_HIHA
 "naïve cd8-positive, alpha‑beta t cell",41085,"naïve CD8-positive, alpha‑beta T cell",cell,A1_llm_percell_HIHA
-"naïve cd8-positive, alpha‑beta t cell",41109,"naïve cd8-positive, alpha‑beta t cell","naive thymus-derived CD8-positive, alpha-beta T cell",openrouter_LLM_blind_openai--gpt-oss-120b_HIHA
+"naïve cd8-positive, alpha‑beta t cell",41109,"naïve cd8-positive, alpha‑beta t cell","naive thymus-derived CD8-positive, alpha-beta T cell",openrouter_LLM_unconstrained_openai--gpt-oss-120b_HIHA
 neuroblast,14548,Neuroblast,cell,A2_base_percell_Zeisel
-neuroblast,41163,neuroblast,neuroblast (sensu Vertebrata),openrouter_LLM_blind_openai--gpt-5.5_Zeisel
+neuroblast,41163,neuroblast,neuroblast (sensu Vertebrata),openrouter_LLM_unconstrained_openai--gpt-5.5_Zeisel
 nk cell,14387,NK Cell,cell,A2_base_percell_HIHA
 nk cell,14388,NK cell,cell,A2_base_percell_HFRA
-nk cell,41302,nk cell,natural killer cell,openrouter_LLM_blind_anthropic--claude-opus-4.7_HIHA
+nk cell,41302,nk cell,natural killer cell,openrouter_LLM_unconstrained_anthropic--claude-opus-4.7_HIHA
 nk cells,14389,NK cells,cell,A2_base_percell_HIHA
-nk cells,41303,nk cells,natural killer cell,singler_blind
+nk cells,41303,nk cells,natural killer cell,singler_unconstrained
 oligodendrocyte progenitor cell,14735,Oligodendrocyte progenitor cell,cell,A2_base_percell_Zeisel
-oligodendrocyte progenitor cell,41492,oligodendrocyte progenitor cell,oligodendrocyte precursor cell,openrouter_LLM_blind_openai--gpt-oss-120b_Zeisel
+oligodendrocyte progenitor cell,41492,oligodendrocyte progenitor cell,oligodendrocyte precursor cell,openrouter_LLM_unconstrained_openai--gpt-oss-120b_Zeisel
 osteoblasts,14846,Osteoblasts,cell,A2_base_percell_HFRA
-osteoblasts,41628,osteoblasts,osteoblast,singler_blind
+osteoblasts,41628,osteoblasts,osteoblast,singler_unconstrained
 pancreatic alpha cell,15489,Pancreatic Alpha cell,cell,A2_base_percell_human_pancreas
 pancreatic alpha cell,15540,Pancreatic alpha cell,cell,A2_base_percell_human_pancreas
-pancreatic alpha cell,42349,pancreatic alpha cell,pancreatic A cell,openrouter_LLM_blind_meta-llama--llama-3.1-70b-instruct_Zeisel
+pancreatic alpha cell,42349,pancreatic alpha cell,pancreatic A cell,openrouter_LLM_unconstrained_meta-llama--llama-3.1-70b-instruct_Zeisel
 pancreatic b cell,15490,Pancreatic B cell,cell,A2_base_percell_human_pancreas
 pancreatic b cell,42273,pancreatic B cell,cell,A2_base_percell_human_pancreas
-pancreatic b cell,42365,pancreatic b cell,type B pancreatic cell,openrouter_LLM_unblind_meta-llama--llama-3.1-70b-instruct_human_pancreas
+pancreatic b cell,42365,pancreatic b cell,type B pancreatic cell,openrouter_LLM_constrained_meta-llama--llama-3.1-70b-instruct_human_pancreas
 pancreatic beta cell,15491,Pancreatic Beta Cell,cell,A2_base_percell_human_pancreas
 pancreatic beta cell,15550,Pancreatic beta Cell,cell,A2_base_percell_human_pancreas
 pancreatic beta cell,15551,Pancreatic beta cell,cell,A2_base_percell_human_pancreas
 pancreatic beta cell,42274,pancreatic Beta cell,cell,A2_base_percell_human_pancreas
-pancreatic beta cell,42367,pancreatic beta cell,type B pancreatic cell,openrouter_LLM_blind_anthropic--claude-opus-4.7_human_pancreas
+pancreatic beta cell,42367,pancreatic beta cell,type B pancreatic cell,openrouter_LLM_unconstrained_anthropic--claude-opus-4.7_human_pancreas
 pancreatic delta cell,15494,Pancreatic Delta Cell,cell,A2_base_percell_human_pancreas
 pancreatic delta cell,15569,Pancreatic delta cell,cell,A2_base_percell_human_pancreas
-pancreatic delta cell,42405,pancreatic delta cell,pancreatic D cell,openrouter_LLM_blind_anthropic--claude-opus-4.7_human_pancreas
+pancreatic delta cell,42405,pancreatic delta cell,pancreatic D cell,openrouter_LLM_unconstrained_anthropic--claude-opus-4.7_human_pancreas
 pancreatic duct cell,15495,Pancreatic Duct Cell,cell,A2_base_percell_human_pancreas
-pancreatic duct cell,42415,pancreatic duct cell,pancreatic ductal cell,openrouter_LLM_blind_deepseek--deepseek-v3.2_human_pancreas
+pancreatic duct cell,42415,pancreatic duct cell,pancreatic ductal cell,openrouter_LLM_unconstrained_deepseek--deepseek-v3.2_human_pancreas
 pancreatic duct epithelial cell,15496,Pancreatic Duct Epithelial Cell,cell,A2_base_percell_human_pancreas
-pancreatic duct epithelial cell,42421,pancreatic duct epithelial cell,pancreatic ductal cell,openrouter_LLM_blind_deepseek--deepseek-v3.2_human_pancreas
+pancreatic duct epithelial cell,42421,pancreatic duct epithelial cell,pancreatic ductal cell,openrouter_LLM_unconstrained_deepseek--deepseek-v3.2_human_pancreas
 pancreatic p cell,15519,Pancreatic P cell,cell,A2_base_percell_human_pancreas
-pancreatic p cell,42510,pancreatic p cell,pancreatic PP cell,c2s_scale_27B_blind_human_pancreas
+pancreatic p cell,42510,pancreatic p cell,pancreatic PP cell,c2s_scale_27B_unconstrained_human_pancreas
 pancreatic α cell,15611,Pancreatic α cell,cell,A2_base_percell_human_pancreas
-pancreatic α cell,42575,pancreatic α cell,pancreatic A cell,openrouter_LLM_blind_openai--gpt-oss-20b_human_pancreas
+pancreatic α cell,42575,pancreatic α cell,pancreatic A cell,openrouter_LLM_unconstrained_openai--gpt-oss-20b_human_pancreas
 pancreatic β cell,15612,Pancreatic β cell,cell,A2_base_percell_human_pancreas
-pancreatic β cell,42577,pancreatic β cell,type B pancreatic cell,openrouter_LLM_blind_openai--gpt-oss-20b_human_pancreas
+pancreatic β cell,42577,pancreatic β cell,type B pancreatic cell,openrouter_LLM_unconstrained_openai--gpt-oss-20b_human_pancreas
 parvalbumin expressing gabaergic interneuron,42648,parvalbumin expressing GABAergic interneuron,cell,A1_llm_percell_Zeisel
-parvalbumin expressing gabaergic interneuron,42650,parvalbumin expressing gabaergic interneuron,pvalb GABAergic interneuron,openrouter_LLM_blind_openai--gpt-oss-20b_Zeisel
+parvalbumin expressing gabaergic interneuron,42650,parvalbumin expressing gabaergic interneuron,pvalb GABAergic interneuron,openrouter_LLM_unconstrained_openai--gpt-oss-20b_Zeisel
 parvalbumin-expressing gabaergic interneuron,42657,parvalbumin-expressing GABAergic interneuron,cell,A1_llm_percell_HFRA
-parvalbumin-expressing gabaergic interneuron,42661,parvalbumin-expressing gabaergic interneuron,pvalb GABAergic interneuron,openrouter_LLM_blind_openai--gpt-oss-20b_Zeisel
+parvalbumin-expressing gabaergic interneuron,42661,parvalbumin-expressing gabaergic interneuron,pvalb GABAergic interneuron,openrouter_LLM_unconstrained_openai--gpt-oss-20b_Zeisel
 pomc neuron,15426,POMC neuron,cell,A1_llm_percell_HFRA
-pomc neuron,43472,pomc neuron,pro-opiomelanocortin neuron,openrouter_LLM_blind_openai--gpt-5.5_Zeisel
+pomc neuron,43472,pomc neuron,pro-opiomelanocortin neuron,openrouter_LLM_unconstrained_openai--gpt-5.5_Zeisel
 pp cell of pancreas,15428,PP cell of pancreas,cell,A1_llm_percell_human_pancreas
-pp cell of pancreas,43475,pp cell of pancreas,pancreatic PP cell,c2s_scale_27B_blind_human_pancreas
+pp cell of pancreas,43475,pp cell of pancreas,pancreatic PP cell,c2s_scale_27B_unconstrained_human_pancreas
 pre-b cell,43492,pre-B cell,cell,A1_llm_percell_HIHA
-pre-b cell,43494,pre-b cell,precursor B cell,openrouter_LLM_blind_google--gemini-3.1-pro-preview_HIHA
+pre-b cell,43494,pre-b cell,precursor B cell,openrouter_LLM_unconstrained_google--gemini-3.1-pro-preview_HIHA
 pvalb,15439,PVALB,cell,A3_scllm_percell_HFRA
-pvalb,43716,pvalb,pvalb GABAergic interneuron,celltypist_blind_Zeisel
+pvalb,43716,pvalb,pvalb GABAergic interneuron,celltypist_unconstrained_Zeisel
 pvalb gabaergic cortical interneuron,43717,pvalb GABAergic cortical interneuron,cell,A3_scllm_percell_Zeisel
-pvalb gabaergic cortical interneuron,43721,pvalb gabaergic cortical interneuron,pvalb GABAergic interneuron,c2s_scale_27B_blind_Zeisel
+pvalb gabaergic cortical interneuron,43721,pvalb gabaergic cortical interneuron,pvalb GABAergic interneuron,c2s_scale_27B_unconstrained_Zeisel
 radial glia cell,16669,Radial glia cell,cell,A2_base_percell_Zeisel
-radial glia cell,43785,radial glia cell,radial glial cell,openrouter_LLM_blind_meta-llama--llama-4-maverick_HFRA
+radial glia cell,43785,radial glia cell,radial glial cell,openrouter_LLM_unconstrained_meta-llama--llama-4-maverick_HFRA
 retina cell,16704,Retina Cell,cell,A2_base_percell_HFRA
 retina cell,16724,Retina cell,cell,A2_base_percell_HFRA
-retina cell,43899,retina cell,retinal cell,scsa_blind_HFRA
+retina cell,43899,retina cell,retinal cell,scsa_unconstrained_HFRA
 retina cone cell,16595,RETINA CONE CELL,cell,A2_base_percell_HFRA
 retina cone cell,16707,Retina Cone Cell,cell,A2_base_percell_HFRA
 retina cone cell,16735,Retina cone cell,cell,A2_base_percell_HFRA
-retina cone cell,43915,retina cone cell,retinal cone cell,openrouter_LLM_unblind_meta-llama--llama-3.1-70b-instruct_HFRA
+retina cone cell,43915,retina cone cell,retinal cone cell,openrouter_LLM_constrained_meta-llama--llama-3.1-70b-instruct_HFRA
 retina progenitor cell,16598,RETINA PROGENITOR CELL,cell,A2_base_percell_HFRA
 retina progenitor cell,16751,Retina progenitor cell,cell,A2_base_percell_HFRA
-retina progenitor cell,43986,retina progenitor cell,retinal progenitor cell,openrouter_LLM_unblind_openai--gpt-oss-20b_HFRA
+retina progenitor cell,43986,retina progenitor cell,retinal progenitor cell,openrouter_LLM_constrained_openai--gpt-oss-20b_HFRA
 retina rod cell,16721,Retina Rod Cell,cell,A2_base_percell_HFRA
 retina rod cell,16755,Retina rod cell,cell,A2_base_percell_HFRA
-retina rod cell,44017,retina rod cell,retinal rod cell,openrouter_LLM_unblind_openai--gpt-oss-20b_HFRA
+retina rod cell,44017,retina rod cell,retinal rod cell,openrouter_LLM_constrained_openai--gpt-oss-20b_HFRA
 retinal amacrine cell,16833,Retinal amacrine cell,cell,A2_base_percell_HFRA
-retinal amacrine cell,44153,retinal amacrine cell,amacrine cell,openrouter_LLM_unblind_openai--gpt-oss-20b_HFRA
+retinal amacrine cell,44153,retinal amacrine cell,amacrine cell,openrouter_LLM_constrained_openai--gpt-oss-20b_HFRA
 retinal bipolar cell,16836,Retinal bipolar cell,cell,A2_base_percell_HFRA
-retinal bipolar cell,44160,retinal bipolar cell,retinal bipolar neuron,openrouter_LLM_blind_meta-llama--llama-3.1-70b-instruct_HFRA
+retinal bipolar cell,44160,retinal bipolar cell,retinal bipolar neuron,openrouter_LLM_unconstrained_meta-llama--llama-3.1-70b-instruct_HFRA
 retinal horizontal cell,16615,RETINAL HORIZONTAL CELL,cell,A2_base_percell_HFRA
 retinal horizontal cell,16803,Retinal Horizontal Cell,cell,A2_base_percell_HFRA
 retinal horizontal cell,16806,Retinal Horizontal cell,cell,A2_base_percell_HFRA
 retinal horizontal cell,16897,Retinal horizontal cell,cell,A2_base_percell_HFRA
 retinal horizontal cell,44144,retinal Horizontal cell,cell,A2_base_percell_HFRA
-retinal horizontal cell,44306,retinal horizontal cell,retina horizontal cell,c2s_scale_27B_unblind_HFRA
+retinal horizontal cell,44306,retinal horizontal cell,retina horizontal cell,c2s_scale_27B_constrained_HFRA
 retinal muller cell,16809,Retinal Muller cell,cell,A2_base_percell_HFRA
-retinal muller cell,44329,retinal muller cell,Mueller cell,openrouter_LLM_blind_anthropic--claude-sonnet-4.6_HFRA
+retinal muller cell,44329,retinal muller cell,Mueller cell,openrouter_LLM_unconstrained_anthropic--claude-sonnet-4.6_HFRA
 retinal müller cell,16811,Retinal Müller cell,cell,A2_base_percell_HFRA
 retinal müller cell,44145,retinal Müller cell,cell,A2_base_percell_HFRA
-retinal müller cell,44332,retinal müller cell,Mueller cell,openrouter_LLM_blind_moonshotai--kimi-k2.6_HFRA
+retinal müller cell,44332,retinal müller cell,Mueller cell,openrouter_LLM_unconstrained_moonshotai--kimi-k2.6_HFRA
 retinal neuron,16815,Retinal Neuron,cell,A2_base_percell_HFRA
 retinal neuron,16907,Retinal neuron,cell,A2_base_percell_HFRA
-retinal neuron,44340,retinal neuron,neuron,c2s_scale_27B_unblind_HFRA
+retinal neuron,44340,retinal neuron,neuron,c2s_scale_27B_constrained_HFRA
 retinal photoreceptor cell,16616,RETINAL PHOTORECEPTOR CELL,cell,A2_base_percell_HFRA
-retinal photoreceptor cell,44352,retinal photoreceptor cell,eye photoreceptor cell,openrouter_LLM_blind_anthropic--claude-opus-4.7_HFRA
+retinal photoreceptor cell,44352,retinal photoreceptor cell,eye photoreceptor cell,openrouter_LLM_unconstrained_anthropic--claude-opus-4.7_HFRA
 retinal pigment epithelial cells,16920,Retinal pigment epithelial cells,cell,A2_base_percell_HFRA
-retinal pigment epithelial cells,44366,retinal pigment epithelial cells,retinal pigment epithelial cell,ucell_blind_HFRA
+retinal pigment epithelial cells,44366,retinal pigment epithelial cells,retinal pigment epithelial cell,ucell_unconstrained_HFRA
 schwann cells,17394,Schwann cells,Schwann cell,Zeisel
 schwann cells,45034,schwann cells,cell,A2_base_percell_Zeisel
 skeletal muscle cell,17476,Skeletal Muscle Cell,cell,A2_base_percell_HIHA
-skeletal muscle cell,45148,skeletal muscle cell,cell of skeletal muscle,openrouter_LLM_blind_meta-llama--llama-3.1-70b-instruct_Zeisel
+skeletal muscle cell,45148,skeletal muscle cell,cell of skeletal muscle,openrouter_LLM_unconstrained_meta-llama--llama-3.1-70b-instruct_Zeisel
 sncg,17068,SNCG,cell,A2_base_percell_Zeisel
-sncg,45165,sncg,interneuron,celltypist_blind_Zeisel
+sncg,45165,sncg,interneuron,celltypist_unconstrained_Zeisel
 somatostatin-expressing gabaergic interneuron,45179,somatostatin-expressing GABAergic interneuron,cell,A1_llm_percell_Zeisel
-somatostatin-expressing gabaergic interneuron,45182,somatostatin-expressing gabaergic interneuron,sst GABAergic interneuron,openrouter_LLM_blind_anthropic--claude-sonnet-4.6_Zeisel
+somatostatin-expressing gabaergic interneuron,45182,somatostatin-expressing gabaergic interneuron,sst GABAergic interneuron,openrouter_LLM_unconstrained_anthropic--claude-sonnet-4.6_Zeisel
 sst,17074,SST,cell,A2_base_percell_human_pancreas
-sst,45213,sst,interneuron,celltypist_blind_Zeisel
+sst,45213,sst,interneuron,celltypist_unconstrained_Zeisel
 t cells,17543,T cells,cell,A2_base_percell_HFRA
-t cells,45385,t cells,T cell,celltypist_blind_HIHA
+t cells,45385,t cells,T cell,celltypist_unconstrained_HIHA
 t lymphocyte,17559,T lymphocyte,cell,A1_llm_percell_HIHA
-t lymphocyte,45406,t lymphocyte,T cell,openrouter_LLM_blind_openai--gpt-oss-20b_Zeisel
+t lymphocyte,45406,t lymphocyte,T cell,openrouter_LLM_unconstrained_openai--gpt-oss-20b_Zeisel
 type a pancreatic cell,22903,Type A pancreatic cell,cell,A2_base_percell_human_pancreas
 type a pancreatic cell,50819,type A pancreatic cell,cell,A1_llm_percell_human_pancreas
-type a pancreatic cell,50872,type a pancreatic cell,pancreatic A cell,openrouter_LLM_blind_anthropic--claude-sonnet-4.6_human_pancreas
+type a pancreatic cell,50872,type a pancreatic cell,pancreatic A cell,openrouter_LLM_unconstrained_anthropic--claude-sonnet-4.6_human_pancreas
 type d pancreatic cell,50834,type D pancreatic cell,cell,A2_base_percell_human_pancreas
-type d pancreatic cell,50911,type d pancreatic cell,pancreatic D cell,c2s_scale_2B_blind_human_pancreas
+type d pancreatic cell,50911,type d pancreatic cell,pancreatic D cell,c2s_scale_2B_unconstrained_human_pancreas
 type i pneumocyte,50843,type I pneumocyte,cell,A3_scllm_percell_human_pancreas
-type i pneumocyte,50922,type i pneumocyte,pulmonary alveolar type 1 cell,c2s_scale_2B_blind_human_pancreas
+type i pneumocyte,50922,type i pneumocyte,pulmonary alveolar type 1 cell,c2s_scale_2B_unconstrained_human_pancreas
 type ii pneumocyte,50844,type II pneumocyte,cell,A1_llm_percell_human_pancreas
-type ii pneumocyte,50924,type ii pneumocyte,pulmonary alveolar type 2 cell,openrouter_LLM_blind_openai--gpt-5.5_Zeisel
+type ii pneumocyte,50924,type ii pneumocyte,pulmonary alveolar type 2 cell,openrouter_LLM_unconstrained_openai--gpt-5.5_Zeisel
 vip interneuron,23223,VIP interneuron,cell,A1_llm_percell_Zeisel
 vip interneuron,23236,Vip interneuron,cell,A1_llm_percell_Zeisel
-vip interneuron,51284,vip interneuron,VIP GABAergic interneuron,openrouter_LLM_blind_openai--gpt-oss-120b_Zeisel
+vip interneuron,51284,vip interneuron,VIP GABAergic interneuron,openrouter_LLM_unconstrained_openai--gpt-oss-120b_Zeisel
 vip-expressing cortical interneuron,23225,VIP-expressing cortical interneuron,cell,A1_llm_percell_Zeisel
 vip-expressing cortical interneuron,23239,Vip-expressing cortical interneuron,cell,A1_llm_percell_Zeisel
-vip-expressing cortical interneuron,51290,vip-expressing cortical interneuron,VIP GABAergic interneuron,openrouter_LLM_blind_openai--gpt-oss-120b_Zeisel
+vip-expressing cortical interneuron,51290,vip-expressing cortical interneuron,VIP GABAergic interneuron,openrouter_LLM_unconstrained_openai--gpt-oss-120b_Zeisel
 vip-expressing gabaergic cortical interneuron,23237,Vip-expressing GABAergic cortical interneuron,cell,A1_llm_percell_Zeisel
-vip-expressing gabaergic cortical interneuron,51291,vip-expressing gabaergic cortical interneuron,VIP GABAergic interneuron,openrouter_LLM_blind_anthropic--claude-sonnet-4.6_Zeisel
+vip-expressing gabaergic cortical interneuron,51291,vip-expressing gabaergic cortical interneuron,VIP GABAergic interneuron,openrouter_LLM_unconstrained_anthropic--claude-sonnet-4.6_Zeisel
 vip-expressing gabaergic interneuron,23224,VIP-expressing GABAergic interneuron,cell,A1_llm_percell_Zeisel
 vip-expressing gabaergic interneuron,23238,Vip-expressing GABAergic interneuron,cell,A1_llm_percell_Zeisel
 vip-expressing gabaergic interneuron,51288,vip-expressing GABAergic interneuron,cell,A1_llm_percell_Zeisel
-vip-expressing gabaergic interneuron,51292,vip-expressing gabaergic interneuron,VIP GABAergic interneuron,openrouter_LLM_blind_openai--gpt-oss-120b_Zeisel
+vip-expressing gabaergic interneuron,51292,vip-expressing gabaergic interneuron,VIP GABAergic interneuron,openrouter_LLM_unconstrained_openai--gpt-oss-120b_Zeisel
 vip-expressing interneuron,23226,VIP-expressing interneuron,cell,A1_llm_percell_Zeisel
 vip-expressing interneuron,23241,Vip-expressing interneuron,cell,A1_llm_percell_Zeisel
-vip-expressing interneuron,51294,vip-expressing interneuron,VIP GABAergic interneuron,openrouter_LLM_blind_openai--gpt-oss-120b_Zeisel
+vip-expressing interneuron,51294,vip-expressing interneuron,VIP GABAergic interneuron,openrouter_LLM_unconstrained_openai--gpt-oss-120b_Zeisel

@@ -12,8 +12,8 @@ tissue and species add only the tissue there.
 """
 from __future__ import annotations
 
-# The prompts of the benchmark's OpenRouter wrapper (models/openrouter_LLM_blind and
-# models/openrouter_LLM_unblind), with a slot for the context phrase.
+# The prompts of the benchmark's OpenRouter wrapper (models/openrouter_LLM_unconstrained and
+# models/openrouter_LLM_constrained), with a slot for the context phrase.
 INSTRUCTION_NO_TYPES = """You are an expert at classifying cell types based on gene expression.
 Given below is a list of up to {num_genes} gene names ordered by descending expression level in a single cell.
 Your task is to identify the exact cell type this gene profile{context} represents.
@@ -50,7 +50,7 @@ Important rules:
 Output:
 """
 
-# The prompts of the C2S-Scale wrapper (models/c2s_scale_2B_blind and models/c2s_scale_2B_unblind),
+# The prompts of the C2S-Scale wrapper (models/c2s_scale_2B_unconstrained and models/c2s_scale_2B_constrained),
 # with a slot for the context phrase.
 C2S_WITH_TYPES = ("The following is a list of {num_genes} gene names ordered by descending "
                   "expression level in a {organism}{context} cell. Your task is to give the cell "
@@ -231,7 +231,7 @@ def _self_test():
                       unique_cell_types=["b cell", "t cell"])
     # The instruction template writes the list as a Python repr.
     assert "from this list of cell types: ['b cell', 't cell'].\nCell sentence:" in p2, p2
-    assert "2. Do only choose a cell type from the list" in p2, "M2 must use the unblind rule 2"
+    assert "2. Do only choose a cell type from the list" in p2, "M2 must use the constrained rule 2"
 
     # The C2S template joins the names with commas.
     c2 = build_prompt("c2s", m2, num_genes=200, cell_sentence="A B C", organism="Homo sapiens",

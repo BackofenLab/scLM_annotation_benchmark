@@ -103,7 +103,10 @@ workflow ANNOTATE {
             remote: true
         }
     downloaded = download(raw.remote.map { dataset -> tuple(dataset, file("${projectDir}/datasets/${dataset}.yml")) })
-    local_files = raw.local.map { dataset -> tuple(dataset, file("${projectDir}/${datasetConfig(dataset).path}")) }
+    // A local file, given as an absolute path or relative to the repository.
+    local_files = raw.local.map { dataset ->
+        def path = datasetConfig(dataset).path.toString()
+        tuple(dataset, file(new File(path).isAbsolute() ? path : "${projectDir}/${path}")) }
     preprocessed = preprocess(
         downloaded.mix(local_files).map { dataset, raw_file ->
             def cfg = datasetConfig(dataset)

@@ -13,15 +13,18 @@ from figures_rare_types import (  # noqa: E402
     BLOCK_LABEL, BLOCK_ORDER, RARITY_ROWS, select_flow_models)
 from methods import MAPPING_ROWS, group_name, run_label  # noqa: E402
 
-RUNS = {"sctype_blind": "unconstrained baselines", "singler_unblind": "constrained baselines",
-        "mmcontext_blind": "unconstrained scLLM", "c2s_scale_2B_unblind": "constrained scLLM",
-        "gpt-5.5_blind": "unconstrained LLM", "gemini-3.1-pro-preview_unblind": "constrained LLM"}
+RUNS = {"sctype_unconstrained": "unconstrained baselines",
+        "singler_constrained": "constrained baselines",
+        "mmcontext_unconstrained": "unconstrained scLLM",
+        "c2s_scale_2B_constrained": "constrained scLLM",
+        "gpt-5.5_unconstrained": "unconstrained LLM",
+        "gemini-3.1-pro-preview_constrained": "constrained LLM"}
 
 
 def test_every_run_but_chance_carries_its_setting():
-    assert run_label("sctype_blind") == "sctype (U)"
-    assert run_label("singler_unblind", "SingleR") == "SingleR (C)"
-    assert run_label("gpt-5.5_blind", "GPT-5.5") == "GPT-5.5 (U)"
+    assert run_label("sctype_unconstrained") == "sctype (U)"
+    assert run_label("singler_constrained", "SingleR") == "SingleR (C)"
+    assert run_label("gpt-5.5_unconstrained", "GPT-5.5") == "GPT-5.5 (U)"
     assert run_label("random_stratified") == "random_stratified"
 
 
@@ -33,7 +36,8 @@ def test_the_figure_groups_cover_both_settings_of_every_family():
     assert set(RUNS.values()) <= set(BLOCK_ORDER) == set(BLOCK_LABEL)
     assert list(BLOCK_LABEL.values()) == [row[2] for row in RARITY_ROWS]
     assert {(family, mode) for family, mode, _label in MAPPING_ROWS} == {
-        (family, mode) for family in ("classical", "scLLM", "LLM") for mode in ("blind", "unblind")}
+        (family, mode) for family in ("classical", "scLLM", "LLM")
+        for mode in ("unconstrained", "constrained")}
 
 
 def test_flow_models_are_the_best_constrained_runs_with_their_unconstrained_twins():
@@ -41,10 +45,11 @@ def test_flow_models_are_the_best_constrained_runs_with_their_unconstrained_twin
               "mmcontext": (0.25, 0.47), "gpt-5.5": (0.40, 0.60), "kimi-k2.6": (0.45, 0.55)}
     df = pd.DataFrame([{"model": f"{base}_{mode}", "dataset": dataset, "balanced_accuracy": score}
                        for base, pair in scores.items()
-                       for mode, score in zip(("blind", "unblind"), pair)
+                       for mode, score in zip(("unconstrained", "constrained"), pair)
                        for dataset in ("HFRA", "HIHA")])
-    assert select_flow_models(df) == [["scsa_unblind", "mmcontext_unblind", "gpt-5.5_unblind"],
-                                      ["scsa_blind", "mmcontext_blind", "gpt-5.5_blind"]]
+    assert select_flow_models(df) == [
+        ["scsa_constrained", "mmcontext_constrained", "gpt-5.5_constrained"],
+        ["scsa_unconstrained", "mmcontext_unconstrained", "gpt-5.5_unconstrained"]]
 
 
 if __name__ == "__main__":

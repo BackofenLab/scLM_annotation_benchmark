@@ -52,7 +52,7 @@ BLOCK_LABEL = {"unconstrained baselines": "baselines, U", "constrained baselines
 BLOCK_ORDER = list(BLOCK_LABEL)
 # Every family in both settings, then the closed-weight LLMs.
 RARITY_ROWS = MAPPING_ROWS + [("LLM", mode, f"closed-weight LLMs, {REGIME_SHORT[mode]}",
-                               CLOSED_WEIGHT_TIER) for mode in ("blind", "unblind")]
+                               CLOSED_WEIGHT_TIER) for mode in ("unconstrained", "constrained")]
 # The outcomes of a rare cell type, best first: (key, legend text, grey). A type that a method never
 # named is split by whether the method has a label for it at all (``reachable``, known for the
 # constrained baselines); that part is hatched.
@@ -283,10 +283,10 @@ def select_flow_models(df):
     picks = []
     for family, _name in FAMILIES:
         runs = df[(df["model"].map(categorize_model) == family)
-                  & (df["model"].map(derive_mode) == "unblind")]
+                  & (df["model"].map(derive_mode) == "constrained")]
         picks.append(runs.groupby(runs["model"].map(model_base))["balanced_accuracy"].mean()
                      .idxmax())
-    return [[f"{base}_{mode}" for base in picks] for mode in ("unblind", "blind")]
+    return [[f"{base}_{mode}" for base in picks] for mode in ("constrained", "unconstrained")]
 
 
 def _run_label(model):

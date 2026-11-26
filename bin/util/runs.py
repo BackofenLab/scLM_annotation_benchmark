@@ -1,15 +1,15 @@
 """Names of runs and how they are written into file names.
 
-A method is a folder in ``models/``. Its name ends in ``_blind`` (no list of expected cell types)
-or ``_unblind`` (with the list). Most methods write one ``predictions.csv`` per dataset. A wrapper
-for several served models writes one ``predictions_<provider>--<model>.csv`` per model, and each
-of these files is a run of its own.
+A method is a folder in ``models/``. Its name ends in ``_unconstrained`` (no list of expected cell
+types) or ``_constrained`` (with the list). Most methods write one ``predictions.csv`` per dataset.
+A wrapper for several served models writes one ``predictions_<provider>--<model>.csv`` per model,
+and each of these files is a run of its own.
 """
 from __future__ import annotations
 
 from pathlib import Path
 
-SETTINGS = ("_unblind", "_blind")
+SETTINGS = ("_constrained", "_unconstrained")
 MAPPED_SUFFIX = "_mapped"
 
 
@@ -29,12 +29,12 @@ def run_name(method: str, stem: str) -> str:
 
 
 def setting_of(model: str) -> str:
-    """``blind``, ``unblind`` or, for a method without settings, ``baseline``."""
+    """``unconstrained``, ``constrained`` or, for a method without settings, ``baseline``."""
     name = str(model).lower()
-    if name.endswith("_unblind"):
-        return "unblind"
-    if name.endswith("_blind"):
-        return "blind"
+    if name.endswith("_constrained"):
+        return "constrained"
+    if name.endswith("_unconstrained"):
+        return "unconstrained"
     return "baseline"
 
 

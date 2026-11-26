@@ -361,11 +361,11 @@ def benchmark_texts():
     scope = {"Dict": Dict, "List": List, "Optional": Optional,
              "logger": logging.getLogger("instructcell")}
     meta = {"species": "{species}", "tissue": "{tissue}"}
-    unconstrained = _wrapper_function("instructcell_blind/src/predict.py", "build_prompt",
+    unconstrained = _wrapper_function("instructcell_unconstrained/src/predict.py", "build_prompt",
                                       **scope)(meta)
-    constrained = _wrapper_function("instructcell_unblind/src/predict.py", "build_prompt",
+    constrained = _wrapper_function("instructcell_constrained/src/predict.py", "build_prompt",
                                     **scope)(meta, ["{unique_cell_types}"])
-    text = _wrapper_function("langcell_blind/src/predict.py", "gettextfromname")
+    text = _wrapper_function("langcell_unconstrained/src/predict.py", "gettextfromname")
     with contextlib.redirect_stdout(io.StringIO()):  # the wrapper prints every text it builds
         defined = text("{name}", {"{name}": "id"}, {}, {"id": {"name": "{name}",
                                                               "def": "{definition}"}})

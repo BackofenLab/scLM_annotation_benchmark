@@ -76,4 +76,5 @@ the test set (cell type counts in `cache/subset_qc/`), runs the methods and scor
 - The scLMs that read human genes only get mouse data as one-to-one human orthologs. Other
   organisms need an ortholog table in `ortholog_tables`.
 - SingleR needs a reference: name a celldex reference or a CELLxGENE dataset in the configuration.
-- The constrained settings (`*_unblind`) use the dataset's cell types as the list of expected types.
+- The constrained settings (`*_constrained`) use the dataset's cell types as the list of expected
+  types.

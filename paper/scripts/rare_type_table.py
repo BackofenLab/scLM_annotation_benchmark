@@ -90,7 +90,7 @@ def main(argv=None):
               f"out, covering {len(names)} labels:\n{names.to_string(index=False)}",
               file=sys.stderr)
     merged = merged[~unmatched].copy()
-    merged["family"] = merged["method"].map(lambda m: categorize_model(f"{m}_blind"))
+    merged["family"] = merged["method"].map(lambda m: categorize_model(f"{m}_unconstrained"))
     merged = merged[merged["family"].isin(["LLM", "scLLM", "classical"])]
     merged["block"] = [group_name(f"{m}_{mode}") for m, mode in zip(merged["method"], merged["mode"])]
 

@@ -3,7 +3,7 @@
 
 The reference has the layout of the preprocessed test sets (Ensembl IDs as var_names,
 log-normalized X, gene symbols in var['gene_names'], raw counts in layers['counts']), so that
-models/singler_blind/src/predict.R reads it like a test set and matches genes by Ensembl ID.
+models/singler_unconstrained/src/predict.R reads it like a test set and matches genes by Ensembl ID.
 Unlike bin/preprocess.py, it applies no QC and no cell or gene filtering, so that no labelled
 cell type is lost. Cells without a label are removed and every label is capped at
 --cap_per_label cells (with a fixed seed), which keeps SingleR fast on large atlases.

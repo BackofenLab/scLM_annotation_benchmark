@@ -54,7 +54,7 @@ Source, one of:
 
 | Key | Meaning |
 |---|---|
-| `path` | a local h5ad file, relative to the repository |
+| `path` | a local h5ad file, as an absolute path or relative to the repository |
 | `url` | an h5ad file to download (direct links, Google Drive and figshare links) |
 | `source: cellxgene_census`, `census_dataset_id`, `census_version` | a dataset of CELLxGENE Census |
 
@@ -129,13 +129,17 @@ The method's own settings (model checkpoints, batch sizes, random seeds) are arg
 
 ## LLMs (`models/openrouter_LLM_*`)
 
-Both settings share `src/` (`openrouter_LLM_unblind/src` links to `openrouter_LLM_blind/src`).
-`src/openrouter.yml` lists the served models and the request parameters (seed, number of genes per
-cell, parallel requests, provider routing, generation and reasoning settings). Each setting has its
-own prompt template in `prompt.txt`. In the template, `{cell_sentence}` is the list of genes
-ordered by expression, `{num_genes}` the value of `top_k_genes`, and `{unique_cell_types}` the list
-of expected cell types, which only the constrained prompt uses. Besides the predictions, the
-wrapper writes for every request the provider, the tokens and the cost (`usage_<model>.csv`).
+Both settings share `src/` (`openrouter_LLM_constrained/src` links to
+`openrouter_LLM_unconstrained/src`). `src/openrouter.yml` lists the served models and the request
+parameters (seed, number of genes per cell, parallel requests, provider routing, generation and
+reasoning settings). A cell sentence holds the `top_k_genes` most highly expressed genes of a
+cell, taken from all genes or, with `gene_pool: hvg`, from the `n_hvgs` most variable genes of the
+test set. These are selected with scanpy (flavor `seurat`), within each batch if the dataset has a
+`batch_key`. Each setting has its own prompt template in `prompt.txt`. In the template,
+`{cell_sentence}` is the list of genes ordered by expression, `{num_genes}` the value of
+`top_k_genes`, and `{unique_cell_types}` the list of expected cell types, which only the
+constrained prompt uses. Besides the predictions, the wrapper writes for every request the
+provider, the tokens and the cost (`usage_<model>.csv`).
 
 The per-cluster methods (`openrouter_LLM_percluster_*`) use the same `src/` and served models
 with their own `prompt.txt`: `{marker_genes}` are the cluster's marker genes, `{num_genes}`

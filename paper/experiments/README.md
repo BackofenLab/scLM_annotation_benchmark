@@ -25,7 +25,7 @@ types), L2-2 and L2-5 (2 or 5 absent types added), L3 (a quarter of the types re
 allowed) and L4 (L1, L2-5 and L3 together). The arms are A1, A3 and A8, four baselines that get
 the list as a label constraint (B1 SingleR, B2 CellTypist, B3 scType, B4 SCSA; not EU), and two
 single-cell language models that compare each cell with the listed names (S1 mmContext, S2
-LangCell; not EU), run with the benchmark's wrappers `mmcontext_blind` and `langcell_blind`.
+LangCell; not EU), run with the benchmark's wrappers `mmcontext_unconstrained` and `langcell_unconstrained`.
 
 ## Contents
 
@@ -87,8 +87,8 @@ python src/sentences.py --materialize --study lists
 python src/cluster.py --study lists
 python src/run_openrouter.py --study lists --arms A1_llm_percell A8_gemini_percluster
 python src/run_local.py --study lists --arms A3_scllm_percell
-(cd ../.. && sbatch --export=ALL,MODEL=mmcontext_blind,ARM=S1_mmcontext paper/experiments/slurm/run_sclm_lists.sbatch)
-(cd ../.. && sbatch --export=ALL,MODEL=langcell_blind,ARM=S2_langcell paper/experiments/slurm/run_sclm_lists.sbatch)
+(cd ../.. && sbatch --export=ALL,MODEL=mmcontext_unconstrained,ARM=S1_mmcontext paper/experiments/slurm/run_sclm_lists.sbatch)
+(cd ../.. && sbatch --export=ALL,MODEL=langcell_unconstrained,ARM=S2_langcell paper/experiments/slurm/run_sclm_lists.sbatch)
 python src/run_reference.py singler --env <environment>   # and celltypist, sctype, scsa
 python src/score.py --study lists --python <python of the evaluation environment>
 python src/lists.py --score             # results_lists/runs.csv and confusion_pairs.csv

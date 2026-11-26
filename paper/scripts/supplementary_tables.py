@@ -22,7 +22,7 @@ from pathlib import Path
 import pandas as pd
 
 import paths
-from methods import (DATASET_ORDER, METRIC_GROUPS, REGIME, REGIME_SHORT, _benchmark_pairs,
+from methods import (DATASET_ORDER, METRIC_GROUPS, REGIME_SHORT, _benchmark_pairs,
                      _display, _mapping_scores, _needs_mapping, _unlisted, categorize_model,
                      dataset_label, derive_mode, load_confusion_pairs, model_base, model_tier)
 
@@ -58,8 +58,6 @@ FAMILY_PLURAL = {"general-purpose LLM": "general-purpose LLMs", "scLM": "scLMs",
 # Short forms for the typeset table; the CSVs keep the long ones.
 FAMILY_TEX = {"general-purpose LLM": "LLM", "scLM": "scLM",
               "baseline": "baseline", "chance floor": "chance"}
-# The typeset table writes the setting as U or C; the CSVs spell it out.
-SETTING_TEX = {REGIME[mode]: short for mode, short in REGIME_SHORT.items()}
 
 
 def _tex(text):
@@ -90,7 +88,7 @@ def _derived(out):
     for size in sorted(out["subset_size"].unique()):
         pairs = _benchmark_pairs(out[out["subset_size"] == size],
                                  load_confusion_pairs(subset_size=size), chance=True)
-        constrained = pairs[pairs["model"].map(derive_mode) == "unblind"]
+        constrained = pairs[pairs["model"].map(derive_mode) == "constrained"]
         frames.append(pd.concat([_mapping_scores(pairs)["without"].rename(NO_MAPPING_COLUMN),
                                  _needs_mapping(pairs).rename(NEEDS_MAPPING_COLUMN),
                                  _unlisted(constrained).rename(UNLISTED_COLUMN)], axis=1)
@@ -106,11 +104,16 @@ def build_frame(df):
     setting "--"."""
     out = df.copy()
     out["family"] = out["model"].map(lambda m: FAMILY[categorize_model(m)])
-    out["setting"] = out["model"].map(lambda m: REGIME.get(derive_mode(m), "--"))
+    setting = out["model"].map(derive_mode)
+    out["setting"] = setting.where(setting.isin(list(REGIME_SHORT)), "--")
     out["method"] = out["model"].map(lambda m: _display(model_base(m)))
     out = out.merge(_derived(out), on=["model", "dataset", "subset_size"], how="left")
-    sort_cols = ["subset_size", "balanced_accuracy"]
-    return out.sort_values(sort_cols, ascending=[True, False], na_position="last")
+    # Runs with equal balanced accuracy are ordered by method, the unconstrained run first.
+    out["base"] = out["model"].map(model_base)
+    out["constrained"] = out["setting"] == "constrained"
+    out = out.sort_values(["subset_size", "balanced_accuracy", "base", "constrained"],
+                          ascending=[True, False, True, True], na_position="last")
+    return out.drop(columns=["base", "constrained"])
 
 
 def write_csvs(frame, outdir):
@@ -138,7 +141,7 @@ def _only_smallest(sub, sizes):
         if len(group) == (small["family"] == family).sum():
             names.append(f"the {FAMILY_PLURAL.get(family, family)}")
         else:
-            names += [f"{_tex(r.method)} ({SETTING_TEX.get(r.setting, r.setting)})"
+            names += [f"{_tex(r.method)} ({REGIME_SHORT.get(r.setting, r.setting)})"
                       for r in group.itertuples()]
     if not names:
         return ""
@@ -234,7 +237,7 @@ def write_tex(frame, out_path):
                     best[col] = _fmt(values.max(), 3)
             for _, r in block.iterrows():
                 cells = [_tex(FAMILY_TEX[r["family"]]),
-                         _tex(r["method"]), _tex(SETTING_TEX.get(r["setting"], r["setting"]))]
+                         _tex(r["method"]), _tex(REGIME_SHORT.get(r["setting"], r["setting"]))]
                 for col in columns:
                     text = _fmt(r.get(col), 0 if col in COUNT_COLUMNS else 3)
                     if text != "--" and best.get(col) == text:
@@ -250,7 +253,7 @@ def write_tex(frame, out_path):
 def write_unlisted_tex(frame, out_path):
     """The unlisted share of every generative model's constrained run at UNLISTED_SIZE: one row
     per method, one column per dataset and their mean, sorted by the mean."""
-    runs = frame[(frame["subset_size"] == UNLISTED_SIZE) & (frame["setting"] == REGIME["unblind"])
+    runs = frame[(frame["subset_size"] == UNLISTED_SIZE) & (frame["setting"] == "constrained")
                  & frame["model"].map(lambda m: categorize_model(m) == "LLM"
                                       or model_tier(m) == "generative")]
     shares = runs.pivot_table(index=["family", "method"], columns="dataset",

@@ -75,7 +75,8 @@ NAME_BESIDE = [(9, 0, "left", "center"), (9, 7, "left", "bottom"), (9, -7, "left
 # _cost_panel shows the ablation at genes + list, the benchmark's constrained setting.
 COST_MODE = "M2"
 # Gemini 3.1 Pro per cell is taken from the benchmark: its constrained run, priced as in panel A.
-GEMINI_PERCELL = {"model": "gemini-3.1-pro-preview_unblind", "label": "Gemini 3.1 Pro, per cell"}
+GEMINI_PERCELL = {"model": "gemini-3.1-pro-preview_constrained",
+                  "label": "Gemini 3.1 Pro, per cell"}
 # OpenRouter model identifiers in the log and the benchmark's method names.
 OPENROUTER_MODELS = {
     "anthropic/claude-4.7-opus-20260416": "claude-opus-4.7",
@@ -147,7 +148,7 @@ def _prompt_content_panel(ax, ablation, bench):
                         label=f"{_display(STUDY_ARM_MODEL[arm])}, per {unit}")
         handles.append(line)
     colour = FAMILY_COLORS["LLM"]
-    for mode, setting in (("M1", "blind"), ("M2", "unblind")):
+    for mode, setting in (("M1", "unconstrained"), ("M2", "constrained")):
         score = bench.loc[bench["model"] == f"gemini-3.1-pro-preview_{setting}",
                           "balanced_accuracy"]
         ax.scatter(PROMPT_MODES.index(mode), score.mean(), marker="*", s=150,
@@ -177,7 +178,7 @@ def _no_list_reference(ablation, bench, arms, dataset=None, metric="balanced_acc
     for arm in arms:
         rows = _arm_rows(ablation, arm)
         ref[arm] = (rows.loc[rows["mode"] == "M1", column].mean() if not rows.empty
-                    else bench.loc[bench["model"] == f"{STUDY_ARM_MODEL[arm]}_blind",
+                    else bench.loc[bench["model"] == f"{STUDY_ARM_MODEL[arm]}_unconstrained",
                                    column].mean())
     return ref
 
@@ -313,7 +314,8 @@ def _ablation_dataset_panel(ax, ablation, dataset, bench, arms, offsets, gemini_
     error, the seeds as small points, and Gemini 3.1 Pro per cell from the benchmark as a hollow
     star."""
     x = np.arange(len(MODE_ORDER), dtype=float)
-    for mode, model in (("M1", "gemini-3.1-pro-preview_blind"), ("M2", GEMINI_PERCELL["model"])):
+    for mode, model in (("M1", "gemini-3.1-pro-preview_unconstrained"),
+                        ("M2", GEMINI_PERCELL["model"])):
         score = bench.loc[(bench["model"] == model) & (bench["dataset"] == dataset),
                           "balanced_accuracy"]
         ax.scatter(x[MODE_ORDER.index(mode)] + gemini_dx, score.mean(), marker="*",
@@ -443,7 +445,7 @@ def _cost_quality_panel(ax, df):
              float(score), float(costs.loc[m, "answered_frac"]))
             for m, score in scores.items() if categorize_model(m) == "LLM"]
     # The family's colour, lighter for the unconstrained runs.
-    colors = {"unblind": FAMILY_COLORS["LLM"], "blind": _lighter(FAMILY_COLORS["LLM"])}
+    colors = {"constrained": FAMILY_COLORS["LLM"], "unconstrained": _lighter(FAMILY_COLORS["LLM"])}
     obstacles = []
     for base, mode, cost, score, _answered in rows:
         marker, size = _tier_marker(f"{base}_{mode}")
@@ -456,7 +458,7 @@ def _cost_quality_panel(ax, df):
         if answered < 0.98:
             labels[base, mode] = [f"{_display(base)} ({answered:.0%} answered)", cost, score,
                                   "0.15"]
-    for mode in ("blind", "unblind"):
+    for mode in ("unconstrained", "constrained"):
         pts = [(c, s) for _b, m, c, s, _a in rows if m == mode]
         front = _pareto_front(pts)
         fx = [pts[i][0] for i in front]
@@ -474,7 +476,7 @@ def _cost_quality_panel(ax, df):
     ax.set_xlabel("Cost per 1,000 cells annotated (USD, log scale)")
     ax.set_ylabel("Balanced accuracy (averaged over datasets)")
     handles = [mpatches.Patch(facecolor=colors[m], label=SETTING_KEY[m])
-               for m in ("unblind", "blind")]
+               for m in ("constrained", "unconstrained")]
     handles += [plt.Line2D([], [], linestyle="none", marker=marker, color="0.4", label=name)
                 for _tier, name, marker, _size in CATEGORY_TIERS["LLM"]]
     ax.legend(handles=handles, frameon=False, fontsize=7.5, loc="lower right")

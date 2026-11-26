@@ -17,7 +17,7 @@ import pandas as pd
 import seaborn as sns
 
 from methods import (ANSWER_TYPES, CATEGORY_TIERS, CHANCE_MODEL, DATASET_ORDER, FAMILIES,
-                     MAPPING_ROWS, METRIC_GROUPS, REGIME, REGIME_SHORT, _answer_shares,
+                     MAPPING_ROWS, METRIC_GROUPS, REGIME_SHORT, _answer_shares,
                      _benchmark_pairs, _display, _group_means, _mapping_scores, _needs_mapping,
                      categorize_model, dataset_label, derive_mode, model_base, model_tier)
 from style import (FAMILY_COLORS, FS_LABEL, FS_LEGEND, FS_POINT, RC, SETTING_KEY, _family_key,
@@ -45,7 +45,7 @@ def _ranked_panel(ax, df):
     wide = wide[DATASET_ORDER].loc[wide.mean(axis=1).sort_values(ascending=False).index]
     x = np.arange(len(wide))
     for xi, model in enumerate(wide.index):
-        unconstrained = derive_mode(model) == "blind"
+        unconstrained = derive_mode(model) == "unconstrained"
         ax.bar(xi, wide.loc[model].mean(), width=0.8, color=FAMILY_COLORS[categorize_model(model)],
                hatch="///" if unconstrained else None, linewidth=0.5,
                edgecolor="black" if unconstrained else "white", zorder=3)
@@ -94,12 +94,13 @@ def _list_effect_panel(ax, frame, title):
         ordered, offsets, segments = _category_layout(
             family, sorted(base for (f, base) in scores if f == family))
         offsets = offsets * 0.6  # two columns share the family's slot
-        column = {"blind": i - 0.25, "unblind": i + 0.25}
+        column = {"unconstrained": i - 0.25, "constrained": i + 0.25}
         for j, base in enumerate(ordered):
             run = scores[(family, base)]
-            ax.plot([column["blind"] + offsets[j], column["unblind"] + offsets[j]],
-                    [run["blind"], run["unblind"]], color="0.62", linewidth=0.7, zorder=2)
-        for mode in ("blind", "unblind"):
+            ax.plot([column["unconstrained"] + offsets[j], column["constrained"] + offsets[j]],
+                    [run["unconstrained"], run["constrained"]], color="0.62", linewidth=0.7,
+                    zorder=2)
+        for mode in ("unconstrained", "constrained"):
             for sl, marker, size in segments:
                 idx = range(sl.start, sl.stop)
                 ax.scatter([column[mode] + offsets[j] for j in idx],
@@ -129,7 +130,7 @@ def _list_effect_panel(ax, frame, title):
     best = {}
     for (base, mode), (x, y, _r) in points.items():
         family = categorize_model(base)
-        if mode == "unblind" and y > best.get(family, ("", 0, -1))[2]:
+        if mode == "constrained" and y > best.get(family, ("", 0, -1))[2]:
             best[family] = (base, x, y)
 
     # A name goes centred above its marker first, then beside it. The LLM's name is lifted and
@@ -229,9 +230,9 @@ def figure_benchmark(df, out_path, dpi):
         ax_key = fig.add_subplot(outer[2])
         ax_key.axis("off")
         _family_key(ax_key, [
-            mpatches.Patch(facecolor="0.75", edgecolor="white", label=SETTING_KEY["unblind"]),
+            mpatches.Patch(facecolor="0.75", edgecolor="white", label=SETTING_KEY["constrained"]),
             mpatches.Patch(facecolor="0.75", edgecolor="black", hatch="///",
-                           label=SETTING_KEY["blind"]),
+                           label=SETTING_KEY["unconstrained"]),
             plt.Line2D([], [], label="chance (random, stratified)", **CHANCE_LINE),
             plt.Line2D([], [], color="0.62", linewidth=0.7, label="same method")])
         _panel_letters(fig, [(ax_a, "A"), *zip(panels, "BCDEF"), (ax_g, "G"), (ax_h, "H")])
@@ -260,10 +261,10 @@ def figure_harmonization(df, out_path, dpi):
 
     gap = 1.9  # blank rows between the blocks of the two settings, with room for the heading
     blocks, rows, pos = [], [], 0.0
-    for mode in ("blind", "unblind"):
+    for mode in ("unconstrained", "constrained"):
         pos += gap
         block = _agg(d[d["regime"] == mode])
-        blocks.append((REGIME[mode], pos - 1.0))
+        blocks.append((mode, pos - 1.0))
         for _, r in block.iterrows():
             rows.append({**r.to_dict(), "ypos": pos, "regime": mode})
             pos += 1
@@ -355,7 +356,7 @@ def _subcategory_rows():
     return [(family, mode, f"{family_name[family]}, {label}, {REGIME_SHORT[mode]}", tier)
             for family, _ in FAMILIES
             for tier, label, *_ in CATEGORY_TIERS[family]
-            for mode in ("blind", "unblind")]
+            for mode in ("unconstrained", "constrained")]
 
 
 def figure_answer_types(df, out_path, dpi):

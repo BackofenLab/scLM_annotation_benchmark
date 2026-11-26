@@ -21,15 +21,15 @@ PAIRS = pd.DataFrame(
      ("D", "b", "cell", 1, "none"), ("D", "b", "a", 2, "other"),
      ("E", "c", "c", 3, "exact"), ("E", "c", "a", 1, "other"), ("E", "b", "b", 2, "exact")],
     columns=["dataset", "true_label", "predicted_label", "n_cells", "lineage"],
-).assign(model="m_unblind")
+).assign(model="m_constrained")
 
 
 def test_only_types_off_the_run_s_own_list_count():
     shares = _unlisted(PAIRS)
     # D: c is off the list for 2 of a's 4 cells; 'cell' names no type, and a is listed.
-    assert isclose(shares[("m_unblind", "D")], (2 / 4 + 0) / 2)
+    assert isclose(shares[("m_constrained", "D")], (2 / 4 + 0) / 2)
     # E: a is off the list for 1 of c's 4 cells, although D lists it.
-    assert isclose(shares[("m_unblind", "E")], (1 / 4 + 0) / 2)
+    assert isclose(shares[("m_constrained", "E")], (1 / 4 + 0) / 2)
 
 
 if __name__ == "__main__":

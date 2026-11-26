@@ -10,8 +10,8 @@
 # (Zeisel through human orthologs). Without SLURM, run it with bash from the repository root.
 #
 #   mkdir -p paper/experiments/slurm/logs
-#   sbatch --export=ALL,MODEL=mmcontext_blind,ARM=S1_mmcontext paper/experiments/slurm/run_sclm_lists.sbatch
-#   sbatch --export=ALL,MODEL=langcell_blind,ARM=S2_langcell paper/experiments/slurm/run_sclm_lists.sbatch
+#   sbatch --export=ALL,MODEL=mmcontext_unconstrained,ARM=S1_mmcontext paper/experiments/slurm/run_sclm_lists.sbatch
+#   sbatch --export=ALL,MODEL=langcell_unconstrained,ARM=S2_langcell paper/experiments/slurm/run_sclm_lists.sbatch
 #
 # One job per model: mmContext writes <input>_pp.h5ad next to its input, so two of its jobs must
 # not run at once. DATASETS (separated by colons) limits the datasets.
@@ -25,7 +25,7 @@
 #SBATCH --error=paper/experiments/slurm/logs/sclm_lists_%j.err
 set -euo pipefail
 
-: "${MODEL:?set MODEL, mmcontext_blind or langcell_blind}"
+: "${MODEL:?set MODEL, mmcontext_unconstrained or langcell_unconstrained}"
 : "${ARM:?set ARM, S1_mmcontext or S2_langcell}"
 DATASETS="${DATASETS:-HFRA:HIHA:human_pancreas:Zeisel}"
 LISTS=paper/experiments/results_lists/lists

@@ -15,8 +15,9 @@ An answer is trusted if it names a Cell Ontology term or has a reviewed row in t
 table. Untrusted answers count as wrong. A run in which fewer than ``--min-scoring-coverage`` of
 the answers are trusted gets no metrics.
 
-    evaluate.py --pred mapped/predictions_mapped.csv --method celltypist_blind --dataset HFRA \
-        --subset-size 1000 --out-dir scores --mappings resources/cell_type_ontology_mappings.csv
+    evaluate.py --pred mapped/predictions_mapped.csv --method celltypist_unconstrained \
+        --dataset HFRA --subset-size 1000 --out-dir scores \
+        --mappings resources/cell_type_ontology_mappings.csv
 """
 import argparse
 import json

@@ -49,8 +49,8 @@ TIER_STYLE = {tier: (marker, size) for tiers in CATEGORY_TIERS.values()
 FAMILY_HEADER = {"classical": "Marker- and reference-based baselines",
                  "scLLM": "Single-cell language models (scLMs)",
                  "LLM": "General-purpose LLMs"}
-SETTING_KEY = {"unblind": r"$\bf{C}$  constrained: expected cell types supplied",
-               "blind": r"$\bf{U}$  unconstrained: no expected cell types"}
+SETTING_KEY = {"constrained": r"$\bf{C}$  constrained: expected cell types supplied",
+               "unconstrained": r"$\bf{U}$  unconstrained: no expected cell types"}
 # Legend text and colour of each of ANSWER_TYPES.
 ANSWER_TYPE_STYLE = {
     "exact": ("exact type", "#1b7837"),

@@ -89,9 +89,10 @@ A method that needs setup once (cloning a repository, downloading weights) puts 
 
 ## 4. The two settings
 
-The constrained setting is a second folder whose name ends in `_unblind`. If the code is the same,
-link its `src` to the first folder (`ln -s ../<method>_blind/src models/<method>_unblind/src`) and
-give it its own `method.yml`. A method that answers from a fixed vocabulary can declare
+The constrained setting is a second folder whose name ends in `_constrained`. If the code is the
+same, link its `src` to the first folder
+(`ln -s ../<method>_unconstrained/src models/<method>_constrained/src`) and give it its own
+`method.yml`. A method that answers from a fixed vocabulary can declare
 `needs.label_constraint` and keep only the labels in the table at `LABEL_CONSTRAINT`
 (`bin/util/label_constraint.py`, `bin/util/label_constraint.R`). A generative method gets the list
 of expected cell types in its prompt instead; the true labels of the test set are that list. In

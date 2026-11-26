@@ -14,7 +14,7 @@ An answer that names a Cell Ontology term is kept. Any other answer is looked up
 table. Answers the table does not hold yet are appended to it as unreviewed rows unless
 ``--append false`` is given.
 
-    map_predictions.py --pred predictions.csv --method celltypist_blind --dataset HFRA \
+    map_predictions.py --pred predictions.csv --method celltypist_unconstrained --dataset HFRA \
         --out-dir mapped --mappings resources/cell_type_ontology_mappings.csv --cache_dir cache
 """
 import argparse

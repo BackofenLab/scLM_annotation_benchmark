@@ -2,10 +2,10 @@
 that several of them use.
 
 A method is named by its base name, such as ``gpt-5.5``. A run of a method carries its setting as
-a suffix: ``_blind`` for the unconstrained run and ``_unblind`` for the run constrained by the list
-of expected cell types. The chance model has no suffix. The figure modules, the table scripts,
-extract_statistics.py, rare_type_table.py and paper/experiments/src/lists.py import from this
-module, which needs no matplotlib.
+a suffix: ``_unconstrained`` for the unconstrained run and ``_constrained`` for the run constrained
+by the list of expected cell types. The chance model has no suffix. The figure modules, the table
+scripts, extract_statistics.py, rare_type_table.py and paper/experiments/src/lists.py import from
+this module, which needs no matplotlib.
 """
 from __future__ import annotations
 
@@ -59,12 +59,11 @@ _CLASSES = {base: (family, tier) for family, tiers in CATEGORY_TIER_MEMBERS.item
 
 # A run's setting, from its suffix. Figures and tables tag a run with the single letter and spell
 # it out in a key.
-REGIME = {"blind": "unconstrained", "unblind": "constrained"}
-REGIME_SHORT = {"blind": "U", "unblind": "C"}
+REGIME_SHORT = {"unconstrained": "U", "constrained": "C"}
 GROUP_FAMILY = {"classical": "baselines", "scLLM": "scLLM", "LLM": "LLM"}
 # The method groups as rows of a figure, every family in both settings: (family, setting, label).
 MAPPING_ROWS = [(family, mode, f"{name}, {REGIME_SHORT[mode]}")
-                for family, name in FAMILIES for mode in ("blind", "unblind")]
+                for family, name in FAMILIES for mode in ("unconstrained", "constrained")]
 
 DISPLAY_NAMES = {
     "celltypist": "CellTypist", "scsa": "SCSA", "sctype": "scType", "singler": "SingleR",
@@ -108,19 +107,20 @@ STUDY_ARM_MODEL = {"A1_llm_percell": "gpt-oss-120b", "A4_llm_percluster": "gpt-o
 
 
 def derive_mode(model):
-    """Setting of a run from its suffix: "blind", "unblind", or "baseline" for the chance model."""
+    """Setting of a run from its suffix: "unconstrained", "constrained", or "baseline" for the
+    chance model."""
     m = str(model).lower()
-    if m.endswith("_unblind"):
-        return "unblind"
-    if m.endswith("_blind"):
-        return "blind"
+    if m.endswith("_constrained"):
+        return "constrained"
+    if m.endswith("_unconstrained"):
+        return "unconstrained"
     return "baseline"
 
 
 def model_base(model):
     """Method of a run: the run's name without its setting."""
     m = str(model)
-    for suffix in ("_blind", "_unblind"):
+    for suffix in ("_unconstrained", "_constrained"):
         if m.endswith(suffix):
             return m[: -len(suffix)]
     return m
@@ -147,7 +147,7 @@ def run_label(model, name=None):
 
 def group_name(model):
     """Family and setting of a run, e.g. "constrained baselines" or "unconstrained LLM"."""
-    return f"{REGIME[derive_mode(model)]} {GROUP_FAMILY[categorize_model(model)]}"
+    return f"{derive_mode(model)} {GROUP_FAMILY[categorize_model(model)]}"
 
 
 def _display(base):

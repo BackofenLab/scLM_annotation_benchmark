@@ -2,7 +2,7 @@
 # (CELLxGENE, CC BY 4.0), raw counts. See tests/data/README.md.
 
 name: toy
-path: tests/data/toy_blood.h5ad   # a local h5ad file, relative to the repository
+path: tests/data/toy_blood.h5ad   # a local h5ad file, absolute or relative to the repository
 
 # Cells and labels
 annotation_key: "cell_type"

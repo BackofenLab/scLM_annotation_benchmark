@@ -118,15 +118,15 @@ def build(dataset, cfg, use_hvg, seed=1234):
 
 def check_equivalence(dataset, cfg, n_check=50, seed=1234):
     """Compare the first ``n_check`` sentences of ``build`` without the HVG pool with the sentences
-    that the benchmark's per-cell LLM wrapper (``models/openrouter_LLM_blind/src/predict.py``)
-    builds from the same test set with its own settings. Returns the indices of differing cells
-    and the info."""
+    that the benchmark's per-cell LLM wrapper
+    (``models/openrouter_LLM_unconstrained/src/predict.py``) builds from the same test set with
+    its own settings. Returns the indices of differing cells and the info."""
     import importlib.util
     from cell2sentence.prompt_formatter import get_cell_sentence_str
 
     arrow_ds, _vocab, info = build(dataset, cfg, use_hvg=False, seed=seed)
 
-    wrapper_dir = REPO_ROOT / "models" / "openrouter_LLM_blind" / "src"
+    wrapper_dir = REPO_ROOT / "models" / "openrouter_LLM_unconstrained" / "src"
     spec = importlib.util.spec_from_file_location("benchmark_wrapper", wrapper_dir / "predict.py")
     wrapper = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(wrapper)

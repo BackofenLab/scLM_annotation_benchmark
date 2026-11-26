@@ -3,10 +3,10 @@
 
 A baseline can name only the cell types of its reference or marker database, so each list becomes
 a label constraint (``util.label_constraint``, with this study's mapping table) and the method's
-pipeline wrapper (``models/<method>_blind``) runs with ``LABEL_CONSTRAINT``: SingleR again on the
-restricted reference, since it selects marker genes among the labels it gets; scType again on the
-kept gene sets, since its marker weights depend on the set; CellTypist and SCSA with their best
-match among the kept labels. scType and SCSA cluster the dataset's context first, as in the
+pipeline wrapper (``models/<method>_unconstrained``) runs with ``LABEL_CONSTRAINT``: SingleR again
+on the restricted reference, since it selects marker genes among the labels it gets; scType again
+on the kept gene sets, since its marker weights depend on the set; CellTypist and SCSA with their
+best match among the kept labels. scType and SCSA cluster the dataset's context first, as in the
 pipeline. The wrapper records per cell whether a label it can give counts for the true type
 (``reachable``).
 
@@ -15,8 +15,8 @@ for ``score.py --study lists``. Each distinct list runs once; a condition whose 
 (EU) is skipped, since these methods cannot answer "uncertain".
 
 Run in the evaluation environment, with ENV the conda environment of the method's wrapper
-(``envs/models/<method>_blind.yml``). Leave OMP_NUM_THREADS unset, as in the pipeline, since the
-number of threads can change SCSA's labels.
+(``envs/models/<method>_unconstrained.yml``). Leave OMP_NUM_THREADS unset, as in the pipeline,
+since the number of threads can change SCSA's labels.
     python src/run_reference.py singler --env ENV [--datasets ...]
     python src/run_reference.py celltypist --env ENV [--datasets ...]
     python src/run_reference.py sctype --env ENV [--datasets ...]
@@ -58,8 +58,8 @@ def staged_inputs(method, dataset):
 def run_wrapper(method, env, subset, dataset, out, **variables):
     """A method's pipeline wrapper on the eval subset, with extra environment variables."""
     subprocess.run([CONDA, "run", "--no-capture-output", "-n", env, "bash",
-                    str(REPO_ROOT / "models" / f"{method}_blind" / "src" / "run.sh"), str(subset),
-                    str(out), str(REPO_ROOT / "datasets" / f"{dataset}.yml"),
+                    str(REPO_ROOT / "models" / f"{method}_unconstrained" / "src" / "run.sh"),
+                    str(subset), str(out), str(REPO_ROOT / "datasets" / f"{dataset}.yml"),
                     str(REPO_ROOT / "cache" / "models")],
                    check=True, env={**os.environ, **{k: str(v) for k, v in variables.items()}})
     return pd.read_csv(out)
