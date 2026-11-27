@@ -257,6 +257,9 @@ tests/                 unit tests (each file runs with python) and the toy datas
 paper/                 data, results and code of the paper
 ```
 
+## AI usage statement
+Anthropic's Claude Opus models in Claude Code and OpenAI's ChatGPT models were used during the development of this software. All generated code was reviewed and validated by the authors.
+
 ## License
 
 The code is released under the MIT license (see `LICENSE`). Third-party material keeps its own
