@@ -15,9 +15,12 @@ import argparse
 import sys
 from pathlib import Path
 
+import anndata as ad
+import h5py
 import numpy as np
 import pandas as pd
-import scanpy as sc
+import scipy.sparse as sp
+from anndata.io import read_elem
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))  # make util.* importable
 from util.pp_utils import (  # noqa: E402
@@ -48,20 +51,36 @@ def _biomart_species(s: str) -> str:
     return _SPECIES_MAP.get(str(s).strip().lower(), "hsapiens")
 
 
-def subsample_per_label(adata, label_key: str, cap: int, seed: int):
-    """Keep at most cap cells per label, drawn with the given seed; cap <= 0 keeps all cells."""
+def subsample_positions(labels, cap: int, seed: int):
+    """Sorted positions of at most cap cells per label, drawn with the given seed; cap <= 0 keeps
+    all cells."""
     if not cap or cap <= 0:
-        return adata
+        return np.arange(len(labels))
     rng = np.random.RandomState(seed)
-    labels = adata.obs[label_key].astype(str).values
     keep = []
     for lab in pd.unique(labels):
         idx = np.flatnonzero(labels == lab)
         if len(idx) > cap:
             idx = rng.choice(idx, size=cap, replace=False)
         keep.append(idx)
-    keep = np.sort(np.concatenate(keep))
-    return adata[keep].copy()
+    return np.sort(np.concatenate(keep))
+
+
+def read_rows(elem, rows):
+    """The given rows (sorted positions) of a matrix in an open h5ad file: a CSR matrix is read
+    row by row and a dense array by index, so that the rest of the matrix is never loaded; other
+    encodings are read whole."""
+    if isinstance(elem, h5py.Dataset):
+        return elem[rows]
+    if elem.attrs.get("encoding-type") != "csr_matrix":
+        whole = read_elem(elem)
+        return whole.iloc[rows] if isinstance(whole, pd.DataFrame) else whole[rows]
+    indptr = elem["indptr"][:]
+    starts, ends = indptr[rows], indptr[rows + 1]
+    data = np.concatenate([elem["data"][s:e] for s, e in zip(starts, ends)])
+    indices = np.concatenate([elem["indices"][s:e] for s, e in zip(starts, ends)])
+    indptr_new = np.concatenate([[0], np.cumsum(ends - starts)])
+    return sp.csr_matrix((data, indices, indptr_new), shape=(len(rows), int(elem.attrs["shape"][1])))
 
 
 def main() -> None:
@@ -88,22 +107,37 @@ def main() -> None:
     cellxgene_census.download_source_h5ad(
         str(args.census_id), to_path=str(source), census_version=str(args.census_version)
     )
-    adata = sc.read_h5ad(source)
-    print(f"[INFO] source: {adata.n_obs} cells x {adata.n_vars} genes", flush=True)
+    # Large atlases do not fit in memory, so the cells are chosen from obs alone and only their
+    # rows are read.
+    with h5py.File(source, "r") as f:
+        obs = read_elem(f["obs"])
+        var = read_elem(f["var"])
+        print(f"[INFO] source: {len(obs)} cells x {len(var)} genes", flush=True)
 
-    if args.label_key not in adata.obs.columns:
-        sys.exit(f"[ERROR] label_key '{args.label_key}' not in obs columns: "
-                 f"{list(adata.obs.columns)[:40]}")
+        if args.label_key not in obs.columns:
+            sys.exit(f"[ERROR] label_key '{args.label_key}' not in obs columns: "
+                     f"{list(obs.columns)[:40]}")
 
-    # Cells whose label is missing, empty or 'nan' are removed.
-    lab = adata.obs[args.label_key].astype(str)
-    keep = lab.notna() & (lab.str.strip() != "") & (lab.str.strip().str.lower() != "nan")
-    n0 = adata.n_obs
-    adata = adata[keep.values].copy()
-    print(f"[INFO] dropped {n0 - adata.n_obs} cells with empty/NA '{args.label_key}'", flush=True)
+        # Cells whose label is missing, empty or 'nan' are removed.
+        lab = obs[args.label_key].astype(str)
+        labelled = np.flatnonzero(
+            (lab.notna() & (lab.str.strip() != "") & (lab.str.strip().str.lower() != "nan")).values)
+        print(f"[INFO] dropped {len(obs) - len(labelled)} cells with empty/NA '{args.label_key}'",
+              flush=True)
 
-    # Subsampled before normalization to save time; normalization works per cell.
-    adata = subsample_per_label(adata, args.label_key, args.cap_per_label, args.seed)
+        # Subsampled before normalization to save time; normalization works per cell.
+        keep = labelled[subsample_positions(lab.values[labelled], args.cap_per_label, args.seed)]
+        adata = ad.AnnData(
+            X=read_rows(f["X"], keep),
+            obs=obs.iloc[keep],
+            var=var,
+            obsm={k: read_rows(f["obsm"][k], keep) for k in f.get("obsm", {})},
+            layers={k: read_rows(f["layers"][k], keep) for k in f.get("layers", {})},
+            uns=read_elem(f["uns"]) if "uns" in f else None,
+        )
+        if "raw" in f:
+            adata.raw = ad.AnnData(X=read_rows(f["raw"]["X"], keep), obs=adata.obs,
+                                   var=read_elem(f["raw"]["var"]))
     print(f"[INFO] after subsample(cap={args.cap_per_label}): {adata.n_obs} cells, "
           f"{adata.obs[args.label_key].astype(str).nunique()} labels", flush=True)
 
