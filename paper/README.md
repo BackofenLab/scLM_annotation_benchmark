@@ -71,5 +71,6 @@ Figure 1 was manually created and is therefore not generated here.
 ## Notes
 
 - The test sets and the clustering samples are on Zenodo (doi:10.5281/zenodo.21443586).
-- The predictions of the two additional analyses, their prompts and the model answers are not in
-  the repository.
+- The predictions and model answers of the two additional analyses are on Zenodo
+  (`additional_analyses_data.zip`, doi:10.5281/zenodo.24583507), together with what scoring them
+  needs; see `experiments/README.md`. Their prompts are not stored, as the scripts rebuild them.
