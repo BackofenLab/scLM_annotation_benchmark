@@ -41,7 +41,7 @@ LangCell; not EU), run with the benchmark's wrappers `mmcontext_unconstrained` a
 Of the study trees, only the last four entries are in the repository. The predictions, the model
 answers (`cache/` of each tree), the clusters, the sentence statistics, the request log of the list
 analysis and the rows of the studies' mapping table that scoring needs are on Zenodo
-(`additional_analyses_data.zip`, doi:10.5281/zenodo.24583507). Unzipped in this folder, they let
+(`additional_analyses_data.zip`, doi:10.5281/zenodo.24590958). Unzipped in this folder, they let
 `score.py`, `aggregate.py` and `lists.py --score` rebuild the two result tables; the README in the
 archive gives the commands. The prompts and the scored runs are not stored, and the steps below
 rebuild them.

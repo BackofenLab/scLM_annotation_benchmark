@@ -52,7 +52,7 @@ because the conda environments are created.
 
 Test sets are sampled stratified by cell type, with at least 20 cells per type. By default the
 pipeline downloads the test sets of the paper (1,000 and 10,000 cells) from
-[Zenodo](https://doi.org/10.5281/zenodo.21443586), but it can also rebuild them from the original
+[Zenodo](https://doi.org/10.5281/zenodo.24590958), but it can also rebuild them from the original
 data. After annotation, the predictions are mapped to the Cell Ontology (see
 [below](#mapping-predictions-to-the-cell-ontology)) and scored against the dataset's labels with
 accuracy, balanced accuracy, F1, the ontology-based Lin and Rada similarities and an agreement
@@ -224,7 +224,7 @@ setting they keep only labels at or below one of the expected cell types in the 
 |---|---|---|---|
 | `HFRA` | fetal retina | human | CELLxGENE Census |
 | `HIHA` | peripheral blood | human | CELLxGENE Census |
-| `Zeisel` | nervous system | mouse | authors' loom file, converted to h5ad |
+| `Zeisel` | nervous system | mouse | authors' loom file, converted to h5ad (on Zenodo) |
 | `human_pancreas` | pancreas | human | figshare (Luecken et al. 2022) |
 | `toy` | peripheral blood, 40 cells | human | a sample of `HIHA`, for testing |
 
