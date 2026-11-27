@@ -32,10 +32,9 @@ The pipeline has two modes:
 - An [OpenRouter](https://openrouter.ai/) API key for the LLMs
 
 > [!NOTE]
-> On macOS, conda cannot build the environments of the two R-based methods, SingleR and scType. The
-> install script of Bioconductor's GenomeInfoDbData package expects Linux file names, and SingleR
-> 2.8.0 has no build for Apple silicon. Using the Intel packages instead does not help. Run these
-> two methods on Linux.
+> SingleR has no conda build for Apple silicon. On these Macs the pipeline creates its environment
+> from the Intel packages in `envs/models/singler_unconstrained.osx-64.txt`, which macOS runs with
+> Rosetta 2 (install it with `softwareupdate --install-rosetta` if needed).
 
 ## Quick start
 

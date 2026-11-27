@@ -57,8 +57,11 @@ defaults of the method's script.
 ## 2. The environment
 
 `envs/models/<method>.yml` is a conda environment with everything the scripts import. Pin the
-versions. The random baseline needs Python, NumPy, pandas, anndata and PyYAML. Under the container
-profiles the methods run in the image named in `container_image` instead.
+versions. The random baseline needs Python, NumPy, pandas, anndata and PyYAML. If a package has no
+build for Apple silicon, add `envs/models/<method>.osx-64.txt`, the output of `conda list
+--explicit --md5` for the environment built with `CONDA_SUBDIR=osx-64`; on Apple silicon the
+pipeline creates the environment from this file, as for SingleR. Under the container profiles the
+methods run in the image named in `container_image` instead.
 
 ## 3. The description
 

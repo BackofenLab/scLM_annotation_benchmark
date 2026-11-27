@@ -1,13 +1,15 @@
 name: sctype
 # Bioconductor 3.20 with R 4.4, the oldest release with builds of all packages for linux-64 and
 # osx-arm64 (Bioconductor 3.18 with R 4.3 has no osx-arm64 builds of scran and scater). Build
-# strings and system libraries are left to conda. On macOS the install of GenomeInfoDbData fails
-# (see the README); use linux-64 or a container.
+# strings and system libraries are left to conda.
 channels:
   - conda-forge
   - bioconda
 dependencies:
   - r-base=4.4.3
+  # Build 0 of the installer of Bioconductor's data packages: later builds look for a Linux file
+  # name on macOS, and the install of GenomeInfoDbData fails there.
+  - bioconductor-data-packages=20260207=hdfd78af_0
   - r-optparse=1.7.5
   - r-yaml=2.3.12
   - r-igraph=2.3.3

@@ -116,8 +116,13 @@ def containerFor(String method) {
     return methodSpec(method).container == 'r' ? params.r_container_image : params.container_image
 }
 
+// The conda environment of a method: its recipe, or on Apple silicon the lock file of Intel
+// packages that a method without builds for Apple silicon brings (SingleR). macOS runs these
+// packages with Rosetta 2.
 def environmentFor(String method) {
-    return "${projectDir}/envs/models/${method}.yml"
+    def lock = new File("${projectDir}/envs/models/${method}.osx-64.txt")
+    def appleSilicon = System.getProperty('os.name') == 'Mac OS X' && System.getProperty('os.arch') == 'aarch64'
+    return appleSilicon && lock.exists() ? lock.path : "${projectDir}/envs/models/${method}.yml"
 }
 
 // Content hash of the mapping table, so that a changed table re-runs the steps that read it.
