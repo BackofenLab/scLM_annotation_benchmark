@@ -7,7 +7,8 @@
 #
 # Submit from the repository root, with the wrapper's environment (envs/models/<MODEL>.yml) active
 # and its prepare.sh run, after a pipeline run has put the test sets into cache/datasets/subset/
-# (Zeisel through human orthologs). Without SLURM, run it with bash from the repository root.
+# (Zeisel through human orthologs). Without SLURM, run it with bash from the repository root. A
+# GPU partition with another name than gpu is given with sbatch -p.
 #
 #   mkdir -p paper/experiments/slurm/logs
 #   sbatch --export=ALL,MODEL=mmcontext_unconstrained,ARM=S1_mmcontext paper/experiments/slurm/run_sclm_lists.sbatch

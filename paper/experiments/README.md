@@ -98,8 +98,10 @@ python src/lists.py --score             # results_lists/runs.csv and confusion_p
 the local arms' prompt files and creates the environment, `submit_shards.sh <arm> [dataset ...]`
 submits one job per dataset, `fetch_from_gpu.sh` copies predictions, caches and logs back, and
 `cleanup_gpu.sh` removes the study's files from the cluster; `STUDY=lists` switches the first three
-to the list analysis. The ssh alias (`HOST`, default `gpu`), extra ssh options such as a jump host
-(`SSH_OPTS`), the remote folder (`REMOTE_DIR`, default `context_ablation` in the home folder) and
-the GPU node that `submit_shards.sh` checks (`NODE`) are variables; the model weights go to
-`/scratch/global/$USER/hf`. `run_sclm_lists.sbatch` runs the scLM arms in a checkout of the whole
-repository on a GPU node (see its header).
+to the list analysis. The scripts take these variables: the ssh alias (`HOST`, default `gpu`),
+extra ssh options such as a jump host (`SSH_OPTS`), the remote folder (`REMOTE_DIR`, default
+`context_ablation` in the home folder), the folder for the model weights (`HF_DIR`, default `hf/`
+in the remote folder), the GPU partition of `submit_shards.sh` (`PARTITION`, default `gpu` as in
+the job scripts) and a GPU node whose state it checks first (`NODE`, none by default).
+`cleanup_gpu.sh` deletes `HF_DIR`, so it should be a folder of its own. `run_sclm_lists.sbatch`
+runs the scLM arms in a checkout of the whole repository on a GPU node (see its header).

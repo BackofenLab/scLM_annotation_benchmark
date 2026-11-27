@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Copy the code, config.yml, env-local.yml, the SLURM scripts and the prompt files of the local
 # arms to the remote host (ssh alias HOST, folder ~/REMOTE_DIR), install Miniforge there if it is
-# missing and create the environment of env-local.yml. Model weights go to
-# /scratch/global/$USER/hf. Running it again skips what is already there.
-#     [STUDY=lists] slurm/ship_to_gpu.sh
+# missing and create the environment of env-local.yml. Model weights go to HF_DIR on the remote
+# host, by default ~/REMOTE_DIR/hf. Running it again skips what is already there.
+#     [STUDY=lists] [HF_DIR=/scratch/<user>/hf] slurm/ship_to_gpu.sh
 set -euo pipefail
 
 HOST="${HOST:-gpu}"
@@ -16,6 +16,8 @@ export RSYNC_RSH="ssh $SSH_OPTS"
 STUDY="${STUDY:-ablation}"
 TREE=$(python3 -c 'import sys, yaml; print(yaml.safe_load(open(sys.argv[1]))["studies"][sys.argv[2]])' \
   "$LOCAL_ROOT/config.yml" "$STUDY")
+# Folder for the model weights on the remote host, an absolute path; empty: ~/REMOTE_DIR/hf.
+HF_DIR="${HF_DIR:-}"
 
 echo "==> shipping $LOCAL_ROOT -> $HOST:~/$REMOTE_DIR"
 
@@ -46,7 +48,7 @@ echo "==> verifying the shipment"
 ssh $SSH_OPTS "$HOST" "cd $REMOTE_DIR && ls $TREE/prompts/*.csv | wc -l | xargs printf '  prompt files: %s (168 for the ablation)\n' && du -sh $TREE/prompts | xargs printf '  size: %s %s\n'"
 
 echo "==> bootstrapping conda + environment (skips whatever already exists)"
-ssh $SSH_OPTS "$HOST" bash -s -- "$REMOTE_DIR" <<'REMOTE'
+ssh $SSH_OPTS "$HOST" bash -s -- "$REMOTE_DIR" "$HF_DIR" <<'REMOTE'
 set -euo pipefail
 cd "$HOME/$1"
 
@@ -78,8 +80,9 @@ print(f"  torch {torch.__version__} | cuda available: {torch.cuda.is_available()
 print(f"  transformers {transformers.__version__}")
 PY
 
-mkdir -p "/scratch/global/$USER/hf"
-echo "  HF_HOME will be /scratch/global/$USER/hf ($(df -h /scratch/global | tail -1 | awk '{print $4}') free)"
+HF_DIR="${2:-$HOME/$1/hf}"
+mkdir -p "$HF_DIR"
+echo "  HF_HOME will be $HF_DIR ($(df -h "$HF_DIR" | tail -1 | awk '{print $4}') free)"
 REMOTE
 
-echo "==> done. Next, on $HOST in ~/$REMOTE_DIR: sbatch slurm/smoke_test.sbatch"
+echo "==> done. Next, on $HOST in ~/$REMOTE_DIR: ${HF_DIR:+HF_DIR=$HF_DIR }sbatch slurm/smoke_test.sbatch"

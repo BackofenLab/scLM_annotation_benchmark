@@ -2,7 +2,8 @@
 # One SLURM job of the local arms: run_local.py for one arm and one dataset, given as ARM and
 # DATASET (BATCH and STUDY are optional). submit_shards.sh submits these jobs one by one, not as a
 # job array, from the experiment folder on the cluster, where the job runs. One GPU; CPUs and
-# memory are the partition's defaults per GPU.
+# memory are the partition's defaults per GPU. A GPU partition with another name than gpu is
+# given with sbatch -p (PARTITION in submit_shards.sh).
 #
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:1
@@ -18,8 +19,8 @@ set -euo pipefail
 
 cd "$SLURM_SUBMIT_DIR"
 
-# Model weights are downloaded to the shared scratch file system.
-export HF_HOME="/scratch/global/$USER/hf"
+# Model weights go to HF_DIR (submit_shards.sh passes it on), else to hf/ in this folder.
+export HF_HOME="${HF_DIR:-$SLURM_SUBMIT_DIR/hf}"
 mkdir -p "$HF_HOME" logs
 
 export PYTHONUNBUFFERED=1

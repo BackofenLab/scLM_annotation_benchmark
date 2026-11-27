@@ -1,21 +1,25 @@
 #!/usr/bin/env bash
 # Submit one SLURM job (run_local_arms.sbatch) per dataset for one local arm on the remote host
 # (ssh alias HOST), as single jobs rather than a job array. At most MAX_CONCURRENT of the user's
-# jobs are queued or running at once; the script waits for a free slot. It stops if the GPU node
-# is drained or down. --dry-run checks the node and lists the jobs without submitting them.
+# jobs are queued or running at once; the script waits for a free slot. If NODE names the GPU
+# node, the script stops when that node is drained or down. --dry-run checks the node and lists
+# the jobs without submitting them.
 #
 # Usage:
 #   slurm/submit_shards.sh A3_scllm_percell human_pancreas
 #   slurm/submit_shards.sh A3_scllm_percell            # all four datasets
 #   MAX_CONCURRENT=2 slurm/submit_shards.sh A2_base_percell
+#   PARTITION=<gpu partition> HF_DIR=/scratch/<user>/hf slurm/submit_shards.sh A3_scllm_percell
 set -euo pipefail
 
 HOST="${HOST:-gpu}"
 REMOTE_DIR="${REMOTE_DIR:-context_ablation}"
-SSH_OPTS="${SSH_OPTS:-}"            # e.g. "-J <jump-host>", as in ship_to_gpu.sh
-NODE="${NODE:-<gpu-node>}"        # the GPU node whose state is checked first
+SSH_OPTS="${SSH_OPTS:-}"            # e.g. "-J <jump host>", as in ship_to_gpu.sh
+NODE="${NODE:-}"                    # the GPU node whose state is checked first; empty: no check
+PARTITION="${PARTITION:-}"          # the GPU partition; empty: the one in run_local_arms.sbatch
+HF_DIR="${HF_DIR:-}"                # the model weights on the remote host, as in ship_to_gpu.sh
 STUDY="${STUDY:-ablation}"          # the study tree run_local.py reads and writes
-# Jobs of the user queued or running at once, one below a per-user limit of four GPUs.
+# Jobs of the user queued or running at once; keep it below the cluster's per-user GPU limit.
 MAX_CONCURRENT="${MAX_CONCURRENT:-3}"
 DRY_RUN=0
 if [ "${1:-}" = "--dry-run" ]; then DRY_RUN=1; shift; fi
@@ -40,16 +44,18 @@ PY
 fi
 echo "==> $ARM at batch $BATCH"
 
-echo "==> node must be usable before anything is submitted"
-state=$(ssh $SSH_OPTS "$HOST" "sinfo -N -h -o '%T' -n $NODE" | tr -d ' ')
-echo "  node state: $state"
-case "$state" in
-  *drain*|*down*)
-    echo "REFUSING: the node is $state, so nothing would start." >&2
-    ssh $SSH_OPTS "$HOST" "sinfo -N -o '%.20N %.14T %.30E' -n $NODE" >&2
-    echo "A drained node needs an admin to resume it." >&2
-    exit 1 ;;
-esac
+if [ -n "$NODE" ]; then
+  echo "==> node $NODE must be usable before anything is submitted"
+  state=$(ssh $SSH_OPTS "$HOST" "sinfo -N -h -o '%T' -n $NODE" | tr -d ' ')
+  echo "  node state: $state"
+  case "$state" in
+    *drain*|*down*)
+      echo "REFUSING: the node is $state, so nothing would start." >&2
+      ssh $SSH_OPTS "$HOST" "sinfo -N -o '%.20N %.14T %.30E' -n $NODE" >&2
+      echo "A drained node needs an admin to resume it." >&2
+      exit 1 ;;
+  esac
+fi
 
 for ds in "${DATASETS[@]}"; do
   # Wait for a free slot.
@@ -65,7 +71,7 @@ for ds in "${DATASETS[@]}"; do
   fi
   echo "==> submitting $ARM / $ds (batch $BATCH)"
   # sbatch runs in the remote shell, so local variables reach the job only through --export.
-  ssh $SSH_OPTS "$HOST" "cd $REMOTE_DIR && mkdir -p logs && sbatch --export=ALL,ARM=$ARM,DATASET=$ds,BATCH=$BATCH,STUDY=$STUDY slurm/run_local_arms.sbatch"
+  ssh $SSH_OPTS "$HOST" "cd $REMOTE_DIR && mkdir -p logs && sbatch ${PARTITION:+--partition=$PARTITION }--export=ALL,ARM=$ARM,DATASET=$ds,BATCH=$BATCH,STUDY=$STUDY${HF_DIR:+,HF_DIR=$HF_DIR} slurm/run_local_arms.sbatch"
 done
 
 if [ "$DRY_RUN" -eq 1 ]; then

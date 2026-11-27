@@ -2,8 +2,9 @@
 # Smoke test of the local arms: A3 on HFRA, the first 64 prompts of two prompt files. It runs the
 # environment, the model download, the GPU and the output files once. With --limit, run_local.py
 # writes predictions and cache to results/smoke/. Submit it from the experiment folder on the
-# cluster (sbatch slurm/smoke_test.sbatch), where the job runs. One GPU; CPUs and memory are the
-# partition's defaults per GPU.
+# cluster (sbatch slurm/smoke_test.sbatch, with HF_DIR set if ship_to_gpu.sh had one), where the
+# job runs. One GPU; CPUs and memory are the partition's defaults per GPU. A GPU partition with
+# another name than gpu is given with sbatch -p.
 #
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:1
@@ -14,7 +15,8 @@
 set -euo pipefail
 
 cd "$SLURM_SUBMIT_DIR"
-export HF_HOME="/scratch/global/$USER/hf"
+# Model weights go to HF_DIR if it is set, else to hf/ in this folder.
+export HF_HOME="${HF_DIR:-$SLURM_SUBMIT_DIR/hf}"
 mkdir -p "$HF_HOME" logs
 
 export PYTHONUNBUFFERED=1

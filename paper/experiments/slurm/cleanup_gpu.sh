@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
 # Remove what ship_to_gpu.sh and the jobs created on the remote host (ssh alias HOST):
-#   ~/$REMOTE_DIR                  code, prompts and results
-#   /scratch/global/$USER/hf       downloaded model weights
+#   ~/$REMOTE_DIR                  code, prompts, results and the model weights in hf/
+#   $HF_DIR                        the model weights, if ship_to_gpu.sh had HF_DIR
 #   conda env                      sc_lfm_context_ablation_local
 #   ~/miniforge3                   only with --purge-conda
 # Stops if the remote results/predictions/ holds more prediction files than there are local A2
 # and A3 prediction files, or if a ctxabl job is still queued or running. Asks before deleting
 # unless --yes is given.
-#     slurm/cleanup_gpu.sh [--purge-conda] [--yes]
+#     [HF_DIR=/scratch/<user>/hf] slurm/cleanup_gpu.sh [--purge-conda] [--yes]
 set -euo pipefail
 
 HOST="${HOST:-gpu}"
 REMOTE_DIR="${REMOTE_DIR:-context_ablation}"
+# The folder of the model weights as given to ship_to_gpu.sh; it is deleted with everything in it.
+HF_DIR="${HF_DIR:-}"
 # Extra ssh options, such as a jump host (SSH_OPTS="-J <host>"), as in ship_to_gpu.sh.
 SSH_OPTS="${SSH_OPTS:-}"
 LOCAL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -48,7 +50,7 @@ fi
 
 echo "==> will delete on $HOST:"
 echo "     ~/$REMOTE_DIR"
-echo "     /scratch/global/\$USER/hf"
+[ -n "$HF_DIR" ] && echo "     $HF_DIR"
 echo "     conda env sc_lfm_context_ablation_local"
 [ "$PURGE_CONDA" -eq 1 ] && echo "     ~/miniforge3  (--purge-conda given)"
 if [ "$ASSUME_YES" -ne 1 ]; then
@@ -56,12 +58,14 @@ if [ "$ASSUME_YES" -ne 1 ]; then
   [[ "$ans" =~ ^[yY]$ ]] || { echo "cancelled"; exit 0; }
 fi
 
-ssh $SSH_OPTS "$HOST" PURGE_CONDA="$PURGE_CONDA" REMOTE_DIR="$REMOTE_DIR" bash -s <<'REMOTE'
+ssh $SSH_OPTS "$HOST" PURGE_CONDA="$PURGE_CONDA" REMOTE_DIR="$REMOTE_DIR" HF_DIR="$HF_DIR" bash -s <<'REMOTE'
 set -uo pipefail
 echo "  removing ~/$REMOTE_DIR"
 rm -rf "$HOME/${REMOTE_DIR:?}"
-echo "  removing /scratch/global/$USER/hf"
-rm -rf "/scratch/global/${USER:?}/hf"
+if [ -n "${HF_DIR:-}" ]; then
+  echo "  removing $HF_DIR"
+  rm -rf "${HF_DIR:?}"
+fi
 if [ -d "$HOME/miniforge3" ]; then
   source "$HOME/miniforge3/etc/profile.d/conda.sh"
   conda env remove -n sc_lfm_context_ablation_local -y >/dev/null 2>&1 \
@@ -71,7 +75,6 @@ if [ -d "$HOME/miniforge3" ]; then
   fi
 fi
 echo "  remaining in home:"; ls "$HOME" | sed 's/^/    /'
-echo "  scratch:"; ls "/scratch/global/$USER" 2>/dev/null | sed 's/^/    /' || echo "    (gone)"
 REMOTE
 
 echo "==> cleanup complete"
