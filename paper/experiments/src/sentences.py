@@ -146,8 +146,8 @@ def check_equivalence(dataset, cfg, n_check=50, seed=1234):
 def materialize(dataset, cfg, out_dir, arms=None, modes=None, candidates=None):
     """Write the prompt files of the per-cell arms for one dataset.
 
-    One file per arm, mode, gene variant and seed; the runners read these files and build no
-    sentences. The seed draws the order of the candidate list (``prompts.ordered_candidates``) and,
+    One file per arm, mode (the arm's ``modes``, default all), gene variant and seed; the runners
+    read these files and build no sentences. The seed draws the order of the candidate list (``prompts.ordered_candidates``) and,
     in a mode with ``shuffle_genes``, the order of the genes. ``modes`` and
     ``candidates(mode, seed)`` come from ``lists.prompt_args`` for the imperfect-list study;
     without them every mode lists the dataset's true types. Returns the file names.
@@ -181,6 +181,8 @@ def materialize(dataset, cfg, out_dir, arms=None, modes=None, candidates=None):
         if arm["granularity"] != "cell":
             continue    # cluster arms get their prompts from cluster.py
         for mode_name, mode in (modes or cfg["modes"]).items():
+            if modes is None and mode_name not in arm.get("modes", cfg["modes"]):
+                continue
             for variant, spec in cfg["genes"]["variants"].items():
                 if spec["hvg"] and hvg_modes and mode_name not in hvg_modes:
                     continue

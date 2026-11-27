@@ -6,10 +6,9 @@ seeds (1234, 5678, 9012), and both scored with the benchmark's mapping and scori
 **Prompt-context ablation** (study tree `results/`). Each arm is a model with a prompt template.
 The modes vary the prompt: M1 gives only the genes (a cell's 200 most expressed genes, or a
 cluster's 25 marker genes), M2 adds the list of the dataset's cell types, M3 tissue and species,
-M4 both, and M6 is M1 with the genes in random order. The `hvg` gene variant takes a cell's genes
-from a pool of 5,000 highly variable genes (M1 and M4). The cluster arms use Leiden clusters at
-the resolutions 0.5 and 1.0. `results/context_ablation.csv` holds these arms (`config.yml` also
-defines A5, A6 and A7, which are not in the table):
+M4 both, and M6, for A1 and A3 only, is M1 with the genes in random order. The `hvg` gene variant
+takes a cell's genes from a pool of 5,000 highly variable genes (M1 and M4). The cluster arms use
+Leiden clusters at the resolutions 0.5 and 1.0. `results/context_ablation.csv` holds these arms:
 
 | Arm | Model | Prompts |
 |---|---|---|

@@ -32,7 +32,7 @@ reasoning:
 
 # Arms: an OpenRouter or a local model, prompts per cell or per cluster, and a prompt template
 # (prompts.py). verify_base_of names the fine-tuned model whose base model run_local.py checks
-# against `model`.
+# against `model`. modes limits an arm to some of the context modes (default: all).
 arms:
   A1_llm_percell:
     kind: openrouter
@@ -46,6 +46,7 @@ arms:
     granularity: cell
     template: instruction        # the prompt of A1
     decoding: greedy             # as A3, so that A2 and A3 differ in their weights only
+    modes: [M1, M2, M3, M4]
   A3_scllm_percell:
     kind: local
     model: vandijklab/C2S-Scale-Gemma-2-2B
@@ -53,17 +54,13 @@ arms:
     template: c2s                # C2S-Scale's own template
     decoding: greedy             # as the benchmark's C2S-Scale wrapper (do_sample=False)
 
-  A5_llm20_percell:
-    kind: openrouter
-    model: openai/gpt-oss-20b
-    granularity: cell
-    template: instruction
   # The model of A1, with one prompt per cluster.
   A4_llm_percluster:
     kind: openrouter
     model: openai/gpt-oss-120b
     granularity: cluster
     template: marker_genes
+    modes: [M1, M2, M3, M4]
 
   # In the ablation tree, the prompt files of this arm are those of A4, copied under its name.
   A8_gemini_percluster:
@@ -72,27 +69,9 @@ arms:
     granularity: cluster
     template: marker_genes
 
-  # The base model and C2S-Scale at 27B.
-  A6_base27_percell:
-    kind: local
-    model: google/gemma-2-27b
-    # Generation batch size, read by slurm/submit_shards.sh (128 when not set).
-    batch_size: 32
-    verify_base_of: vandijklab/C2S-Scale-Gemma-2-27B
-    granularity: cell
-    template: instruction        # the prompt of A1 and A2
-    decoding: greedy             # as the 2B pair
-  A7_scllm27_percell:
-    kind: local
-    model: vandijklab/C2S-Scale-Gemma-2-27B
-    batch_size: 32
-    granularity: cell
-    template: c2s                # C2S-Scale's own template, as for A3
-    decoding: greedy             # as A3
-
 # Context modes: whether a prompt lists the candidate cell types, names tissue and species, and
 # holds the genes. The c2s template names the organism already, so there M3 and M4 add only the
-# tissue. M6 is M1 with the genes in a random order.
+# tissue. M6 is M1 with the genes in a random order; A2 and the cluster arms leave it out.
 modes:
   M1: {cell_types: false, tissue_species: false, genes: true}
   M2: {cell_types: true,  tissue_species: false, genes: true}
@@ -141,8 +120,8 @@ scoring:
 # The arms that run_openrouter.py and run_local.py run without --arms, chosen with --host.
 execution:
   hosts:
-    laptop:  [A1_llm_percell, A4_llm_percluster, A5_llm20_percell]
-    cluster: [A2_base_percell, A3_scllm_percell, A6_base27_percell, A7_scllm27_percell]
+    laptop:  [A1_llm_percell, A4_llm_percluster, A8_gemini_percluster]
+    cluster: [A2_base_percell, A3_scllm_percell]
 
 output:
   aggregate_csv: results/context_ablation.csv    # written by aggregate.py

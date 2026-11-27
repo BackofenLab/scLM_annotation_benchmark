@@ -7,7 +7,6 @@
 #
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:1
-# The time limit also fits a shard of the 27B arms.
 #SBATCH --time=12:00:00
 #SBATCH --job-name=ctxabl_local
 #SBATCH --output=logs/ctxabl_%j.out

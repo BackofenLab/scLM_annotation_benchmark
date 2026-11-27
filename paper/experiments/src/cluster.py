@@ -5,8 +5,8 @@ Leiden clustering of the clustering context (``cluster.source_dir``) at every re
 ``cluster.resolutions``, then the marker genes of each cluster (``rank_genes_groups``, without
 ribosomal, mitochondrial and haemoglobin genes). ``bin/build_context.py`` puts every eval cell into
 the context, so each eval cell gets the prompt of its cluster. Writes the assignments, markers and
-``cluster_summary.csv`` to ``results/clusters/`` and the prompt files of ``A4_llm_percluster`` to
-``results/prompts/``. With ``--study lists`` it reads the stored clusters at ``lists.resolution``
+``cluster_summary.csv`` to ``results/clusters/`` and the prompt files of ``A4_llm_percluster``, in
+its modes, to ``results/prompts/``. With ``--study lists`` it reads the stored clusters at ``lists.resolution``
 and writes the prompt files of the list study's cluster arm.
 
 Run from paper/experiments, since the data paths in config.yml are relative:
@@ -192,6 +192,8 @@ def main(argv=None):
             print(f"[done] {dataset} res={resolution}: {len(written)} prompt files -> {prompts_dir}")
         return 0
 
+    arm_modes = cfg["arms"]["A4_llm_percluster"].get("modes", cfg["modes"])
+    modes = {name: mode for name, mode in cfg["modes"].items() if name in arm_modes}
     rows = []
     for dataset in datasets:
         for resolution in resolutions:
@@ -205,7 +207,7 @@ def main(argv=None):
                 out_dir / f"{tag}_markers.csv", index=False)
 
             written = materialize_cluster_prompts(dataset, cfg, resolution, per_eval, markers,
-                                                  prompts_dir)
+                                                  prompts_dir, modes=modes)
 
             info["n_clusters_in_eval"] = int(per_eval.nunique())
             info["calls_per_cell_arm"] = len(per_eval)
