@@ -8,7 +8,7 @@ repository folder, in the evaluation environment (`envs/evaluation.yml`).
 ## Contents
 
 | Path | Content |
-|---|---|
+| --- | --- |
 | `predictions/` | the answers of every run of the benchmark: 21 methods in two settings and the chance reference, four datasets, test sets of 1,000 and 10,000 cells |
 | `benchmark.params.yml` | pipeline parameters that score the stored predictions |
 | `results/benchmark_metrics.csv` | metrics per dataset, model and test set size |
@@ -66,10 +66,10 @@ repository folder, in the evaluation environment (`envs/evaluation.yml`).
    S4 to S8) and `figures_rare_types.py` (Figure 4, S9 to S14); `methods.py` holds the method
    families and names that figures and tables share.
 
-Figure 1 is drawn by hand and is not generated here.
+Figure 1 was manually created and is therefore not generated here.
 
 ## Notes
 
 - The test sets and the clustering samples are on Zenodo (doi:10.5281/zenodo.21443586).
 - The predictions of the two additional analyses, their prompts and the model answers are not in
-  the repository, so these analyses can only be scored again where those files are present.
+  the repository.
