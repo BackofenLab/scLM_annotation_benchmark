@@ -1,19 +1,20 @@
 #!/usr/bin/env bash
-# Fetches the LangCell code (its bundled geneformer_001 package) and the model files into the
-# current directory; the pipeline runs it from this script's folder before run.sh.
+# Fetches the LangCell code (its bundled geneformer_001 package and its model code in utils.py)
+# and the model files into the current directory; the pipeline runs it from this script's folder
+# before run.sh.
 set -euo pipefail
 
 echo "Preparing LangCell model..."
 
 LANGCELL_COMMIT=69e41ef2fae485b67703294b50f3150bb1d5bb9b
 
-# Sparse clone at the commit used for the paper: only geneformer_001 is needed from the
-# repository.
+# Sparse clone at the commit used for the paper: only geneformer_001 and the model code in
+# LangCell-annotation-zeroshot/utils.py are needed from the repository.
 if [ ! -d "LangCell" ]; then
     echo "Cloning LangCell repository..."
     git clone --filter=blob:none --sparse https://github.com/PharMolix/LangCell.git
-    git -C LangCell sparse-checkout set geneformer_001
 fi
+git -C LangCell sparse-checkout set geneformer_001 LangCell-annotation-zeroshot
 git -C LangCell checkout --quiet "$LANGCELL_COMMIT"
 
 DOWNLOAD_DIR="./downloads"

@@ -26,6 +26,9 @@ models/*/src/LangCell/
 models/*/src/SCSA/
 models/*/src/data/
 models/*/src/downloads/
+models/sctype_unconstrained/src/ScTypeDB_full.xlsx
+models/sctype_unconstrained/src/gene_sets_prepare.R
+models/sctype_unconstrained/src/sctype_score_.R
 *.bin
 *.sqlite
 

@@ -260,10 +260,10 @@ paper/                 data, results and code of the paper
 ## License
 
 The code is released under the MIT license (see `LICENSE`). Third-party material keeps its own
-license. This applies to the ScType marker database and two R scripts from scType in
-`models/sctype_unconstrained/src/` (GPL-3.0), the Cell Ontology (CC BY 4.0), the Ensembl gene
-tables in `resources/ensembl/` and the toy dataset (CC BY 4.0, see `tests/data/README.md`). The
-methods download their own code and weights, which come with their own licenses.
+license. This applies to the Cell Ontology (CC BY 4.0), the Ensembl gene tables in
+`resources/ensembl/` and the toy dataset (CC BY 4.0, see `tests/data/README.md`). The methods
+download their own code, data and weights, which come with their own licenses, for example the
+R scripts and marker database of scType (GPL-3.0) and the code of LangCell (MIT).
 
 ## Citation
 

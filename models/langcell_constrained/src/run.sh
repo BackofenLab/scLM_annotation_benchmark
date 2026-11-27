@@ -20,15 +20,17 @@ print(annotation_key)
 PY
 )
 
-# LangCell uses its own Geneformer version (geneformer_001 from the LangCell repository), put first
-# on PYTHONPATH. Nothing is installed into the environment, which may be shared or read-only.
+# LangCell uses its own Geneformer version (geneformer_001) and its own model code
+# (LangCell-annotation-zeroshot/utils.py) from the LangCell repository, put first on PYTHONPATH.
+# Nothing is installed into the environment, which may be shared or read-only.
 SCRIPT_DIR=$(dirname "$MODEL_PATH")
 GENEFORMER_PATH=$SCRIPT_DIR/LangCell/geneformer_001
-if [ ! -d "$GENEFORMER_PATH" ]; then
-  echo "ERROR: geneformer_001 not found at $GENEFORMER_PATH; run prepare.sh first" >&2
+LANGCELL_CODE=$SCRIPT_DIR/LangCell/LangCell-annotation-zeroshot
+if [ ! -d "$GENEFORMER_PATH" ] || [ ! -f "$LANGCELL_CODE/utils.py" ]; then
+  echo "ERROR: LangCell code not found in $SCRIPT_DIR/LangCell; run prepare.sh first" >&2
   exit 1
 fi
-export PYTHONPATH="$GENEFORMER_PATH${PYTHONPATH:+:$PYTHONPATH}"
+export PYTHONPATH="$GENEFORMER_PATH:$LANGCELL_CODE${PYTHONPATH:+:$PYTHONPATH}"
 
 python "$(dirname "$0")/predict.py" \
 --input "$INPUT_H5AD" \

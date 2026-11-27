@@ -2,9 +2,11 @@
 set -euo pipefail
 
 # Download scType's helper functions (R/ of the sc-type repository) and its marker workbook
-# into this folder unless they are present. Written for bash 3.2 (no associative arrays).
+# into this folder unless they are present, at the sc-type commit used for the paper. They are
+# under GPL-3.0 and not part of this repository. Written for bash 3.2 (no associative arrays).
 SCRIPT_DIR=$(dirname "$(realpath "$0")")
-BASE="https://raw.githubusercontent.com/IanevskiAleksandr/sc-type/master"
+SCTYPE_COMMIT=630e15cf1e51f2612eda4ad0406dfb17503fa8c9
+BASE="https://raw.githubusercontent.com/IanevskiAleksandr/sc-type/$SCTYPE_COMMIT"
 
 fetch() {  # <local_name> <remote_path>
   if [ ! -f "$SCRIPT_DIR/$1" ]; then

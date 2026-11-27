@@ -50,7 +50,8 @@ from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 import seaborn as sns  # used for heatmap
 
-# Model, collator and tokenizer classes from the LangCell repository
+# Model, collator and tokenizer classes from utils.py of the LangCell repository
+# (LangCell-annotation-zeroshot, on PYTHONPATH through run.sh)
 from utils import BertModel as MedBertModel
 from utils import (
     LangCellDataCollatorForCellClassification as DataCollatorForCellClassification,
