@@ -34,7 +34,7 @@ The pipeline has two modes:
 > On macOS, conda cannot build the environments of the two R-based methods, SingleR and scType. The
 > install script of Bioconductor's GenomeInfoDbData package expects Linux file names, and SingleR
 > 2.8.0 has no build for Apple silicon. Using the Intel packages instead does not help. Run these
-> two methods with a container profile.
+> two methods on Linux.
 
 ## Quick start
 
