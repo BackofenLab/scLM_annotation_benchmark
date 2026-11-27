@@ -7,6 +7,20 @@ dependencies:
   - git-lfs=3.8.0
   - pip:
     - pyyaml==6.0.3
+    # Versions of the environment that reproduced the paper's mmContext predictions on
+    # 2026-11-26; mmcontext itself does not pin them.
+    - torch==2.14.1
+    - transformers==5.19.0
+    - sentence-transformers==6.1.0
+    - tokenizers==0.23.2
+    - huggingface-hub==1.33.0
+    - accelerate==1.15.0
+    - safetensors==0.8.0
+    - anndata==0.12.19
+    - numpy==2.4.6
+    - pandas==2.3.3
+    - scipy==1.17.1
+    - scanpy==1.11.5
     # mmcontext is pinned to the commit used for the benchmark runs; later commits on its main
     # branch do not install. That commit requires adata_hf_datasets from git without a ref, and
     # pip refuses a second, pinned link to it, so adata_hf_datasets stays unpinned here. Its
