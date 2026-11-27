@@ -4,20 +4,20 @@ channels:
   - bioconda
   - defaults
 dependencies:
-  - python=3.10
-  - pip
+  - python=3.10.21
+  - pip=26.2.1
   - pip:
-      - anndata>=0.10.2
-      - scanpy>=1.9
-      - pyyaml
-      - requests
-      - torch>=2.0.0
+      - anndata==0.11.4
+      - scanpy==1.11.5
+      - pyyaml==6.0.3
+      - requests==2.34.2
+      - torch==2.14.1
       - transformers==4.39.1
-      - datasets>=2.14.0
-      - huggingface-hub>=0.16.0
-      - mygene>=3.2.2
-      - tokenizers>=0.13.0
-      - safetensors>=0.3.0
-      - umap-learn>=0.5.3
-      - loompy>=3.0.8
+      - datasets==5.0.1
+      - huggingface-hub==0.36.2
+      - mygene==3.2.2
+      - tokenizers==0.15.2
+      - safetensors==0.8.0
+      - umap-learn==0.5.12
+      - loompy==3.0.8
 

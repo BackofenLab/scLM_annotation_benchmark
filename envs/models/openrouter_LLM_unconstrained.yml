@@ -2,11 +2,11 @@ name: openrouter_LLM_unconstrained-env
 channels:
   - conda-forge
 dependencies:
-  - python=3.11
+  - python=3.11.15
   - pip:
-      - accelerate
-      - anndata
-      - cell2sentence
-      - datasets
-      - huggingface-hub
-      - transformers
+      - accelerate==1.14.0
+      - anndata==0.11.4
+      - cell2sentence==1.2.0
+      - datasets==5.0.1
+      - huggingface-hub==1.27.0
+      - transformers==5.15.0

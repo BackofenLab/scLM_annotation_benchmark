@@ -2,24 +2,23 @@ name: evaluate
 channels:
   - conda-forge
 dependencies:
-  - python=3.11
-  - setuptools<82
-  - anndata
-  - pandas
-  - zarr<3
-  - pyyaml
-  - scikit-learn
-  - matplotlib
-  - seaborn
-  - pronto
-  - networkx
-  - setuptools<81
-  - pip
+  - python=3.11.16
+  - setuptools=80.10.2
+  - anndata=0.12.19
+  - pandas=2.3.3
+  - zarr=2.18.7
+  - pyyaml=6.0.3
+  - scikit-learn=1.9.1
+  - matplotlib=3.11.2
+  - seaborn=0.13.2
+  - pronto=2.7.3
+  - networkx=3.6.1
+  - pip=26.2.1
   - pip:
-    - torch
-    - transformers>=4.36,<4.40
-    - sentence_transformers
-    - numpy<2.0   # the osx-64 torch wheel is built against NumPy 1; with NumPy 2, importing
+    - torch==2.14.1
+    - transformers==4.39.3
+    - sentence_transformers==3.1.1
+    - numpy==1.26.4   # the osx-64 torch wheel is built against NumPy 1; with NumPy 2, importing
                   # torch for the text-embedding metric fails ("_ARRAY_API not found") and
                   # score_predictions crashes.
 # The evaluation does not need omicverse or torch_geometric, whose compiled dependencies fail to

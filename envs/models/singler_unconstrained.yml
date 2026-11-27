@@ -7,9 +7,9 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - r-base=4.4.*
-  - r-optparse=1.7.*
-  - r-yaml=2.3.*
+  - r-base=4.4.3
+  - r-optparse=1.7.5
+  - r-yaml=2.3.12
   - bioconductor-singlecellexperiment=1.28.0
   - bioconductor-zellkonverter=1.16.0
   - bioconductor-rhdf5=2.50.0        # readH5AD(reader = "R") reads .h5ad files without Python

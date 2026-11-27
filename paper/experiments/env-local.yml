@@ -5,8 +5,8 @@ name: sc_lfm_context_ablation_local
 channels:
   - conda-forge
 dependencies:
-  - python=3.11
-  - pip
+  - python=3.11.15
+  - pip=26.2.1
   - pip:
       # As in env.yml.
       - scanpy==1.11.5

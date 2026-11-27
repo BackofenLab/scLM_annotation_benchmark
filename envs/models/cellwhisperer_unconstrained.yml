@@ -2,26 +2,26 @@ name: cellwhisperer
 channels:
   - conda-forge
 dependencies:
-  - python=3.10
-  - pip
-  - git
-  - setuptools<81
+  - python=3.10.21
+  - pip=26.2.1
+  - git=2.56.0
+  - setuptools=80.10.2
   - pip:
-    - pyyaml
+    - pyyaml==6.0.3
     - torch==2.1.0
-    - numpy<2
-    - scib
-    - pybiomart
+    - numpy==1.26.4
+    - scib==1.1.7
+    - pybiomart==0.2.0
     - anndata==0.10.2
     - transformers==4.34.1
     - lightning==2.1.0
     - datasets==2.12.0
-    - loompy
-    - seaborn
-    - scikit-learn
-    - scanpy
-    - tdigest
-    - wandb
-    - zarr
+    - loompy==3.0.8
+    - seaborn==0.13.2
+    - scikit-learn==1.7.2
+    - scanpy==1.11.5
+    - tdigest==0.5.2.2
+    - wandb==0.30.0
+    - zarr==2.18.3
     - -e ../../models/cellwhisperer_unconstrained/src/CellWhisperer
     - -e ../../models/cellwhisperer_unconstrained/src/CellWhisperer/modules/Geneformer

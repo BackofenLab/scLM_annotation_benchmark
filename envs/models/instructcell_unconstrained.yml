@@ -3,9 +3,9 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - python=3.10
-  - pip
-  - git
+  - python=3.10.21
+  - pip=26.2.1
+  - git=2.56.0
   - pip:
     # Requirements of InstructCell, taken from https://github.com/zjunlp/InstructCell
     - torch==2.0.0
