@@ -26,8 +26,7 @@ The pipeline has two modes:
 
 - Nextflow 25.04 or later (tested with 25.04.6) and Java 17 or later
 - Conda or Mamba (profile `local`), or Docker or Apptainer (profiles `docker` and `apptainer`).
-  The pipeline creates one environment per step from the recipes in `envs/`, which fix the version
-  of every package they list.
+  The pipeline creates one environment per step from the recipes in `envs/`.
 - A CUDA GPU for the scLMs
 - An [OpenRouter](https://openrouter.ai/) API key for the LLMs
 
